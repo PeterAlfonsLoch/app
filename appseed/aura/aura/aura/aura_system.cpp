@@ -245,7 +245,7 @@ namespace aura
       }
       catch (...)
       {
-         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
+         TRACE("system::exit_application: Potentially catastrophical error : error disabling simple factory request");
       }
 
       if (g_p == this)
@@ -564,15 +564,19 @@ namespace aura
    bool system::initialize2()
    {
 
-      if(!::aura::application::initialize2())
+      if (!::aura::application::initialize2())
+      {
+
          return false;
+
+      }
 
       return true;
 
    }
 
 
-   bool system::initialize_instance()
+   bool system::initialize_application()
    {
 
       if(!m_paurasession->begin_synch(&m_iReturnCode))
@@ -585,10 +589,12 @@ namespace aura
 
       m_pfactory->enable_simple_factory_request();
 
-      if(!::aura::application::initialize_instance())
+      if (!::aura::application::initialize_application())
+      {
+
          return false;
 
-      //m_paurabergedgemap = new ::aura::session::map;
+      }
 
       return true;
 
@@ -601,7 +607,6 @@ namespace aura
       __wait_threading_count_except(this,::millis((5000) * 77));
 
       bool bOk = false;
-
 
       try
       {
@@ -621,7 +626,7 @@ namespace aura
    }
 
 
-   int32_t system::exit_instance()
+   int32_t system::exit_application()
    {
 
       __wait_threading_count(::millis((5000) * 8));
@@ -704,7 +709,7 @@ namespace aura
       try
       {
 
-         iRet = ::aura::application::exit_instance();
+         iRet = ::aura::application::exit_application();
 
       }
       catch(...)
@@ -759,7 +764,7 @@ namespace aura
 
 
 
-      ::aura::application::exit_instance();
+      ::aura::application::exit_application();
 
 #ifdef METROWIN
 //      m_pdevicecontext = nullptr;

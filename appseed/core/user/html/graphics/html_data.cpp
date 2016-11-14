@@ -39,13 +39,14 @@ namespace html
       m_pcallback                = NULL;
    }
 
+
    data::~data()
    {
-      if(m_ptag != NULL)
-      {
-         delete m_ptag;
-         m_ptag = NULL;
-      }
+
+      ::aura::del(m_ptag);
+
+      m_pform = NULL;
+      
    }
 
 

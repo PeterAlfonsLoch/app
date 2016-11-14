@@ -54,7 +54,7 @@ namespace multimedia
 
          virtual void wave_out_on_playback_end();
 
-         virtual bool initialize_instance();
+         virtual bool initialize_thread() override;
          virtual int32_t exit_instance();
 
 

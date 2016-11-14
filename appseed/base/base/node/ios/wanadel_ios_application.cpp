@@ -137,7 +137,7 @@ namespace ios
    }
 
    // thread termination
-   int32_t application::exit_instance() // default will 'delete this'
+   int32_t application::exit_application() // default will 'delete this'
    {
 
       // avoid calling CloseHandle() on our own thread handle
@@ -147,7 +147,7 @@ namespace ios
       IOS_THREAD(::thread::m_p.m_p)->m_bRun = false;
 //      IOS_THREAD(::application_base::m_p.m_p->::thread::m_p.m_p)->m_bRun = false;
 
-      int32_t iRet = ::aura::application::exit_instance();
+      int32_t iRet = ::aura::application::exit_application();
 
       //::ca2::smart_pointer<::application>::destroy();
 

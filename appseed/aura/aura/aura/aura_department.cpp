@@ -78,7 +78,7 @@ namespace aura
    }
 
 
-   bool department::initialize_instance()
+   bool department::initialize_application()
    {
 
       return true;
@@ -94,7 +94,7 @@ namespace aura
    }
 
 
-   int32_t department::exit_instance()
+   int32_t department::exit_application()
    {
 
       return 0;

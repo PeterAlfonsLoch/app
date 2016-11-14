@@ -182,7 +182,7 @@ namespace multimedia
          virtual void wave_out_free(int iBuffer);
          //virtual void wave_out_free(LPWAVEHDR lpwavehdr);
 
-         virtual bool initialize_instance();
+         virtual bool initialize_thread() override;
          //virtual int32_t exit_instance();
 
          int32_t wave_out_get_buffered_buffer_count();

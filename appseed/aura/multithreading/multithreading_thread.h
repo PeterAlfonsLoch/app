@@ -176,12 +176,9 @@ public:
    void CommonConstruct();
 
 
-   virtual bool pre_run();
+//   virtual bool finalize();
 
-
-   virtual bool finalize();
-
-   virtual int32_t exit();
+//   virtual int32_t exit();
 
 
    virtual void on_keep_alive();
@@ -232,16 +229,11 @@ public:
       return post_object(message_system, system_message_pred, dynamic_cast < pred_holder_base *>(canew(pred_holder < PRED >(get_app(), pred))));
    }
 
-   virtual bool pre_init_instance();
-
    virtual bool on_run_exception(::exception::exception &);
-
-   virtual bool initialize_instance();
 
    virtual message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
    // running and idle processing
-   virtual int32_t run();
    virtual void pre_translate_message(signal_details * pobj);
    virtual bool pump_message();     // low level message pump
    virtual bool defer_pump_message();     // deferred message pump
@@ -251,7 +243,13 @@ public:
    virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
    virtual bool is_idle_message(LPMESSAGE lpmessage);  // checks for special messages
 
-   virtual int32_t exit_instance();
+   virtual bool initialize_thread();
+   virtual bool on_before_run_thread();
+   virtual int32_t run();
+   virtual bool on_after_run_thread();
+   virtual int32_t exit_thread();
+
+   virtual void close_dependent_threads(::duration & dur);
 
    virtual void process_window_procedure_exception(::exception::base*,signal_details * pobj);
 
@@ -335,6 +333,7 @@ public:
    /// thread implementation
    virtual int32_t thread_startup(::thread_startup * pstartup);
    virtual bool thread_entry();
+   virtual int32_t thread_exit();
    virtual int32_t thread_term();
    virtual void thread_delete();
    operator HTHREAD() const;

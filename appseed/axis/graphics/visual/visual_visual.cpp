@@ -404,7 +404,7 @@ namespace visual
    }
 
    // should not call axis class implementation because visual::visual is inside a n-furcation of user::visual
-   int32_t visual::exit_instance()
+   int32_t visual::exit_application()
    {
 
       int32_t iExitCode = 0;
@@ -412,13 +412,14 @@ namespace visual
       try
       {
 
-         iExitCode = ::aura::department::exit_instance();
+         iExitCode = ::aura::department::exit_application();
 
       }
       catch (...)
       {
 
          ::simple_message_box(NULL, "except", "except", MB_OK);
+
          iExitCode = -1;
 
       }
@@ -426,6 +427,7 @@ namespace visual
       return iExitCode;
 
    }
+
 
    bool visual::embossed_text_out(
       ::draw2d::graphics * pgraphics,

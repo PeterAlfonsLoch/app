@@ -14,15 +14,11 @@ namespace database
       database();
       virtual ~database();
 
-      
       virtual bool initialize();
 
-      
       virtual ::database::server * get_data_server();
 
-
-      virtual int32_t exit_instance();
-
+      virtual int32_t exit_thread();
 
    };
 

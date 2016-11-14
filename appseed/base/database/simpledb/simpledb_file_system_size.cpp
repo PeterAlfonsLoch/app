@@ -538,7 +538,7 @@ FileSystemSizeServerThread::FileSystemSizeServerThread(::aura::application * pap
 {
 }
 
-bool FileSystemSizeServerThread::initialize_instance()
+bool FileSystemSizeServerThread::initialize_thread()
 {
    db_server * pcentral = &System.m_simpledb.db();
    pcentral->m_pfilesystemsizeset->m_table.m_pwndServer->CreateServer();

@@ -203,14 +203,22 @@ namespace core
    }
 
 
-   bool session::initialize_instance()
+   bool session::initialize_application()
    {
 
-      if(!::core::application::initialize_instance())
+      if (!::core::application::initialize_application())
+      {
+
          return false;
 
-      if(!::base::session::initialize_instance())
+      }
+
+      if (!::base::session::initialize_application())
+      {
+
          return false;
+
+      }
 
       initialize_bergedge_application_interface();
 
@@ -236,7 +244,6 @@ namespace core
          //Session.savings().save(::aura::resource_translucent_background);
 
       }
-
 
       return true;
 
@@ -271,6 +278,7 @@ namespace core
       {
 
          bOk = false;
+
       }
 
       return bOk;
@@ -278,12 +286,13 @@ namespace core
    }
 
 
-   int32_t session::exit_instance()
+   int32_t session::exit_application()
    {
+
       try
       {
 
-         ::base::session::exit_instance();
+         ::base::session::exit_application();
 
       }
       catch(...)
@@ -291,11 +300,10 @@ namespace core
 
       }
 
-
       try
       {
 
-         ::core::application::exit_instance();
+         ::core::application::exit_application();
 
       }
       catch(...)
@@ -313,12 +321,12 @@ namespace core
 
          }
 
-
       }
       catch (...)
       {
 
       }
+
       try
       {
 
@@ -328,7 +336,6 @@ namespace core
             delete m_pfilemanager;
 
          }
-
 
       }
       catch (...)
@@ -351,7 +358,6 @@ namespace core
 
       m_pobjectUserex.release();
 
-
       return 0;
 
    }
@@ -367,8 +373,6 @@ namespace core
 
    void session::_001OnFileNew()
    {
-
-      //m_pdocmanager->_001OnFileNew();
 
    }
 
@@ -394,13 +398,19 @@ namespace core
 
    void session::launch_app(const char * psz)
    {
+
       UNREFERENCED_PARAMETER(psz);
+
    }
+
 
    void session::install_app(const char * psz)
    {
+
       UNREFERENCED_PARAMETER(psz);
+
    }
+
 
    void session::on_request(sp(::create) pcreatecontext)
    {
@@ -408,7 +418,6 @@ namespace core
       ::base::session::on_request(pcreatecontext);
 
    }
-
 
 
    bool session::open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate)
@@ -420,7 +429,9 @@ namespace core
 
       if(pbiasCreate != NULL)
       {
+
          cc->m_spApplicationBias->operator=(*pbiasCreate);
+
       }
 
       return open_by_file_extension(cc);
@@ -476,19 +487,27 @@ namespace core
 
          if(straApp.get_count() == 1)
          {
+
             strId = straApp[0];
+
          }
          else
          {
+
             strId = "app/sphere/default_file_handler";
+
          }
 
       }
 
       ::aura::application * papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
 
-      if(papp == NULL)
+      if (papp == NULL)
+      {
+
          return false;
+
+      }
 
       papp->m_pcoreapp->::object::create(pcreatecontext);
 
@@ -497,11 +516,13 @@ namespace core
    }
 
 
-
    session::run_application::run_application()
    {
+
       m_pauraapp = NULL;
+
       m_puiParent = NULL;
+
    }
 
    //   void session::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)

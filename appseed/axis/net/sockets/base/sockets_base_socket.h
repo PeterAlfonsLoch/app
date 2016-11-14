@@ -51,23 +51,24 @@ namespace sockets
       {
       public:
 
+
          sp(socket_handler)   m_sphandler;
 
          sp(base_socket)      m_spsocket;
 
 
          socket_thread(base_socket * psocket);
+
          virtual ~socket_thread();
 
-
-         virtual bool pre_run();
+         virtual bool initialize_thread() override;
 
          sp(base_socket) get_socket() const { return m_spsocket; }
-
 
          virtual int run();
 
       };
+
 
       /** Data pass class from source to destination. */
       class trigger_data

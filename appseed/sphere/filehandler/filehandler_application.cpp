@@ -29,7 +29,7 @@ namespace filehandler
 
    }
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
 
@@ -38,7 +38,7 @@ namespace filehandler
       System.factory().creatable_small < frame >();
       System.factory().creatable_small < view >();
 
-      if(!::asphere::application::initialize_instance())
+      if(!::asphere::application::initialize_application())
          return false;
 
 
@@ -56,7 +56,7 @@ namespace filehandler
       return TRUE;
    }
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
 
       int32_t iExitCode = 0;
@@ -64,7 +64,7 @@ namespace filehandler
       try
       {
 
-         iExitCode = ::asphere::application::exit_instance();
+         iExitCode = ::asphere::application::exit_application();
 
       }
       catch(...)

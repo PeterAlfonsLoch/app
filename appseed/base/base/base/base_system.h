@@ -69,7 +69,7 @@ namespace base
 
       virtual bool defer_create_system_frame_window();
 
-      virtual int32_t exit_instance();
+      virtual int32_t exit_application();
 
       virtual ::aura::session * on_create_session();
 

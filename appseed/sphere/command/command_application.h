@@ -21,8 +21,8 @@ namespace command
       void construct();
 
 
-      bool initialize_instance();
-      virtual int32_t exit_instance();
+      bool initialize_application();
+      virtual int32_t exit_application() override;
 
 
 	   virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);

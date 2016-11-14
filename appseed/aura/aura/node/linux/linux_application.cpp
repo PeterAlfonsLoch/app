@@ -199,7 +199,7 @@ namespace aura
       //m_pimpl->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
 
-      //int32_t iRet = ::aura::application::exit_instance();
+      //int32_t iRet = ::aura::application::exit_application();
 
       //::ca2::smart_pointer<::ca2::application>::destroy();
 

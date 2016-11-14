@@ -82,9 +82,9 @@ namespace core
 
 
       virtual bool initialize2();
-      bool initialize_instance();
+      bool initialize_application() override;
       bool on_initial_update();
-      virtual int32_t exit_instance();
+      virtual int32_t exit_application();
 
       bool InitializeLocalDataCentral();
 

@@ -36,7 +36,7 @@ namespace turboc
    }
 
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
       m_pcontext = new context(this);
@@ -54,7 +54,7 @@ namespace turboc
       System.factory().creatable_small < ::turboc::switcher_view >();
       System.factory().creatable_small < ::turboc::pane_view >();
 
-      if(!::console::application::initialize_instance())
+      if(!::console::application::initialize_application())
          return false;
 
       ::user::single_document_template* pDocTemplate;
@@ -134,10 +134,10 @@ namespace turboc
 
 
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
 
-      return ::core::application::exit_instance();
+      return ::core::application::exit_application();
    }
 
    void application::on_request(sp(::create) pcreatecontext)

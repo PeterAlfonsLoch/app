@@ -44,7 +44,7 @@ namespace visual
       cursor * get_cursor(e_cursor ecursor);
 
 
-      virtual int32_t exit_instance();
+      virtual int32_t exit_application();
 
 
       static uint32_t c_cdecl thread_proc_parallel_initialize(void * pparamThis);

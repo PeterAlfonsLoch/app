@@ -11,9 +11,11 @@ struct send_thread_message :
    manual_reset_event      m_ev;
 
    send_thread_message(::aura::application * papp);
+
    virtual ~send_thread_message();
 
 };
+
 
 send_thread_message::send_thread_message(::aura::application * papp) :
    m_ev(papp)
@@ -34,16 +36,20 @@ send_thread_message::~send_thread_message()
 }
 
 
-
 bool thread::s_bAllocReady = false;
+
 
 thread::file_info::file_info()
 {
-   m_durationFileSharingViolationTimeout = seconds(1984);
+
+   m_durationFileSharingViolationTimeout = seconds(2000);
+
 }
+
 
 thread::file_info::~file_info()
 {
+
 }
 
 
@@ -259,41 +265,22 @@ HTHREAD thread::get_os_handle() const
 
 
 
-
-
-bool thread::finalize()
+bool thread::on_after_run_thread()
 {
+
+   close_dependent_threads(minutes(1));
 
    return true;
 
 }
 
 
-int32_t thread::exit()
+
+
+int32_t thread::exit_thread()
 {
 
-   signal_close_dependent_threads();
-
-   wait_close_dependent_threads(minutes(1));
-
-
-   try
-   {
-
-      if (!finalize())
-      {
-
-         TRACE("There occurred errors durring application::finalize virtual member function");
-
-      }
-
-   }
-   catch (...)
-   {
-
-   }
-
-   return exit_instance();
+   return 0;
 
 }
 
@@ -343,15 +330,6 @@ CLASS_DECL_AURA void thread_alloc_ready(bool bReady)
 }
 
 
-
-bool thread::pre_run()
-{
-
-   register_at_required_threads();
-
-   return true;
-
-}
 
 int32_t thread::run()
 {
@@ -441,7 +419,7 @@ bool thread::pump_message()
          ::output_debug_string("thread::pump_message - Received wm_quit.\n");
 
          m_nDisablePumpCount++; // application must die
-         // Note: prevents calling message loop things in 'exit_instance'
+         // Note: prevents calling message loop things in 'exit_thread'
          // will never be decremented
          return false;
 
@@ -730,6 +708,16 @@ void thread::on_unregister_dependent_thread(::thread * pthreadDependent)
    // the system may do some extra processing (like quitting system in case pthreadDependent is the last thread virgin in America (North, most especifically US) ?!?!), so do a kick
    // (do not apply virgin to your self...)
    kick_thread();
+
+}
+
+
+void thread::close_dependent_threads(::duration & dur)
+{
+
+   signal_close_dependent_threads();
+
+   wait_close_dependent_threads(minutes(1));
 
 }
 
@@ -1091,7 +1079,8 @@ void thread::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
 
 
 
-bool thread::pre_init_instance()
+
+bool thread::initialize_thread()
 {
 
    return true;
@@ -1099,12 +1088,15 @@ bool thread::pre_init_instance()
 }
 
 
-bool thread::initialize_instance()
+bool thread::on_before_run_thread()
 {
+
+   register_at_required_threads();
 
    return true;
 
 }
+
 
 void thread::dispatch_thread_message(signal_details * pbase)
 {
@@ -1608,48 +1600,14 @@ uint32_t __thread_entry(void * pparam)
 
       }
 
-      //if(pthread->m_preplacethread != NULL && !pthread->m_preplacethread->do_replace(pthread))
-      //{
-
-      //   try
-      //   {
-
-      //      pthread->m_preplacethread = NULL;
-
-      //   }
-      //   catch(...)
-      //   {
-
-      //   }
-
-      //   try
-      //   {
-
-      //      pthread->exit();
-
-      //   }
-      //   catch(...)
-      //   {
-
-      //   }
-
-      //   return ::multithreading::__on_thread_finally(pthread);
-
-      //}
-
-
       try
       {
 
-                               pthread->main();
+         pthread->main();
 
       }
       catch(::exit_exception &)
       {
-
-         //Sys(pthread->m_pauraapp).post_quit();
-
-         //return ::multithreading::__on_thread_finally(pthread);
 
       }
 
@@ -1686,13 +1644,13 @@ void CLASS_DECL_AURA __term_thread(::aura::application * papp)
 }
 
 
-
 bool thread::is_idle_message(signal_details * pobj)
 {
 
    return ::message::is_idle_message(pobj);
 
 }
+
 
 bool thread::is_idle_message(LPMESSAGE lpmsg)
 {
@@ -1702,22 +1660,16 @@ bool thread::is_idle_message(LPMESSAGE lpmsg)
 }
 
 
-
 void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 {
 
-   //::count ca;
-
    thread * pthread;
-
-   //ca = ::multithreading::s_pthreadptra->get_size();
-
-   //bool bOk;
 
    if(message == WM_QUIT)
    {
 
       single_lock sl(::multithreading::s_pmutex,true);
+
       ref_array < thread > threadptra = *::multithreading::s_pthreadptra;
 
       for(index i = 0; i < threadptra.get_size(); i++)
@@ -1738,16 +1690,12 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
       
       return;
 
-
    }
-
 
    single_lock sl(::multithreading::s_pmutex);
 
    for(index i = ::multithreading::s_pthreadptra->get_size(); i >= 0; i--)
    {
-
-      //bOk = true;
 
       try
       {
@@ -1761,76 +1709,13 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
       catch(...)
       {
 
-         //bOk = false;
-
       }
 
       sl.lock();
 
-
    }
 
 }
-
-
-int32_t thread::exit_instance()
-{
-
-   ASSERT_VALID(this);
-
-   //try
-   //{
-
-   //   single_lock sl(&m_mutexUiPtra,TRUE);
-
-//      if(m_spuiptra.is_set())
-//      {
-//
-//         sp(ref_array < ::user::primitive >) puiptra = m_spuiptra;
-//
-//         m_spuiptra.release();
-//
-//  //       for(int32_t i = 0; i < puiptra->get_size(); i++)
-//    //     {
-//
-////            ::user::primitive * pui = puiptra->element_at(i);
-//
-//      //   }
-//
-//         puiptra.release();
-//
-//         sl.unlock();
-//
-//      }
-//   }
-//   catch(...)
-//   {
-//   }
-
-   //try
-   //{
-
-   //   m_sptimera.release();
-
-   //}
-   //catch(...)
-   //{
-   //}
-
-
-   return m_iReturnCode;
-
-}
-
-//bool thread::on_idle(LONG lCount)
-//{
-//
-//   return on_thread_on_idle(this, lCount);
-//
-//
-//}
-
-
 
 
 bool thread::post_message(::user::primitive * pui,UINT uiMessage,WPARAM wparam,lparam lparam)
@@ -2028,8 +1913,7 @@ bool thread::thread_entry()
    try
    {
 
-
-      if(!pre_run())
+      if(!initialize_thread())
       {
 
          bError = true;
@@ -2038,6 +1922,26 @@ bool thread::thread_entry()
 
    }
    catch(...)
+   {
+
+      bError = true;
+
+   }
+
+
+   try
+   {
+
+
+      if (!on_before_run_thread())
+      {
+
+         bError = true;
+
+      }
+
+   }
+   catch (...)
    {
 
       bError = true;
@@ -2065,10 +1969,6 @@ bool thread::thread_entry()
 int32_t thread::main()
 {
 
-   if(!pre_init_instance())
-   {
-      return 0;
-   }
 
 
 
@@ -2079,7 +1979,7 @@ int32_t thread::main()
       nResult = (*m_pfnThreadProc)(m_pThreadParams);
    }
    // else -- check for thread with message loop
-   else if(initialize_instance())
+   else 
    {
       // will stop after PostQuitMessage called
       ASSERT_VALID(this);
@@ -2093,12 +1993,16 @@ int32_t thread::main()
       }
       catch(::exit_exception & e)
       {
+
          try
          {
-            exit();
+            
+            thread_exit();
+
          }
          catch(...)
          {
+
          }
 
          throw e;
@@ -2123,16 +2027,21 @@ int32_t thread::main()
    //translator::detach();
    try
    {
-      nResult = exit();
+
+      nResult = thread_exit();
+
    }
    catch(...)
    {
+
       nResult = (DWORD)-1;
+
    }
 
    return nResult;
 
 }
+
 
 void thread::assert_valid() const
 {
@@ -2181,115 +2090,47 @@ int32_t thread::thread_term()
 
 }
 
+int32_t thread::thread_exit()
+{
 
-//void thread::add(::user::primitive * pui)
-//{
-//
-//   single_lock sl(&m_mutexUiPtra,TRUE);
-//
-//   if(m_spuiptra.is_set())
-//   {
-//
-//      m_spuiptra->add(pui);
-//
-//   }
-//
-//}
-//
-//
-//void thread::remove(::user::primitive * pui)
-//{
-//
-//   if(pui == NULL)
-//      return;
-//
-//   single_lock sl(&m_mutexUiPtra,TRUE);
-//
-//   pui->remove_thread(this);
-//
-//   if(m_spuiptra.is_set())
-//   {
-//
-//      m_spuiptra->remove(pui);
-//
-//   }
-//
-//   sl.unlock();
-//
-//   //if(m_sptimera.is_set())
-//   //{
-//
-//   //   m_sptimera->unset(pui);
-//
-//   //}
-//
-//}
-//
-//
-//::count thread::get_ui_count()
-//{
-//
-//   single_lock sl(&m_mutexUiPtra,TRUE);
-//   if (m_spuiptra.is_null())
-//      return 0;
-//
-//   return m_spuiptra->get_count();
-//
-//}
-//
-//
-//::user::primitive * thread::get_ui(index iIndex)
-//{
-//
-//   single_lock sl(&m_mutexUiPtra,TRUE);
-//   if (m_spuiptra.is_null())
-//      return NULL;
-//
-//   return m_spuiptra->element_at(iIndex);
-//
-//}
+   bool bErrorAfterRunThread = false;
 
+   try
+   {
 
-//void thread::set_timer(::user::primitive * pui,uint_ptr nIDEvent,UINT nEllapse)
-//{
-//
-//   if(m_sptimera.is_null())
-//   {
-//
-//      if(!initialize_message_queue())
-//         return;
-//
-//   }
-//
-//   m_sptimera->set(pui,nIDEvent,nEllapse);
-//
-//   Application.add_thread(pui, m_pthread);
-//
-//}
-//
+      if (!on_after_run_thread())
+      {
 
-//void thread::unset_timer(::user::primitive * pui,uint_ptr nIDEvent)
-//{
-//
-//   if(m_sptimera.is_null())
-//      return;
-//
-//   m_sptimera->unset(pui,nIDEvent);
-//
-//}
+         bErrorAfterRunThread = true;
 
+      }
 
+   }
+   catch (...)
+   {
 
+      bErrorAfterRunThread = true;
 
-//void thread::step_timer()
-//{
-//
-//   if(m_sptimera.is_null())
-//      return;
-//
-//   m_sptimera->check();
-//
-//}
+   }
+
+   int32_t iExitCode = 0;
+
+   try
+   {
+
+      iExitCode = exit_thread();
+
+   }
+   catch (...)
+   {
+
+      iExitCode = -1;
+
+   }
+
+   return iExitCode;
+
+}
 
 
 thread::operator HTHREAD() const

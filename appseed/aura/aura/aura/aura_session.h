@@ -78,19 +78,19 @@ namespace aura
       }
       virtual void construct(::aura::application * papp, int iPhase);
 
-      virtual bool process_initialize();
+      virtual bool process_initialize() override;
 
-      virtual bool initialize1();
+      virtual bool initialize1() override;
 
-      virtual bool initialize2();
+      virtual bool initialize2() override;
 
-      virtual bool initialize_instance();
+      virtual bool initialize_application() override;
 
-      virtual bool initialize();
+      virtual bool initialize() override;
 
-      virtual bool finalize();
+      virtual bool finalize() override;
 
-      virtual int32_t exit_instance();
+      virtual int32_t exit_application() override;
 
       virtual ::visual::cursor * get_cursor();
 

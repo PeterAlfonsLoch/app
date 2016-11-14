@@ -1094,39 +1094,109 @@ namespace aura
 
    exit_application:
 
-      try
-      {
+      //try
+      //{
 
-         m_iReturnCode = exit();
+      //   m_iReturnCode = exit();
 
-      }
-      catch(::exit_exception &)
-      {
+      //}
+      //catch(::exit_exception &)
+      //{
 
-         ::aura::post_quit_thread(&System);
+      //   ::aura::post_quit_thread(&System);
 
-         m_iReturnCode = -1;
+      //   m_iReturnCode = -1;
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-         m_iReturnCode = -1;
+      //   m_iReturnCode = -1;
 
-      }
+      //}
 
       return m_iReturnCode;
 
    }
 
+   bool application::initialize_thread()
+   {
 
+      try
+      {
+
+         if (!pre_run())
+         {
+
+            return false;
+
+         }
+
+         if (!initialize_application())
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   int32_t application::exit_thread()
+   {
+
+      bool bErrorFinalize = false;
+
+      try
+      {
+
+         if (!finalize())
+         {
+
+            bErrorFinalize = true;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         bErrorFinalize = true;
+
+      }
+
+      int32_t iExitCode;
+
+      try
+      {
+
+         iExitCode = exit_application();
+
+      }
+      catch (...)
+      {
+
+         iExitCode = -1;
+
+      }
+
+      return iExitCode;
+
+   }
 
 
    bool application::pre_run()
    {
-
-      if(!::thread::pre_run())
-         return false;
 
       TRACE(string(typeid(*this).name()) + " main_start");;
       try
@@ -1150,7 +1220,7 @@ namespace aura
          {
             dappy(string(typeid(*this).name()) + " : initial_check_directrix failure");
             m_iReturnCode = -1;
-            exit();
+            exit_thread();
             m_bReady = true;
             ::output_debug_string("exiting on check directrix");
             return false;
@@ -1162,7 +1232,7 @@ namespace aura
          if(!os_native_bergedge_start())
          {
             dappy(string(typeid(*this).name()) + " : os_native_bergedge_start failure");
-            exit();
+            exit_thread();
             m_iReturnCode = -1;
             m_bReady = true;
             ::output_debug_string("application::main os_native_bergedge_start failure");
@@ -1243,7 +1313,7 @@ namespace aura
                goto run;
             try
             {
-               m_iReturnCode = exit();
+               m_iReturnCode = exit_thread();
             }
             catch(::exit_exception & e)
             {
@@ -1435,7 +1505,7 @@ namespace aura
          try
          {
 
-            if(!initialize_instance())
+            if(!initialize_application())
             {
                dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
                if(System.directrix()->m_varTopicQuery["app"] == m_strAppName)
@@ -1444,7 +1514,7 @@ namespace aura
                }
                try
                {
-                  exit();
+                  exit_thread();
                }
                catch(...)
                {
@@ -1468,7 +1538,7 @@ namespace aura
                   }
                   try
                   {
-                     exit();
+                     exit_thread();
                   }
                   catch (...)
                   {
@@ -1494,7 +1564,7 @@ namespace aura
                goto run;
             try
             {
-               m_iReturnCode = exit();
+               m_iReturnCode = exit_thread();
             }
             catch(...)
             {
@@ -2038,13 +2108,18 @@ namespace aura
    }
 
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
-      if(m_bAuraInitializeInstance)
+      if (m_bAuraInitializeInstance)
+      {
+
          return m_bAuraInitializeInstanceResult;
 
+      }
+
       m_bAuraInitializeInstance = true;
+
       m_bAuraInitializeInstanceResult = false;
 
       xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
@@ -2410,7 +2485,7 @@ namespace aura
    }
 
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
 
 
@@ -2569,7 +2644,7 @@ namespace aura
 
                   post_quit();
 
-                  ::thread::exit_instance();
+                  ::thread::exit_thread();
 
 //               }
 //               catch(...)
@@ -2669,20 +2744,7 @@ namespace aura
    bool application::finalize()
    {
 
-      bool bOk = false;
-
-      try
-      {
-
-         bOk = thread::finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
+      bool bOk = true;
 
       return bOk;
 
@@ -4828,8 +4890,7 @@ namespace aura
 
    }
 
-
-
+   
 } // namespace aura
 
 

@@ -580,7 +580,7 @@ namespace ios
       return true;
    }
 
-   bool thread::initialize_instance()
+   bool thread::initialize_thread()
    {
       ASSERT_VALID(this);
 
@@ -706,7 +706,7 @@ namespace ios
    }
 
 
-   int32_t thread::exit_instance()
+   int32_t thread::exit_thread()
    {
 
       ASSERT_VALID(this);
@@ -937,7 +937,7 @@ namespace ios
          {
             TRACE(::core::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
             m_nDisablePumpCount++; // application must die
-            // Note: prevents calling message loop things in 'exit_instance'
+            // Note: prevents calling message loop things in 'exit_thread'
             // will never be decremented
             return FALSE;
          }

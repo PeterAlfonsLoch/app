@@ -38,10 +38,10 @@ namespace userstack
 
    }
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
-      if(!::asphere::application::initialize_instance())
+      if(!::asphere::application::initialize_application())
          return false;
 
 
@@ -61,11 +61,11 @@ namespace userstack
 
    }
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
       try
       {
-         ::asphere::application::exit_instance();
+         ::asphere::application::exit_application();
       }
       catch(...)
       {

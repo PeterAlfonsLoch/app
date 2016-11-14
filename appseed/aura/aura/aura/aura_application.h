@@ -269,13 +269,15 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual bool initialize2();
       virtual bool initialize3();
 
-      virtual bool initialize_instance() override;
-      virtual int32_t exit_instance() override;
+      virtual bool initialize_thread() override;
+      virtual bool initialize_application();
+      virtual int32_t exit_application();
+      virtual int32_t exit_thread() override;
 
       virtual bool start_instance();
 
       virtual bool initialize();
-      virtual bool finalize() override;
+      virtual bool finalize();
 
       bool ca_process_initialize();
       bool ca_initialize1();
@@ -289,8 +291,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
 
       virtual int32_t run() override;
-
-      virtual bool pre_run() override;
+      virtual bool pre_run();
       virtual int32_t main() override;
       virtual int32_t on_run();
       virtual int32_t application_pre_run();

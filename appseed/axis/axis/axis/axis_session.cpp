@@ -336,10 +336,15 @@ namespace axis
 
 
 
-   bool session::initialize_instance()
+   bool session::initialize_application()
    {
-      if(!m_pfontopus->initialize_instance())
+
+      if (!m_pfontopus->initialize_application())
+      {
+
          return false;
+
+      }
 
       if(Application.directrix()->m_varTopicQuery.has_property("uninstall")
          || Application.directrix()->m_varTopicQuery.has_property("install"))
@@ -350,13 +355,19 @@ namespace axis
 
       }
 
+      if (!::aura::session::initialize_application())
+      {
 
-
-      if(!::aura::session::initialize_instance())
          return false;
 
-      if(!::axis::application::initialize_instance())
+      }
+
+      if (!::axis::application::initialize_application())
+      {
+
          return false;
+
+      }
 
       return true;
 
@@ -366,34 +377,37 @@ namespace axis
    bool session::initialize()
    {
 
-      if(!::aura::session::initialize())
+      if (!::aura::session::initialize())
+      {
+
          return false;
 
-      if(!::axis::application::initialize())
+      }
+
+      if (!::axis::application::initialize())
+      {
+
          return false;
 
-      //if(!is_installing() && !is_uninstalling())
-      //{
-
-      //   if(!keyboard().initialize())
-      //      return false;
-
-      //}
-
-
-      //set_keyboard_layout(NULL,::action::source::database());
-
+      }
 
       if(m_bIfs)
       {
 
-         if(m_spfsdata.is_null())
+         if (m_spfsdata.is_null())
+         {
+
             m_spfsdata = canew(::fs::set(this));
 
+         }
+
          ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+
          if(pset != NULL)
          {
+
             pset->m_spafsdata.add_unique(m_pifs);
+
             pset->m_spafsdata.add_unique(m_prfs);
 
          }
@@ -405,6 +419,7 @@ namespace axis
       }
 
       ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+
       if (pset != NULL)
       {
          pset->m_spafsdata.add_unique(m_pftpfs);
@@ -420,7 +435,6 @@ namespace axis
    {
 
       bool bOk = true;
-
 
       try
       {
@@ -518,7 +532,6 @@ namespace axis
 
       }
 
-
       try
       {
 
@@ -550,7 +563,6 @@ namespace axis
 
       }
 
-
       try
       {
 
@@ -563,7 +575,6 @@ namespace axis
          bOk = false;
       }
 
-
       try
       {
          ::aura::del(m_psockets);
@@ -572,6 +583,7 @@ namespace axis
       {
 
          bOk = false;
+
       }
 
       try
@@ -591,17 +603,12 @@ namespace axis
          bOk = false;
       }
 
-
-
-
-
-
       return bOk;
 
    }
 
 
-   int32_t session::exit_instance()
+   int32_t session::exit_application()
    {
 
       try
@@ -613,16 +620,20 @@ namespace axis
       catch (...)
       {
 
-
       }
 
       try
       {
+
          if(m_pcopydesk != NULL)
          {
+
             m_pcopydesk->finalize();
+
             ::release(m_pcopydesk);
+
          }
+
       }
       catch(...)
       {
@@ -631,14 +642,13 @@ namespace axis
 
       ::aura::del(m_pkeyboard);
 
-      ::axis::application::exit_instance();
+      ::axis::application::exit_application();
 
-      ::aura::session::exit_instance();
+      ::aura::session::exit_application();
 
       return 0;
 
    }
-
 
 
    bool session::is_licensed(const char * pszId,bool bInteractive)

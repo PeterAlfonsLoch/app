@@ -34,7 +34,7 @@ namespace database
    }
 
    // should not call base class implementation because database::database is inside a n-furcation of user::database
-   int32_t database::exit_instance()
+   int32_t database::exit_thread()
    {
 
       return 0;

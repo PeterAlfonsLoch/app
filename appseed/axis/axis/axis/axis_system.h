@@ -64,10 +64,11 @@ namespace axis
 
       virtual void construct(const char * pszAppId);
 
-      virtual bool initialize_instance();
+      virtual bool initialize_application() override;
 
-      virtual int32_t exit_instance();
-      virtual bool finalize();
+      virtual int32_t exit_application() override;
+
+      virtual bool finalize() override;
 
       //::url::department                           & url()     { return m_urldepartment; }
 
@@ -121,7 +122,7 @@ namespace axis
 
       //virtual void construct(const char * pszAppId);
 
-      //virtual bool initialize_instance();
+      //virtual bool initialize_application() override;
 
       //virtual int32_t exit_instance();
       //virtual bool finalize();

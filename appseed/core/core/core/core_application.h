@@ -103,9 +103,7 @@ namespace core
       virtual bool bergedge_start();
       virtual bool os_native_bergedge_start();
 
-      virtual int32_t exit();
-
-      virtual int32_t exit_instance();
+      virtual int32_t exit_application() override;
 
       virtual bool finalize();
 
@@ -334,7 +332,7 @@ namespace core
 
 
 
-      virtual bool initialize_instance();
+      virtual bool initialize_application();
 
 
 

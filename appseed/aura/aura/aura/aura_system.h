@@ -152,10 +152,11 @@ namespace aura
 
       virtual void construct(const char * pszAppId);
 
-      virtual bool initialize_instance();
+      virtual bool initialize_application() override;
 
-      virtual int32_t exit_instance();
-      virtual bool finalize();
+      virtual int32_t exit_application() override;
+
+      virtual bool finalize() override;
 
       application_ptra                                get_appptra();
 
@@ -204,15 +205,6 @@ namespace aura
 
       virtual object * on_alloc(::aura::application * papp,::type * ptype);
       virtual object * clone();
-
-
-      //template < class T >
-      //sp(T) clone(sp(T) p)
-      //{
-
-      //   return System.factory().clone(p);
-
-      //}
 
 
       template < typename T >

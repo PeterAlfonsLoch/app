@@ -138,7 +138,7 @@ namespace multimedia
       }
       
       
-      int32_t toolbox::exit_instance()
+      int32_t toolbox::exit_thread()
       {
 
          if(m_runmode != NULL)

@@ -32,7 +32,7 @@ namespace simpledb
    }
 
 
-   bool socket_thread::initialize_instance()
+   bool socket_thread::initialize_thread()
    {
       //Application.::simpledb::application::m_pmanager->LoadEnv();
 

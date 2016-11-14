@@ -54,7 +54,7 @@ namespace ios
       virtual bool initialize1();
       virtual bool initialize2();
       virtual bool initialize3();
-      virtual int32_t  exit_instance();
+      virtual int32_t  exit_application() override;
       
       
       

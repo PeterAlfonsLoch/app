@@ -56,7 +56,7 @@ namespace sphere
    }
 
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -68,23 +68,23 @@ namespace sphere
       {
          if(strId == "default_file_handler")
          {
-            return ::filehandler::application::initialize_instance();
+            return ::filehandler::application::initialize_application();
          }
       }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
          {
-            return ::userstack::application::initialize_instance();
+            return ::userstack::application::initialize_application();
          }
       }
 
 
 
-      return asphere::application::initialize_instance();
+      return asphere::application::initialize_application();
    }
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -96,19 +96,19 @@ namespace sphere
       {
          if(strId == "default_file_handler")
          {
-            return ::filehandler::application::exit_instance();
+            return ::filehandler::application::exit_application();
          }
       }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
          {
-            return ::userstack::application::exit_instance();
+            return ::userstack::application::exit_application();
          }
       }
 
 
-      return asphere::application::exit_instance();
+      return asphere::application::exit_application();
    }
 
    void application::_001OnFileNew()

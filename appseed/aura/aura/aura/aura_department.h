@@ -28,10 +28,10 @@ namespace aura
       virtual bool initialize1();
       virtual bool initialize2();
       virtual bool initialize3();
-      virtual bool initialize_instance();
+      virtual bool initialize_application();
 
       virtual bool finalize();
-      virtual int32_t exit_instance();
+      virtual int32_t exit_application();
 
 
       void on_signal(signal_details * pobj);

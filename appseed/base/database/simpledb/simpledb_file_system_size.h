@@ -129,7 +129,7 @@ public:
 
    FileSystemSizeServerThread(::aura::application * papp);
 
-   bool initialize_instance();
+   bool initialize_thread() override;
 
 };
 

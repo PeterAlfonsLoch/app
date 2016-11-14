@@ -27,7 +27,7 @@ namespace command
    }
 
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
       System.factory().creatable_small < command::document >();
@@ -36,7 +36,7 @@ namespace command
       System.factory().creatable_small < command::pane_view >();
       System.factory().creatable_small < command::primary_view >();
 
-      if(!::asphere::application::initialize_instance())
+      if(!::asphere::application::initialize_application())
          return false;
 
       Session.filemanager().std().m_strLevelUp = "levelup";
@@ -61,7 +61,7 @@ namespace command
       return true;
    }
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
       return 0;
    }

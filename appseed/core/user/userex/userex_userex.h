@@ -89,12 +89,9 @@ namespace userex
       ::type * default_type_list_header();
       ::type * default_type_list_data();
 
-
-
       DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage);
 
-
-         virtual int32_t exit_instance();
+      virtual int32_t exit_application() override;
 
       void LoadStdProfileSettings(UINT nMaxMRU = ___MRU_COUNT);
 

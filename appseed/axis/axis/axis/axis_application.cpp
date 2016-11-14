@@ -1197,7 +1197,7 @@ namespace axis
       try
       {
 
-         m_iReturnCode = exit();
+         m_iReturnCode = exit_thread();
 
       }
       catch(::exit_exception &)
@@ -1225,9 +1225,6 @@ namespace axis
    bool application::pre_run()
    {
 
-      if(!::thread::pre_run())
-         return false;
-
       TRACE(string(typeid(*this).name()) + " main_start");;
       try
       {
@@ -1250,7 +1247,7 @@ namespace axis
          {
             dappy(string(typeid(*this).name()) + " : initial_check_directrix failure");
             m_iReturnCode = -1;
-            exit();
+            exit_thread();
             m_bReady = true;
             ::output_debug_string("exiting on check directrix\n");
             return false;
@@ -1262,7 +1259,7 @@ namespace axis
          if(!os_native_bergedge_start())
          {
             dappy(string(typeid(*this).name()) + " : os_native_bergedge_start failure");
-            exit();
+            exit_thread();
             m_iReturnCode = -1;
             m_bReady = true;
             ::output_debug_string("application::main os_native_bergedge_start failure");
@@ -1339,7 +1336,7 @@ namespace axis
                goto run;
             try
             {
-               m_iReturnCode = exit();
+               m_iReturnCode = exit_thread();
             }
             catch(::exit_exception & e)
             {
@@ -1947,7 +1944,7 @@ namespace axis
    }
 
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
       if(m_bAxisInitializeInstance)
@@ -1956,7 +1953,7 @@ namespace axis
       m_bAxisInitializeInstance = true;
       m_bAxisInitializeInstanceResult = false;
 
-      if(!::aura::application::initialize_instance())
+      if(!::aura::application::initialize_application())
       {
 
          return false;
@@ -2139,7 +2136,7 @@ namespace axis
    }
 
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
 
 
@@ -2278,7 +2275,7 @@ namespace axis
                try
                {
 
-                  aura::application::exit_instance();
+                  aura::application::exit_application();
 
                }
                catch(...)
@@ -2316,13 +2313,10 @@ namespace axis
 
       bool bOk = false;
 
-
-
-
       try
       {
 
-         bOk = thread::finalize();
+         bOk = ::aura::application::finalize();
 
       }
       catch(...)
@@ -4146,10 +4140,10 @@ namespace axis
    //}
 
 
-   //bool application::initialize_instance()
+   //bool application::initialize_application()
    //{
 
-   //   if(!::axis::application::initialize_instance())
+   //   if(!::axis::application::initialize_application())
    //      return false;
 
    //   return true;
@@ -4214,14 +4208,14 @@ namespace axis
    //}
 
 
-   //int32_t application::exit_instance()
+   //int32_t application::exit_application()
    //{
 
 
    //   try
    //   {
 
-   //      m_iReturnCode = ::axis::application::exit_instance();
+   //      m_iReturnCode = ::axis::application::exit_application();
 
    //   }
    //   catch(...)

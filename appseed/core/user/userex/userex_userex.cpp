@@ -1,5 +1,6 @@
 //#include "framework.h"
 
+
 #include "base/database/simpledb/simpledb.h"
 #include "core/user/html/html/html.h"
 
@@ -38,8 +39,12 @@ namespace userex
 
       }
 
-      if(!::aura::department::initialize1())
+      if (!::aura::department::initialize1())
+      {
+
          return false;
+
+      }
 
       return true;
 
@@ -49,9 +54,12 @@ namespace userex
    bool userex::initialize()
    {
 
+      if (!::aura::department::initialize())
+      {
 
-      if(!::aura::department::initialize())
          return false;
+
+      }
 
       if(!m_typeDefaultMeshData)
       {
@@ -82,12 +90,10 @@ namespace userex
 
       System.factory().creatable_small < ::fontopus::view >();
 
-
       System.factory().cloneable_small < ::user::split_layout >();
       System.factory().cloneable_small < ::user::split_bar >();
       System.factory().cloneable_small < split_view::Pane >();
       System.factory().cloneable_small < simple_frame_window >();
-//      System.factory().creatable_small < MetaButton >();
       System.factory().creatable_small < ::user::button >();
       System.factory().creatable_small < ::user::menu_list_view >();
       System.factory().cloneable_small < simple_child_frame >();
@@ -112,22 +118,15 @@ namespace userex
       System.factory().creatable_small < ::user::menu_item >(System.type_info < ::user::menu_base_item >());
       System.factory().creatable_small < ::user::menu >(System.type_info < ::user::menu_base >());
 
-
       System.factory().creatable_small < ::user::button >();
 
       System.factory().creatable_small < ::user::show < ::user::plain_edit > >();
       System.factory().creatable_small < ::user::show < ::user::tree > >();
       System.factory().creatable_small < ::user::show < ::user::list > >();
 
-//      System.factory().creatable_small < MetaControlBox >();
-
-
-      // menu
       System.factory().creatable_small < menu_document >();
       System.factory().creatable_small < menu_frame >();
       System.factory().creatable_small < menu_view >();
-
-
 
       System.factory().creatable_small < html_document >();
       System.factory().creatable_small < html_view >();
@@ -158,11 +157,6 @@ namespace userex
             System.type_info < ::user::place_holder >()))
 
          );
-
-
-
-      //Application.simpledb().get_data_server()->add_client(this);
-
 
       TRACE("::userex::application::initialize");
 
@@ -238,61 +232,59 @@ namespace userex
       m_pufeschema      = new ::user::front_end_schema(get_app());
       m_pufe            = new ::user::front_end();
 
-
-      // form
       System.factory().creatable_small < pane_tab_view >();
       System.factory().creatable_small < form_frame >();
       System.factory().creatable_small < form_child_frame >();
 
-
-      // hour (alarm configuration with ease ...
-
-      //System.factory().creatable_small < weekday_list_view >();
-      //System.factory().creatable_small < hour_list_view >();
-      //System.factory().creatable_small < minute_list_view >();
-      //System.factory().creatable_small < second_list_view >();
       System.factory().creatable_small < simple_toolbar >();
       System.factory().creatable_small < OrtoButton >();
 
+      if (!BaseMenuCentralContainer::initialize_central_container(get_app()))
+      {
 
-      //if(Application.m_pdocmanager != NULL)
-      // Application.m_pdocmanager->add_document_template(NULL);
-
-      if(!BaseMenuCentralContainer::initialize_central_container(get_app()))
          return false;
 
+      }
 
-      if(!::aura::department::initialize())
+      if (!::aura::department::initialize())
+      {
+
          return false;
+
+      }
 
       return true;
 
    }
 
 
-
-
    bool userex::initialize2()
    {
 
+      if (!::aura::department::initialize2())
+      {
 
-      if(!::aura::department::initialize2())
          return false;
 
-      return true;
+      }
 
+      return true;
 
    }
 
 
    bool userex::finalize()
    {
+
       try
       {
+
          ::aura::department::finalize();
+
       }
       catch(...)
       {
+
       }
 
       ::aura::del(m_pufeschema);
@@ -301,27 +293,19 @@ namespace userex
 
       try
       {
+
          if(!BaseMenuCentralContainer::finalize_central_container())
          {
+
             TRACE("Errors occurred while finalizing BaseMenuCentralContainer");
+
          }
+
       }
       catch(...)
       {
+
       }
-
-      //::aura::del(m_pshellimageset);
-
-      //try
-      //{
-
-      //   Application.m_pdocmanager.release();
-
-      //}
-      //catch(...)
-      //{
-
-      //}
 
       return true;
 
@@ -358,52 +342,82 @@ namespace userex
       class ::userex::message_box box(get_app());
 
       property_set propertyset;
+
       propertyset["message"] = pszMessage;
+
       propertyset["application_name"] = pwndOwner == NULL ? Application.m_strAppName : App(pwndOwner->get_app()).m_strAppName;
 
       string strMatter;
+
       if(fuStyle & MB_YESNOCANCEL)
       {
+
          strMatter = "system\\user\\simple_message_box\\yesnocancel.xhtml";
+
       }
       else
       {
+
          strMatter = "system\\user\\simple_message_box\\ok.xhtml";
+
       }
+
       try
       {
+
          if(!box.show(strMatter,&propertyset))
          {
+
             string strMessage = pszMessage;
+
             strMessage.replace("<br>","\r\n");
+
             return ::simple_message_box(pwndOwner->get_safe_handle(),strMessage,Application.m_strAppName,fuStyle);
+
          }
+
       }
       catch(...)
       {
+
          string strMessage = pszMessage;
+
          strMessage.replace("<br>","\r\n");
+
          return ::simple_message_box(pwndOwner == NULL ? NULL : pwndOwner->get_handle(),strMessage,Application.m_strAppName,fuStyle);
+
       }
+
       if(box.m_strResponse == "ok")
       {
+
          return IDOK;
+
       }
       else if(box.m_strResponse == "yes")
       {
+
          return IDYES;
+
       }
       else if(box.m_strResponse == "no")
       {
+         
          return IDNO;
+
       }
       else if(box.m_strResponse == "cancel")
       {
+         
          return IDCANCEL;
+
       }
+
       if(fuStyle & MB_YESNOCANCEL)
       {
+      
          return IDCANCEL;
+
       }
       else
       {
@@ -423,110 +437,173 @@ namespace userex
       class ::userex::message_box box(papp == NULL ? get_app() : papp);
 
       property_set propertyset;
+      
       propertyset["message"] = pszMessage;
       
       box.m_dwDelay = (DWORD) durationTimeout.get_total_milliseconds();
 
       string strMatter;
+      
       if(fuStyle & MB_YESNOCANCEL)
       {
+
          strMatter = "system\\user\\simple_message_box_timeout\\yesnocancel.xhtml";
+
       }
       else
       {
+
          strMatter = "system\\user\\simple_message_box_timeout\\ok.xhtml";
+
       }
 
       box.show(strMatter,&propertyset);
 
       if(box.m_strResponse == "ok")
       {
+
          return IDOK;
+
       }
       else if(box.m_strResponse == "yes")
       {
+         
          return IDYES;
+
       }
       else if(box.m_strResponse == "no")
       {
+         
          return IDNO;
+
       }
       else if(box.m_strResponse == "cancel")
       {
+         
          return IDCANCEL;
+
       }
+      
       if(fuStyle & MB_YESNOCANCEL)
       {
+      
          return IDCANCEL;
+
       }
       else
       {
+         
          return 0;
+
       }
+
    }
 
+   
    int32_t userex::track_popup_menu(const char * pszMatter,point pt,sp(::user::interaction) puie)
    {
+
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(puie);
+
       return 1;
+
    }
 
 
    bool userex::get_fs_size(string & strSize,const char * pszPath,bool & bPending)
    {
+      
       int64_t i64Size;
+
       if(!get_fs_size(i64Size,pszPath,bPending))
       {
+
          strSize.Empty();
+
          return false;
+
       }
+
       if(i64Size > 1024 * 1024 * 1024)
       {
+
          double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
+
          strSize.Format("%0.2f GB",d);
+
       }
       else if(i64Size > 1024 * 1024)
       {
+
          double d = (double)i64Size / (1024.0 * 1024.0);
+
          strSize.Format("%0.1f MB",d);
+
       }
       else if(i64Size > 1024)
       {
+
          double d = (double)i64Size / (1024.0);
+
          strSize.Format("%0.0f KB",d);
+
       }
       else if(i64Size > 0)
       {
+         
          strSize.Format("1 KB");
+
       }
       else
       {
+         
          strSize.Format("0 KB");
+
       }
+
       if(bPending)
       {
+
          strSize = "~" + strSize;
+
       }
+
       return true;
+
    }
+
 
    bool userex::get_fs_size(int64_t & i64Size,const char * pszPath,bool & bPending)
    {
+
       db_server * pcentral = dynamic_cast <db_server *> (&System.m_simpledb.db());
-      if(pcentral == NULL)
+
+      if (pcentral == NULL)
+      {
+
          return false;
+
+      }
+
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size,pszPath,bPending);
+
    }
+
 
    void userex::data_on_after_change(signal_details * pobj)
    {
+
       SCAST_PTR(::database::change_event,pchange,pobj);
+
       if(pchange->m_key.m_id == "ca2.savings")
       {
+
          pchange->data_get(Session.savings().m_eresourceflagsShouldSave);
+
       }
+
    }
 
 
@@ -568,7 +645,6 @@ namespace userex
    }
 
 
-
    ::user::front_end_schema * GetUfeSchema(::aura::application * papp)
    {
 
@@ -576,30 +652,40 @@ namespace userex
 
    }
 
+
    ::user::front_end * GetUfe(::aura::application * papp)
    {
+
       return Sess(papp).userex()->GetUfe();
+
    }
 
 
    void userex::_001OnFileNew()
    {
+      
       Application.document_manager()._001OnFileNew();
+
    }
 
+   
    ::user::front_end_schema * userex::GetUfeSchema()
    {
+      
       return m_pufeschema;
+
    }
 
+   
    ::user::front_end * userex::GetUfe()
    {
+   
       return m_pufe;
+
    }
 
 
-
-   int32_t userex::exit_instance()
+   int32_t userex::exit_application()
    {
 
       return 0;
@@ -607,37 +693,47 @@ namespace userex
    }
 
 
-
-
-
    void userex::VmsGuiiOnAppLanguage(signal_details * pobject)
    {
+
       SendMessageToWindows(::base::application::APPM_LANGUAGE,0,(LPARAM)pobject);
+
    }
-
-
 
 
    sp(::user::document) userex::create_form(::aura::application * papp, sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
       if (m_ptemplateForm == NULL)
+      {
+
          return NULL;
 
+      }
+
       sp(::create) createcontext(papp->allocer());
+
       createcontext->m_bMakeVisible = false;
+
       createcontext->m_puiParent = pwndParent;
+
       createcontext->m_puiAlloc = pview;
 
       if (var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
       {
+
          createcontext->m_bHold = false;
+
       }
 
       sp(::user::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
 
       if (pdoc.is_null())
+      {
+
          return NULL;
+
+      }
 
       sp(::user::form_window) pform = pdoc->get_typed_view < ::user::form_window >();
 
@@ -650,15 +746,18 @@ namespace userex
 
       return pdoc;
 
-
    }
 
 
    sp(::user::document) userex::create_form(::aura::application * pauraapp, ::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
-      if(m_ptemplateForm == NULL)
+      if (m_ptemplateForm == NULL)
+      {
+
          return NULL;
+
+      }
 
       ::aura::application * papp = pauraapp;
 
@@ -689,16 +788,24 @@ namespace userex
       sp(::create) createcontext(papp->allocer());
 
       createcontext->m_bMakeVisible                   = false;
+
       createcontext->m_puiParent                      = pwndParent;
+
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
       {
+
          createcontext->m_bHold                       = false;
+
       }
 
       sp(::user::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
 
-      if(pdoc.is_null())
+      if (pdoc.is_null())
+      {
+
          return NULL;
+
+      }
 
       sp(::user::form_window) pform = pdoc->get_typed_view < ::user::form_window >();
 
@@ -717,8 +824,12 @@ namespace userex
    sp(::user::document) userex::create_child_form(::aura::application * pauraapp, sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
-      if(m_ptemplateChildForm == NULL)
+      if (m_ptemplateChildForm == NULL)
+      {
+
          return NULL;
+
+      }
 
       ::aura::application * papp = pauraapp;
 
@@ -748,19 +859,28 @@ namespace userex
 
 
       sp(::create) createcontext(papp->allocer());
+
       createcontext->m_bMakeVisible                   = false;
+
       createcontext->m_puiParent                      = pwndParent;
+
       createcontext->m_puiAlloc                       = pview;
 
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
       {
+
          createcontext->m_bHold                       = false;
+
       }
 
       sp(::user::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
 
-      if(pdoc.is_null())
+      if (pdoc.is_null())
+      {
+
          return NULL;
+
+      }
 
       sp(::user::form_window) pform = pdoc->get_typed_view < ::user::form_window >();
 
@@ -773,15 +893,18 @@ namespace userex
 
       return pdoc;
 
-
    }
 
 
    sp(::user::document) userex::create_child_form(::aura::application * pauraapp, ::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
-      if(m_ptemplateChildForm == NULL)
+      if (m_ptemplateChildForm == NULL)
+      {
+
          return NULL;
+
+      }
 
       ::aura::application * papp = pauraapp;
 
@@ -817,8 +940,12 @@ namespace userex
 
       sp(::user::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
 
-      if(pdoc.is_null())
+      if (pdoc.is_null())
+      {
+
          return NULL;
+
+      }
 
       sp(::user::form_window) pform = pdoc->get_typed_view < ::user::form_window >();
 
@@ -838,7 +965,11 @@ namespace userex
    {
 
       if (pt == NULL)
+      {
+
          return NULL;
+
+      }
 
       ::user::impact_system * psystem = m_mapTemplate[pt];
 
@@ -885,19 +1016,15 @@ namespace userex
       sp(::user::document) pdoc = psystem->open_document_file(createcontext);
 
       if (pdoc.is_null())
+      {
+
          return NULL;
+
+      }
 
       sp(::user::form_window) pform = pdoc->get_typed_view < ::user::form_window >();
 
-      //if (pform.is_set())
-      //{
-
-      //   pform->m_pcallback = pcallback;
-
-      //}
-
       return pdoc;
-
 
    }
 
@@ -908,6 +1035,7 @@ namespace userex
       sp(::create) createcontext(pui->allocer());
 
       createcontext->m_bMakeVisible    = false;
+
       createcontext->m_bHold           = false;
 
       sp(::user::document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
@@ -946,12 +1074,14 @@ namespace userex
 
    }
 
+
    ::user::list_data * userex::default_create_list_data(::aura::application * papp)
    {
 
       return App(papp).alloc<::user::list_data >(default_type_list_data());
 
    }
+
 
    ::type * userex::default_type_mesh_data()
    {

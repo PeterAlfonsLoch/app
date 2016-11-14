@@ -157,7 +157,7 @@ namespace dynamic_source
       script_manager(::aura::application * papp);
       ~script_manager();
 
-      bool initialize_instance();
+      bool initialize_thread() override;
 
       virtual bool include_matches_file_exists(const string & strPath);
       void set_include_matches_file_exists(const string & strPath, bool bFileExists);

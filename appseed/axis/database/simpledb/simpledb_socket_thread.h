@@ -46,7 +46,7 @@ namespace simpledb
       virtual ~socket_thread();
 
 
-      virtual bool initialize_instance();
+      virtual bool initialize_thread() override;
 
 
       void install_message_handling(::message::dispatch * pinterface);

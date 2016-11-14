@@ -356,14 +356,18 @@ OutputDebugString("gtk_main exited");
       }
 
       return true;
+
    }
 
-   bool system::initialize_instance()
+
+   bool system::initialize_application()
    {
 
-      if(!::base::system::initialize_instance())
+      if(!::base::system::initialize_application())
       {
+
          return false;
+
       }
 
       /*set_enum_name(var::type_null      , "NULL");
@@ -375,16 +379,21 @@ OutputDebugString("gtk_main exited");
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
+      if (!::core::application::initialize_application())
+      {
 
-
-      if(!::core::application::initialize_instance())
          return false;
+
+      }
 
       m_pbergedgemap = canew(::core::session::map);
 
+      if (!Session.on_initial_update())
+      {
 
-      if(!Session.on_initial_update())
          return false;
+
+      }
 
       return true;
 
@@ -393,32 +402,30 @@ OutputDebugString("gtk_main exited");
 
    bool system::bergedge_start()
    {
+
       return true;
+
    }
 
 
-
-
-
-   int32_t system::exit_instance()
+   int32_t system::exit_application()
    {
 
       __wait_threading_count(::millis((5000) * 8));
 
+#ifdef LINUX
 
-      #ifdef LINUX
       BASECORE_INIT * f =  (BASECORE_INIT *) dlsym(g_pbasecore, "basecore_term");
       (*f)();
 
-      #endif
+#endif
 
       int32_t iRet = m_iReturnCode;
 
-
       try
       {
 
-         iRet = ::base::system::exit_instance();
+         iRet = ::base::system::exit_application();
 
       }
       catch(...)
@@ -426,42 +433,54 @@ OutputDebugString("gtk_main exited");
 
       }
 
-
-
       try
       {
+
          if(m_spos.is_set())
          {
+
             m_spos.release();
+
          }
+
       }
       catch(...)
       {
+
       }
+
       try
       {
+
          m_spdir.release();
+
       }
       catch(...)
       {
-      }
 
+      }
 
       try
       {
+
          m_spos.release();
+
       }
       catch(...)
       {
-      }
-      try
-      {
-         m_spdir.release();
-      }
-      catch(...)
-      {
+
       }
 
+      try
+      {
+
+         m_spdir.release();
+
+      }
+      catch(...)
+      {
+
+      }
 
       m_plog.release();
 
@@ -469,8 +488,8 @@ OutputDebugString("gtk_main exited");
 
       m_typemap.release();
 
-
       return iRet;
+
    }
 
 
@@ -481,28 +500,18 @@ OutputDebugString("gtk_main exited");
 
    }
 
-   /*
-   sp(object) system::on_alloc(::aura::application * papp, sp(type) & info)
-   {
-   /*string str;
-   str.Format("Could not alloc %s", info.name());
-   simple_message_box(str);*/
-   /*sp(object) pobj = Sys(papp).factory().create(papp, info);
-   if(pobj != NULL)
-   return pobj;
-   on_allocation_error(papp, info);
-   return NULL;
-   }
-   */
-
 
    ::aura::session * system::query_session(index iEdge)
    {
 
       ::core::session * pbergedge = NULL;
 
-      if(m_pbergedgemap == NULL)
+      if (m_pbergedgemap == NULL)
+      {
+
          return NULL;
+
+      }
 
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
       {
@@ -519,13 +528,21 @@ OutputDebugString("gtk_main exited");
    ::core::session * system::get_platform(index iEdge,application_bias * pbiasCreation)
    {
 
-      if(iEdge == 0)
+      if (iEdge == 0)
+      {
+
          return System.m_pcoresession;
+
+      }
 
       ::core::session * pbergedge = NULL;
 
-      if(m_pbergedgemap == NULL)
+      if (m_pbergedgemap == NULL)
+      {
+
          return NULL;
+
+      }
 
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
       {
@@ -533,7 +550,11 @@ OutputDebugString("gtk_main exited");
          ::aura::application * papp = create_application("application", "session", true, pbiasCreation);
 
          if (papp == NULL)
+         {
+
             return NULL;
+
+         }
 
          pbergedge = dynamic_cast <::core::session *> (papp);
 
@@ -559,16 +580,20 @@ OutputDebugString("gtk_main exited");
 
    ::core::history & system::hist()
    {
+
       return *m_phistory;
+
    }
 
 
    bool system::set_history(::core::history * phistory)
    {
-      m_phistory = phistory;
-      return true;
-   }
 
+      m_phistory = phistory;
+
+      return true;
+
+   }
 
 
    bool system::finalize()
@@ -601,7 +626,6 @@ OutputDebugString("gtk_main exited");
    }
 
 
-
    void system::on_allocation_error(::aura::application * papp,::type * ptype)
    {
 
@@ -616,26 +640,6 @@ OutputDebugString("gtk_main exited");
    }
 
 
-
-   //bool system::wait_twf(uint32_t dwTimeOut)
-   //{
-   //   if(dwTimeOut > 1984)
-   //      dwTimeOut = 1984;
-   //   if(m_ptwf != NULL && m_ptwf->m_bProDevianMode)
-   //   {
-   //      return m_ptwf->m_eventFree.wait(millis(dwTimeOut)).signaled();
-   //   }
-   //   /*else if(m_puiInitialPlaceHolderContainer != NULL)
-   //   {
-   //   #define InitialPlaceHolderContainer_TWF_FREE_EVENT 2010
-   //   return App(this).event_lock(m_puiInitialPlaceHolderContainer, InitialPlaceHolderContainer_TWF_FREE_EVENT, dwTimeOut);
-   //   }*/
-   //   else
-   //   {
-   //      return true;
-   //   }
-   //}
-
    void system::on_request(sp(::create) pcreate)
    {
 
@@ -643,18 +647,26 @@ OutputDebugString("gtk_main exited");
 
       ::base::system::on_request(pcreate);
 
-
    }
 
 
    bool system::sync_load_url(string & str,const char * lpszUrl,::fontopus::user * puser,::http::cookies * pcookies)
    {
+
       string filename = System.file().time_square(get_app());
+
       property_set set;
+
       set["user"] = puser;
+
       set["cookies"] = pcookies;
-      if(!http().download(lpszUrl,filename,set))
+
+      if (!http().download(lpszUrl, filename, set))
+      {
+
          return false;
+
+      }
 
       string strLocation = set["get_headers"]["Location"];
 
@@ -677,101 +689,32 @@ OutputDebugString("gtk_main exited");
 
       return true;
 
-      /*   Parse pa(lpszUrl,":/");
-      string protocol = pa.getword();
-      string host = pa.getword();
-      int32_t port;
-      {
-      Parse pa((const char *) host,":");
-      pa.getword();
-      port = pa.getvalue();
-      }
-      string url = "/";
-      url += pa.getrest();
-      string filename = System.file()time_square();
-
-      bool bOk = false;
-      bool bRead = false;
-      if (protocol == "http" || protocol == "https")
-      {
-      socket_handler h;
-      string strFilename;
-      SpaHttpGet s(h, lpszUrl, "");
-      if(pcookies != NULL)
-      {
-      string strCookie;
-      for(int32_t i = 0; i < pcookies->get_size(); i++)
-      {
-      strCookie += (const char *) (pcookies->element_at(i).m_strName + "=" + pcookies->element_at(i).m_strValue);
-      strCookie += ";";
-      }
-      s.AddResponseHeader("Cookie", strCookie);
-      }
-      s.m_pcookies = pcookies;
-      //s.SetLineProtocol(false);
-      s.SetFilename((const char *) filename);
-      h.add(&s);
-      h.Select(240,0);
-      while (h.get_count())
-      {
-      h.Select(240,0);
-      }
-      bool bOk = s.Complete();
-      if(!s.m_strHeaderLocation.is_empty())
-      {
-      ::DeleteFile(filename);
-      sync_load_url(str, s.m_strHeaderLocation, pcookies);
-      }
-      else
-      {
-      bRead = true;
-      }
-      }
-      else
-      {
-      debug_print("Unknown protocol: '%s'\n", protocol);
-      }
-      if(bRead)
-      {
-      int32_t iMaxpath = MAX_PATH;
-      int32_t iLen = strlen(filename);
-      gzFile gzf = gzopen(filename, "rb");
-      int32_t iRead;
-      ::file::memory_buffer memfile;
-      int32_t iBufSize = (1024 * 256);
-      char * buf = (char *) malloc(iBufSize);
-      while((iRead = gzread(gzf, buf, iBufSize)) > 0)
-      {
-      memfile.write(buf, iRead);
-      }
-      free(buf);
-      int32_t iErr;
-      const char * pszErr = gzerror(gzf, &iErr);
-      char ch = '\0';
-      memfile.write(&ch, 1);
-      str = (char *) memfile.get_data();
-      ::DeleteFile(filename);
-      }
-      return bOk;*/
    }
+
 
    ::core::patch & system::patch()
    {
+
       return m_patch;
+
    }
 
 
    ::http::system & system::http()
    {
-      return m_httpsystem;
-   }
 
+      return m_httpsystem;
+
+   }
 
 
    bool system::base_support()
    {
+
       return true;
+
    }
+
 
    index system::get_new_bergedge(application_bias * pbiasCreation)
    {
@@ -787,15 +730,18 @@ OutputDebugString("gtk_main exited");
 
       }
 
-      if(get_session(iNewEdge,pbiasCreation) == NULL)
+      if (get_session(iNewEdge, pbiasCreation) == NULL)
+      {
+
          return -1;
+
+      }
 
       m_iNewEdge = iNewEdge + 1;
 
       return iNewEdge;
 
    }
-
 
 
    uint32_t system::guess_code_page(const string & str)
@@ -806,22 +752,12 @@ OutputDebugString("gtk_main exited");
    }
 
 
-
    ::user::document * system::place_hold(::user::interaction * pui)
    {
-
-
-      //if(m_pcubeInterface != NULL)
-      //{
-      // return m_pcubeInterface->hold(pui);
-      //}
 
       return NULL;
 
    }
-
-
-
 
 
    bool system::on_install()
@@ -829,9 +765,15 @@ OutputDebugString("gtk_main exited");
 
       try
       {
+
          xxdebug_box("system::on_install","system::on_install",0);
-         if(!::core::application::on_install())
+
+         if (!::core::application::on_install())
+         {
+
             return false;
+
+         }
 
       }
       catch(...)
@@ -841,29 +783,9 @@ OutputDebugString("gtk_main exited");
 
       }
 
-#if !defined(CUBE) && !defined(VSNORD)
-
-//      try
-//      {
-//
-//         if(!find_applications_to_cache())
-//            return false;
-//
-//      }
-//      catch(...)
-//      {
-//
-//         return false;
-//
-//      }
-
-#endif
-
       return true;
 
    }
-
-
 
 
    string system::get_host_location_url()
@@ -895,13 +817,10 @@ OutputDebugString("gtk_main exited");
    }
 
 
-
    void system::post_fork_uri(const char * pszUri,application_bias * pbiasCreate)
    {
 
       command()->add_fork_uri(pszUri,pbiasCreate);
-
-      //if(command()->m_varTopicQuery["locale"].array_get_count() > 0 && command()->m_varTopicQuery["locale"].stra().get_count_except_ci("_std") > 0)
 
       if(command()->m_varTopicQuery.has_property("version"))
       {
@@ -912,30 +831,40 @@ OutputDebugString("gtk_main exited");
 
       if(command()->m_varTopicQuery["locale"].array_get_count() > 0)
       {
+
          Session.set_locale(command()->m_varTopicQuery["locale"].stra()[0],::action::source::user());
+
       }
 
       if(command()->m_varTopicQuery["schema"].array_get_count() > 0)
       {
-         Session.set_schema(command()->m_varTopicQuery["schema"].stra()[0],::action::source::user());
-      }
 
+         Session.set_schema(command()->m_varTopicQuery["schema"].stra()[0],::action::source::user());
+
+      }
 
    }
 
+
 #ifdef METROWIN
+
 
    bool system::GetWindowRect(LPRECT lprect)
    {
 
       Windows::Foundation::Rect rect;
+
       try
       {
+
          rect = m_posdata->m_pwindow->get_window_rect();
+
       }
       catch(...)
       {
+
          return false;
+
       }
 
       lprect->left      = (LONG)rect.X;
@@ -943,78 +872,26 @@ OutputDebugString("gtk_main exited");
       lprect->right     = (LONG)(lprect->left + rect.Width);
       lprect->bottom    = (LONG)(lprect->top + rect.Height);
 
-
       return true;
 
    }
+
+
 #endif
 
 
    bool system::set_main_init_data(::aura::main_init_data * pdata)
    {
 
-
       return base::system::set_main_init_data(pdata);
 
    }
 
 
-   /*   sp(::command_thread) system::command_thread()
-   {
-   return m_pcommandthread;
-   }
-   */
-
-   /*   ::system::system * system::get_cube()
-   {
-
-   return this;
-
-   }
-   */
-
-
-   /*   sp(::core::session) system::get_session(index iEdge, application_bias * pbiasCreation)
-   {
-   sp(::core::session) psession = NULL;
-   if(m_pbergedgemap == NULL)
-   return NULL;
-   if(!m_pbergedgemap->Lookup(iEdge, psession))
-   {
-   psession = (create_application("application", "session", true, pbiasCreation));
-   if(psession == NULL)
-   return NULL;
-   psession->m_iEdge = iEdge;
-   m_pbergedgemap->set_at(iEdge, psession);
-   }
-   return  psession;
-   }
-
-
-   sp(platform::document) system::get_platform(index iEdge, application_bias * pbiasCreation)
-   {
-   sp(::core::session) pbergedge = get_session(iEdge, pbiasCreation);
-   return pbergedge->get_platform();
-   }
-
-   sp(nature::document) system::get_nature(index iEdge, application_bias * pbiasCreation)
-   {
-   sp(::core::session) pbergedge = get_session(iEdge, pbiasCreation);
-   return pbergedge->get_nature();
-   }
-
-   sp(::aura::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
-   {
-   sp(::core::session) pbergedge = get_session(iEdge, pbiasCreate);
-   return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
-   }
-   */
-
    void system::assert_valid() const
    {
 
       application::assert_valid();
-      //::database::server::assert_valid();
 
    }
 
@@ -1023,11 +900,8 @@ OutputDebugString("gtk_main exited");
    {
 
       application::dump(context);
-      //::database::server::dump(context);
 
    }
-
-
 
 
    int32_t system::main()
@@ -1047,9 +921,12 @@ OutputDebugString("gtk_main exited");
 
    }
 
+
    void system::hist_hist(const char * psz)
    {
+
       hist().hist(psz);
+
    }
 
 
@@ -1080,11 +957,7 @@ OutputDebugString("gtk_main exited");
 } // namespace plane
 
 
-
-
-
 uint32_t _thread_proc_start_core_system_main(void * p);
-
 
 
 uint32_t _thread_proc_start_core_system_main(void * p)

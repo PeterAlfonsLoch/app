@@ -118,7 +118,7 @@ namespace base
 
 
 
-   int32_t system::exit_instance()
+   int32_t system::exit_application()
    {
 
       m_pschemaLayeredFrame.release();
@@ -140,7 +140,7 @@ namespace base
 
 
 #endif
-      axis::system::exit_instance();
+      axis::system::exit_application();
 
 
 

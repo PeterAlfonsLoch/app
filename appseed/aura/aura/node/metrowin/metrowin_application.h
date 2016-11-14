@@ -88,7 +88,7 @@ namespace metrowin
 //      virtual bool initialize1();
 //      virtual bool initialize2();
 //      virtual bool initialize3();
-//      virtual int  exit_instance();
+//      virtual int  exit_application() override;
 //
 //
 //
@@ -151,7 +151,7 @@ namespace metrowin
 //
 //   // Overridables
 //      // thread initialization
-//      virtual bool initialize_instance();
+//      virtual bool initialize_application();
 //
 //      virtual ::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode); 
 //
@@ -163,7 +163,7 @@ namespace metrowin
 //      virtual bool is_idle_message(MSG* pMsg);  // checks for special messages
 //
 //      // thread termination
-//      virtual int exit_instance(); // default will 'delete this'
+//      virtual int exit_application() override; // default will 'delete this'
 //
 //      // Advanced: exception handling
 //      virtual LRESULT ProcessWndProcException(::exception::aura* e, const MSG* pMsg);

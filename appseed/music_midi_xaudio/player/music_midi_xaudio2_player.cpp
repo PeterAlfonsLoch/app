@@ -50,7 +50,7 @@ namespace music
                return true;
             }
 
-            int32_t player::exit_instance()
+            int32_t player::exit_thread()
             {
                // TODO:  perform any per-thread cleanup here
                //   if(!get_sequence()->IsNull())
@@ -62,7 +62,7 @@ namespace music
                //    delete m_pmidicallbackdata;
                ///  m_pmidicallbackdata = NULL;
                //}
-               return thread::exit_instance();
+               return thread::exit_thread();
             }
 
             void player::install_message_handling(::message::dispatch * pinterface)

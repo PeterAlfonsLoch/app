@@ -192,7 +192,7 @@ namespace axis
       try
       {
 
-         m_iReturnCode = exit();
+         m_iReturnCode = exit_thread();
 
       }
       catch(...)

@@ -217,7 +217,7 @@ namespace aura
 
       set_os_data(NULL);
 
-      //int32_t iRet = ::aura::application::exit_instance();
+      //int32_t iRet = ::aura::application::exit_application();
 
       return 0;
 

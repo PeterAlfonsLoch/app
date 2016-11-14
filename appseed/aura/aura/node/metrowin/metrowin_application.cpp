@@ -304,9 +304,9 @@ namespace aura
 
    // Overridables
    // thread initialization
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
-      return ::metrowin::thread::initialize_instance();
+      return ::metrowin::thread::initialize_thread();
    }
 
    ::message::e_prototype application::GetMessagePrototype(UINT uiMessage, UINT uiCode)
@@ -366,7 +366,7 @@ namespace aura
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
       set_os_data(NULL);
-      //int32_t iRet = ::aura::application::exit_instance();
+      //int32_t iRet = ::aura::application::exit_application();
 
       //smart_pointer < application_base >::destroy();
 

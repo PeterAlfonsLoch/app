@@ -139,24 +139,6 @@ namespace core
    }
 
 
-   int32_t application::exit()
-   {
-
-      int32_t iExit = 0;
-
-      try
-      {
-         iExit = thread::exit();
-      }
-      catch (...)
-      {
-
-         iExit = -1;
-      }
-
-      return iExit;
-
-   }
 
 
    bool application::is_system()
@@ -436,7 +418,7 @@ namespace core
    }
    */
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
       //try
@@ -452,7 +434,7 @@ namespace core
 
       //}
 
-      if (!::base::application::initialize_instance())
+      if (!::base::application::initialize_application())
          return false;
 
       if (!is_session() && !is_system())
@@ -495,7 +477,7 @@ namespace core
    }
 
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
 
       try
@@ -543,7 +525,7 @@ namespace core
 
       try
       {
-         ::base::application::exit_instance();
+         ::base::application::exit_application();
       }
       catch (...)
       {

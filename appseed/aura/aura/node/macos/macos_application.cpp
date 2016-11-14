@@ -120,7 +120,7 @@ namespace aura
       set_os_data(NULL);
 
 
-  //    int32_t iRet = ::aura::application::exit_instance();
+  //    int32_t iRet = ::aura::application::exit_application();
 
        int iRet = 0;
 

@@ -845,10 +845,10 @@ namespace sockets
    }
 
 
-   bool base_socket::socket_thread::pre_run()
+   bool base_socket::socket_thread::initialize_thread()
    {
 
-      if (!::thread::pre_run())
+      if (!::thread::initialize_thread())
          return false;
       
       socket_handler & h = *m_sphandler;

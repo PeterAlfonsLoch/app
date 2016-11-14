@@ -58,7 +58,7 @@ namespace android
       virtual bool initialize1();
       virtual bool initialize2();
       virtual bool initialize3();
-      virtual int32_t  exit_instance();
+      virtual int32_t  exit_application() override;
 
 
 
@@ -125,7 +125,7 @@ namespace android
 
    // Overridables
       // thread initialization
-      virtual bool initialize_instance();
+      virtual bool initialize_application();
 
       virtual ::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
@@ -137,7 +137,7 @@ namespace android
       virtual bool is_idle_message(MESSAGE* pMsg);  // checks for special messages
 
       // thread termination
-      virtual int32_t exit_instance(); // default will 'delete this'
+      virtual int32_t exit_application() override; // default will 'delete this'
 
       // Advanced: exception handling
       virtual LRESULT ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg);

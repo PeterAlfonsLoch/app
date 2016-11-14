@@ -34,7 +34,7 @@ namespace tc4
    }
 
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
       System.factory().creatable_small < ::tc4::document >();
@@ -49,7 +49,7 @@ namespace tc4
       System.factory().creatable_small < ::tc4::switcher_view >();
       System.factory().creatable_small < ::tc4::pane_view >();
 
-      if(!::turboc::application::initialize_instance())
+      if(!::turboc::application::initialize_application())
          return false;
 
 	   ::user::single_document_template* pDocTemplate;
@@ -81,10 +81,10 @@ namespace tc4
       return true;
    }
 
-   int32_t application::exit_instance()
+   int32_t application::exit_application()
    {
 
-      return ::core::application::exit_instance();
+      return ::core::application::exit_application();
    }
 
    void application::on_request(sp(::create) pcreatecontext)

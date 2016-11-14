@@ -40,8 +40,8 @@ namespace userstack
       virtual ~application();
       virtual void construct();
 
-      bool initialize_instance();
-      virtual int32_t exit_instance();
+      bool initialize_application();
+      virtual int32_t exit_application() override;
 
       virtual bool bergedge_start();
 

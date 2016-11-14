@@ -17,7 +17,7 @@ namespace console
       application();
       virtual ~application();
 
-      virtual bool initialize_instance();
+      virtual bool initialize_application();
 
 
       inline prompt & console_prompt() { return *m_spprompt; }

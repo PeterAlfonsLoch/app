@@ -40,7 +40,7 @@ namespace simpledb
       manager(::aura::application * papp);
       ~manager();
 
-      bool initialize_instance();
+      bool initialize_thread() override;
 
 
       ::simpledb::session * & get_session(const char * pszId);

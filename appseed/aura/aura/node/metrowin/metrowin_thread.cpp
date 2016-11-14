@@ -574,7 +574,7 @@ namespace core
 ////      return true;
 ////   }
 ////
-////   bool thread::initialize_instance()
+////   bool thread::initialize_thread()
 ////   {
 ////      ASSERT_VALID(this);
 ////
@@ -617,7 +617,7 @@ namespace core
 ////   }
 ////
 ////
-////   int thread::exit_instance()
+////   int thread::exit_thread()
 ////   {
 ////      ASSERT_VALID(this);
 ////
@@ -1786,7 +1786,7 @@ namespace core
 //////return true;
 //////}
 //////
-//////bool thread::initialize_instance()
+//////bool thread::initialize_thread()
 //////{
 //////ASSERT_VALID(this);
 //////
@@ -1815,7 +1815,7 @@ namespace core
 //////return __internal_is_idle_message(pMsg);
 //////}
 //////
-//////int thread::exit_instance()
+//////int thread::exit_thread()
 //////{
 //////ASSERT_VALID(this);
 //////ASSERT(&System != this);

@@ -217,16 +217,11 @@ namespace aura
    }
 
 
-
-   bool session::initialize_instance()
+   bool session::initialize_application()
    {
 
-
-
-
-      if(!::aura::application::initialize_instance())
+      if(!::aura::application::initialize_application())
          return false;
-
 
       return true;
 
@@ -268,11 +263,10 @@ namespace aura
    }
 
 
-   int32_t session::exit_instance()
+   int32_t session::exit_application()
    {
 
-
-      ::aura::application::exit_instance();
+      ::aura::application::exit_application();
 
       return 0;
 

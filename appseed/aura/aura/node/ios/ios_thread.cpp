@@ -581,7 +581,7 @@ namespace ios
 //      return true;
 //   }
 //
-//   bool thread::initialize_instance()
+//   bool thread::initialize_thread()
 //   {
 //      ASSERT_VALID(this);
 //
@@ -605,7 +605,7 @@ namespace ios
 //   }
 //
 //
-//   int32_t thread::exit_instance()
+//   int32_t thread::exit_thread()
 //   {
 //
 //      ASSERT_VALID(this);

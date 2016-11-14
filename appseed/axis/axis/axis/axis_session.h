@@ -120,13 +120,13 @@ namespace axis
 
       virtual bool initialize2();
 
-      virtual bool initialize_instance();
+      virtual bool initialize_application() override;
 
       virtual bool initialize();
 
       virtual bool finalize();
 
-      virtual int32_t exit_instance();
+      virtual int32_t exit_application() override;
 
 
       inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
@@ -186,7 +186,7 @@ namespace axis
 
       /*virtual bool initialize2();*/
 
-      //virtual bool initialize_instance();
+      //virtual bool initialize_application() override;
 
       //virtual bool initialize();
 

@@ -263,17 +263,22 @@ namespace axis
 
    }
 
-   bool system::initialize_instance()
+   bool system::initialize_application()
    {
 
-      if(!::aura::system::initialize_instance())
+      if (!::aura::system::initialize_application())
+      {
+
          return false;
 
+      }
 
-      if(!::axis::application::initialize_instance())
+      if (!::axis::application::initialize_application())
+      {
+
          return false;
 
-
+      }
 
       return true;
 
@@ -283,13 +288,9 @@ namespace axis
    bool system::finalize()
    {
 
-
-
       __wait_threading_count_except(this,::millis((5000) * 77));
 
       bool bOk = false;
-
-
 
       try
       {
@@ -322,7 +323,6 @@ namespace axis
 
       }
 
-
       try
       {
 
@@ -341,34 +341,18 @@ namespace axis
 
       }
 
-
       return bOk;
 
    }
 
 
-   int32_t system::exit_instance()
+   int32_t system::exit_application()
    {
 
       __wait_threading_count(::millis((5000) * 8));
 
       try
       {
-
-
-         /*      try
-         {
-         if(m_plemonarray != NULL)
-         {
-         delete m_plemonarray;
-         }
-         }
-         catch(...)
-         {
-         }
-         m_plemonarray = NULL;
-         */
-
 
          m_pmath.release();
 
@@ -377,50 +361,51 @@ namespace axis
       }
       catch(...)
       {
+
          m_iReturnCode = -86;
+
       }
-
-
-
-
-
 
       for(int i = 0; i < m_serviceptra.get_size(); i++)
       {
+
          try
          {
+
             m_serviceptra[i]->Stop(0);
+
          }
          catch(...)
          {
-         }
-      }
 
+         }
+
+      }
 
       for(int i = 0; i < m_serviceptra.get_size(); i++)
       {
+
          try
          {
+
             m_serviceptra[i]->Stop((5000) * 2);
+
          }
          catch(...)
          {
+
          }
+
       }
 
       m_serviceptra.remove_all();
 
-
-
-
-
       int32_t iRet = m_iReturnCode;
 
-
       try
       {
 
-         iRet = ::axis::application::exit_instance();
+         iRet = ::axis::application::exit_application();
 
       }
       catch(...)
@@ -428,43 +413,53 @@ namespace axis
 
       }
 
-
-
-
-
-
       try
       {
+
          if(m_spos.is_set())
          {
+
             m_spos.release();
+
          }
+
       }
       catch(...)
       {
+
       }
+
       try
       {
+
          m_spdir.release();
+
       }
       catch(...)
       {
-      }
 
+      }
 
       try
       {
+
          m_spos.release();
+
       }
       catch(...)
       {
+
       }
+
       try
       {
+
          m_spdir.release();
+
       }
       catch(...)
       {
+
       }
 
       try
@@ -480,54 +475,23 @@ namespace axis
       }
       catch(...)
       {
+
       }
-
-
 
       m_plog.release();
 
-
-
-      //{
-
-      //   synch_lock sl(&m_mutexFactory);
-
-      //   m_typemap.remove_all();
-
-      //   m_typemap.release();
-
-      //}
-
-
-
-      //::axis::application::exit_instance();
-
 #ifdef METROWIN
+
       m_pdevicecontext = nullptr;
-
-//      m_pmutexDc.release();
-#endif
-
-#ifdef WINDOWSEX
-
-
 
 #endif
 
       ::aura::del(m_peengine);
 
-#ifdef METROWIN
-      //      m_pdevicecontext = nullptr;
-
-      //      m_pmutexDc.release();
-#endif
-
-
-
       try
       {
 
-         ::aura::system::exit_instance();
+         ::aura::system::exit_application();
 
       }
       catch(...)
@@ -558,40 +522,9 @@ namespace axis
 
       }
 
-      //try
-      //{
-
-      //   m_libraryDraw2d.close();
-
-      //}
-      //catch (...)
-      //{
-
-
-      //}
-
       return iRet;
 
    }
-
-   //sp(object) system::clone()
-   //{
-   //   // by the time, it is not possible to clone a system
-   //   return NULL;
-   //}
-
-
-
-   //void system::discard_to_factory(sp(object) pca)
-   //{
-
-   //   if(m_pfactory == NULL)
-   //      return;
-
-   //   m_pfactory->discard(pca);
-
-   //}
-
 
 
    bool system::is_system()
@@ -602,14 +535,12 @@ namespace axis
    }
 
 
-
    class ::crypto::crypto & system::crypto()
    {
+
       return *m_spcrypto;
+
    }
-
-
-
 
 
    ::fontopus::user_set & system::userset()
@@ -618,18 +549,6 @@ namespace axis
       return m_userset;
 
    }
-
-
-
-   //::axis::compress & system::compress()
-   //{
-   //   return m_compress;
-   //}
-
-
-
-
-
 
 
    ::file::path system::dir_appmatter_locator(::aura::application * papp)
@@ -665,9 +584,6 @@ namespace axis
    }
 
 
-
-
-
    ::aura::session * system::on_create_session()
    {
 
@@ -682,6 +598,7 @@ namespace axis
       return m_emaildepartment;
 
    }
+
 
    void system::on_request(sp(::create) pcreate)
    {

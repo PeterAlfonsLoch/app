@@ -19,7 +19,7 @@ simple_thread::~simple_thread()
 }
 
 
-bool simple_thread::initialize_instance()
+bool simple_thread::initialize_thread()
 {
 
    return true;

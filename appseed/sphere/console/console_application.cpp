@@ -17,7 +17,7 @@ namespace console
    }
 
 
-   bool application::initialize_instance()
+   bool application::initialize_application()
    {
 
       IGUI_WIN_MSG_LINK(WM_APP + 3243,this,this,&application::_001OnImpact);
@@ -27,7 +27,7 @@ namespace console
       System.factory().creatable_small < console::prompt_frame >();
       System.factory().creatable_small < console::prompt_impact >();
 
-      if(!::asphere::application::initialize_instance())
+      if(!::asphere::application::initialize_application())
          return false;
 
 

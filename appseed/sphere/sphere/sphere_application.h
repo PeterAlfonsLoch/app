@@ -21,8 +21,8 @@ namespace sphere
       using ::asphere::application::construct;
       virtual void construct(const char * pszId);
       
-      virtual bool initialize_instance();
-      virtual int32_t  exit_instance();
+      virtual bool initialize_application();
+      virtual int32_t  exit_application() override;
 
       virtual void _001OnFileNew();
       virtual bool bergedge_start();

@@ -42,7 +42,7 @@ namespace multimedia
          ::multimedia::e_result wave_in_reset();
 
          
-         virtual bool initialize_instance();
+         virtual bool initialize_thread() override;
          virtual int32_t exit_instance();
          virtual void pre_translate_message(signal_details * pobj);
          
