@@ -395,7 +395,7 @@ UINT system_main(LPVOID lp)
       }
       try
       {
-         m_psystem->m_iReturnCode = m_psystem->exit();
+         m_psystem->m_iReturnCode = m_psystem->exit_thread();
       }
       catch(...)
       {
