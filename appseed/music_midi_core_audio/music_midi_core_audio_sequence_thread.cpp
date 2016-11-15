@@ -196,9 +196,9 @@ namespace music
       {
          if(m_pplayer != NULL)
          {
-            ::music::midi::player::notify_event * pdata = new ::music::midi::player::notify_event;
+            sp(::music::midi::player::notify_event) pdata(canew(::music::midi::player::notify_event));
             pdata->m_enotifyevent = eevent;
-            m_pplayer->post_thread_message(::music::midi::player::message_notify_event, 0, (LPARAM) pdata);
+            m_pplayer->post_object(::music::midi::player::message_notify_event, 0, pdata);
          }
       }
       

@@ -384,10 +384,10 @@ namespace music
          {
             if(m_puie != NULL)
             {
-               ::music::midi::player::notify_event * pdata = new ::music::midi::player::notify_event;
+               sp(::music::midi::player::notify_event) pdata(canew(::music::midi::player::notify_event));
                pdata->m_pplayer = this;
                pdata->m_enotifyevent = eevent;
-               m_puie->post_message(::music::midi::player::message_notify_event, 0 , (LPARAM) pdata);
+               m_puie->post_object(::music::midi::player::message_notify_event, 0 , pdata);
             }
          }
          
@@ -480,15 +480,11 @@ namespace music
          void player::OnNotifyEvent(::signal_details * pobj)
          {
             SCAST_PTR(::message::base, pbase, pobj);
-            ::music::midi::player::notify_event * pdata = (::music::midi::player::notify_event *) pbase->m_lparam.m_lparam;
+            sp(::music::midi::player::notify_event) pdata(pbase->m_lparam);
             pdata->m_pplayer = this;
             if(m_puie != NULL)
             {
-               m_puie->post_message(::music::midi::player::message_notify_event, 0 , (LPARAM) pdata);
-            }
-            else
-            {
-               delete pdata;
+               m_puie->post_object(::music::midi::player::message_notify_event, 0 , pdata);
             }
          }
          
