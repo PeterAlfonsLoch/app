@@ -36,6 +36,7 @@ namespace user
       ::user::interaction * find_first(oswindow oswindow);
 
       virtual bool get_child(sp(::user::interaction ) & pui);
+      virtual bool rget_child(sp(::user::interaction) & pui);
 
    };
 
@@ -87,6 +88,7 @@ namespace user
       interaction_spa & operator = (const interaction_spa & a);
 
       virtual bool get_child(sp(::user::interaction) & pui);
+      virtual bool rget_child(sp(::user::interaction) & pui);
 
    };
 

@@ -2057,11 +2057,11 @@ namespace user
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-      ::user::interaction * pui = top_child();
+      sp(::user::interaction) pui;
       //      int32_t iSize;
       try
       {
-         while(pui != NULL)
+         while(rget_child(pui))
          {
             try
             {
@@ -2077,7 +2077,6 @@ namespace user
                   {
                   }
                }
-               pui = pui->under_sibling();
             }
             catch(...)
             {
@@ -7592,6 +7591,16 @@ restart:
       return m_uiptraChild.get_child(pui);
 
    }
+
+   bool interaction::rget_child(sp(::user::interaction) & pui)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      return m_uiptraChild.rget_child(pui);
+
+   }
+
 
 
    ::user::interaction * interaction::get_focus_ui()

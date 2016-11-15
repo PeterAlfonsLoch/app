@@ -1278,6 +1278,64 @@ namespace user
 
    }
 
+
+   bool interaction_spa::rget_child(sp(::user::interaction) & pui)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      if (get_count() <= 0)
+      {
+
+         return false;
+
+      }
+
+      if (pui == NULL)
+      {
+
+         pui = last_sp();
+
+         return true;
+
+      }
+      else
+      {
+
+         for (index i = 0; i < get_size(); i++)
+         {
+
+            if (element_at(i) == pui)
+            {
+
+               i--;
+
+               if (i >= 0)
+               {
+
+                  pui = element_at(i);
+
+                  return true;
+
+               }
+               else
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
    bool interaction_ptra::get_child(sp(::user::interaction) & pui)
    {
 
@@ -1334,6 +1392,61 @@ namespace user
 
    }
 
+   bool interaction_ptra::rget_child(sp(::user::interaction) & pui)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      if (get_count() <= 0)
+      {
+
+         return false;
+
+      }
+
+      if (pui == NULL)
+      {
+
+         pui = last();
+
+         return true;
+
+      }
+      else
+      {
+
+         for (index i = 0; i < get_size(); i++)
+         {
+
+            if (element_at(i) == pui)
+            {
+
+               i--;
+
+               if (i >= 0)
+               {
+
+                  pui = element_at(i);
+
+                  return true;
+
+               }
+               else
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
 
 } // namespace user
 

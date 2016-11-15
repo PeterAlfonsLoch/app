@@ -2414,7 +2414,7 @@ namespace user
       sp(::user::interaction) pui;
 
       
-      while(get_child(pui))
+      while(rget_child(pui))
       {
 
          try

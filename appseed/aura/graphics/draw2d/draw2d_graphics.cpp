@@ -3387,9 +3387,6 @@ namespace draw2d
             pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
 
-            keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-
             BitBltRaw(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
 
             return true;

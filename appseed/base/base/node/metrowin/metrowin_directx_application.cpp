@@ -625,9 +625,6 @@ namespace metrowin
 
    void directx_application::Run()
    {
-      /*      Render();
-      Present();
-      */
       m_window->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
    }
 
@@ -659,15 +656,6 @@ namespace metrowin
 
       m_directx->SetDpi(sender->LogicalDpi);
 
-      /*
-
-      SetDpi(DisplayProperties::LogicalDpi);
-
-      Render();
-
-      Present();
-
-      */
 
    }
 
@@ -678,16 +666,6 @@ namespace metrowin
       // Ensure the D3D Device is available for rendering.
 
       m_directx->ValidateDevice();
-
-      /*
-
-      ValidateDevice();
-
-      Render();
-
-      Present();
-
-      */
 
    }
 

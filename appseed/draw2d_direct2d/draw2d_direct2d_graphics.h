@@ -318,9 +318,9 @@ namespace draw2d_direct2d
 
    // Bitmap Functions
       bool PatBlt(int x, int y, int nWidth, int nHeight, uint32_t dwRop);
-      bool BitBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
+      bool BitBltRaw(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
          int xSrc, int ySrc, uint32_t dwRop);
-      bool StretchBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
+      bool StretchBltRaw(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
          int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, uint32_t dwRop);
       COLORREF GetPixel(int x, int y) const;
       COLORREF GetPixel(POINT point) const;
@@ -341,7 +341,7 @@ namespace draw2d_direct2d
         ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, 
         UINT clrTransparent);
 
-      virtual bool alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dOpacity);
+      virtual bool alpha_blendRaw(int xDest, int yDest, int nDestWidth, int nDestHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dOpacity);
 
       /*bool alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight,
         ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, 
@@ -350,7 +350,7 @@ namespace draw2d_direct2d
    // Text Functions
       virtual bool TextOut(int x, int y, const char * lpszString, strsize nCount);
       virtual bool TextOut(int x, int y, const string & str);
-      virtual bool TextOut(double x, double y, const char * lpszString, strsize nCount);
+      virtual bool TextOutRaw(double x, double y, const char * lpszString, strsize nCount);
       virtual bool TextOut(double x, double y, const string & str);
       virtual bool ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect, const char * lpszString, strsize nCount, LPINT lpDxWidths);
       virtual bool ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect, const string & str, LPINT lpDxWidths);

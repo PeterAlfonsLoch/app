@@ -175,7 +175,7 @@ restart:
 
       }
       class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
-      user * puser = authuser.get_user(pszText);
+      sp(user) puser = authuser.get_user(pszText);
       if(puser == NULL)
          strSessId = "not_auth";
       else
@@ -185,7 +185,6 @@ restart:
             strSessId = "not_auth";
          else if(strSessId.is_empty())
             strSessId = "not_auth";
-         delete puser;
       }
       m_sessionidmap[strText] = strSessId;
       return strSessId;

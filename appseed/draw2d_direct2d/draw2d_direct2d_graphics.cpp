@@ -1333,13 +1333,10 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::BitBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, uint32_t dwRop)
+   bool graphics::BitBltRaw(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, uint32_t dwRop)
    { 
 
       synch_lock sl(&draw2d_direct2_mutex());
-
-      if (::draw2d::graphics::BitBlt(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
-         return true;
 
       try
       {
@@ -1419,7 +1416,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::StretchBlt(int xDst, int yDst, int nDstWidth, int nDstHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, uint32_t dwRop)
+   bool graphics::StretchBltRaw(int xDst, int yDst, int nDstWidth, int nDstHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, uint32_t dwRop)
    { 
 
       try
@@ -2516,7 +2513,7 @@ namespace draw2d_direct2d
    // India India
    // Member
 
-   bool graphics::alpha_blend(int xDst, int yDst, int nDstWidth, int nDstHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dRate)
+   bool graphics::alpha_blendRaw(int xDst, int yDst, int nDstWidth, int nDstHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dRate)
    {
 
       synch_lock sl(&draw2d_direct2_mutex());
@@ -4609,16 +4606,16 @@ namespace draw2d_direct2d
    bool graphics::TextOut(int x, int y, const char * lpszString, strsize nCount)
    {
 
-      return TextOut((double)x, (double)y, lpszString, nCount);
+      return ::draw2d::graphics::TextOut((double)x, (double)y, lpszString, nCount);
 
    }
 
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
+   bool graphics::TextOutRaw(double x, double y, const char * lpszString, strsize nCount)
    {
 
-      if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
-         return true;
+      //if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
+      //   return true;
 
       try
       {
