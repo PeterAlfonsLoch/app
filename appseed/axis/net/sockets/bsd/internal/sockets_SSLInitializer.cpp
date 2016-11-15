@@ -72,10 +72,11 @@ SSLInitializer_rand_add(const void * buf, int num, double entropy);
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num);
 extern "C" int32_t SSLInitializer_rand_status();
 
+#ifdef _UWP
 extern "C"
 __declspec(dllimport)
 void OPENSSL_UplinkAll();
-
+#endif
 
 namespace sockets
 {
@@ -170,7 +171,9 @@ namespace sockets
       ::object(papp)
    {
 
+#ifdef _UWP
       OPENSSL_UplinkAll();
+#endif
 
        //CRYPTO_set_mem_functions(&default_malloc_ex, &default_realloc_ex, &default_free_ex);
 
