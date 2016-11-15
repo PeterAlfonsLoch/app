@@ -25,9 +25,6 @@
     <Filter Include="Header Files\base\node">
       <UniqueIdentifier>{775e8a9c-5a0b-48a3-8b7b-899ee29fa583}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\node\android">
-      <UniqueIdentifier>{547d9846-d5d7-499e-92b0-a33566ae8672}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\node\ansios">
       <UniqueIdentifier>{a21c941e-03e0-474f-81d4-5dfbd7c9639f}</UniqueIdentifier>
     </Filter>
@@ -189,18 +186,6 @@
     <ClInclude Include="base\node\node.h">
       <Filter>Header Files\base\node</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\android\android.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android1.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_factory_exchange.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_implementation.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\ansios\ansios.h">
       <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
@@ -217,9 +202,6 @@
       <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="base\node\metrowin\metrowin_interaction_impl.h">
-      <Filter>Header Files\base\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\metrowin\metrowin_window_draw.h">
       <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base.h">
@@ -339,9 +321,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="base\base\base.inl">
-      <Filter>Header Files\base\base</Filter>
-    </None>
-    <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
     </None>
     <None Include="base.def">

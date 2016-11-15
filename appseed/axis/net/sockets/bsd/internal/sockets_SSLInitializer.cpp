@@ -31,6 +31,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <openssl/engine.h>
 #include <openssl/conf.h>
 
+
+#include <openssl/conf.h>
+
+
+
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
 #include <pthread.h>
@@ -42,6 +47,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #else
 #define DEB(x)
 #endif
+
+extern void *OPENSSL_UplinkTable[];
 
 extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line);
 extern "C" unsigned long SSLInitializer_SSL_id_function();
@@ -64,6 +71,10 @@ int
 SSLInitializer_rand_add(const void * buf, int num, double entropy);
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num);
 extern "C" int32_t SSLInitializer_rand_status();
+
+extern "C"
+__declspec(dllimport)
+void OPENSSL_UplinkAll();
 
 
 namespace sockets
@@ -158,6 +169,8 @@ namespace sockets
    SSLInitializer::SSLInitializer(::aura::application * papp) :
       ::object(papp)
    {
+
+      OPENSSL_UplinkAll();
 
        //CRYPTO_set_mem_functions(&default_malloc_ex, &default_realloc_ex, &default_free_ex);
 

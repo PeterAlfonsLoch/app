@@ -1473,9 +1473,6 @@
     <ClInclude Include="aura\aura\aura_aura.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_auto_pointer.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_class.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>

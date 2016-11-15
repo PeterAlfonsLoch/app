@@ -7,40 +7,40 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_AXIS SSLInitializer:
-      public ::object
-   {
-   public:
+   //class CLASS_DECL_AXIS SSLInitializer:
+   //   public ::object
+   //{
+   //public:
 
-      static ::aura::system * s_psystem;
+   //   static ::aura::system * s_psystem;
 
-      /**
-      init openssl
-      bio_err
-      create random file
-      */
-      SSLInitializer(::aura::application * papp);
+   //   /**
+   //   init openssl
+   //   bio_err
+   //   create random file
+   //   */
+   //   SSLInitializer(::aura::application * papp);
 
-      /**
-      remove random file
-      */
-      ~SSLInitializer();
+   //   /**
+   //   remove random file
+   //   */
+   //   ~SSLInitializer();
 
-      void DeleteRandFile();
+   //   void DeleteRandFile();
 
-      /** SSL; mutex locking function callback. */
-      //static_function void SSL_locking_function(int32_t mode, int32_t n, const char *file, int32_t line);
+   //   /** SSL; mutex locking function callback. */
+   //   //static_function void SSL_locking_function(int32_t mode, int32_t n, const char *file, int32_t line);
 
-      /** Return thread id. */
-      //static_function unsigned long SSL_id_function();
+   //   /** Return thread id. */
+   //   //static_function unsigned long SSL_id_function();
 
-      BIO *bio_err;
+   //   BIO *bio_err;
 
-   private:
-      string m_rand_file;
-      long m_rand_size;
+   //private:
+   //   string m_rand_file;
+   //   long m_rand_size;
 
-   };
+   //};
 
 
    class CLASS_DECL_AXIS crypto :
@@ -48,7 +48,7 @@ namespace metrowin
    {
    public:
 
-      SSLInitializer *                             m_psslinit;
+      sockets::SSLInitializer *                             m_psslinit;
 
 
 

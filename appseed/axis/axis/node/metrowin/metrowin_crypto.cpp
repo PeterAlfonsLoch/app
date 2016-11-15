@@ -30,7 +30,7 @@ namespace metrowin
       ::crypto::crypto(papp)
    {
 
-      m_psslinit = new SSLInitializer(get_app());
+      m_psslinit = new sockets::SSLInitializer(get_app());
    }
 
 
@@ -116,159 +116,159 @@ namespace metrowin
 
 
 
-         map < int32_t,int32_t,mutex *,mutex *>  * g_pmapMutex = NULL;
-
-         mutex * g_pmutexMap = NULL;
-
-
-
-
-         RAND_METHOD rand_meth;
-
-
-         ::aura::system * SSLInitializer::s_psystem = NULL;
-
-         SSLInitializer::SSLInitializer(::aura::application * papp):
-            ::object(papp)
-         {
-
-
-
-            TRACE("SSLInitializer()\n");
-
-            bio_err = NULL;
-            m_rand_size = 1024;
-
-            s_psystem = papp->m_paurasystem;
-
-            /* An error write context */
-            bio_err = BIO_new_fp(stderr,BIO_NOCLOSE);
-
-            g_pmapMutex = new map < int32_t,int32_t,mutex *,mutex *>;
-
-            g_pmutexMap = new mutex(get_app());
-
-            /* Global system initialization*/
-//            SSL_library_init();
-  //          SSL_load_error_strings();
-    //        OpenSSL_add_all_algorithms();
-//            CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
-  //          CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
-
-
-            /* Ignore broken pipes which would cause our program to terminate
-            prematurely */
-
-      //      rand_meth.add = &SSLInitializer_rand_add;
-        //    rand_meth.bytes = &SSLInitializer_rand_bytes;
-          //  rand_meth.cleanup = &SSLInitializer_rand_cleanup;
-            //rand_meth.pseudorand = &SSLInitializer_rand_pseudorand;
-            //rand_meth.seed = &SSLInitializer_rand_seed;
-            //rand_meth.status = &SSLInitializer_rand_status;
-
-            //RAND_set_rand_method(&rand_meth);
-
-
-
-            /*   char *randfile =
-            char *home = getenv("HOME");
-            if (!randfile && !home)
-            {
-            char *homepath = getenv("HOMEPATH");
-            if (homepath)
-            {
-            Utility::SetEnv("HOME", homepath);
-            }
-            }*/
-
-            //memory memstorage;
-            //memstorage.allocate(5000);
-            //memstorage.allocate(5000);
-            //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());
-
-            /*for(int32_t i = 0; i < memstorage.get_size(); i += 3)
-            {
-            int32_t iValue = System.math().RandRange(0, 0x00ffffff);
-            memstorage.get_data()[i] = iValue & 0xff;
-            memstorage.get_data()[i+1] = (iValue >> 8) & 0xff;
-            memstorage.get_data()[i+2] = (iValue >> 16) & 0xff;
-            }*/
-
-            /*m_rand_file = System.file().time_square();
-            //*path = 0;
-            //RAND_file_name(path, 512);
-            //if (*path)
-            //{
-
-
-
-            int32_t iWritten = RAND_write_file(m_rand_file);
-            m_rand_size = iWritten;
-            //}
-            //else
-            //{
-            //TRACE("SSLInitializer: no random file generated\n");
-            //   }
-
-            ::file::buffer_sp spfile(allocer());
-
-            spfile->open(m_rand_file, ::file::type_binary | ::file::mode_read);
-
-
-            //memstorage.FullLoad(spfile);
-
-            /* Load randomness */
-            /*if (!m_rand_file.get_length())
-            {
-            TRACE("SSLInitializer: PRNG not initialized\n");
-            }*/
-            /*RAND_add(
-            memstorage.get_data(),
-            memstorage.get_size(),
-            memstorage.get_size());*/
-
-            //RAND_seed(memstorage.get_data(), memstorage.get_size());
-
-         }
-
-
-         SSLInitializer::~SSLInitializer()
-         {
-            //      TRACE("~SSLInitializer()\n");
-            //DeleteRandFile();
-            // %! delete mutexes
-
-
-            if(g_pmapMutex != NULL)
-            {
-               delete g_pmapMutex;
-
-               g_pmapMutex = NULL;
-            }
-
-            if(g_pmutexMap != NULL)
-            {
-               delete g_pmutexMap;
-
-               g_pmutexMap = NULL;
-            }
-
-         }
-
-
-         void SSLInitializer::DeleteRandFile()
-         {
-            
-            if(m_rand_file.get_length())
-            {
-
-               Application.file().del(m_rand_file);
-
-            }
-
-         }
-
-
+//         map < int32_t,int32_t,mutex *,mutex *>  * g_pmapMutex = NULL;
+//
+//         mutex * g_pmutexMap = NULL;
+//
+//
+//
+//
+//         RAND_METHOD rand_meth;
+//
+//
+//         ::aura::system * SSLInitializer::s_psystem = NULL;
+//
+//         SSLInitializer::SSLInitializer(::aura::application * papp):
+//            ::object(papp)
+//         {
+//
+//
+//
+//            TRACE("SSLInitializer()\n");
+//
+//            bio_err = NULL;
+//            m_rand_size = 1024;
+//
+//            s_psystem = papp->m_paurasystem;
+//
+//            /* An error write context */
+//            bio_err = BIO_new_fp(stderr,BIO_NOCLOSE);
+//
+//            g_pmapMutex = new map < int32_t,int32_t,mutex *,mutex *>;
+//
+//            g_pmutexMap = new mutex(get_app());
+//
+//            /* Global system initialization*/
+////            SSL_library_init();
+//  //          SSL_load_error_strings();
+//    //        OpenSSL_add_all_algorithms();
+////            CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
+//  //          CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
+//
+//
+//            /* Ignore broken pipes which would cause our program to terminate
+//            prematurely */
+//
+//      //      rand_meth.add = &SSLInitializer_rand_add;
+//        //    rand_meth.bytes = &SSLInitializer_rand_bytes;
+//          //  rand_meth.cleanup = &SSLInitializer_rand_cleanup;
+//            //rand_meth.pseudorand = &SSLInitializer_rand_pseudorand;
+//            //rand_meth.seed = &SSLInitializer_rand_seed;
+//            //rand_meth.status = &SSLInitializer_rand_status;
+//
+//            //RAND_set_rand_method(&rand_meth);
+//
+//
+//
+//            /*   char *randfile =
+//            char *home = getenv("HOME");
+//            if (!randfile && !home)
+//            {
+//            char *homepath = getenv("HOMEPATH");
+//            if (homepath)
+//            {
+//            Utility::SetEnv("HOME", homepath);
+//            }
+//            }*/
+//
+//            //memory memstorage;
+//            //memstorage.allocate(5000);
+//            //memstorage.allocate(5000);
+//            //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());
+//
+//            /*for(int32_t i = 0; i < memstorage.get_size(); i += 3)
+//            {
+//            int32_t iValue = System.math().RandRange(0, 0x00ffffff);
+//            memstorage.get_data()[i] = iValue & 0xff;
+//            memstorage.get_data()[i+1] = (iValue >> 8) & 0xff;
+//            memstorage.get_data()[i+2] = (iValue >> 16) & 0xff;
+//            }*/
+//
+//            /*m_rand_file = System.file().time_square();
+//            //*path = 0;
+//            //RAND_file_name(path, 512);
+//            //if (*path)
+//            //{
+//
+//
+//
+//            int32_t iWritten = RAND_write_file(m_rand_file);
+//            m_rand_size = iWritten;
+//            //}
+//            //else
+//            //{
+//            //TRACE("SSLInitializer: no random file generated\n");
+//            //   }
+//
+//            ::file::buffer_sp spfile(allocer());
+//
+//            spfile->open(m_rand_file, ::file::type_binary | ::file::mode_read);
+//
+//
+//            //memstorage.FullLoad(spfile);
+//
+//            /* Load randomness */
+//            /*if (!m_rand_file.get_length())
+//            {
+//            TRACE("SSLInitializer: PRNG not initialized\n");
+//            }*/
+//            /*RAND_add(
+//            memstorage.get_data(),
+//            memstorage.get_size(),
+//            memstorage.get_size());*/
+//
+//            //RAND_seed(memstorage.get_data(), memstorage.get_size());
+//
+//         }
+//
+//
+//         SSLInitializer::~SSLInitializer()
+//         {
+//            //      TRACE("~SSLInitializer()\n");
+//            //DeleteRandFile();
+//            // %! delete mutexes
+//
+//
+//            if(g_pmapMutex != NULL)
+//            {
+//               delete g_pmapMutex;
+//
+//               g_pmapMutex = NULL;
+//            }
+//
+//            if(g_pmutexMap != NULL)
+//            {
+//               delete g_pmutexMap;
+//
+//               g_pmutexMap = NULL;
+//            }
+//
+//         }
+//
+//
+//         void SSLInitializer::DeleteRandFile()
+//         {
+//            
+//            if(m_rand_file.get_length())
+//            {
+//
+//               Application.file().del(m_rand_file);
+//
+//            }
+//
+//         }
+//
+//
 } // namespace metrowin
 
 

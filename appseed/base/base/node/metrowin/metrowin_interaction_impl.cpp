@@ -494,7 +494,7 @@ namespace metrowin
    void interaction_impl::_001OnSize(signal_details * pobj)
    {
 
-      throw todo(get_app());
+      //throw todo(get_app());
 
       //UNREFERENCED_PARAMETER(pobj);
 
@@ -3733,7 +3733,7 @@ return TRUE;
       oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = ::get_thread();
       m_pui->m_iModalCount++;
 
-      m_pui->m_iaModalThread.add(::GetCurrentThreadId());
+      m_pui->m_threadptraModal.add(::get_thread());
       ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (m_pauraapp);
       ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (m_pauraapp);
       // acquire and dispatch messages until the modal state is done
@@ -3849,7 +3849,7 @@ return TRUE;
       }
 
 ExitModal:
-      m_pui->m_iaModalThread.remove_first(::GetCurrentThreadId());
+      m_pui->m_threadptraModal.remove_first(::get_thread());
       m_pui->m_iModal = m_pui->m_iModalCount;
       return m_nModalResult;
    }
@@ -3881,14 +3881,14 @@ ExitModal:
       {
          int iLevel = m_pui->m_iModalCount - 1;
          m_pui->m_iModalCount = 0;
-         kick();
-         ::get_thread()->kick();
+         m_pui->kick_queue();
+         ::get_thread()->kick_thread();
          for(int i = iLevel; i >= 0; i--)
          {
             ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").cast < ::thread >();
             try
             {
-               pthread->kick();
+               pthread->kick_thread();
             }
             catch(...)
             {
@@ -4521,40 +4521,50 @@ ExitModal:
    }
 
 
-   uint32_t interaction_impl::GetStyle()
+   uint32_t interaction_impl::GetStyle() const
    {
 
-      throw todo(get_app());
-
-      //ASSERT(::WinIsWindow(get_handle()));
-      //return (uint32_t)::GetWindowLong(get_handle(), GWL_STYLE);
+      return get_window_long_ptr(GWL_STYLE);
+      
    }
 
-   uint32_t interaction_impl::GetExStyle()
+   uint32_t interaction_impl::GetExStyle() const
    {
 
-      throw todo(get_app());
+      return get_window_long_ptr(GWL_EXSTYLE);
 
-      //ASSERT(::WinIsWindow(get_handle()));
-      //return (uint32_t)::GetWindowLong(get_handle(), GWL_EXSTYLE);
    }
+
 
    bool interaction_impl::ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
 
-      throw todo(get_app());
+      set_window_long_ptr(GWL_STYLE, (get_window_long_ptr(GWL_STYLE) | dwAdd) & ~(dwRemove));
 
-      //ASSERT(::WinIsWindow(get_handle()));
-      //return ModifyStyle(get_handle(), dwRemove, dwAdd, nFlags);
+      if (nFlags != 0)
+      {
+
+         RedrawWindow();
+
+      }
+
+      return true;
    }
+
 
    bool interaction_impl::ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
 
-      throw todo(get_app());
+      set_window_long_ptr(GWL_EXSTYLE, (get_window_long_ptr(GWL_EXSTYLE) | dwAdd) & ~(dwRemove));
 
-      //ASSERT(::WinIsWindow(get_handle()));
-      //return ModifyStyleEx(get_handle(), dwRemove, dwAdd, nFlags);
+      if (nFlags != 0)
+      {
+
+         RedrawWindow();
+
+      }
+
+      return true;
    }
 
    //void interaction_impl::SetOwner(::user::interaction * pOwnerWnd)

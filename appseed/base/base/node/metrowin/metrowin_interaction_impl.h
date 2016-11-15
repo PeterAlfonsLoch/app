@@ -56,8 +56,8 @@ namespace metrowin
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
 
-      uint32_t GetStyle();
-      uint32_t GetExStyle();
+      uint32_t GetStyle() const;
+      uint32_t GetExStyle() const;
       bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
       bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
 
