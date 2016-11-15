@@ -12,9 +12,10 @@
 
 #elif defined(LINUX)
 
-
+#define pointer x11_pointer
 #include <X11/extensions/Xrandr.h>
 #include <X11/extensions/Xinerama.h>
+#undef pointer
 
 int xrr_GetScreenSize(int& width, int& height)
 {

@@ -3,7 +3,7 @@
    //#include <dde.h>
 #endif
 
-#define TEST 0
+#define TEST 1
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
@@ -195,9 +195,9 @@ sp(::user::interaction) simple_frame_window::WindowDataGetWnd()
 
 void simple_frame_window::_001OnDestroy(signal_details * pobj)
 {
-   
+
    pobj->previous();
-   
+
    try
    {
 
@@ -427,7 +427,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    }
 
-   
+
    if (GetWindowText().is_empty())
    {
 
@@ -474,7 +474,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
       }
 
       HICON hicon = load_icon(get_app(), straMatter, "icon.ico", 16, 16);
-      
+
       if (hicon != NULL)
       {
 
@@ -493,7 +493,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
       if (m_bWindowFrame)
       {
-         
+
          hicon = load_icon(get_app(), straMatter, "icon.ico", 24, 24);
 
          if (hicon != NULL)
@@ -1368,9 +1368,9 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
    || m_pauraapp->m_pcoresession == NULL
    || m_pauraapp->m_pcoresession->m_psavings == NULL)
    {
-      
+
       return;
-      
+
    }
 
 
@@ -1416,6 +1416,13 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
    double dAlpha = get_alpha();
 
    ::draw2d::graphics * pgraphics = pgraphicsParam;
+
+   if(dAlpha == 0.0)
+   {
+
+      output_debug_string("Alpha is Zero\n");
+
+   }
 
    if(rectClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && GetExStyle() & WS_EX_LAYERED)
    {
@@ -1470,7 +1477,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
 
 #if TEST
 
-         pgraphics->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+         pgraphics->FillSolidRect(0, 0, 100, 100, ARGB(128, 255, 0, 0));
 
 #endif
 
@@ -1478,7 +1485,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
 
 #if TEST
 
-         pgraphics->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
+         pgraphics->FillSolidRect(0, 100, 100, 100, ARGB(128, 0, 0, 255));
 
 #endif
 
@@ -2232,6 +2239,14 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 }
 
 
+void simple_frame_window::_001OnClip(::draw2d::graphics * pgraphics)
+{
+
+   pgraphics->SelectClipRgn(NULL);
+
+}
+
+
 void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
 {
 
@@ -2241,9 +2256,9 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
    if(GetExStyle() & WS_EX_LAYERED)
    {
 
-      sp(::user::interaction) pui = bottom_child();
+      sp(::user::interaction) pui;
 
-      while (pui != NULL)
+      while (get_child(pui))
       {
 
          if (!base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
@@ -2253,15 +2268,17 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
 
          }
 
-         pui = pui->above_sibling();
+
 
       }
 
+      pgraphics->SelectClipRgn(NULL);
+
       _001DrawThis(pgraphics);
 
-      pui = bottom_child();
+      pui = NULL;
 
-      while (pui != NULL)
+      while (get_child(pui))
       {
          if (base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
          {
@@ -2281,7 +2298,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
             }
 
          }
-         pui = pui->above_sibling();
+
       }
 
       _008CallOnDraw(pgraphics);
@@ -2326,21 +2343,21 @@ void simple_frame_window::_011OnDraw(::draw2d::graphics * pgraphics)
 
 bool simple_frame_window::WfiOnMove(bool bTracking)
 {
-   
+
    if (!bTracking)
    {
-      
+
       ::fork(get_app(), [this]()
       {
-         
+
          WindowDataSaveWindowRect();
-         
+
       });
-      
+
    }
-   
+
    return true;
-   
+
 }
 
 

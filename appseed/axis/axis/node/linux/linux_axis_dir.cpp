@@ -1,11 +1,13 @@
 #include "framework.h"
 #include "linux.h"
 
+
 #include <unistd.h>
 
 
 namespace linux
 {
+
 
    namespace axis
    {
@@ -14,6 +16,8 @@ namespace linux
    dir::dir(::aura::application * papp) :
       ::object(papp),
       ::file::dir::system(papp),
+      ::file_watcher::file_watcher(papp),
+      ::file_watcher::listener_thread(papp),
       ::file::dir::axis::system(papp),
       ::linux::dir(papp)
    {

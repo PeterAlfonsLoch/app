@@ -28,7 +28,7 @@ namespace draw2d_cairo
    bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata, int32_t iStrideParam)
    {
 
-      synch_lock ml(&cairo_mutex());
+      synch_lock ml(cairo_mutex());
 
       cy = abs(cy);
 
@@ -112,7 +112,7 @@ namespace draw2d_cairo
    bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * lpbmi, UINT usage, void ** ppdata, int * pstride, HANDLE hSection, uint32_t offset)
    {
 
-      synch_lock ml(&cairo_mutex());
+      synch_lock ml(cairo_mutex());
 
       int cy = abs(lpbmi->bmiHeader.biHeight);
 
@@ -333,7 +333,7 @@ namespace draw2d_cairo
 
    void get_surface_size (cairo_surface_t * psurface, LONG * plongWidth, LONG * plongHeight)
 	{
-synch_lock ml(&cairo_mutex());
+synch_lock ml(cairo_mutex());
       if(plongWidth != NULL)
       {
 
@@ -354,7 +354,7 @@ synch_lock ml(&cairo_mutex());
 
    bool bitmap::attach(void * psurface)
    {
-synch_lock ml(&cairo_mutex());
+synch_lock ml(cairo_mutex());
       if(m_psurface != 0)
       {
 
@@ -375,7 +375,7 @@ synch_lock ml(&cairo_mutex());
 
    bool bitmap::destroy()
    {
-synch_lock ml(&cairo_mutex());
+synch_lock ml(cairo_mutex());
       if(m_psurface == NULL)
          return true;
 

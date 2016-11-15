@@ -15,6 +15,7 @@ namespace draw2d
       m_etype        = type_none;
       m_bUpdated     = false;
       m_lppoints = NULL;
+      m_lppolycounts = NULL;
 
    }
 
@@ -22,6 +23,7 @@ namespace draw2d
    region::region(const region & region)
    {
 
+      m_lppolycounts = NULL;
       m_lppoints     = NULL;
       m_etype        = type_none;
       m_bUpdated     = false;
@@ -33,8 +35,6 @@ namespace draw2d
 
    region::~region()
    {
-
-      destroy();
 
    }
 

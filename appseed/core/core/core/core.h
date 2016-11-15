@@ -292,9 +292,6 @@ struct memory_state;
 
 
 
-#include "core.inl"
-
-
 #undef __DATA
 #define __DATA CLASS_DECL_CORE
 
@@ -985,5 +982,14 @@ namespace html
 
 
 #include "core_system.h"
+
+
+
+
+
+#include "core.inl"
+
+
+
 
 

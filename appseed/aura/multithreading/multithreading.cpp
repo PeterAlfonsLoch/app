@@ -202,36 +202,42 @@ bool get_thread_run()
 
 }
 
-namespace aura
+namespace multithreading
 {
 
-   CLASS_DECL_AURA bool post_quit_thread()
+   CLASS_DECL_AURA bool post_quit()
    {
 
-      return post_quit_thread(t_pthread);
-
-   }
- 
-   CLASS_DECL_AURA bool post_quit_thread(::thread * pthread)
-   {
-
-      try
-      {
-
-         return pthread->post_quit();
-
-      }
-      catch (...)
-      {
-
-
-      }
-
-      return false;
+      return post_quit(t_pthread);
 
    }
 
-} // namespace aura
+
+   CLASS_DECL_AURA bool post_quit_and_wait(const duration & duration)
+   {
+
+      return post_quit_and_wait(t_pthread, duration);
+
+   }
+
+
+   CLASS_DECL_AURA bool post_quit(::thread * pthread)
+   {
+
+      return post_quit<::thread>(pthread);
+
+   }
+
+
+   CLASS_DECL_AURA bool post_quit_and_wait(::thread * pthread, const duration & duration)
+   {
+
+      return post_quit_and_wait<::thread>(pthread, duration);
+
+   }
+
+
+} // namespace multithreading
 
 
 

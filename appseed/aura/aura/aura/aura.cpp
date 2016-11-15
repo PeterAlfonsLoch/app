@@ -15,12 +15,12 @@ END_EXTERN_C
 extern "C"
 CLASS_DECL_AURA void debug_print(const char * pszFormat,...)
 {
-   
+
    //if (strstr(pszFormat, "%") == NULL)
    //{
-   //   
+   //
    //   ::OutputDebugStringW(wstring(pszFormat));
-   //   
+   //
    //   return;
 
    //}
@@ -66,7 +66,7 @@ void __post_quit_message(int32_t nExitCode)
 
 #else
 
-   ::aura::post_quit_thread(get_thread_app());
+   ::multithreading::post_quit(get_thread_app());
 
 #endif
 
@@ -262,7 +262,7 @@ CLASS_DECL_AURA const char * g_pszCooperativeLevel;
 
 ::aura::system * create_aura_system()
 {
-   
+
    return g_pfn_create_system();
 
 }
@@ -271,7 +271,7 @@ CLASS_DECL_AURA const char * g_pszCooperativeLevel;
 
 int __cdecl debug_report(int,char const *,int,char const *,char const *,...)
 {
-   
+
    return 1;
 
 }

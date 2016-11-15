@@ -81,7 +81,7 @@ namespace core
       m_peventReady = NULL;
       m_strLocale = "_std";
       m_strSchema = "_std";
-      
+
       m_iGcomBackgroundUpdateMillis = -1;
 
       //      m_pcalculator = NULL;
@@ -2918,9 +2918,9 @@ namespace core
 
    void application::_001CloseApplication()
    {
-      
+
       post_quit();
-      
+
    }
 
 
@@ -3012,12 +3012,12 @@ namespace core
       {
          if (!directrix()->m_varTopicQuery.has_property("session_start"))
          {
-            ::aura::post_quit_thread(&System);
+            ::multithreading::post_quit(&System);
          }
       }
       else
       {
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
       }
 
 
@@ -3046,12 +3046,12 @@ namespace core
       {
          if (!directrix()->m_varTopicQuery.has_property("session_start"))
          {
-            ::aura::post_quit_thread(&System);
+            ::multithreading::post_quit(&System);
          }
       }
       else
       {
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
       }
 
       return true;

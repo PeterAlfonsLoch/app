@@ -29,7 +29,7 @@ struct MWMHints
 oswindow_data::oswindow_data()
 {
 
-   m_plongmap              = new int_to_int();
+   m_plongptrmap           = new int_ptr_to_int_ptr();
 
    m_hthread               = 0;
 
@@ -54,7 +54,7 @@ oswindow_data::oswindow_data()
 oswindow_data::~oswindow_data()
 {
 
-   delete m_plongmap;
+   ::aura::del(m_plongptrmap);
 
 }
 
@@ -595,10 +595,10 @@ bool oswindow_data::show_window(int32_t nCmdShow)
 
 
 
-LONG oswindow_data::get_window_long(int32_t nIndex)
+LONG_PTR oswindow_data::get_window_long_ptr(int32_t nIndex)
 {
 
-   return m_plongmap->operator[](nIndex);
+   return m_plongptrmap->operator[](nIndex);
 
 /*   Atom type = 0;
    int32_t format = 0;
@@ -639,15 +639,15 @@ LONG oswindow_data::get_window_long(int32_t nIndex)
 }
 
 
-LONG oswindow_data::set_window_long(int32_t nIndex, LONG l)
+LONG_PTR oswindow_data::set_window_long_ptr(int32_t nIndex, LONG_PTR l)
 {
 
-   LONG lOld = m_plongmap->operator[](nIndex);
+   LONG_PTR lOld = m_plongptrmap->operator[](nIndex);
 
    if(nIndex == GWL_EXSTYLE)
    {
 
-      if((l & WS_EX_TOOLWINDOW) ^ (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW) != 0)
+      if((l & WS_EX_TOOLWINDOW) ^ (m_plongptrmap->operator[](nIndex) & WS_EX_TOOLWINDOW) != 0)
       {
 
          wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
@@ -656,7 +656,7 @@ LONG oswindow_data::set_window_long(int32_t nIndex, LONG l)
 
    }
 
-   m_plongmap->operator[](nIndex) = l;
+   m_plongptrmap->operator[](nIndex) = l;
 
 
 /*   LONG lOld = get_window_long(nIndex);

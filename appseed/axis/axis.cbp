@@ -15,6 +15,7 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-std=c++14" />
 					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />

@@ -21,10 +21,10 @@ extern string_to_string *      g_pmapFontPath;
 
 #endif
 
-mutex & cairo_mutex()
+mutex * cairo_mutex()
 {
 
-   return *s_pmutex;
+   return s_pmutex;
 
 }
 

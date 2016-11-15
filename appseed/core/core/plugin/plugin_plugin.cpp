@@ -1040,7 +1040,7 @@ namespace plugin
       try
       {
 
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
 
       }
       catch(...)

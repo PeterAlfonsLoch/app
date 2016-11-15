@@ -150,7 +150,7 @@ namespace user
 
       if (m_pimpl.is_null())
       {
-       
+
          return false;
 
       }
@@ -342,7 +342,7 @@ namespace user
 
    }
 
-   
+
 
    ::user::interaction * interaction::GetTopWindow() const
    {
@@ -1057,7 +1057,7 @@ namespace user
                      || get_wnd()->m_pimpl.cast < ::user::interaction_impl >()==NULL ? NULL : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
 
       //single_lock sl(m_pmutex,true);
-      
+
       m_bCreated = false;
 
       user_interaction_on_hide();
@@ -1267,14 +1267,14 @@ namespace user
    {
 
       m_pimpl->on_layout();
-      
+
       single_lock sl(m_pmutex, true);
 
       on_layout();
 
    }
 
-   
+
    void interaction::translate()
    {
 
@@ -1318,41 +1318,47 @@ namespace user
       if (z == ZORDER_TOP || z == ZORDER_TOPMOST)
       {
 
-         if (GetParent()->m_uiptraChild.get_count() > 0 && GetParent()->m_uiptraChild.last_ptr() != this)
+         if (GetParent()->m_uiptraChild.get_count() >= 2 && GetParent()->m_uiptraChild.last_ptr() != this)
          {
 
-            index iFind = GetParent()->m_uiptraChild.find_first(this);
-
-            if (iFind >= 0 && iFind < GetParent()->m_uiptraChild.get_upper_bound())
+            try
             {
 
-               sp(::user::interaction) pui = this; // hold reference to ourselves/
-                                                   // because parent can be only holder
-                                                   // if the only reference is lost, this window is destroyed
-                                                   // and we are removing only to add just soon later
-                                                   // for reordering (z-order) purposes
-
-               try
-               {
-
-                  GetParent()->m_uiptraChild.remove(this);
-
-               }
-               catch (...)
-               {
-
-               }
-
-               try
+               if (GetParent()->m_uiptraChild.remove(this) > 0)
                {
 
                   GetParent()->m_uiptraChild.add_unique(this);
 
                }
-               catch (...)
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+      else if (z == ZORDER_BOTTOM)
+      {
+
+         if (GetParent()->m_uiptraChild.get_count() >= 2 && GetParent()->m_uiptraChild.first_ptr() != this)
+         {
+
+            try
+            {
+
+               if (GetParent()->m_uiptraChild.remove(this) > 0)
                {
 
+                  GetParent()->m_uiptraChild.insert_at(0, this);
+
                }
+
+            }
+            catch (...)
+            {
 
             }
 
@@ -1369,20 +1375,20 @@ namespace user
       pobj->previous();
 
 //      layout_tooltip();
-      
+
 
 
       //synch_lock sl(m_pmutex);
 
       //for(index i = 0; i < m_uiptraChild.get_size(); i++)
       //{
-      //   
+      //
       //   sp(::user::interaction) pui = m_uiptraChild[i];
-      //   
+      //
       //   sl.unlock();
 
       //   pui->send_message(WM_MOVE);
-      //   
+      //
       //   sl.lock();
 
       //}
@@ -1559,6 +1565,8 @@ namespace user
 
       }
 
+      pgraphics->SelectClipRgn(NULL);
+
    }
 
    void interaction::_001CallOnDraw(::draw2d::graphics * pgraphics)
@@ -1601,9 +1609,9 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
-      interaction_spa uia = m_uiptraChild;
+      sp(interaction) pui;
 
-      for(auto & pui : uia)
+      while(get_child(pui))
       {
 
          try
@@ -1621,6 +1629,17 @@ namespace user
          {
 
             TRACE("\n\nException thrown while drawing user::interaction\n\n");
+
+         }
+
+         try
+         {
+
+            pgraphics->SelectClipRgn(NULL);
+
+         }
+         catch(...)
+         {
 
          }
 
@@ -3182,7 +3201,7 @@ namespace user
          return m_pimpl->GetActiveWindow();
    }
 
-   
+
    bool interaction::SetFocus()
    {
 
@@ -3524,7 +3543,7 @@ namespace user
       single_lock sl1(get_wnd() != NULL && get_wnd() != this ? get_wnd()->m_pmutex : NULL,true);
 
       //single_lock sl(m_pmutex,true);
-      
+
       m_bCreated = false;
 
       if(!IsWindow())
@@ -4205,7 +4224,7 @@ namespace user
             if(!ContinueModal(iLevel))
                goto ExitModal;
 
-            
+
             if(::get_thread() != NULL && !::get_thread()->pump_message())
             {
                __post_quit_message(0);
@@ -5900,7 +5919,7 @@ restart:
       catch(::exit_exception &)
       {
 
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
 
          return -1;
 
@@ -5911,7 +5930,7 @@ restart:
          if(!Application.on_run_exception((::exception::exception &) e))
          {
 
-            ::aura::post_quit_thread(&System);
+            ::multithreading::post_quit(&System);
 
             return -1;
 
@@ -7644,7 +7663,7 @@ restart:
 
    }
 
-   
+
    bool interaction::kick_queue()
    {
 

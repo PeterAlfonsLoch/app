@@ -1159,6 +1159,65 @@ int32_t nIndex);
 #define GetWindowLong  GetWindowLongA
 #endif // !UNICODE
 
+LONG_PTR
+WINAPI
+GetWindowLongPtrA(
+oswindow hWnd,
+int32_t nIndex);
+
+
+LONG_PTR
+WINAPI
+GetWindowLongPtrW(
+oswindow hWnd,
+int32_t nIndex);
+#ifdef UNICODE
+#define GetWindowLongPtr  GetWindowLongPtrW
+#else
+#define GetWindowLongPtr  GetWindowLongPtrA
+#endif // !UNICODE
+
+
+LONG
+WINAPI
+SetWindowLongA(
+oswindow hWnd,
+int32_t nIndex,
+LONG l);
+
+
+LONG
+WINAPI
+SetWindowLongW(
+oswindow hWnd,
+int32_t nIndex,
+LONG l);
+#ifdef UNICODE
+#define SetWindowLong  SetWindowLongW
+#else
+#define SetWindowLong  SetWindowLongA
+#endif // !UNICODE
+
+LONG_PTR
+WINAPI
+SetWindowLongPtrA(
+oswindow hWnd,
+int32_t nIndex,
+LONG_PTR l);
+
+
+LONG_PTR
+WINAPI
+SetWindowLongPtrW(
+oswindow hWnd,
+int32_t nIndex,
+LONG_PTR l);
+#ifdef UNICODE
+#define SetWindowLongPtr  SetWindowLongPtrW
+#else
+#define SetWindowLongPtr  SetWindowLongPtrA
+#endif // !UNICODE
+
 
 #ifndef METROWIN
 typedef struct tagNMHDR

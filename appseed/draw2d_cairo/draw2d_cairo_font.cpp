@@ -4,6 +4,10 @@
 namespace draw2d_cairo
 {
 
+
+#ifdef WINDOWS
+
+
    class font_fam_c2
    {
    public:
@@ -29,6 +33,9 @@ namespace draw2d_cairo
    }
 
 
+#endif
+
+
    font::font(::aura::application * papp) :
    ::object(papp)
    {
@@ -50,7 +57,8 @@ namespace draw2d_cairo
 
    bool font::destroy()
    {
-synch_lock ml(&cairo_mutex());
+
+      synch_lock ml(cairo_mutex());
 //      if(m_pfont != NULL)
 //      {
 // // the fonts are stored and managed by "font cache"
@@ -104,6 +112,12 @@ synch_lock ml(&cairo_mutex());
    ::draw2d::font::e_cs font::calc_cs(::draw2d::graphics * pgraphics)
    {
 
+#ifndef WINDOWS
+
+      return ::draw2d::font::cs_default;
+
+#else
+
       font_fam_c2 c2;
 
       HDC hdc = ::CreateCompatibleDC(NULL);
@@ -121,8 +135,10 @@ synch_lock ml(&cairo_mutex());
 
       ::DeleteDC(hdc);
 
-      
+
       return ::draw2d::wingdi_get_cs(c2.lf.elfLogFont.lfCharSet);
+
+#endif
 
    }
 

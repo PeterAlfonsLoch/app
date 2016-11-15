@@ -302,12 +302,12 @@ namespace linux
 
 
       // capture and focus apply to all windows
-      virtual ::user::interaction * GetCapture();
-      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
-      virtual ::user::interaction * ReleaseCapture();
+      //virtual ::user::interaction * GetCapture() override;
+      //virtual bool SetCapture(::user::interaction * pinterface = NULL) override;
+      //virtual bool ReleaseCapture() override;
       //virtual ::user::interaction * get_capture();
-      virtual ::user::interaction * GetFocus();
-      ::user::interaction * SetFocus();
+      virtual ::user::interaction * GetFocus() override;
+      virtual bool SetFocus() override;
 
       static_function::user::interaction * PASCAL GetDesktopWindow();
 
@@ -629,9 +629,9 @@ namespace linux
       static_function void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
       virtual bool is_frame_window(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
-      static_function bool PASCAL ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
-      static_function bool PASCAL ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
-      static_function void PASCAL _FilterToolTipMessage(MESSAGE* pMsg, ::user::interaction * pWnd);
+//      bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+//      bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+//      static_function void PASCAL _FilterToolTipMessage(MESSAGE* pMsg, ::user::interaction * pWnd);
       bool _EnableToolTips(bool bEnable, UINT nFlag);
       static_function oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();
@@ -663,8 +663,8 @@ namespace linux
 
       virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 
-      virtual LONG GetWindowLong(int32_t nIndex);
-      virtual LONG SetWindowLong(int32_t nIndex, LONG lValue);
+      virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const override;
+      virtual LONG_PTR set_window_long_ptr(int32_t nIndex, LONG_PTR lValue) override;
 
       virtual void _001BaseWndInterfaceMap();
 

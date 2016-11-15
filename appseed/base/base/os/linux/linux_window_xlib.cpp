@@ -30,7 +30,7 @@ window_xlib::~window_xlib()
 HDC GetDC(oswindow window);
 
 
-void window_xlib::create_window_graphics(int64_t cxParam, int64_t cyParam, int iStrideParam)
+void window_xlib::create_window_graphics_(int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
    if(cxParam <= 0 || cyParam <= 0)
@@ -39,20 +39,20 @@ void window_xlib::create_window_graphics(int64_t cxParam, int64_t cyParam, int i
 //   if(window == NULL)
 //      return;
 
-   destroy_window_graphics();
+   destroy_window_graphics_();
 
 //   single_lock sl(&user_mutex(), true);
 
 //   m_window = window;
 
-   m_size.cx = cxParam;
+   m_cx = cxParam;
 
-   m_size.cy = cyParam;
+   m_cy = cyParam;
 
    //if(iStrideParam < 0 || iStrideParam < (m_size.cx * sizeof(COLORREF)))
    {
 
-      m_iScan = m_size.cx * sizeof(COLORREF);
+      m_iScan = m_cx * sizeof(COLORREF);
 
    }
    /*else
@@ -76,7 +76,7 @@ void window_xlib::create_window_graphics(int64_t cxParam, int64_t cyParam, int i
 
    m_pdc->m_gc = XCreateGC(m_pimpl->m_oswindow->display(), m_pimpl->m_oswindow->window(), 0, &gcvalues);
 
-   window_graphics::create_window_graphics(cxParam, cyParam, m_iScan);
+   window_graphics::create_window_graphics_(cxParam, cyParam, m_iScan);
 
 //   if(m_picture != NULL)
 //   {
@@ -112,10 +112,10 @@ void window_xlib::create_window_graphics(int64_t cxParam, int64_t cyParam, int i
 
 
 
-void window_xlib::destroy_window_graphics()
+void window_xlib::destroy_window_graphics_()
 {
 
-   window_graphics::destroy_window_graphics();
+   window_graphics::destroy_window_graphics_();
 
 
 }
@@ -134,6 +134,8 @@ void window_xlib::update_window(::draw2d::dib * pdib)
    }
 
    synch_lock sl(m_pmutex);
+
+   pdib->map();
 
    if(pdib->m_pcolorref == NULL)
    {
@@ -155,7 +157,10 @@ void window_xlib::update_window(::draw2d::dib * pdib)
       return;
 
 
-   if(m_size.area() <= 0)
+   if(m_cx <= 0)
+      return;
+
+         if(m_cy <= 0)
       return;
 
    xdisplay d(m_pimpl->m_oswindow->display());
@@ -172,7 +177,7 @@ void window_xlib::update_window(::draw2d::dib * pdib)
 
    byte * pdata = (byte *) m_mem.get_data();
 
-   int size = m_iScan * m_size.cy;
+   int size = m_iScan * m_cy;
    byte * pb = pdata + size - 4;
    int sizeB = (size / 16) * 16;
    byte * pbB = pdata + (size - sizeB);
@@ -236,8 +241,7 @@ void window_xlib::update_window(::draw2d::dib * pdib)
 
       XRenderComposite(m_window->display(), PictOpOver, m_picture, None, m_pictureWindow, 0, 0, 0, 0, 0, 0, m_size.cx, m_size.cy);*/
 
-
-      XPutImage(m_pimpl->m_oswindow->display(), m_pimpl->m_oswindow->window(), m_pdc->m_gc, m_pimage, 0, 0, 0, 0, m_size.cx, m_size.cy);
+      XPutImage(m_pimpl->m_oswindow->display(), m_pimpl->m_oswindow->window(), m_pdc->m_gc, m_pimage, 0, 0, 0, 0, cx, cy);
 
    }
    catch(...)
@@ -359,10 +363,10 @@ void window_xlib::update_window(::draw2d::dib * pdib)
 
    }
 
-   if (m_size.cx != m_pimpl->m_rectParentClient.size().cx || m_size.cy != m_pimpl->m_rectParentClient.size().cy)
+   if (m_cx != m_pimpl->m_rectParentClient.size().cx || m_cy != m_pimpl->m_rectParentClient.size().cy)
    {
 
-      create_window_graphics(m_pimpl->m_rectParentClient.size().cx, m_pimpl->m_rectParentClient.size().cy, m_spdibBuffer->m_iScan);
+      create_window_graphics_(m_pimpl->m_rectParentClient.size().cx, m_pimpl->m_rectParentClient.size().cy, m_spdibBuffer->m_iScan);
 
    }
 

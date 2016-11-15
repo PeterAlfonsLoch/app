@@ -3,7 +3,6 @@
 #include "zlib.h"
 #include "zutil.h"
 
-
 #include <openssl/whrlpool.h>
 
 #if defined(OPENSSL_CRYPTO) || defined(METROWIN)
@@ -527,7 +526,7 @@ namespace crypto
 
       EVP_CIPHER_CTX * pctx = EVP_CIPHER_CTX_new();
 
-      
+
 
       int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
       int iShaLen = memSha1.get_size();
@@ -985,7 +984,7 @@ namespace crypto
       const BIGNUM * dmq1 = NULL;
       const BIGNUM * iqmp = NULL;
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
 
       char * hexN       = BN_bn2hex(prsa->n);
       char * hexE       = BN_bn2hex(prsa->e);
@@ -1247,7 +1246,7 @@ namespace crypto
       BN_hex2bn(&n, nParam);
       BN_hex2bn(&e, "10001");
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
       m_prsa->n = n;
       m_prsa->e = e;
 #else
@@ -1297,7 +1296,7 @@ namespace crypto
       BN_hex2bn(&dmq1, strDmq1);
       BN_hex2bn(&iqmp, strIqmp);
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
       m_prsa->n = n;
       m_prsa->e = e;
       m_prsa->d = d;

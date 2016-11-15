@@ -228,7 +228,7 @@ namespace user
 
    ::user::interaction * tab_view::_001GetTabWnd(int32_t iTab)
    {
-      
+
       if (m_pviewcreator == NULL)
       {
 
@@ -254,7 +254,7 @@ namespace user
 
    void tab_view::_001DropTargetWindowInitialize(::user::tab * pinterface)
    {
-      
+
       create_tab_by_id(::user::tab::tab_id(pinterface->get_data()->m_iDragTab));
 
       m_pdroptargetwindow = new tab_drop_target_window(this, (int32_t) pinterface->get_data()->m_iDragTab);
@@ -288,12 +288,12 @@ namespace user
 
    void tab_view::_001OnShowTab(tab * ptab)
    {
-      
+
       if(ptab == this)
       {
-         
+
          on_show_view();
-         
+
          on_stage_view();
 
       }
@@ -305,7 +305,7 @@ namespace user
    {
 
       id id = tab_id(_001GetSel());
-      
+
       class id idSplit;
 
       ::user::view_creator_data * pcreatordata = get_impact(id,get_data()->m_rectTabClient);
@@ -575,7 +575,7 @@ namespace user
 
    ::user::view_creator_data * tab_view::create_impact(id id, LPCRECT lpcrectCreate)
    {
-      
+
       if(m_pviewcreator == NULL)
          return NULL;
 
@@ -740,10 +740,10 @@ namespace user
       defer_check_layout();
 
       defer_check_zorder();
-      
+
       if(!is_this_visible())
          return;
-      
+
       _001DrawChildren(pgraphics);
 
       _001DrawThis(pgraphics);
@@ -797,7 +797,7 @@ namespace user
    void tab_drop_target_window::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
 //      class imaging & imaging = System.visual().imaging();
 

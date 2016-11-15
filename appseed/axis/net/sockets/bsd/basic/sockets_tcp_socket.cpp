@@ -1760,7 +1760,7 @@ skip:
                   {
                      // Current name is a DNS name, let's check it
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
                      string strDnsName(ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
 #else
                      string strDnsName(ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
@@ -1772,7 +1772,7 @@ skip:
                            break;
 
                      }
-                     
+
                   }
                }
                sk_GENERAL_NAME_pop_free(san_names, GENERAL_NAME_free);

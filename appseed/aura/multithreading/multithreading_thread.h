@@ -63,7 +63,7 @@ class CLASS_DECL_AURA thread :
 #endif
 {
 private:
-   
+
    bool                                   m_bRunThisThread;
 
 public:
@@ -249,7 +249,7 @@ public:
    virtual bool on_after_run_thread();
    virtual int32_t exit_thread();
 
-   virtual void close_dependent_threads(::duration & dur);
+   virtual void close_dependent_threads(const ::duration & dur);
 
    virtual void process_window_procedure_exception(::exception::base*,signal_details * pobj);
 
@@ -379,12 +379,95 @@ public:
 
 
 
-namespace aura
+namespace multithreading
 {
 
-   
-   CLASS_DECL_AURA bool post_quit_thread();
-   CLASS_DECL_AURA bool post_quit_thread(::thread * pthread);
+
+   template < typename THREAD >
+   inline bool post_quit(THREAD * & pthread)
+   {
+
+      bool bOk = false;
+
+      try
+      {
+
+         bOk = pthread->post_quit();
+
+      }
+      catch (...)
+      {
 
 
-} // namespace aura
+      }
+
+      try
+      {
+
+         pthread = NULL;
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      return bOk;
+
+   }
+
+   template < typename THREAD >
+   inline bool post_quit_and_wait(THREAD * & pthread, const duration & duration)
+   {
+
+      bool bOk = false;
+
+      try
+      {
+
+         pthread->post_quit();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         bOk = pthread->wait(duration).succeeded();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         pthread = NULL;
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      return bOk;
+
+   }
+
+
+   CLASS_DECL_AURA bool post_quit();
+   CLASS_DECL_AURA bool post_quit_and_wait(const duration & duration);
+
+
+   CLASS_DECL_AURA bool post_quit(::thread * pthread);
+   CLASS_DECL_AURA bool post_quit_and_wait(::thread * pthread, const duration & duration);
+
+
+} // namespace multithreading

@@ -162,7 +162,7 @@ public:
    virtual void _011OnDraw(::draw2d::graphics * pgraphics);
 
 
-
+   virtual void _001OnClip(::draw2d::graphics * pgraphics);
 
 
 

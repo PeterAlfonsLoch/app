@@ -1157,7 +1157,7 @@ namespace axis
 
          dappy(string(typeid(*this).name()) + " : on_run exit_exception");
 
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
 
          goto exit_application;
 
@@ -1203,7 +1203,7 @@ namespace axis
       catch(::exit_exception &)
       {
 
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
 
          m_iReturnCode = -1;
 
@@ -1273,7 +1273,7 @@ namespace axis
 
          dappy(string(typeid(*this).name()) + " : main_start exit_exception");
 
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
 
       }
 
@@ -2663,7 +2663,7 @@ namespace axis
 
       for(index i = 0; i < iCount; i++)
       {
-         
+
          if(localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
             continue;
 

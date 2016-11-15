@@ -35,7 +35,7 @@
 
 #if defined(BSD_STYLE_SOCKETS)
 #include "bsd/sockets_bsd.h"
-#ifdef METROWIN 
+#if defined(METROWIN) || defined(LINUX) 
 
 extern "C"
 CLASS_DECL_AXIS const SSL_METHOD * TLS_client_method();

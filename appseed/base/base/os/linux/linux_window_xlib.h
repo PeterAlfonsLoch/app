@@ -11,9 +11,10 @@ public:
    //oswindow                      m_window;
    device_context *              m_pdc;
    memory           m_mem;
-   size                          m_size;
    int                           m_iScan;
    XImage *                      m_pimage;
+   bool                          m_bMapped;
+   rect                          m_rectLast;
    //Pixmap                        m_pixmap;
    //Picture                       m_pictureWindow;
    //Picture                       m_picture;
@@ -23,8 +24,8 @@ public:
    window_xlib(::aura::application * papp);
    virtual ~window_xlib();
 
-   virtual void create_window_graphics(int64_t cx, int64_t cy, int iStride = -1);
-   virtual void destroy_window_graphics();
+   virtual void create_window_graphics_(int64_t cx, int64_t cy, int iStride = -1) override;
+   virtual void destroy_window_graphics_() override;
 
 
 

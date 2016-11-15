@@ -53,7 +53,8 @@ namespace file_watcher
 
 
 	//--------
-	os_file_watcher::os_file_watcher()
+	os_file_watcher::os_file_watcher(::aura::application * papp) :
+      object(papp)
 	{
 		mFD = inotify_init();
 		if (mFD < 0)

@@ -57,7 +57,7 @@ public:
    bool                          m_bMessageOnlyWindow;
    ::user::interaction *         m_pui;
    HTHREAD                       m_hthread;
-   int_to_int *                  m_plongmap;
+   int_ptr_to_int_ptr *          m_plongptrmap;
    Colormap                      m_colormap;
    DWORD                         m_dwLastMouseMove;
    Window                        m_parent;
@@ -165,8 +165,8 @@ public:
    bool is_iconic();
    bool is_window_visible();
    bool show_window(int32_t nCmdShow);
-   LONG get_window_long(int32_t nIndex);
-   LONG set_window_long(int32_t nIndex, LONG l);
+   LONG_PTR get_window_long_ptr(int32_t nIndex);
+   LONG_PTR set_window_long_ptr(int32_t nIndex, LONG_PTR l);
    bool client_to_screen(LPPOINT lppoint);
    bool screen_to_client(LPPOINT lppoint);
 
@@ -222,12 +222,22 @@ inline bool ShowWindow(::oswindow oswindow, int32_t nCmdShow)
 
 inline LONG GetWindowLongA(::oswindow oswindow, int32_t nIndex)
 {
-   return oswindow->get_window_long(nIndex);
+   return (LONG) oswindow->get_window_long_ptr(nIndex);
 }
 
 inline LONG SetWindowLongA(::oswindow oswindow, int32_t nIndex, LONG l)
 {
-   return oswindow->set_window_long(nIndex, l);
+   return (LONG) oswindow->set_window_long_ptr(nIndex, (LONG) l);
+}
+
+inline LONG_PTR GetWindowLongPtrA(::oswindow oswindow, int32_t nIndex)
+{
+   return oswindow->get_window_long_ptr(nIndex);
+}
+
+inline LONG_PTR SetWindowLongPtrA(::oswindow oswindow, int32_t nIndex, LONG_PTR l)
+{
+   return oswindow->set_window_long_ptr(nIndex, l);
 }
 
 inline bool ClientToScreen(::oswindow oswindow, LPPOINT lppoint)

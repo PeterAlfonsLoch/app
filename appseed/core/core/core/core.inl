@@ -286,5 +286,20 @@ _AFX_INLINE void dump_context::operator=(const dump_context& /* dcSrc */)
 #endif //_AFX_INLINE
 
 
+namespace core
+{
+
+
+   template < typename VIEW >
+   sp(::user::document) application::create_child_form(sp(::user::interaction) pwndParent, var var)
+   {
+
+      return create_child_form(System.type_info < VIEW >(), pwndParent, var);
+
+   }
+
+
+} // namespace core
+
 
 

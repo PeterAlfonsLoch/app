@@ -712,7 +712,7 @@ void thread::on_unregister_dependent_thread(::thread * pthreadDependent)
 }
 
 
-void thread::close_dependent_threads(::duration & dur)
+void thread::close_dependent_threads(const ::duration & dur)
 {
 
    signal_close_dependent_threads();
@@ -925,7 +925,7 @@ bool thread::post_quit()
    }
    else if (strName == "multimedia::audio::wave_player")
    {
-         
+
       ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_player\n\n\n");
 
    }
@@ -1687,7 +1687,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
       }
       sl.unlock();
-      
+
       return;
 
    }
@@ -1979,7 +1979,7 @@ int32_t thread::main()
       nResult = (*m_pfnThreadProc)(m_pThreadParams);
    }
    // else -- check for thread with message loop
-   else 
+   else
    {
       // will stop after PostQuitMessage called
       ASSERT_VALID(this);
@@ -1996,7 +1996,7 @@ int32_t thread::main()
 
          try
          {
-            
+
             thread_exit();
 
          }

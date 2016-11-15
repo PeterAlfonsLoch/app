@@ -164,25 +164,25 @@ namespace linux
       return TRUE;
    }*/
 
-   bool  interaction_impl::ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
-   {
-      DWORD dw = hWnd->get_window_long(GWL_STYLE);
-      dw &= ~dwRemove;
-      dw |= dwAdd;
-      hWnd->set_window_long(GWL_STYLE, dw);
-      //return __modify_style(hWnd, GWL_STYLE, dwRemove, dwAdd, nFlags);
-      return true;
-   }
-
-   bool interaction_impl::ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
-   {
-      DWORD dw = hWnd->get_window_long(GWL_EXSTYLE);
-      dw &= ~dwRemove;
-      dw |= dwAdd;
-      hWnd->set_window_long(GWL_EXSTYLE, dw);
-      return true;
-//      return __modify_style(hWnd, GWL_EXSTYLE, dwRemove, dwAdd, nFlags);
-   }
+//   bool  interaction_impl::ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+//   {
+//      DWORD dw = (DWORD) hWnd->get_window_long_ptr(GWL_STYLE);
+//      dw &= ~dwRemove;
+//      dw |= dwAdd;
+//      hWnd->set_window_long_ptr(GWL_STYLE, dw);
+//      //return __modify_style(hWnd, GWL_STYLE, dwRemove, dwAdd, nFlags);
+//      return true;
+//   }
+//
+//   bool interaction_impl::ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+//   {
+//      DWORD dw = hWnd->get_window_long(GWL_EXSTYLE);
+//      dw &= ~dwRemove;
+//      dw |= dwAdd;
+//      hWnd->set_window_long(GWL_EXSTYLE, dw);
+//      return true;
+////      return __modify_style(hWnd, GWL_EXSTYLE, dwRemove, dwAdd, nFlags);
+//   }
 
 
 
@@ -522,7 +522,7 @@ namespace linux
          if(cs.dwExStyle & WS_EX_TOOLWINDOW)
          {
 
-            m_oswindow->set_window_long(GWL_EXSTYLE, m_oswindow->get_window_long(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
+            m_oswindow->set_window_long_ptr(GWL_EXSTYLE, m_oswindow->get_window_long_ptr(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
 
          }
 
@@ -698,7 +698,7 @@ namespace linux
       if(m_pthreadDraw != NULL)
       {
 
-         m_pthreadDraw->m_bRun = false;
+         ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
 
       }
 
@@ -1336,7 +1336,7 @@ DWORD dwLastPaint;
 
       if(pbase->m_uiMessage == WM_MOUSELEAVE)
       {
-         
+
          _000OnMouseLeave(pbase);
 
          return;
@@ -1422,7 +1422,7 @@ DWORD dwLastPaint;
             pmouse->m_ecursor = visual::cursor_default;
          }
 
-         _000OnMouseHoverCheck(pmouse);
+         //_000OnMouseHoverCheck(pmouse);
 
 
          //user::oswindow_array hwnda;
@@ -1453,28 +1453,30 @@ DWORD dwLastPaint;
             }
          }*/
 
-         if(pmouse->m_uiMessage == WM_LBUTTONDOWN)
-         {
-//         TRACE("button down\n");
-         }
-               m_pui->_000OnMouse(pmouse);
-               if(pmouse->m_bRet)
-                  return;
+         _008OnMouse(pmouse);
 
-         sp(::user::interaction) pui;
-
-         while(System.get_frame(pui))
-         {
-            if(pui != m_pui)
-            {
-               pui->_000OnMouse(pmouse);
-               if(pmouse->m_bRet)
-                  return;
-
-            }
-         }
-
-         pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
+//         if(pmouse->m_uiMessage == WM_LBUTTONDOWN)
+//         {
+////         TRACE("button down\n");
+//         }
+//               m_pui->_000OnMouse(pmouse);
+//               if(pmouse->m_bRet)
+//                  return;
+//
+//         sp(::user::interaction) pui;
+//
+//         while(System.get_frame(pui))
+//         {
+//            if(pui != m_pui)
+//            {
+//               pui->_000OnMouse(pmouse);
+//               if(pmouse->m_bRet)
+//                  return;
+//
+//            }
+//         }
+//
+//         pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          return;
       }
       else if(pbase->m_uiMessage == WM_KEYDOWN ||
@@ -2992,7 +2994,8 @@ return 0;
 //
 //                  }
 
-                  if (m_pui->has_pending_graphical_update())
+                  if (m_pui->has_pending_graphical_update()
+                  || m_pui->check_need_layout())
                   {
 
                      RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
@@ -3782,6 +3785,8 @@ throw not_implemented(get_app());
    bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
 
+      ::user::interaction_impl::SetWindowPos(z, x, y, cx, cy, nFlags);
+
       xdisplay d(m_oswindow->display());
 
       wm_state_above((oswindow)get_handle(), nFlags == ZORDER_TOPMOST);
@@ -4251,14 +4256,19 @@ throw not_implemented(get_app());
    }
 
 
-   LONG interaction_impl::GetWindowLong(int32_t nIndex)
+   LONG_PTR interaction_impl::get_window_long_ptr(int32_t nIndex) const
    {
-      return ::GetWindowLong((oswindow) get_handle(), nIndex);
+
+      return ::GetWindowLongPtr((oswindow) get_handle(), nIndex);
+
    }
 
-   LONG interaction_impl::SetWindowLong(int32_t nIndex, LONG lValue)
+
+   LONG_PTR interaction_impl::set_window_long_ptr(int32_t nIndex, LONG_PTR lValue)
    {
-      return ::SetWindowLong((oswindow) get_handle(), nIndex, lValue);
+
+      return ::SetWindowLongPtr((oswindow) get_handle(), nIndex, lValue);
+
    }
 
 
@@ -4295,15 +4305,37 @@ throw not_implemented(get_app());
 
    bool interaction_impl::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
-      ASSERT(::IsWindow((oswindow) get_handle()));
-      return ModifyStyle((oswindow) get_handle(), dwRemove, dwAdd, nFlags);
+
+      set_window_long(GWL_STYLE, (GetStyle() | dwAdd) & ~(dwRemove));
+
+      if(nFlags != 0)
+      {
+
+         SetWindowPos(0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOMOVE | nFlags);
+
+      }
+
+      return true;
+
    }
+
 
    bool interaction_impl::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
-      ASSERT(::IsWindow((oswindow) get_handle()));
-      return ModifyStyleEx((oswindow) get_handle(), dwRemove, dwAdd, nFlags);
+
+      set_window_long(GWL_EXSTYLE, (GetStyle() | dwAdd) & ~(dwRemove));
+
+      if(nFlags != 0)
+      {
+
+         SetWindowPos(0, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOMOVE | nFlags);
+
+      }
+
+      return true;
+
    }
+
 
    void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
    {
@@ -4642,7 +4674,7 @@ if(psurface == g_cairosurface)
    bool interaction_impl::IsWindowVisible()
    {
 
-      if(!m_pui->m_bVisible)
+      if(!m_pui->is_this_visible())
       {
 
          return false;
@@ -4879,7 +4911,8 @@ if(psurface == g_cairosurface)
 
    }
 
-   ::user::interaction * interaction_impl::SetFocus()
+
+   bool interaction_impl::SetFocus()
    {
 
       oswindow w = ::SetFocus(get_handle());
@@ -4890,6 +4923,7 @@ if(psurface == g_cairosurface)
       return w->m_pui;
 
    }
+
 
    ::user::interaction * PASCAL interaction_impl::GetDesktopWindow()
    {

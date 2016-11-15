@@ -53,7 +53,7 @@ extern void *OPENSSL_UplinkTable[];
 extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line);
 extern "C" unsigned long SSLInitializer_SSL_id_function();
 extern "C"
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
 void
 #else
 int
@@ -61,9 +61,9 @@ int
 SSLInitializer_rand_seed(const void * buf, int32_t num);
 extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num);
 extern "C" void SSLInitializer_rand_cleanup();
-extern "C" 
 extern "C"
-#ifdef METROWIN
+extern "C"
+#if defined(METROWIN) || defined(LINUX)
 void
 #else
 int
@@ -399,7 +399,7 @@ extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, con
 
    if (pmutex == NULL)
    {
-      
+
       return;
 
    }
@@ -427,21 +427,21 @@ extern "C" unsigned long SSLInitializer_SSL_id_function()
 {
 
 //#ifdef WIN32
-   
+
    return (unsigned long) ::GetCurrentThreadId();
-   
+
 //#else
-//   
+//
 //   unsigned long ul = (unsigned long)(int_ptr) ::pthread_self();
-//   
+//
 //   return ul;
-//   
+//
 //#endif
-//   
+//
 }
 
 extern "C"
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
 void
 #else
 int
@@ -450,7 +450,7 @@ SSLInitializer_rand_seed(const void * buf, int32_t num)
 {
    UNREFERENCED_PARAMETER(buf);
    UNREFERENCED_PARAMETER(num);
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
 #else
    return 1;
 #endif
@@ -466,8 +466,8 @@ extern "C" void SSLInitializer_rand_cleanup()
 {
 }
 
-extern "C" 
-#ifdef METROWIN
+extern "C"
+#if defined(METROWIN) || defined(LINUX)
 void
 #else
 int
@@ -477,7 +477,7 @@ SSLInitializer_rand_add(const void * buf, int num, double entropy)
    UNREFERENCED_PARAMETER(buf);
    UNREFERENCED_PARAMETER(num);
    UNREFERENCED_PARAMETER(entropy);
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
 #else
    return 1;
 #endif

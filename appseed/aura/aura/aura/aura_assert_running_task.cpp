@@ -38,7 +38,7 @@ namespace aura
          catch(::exit_exception &)
          {
 
-            ::aura::post_quit_thread(&System);
+            ::multithreading::post_quit(&System);
 
          }
          catch(::exception::exception &)

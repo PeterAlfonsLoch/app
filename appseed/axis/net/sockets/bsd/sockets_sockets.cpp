@@ -249,7 +249,7 @@ string ip_reverse(string str)
 
 
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
 
 
 #include <openssl/ssl.h>

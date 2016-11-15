@@ -121,27 +121,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_AURA region_sp :
-      public smart_pointer < region >
-   {
-   public:
-
-      region_sp()
-      {
-      }
-
-      region_sp(const smart_pointer < region > & p) :
-         smart_pointer < region > (p)
-      {
-      }
-
-      region_sp(const ::aura::allocatorsp & allocer) :
-         smart_pointer < region > (allocer)
-      {
-      }
-
-
-   };
+   typedef sp(region) region_sp;
 
 
 } // namespace draw2d

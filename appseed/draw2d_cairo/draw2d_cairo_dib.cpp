@@ -44,7 +44,7 @@ namespace draw2d_cairo
    void dib::read(::file::istream & istream)
    {
 
-      synch_lock ml(&cairo_mutex());
+      synch_lock ml(cairo_mutex());
 
       ::draw2d::dib::read(istream);
 
@@ -389,7 +389,7 @@ namespace draw2d_cairo
 
 //return;
 
-      synch_lock ml(&cairo_mutex());
+      synch_lock ml(cairo_mutex());
 
       if(m_bMapped)
          return;
@@ -446,7 +446,7 @@ namespace draw2d_cairo
    void dib::unmap() const
    {
       //return;
-      synch_lock ml(&cairo_mutex());
+      synch_lock ml(cairo_mutex());
 
       if(!m_bMapped)
          return;

@@ -97,7 +97,7 @@ namespace user
 
       m_pui->pre_create_window(cs);
 
-      send_message(WM_CREATE,0,(LPARAM)&cs);
+      m_pui->send_message(WM_CREATE,0,(lparam)(LPARAM)&cs);
 
       ::rect rectChild(rect);
 
@@ -166,7 +166,7 @@ namespace user
 
       m_pui->pre_create_window(cs);
 
-      send_message(WM_CREATE,0,(LPARAM)&cs);
+      m_pui->send_message(WM_CREATE,0,(lparam)(LPARAM)&cs);
 
       ::rect rectChild(rect);
 
@@ -234,7 +234,7 @@ namespace user
 
       m_pui->pre_create_window(cs);
 
-      send_message(WM_CREATE,0,(LPARAM)&cs);
+      m_pui->send_message(WM_CREATE,0,(lparam)(LPARAM)&cs);
 
       ::rect rectChild(rect);
 
@@ -564,7 +564,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 
       m_bCreate = false;
-      
+
       pobj->previous();
 
    }

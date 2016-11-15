@@ -302,7 +302,7 @@ namespace aura
 
                check_install();
 
-               ::aura::post_quit_thread(&System);
+               ::multithreading::post_quit(&System);
 
             }
             else
@@ -1061,7 +1061,7 @@ namespace aura
 
          dappy(string(typeid(*this).name()) + " : on_run exit_exception");
 
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
 
          goto exit_application;
 
@@ -1239,7 +1239,7 @@ namespace aura
 
          dappy(string(typeid(*this).name()) + " : main_start exit_exception");
 
-         ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
 
       }
 
@@ -1503,7 +1503,7 @@ namespace aura
                dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
                if(System.directrix()->m_varTopicQuery["app"] == m_strAppName)
                {
-                  ::aura::post_quit_thread(&System);
+                  ::multithreading::post_quit(&System);
                }
                try
                {
@@ -1526,7 +1526,7 @@ namespace aura
                   if (System.directrix()->m_varTopicQuery["app"] == m_strAppName)
                   {
 
-                     ::aura::post_quit_thread(&System);
+                     ::multithreading::post_quit(&System);
 
                   }
                   try
@@ -2715,7 +2715,8 @@ namespace aura
 
             if(System.thread::get_os_data() != NULL)
             {
-               ::aura::post_quit_thread(&System);
+
+               ::multithreading::post_quit(&System);
 
             }
 
@@ -4883,7 +4884,7 @@ namespace aura
 
    }
 
-   
+
 } // namespace aura
 
 
