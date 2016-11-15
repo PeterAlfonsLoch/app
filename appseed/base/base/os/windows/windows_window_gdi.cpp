@@ -383,6 +383,8 @@ void window_gdi::update_window(::draw2d::dib * pdib)
 
    }
 
+   bool bSetWindowPos = false;
+
    if (m_rectLast != rectWindow || m_pimpl->m_bZ || m_pimpl->m_bShowFlags)
    {
 
@@ -404,6 +406,8 @@ void window_gdi::update_window(::draw2d::dib * pdib)
       m_pimpl->m_bZ = false;
 
       m_pimpl->m_bShowFlags = false;
+
+      bSetWindowPos = true;
 
    }
 
@@ -447,6 +451,13 @@ void window_gdi::update_window(::draw2d::dib * pdib)
    {
 
       ::BitBlt(m_hdcScreen, 0, 0, m_cx, m_cy,  m_hdc, 0, 0, SRCCOPY);
+
+   }
+
+   if (bSetWindowPos)
+   {
+
+      m_pimpl->m_pui->on_set_window_pos();
 
    }
 

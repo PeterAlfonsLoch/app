@@ -260,6 +260,8 @@ namespace user
       //virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw) override;
       //virtual int32_t GetWindowRgn(HRGN hRgn) override;
 
+      virtual void on_set_window_pos();
+
       virtual void on_layout() override;
       virtual void on_translate() override;
       virtual void on_do_show_flags() override;

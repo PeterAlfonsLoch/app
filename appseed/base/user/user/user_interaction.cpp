@@ -1552,6 +1552,13 @@ namespace user
 
       pgraphics->SetViewportOrg(ptOrg);
 
+      if (m_pparent != NULL)
+      {
+
+         on_after_graphical_update();
+
+      }
+
    }
 
    void interaction::_001CallOnDraw(::draw2d::graphics * pgraphics)
@@ -4026,6 +4033,12 @@ namespace user
       layout_tooltip();
 
       on_change_view_size();
+
+   }
+
+
+   void interaction::on_set_window_pos()
+   {
 
    }
 
