@@ -24,6 +24,52 @@
 #include <winpr/wtypes.h>
 #include <winpr/windows.h>
 
+
+#ifdef _UWP
+#include <openssl/bio.h>
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+void BIO_set_data(BIO *a, void *ptr);
+void *BIO_get_data(BIO *a);
+void BIO_set_init(BIO *a, int init);
+int BIO_get_init(BIO *a);
+void BIO_set_shutdown(BIO *a, int shut);
+int BIO_get_shutdown(BIO *a);
+BIO_METHOD *BIO_meth_new(int type, const char *name);
+int(*BIO_meth_get_write(BIO_METHOD *biom)) (BIO *, const char *, int);
+int BIO_meth_set_write(BIO_METHOD *biom,
+   int(*bwrite) (BIO *, const char *, int));
+int(*BIO_meth_get_read(BIO_METHOD *biom)) (BIO *, char *, int);
+int BIO_meth_set_read(BIO_METHOD *biom,
+   int(*bread) (BIO *, char *, int));
+int(*BIO_meth_get_puts(BIO_METHOD *biom)) (BIO *, const char *);
+int BIO_meth_set_puts(BIO_METHOD *biom,
+   int(*bputs) (BIO *, const char *));
+int(*BIO_meth_get_gets(BIO_METHOD *biom)) (BIO *, char *, int);
+int BIO_meth_set_gets(BIO_METHOD *biom,
+   int(*bgets) (BIO *, char *, int));
+long(*BIO_meth_get_ctrl(BIO_METHOD *biom)) (BIO *, int, long, void *);
+int BIO_meth_set_ctrl(BIO_METHOD *biom,
+   long(*ctrl) (BIO *, int, long, void *));
+int(*BIO_meth_get_create(BIO_METHOD *biom)) (BIO *);
+int BIO_meth_set_create(BIO_METHOD *biom, int(*create) (BIO *));
+int(*BIO_meth_get_destroy(BIO_METHOD *biom)) (BIO *);
+int BIO_meth_set_destroy(BIO_METHOD *biom, int(*destroy) (BIO *));
+long(*BIO_meth_get_callback_ctrl(BIO_METHOD *biom)) (BIO *, int, bio_info_cb *);
+int BIO_meth_set_callback_ctrl(BIO_METHOD *biom,
+   long(*callback_ctrl) (BIO *, int,
+      bio_info_cb *));
+void BIO_set_next(BIO *b, BIO *next);
+void BIO_set_retry_reason(BIO *bio, int reason);
+int BIO_up_ref(BIO *a);
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
 #ifdef _WIN32
 
 #define _accept			accept
