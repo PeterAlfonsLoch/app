@@ -111,8 +111,6 @@ namespace user
 
       //single_lock sl(&m_mutex, true);
 
-      
-
       m_penFocused->create_solid(2, ARGB(255, 0, 255, 255));
 
       m_penHighlight->create_solid(2, ARGB(255, 0, 255, 255));
@@ -6176,6 +6174,10 @@ namespace user
             brushText->create_solid(m_cr);
             m_pgraphics->SelectObject(brushText);
             m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);
+            if (m_strText == "LOVE OR NOTHING")
+            {
+               output_debug_string("LOVE OR NOTHING");
+            }
          }
       }
    }

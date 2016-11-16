@@ -457,6 +457,11 @@ namespace str
 
    }
 
+
+   CLASS_DECL_AURA bool utf8_check_is_valid(const string& string);
+
+   CLASS_DECL_AURA string q_valid(string str);
+
 } // namespace str
 
 

@@ -670,6 +670,13 @@ void Free_check_pointer_in_cpp(void * p)
 
       debug_print("hit 0x0000000200000020LLU");
    }
+   if ((int_ptr)p < (1024 * 1024))
+   {
+
+      debug_print("Free_check_pointer_in_cpp WHAT!! < 1MB");
+
+   }
+
    
 
 }

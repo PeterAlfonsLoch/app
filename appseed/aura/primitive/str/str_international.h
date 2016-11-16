@@ -49,6 +49,7 @@ namespace str
        bool CLASS_DECL_AURA MultiByteToMultiByte(UINT uiCodePageDest, string & str, UINT uiCodePageSrc, const char * lpcsz, strsize nCount);
        bool CLASS_DECL_AURA MultiByteToMultiByte(UINT uiCodePageDest, char * lpsz, strsize nCount, UINT uiCodePageSrc, const char * lpcsz);
 
+       string CLASS_DECL_AURA multibyte_to_utf8(UINT uiCodePageSrc, const char * lpcsz);
        bool CLASS_DECL_AURA multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * lpcsz);
        bool CLASS_DECL_AURA multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * lpcsz, strsize nCount);
        strsize   CLASS_DECL_AURA Utf8ToMultiByteCount(UINT uiCodePage, const char * lpcsz);

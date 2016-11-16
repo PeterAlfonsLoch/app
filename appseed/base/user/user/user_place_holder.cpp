@@ -206,6 +206,14 @@ namespace user
    }
 
 
+   void place_holder::_001DrawThis(::draw2d::graphics * pgraphics)
+   {
+
+      UNREFERENCED_PARAMETER(pgraphics);
+
+   }
+
+
    void place_holder::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 

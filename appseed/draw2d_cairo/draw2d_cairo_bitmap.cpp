@@ -13,6 +13,7 @@ namespace draw2d_cairo
 
    }
 
+   
    bitmap::~bitmap()
    {
 
@@ -24,6 +25,7 @@ namespace draw2d_cairo
       }
 
    }
+
 
    bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata, int32_t iStrideParam)
    {
@@ -375,13 +377,14 @@ synch_lock ml(cairo_mutex());
 
    bool bitmap::destroy()
    {
-synch_lock ml(cairo_mutex());
-      if(m_psurface == NULL)
+
+      synch_lock ml(cairo_mutex());
+      
+      if (m_psurface == NULL)
+      {
+
          return true;
 
-      if(m_psurface == cairo_keep::g_cairosurface)
-      {
-//         printf("123");
       }
 
       cairo_surface_destroy(m_psurface);

@@ -103,8 +103,11 @@ string_to_int * g_pmapFontError2 = NULL;
 extern CLASS_DECL_AURA array<object * > * g_paAura;
 
 
+
 namespace draw2d_cairo
 {
+
+
 
 
    FT_Face g_ft = NULL;
@@ -192,11 +195,13 @@ namespace draw2d_cairo
       //return Attach(::CreateDC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*)lpInitData));
    }
 
+
    bool graphics::CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
       throw not_supported_exception(get_app());
       //return Attach(::CreateIC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*) lpInitData));
    }
+
 
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
@@ -205,11 +210,6 @@ namespace draw2d_cairo
 
       if (m_pdc != NULL)
       {
-         if (m_pdc == cairo_keep::g_cairo)
-         {
-            //         printf("123");
-
-         }
 
          cairo_destroy(m_pdc);
 
@@ -223,14 +223,15 @@ namespace draw2d_cairo
          cairo_surface_t * psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
 
          if (psurface == NULL)
+         {
+
             return false;
+
+         }
 
          m_pdc = cairo_create(psurface);
 
-         if (psurface == cairo_keep::g_cairosurface)
-         {
-            //   printf("123");
-         }         cairo_surface_destroy(psurface);
+         cairo_surface_destroy(psurface);
 
          return m_pdc != NULL;
 
@@ -241,16 +242,21 @@ namespace draw2d_cairo
          cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphics->get_os_data());
 
          if (cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
+         {
+
             return false;
+
+         }
 
          cairo_surface_t * psurfaceNew = cairo_surface_create_similar(psurface, cairo_surface_get_content(psurface), 1, 1);
 
          if (psurfaceNew == NULL)
-            return false;
-         if (psurfaceNew == cairo_keep::g_cairosurface)
          {
-            //   printf("123");
+
+            return false;
+
          }
+
          m_pdc = cairo_create(psurfaceNew);
 
          cairo_surface_destroy(psurfaceNew);
@@ -258,28 +264,11 @@ namespace draw2d_cairo
          return m_pdc != NULL;
 
       }
-      /*
-            HDC hdc = NULL;
-
-            if(pgraphics == NULL)
-            {
-               hdc = ::CreateCompatibleDC(NULL);
-            }
-            else
-            {
-               hdc = ::CreateCompatibleDC((HDC)(dynamic_cast<::win::graphics * >(pgraphics))->get_handle1());
-            }
-
-            if(!Attach(hdc))
-            {
-               ::DeleteDC(hdc);
-               return FALSE;
-            }
-            */
 
       return true;
 
    }
+
 
    int32_t graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
    {
@@ -344,21 +333,19 @@ namespace draw2d_cairo
       synch_lock ml(cairo_mutex());
 
       if (pbitmap == NULL)
+      {
+
          return NULL;
 
-      /*      if(get_handle1() == NULL)
-               return NULL;
-            if(pbitmap == NULL)
-               return NULL;
-            return dynamic_cast < ::draw2d::bitmap* > (SelectGdiObject(get_app(), get_handle1(), pbitmap->get_os_data()));*/
+      }
+
       if (m_pdc != NULL)
       {
-         if (m_pdc == cairo_keep::g_cairo)
-         {
-            //         printf("123");
 
-         }
          cairo_destroy(m_pdc);
+
+         m_pdc = NULL;
+
       }
 
       m_pdc = cairo_create((cairo_surface_t *)pbitmap->get_os_data());
@@ -1042,7 +1029,7 @@ namespace draw2d_cairo
 
       cairo_keep keep(m_pdc);
 
-      cairo_new_sub_path(m_pdc);
+      //cairo_new_sub_path(m_pdc);
 
       cairo_translate(m_pdc, centerx, centery);
 
@@ -1166,6 +1153,7 @@ namespace draw2d_cairo
       return true;
 
    }
+
 
    bool graphics::DrawEllipse(const RECTD & lprect)
    {
@@ -3390,12 +3378,6 @@ namespace draw2d_cairo
       if (m_pdc == NULL)
          return true;
 
-      if (m_pdc == cairo_keep::g_cairo)
-      {
-         //         printf("123");
-
-      }
-
       cairo_destroy(m_pdc);
 
       m_pdc = NULL;
@@ -3912,7 +3894,8 @@ namespace draw2d_cairo
 
             // is better in  cairo to restore the DC instead of resetting clipping
 
-            RestoreDC(m_iSaveDCPositiveClip);
+            //RestoreDC(m_iSaveDCPositiveClip);
+            cairo_reset_clip(m_pdc);
 
             m_iSaveDCPositiveClip = -1;
 
@@ -3928,19 +3911,19 @@ namespace draw2d_cairo
          if (m_spregion.is_null())
             m_spregion.alloc(allocer());
 
-         m_spregion.m_p = pregion;
+         m_spregion = pregion;
 
          if (m_spregion.cast < region >()->is_simple_positive_region())
          {
 
-            if (m_iSaveDCPositiveClip > 0)
-            {
+            //if (m_iSaveDCPositiveClip > 0)
+            //{
 
-               RestoreDC(m_iSaveDCPositiveClip);
+            //   RestoreDC(m_iSaveDCPositiveClip);
 
-            }
+            //}
 
-            m_iSaveDCPositiveClip = SaveDC();
+            //m_iSaveDCPositiveClip = SaveDC();
 
             m_spregion.cast < region >()->clip(m_pdc);
 
@@ -4000,35 +3983,16 @@ namespace draw2d_cairo
    int32_t graphics::IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      ::exception::throw_not_implemented(get_app());
-      return 0;
+      synch_lock ml(cairo_mutex());
 
-      /*
-            int32_t nRetVal = ERROR;
-            if(get_handle1() != NULL && get_handle1() != get_handle2())
-               nRetVal = ::IntersectClipRect(get_handle1(), x1, y1, x2, y2);
-            if(get_handle2() != NULL)
-               nRetVal = ::IntersectClipRect(get_handle2(), x1, y1, x2, y2);
-            return nRetVal;
-      */
+      cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
+
+      cairo_clip(m_pdc);
+
+      return 0;
 
    }
 
-   int32_t graphics::IntersectClipRect(const RECT & lpRect)
-   {
-
-      ::exception::throw_not_implemented(get_app());
-      return 0;
-
-      /*      int32_t nRetVal = ERROR;
-            if(get_handle1() != NULL && get_handle1() != get_handle2())
-               nRetVal = ::IntersectClipRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
-            if(get_handle2() != NULL)
-               nRetVal = ::IntersectClipRect(get_handle2(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
-            return nRetVal;
-      */
-
-   }
 
    int32_t graphics::OffsetClipRgn(int32_t x, int32_t y)
    {
@@ -4608,6 +4572,15 @@ namespace draw2d_cairo
 
       string str(strParam);
 
+      str = ::str::q_valid(str);
+
+      if (str.is_empty())
+      {
+
+         return -1;
+
+      }
+
       synch_lock ml(cairo_mutex());
 
       cairo_keep keep(m_pdc);
@@ -4796,12 +4769,21 @@ namespace draw2d_cairo
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
+      string str(lpszString, MIN(iIndex, nCount));
+
+      str = ::str::q_valid(str);
+
+      if(str.is_empty())
+      {
+         
+         return false;
+
+      }
+
       synch_lock ml(cairo_mutex());
 
       if (iIndex < 0)
          iIndex = (int32_t)nCount;
-
-      string str(lpszString, MIN(iIndex, nCount));
 
       stringa stra;
 
@@ -4830,6 +4812,7 @@ namespace draw2d_cairo
 
    bool graphics::_GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
+
 
       synch_lock ml(cairo_mutex());
 
@@ -5129,34 +5112,17 @@ namespace draw2d_cairo
    }
 
 
-   /*   HDC graphics::get_handle() const
-      {
-         return m_hdc;
-      }
-
-      HDC graphics::get_handle1() const
-      {
-         return get_handle();
-      }
-
-      HDC graphics::get_handle2() const
-      {
-         return get_handle();
-      }*/
-
    bool graphics::attach(void * pdata)
    {
+      
       synch_lock ml(cairo_mutex());
 
       if (m_pdc != NULL)
       {
-         if (m_pdc == cairo_keep::g_cairo)
-         {
-            //         printf("123");
-
-         }
 
          cairo_destroy(m_pdc);
+
+         m_pdc = NULL;
 
       }
 
@@ -5566,7 +5532,7 @@ namespace draw2d_cairo
 
       }
 
-      //keep.pulse();
+      keep.pulse();
 
       if (bPen)
       {

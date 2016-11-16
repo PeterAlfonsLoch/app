@@ -41,8 +41,9 @@ namespace draw2d_cairo
    {
 
       m_pfont = NULL;
-//      m_ft = NULL;
+      m_ft = NULL;
       m_pface = NULL;
+      ZERO(m_keyDone);
 
    }
 

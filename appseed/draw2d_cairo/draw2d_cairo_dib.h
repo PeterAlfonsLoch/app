@@ -17,17 +17,17 @@ namespace draw2d_cairo
 
 
 
-      BITMAPINFO              m_info;
       ::draw2d::bitmap_sp     m_spbitmap;
       ::draw2d::graphics_sp   m_spgraphics;
-      bool                    m_bMapped;
-      //HBITMAP               m_hbitmapOriginal;
-      HBITMAP                    m_hbitmap;
-      class size64                       m_sizeWnd;
-      BITMAPINFO           m_bitmapinfo;
       bool                    m_bTrans;
 
 
+//      class size64            m_sizeWnd;
+#ifdef WINDOWS
+      HBITMAP                 m_hbitmap;
+//      BITMAPINFO              m_bitmapinfo;
+  //    BITMAPINFO              m_info;
+#endif
 
 
 

@@ -2748,22 +2748,29 @@ namespace draw2d
       return -1;
    }
 
+   
    int32_t graphics::IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-      UNREFERENCED_PARAMETER(x1);
-      UNREFERENCED_PARAMETER(y1);
-      UNREFERENCED_PARAMETER(x2);
-      UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
-      return -1;
+
+      RECT r;
+
+      r.left = x1;
+      r.top = y1;
+      r.right = x2;
+      r.bottom = y2;
+
+      return IntersectClipRect(r);
+
    }
 
-   int32_t graphics::IntersectClipRect(const RECT &  lpRect)
+   
+   int32_t graphics::IntersectClipRect(const RECT &  r)
    {
-      UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
-      return -1;
+
+      return IntersectClipRect(r.left, r.top, r.right, r.bottom);
+      
    }
+
 
    int32_t graphics::OffsetClipRgn(int32_t x, int32_t y)
    {
@@ -3928,6 +3935,17 @@ namespace draw2d
    int32_t graphics::_DrawText(const char * lpcsz, strsize iCount, const RECT & rectParam, UINT uiFormat, ::draw2d::font * pfontUnderline)
    {
 
+      string strParam(lpcsz, iCount);
+
+      strParam = ::str::q_valid(strParam);
+
+      if (strParam.is_empty())
+      {
+
+         return -1;
+
+      }
+
       text_metric tm2;
 
       get_text_metrics(&tm2);
@@ -3936,11 +3954,11 @@ namespace draw2d
 
       ::draw2d::graphics * pgraphics = this;
 
-      string strParam(lpcsz, iCount);
+      
 
       wstring wstr = ::str::international::utf8_to_unicode(strParam);
 
-      string str(lpcsz);
+      string str(strParam);
 
       string str2;
 
@@ -3978,56 +3996,42 @@ namespace draw2d
       }
       else if ((uiFormat & DT_END_ELLIPSIS) != 0)
       {
+         
          sz = pgraphics->GetTextExtent(str, (int32_t)iLen);
+         
          if (sz.cx > rectClip.width())
          {
-            iLen += 3;
-            char * lpsz = str.GetBuffer(iLen + 1);
-            strsize i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
-            if (i > iLen)
-               i = iLen;
-            if (i < 4)
-               i = 4;
+
+            const char * pszStart = str;
+
+            const char * psz = pszStart;
+
+            string strLastSample = "...";
+
+            string strSample;
 
             while (true)
             {
-               lpsz[i - 4] = '.';
-               lpsz[i - 3] = '.';
-               lpsz[i - 2] = '.';
-               lpsz[i - 1] = '\0';
-               sz = pgraphics->GetTextExtent(lpsz, (int32_t)i);
-               if (sz.cx < rectClip.width())
-               {
-                  if (i >= iLen)
-                     break;
-                  i++;
-               }
-               else
-               {
-                  break;
-               }
-               strncpy(lpsz, str, i);
-            }
-            while (true)
-            {
-               if (i <= 4)
-                  break;
-               lpsz[i - 4] = L'.';
-               lpsz[i - 3] = L'.';
-               lpsz[i - 2] = L'.';
-               lpsz[i - 1] = L'\0';
-               sz = pgraphics->GetTextExtent(lpsz, (int32_t)i);
+               
+               psz = ::str::utf8_inc(psz);
+
+               strSample = string(pszStart, psz - pszStart) + "...";
+
+               sz = pgraphics->GetTextExtent(strSample);
+
                if (sz.cx > rectClip.width())
                {
-                  i--;
-               }
-               else
-               {
+
+                  str = strLastSample;
+
                   break;
+
                }
+
+               strLastSample = strSample;
+
             }
-            str.ReleaseBuffer();
-            iLen = str.get_length();
+
          }
       }
       else

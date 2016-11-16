@@ -1318,18 +1318,15 @@ namespace user
       if (z == ZORDER_TOP || z == ZORDER_TOPMOST)
       {
 
-         if (GetParent()->m_uiptraChild.get_count() >= 2 && GetParent()->m_uiptraChild.last_ptr() != this)
+         if (GetParent()->m_uiptraChild.find_first(this) != GetParent()->m_uiptraChild.get_upper_bound())
          {
 
             try
             {
 
-               if (GetParent()->m_uiptraChild.remove(this) > 0)
-               {
+               GetParent()->m_uiptraChild.remove(this);
 
-                  GetParent()->m_uiptraChild.add_unique(this);
-
-               }
+               GetParent()->m_uiptraChild.add_unique(this);
 
             }
             catch (...)
@@ -1343,18 +1340,15 @@ namespace user
       else if (z == ZORDER_BOTTOM)
       {
 
-         if (GetParent()->m_uiptraChild.get_count() >= 2 && GetParent()->m_uiptraChild.first_ptr() != this)
+         if (GetParent()->m_uiptraChild.find_first(this) != 0)
          {
 
             try
             {
 
-               if (GetParent()->m_uiptraChild.remove(this) > 0)
-               {
+               GetParent()->m_uiptraChild.remove(this);
 
-                  GetParent()->m_uiptraChild.insert_at(0, this);
-
-               }
+               GetParent()->m_uiptraChild.insert_at(0, this);
 
             }
             catch (...)
@@ -1460,33 +1454,9 @@ namespace user
             rectClient.bottom++;
             rectClient.right++;
 
-            if(bFirst)
-            {
-
-               rectClip = rectClient;
-
-               bFirst = false;
-
-            }
-            else
-            {
-
-               rectClip.intersect(rectClip,rectClient);
-
-            }
+            pgraphics->IntersectClipRect(rectClient);
 
             pui = pui->GetParent();
-
-         }
-
-         if(!bFirst)
-         {
-
-            ::draw2d::region_sp rgnClip(allocer());
-
-            rgnClip->create_rect(rectClip);
-
-            pgraphics->SelectClipRgn(rgnClip,RGN_COPY);
 
          }
 
@@ -1504,9 +1474,7 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
-
-
-      point ptOrg = pgraphics->GetViewportOrg();
+      int iSaveDC = pgraphics->SaveDC();
 
       try
       {
@@ -1520,18 +1488,18 @@ namespace user
 
          pgraphics->m_dFontFactor = 1.0;
 
-         try
-         {
+         //try
+         //{
 
-            pgraphics->SelectClipRgn(NULL);
+         //   pgraphics->SelectClipRgn(NULL);
 
-         }
-         catch(...)
-         {
+         //}
+         //catch(...)
+         //{
 
-            throw simple_exception(::get_thread_app(), "no more a window");
+         //   throw simple_exception(::get_thread_app(), "no more a window");
 
-         }
+         //}
 
          {
 
@@ -1550,13 +1518,11 @@ namespace user
       catch(...)
       {
 
-         pgraphics->SetViewportOrg(ptOrg);
-
-         throw simple_exception(::get_thread_app(), "no more a window");
+         TRACE("Exception: interaction::_001DrawThis %s", typeid(*this).name());
 
       }
 
-      pgraphics->SetViewportOrg(ptOrg);
+      pgraphics->RestoreDC(iSaveDC);
 
       if (m_pparent != NULL)
       {
@@ -1564,8 +1530,6 @@ namespace user
          on_after_graphical_update();
 
       }
-
-      pgraphics->SelectClipRgn(NULL);
 
    }
 
@@ -1584,13 +1548,24 @@ namespace user
    void interaction::_008CallOnDraw(::draw2d::graphics * pgraphics)
    {
 
-      set_viewport_org(pgraphics);
+      int iSaveDC = pgraphics->SaveDC();
 
-      synch_lock sl(m_pmutex);
+      try
+      {
 
-      pgraphics->SelectClipRgn(NULL);
+         set_viewport_org(pgraphics);
 
-      _008OnDraw(pgraphics);
+         synch_lock sl(m_pmutex);
+
+         _008OnDraw(pgraphics);
+
+      }
+      catch (...)
+      {
+
+      }
+
+      pgraphics->RestoreDC(iSaveDC);
 
    }
 
@@ -1609,15 +1584,19 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
-      sp(interaction) pui;
+      int iSaveDC = pgraphics->SaveDC();
 
-      while(get_child(pui))
+      // while drawing layout can occur and change z-order.
+      // keep this past z-order 
+      interaction_spa uia = m_uiptraChild;
+
+      for(auto & pui : uia)
       {
 
          try
          {
 
-            if(!pui->is_custom_draw())
+            if (!pui->is_custom_draw())
             {
 
                pui->_000OnDraw(pgraphics);
@@ -1625,25 +1604,16 @@ namespace user
             }
 
          }
-         catch(...)
+         catch (...)
          {
 
             TRACE("\n\nException thrown while drawing user::interaction\n\n");
 
          }
 
-         try
-         {
-
-            pgraphics->SelectClipRgn(NULL);
-
-         }
-         catch(...)
-         {
-
-         }
-
       }
+
+      pgraphics->RestoreDC(iSaveDC);
 
    }
 
@@ -1651,67 +1621,82 @@ namespace user
    void interaction::_001Print(::draw2d::graphics * pgraphics)
    {
 
+      {
 
+         int iSaveDC = pgraphics->SaveDC();
 
-      point ptViewport(0,0);
+         try
+         {
 
-      pgraphics->SelectClipRgn(NULL);
+            _001OnDeferPaintLayeredWindowBackground(pgraphics);
 
-      pgraphics->SetViewportOrg(ptViewport);
+         }
+         catch (...)
+         {
 
-      _001OnDeferPaintLayeredWindowBackground(pgraphics);
+         }
 
-      pgraphics->SelectClipRgn(NULL);
+         pgraphics->RestoreDC(iSaveDC);
 
-      pgraphics->SetViewportOrg(ptViewport);
+      }
 
-      _000OnDraw(pgraphics);
+      {
 
-      pgraphics->SelectClipRgn(NULL);
+         int iSaveDC = pgraphics->SaveDC();
 
-      set_viewport_org(pgraphics);
+         try
+         {
+
+            _000OnDraw(pgraphics);
+
+         }
+         catch (...)
+         {
+
+         }
+
+         pgraphics->RestoreDC(iSaveDC);
+
+      }
 
       if(&Session != NULL && Session.m_bDrawCursor)
       {
 
-         point ptCursor;
-
-         Session.get_cursor_pos(&ptCursor);
-
-         ScreenToClient(&ptCursor);
-
-         ::visual::cursor * pcursor = Session.get_cursor();
-
-         if(pcursor != NULL && pgraphics != NULL)
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            int iSaveDC = pgraphics->SaveDC();
 
-            pcursor->to(pgraphics,ptCursor);
+            try
+            {
+
+               point ptCursor;
+
+               Session.get_cursor_pos(&ptCursor);
+
+               ScreenToClient(&ptCursor);
+
+               ::visual::cursor * pcursor = Session.get_cursor();
+
+               if (pcursor != NULL && pgraphics != NULL)
+               {
+
+                  pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+                  pcursor->to(pgraphics, ptCursor);
+
+               }
+
+            }
+            catch (...)
+            {
+
+            }
+
+            pgraphics->RestoreDC(iSaveDC);
 
          }
 
       }
-
-      /*
-
-      if(&Session != NULL )
-      {
-         string strText;
-         point ptCursor;
-
-         Session.get_cursor_pos(&ptCursor);
-
-         ScreenToClient(&ptCursor);
-         strText += ":[" + ::str::from(ptCursor.x) + ", " + ::str::from(ptCursor.y) + ":]";
-         pgraphics->TextOut(ptCursor.x,ptCursor.y,strText);
-      }
-
-      */
-
-      pgraphics->SetViewportOrg(ptViewport);
-
-
 
    }
 
@@ -1726,26 +1711,50 @@ namespace user
       if(!is_this_visible())
          return;
 
-      _001DrawThis(pgraphics);
+      try
+      {
 
-      if (m_uiptraChild.get_count() <= 0)
-         return;
+         _001DrawThis(pgraphics);
+
+      }
+      catch (...)
+      {
+
+         TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", typeid(*this).name());
+
+      }
+
+
+      if (m_uiptraChild.has_elements())
+      {
+
+         try
+         {
+
+            _001DrawChildren(pgraphics);
+
+         }
+         catch (...)
+         {
+
+            TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", typeid(*this).name());
+
+         }
+
+      }
 
       try
       {
 
-         _001DrawChildren(pgraphics);
+         _008CallOnDraw(pgraphics);
 
       }
-      catch(...)
+      catch (...)
       {
 
-         throw simple_exception(::get_thread_app(), "no more a window");
+         TRACE("Exception: interaction::_000OnDraw _008CallOnDraw %s", typeid(*this).name());
 
       }
-
-
-      _008CallOnDraw(pgraphics);
 
    }
 

@@ -425,6 +425,21 @@ namespace str
          return MultiByteToMultiByte(CodePageAnsi, str, CodePageUtf8, lpcsz);
       }
 */
+      string multibyte_to_utf8(UINT uiCodePageSrc, const char * lpcsz)
+      {
+
+         string str;
+
+         if (!MultiByteToMultiByte(CP_UTF8, str, uiCodePageSrc, lpcsz))
+         {
+
+            return "";
+
+         }
+
+         return str;
+
+      }
 
       bool multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * lpcsz)
       {

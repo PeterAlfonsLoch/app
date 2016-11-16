@@ -3,11 +3,9 @@
    //#include <dde.h>
 #endif
 
-#define TEST 1
+#define TEST 0
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
-
-
 
 manual_reset_event * simple_frame_window::helper_task::g_pevent = NULL;
 
@@ -2242,8 +2240,6 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 void simple_frame_window::_001OnClip(::draw2d::graphics * pgraphics)
 {
 
-   pgraphics->SelectClipRgn(NULL);
-
 }
 
 
@@ -2256,48 +2252,96 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
    if(GetExStyle() & WS_EX_LAYERED)
    {
 
-      sp(::user::interaction) pui;
+      ::user::interaction_spa uia;
 
-      while (get_child(pui))
+      { 
+
+         synch_lock sl(m_pmutex);
+
+         uia = m_uiptraChild;
+      
+      }
+      
       {
 
-         if (!base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
+         int iSaveDC = pgraphics->SaveDC();
+
+         try
          {
 
-            pui->_000OnDraw(pgraphics);
+            for(auto & pui : uia)
+            {
+
+               if (!base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
+               {
+
+                  pui->_000OnDraw(pgraphics);
+
+               }
+
+            }
+
+         }
+         catch (...)
+         {
 
          }
 
-
+         pgraphics->RestoreDC(iSaveDC);
 
       }
 
-      pgraphics->SelectClipRgn(NULL);
-
       _001DrawThis(pgraphics);
 
-      pui = NULL;
-
-      while (get_child(pui))
       {
-         if (base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
+
+         int iSaveDC = pgraphics->SaveDC();
+
+         try
          {
-            string str;
-            pui->GetWindowText(str);
-            if (str == "r")
+
+            for (auto & pui : uia)
             {
-               //TRACE0("x button");
-            }
-            if (pui->IsWindowVisible())
-            {
-               if (str == "r")
+
+               if (base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
                {
-                  //TRACE0("x button visible");
+
+                  string str;
+
+                  pui->GetWindowText(str);
+
+                  if (str == "r")
+                  {
+
+                     //TRACE0("x button");
+
+                  }
+
+                  if (pui->IsWindowVisible())
+                  {
+
+                     if (str == "r")
+                     {
+
+                        //TRACE0("x button visible");
+
+                     }
+
+                     pui->_000OnDraw(pgraphics);
+
+                  }
+
                }
-               pui->_000OnDraw(pgraphics);
+
             }
 
          }
+         catch (...)
+         {
+
+         }
+
+         pgraphics->RestoreDC(iSaveDC);
 
       }
 

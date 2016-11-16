@@ -140,7 +140,6 @@ namespace draw2d_cairo
 
       m_psurface = NULL;
 
-
       return true;
 
    }

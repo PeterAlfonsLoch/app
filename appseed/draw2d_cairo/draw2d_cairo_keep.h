@@ -9,9 +9,6 @@ public:
    cairo_t *         m_pdc;
    bool              m_bSave;
 
-   static cairo_surface_t * g_cairosurface;
-   static cairo_t *  g_cairo;
-
 
    cairo_keep(cairo_t * pdc, bool bSave = true);
    ~cairo_keep();
