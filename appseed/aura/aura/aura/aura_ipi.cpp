@@ -44,7 +44,9 @@ namespace aura
 
       ::aura::ipc::tx & txc = tx(strApp,iPid);
 
-      txc.send("call " + strObject + "." + strMember + " : " + str_from_va(va),584);
+      string strVara = str_from_va(va);
+
+      txc.send("call " + strObject + "." + strMember + " : " + strVara ,584);
 
       return ::var();
 
@@ -124,7 +126,7 @@ namespace aura
             {
 
                string strApp = straApp[i];
-          
+
                straApp2.add(strApp);
 
             }
@@ -213,7 +215,7 @@ namespace aura
             launcher.start();
 
             int iStep = 0;
-            
+
             int iSubStep;
 
             while(iStep < 8 && ::get_thread_run())
@@ -232,9 +234,9 @@ namespace aura
 
                for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::get_thread_run(); iSubStep++)
                {
-                  
+
                   Sleep(84);
-                  
+
                }
 
             }
@@ -369,7 +371,7 @@ namespace aura
 
       os << va;
 
-      return System.base64().encode(*m.get_primitive_memory());
+      return m.get_primitive_memory()->to_hex();
 
       //if(va.get_count() <= 0)
       //{
@@ -453,7 +455,7 @@ namespace aura
 
       str1.trim();
 
-      System.base64().decode(*m.get_primitive_memory(), str1);
+      m.get_primitive_memory()->from_hex(str1);
 
       m.seek_to_begin();
 
@@ -461,7 +463,7 @@ namespace aura
 
       is >> va;
 
-      //return 
+      //return
       //stra.explode(";",str1);
 
       //if(stra.has_elements())
@@ -564,7 +566,7 @@ namespace aura
 
          if(str.has_char())
          {
-            
+
             iaPid.add_unique(module_path_get_pid(str));
 
          }

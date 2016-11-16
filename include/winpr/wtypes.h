@@ -25,9 +25,9 @@
 
 /* Set by CMake during configuration. */
 #ifdef _WIN32
-#undef WINPR_HAVE_STDBOOL_H
+#undef WINPR_HAVE_STDBOOL_H 0
 #else
-#define WINPR_HAVE_STDBOOL_H
+#define WINPR_HAVE_STDBOOL_H 1
 #endif
 
 /* MSDN: Windows Data Types - http://msdn.microsoft.com/en-us/library/aa383751/ */
