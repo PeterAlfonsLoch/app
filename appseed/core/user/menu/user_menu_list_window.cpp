@@ -204,6 +204,13 @@ namespace user
          
       }
 
+      if (pitemParent == NULL)
+      {
+
+         return;
+
+      }
+
       if(pitemParent->m_spitema == NULL)
       {
          
@@ -510,7 +517,12 @@ namespace user
                if(pitem != NULL && !pitem->m_bPopup)
                {
                   
-                  m_puiNotify->_001SendCommand(pitem->m_id);
+                  if (m_puiNotify != NULL)
+                  {
+
+                     m_puiNotify->_001SendCommand(pitem->m_id);
+
+                  }
                   
                   if(m_bAutoClose)
                   {

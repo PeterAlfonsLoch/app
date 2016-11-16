@@ -507,9 +507,16 @@ namespace user
    void menu::_001OnTimer(::timer * ptimer)
    {
 
-      ::user::control::_001OnTimer(ptimer);;
+      ::user::control::_001OnTimer(ptimer);
 
       sp(::user::menu_item) pitemThis = get_item();
+
+      if (pitemThis == NULL)
+      {
+
+         return;
+
+      }
 
       sp(::user::menu_item_ptra) spitema = pitemThis->m_spitema;
 

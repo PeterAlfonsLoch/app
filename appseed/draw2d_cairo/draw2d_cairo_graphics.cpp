@@ -115,24 +115,24 @@ namespace draw2d_cairo
       ::draw2d::graphics(papp)
    {
 
-   m_iSaveDC = 0;
+      m_iSaveDC = 0;
 
       m_psurfaceAttach = NULL;
       m_hdcAttach = NULL;
 
-      m_bPrinting       = FALSE;
-      m_pdibAlphaBlend  = NULL;
-      m_pdc             = NULL;
-/*      m_hdc             = NULL;
-      m_ppath           = NULL;
-      m_ppathPaint      = NULL;
-      */
-      m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
+      m_bPrinting = FALSE;
+      m_pdibAlphaBlend = NULL;
+      m_pdc = NULL;
+      /*      m_hdc             = NULL;
+            m_ppath           = NULL;
+            m_ppathPaint      = NULL;
+            */
+      m_etextrendering = ::draw2d::text_rendering_anti_alias_grid_fit;
 
       m_spfont.alloc(allocer());
       m_spfont->m_strFontFamilyName = FONT_SANS;
       m_spfont->m_dFontSize = 12.0;
-
+      m_iSaveDCPositiveClip = -1;
 
       m_nStretchBltMode = HALFTONE;
 
@@ -151,9 +151,9 @@ namespace draw2d_cairo
    {
       object::dump(dumpcontext);
 
-//      dumpcontext << "get_handle1() = " << get_handle1();
-  //    dumpcontext << "\nm_hAttribDC = " << get_handle2();
-    //  dumpcontext << "\nm_bPrinting = " << m_bPrinting;
+      //      dumpcontext << "get_handle1() = " << get_handle1();
+        //    dumpcontext << "\nm_hAttribDC = " << get_handle2();
+          //  dumpcontext << "\nm_bPrinting = " << m_bPrinting;
 
       dumpcontext << "\n";
    }
@@ -164,7 +164,7 @@ namespace draw2d_cairo
 
       synch_lock ml(cairo_mutex());
 
-      if(m_pdc != NULL)
+      if (m_pdc != NULL)
       {
 
          cairo_destroy(m_pdc);
@@ -175,11 +175,11 @@ namespace draw2d_cairo
    }
 
 
-/*   ::window_sp graphics::GetWindow() const
-   {
-      //ASSERT(get_handle1() != NULL); return ::win::user::interaction_impl::from_handle(::WindowFromDC(get_handle1()));
-   }
-*/
+   /*   ::window_sp graphics::GetWindow() const
+      {
+         //ASSERT(get_handle1() != NULL); return ::win::user::interaction_impl::from_handle(::WindowFromDC(get_handle1()));
+      }
+   */
 
    bool graphics::IsPrinting() const
    {
@@ -203,13 +203,13 @@ namespace draw2d_cairo
 
       synch_lock ml(cairo_mutex());
 
-      if(m_pdc != NULL)
+      if (m_pdc != NULL)
       {
-	if(m_pdc ==  cairo_keep::g_cairo)
-	{
-//         printf("123");
+         if (m_pdc == cairo_keep::g_cairo)
+         {
+            //         printf("123");
 
-	}
+         }
 
          cairo_destroy(m_pdc);
 
@@ -217,20 +217,20 @@ namespace draw2d_cairo
 
       }
 
-      if(pgraphics == NULL)
+      if (pgraphics == NULL)
       {
 
          cairo_surface_t * psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
 
-         if(psurface == NULL)
+         if (psurface == NULL)
             return false;
 
          m_pdc = cairo_create(psurface);
 
-if(psurface == cairo_keep::g_cairosurface)
-{
-//   printf("123");
-}         cairo_surface_destroy(psurface);
+         if (psurface == cairo_keep::g_cairosurface)
+         {
+            //   printf("123");
+         }         cairo_surface_destroy(psurface);
 
          return m_pdc != NULL;
 
@@ -238,19 +238,19 @@ if(psurface == cairo_keep::g_cairosurface)
       else
       {
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphics->get_os_data());
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphics->get_os_data());
 
-         if(cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
+         if (cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
             return false;
 
          cairo_surface_t * psurfaceNew = cairo_surface_create_similar(psurface, cairo_surface_get_content(psurface), 1, 1);
 
-         if(psurfaceNew == NULL)
+         if (psurfaceNew == NULL)
             return false;
-if(psurfaceNew == cairo_keep::g_cairosurface)
-{
-//   printf("123");
-}
+         if (psurfaceNew == cairo_keep::g_cairosurface)
+         {
+            //   printf("123");
+         }
          m_pdc = cairo_create(psurfaceNew);
 
          cairo_surface_destroy(psurfaceNew);
@@ -258,24 +258,24 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
          return m_pdc != NULL;
 
       }
-/*
-      HDC hdc = NULL;
+      /*
+            HDC hdc = NULL;
 
-      if(pgraphics == NULL)
-      {
-         hdc = ::CreateCompatibleDC(NULL);
-      }
-      else
-      {
-         hdc = ::CreateCompatibleDC((HDC)(dynamic_cast<::win::graphics * >(pgraphics))->get_handle1());
-      }
+            if(pgraphics == NULL)
+            {
+               hdc = ::CreateCompatibleDC(NULL);
+            }
+            else
+            {
+               hdc = ::CreateCompatibleDC((HDC)(dynamic_cast<::win::graphics * >(pgraphics))->get_handle1());
+            }
 
-      if(!Attach(hdc))
-      {
-         ::DeleteDC(hdc);
-         return FALSE;
-      }
-      */
+            if(!Attach(hdc))
+            {
+               ::DeleteDC(hdc);
+               return FALSE;
+            }
+            */
 
       return true;
 
@@ -283,85 +283,85 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    int32_t graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
    {
-  //    ASSERT(get_handle1() != NULL);
-//      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pwindow)->get_handle());
-         ::exception::throw_not_implemented(get_app());
-         return 0;
+      //    ASSERT(get_handle1() != NULL);
+    //      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pwindow)->get_handle());
+      ::exception::throw_not_implemented(get_app());
+      return 0;
    }
 
    int32_t graphics::GetDevicecaps(int32_t nIndex) const
    {
-/*      ASSERT(get_handle2() != NULL);
-      return ::GetDevicecaps(get_handle2(), nIndex);*/
-         ::exception::throw_not_implemented(get_app());
-         return 0;
+      /*      ASSERT(get_handle2() != NULL);
+            return ::GetDevicecaps(get_handle2(), nIndex);*/
+      ::exception::throw_not_implemented(get_app());
+      return 0;
    }
 
    point graphics::GetBrushOrg() const
    {
-/*      ASSERT(get_handle1() != NULL);
-      POINT point;
-      VERIFY(::GetBrushOrgEx(get_handle1(), &point));
-      return point;*/
-         ::exception::throw_not_implemented(get_app());
-         return point(0, 0);
+      /*      ASSERT(get_handle1() != NULL);
+            POINT point;
+            VERIFY(::GetBrushOrgEx(get_handle1(), &point));
+            return point;*/
+      ::exception::throw_not_implemented(get_app());
+      return point(0, 0);
 
    }
 
    point graphics::SetBrushOrg(int32_t x, int32_t y)
    {
-/*      ASSERT(get_handle1() != NULL);
-      POINT point;
-      VERIFY(::SetBrushOrgEx(get_handle1(), x, y, &point));
-      return point;*/
-         ::exception::throw_not_implemented(get_app());
-         return point(0, 0);
+      /*      ASSERT(get_handle1() != NULL);
+            POINT point;
+            VERIFY(::SetBrushOrgEx(get_handle1(), x, y, &point));
+            return point;*/
+      ::exception::throw_not_implemented(get_app());
+      return point(0, 0);
 
    }
 
    point graphics::SetBrushOrg(POINT point)
    {
-/*      ASSERT(get_handle1() != NULL);
-      VERIFY(::SetBrushOrgEx(get_handle1(), point.x, point.y, &point));
-      return point;*/
-         ::exception::throw_not_implemented(get_app());
-         return ::point(0, 0);
+      /*      ASSERT(get_handle1() != NULL);
+            VERIFY(::SetBrushOrgEx(get_handle1(), point.x, point.y, &point));
+            return point;*/
+      ::exception::throw_not_implemented(get_app());
+      return ::point(0, 0);
 
    }
 
-   int32_t graphics::EnumObjects(int32_t nObjectType, int32_t (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
+   int32_t graphics::EnumObjects(int32_t nObjectType, int32_t(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData)
    {
-/*      ASSERT(get_handle2() != NULL);
-      return ::EnumObjects(get_handle2(), nObjectType, (GOBJENUMPROC)lpfn, lpData);*/
-         ::exception::throw_not_implemented(get_app());
-         return 0;
+      /*      ASSERT(get_handle2() != NULL);
+            return ::EnumObjects(get_handle2(), nObjectType, (GOBJENUMPROC)lpfn, lpData);*/
+      ::exception::throw_not_implemented(get_app());
+      return 0;
 
    }
 
    ::draw2d::bitmap* graphics::SelectObject(::draw2d::bitmap* pbitmap)
    {
 
-synch_lock ml(cairo_mutex());
+      synch_lock ml(cairo_mutex());
 
-      if(pbitmap == NULL)
+      if (pbitmap == NULL)
          return NULL;
 
-/*      if(get_handle1() == NULL)
-         return NULL;
-      if(pbitmap == NULL)
-         return NULL;
-      return dynamic_cast < ::draw2d::bitmap* > (SelectGdiObject(get_app(), get_handle1(), pbitmap->get_os_data()));*/
-      if(m_pdc != NULL)
+      /*      if(get_handle1() == NULL)
+               return NULL;
+            if(pbitmap == NULL)
+               return NULL;
+            return dynamic_cast < ::draw2d::bitmap* > (SelectGdiObject(get_app(), get_handle1(), pbitmap->get_os_data()));*/
+      if (m_pdc != NULL)
       {
-	if(m_pdc ==  cairo_keep::g_cairo)
-	{
-//         printf("123");
+         if (m_pdc == cairo_keep::g_cairo)
+         {
+            //         printf("123");
 
-	}
+         }
          cairo_destroy(m_pdc);
       }
 
-      m_pdc = cairo_create((cairo_surface_t *) pbitmap->get_os_data());
+      m_pdc = cairo_create((cairo_surface_t *)pbitmap->get_os_data());
 
       set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
@@ -373,59 +373,59 @@ synch_lock ml(cairo_mutex());
 
    ::draw2d_cairo::object* graphics::SelectObject(draw2d_cairo::object* pObject)
    {
-   /*      ASSERT(get_handle1() != NULL);
-      if(pObject == NULL)
-         return NULL;
-      return SelectGdiObject(get_app(), get_handle1(), pObject->get_os_data()); */
+      /*      ASSERT(get_handle1() != NULL);
+         if(pObject == NULL)
+            return NULL;
+         return SelectGdiObject(get_app(), get_handle1(), pObject->get_os_data()); */
       return NULL;
    }
 
-/*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
-   {
-
-      UINT uiType = GetObjectType(hObject);
-
-      if(uiType == OBJ_BITMAP)
+   /*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
       {
 
-         HBITMAP hbitmap = (HBITMAP) hObject;
+         UINT uiType = GetObjectType(hObject);
 
-         if(m_spbitmap.is_null())
-            m_spbitmap.create(get_app());
-
-         if(m_spbitmap.is_null())
-            return NULL;
-
-         (dynamic_cast < ::win::bitmap * > (m_spbitmap.m_p))->m_pbitmap = new Gdiplus::Bitmap(hbitmap, NULL);
-
-         if(m_pgraphics != NULL)
+         if(uiType == OBJ_BITMAP)
          {
-            delete m_pgraphics;
+
+            HBITMAP hbitmap = (HBITMAP) hObject;
+
+            if(m_spbitmap.is_null())
+               m_spbitmap.create(get_app());
+
+            if(m_spbitmap.is_null())
+               return NULL;
+
+            (dynamic_cast < ::win::bitmap * > (m_spbitmap.m_p))->m_pbitmap = new Gdiplus::Bitmap(hbitmap, NULL);
+
+            if(m_pgraphics != NULL)
+            {
+               delete m_pgraphics;
+            }
+
+            m_pgraphics = new Gdiplus::Graphics((Gdiplus::Bitmap *) m_spbitmap->get_os_data());
+
+            set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
+            return hbitmap;
+
          }
 
-         m_pgraphics = new Gdiplus::Graphics((Gdiplus::Bitmap *) m_spbitmap->get_os_data());
-
-         set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-         return hbitmap;
-
-      }
-
-      //*ASSERT(get_handle1() == get_handle2()); // ASSERT a simple graphics object
-      //return (hObject != NULL) ? ::SelectObject(get_handle1(), hObject) : NULL; */
-  /*    return NULL;
-   }*/
+         //*ASSERT(get_handle1() == get_handle2()); // ASSERT a simple graphics object
+         //return (hObject != NULL) ? ::SelectObject(get_handle1(), hObject) : NULL; */
+         /*    return NULL;
+          }*/
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
    {
       //::exception::throw_not_implemented(get_app());
       return crColor;
-//      return ::GetNearestColor(get_handle2(), crColor);
+      //      return ::GetNearestColor(get_handle2(), crColor);
    }
 
    UINT graphics::RealizePalette()
    {
-//      return ::RealizePalette(get_handle1());
+      //      return ::RealizePalette(get_handle1());
       return 0;
    }
 
@@ -558,7 +558,7 @@ synch_lock ml(cairo_mutex());
    bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int32_t nWidth, int32_t nHeight)
    {
 
-//      return ::FrameRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data(), nWidth, nHeight) != FALSE;
+      //      return ::FrameRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data(), nWidth, nHeight) != FALSE;
       ::exception::throw_not_implemented(get_app());
       return false;
 
@@ -567,9 +567,9 @@ synch_lock ml(cairo_mutex());
    bool graphics::InvertRgn(::draw2d::region* pRgn)
    {
 
-  //    ASSERT(get_handle1() != NULL);
+      //    ASSERT(get_handle1() != NULL);
 
-//      return ::InvertRgn(get_handle1(), (HRGN)pRgn->get_os_data()) != FALSE;
+    //      return ::InvertRgn(get_handle1(), (HRGN)pRgn->get_os_data()) != FALSE;
       ::exception::throw_not_implemented(get_app());
       return false;
 
@@ -579,9 +579,9 @@ synch_lock ml(cairo_mutex());
    bool graphics::PaintRgn(::draw2d::region* pRgn)
    {
 
-//      ASSERT(get_handle1() != NULL);
+      //      ASSERT(get_handle1() != NULL);
 
-  //    return ::PaintRgn(get_handle1(), (HRGN)pRgn->get_os_data())  != FALSE;
+        //    return ::PaintRgn(get_handle1(), (HRGN)pRgn->get_os_data())  != FALSE;
       ::exception::throw_not_implemented(get_app());
       return false;
 
@@ -590,9 +590,9 @@ synch_lock ml(cairo_mutex());
    bool graphics::PtVisible(int32_t x, int32_t y) const
    {
 
-  //    ASSERT(get_handle1() != NULL);
+      //    ASSERT(get_handle1() != NULL);
 
-//      return ::PtVisible(get_handle1(), x, y) != FALSE;
+    //      return ::PtVisible(get_handle1(), x, y) != FALSE;
       ::exception::throw_not_implemented(get_app());
       return false;
 
@@ -601,9 +601,9 @@ synch_lock ml(cairo_mutex());
    bool graphics::PtVisible(POINT point) const
    {
 
-//      ASSERT(get_handle1() != NULL);
+      //      ASSERT(get_handle1() != NULL);
 
-//      return PtVisible(point.x, point.y);
+      //      return PtVisible(point.x, point.y);
 
       ::exception::throw_not_implemented(get_app());
       return false;
@@ -613,9 +613,9 @@ synch_lock ml(cairo_mutex());
    bool graphics::RectVisible(const RECT & lpRect) const
    {
 
-//      ASSERT(get_handle1() != NULL);
+      //      ASSERT(get_handle1() != NULL);
 
-//      return ::RectVisible(get_handle1(), lpRect) != FALSE;
+      //      return ::RectVisible(get_handle1(), lpRect) != FALSE;
 
       ::exception::throw_not_implemented(get_app());
       return false;
@@ -624,10 +624,10 @@ synch_lock ml(cairo_mutex());
 
    point graphics::GetCurrentPosition() const
    {
-//      ASSERT(get_handle2() != NULL);
-//      POINT point;
-//      VERIFY(::GetCurrentPositionEx(get_handle2(), &point));
-//      return point;
+      //      ASSERT(get_handle2() != NULL);
+      //      POINT point;
+      //      VERIFY(::GetCurrentPositionEx(get_handle2(), &point));
+      //      return point;
       ::exception::throw_not_implemented(get_app());
       return ::point(0, 0);
 
@@ -639,17 +639,17 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-      double centerx    = (x2 + x1) / 2.0;
-      double centery    = (y2 + y1) / 2.0;
+      double centerx = (x2 + x1) / 2.0;
+      double centery = (y2 + y1) / 2.0;
 
-      double radiusx    = abs(x2 - x1) / 2.0;
-      double radiusy    = abs(y2 - y1) / 2.0;
+      double radiusx = abs(x2 - x1) / 2.0;
+      double radiusy = abs(y2 - y1) / 2.0;
 
-      if(radiusx == 0.0 || radiusy == 0.0)
+      if (radiusx == 0.0 || radiusy == 0.0)
          return false;
 
-      double start      = atan2(y3 - centery, x3 - centerx);
-      double end        = atan2(y4 - centery, x4 - centerx);
+      double start = atan2(y3 - centery, x3 - centerx);
+      double end = atan2(y4 - centery, x4 - centerx);
 
 
       cairo_keep keep(m_pdc);
@@ -670,17 +670,17 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-      double centerx    = (x2 + x1) / 2.0;
-      double centery    = (y2 + y1) / 2.0;
+      double centerx = (x2 + x1) / 2.0;
+      double centery = (y2 + y1) / 2.0;
 
-      double radiusx    = fabs(x2 - x1) / 2.0;
-      double radiusy    = fabs(y2 - y1) / 2.0;
+      double radiusx = fabs(x2 - x1) / 2.0;
+      double radiusy = fabs(y2 - y1) / 2.0;
 
-      if(radiusx == 0.0 || radiusy == 0.0)
+      if (radiusx == 0.0 || radiusy == 0.0)
          return false;
 
-      double start      = atan2(y3 - centery, x3 - centerx);
-      double end        = atan2(y4 - centery, x4 - centerx);
+      double start = atan2(y3 - centery, x3 - centerx);
+      double end = atan2(y4 - centery, x4 - centerx);
 
 
       cairo_keep keep(m_pdc);
@@ -696,18 +696,18 @@ synch_lock ml(cairo_mutex());
    }
 
 
-   bool graphics::Arc(double x,double y,double w,double h,double start,double extends)
+   bool graphics::Arc(double x, double y, double w, double h, double start, double extends)
    {
 
-      double end        = start + extends;
+      double end = start + extends;
 
       cairo_keep keep(m_pdc);
 
-      cairo_translate(m_pdc, x + w / 2.0, y + h /2.0);
+      cairo_translate(m_pdc, x + w / 2.0, y + h / 2.0);
 
       cairo_scale(m_pdc, w / 2.0, h / 2.0);
 
-      if(extends > 0)
+      if (extends > 0)
       {
 
          cairo_arc(m_pdc, 0.0, 0.0, 1.0, start * 3.1415 / 180.0, end * 3.1415 / 180.0);
@@ -731,14 +731,14 @@ synch_lock ml(cairo_mutex());
    {
 
       return Arc(
-                 lpRect.left,
-                 lpRect.top,
-                 lpRect.right,
-                 lpRect.bottom,
-                 ptStart.x,
-                 ptStart.y,
-                 ptEnd.x,
-                 ptEnd.y);
+         lpRect.left,
+         lpRect.top,
+         lpRect.right,
+         lpRect.bottom,
+         ptStart.x,
+         ptStart.y,
+         ptEnd.x,
+         ptEnd.y);
 
    }
 
@@ -758,7 +758,7 @@ synch_lock ml(cairo_mutex());
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
-      if(lpRect.right <= lpRect.left || lpRect.bottom <= lpRect.top)
+      if (lpRect.right <= lpRect.left || lpRect.bottom <= lpRect.top)
          return;
 
       set(pBrush);
@@ -767,7 +767,7 @@ synch_lock ml(cairo_mutex());
 
       cairo_fill(m_pdc);
 
-//      ASSERT(get_handle1() != NULL); ::FillRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
+      //      ASSERT(get_handle1() != NULL); ::FillRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
 
    }
    void graphics::FrameRect(const RECT & lpRect, ::draw2d::brush* pBrush)
@@ -776,7 +776,7 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return;
 
-//       ASSERT(get_handle1() != NULL); ::FrameRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
+      //       ASSERT(get_handle1() != NULL); ::FrameRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
 
    }
 
@@ -788,7 +788,7 @@ synch_lock ml(cairo_mutex());
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
-      if(lpcrect.right <= lpcrect.left || lpcrect.bottom <= lpcrect.top)
+      if (lpcrect.right <= lpcrect.left || lpcrect.bottom <= lpcrect.top)
          return false;
 
       set(ppen);
@@ -808,7 +808,7 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return;
 
-//      ASSERT(get_handle1() != NULL); ::InvertRect(get_handle1(), lpRect);
+      //      ASSERT(get_handle1() != NULL); ::InvertRect(get_handle1(), lpRect);
 
    }
 
@@ -833,18 +833,18 @@ synch_lock ml(cairo_mutex());
    {
 
 
-   #ifdef WINDOWS
+#ifdef WINDOWS
 
       try
       {
 
-         if(picon == NULL)
+         if (picon == NULL)
             return FALSE;
 
-         if(m_pdc == NULL)
+         if (m_pdc == NULL)
             return FALSE;
 
-         if(cx <= 0 || cx <= 0)
+         if (cx <= 0 || cx <= 0)
             return false;
 
 
@@ -853,23 +853,23 @@ synch_lock ml(cairo_mutex());
          BITMAPINFO info;
          COLORREF * pcolorref;
 
-         ZeroMemory(&info, sizeof (BITMAPINFO));
+         ZeroMemory(&info, sizeof(BITMAPINFO));
 
-         info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-         info.bmiHeader.biWidth         = cx;
-         info.bmiHeader.biHeight        = - cy;
-         info.bmiHeader.biPlanes        = 1;
-         info.bmiHeader.biBitCount      = 32;
-         info.bmiHeader.biCompression   = BI_RGB;
-         info.bmiHeader.biSizeImage     = cx * cy * 4;
+         info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+         info.bmiHeader.biWidth = cx;
+         info.bmiHeader.biHeight = -cy;
+         info.bmiHeader.biPlanes = 1;
+         info.bmiHeader.biBitCount = 32;
+         info.bmiHeader.biCompression = BI_RGB;
+         info.bmiHeader.biSizeImage = cx * cy * 4;
 
-         HBITMAP hbitmap = ::CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **) &pcolorref, NULL, 0);
+         HBITMAP hbitmap = ::CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **)&pcolorref, NULL, 0);
 
          HDC hdc = ::CreateCompatibleDC(NULL);
 
          HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
 
-         if(::DrawIconEx(hdc, 0, 0, (HICON) picon->m_picon, cx, cy, istepIfAniCur, NULL, DI_IMAGE | DI_MASK))
+         if (::DrawIconEx(hdc, 0, 0, (HICON)picon->m_picon, cx, cy, istepIfAniCur, NULL, DI_IMAGE | DI_MASK))
          {
 
             ::SelectObject(hdc, hbitmapOld);
@@ -883,14 +883,14 @@ synch_lock ml(cairo_mutex());
 
                b->CreateBitmap(this, cx, cy, 1, 32, pcolorref, cx * sizeof(COLORREF));
 
-               cairo_surface_t * psurface = (cairo_surface_t *) b->get_os_data();
+               cairo_surface_t * psurface = (cairo_surface_t *)b->get_os_data();
 
-               if(psurface == NULL)
+               if (psurface == NULL)
                   return false;
 
                cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-               if(ppattern == NULL)
+               if (ppattern == NULL)
                   return false;
 
                cairo_matrix_t matrix;
@@ -919,7 +919,7 @@ synch_lock ml(cairo_mutex());
 
                cairo_pattern_destroy(ppattern);
             }
-            catch(...)
+            catch (...)
             {
             }
 
@@ -932,11 +932,11 @@ synch_lock ml(cairo_mutex());
          return bOk;
 
       }
-      catch(...)
+      catch (...)
       {
       }
 
-      #endif
+#endif
 
       return false;
    }
@@ -946,8 +946,8 @@ synch_lock ml(cairo_mutex());
 
       ::exception::throw_not_implemented(get_app());
       return false;
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawState(get_handle1(), hBrush, NULL, (LPARAM)hBitmap, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::DrawState(get_handle1(), hBrush, NULL, (LPARAM)hBitmap, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
 
    }
 
@@ -956,8 +956,8 @@ synch_lock ml(cairo_mutex());
 
       ::exception::throw_not_implemented(get_app());
       return false;
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), NULL, (LPARAM)pBitmap->get_os_data(), 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), NULL, (LPARAM)pBitmap->get_os_data(), 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
 
    }
 
@@ -984,8 +984,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawEdge(get_handle1(), lpRect, nEdge, nFlags) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::DrawEdge(get_handle1(), lpRect, nEdge, nFlags) != FALSE;
 
    }
 
@@ -994,8 +994,8 @@ synch_lock ml(cairo_mutex());
 
       ::exception::throw_not_implemented(get_app());
       return false;
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawFrameControl(get_handle1(), lpRect, nType, nState) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::DrawFrameControl(get_handle1(), lpRect, nType, nState) != FALSE;
 
    }
 
@@ -1004,8 +1004,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::Chord(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::Chord(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4) != FALSE;
    }
 
    bool graphics::Chord(const RECT & lpRect, POINT ptStart, POINT ptEnd)
@@ -1030,14 +1030,14 @@ synch_lock ml(cairo_mutex());
 
    bool graphics::DrawEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-synch_lock ml(cairo_mutex());
-      double centerx    = (x2 + x1) / 2.0;
-      double centery    = (y2 + y1) / 2.0;
+      synch_lock ml(cairo_mutex());
+      double centerx = (x2 + x1) / 2.0;
+      double centery = (y2 + y1) / 2.0;
 
-      double radiusx    = abs(x2 - x1) / 2.0;
-      double radiusy    = abs(y2 - y1) / 2.0;
+      double radiusx = abs(x2 - x1) / 2.0;
+      double radiusy = abs(y2 - y1) / 2.0;
 
-      if(radiusx == 0.0 || radiusy == 0.0)
+      if (radiusx == 0.0 || radiusy == 0.0)
          return false;
 
       cairo_keep keep(m_pdc);
@@ -1052,15 +1052,15 @@ synch_lock ml(cairo_mutex());
 
       double dDeflate;
 
-      #ifdef LINUX
+#ifdef LINUX
 
       dDeflate = m_sppen->m_dWidth / (3 * 3.1416); // magical number
 
-      #else
+#else
 
       dDeflate = m_sppen->m_dWidth / (2 * 3.1416); // magical number
 
-      #endif
+#endif
 
       cairo_scale(
          m_pdc,
@@ -1092,16 +1092,16 @@ synch_lock ml(cairo_mutex());
 
    bool graphics::FillEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-synch_lock ml(cairo_mutex());
-      double centerx    = (x2 + x1) / 2.0;
+      synch_lock ml(cairo_mutex());
+      double centerx = (x2 + x1) / 2.0;
 
-      double centery    = (y2 + y1) / 2.0;
+      double centery = (y2 + y1) / 2.0;
 
-      double radiusx    = abs(x2 - x1) / 2.0;
+      double radiusx = abs(x2 - x1) / 2.0;
 
-      double radiusy    = abs(y2 - y1) / 2.0;
+      double radiusy = abs(y2 - y1) / 2.0;
 
-      if(radiusx == 0.0 || radiusy == 0.0)
+      if (radiusx == 0.0 || radiusy == 0.0)
          return false;
 
 
@@ -1225,8 +1225,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*      ASSERT(get_handle1() != NULL);
-      return ::Pie(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4) != FALSE;*/
+      /*      ASSERT(get_handle1() != NULL);
+            return ::Pie(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4) != FALSE;*/
 
    }
 
@@ -1237,8 +1237,8 @@ synch_lock ml(cairo_mutex());
       return false;
 
 
-/*      ASSERT(get_handle1() != NULL);
-      return ::Pie(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y) != FALSE;*/
+      /*      ASSERT(get_handle1() != NULL);
+            return ::Pie(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y) != FALSE;*/
 
    }
 
@@ -1248,13 +1248,13 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-      if(nCount <= 0)
+      if (nCount <= 0)
          return TRUE;
 
 
       cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for(int32_t i = 1; i < nCount; i++)
+      for (int32_t i = 1; i < nCount; i++)
       {
          cairo_line_to(m_pdc, pa[i].x, pa[i].y);
       }
@@ -1270,13 +1270,13 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-      if(nCount <= 0)
+      if (nCount <= 0)
          return TRUE;
 
 
       cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for(int32_t i = 1; i < nCount; i++)
+      for (int32_t i = 1; i < nCount; i++)
       {
          cairo_line_to(m_pdc, pa[i].x, pa[i].y);
       }
@@ -1293,13 +1293,13 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-      if(nCount <= 0)
+      if (nCount <= 0)
          return TRUE;
 
 
       cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for(int32_t i = 1; i < nCount; i++)
+      for (int32_t i = 1; i < nCount; i++)
       {
          cairo_line_to(m_pdc, pa[i].x, pa[i].y);
       }
@@ -1315,13 +1315,13 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-      if(nCount <= 0)
+      if (nCount <= 0)
          return TRUE;
 
 
       cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for(int32_t i = 1; i < nCount; i++)
+      for (int32_t i = 1; i < nCount; i++)
       {
          cairo_line_to(m_pdc, pa[i].x, pa[i].y);
       }
@@ -1335,14 +1335,14 @@ synch_lock ml(cairo_mutex());
    bool graphics::Polygon(const POINT* pa, count nCount)
    {
 
-synch_lock ml(cairo_mutex());
-      if(nCount <= 0)
+      synch_lock ml(cairo_mutex());
+      if (nCount <= 0)
          return TRUE;
 
 
       cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for(int32_t i = 1; i < nCount; i++)
+      for (int32_t i = 1; i < nCount; i++)
       {
 
          cairo_line_to(m_pdc, pa[i].x, pa[i].y);
@@ -1361,24 +1361,24 @@ synch_lock ml(cairo_mutex());
 
       ::exception::throw_not_implemented(get_app());
       return false;
-   //   ASSERT(get_handle1() != NULL); return ::PolyPolygon(get_handle1(), lpPoints, lpPolyCounts, nCount) != FALSE;
+      //   ASSERT(get_handle1() != NULL); return ::PolyPolygon(get_handle1(), lpPoints, lpPolyCounts, nCount) != FALSE;
 
    }
 
-   bool graphics::Polygon(const POINTD* pa,count nCount)
+   bool graphics::Polygon(const POINTD* pa, count nCount)
    {
 
       synch_lock ml(cairo_mutex());
-      if(nCount <= 0)
+      if (nCount <= 0)
          return TRUE;
 
 
-      cairo_move_to(m_pdc,pa[0].x,pa[0].y);
+      cairo_move_to(m_pdc, pa[0].x, pa[0].y);
 
-      for(int32_t i = 1; i < nCount; i++)
+      for (int32_t i = 1; i < nCount; i++)
       {
 
-         cairo_line_to(m_pdc,pa[i].x,pa[i].y);
+         cairo_line_to(m_pdc, pa[i].x, pa[i].y);
 
       }
 
@@ -1389,7 +1389,7 @@ synch_lock ml(cairo_mutex());
    }
 
 
-   bool graphics::PolyPolygon(const POINTD* lpPoints,const INT* lpPolyCounts,count nCount)
+   bool graphics::PolyPolygon(const POINTD* lpPoints, const INT* lpPolyCounts, count nCount)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1401,13 +1401,13 @@ synch_lock ml(cairo_mutex());
    bool graphics::Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-/*      Gdiplus::RectF rectf((Gdiplus::REAL) x1, (Gdiplus::REAL) y1, (Gdiplus::REAL) (x2 - x1), (Gdiplus::REAL) (y2 - y1));
+      /*      Gdiplus::RectF rectf((Gdiplus::REAL) x1, (Gdiplus::REAL) y1, (Gdiplus::REAL) (x2 - x1), (Gdiplus::REAL) (y2 - y1));
 
-      bool bOk1 = m_pgraphics->FillRectangle(gdiplus_brush(), rectf) == Gdiplus::Status::Ok;
+            bool bOk1 = m_pgraphics->FillRectangle(gdiplus_brush(), rectf) == Gdiplus::Status::Ok;
 
-      bool bOk2 = m_pgraphics->DrawRectangle(gdiplus_pen(), rectf) == Gdiplus::Status::Ok;
+            bool bOk2 = m_pgraphics->DrawRectangle(gdiplus_pen(), rectf) == Gdiplus::Status::Ok;
 
-      return bOk1 && bOk2;*/
+            return bOk1 && bOk2;*/
 
 
       cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
@@ -1429,7 +1429,7 @@ synch_lock ml(cairo_mutex());
 
    bool graphics::DrawRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-synch_lock ml(cairo_mutex());
+      synch_lock ml(cairo_mutex());
       cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
 
       return draw();
@@ -1469,8 +1469,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::RoundRect(get_handle1(), x1, y1, x2, y2, x3, y3) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::RoundRect(get_handle1(), x1, y1, x2, y2, x3, y3) != FALSE;
 
    }
 
@@ -1488,8 +1488,8 @@ synch_lock ml(cairo_mutex());
    bool graphics::PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, uint32_t dwRop)
    {
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::PatBlt(get_handle1(), x, y, nWidth, nHeight, dwRop) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::PatBlt(get_handle1(), x, y, nWidth, nHeight, dwRop) != FALSE;
 
       ::exception::throw_not_implemented(get_app());
       return false;
@@ -1512,31 +1512,31 @@ synch_lock ml(cairo_mutex());
       try
       {
 
-         if(pgraphicsSrc == NULL)
+         if (pgraphicsSrc == NULL)
             return false;
 
-         if(nWidth <= 0 || nHeight <= 0)
+         if (nWidth <= 0 || nHeight <= 0)
             return false;
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
 
-         if(psurface == NULL)
+         if (psurface == NULL)
             return false;
 
          cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-         if(ppattern == NULL)
+         if (ppattern == NULL)
             return false;
 
          cairo_matrix_t matrix;
 
          cairo_matrix_t matrixOld;
 
-         cairo_translate(m_pdc,x,y);
+         cairo_translate(m_pdc, x, y);
 
-         cairo_pattern_get_matrix(ppattern,&matrixOld);
+         cairo_pattern_get_matrix(ppattern, &matrixOld);
 
-         cairo_matrix_init_translate(&matrix,xSrc,ySrc);
+         cairo_matrix_init_translate(&matrix, xSrc, ySrc);
 
          cairo_pattern_set_matrix(ppattern, &matrix);
 
@@ -1546,19 +1546,19 @@ synch_lock ml(cairo_mutex());
 
          cairo_set_source(m_pdc, ppattern);
 
-         if(m_ealphamode == ::draw2d::alpha_mode_blend)
+         if (m_ealphamode == ::draw2d::alpha_mode_blend)
          {
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
          }
-         else if(m_ealphamode == ::draw2d::alpha_mode_set)
+         else if (m_ealphamode == ::draw2d::alpha_mode_set)
          {
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
          }
 
-         if(m_spregion.is_set() && !m_spregion.cast < region > ()->is_simple_positive_region())
+         if (m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
          {
 
-            m_spregion.cast < region > ()->mask(m_pdc);
+            m_spregion.cast < region >()->mask(m_pdc);
 
          }
          else
@@ -1575,7 +1575,7 @@ synch_lock ml(cairo_mutex());
          return true;
 
       }
-      catch(...)
+      catch (...)
       {
 
          return false;
@@ -1592,25 +1592,25 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-     cairo_keep keep(m_pdc);
+      cairo_keep keep(m_pdc);
 
-      if(pgraphicsSrc == NULL)
+      if (pgraphicsSrc == NULL)
          return false;
 
-      if(nSrcWidth <= 0 || nSrcHeight <= 0 || nDstWidth <= 0 || nDstHeight <= 0)
+      if (nSrcWidth <= 0 || nSrcHeight <= 0 || nDstWidth <= 0 || nDstHeight <= 0)
          return false;
 
-      if(pgraphicsSrc == NULL)
+      if (pgraphicsSrc == NULL)
          return false;
 
-      cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
+      cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
 
-      if(psurface == NULL)
+      if (psurface == NULL)
          return false;
 
       cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-      if(ppattern == NULL)
+      if (ppattern == NULL)
          return false;
 
       cairo_matrix_t matrix;
@@ -1623,7 +1623,7 @@ synch_lock ml(cairo_mutex());
 
       cairo_matrix_init_translate(&matrix, xSrc, ySrc);
 
-      cairo_matrix_scale(&matrix, (double) nSrcWidth / (double) nDstWidth, (double) nSrcHeight / (double) nDstHeight);
+      cairo_matrix_scale(&matrix, (double)nSrcWidth / (double)nDstWidth, (double)nSrcHeight / (double)nDstHeight);
 
       cairo_pattern_set_matrix(ppattern, &matrix);
 
@@ -1633,11 +1633,11 @@ synch_lock ml(cairo_mutex());
 
       cairo_set_source(m_pdc, ppattern);
 
-      if(m_nStretchBltMode == 0)
+      if (m_nStretchBltMode == 0)
       {
          cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_NEAREST);
       }
-      else if(m_nStretchBltMode == HALFTONE)
+      else if (m_nStretchBltMode == HALFTONE)
       {
          cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_GOOD);
       }
@@ -1646,10 +1646,10 @@ synch_lock ml(cairo_mutex());
          cairo_pattern_set_filter(cairo_get_source(m_pdc), CAIRO_FILTER_FAST);
       }
 
-      if(m_spregion.is_set() && !m_spregion.cast < region > ()->is_simple_positive_region())
+      if (m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
       {
 
-         m_spregion.cast < region > ()->mask(m_pdc);
+         m_spregion.cast < region >()->mask(m_pdc);
 
       }
       else
@@ -1673,8 +1673,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetPixel(get_handle1(), x, y);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetPixel(get_handle1(), x, y);
 
    }
 
@@ -1684,8 +1684,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetPixel(get_handle1(), point.x, point.y);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetPixel(get_handle1(), point.x, point.y);
 
    }
 
@@ -1695,8 +1695,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetPixel(get_handle1(), x, y, crColor);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetPixel(get_handle1(), x, y, crColor);
 
    }
 
@@ -1706,8 +1706,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetPixel(get_handle1(), point.x, point.y, crColor);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetPixel(get_handle1(), point.x, point.y, crColor);
 
    }
 
@@ -1717,8 +1717,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::FloodFill(get_handle1(), x, y, crColor) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::FloodFill(get_handle1(), x, y, crColor) != FALSE;
 
    }
 
@@ -1728,8 +1728,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::ExtFloodFill(get_handle1(), x, y, crColor, nFillType) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::ExtFloodFill(get_handle1(), x, y, crColor, nFillType) != FALSE;
 
    }
 
@@ -1750,7 +1750,7 @@ synch_lock ml(cairo_mutex());
    bool graphics::TextOut(double x, double y, const string & str)
    {
 
-      return TextOut(x, y, str, (int32_t) str.get_length());
+      return TextOut(x, y, str, (int32_t)str.get_length());
 
    }
 
@@ -1761,8 +1761,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::ExtTextOut(get_handle1(), x, y, nOptions, lpRect, lpszString, nCount, lpDxWidths) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::ExtTextOut(get_handle1(), x, y, nOptions, lpRect, lpszString, nCount, lpDxWidths) != FALSE;
 
    }
 
@@ -1772,8 +1772,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::ExtTextOut(get_handle1(), x, y, nOptions, lpRect, str, (UINT)str.get_length(), lpDxWidths) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::ExtTextOut(get_handle1(), x, y, nOptions, lpRect, str, (UINT)str.get_length(), lpDxWidths) != FALSE;
 
    }
 
@@ -1783,8 +1783,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::TabbedTextOut(get_handle1(), x, y, lpszString, nCount, nTabPositions, lpnTabStopPositions, nTabOrigin);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::TabbedTextOut(get_handle1(), x, y, lpszString, nCount, nTabPositions, lpnTabStopPositions, nTabOrigin);
 
    }
 
@@ -1794,8 +1794,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::TabbedTextOut(get_handle1(), x, y, str, (int32_t)str.get_length(), nTabPositions, lpnTabStopPositions, nTabOrigin);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::TabbedTextOut(get_handle1(), x, y, str, (int32_t)str.get_length(), nTabPositions, lpnTabStopPositions, nTabOrigin);
 
    }
 
@@ -1806,8 +1806,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetTabbedTextExtent(get_handle2(), lpszString, (int32_t) nCount, nTabPositions, lpnTabStopPositions);
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetTabbedTextExtent(get_handle2(), lpszString, (int32_t) nCount, nTabPositions, lpnTabStopPositions);
 
    }
 
@@ -1817,8 +1817,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetTabbedTextExtent(get_handle2(), str, (int32_t) str.get_length(), nTabPositions, lpnTabStopPositions);
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetTabbedTextExtent(get_handle2(), str, (int32_t) str.get_length(), nTabPositions, lpnTabStopPositions);
 
    }
 
@@ -1828,8 +1828,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetTabbedTextExtent(get_handle1(), lpszString, (int32_t) nCount, nTabPositions, lpnTabStopPositions);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetTabbedTextExtent(get_handle1(), lpszString, (int32_t) nCount, nTabPositions, lpnTabStopPositions);
 
    }
 
@@ -1839,19 +1839,19 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetTabbedTextExtent(get_handle1(), str, (int32_t) str.get_length(), nTabPositions, lpnTabStopPositions);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetTabbedTextExtent(get_handle1(), str, (int32_t) str.get_length(), nTabPositions, lpnTabStopPositions);
 
    }
 
-   bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount,int32_t x, int32_t y, int32_t nWidth, int32_t nHeight)
+   bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight)
    {
 
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GrayString(get_handle1(), (HBRUSH)pBrush->get_os_data(),(GRAYSTRINGPROC)lpfnOutput, lpData, nCount, x, y, nWidth, nHeight) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GrayString(get_handle1(), (HBRUSH)pBrush->get_os_data(),(GRAYSTRINGPROC)lpfnOutput, lpData, nCount, x, y, nWidth, nHeight) != FALSE;
 
    }
 
@@ -1861,8 +1861,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetTextAlign(get_handle2());
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetTextAlign(get_handle2());
 
    }
 
@@ -1872,8 +1872,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetTextFace(get_handle2(), nCount, lpszFacename);
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetTextFace(get_handle2(), nCount, lpszFacename);
 
    }
 
@@ -1883,9 +1883,9 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      int32_t nResult = ::GetTextFace(get_handle2(), 256, rString.GetBuffer(256)); rString.ReleaseBuffer();
-//      return nResult;
+      //      ASSERT(get_handle2() != NULL);
+      //      int32_t nResult = ::GetTextFace(get_handle2(), 256, rString.GetBuffer(256)); rString.ReleaseBuffer();
+      //      return nResult;
 
    }
 
@@ -1902,25 +1902,25 @@ synch_lock ml(cairo_mutex());
 
       cairo_font_extents(m_pdc, &e);
 
-      lpMetrics->tmAscent              = (LONG) e.ascent;
-      lpMetrics->tmDescent             = (LONG) e.descent;
-      lpMetrics->tmHeight              = (LONG) e.height;
+      lpMetrics->tmAscent = (LONG)e.ascent;
+      lpMetrics->tmDescent = (LONG)e.descent;
+      lpMetrics->tmHeight = (LONG)e.height;
 
       //lpMetrics->tmAscent              = (LONG) e.ascent;
       //lpMetrics->tmDescent             = (LONG) e.descent;
       //lpMetrics->tmHeight              = (LONG) e.height;
 
       //lpMetrics->tmInternalLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
-      lpMetrics->tmExternalLeading     = (LONG) (e.height - (e.ascent + e.descent));
+      lpMetrics->tmExternalLeading = (LONG)(e.height - (e.ascent + e.descent));
 
-      lpMetrics->tmInternalLeading     = (LONG) 0;
-      lpMetrics->tmExternalLeading     = (LONG) 0;
+      lpMetrics->tmInternalLeading = (LONG)0;
+      lpMetrics->tmExternalLeading = (LONG)0;
 
       string str(L"123AWZwmc123AWZwmcpQçg");
 
       ::size size = GetTextExtent(str);
 
-      lpMetrics->tmAveCharWidth        = (LONG) (size.cx * m_spfont->m_dFontWidth / (double) str.get_length());
+      lpMetrics->tmAveCharWidth = (LONG)(size.cx * m_spfont->m_dFontWidth / (double)str.get_length());
 
       return TRUE;
 
@@ -1933,8 +1933,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetTextMetrics(get_handle1(), lpMetrics) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetTextMetrics(get_handle1(), lpMetrics) != FALSE;
 
    }
 
@@ -1945,8 +1945,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetTextCharacterExtra(get_handle2());
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetTextCharacterExtra(get_handle2());
 
    }
 
@@ -1956,8 +1956,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetCharWidth(get_handle2(), nFirstChar, nLastChar, lpBuffer) != FALSE;
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetCharWidth(get_handle2(), nFirstChar, nLastChar, lpBuffer) != FALSE;
 
    }
 
@@ -1967,8 +1967,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetCharWidth(get_handle1(), nFirstChar, nLastChar, lpBuffer) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetCharWidth(get_handle1(), nFirstChar, nLastChar, lpBuffer) != FALSE;
 
    }
 
@@ -1978,36 +1978,36 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetFontLanguageInfo(get_handle1());
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetFontLanguageInfo(get_handle1());
 
    }
 
-/*
+   /*
 
-   uint32_t graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
-   {
+      uint32_t graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return 0;
+         ::exception::throw_not_implemented(get_app());
+         return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetCharacterPlacement(get_handle1(), lpString, nCount, nMaxExtent, lpResults, dwFlags);
+   //      ASSERT(get_handle1() != NULL);
+   //      return ::GetCharacterPlacement(get_handle1(), lpString, nCount, nMaxExtent, lpResults, dwFlags);
 
-   }
+      }
 
-   uint32_t graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
-   {
+      uint32_t graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return 0;
+         ::exception::throw_not_implemented(get_app());
+         return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetCharacterPlacement(get_handle1(), (const char *)str, (int32_t) str.get_length(), nMaxExtent, lpResults, dwFlags);
+   //      ASSERT(get_handle1() != NULL);
+   //      return ::GetCharacterPlacement(get_handle1(), (const char *)str, (int32_t) str.get_length(), nMaxExtent, lpResults, dwFlags);
 
-   }
+      }
 
-*/
+   */
 
    size graphics::GetAspectRatioFilter() const
    {
@@ -2015,10 +2015,10 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return size(0, 0);
 
-//      ASSERT(get_handle2() != NULL);
-//      SIZE size;
-//      VERIFY(::GetAspectRatioFilterEx(get_handle2(), &size));
-//      return size;
+      //      ASSERT(get_handle2() != NULL);
+      //      SIZE size;
+      //      VERIFY(::GetAspectRatioFilterEx(get_handle2(), &size));
+      //      return size;
 
    }
 
@@ -2029,8 +2029,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::ScrollDC(get_handle1(), dx, dy, lpRectScroll, lpRectClip, (HRGN)pRgnUpdate->get_os_data(), lpRectUpdate) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::ScrollDC(get_handle1(), dx, dy, lpRectScroll, lpRectClip, (HRGN)pRgnUpdate->get_os_data(), lpRectUpdate) != FALSE;
 
    }
 
@@ -2041,8 +2041,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::Escape(get_handle1(), nEscape, nCount, lpszInData, lpOutData);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::Escape(get_handle1(), nEscape, nCount, lpszInData, lpOutData);
 
    }
 
@@ -2053,8 +2053,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetBoundsRect(get_handle1(), lpRectBounds, flags);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetBoundsRect(get_handle1(), lpRectBounds, flags);
 
    }
 
@@ -2064,47 +2064,47 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetBoundsRect(get_handle2(), lpRectBounds, flags);
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetBoundsRect(get_handle2(), lpRectBounds, flags);
 
    }
 
-/*
+   /*
 
-   bool graphics::ResetDC(const DEVMODE* lpDevMode)
-   {
+      bool graphics::ResetDC(const DEVMODE* lpDevMode)
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return false;
+         ::exception::throw_not_implemented(get_app());
+         return false;
 
-//    ASSERT(get_handle2() != NULL);
-//    return ::ResetDC(get_handle2(), lpDevMode) != NULL;
+   //    ASSERT(get_handle2() != NULL);
+   //    return ::ResetDC(get_handle2(), lpDevMode) != NULL;
 
-   }
+      }
 
-   UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const
-   {
+      UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return 0;
+         ::exception::throw_not_implemented(get_app());
+         return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetOutlineTextMetrics(get_handle2(), cbData, lpotm);
+   //      ASSERT(get_handle2() != NULL);
+   //      return ::GetOutlineTextMetrics(get_handle2(), cbData, lpotm);
 
-   }
+      }
 
-   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const
-   {
+      bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return false;
+         ::exception::throw_not_implemented(get_app());
+         return false;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetCharABCWidths(get_handle2(), nFirstChar, nLastChar, lpabc) != FALSE;
+   //      ASSERT(get_handle2() != NULL);
+   //      return ::GetCharABCWidths(get_handle2(), nFirstChar, nLastChar, lpabc) != FALSE;
 
-   }
+      }
 
-*/
+   */
 
    uint32_t graphics::GetFontData(uint32_t dwTable, uint32_t dwOffset, LPVOID lpData, uint32_t cbData) const
    {
@@ -2112,52 +2112,52 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetFontData(get_handle2(), dwTable, dwOffset, lpData, cbData);
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetFontData(get_handle2(), dwTable, dwOffset, lpData, cbData);
 
    }
 
-/*
+   /*
 
-   int32_t graphics::GetKerningPairs(int32_t nPairs, LPKERNINGPAIR lpkrnpair) const
-   {
+      int32_t graphics::GetKerningPairs(int32_t nPairs, LPKERNINGPAIR lpkrnpair) const
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return 0;
+         ::exception::throw_not_implemented(get_app());
+         return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetKerningPairs(get_handle2(), nPairs, lpkrnpair);
+   //      ASSERT(get_handle2() != NULL);
+   //      return ::GetKerningPairs(get_handle2(), nPairs, lpkrnpair);
 
-   }
+      }
 
-   uint32_t graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, uint32_t cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
-   {
+      uint32_t graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, uint32_t cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return 0;
+         ::exception::throw_not_implemented(get_app());
+         return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetGlyphOutline(get_handle2(), nChar, nFormat, lpgm, cbBuffer, lpBuffer, lpmat2);
+   //      ASSERT(get_handle2() != NULL);
+   //      return ::GetGlyphOutline(get_handle2(), nChar, nFormat, lpgm, cbBuffer, lpBuffer, lpmat2);
 
-   }
+      }
 
-*/
+   */
 
-/*
+   /*
 
-   // ::user::document handling functions
-   int32_t graphics::StartDoc(LPDOCINFO lpDocInfo)
-   {
+      // ::user::document handling functions
+      int32_t graphics::StartDoc(LPDOCINFO lpDocInfo)
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return 0;
+         ::exception::throw_not_implemented(get_app());
+         return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::StartDoc(get_handle1(), lpDocInfo);
+   //      ASSERT(get_handle1() != NULL);
+   //      return ::StartDoc(get_handle1(), lpDocInfo);
 
-   }
+      }
 
-*/
+   */
 
    int32_t graphics::StartPage()
    {
@@ -2165,8 +2165,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::StartPage(get_handle1());
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::StartPage(get_handle1());
 
    }
 
@@ -2176,8 +2176,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::EndPage(get_handle1());
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::EndPage(get_handle1());
 
    }
 
@@ -2187,8 +2187,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetAbortProc(get_handle1(), (ABORTPROC)lpfn);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetAbortProc(get_handle1(), (ABORTPROC)lpfn);
 
    }
 
@@ -2198,8 +2198,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::AbortDoc(get_handle1());
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::AbortDoc(get_handle1());
 
    }
 
@@ -2209,8 +2209,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::EndDoc(get_handle1());
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::EndDoc(get_handle1());
 
    }
 
@@ -2220,8 +2220,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::MaskBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc,  (HBITMAP)maskBitmap.get_os_data(), xMask, yMask, dwRop) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::MaskBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc,  (HBITMAP)maskBitmap.get_os_data(), xMask, yMask, dwRop) != FALSE;
 
    }
 
@@ -2231,8 +2231,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::PlgBlt(get_handle1(), lpPoint, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nWidth, nHeight, (HBITMAP)maskBitmap.get_os_data(), xMask, yMask) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::PlgBlt(get_handle1(), lpPoint, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nWidth, nHeight, (HBITMAP)maskBitmap.get_os_data(), xMask, yMask) != FALSE;
 
    }
 
@@ -2242,8 +2242,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetPixelV(get_handle1(), x, y, crColor) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetPixelV(get_handle1(), x, y, crColor) != FALSE;
 
    }
 
@@ -2253,8 +2253,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetPixelV(get_handle1(), point.x, point.y, crColor) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetPixelV(get_handle1(), point.x, point.y, crColor) != FALSE;
 
    }
 
@@ -2264,8 +2264,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::AngleArc(get_handle1(), x, y, nRadius, fStartAngle, fSweepAngle) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::AngleArc(get_handle1(), x, y, nRadius, fStartAngle, fSweepAngle) != FALSE;
 
    }
 
@@ -2275,8 +2275,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ArcTo(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ArcTo(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, ptStart.x, ptStart.y, ptEnd.x, ptEnd.y);
 
    }
 
@@ -2286,8 +2286,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetArcDirection(get_handle2());
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetArcDirection(get_handle2());
 
    }
 
@@ -2297,25 +2297,25 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::PolyPolyline(get_handle1(), lpPoints, lpPolyPoints, nCount) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::PolyPolyline(get_handle1(), lpPoints, lpPolyPoints, nCount) != FALSE;
 
    }
 
-/*
+   /*
 
-   bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
-   {
+      bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return false;
+         ::exception::throw_not_implemented(get_app());
+         return false;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetColorAdjustment(get_handle2(), lpColorAdjust) != FALSE;
+   //      ASSERT(get_handle2() != NULL);
+   //      return ::GetColorAdjustment(get_handle2(), lpColorAdjust) != FALSE;
 
-   }
+      }
 
-*/
+   */
 
    ::draw2d::pen_sp graphics::get_current_pen() const
    {
@@ -2359,8 +2359,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::PolyBezier(get_handle1(), lpPoints, nCount) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::PolyBezier(get_handle1(), lpPoints, nCount) != FALSE;
 
    }
 
@@ -2370,36 +2370,36 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::DrawEscape(get_handle1(), nEscape, nInputSize, lpszInputData);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::DrawEscape(get_handle1(), nEscape, nInputSize, lpszInputData);
 
    }
 
-   int32_t graphics::Escape(int32_t nEscape, int32_t nInputSize, const char * lpszInputData,  int32_t nOutputSize, char * lpszOutputData)
+   int32_t graphics::Escape(int32_t nEscape, int32_t nInputSize, const char * lpszInputData, int32_t nOutputSize, char * lpszOutputData)
    {
 
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//       ASSERT(get_handle1() != NULL);
-//       return ::ExtEscape(get_handle1(), nEscape, nInputSize, lpszInputData, nOutputSize, lpszOutputData);
+      //       ASSERT(get_handle1() != NULL);
+      //       return ::ExtEscape(get_handle1(), nEscape, nInputSize, lpszInputData, nOutputSize, lpszOutputData);
 
    }
 
-/*
+   /*
 
-   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const
-   {
+      bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return false;
+         ::exception::throw_not_implemented(get_app());
+         return false;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetCharABCWidthsFloat(get_handle2(), nFirstChar, nLastChar, lpABCF) != FALSE;
+   //      ASSERT(get_handle2() != NULL);
+   //      return ::GetCharABCWidthsFloat(get_handle2(), nFirstChar, nLastChar, lpABCF) != FALSE;
 
-   }
+      }
 
-*/
+   */
 
    bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float* lpFloatBuffer) const
    {
@@ -2407,8 +2407,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle2() != NULL);
-//      return ::GetCharWidthFloat(get_handle2(), nFirstChar, nLastChar, lpFloatBuffer) != FALSE;
+      //      ASSERT(get_handle2() != NULL);
+      //      return ::GetCharWidthFloat(get_handle2(), nFirstChar, nLastChar, lpFloatBuffer) != FALSE;
 
    }
 
@@ -2418,14 +2418,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      if(m_ppath != NULL)
-      {
-         delete m_ppath;
-         m_ppath = NULL;
-      }
-      return true;
-*/
+      /*
+            if(m_ppath != NULL)
+            {
+               delete m_ppath;
+               m_ppath = NULL;
+            }
+            return true;
+      */
 
    }
 
@@ -2435,14 +2435,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      if(m_ppath != NULL)
-         delete m_ppath;
+      /*
+            if(m_ppath != NULL)
+               delete m_ppath;
 
-      m_ppath = new Gdiplus::GraphicsPath;
+            m_ppath = new Gdiplus::GraphicsPath;
 
-      return m_ppath != NULL;
-*/
+            return m_ppath != NULL;
+      */
 
    }
 
@@ -2452,10 +2452,10 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      ASSERT(m_ppath != NULL);
-      return m_ppath->CloseFigure() == Gdiplus::Status::Ok;
-*/
+      /*
+            ASSERT(m_ppath != NULL);
+            return m_ppath->CloseFigure() == Gdiplus::Status::Ok;
+      */
    }
 
    bool graphics::EndPath()
@@ -2464,15 +2464,15 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      if(m_ppath == NULL)
-         return FALSE;
+      /*
+            if(m_ppath == NULL)
+               return FALSE;
 
-      m_ppathPaint   = m_ppath;
-      m_ppath        = NULL;
+            m_ppathPaint   = m_ppath;
+            m_ppath        = NULL;
 
-      return true;
-*/
+            return true;
+      */
    }
 
    bool graphics::FillPath()
@@ -2481,7 +2481,7 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      return m_pgraphics->FillPath(gdiplus_brush(), m_ppath) == Gdiplus::Status::Ok;
+      //      return m_pgraphics->FillPath(gdiplus_brush(), m_ppath) == Gdiplus::Status::Ok;
 
    }
 
@@ -2491,7 +2491,7 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      return m_ppath->Flatten() == Gdiplus::Status::Ok;
+      //      return m_ppath->Flatten() == Gdiplus::Status::Ok;
 
    }
 
@@ -2501,10 +2501,10 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0.f;
 
-//      ASSERT(get_handle1() != NULL);
-//      float fMiterLimit;
-//      VERIFY(::GetMiterLimit(get_handle1(), &fMiterLimit));
-//      return fMiterLimit;
+      //      ASSERT(get_handle1() != NULL);
+      //      float fMiterLimit;
+      //      VERIFY(::GetMiterLimit(get_handle1(), &fMiterLimit));
+      //      return fMiterLimit;
 
    }
 
@@ -2514,8 +2514,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetPath(get_handle1(), lpPoints, lpTypes, nCount);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetPath(get_handle1(), lpPoints, lpTypes, nCount);
 
    }
 
@@ -2525,8 +2525,8 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetMiterLimit(get_handle1(), fMiterLimit, NULL) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetMiterLimit(get_handle1(), fMiterLimit, NULL) != FALSE;
 
    }
 
@@ -2536,11 +2536,11 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      bool bOk1 = m_pgraphics->FillPath(gdiplus_brush(), m_ppathPaint) == Gdiplus::Status::Ok;
+      //      bool bOk1 = m_pgraphics->FillPath(gdiplus_brush(), m_ppathPaint) == Gdiplus::Status::Ok;
 
-//      bool bOk2 = m_pgraphics->DrawPath(gdiplus_pen(), m_ppathPaint) == Gdiplus::Status::Ok;
+      //      bool bOk2 = m_pgraphics->DrawPath(gdiplus_pen(), m_ppathPaint) == Gdiplus::Status::Ok;
 
-//      return bOk1 && bOk2;
+      //      return bOk1 && bOk2;
 
    }
 
@@ -2550,7 +2550,7 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      return m_pgraphics->DrawPath(gdiplus_pen(), m_ppathPaint) == Gdiplus::Status::Ok;
+      //      return m_pgraphics->DrawPath(gdiplus_pen(), m_ppathPaint) == Gdiplus::Status::Ok;
 
    }
 
@@ -2560,7 +2560,7 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      return m_ppath->Widen(gdiplus_pen()) == Gdiplus::Status::Ok;
+      //      return m_ppath->Widen(gdiplus_pen()) == Gdiplus::Status::Ok;
 
    }
 
@@ -2568,7 +2568,7 @@ synch_lock ml(cairo_mutex());
    bool graphics::draw_path(::draw2d::path * ppath)
    {
 
-      if(!set(ppath))
+      if (!set(ppath))
          return false;
 
       return draw();
@@ -2578,7 +2578,7 @@ synch_lock ml(cairo_mutex());
    bool graphics::fill_path(::draw2d::path * ppath)
    {
 
-      if(!set(ppath))
+      if (!set(ppath))
          return false;
 
       return fill();
@@ -2588,7 +2588,7 @@ synch_lock ml(cairo_mutex());
    bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
 
-      if(!set(ppath))
+      if (!set(ppath))
          return false;
 
       return draw(ppen);
@@ -2598,7 +2598,7 @@ synch_lock ml(cairo_mutex());
    bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
    {
 
-      if(!set(ppath))
+      if (!set(ppath))
          return false;
 
       return fill(pbrush);
@@ -2612,50 +2612,50 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GdiComment(get_handle1(), nDataSize, pCommentData) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GdiComment(get_handle1(), nDataSize, pCommentData) != FALSE;
 
    }
 
 
-/*bool CALLBACK metacallback(
-   EmfPlusRecordType recordType,
-   uint32_t flags,
-   uint32_t dataSize,
-   const unsigned char* pStr,
-   void* callbackData)
-{
-   // Play only EmfPlusRecordTypeFillEllipse records.
-   if (recordType == EmfPlusRecordTypeFillEllipse)
+   /*bool CALLBACK metacallback(
+      EmfPlusRecordType recordType,
+      uint32_t flags,
+      uint32_t dataSize,
+      const unsigned char* pStr,
+      void* callbackData)
    {
-   // Explicitly cast callbackData as a metafile pointer, and use it to call
-   // the PlayRecord method.
-   static_cast < Metafile* > (callbackData)->PlayRecord(recordType, flags, dataSize, pStr);
+      // Play only EmfPlusRecordTypeFillEllipse records.
+      if (recordType == EmfPlusRecordTypeFillEllipse)
+      {
+      // Explicitly cast callbackData as a metafile pointer, and use it to call
+      // the PlayRecord method.
+      static_cast < Metafile* > (callbackData)->PlayRecord(recordType, flags, dataSize, pStr);
+      }
+      return TRUE;
    }
-   return TRUE;
-}
 
-VOID Example_EnumerateMetafile9(HDC hdc)
-{
-   Graphics graphics(hdc);
-   // Create a Metafile object from an existing disk metafile.
-   Metafile* pMeta = new Metafile(L"SampleMetafile.emf", hdc);
+   VOID Example_EnumerateMetafile9(HDC hdc)
    {
-      // Fill a rectangle and an ellipse in pMeta.
-      Graphics metaGraphics(pMeta);
-      metaGraphics.FillRectangle(&SolidBrush(Color(255, 0, 0, 0)), 0, 0, 100, 100);
-  metaGraphics.FillEllipse(&SolidBrush(Color(255, 255, 0, 0)), 100, 0, 200, 100);
-   }
-   // Enumerate pMeta to the destination rectangle, passing pMeta as the CALLBACK data.
-   graphics.EnumerateMetafile(
-   pMeta,
-   Rect(0, 0, 300, 50),
-   metacallback,
-   pMeta);
-   // Draw pMeta as an image.
-   graphics.DrawImage(pMeta, Point(0, 150));
-   delete pMeta;;
-}*/
+      Graphics graphics(hdc);
+      // Create a Metafile object from an existing disk metafile.
+      Metafile* pMeta = new Metafile(L"SampleMetafile.emf", hdc);
+      {
+         // Fill a rectangle and an ellipse in pMeta.
+         Graphics metaGraphics(pMeta);
+         metaGraphics.FillRectangle(&SolidBrush(Color(255, 0, 0, 0)), 0, 0, 100, 100);
+     metaGraphics.FillEllipse(&SolidBrush(Color(255, 255, 0, 0)), 100, 0, 200, 100);
+      }
+      // Enumerate pMeta to the destination rectangle, passing pMeta as the CALLBACK data.
+      graphics.EnumerateMetafile(
+      pMeta,
+      Rect(0, 0, 300, 50),
+      metacallback,
+      pMeta);
+      // Draw pMeta as an image.
+      graphics.DrawImage(pMeta, Point(0, 150));
+      delete pMeta;;
+   }*/
 
    bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const RECT & lpBounds)
    {
@@ -2664,18 +2664,18 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       return false;
 
 
-/*      Gdiplus::RectF rect((Gdiplus::REAL) lpBounds->left, (Gdiplus::REAL) lpBounds->top, (Gdiplus::REAL) width(lpBounds), (Gdiplus::REAL) height(lpBounds));
+      /*      Gdiplus::RectF rect((Gdiplus::REAL) lpBounds->left, (Gdiplus::REAL) lpBounds->top, (Gdiplus::REAL) width(lpBounds), (Gdiplus::REAL) height(lpBounds));
 
-      Gdiplus::Metafile* pMeta = new Gdiplus::Metafile(hEnhMF, false);
+            Gdiplus::Metafile* pMeta = new Gdiplus::Metafile(hEnhMF, false);
 
-      //m_pgraphcis->EnumerateMetafile(pMeta, rect, metacallback, PMETAHEADER);
+            //m_pgraphcis->EnumerateMetafile(pMeta, rect, metacallback, PMETAHEADER);
 
-      bool bOk = m_pgraphics->DrawImage(pMeta, rect) == Gdiplus::Status::Ok;
+            bool bOk = m_pgraphics->DrawImage(pMeta, rect) == Gdiplus::Status::Ok;
 
-      delete pMeta;
+            delete pMeta;
 
-      return bOk ? TRUE : FALSE;*/
-      //return ::PlayEnhMetaFile(get_handle1(), hEnhMF, lpBounds);
+            return bOk ? TRUE : FALSE;*/
+            //return ::PlayEnhMetaFile(get_handle1(), hEnhMF, lpBounds);
 
    }
 
@@ -2699,7 +2699,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
       cairo_keep keep(m_pdc);
 
-      if(m_pdibAlphaBlend != NULL)
+      if (m_pdibAlphaBlend != NULL)
       {
 
          rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
@@ -2707,7 +2707,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
          ::draw2d::dib * pdibWork = NULL;
          ::draw2d::dib * pdibWork2 = NULL;
-//         ::draw2d::dib * pdibWork3 = NULL;
+         //         ::draw2d::dib * pdibWork3 = NULL;
          ::draw2d::dib * pdibWork4 = NULL;
 
 
@@ -2718,23 +2718,23 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
          ::draw2d::dib_sp spdib;
-         if(pdibWork == NULL)
+         if (pdibWork == NULL)
          {
             spdib.alloc(allocer());
             pdibWork = spdib;
          }
-         if(pdibWork == NULL)
+         if (pdibWork == NULL)
             return false;
-         if(!pdibWork->create(size))
+         if (!pdibWork->create(size))
             return false;
-         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
+         if (!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
             return false;
 
 
 
 
          ::draw2d::dib_sp spdib2;
-         if(pdibWork2 == NULL)
+         if (pdibWork2 == NULL)
          {
             spdib2.alloc(allocer());
             pdibWork2 = spdib2;
@@ -2742,14 +2742,14 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
          ::draw2d::dib_sp spdib4;
-         if(pdibWork4 == NULL)
+         if (pdibWork4 == NULL)
          {
             spdib4.alloc(allocer());
             pdibWork4 = spdib4;
          }
-         if(pdibWork4 == NULL)
+         if (pdibWork4 == NULL)
             return false;
-         if(!pdibWork4->create(size))
+         if (!pdibWork4->create(size))
             return false;
 
 
@@ -2771,23 +2771,23 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       try
       {
 
-         if(pgraphicsSrc == NULL)
+         if (pgraphicsSrc == NULL)
             return false;
 
-         if(nDstWidth <= 0 || nDstWidth <= 0)
+         if (nDstWidth <= 0 || nDstWidth <= 0)
             return false;
 
-         if(pgraphicsSrc->get_os_data() == NULL)
+         if (pgraphicsSrc->get_os_data() == NULL)
             return false;
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
 
-         if(psurface == NULL)
+         if (psurface == NULL)
             return false;
 
          cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-         if(ppattern == NULL)
+         if (ppattern == NULL)
             return false;
 
          cairo_matrix_t matrix;
@@ -2808,19 +2808,19 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
          cairo_set_source(m_pdc, ppattern);
 
-         if(m_ealphamode == ::draw2d::alpha_mode_blend)
+         if (m_ealphamode == ::draw2d::alpha_mode_blend)
          {
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
          }
-         else if(m_ealphamode == ::draw2d::alpha_mode_set)
+         else if (m_ealphamode == ::draw2d::alpha_mode_set)
          {
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
          }
 
-         if(m_spregion.is_set() && !m_spregion.cast < region > ()->is_simple_positive_region())
+         if (m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
          {
 
-            m_spregion.cast < region > ()->mask(m_pdc);
+            m_spregion.cast < region >()->mask(m_pdc);
 
          }
          else
@@ -2837,7 +2837,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          return true;
 
       }
-      catch(...)
+      catch (...)
       {
 
          return false;
@@ -2940,8 +2940,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::TransparentBlt(get_handle1(), xDest, yDest, nDestWidth, nDestHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight, crTransparent) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::TransparentBlt(get_handle1(), xDest, yDest, nDestWidth, nDestHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight, crTransparent) != FALSE;
 
    }
 
@@ -2951,12 +2951,12 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GradientFill(get_handle1(), pVertices, nVertices, pMesh, nMeshElements, dwMode) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GradientFill(get_handle1(), pVertices, nVertices, pMesh, nMeshElements, dwMode) != FALSE;
 
    }
 
-      #if (_WIN32_WINNT >= 0x0500)
+#if (_WIN32_WINNT >= 0x0500)
 
    // Always Inline. Functions only in Win98/Win2K or later
 
@@ -2967,8 +2967,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetDCBrushColor(get_handle1());
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetDCBrushColor(get_handle1());
 
    }
 
@@ -2978,8 +2978,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetDCBrushColor(get_handle1(), crColor);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetDCBrushColor(get_handle1(), crColor);
 
    }
 
@@ -2989,8 +2989,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//       ASSERT(get_handle1() != NULL);
-//       return ::GetDCPenColor(get_handle1());
+      //       ASSERT(get_handle1() != NULL);
+      //       return ::GetDCPenColor(get_handle1());
    }
 
    COLORREF graphics::SetDCPenColor(COLORREF crColor)
@@ -2999,14 +2999,14 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::SetDCPenColor(get_handle1(), crColor);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::SetDCPenColor(get_handle1(), crColor);
 
    }
 
 #endif
 
-   #if (_WIN32_WINNT >= 0x0500)
+#if (_WIN32_WINNT >= 0x0500)
 
    bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
    {
@@ -3014,8 +3014,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetCharABCWidthsI(get_handle1(), giFirst, cgi, pgi, lpabc) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetCharABCWidthsI(get_handle1(), giFirst, cgi, pgi, lpabc) != FALSE;
 
    }
 
@@ -3025,14 +3025,14 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetCharWidthI(get_handle1(), giFirst, cgi, pgi, lpBuffer) != FALSE;
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetCharWidthI(get_handle1(), giFirst, cgi, pgi, lpBuffer) != FALSE;
 
    }
 
-   #endif
+#endif
 
-   #if (_WIN32_WINNT >= 0x0500)
+#if (_WIN32_WINNT >= 0x0500)
 
    bool graphics::GetTextExtentExPointI(LPWORD pgiIn, int32_t cgi, int32_t nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
    {
@@ -3040,9 +3040,9 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ENSURE(lpSize != NULL);
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetTextExtentExPointI(get_handle1(), pgiIn, cgi, nMaxExtent, lpnFit, alpDx, lpSize) != FALSE;
+      //      ENSURE(lpSize != NULL);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetTextExtentExPointI(get_handle1(), pgiIn, cgi, nMaxExtent, lpnFit, alpDx, lpSize) != FALSE;
 
    }
 
@@ -3053,9 +3053,9 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return false;
 
-//      ENSURE(lpSize != NULL);
-//      ASSERT(get_handle1() != NULL);
-//      return ::GetTextExtentPointI(get_handle1(), pgiIn, cgi, lpSize) != FALSE;
+      //      ENSURE(lpSize != NULL);
+      //      ASSERT(get_handle1() != NULL);
+      //      return ::GetTextExtentPointI(get_handle1(), pgiIn, cgi, lpSize) != FALSE;
 
    }
 
@@ -3073,39 +3073,39 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
       ::exception::throw_not_implemented(get_app());
 
-/*
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+      /*
+            ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
 
-      int32_t nMapMode;
-      if (this != NULL && (nMapMode = GetMapMode()) < MM_ISOTROPIC && nMapMode != MM_TEXT)
-      {
-         // when using a constrained ::collection::map mode, ::collection::map against physical inch
-         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-         DPtoLP(lpSize);
-         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
-      }
-      else
-      {
-         // ::collection::map against logical inch for non-constrained mapping modes
-         int32_t cxPerInch, cyPerInch;
-         if (this != NULL)
-         {
-            ASSERT_VALID(this);
-            ASSERT(get_handle1() != NULL);  // no HDC attached or created?
-            cxPerInch = GetDevicecaps(LOGPIXELSX);
-            cyPerInch = GetDevicecaps(LOGPIXELSY);
-         }
-         else
-         {
-//            cxPerInch = afxData.cxPixelsPerInch;
-  //          cyPerInch = afxData.cyPixelsPerInch;
-         }
-         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-         lpSize->cx = MulDiv(lpSize->cx, HIMETRIC_INCH, cxPerInch);
-         lpSize->cy = MulDiv(lpSize->cy, HIMETRIC_INCH, cyPerInch);
-      }
+            int32_t nMapMode;
+            if (this != NULL && (nMapMode = GetMapMode()) < MM_ISOTROPIC && nMapMode != MM_TEXT)
+            {
+               // when using a constrained ::collection::map mode, ::collection::map against physical inch
+               ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
+               DPtoLP(lpSize);
+               ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
+            }
+            else
+            {
+               // ::collection::map against logical inch for non-constrained mapping modes
+               int32_t cxPerInch, cyPerInch;
+               if (this != NULL)
+               {
+                  ASSERT_VALID(this);
+                  ASSERT(get_handle1() != NULL);  // no HDC attached or created?
+                  cxPerInch = GetDevicecaps(LOGPIXELSX);
+                  cyPerInch = GetDevicecaps(LOGPIXELSY);
+               }
+               else
+               {
+      //            cxPerInch = afxData.cxPixelsPerInch;
+        //          cyPerInch = afxData.cyPixelsPerInch;
+               }
+               ASSERT(cxPerInch != 0 && cyPerInch != 0);
+               lpSize->cx = MulDiv(lpSize->cx, HIMETRIC_INCH, cxPerInch);
+               lpSize->cy = MulDiv(lpSize->cy, HIMETRIC_INCH, cyPerInch);
+            }
 
-*/
+      */
 
    }
 
@@ -3114,39 +3114,39 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
       ::exception::throw_not_implemented(get_app());
 
-/*      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+      /*      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
 
-      int32_t nMapMode;
-      if (this != NULL && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
-         nMapMode != MM_TEXT)
-      {
-         // when using a constrained ::collection::map mode, ::collection::map against physical inch
-         ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
-         LPtoDP(lpSize);
-         ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
-      }
-      else
-      {
-         // ::collection::map against logical inch for non-constrained mapping modes
-         int32_t cxPerInch, cyPerInch;
-         if (this != NULL)
-         {
-            ASSERT_VALID(this);
-            ASSERT(get_handle1() != NULL);  // no HDC attached or created?
-            cxPerInch = GetDevicecaps(LOGPIXELSX);
-            cyPerInch = GetDevicecaps(LOGPIXELSY);
-         }
-         else
-         {
-//            cxPerInch = afxData.cxPixelsPerInch;
-  //          cyPerInch = afxData.cyPixelsPerInch;
-         }
-         ASSERT(cxPerInch != 0 && cyPerInch != 0);
-         lpSize->cx = MulDiv(lpSize->cx, cxPerInch, HIMETRIC_INCH);
-         lpSize->cy = MulDiv(lpSize->cy, cyPerInch, HIMETRIC_INCH);
-      }
+            int32_t nMapMode;
+            if (this != NULL && (nMapMode = GetMapMode()) < MM_ISOTROPIC &&
+               nMapMode != MM_TEXT)
+            {
+               // when using a constrained ::collection::map mode, ::collection::map against physical inch
+               ((::draw2d::graphics *)this)->SetMapMode(MM_HIMETRIC);
+               LPtoDP(lpSize);
+               ((::draw2d::graphics *)this)->SetMapMode(nMapMode);
+            }
+            else
+            {
+               // ::collection::map against logical inch for non-constrained mapping modes
+               int32_t cxPerInch, cyPerInch;
+               if (this != NULL)
+               {
+                  ASSERT_VALID(this);
+                  ASSERT(get_handle1() != NULL);  // no HDC attached or created?
+                  cxPerInch = GetDevicecaps(LOGPIXELSX);
+                  cyPerInch = GetDevicecaps(LOGPIXELSY);
+               }
+               else
+               {
+      //            cxPerInch = afxData.cxPixelsPerInch;
+        //          cyPerInch = afxData.cyPixelsPerInch;
+               }
+               ASSERT(cxPerInch != 0 && cyPerInch != 0);
+               lpSize->cx = MulDiv(lpSize->cx, cxPerInch, HIMETRIC_INCH);
+               lpSize->cy = MulDiv(lpSize->cy, cyPerInch, HIMETRIC_INCH);
+            }
 
-*/
+      */
 
    }
 
@@ -3171,23 +3171,23 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(::aura::application * papp)
    {
-/*      ::core::LockGlobals(CRIT_HALFTONEBRUSH);
-      if (gen_HalftoneBrush == NULL)
-      {
-         WORD grayPattern[8];
-         for (int32_t i = 0; i < 8; i++)
-            grayPattern[i] = (WORD)(0x5555 << (i & 1));
-         HBITMAP grayBitmap = CreateBitmap(8, 8, 1, 1, grayPattern);
-         if (grayBitmap != NULL)
-         {
-            gen_HalftoneBrush = ::CreatePatternBrush(grayBitmap);
-            ::DeleteObject(grayBitmap);
-         }
-      }
-      if (!gen_WingdixTerm)
-         gen_WingdixTerm = (char)!atexit(&__win_gdi_x_term);
-      ::core::UnlockGlobals(CRIT_HALFTONEBRUSH);
-      */
+      /*      ::core::LockGlobals(CRIT_HALFTONEBRUSH);
+            if (gen_HalftoneBrush == NULL)
+            {
+               WORD grayPattern[8];
+               for (int32_t i = 0; i < 8; i++)
+                  grayPattern[i] = (WORD)(0x5555 << (i & 1));
+               HBITMAP grayBitmap = CreateBitmap(8, 8, 1, 1, grayPattern);
+               if (grayBitmap != NULL)
+               {
+                  gen_HalftoneBrush = ::CreatePatternBrush(grayBitmap);
+                  ::DeleteObject(grayBitmap);
+               }
+            }
+            if (!gen_WingdixTerm)
+               gen_WingdixTerm = (char)!atexit(&__win_gdi_x_term);
+            ::core::UnlockGlobals(CRIT_HALFTONEBRUSH);
+            */
       return NULL;
    }
 
@@ -3196,77 +3196,77 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
       ::exception::throw_not_implemented(get_app());
 
-/*
-      ASSERT(__is_valid_address(lpRect, sizeof(RECT), FALSE));
-      ASSERT(lpRectLast == NULL ||
-         __is_valid_address(lpRectLast, sizeof(RECT), FALSE));
+      /*
+            ASSERT(__is_valid_address(lpRect, sizeof(RECT), FALSE));
+            ASSERT(lpRectLast == NULL ||
+               __is_valid_address(lpRectLast, sizeof(RECT), FALSE));
 
-      // first, determine the update region and select it
-      ::draw2d::region rgnNew;
-      ::draw2d::region rgnOutside, rgnInside;
-      rgnOutside.CreateRectRgnIndirect(lpRect);
-      rect rect = *lpRect;
-      rect.inflate(-size.cx, -size.cy);
-      rect.intersect(rect, lpRect);
-      rgnInside.CreateRectRgnIndirect(rect);
-      rgnNew.CreateRectRgn(0, 0, 0, 0);
-      rgnNew.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
+            // first, determine the update region and select it
+            ::draw2d::region rgnNew;
+            ::draw2d::region rgnOutside, rgnInside;
+            rgnOutside.CreateRectRgnIndirect(lpRect);
+            rect rect = *lpRect;
+            rect.inflate(-size.cx, -size.cy);
+            rect.intersect(rect, lpRect);
+            rgnInside.CreateRectRgnIndirect(rect);
+            rgnNew.CreateRectRgn(0, 0, 0, 0);
+            rgnNew.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
 
-      ::draw2d::brush* pBrushOld = NULL;
-      if (pBrush == NULL)
-      {
-         pBrush = graphics::GetHalftoneBrush(get_app());
-      }
+            ::draw2d::brush* pBrushOld = NULL;
+            if (pBrush == NULL)
+            {
+               pBrush = graphics::GetHalftoneBrush(get_app());
+            }
 
-      ENSURE(pBrush);
+            ENSURE(pBrush);
 
-      if (pBrushLast == NULL)
-      {
-         pBrushLast = pBrush;
-      }
+            if (pBrushLast == NULL)
+            {
+               pBrushLast = pBrush;
+            }
 
-      ::draw2d::region rgnLast, rgnUpdate;
-      if (lpRectLast != NULL)
-      {
-         // find difference between new region and old region
-         rgnLast.CreateRectRgn(0, 0, 0, 0);
-         rgnOutside.SetRectRgn(lpRectLast);
-         rect = *lpRectLast;
-         rect.inflate(-sizeLast.cx, -sizeLast.cy);
-         rect.intersect(rect, lpRectLast);
-         rgnInside.SetRectRgn(rect);
-         rgnLast.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
+            ::draw2d::region rgnLast, rgnUpdate;
+            if (lpRectLast != NULL)
+            {
+               // find difference between new region and old region
+               rgnLast.CreateRectRgn(0, 0, 0, 0);
+               rgnOutside.SetRectRgn(lpRectLast);
+               rect = *lpRectLast;
+               rect.inflate(-sizeLast.cx, -sizeLast.cy);
+               rect.intersect(rect, lpRectLast);
+               rgnInside.SetRectRgn(rect);
+               rgnLast.CombineRgn(&rgnOutside, &rgnInside, RGN_XOR);
 
-         // only diff them if brushes are the same
-         if (pBrush->get_os_data() == pBrushLast->get_os_data())
-         {
-            rgnUpdate.CreateRectRgn(0, 0, 0, 0);
-            rgnUpdate.CombineRgn(&rgnLast, &rgnNew, RGN_XOR);
-         }
-      }
-      if (pBrush->get_os_data() != pBrushLast->get_os_data() && lpRectLast != NULL)
-      {
-         // brushes are different -- erase old region first
-         SelectClipRgn(&rgnLast);
-         GetClipBox(&rect);
-         pBrushOld = SelectObject(pBrushLast);
-         PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
-         SelectObject(pBrushOld);
-         pBrushOld = NULL;
-      }
+               // only diff them if brushes are the same
+               if (pBrush->get_os_data() == pBrushLast->get_os_data())
+               {
+                  rgnUpdate.CreateRectRgn(0, 0, 0, 0);
+                  rgnUpdate.CombineRgn(&rgnLast, &rgnNew, RGN_XOR);
+               }
+            }
+            if (pBrush->get_os_data() != pBrushLast->get_os_data() && lpRectLast != NULL)
+            {
+               // brushes are different -- erase old region first
+               SelectClipRgn(&rgnLast);
+               GetClipBox(&rect);
+               pBrushOld = SelectObject(pBrushLast);
+               PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
+               SelectObject(pBrushOld);
+               pBrushOld = NULL;
+            }
 
-      // draw into the update/new region
-      SelectClipRgn(rgnUpdate.get_os_data() != NULL ? &rgnUpdate : &rgnNew);
-      GetClipBox(&rect);
-      pBrushOld = SelectObject(pBrush);
-      PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
+            // draw into the update/new region
+            SelectClipRgn(rgnUpdate.get_os_data() != NULL ? &rgnUpdate : &rgnNew);
+            GetClipBox(&rect);
+            pBrushOld = SelectObject(pBrush);
+            PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
 
-      // cleanup DC
-      if (pBrushOld != NULL)
-         SelectObject(pBrushOld);
-      SelectClipRgn(NULL);
+            // cleanup DC
+            if (pBrushOld != NULL)
+               SelectObject(pBrushOld);
+            SelectClipRgn(NULL);
 
-*/
+      */
 
    }
 
@@ -3316,85 +3316,85 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 
 
-/*
+   /*
 
-   bool graphics::Attach(HDC hdc)
-   {
-
-      if(hdc == NULL)
-         return false;
-
-      if(m_hdc == hdc)
+      bool graphics::Attach(HDC hdc)
       {
 
-         if(m_pgraphics != NULL)
-            return true;
+         if(hdc == NULL)
+            return false;
 
-      }
+         if(m_hdc == hdc)
+         {
 
-      if(hdc != NULL)
-      {
+            if(m_pgraphics != NULL)
+               return true;
 
-         m_pgraphics = new ::Gdiplus::Graphics(hdc);
+         }
 
-         set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+         if(hdc != NULL)
+         {
 
-         m_hdc = hdc;
+            m_pgraphics = new ::Gdiplus::Graphics(hdc);
 
-      }
+            set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
-      return m_pgraphics != NULL;
+            m_hdc = hdc;
 
-      /*ASSERT(get_handle1() == NULL);      // only attach once, detach on destroy
-      ASSERT(get_handle2() == NULL);    // only attach to an is_empty DC
+         }
 
-      if (hDC == NULL)
-      {
-         return FALSE;
-      }
-      // remember early to avoid leak
-      set_handle1(hDC);
-      hdc_map* pMap = afxMapHDC(TRUE); // create ::collection::map if not exist
-      ASSERT(pMap != NULL);
-      pMap->set_permanent(get_handle1(), this);
+         return m_pgraphics != NULL;
 
-      SetAttribDC(get_handle1());     // Default to same as output
-      return TRUE;*/
-//   }
+         /*ASSERT(get_handle1() == NULL);      // only attach once, detach on destroy
+         ASSERT(get_handle2() == NULL);    // only attach to an is_empty DC
 
-  /* HDC graphics::Detach()
-   {
+         if (hDC == NULL)
+         {
+            return FALSE;
+         }
+         // remember early to avoid leak
+         set_handle1(hDC);
+         hdc_map* pMap = afxMapHDC(TRUE); // create ::collection::map if not exist
+         ASSERT(pMap != NULL);
+         pMap->set_permanent(get_handle1(), this);
 
-      if(m_hdc == NULL)
-         return NULL;
+         SetAttribDC(get_handle1());     // Default to same as output
+         return TRUE;*/
+         //   }
 
-      if(m_pgraphics == NULL)
-         return NULL;
+           /* HDC graphics::Detach()
+            {
 
-      delete m_pgraphics;
-      m_pgraphics = NULL;
+               if(m_hdc == NULL)
+                  return NULL;
 
-      HDC hdc = m_hdc;
-      m_hdc = NULL;
+               if(m_pgraphics == NULL)
+                  return NULL;
 
-      return hdc;
+               delete m_pgraphics;
+               m_pgraphics = NULL;
 
-   }
-*/
+               HDC hdc = m_hdc;
+               m_hdc = NULL;
+
+               return hdc;
+
+            }
+         */
 
    bool graphics::DeleteDC()
    {
 
       synch_lock ml(cairo_mutex());
 
-      if(m_pdc == NULL)
+      if (m_pdc == NULL)
          return true;
 
-	if(m_pdc ==  cairo_keep::g_cairo)
-	{
-//         printf("123");
+      if (m_pdc == cairo_keep::g_cairo)
+      {
+         //         printf("123");
 
-	}
+      }
 
       cairo_destroy(m_pdc);
 
@@ -3405,46 +3405,46 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    }
 
 
-/*
+   /*
 
-   void graphics::SetAttribDC(HDC hDC)  // Set the Attribute DC
-   {
-//      set_handle2(hDC);
-   }
-
-   void graphics::SetOutputDC(HDC hDC)  // Set the Output DC
-   {
-#ifdef DEBUG
-/*      hdc_map* pMap = afxMapHDC();
-      if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
+      void graphics::SetAttribDC(HDC hDC)  // Set the Attribute DC
       {
-         TRACE(::aura::trace::category_AppMsg, 0, "cannot Set Output hDC on Attached graphics.\n");
-         ASSERT(FALSE);
-      }*/
-//#endif
-  //    set_handle1(hDC);
-   //}
-/*
-   void graphics::ReleaseAttribDC()     // Release the Attribute DC
-   {
-//      set_handle2(NULL);
-   }
+   //      set_handle2(hDC);
+      }
 
-   void graphics::ReleaseOutputDC()     // Release the Output DC
-   {
-#ifdef DEBUG
-/*      hdc_map* pMap = afxMapHDC();
-      if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
+      void graphics::SetOutputDC(HDC hDC)  // Set the Output DC
       {
-         TRACE(::aura::trace::category_AppMsg, 0, "cannot Release Output hDC on Attached graphics.\n");
-         ASSERT(FALSE);
-      }*/
-//#endif
-      //set_handle1(NULL);
-   //
+   #ifdef DEBUG
+   /*      hdc_map* pMap = afxMapHDC();
+         if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
+         {
+            TRACE(::aura::trace::category_AppMsg, 0, "cannot Set Output hDC on Attached graphics.\n");
+            ASSERT(FALSE);
+         }*/
+         //#endif
+           //    set_handle1(hDC);
+            //}
+         /*
+            void graphics::ReleaseAttribDC()     // Release the Attribute DC
+            {
+         //      set_handle2(NULL);
+            }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Out-of-line routines
+            void graphics::ReleaseOutputDC()     // Release the Output DC
+            {
+         #ifdef DEBUG
+         /*      hdc_map* pMap = afxMapHDC();
+               if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
+               {
+                  TRACE(::aura::trace::category_AppMsg, 0, "cannot Release Output hDC on Attached graphics.\n");
+                  ASSERT(FALSE);
+               }*/
+               //#endif
+                     //set_handle1(NULL);
+                  //
+
+                  /////////////////////////////////////////////////////////////////////////////
+                  // Out-of-line routines
 
    int32_t graphics::StartDoc(const char * lpszDocName)
    {
@@ -3452,13 +3452,13 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      DOCINFO di;
-      memset(&di, 0, sizeof(DOCINFO));
-      di.cbSize = sizeof(DOCINFO);
-      di.lpszDocName = lpszDocName;
-      return StartDoc(&di);
-*/
+      /*
+            DOCINFO di;
+            memset(&di, 0, sizeof(DOCINFO));
+            di.cbSize = sizeof(DOCINFO);
+            di.lpszDocName = lpszDocName;
+            return StartDoc(&di);
+      */
 
    }
 
@@ -3471,23 +3471,25 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       //::exception::throw_not_implemented(get_app());
       return m_iSaveDC;
 
-/*
-      int32_t nRetVal = 0;
-      if(get_handle2() != NULL)
-         nRetVal = ::SaveDC(get_handle2());
-      if(get_handle1() != NULL && get_handle1() != get_handle2() && ::SaveDC(get_handle1()) != 0)
-         nRetVal = -1;   // -1 is the only valid restore value for complex DCs
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = 0;
+            if(get_handle2() != NULL)
+               nRetVal = ::SaveDC(get_handle2());
+            if(get_handle1() != NULL && get_handle1() != get_handle2() && ::SaveDC(get_handle1()) != 0)
+               nRetVal = -1;   // -1 is the only valid restore value for complex DCs
+            return nRetVal;
+      */
 
    }
 
    bool graphics::RestoreDC(int32_t nSavedDC)
    {
 
+      synch_lock sl(cairo_mutex());
+
       bool bRestored = false;
 
-      while(m_iSaveDC >= nSavedDC)
+      while (m_iSaveDC >= nSavedDC)
       {
 
          cairo_restore(m_pdc);
@@ -3498,17 +3500,22 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
       }
 
+      if (m_iSaveDC < m_iSaveDCPositiveClip)
+      {
+         m_iSaveDCPositiveClip = -1;
+      }
+
       //::exception::throw_not_implemented(get_app());
       return bRestored;
 
-/*
-      bool bRetVal = TRUE;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         bRetVal = ::RestoreDC(get_handle1(), nSavedDC) != FALSE;
-      if(get_handle2() != NULL)
-         bRetVal = (bRetVal && ::RestoreDC(get_handle2(), nSavedDC) != FALSE);
-      return bRetVal;
-*/
+      /*
+            bool bRetVal = TRUE;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               bRetVal = ::RestoreDC(get_handle1(), nSavedDC) != FALSE;
+            if(get_handle2() != NULL)
+               bRetVal = (bRetVal && ::RestoreDC(get_handle2(), nSavedDC) != FALSE);
+            return bRetVal;
+      */
 
    }
 
@@ -3542,7 +3549,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       m_fontxyz = *pFont;
       return m_spfont;*/
 
-      if(!select_font(pfont))
+      if (!select_font(pfont))
          return NULL;
 
       return m_spfont;
@@ -3555,14 +3562,14 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      int32_t nRetVal = GDI_ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = (int32_t)(int_ptr)::SelectObject(get_handle1(), (HGDIOBJ) pRgn->get_os_data());
-      if(get_handle2() != NULL)
-         nRetVal = (int32_t)(int_ptr)::SelectObject(get_handle2(), (HGDIOBJ) pRgn->get_os_data());
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = GDI_ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = (int32_t)(int_ptr)::SelectObject(get_handle1(), (HGDIOBJ) pRgn->get_os_data());
+            if(get_handle2() != NULL)
+               nRetVal = (int32_t)(int_ptr)::SelectObject(get_handle2(), (HGDIOBJ) pRgn->get_os_data());
+            return nRetVal;
+      */
 
    }
 
@@ -3578,14 +3585,14 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = 0;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::SetPolyFillMode(get_handle1(), nPolyFillMode);
-      if(get_handle2() != NULL)
-         nRetVal = ::SetPolyFillMode(get_handle2(), nPolyFillMode);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = 0;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::SetPolyFillMode(get_handle1(), nPolyFillMode);
+            if(get_handle2() != NULL)
+               nRetVal = ::SetPolyFillMode(get_handle2(), nPolyFillMode);
+            return nRetVal;
+      */
 
    }
 
@@ -3595,14 +3602,14 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = 0;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::SetROP2(get_handle1(), nDrawMode);
-      if(get_handle2() != NULL)
-         nRetVal = ::SetROP2(get_handle2(), nDrawMode);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = 0;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::SetROP2(get_handle1(), nDrawMode);
+            if(get_handle2() != NULL)
+               nRetVal = ::SetROP2(get_handle2(), nDrawMode);
+            return nRetVal;
+      */
 
    }
 
@@ -3612,8 +3619,8 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       //::exception::throw_not_implemented(get_app());
 //      return 0;
 
-m_nStretchBltMode = nStretchMode;
-return 1;
+      m_nStretchBltMode = nStretchMode;
+      return 1;
 
       /*int32_t nRetVal = 0;
       if(get_handle1() != NULL && get_handle1() != get_handle2())
@@ -3630,18 +3637,18 @@ return 1;
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = 0;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-      {
-         nRetVal = ::SetGraphicsMode(get_handle1(), iMode);
-      }
-      if(get_handle2() != NULL)
-      {
-         nRetVal = ::SetGraphicsMode(get_handle2(), iMode);
-      }
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = 0;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+            {
+               nRetVal = ::SetGraphicsMode(get_handle1(), iMode);
+            }
+            if(get_handle2() != NULL)
+            {
+               nRetVal = ::SetGraphicsMode(get_handle2(), iMode);
+            }
+            return nRetVal;
+      */
 
    }
 
@@ -3651,40 +3658,40 @@ return 1;
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      bool nRetVal = 0;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-      {
-         nRetVal = ::SetWorldTransform(get_handle1(), pXform) != FALSE;
-      }
-      if(get_handle2() != NULL)
-      {
-         nRetVal = ::SetWorldTransform(get_handle2(), pXform) != FALSE;
-      }
-      return nRetVal;
-*/
+      /*
+            bool nRetVal = 0;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+            {
+               nRetVal = ::SetWorldTransform(get_handle1(), pXform) != FALSE;
+            }
+            if(get_handle2() != NULL)
+            {
+               nRetVal = ::SetWorldTransform(get_handle2(), pXform) != FALSE;
+            }
+            return nRetVal;
+      */
 
    }
 
-   bool graphics::ModifyWorldTransform(const XFORM* pXform,uint32_t iMode)
+   bool graphics::ModifyWorldTransform(const XFORM* pXform, uint32_t iMode)
    {
 
       ::exception::throw_not_implemented(get_app());
       return false;
 
 
-/*
-      bool nRetVal = 0;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-      {
-         nRetVal = ::ModifyWorldTransform(get_handle1(), pXform, iMode) != FALSE;
-      }
-      if(get_handle2() != NULL)
-      {
-         nRetVal = ::ModifyWorldTransform(get_handle2(), pXform, iMode) != FALSE;
-      }
-      return nRetVal;
-*/
+      /*
+            bool nRetVal = 0;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+            {
+               nRetVal = ::ModifyWorldTransform(get_handle1(), pXform, iMode) != FALSE;
+            }
+            if(get_handle2() != NULL)
+            {
+               nRetVal = ::ModifyWorldTransform(get_handle2(), pXform, iMode) != FALSE;
+            }
+            return nRetVal;
+      */
 
    }
 
@@ -3695,14 +3702,14 @@ return 1;
       return 0;
 
 
-/*
-      int32_t nRetVal = 0;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::SetMapMode(get_handle1(), nMapMode);
-      if(get_handle2() != NULL)
-         nRetVal = ::SetMapMode(get_handle2(), nMapMode);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = 0;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::SetMapMode(get_handle1(), nMapMode);
+            if(get_handle2() != NULL)
+               nRetVal = ::SetMapMode(get_handle2(), nMapMode);
+            return nRetVal;
+      */
 
    }
 
@@ -3715,7 +3722,7 @@ return 1;
 
       cairo_get_matrix(m_pdc, &m);
 
-      return point((int64_t) m.x0, (int64_t) m.y0);
+      return point((int64_t)m.x0, (int64_t)m.y0);
 
    }
 
@@ -3723,17 +3730,17 @@ return 1;
 
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
-synch_lock ml(cairo_mutex());
-      if(abs(x) > 900 || abs(y) > 800)
+      synch_lock ml(cairo_mutex());
+      if (abs(x) > 900 || abs(y) > 800)
       {
 
-//         printf("123");
+         //         printf("123");
 
       }
 
       cairo_matrix_t m;
 
-      if(m_pdc == NULL)
+      if (m_pdc == NULL)
       {
 
          return null_point();
@@ -3742,9 +3749,9 @@ synch_lock ml(cairo_mutex());
 
       cairo_get_matrix(m_pdc, &m);
 
-      int xOld = (int) m.x0;
+      int xOld = (int)m.x0;
 
-      int yOld = (int) m.y0;
+      int yOld = (int)m.y0;
 
       m.x0 = x;
 
@@ -3763,19 +3770,19 @@ synch_lock ml(cairo_mutex());
 
       point point = GetViewportOrg();
 
-      if(abs(nWidth) > 800|| abs(nHeight) >800)
+      if (abs(nWidth) > 800 || abs(nHeight) > 800)
       {
 
-//         printf("123");
+         //         printf("123");
 
       }
 
       cairo_translate(m_pdc, nWidth, nHeight);
 
-      if(abs(point.x + nWidth) > 800 || abs(point.y + nHeight) > 800)
+      if (abs(point.x + nWidth) > 800 || abs(point.y + nHeight) > 800)
       {
 
-////         printf("123");
+         ////         printf("123");
 
       }
 
@@ -3789,14 +3796,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-/*
-      size size(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::SetViewportExtEx(get_handle1(), x, y, &size);
-      if(get_handle2() != NULL)
-         ::SetViewportExtEx(get_handle2(), x, y, &size);
-      return size;
-*/
+      /*
+            size size(0, 0);
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               ::SetViewportExtEx(get_handle1(), x, y, &size);
+            if(get_handle2() != NULL)
+               ::SetViewportExtEx(get_handle2(), x, y, &size);
+            return size;
+      */
    }
 
    size graphics::ScaleViewportExt(int32_t xNum, int32_t xDenom, int32_t yNum, int32_t yDenom)
@@ -3805,14 +3812,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-/*
-      size size(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::ScaleViewportExtEx(get_handle1(), xNum, xDenom, yNum, yDenom, &size);
-      if(get_handle2() != NULL)
-         ::ScaleViewportExtEx(get_handle2(), xNum, xDenom, yNum, yDenom, &size);
-      return size;
-*/
+      /*
+            size size(0, 0);
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               ::ScaleViewportExtEx(get_handle1(), xNum, xDenom, yNum, yDenom, &size);
+            if(get_handle2() != NULL)
+               ::ScaleViewportExtEx(get_handle2(), xNum, xDenom, yNum, yDenom, &size);
+            return size;
+      */
 
    }
 
@@ -3822,14 +3829,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::point(0, 0);
 
-/*
-      point point(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::SetWindowOrgEx(get_handle1(), x, y, &point);
-      if(get_handle2() != NULL)
-         ::SetWindowOrgEx(get_handle2(), x, y, &point);
-      return point;
-*/
+      /*
+            point point(0, 0);
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               ::SetWindowOrgEx(get_handle1(), x, y, &point);
+            if(get_handle2() != NULL)
+               ::SetWindowOrgEx(get_handle2(), x, y, &point);
+            return point;
+      */
    }
 
    point graphics::OffsetWindowOrg(int32_t nWidth, int32_t nHeight)
@@ -3838,14 +3845,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::point(0, 0);
 
-/*
-      point point(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::OffsetWindowOrgEx(get_handle1(), nWidth, nHeight, &point);
-      if(get_handle2() != NULL)
-         ::OffsetWindowOrgEx(get_handle2(), nWidth, nHeight, &point);
-      return point;
-*/
+      /*
+            point point(0, 0);
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               ::OffsetWindowOrgEx(get_handle1(), nWidth, nHeight, &point);
+            if(get_handle2() != NULL)
+               ::OffsetWindowOrgEx(get_handle2(), nWidth, nHeight, &point);
+            return point;
+      */
 
    }
 
@@ -3855,14 +3862,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-/*
-      size size(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::SetWindowExtEx(get_handle1(), x, y, &size);
-      if(get_handle2() != NULL)
-         ::SetWindowExtEx(get_handle2(), x, y, &size);
-      return size;
-*/
+      /*
+            size size(0, 0);
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               ::SetWindowExtEx(get_handle1(), x, y, &size);
+            if(get_handle2() != NULL)
+               ::SetWindowExtEx(get_handle2(), x, y, &size);
+            return size;
+      */
 
    }
 
@@ -3872,14 +3879,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-/*
-      size size(0, 0);
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::ScaleWindowExtEx(get_handle1(), xNum, xDenom, yNum, yDenom, &size);
-      if(get_handle2() != NULL)
-         ::ScaleWindowExtEx(get_handle2(), xNum, xDenom, yNum, yDenom, &size);
-      return size;
-*/
+      /*
+            size size(0, 0);
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               ::ScaleWindowExtEx(get_handle1(), xNum, xDenom, yNum, yDenom, &size);
+            if(get_handle2() != NULL)
+               ::ScaleWindowExtEx(get_handle2(), xNum, xDenom, yNum, yDenom, &size);
+            return size;
+      */
 
    }
 
@@ -3889,7 +3896,7 @@ synch_lock ml(cairo_mutex());
       //::exception::throw_not_implemented(get_app());
       return 0;
 
-/*      return ::GetClipBox(get_handle1(), lpRect);*/
+      /*      return ::GetClipBox(get_handle1(), lpRect);*/
    }
 
    int32_t graphics::SelectClipRgn(::draw2d::region * pregion)
@@ -3897,10 +3904,19 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-      if(pregion == NULL)
+      if (pregion == NULL)
       {
 
-         cairo_reset_clip(m_pdc);
+         if (m_iSaveDCPositiveClip >= 0)
+         {
+
+            // is better in  cairo to restore the DC instead of resetting clipping
+
+            RestoreDC(m_iSaveDCPositiveClip);
+
+            m_iSaveDCPositiveClip = -1;
+
+         }
 
          m_spregion.release();
 
@@ -3909,15 +3925,24 @@ synch_lock ml(cairo_mutex());
       else
       {
 
-         if(m_spregion.is_null())
+         if (m_spregion.is_null())
             m_spregion.alloc(allocer());
 
          m_spregion.m_p = pregion;
 
-         if(m_spregion.cast < region > ()->is_simple_positive_region())
+         if (m_spregion.cast < region >()->is_simple_positive_region())
          {
 
-             m_spregion.cast < region > ()->clip(m_pdc);
+            if (m_iSaveDCPositiveClip > 0)
+            {
+
+               RestoreDC(m_iSaveDCPositiveClip);
+
+            }
+
+            m_iSaveDCPositiveClip = SaveDC();
+
+            m_spregion.cast < region >()->clip(m_pdc);
 
          }
 
@@ -3925,14 +3950,14 @@ synch_lock ml(cairo_mutex());
 
       return 0;
 
-/*
-      int32_t nRetVal = ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::SelectClipRgn(get_handle1(), pRgn == NULL ? NULL : (HRGN) pRgn->get_os_data());
-      if(get_handle2() != NULL)
-         nRetVal = ::SelectClipRgn(get_handle2(), pRgn == NULL ? NULL : (HRGN) pRgn->get_os_data());
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::SelectClipRgn(get_handle1(), pRgn == NULL ? NULL : (HRGN) pRgn->get_os_data());
+            if(get_handle2() != NULL)
+               nRetVal = ::SelectClipRgn(get_handle2(), pRgn == NULL ? NULL : (HRGN) pRgn->get_os_data());
+            return nRetVal;
+      */
 
    }
 
@@ -3942,14 +3967,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::ExcludeClipRect(get_handle1(), x1, y1, x2, y2);
-      if(get_handle2() != NULL)
-         nRetVal = ::ExcludeClipRect(get_handle2(), x1, y1, x2, y2);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::ExcludeClipRect(get_handle1(), x1, y1, x2, y2);
+            if(get_handle2() != NULL)
+               nRetVal = ::ExcludeClipRect(get_handle2(), x1, y1, x2, y2);
+            return nRetVal;
+      */
 
    }
 
@@ -3959,16 +3984,16 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::ExcludeClipRect(get_handle1(), lpRect.left, lpRect.top,
-         lpRect.right, lpRect.bottom);
-      if(get_handle2() != NULL)
-         nRetVal = ::ExcludeClipRect(get_handle2(), lpRect.left, lpRect.top,
-         lpRect.right, lpRect.bottom);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::ExcludeClipRect(get_handle1(), lpRect.left, lpRect.top,
+               lpRect.right, lpRect.bottom);
+            if(get_handle2() != NULL)
+               nRetVal = ::ExcludeClipRect(get_handle2(), lpRect.left, lpRect.top,
+               lpRect.right, lpRect.bottom);
+            return nRetVal;
+      */
 
    }
 
@@ -3978,14 +4003,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::IntersectClipRect(get_handle1(), x1, y1, x2, y2);
-      if(get_handle2() != NULL)
-         nRetVal = ::IntersectClipRect(get_handle2(), x1, y1, x2, y2);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::IntersectClipRect(get_handle1(), x1, y1, x2, y2);
+            if(get_handle2() != NULL)
+               nRetVal = ::IntersectClipRect(get_handle2(), x1, y1, x2, y2);
+            return nRetVal;
+      */
 
    }
 
@@ -3995,13 +4020,13 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*      int32_t nRetVal = ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::IntersectClipRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
-      if(get_handle2() != NULL)
-         nRetVal = ::IntersectClipRect(get_handle2(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
-      return nRetVal;
-*/
+      /*      int32_t nRetVal = ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::IntersectClipRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
+            if(get_handle2() != NULL)
+               nRetVal = ::IntersectClipRect(get_handle2(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
+            return nRetVal;
+      */
 
    }
 
@@ -4011,14 +4036,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::OffsetClipRgn(get_handle1(), x, y);
-      if(get_handle2() != NULL)
-         nRetVal = ::OffsetClipRgn(get_handle2(), x, y);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::OffsetClipRgn(get_handle1(), x, y);
+            if(get_handle2() != NULL)
+               nRetVal = ::OffsetClipRgn(get_handle2(), x, y);
+            return nRetVal;
+      */
 
    }
 
@@ -4028,14 +4053,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
-      if(get_handle2() != NULL)
-         nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::OffsetClipRgn(get_handle1(), size.cx, size.cy);
+            if(get_handle2() != NULL)
+               nRetVal = ::OffsetClipRgn(get_handle2(), size.cx, size.cy);
+            return nRetVal;
+      */
    }
 
    point graphics::MoveTo(int32_t x, int32_t y)
@@ -4045,7 +4070,7 @@ synch_lock ml(cairo_mutex());
 
       point point(0, 0);
 
-      if(cairo_has_current_point(m_pdc))
+      if (cairo_has_current_point(m_pdc))
       {
 
          double dx = 0.;
@@ -4053,8 +4078,8 @@ synch_lock ml(cairo_mutex());
 
          cairo_get_current_point(m_pdc, &dx, &dy);
 
-         point.x = (LONG) dx;
-         point.y = (LONG) dy;
+         point.x = (LONG)dx;
+         point.y = (LONG)dy;
 
       }
 
@@ -4074,7 +4099,7 @@ synch_lock ml(cairo_mutex());
 
       pointd point(0., 0.);
 
-      if(cairo_has_current_point(m_pdc))
+      if (cairo_has_current_point(m_pdc))
       {
 
          double dx = 0.;
@@ -4103,14 +4128,14 @@ synch_lock ml(cairo_mutex());
       //::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      UINT nRetVal = GDI_ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         ::SetTextAlign(get_handle1(), nFlags);
-      if(get_handle2() != NULL)
-         nRetVal = ::SetTextAlign(get_handle2(), nFlags);
-      return nRetVal;
-*/
+      /*
+            UINT nRetVal = GDI_ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               ::SetTextAlign(get_handle1(), nFlags);
+            if(get_handle2() != NULL)
+               nRetVal = ::SetTextAlign(get_handle2(), nFlags);
+            return nRetVal;
+      */
 
    }
 
@@ -4120,14 +4145,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      int32_t nRetVal = 0;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::SetTextJustification(get_handle1(), nBreakExtra, nBreakCount);
-      if(get_handle2() != NULL)
-         nRetVal = ::SetTextJustification(get_handle2(), nBreakExtra, nBreakCount);
-      return nRetVal;
-*/
+      /*
+            int32_t nRetVal = 0;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::SetTextJustification(get_handle1(), nBreakExtra, nBreakCount);
+            if(get_handle2() != NULL)
+               nRetVal = ::SetTextJustification(get_handle2(), nBreakExtra, nBreakCount);
+            return nRetVal;
+      */
 
    }
 
@@ -4137,15 +4162,15 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      int32_t nRetVal = 0x8000000;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         nRetVal = ::SetTextCharacterExtra(get_handle1(), nCharExtra);
-      if(get_handle2() != NULL)
-         nRetVal = ::SetTextCharacterExtra(get_handle2(), nCharExtra);
-      return nRetVal;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            int32_t nRetVal = 0x8000000;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               nRetVal = ::SetTextCharacterExtra(get_handle1(), nCharExtra);
+            if(get_handle2() != NULL)
+               nRetVal = ::SetTextCharacterExtra(get_handle2(), nCharExtra);
+            return nRetVal;
+      */
 
    }
 
@@ -4155,20 +4180,20 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      uint32_t dwRetVal = GDI_ERROR;
-      if(get_handle1() != NULL && get_handle1() != get_handle2())
-         dwRetVal = ::SetMapperFlags(get_handle1(), dwFlag);
-      if(get_handle2() != NULL)
-         dwRetVal = ::SetMapperFlags(get_handle2(), dwFlag);
-      return dwRetVal;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            uint32_t dwRetVal = GDI_ERROR;
+            if(get_handle1() != NULL && get_handle1() != get_handle2())
+               dwRetVal = ::SetMapperFlags(get_handle1(), dwFlag);
+            if(get_handle2() != NULL)
+               dwRetVal = ::SetMapperFlags(get_handle2(), dwFlag);
+            return dwRetVal;
+      */
 
    }
 
-//   typedef uint32_t (CALLBACK* __GDI AYOUTPROC)(HDC);
-//   typedef uint32_t (CALLBACK* __GDISETLAYOUTPROC)(HDC, uint32_t);
+   //   typedef uint32_t (CALLBACK* __GDI AYOUTPROC)(HDC);
+   //   typedef uint32_t (CALLBACK* __GDISETLAYOUTPROC)(HDC, uint32_t);
 
    uint32_t graphics::GetLayout() const
    {
@@ -4176,23 +4201,23 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      HINSTANCE hInst = ::GetModuleHandleA("GDI32.DLL");
-      ASSERT(hInst != NULL);
-      uint32_t dwGetLayout = LAYOUT_LTR;
-      __GDIGETLAYOUTPROC pfn;
-      pfn = (__GDIGETLAYOUTPROC) GetProcaddress(hInst, "GetLayout");
-      // if they API is available, just call it. If it is not
-      // available, indicate an error.
-      if (pfn != NULL)
-         dwGetLayout = (*pfn)(get_handle1());
-      else
-      {
-         dwGetLayout = GDI_ERROR;
-         SetLastError(ERROR_caLL_NOT_IMPLEMENTED);
-      }
-      return dwGetLayout;
-*/
+      /*
+            HINSTANCE hInst = ::GetModuleHandleA("GDI32.DLL");
+            ASSERT(hInst != NULL);
+            uint32_t dwGetLayout = LAYOUT_LTR;
+            __GDIGETLAYOUTPROC pfn;
+            pfn = (__GDIGETLAYOUTPROC) GetProcaddress(hInst, "GetLayout");
+            // if they API is available, just call it. If it is not
+            // available, indicate an error.
+            if (pfn != NULL)
+               dwGetLayout = (*pfn)(get_handle1());
+            else
+            {
+               dwGetLayout = GDI_ERROR;
+               SetLastError(ERROR_caLL_NOT_IMPLEMENTED);
+            }
+            return dwGetLayout;
+      */
 
    }
 
@@ -4202,23 +4227,23 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      HINSTANCE hInst = ::GetModuleHandleA("GDI32.DLL");
-      ASSERT(hInst != NULL);
-      uint32_t dwGetLayout = LAYOUT_LTR;
-      __GDISETLAYOUTPROC pfn;
-      pfn = (__GDISETLAYOUTPROC) GetProcaddress(hInst, "SetLayout");
-      // If the API is availalbe, just call it. If it's not available,
-      // setting anything other than LAYOUT_LTR is an error.
-      if (pfn != NULL)
-         dwGetLayout = (*pfn)(get_handle1(), dwSetLayout);
-      else if (dwSetLayout != LAYOUT_LTR)
-      {
-         dwGetLayout = GDI_ERROR;
-         SetLastError(ERROR_caLL_NOT_IMPLEMENTED);
-      }
-      return dwGetLayout;
-*/
+      /*
+            HINSTANCE hInst = ::GetModuleHandleA("GDI32.DLL");
+            ASSERT(hInst != NULL);
+            uint32_t dwGetLayout = LAYOUT_LTR;
+            __GDISETLAYOUTPROC pfn;
+            pfn = (__GDISETLAYOUTPROC) GetProcaddress(hInst, "SetLayout");
+            // If the API is availalbe, just call it. If it's not available,
+            // setting anything other than LAYOUT_LTR is an error.
+            if (pfn != NULL)
+               dwGetLayout = (*pfn)(get_handle1(), dwSetLayout);
+            else if (dwSetLayout != LAYOUT_LTR)
+            {
+               dwGetLayout = GDI_ERROR;
+               SetLastError(ERROR_caLL_NOT_IMPLEMENTED);
+            }
+            return dwGetLayout;
+      */
 
    }
    /*
@@ -4250,17 +4275,17 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      bool bResult = ::ArcTo(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4) != FALSE;
-      if (get_handle1() != get_handle2())
-      {
-         point pt;
-         VERIFY(::GetCurrentPositionEx(get_handle1(), &pt));
-         VERIFY(::MoveToEx(get_handle2(), pt.x, pt.y, NULL));
-      }
-      return bResult;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            bool bResult = ::ArcTo(get_handle1(), x1, y1, x2, y2, x3, y3, x4, y4) != FALSE;
+            if (get_handle1() != get_handle2())
+            {
+               point pt;
+               VERIFY(::GetCurrentPositionEx(get_handle1(), &pt));
+               VERIFY(::MoveToEx(get_handle2(), pt.x, pt.y, NULL));
+            }
+            return bResult;
+      */
 
    }
 
@@ -4271,15 +4296,15 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      int32_t nResult = 0;
-      if (get_handle1() != get_handle2())
-         nResult = ::SetArcDirection(get_handle1(), nArcDirection);
-      if (get_handle2() != NULL)
-         nResult = ::SetArcDirection(get_handle2(), nArcDirection);
-      return nResult;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            int32_t nResult = 0;
+            if (get_handle1() != get_handle2())
+               nResult = ::SetArcDirection(get_handle1(), nArcDirection);
+            if (get_handle2() != NULL)
+               nResult = ::SetArcDirection(get_handle2(), nArcDirection);
+            return nResult;
+      */
 
    }
 
@@ -4289,17 +4314,17 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      bool bResult = ::PolyDraw(get_handle1(), lpPoints, lpTypes, nCount) != FALSE;
-      if (get_handle1() != get_handle2())
-      {
-         point pt;
-         VERIFY(::GetCurrentPositionEx(get_handle1(), &pt));
-         VERIFY(::MoveToEx(get_handle2(), pt.x, pt.y, NULL));
-      }
-      return bResult;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            bool bResult = ::PolyDraw(get_handle1(), lpPoints, lpTypes, nCount) != FALSE;
+            if (get_handle1() != get_handle2())
+            {
+               point pt;
+               VERIFY(::GetCurrentPositionEx(get_handle1(), &pt));
+               VERIFY(::MoveToEx(get_handle2(), pt.x, pt.y, NULL));
+            }
+            return bResult;
+      */
 
    }
 
@@ -4309,38 +4334,38 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return false;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      bool bResult = ::PolylineTo(get_handle1(), lpPoints, nCount) != FALSE;
-      if (get_handle1() != get_handle2())
-      {
-         point pt;
-         VERIFY(::GetCurrentPositionEx(get_handle1(), &pt));
-         VERIFY(::MoveToEx(get_handle2(), pt.x, pt.y, NULL));
-      }
-      return bResult;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            bool bResult = ::PolylineTo(get_handle1(), lpPoints, nCount) != FALSE;
+            if (get_handle1() != get_handle2())
+            {
+               point pt;
+               VERIFY(::GetCurrentPositionEx(get_handle1(), &pt));
+               VERIFY(::MoveToEx(get_handle2(), pt.x, pt.y, NULL));
+            }
+            return bResult;
+      */
 
    }
 
-/*
-   bool graphics::SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust)
-   {
+   /*
+      bool graphics::SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust)
+      {
 
-      ::exception::throw_not_implemented(get_app());
-      return false;
+         ::exception::throw_not_implemented(get_app());
+         return false;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      bool bResult = FALSE;
-      if (get_handle1() != get_handle2())
-         bResult = ::SetColorAdjustment(get_handle1(), lpColorAdjust) != FALSE;
-      if (get_handle2() != NULL)
-         bResult = ::SetColorAdjustment(get_handle2(), lpColorAdjust) != FALSE;
-      return bResult;
-*/
+   /*
+         ASSERT(get_handle1() != NULL);
+         bool bResult = FALSE;
+         if (get_handle1() != get_handle2())
+            bResult = ::SetColorAdjustment(get_handle1(), lpColorAdjust) != FALSE;
+         if (get_handle2() != NULL)
+            bResult = ::SetColorAdjustment(get_handle2(), lpColorAdjust) != FALSE;
+         return bResult;
+   */
 
-//   }
+   //   }
 
    bool graphics::PolyBezierTo(const POINT* lpPoints, count nCount)
    {
@@ -4348,17 +4373,17 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      bool bResult = ::PolyBezierTo(get_handle1(), lpPoints, nCount) != FALSE;
-      if (get_handle1() != get_handle2())
-      {
-         point pt;
-         VERIFY(::GetCurrentPositionEx(get_handle1(), &pt));
-         VERIFY(::MoveToEx(get_handle2(), pt.x, pt.y, NULL));
-      }
-      return bResult;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            bool bResult = ::PolyBezierTo(get_handle1(), lpPoints, nCount) != FALSE;
+            if (get_handle1() != get_handle2())
+            {
+               point pt;
+               VERIFY(::GetCurrentPositionEx(get_handle1(), &pt));
+               VERIFY(::MoveToEx(get_handle2(), pt.x, pt.y, NULL));
+            }
+            return bResult;
+      */
 
    }
 
@@ -4368,27 +4393,27 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      ASSERT(get_handle1() != NULL);
+      /*
+            ASSERT(get_handle1() != NULL);
 
-      // output DC always holds the current path
-      if (!::SelectClipPath(get_handle1(), nMode))
-         return FALSE;
+            // output DC always holds the current path
+            if (!::SelectClipPath(get_handle1(), nMode))
+               return FALSE;
 
-      // transfer clipping region into the attribute DC
-      bool bResult = TRUE;
-      if (get_handle1() != get_handle2())
-      {
-         HRGN hRgn = ::CreateRectRgn(0, 0, 0, 0);
-         if (::GetClipRgn(get_handle1(), hRgn) < 0 || !::SelectClipRgn(get_handle2(), hRgn))
-         {
-            TRACE(::aura::trace::category_AppMsg, 0, "Error: unable to transfer clip region in graphics::SelectClipPath!\n");
-            bResult = FALSE;
-         }
-         ::DeleteObject(hRgn);
-      }
-      return bResult;
-*/
+            // transfer clipping region into the attribute DC
+            bool bResult = TRUE;
+            if (get_handle1() != get_handle2())
+            {
+               HRGN hRgn = ::CreateRectRgn(0, 0, 0, 0);
+               if (::GetClipRgn(get_handle1(), hRgn) < 0 || !::SelectClipRgn(get_handle2(), hRgn))
+               {
+                  TRACE(::aura::trace::category_AppMsg, 0, "Error: unable to transfer clip region in graphics::SelectClipPath!\n");
+                  bResult = FALSE;
+               }
+               ::DeleteObject(hRgn);
+            }
+            return bResult;
+      */
 
    }
 
@@ -4398,14 +4423,14 @@ synch_lock ml(cairo_mutex());
       //::exception::throw_not_implemented(get_app());
       return 0;
 
-/*      ASSERT(get_handle1() != NULL);
-      int32_t nRetVal = ERROR;
-      if (get_handle1() != get_handle2())
-         nRetVal = ::ExtSelectClipRgn(get_handle1(), (HRGN)pRgn->get_os_data(), nMode);
-      if (get_handle2() != NULL)
-         nRetVal = ::ExtSelectClipRgn(get_handle2(), (HRGN)pRgn->get_os_data(), nMode);
-      return nRetVal;
-*/
+      /*      ASSERT(get_handle1() != NULL);
+            int32_t nRetVal = ERROR;
+            if (get_handle1() != get_handle2())
+               nRetVal = ::ExtSelectClipRgn(get_handle1(), (HRGN)pRgn->get_os_data(), nMode);
+            if (get_handle2() != NULL)
+               nRetVal = ::ExtSelectClipRgn(get_handle2(), (HRGN)pRgn->get_os_data(), nMode);
+            return nRetVal;
+      */
 
    }
 
@@ -4511,29 +4536,29 @@ synch_lock ml(cairo_mutex());
       return 1;
    }*/
 
-/*
+   /*
 
-   bool graphics::PlayMetaFile(HMETAFILE hMF)
-   {
-
-      ::exception::throw_not_implemented(get_app());
-      return false;
-
-/*
-      if (::GetDevicecaps(get_handle1(), TECHNOLOGY) == DT_METAFILE)
+      bool graphics::PlayMetaFile(HMETAFILE hMF)
       {
-         // playing metafile in metafile, just use core windows API
-         return ::PlayMetaFile(get_handle1(), hMF) != FALSE;
-      }
 
-      // for special playback, lParam == pgraphics
-      return ::EnumMetaFile(get_handle1(), hMF, __enum_meta_file_procedure, (LPARAM)this) != FALSE;
-*/
+         ::exception::throw_not_implemented(get_app());
+         return false;
 
-//   }
+   /*
+         if (::GetDevicecaps(get_handle1(), TECHNOLOGY) == DT_METAFILE)
+         {
+            // playing metafile in metafile, just use core windows API
+            return ::PlayMetaFile(get_handle1(), hMF) != FALSE;
+         }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Coordinate transforms
+         // for special playback, lParam == pgraphics
+         return ::EnumMetaFile(get_handle1(), hMF, __enum_meta_file_procedure, (LPARAM)this) != FALSE;
+   */
+
+   //   }
+
+      /////////////////////////////////////////////////////////////////////////////
+      // Coordinate transforms
 
    void graphics::LPtoDP(LPSIZE lpSize) const
    {
@@ -4541,14 +4566,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return;
 
-/*
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+      /*
+            ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
 
-      size sizeWinExt = GetWindowExt();
-      size sizeVpExt = GetViewportExt();
-      lpSize->cx = MulDiv(lpSize->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
-      lpSize->cy = MulDiv(lpSize->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
-*/
+            size sizeWinExt = GetWindowExt();
+            size sizeVpExt = GetViewportExt();
+            lpSize->cx = MulDiv(lpSize->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
+            lpSize->cy = MulDiv(lpSize->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
+      */
 
    }
 
@@ -4558,27 +4583,27 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return;
 
-/*
-      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
+      /*
+            ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
 
-      size sizeWinExt = GetWindowExt();
-      size sizeVpExt = GetViewportExt();
-      lpSize->cx = MulDiv(lpSize->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
-      lpSize->cy = MulDiv(lpSize->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
-*/
+            size sizeWinExt = GetWindowExt();
+            size sizeVpExt = GetViewportExt();
+            lpSize->cx = MulDiv(lpSize->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
+            lpSize->cy = MulDiv(lpSize->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
+      */
 
    }
 
 
 
-   int32_t graphics::draw_text(const char * lpszString,strsize nCount,const RECT & lpRect,UINT nFormat)
+   int32_t graphics::draw_text(const char * lpszString, strsize nCount, const RECT & lpRect, UINT nFormat)
    {
 
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
 
    }
 
-   int32_t graphics::draw_text(const string & strParam,const RECT & lpRect,UINT nFormat)
+   int32_t graphics::draw_text(const string & strParam, const RECT & lpRect, UINT nFormat)
    {
 
       string str(strParam);
@@ -4599,11 +4624,11 @@ synch_lock ml(cairo_mutex());
 
       double dy;
 
-      if(nFormat & DT_RIGHT)
+      if (nFormat & DT_RIGHT)
       {
          dx = lpRect.right - lpRect.left - sz.cx;
       }
-      else if(nFormat & DT_CENTER)
+      else if (nFormat & DT_CENTER)
       {
          dx = ((lpRect.right - lpRect.left) - (sz.cx)) / 2.0;
       }
@@ -4612,11 +4637,11 @@ synch_lock ml(cairo_mutex());
          dx = 0.;
       }
 
-      if(nFormat & DT_BOTTOM)
+      if (nFormat & DT_BOTTOM)
       {
          dy = lpRect.bottom - lpRect.top - e.ascent;
       }
-      else if(nFormat & DT_VCENTER)
+      else if (nFormat & DT_VCENTER)
       {
          dy = ((lpRect.bottom - lpRect.top) - (e.ascent)) / 2.0;
       }
@@ -4631,7 +4656,7 @@ synch_lock ml(cairo_mutex());
 
       set_os_color(m_spbrush->m_cr);
 
-      if(nFormat & DT_EXPANDTABS)
+      if (nFormat & DT_EXPANDTABS)
       {
 
          str.replace("\t", "        ");
@@ -4644,7 +4669,7 @@ synch_lock ml(cairo_mutex());
 
       }
 
-      if(nFormat & DT_SINGLELINE)
+      if (nFormat & DT_SINGLELINE)
       {
 
          str.replace("\n", "");
@@ -4659,7 +4684,7 @@ synch_lock ml(cairo_mutex());
 
       int i = 0;
 
-      for(auto & strLine : stra)
+      for (auto & strLine : stra)
       {
 
          cairo_move_to(m_pdc, lpRect.left + dx, lpRect.top + dy + e.ascent + sz.cy * (i) / stra.get_size());
@@ -4675,37 +4700,37 @@ synch_lock ml(cairo_mutex());
    }
 
 
-   int32_t graphics::draw_text_ex(LPTSTR lpszString,strsize nCount,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
-   {
-
-      ::exception::throw_not_implemented(get_app());
-      return 0 ;
-
-/*
-      if(get_handle1() == NULL)
-         return -1;
-      // these flags would modify the string
-      ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-      ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
-      return ::DrawTextExW(get_handle1(), const_cast<unichar *>((const unichar *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
-*/
-   }
-
-   int32_t graphics::draw_text_ex(const string & str,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
+   int32_t graphics::draw_text_ex(LPTSTR lpszString, strsize nCount, const RECT & lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       ::exception::throw_not_implemented(get_app());
       return 0;
 
-/*
-      ASSERT(get_handle1() != NULL);
-      // these flags would modify the string
-      ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-      ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      return ::DrawTextExW(get_handle1(), const_cast<unichar *>((const unichar *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
-*/
+      /*
+            if(get_handle1() == NULL)
+               return -1;
+            // these flags would modify the string
+            ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
+            ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
+            wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
+            return ::DrawTextExW(get_handle1(), const_cast<unichar *>((const unichar *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
+      */
+   }
+
+   int32_t graphics::draw_text_ex(const string & str, const RECT & lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   {
+
+      ::exception::throw_not_implemented(get_app());
+      return 0;
+
+      /*
+            ASSERT(get_handle1() != NULL);
+            // these flags would modify the string
+            ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
+            ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
+            wstring wstr = ::str::international::utf8_to_unicode(str);
+            return ::DrawTextExW(get_handle1(), const_cast<unichar *>((const unichar *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
+      */
 
    }
 
@@ -4717,7 +4742,7 @@ synch_lock ml(cairo_mutex());
       if (!GetTextExtent(sz, lpszString, nCount, iIndex))
          return ::size(0, 0);
 
-      return size((int) sz.cx, (int) sz.cy);
+      return size((int)sz.cx, (int)sz.cy);
 
    }
 
@@ -4742,14 +4767,14 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-/*
-      ASSERT(get_handle1() != NULL);
-      SIZE size;
-      string str(lpszString, nCount);
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int32_t)wstr.get_length(), &size));
-      return size;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            SIZE size;
+            string str(lpszString, nCount);
+            wstring wstr = ::str::international::utf8_to_unicode(str);
+            VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int32_t)wstr.get_length(), &size));
+            return size;
+      */
 
    }
 
@@ -4759,13 +4784,13 @@ synch_lock ml(cairo_mutex());
       ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
-/*
-      ASSERT(get_handle1() != NULL);
-      SIZE size;
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-      VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int32_t)wstr.get_length(), &size));
-      return size;
-*/
+      /*
+            ASSERT(get_handle1() != NULL);
+            SIZE size;
+            wstring wstr = ::str::international::utf8_to_unicode(str);
+            VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int32_t)wstr.get_length(), &size));
+            return size;
+      */
    }
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
@@ -4774,7 +4799,7 @@ synch_lock ml(cairo_mutex());
       synch_lock ml(cairo_mutex());
 
       if (iIndex < 0)
-         iIndex = (int32_t) nCount;
+         iIndex = (int32_t)nCount;
 
       string str(lpszString, MIN(iIndex, nCount));
 
@@ -4786,12 +4811,12 @@ synch_lock ml(cairo_mutex());
       size.cx = 0.0;
       size.cy = 0.0;
 
-      for(auto & str : stra)
+      for (auto & str : stra)
       {
 
          _GetTextExtent(s0, str, str.get_length(), str.get_length());
 
-         size.cx =MAX(size.cx, s0.cx);
+         size.cx = MAX(size.cx, s0.cx);
          size.cy += s0.cy;
 
 
@@ -4803,13 +4828,13 @@ synch_lock ml(cairo_mutex());
 
    }
 
-      bool graphics::_GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
+   bool graphics::_GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
       synch_lock ml(cairo_mutex());
 
       if (iIndex < 0)
-         iIndex = (int32_t) nCount;
+         iIndex = (int32_t)nCount;
 
       string str(lpszString, MIN(iIndex, nCount));
 
@@ -4821,7 +4846,7 @@ synch_lock ml(cairo_mutex());
 
       cairo_font_extents_t e;
 
-      if(::str::begins(lpszString,"バーチャルマシン"))
+      if (::str::begins(lpszString, "バーチャルマシン"))
       {
          TRACE("Likely to fail in certain circumstances");
       }
@@ -4845,7 +4870,7 @@ synch_lock ml(cairo_mutex());
 
       size.cx = (LONG)(ex.x_advance * m_spfont->m_dFontWidth);
 
-      size.cy = (LONG) e.height;
+      size.cy = (LONG)e.height;
 
       return true;
 
@@ -4906,7 +4931,7 @@ synch_lock ml(cairo_mutex());
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
-      if(lpRect.right <= lpRect.left || lpRect.bottom <= lpRect.top)
+      if (lpRect.right <= lpRect.left || lpRect.bottom <= lpRect.top)
          return;
 
       set_os_color(clr);
@@ -4915,10 +4940,10 @@ synch_lock ml(cairo_mutex());
 
       cairo_fill(m_pdc);
 
-//      m_pgraphics->FillRectangle(gdiplus_brush(), lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
+      //      m_pgraphics->FillRectangle(gdiplus_brush(), lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
 
-      //::SetBkColor(get_handle1(), clr);
-      //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+            //::SetBkColor(get_handle1(), clr);
+            //::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
    }
 
    void graphics::FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr)
@@ -4927,7 +4952,7 @@ synch_lock ml(cairo_mutex());
       //g().SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       //g().SetCompositingQuality(Gdiplus::CompositingQualityGammaCorrected);
 
-      if(cx <= 0 || cy <= 0)
+      if (cx <= 0 || cy <= 0)
          return;
 
       synch_lock ml(cairo_mutex());
@@ -4991,7 +5016,7 @@ synch_lock ml(cairo_mutex());
 
       cairo_status_t status = cairo_status(m_pdc);
 
-      if(status != CAIRO_STATUS_SUCCESS)
+      if (status != CAIRO_STATUS_SUCCESS)
       {
 
          return false;
@@ -5017,7 +5042,7 @@ synch_lock ml(cairo_mutex());
 
       cairo_set_matrix(m_pdc, &m);
 
-      if(::str::begins(lpszString,"バーチャルマシン"))
+      if (::str::begins(lpszString, "バーチャルマシン"))
       {
          TRACE("Likely to fail in certain circumstances");
       }
@@ -5036,12 +5061,12 @@ synch_lock ml(cairo_mutex());
 
       synch_lock ml(cairo_mutex());
 
-//      ::Gdiplus::Pen pen(::Gdiplus::Color(argb_get_a_value(m_crColor), argb_get_r_value(m_crColor), argb_get_g_value(m_crColor), argb_get_b_value(m_crColor)), m_dPenWidth);
+      //      ::Gdiplus::Pen pen(::Gdiplus::Color(argb_get_a_value(m_crColor), argb_get_r_value(m_crColor), argb_get_g_value(m_crColor), argb_get_b_value(m_crColor)), m_dPenWidth);
 
-      //gdiplus_pen()->SetAlignment(Gdiplus::PenAlignment::PenAlignmentCenter);
+            //gdiplus_pen()->SetAlignment(Gdiplus::PenAlignment::PenAlignmentCenter);
 
-      //m_pgraphics->DrawLine(gdiplus_pen(), Gdiplus::Point((FLOAT) m_x, (FLOAT) m_y), Gdiplus::Point((FLOAT) x,(FLOAT) y));
-      //string str(lpszString, nCount);
+            //m_pgraphics->DrawLine(gdiplus_pen(), Gdiplus::Point((FLOAT) m_x, (FLOAT) m_y), Gdiplus::Point((FLOAT) x,(FLOAT) y));
+            //string str(lpszString, nCount);
 
 
       cairo_move_to(m_pdc, m_x, m_y);
@@ -5067,21 +5092,21 @@ synch_lock ml(cairo_mutex());
       try
       {
 
-         if(m_pdc == NULL)
+         if (m_pdc == NULL)
             return;
 
          ::draw2d::graphics::set_alpha_mode(ealphamode);
-         if(m_ealphamode == ::draw2d::alpha_mode_blend)
+         if (m_ealphamode == ::draw2d::alpha_mode_blend)
          {
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
          }
-         else if(m_ealphamode == ::draw2d::alpha_mode_set)
+         else if (m_ealphamode == ::draw2d::alpha_mode_set)
          {
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
          }
 
       }
-      catch(...)
+      catch (...)
       {
          return;
       }
@@ -5099,171 +5124,173 @@ synch_lock ml(cairo_mutex());
    void * graphics::get_os_data() const
    {
 
-      return (void *) m_pdc;
+      return (void *)m_pdc;
 
    }
 
 
-/*   HDC graphics::get_handle() const
-   {
-      return m_hdc;
-   }
+   /*   HDC graphics::get_handle() const
+      {
+         return m_hdc;
+      }
 
-   HDC graphics::get_handle1() const
-   {
-      return get_handle();
-   }
+      HDC graphics::get_handle1() const
+      {
+         return get_handle();
+      }
 
-   HDC graphics::get_handle2() const
-   {
-      return get_handle();
-   }*/
+      HDC graphics::get_handle2() const
+      {
+         return get_handle();
+      }*/
 
    bool graphics::attach(void * pdata)
-   {synch_lock ml(cairo_mutex());
+   {
+      synch_lock ml(cairo_mutex());
 
-      if(m_pdc != NULL)
+      if (m_pdc != NULL)
       {
-	if(m_pdc ==  cairo_keep::g_cairo)
-	{
-//         printf("123");
+         if (m_pdc == cairo_keep::g_cairo)
+         {
+            //         printf("123");
 
-	}
+         }
 
          cairo_destroy(m_pdc);
 
       }
 
-      m_pdc = (cairo_t *) pdata;
+      m_pdc = (cairo_t *)pdata;
 
       return true;
 
    }
 
-/*
-   Gdiplus::Font * graphics::gdiplus_font()
+   /*
+      Gdiplus::Font * graphics::gdiplus_font()
+      {
+         if(m_spfont.is_null())
+         {
+            m_spfont.create(get_app());
+            m_spfont->operator=(m_fontxyz);
+         }
+         else if(!m_spfont->m_bUpdated)
+         {
+            m_spfont->m_bUpdated = true;
+            m_spfont->operator=(m_fontxyz);
+         }
+         return (Gdiplus::Font *) m_spfont->get_os_data();
+      }
+
+      Gdiplus::Brush * graphics::gdiplus_brush()
+      {
+         if(m_spbrush.is_null())
+         {
+            m_spbrush.create(get_app());
+            m_spbrush->operator=(m_brushxyz);
+         }
+         else if(!m_spbrush->m_bUpdated)
+         {
+            m_spbrush->m_bUpdated = true;
+            m_spbrush->operator=(m_brushxyz);
+         }
+         return (Gdiplus::Brush *) m_spbrush->get_os_data();
+      }
+
+      Gdiplus::Pen * graphics::gdiplus_pen()
+      {
+         if(m_sppen.is_null())
+         {
+            m_sppen.create(get_app());
+            m_sppen->operator=(m_penxyz);
+         }
+         else if(!m_sppen->m_bUpdated)
+         {
+            m_sppen->m_bUpdated = true;
+            m_sppen->operator=(m_penxyz);
+         }
+         return (Gdiplus::Pen *) m_sppen->get_os_data();
+      }*/
+
+
+      //   ::core::e_fill_mode graphics::gdiplus_get_fill_mode()
+        // {
+      //      return ::draw2d::fill_mode_winding;
+        // }
+
+   void cairo_image_surface_blur(cairo_surface_t* surface, double radius)
    {
-      if(m_spfont.is_null())
-      {
-         m_spfont.create(get_app());
-         m_spfont->operator=(m_fontxyz);
-      }
-      else if(!m_spfont->m_bUpdated)
-      {
-         m_spfont->m_bUpdated = true;
-         m_spfont->operator=(m_fontxyz);
-      }
-      return (Gdiplus::Font *) m_spfont->get_os_data();
-   }
+      // Steve Hanov, 2009
+      // Released into the public domain.
 
-   Gdiplus::Brush * graphics::gdiplus_brush()
-   {
-      if(m_spbrush.is_null())
-      {
-         m_spbrush.create(get_app());
-         m_spbrush->operator=(m_brushxyz);
-      }
-      else if(!m_spbrush->m_bUpdated)
-      {
-         m_spbrush->m_bUpdated = true;
-         m_spbrush->operator=(m_brushxyz);
-      }
-      return (Gdiplus::Brush *) m_spbrush->get_os_data();
-   }
+      // get width, height
+      int32_t width = cairo_image_surface_get_width(surface);
+      int32_t height = cairo_image_surface_get_height(surface);
+      unsigned char* dst = (unsigned char*)malloc(width*height * 4);
+      unsigned* precalc =
+         (unsigned*)malloc(width*height * sizeof(unsigned));
+      unsigned char* src = cairo_image_surface_get_data(surface);
+      double mul = 1.f / ((radius * 2)*(radius * 2));
+      int32_t channel;
 
-   Gdiplus::Pen * graphics::gdiplus_pen()
-   {
-      if(m_sppen.is_null())
-      {
-         m_sppen.create(get_app());
-         m_sppen->operator=(m_penxyz);
-      }
-      else if(!m_sppen->m_bUpdated)
-      {
-         m_sppen->m_bUpdated = true;
-         m_sppen->operator=(m_penxyz);
-      }
-      return (Gdiplus::Pen *) m_sppen->get_os_data();
-   }*/
+      // The number of times to perform the averaging. According to wikipedia,
+      // three iterations is good enough to pass for a gaussian.
+      const int32_t MAX_ITERATIONS = 3;
+      int32_t iteration;
 
+      memcpy(dst, src, width*height * 4);
 
-//   ::core::e_fill_mode graphics::gdiplus_get_fill_mode()
-  // {
-//      return ::draw2d::fill_mode_winding;
-  // }
-
-void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
-{
-    // Steve Hanov, 2009
-    // Released into the public domain.
-
-    // get width, height
-    int32_t width = cairo_image_surface_get_width( surface );
-    int32_t height = cairo_image_surface_get_height( surface );
-    unsigned char* dst = (unsigned char*)malloc(width*height*4);
-    unsigned* precalc =
-        (unsigned*)malloc(width*height*sizeof(unsigned));
-    unsigned char* src = cairo_image_surface_get_data( surface );
-    double mul=1.f/((radius*2)*(radius*2));
-    int32_t channel;
-
-    // The number of times to perform the averaging. According to wikipedia,
-    // three iterations is good enough to pass for a gaussian.
-    const int32_t MAX_ITERATIONS = 3;
-    int32_t iteration;
-
-    memcpy( dst, src, width*height*4 );
-
-    for ( iteration = 0; iteration < MAX_ITERATIONS; iteration++ ) {
-        for( channel = 0; channel < 4; channel++ ) {
-            int32_t x,y;
+      for (iteration = 0; iteration < MAX_ITERATIONS; iteration++) {
+         for (channel = 0; channel < 4; channel++) {
+            int32_t x, y;
 
             // precomputation step.
             unsigned char* pix = src;
             unsigned* pre = precalc;
 
             pix += channel;
-            for (y=0;y<height;y++) {
-                for (x=0;x<width;x++) {
-                    int32_t tot=pix[0];
-                    if (x>0) tot+=pre[-1];
-                    if (y>0) tot+=pre[-width];
-                    if (x>0 && y>0) tot-=pre[-width-1];
-                    *pre++=tot;
-                    pix += 4;
-                }
+            for (y = 0; y < height; y++) {
+               for (x = 0; x < width; x++) {
+                  int32_t tot = pix[0];
+                  if (x > 0) tot += pre[-1];
+                  if (y > 0) tot += pre[-width];
+                  if (x > 0 && y > 0) tot -= pre[-width - 1];
+                  *pre++ = tot;
+                  pix += 4;
+               }
             }
 
             // blur step.
             pix = dst + (int32_t)radius * width * 4 + (int32_t)radius * 4 + channel;
-            for (y=(int32_t) radius;y<height-radius;y++) {
-                for (x=(int32_t) radius;x<width-radius;x++) {
-                    int32_t l = (int32_t) (x < radius ? 0 : x - radius);
-                    int32_t t = (int32_t) (y < radius ? 0 : y - radius);
-                    int32_t r = (int32_t) (x + radius >= width ? width - 1 : x + radius);
-                    int32_t b = (int32_t) (y + radius >= height ? height - 1 : y + radius);
-                    int32_t tot = precalc[r+b*width] + precalc[l+t*width] -
-                        precalc[l+b*width] - precalc[r+t*width];
-                    *pix=(unsigned char)(tot*mul);
-                    pix += 4;
-                }
-                pix += (int32_t)radius * 2 * 4;
+            for (y = (int32_t)radius; y < height - radius; y++) {
+               for (x = (int32_t)radius; x < width - radius; x++) {
+                  int32_t l = (int32_t)(x < radius ? 0 : x - radius);
+                  int32_t t = (int32_t)(y < radius ? 0 : y - radius);
+                  int32_t r = (int32_t)(x + radius >= width ? width - 1 : x + radius);
+                  int32_t b = (int32_t)(y + radius >= height ? height - 1 : y + radius);
+                  int32_t tot = precalc[r + b*width] + precalc[l + t*width] -
+                     precalc[l + b*width] - precalc[r + t*width];
+                  *pix = (unsigned char)(tot*mul);
+                  pix += 4;
+               }
+               pix += (int32_t)radius * 2 * 4;
             }
-        }
-        memcpy( src, dst, width*height*4 );
-    }
+         }
+         memcpy(src, dst, width*height * 4);
+      }
 
-    free( dst );
-    free( precalc );
-}
+      free(dst);
+      free(precalc);
+   }
 
 
    bool graphics::blur(bool bExpand, double dRadius, const RECT & lpcrect)
-   {synch_lock ml(cairo_mutex());
+   {
+      synch_lock ml(cairo_mutex());
 
       cairo_pattern_t * ppattern = cairo_get_source(m_pdc);
 
-      if(ppattern == NULL)
+      if (ppattern == NULL)
          return false;
 
       cairo_surface_t * psurfaceSrc = NULL;
@@ -5286,7 +5313,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
    double graphics::get_dpix() const
    {
 
-//      return m_pgraphics->GetDpiX();
+      //      return m_pgraphics->GetDpiX();
       return 72.0;
 
    }
@@ -5297,7 +5324,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
       synch_lock ml(cairo_mutex());
 
-      if(pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
+      if (pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
       {
 
          cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_pt.x, pbrush->m_pt.y, 0, pbrush->m_pt2.x, pbrush->m_pt2.y, MAX(pbrush->m_size.cx, pbrush->m_size.cy));
@@ -5311,7 +5338,7 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
          cairo_pattern_destroy(ppattern);
 
       }
-      else if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+      else if (pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
       {
 
          cairo_pattern_t * ppattern = cairo_pattern_create_linear(pbrush->m_pt1.x, pbrush->m_pt1.y, pbrush->m_pt2.x, pbrush->m_pt2.y);
@@ -5325,17 +5352,17 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
          cairo_pattern_destroy(ppattern);
 
       }
-      else if(pbrush->m_etype == ::draw2d::brush::type_pattern)
+      else if (pbrush->m_etype == ::draw2d::brush::type_pattern)
       {
 
-         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pbrush->m_dib->get_graphics()->get_os_data());
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *)pbrush->m_dib->get_graphics()->get_os_data());
 
-         if(psurface == NULL)
+         if (psurface == NULL)
             return false;
 
          cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
 
-         if(ppattern == NULL)
+         if (ppattern == NULL)
             return false;
 
          cairo_set_source(m_pdc, ppattern);
@@ -5357,14 +5384,14 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d::pen * ppen)
    {
-synch_lock ml(cairo_mutex());
-if(ppen->m_etype == ::draw2d::pen::type_brush)
-{
+      synch_lock ml(cairo_mutex());
+      if (ppen->m_etype == ::draw2d::pen::type_brush)
+      {
          set(ppen->m_br);
       }
       else
       {
-      cairo_set_source_rgba(m_pdc, argb_get_r_value(ppen->m_cr) / 255.0, argb_get_g_value(ppen->m_cr) / 255.0, argb_get_b_value(ppen->m_cr) / 255.0, argb_get_a_value(ppen->m_cr) / 255.0);
+         cairo_set_source_rgba(m_pdc, argb_get_r_value(ppen->m_cr) / 255.0, argb_get_g_value(ppen->m_cr) / 255.0, argb_get_b_value(ppen->m_cr) / 255.0, argb_get_a_value(ppen->m_cr) / 255.0);
 
       }
 
@@ -5382,45 +5409,45 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
       //cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
-      if(pfontParam == NULL)
+      if (pfontParam == NULL)
       {
 
          return false;
 
       }
 
-     ::draw2d_cairo::font * pfont = dynamic_cast < ::draw2d_cairo::font * > ((::draw2d::font *) pfontParam);
+      ::draw2d_cairo::font * pfont = dynamic_cast <::draw2d_cairo::font *> ((::draw2d::font *) pfontParam);
 
-      if(pfont == NULL)
+      if (pfont == NULL)
       {
 
          return false;
 
       }
-//
-///*if(pfont->m_ft != NULL)
-//{
-//
-//	return true;
-//
-//}
-//
-//      //synch_lock sl(&user_mutex());
-//
-//      pfont->destroy();
-//
-////      int status;
-//
-//      int iError = 0;
-//
-//      string strPath;
-//
-//
+      //
+      ///*if(pfont->m_ft != NULL)
+      //{
+      //
+      //	return true;
+      //
+      //}
+      //
+      //      //synch_lock sl(&user_mutex());
+      //
+      //      pfont->destroy();
+      //
+      ////      int status;
+      //
+      //      int iError = 0;
+      //
+      //      string strPath;
+      //
+      //
       int iError;
 
       string  strPath = get_font_path(pfont->m_strFontFamilyName);
 
-      if(g_pmapFontError->Lookup(strPath, iError))
+      if (g_pmapFontError->Lookup(strPath, iError))
       {
 
          g_pmapFontFace->Lookup(strPath, pfont->m_ft);
@@ -5431,9 +5458,9 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
          pfont->m_ft = NULL;
 
-         iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&pfont->m_ft);
+         iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(), strPath, 0, &pfont->m_ft);
 
-         if(iError == 0)
+         if (iError == 0)
          {
 
             iError = FT_Select_Charmap(pfont->m_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
@@ -5446,10 +5473,10 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
       }
 
-      if(iError != 0 || pfont->m_ft == NULL)
+      if (iError != 0 || pfont->m_ft == NULL)
       {
 
-         string strFont =pfont->m_strFontFamilyName;
+         string strFont = pfont->m_strFontFamilyName;
 
          cairo_select_font_face(m_pdc, strFont, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
@@ -5458,10 +5485,10 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
       else
       {
 
-         if(!g_pmapCairoFontFace->Lookup(strPath, pfont->m_pface))
+         if (!g_pmapCairoFontFace->Lookup(strPath, pfont->m_pface))
          {
 
-            pfont->m_pface = cairo_ft_font_face_create_for_ft_face (pfont->m_ft, 0);
+            pfont->m_pface = cairo_ft_font_face_create_for_ft_face(pfont->m_ft, 0);
 
             g_pmapCairoFontFace->set_at(strPath, pfont->m_pface);
 
@@ -5469,28 +5496,28 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
          }
 
-//         cairo_font_options_t * poptions = cairo_font_options_create ();
-//
-//         cairo_matrix_t m;
-//
-//         cairo_matrix_init_identity(&m);
-//
-//         cairo_matrix_t m2;
-//
-//         cairo_matrix_init_identity(&m2);
-//
-//         pfont->m_pfont = cairo_scaled_font_create(pfont->m_pface, &m, &m2, poptions);
-//
-//         cairo_set_scaled_font(m_pdc, pfont->m_pfont);
-//
-//         cairo_font_options_destroy(poptions);
-//         */
-//
+         //         cairo_font_options_t * poptions = cairo_font_options_create ();
+         //
+         //         cairo_matrix_t m;
+         //
+         //         cairo_matrix_init_identity(&m);
+         //
+         //         cairo_matrix_t m2;
+         //
+         //         cairo_matrix_init_identity(&m2);
+         //
+         //         pfont->m_pfont = cairo_scaled_font_create(pfont->m_pface, &m, &m2, poptions);
+         //
+         //         cairo_set_scaled_font(m_pdc, pfont->m_pfont);
+         //
+         //         cairo_font_options_destroy(poptions);
+         //         */
+         //
          cairo_set_font_face(m_pdc, pfont->m_pface);
 
       }
 
-      if(pfont->m_eunitFontSize == ::draw2d::unit_pixel)
+      if (pfont->m_eunitFontSize == ::draw2d::unit_pixel)
       {
 
          cairo_set_font_size(m_pdc, pfont->m_dFontSize);
@@ -5517,14 +5544,14 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
       cairo_keep keep(m_pdc);
 
-      if(m_spbrush->m_etype != ::draw2d::brush::type_null)
+      if (m_spbrush->m_etype != ::draw2d::brush::type_null)
       {
 
          set(m_spbrush);
 
          set_alpha_mode(m_ealphamode);
 
-         if(bPen)
+         if (bPen)
          {
 
             cairo_fill_preserve(m_pdc);
@@ -5541,7 +5568,7 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
       //keep.pulse();
 
-      if(bPen)
+      if (bPen)
       {
 
          set(m_sppen);
@@ -5563,7 +5590,7 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
       synch_lock ml(cairo_mutex());
 
-      if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
+      if (pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
       {
 
          return true;
@@ -5572,7 +5599,7 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
       cairo_keep keep(m_pdc);
 
-      if(m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
+      if (m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
       {
 
          cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_BEST);
@@ -5604,8 +5631,8 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
    bool graphics::draw(::draw2d::pen * ppen)
    {
-synch_lock ml(cairo_mutex());
-      if(ppen == NULL || ppen->m_etype == ::draw2d::pen::type_null)
+      synch_lock ml(cairo_mutex());
+      if (ppen == NULL || ppen->m_etype == ::draw2d::pen::type_null)
          return true;
 
       cairo_keep keep(m_pdc);
@@ -5621,35 +5648,35 @@ synch_lock ml(cairo_mutex());
 
    bool graphics::set(const ::draw2d::path * ppathParam)
    {
-synch_lock ml(cairo_mutex());
+      synch_lock ml(cairo_mutex());
       cairo_keep keep(m_pdc);
 
       cairo_new_sub_path(m_pdc);
 
 
 
-      ::draw2d_cairo::path * ppath = dynamic_cast < ::draw2d_cairo::path * > ((::draw2d::path *) ppathParam);
+      ::draw2d_cairo::path * ppath = dynamic_cast <::draw2d_cairo::path *> ((::draw2d::path *) ppathParam);
 
-      if(ppath->m_bFill)
+      if (ppath->m_bFill)
       {
 
-            if(ppath->m_efillmode == ::draw2d::fill_mode_alternate)
-      {
+         if (ppath->m_efillmode == ::draw2d::fill_mode_alternate)
+         {
 
-         cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
+            cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
+
+         }
+         else
+         {
+
+            cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_WINDING);
+
+         }
 
       }
-      else
-      {
-
-         cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_WINDING);
-
-      }
-
-      }
 
 
-      for(int32_t i = 0; i < ppath->m_elementa.get_count(); i++)
+      for (int32_t i = 0; i < ppath->m_elementa.get_count(); i++)
       {
 
          set(ppath->m_elementa(i));
@@ -5664,8 +5691,8 @@ synch_lock ml(cairo_mutex());
 
    bool graphics::set(const ::draw2d_cairo::path::element & e)
    {
-synch_lock ml(cairo_mutex());
-      switch(e.m_etype)
+      synch_lock ml(cairo_mutex());
+      switch (e.m_etype)
       {
       case ::draw2d::path::element::type_arc:
          set(e.u.m_arc);
@@ -5680,19 +5707,19 @@ synch_lock ml(cairo_mutex());
          set(e.u.m_rect);
          break;
       case ::draw2d::path::element::type_end:
-         {
+      {
 
-            if(e.u.m_end.m_bClose)
-            {
-            cairo_close_path(m_pdc);
-            }
-         }
-         break;
-      case ::draw2d::path::element::type_string:
+         if (e.u.m_end.m_bClose)
          {
-         set(e.m_stringpath);
+            cairo_close_path(m_pdc);
          }
-         break;
+      }
+      break;
+      case ::draw2d::path::element::type_string:
+      {
+         set(e.m_stringpath);
+      }
+      break;
       default:
          throw "unexpected simple os graphics element type";
       }
@@ -5704,10 +5731,10 @@ synch_lock ml(cairo_mutex());
    bool graphics::set(const ::draw2d_cairo::path::arc & a)
    {
 
-      if(a.m_dRadiusX <= 0.0000001)
+      if (a.m_dRadiusX <= 0.0000001)
          return 0;
 
-      if(a.m_dRadiusY <= 0.0000001)
+      if (a.m_dRadiusY <= 0.0000001)
          return 0;
 
       synch_lock ml(cairo_mutex());
@@ -5727,8 +5754,8 @@ synch_lock ml(cairo_mutex());
 
    bool graphics::set(const ::draw2d_cairo::path::line & l)
    {
-synch_lock ml(cairo_mutex());
-      if(!cairo_has_current_point(m_pdc))
+      synch_lock ml(cairo_mutex());
+      if (!cairo_has_current_point(m_pdc))
       {
 
          cairo_move_to(m_pdc, l.m_x + 0.5, l.m_y + 0.5);
@@ -5750,7 +5777,7 @@ synch_lock ml(cairo_mutex());
    {
       synch_lock ml(cairo_mutex());
 
-      cairo_rectangle(m_pdc,r.m_x, r.m_y, r.m_cx, r.m_cy);
+      cairo_rectangle(m_pdc, r.m_x, r.m_y, r.m_cx, r.m_cy);
 
       return true;
 
@@ -5797,7 +5824,7 @@ synch_lock ml(cairo_mutex());
 
    bool graphics::set(const ::draw2d_cairo::path::move & p)
    {
-synch_lock ml(cairo_mutex());
+      synch_lock ml(cairo_mutex());
       cairo_move_to(m_pdc, p.m_x + 0.5, p.m_y + 0.5);
 
       return true;
@@ -5820,100 +5847,100 @@ synch_lock ml(cairo_mutex());
 
    }
 
-    void * graphics::detach()
-    {
+   void * graphics::detach()
+   {
 
-       cairo_t * p = m_pdc;
+      cairo_t * p = m_pdc;
 
-       m_pdc = NULL;
+      m_pdc = NULL;
 
-       return p;
-    }
+      return p;
+   }
 
-    bool graphics::set_os_color(COLORREF cr)
-    {
-synch_lock ml(cairo_mutex());
-       cairo_set_source_rgba(m_pdc, argb_get_r_value(cr) / 255.0, argb_get_g_value(cr) / 255.0, argb_get_b_value(cr) / 255.0, argb_get_a_value(cr) / 255.0);
+   bool graphics::set_os_color(COLORREF cr)
+   {
+      synch_lock ml(cairo_mutex());
+      cairo_set_source_rgba(m_pdc, argb_get_r_value(cr) / 255.0, argb_get_g_value(cr) / 255.0, argb_get_b_value(cr) / 255.0, argb_get_a_value(cr) / 255.0);
 
       return true;
 
-    }
+   }
 
 
-    bool graphics::flush()
-    {
+   bool graphics::flush()
+   {
 
-       cairo_pattern_t * ppattern = cairo_get_source(m_pdc);
+      cairo_pattern_t * ppattern = cairo_get_source(m_pdc);
 
-       if(ppattern == NULL)
-          return true;
+      if (ppattern == NULL)
+         return true;
 
-       cairo_surface_t * psurface = NULL;
+      cairo_surface_t * psurface = NULL;
 
-       cairo_pattern_get_surface(ppattern,&psurface);
+      cairo_pattern_get_surface(ppattern, &psurface);
 
-       if(psurface == NULL)
-          return true;
+      if (psurface == NULL)
+         return true;
 
-       cairo_surface_flush(psurface);
+      cairo_surface_flush(psurface);
 
-       return true;
+      return true;
 
-    }
+   }
 
 #ifdef WINDOWS
 
-    bool graphics::Attach(HDC hdc)
-    {
+   bool graphics::Attach(HDC hdc)
+   {
 
-       if(m_hdcAttach != NULL)
-       {
+      if (m_hdcAttach != NULL)
+      {
 
-          Detach();
+         Detach();
 
-       }
+      }
 
-       m_psurfaceAttach = cairo_win32_surface_create(hdc);
+      m_psurfaceAttach = cairo_win32_surface_create(hdc);
 
-       if(m_psurfaceAttach == NULL)
-       {
+      if (m_psurfaceAttach == NULL)
+      {
 
-          return false;
+         return false;
 
-       }
+      }
 
-       m_pdc = cairo_create(m_psurfaceAttach);
+      m_pdc = cairo_create(m_psurfaceAttach);
 
-       if(m_pdc == NULL)
-       {
+      if (m_pdc == NULL)
+      {
 
-          cairo_surface_destroy(m_psurfaceAttach);
+         cairo_surface_destroy(m_psurfaceAttach);
 
-          return false;
+         return false;
 
-       }
+      }
 
-       m_hdcAttach = hdc;
+      m_hdcAttach = hdc;
 
-       return false;
+      return false;
 
-    }
+   }
 
-    HDC graphics::Detach()
-    {
+   HDC graphics::Detach()
+   {
 
-       if(m_hdcAttach == NULL)
-          return NULL;
+      if (m_hdcAttach == NULL)
+         return NULL;
 
-       HDC hdc = m_hdcAttach;
+      HDC hdc = m_hdcAttach;
 
-       cairo_surface_destroy(m_psurfaceAttach);
+      cairo_surface_destroy(m_psurfaceAttach);
 
-       m_psurfaceAttach = NULL;
+      m_psurfaceAttach = NULL;
 
-       return hdc;
+      return hdc;
 
-    }
+   }
 
 #endif // WINDOWS
 
@@ -5937,14 +5964,14 @@ synch_lock ml(cairo_mutex());
 
       int            i;
 
-      if(!g_fcResult)
+      if (!g_fcResult)
       {
 
          g_fcResult = FcInit();
 
       }
 
-      if(!g_fcConfig)
+      if (!g_fcConfig)
       {
 
          g_fcConfig = FcConfigGetCurrent();
@@ -5955,12 +5982,12 @@ synch_lock ml(cairo_mutex());
 
       pat = FcPatternCreate();
 
-      os = FcObjectSetBuild (FC_FAMILY, FC_STYLE, FC_FILE, NULL);
+      os = FcObjectSetBuild(FC_FAMILY, FC_STYLE, FC_FILE, NULL);
 
       fs = FcFontList(g_fcConfig, pat, os);
 
       printf("Total fonts: %d", fs->nfont);
-      for (i=0; fs && i < fs->nfont; i++)
+      for (i = 0; fs && i < fs->nfont; i++)
       {
 
          FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
@@ -5973,14 +6000,14 @@ synch_lock ml(cairo_mutex());
 
          int iFind = str.find(":");
 
-         if(iFind>0)
+         if (iFind > 0)
          {
 
             str = str.Left(iFind);
 
          }
 
-         if(FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
+         if (FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
          {
 
             //printf("Filename: %s", file);
@@ -6006,7 +6033,7 @@ synch_lock ml(cairo_mutex());
 
       }
 
-      if(fs != NULL)
+      if (fs != NULL)
       {
 
          FcFontSetDestroy(fs);
@@ -6019,88 +6046,77 @@ synch_lock ml(cairo_mutex());
 
       straFile = stra;
 
-/*
-      HDC hdc = ::CreateCompatibleDC(NULL);
+      /*
+            HDC hdc = ::CreateCompatibleDC(NULL);
 
-      font_fam_callback c;
+            font_fam_callback c;
 
-      LOGFONTW lf;
+            LOGFONTW lf;
 
-      ZERO(lf);
+            ZERO(lf);
 
-      lf.lfCharSet = DEFAULT_CHARSET;
+            lf.lfCharSet = DEFAULT_CHARSET;
 
-      EnumFontFamiliesExW(hdc, &lf, (FONTENUMPROCW)&EnumFamCallBackW, (LPARAM)&c, 0);
+            EnumFontFamiliesExW(hdc, &lf, (FONTENUMPROCW)&EnumFamCallBackW, (LPARAM)&c, 0);
 
-      ::DeleteDC(hdc);
+            ::DeleteDC(hdc);
 
-      straFile       = c.m_stra;
+            straFile       = c.m_stra;
 
-      stra           = c.m_stra;
+            stra           = c.m_stra;
 
-      csa            = c.m_csa;*/
+            csa            = c.m_csa;*/
 
 #else
-throw not_implemented(get_app());
+      throw not_implemented(get_app());
 #endif
-}
+   }
 
-string graphics::get_font_path(string str)
-{
+   string graphics::get_font_path(string str)
+   {
 
 #ifdef LINUX
 
-   synch_lock sl(g_pmutexFc);
+      synch_lock sl(g_pmutexFc);
 
-   if(str.find("/") >= 0)
-   {
+      if (str.find("/") >= 0)
+      {
 
-      return str;
+         return str;
 
-   }
+      }
 
-   if(str == "TakaoPGothic")
-   {
-
-      output_debug_string("searching TakaoPGothic");
-
-   }
-
-
-   string strPath;
-
-   if(!g_pmapFontPath->Lookup(str, strPath))
-   {
-
-      stringa straPath;
-
-      stringa stra;
-
-      ::draw2d::font::csa csa;
-
-      enum_fonts(straPath, stra, csa);
-
-      if(str == "TakaoPGothic")
+      if (str == "TakaoPGothic")
       {
 
          output_debug_string("searching TakaoPGothic");
 
       }
 
-      int iFind = stra.find_first_ci(str);
 
-      if(iFind >= 0)
+      string strPath;
+
+      if (!g_pmapFontPath->Lookup(str, strPath))
       {
 
-         strPath = straPath[iFind];
+         stringa straPath;
 
-      }
-      else
-      {
+         stringa stra;
 
-         iFind = stra.find_first_begins_ci(str + " Regular");
+         ::draw2d::font::csa csa;
 
-         if(iFind >= 0)
+         enum_fonts(straPath, stra, csa);
+
+         if (str == "TakaoPGothic")
+         {
+
+            output_debug_string("searching TakaoPGothic");
+
+         }
+
+         int iFind = stra.find_first_ci(str);
+
+         if (iFind >= 0)
          {
 
             strPath = straPath[iFind];
@@ -6109,9 +6125,9 @@ string graphics::get_font_path(string str)
          else
          {
 
-            iFind = stra.find_first_begins_ci(str + ",");
+            iFind = stra.find_first_begins_ci(str + " Regular");
 
-            if(iFind >= 0)
+            if (iFind >= 0)
             {
 
                strPath = straPath[iFind];
@@ -6120,9 +6136,9 @@ string graphics::get_font_path(string str)
             else
             {
 
-               iFind = stra.find_first_begins_ci(str + " ");
+               iFind = stra.find_first_begins_ci(str + ",");
 
-               if(iFind >= 0)
+               if (iFind >= 0)
                {
 
                   strPath = straPath[iFind];
@@ -6131,31 +6147,42 @@ string graphics::get_font_path(string str)
                else
                {
 
-                  strPath = str;
+                  iFind = stra.find_first_begins_ci(str + " ");
+
+                  if (iFind >= 0)
+                  {
+
+                     strPath = straPath[iFind];
+
+                  }
+                  else
+                  {
+
+                     strPath = str;
+
+                  }
+
 
                }
-
 
             }
 
          }
 
+         g_pmapFontPath->set_at(str, strPath);
+
       }
 
-      g_pmapFontPath->set_at(str, strPath);
-
-   }
-
-   return strPath;
+      return strPath;
 
 #else
 
-   return str;
+      return str;
 
 #endif
 
 
-}
+   }
 
 
 } // namespace draw2d_cairo
