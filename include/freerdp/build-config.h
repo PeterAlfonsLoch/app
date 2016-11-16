@@ -53,6 +53,7 @@
 
 #define FREERDP_INSTALL_PREFIX "C:/Program Files (x86)/FreeRDP"
 
+#define FREERDP_SHARED_LIBRARY_PREFIX "lib"
 #define FREERDP_LIBRARY_PATH "lib"
 
 #define FREERDP_ADDIN_PATH "lib/freerdp"
