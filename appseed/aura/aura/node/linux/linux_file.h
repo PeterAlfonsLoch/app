@@ -45,7 +45,6 @@ namespace linux
 
       };
 
-      ::file::path         m_strFileName;
       int                  m_iFile;
 
 

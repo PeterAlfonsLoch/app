@@ -2254,14 +2254,14 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
 
       ::user::interaction_spa uia;
 
-      { 
+      {
 
          synch_lock sl(m_pmutex);
 
          uia = m_uiptraChild;
-      
+
       }
-      
+
       {
 
          int iSaveDC = pgraphics->SaveDC();

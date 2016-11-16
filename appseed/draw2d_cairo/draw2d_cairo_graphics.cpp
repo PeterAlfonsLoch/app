@@ -120,16 +120,14 @@ namespace draw2d_cairo
 
       m_iSaveDC = 0;
 
+      #ifdef WINDOWS
       m_psurfaceAttach = NULL;
       m_hdcAttach = NULL;
+      #endif
 
       m_bPrinting = FALSE;
       m_pdibAlphaBlend = NULL;
       m_pdc = NULL;
-      /*      m_hdc             = NULL;
-            m_ppath           = NULL;
-            m_ppathPaint      = NULL;
-            */
       m_etextrendering = ::draw2d::text_rendering_anti_alias_grid_fit;
 
       m_spfont.alloc(allocer());
@@ -152,13 +150,11 @@ namespace draw2d_cairo
 
    void graphics::dump(dump_context & dumpcontext) const
    {
+
       object::dump(dumpcontext);
 
-      //      dumpcontext << "get_handle1() = " << get_handle1();
-        //    dumpcontext << "\nm_hAttribDC = " << get_handle2();
-          //  dumpcontext << "\nm_bPrinting = " << m_bPrinting;
-
       dumpcontext << "\n";
+
    }
 
 
@@ -173,33 +169,33 @@ namespace draw2d_cairo
          cairo_destroy(m_pdc);
 
          m_pdc = NULL;
+
       }
 
    }
 
-
-   /*   ::window_sp graphics::GetWindow() const
-      {
-         //ASSERT(get_handle1() != NULL); return ::win::user::interaction_impl::from_handle(::WindowFromDC(get_handle1()));
-      }
-   */
 
    bool graphics::IsPrinting() const
    {
+
       return m_bPrinting;
+
    }
+
 
    bool graphics::CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
+
       throw not_supported_exception(get_app());
-      //return Attach(::CreateDC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*)lpInitData));
+
    }
 
 
    bool graphics::CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
+
       throw not_supported_exception(get_app());
-      //return Attach(::CreateIC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*) lpInitData));
+
    }
 
 
@@ -272,30 +268,33 @@ namespace draw2d_cairo
 
    int32_t graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
    {
-      //    ASSERT(get_handle1() != NULL);
-    //      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pwindow)->get_handle());
+
       ::exception::throw_not_implemented(get_app());
+
       return 0;
+
    }
+
 
    int32_t graphics::GetDevicecaps(int32_t nIndex) const
    {
-      /*      ASSERT(get_handle2() != NULL);
-            return ::GetDevicecaps(get_handle2(), nIndex);*/
+
       ::exception::throw_not_implemented(get_app());
+
       return 0;
+
    }
+
 
    point graphics::GetBrushOrg() const
    {
-      /*      ASSERT(get_handle1() != NULL);
-            POINT point;
-            VERIFY(::GetBrushOrgEx(get_handle1(), &point));
-            return point;*/
+
       ::exception::throw_not_implemented(get_app());
+
       return point(0, 0);
 
    }
+
 
    point graphics::SetBrushOrg(int32_t x, int32_t y)
    {
@@ -355,6 +354,7 @@ namespace draw2d_cairo
       m_spbitmap = pbitmap;
 
       return m_spbitmap;
+
    }
 
 
@@ -367,48 +367,14 @@ namespace draw2d_cairo
       return NULL;
    }
 
-   /*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
-      {
-
-         UINT uiType = GetObjectType(hObject);
-
-         if(uiType == OBJ_BITMAP)
-         {
-
-            HBITMAP hbitmap = (HBITMAP) hObject;
-
-            if(m_spbitmap.is_null())
-               m_spbitmap.create(get_app());
-
-            if(m_spbitmap.is_null())
-               return NULL;
-
-            (dynamic_cast < ::win::bitmap * > (m_spbitmap.m_p))->m_pbitmap = new Gdiplus::Bitmap(hbitmap, NULL);
-
-            if(m_pgraphics != NULL)
-            {
-               delete m_pgraphics;
-            }
-
-            m_pgraphics = new Gdiplus::Graphics((Gdiplus::Bitmap *) m_spbitmap->get_os_data());
-
-            set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-            return hbitmap;
-
-         }
-
-         //*ASSERT(get_handle1() == get_handle2()); // ASSERT a simple graphics object
-         //return (hObject != NULL) ? ::SelectObject(get_handle1(), hObject) : NULL; */
-         /*    return NULL;
-          }*/
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
    {
-      //::exception::throw_not_implemented(get_app());
+
       return crColor;
-      //      return ::GetNearestColor(get_handle2(), crColor);
+
    }
+
 
    UINT graphics::RealizePalette()
    {
@@ -1882,26 +1848,36 @@ namespace draw2d_cairo
 
       synch_lock sl(cairo_mutex());
 
+      if(m_spfont.is_null())
+      {
+
+         return false;
+
+      }
+
+      if(m_spfont->m_dFontWidth <= 0.0)
+      {
+
+         return false;
+
+      }
+
       ((::draw2d_cairo::graphics *) this)->set(m_spfont);
 
       cairo_font_extents_t e;
 
-
-
       cairo_font_extents(m_pdc, &e);
 
       lpMetrics->tmAscent = (LONG)e.ascent;
+
       lpMetrics->tmDescent = (LONG)e.descent;
+
       lpMetrics->tmHeight = (LONG)e.height;
 
-      //lpMetrics->tmAscent              = (LONG) e.ascent;
-      //lpMetrics->tmDescent             = (LONG) e.descent;
-      //lpMetrics->tmHeight              = (LONG) e.height;
-
-      //lpMetrics->tmInternalLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
       lpMetrics->tmExternalLeading = (LONG)(e.height - (e.ascent + e.descent));
 
       lpMetrics->tmInternalLeading = (LONG)0;
+
       lpMetrics->tmExternalLeading = (LONG)0;
 
       string str(L"123AWZwmc123AWZwmcpQçg");
@@ -1919,10 +1895,8 @@ namespace draw2d_cairo
    {
 
       ::exception::throw_not_implemented(get_app());
-      return false;
 
-      //      ASSERT(get_handle1() != NULL);
-      //      return ::GetTextMetrics(get_handle1(), lpMetrics) != FALSE;
+      return false;
 
    }
 
@@ -1931,82 +1905,48 @@ namespace draw2d_cairo
    {
 
       ::exception::throw_not_implemented(get_app());
+
       return 0;
 
-      //      ASSERT(get_handle2() != NULL);
-      //      return ::GetTextCharacterExtra(get_handle2());
-
    }
+
 
    bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
    {
 
       ::exception::throw_not_implemented(get_app());
+
       return false;
 
-      //      ASSERT(get_handle2() != NULL);
-      //      return ::GetCharWidth(get_handle2(), nFirstChar, nLastChar, lpBuffer) != FALSE;
-
    }
+
 
    bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
    {
 
       ::exception::throw_not_implemented(get_app());
+
       return false;
 
-      //      ASSERT(get_handle1() != NULL);
-      //      return ::GetCharWidth(get_handle1(), nFirstChar, nLastChar, lpBuffer) != FALSE;
-
    }
+
 
    uint32_t graphics::GetFontLanguageInfo() const
    {
 
       ::exception::throw_not_implemented(get_app());
-      return 0;
 
-      //      ASSERT(get_handle1() != NULL);
-      //      return ::GetFontLanguageInfo(get_handle1());
+      return 0;
 
    }
 
-   /*
-
-      uint32_t graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
-      {
-
-         ::exception::throw_not_implemented(get_app());
-         return 0;
-
-   //      ASSERT(get_handle1() != NULL);
-   //      return ::GetCharacterPlacement(get_handle1(), lpString, nCount, nMaxExtent, lpResults, dwFlags);
-
-      }
-
-      uint32_t graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
-      {
-
-         ::exception::throw_not_implemented(get_app());
-         return 0;
-
-   //      ASSERT(get_handle1() != NULL);
-   //      return ::GetCharacterPlacement(get_handle1(), (const char *)str, (int32_t) str.get_length(), nMaxExtent, lpResults, dwFlags);
-
-      }
-
-   */
 
    size graphics::GetAspectRatioFilter() const
    {
 
       ::exception::throw_not_implemented(get_app());
-      return size(0, 0);
 
-      //      ASSERT(get_handle2() != NULL);
-      //      SIZE size;
-      //      VERIFY(::GetAspectRatioFilterEx(get_handle2(), &size));
-      //      return size;
+      return size(0, 0);
 
    }
 
@@ -3304,72 +3244,6 @@ namespace draw2d_cairo
 
 
 
-   /*
-
-      bool graphics::Attach(HDC hdc)
-      {
-
-         if(hdc == NULL)
-            return false;
-
-         if(m_hdc == hdc)
-         {
-
-            if(m_pgraphics != NULL)
-               return true;
-
-         }
-
-         if(hdc != NULL)
-         {
-
-            m_pgraphics = new ::Gdiplus::Graphics(hdc);
-
-            set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-            m_hdc = hdc;
-
-         }
-
-         return m_pgraphics != NULL;
-
-         /*ASSERT(get_handle1() == NULL);      // only attach once, detach on destroy
-         ASSERT(get_handle2() == NULL);    // only attach to an is_empty DC
-
-         if (hDC == NULL)
-         {
-            return FALSE;
-         }
-         // remember early to avoid leak
-         set_handle1(hDC);
-         hdc_map* pMap = afxMapHDC(TRUE); // create ::collection::map if not exist
-         ASSERT(pMap != NULL);
-         pMap->set_permanent(get_handle1(), this);
-
-         SetAttribDC(get_handle1());     // Default to same as output
-         return TRUE;*/
-         //   }
-
-           /* HDC graphics::Detach()
-            {
-
-               if(m_hdc == NULL)
-                  return NULL;
-
-               if(m_pgraphics == NULL)
-                  return NULL;
-
-               delete m_pgraphics;
-               m_pgraphics = NULL;
-
-               HDC hdc = m_hdc;
-               m_hdc = NULL;
-
-               return hdc;
-
-            }
-         */
-
    bool graphics::DeleteDC()
    {
 
@@ -3387,47 +3261,6 @@ namespace draw2d_cairo
    }
 
 
-   /*
-
-      void graphics::SetAttribDC(HDC hDC)  // Set the Attribute DC
-      {
-   //      set_handle2(hDC);
-      }
-
-      void graphics::SetOutputDC(HDC hDC)  // Set the Output DC
-      {
-   #ifdef DEBUG
-   /*      hdc_map* pMap = afxMapHDC();
-         if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
-         {
-            TRACE(::aura::trace::category_AppMsg, 0, "cannot Set Output hDC on Attached graphics.\n");
-            ASSERT(FALSE);
-         }*/
-         //#endif
-           //    set_handle1(hDC);
-            //}
-         /*
-            void graphics::ReleaseAttribDC()     // Release the Attribute DC
-            {
-         //      set_handle2(NULL);
-            }
-
-            void graphics::ReleaseOutputDC()     // Release the Output DC
-            {
-         #ifdef DEBUG
-         /*      hdc_map* pMap = afxMapHDC();
-               if (pMap != NULL && pMap->lookup_permanent(get_handle1()) == this)
-               {
-                  TRACE(::aura::trace::category_AppMsg, 0, "cannot Release Output hDC on Attached graphics.\n");
-                  ASSERT(FALSE);
-               }*/
-               //#endif
-                     //set_handle1(NULL);
-                  //
-
-                  /////////////////////////////////////////////////////////////////////////////
-                  // Out-of-line routines
-
    int32_t graphics::StartDoc(const char * lpszDocName)
    {
 
@@ -3444,25 +3277,20 @@ namespace draw2d_cairo
 
    }
 
+
    int32_t graphics::SaveDC()
    {
+
+      synch_lock sl(cairo_mutex());
 
       m_iSaveDC++;
 
       cairo_save(m_pdc);
-      //::exception::throw_not_implemented(get_app());
+
       return m_iSaveDC;
 
-      /*
-            int32_t nRetVal = 0;
-            if(get_handle2() != NULL)
-               nRetVal = ::SaveDC(get_handle2());
-            if(get_handle1() != NULL && get_handle1() != get_handle2() && ::SaveDC(get_handle1()) != 0)
-               nRetVal = -1;   // -1 is the only valid restore value for complex DCs
-            return nRetVal;
-      */
-
    }
+
 
    bool graphics::RestoreDC(int32_t nSavedDC)
    {
@@ -3487,49 +3315,40 @@ namespace draw2d_cairo
          m_iSaveDCPositiveClip = -1;
       }
 
-      //::exception::throw_not_implemented(get_app());
       return bRestored;
 
-      /*
-            bool bRetVal = TRUE;
-            if(get_handle1() != NULL && get_handle1() != get_handle2())
-               bRetVal = ::RestoreDC(get_handle1(), nSavedDC) != FALSE;
-            if(get_handle2() != NULL)
-               bRetVal = (bRetVal && ::RestoreDC(get_handle2(), nSavedDC) != FALSE);
-            return bRetVal;
-      */
-
    }
+
 
    ::draw2d::object* graphics::SelectStockObject(int32_t nIndex)
    {
 
       return NULL;
+
    }
+
 
    ::draw2d::pen* graphics::SelectObject(::draw2d::pen* ppen)
    {
+
       m_sppen = ppen;
+
       return m_sppen;
+
    }
+
 
    ::draw2d::brush* graphics::SelectObject(::draw2d::brush* pbrush)
    {
+
       m_spbrush = pbrush;
+
       return m_spbrush;
 
    }
 
    ::draw2d::font* graphics::SelectObject(::draw2d::font* pfont)
    {
-
-      /*ASSERT(pFont != NULL);
-
-      if(pFont == NULL)
-         return NULL;
-
-      m_fontxyz = *pFont;
-      return m_spfont;*/
 
       if (!select_font(pfont))
          return NULL;
@@ -3895,7 +3714,7 @@ namespace draw2d_cairo
             // is better in  cairo to restore the DC instead of resetting clipping
 
             //RestoreDC(m_iSaveDCPositiveClip);
-            cairo_reset_clip(m_pdc);
+           // cairo_reset_clip(m_pdc);
 
             m_iSaveDCPositiveClip = -1;
 
@@ -4384,17 +4203,7 @@ namespace draw2d_cairo
    int32_t graphics::SelectClipRgn(::draw2d::region* pRgn, int32_t nMode)
    {
 
-      //::exception::throw_not_implemented(get_app());
-      return 0;
-
-      /*      ASSERT(get_handle1() != NULL);
-            int32_t nRetVal = ERROR;
-            if (get_handle1() != get_handle2())
-               nRetVal = ::ExtSelectClipRgn(get_handle1(), (HRGN)pRgn->get_os_data(), nMode);
-            if (get_handle2() != NULL)
-               nRetVal = ::ExtSelectClipRgn(get_handle2(), (HRGN)pRgn->get_os_data(), nMode);
-            return nRetVal;
-      */
+      return SelectClipRgn(pRgn);
 
    }
 
@@ -4528,36 +4337,20 @@ namespace draw2d_cairo
    {
 
       ::exception::throw_not_implemented(get_app());
+
       return;
 
-      /*
-            ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
-
-            size sizeWinExt = GetWindowExt();
-            size sizeVpExt = GetViewportExt();
-            lpSize->cx = MulDiv(lpSize->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
-            lpSize->cy = MulDiv(lpSize->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
-      */
-
    }
+
 
    void graphics::DPtoLP(LPSIZE lpSize) const
    {
 
       ::exception::throw_not_implemented(get_app());
+
       return;
 
-      /*
-            ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
-
-            size sizeWinExt = GetWindowExt();
-            size sizeVpExt = GetViewportExt();
-            lpSize->cx = MulDiv(lpSize->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
-            lpSize->cy = MulDiv(lpSize->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
-      */
-
    }
-
 
 
    int32_t graphics::draw_text(const char * lpszString, strsize nCount, const RECT & lpRect, UINT nFormat)
@@ -4566,6 +4359,7 @@ namespace draw2d_cairo
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
 
    }
+
 
    int32_t graphics::draw_text(const string & strParam, const RECT & lpRect, UINT nFormat)
    {
@@ -4582,6 +4376,20 @@ namespace draw2d_cairo
       }
 
       synch_lock ml(cairo_mutex());
+
+      if(m_spfont.is_null())
+      {
+
+         return false;
+
+      }
+
+      if(m_spfont->m_dFontWidth <= 0.0)
+      {
+
+         return -1;
+
+      }
 
       cairo_keep keep(m_pdc);
 
@@ -4623,9 +4431,18 @@ namespace draw2d_cairo
          dy = 0.;
       }
 
-      //cairo_translate(m_pdc, lpRect.left + dx, lpRect.top + e.ascent + dy);
+      if(m_spfont->m_dFontWidth != 1.0)
+      {
 
-      cairo_scale(m_pdc, m_spfont->m_dFontWidth, 1.0);
+         cairo_matrix_t m;
+
+         cairo_get_matrix(m_pdc, &m);
+
+         cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+
+         cairo_set_matrix(m_pdc, &m);
+
+      }
 
       set_os_color(m_spbrush->m_cr);
 
@@ -4650,7 +4467,6 @@ namespace draw2d_cairo
 
       }
 
-
       stringa stra;
 
       stra.add_lines(str);
@@ -4663,6 +4479,17 @@ namespace draw2d_cairo
          cairo_move_to(m_pdc, lpRect.left + dx, lpRect.top + dy + e.ascent + sz.cy * (i) / stra.get_size());
 
          cairo_show_text(m_pdc, strLine);
+
+         cairo_status_t status = cairo_status(m_pdc);
+
+         if(status != CAIRO_STATUS_SUCCESS)
+         {
+
+            const char * pszStatus = cairo_status_to_string(status);
+
+            TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
+
+         }
 
          i++;
 
@@ -4677,35 +4504,21 @@ namespace draw2d_cairo
    {
 
       ::exception::throw_not_implemented(get_app());
+
       return 0;
 
-      /*
-            if(get_handle1() == NULL)
-               return -1;
-            // these flags would modify the string
-            ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-            ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-            wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
-            return ::DrawTextExW(get_handle1(), const_cast<unichar *>((const unichar *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
-      */
    }
+
 
    int32_t graphics::draw_text_ex(const string & str, const RECT & lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       ::exception::throw_not_implemented(get_app());
+
       return 0;
 
-      /*
-            ASSERT(get_handle1() != NULL);
-            // these flags would modify the string
-            ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-            ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-            wstring wstr = ::str::international::utf8_to_unicode(str);
-            return ::DrawTextExW(get_handle1(), const_cast<unichar *>((const unichar *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
-      */
-
    }
+
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const
    {
@@ -4775,12 +4588,26 @@ namespace draw2d_cairo
 
       if(str.is_empty())
       {
-         
+
          return false;
 
       }
 
       synch_lock ml(cairo_mutex());
+
+      if(m_spfont.is_null())
+      {
+
+         return false;
+
+      }
+
+      if(m_spfont->m_dFontWidth <= 0.0)
+      {
+
+         return false;
+
+      }
 
       if (iIndex < 0)
          iIndex = (int32_t)nCount;
@@ -4804,22 +4631,47 @@ namespace draw2d_cairo
 
       }
 
-
       return true;
 
-
    }
+
 
    bool graphics::_GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
+      if (iIndex < 0)
+      {
+
+         iIndex = (int32_t)nCount;
+
+      }
+
+      string str(lpszString, MIN(iIndex, nCount));
+
+      str = ::str::q_valid(str);
+
+      if (str.is_empty())
+      {
+
+         return false;
+
+      }
 
       synch_lock ml(cairo_mutex());
 
-      if (iIndex < 0)
-         iIndex = (int32_t)nCount;
+      if(m_spfont.is_null())
+      {
 
-      string str(lpszString, MIN(iIndex, nCount));
+         return false;
+
+      }
+
+      if(m_spfont->m_dFontWidth <= 0.0)
+      {
+
+         return false;
+
+      }
 
       cairo_keep keep(m_pdc);
 
@@ -4829,12 +4681,12 @@ namespace draw2d_cairo
 
       cairo_font_extents_t e;
 
-      if (::str::begins(lpszString, "バーチャルマシン"))
+      if (::str::begins(str, "バーチャルマシン"))
       {
+
          TRACE("Likely to fail in certain circumstances");
+
       }
-
-
 
       cairo_font_extents(m_pdc, &e);
 
@@ -4850,6 +4702,17 @@ namespace draw2d_cairo
       }
 
       cairo_text_extents(m_pdc, str, &ex);
+
+      cairo_status_t status = cairo_status(m_pdc);
+
+      if(status != CAIRO_STATUS_SUCCESS)
+      {
+
+         const char * pszStatus = cairo_status_to_string(status);
+
+         TRACE("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
+
+      }
 
       size.cx = (LONG)(ex.x_advance * m_spfont->m_dFontWidth);
 
@@ -4956,18 +4819,39 @@ namespace draw2d_cairo
 
    }
 
+
    bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
    {
 
+      string str(lpszString, nCount);
+
+      str = ::str::q_valid(str);
+
+      if (str.is_empty())
+      {
+
+         return -1;
+
+      }
+
       synch_lock sl(cairo_mutex());
 
-      if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
-         return true;
+      if(m_spfont.is_null())
+      {
+
+         return -1;
+
+      }
+
+      if(m_spfont->m_dFontWidth <= 0.0)
+      {
+
+         return -1;
+
+      }
 
       if (m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
       {
-
-         string str(lpszString, nCount);
 
          ::draw2d::dib_sp dib0(allocer());
 
@@ -5017,26 +4901,42 @@ namespace draw2d_cairo
 
       cairo_move_to(m_pdc, x, y + e.ascent);
 
-      cairo_matrix_t m;
-
-      cairo_get_matrix(m_pdc, &m);
-
-      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
-
-      cairo_set_matrix(m_pdc, &m);
-
-      if (::str::begins(lpszString, "バーチャルマシン"))
+      if(m_spfont->m_dFontWidth != 1.0)
       {
-         TRACE("Likely to fail in certain circumstances");
+
+         cairo_matrix_t m;
+
+         cairo_get_matrix(m_pdc, &m);
+
+         cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+
+         cairo_set_matrix(m_pdc, &m);
+
       }
 
-      cairo_show_text(m_pdc, lpszString);
+      if (::str::begins(str, "バーチャルマシン"))
+      {
+
+         TRACE("Likely to fail in certain circumstances");
+
+      }
+
+      cairo_show_text(m_pdc, str);
+
+      status = cairo_status(m_pdc);
+
+      if(status != CAIRO_STATUS_SUCCESS)
+      {
+
+         const char * pszStatus = cairo_status_to_string(status);
+
+         TRACE("cairo error : graphics::TextOut %d %s", status, pszStatus);
+
+      }
 
       return true;
 
-
    }
-
 
 
    bool graphics::LineTo(double x, double y)
@@ -5099,6 +4999,7 @@ namespace draw2d_cairo
 
    void graphics::set_text_rendering(::draw2d::e_text_rendering etextrendering)
    {
+
       m_etextrendering = etextrendering;
 
    }
@@ -5114,7 +5015,7 @@ namespace draw2d_cairo
 
    bool graphics::attach(void * pdata)
    {
-      
+
       synch_lock ml(cairo_mutex());
 
       if (m_pdc != NULL)
@@ -5132,57 +5033,6 @@ namespace draw2d_cairo
 
    }
 
-   /*
-      Gdiplus::Font * graphics::gdiplus_font()
-      {
-         if(m_spfont.is_null())
-         {
-            m_spfont.create(get_app());
-            m_spfont->operator=(m_fontxyz);
-         }
-         else if(!m_spfont->m_bUpdated)
-         {
-            m_spfont->m_bUpdated = true;
-            m_spfont->operator=(m_fontxyz);
-         }
-         return (Gdiplus::Font *) m_spfont->get_os_data();
-      }
-
-      Gdiplus::Brush * graphics::gdiplus_brush()
-      {
-         if(m_spbrush.is_null())
-         {
-            m_spbrush.create(get_app());
-            m_spbrush->operator=(m_brushxyz);
-         }
-         else if(!m_spbrush->m_bUpdated)
-         {
-            m_spbrush->m_bUpdated = true;
-            m_spbrush->operator=(m_brushxyz);
-         }
-         return (Gdiplus::Brush *) m_spbrush->get_os_data();
-      }
-
-      Gdiplus::Pen * graphics::gdiplus_pen()
-      {
-         if(m_sppen.is_null())
-         {
-            m_sppen.create(get_app());
-            m_sppen->operator=(m_penxyz);
-         }
-         else if(!m_sppen->m_bUpdated)
-         {
-            m_sppen->m_bUpdated = true;
-            m_sppen->operator=(m_penxyz);
-         }
-         return (Gdiplus::Pen *) m_sppen->get_os_data();
-      }*/
-
-
-      //   ::core::e_fill_mode graphics::gdiplus_get_fill_mode()
-        // {
-      //      return ::draw2d::fill_mode_winding;
-        // }
 
    void cairo_image_surface_blur(cairo_surface_t* surface, double radius)
    {
@@ -5741,6 +5591,7 @@ namespace draw2d_cairo
 
    bool graphics::set(const ::draw2d_cairo::path::rect & r)
    {
+
       synch_lock ml(cairo_mutex());
 
       cairo_rectangle(m_pdc, r.m_x, r.m_y, r.m_cx, r.m_cy);
@@ -5749,44 +5600,81 @@ namespace draw2d_cairo
 
    }
 
-   bool graphics::set(const ::draw2d_cairo::path::string_path & str)
+
+   bool graphics::set(const ::draw2d_cairo::path::string_path & stringpath)
    {
+
+      string str;
+
+      str = ::str::q_valid(stringpath.m_strText);
+
+      if (str.is_empty())
+      {
+
+         return false;
+
+      }
+
+      synch_lock sl(cairo_mutex());
+
+      if(m_spfont.is_null())
+      {
+
+         return false;
+
+      }
+
+      if(m_spfont->m_dFontWidth <= 0.0)
+      {
+
+         return false;
+
+      }
+
       cairo_keep keep(m_pdc);
 
-      ((graphics *) this)->set(str.m_spfont);
+      ((graphics *) this)->set(stringpath.m_spfont);
 
       cairo_font_extents_t e;
 
       cairo_font_extents(m_pdc, &e);
 
-      /*if (m_spbrush.is_null())
-      {
-         set_os_color(ARGB(255, 0, 0, 0));
-      }
-      else
-      {
-         set_os_color(m_spbrush->m_cr);
-      }*/
+      double x = stringpath.m_x;
 
-      double x = str.m_x;
-      double y = str.m_y;
+      double y = stringpath.m_y;
 
       cairo_move_to(m_pdc, x, y + e.ascent);
 
-      cairo_matrix_t m;
+      if(m_spfont->m_dFontWidth != 1.0)
+      {
 
-      cairo_get_matrix(m_pdc, &m);
+         cairo_matrix_t m;
 
-      cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+         cairo_get_matrix(m_pdc, &m);
 
-      cairo_set_matrix(m_pdc, &m);
+         cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
 
-      cairo_text_path(m_pdc, str.m_strText);
+         cairo_set_matrix(m_pdc, &m);
 
+      }
+
+      cairo_text_path(m_pdc, str);
+
+      cairo_status_t status = cairo_status(m_pdc);
+
+      if(status != CAIRO_STATUS_SUCCESS)
+      {
+
+         const char * pszStatus = cairo_status_to_string(status);
+
+         TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
+
+      }
 
       return true;
 
    }
+
 
    bool graphics::set(const ::draw2d_cairo::path::move & p)
    {

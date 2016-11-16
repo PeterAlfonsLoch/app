@@ -516,7 +516,7 @@ namespace user
       if(pdrawitem->m_bListItemHover)
       {
          if(!pdrawitem->m_plist->m_bMorePlain)
-         {         
+         {
             pdrawitem->m_pgraphics->Draw3dRect(pdrawitem->m_rectItem, ARGB(77, 235, 235, 255), ARGB(77, 235, 235, 255));
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem,ARGB(40,255,255,255));
          }
@@ -886,7 +886,7 @@ namespace user
       }
 
       CacheHint();
-      
+
       //layout_scroll_bar();
 
       on_change_view_size();
@@ -900,6 +900,8 @@ namespace user
          TRACE("list::_001OnUpdateItemCount GroupCount %d\n", m_nGroupCount);
 
       }
+
+      RedrawWindow();
 
       return true;
 
@@ -1219,7 +1221,7 @@ namespace user
 
    }
 
-   
+
    int32_t list::_001CalcItemHeight(int iBaseHeight)
    {
 
@@ -2505,7 +2507,7 @@ namespace user
 
          GetClientRect(&rectClient);
 
-         m_plistheader->SetWindowPos(ZORDER_TOP, 0, 0, (int)  MAX(m_iItemWidth + 10, rectClient.width()), (int) m_iItemHeight, 
+         m_plistheader->SetWindowPos(ZORDER_TOP, 0, 0, (int)  MAX(m_iItemWidth + 10, rectClient.width()), (int) m_iItemHeight,
             SWP_SHOWWINDOW | SWP_NOZORDER);
 
       }
@@ -2706,7 +2708,7 @@ namespace user
             if (m_eview == view_icon)
             {
 
-               
+
 
                point pt = pmouse->m_pt;
                ScreenToClient(pt);
@@ -2732,7 +2734,7 @@ namespace user
          }
          m_ptLButtonDown = pt;
       }
-      
+
       RedrawWindow();
 
       if(!has_focus())
@@ -2771,7 +2773,7 @@ namespace user
 
             if(m_iItemMouseDown >= 0)
             {
-            
+
                index iItemOld = m_iItemDrop;
 
                if (_001DisplayHitTest(pt, m_iItemDrop))
@@ -2809,7 +2811,7 @@ namespace user
                            index iRowOffset = iRow2 - iRow1;
 
                            index_array iaNew;
-                           
+
                            index_array iaOld;
 
                            for (index i = 0; i < m_rangeSelection.get_item_count(); i++)
@@ -2848,7 +2850,7 @@ namespace user
                         }
 
                      }
-                     
+
                      RedrawWindow();
 
                   }
@@ -3964,21 +3966,21 @@ namespace user
 
    void list::_001UpdateColumns()
    {
-      
+
       synch_lock sl(m_pmutex);
-      
+
       _001RemoveAllColumns();
-      
+
       keep < bool > keepLockViewUpdate(&m_bLockViewUpdate, true, false, true);
-      
+
       _001InsertColumns();
-      
+
       keepLockViewUpdate.KeepAway();
-      
+
       DIDDXHeaderLayout(false);
-      
+
       _001OnColumnChange();
-   
+
       RedrawWindow();
 
    }
@@ -5284,10 +5286,10 @@ namespace user
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(iColumn));
    }
 
-   
+
    void list::_OnDraw(::draw2d::graphics * pgraphics)
    {
-      
+
       UNREFERENCED_PARAMETER(pgraphics);
 
    }
@@ -5753,7 +5755,7 @@ namespace user
          {
             m_iconlayout.m_iaDisplayToStrict.set(iStrict, iStrict);
          }
-         
+
          RedrawWindow();
 
       }
@@ -5801,7 +5803,7 @@ namespace user
 
    bool list::keyboard_focus_is_focusable()
    {
-      
+
       return true;
 
    }
@@ -5809,7 +5811,7 @@ namespace user
 
    void list::_001OnSelectionChange()
    {
-      
+
       RedrawWindow();
 
    }
@@ -5995,10 +5997,10 @@ namespace user
 
                dib->get_graphics()->FillSolidRect(0, 0, dib->m_size.cx, dib->m_size.cy, 0);
 
-               get_image_list()->draw(dib->get_graphics(), (int32_t)m_iImage, 
+               get_image_list()->draw(dib->get_graphics(), (int32_t)m_iImage,
                   point(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectImage.size(), point(0, 0), 0);
 
-               
+
                if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
                {
 
@@ -6285,23 +6287,25 @@ namespace user
 
             rect rectClient;
 
-            m_plistheader->GetClientRect(rectClient);
+            GetClientRect(rectClient);
 
-            m_plistheader->ClientToScreen(rectClient);
+            rect rectClientHeader;
 
-            ScreenToClient(rectClient);
+            m_plistheader->GetClientRect(rectClientHeader);
 
-            ::draw2d::region_sp rgnClip(allocer());
+            m_plistheader->ClientToScreen(rectClientHeader);
 
-            rgnClip->create_rect(rectClient);
+            ScreenToClient(rectClientHeader);
 
-            pgraphics->SelectClipRgn(rgnClip,RGN_DIFF);
+            rectClient.top = rectClientHeader.bottom;
+
+            pgraphics->IntersectClipRect(rectClient);
 
          }
          catch(...)
          {
 
-            throw simple_exception(::get_thread_app(),"no more a window");
+            TRACE("Exception : ::list::_001OnClip");
 
          }
 

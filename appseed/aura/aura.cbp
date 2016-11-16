@@ -613,6 +613,11 @@
 		<Unit filename="graphics/draw2d/draw2d_fwd.h" />
 		<Unit filename="graphics/draw2d/draw2d_graphics.h" />
 		<Unit filename="graphics/draw2d/draw2d_igui.h" />
+		<Unit filename="graphics/draw2d/draw2d_keep.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="graphics/draw2d/draw2d_keep.h" />
 		<Unit filename="graphics/draw2d/draw2d_nanosvg.cpp" />
 		<Unit filename="graphics/draw2d/draw2d_object.h" />
 		<Unit filename="graphics/draw2d/draw2d_palette.h" />

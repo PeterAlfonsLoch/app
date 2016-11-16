@@ -21,14 +21,13 @@ namespace draw2d_cairo
 
       int                        m_iSaveDC;
       int                        m_iSaveDCPositiveClip;
-      cairo_t *                  m_pdc; 
+      cairo_t *                  m_pdc;
       int32_t                    m_iType;
       bool                       m_bPrinting;
       int                        m_nStretchBltMode;
 
-      cairo_surface_t *          m_psurfaceAttach;
-
 #ifdef WINDOWS
+      cairo_surface_t *          m_psurfaceAttach;
       HDC                        m_hdcAttach;
 #endif
 
@@ -37,25 +36,8 @@ namespace draw2d_cairo
       virtual ~graphics();
 
 
-      /* xxx      Gdiplus::Graphics & g()
-            {
-               if(m_pgraphics == NULL)
-               {
-                  m_pgraphics = ::Gdiplus::Graphics::FromHDC(get_handle1());
-               }
-               return *m_pgraphics;
-            }*/
-
-            //window * GetWindow() const;
-
-
 
       virtual void * detach();
-
-      //virtual void SetAttribDC(HDC hDC);  // Set the Attribute DC
-      //virtual void SetOutputDC(HDC hDC);  // Set the Output DC
-      //virtual void ReleaseAttribDC();     // Release the Attribute DC
-      //virtual void ReleaseOutputDC();     // Release the Output DC
 
       bool IsPrinting() const;            // TRUE if being used for printing
 

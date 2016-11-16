@@ -8,6 +8,8 @@
 namespace draw2d
 {
 
+   class graphics;
+
    CLASS_DECL_AURA void vertical_swap_copy_colorref(int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
    CLASS_DECL_AURA void copy_colorref(int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
    CLASS_DECL_AURA void copy_colorref(int x, int y, int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
@@ -32,6 +34,7 @@ void draw2d_factory_exchange(::aura::application * papp);
 
 
 #include "draw2d_object.h"
+#include "draw2d_keep.h"
 #include "draw2d_pen.h"
 #include "draw2d_bitmap.h"
 #include "draw2d_dib.h"

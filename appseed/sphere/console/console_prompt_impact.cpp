@@ -25,11 +25,11 @@ namespace console
 
    prompt_impact::~prompt_impact()
    {
-      
+
 
    }
-      
-   
+
+
    void prompt_impact::install_message_handling(::message::dispatch * pdispatch)
    {
 
@@ -42,10 +42,10 @@ namespace console
 
    }
 
-   
+
    void prompt_impact::clear()
    {
-   
+
       m_strCommand.Empty();
 
       m_iCursor = 0;
@@ -83,7 +83,8 @@ namespace console
 
       if(m_strCommand == ":q")
       {
-         ::aura::post_quit_thread(&System);
+
+         ::multithreading::post_quit(&System);
 
       }
       else
@@ -94,7 +95,7 @@ namespace console
 
       if(m_bOk)
       {
-         
+
          clear();
 
       }
@@ -103,7 +104,7 @@ namespace console
 
    void prompt_impact::_001OnKeyDown(::signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::key,pkey,pobj);
 
       m_dwLastCaret = ::get_tick_count();
@@ -122,7 +123,7 @@ namespace console
       }
       else if(key.m_ekey == ::user::key_return)
       {
-         
+
          interpret_command();
 
       }
@@ -146,7 +147,7 @@ namespace console
 
          if(lpsz - lpszDec > 0)
          {
-            
+
             m_strCommand.erase(lpszDec - m_strCommand,lpsz - lpszDec);
 
             m_iCursor--;
@@ -241,7 +242,7 @@ namespace console
 
    }
 
-   
+
    void prompt_impact::_001OnKeyUp(::signal_details * pobj)
    {
 
@@ -275,14 +276,14 @@ namespace console
    {
 
       return 0;
-       
+
    }
 
 
    void prompt_impact::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
       ::draw2d::font_sp f(allocer());
@@ -297,7 +298,7 @@ namespace console
 
       if(::get_tick_count() - m_dwLastError < 84 && !m_bOk)
       {
-         
+
          crTopic = ARGB(255,255,0,210);
 
       }
@@ -305,7 +306,7 @@ namespace console
       {
 
          m_bOk = true;
-         
+
          crTopic = ARGB(255,100,210,84);
 
       }
@@ -351,7 +352,7 @@ namespace console
       }
 
    }
-   
+
 
    bool prompt_impact::keyboard_focus_is_focusable()
    {

@@ -351,7 +351,7 @@ bool simple_scroll_bar::GetTrackClientRect(LPRECT lpRect)
 
 int32_t simple_scroll_bar::GetTrackSize(size &size)
 {
-   
+
    rect rectClient;
 
    GetClientRect(rectClient);
@@ -400,9 +400,9 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
 {
 
    int32_t nPos;
-   
+
    size sizeTrack;
-   
+
    GetTrackSize(sizeTrack);
 
    rect rectClient;
@@ -958,8 +958,6 @@ public:
 
 void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pgraphics)
 {
-
-   pgraphics->SelectClipRgn(NULL);
 
    rect rectClient;
 
