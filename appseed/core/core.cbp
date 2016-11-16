@@ -558,8 +558,16 @@
 		<Unit filename="user/user/user_static_control.h" />
 		<Unit filename="user/user/user_statusbar.h" />
 		<Unit filename="user/user/user_step_slider.h" />
+		<Unit filename="user/user/user_tab.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_tab.h" />
 		<Unit filename="user/user/user_tab_callback.h" />
+		<Unit filename="user/user/user_tab_view.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_tab_view.h" />
 		<Unit filename="user/user/user_tab_view_update_hint.h" />
 		<Unit filename="user/user/user_template.h" />
