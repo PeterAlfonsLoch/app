@@ -40,7 +40,7 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
       if(psz != NULL)
       {
 
-         fprintf(stderr, "%s\n", psz);
+         output_debug_string(psz);
 
       }
 
@@ -51,9 +51,17 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
       if (errstr != NULL)
       {
 
-         printf ("A dynamic linking error occurred: (%s)\n", errstr);
+         output_debug_string (errstr);
 
       }
+
+   }
+   else
+   {
+
+      output_debug_string("Successfully loaded library ");
+
+      output_debug_string(pszPath);
 
    }
 

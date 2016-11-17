@@ -472,6 +472,10 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="aura/os/linux/linux_library.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/linux/linux_linux.h" />
 		<Unit filename="aura/os/linux/linux_lock.cpp">
 			<Option compile="0" />
