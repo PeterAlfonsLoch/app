@@ -25,7 +25,7 @@
 #include <winpr/windows.h>
 
 
-#ifdef _UWP
+#if defined( _UWP) || defined(LINUX)
 #include <openssl/bio.h>
 #ifdef __cplusplus
 extern "C"
