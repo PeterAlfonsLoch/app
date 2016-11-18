@@ -1452,15 +1452,15 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
+   bool graphics::BitBltRaw(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
 
       synch_lock ml(cairo_mutex());
 
       cairo_keep keep(m_pdc);
 
-      if (::draw2d::graphics::BitBlt(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
-         return true;
+      //if (::draw2d::graphics::BitBlt(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
+      //   return true;
 
 
       try
@@ -1541,7 +1541,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
+   bool graphics::StretchBltRaw(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {
 
       synch_lock ml(cairo_mutex());
@@ -1697,7 +1697,7 @@ namespace draw2d_cairo
    bool graphics::TextOut(int32_t x, int32_t y, const string & str)
    {
 
-      return TextOut(double(x), double(y), str);
+      return ::draw2d::graphics::TextOut(double(x), double(y), str);
 
    }
 
@@ -2619,7 +2619,7 @@ namespace draw2d_cairo
 // India India
 // Member
 
-   bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
+   bool graphics::alpha_blendRaw(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
    {
 
 
@@ -2627,74 +2627,74 @@ namespace draw2d_cairo
 
       cairo_keep keep(m_pdc);
 
-      if (m_pdibAlphaBlend != NULL)
-      {
+      //if (m_pdibAlphaBlend != NULL)
+      //{
 
-         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-
-
-         ::draw2d::dib * pdibWork = NULL;
-         ::draw2d::dib * pdibWork2 = NULL;
-         //         ::draw2d::dib * pdibWork3 = NULL;
-         ::draw2d::dib * pdibWork4 = NULL;
+      //   rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
 
 
-         class point ptSrc(xSrc, ySrc);
-         class point ptDest(xDst, yDst);
-         class size size(nDstWidth, nDstHeight);
+      //   ::draw2d::dib * pdibWork = NULL;
+      //   ::draw2d::dib * pdibWork2 = NULL;
+      //   //         ::draw2d::dib * pdibWork3 = NULL;
+      //   ::draw2d::dib * pdibWork4 = NULL;
 
 
-
-         ::draw2d::dib_sp spdib;
-         if (pdibWork == NULL)
-         {
-            spdib.alloc(allocer());
-            pdibWork = spdib;
-         }
-         if (pdibWork == NULL)
-            return false;
-         if (!pdibWork->create(size))
-            return false;
-         if (!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
-            return false;
+      //   class point ptSrc(xSrc, ySrc);
+      //   class point ptDest(xDst, yDst);
+      //   class size size(nDstWidth, nDstHeight);
 
 
 
-
-         ::draw2d::dib_sp spdib2;
-         if (pdibWork2 == NULL)
-         {
-            spdib2.alloc(allocer());
-            pdibWork2 = spdib2;
-         }
-
-
-         ::draw2d::dib_sp spdib4;
-         if (pdibWork4 == NULL)
-         {
-            spdib4.alloc(allocer());
-            pdibWork4 = spdib4;
-         }
-         if (pdibWork4 == NULL)
-            return false;
-         if (!pdibWork4->create(size))
-            return false;
+      //   ::draw2d::dib_sp spdib;
+      //   if (pdibWork == NULL)
+      //   {
+      //      spdib.alloc(allocer());
+      //      pdibWork = spdib;
+      //   }
+      //   if (pdibWork == NULL)
+      //      return false;
+      //   if (!pdibWork->create(size))
+      //      return false;
+      //   if (!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
+      //      return false;
 
 
-         pdibWork4->Fill(255, 0, 0, 0);
-
-         pdibWork4->from(point(MAX(0, m_ptAlphaBlend.x - xDst), MAX(0, m_ptAlphaBlend.y - yDst)),
-            m_pdibAlphaBlend->get_graphics(), point(MAX(0, xDst - m_ptAlphaBlend.x), MAX(0, yDst - m_ptAlphaBlend.y)), size);
-
-         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
 
 
-         ::keep < ::draw2d::dib * > keep2(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+      //   ::draw2d::dib_sp spdib2;
+      //   if (pdibWork2 == NULL)
+      //   {
+      //      spdib2.alloc(allocer());
+      //      pdibWork2 = spdib2;
+      //   }
 
 
-         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
+      //   ::draw2d::dib_sp spdib4;
+      //   if (pdibWork4 == NULL)
+      //   {
+      //      spdib4.alloc(allocer());
+      //      pdibWork4 = spdib4;
+      //   }
+      //   if (pdibWork4 == NULL)
+      //      return false;
+      //   if (!pdibWork4->create(size))
+      //      return false;
 
-      }
+
+      //   pdibWork4->Fill(255, 0, 0, 0);
+
+      //   pdibWork4->from(point(MAX(0, m_ptAlphaBlend.x - xDst), MAX(0, m_ptAlphaBlend.y - yDst)),
+      //      m_pdibAlphaBlend->get_graphics(), point(MAX(0, xDst - m_ptAlphaBlend.x), MAX(0, yDst - m_ptAlphaBlend.y)), size);
+
+      //   pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
+
+
+      //   ::keep < ::draw2d::dib * > keep2(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+
+
+      //   return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
+
+      //}
 
       try
       {
@@ -4820,7 +4820,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
+   bool graphics::TextOutRaw(double x, double y, const char * lpszString, strsize nCount)
    {
 
       string str(lpszString, nCount);
