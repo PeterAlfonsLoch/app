@@ -77,7 +77,7 @@ public:
 
    }
 
-   const T * get() const
+   T * get() const
    {
 
       return m_p;
@@ -91,7 +91,7 @@ public:
 
    }
 
-   operator const T *() const
+   operator T *() const
    {
       
       return m_p;
@@ -143,7 +143,6 @@ public:
       return m_p;
 
    }
-
 
 };
 

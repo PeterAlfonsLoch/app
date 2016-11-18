@@ -75,10 +75,6 @@ object::object(::aura::application * papp)
 object::~object()
 {
 
-   ::aura::del(m_pmutex);
-
-   ::aura::del(m_psetObject);
-
 }
 
 

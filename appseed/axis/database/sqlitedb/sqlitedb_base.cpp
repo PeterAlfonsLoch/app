@@ -40,8 +40,6 @@ namespace sqlite
 
       disconnect();
 
-      ::aura::del(m_pmutex);
-
    }
 
 

@@ -21,8 +21,6 @@ namespace simpledb
 
       close();
 
-      ::aura::del(m_pmutex);
-
    }
 
 

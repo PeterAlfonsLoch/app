@@ -156,7 +156,7 @@ namespace sockets
 
    mutex& socket_handler::GetMutex() const
    {
-      return *m_pmutex;
+      return *m_pmutex.m_p;
    }
 
 
