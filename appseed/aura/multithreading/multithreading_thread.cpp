@@ -1104,7 +1104,7 @@ void thread::dispatch_thread_message(signal_details * pbase)
 
    //LRESULT lresult;
 
-   synch_lock sl(m_pmutex);
+   //synch_lock sl(m_pmutex);
    int i = 0;
    Signal * pSignal;
    while((pSignal = m_signala.GetSignal(pbase->m_uiMessage,0,0, i)) != NULL)

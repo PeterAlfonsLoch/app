@@ -96,7 +96,7 @@ namespace sockets
 
    void socket_handler::cleanup_handler()
    {
-      
+
       if (m_resolver)
       {
 
@@ -141,7 +141,7 @@ namespace sockets
       }
 
       m_sockets.remove_all();
-      
+
       ::aura::del(m_resolver);
 
       if (m_b_use_mutex)
@@ -156,7 +156,9 @@ namespace sockets
 
    mutex& socket_handler::GetMutex() const
    {
-      return *m_pmutex.m_p;
+
+      return *m_pmutex;
+
    }
 
 
@@ -286,10 +288,10 @@ namespace sockets
    {
 
       sp(base_socket) psocket = pbasesocket;
-      
+
       if (::contains_value(&m_sockets, psocket))
       {
-         
+
          return true;
 
       }
@@ -337,7 +339,7 @@ namespace sockets
          SOCKET s = ppair->m_element1;
 
          sp(base_socket) & p = ppair->m_element2;
-         
+
          sp(base_socket) plookup;
 
          if(m_sockets.Lookup(p -> GetSocket(),plookup))
@@ -350,10 +352,10 @@ namespace sockets
             goto start_processing_adding;
 
          }
-         
+
          if(!p -> CloseAndDelete())
          {
-         
+
             stream_socket * scp = p.cast < stream_socket >();
 
             if(scp && scp -> Connecting()) // 'open' called before adding socket
@@ -405,7 +407,7 @@ namespace sockets
          }
 
          m_sockets[s] = p;
-         
+
          m_add.remove_key(s);
 
          goto start_processing_adding;
@@ -584,7 +586,7 @@ namespace sockets
       }
       else if(n == 0)
       {
-         
+
          m_preverror = -1;
 
       }
@@ -948,9 +950,9 @@ namespace sockets
       // check erased sockets
       while(m_fds_erase.get_size())
       {
-         
+
          SOCKET socket = m_fds_erase.remove_head();
-         
+
          m_fds_detach.remove(socket);
 
          m_fds.remove(socket);
@@ -980,7 +982,7 @@ namespace sockets
                m_add.remove_key(socket);
 
             }
-            
+
 
 
          }

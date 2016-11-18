@@ -72,6 +72,7 @@ namespace linux
       set_handle(NULL);
       m_bExposing    = false;
       m_bEnabled     = true;
+      m_pthreadDraw     = NULL;
 
    }
 
@@ -93,41 +94,14 @@ namespace linux
       set_handle(NULL);
       m_bExposing    = false;
       m_bEnabled     = true;
+      m_pthreadDraw     = NULL;
 
    }
+
 
    interaction_impl::~interaction_impl()
    {
 
-/*
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->m_spuser.is_set())
-      {
-
-         if(Session.user()->m_pwindowmap != NULL)
-         {
-
-            Session.user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
-
-         }
-
-      }*/
-
-      //single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
-      //if(m_pfont != NULL)
-      {
-       //  delete m_pfont;
-      }
-      //sl.unlock();
-      /*if(m_oswindow != NULL)
-      {
-
-         TRACE(::aura::trace::category_AppMsg, 0, "Warning: calling DestroyWindow in interaction_impl::~interaction_impl; OnDestroy or PostNcDestroy in derived class will not be called.\n");
-
-         m_pcallback = NULL;
-
-         DestroyWindow();
-
-      }*/
 
    }
 
@@ -692,15 +666,12 @@ namespace linux
 
    void interaction_impl::_001OnDestroy(::signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       Default();
 
-      if(m_pthreadDraw != NULL)
-      {
-
-         ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
-
-      }
+      ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
 
    }
 
@@ -852,57 +823,21 @@ namespace linux
 
       }
 
-      single_lock sl(m_pauraapp == NULL ? NULL : m_pauraapp->m_pmutex, TRUE);
-      sp(::user::interaction) pWnd;
-      oswindow hWndOrig;
-      bool bResult;
+      bool bResult = false;
 
+      oswindow window = get_handle();
 
-      bResult = FALSE;
-      pWnd = NULL;
-      hWndOrig = NULL;
-      if (get_handle() != NULL)
+      if (window != NULL)
       {
-//         single_lock sl(afxMutexHwnd(), TRUE);
-  //       pMap = afxMapHWND();
-    //     if(pMap != NULL)
-         {
-      //      pWnd =  (pMap->lookup_permanent(get_handle()));
-#ifdef DEBUG
-        //    hWndOrig = get_handle();
-#endif
-         }
-      }
-      sl.unlock();
-      if (get_handle() != NULL)
-         bResult = ::DestroyWindow((oswindow) get_handle()) != FALSE;
-      sl.lock();
-      if (hWndOrig != NULL)
-      {
-         // Note that 'this' may have been deleted at this point,
-         //  (but only if pWnd != NULL)
-         if (pWnd != NULL)
-         {
-            // Should have been detached by OnNcDestroy
-#ifdef DEBUG
-//            sp(::interaction_impl) pWndPermanent =  (pMap->lookup_permanent(hWndOrig));;
-  //          ASSERT(pWndPermanent == NULL);
-            // It is important to call aura class, including ca2 core
-            // aura classes implementation of install_message_handling
-            // inside derived class install_message_handling
-#endif
-         }
-         else
-         {
-#ifdef DEBUG
-            ASSERT(get_handle() == hWndOrig);
-#endif
-            // Detach after DestroyWindow called just in case
-            Detach();
-         }
+
+         bResult = ::DestroyWindow(window) != FALSE;
+
+         Detach();
+
       }
 
       return bResult;
+
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -4288,10 +4223,12 @@ throw not_implemented(get_app());
       return LNX_WINDOW(const_cast < ::user::interaction_impl * >  (&wnd))->get_handle() != ((interaction_impl *)this)->get_handle();
    }
 
+
    DWORD interaction_impl::GetStyle() const
    {
-      ASSERT(::IsWindow((oswindow) get_handle()));
+
       return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_STYLE);
+
    }
 
 

@@ -121,8 +121,8 @@ public:
    void *                        m_pthis;
    int64_t                       m_countReference;
    ::aura::application *         m_pauraapp;
-   pointer < mutex >             m_pmutex;
-   pointer < property_set >      m_psetObject;
+   mutex *                       m_pmutex;
+   property_set *                m_psetObject;
 
 
 

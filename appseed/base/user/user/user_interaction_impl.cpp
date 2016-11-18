@@ -35,7 +35,7 @@ namespace user
       m_oswindow                             = NULL;
       m_puiFocus                             = NULL;
       m_bMouseHover                          = false;
-      
+
 
    }
 
@@ -353,7 +353,7 @@ namespace user
                {
 
                   pui->send_message(WM_MOUSELEAVE);
-                  
+
                   {
 
                      synch_lock sl(m_pmutex);
@@ -490,7 +490,7 @@ namespace user
    {
 
       ::user::interaction_impl_base::install_message_handling(pdispatch);
-    
+
       if (!m_pui->m_bMessageWindow)
       {
 
@@ -1125,7 +1125,7 @@ namespace user
 
    bool interaction_impl::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
-      
+
       return ::user::interaction_impl_base::SetWindowPos(z, x, y, cx, cy, nFlags);
 
    }
@@ -1203,7 +1203,7 @@ namespace user
 
    LONG interaction_impl::set_window_long(int32_t nIndex,LONG lValue)
    {
-      
+
       return (LONG)set_window_long_ptr(nIndex, lValue);
 
    }
@@ -1254,7 +1254,7 @@ namespace user
 #else
       oswindow oswindow = ::GetCapture();
 #endif
-      
+
       if (oswindow == NULL)
       {
 
@@ -1265,7 +1265,7 @@ namespace user
       ::user::interaction * pui = System.ui_from_handle(oswindow);
       if (pui != NULL)
       {
-         
+
          if (Session.m_puiCapture != NULL)
          {
 
@@ -1925,9 +1925,9 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(bInvert);
-      
+
       ::exception::throw_interface_only(get_app());
-      
+
       return false;
 
    }
@@ -1937,7 +1937,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(oswindow_Next);
-      
+
       ::exception::throw_interface_only(get_app());
 
       return false;
@@ -1967,31 +1967,31 @@ namespace user
 
    void interaction_impl::CreateCaret(::draw2d::bitmap* pBitmap)
    {
-      
+
       UNREFERENCED_PARAMETER(pBitmap);
-      
+
       ::exception::throw_interface_only(get_app());
 
    }
 
-   
+
    void interaction_impl::CreateSolidCaret(int32_t nWidth,int32_t nHeight)
    {
-      
+
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      
+
       ::exception::throw_interface_only(get_app());
 
    }
 
-   
+
    void interaction_impl::CreateGrayCaret(int32_t nWidth,int32_t nHeight)
    {
-      
+
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      
+
       ::exception::throw_interface_only(get_app());
 
    }
@@ -1999,25 +1999,25 @@ namespace user
 
    void interaction_impl::HideCaret()
    {
-      
+
       ::exception::throw_interface_only(get_app());
 
    }
 
-   
+
    void interaction_impl::ShowCaret()
    {
-      
+
       ::exception::throw_interface_only(get_app());
 
    }
 
-   
+
    bool interaction_impl::SetForegroundWindow()
    {
-      
+
       ::exception::throw_interface_only(get_app());
-      
+
       return false;
 
    }
@@ -2025,11 +2025,11 @@ namespace user
 
    bool interaction_impl::SendNotifyMessage(UINT message,WPARAM wParam,lparam lParam)
    {
-      
+
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
-      
+
       ::exception::throw_interface_only(get_app());
 
       return false;
@@ -2039,21 +2039,21 @@ namespace user
 
    void interaction_impl::Print(::draw2d::graphics * pgraphics,uint32_t dwFlags) const
    {
-      
+
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
-      
+
       ::exception::throw_interface_only(get_app());
 
    }
 
-   
+
    void interaction_impl::PrintClient(::draw2d::graphics * pgraphics,uint32_t dwFlags) const
    {
-      
+
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
-      
+
       ::exception::throw_interface_only(get_app());
 
    }
@@ -2070,10 +2070,10 @@ namespace user
 
    }
 
-   
+
    uint32_t interaction_impl::GetWindowContextHelpId() const
    {
-      
+
       ::exception::throw_interface_only(get_app());
 
       return -1;
@@ -2660,7 +2660,7 @@ namespace user
 
    }
 
-   
+
    void interaction_impl::redraw_add(::object * p)
    {
 
@@ -2670,7 +2670,7 @@ namespace user
 
    }
 
-   
+
    void interaction_impl::redraw_remove(::object * p)
    {
 

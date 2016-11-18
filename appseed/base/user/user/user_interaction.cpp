@@ -98,19 +98,7 @@ namespace user
 
       m_uiptraChild.m_pmutex = NULL;
 
-      //user_interaction_on_destroy();
-
    }
-
-
-   //void interaction::delete_this()
-   //{
-
-   //   TRACE("::user::interaction::delete_this interaction=0x%016x %s", this, typeid(*this).name());
-
-   //   interaction_base::delete_this();
-
-   //}
 
 
    bool interaction::defer_check_layout()
@@ -1587,7 +1575,7 @@ namespace user
       int iSaveDC = pgraphics->SaveDC();
 
       // while drawing layout can occur and change z-order.
-      // keep this past z-order 
+      // keep this past z-order
       interaction_spa uia = m_uiptraChild;
 
       for(auto & pui : uia)

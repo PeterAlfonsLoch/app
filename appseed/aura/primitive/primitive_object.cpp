@@ -6,77 +6,59 @@ object::object()
 {
 
    common_construct();
-   // ::waitable
-   m_pmutex = NULL;
 
-   // ::element
+   m_pmutex             = NULL;
    m_ulFlags            = (uint32_t)flag_auto_clean;
    m_pfactoryitembase   = NULL;
-
-   // root like (Rute like, Thank you Rute and Inha and Lizir!!)
-   m_countReference  = 1;
-   m_pauraapp        = NULL;
+   m_countReference     = 1;
+   m_pauraapp           = NULL;
 
 }
-
-
-/////  \brief		destructor
-//object::~waitable()
-//{
-//
-//
-//}
-//
-//
-//}
 
 
 object::object(const object& objectSrc)
 {
 
-	m_psetObject = NULL;
-   // ::waitable
-   m_pmutex = NULL;
+	m_psetObject         = NULL;
+   m_pmutex             = NULL;
    m_ulFlags            = (uint32_t)flag_auto_clean;
-
-   // root like (Rute like, Thank you Rute and Inha and Lizir!!)
-   m_countReference  = 1;
+   m_countReference     = 1;
 
    operator =(objectSrc);
 
-
-
-
-
 }
+
 
 void object::common_construct()
 {
-   m_pmutex = NULL;
-   m_psetObject = NULL;
+
+   m_pmutex             = NULL;
+   m_psetObject         = NULL;
 
 }
 
 
 object::object(::aura::application * papp)
 {
+
    common_construct();
 
-   // ::element
-   m_pauraapp = papp;
-   m_ulFlags = (uint32_t)flag_auto_clean;
+   m_pauraapp           = papp;
+   m_ulFlags            = (uint32_t)flag_auto_clean;
    m_pfactoryitembase   = NULL;
-
-   // root like (Rute like, Thank you Rute and Inha and Lizir!!)
-   m_countReference  = 1;
+   m_countReference     = 1;
 
 }
+
 
 object::~object()
 {
 
-}
+   ::aura::del(m_pmutex);
 
+   ::aura::del(m_psetObject);
+
+}
 
 
 int64_t object::add_ref()
@@ -131,7 +113,18 @@ int64_t object::release()
 object & object::operator=(const object & objectSrc)
 {
 
-   if(objectSrc.m_psetObject != NULL)
+   if(objectSrc.m_psetObject == NULL)
+   {
+
+      if(m_psetObject != NULL)
+      {
+
+         ::aura::del(m_psetObject);
+
+      }
+
+   }
+   else
    {
 
       if(m_psetObject == NULL)
@@ -141,42 +134,37 @@ object & object::operator=(const object & objectSrc)
 
       }
 
-      *m_psetObject = *objectSrc.m_psetObject;
-
-      // :: element
-      m_pauraapp = objectSrc.m_pauraapp;
-      m_ulFlags = objectSrc.m_ulFlags;
-      m_pfactoryitembase   = objectSrc.m_pfactoryitembase;
-
+      *m_psetObject     = *objectSrc.m_psetObject;
 
    }
+
+   m_pauraapp        = objectSrc.m_pauraapp;
+
+   m_ulFlags = objectSrc.m_ulFlags;
+
+   m_pfactoryitembase   = objectSrc.m_pfactoryitembase;
 
    return *this;
 
 }
 
+
 void object::assert_valid() const
 {
+
    ASSERT(this != NULL);
+
 }
 
 
 void object::dump(dump_context & dumpcontext) const
 {
-   dumpcontext << "a " << typeid(*this).name() <<
-      " at " << (void *)this << "\n";
+
+   dumpcontext << "a " << typeid(*this).name() << " at " << (void *)this << "\n";
 
    UNUSED(dumpcontext); // unused in release build
+
 }
-
-
-
-
-
-
-
-
-
 
 
 void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t nLine)
