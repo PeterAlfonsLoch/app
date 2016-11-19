@@ -1492,57 +1492,57 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, DWORD dwRop)
+   bool graphics::BitBltRaw(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, DWORD dwRop)
    {
 
 
-      if (m_pdibAlphaBlend != NULL)
-      {
-         
-         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-         
-         rect rectBlt(point((int64_t)x, (int64_t)y), size(nWidth, nHeight));
-         
-         if (rectIntersect.intersect(rectIntersect, rectBlt))
-         {
-            
-            // The following commented out code does not work well when there is clipping
-            // and some calculations are not precise
-            //if (m_pdib != NULL && pgraphicsSrc->m_pdib != NULL)
-            //{
-            
-            //   point ptOff = GetViewportOrg();
-            
-            //   x += ptOff.x;
-            
-            //   y += ptOff.y;
-            
-            //   return m_pdib->blend(point(x, y), pgraphicsSrc->m_pdib, point(xSrc, ySrc), m_pdibAlphaBlend, point(m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y), rectBlt.size());
-            
-            //}
-            //else
-            {
-               
-               ::draw2d::dib_sp dib1(allocer());
-               
-               dib1->create(rectBlt.size());
-               
-               dib1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-               
-               if (!dib1->from(null_point(), pgraphicsSrc, point(xSrc, ySrc), rectBlt.size()))
-                  return false;
-               
-               dib1->blend(point(0, 0), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectBlt.size());
-               
-               keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-               
-               return BitBlt(x, y, nWidth, nHeight, dib1->get_graphics(), 0, 0, dwRop);
-               
-            }
-            
-         }
-         
-      }
+//      if (m_pdibAlphaBlend != NULL)
+//      {
+//         
+//         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
+//         
+//         rect rectBlt(point((int64_t)x, (int64_t)y), size(nWidth, nHeight));
+//         
+//         if (rectIntersect.intersect(rectIntersect, rectBlt))
+//         {
+//            
+//            // The following commented out code does not work well when there is clipping
+//            // and some calculations are not precise
+//            //if (m_pdib != NULL && pgraphicsSrc->m_pdib != NULL)
+//            //{
+//            
+//            //   point ptOff = GetViewportOrg();
+//            
+//            //   x += ptOff.x;
+//            
+//            //   y += ptOff.y;
+//            
+//            //   return m_pdib->blend(point(x, y), pgraphicsSrc->m_pdib, point(xSrc, ySrc), m_pdibAlphaBlend, point(m_ptAlphaBlend.x - x, m_ptAlphaBlend.y - y), rectBlt.size());
+//            
+//            //}
+//            //else
+//            {
+//               
+//               ::draw2d::dib_sp dib1(allocer());
+//               
+//               dib1->create(rectBlt.size());
+//               
+//               dib1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+//               
+//               if (!dib1->from(null_point(), pgraphicsSrc, point(xSrc, ySrc), rectBlt.size()))
+//                  return false;
+//               
+//               dib1->blend(point(0, 0), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectBlt.size());
+//               
+//               keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+//               
+//               return BitBlt(x, y, nWidth, nHeight, dib1->get_graphics(), 0, 0, dwRop);
+//               
+//            }
+//            
+//         }
+//         
+//      }
 
 
       try
@@ -1728,7 +1728,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop)
+   bool graphics::StretchBltRaw(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop)
    {
 
       if(nDstWidth <= 0 || nDstHeight <= 0 || nSrcWidth <= 0 || nSrcHeight <= 0)
@@ -3055,83 +3055,83 @@ namespace draw2d_quartz2d
    // India India
    // Member
 
-   bool graphics::alpha_blend(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
+   bool graphics::alpha_blendRaw(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
    {
 
-      if(m_pdibAlphaBlend != NULL)
-      {
-         
-         
-         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-         
-         
-         ::draw2d::dib * pdibWork = NULL;
-         ::draw2d::dib * pdibWork2 = NULL;
-         //         ::draw2d::dib * pdibWork3 = NULL;
-         ::draw2d::dib * pdibWork4 = NULL;
-         
-         
-         class point ptSrc(xSrc, ySrc);
-         class point ptDest(xDst, yDst);
-         class size size(nDstWidth, nDstHeight);
-         
-         
-         
-         ::draw2d::dib_sp spdib;
-         if(pdibWork == NULL)
-         {
-            spdib.alloc(allocer());
-            pdibWork = spdib;
-         }
-         if(pdibWork == NULL)
-            return false;
-         if(!pdibWork->create(size))
-            return false;
-         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
-            return false;
-         
-         
-         
-         
-         ::draw2d::dib_sp spdib2;
-         if(pdibWork2 == NULL)
-         {
-            spdib2.alloc(allocer());
-            pdibWork2 = spdib2;
-         }
-         
-         
-         ::draw2d::dib_sp spdib4;
-         if(pdibWork4 == NULL)
-         {
-            spdib4.alloc(allocer());
-            pdibWork4 = spdib4;
-         }
-         if(pdibWork4 == NULL)
-            return false;
-         if(!pdibWork4->create(size))
-            return false;
-         
-         
-         pdibWork4->Fill(255, 0, 0, 0);
-         
-         pdibWork4->from(point(MAX(0, m_ptAlphaBlend.x - xDst), MAX(0, m_ptAlphaBlend.y - yDst)),
-                         m_pdibAlphaBlend->get_graphics(), point(MAX(0, xDst - m_ptAlphaBlend.x), MAX(0, yDst - m_ptAlphaBlend.y)), size);
-         
-         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
-         
-         
-         ::keep < ::draw2d::dib * > keep2(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-         
-         
-         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
-         
-         
-      }
+//      if(m_pdibAlphaBlend != NULL)
+//      {
+//         
+//         
+//         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
+//         
+//         
+//         ::draw2d::dib * pdibWork = NULL;
+//         ::draw2d::dib * pdibWork2 = NULL;
+//         //         ::draw2d::dib * pdibWork3 = NULL;
+//         ::draw2d::dib * pdibWork4 = NULL;
+//         
+//         
+//         class point ptSrc(xSrc, ySrc);
+//         class point ptDest(xDst, yDst);
+//         class size size(nDstWidth, nDstHeight);
+//         
+//         
+//         
+//         ::draw2d::dib_sp spdib;
+//         if(pdibWork == NULL)
+//         {
+//            spdib.alloc(allocer());
+//            pdibWork = spdib;
+//         }
+//         if(pdibWork == NULL)
+//            return false;
+//         if(!pdibWork->create(size))
+//            return false;
+//         if(!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
+//            return false;
+//         
+//         
+//         
+//         
+//         ::draw2d::dib_sp spdib2;
+//         if(pdibWork2 == NULL)
+//         {
+//            spdib2.alloc(allocer());
+//            pdibWork2 = spdib2;
+//         }
+//         
+//         
+//         ::draw2d::dib_sp spdib4;
+//         if(pdibWork4 == NULL)
+//         {
+//            spdib4.alloc(allocer());
+//            pdibWork4 = spdib4;
+//         }
+//         if(pdibWork4 == NULL)
+//            return false;
+//         if(!pdibWork4->create(size))
+//            return false;
+//         
+//         
+//         pdibWork4->Fill(255, 0, 0, 0);
+//         
+//         pdibWork4->from(point(MAX(0, m_ptAlphaBlend.x - xDst), MAX(0, m_ptAlphaBlend.y - yDst)),
+//                         m_pdibAlphaBlend->get_graphics(), point(MAX(0, xDst - m_ptAlphaBlend.x), MAX(0, yDst - m_ptAlphaBlend.y)), size);
+//         
+//         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
+//         
+//         
+//         ::keep < ::draw2d::dib * > keep2(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+//         
+//         
+//         return BitBlt(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
+//         
+//         
+//      }
 
 
       CGContextSetAlpha(m_pdc, (CGFloat) dRate);
-      StretchBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, SRCCOPY);
+      StretchBltRaw(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, SRCCOPY);
       CGContextSetAlpha(m_pdc, (CGFloat) 1.f);
 
       return true;
@@ -4315,10 +4315,7 @@ namespace draw2d_quartz2d
       else
       {
 
-         if(m_spregion.is_null())
-            m_spregion.alloc(allocer());
-
-         *m_spregion.m_p = *pregion;
+         m_spregion = pregion;
 
          //cairo_clip(m_pdc);
 
@@ -5298,11 +5295,11 @@ namespace draw2d_quartz2d
    bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount)
    {
 
-      return TextOut(double(x), double(y), lpszString, nCount);
+      return ::draw2d::graphics::TextOut(double(x), double(y), lpszString, nCount);
 
    }
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
+   bool graphics::TextOutRaw(double x, double y, const char * lpszString, strsize nCount)
    {
 
       return internal_show_text(x, y, lpszString, nCount, kCGTextFill);

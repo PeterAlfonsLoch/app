@@ -53,7 +53,7 @@ namespace music
       bool sequence_thread::PostMidiSequenceEvent(::music::midi::sequence * pseq, ::music::midi::sequence::e_event eevent)
       {
          
-         return post_thread_message(::music::midi::sequence::message_event,  (WPARAM) pseq, (LPARAM) pseq->create_new_event(eevent));
+         return post_object(::music::midi::sequence::message_event,  (WPARAM) pseq, pseq->create_new_event(eevent));
          
       }
       
@@ -63,7 +63,7 @@ namespace music
          
          sp(sequence) seq = pseq;
          
-         return post_thread_message(::music::midi::sequence::message_event,  (WPARAM) pseq, (LPARAM) seq->create_new_event(eevent, lpmh));
+         return post_object(::music::midi::sequence::message_event,  (WPARAM) pseq, seq->create_new_event(eevent, lpmh));
          
       }
       
@@ -73,7 +73,7 @@ namespace music
          
          SCAST_PTR(::message::base, pbase, pobj);
          
-         ::music::midi::sequence::event * pevent = (::music::midi::sequence::event *) pbase->m_lparam.m_lparam;
+         sp(::music::midi::sequence::event) pevent(pbase->m_lparam);
          
          sp(::music::midi_core_midi::sequence) pseq = pevent->m_psequence;
          
@@ -168,7 +168,7 @@ namespace music
                
                pseq->seq_start();
                
-               post_thread_message(::music::midi_core_midi::sequence::message_run, 0, 0);
+               post_message(::music::midi_core_midi::sequence::message_run);
                
                PostNotifyEvent(::music::midi::player::notify_event_playback_start);
                
@@ -186,8 +186,6 @@ namespace music
                break;
                
          }
-         
-         delete pevent;
          
          
       }
@@ -308,11 +306,9 @@ namespace music
       
       void sequence_thread::ExecuteCommand(smart_pointer < ::music::midi::player::command > spcommand)
       {
-         spcommand->add_ref();
-         post_thread_message(
-                             ::music::midi::player::message_command,
-                             0,
-                             (LPARAM) (::music::midi::player::command *) spcommand);
+         
+         post_object(::music::midi::player::message_command, 0, spcommand);
+         
       }
       
       
@@ -381,12 +377,16 @@ namespace music
       
       void sequence_thread::OnCommand(::signal_details * pobj)
       {
+         
          SCAST_PTR(::message::base, pbase, pobj);
-         smart_pointer < ::music::midi::player::command > spcommand;
-         spcommand = (::music::midi::player::command *) pbase->m_lparam.m_lparam;
+         
+         sp(::music::midi::player::command) spcommand(pbase->m_lparam);
+         
          try
          {
+            
              _ExecuteCommand(spcommand);
+            
          }
          catch(exception * pe)
          {

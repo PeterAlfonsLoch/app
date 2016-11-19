@@ -335,9 +335,9 @@ namespace draw2d_quartz2d
       // Bitmap Functions
       bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, DWORD dwRop);
       using ::draw2d::graphics::BitBlt;
-      bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
+      bool BitBltRaw(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
                   int32_t xSrc, int32_t ySrc, DWORD dwRop);
-      bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
+      bool StretchBltRaw(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
                       int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop);
       COLORREF GetPixel(int32_t x, int32_t y) const;
       COLORREF GetPixel(POINT point) const;
@@ -358,7 +358,7 @@ namespace draw2d_quartz2d
                           ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
                           UINT clrTransparent);
       
-      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
+      virtual bool alpha_blendRaw(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
       
       /*bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
        ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
@@ -368,7 +368,7 @@ namespace draw2d_quartz2d
       virtual bool internal_show_text(double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = NULL, CGFloat * pdescent = NULL, CGFloat * pleading = NULL, CGFloat * pwidth = NULL, ::draw2d::pen * ppen=NULL, ::draw2d::brush * pbrush = NULL, ::draw2d::font * pfont = NULL);
       virtual bool TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount);
       virtual bool TextOut(int32_t x, int32_t y, const string & str);
-      virtual bool TextOut(double x, double y, const char * lpszString, strsize nCount);
+      virtual bool TextOutRaw(double x, double y, const char * lpszString, strsize nCount);
       virtual bool TextOut(double x, double y, const string & str);
       virtual bool ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect,
                               const char * lpszString, UINT nCount, LPINT lpDxWidths);
