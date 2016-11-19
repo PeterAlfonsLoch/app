@@ -3,80 +3,115 @@
 
 
 
-   void * __node_library_open(const char * pszPath)
+   void * __node_library_open(const char * pszPath, string & strMessage)
    {
+      
+      strMessage.Empty();
    
       string strPath(pszPath);
       
-      if(strPath == "os")
-      {
-         strPath = "ca2os";
-      }
-      else if(strPath == "os2")
-      {
-         strPath = "ca2os2";
-      }
+      string strError;
+      
+      ::file::path path;
       
       if(!str_ends_dup(strPath, ".dylib"))
+      {
+         
          strPath += ".dylib";
+         
+      }
 
-      if(!::str::begins_ci(strPath, "/") && !str_begins_dup(strPath, "lib"))
+      if(::str::find_ci(strPath, "/") < 0 && !str_begins_dup(strPath, "lib"))
+      {
+         
          strPath = "lib" + strPath;
+         
+      }
       
-      ::output_debug_string("\n\nGoing to dlopen(\"" + strPath + "\", RTLD_LOCAL | RTLD_LAZY)\n\n");
+      ::output_debug_string("\n\nGoing to dlopen: \"" + strPath + "\"");
       
-      void * plibrary = dlopen(::file::path(::get_exe_path()).folder() / strPath, RTLD_LOCAL | RTLD_LAZY);
+      path = ::file::path(::get_exe_path()).folder() / strPath;
       
-      if(plibrary == NULL)
+      void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+      
+      if(plibrary != NULL)
       {
+         
+         goto finished;
+         
+      }
       
-         string strError(dlerror());
+      strError = dlerror();
          
-         ::output_debug_string("\n\n__node_library_open Failed " + strPath + " with the error: \""+strError+"\"\n\n");
+      strMessage += "\n(1) dlopen: " + path + " with the error: \"" + strError + "\"";
          
-         plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
+      path = strPath;
+      
+      plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+      
+      if(plibrary != NULL)
+      {
          
+         goto finished;
+         
+      }
+      
+      strError = dlerror();
+      
+      strMessage += "\n(2) dlopen: " + path + " with the error: \"" + strError + "\"";
+      
+      path = ::file::path(::ca2_module_folder_dup()) / strPath;
+      
+      plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+      
+      if(plibrary != NULL)
+      {
+         
+         goto finished;
+         
+      }
+
+      strError = dlerror();
+         
+      strMessage += "\n(3) dlopen: " + path + " with the error: \"" + strError + "\"";
+      
+      if(strPath.find('/') >= 0)
+      {
+
+         path = ::file::path(strPath).name();
+      
+         plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+      
+         if(plibrary != NULL)
+         {
+         
+            goto finished;
+         
+         }
+      
+         strError = dlerror();
+      
+         strMessage += "\n(4) dlopen: " + path + " with the error: \"" + strError + "\"";
+         
+      }
+
+   finished:
+      
+      if(plibrary != NULL)
+      {
+         
+         strMessage = "__node_library_open (1) Succeeded " + path;
+
       }
       else
       {
          
-         ::output_debug_string("\n\n__node_library_open Succeeded " + strPath + "\n\n");
+         strMessage = "__node_library_open : Failed with : " + strMessage;
          
       }
       
+      ::output_debug_string("\n" + strMessage + "\n\n");
 
-      if(plibrary == NULL)
-      {
-
-         string strError(dlerror());
-         
-         ::output_debug_string("\n\n__node_library_open Failed " + strPath + " with the error: \""+strError+"\"\n\n");
-         
-         plibrary = dlopen(::file::path(::ca2_module_folder_dup()) / strPath, RTLD_LOCAL | RTLD_LAZY);
-         
-      }
-      else
-      {
-
-         ::output_debug_string("\n\n__node_library_open Succeeded " + strPath + "\n\n");
-         
-      }
-      
-      if(plibrary == NULL)
-      {
-
-         string strError(dlerror());
-         
-         ::output_debug_string("\n\n__node_library_open Failed " + strPath + " with the error: \""+strError+"\"\n\n");
-         
-      }
-      else
-      {
-         
-         ::output_debug_string("\n\n__node_library_open Succeeded " + strPath + "\n\n");
-         
-      }
-      
       return plibrary;
       
    }
@@ -109,13 +144,34 @@
 
    
    
-void * __node_library_open_ca2(const char * pszPath)
+void * __node_library_open_ca2(const char * pszPath, string & strMessage)
 {
    
    string strPath(pszPath);
    
    void * plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
    
+   if(plibrary != NULL)
+   {
+      
+      strMessage = "__node_library_open_ca2 Succeeded " + strPath;
+      
+   }
+   else
+   {
+      
+      string strError;
+      
+      strError = dlerror();
+      
+      strMessage = "__node_library_open_ca2 : " + strPath + " with the error: \"" + strError + "\"";
+      
+   }
+   
+   ::output_debug_string("\n\n" + strMessage + "\n\n");
+
    return plibrary;
    
 }
+
+

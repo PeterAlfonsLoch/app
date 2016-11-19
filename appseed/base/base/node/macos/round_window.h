@@ -55,6 +55,8 @@ public:
    
    virtual void round_window_close();
    
+   virtual void round_window_set_title(const char * pszTitle);
+   
    
 };
 

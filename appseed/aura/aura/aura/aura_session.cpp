@@ -769,7 +769,7 @@ namespace aura
 
 #ifndef METROWIN
 
-         ::MessageBox(NULL, "Application \"" + strApplicationId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded.", "ca2", MB_ICONERROR);
+         ::MessageBox(NULL, "Application \"" + strApplicationId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + library.m_strMessage, "ca2", MB_ICONERROR);
 
 #endif
 

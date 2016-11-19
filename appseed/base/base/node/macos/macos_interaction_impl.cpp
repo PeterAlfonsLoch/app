@@ -4308,7 +4308,11 @@ namespace macos
 
    void interaction_impl::SetWindowText(const char * lpszString)
    {
+      
       m_strWindowText = lpszString;
+      
+      round_window_set_title(m_strWindowText);
+      
    }
 
    strsize interaction_impl::GetWindowText(LPTSTR lpszString, strsize nMaxCount)

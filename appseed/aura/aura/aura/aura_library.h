@@ -17,7 +17,7 @@ namespace aura
       string            m_strCa2Name;
       string            m_strRoot;
       ::file::path      m_strPath;
-
+      string            m_strMessage;
 
 
 
@@ -112,8 +112,8 @@ namespace aura
 
 
 
-CLASS_DECL_AURA void * __node_library_open(const char * pszPath);
-CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath);
+CLASS_DECL_AURA void * __node_library_open(const char * pszPath, string & strMessage);
+CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath, string & strMessage);
 CLASS_DECL_AURA bool __node_library_close(void * plibrary);
 CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
 

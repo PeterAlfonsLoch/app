@@ -87,13 +87,13 @@ namespace aura
          if(bCa2Path)
          {
 
-            m_plibrary = __node_library_open_ca2(pszPath);
+            m_plibrary = __node_library_open_ca2(pszPath, m_strMessage);
 
          }
          else
          {
 
-            m_plibrary = __node_library_open(pszPath);
+            m_plibrary = __node_library_open(pszPath, m_strMessage);
 
          }
 

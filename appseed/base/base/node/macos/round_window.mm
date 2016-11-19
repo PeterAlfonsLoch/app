@@ -85,6 +85,14 @@ void ns_app_close()
    
 }
 
+void round_window::round_window_set_title(const char * pszTitle)
+{
+   
+   NSString * str = [NSString stringWithUTF8String:pszTitle];
+   
+   [((__bridge RoundWindow *)m_proundwindow) setTitle:str];
+   
+}
 
 void round_window::round_window_close()
 {
