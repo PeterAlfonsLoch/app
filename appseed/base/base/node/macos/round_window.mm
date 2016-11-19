@@ -110,6 +110,8 @@ void round_window::round_window_show()
    
    [[((__bridge RoundWindow *)m_proundwindow)->m_controller dd_invokeOnMainThreadAndWaitUntilDone:TRUE] showWindow : ((__bridge RoundWindow *)m_proundwindow)];
    
+   [((__bridge RoundWindow *)m_proundwindow) windowDidExpose];
+   
 }
 
 
@@ -117,6 +119,8 @@ void round_window::round_window_hide()
 {
     
    [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderOut : ((__bridge RoundWindow *)m_proundwindow)];
+   
+   [((__bridge RoundWindow *)m_proundwindow) windowWillClose];
     
 }
 

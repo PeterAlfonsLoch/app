@@ -88,8 +88,6 @@ namespace aura
    bool application::impl_initialize1()
    {
 
-         set_run();
-
       return true;
 
    }

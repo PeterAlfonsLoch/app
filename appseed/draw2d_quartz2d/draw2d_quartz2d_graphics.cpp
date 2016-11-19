@@ -4393,7 +4393,16 @@ namespace draw2d_quartz2d
    int32_t graphics::IntersectClipRect(const RECT & lpRect)
    {
 
-      throw not_implemented(get_app());
+      //throw not_implemented(get_app());
+      CGRect rect;
+      
+      rect.origin.x     = lpRect.left;
+      rect.origin.y     = lpRect.top;
+      rect.size.width   = lpRect.right - lpRect.left;
+      rect.size.height  = lpRect.bottom - lpRect.top;
+      CGContextAddRect(m_pdc, rect);
+      CGContextClip(m_pdc);
+      
       return 0;
 
       /*      int32_t nRetVal = ERROR;
@@ -5989,7 +5998,7 @@ namespace draw2d_quartz2d
 
 
    
-   void graphics::enum_fonts(stringa & straFile, stringa & stra)
+   void graphics::enum_fonts(stringa & straFile, stringa & stra, ::draw2d::font::csa & csa)
    {
       
       char ** p;
@@ -6004,7 +6013,7 @@ namespace draw2d_quartz2d
             
             stra.add(p[ui]);
             straFile.add(p[ui]);
-            
+            csa.add(::draw2d::font::cs_default);
             free(p[ui]);
             
          }

@@ -877,7 +877,7 @@ namespace sockets
          try
          {
 
-            h.select(0, 100'000);
+            h.select(0, 1000 * 1000);
 
          }
          catch(...)

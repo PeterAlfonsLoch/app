@@ -59,8 +59,12 @@
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self];
    
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidMoveNotification object:self];
+
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillClose:) name:NSWindowWillCloseNotification object:self];
+
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidExpose:) name:NSWindowDidExposeNotification object:self];
+
    
-      
    m_controller = [[NSWindowController alloc] initWithWindow:self];
  
    [self create_view];
@@ -299,5 +303,40 @@
    }
 
 }
+
+-(void)windowDidExpose
+{
+   
+   try
+   {
+      
+      m_pwindow->round_window_on_show();
+
+   }
+   catch (...)
+   {
+
+   }
+   
+}
+
+
+
+-(void)windowWillClose
+{
+   
+   try
+   {
+      
+      m_pwindow->round_window_on_hide();
+
+   }
+   catch (...)
+   {
+
+   }
+   
+}
+
 
 @end

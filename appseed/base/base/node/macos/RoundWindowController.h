@@ -1,4 +1,15 @@
 //
+//  RoundWindowController.h
+//  base
+//
+//  Created by Camilo Sasuke Tsumanuma on 18/11/16.
+//
+//
+
+#ifndef RoundWindowController_h
+#define RoundWindowController_h
+
+//
 //  RoundWindow.h
 //  RoundWindow
 //
@@ -12,31 +23,18 @@
 //  appreciated but not required.
 //
 
+//class RoundWindow;
+//
+//@interface RoundWindowController : NSWindowController
+//{
+//@public
+//   
+//   
+//   RoundWindow * m_w;
+//   
+//   
+//}
+//
+//@end
 
-#include "RoundWindowController.h"
-
-unsigned int event_key_code(NSEvent * event);
-
-
-class round_window;
-
-
-@interface RoundWindow : NSWindow
-{
-@public
-   
-   
-   bool                    m_bNoActivate;
-   round_window            * m_pwindow;
-   
-   
-	NSView                  * childContentView;
-	NSButton                * closeButton;
-   NSWindowController      * m_controller;
-   
-   
-}
-
--(void)windowDidExpose;
--(void)windowWillClose;
-@end
+#endif /* RoundWindowController_h */

@@ -615,23 +615,8 @@ namespace macos
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
 
-      try
-      {
-
-         if (m_pthreadDraw != NULL)
-         {
-
-            m_pthreadDraw->m_bRun = false;
-
-         }
-
-      }
-      catch (...)
-      {
-
-
-      }
-
+      ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
+      
       round_window_close();
 
       UNREFERENCED_PARAMETER(pobj);
@@ -2878,48 +2863,8 @@ namespace macos
                if (!m_pui->m_bLockWindowUpdate)
                {
 
-                  if (m_pui->GetExStyle() & WS_EX_LAYERED)
-                  {
-
-
-                     if (m_rectLastPos != m_rectParentClient)
-                     {
-
-                        m_dwLastPos = ::get_tick_count();
-
-                        m_rectLastPos = m_rectParentClient;
-
-                     }
-                     else
-                     {
-
-                        rect64 r2;
-
-                        GetWindowRect(r2);
-
-                        if (r2 != m_rectParentClient && ::get_tick_count() - m_dwLastPos > 400)
-                        {
-
-                           ::SetWindowPos(m_oswindow, NULL,
-                              m_rectParentClient.left,
-                              m_rectParentClient.top,
-                              m_rectParentClient.width(),
-                              m_rectParentClient.height(),
-                              SWP_NOZORDER
-                              | SWP_NOREDRAW
-                              | SWP_NOCOPYBITS
-                              | SWP_NOACTIVATE
-                              | SWP_NOOWNERZORDER
-                              | SWP_NOSENDCHANGING
-                              | SWP_DEFERERASE);
-
-                        }
-
-                     }
-
-                  }
-
-                  if (m_pui->has_pending_graphical_update())
+                  if (m_pui->has_pending_graphical_update()
+                  || m_pui->check_need_layout())
                   {
 
                      RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
@@ -2927,7 +2872,7 @@ namespace macos
                      m_pui->on_after_graphical_update();
 
                   }
-
+                  
                }
 
                if (::get_tick_count() - dwStart < 5)
@@ -3733,10 +3678,10 @@ namespace macos
 
    }
 
-
+/*
    bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
-
+*/
       /*
          bool b;
          bool * pb = &b;
@@ -3744,7 +3689,7 @@ namespace macos
          pb = &m_pauraapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
          keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
-
+/*
       if (!::IsWindow(get_handle()))
          return false;
 
@@ -3761,12 +3706,12 @@ namespace macos
          }
 
       }
-
+*/
       /*
          return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
          x, y, cx, cy, nFlags) != FALSE;
       */
-
+/*
       ::rect rectBefore;
 
       ::copy(rectBefore, m_rectParentClient);
@@ -3816,19 +3761,19 @@ namespace macos
 
       }
 
-      //      if(rectBefore.top_left() != rectNew.top_left())
-      //      {
-      //
-      //         send_message(WM_MOVE);
-      //
-      //      }
-      //
-      //      if(rectBefore.size() != rectNew.size())
-      //      {
-      //
-      //         send_message(WM_SIZE);
-      //
-      //      }
+            if(rectBefore.top_left() != rectNew.top_left())
+            {
+      
+               send_message(WM_MOVE);
+      
+            }
+      
+            if(rectBefore.size() != rectNew.size())
+            {
+      
+               send_message(WM_SIZE);
+      
+            }
 
 
       if (nFlags & SWP_SHOWWINDOW)
@@ -3838,17 +3783,17 @@ namespace macos
          {
 
             m_pui->ShowWindow(nFlags & SWP_NOACTIVATE ? SW_SHOWNOACTIVATE : SW_SHOW);
-            //round_window_show();
+            round_window_show();
 
          }
 
       }
 
-      //      if(!(nFlags & ))
+            if(!(nFlags & ))
 
 
-      //      throw not_implemented(get_app());
-
+            throw not_implemented(get_app());
+*/
             /*
              if(GetExStyle() & WS_EX_LAYERED)
              {
@@ -3868,8 +3813,8 @@ namespace macos
              nFlags |= SWP_NOREDRAW;
              nFlags |= SWP_NOMOVE;
              nFlags |= SWP_NOSIZE;
-             //nFlags |= SWP_NOZORDER;
-             //nFlags |= SWP_FRAMECHANGED;
+             nFlags |= SWP_NOZORDER;
+             nFlags |= SWP_FRAMECHANGED;
              if(nFlags & SWP_SHOWWINDOW)
              {
              ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
@@ -3901,6 +3846,8 @@ namespace macos
                }
                }*/
 
+/*
+      
       if (!(nFlags & SWP_NOREDRAW))
       {
 
@@ -3911,7 +3858,8 @@ namespace macos
       return true;
 
    }
-
+ 
+*/
 
    void interaction_impl::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint)
    {
@@ -4623,7 +4571,7 @@ namespace macos
       if (m_pui != NULL)
       {
 
-         if (!m_pui->m_bVisible)
+         if (!m_pui->is_this_visible())
             return false;
 
          if (m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
@@ -4743,7 +4691,7 @@ namespace macos
 
       if (flags & RDW_UPDATENOW)
       {
-
+/*
          unsigned long long uiNow = get_nanos();
 
          if (uiNow - m_uiLastUpdateEnd < ((12 * 1000 * 1000) + (500 * 1000)))
@@ -4754,7 +4702,46 @@ namespace macos
          }
 
          m_uiLastUpdateBeg = uiNow;
-
+*/
+         
+         if(m_bShowFlags)
+         {
+            
+            if(!IsWindowVisible() && (m_iShowFlags & SWP_SHOWWINDOW))
+            {
+               
+               round_window_show();
+               
+            }
+            else if(IsWindowVisible() && (m_iShowFlags & SWP_HIDEWINDOW))
+            {
+               
+               round_window_hide();
+               
+            }
+            
+         }
+         
+         if (m_rectLastPos != m_rectParentClientRequest)
+         {
+            
+            ::SetWindowPos(m_oswindow, NULL,
+                           m_rectParentClientRequest.left,
+                           m_rectParentClientRequest.top,
+                           m_rectParentClientRequest.width(),
+                           m_rectParentClientRequest.height(),
+                           SWP_NOZORDER
+                           | SWP_NOREDRAW
+                           | SWP_NOCOPYBITS
+                           | SWP_NOACTIVATE
+                           | SWP_NOOWNERZORDER
+                           | SWP_NOSENDCHANGING
+                           | SWP_DEFERERASE);
+            
+            m_rectLastPos = m_rectParentClientRequest;
+            
+         }
+         
          if (IsWindowVisible())
          {
 
@@ -4892,7 +4879,7 @@ namespace macos
    }
 
 
-   ::user::interaction *  interaction_impl::SetFocus()
+   bool  interaction_impl::SetFocus()
    {
 
       if (!::IsWindow(get_handle()))
@@ -6264,6 +6251,22 @@ namespace macos
 
       m_pui->send_message(WM_MOVE, 0, pt.lparam());
 
+   }
+   
+   
+   void interaction_impl::round_window_on_show()
+   {
+      
+      m_pui->message_call(WM_SHOWWINDOW, 1);
+      
+   }
+   
+   
+   void interaction_impl::round_window_on_hide()
+   {
+      
+      m_pui->message_call(WM_SHOWWINDOW, 0);
+      
    }
 
 

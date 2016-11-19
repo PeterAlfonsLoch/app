@@ -160,6 +160,9 @@
 		9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
 		9AC62E671D20BEFA00A4AC0A /* graphics_window_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACE46C71D1FE39800A1E0AD /* graphics_window_buffer.cpp */; };
 		9AC62E681D20BEFA00A4AC0A /* graphics_window_dc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACE46C91D1FE39800A1E0AD /* graphics_window_dc.cpp */; };
+		9ACBD1D51DDFC846004AF08F /* macos_factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBD1D41DDFC846004AF08F /* macos_factory_exchange.cpp */; };
+		9ACBD1D61DDFC84E004AF08F /* macos_interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBD0C11DDFC054004AF08F /* macos_interaction_impl.cpp */; };
+		9ACBD1D81DDFCB07004AF08F /* RoundWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBD1D71DDFCB07004AF08F /* RoundWindowController.mm */; };
 		9ACE46CD1D1FE39800A1E0AD /* graphics_window_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACE46C71D1FE39800A1E0AD /* graphics_window_buffer.cpp */; };
 		9ACE46CE1D1FE39800A1E0AD /* graphics_window_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACE46C81D1FE39800A1E0AD /* graphics_window_buffer.h */; };
 		9ACE46CF1D1FE39800A1E0AD /* graphics_window_dc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACE46C91D1FE39800A1E0AD /* graphics_window_dc.cpp */; };
@@ -424,6 +427,10 @@
 		9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiswinpr.dylib; path = "../../../../macos/app/axis/winpr/build/Debug-iphoneos/libios_axiswinpr.dylib"; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9F0A621D7F347C00ED6D8A /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../../third/appseed/winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
+		9ACBD0C11DDFC054004AF08F /* macos_interaction_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_interaction_impl.cpp; sourceTree = "<group>"; };
+		9ACBD1D41DDFC846004AF08F /* macos_factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_factory_exchange.cpp; sourceTree = "<group>"; };
+		9ACBD1D71DDFCB07004AF08F /* RoundWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowController.mm; sourceTree = "<group>"; };
+		9ACBD1D91DDFCB64004AF08F /* RoundWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundWindowController.h; sourceTree = "<group>"; };
 		9ACE46C21D1FE1D700A1E0AD /* macos_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macos_c.h; sourceTree = "<group>"; };
 		9ACE46C51D1FE24C00A1E0AD /* macos_windowing_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macos_windowing_c.h; sourceTree = "<group>"; };
 		9ACE46C61D1FE32E00A1E0AD /* ansios_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ansios_c.h; sourceTree = "<group>"; };
@@ -573,6 +580,8 @@
 		07A36D9D1B25D18E00E4F888 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9ACBD1D41DDFC846004AF08F /* macos_factory_exchange.cpp */,
+				9ACBD0C11DDFC054004AF08F /* macos_interaction_impl.cpp */,
 				070FC0F21B85657800D12AD0 /* Keyboard.h */,
 				070FC0EE1B85650800D12AD0 /* Keyboard.mm */,
 				07D966E01B4C55BD004A3D2A /* round_window.mm */,
@@ -591,6 +600,8 @@
 				07A36DB01B25D18E00E4F888 /* RoundWindow.h */,
 				07A36DB21B25D18E00E4F888 /* RoundWindowApp.h */,
 				07A36DB41B25D18E00E4F888 /* RoundWindowFrameView.h */,
+				9ACBD1D71DDFCB07004AF08F /* RoundWindowController.mm */,
+				9ACBD1D91DDFCB64004AF08F /* RoundWindowController.h */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -1201,8 +1212,10 @@
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
 				07D966E41B4C55BD004A3D2A /* round_window.mm in Sources */,
 				070FC0EF1B85650800D12AD0 /* Keyboard.mm in Sources */,
+				9ACBD1D51DDFC846004AF08F /* macos_factory_exchange.cpp in Sources */,
 				9ACE46CD1D1FE39800A1E0AD /* graphics_window_buffer.cpp in Sources */,
 				07703C631B6FE344009026EA /* _database.cpp in Sources */,
+				9ACBD1D81DDFCB07004AF08F /* RoundWindowController.mm in Sources */,
 				9ACE46CF1D1FE39800A1E0AD /* graphics_window_dc.cpp in Sources */,
 				07D966E61B4C55BD004A3D2A /* RoundWindowApp.mm in Sources */,
 				07EDC5401B4F1CB700AF8928 /* graphics_window_graphics.cpp in Sources */,
@@ -1211,6 +1224,7 @@
 				07D967991B4C63E3004A3D2A /* _user.cpp in Sources */,
 				07D968BB1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */,
 				07D966E51B4C55BD004A3D2A /* RoundWindow.mm in Sources */,
+				9ACBD1D61DDFC84E004AF08F /* macos_interaction_impl.cpp in Sources */,
 				07A36EC61B25D18F00E4F888 /* _base_base.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

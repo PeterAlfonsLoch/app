@@ -171,7 +171,7 @@ namespace macos
       int32_t GetWindowRgn(HRGN hRgn);
 
 
-        virtual bool SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      //virtual bool SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
         virtual UINT ArrangeIconicWindows();
         virtual void BringToTop(int nCmdShow);
         virtual bool BringWindowToTop();
@@ -228,6 +228,10 @@ namespace macos
 
        virtual void round_window_resized(CGRect rect);
        virtual void round_window_moved(CGPoint point);
+      
+      virtual void round_window_on_show();
+      virtual void round_window_on_hide();
+
        
         void set_viewport_org(::draw2d::graphics * pgraphics);
         void offset_viewport_org(LPRECT lprectScreen);
@@ -290,11 +294,11 @@ namespace macos
 
 
 
-       virtual ::user::interaction *  GetCapture();
-       virtual ::user::interaction *  SetCapture(::user::interaction *   pinterface = NULL);
-       virtual ::user::interaction *  ReleaseCapture();
+       //virtual ::user::interaction *  GetCapture();
+//       virtual ::user::interaction *  SetCapture(::user::interaction *   pinterface = NULL);
+  //     virtual ::user::interaction *  ReleaseCapture();
        virtual ::user::interaction *  GetFocus();
-       virtual ::user::interaction *  SetFocus();
+      bool  SetFocus();
 
        virtual ::user::interaction *  GetDesktopWindow();
 

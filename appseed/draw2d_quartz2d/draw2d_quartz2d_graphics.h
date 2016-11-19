@@ -578,7 +578,7 @@ namespace draw2d_quartz2d
       void internal_set_fill_color(COLORREF cr);
       
       
-      virtual void enum_fonts(stringa & straFile, stringa & stra) override;
+      virtual void enum_fonts(stringa & straFile, stringa & stra, ::draw2d::font::csa & csa) override;
       
    };
    

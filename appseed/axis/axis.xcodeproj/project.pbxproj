@@ -304,6 +304,7 @@
 		07F5B2D3184A3FA30092C3E1 /* javascript_tinyjs.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2CB184A3FA30092C3E1 /* javascript_tinyjs.h */; };
 		07F5B2D4184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */; };
 		07F5B2D5184A3FA30092C3E1 /* javascript_tinyjs_functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2CD184A3FA30092C3E1 /* javascript_tinyjs_functions.h */; };
+		9A18AC5F1DDFABED00C57231 /* libaxisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A18AC5A1DDFABCE00C57231 /* libaxisfreetype.dylib */; };
 		9A19A0BC19C67B6A0018DF7D /* http_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0B019C67B6A0018DF7D /* http_listener.h */; };
 		9A19A0BE19C67B6A0018DF7D /* webserver_http_cookie.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0B319C67B6A0018DF7D /* webserver_http_cookie.h */; };
 		9A19A0C019C67B6A0018DF7D /* webserver_http_form.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0B519C67B6A0018DF7D /* webserver_http_form.h */; };
@@ -330,16 +331,12 @@
 		9A19A12619C692650018DF7D /* visual_water_routine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A10719C692650018DF7D /* visual_water_routine.h */; };
 		9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */; };
 		9A19A12F19C6933E0018DF7D /* sockets_ssl_server_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */; };
-		9A2116D71D832A36000C4336 /* libios_axiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A281D7F340600ED6D8A /* libios_axiscrypto.dylib */; };
-		9A2116E51D832A4A000C4336 /* libios_axisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A3D1D7F341C00ED6D8A /* libios_axisopenssl.dylib */; };
 		9A2116E71D832A54000C4336 /* libios_axisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2116E61D832A54000C4336 /* libios_axisfreerdp.dylib */; };
 		9A2116E81D832A64000C4336 /* libios_axisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A331D7F341700ED6D8A /* libios_axisidn.dylib */; };
-		9A2116E91D832A7B000C4336 /* libios_axisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A481D7F342C00ED6D8A /* libios_axisfreeimage.dylib */; };
 		9A2116EB1D832A8C000C4336 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2116EA1D832A8C000C4336 /* libios_ace.dylib */; };
 		9A331C631D4BCB3C00255105 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C621D4BCB3C00255105 /* libsqlite3.tbd */; };
 		9A331C7C1D4BCFC800255105 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C7B1D4BCFC800255105 /* libbz2.tbd */; };
 		9A331C7F1D4BD06000255105 /* libios_axisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C7E1D4BD06000255105 /* libios_axisfreetype.dylib */; };
-		9A331C811D4BD06C00255105 /* libaxisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C801D4BD06C00255105 /* libaxisfreetype.dylib */; };
 		9A331C831D4BD0BE00255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C821D4BD0BE00255105 /* libz.tbd */; };
 		9A331C851D4BD0C600255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C841D4BD0C600255105 /* libz.tbd */; };
 		9A331C871D4BD0DB00255105 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C861D4BD0DB00255105 /* libsqlite3.tbd */; };
@@ -348,19 +345,20 @@
 		9A9367B61D26C84200ED7535 /* fs_ifs_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B41D26C84200ED7535 /* fs_ifs_file.h */; };
 		9A9367B71D26C84200ED7535 /* fs_remote_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */; };
 		9A9367B91D26C87900ED7535 /* fs_remote_native_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B81D26C87900ED7535 /* fs_remote_native_file.h */; };
+		9A9809961DDF9B5300BB294E /* libaurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98082A1DDF955B00BB294E /* libaurapcre.dylib */; };
+		9A9809971DDF9B5300BB294E /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98098F1DDF9AEF00BB294E /* libaxisfreeimage.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
 		9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
-		9A9F0A871D7F35C400ED6D8A /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A261D7F340600ED6D8A /* libaxiscrypto.dylib */; };
-		9A9F0A881D7F35CA00ED6D8A /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A461D7F342C00ED6D8A /* libaxisfreeimage.dylib */; };
-		9A9F0A891D7F35CF00ED6D8A /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A3B1D7F341C00ED6D8A /* libaxisopenssl.dylib */; };
 		9A9F0A8A1D7F35D600ED6D8A /* libaxisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A311D7F341700ED6D8A /* libaxisidn.dylib */; };
 		9AA6A6AF1907B84D000A1F4A /* javascript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2C6184A3FA30092C3E1 /* javascript.cpp */; };
 		9AA6A6B01907B84D000A1F4A /* javascript_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2C8184A3FA30092C3E1 /* javascript_functions.cpp */; };
 		9AA6A6B11907B84D000A1F4A /* javascript_tinyjs_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */; };
 		9AC18A451D4EA0C900977347 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC18A441D4EA0C900977347 /* libbz2.tbd */; };
 		9AC62E661D20BE4F00A4AC0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E651D20BE4F00A4AC0A /* UIKit.framework */; };
+		9ACBD0BF1DDFAEB2004AF08F /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A18AAF11DDFAB4D00C57231 /* libcrypto.a */; };
+		9ACBD0C01DDFAEB5004AF08F /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A18AAF21DDFAB4D00C57231 /* libssl.a */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D4B1904CEFF001AEFFB /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libios_axis.dylib */; };
 		9AE7252717E83B69003E47F9 /* net.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7229717E83B69003E47F9 /* net.h */; };
@@ -383,6 +381,27 @@
 			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
 			remoteInfo = ios_aura;
 		};
+		9A18AC591DDFABCE00C57231 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AEEB49119C5088600866C9E;
+			remoteInfo = axisfreetype;
+		};
+		9A18AC5B1DDFABCE00C57231 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07108CDC1B4C97E300A28F80;
+			remoteInfo = ios_axisfreetype;
+		};
+		9A18AC5D1DDFABE500C57231 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = axisfreetype;
+		};
 		9A19A0D419C68DDA0018DF7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A19A0CE19C68DDA0018DF7D /* aura.xcodeproj */;
@@ -404,20 +423,6 @@
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
 		};
-		9A2116DD1D832A41000C4336 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A1E1D7F340600ED6D8A /* axiscrypto.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
-			remoteInfo = ios_axiscrypto;
-		};
-		9A2116DF1D832A41000C4336 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A401D7F342C00ED6D8A /* axisfreeimage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07108B6F1B4C97D500A28F80;
-			remoteInfo = ios_axisfreeimage;
-		};
 		9A2116E11D832A41000C4336 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */;
@@ -425,33 +430,47 @@
 			remoteGlobalIDString = 077A00881B4D4F9E001C85FF;
 			remoteInfo = ios_axisidn;
 		};
-		9A2116E31D832A41000C4336 /* PBXContainerItemProxy */ = {
+		9A9808291DDF955B00BB294E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A341D7F341C00ED6D8A /* axisopenssl.xcodeproj */;
+			containerPortal = 9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA539B119B763C400B9F861;
+			remoteInfo = aurapcre;
+		};
+		9A98082B1DDF955B00BB294E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07D6A8471B4CBB45004FEBC2;
+			remoteInfo = ios_aurapcre;
+		};
+		9A98098E1DDF9AEF00BB294E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AEEB48E19C5084900866C9E;
+			remoteInfo = axisfreeimage;
+		};
+		9A9809901DDF9AEF00BB294E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07108BD71B4C97D500A28F80;
+			remoteInfo = ios_axisfreeimage;
+		};
+		9A9809921DDF9AFC00BB294E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
-			remoteInfo = ios_axisopenssl;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = aurapcre;
 		};
-		9A9F0A251D7F340600ED6D8A /* PBXContainerItemProxy */ = {
+		9A9809941DDF9AFC00BB294E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A1E1D7F340600ED6D8A /* axiscrypto.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B2729A19A01A4600E822E1;
-			remoteInfo = axiscrypto;
-		};
-		9A9F0A271D7F340600ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A1E1D7F340600ED6D8A /* axiscrypto.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B2729219A019AB00E822E1;
-			remoteInfo = ios_axiscrypto;
-		};
-		9A9F0A291D7F340600ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A1E1D7F340600ED6D8A /* axiscrypto.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AF8B7231D1FDDB50087E7A2;
-			remoteInfo = axiscrypto_iosTests;
+			containerPortal = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = axisfreeimage;
 		};
 		9A9F0A301D7F341700ED6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -467,68 +486,12 @@
 			remoteGlobalIDString = 077A00AB1B4D4F9E001C85FF;
 			remoteInfo = ios_axisidn;
 		};
-		9A9F0A3A1D7F341C00ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A341D7F341C00ED6D8A /* axisopenssl.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B2729A19A01A4600E822E1;
-			remoteInfo = axisopenssl;
-		};
-		9A9F0A3C1D7F341C00ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A341D7F341C00ED6D8A /* axisopenssl.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B2729219A019AB00E822E1;
-			remoteInfo = ios_axisopenssl;
-		};
-		9A9F0A3E1D7F341C00ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A341D7F341C00ED6D8A /* axisopenssl.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A92C9051D2058690069D173;
-			remoteInfo = axisopenssl_iosTests;
-		};
-		9A9F0A451D7F342C00ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A401D7F342C00ED6D8A /* axisfreeimage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AEEB48E19C5084900866C9E;
-			remoteInfo = axisfreeimage;
-		};
-		9A9F0A471D7F342C00ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A401D7F342C00ED6D8A /* axisfreeimage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07108BD71B4C97D500A28F80;
-			remoteInfo = ios_axisfreeimage;
-		};
-		9A9F0A7F1D7F35A400ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A1E1D7F340600ED6D8A /* axiscrypto.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B2729319A01A4600E822E1;
-			remoteInfo = axiscrypto;
-		};
-		9A9F0A811D7F35AA00ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A401D7F342C00ED6D8A /* axisfreeimage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = axisfreeimage;
-		};
 		9A9F0A831D7F35B000ED6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = axisidn;
-		};
-		9A9F0A851D7F35B600ED6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9F0A341D7F341C00ED6D8A /* axisopenssl.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B2729319A01A4600E822E1;
-			remoteInfo = axisopenssl;
 		};
 		9AE24D491904CEFF001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -853,6 +816,9 @@
 		07F5B2CB184A3FA30092C3E1 /* javascript_tinyjs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript_tinyjs.h; sourceTree = "<group>"; };
 		07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = javascript_tinyjs_functions.cpp; sourceTree = "<group>"; };
 		07F5B2CD184A3FA30092C3E1 /* javascript_tinyjs_functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript_tinyjs_functions.h; sourceTree = "<group>"; };
+		9A18AAF11DDFAB4D00C57231 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../nodeapp/thirdparty/library/libcrypto.a; sourceTree = "<group>"; };
+		9A18AAF21DDFAB4D00C57231 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../nodeapp/thirdparty/library/libssl.a; sourceTree = "<group>"; };
+		9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreetype.xcodeproj; path = ../../../third/appseed/freetype/axisfreetype.xcodeproj; sourceTree = "<group>"; };
 		9A19A0B019C67B6A0018DF7D /* http_listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_listener.h; sourceTree = "<group>"; };
 		9A19A0B319C67B6A0018DF7D /* webserver_http_cookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_cookie.h; sourceTree = "<group>"; };
 		9A19A0B519C67B6A0018DF7D /* webserver_http_form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webserver_http_form.h; sourceTree = "<group>"; };
@@ -882,8 +848,6 @@
 		9A2116E61D832A54000C4336 /* libios_axisfreerdp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisfreerdp.dylib; path = "../../../third/appseed/freerdp/build/Debug-iphoneos/libios_axisfreerdp.dylib"; sourceTree = "<group>"; };
 		9A2116EA1D832A8C000C4336 /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/ios-basic-apgdmhfgxzjpfmdhucodqlzuwxoe/Build/Products/Debug-iphonesimulator/libios_ace.dylib"; sourceTree = "<group>"; };
 		9A331C621D4BCB3C00255105 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
-		9A331C651D4BCB8E00255105 /* libcrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcrypto.tbd; path = usr/lib/libcrypto.tbd; sourceTree = SDKROOT; };
-		9A331C671D4BCB9800255105 /* libssl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libssl.tbd; path = usr/lib/libssl.tbd; sourceTree = SDKROOT; };
 		9A331C7B1D4BCFC800255105 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		9A331C7E1D4BD06000255105 /* libios_axisfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisfreetype.dylib; path = "../../axis/freetype/build/Debug-iphoneos/libios_axisfreetype.dylib"; sourceTree = "<group>"; };
 		9A331C801D4BD06C00255105 /* libaxisfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxisfreetype.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libaxisfreetype.dylib"; sourceTree = "<group>"; };
@@ -897,11 +861,10 @@
 		9A9367B41D26C84200ED7535 /* fs_ifs_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_ifs_file.h; sourceTree = "<group>"; };
 		9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_fs.h; sourceTree = "<group>"; };
 		9A9367B81D26C87900ED7535 /* fs_remote_native_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_file.h; sourceTree = "<group>"; };
+		9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurapcre.xcodeproj; path = ../../../third/appseed/pcre/aurapcre.xcodeproj; sourceTree = "<group>"; };
+		9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A9F0A1E1D7F340600ED6D8A /* axiscrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiscrypto.xcodeproj; path = ../../../third/appseed/crypto/axiscrypto.xcodeproj; sourceTree = "<group>"; };
 		9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisidn.xcodeproj; path = ../../../third/appseed/idn/axisidn.xcodeproj; sourceTree = "<group>"; };
-		9A9F0A341D7F341C00ED6D8A /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../../../third/appseed/openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
-		9A9F0A401D7F342C00ED6D8A /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = "<group>"; };
 		9AC18A441D4EA0C900977347 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
 		9AC62E651D20BE4F00A4AC0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24D341904CEFE001AEFFB /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -917,14 +880,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A18AC5F1DDFABED00C57231 /* libaxisfreetype.dylib in Frameworks */,
+				9A9809961DDF9B5300BB294E /* libaurapcre.dylib in Frameworks */,
+				9A9809971DDF9B5300BB294E /* libaxisfreeimage.dylib in Frameworks */,
 				9A9F0A8A1D7F35D600ED6D8A /* libaxisidn.dylib in Frameworks */,
-				9A9F0A891D7F35CF00ED6D8A /* libaxisopenssl.dylib in Frameworks */,
-				9A9F0A881D7F35CA00ED6D8A /* libaxisfreeimage.dylib in Frameworks */,
-				9A9F0A871D7F35C400ED6D8A /* libaxiscrypto.dylib in Frameworks */,
 				9A3322B71D4BF72C00255105 /* libace.a in Frameworks */,
+				9ACBD0C01DDFAEB5004AF08F /* libssl.a in Frameworks */,
 				9A331C871D4BD0DB00255105 /* libsqlite3.tbd in Frameworks */,
+				9ACBD0BF1DDFAEB2004AF08F /* libcrypto.a in Frameworks */,
 				9A331C831D4BD0BE00255105 /* libz.tbd in Frameworks */,
-				9A331C811D4BD06C00255105 /* libaxisfreetype.dylib in Frameworks */,
 				9A331C7C1D4BCFC800255105 /* libbz2.tbd in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
@@ -939,11 +903,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2116EB1D832A8C000C4336 /* libios_ace.dylib in Frameworks */,
-				9A2116E91D832A7B000C4336 /* libios_axisfreeimage.dylib in Frameworks */,
 				9A2116E81D832A64000C4336 /* libios_axisidn.dylib in Frameworks */,
 				9A2116E71D832A54000C4336 /* libios_axisfreerdp.dylib in Frameworks */,
-				9A2116E51D832A4A000C4336 /* libios_axisopenssl.dylib in Frameworks */,
-				9A2116D71D832A36000C4336 /* libios_axiscrypto.dylib in Frameworks */,
 				9AC18A451D4EA0C900977347 /* libbz2.tbd in Frameworks */,
 				9A331C631D4BCB3C00255105 /* libsqlite3.tbd in Frameworks */,
 				9A331C851D4BD0C600255105 /* libz.tbd in Frameworks */,
@@ -1670,6 +1631,15 @@
 			path = javascript;
 			sourceTree = "<group>";
 		};
+		9A18AC521DDFABCE00C57231 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A18AC5A1DDFABCE00C57231 /* libaxisfreetype.dylib */,
+				9A18AC5C1DDFABCE00C57231 /* libios_axisfreetype.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A19A0B119C67B6A0018DF7D /* webserver */ = {
 			isa = PBXGroup;
 			children = (
@@ -1701,12 +1671,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A9F0A1F1D7F340600ED6D8A /* Products */ = {
+		9A9808251DDF955B00BB294E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A9F0A261D7F340600ED6D8A /* libaxiscrypto.dylib */,
-				9A9F0A281D7F340600ED6D8A /* libios_axiscrypto.dylib */,
-				9A9F0A2A1D7F340600ED6D8A /* axiscrypto_iosTests.xctest */,
+				9A98082A1DDF955B00BB294E /* libaurapcre.dylib */,
+				9A98082C1DDF955B00BB294E /* libios_aurapcre.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A98098A1DDF9AEF00BB294E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A98098F1DDF9AEF00BB294E /* libaxisfreeimage.dylib */,
+				9A9809911DDF9AEF00BB294E /* libios_axisfreeimage.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1720,28 +1698,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A9F0A351D7F341C00ED6D8A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A9F0A3B1D7F341C00ED6D8A /* libaxisopenssl.dylib */,
-				9A9F0A3D1D7F341C00ED6D8A /* libios_axisopenssl.dylib */,
-				9A9F0A3F1D7F341C00ED6D8A /* axisopenssl_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A9F0A411D7F342C00ED6D8A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A9F0A461D7F342C00ED6D8A /* libaxisfreeimage.dylib */,
-				9A9F0A481D7F342C00ED6D8A /* libios_axisfreeimage.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A18AAF11DDFAB4D00C57231 /* libcrypto.a */,
+				9A18AAF21DDFAB4D00C57231 /* libssl.a */,
 				9A2116EA1D832A8C000C4336 /* libios_ace.dylib */,
 				9A2116E61D832A54000C4336 /* libios_axisfreerdp.dylib */,
 				9AC18A441D4EA0C900977347 /* libbz2.tbd */,
@@ -1752,8 +1713,6 @@
 				9A331C801D4BD06C00255105 /* libaxisfreetype.dylib */,
 				9A331C7E1D4BD06000255105 /* libios_axisfreetype.dylib */,
 				9A331C7B1D4BCFC800255105 /* libbz2.tbd */,
-				9A331C671D4BCB9800255105 /* libssl.tbd */,
-				9A331C651D4BCB8E00255105 /* libcrypto.tbd */,
 				9A331C621D4BCB3C00255105 /* libsqlite3.tbd */,
 				9AC62E651D20BE4F00A4AC0A /* UIKit.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
@@ -1792,10 +1751,10 @@
 			isa = PBXGroup;
 			children = (
 				9A19A0CE19C68DDA0018DF7D /* aura.xcodeproj */,
-				9A9F0A1E1D7F340600ED6D8A /* axiscrypto.xcodeproj */,
-				9A9F0A401D7F342C00ED6D8A /* axisfreeimage.xcodeproj */,
+				9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */,
+				9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */,
+				9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */,
 				9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */,
-				9A9F0A341D7F341C00ED6D8A /* axisopenssl.xcodeproj */,
 				07A371F51B26054000E4F888 /* axis */,
 				0747A6491B2637BB00E85AC7 /* database */,
 				07F5B12D184A3B420092C3E1 /* filesystem */,
@@ -2109,10 +2068,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A9F0A861D7F35B600ED6D8A /* PBXTargetDependency */,
+				9A18AC5E1DDFABE500C57231 /* PBXTargetDependency */,
+				9A9809931DDF9AFC00BB294E /* PBXTargetDependency */,
+				9A9809951DDF9AFC00BB294E /* PBXTargetDependency */,
 				9A9F0A841D7F35B000ED6D8A /* PBXTargetDependency */,
-				9A9F0A821D7F35AA00ED6D8A /* PBXTargetDependency */,
-				9A9F0A801D7F35A400ED6D8A /* PBXTargetDependency */,
 				9A19A0DB19C68DE00018DF7D /* PBXTargetDependency */,
 			);
 			name = axis;
@@ -2131,10 +2090,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A2116DE1D832A41000C4336 /* PBXTargetDependency */,
-				9A2116E01D832A41000C4336 /* PBXTargetDependency */,
 				9A2116E21D832A41000C4336 /* PBXTargetDependency */,
-				9A2116E41D832A41000C4336 /* PBXTargetDependency */,
 				07108A9F1B4C958000A28F80 /* PBXTargetDependency */,
 			);
 			name = ios_axis;
@@ -2190,20 +2146,20 @@
 					ProjectRef = 9A19A0CE19C68DDA0018DF7D /* aura.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A9F0A1F1D7F340600ED6D8A /* Products */;
-					ProjectRef = 9A9F0A1E1D7F340600ED6D8A /* axiscrypto.xcodeproj */;
+					ProductGroup = 9A9808251DDF955B00BB294E /* Products */;
+					ProjectRef = 9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A9F0A411D7F342C00ED6D8A /* Products */;
-					ProjectRef = 9A9F0A401D7F342C00ED6D8A /* axisfreeimage.xcodeproj */;
+					ProductGroup = 9A98098A1DDF9AEF00BB294E /* Products */;
+					ProjectRef = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A18AC521DDFABCE00C57231 /* Products */;
+					ProjectRef = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A9F0A2C1D7F341700ED6D8A /* Products */;
 					ProjectRef = 9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */;
-				},
-				{
-					ProductGroup = 9A9F0A351D7F341C00ED6D8A /* Products */;
-					ProjectRef = 9A9F0A341D7F341C00ED6D8A /* axisopenssl.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -2223,6 +2179,20 @@
 			remoteRef = 076A1FE71B6E65F800BF6C7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9A18AC5A1DDFABCE00C57231 /* libaxisfreetype.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxisfreetype.dylib;
+			remoteRef = 9A18AC591DDFABCE00C57231 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A18AC5C1DDFABCE00C57231 /* libios_axisfreetype.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_axisfreetype.dylib;
+			remoteRef = 9A18AC5B1DDFABCE00C57231 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A19A0D519C68DDA0018DF7D /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -2237,25 +2207,32 @@
 			remoteRef = 9A19A0D819C68DDA0018DF7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9F0A261D7F340600ED6D8A /* libaxiscrypto.dylib */ = {
+		9A98082A1DDF955B00BB294E /* libaurapcre.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libaxiscrypto.dylib;
-			remoteRef = 9A9F0A251D7F340600ED6D8A /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.dylib";
+			path = libaurapcre.dylib;
+			remoteRef = 9A9808291DDF955B00BB294E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9F0A281D7F340600ED6D8A /* libios_axiscrypto.dylib */ = {
+		9A98082C1DDF955B00BB294E /* libios_aurapcre.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_axiscrypto.dylib;
-			remoteRef = 9A9F0A271D7F340600ED6D8A /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_aurapcre.dylib;
+			remoteRef = 9A98082B1DDF955B00BB294E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9F0A2A1D7F340600ED6D8A /* axiscrypto_iosTests.xctest */ = {
+		9A98098F1DDF9AEF00BB294E /* libaxisfreeimage.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = axiscrypto_iosTests.xctest;
-			remoteRef = 9A9F0A291D7F340600ED6D8A /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxisfreeimage.dylib;
+			remoteRef = 9A98098E1DDF9AEF00BB294E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A9809911DDF9AEF00BB294E /* libios_axisfreeimage.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_axisfreeimage.dylib;
+			remoteRef = 9A9809901DDF9AEF00BB294E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A9F0A311D7F341700ED6D8A /* libaxisidn.dylib */ = {
@@ -2270,41 +2247,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_axisidn.dylib;
 			remoteRef = 9A9F0A321D7F341700ED6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A9F0A3B1D7F341C00ED6D8A /* libaxisopenssl.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libaxisopenssl.dylib;
-			remoteRef = 9A9F0A3A1D7F341C00ED6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A9F0A3D1D7F341C00ED6D8A /* libios_axisopenssl.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_axisopenssl.dylib;
-			remoteRef = 9A9F0A3C1D7F341C00ED6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A9F0A3F1D7F341C00ED6D8A /* axisopenssl_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = axisopenssl_iosTests.xctest;
-			remoteRef = 9A9F0A3E1D7F341C00ED6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A9F0A461D7F342C00ED6D8A /* libaxisfreeimage.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxisfreeimage.dylib;
-			remoteRef = 9A9F0A451D7F342C00ED6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A9F0A481D7F342C00ED6D8A /* libios_axisfreeimage.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_axisfreeimage.dylib;
-			remoteRef = 9A9F0A471D7F342C00ED6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2405,50 +2347,35 @@
 			name = aura_ios;
 			targetProxy = 07108A9E1B4C958000A28F80 /* PBXContainerItemProxy */;
 		};
+		9A18AC5E1DDFABE500C57231 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axisfreetype;
+			targetProxy = 9A18AC5D1DDFABE500C57231 /* PBXContainerItemProxy */;
+		};
 		9A19A0DB19C68DE00018DF7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
 			targetProxy = 9A19A0DA19C68DE00018DF7D /* PBXContainerItemProxy */;
-		};
-		9A2116DE1D832A41000C4336 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_axiscrypto;
-			targetProxy = 9A2116DD1D832A41000C4336 /* PBXContainerItemProxy */;
-		};
-		9A2116E01D832A41000C4336 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_axisfreeimage;
-			targetProxy = 9A2116DF1D832A41000C4336 /* PBXContainerItemProxy */;
 		};
 		9A2116E21D832A41000C4336 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_axisidn;
 			targetProxy = 9A2116E11D832A41000C4336 /* PBXContainerItemProxy */;
 		};
-		9A2116E41D832A41000C4336 /* PBXTargetDependency */ = {
+		9A9809931DDF9AFC00BB294E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = ios_axisopenssl;
-			targetProxy = 9A2116E31D832A41000C4336 /* PBXContainerItemProxy */;
+			name = aurapcre;
+			targetProxy = 9A9809921DDF9AFC00BB294E /* PBXContainerItemProxy */;
 		};
-		9A9F0A801D7F35A400ED6D8A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axiscrypto;
-			targetProxy = 9A9F0A7F1D7F35A400ED6D8A /* PBXContainerItemProxy */;
-		};
-		9A9F0A821D7F35AA00ED6D8A /* PBXTargetDependency */ = {
+		9A9809951DDF9AFC00BB294E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisfreeimage;
-			targetProxy = 9A9F0A811D7F35AA00ED6D8A /* PBXContainerItemProxy */;
+			targetProxy = 9A9809941DDF9AFC00BB294E /* PBXContainerItemProxy */;
 		};
 		9A9F0A841D7F35B000ED6D8A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisidn;
 			targetProxy = 9A9F0A831D7F35B000ED6D8A /* PBXContainerItemProxy */;
-		};
-		9A9F0A861D7F35B600ED6D8A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axisopenssl;
-			targetProxy = 9A9F0A851D7F35B600ED6D8A /* PBXContainerItemProxy */;
 		};
 		9AE24D4A1904CEFF001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2462,6 +2389,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
+				);
 			};
 			name = Debug;
 		};
@@ -2469,6 +2401,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
+				);
 			};
 			name = Release;
 		};
