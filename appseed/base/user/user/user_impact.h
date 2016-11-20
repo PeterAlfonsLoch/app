@@ -67,7 +67,7 @@ namespace user
       template < class DOCUMENT >
       ::data::data * get_typed_document_data();
 
-      virtual void install_message_handling(::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface) override;
 
       virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
@@ -119,15 +119,15 @@ namespace user
 
       static_function::user::document * get_document(::user::interaction * pui);
 
-      virtual void dump(dump_context &) const;
-      virtual void assert_valid() const;
+      virtual void dump(dump_context &) const override;
+      virtual void assert_valid() const override;
 
       // Advanced: for implementing custom print preview
       /*   bool DoPrintPreview(UINT nIDResource, sp(view) pPrintView,
       sp(type) pPreviewViewClass, CPrintPreviewState* pState);*/
 
       virtual void CalcWindowRect(LPRECT lpClientRect,
-         UINT nAdjustType = adjustBorder);
+         UINT nAdjustType = adjustBorder) override;
 //      virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
 
 
@@ -135,10 +135,10 @@ namespace user
       //virtual void on_draw_view(::draw2d::graphics * pgraphics, spa(::data::data) spadata);
       //virtual void defer_draw_view(::draw2d::dib * pdib);
 
-      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg) override;
 
-      virtual bool pre_create_window(::user::create_struct& cs);
-      virtual void PostNcDestroy();
+      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual void PostNcDestroy() override;
 
 
       DECL_GEN_SIGNAL(_001OnCreate);
@@ -177,16 +177,16 @@ namespace user
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       virtual void collaborate(::job * pjob);
-      virtual int32_t  get_total_page_count(::job * pjob);
+      virtual int32_t  get_total_page_count(::job * pjob) override;
 
 
-         virtual ::user::interaction::e_type get_window_type();
+         virtual ::user::interaction::e_type get_window_type() override;
 
       virtual void on_simple_view_update_hint(sp(::user::impact) pviewSender, e_hint ehint, object * phint);
 
-      virtual void _001CallOnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001CallOnDraw(::draw2d::graphics * pgraphics) override;
 
-      virtual void on_select();
+      virtual void on_select() override;
 
       // each view can display one or more documents but has only one document interface
       //::user::document * get_document() const;
@@ -229,12 +229,12 @@ namespace user
 
          //         virtual void install_message_handling(::message::dispatch * pinterface);
 
-         virtual bool _001HasCommandHandler(id id);
+         virtual bool _001HasCommandHandler(id id) override;
 
          virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
 
 
-         virtual string calc_data_id();
+         virtual string calc_data_id() override;
 
 
    };

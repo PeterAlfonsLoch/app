@@ -280,7 +280,7 @@ namespace file
       ::file::path system::time(::aura::application * papp, const ::file::path & psz, int32_t iMaxLevel, const string & pszPrefix, const string & pszSuffix)
       {
          synch_lock lockMachineEvent(
-            (&System.machine_event_central() != NULL) ?
+            (is_null(&System.machine_event_central())) ?
             &System.machine_event_central().m_machineevent.m_mutex
             : ((mutex *)NULL));
          int32_t iIncLevel = -1;
@@ -1959,8 +1959,12 @@ restart:
                set = varFile["http_set"].propset();
 
                bool bRawHttp1 = (bool)varFile["http_set"]["raw_http"];
+               
+               UNUSED(bRawHttp1);
 
                bool bRawHttp2 = (bool)spfile->oprop("http_set")["raw_http"];
+               
+               UNUSED(bRawHttp2);
 
                if(Application.http().get(strPath,*pfile->get_memory(),set))
                {

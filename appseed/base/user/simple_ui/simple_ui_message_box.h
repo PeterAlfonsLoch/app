@@ -27,18 +27,18 @@ namespace simple_ui
 
       int32_t show();
 
-      DRAWDD();
+      DRAWDD() override;
 
-      virtual void on_layout();
+      virtual void on_layout() override;
 
-      bool on_action(const char * pszId);
+      bool on_action(const char * pszId) override;
 
       virtual void create_a_button(id id,const char * pszText);
       virtual void create_b_button(id id,const char * pszText);
       virtual void create_button(spa(tap) & tapa, id id,const char * pszText);
 
 
-      virtual void pre_translate_message(signal_details * pobj);
+      virtual void pre_translate_message(signal_details * pobj) override;
 
       //virtual void EndModalLoop(id nResult);
       

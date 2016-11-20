@@ -64,3 +64,33 @@ CLASS_DECL_EXPORT const char * android_get_cache_dir()
 {
    return g_pszCacheDir;
 }
+
+
+const char * g_pszIosHome;
+
+CLASS_DECL_EXPORT void ios_set_home(const char * pszDir)
+{
+   
+   g_pszIosHome = pszDir;
+   
+}
+
+CLASS_DECL_EXPORT const char * ios_get_home()
+{
+   return g_pszIosHome;
+}
+
+const char * g_pszIosTemp;
+
+
+CLASS_DECL_EXPORT void ios_set_temp(const char * pszDir)
+{
+   
+   g_pszIosTemp = pszDir;
+   
+}
+
+CLASS_DECL_EXPORT const char * ios_get_temp()
+{
+   return g_pszIosTemp;
+}

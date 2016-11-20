@@ -350,8 +350,25 @@ namespace aura
       strKey = ::file::path(getenv("HOME")) / ".ca2/Application Support/ca2/ipi" / strApp / ::str::from(iPid);
 
    #else
+      
+#ifdef APPLE_IOS
+      
+      string strAppId(strApp);
+      
+      strAppId.replace("\\","-");
+      
+      strAppId.replace("/","-");
+      
+      strAppId.replace("-","-");
+      
+      strKey = "core-" + strAppId;
+      
+#else
+
 
       strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/ipi" / strApp / ::str::from(iPid);
+      
+#endif
 
    #endif
 

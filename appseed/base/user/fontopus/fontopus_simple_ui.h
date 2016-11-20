@@ -34,7 +34,7 @@ namespace fontopus
 
       virtual string do_fontopus(const RECT & rect);
 
-      void install_message_handling(::message::dispatch * pdispatch);
+      void install_message_handling(::message::dispatch * pdispatch) override;
 
 
       DECL_GEN_SIGNAL(_001OnCreate);
@@ -42,15 +42,15 @@ namespace fontopus
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnMouseMove);
-      void _001OnTimer(::timer * ptimer);
+      void _001OnTimer(::timer * ptimer) override;
       
 
-      virtual void on_layout();
+      virtual void on_layout() override;
 
 
-      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics) override;
 
-      virtual void _001DrawChildren(::draw2d::graphics * pgraphics);
+      virtual void _001DrawChildren(::draw2d::graphics * pgraphics) override;
       
       virtual bool has_pending_graphical_update() override;
 

@@ -62,7 +62,7 @@ namespace sockets
       void cleanup_handler();
 
 
-      mutex & GetMutex() const;
+      mutex & GetMutex() const override;
 
 
       /** add base_socket instance to base_socket map. Removal is always automatic. */
@@ -71,105 +71,105 @@ namespace sockets
       virtual bool contains(base_socket *) override;
 
       /** get status of read/write/exception file descriptor set for a base_socket. */
-      void get(SOCKET s,bool& r,bool& w,bool& e);
+      void get(SOCKET s,bool& r,bool& w,bool& e) override;
 
       /** set read/write/exception file descriptor sets (fd_set). */
-      void set(SOCKET s,bool bRead,bool bWrite,bool bException = true);
+      void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) override;
 
       /** Wait for events, generate callbacks. */
-      int32_t select(int32_t sec, int32_t usec);
+      int32_t select(int32_t sec, int32_t usec) override;
 
       /** This method will not return until an event has been detected. */
-      int32_t select();
+      int32_t select() override;
 
       /** Wait for events, generate callbacks. */
-      int32_t select(struct timeval *tsel);
+      int32_t select(struct timeval *tsel) override;
 
       /** Check that a base_socket really is handled by this base_socket handler. */
-      bool Valid(base_socket *);
+      bool Valid(base_socket *) override;
 
       /** Return number of sockets handled by this handler.  */
-      size_t get_count();
+      size_t get_count() override;
 
       /** Override and return false to deny all incoming connections.
       \param p listen_socket class pointer (use GetPort to identify which one) */
-      bool OkToAccept(base_socket *p);
+      bool OkToAccept(base_socket *p) override;
 
       /** Called by base_socket when a base_socket changes state. */
-      void AddList(SOCKET s,list_t which_one,bool add);
+      void AddList(SOCKET s,list_t which_one,bool add) override;
 
       // Connection pool
       /** find available open connection (used by connection pool). */
-      pool_socket * FindConnection(int32_t type,const string & protocol, const ::net::address & address);
+      pool_socket * FindConnection(int32_t type,const string & protocol, const ::net::address & address) override;
       /** Enable connection pool (by default disabled). */
-      void EnablePool(bool x = true);
+      void EnablePool(bool x = true) override;
       /** Check pool status.
       \return true if connection pool is enabled */
-      bool PoolEnabled();
+      bool PoolEnabled() override;
 
       // Socks4
       /** set socks4 server ip that all new tcp sockets should use. */
-      void SetSocks4Host(in_addr addr);
+      void SetSocks4Host(in_addr addr) override;
       /** set socks4 server hostname that all new tcp sockets should use. */
-      void SetSocks4Host(const string & );
+      void SetSocks4Host(const string & ) override;
       /** set socks4 server port number that all new tcp sockets should use. */
-      void SetSocks4Port(port_t);
+      void SetSocks4Port(port_t) override;
       /** set optional socks4 userid. */
-      void SetSocks4Userid(const string & );
+      void SetSocks4Userid(const string & ) override;
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
-      void SetSocks4TryDirect(bool x = true);
+      void SetSocks4TryDirect(bool x = true) override;
       /** get socks4 server ip.
       \return socks4 server ip */
-      in_addr GetSocks4Host();
+      in_addr GetSocks4Host() override;
       /** get socks4 port number.
       \return socks4 port number */
-      port_t GetSocks4Port();
+      port_t GetSocks4Port() override;
       /** get socks4 userid (optional).
       \return socks4 userid */
-      const string & GetSocks4Userid();
+      const string & GetSocks4Userid() override;
       /** Check status of socks4 try direct flag.
       \return true if direct connection should be tried if connection to socks4 server fails */
-      bool Socks4TryDirect();
+      bool Socks4TryDirect() override;
 
       // DNS resolve server
       /** Enable asynchronous DNS.
       \param port Listen port of asynchronous dns server */
-      void EnableResolver(port_t port = 16667);
+      void EnableResolver(port_t port = 16667) override;
       /** Check resolver status.
       \return true if resolver is enabled */
-      bool ResolverEnabled();
+      bool ResolverEnabled() override;
       /** Queue a dns request.
       \param host Hostname to be resolved
       \param port Port number will be echoed in base_socket::OnResolved callback */
-      int32_t Resolve(base_socket *,const string & host,port_t port);
-      int32_t Resolve6(base_socket *,const string & host,port_t port);
+      int32_t Resolve(base_socket *,const string & host,port_t port) override;
+      int32_t Resolve6(base_socket *,const string & host,port_t port) override;
       /** Do a reverse dns lookup. */
-      int32_t Resolve(base_socket *,in_addr a);
-      int32_t Resolve(base_socket *,in6_addr& a);
+      int32_t Resolve(base_socket *,in_addr a) override;
+      int32_t Resolve(base_socket *,in6_addr& a) override;
       /** get listen port of asynchronous dns server. */
-      port_t GetResolverPort();
+      port_t GetResolverPort() override;
       /** Resolver thread ready for queries. */
-      bool ResolverReady();
+      bool ResolverReady() override;
       /** Returns true if the base_socket is waiting for a resolve event. */
-      bool Resolving(base_socket *);
+      bool Resolving(base_socket *) override;
 
       /** Fetch unique trigger id. */
-      int32_t TriggerID(base_socket *src);
+      int32_t TriggerID(base_socket *src) override;
       /** Subscribe base_socket to trigger id. */
-      bool Subscribe(int32_t id, base_socket *dst);
+      bool Subscribe(int32_t id, base_socket *dst) override;
       /** Unsubscribe base_socket from trigger id. */
-      bool Unsubscribe(int32_t id, base_socket *dst);
+      bool Unsubscribe(int32_t id, base_socket *dst) override;
       /** Execute OnTrigger for subscribed sockets.
       \param id Trigger ID
       \param data Data passed from source to destination
       \param erase Empty trigger id source and destination maps if 'true',
       Leave them in place if 'false' - if a trigger should be called many times */
-      void Trigger(int32_t id, base_socket::trigger_data & data, bool erase = true);
+      void Trigger(int32_t id, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
-      void SetSlave(bool x = true);
+      void SetSlave(bool x = true) override;
       /** Indicates that the handler runs under socket_thread. */
-      bool IsSlave();
+      bool IsSlave() override;
 
       /** Sanity check of those accursed lists. */
       void CheckSanity();
@@ -177,7 +177,7 @@ namespace sockets
 
       void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
       /** remove base_socket from base_socket map, used by base_socket class. */
-      void remove(base_socket *);
+      void remove(base_socket *) override;
    };
 
 

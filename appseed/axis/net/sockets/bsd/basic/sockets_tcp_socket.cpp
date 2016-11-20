@@ -1196,6 +1196,7 @@ namespace sockets
 
                   if (m_spsslclientcontext->m_iRetry == 0)
                   {
+
                      m_spsslclientcontext->m_iRetry = 1;
                      SSL_clear(m_ssl);
                      SSL_SESSION_free(m_spsslclientcontext->m_psession);
@@ -1288,7 +1289,9 @@ skip:
 
    void tcp_socket::InitSSLClient()
    {
-      InitializeContext(m_strInitSSLClientContext,SSLv23_method());
+      //InitializeContext(m_strInitSSLClientContext,SSLv23_method());
+      //InitializeContext(m_strInitSSLClientContext,TLSv1_client_method());
+      InitializeContext(m_strInitSSLClientContext,TLS_client_method());
    }
 
 

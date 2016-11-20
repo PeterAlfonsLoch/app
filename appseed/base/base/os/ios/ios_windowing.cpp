@@ -444,3 +444,13 @@ void defer_dock_application(bool bDock)
 //   }
 //   
 }
+
+
+int_bool DestroyWindow(oswindow window)
+{
+   
+   UNREFERENCED_PARAMETER(window);
+   
+   return true;
+   
+}

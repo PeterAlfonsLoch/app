@@ -429,7 +429,7 @@ namespace user
       try
       {
 
-         ::user::box::on_set_parent(puiParent);
+         ::simple_ui::interaction::on_set_parent(puiParent);
 
       }
       catch (...)

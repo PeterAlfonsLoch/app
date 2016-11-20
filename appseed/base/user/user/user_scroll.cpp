@@ -213,9 +213,9 @@ namespace user
 
       LONG iClientWidth = rectClient.width();
 
-      LONG iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+      //LONG iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
 
-      LONG iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      LONG iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
       m_scrolldataHorz.m_bScroll = false;
 
@@ -228,7 +228,7 @@ namespace user
       else if (iTotalHeight > iClientHeight)
       {
 
-         if (iTotalWidth > iscrollWidth)
+         if (iTotalWidth > iScrollWidth)
          {
 
             m_scrolldataHorz.m_bScroll = true;
@@ -1125,7 +1125,7 @@ namespace user
 
       LONG iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
 
-      LONG iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+      //LONG iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
       m_scrolldataVert.m_bScroll = false;
 

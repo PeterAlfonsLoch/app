@@ -483,7 +483,7 @@ namespace hotplugin
    uint32_t c_cdecl composer::composer_system_main(LPVOID lpVoid)
    {
 
-      int32_t iReturnCode = 0;
+      //int32_t iReturnCode = 0;
 
       ::axis::system * paxissystem = (::axis::system *) lpVoid;
 

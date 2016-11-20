@@ -32,26 +32,25 @@ namespace base
 
       virtual index initial_frame_position(LPRECT lprect,const RECT & rect,bool bMove,::user::interaction * pui);
 
-      virtual void frame_pre_translate_message(signal_details * pobj);
+      virtual void frame_pre_translate_message(signal_details * pobj) override;
 
-      bool process_initialize();
+      bool process_initialize() override;
 
-      bool initialize1();
+      bool initialize1() override;
 
-      bool initialize();
+      bool initialize() override;
 
-      virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
+      virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive) override;
 
-      virtual void get_cursor_pos(LPPOINT lppoint);
+      virtual void get_cursor_pos(LPPOINT lppoint) override;
 
       virtual ::user::primitive * GetActiveWindow();
       virtual ::user::primitive * GetFocus();
 
+      ::user::elemental * get_keyboard_focus() override;
       virtual bool ReleaseCapture();
       virtual sp(::user::interaction) GetCapture();
 
-
-      ::user::elemental * get_keyboard_focus();
 
       sp(::user::schema) get_new_user_schema(const char * pszUinteractionLibrary);
 

@@ -66,16 +66,16 @@ namespace file
 
          virtual bool read_byte(byte * pbyte, ::file::edit_buffer * pfile) override;
 
-         virtual EItemType get_type();
-         virtual memory_size_t get_extent() ;
-         virtual memory_size_t get_file_extent();
-         virtual BYTE * get_data() ;
-         virtual EItemType reverse_get_type() ;
-         virtual memory_size_t reverse_get_extent();
-         virtual memory_size_t reverse_get_file_extent();
-         virtual BYTE * reverse_get_data();
+         virtual EItemType get_type() override;
+         virtual memory_size_t get_extent() override ;
+         virtual memory_size_t get_file_extent() override ;
+         virtual BYTE * get_data()  override;
+         virtual EItemType reverse_get_type()  override;
+         virtual memory_size_t reverse_get_extent() override;
+         virtual memory_size_t reverse_get_file_extent() override;
+         virtual BYTE * reverse_get_data() override;
 
-         virtual memory_offset_t get_delta_length() ;
+         virtual memory_offset_t get_delta_length()  override;
       };
 
       class InsertItem: public Item
@@ -88,15 +88,15 @@ namespace file
 
          virtual bool read_byte(byte * pbyte, ::file::edit_buffer * pfile) override;
 
-         virtual EItemType get_type() ;
-         virtual memory_size_t get_extent() ;
-         virtual memory_size_t get_file_extent() ;
-         virtual BYTE * get_data() ;
-         virtual EItemType reverse_get_type() ;
-         virtual memory_size_t reverse_get_extent() ;
-         virtual memory_size_t reverse_get_file_extent() ;
-         virtual BYTE * reverse_get_data();
-         virtual memory_offset_t get_delta_length();
+         virtual EItemType get_type()  override;
+         virtual memory_size_t get_extent()  override;
+         virtual memory_size_t get_file_extent() override ;
+         virtual BYTE * get_data()  override;
+         virtual EItemType reverse_get_type()  override;
+         virtual memory_size_t reverse_get_extent() override ;
+         virtual memory_size_t reverse_get_file_extent() override ;
+         virtual BYTE * reverse_get_data() override;
+         virtual memory_offset_t get_delta_length() override;
 
       };
 
@@ -109,15 +109,15 @@ namespace file
          memory m_memstorageReverse;
 
 
-         virtual EItemType get_type();
-         virtual memory_size_t get_extent() ;
-         virtual memory_size_t get_file_extent();
-         virtual BYTE * get_data() ;
-         virtual EItemType reverse_get_type();
-         virtual memory_size_t reverse_get_extent() ;
-         virtual memory_size_t reverse_get_file_extent();
-         virtual BYTE * reverse_get_data() ;
-         virtual memory_offset_t get_delta_length();
+         virtual EItemType get_type() override;
+         virtual memory_size_t get_extent() override ;
+         virtual memory_size_t get_file_extent() override;
+         virtual BYTE * get_data()  override;
+         virtual EItemType reverse_get_type() override;
+         virtual memory_size_t reverse_get_extent() override ;
+         virtual memory_size_t reverse_get_file_extent() override;
+         virtual BYTE * reverse_get_data()  override;
+         virtual memory_offset_t get_delta_length() override;
 
       };
 
@@ -134,15 +134,15 @@ namespace file
          GroupItem * m_pgroupitem;
 
 
-         virtual EItemType get_type();
-         virtual memory_size_t get_extent();
-         virtual memory_size_t get_file_extent();
-         virtual BYTE * get_data() ;
-         virtual EItemType reverse_get_type();
-         virtual memory_size_t reverse_get_extent() ;
-         virtual memory_size_t reverse_get_file_extent();
-         virtual BYTE * reverse_get_data() ;
-         virtual memory_offset_t get_delta_length();
+         virtual EItemType get_type() override;
+         virtual memory_size_t get_extent() override;
+         virtual memory_size_t get_file_extent() override;
+         virtual BYTE * get_data() override ;
+         virtual EItemType reverse_get_type() override;
+         virtual memory_size_t reverse_get_extent() override ;
+         virtual memory_size_t reverse_get_file_extent() override;
+         virtual BYTE * reverse_get_data()  override;
+         virtual memory_offset_t get_delta_length() override;
 
          virtual bool read_byte(byte * pbyte, ::file::edit_buffer * pfile) override;
 

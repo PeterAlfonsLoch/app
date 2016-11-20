@@ -69,7 +69,7 @@ plane_system::plane_system(const char * pszId)
    
    m_psystem = create_base_system();
    
-   m_psystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
+   m_psystem->m_possystemwindow->m_pui = new ::user::interaction(m_psystem);
    
    ::aura::main_init_data * pinitmaindata  = new ::aura::main_init_data;
    
@@ -166,11 +166,8 @@ void plane_system::begin()
 }
 
 
-
 round_window * ios_start_window(plane_system * psystem, CGRect rect)
 {
-   
-   ::user::interaction * pui = psystem->m_psystem->m_posdata->m_pui;
    
    ::user::native_window_initialize initialize;
    
@@ -179,11 +176,12 @@ round_window * ios_start_window(plane_system * psystem, CGRect rect)
    initialize.m_rect.right = rect.origin.x + rect.size.width;
    initialize.m_rect.bottom = rect.origin.x + rect.size.height;
    
-   pui->initialize(&initialize);
+   psystem->m_psystem->m_possystemwindow->m_pui->initialize_native_window(&initialize);
    
-   return pui->m_pimpl.cast < ::ios::interaction_impl > ();
+   return psystem->m_psystem->m_possystemwindow->m_pui->m_pimpl.cast < ::ios::interaction_impl > ();
    
 }
+
 
 int ios_initialize_window(round_window * proundwindow, UIWindow * window)
 {

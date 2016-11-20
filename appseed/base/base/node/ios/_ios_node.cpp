@@ -5,7 +5,7 @@
 //copy.cpp
 
 #include "ios_factory_exchange.cpp"
-#include "ios_interaction_impl.cpp"
+//#include "ios_interaction_impl.cpp"
 //macos_main.cpp
 //macos_message_queue.cpp
 //macos_printer.cpp

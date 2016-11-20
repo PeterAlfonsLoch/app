@@ -91,28 +91,30 @@ namespace user
       virtual ~interaction_base();
 
 
-      virtual void _001OnTimer(::timer * ptimer);
+      virtual void _001OnTimer(::timer * ptimer) override;
 
 
       virtual bool create_message_queue(const char * pszName);
 
 
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
-      virtual bool initialize(::user::native_window_initialize * pinitialize);
+      
+      virtual bool initialize_native_window(::user::native_window_initialize * pinitialize);
+      
 #endif
 
 
 //      virtual bool is_window_enabled();
       virtual bool enable_window(bool bEnable = true);
-      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics) override;
 
       virtual void PreSubClassWindow();
 
 
       virtual bool GetClientRect(LPRECT lprect);
       virtual bool GetClientRect(RECT64 * lprect);
-      virtual bool GetWindowRect(LPRECT lprect);
-      virtual bool GetWindowRect(RECT64 * lprect);
+      virtual bool GetWindowRect(LPRECT lprect) override;
+      virtual bool GetWindowRect(RECT64 * lprect) override;
       virtual bool ClientToScreen(LPRECT lprect);
       virtual bool ClientToScreen(RECT64 * lprect);
       virtual bool ClientToScreen(LPPOINT lppoint);
@@ -121,10 +123,10 @@ namespace user
       virtual bool ScreenToClient(RECT64 * lprect);
       virtual bool ScreenToClient(LPPOINT lppoint);
       virtual bool ScreenToClient(POINT64 * lppoint);
-      virtual rect GetWindowRect();
-      virtual rect64 GetWindowRect64();
+      virtual rect GetWindowRect() override;
+      virtual rect64 GetWindowRect64() override;
 
-      virtual bool SetPlacement(const RECT & lprect,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SetPlacement(const RECT & lprect,UINT nFlags = SWP_SHOWWINDOW) override;
       virtual bool RepositionWindow(const RECT & rect,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool RepositionWindow(int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool MoveWindow(int32_t x,int32_t y,UINT nFlags = SWP_SHOWWINDOW);
@@ -140,9 +142,9 @@ namespace user
       //virtual int32_t GetWindowRgn(HRGN hRgn);
 
 
-      virtual void install_message_handling(::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface) override;
 
-      virtual void _on_start_user_message_handler();
+      virtual void _on_start_user_message_handler() override;
 
 
       virtual void UpdateWindow();
@@ -181,7 +183,7 @@ namespace user
 
       void _001BaseWndInterfaceMap();
 
-      virtual void message_handler(signal_details * pobj);
+      virtual void message_handler(signal_details * pobj) override;
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
       virtual void on_select();
 
@@ -244,7 +246,7 @@ namespace user
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
 
-      virtual bool BaseOnControlEvent(::user::control_event * pevent);
+      virtual bool BaseOnControlEvent(::user::control_event * pevent) override;
 
       // Dialog data support
       virtual bool update_data(bool bSaveAndValidate = true);
@@ -357,7 +359,7 @@ namespace user
       virtual void _001Print(::draw2d::graphics * pgraphics);
       virtual void _001DrawThis(::draw2d::graphics * pgraphics);
       virtual void _001DrawChildren(::draw2d::graphics * pgraphics);
-      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics) override;
       virtual void _008OnDraw(::draw2d::graphics * pgraphics);
       virtual void draw_control_background(::draw2d::graphics * pgraphics);
 
@@ -407,7 +409,7 @@ namespace user
       ::user::interaction * get_child_by_id(id id,int32_t iLevel = -1);
 
 
-      virtual ::user::interaction * get_wnd() const;
+      virtual ::user::interaction * get_wnd() const override;
       virtual ::user::interaction * get_wnd(UINT nCmd) const;
 
 
@@ -416,7 +418,7 @@ namespace user
 
 
       virtual ::user::interaction * GetTopWindow() const;
-      virtual ::user::interaction * GetParent() const;
+      virtual ::user::interaction * GetParent() const override;
       virtual ::user::interaction * GetTopLevel() const;
       virtual ::user::interaction * GetParentTopLevel() const;
       virtual ::user::interaction * EnsureTopLevel();
@@ -433,7 +435,7 @@ namespace user
 
 
       virtual void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
-      virtual void pre_translate_message(signal_details * pobj);
+      virtual void pre_translate_message(signal_details * pobj) override;
 
 
       virtual int32_t get_descendant_level(::user::interaction * pui);
@@ -478,13 +480,13 @@ namespace user
 //      virtual LRESULT message_handler(LPMESSAGE lpmessage);
       virtual void GuieProc(signal_details * pobj);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics);
+      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics) override;
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics) override;
 
 
       oswindow get_safe_handle() const;
-      virtual oswindow get_handle() const;
+      virtual oswindow get_handle() const override;
       virtual bool attach(oswindow oswindow_New);
       virtual oswindow detach();
 
@@ -528,7 +530,7 @@ namespace user
 
       virtual sp(place_holder) place(::user::interaction * pui);
 
-      virtual bool _001HasCommandHandler(id id);
+      virtual bool _001HasCommandHandler(id id) override;
 
 
 
@@ -575,10 +577,10 @@ namespace user
       virtual void keep_alive(::object * pliveobject = NULL);
 
 
-      virtual window_graphics * get_window_graphics();
+      virtual window_graphics * get_window_graphics() override;
 
 
-      virtual bool is_composite();
+      virtual bool is_composite() override;
 
 
       //virtual void _user_message_handler(signal_details * pobj);

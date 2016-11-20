@@ -217,8 +217,12 @@ void axis_on_term_thread()
    
    if (thread_has_sockets())
    {
+      
+#if OPENSSL_API_COMPAT < 0x10100000L
     
       ERR_free_strings();
+      
+#endif
 //      CRYPTO_THREADID tid;
   //    CRYPTO_THREADID_current(&tid);
       //ERR_remove_thread_state(&tid);

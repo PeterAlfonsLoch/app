@@ -360,9 +360,9 @@ namespace aura
       for (auto & str : stra)
       {
 
-         //::file::path path = string("https://ca2.cc/image/cc/ca2core/bkimageoftheday/common/") + str + string("?sessid=noauth");
+         ::file::path path = string("https://ca2.cc/image/cc/ca2core/bkimageoftheday/common/") + str + string("?sessid=noauth");
 
-         pfileset->m_straFileAddUp.add(pathFolder / str);
+         pfileset->m_straFileAddUp.add(path);
 
       }
 

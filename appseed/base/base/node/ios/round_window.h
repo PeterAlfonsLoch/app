@@ -39,15 +39,26 @@ bool m_bDirty;
    virtual bool round_window_key_up(::user::e_key ekey) = 0;
    virtual bool round_window_on_text(const char * pszText) = 0;
    
+   virtual int round_window_get_x() = 0;
+   virtual int round_window_get_y() = 0;
+   
+   virtual void round_window_resized(CGRect rect) = 0;
+   virtual void round_window_moved(CGPoint point) = 0;
+
+   
+   virtual void round_window_on_show() = 0;
+   virtual void round_window_on_hide() = 0;
    
    virtual void round_window_invalidate();
    virtual void round_window_show();
    virtual void round_window_hide();
    virtual void round_window_redraw();
+   
    virtual void round_window_close();
    virtual void round_window_show_keyboard(bool bShow = true);
    
-   
+   virtual void round_window_set_title(const char * pszTitle);
+
    
 };
 

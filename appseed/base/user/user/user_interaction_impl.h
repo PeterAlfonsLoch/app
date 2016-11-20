@@ -96,7 +96,7 @@ namespace user
       virtual bool create_message_queue(::user::interaction * pui, const char * pszName);
 
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
-      virtual bool initialize(::user::native_window_initialize * pinitialize) = 0;
+      virtual bool initialize_native_window(::user::native_window_initialize * pinitialize) = 0;
 #endif
 
 

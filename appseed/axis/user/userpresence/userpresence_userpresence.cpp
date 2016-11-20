@@ -200,8 +200,11 @@ namespace userpresence
 
    void userpresence::message_queue_message_handler(signal_details * pobj)
    {
+      
+      UNREFERENCED_PARAMETER(
+                             pobj);
 
-      SCAST_PTR(::message::base, paxis, pobj);
+      //SCAST_PTR(::message::base, paxis, pobj);
 
 
    }

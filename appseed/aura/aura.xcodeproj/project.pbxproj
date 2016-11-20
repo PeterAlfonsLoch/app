@@ -164,7 +164,6 @@
 		077A06451B4D7403001C85FF /* exception_invalid_argument.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163DFD19C4A4CD00966C5E /* exception_invalid_argument.h */; };
 		077A06461B4D7403001C85FF /* exception_unhandled_report.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163E2E19C4A4CD00966C5E /* exception_unhandled_report.h */; };
 		077A06471B4D7403001C85FF /* aura_library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D7F19C4A4CC00966C5E /* aura_library.h */; };
-		077A06481B4D7403001C85FF /* aura_auto_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4419C4A4CC00966C5E /* aura_auto_pointer.h */; };
 		077A06491B4D7403001C85FF /* xml_edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16412E19C4A4CE00966C5E /* xml_edit.h */; };
 		077A064A1B4D7403001C85FF /* xml_attr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16412319C4A4CE00966C5E /* xml_attr.h */; };
 		077A064B1B4D7403001C85FF /* file_text_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B17F184A3B430092C3E1 /* file_text_buffer.h */; };
@@ -617,7 +616,6 @@
 		077CEF221B23D0B3009A57EF /* _draw2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF211B23D0B3009A57EF /* _draw2d.cpp */; };
 		077CEF241B23D0FF009A57EF /* _multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF231B23D0FF009A57EF /* _multithreading.cpp */; };
 		077CEF261B23D151009A57EF /* _primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF251B23D151009A57EF /* _primitive.cpp */; };
-		078E7D441B7938E90093DDF8 /* aura_allocate_heap.h in Headers */ = {isa = PBXBuildFile; fileRef = 078E7D431B7938E90093DDF8 /* aura_allocate_heap.h */; };
 		079AE0651886481200635C39 /* math_scalar_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0621886481200635C39 /* math_scalar_enum.h */; };
 		079AE0671886481200635C39 /* math_scalar.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0641886481200635C39 /* math_scalar.h */; };
 		079AE0811886486300635C39 /* primitive_relation_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE07F1886486300635C39 /* primitive_relation_set.h */; };
@@ -858,7 +856,6 @@
 		9A16415A19C4A4CE00966C5E /* aura_application_signal_details.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D3F19C4A4CC00966C5E /* aura_application_signal_details.h */; };
 		9A16415D19C4A4CE00966C5E /* aura_async.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4219C4A4CC00966C5E /* aura_async.h */; };
 		9A16415E19C4A4CE00966C5E /* aura_aura.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4319C4A4CC00966C5E /* aura_aura.h */; };
-		9A16415F19C4A4CE00966C5E /* aura_auto_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4419C4A4CC00966C5E /* aura_auto_pointer.h */; };
 		9A16416119C4A4CE00966C5E /* aura_class.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4619C4A4CC00966C5E /* aura_class.h */; };
 		9A16416319C4A4CE00966C5E /* aura_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4819C4A4CC00966C5E /* aura_command.h */; };
 		9A16416519C4A4CE00966C5E /* aura_command_target.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4A19C4A4CC00966C5E /* aura_command_target.h */; };
@@ -1138,6 +1135,8 @@
 		9A6715D11D14F65F0069A961 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */; };
 		9A6715D41D14F7970069A961 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A74846E1D210C0600207EF6 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libios_ace.dylib */; };
+		9A8087461DE0FF3000F70A07 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087451DE0FF3000F70A07 /* ios_library.cpp */; };
+		9A8087471DE1021A00F70A07 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087451DE0FF3000F70A07 /* ios_library.cpp */; };
 		9A9799151DAC3C2B001CD6D9 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
@@ -1404,7 +1403,6 @@
 		077CEF211B23D0B3009A57EF /* _draw2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _draw2d.cpp; sourceTree = "<group>"; };
 		077CEF231B23D0FF009A57EF /* _multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _multithreading.cpp; sourceTree = "<group>"; };
 		077CEF251B23D151009A57EF /* _primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _primitive.cpp; sourceTree = "<group>"; };
-		078E7D431B7938E90093DDF8 /* aura_allocate_heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_allocate_heap.h; sourceTree = "<group>"; };
 		079AE0621886481200635C39 /* math_scalar_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_scalar_enum.h; sourceTree = "<group>"; };
 		079AE0641886481200635C39 /* math_scalar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_scalar.h; sourceTree = "<group>"; };
 		079AE07F1886486300635C39 /* primitive_relation_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_relation_set.h; sourceTree = "<group>"; };
@@ -1653,7 +1651,6 @@
 		9A163D3F19C4A4CC00966C5E /* aura_application_signal_details.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_application_signal_details.h; sourceTree = "<group>"; };
 		9A163D4219C4A4CC00966C5E /* aura_async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_async.h; sourceTree = "<group>"; };
 		9A163D4319C4A4CC00966C5E /* aura_aura.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_aura.h; sourceTree = "<group>"; };
-		9A163D4419C4A4CC00966C5E /* aura_auto_pointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_auto_pointer.h; sourceTree = "<group>"; };
 		9A163D4619C4A4CC00966C5E /* aura_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_class.h; sourceTree = "<group>"; };
 		9A163D4819C4A4CC00966C5E /* aura_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_command.h; sourceTree = "<group>"; };
 		9A163D4A19C4A4CC00966C5E /* aura_command_target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_command_target.h; sourceTree = "<group>"; };
@@ -1962,6 +1959,7 @@
 		9A5DF96C1CEE2536008916A4 /* primitive.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primitive.inl; sourceTree = "<group>"; };
 		9A5DF96D1CEE2741008916A4 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../test.cpp; sourceTree = "<group>"; };
 		9A67166C1D1553BF0069A961 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../ace/ace.xcodeproj; sourceTree = "<group>"; };
+		9A8087451DE0FF3000F70A07 /* ios_library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_library.cpp; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2144,6 +2142,7 @@
 		077A05301B4D70B7001C85FF /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				9A8087451DE0FF3000F70A07 /* ios_library.cpp */,
 				077A05311B4D70B7001C85FF /* ca_os.h */,
 				077A05321B4D70B7001C85FF /* ca_os_thread.h */,
 				077A05331B4D70B7001C85FF /* DDInvocationGrabber.h */,
@@ -2551,12 +2550,10 @@
 				9A163D3619C4A4CC00966C5E /* aura_action_context.h */,
 				9A163D3719C4A4CC00966C5E /* aura_action_source.h */,
 				9A163D3819C4A4CC00966C5E /* aura_allocate.h */,
-				078E7D431B7938E90093DDF8 /* aura_allocate_heap.h */,
 				9A163D3C19C4A4CC00966C5E /* aura_application.h */,
 				9A163D3F19C4A4CC00966C5E /* aura_application_signal_details.h */,
 				9A163D4219C4A4CC00966C5E /* aura_async.h */,
 				9A163D4319C4A4CC00966C5E /* aura_aura.h */,
-				9A163D4419C4A4CC00966C5E /* aura_auto_pointer.h */,
 				9A163D4619C4A4CC00966C5E /* aura_class.h */,
 				9A163D4819C4A4CC00966C5E /* aura_command.h */,
 				9A163D4A19C4A4CC00966C5E /* aura_command_target.h */,
@@ -3382,7 +3379,6 @@
 				077A06451B4D7403001C85FF /* exception_invalid_argument.h in Headers */,
 				077A06461B4D7403001C85FF /* exception_unhandled_report.h in Headers */,
 				077A06471B4D7403001C85FF /* aura_library.h in Headers */,
-				077A06481B4D7403001C85FF /* aura_auto_pointer.h in Headers */,
 				077A06491B4D7403001C85FF /* xml_edit.h in Headers */,
 				077A064A1B4D7403001C85FF /* xml_attr.h in Headers */,
 				077A064B1B4D7403001C85FF /* file_text_buffer.h in Headers */,
@@ -3950,7 +3946,6 @@
 				9A16420C19C4A4CE00966C5E /* exception_invalid_argument.h in Headers */,
 				9A16423D19C4A4CE00966C5E /* exception_unhandled_report.h in Headers */,
 				9A16419919C4A4CE00966C5E /* aura_library.h in Headers */,
-				9A16415F19C4A4CE00966C5E /* aura_auto_pointer.h in Headers */,
 				9A16451619C4A4CF00966C5E /* xml_edit.h in Headers */,
 				9A16450B19C4A4CF00966C5E /* xml_attr.h in Headers */,
 				07F5B1EF184A3B430092C3E1 /* file_text_buffer.h in Headers */,
@@ -4339,7 +4334,6 @@
 				07F5B1F5184A3B430092C3E1 /* file_writer.h in Headers */,
 				9A26A6AA1D7F0019001F47A8 /* big5Prober.h in Headers */,
 				9AE7258217E83B69003E47F9 /* primitive_var.h in Headers */,
-				078E7D441B7938E90093DDF8 /* aura_allocate_heap.h in Headers */,
 				9A1641C119C4A4CE00966C5E /* aura_printf.h in Headers */,
 				9AE7258317E83B69003E47F9 /* primitive_var2.h in Headers */,
 				9AC315C8198E4CB8008FB109 /* colorertake5_line_regions_compact_support.h in Headers */,
@@ -4621,6 +4615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8087471DE1021A00F70A07 /* ios_library.cpp in Sources */,
 				9A2116ED1D832B5C000C4336 /* _.cpp in Sources */,
 				9A2116EE1D832B5C000C4336 /* charDistribution.cpp in Sources */,
 				9A2116EF1D832B5C000C4336 /* pcre.cpp in Sources */,
@@ -4693,6 +4688,7 @@
 				077CEF241B23D0FF009A57EF /* _multithreading.cpp in Sources */,
 				9A1644A219C4A4CF00966C5E /* os_http.cpp in Sources */,
 				9A1644A519C4A4CF00966C5E /* os_thread.cpp in Sources */,
+				9A8087461DE0FF3000F70A07 /* ios_library.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

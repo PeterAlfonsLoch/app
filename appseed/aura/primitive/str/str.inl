@@ -7,7 +7,7 @@ inline void simple_string::construct(string_manager * pstringmanager)
 
    inline simple_string::simple_string(const simple_string & strSrc, string_manager * pstringmanager  )
    {
-      if(&strSrc == NULL)
+      if(is_null(&strSrc))
       {
          ENSURE( pstringmanager != NULL );
 

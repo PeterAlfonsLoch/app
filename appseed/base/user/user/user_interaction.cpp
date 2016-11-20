@@ -362,6 +362,17 @@ namespace user
    interaction * interaction::GetParent() const
    {
 
+//#if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
+//      
+//      if(m_pparent == System.m_possystemwindow->m_pui)
+//      {
+//         
+//         return NULL;
+//         
+//      }
+//      
+//#endif
+
       return m_pparent;
 
    }
@@ -545,10 +556,8 @@ namespace user
                      pimplOld->m_pui = NULL;
 
                      oswindow wnd = pimplOld->get_handle();
-
+                     
                      pimplOld.release();
-
-#if !defined(METROWIN) && !defined(APPLEOS)
 
                      if (wnd != NULL)
                      {
@@ -556,8 +565,6 @@ namespace user
                         ::DestroyWindow(wnd);
 
                      }
-
-#endif
 
                   }
                   catch(...)
@@ -2751,25 +2758,35 @@ namespace user
 
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
 
-   bool interaction::initialize(::user::native_window_initialize * pinitialize)
+   bool interaction::initialize_native_window(::user::native_window_initialize * pinitialize)
    {
+      
       if (IsWindow())
       {
+         
          DestroyWindow();
+         
       }
+      
       m_signalptra.remove_all();
+      
       m_pimpl = (Application.alloc(System.type_info < interaction_impl >()));
+      
       m_pimpl->m_pui = this;
 
-      //m_pui = this;
-      if (!m_pimpl->initialize(pinitialize))
+      if (!m_pimpl->initialize_native_window(pinitialize))
       {
+
          m_pimpl.release();
+         
          return false;
+         
       }
-      //install_message_handling(this);
+      
       return true;
+      
    }
+   
 
 #endif
 
@@ -2833,10 +2850,10 @@ namespace user
 
 #if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
 
-      if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
+      if(pParentWnd == NULL || pParentWnd == System.m_possystemwindow->m_pui)
       {
 
-         pParentWnd = System.m_posdata->m_pui;
+         pParentWnd = System.m_possystemwindow->m_pui;
 
          //if(!Application.defer_initialize_twf())
          //{
@@ -2924,10 +2941,10 @@ namespace user
 
 #if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
 
-      if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
+      if(pParentWnd == NULL || pParentWnd == System.m_possystemwindow->m_pui)
       {
 
-         pParentWnd = System.m_posdata->m_pui;
+         pParentWnd = System.m_possystemwindow->m_pui;
 
 //         if(!Application.defer_initialize_twf())
 //         {
@@ -2972,7 +2989,7 @@ namespace user
       {
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(VSNORD)
          if(pParentWnd == NULL)
-            pParentWnd = System.m_posdata->m_pui;
+            pParentWnd = System.m_possystemwindow->m_pui;
 #endif
 
          ::rect rectFrame(0, 0, 0, 0);
@@ -4871,7 +4888,7 @@ ExitModal:
    ::user::elemental * interaction::top_elemental()
    {
 
-      return top_elemental();
+      return interaction_base::top_elemental();
 
    }
 
@@ -5245,17 +5262,10 @@ restart:
 
       }
 
-      if(GetParent() == NULL)
+      if(m_pparent == NULL)
          return NULL;
 
-//#ifdef ANDROID
-//
-//      if (GetParent() == System.m_posdata->m_pui)
-//         return (::user::interaction *) this;
-//
-//#endif
-
-      return GetParent()->get_wnd();
+      return m_pparent->get_wnd();
 
    }
 
@@ -7843,6 +7853,35 @@ restart:
 
    bool interaction::has_pending_graphical_update()
    {
+      
+#ifdef APPLE_IOS
+      
+      {
+      
+      synch_lock sl(m_pmutex);
+      
+      for(index i = 0; i < m_uiptraChild.get_size(); i++)
+      {
+         
+         ::user::interaction * pui = m_uiptraChild[i];
+         
+         sl.unlock();
+         
+         if(pui->has_pending_graphical_update())
+         {
+            
+            return true;
+            
+         }
+         
+         sl.lock();
+         
+         
+      }
+         
+      }
+      
+#endif
 
       if (m_bRedraw)
       {

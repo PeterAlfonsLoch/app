@@ -130,7 +130,6 @@
 		07D968A01B4C63E4004A3D2A /* user_view_creator.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D967811B4C63E3004A3D2A /* user_view_creator.h */; };
 		07D968A11B4C63E4004A3D2A /* user_view_creator_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D967821B4C63E3004A3D2A /* user_view_creator_data.h */; };
 		07D968A51B4C63E4004A3D2A /* user_wait_cursor.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D967841B4C63E3004A3D2A /* user_wait_cursor.h */; };
-		07D968A91B4C63E4004A3D2A /* user_window_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D967861B4C63E3004A3D2A /* user_window_draw.h */; };
 		07D968AD1B4C63E5004A3D2A /* user_window_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D967881B4C63E3004A3D2A /* user_window_map.h */; };
 		07D968B11B4C63E5004A3D2A /* user_window_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D9678A1B4C63E3004A3D2A /* user_window_util.h */; };
 		07D968B51B4C63E5004A3D2A /* user_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D9678C1B4C63E3004A3D2A /* user_windowing.h */; };
@@ -152,6 +151,8 @@
 		07EDC59F1B4F435600AF8928 /* ios_interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */; };
 		07EDC5A11B4F611B00AF8928 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */; };
 		07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5B51B4FE64F00AF8928 /* main_mm.mm */; };
+		9A80879A1DE126F500F70A07 /* ios_interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */; };
+		9A80879B1DE1270600F70A07 /* ios_interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */; };
 		9A986CF31D22666D001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CF21D22666D001F4C04 /* libios_aura.dylib */; };
 		9A986DA01D226E06001F4C04 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
@@ -378,7 +379,6 @@
 		07D967811B4C63E3004A3D2A /* user_view_creator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_view_creator.h; sourceTree = "<group>"; };
 		07D967821B4C63E3004A3D2A /* user_view_creator_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_view_creator_data.h; sourceTree = "<group>"; };
 		07D967841B4C63E3004A3D2A /* user_wait_cursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_wait_cursor.h; sourceTree = "<group>"; };
-		07D967861B4C63E3004A3D2A /* user_window_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_window_draw.h; sourceTree = "<group>"; };
 		07D967881B4C63E3004A3D2A /* user_window_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_window_map.h; sourceTree = "<group>"; };
 		07D9678A1B4C63E3004A3D2A /* user_window_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_window_util.h; sourceTree = "<group>"; };
 		07D9678C1B4C63E3004A3D2A /* user_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_windowing.h; sourceTree = "<group>"; };
@@ -422,6 +422,7 @@
 		07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
 		07EDC5B51B4FE64F00AF8928 /* main_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main_mm.mm; sourceTree = "<group>"; };
 		9A6716461D15495F0069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../macos/app/appseed/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
+		9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_interaction_impl.cpp; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A986CF21D22666D001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
 		9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiswinpr.dylib; path = "../../../../macos/app/axis/winpr/build/Debug-iphoneos/libios_axiswinpr.dylib"; sourceTree = "<group>"; };
@@ -794,7 +795,6 @@
 				07D967811B4C63E3004A3D2A /* user_view_creator.h */,
 				07D967821B4C63E3004A3D2A /* user_view_creator_data.h */,
 				07D967841B4C63E3004A3D2A /* user_wait_cursor.h */,
-				07D967861B4C63E3004A3D2A /* user_window_draw.h */,
 				07D967881B4C63E3004A3D2A /* user_window_map.h */,
 				07D9678A1B4C63E3004A3D2A /* user_window_util.h */,
 				07D9678C1B4C63E3004A3D2A /* user_windowing.h */,
@@ -832,6 +832,7 @@
 		07EDC5431B4F234300AF8928 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */,
 				07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */,
 				07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */,
 				07EDC5451B4F234300AF8928 /* AppDelegate.h */,
@@ -939,7 +940,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D968151B4C63E3004A3D2A /* user.h in Headers */,
-				07D968A91B4C63E4004A3D2A /* user_window_draw.h in Headers */,
 				07D967F11B4C63E3004A3D2A /* simple_ui_message_box.h in Headers */,
 				07D967FD1B4C63E3004A3D2A /* simple_ui_tap.h in Headers */,
 				07A36EE11B25D18F00E4F888 /* base_policy.h in Headers */,
@@ -1211,6 +1211,7 @@
 			files = (
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
 				07D966E41B4C55BD004A3D2A /* round_window.mm in Sources */,
+				9A80879A1DE126F500F70A07 /* ios_interaction_impl.cpp in Sources */,
 				070FC0EF1B85650800D12AD0 /* Keyboard.mm in Sources */,
 				9ACBD1D51DDFC846004AF08F /* macos_factory_exchange.cpp in Sources */,
 				9ACE46CD1D1FE39800A1E0AD /* graphics_window_buffer.cpp in Sources */,
@@ -1233,6 +1234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A80879B1DE1270600F70A07 /* ios_interaction_impl.cpp in Sources */,
 				9AC62E671D20BEFA00A4AC0A /* graphics_window_buffer.cpp in Sources */,
 				9AC62E681D20BEFA00A4AC0A /* graphics_window_dc.cpp in Sources */,
 				07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */,

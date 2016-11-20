@@ -20,14 +20,14 @@ public:
    virtual ~ftpfs_file();
 
 
-   virtual cres open(const ::file::path & lpszFileName, UINT nOpenFlags);
+   virtual cres open(const ::file::path & lpszFileName, UINT nOpenFlags) override;
 
-   virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
-   virtual void write(const void * lpBuf, memory_size_t nCount);
+   virtual memory_size_t read(void *lpBuf, memory_size_t nCount) override;
+   virtual void write(const void * lpBuf, memory_size_t nCount) override;
 
-   file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
+   file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom) override;
 
-   virtual file_size_t get_length() const;
+   virtual file_size_t get_length() const override;
 
    virtual void close() override;
 

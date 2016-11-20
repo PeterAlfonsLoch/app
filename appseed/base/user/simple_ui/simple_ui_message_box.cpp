@@ -226,9 +226,9 @@ namespace simple_ui
 
       pgraphics->get_text_metrics(&tm);
 
-      int iHeight = tm.tmHeight;
+      //int iHeight = tm.tmHeight;
 
-      int y = 10;
+      //int y = 10;
 
       COLORREF crText;
 

@@ -200,9 +200,8 @@ namespace visual
 
       if(m_p->m_size == size(cx,cy) && radius == m_iRadius)
          return true;
-
-      int div2 = (radius * 2) + 1;
-
+      
+      
       if(cx != m_p->m_size.cx || cy != m_p->m_size.cy)
       {
 
@@ -234,6 +233,8 @@ namespace visual
       }
 
 #if VECTOR3_SSE
+      
+      int div2 = (radius * 2) + 1;
 
       if(m_stack != NULL)
       {

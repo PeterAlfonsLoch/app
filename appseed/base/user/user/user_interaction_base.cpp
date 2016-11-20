@@ -849,7 +849,7 @@ Restart:
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
 
 
-   bool interaction_base::initialize(::user::native_window_initialize * pinitialize)
+   bool interaction_base::initialize_native_window(::user::native_window_initialize * pinitialize)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2676,7 +2676,7 @@ Restart:
    oswindow interaction_base::get_safe_handle() const
    {
 
-      if(this == NULL)
+      if(::is_null(this))
          return NULL;
 
       return get_handle();

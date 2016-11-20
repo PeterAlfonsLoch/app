@@ -3,8 +3,6 @@
 #include "zlib.h"
 #include "zutil.h"
 
-#include <openssl/whrlpool.h>
-
 #if defined(OPENSSL_CRYPTO) || defined(METROWIN)
 
 #include <openssl/rsa.h>
@@ -15,6 +13,9 @@
 #include <openssl/crypto.h>
 #include <openssl/hmac.h>
 #include <openssl/pem.h>
+#include <openssl/bn.h>
+#include <openssl/whrlpool.h>
+
 
 #endif
 
@@ -141,8 +142,16 @@ namespace crypto
 
          storageEncrypt.allocate(0);
 
+#if OPENSSL_API_COMPAT < 0x10100000L
+         
          EVP_CIPHER_CTX_cleanup(pctx);
-
+         
+#else
+         
+         EVP_CIPHER_CTX_reset(pctx);
+         
+#endif
+         
          return false;
 
       }
@@ -154,8 +163,16 @@ namespace crypto
 
          storageEncrypt.allocate(0);
 
+#if OPENSSL_API_COMPAT < 0x10100000L
+         
          EVP_CIPHER_CTX_cleanup(pctx);
-
+         
+#else
+         
+         EVP_CIPHER_CTX_reset(pctx);
+         
+#endif
+         
          return false;
 
       }
@@ -164,8 +181,16 @@ namespace crypto
 
       storageEncrypt.allocate(cipherlen);
 
+#if OPENSSL_API_COMPAT < 0x10100000L
+      
       EVP_CIPHER_CTX_cleanup(pctx);
-
+      
+#else
+      
+      EVP_CIPHER_CTX_reset(pctx);
+      
+#endif
+      
       return true;
 
 
@@ -1095,7 +1120,17 @@ namespace crypto
    {
 
 #if defined(OPENSSL_CRYPTO)
+
+#if OPENSSL_API_COMPAT < 0x10100000L
+      
       ERR_load_crypto_strings();
+      
+#else
+
+      OPENSSL_init_crypto(OPENSSL_INIT_LOAD_CRYPTO_STRINGS, NULL);
+
+#endif
+      
 #endif
 
    }

@@ -645,7 +645,7 @@ namespace user
          // Note: can be a ::user::interaction with PostNcDestroy self cleanup
          pui = App(papp).alloc < ::user::interaction >(pContext->m_user->m_typeinfoNewView);
 
-         ::id idProperty = "bk." + string(typeid(*pui).name());
+         //::id idProperty = "bk." + string(typeid(*pui).name());
 
          if (pui == NULL)
          {

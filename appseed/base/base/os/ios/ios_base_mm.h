@@ -13,6 +13,14 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
 
+template < typename T >
+bool is_null(const T * pv)
+{
+   
+   return ((unsigned long) pv) < sizeof(T);
+   
+}
+
 #include "ios_m.h"
 
 

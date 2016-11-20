@@ -96,7 +96,7 @@ void dib_console::write(const char * psz)
 {
    synch_lock sl(&m_mutex);
    string str;
-   int i2 = 2;
+   //int i2 = 2;
    while(*psz)
    {
       char ch = *psz;

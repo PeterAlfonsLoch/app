@@ -37,5 +37,7 @@ class round_window;
 
 - (void)unsafe_boot_window_has_focus : (bool *)pbool;
 - (void)on_destroy;
+-(void)windowDidExpose;
+-(void)windowWillClose;
 
 @end

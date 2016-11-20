@@ -96,7 +96,7 @@ namespace hotplugin
    uint32_t c_cdecl base_system_main(LPVOID lpVoid)
    {
 
-      int32_t iReturnCode = 0;
+      //int32_t iReturnCode = 0;
 
       try
       {

@@ -63,7 +63,7 @@ namespace base
 
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(VSNORD)
 
-      m_posdata = new os_data();
+      m_possystemwindow = new os_system_window();
 
 #endif
 

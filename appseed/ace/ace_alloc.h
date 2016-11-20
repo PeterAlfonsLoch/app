@@ -44,7 +44,18 @@ CLASS_DECL_ACE void  MEMORY_DECL ace_set_alloc(PFN_MEMORY_ALLOC palloc, PFN_MEMO
 
 
 
-
+   CLASS_DECL_EXPORT void android_set_cache_dir(const char * pszDir);
+   
+   CLASS_DECL_EXPORT const char * android_get_cache_dir();
+   
+   CLASS_DECL_EXPORT void ios_set_home(const char * pszDir);
+   
+   CLASS_DECL_EXPORT const char * ios_get_home();
+   
+   CLASS_DECL_EXPORT void ios_set_temp(const char * pszDir);
+   
+   CLASS_DECL_EXPORT const char * ios_get_temp();
+   
 
 
 

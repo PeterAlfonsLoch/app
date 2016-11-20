@@ -165,102 +165,102 @@ void __ios_do_events();
    
    return;
    
-//	CGPoint pointInView = [self convertPoint:[event locationInWindow] fromView:nil];
-    
-	CGPoint pointInView;
-    
-    pointInView.x = 0;
-    pointInView.y = 0;
-    
-	BOOL resize = NO;
-//	if (CGPointInRect(pointInView, [self resizeRect]))
+////	CGPoint pointInView = [self convertPoint:[event locationInWindow] fromView:nil];
+//    
+//	CGPoint pointInView;
+//    
+//    pointInView.x = 0;
+//    pointInView.y = 0;
+//    
+//	BOOL resize = NO;
+////	if (CGPointInRect(pointInView, [self resizeRect]))
+////	{
+////		resize = YES;
+////	}
+//	
+//	UIWindow *window = [self window];
+////	CGPoint originalMouseLocation = [window convertBaseToScreen:[event locationInWindow]];
+////    CGPoint point;
+//    point.x = 0;
+//    point.y = 0;
+//	CGRect originalFrame = [window frame];
+//	
+//    while (YES)
 //	{
-//		resize = YES;
-//	}
-	
-	UIWindow *window = [self window];
-//	CGPoint originalMouseLocation = [window convertBaseToScreen:[event locationInWindow]];
-//    CGPoint point;
-    point.x = 0;
-    point.y = 0;
-	CGRect originalFrame = [window frame];
-	
-    while (YES)
-	{
-		//
-		// Lock focus and take all the dragged and mouse up events until we
-		// receive a mouse up.
-		//
-//        UIEvent *newEvent = [window
-//			nextEventMatchingMask:(NSLeftMouseDraggedMask | NSLeftMouseUpMask)];
-        
-//        UIEvent * newEvent = NULL;
-		
-//        if ([newEvent type] == NSLeftMouseUp)
+//		//
+//		// Lock focus and take all the dragged and mouse up events until we
+//		// receive a mouse up.
+//		//
+////        UIEvent *newEvent = [window
+////			nextEventMatchingMask:(NSLeftMouseDraggedMask | NSLeftMouseUpMask)];
+//        
+////        UIEvent * newEvent = NULL;
+//		
+////        if ([newEvent type] == NSLeftMouseUp)
+////		{
+////			break;
+////		}
+//		
+//		//
+//		// Work out how much the mouse has moved
+//		//
+////		CGPoint newMouseLocation = [window convertBaseToScreen:[newEvent locationInWindow]];
+////		CGPoint delta = NSMakePoint(
+////			newMouseLocation.x - originalMouseLocation.x,
+////			newMouseLocation.y - originalMouseLocation.y);
+//        
+////        CGPoint newMouseLocation;
+//        CGPoint delta;
+//		
+//		CGRect newFrame = originalFrame;
+//		
+//		if (!resize)
 //		{
-//			break;
+//			//
+//			// Alter the frame for a drag
+//			//
+//			newFrame.origin.x += delta.x;
+//			newFrame.origin.y += delta.y;
 //		}
-		
-		//
-		// Work out how much the mouse has moved
-		//
-//		CGPoint newMouseLocation = [window convertBaseToScreen:[newEvent locationInWindow]];
-//		CGPoint delta = NSMakePoint(
-//			newMouseLocation.x - originalMouseLocation.x,
-//			newMouseLocation.y - originalMouseLocation.y);
-        
-//        CGPoint newMouseLocation;
-        CGPoint delta;
-		
-		CGRect newFrame = originalFrame;
-		
-		if (!resize)
-		{
-			//
-			// Alter the frame for a drag
-			//
-			newFrame.origin.x += delta.x;
-			newFrame.origin.y += delta.y;
-		}
-		else
-		{
-			//
-			// Alter the frame for a resize
-			//
-			newFrame.size.width += delta.x;
-			newFrame.size.height -= delta.y;
-			newFrame.origin.y += delta.y;
-			
-			//
-			// Constrain to the window's min and max size
-			//
-            /*
-			CGRect newContentRect = [window contentRectForFrameRect:newFrame];
-			NSSize maxSize = [window maxSize];
-			NSSize minSize = [window minSize];
-			if (newContentRect.size.width > maxSize.width)
-			{
-				newFrame.size.width -= newContentRect.size.width - maxSize.width;
-			}
-			else if (newContentRect.size.width < minSize.width)
-			{
-				newFrame.size.width += minSize.width - newContentRect.size.width;
-			}
-			if (newContentRect.size.height > maxSize.height)
-			{
-				newFrame.size.height -= newContentRect.size.height - maxSize.height;
-				newFrame.origin.y += newContentRect.size.height - maxSize.height;
-			}
-			else if (newContentRect.size.height < minSize.height)
-			{
-				newFrame.size.height += minSize.height - newContentRect.size.height;
-				newFrame.origin.y -= minSize.height - newContentRect.size.height;
-			}
-             */
-		}
-		
-//		[window setFrame:newFrame display:YES animate:NO];
-	}
+//		else
+//		{
+//			//
+//			// Alter the frame for a resize
+//			//
+//			newFrame.size.width += delta.x;
+//			newFrame.size.height -= delta.y;
+//			newFrame.origin.y += delta.y;
+//			
+//			//
+//			// Constrain to the window's min and max size
+//			//
+//            /*
+//			CGRect newContentRect = [window contentRectForFrameRect:newFrame];
+//			NSSize maxSize = [window maxSize];
+//			NSSize minSize = [window minSize];
+//			if (newContentRect.size.width > maxSize.width)
+//			{
+//				newFrame.size.width -= newContentRect.size.width - maxSize.width;
+//			}
+//			else if (newContentRect.size.width < minSize.width)
+//			{
+//				newFrame.size.width += minSize.width - newContentRect.size.width;
+//			}
+//			if (newContentRect.size.height > maxSize.height)
+//			{
+//				newFrame.size.height -= newContentRect.size.height - maxSize.height;
+//				newFrame.origin.y += newContentRect.size.height - maxSize.height;
+//			}
+//			else if (newContentRect.size.height < minSize.height)
+//			{
+//				newFrame.size.height += minSize.height - newContentRect.size.height;
+//				newFrame.origin.y -= minSize.height - newContentRect.size.height;
+//			}
+//             */
+//		}
+//		
+////		[window setFrame:newFrame display:YES animate:NO];
+//	}
 }
 
 - (BOOL) isFlipped
@@ -803,11 +803,10 @@ void __ios_do_events();
 - (void)drawRect:(CGRect)rect
 {
    
-//   [[UIColor greenColor] set];
-//   
-//   UIRectFill(rect);
-//   
-//   return;
+   [[UIColor whiteColor] set];
+   
+   UIRectFill(rect);
+   
    
 /*
 	NSBezierPath * rectPath = [NSBezierPath bezierPathWithRect : [self bounds]];
@@ -856,18 +855,28 @@ void __ios_do_events();
    
 //   [m_roundwindow disableFlushWindow];
    
+   
+   
    CGContextRef context = UIGraphicsGetCurrentContext();
    
-   //{
-      
-     //  CGRect rectangle = CGRectMake(0, 100, 100, 100);
-   //;;CGContextSetRGBFillColor(context, 1.0, 0.0, 0.0, 0.5);
-     // CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.5);
-   //   CGContextFillRect(context, rectangle);
-     // CGContextSetLineWidth(context, 5.0f);
-      //CGContextStrokeRect(context, rectangle);
-      
-   //}
+   CGContextSaveGState(context);
+   
+   //int iTopAssembledBarHeight = m_roundwindow.navigationController.navigationBar.frame.size.height;
+   
+   //iTopAssembledBarHeight = 16;
+   
+   CGContextTranslateCTM(context, p->round_window_get_x(), p->round_window_get_y());
+   
+//   {
+//      
+//       CGRect rectangle = CGRectMake(0, 100, 100, 100);
+//   ;;CGContextSetRGBFillColor(context, 1.0, 0.0, 0.0, 0.5);
+//      CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.5);
+//      CGContextFillRect(context, rectangle);
+//      CGContextSetLineWidth(context, 5.0f);
+//      CGContextStrokeRect(context, rectangle);
+//      
+//   }
    
    p->round_window_draw(context);
    
@@ -886,6 +895,8 @@ void __ios_do_events();
   // [m_roundwindow enableFlushWindow];
    
 //   [m_roundwindow flushWindow];
+   
+   CGContextRestoreGState(context);
    
 }
 

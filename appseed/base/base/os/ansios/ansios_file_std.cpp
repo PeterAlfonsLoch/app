@@ -534,7 +534,7 @@ char *fgets_dup(char *str, int32_t n, _FILE *s)
 
 #else
 
-    return fgets_dup(str, n, s);
+    return fgets(str, n, s);
 
 #endif
 

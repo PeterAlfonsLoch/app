@@ -40,9 +40,21 @@
 		
 //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidResignMainNotification object:self];
    
+//   [[UINotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self];
+//   
+//   [[UINotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidMoveNotification object:self];
+//   
+//   [[UINotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillClose:) name:NSWindowWillCloseNotification object:self];
+//   
+//   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidExpose:) name:NSWindowDidExposeNotification object:self];
+   
+
+   
 // [self setAcceptsMouseMovedEvents : YES];
       
    m_controller = [[RoundViewController alloc] init];
+   
+   m_controller->m_pwindow = self;
 
    [self create_view];
    
@@ -305,6 +317,88 @@
 
 }
 
+
+- (void)windowDidResize:(NSNotification *)notification
+{
+   
+   //NSLog(@"test");
+   
+   try
+   {
+      
+//      NSRect rect = [self frame];
+//      
+//      rect.origin.y        = [[NSScreen mainScreen] frame ].size.height - (rect.origin.y + rect.size.height);
+//      
+//      m_pwindow->round_window_resized(rect);
+      
+   }
+   catch (...)
+   {
+      
+   }
+   
+   
+}
+- (void)windowDidMove:(NSNotification *)notification
+{
+   
+   //NSLog(@"test");
+   
+   try
+   {
+      
+//      NSRect rect = [self frame];
+//      
+//      CGPoint pt;
+//      
+//      pt.x        = rect.origin.x;
+//      
+//      pt.y        = [[NSScreen mainScreen] frame ].size.height - (rect.origin.y + rect.size.height);
+//      
+//      m_pwindow->round_window_moved(pt);
+      
+   }
+   catch (...)
+   {
+      
+   }
+   
+}
+
+-(void)windowDidExpose
+{
+   
+   try
+   {
+      
+      m_pwindow->round_window_on_show();
+      
+   }
+   catch (...)
+   {
+      
+   }
+   
+}
+
+
+
+-(void)windowWillClose
+{
+   
+   try
+   {
+      
+      m_pwindow->round_window_on_hide();
+      
+   }
+   catch (...)
+   {
+      
+   }
+   
+}
 
 
 

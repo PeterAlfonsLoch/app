@@ -1212,21 +1212,16 @@ namespace user
    LONG_PTR interaction_impl::get_window_long_ptr(int32_t nIndex) const
    {
 
-      UNREFERENCED_PARAMETER(nIndex);
-      ::exception::throw_interface_only(get_app());
-
-      return 0;
+      return ::user::interaction_impl_base::get_window_long_ptr(nIndex);
 
    }
 
 
    LONG_PTR interaction_impl::set_window_long_ptr(int32_t nIndex,LONG_PTR lValue)
    {
-      UNREFERENCED_PARAMETER(nIndex);
-      UNREFERENCED_PARAMETER(lValue);
-      ::exception::throw_interface_only(get_app());
+      
+      return ::user::interaction_impl_base::set_window_long_ptr(nIndex, lValue);
 
-      return 0;
    }
 
 
@@ -1337,9 +1332,7 @@ namespace user
    uint32_t interaction_impl::GetStyle() const
    {
 
-      ::exception::throw_interface_only(get_app());
-
-      return 0;
+      return ::user::interaction_impl_base::GetStyle();
 
    }
 
@@ -1347,29 +1340,72 @@ namespace user
    uint32_t interaction_impl::GetExStyle() const
    {
 
-      ::exception::throw_interface_only(get_app());
-
-      return 0;
+      return ::user::interaction_impl_base::GetExStyle();
 
    }
 
 
-   bool interaction_impl::ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
+   bool interaction_impl::ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags)
    {
-      UNREFERENCED_PARAMETER(dwRemove);
-      UNREFERENCED_PARAMETER(dwAdd);
-      UNREFERENCED_PARAMETER(nFlags);
-      ::exception::throw_interface_only(get_app());
+      
+      if (!IsWindow())
+      {
+       
+         return false;
+         
+      }
+      
+      DWORD dw = get_window_long(GWL_STYLE);
+      
+      dw &= ~dwRemove;
+      
+      dw |= dwAdd;
+      
+      set_window_long(GWL_STYLE, dw);
+      
+      if(nFlags != 0)
+      {
+         
+         m_iShowFlags |= nFlags;
+         
+         m_bShowFlags = true;
+         
+      }
+      
       return false;
+      
    }
+   
 
    bool interaction_impl::ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
-      UNREFERENCED_PARAMETER(dwRemove);
-      UNREFERENCED_PARAMETER(dwAdd);
-      UNREFERENCED_PARAMETER(nFlags);
-      ::exception::throw_interface_only(get_app());
+      
+      if (!IsWindow())
+      {
+         
+         return false;
+         
+      }
+      
+      DWORD dw = get_window_long(GWL_EXSTYLE);
+      
+      dw &= ~dwRemove;
+      
+      dw |= dwAdd;
+      
+      set_window_long(GWL_EXSTYLE, dw);
+      
+      if(nFlags != 0)
+      {
+         
+         m_iShowFlags |= nFlags;
+         
+         m_bShowFlags = true;
+         
+      }
+      
       return false;
+      
    }
 
    void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
@@ -2196,16 +2232,16 @@ namespace user
 
       update_graphics_resources();
 
+      if (m_spgraphics.is_null())
+         return;
+
+
       if (bUpdateBuffer)
       {
 
          synch_lock sl(m_spgraphics->m_pmutex);
 
          {
-
-
-            if (m_spgraphics.is_null())
-               return;
 
             rect64 rectWindow;
 
@@ -2440,15 +2476,15 @@ namespace user
 
       single_lock sl(m_pmutex);
 
-      if (m_spgraphics.is_set())
+      if (m_spgraphics.is_null())
       {
 
          return;
+         //m_spgraphics.alloc(allocer());
 
       }
 
       m_spgraphics.alloc(allocer());
-
       m_spgraphics->on_create_window(this);
 
 

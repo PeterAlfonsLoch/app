@@ -35,6 +35,8 @@ void system_begin_main(plane_system * psystem);
    
    CGRect rect =[[UIScreen mainScreen] bounds];
    
+   rect.origin.y = 0;
+   
    self.window = init_part_2ex(m_psystem, rect);
 
    self.window.backgroundColor = [UIColor whiteColor];

@@ -27,9 +27,9 @@ namespace fs
 
 
       // optional if ls_dir is implemented
-      virtual bool has_subdir(const ::file::path & pszPath);
-      virtual bool is_dir(const ::file::path & pszPath);
-      virtual ::file::listing & root_ones(::file::listing & listing);
+      virtual bool has_subdir(const ::file::path & pszPath) override;
+      virtual bool is_dir(const ::file::path & pszPath) override;
+      virtual ::file::listing & root_ones(::file::listing & listing) override;
       //virtual void get_ascendants_path(const char * pszPath,stringa & stra);
       //virtual void get_ascendants_name(const char * lpcsz,stringa & straParam);
       //virtual string eat_end_level(const char * pszPath,int32_t iCount);
@@ -48,7 +48,7 @@ namespace fs
 
       virtual void fill_os_user_desktop();
 
-      virtual bool tree_show_subdir(const ::file::path & pszPath);
+      virtual bool tree_show_subdir(const ::file::path & pszPath) override;
 
 
    };

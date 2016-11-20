@@ -14,7 +14,7 @@
    
    
    RoundWindowFrameView   * childContentView;
-   
+   RoundWindow * m_pwindow;
    
 }
 

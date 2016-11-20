@@ -341,6 +341,11 @@
 		9A331C851D4BD0C600255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C841D4BD0C600255105 /* libz.tbd */; };
 		9A331C871D4BD0DB00255105 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C861D4BD0DB00255105 /* libsqlite3.tbd */; };
 		9A3322B71D4BF72C00255105 /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3322B61D4BF72C00255105 /* libace.a */; };
+		9A80875F1DE10FF400F70A07 /* libios_axisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9809911DDF9AEF00BB294E /* libios_axisfreeimage.dylib */; };
+		9A8087601DE10FFF00F70A07 /* libios_aurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98082C1DDF955B00BB294E /* libios_aurapcre.dylib */; };
+		9A8087631DE1101F00F70A07 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087611DE1101F00F70A07 /* libcrypto.a */; };
+		9A8087641DE1101F00F70A07 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087621DE1101F00F70A07 /* libssl.a */; };
+		9A80879D1DE13B4400F70A07 /* ios_file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A80879C1DE13B4400F70A07 /* ios_file_set.h */; };
 		9A9367AD1D26C7F400ED7535 /* fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367AC1D26C7F400ED7535 /* fs.h */; };
 		9A9367B61D26C84200ED7535 /* fs_ifs_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B41D26C84200ED7535 /* fs_ifs_file.h */; };
 		9A9367B71D26C84200ED7535 /* fs_remote_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */; };
@@ -429,6 +434,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 077A00881B4D4F9E001C85FF;
 			remoteInfo = ios_axisidn;
+		};
+		9A8087591DE10FDF00F70A07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
+			remoteInfo = ios_aurapcre;
+		};
+		9A80875B1DE10FDF00F70A07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07108B6F1B4C97D500A28F80;
+			remoteInfo = ios_axisfreeimage;
+		};
+		9A80875D1DE10FDF00F70A07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07108BDA1B4C97E300A28F80;
+			remoteInfo = ios_axisfreetype;
 		};
 		9A9808291DDF955B00BB294E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -856,6 +882,9 @@
 		9A331C861D4BD0DB00255105 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		9A3322B61D4BF72C00255105 /* libace.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libace.a; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libace.a"; sourceTree = "<group>"; };
 		9A587D901D20580600B67183 /* axis_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axis_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8087611DE1101F00F70A07 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib/libcrypto.a"; sourceTree = "<group>"; };
+		9A8087621DE1101F00F70A07 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib/libssl.a"; sourceTree = "<group>"; };
+		9A80879C1DE13B4400F70A07 /* ios_file_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ios_file_set.h; path = ios/ios_file_set.h; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		9A9367AC1D26C7F400ED7535 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs.h; sourceTree = "<group>"; };
 		9A9367B41D26C84200ED7535 /* fs_ifs_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_ifs_file.h; sourceTree = "<group>"; };
@@ -902,6 +931,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8087631DE1101F00F70A07 /* libcrypto.a in Frameworks */,
+				9A8087641DE1101F00F70A07 /* libssl.a in Frameworks */,
+				9A8087601DE10FFF00F70A07 /* libios_aurapcre.dylib in Frameworks */,
+				9A80875F1DE10FF400F70A07 /* libios_axisfreeimage.dylib in Frameworks */,
 				9A2116EB1D832A8C000C4336 /* libios_ace.dylib in Frameworks */,
 				9A2116E81D832A64000C4336 /* libios_axisidn.dylib in Frameworks */,
 				9A2116E71D832A54000C4336 /* libios_axisfreerdp.dylib in Frameworks */,
@@ -1225,6 +1258,7 @@
 		07A372761B26054000E4F888 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				9A80879C1DE13B4400F70A07 /* ios_file_set.h */,
 				07A3728E1B26054000E4F888 /* ansios */,
 				07A372E61B26054100E4F888 /* macos */,
 				07A373231B26054100E4F888 /* node.h */,
@@ -1701,6 +1735,8 @@
 		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A8087611DE1101F00F70A07 /* libcrypto.a */,
+				9A8087621DE1101F00F70A07 /* libssl.a */,
 				9A18AAF11DDFAB4D00C57231 /* libcrypto.a */,
 				9A18AAF21DDFAB4D00C57231 /* libssl.a */,
 				9A2116EA1D832A8C000C4336 /* libios_ace.dylib */,
@@ -1845,6 +1881,7 @@
 				0747A6D81B2637BB00E85AC7 /* simpledb_base.h in Headers */,
 				07B0979118495CBE007A0560 /* sockets_socket_handler.h in Headers */,
 				0747A6D01B2637BB00E85AC7 /* db_server.h in Headers */,
+				9A80879D1DE13B4400F70A07 /* ios_file_set.h in Headers */,
 				9A19A0C219C67B6A0018DF7D /* webserver_http_request.h in Headers */,
 				07A3757A1B26054200E4F888 /* macos_ip_enum.h in Headers */,
 				07B0976218495CBE007A0560 /* http_application.h in Headers */,
@@ -2090,6 +2127,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A80875A1DE10FDF00F70A07 /* PBXTargetDependency */,
+				9A80875C1DE10FDF00F70A07 /* PBXTargetDependency */,
+				9A80875E1DE10FDF00F70A07 /* PBXTargetDependency */,
 				9A2116E21D832A41000C4336 /* PBXTargetDependency */,
 				07108A9F1B4C958000A28F80 /* PBXTargetDependency */,
 			);
@@ -2362,6 +2402,21 @@
 			name = ios_axisidn;
 			targetProxy = 9A2116E11D832A41000C4336 /* PBXContainerItemProxy */;
 		};
+		9A80875A1DE10FDF00F70A07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_aurapcre;
+			targetProxy = 9A8087591DE10FDF00F70A07 /* PBXContainerItemProxy */;
+		};
+		9A80875C1DE10FDF00F70A07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axisfreeimage;
+			targetProxy = 9A80875B1DE10FDF00F70A07 /* PBXContainerItemProxy */;
+		};
+		9A80875E1DE10FDF00F70A07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axisfreetype;
+			targetProxy = 9A80875D1DE10FDF00F70A07 /* PBXContainerItemProxy */;
+		};
 		9A9809931DDF9AFC00BB294E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aurapcre;
@@ -2412,8 +2467,14 @@
 		9AE24D541904CEFF001AEFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator10.1]" = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib",
+				);
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis";
 			};
 			name = Debug;
 		};
@@ -2422,6 +2483,7 @@
 			buildSettings = {
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis";
 			};
 			name = Release;
 		};

@@ -71,8 +71,8 @@ namespace draw2d_quartz2d
       CGFloat y = (rect.bottom + rect.top) / 2.0;
       CGFloat x1 = x + d1 * sin(dBeg * MATH_PI / 180.0f);
       CGFloat y1 = y + d1 * cos(dBeg * MATH_PI / 180.0f);
-      CGFloat x2 = x + d1 * sin(dEnd * MATH_PI / 180.0f);
-      CGFloat y2 = y + d1 * cos(dEnd * MATH_PI / 180.0f);
+      //CGFloat x2 = x + d1 * sin(dEnd * MATH_PI / 180.0f);
+      //CGFloat y2 = y + d1 * cos(dEnd * MATH_PI / 180.0f);
       
       if(CGPathIsEmpty(m_path))
       {

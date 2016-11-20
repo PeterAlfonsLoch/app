@@ -19,9 +19,9 @@ UIWindow * new_round_window(round_window * pwindow, CGRect rect)
    
    RoundWindow * proundwindow = [RoundWindow alloc];
    
-   void * p = pwindow;
+   //void * p = pwindow;
    
-   RoundWindow * refp  = pwindow->m_proundwindow;
+   //RoundWindow * refp  = pwindow->m_proundwindow;
    
    pwindow->m_proundwindow = proundwindow;
    
@@ -46,7 +46,7 @@ void round_window::round_window_show()
 
 void round_window::round_window_redraw()
 {
-   [[m_proundwindow dd_invokeOnMainThread] display ];
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone :TRUE] display ];
    
 }
 
@@ -127,6 +127,15 @@ void round_window::round_window_show_keyboard(bool bShow)
 //}
 
 
+
+void round_window::round_window_set_title(const char * pszTitle)
+{
+   
+//   NSString * str = [NSString stringWithUTF8String:pszTitle];
+   
+  // [((__bridge RoundWindow *)m_proundwindow) setTitle:str];
+   
+}
 
 
 void ui_application_main(int argc, char * argv[])

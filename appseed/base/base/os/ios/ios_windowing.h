@@ -91,7 +91,7 @@ public:
    
    nswindow window()
    {
-      return this == NULL ? NULL : m_nswindow;
+      return ::is_null(this) ? NULL : m_nswindow;
    }
    
    
@@ -121,7 +121,7 @@ public:
    
    bool is_null() const
    {
-      return this == NULL;
+      return ::is_null(this);
    }
    
 };

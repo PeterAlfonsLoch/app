@@ -55,7 +55,7 @@ namespace multimedia
          virtual void wave_out_on_playback_end();
 
          virtual bool initialize_thread() override;
-         virtual int32_t exit_instance();
+         virtual int32_t exit_thread() override;
 
 
          void AudioQueueBufferCallback(AudioQueueRef inAQ, AudioQueueBufferRef inCompleteAQBuffer);

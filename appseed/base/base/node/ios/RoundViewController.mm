@@ -34,7 +34,7 @@
    
    childContentView.delegate = self;
    
-   childContentView.text = @"Lorem Ipsum";
+   //childContentView.text = @"Lorem Ipsum";
    
 }
 
@@ -64,5 +64,36 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+-(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id )coordinator
+{
+   
+   try
+   {
+      
+      CGRect rect;
+      
+      rect.origin.x = 0;
+      rect.origin.y = 0;
+      rect.size = size;
+      
+      m_pwindow->m_pwindow->round_window_resized(rect);
+      
+   }
+   catch (...)
+   {
+      
+      
+      
+   }
+   
+   //      NSRect rect = [self frame];
+   //
+   //      rect.origin.y        = [[NSScreen mainScreen] frame ].size.height - (rect.origin.y + rect.size.height);
+   //
+   //      m_pwindow->round_window_resized(rect);
+   
+}
 
 @end

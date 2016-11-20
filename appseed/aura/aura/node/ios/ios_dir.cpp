@@ -6,7 +6,9 @@ namespace ios
    
    dir::dir(::aura::application *   papp) :
    ::object(papp),
-   ::file::dir::system(papp)
+   ::file::dir::system(papp),
+   ::file_watcher::file_watcher(papp),
+   ::file_watcher::listener_thread(papp)
    {
       
       
@@ -1594,6 +1596,10 @@ namespace ios
       
       ::file::path pathHome = ::file::path(getenv("HOME")) ;
       
+      System.m_strIosHome = pathHome;
+      
+      ios_set_home(System.m_strIosHome);
+      
       ::file::path str = pathHome/ ".ca2/appdata";
       
       m_pathUser = pathHome / ".ca2";
@@ -1656,6 +1662,11 @@ namespace ios
       
       if(!is(strTime, get_app()))
          return false;
+      
+      System.m_strIosTemp = strTime;
+      
+      ios_set_temp(System.m_strIosTemp);
+      
       
       str = "/usr/bin";
       

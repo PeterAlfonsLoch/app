@@ -193,12 +193,14 @@ namespace sockets
 
       /* Global system initialization*/
       //OpenSSL_add_all_algorithms();
+      
+ # if OPENSSL_API_COMPAT < 0x10100000L
       CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
       CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
 
       SSL_load_error_strings();
       SSL_library_init();
-
+#endif
 
       rand_meth.add = &SSLInitializer_rand_add;
       rand_meth.bytes = &SSLInitializer_rand_bytes;
@@ -371,7 +373,7 @@ namespace sockets
 
 } // namespace sockets
 
-
+#if OPENSSL_API_COMPAT < 0x10100000L
 extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line)
 {
 
@@ -421,7 +423,7 @@ extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, con
 
 }
 
-
+#endif
 
 extern "C" unsigned long SSLInitializer_SSL_id_function()
 {

@@ -1096,9 +1096,9 @@ namespace user
       
       int iCurrentPageOffsetEnd = get_viewport_offset().y + rectClient.height();
 
-      index iValidPageStartOffset = (MIN(MAX(0, iLine - m_iLineCount + 5), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
-
-      index iValidPageEndOffset = (MIN(MAX(0, iLine + m_iLineCount - 5), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
+  //    index iValidPageStartOffset = (MIN(MAX(0, iLine - m_iLineCount + 5), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
+//
+    //  index iValidPageEndOffset = (MIN(MAX(0, iLine + m_iLineCount - 5), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
 
       index iCandidateCursorOffset = (MIN(MAX(0, iLine), m_iaLineLen.get_upper_bound())) * m_iLineHeight;
 

@@ -139,6 +139,9 @@ namespace aura
       string_map < sp(::aura::library) >           m_mapLibrary;
 
       string_map < pointer < city > >              m_mapCity;
+      
+      string                                       m_strIosHome;
+      string                                       m_strIosTemp;
 
 
 
@@ -150,10 +153,9 @@ namespace aura
 
 
 
-      virtual void construct(const char * pszAppId);
+      virtual void construct(const char * pszAppId) override;
 
       virtual bool initialize_application() override;
-
       virtual int32_t exit_application() override;
 
       virtual bool finalize() override;
@@ -204,7 +206,7 @@ namespace aura
       virtual object * alloc(::aura::application * papp,const class id & idType);
 
       virtual object * on_alloc(::aura::application * papp,::type * ptype);
-      virtual object * clone();
+      virtual object * clone() override;
 
 
       template < typename T >
@@ -248,11 +250,11 @@ namespace aura
 
       virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0 ,lparam lparam = 0);
 
-      virtual bool process_initialize();
+      virtual bool process_initialize() override;
 
-      virtual bool initialize1();
+      virtual bool initialize1() override;
 
-      virtual bool initialize2();
+      virtual bool initialize2() override;
 
 
       //virtual bool verb();
@@ -261,7 +263,7 @@ namespace aura
 
 
 
-      virtual bool is_system();
+      virtual bool is_system() override;
 
 
 
@@ -401,7 +403,7 @@ namespace aura
       virtual ::aura::session *             get_session(index iEdge,application_bias * pbiasCreation = NULL);
 
 
-      virtual void on_request(sp(::create) pcreate);
+      virtual void on_request(sp(::create) pcreate) override;
 
 
       virtual string install_get_version();
@@ -421,7 +423,7 @@ namespace aura
 
       virtual void on_map_application_library(::aura::library & library);
 
-      virtual bool set_main_init_data(::aura::main_init_data * pdata);
+      virtual bool set_main_init_data(::aura::main_init_data * pdata) override;
 
       virtual void request_exit();
 

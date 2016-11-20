@@ -2897,12 +2897,12 @@ namespace macos
 
       ::user::interaction_impl::_001OnTimer(ptimer);;
 
-      if (ptimer->m_nIDEvent == 2049)
-      {
-
-         RedrawWindow();
-
-      }
+//      if (ptimer->m_nIDEvent == 2049)
+  //    {
+//
+  //       RedrawWindow();
+//
+  //    }
 
    }
 

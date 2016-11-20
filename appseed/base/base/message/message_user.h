@@ -348,8 +348,13 @@ namespace message
    public:
 
       drag_and_drop(::user::primitive * pwnd,UINT uiMessage):
-         base(pwnd->get_app(),pwnd,uiMessage,0,0,m_lresult = 0)
+         base(pwnd->get_app())
       {
+         
+         m_lresult = 0;
+         
+         set(pwnd,uiMessage,0,0,m_lresult);
+         
       }
 
 #ifdef WINDOWS

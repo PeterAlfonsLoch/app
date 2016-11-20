@@ -62,10 +62,9 @@ namespace axis
 
 
 
-      virtual void construct(const char * pszAppId);
+      virtual void construct(const char * pszAppId) override;
 
       virtual bool initialize_application() override;
-
       virtual int32_t exit_application() override;
 
       virtual bool finalize() override;
@@ -92,31 +91,31 @@ namespace axis
       virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild) override;
       virtual int32_t install_progress_app_add_up(int iAddUp = 1) override;
 
-      virtual bool process_initialize();
+      virtual bool process_initialize() override;
 
-      virtual bool initialize1();
+      virtual bool initialize1() override;
 
-      virtual bool initialize2();
-
-
-      virtual bool verb(); // ambigous inheritance from ::aura::system/::axis::application
+      virtual bool initialize2() override;
 
 
-      virtual ::file::path dir_appmatter_locator(::aura::application * papp);
+      virtual bool verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
 
-
-      virtual bool is_system();
-
-
-      virtual string crypto_md5_text(const string & str);
+      virtual ::file::path dir_appmatter_locator(::aura::application * papp) override;
 
 
 
+      virtual bool is_system() override;
 
-      virtual ::aura::session * on_create_session();
 
-      virtual void on_request(sp(::create) pcreate);
+      virtual string crypto_md5_text(const string & str) override;
+
+
+
+
+      virtual ::aura::session * on_create_session() override;
+
+      virtual void on_request(sp(::create) pcreate) override;
 
 
 
@@ -151,7 +150,7 @@ namespace axis
 
       virtual ::user::document * place_hold(::user::interaction * pui);
 
-      virtual ::aura::session * query_session(index iEdge);
+      virtual ::aura::session * query_session(index iEdge) override;
 
 
 

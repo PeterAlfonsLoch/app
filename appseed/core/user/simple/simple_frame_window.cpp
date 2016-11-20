@@ -1288,7 +1288,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
       if(Application.command()->m_varTopicQuery.has_property("wfi_maximize")
             && (GetParent() == NULL
 #if defined(ANDROID) || defined(METROWIN) || defined(APPLE_IOS)
-                || GetParent() == System.m_posdata->m_pui
+                || GetParent() == System.m_possystemwindow->m_pui
 #endif
                ))
       {

@@ -323,7 +323,8 @@ namespace file_watcher
 	}
 	
 	//--------
-	os_file_watcher::os_file_watcher()
+   os_file_watcher::os_file_watcher(::aura::application * papp) :
+   object(papp)
 	{
 		mDescriptor = kqueue();
 		mTimeOut.tv_sec = 0;

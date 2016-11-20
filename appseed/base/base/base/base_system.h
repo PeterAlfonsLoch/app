@@ -13,7 +13,7 @@ namespace base
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
-      class os_data
+      class os_system_window
       {
       public:
 
@@ -24,7 +24,8 @@ namespace base
    };
 
 #elif defined(APPLE_IOS)
-      class os_data
+      
+      class os_system_window
       {
       public:
 
@@ -35,7 +36,7 @@ namespace base
 
 #elif defined(VSNORD)
 
-      class os_data
+      class os_system_window
       {
       public:
 
@@ -47,7 +48,7 @@ namespace base
 
 #else
 
-      class os_data;
+      class os_system_window;
 
 #endif
 
@@ -61,7 +62,7 @@ namespace base
       sp(::user::schema)                           m_pschemaLayeredFrame;
 
 
-      os_data *                                    m_posdata;
+      os_system_window *                           m_possystemwindow;
 
 
       system(::aura::application * papp);
@@ -69,9 +70,9 @@ namespace base
 
       virtual bool defer_create_system_frame_window();
 
-      virtual int32_t exit_application();
+      virtual int32_t exit_application() override;
 
-      virtual ::aura::session * on_create_session();
+      virtual ::aura::session * on_create_session() override;
 
       virtual index get_ui_wkspace(::user::interaction * pui);
 
@@ -83,9 +84,9 @@ namespace base
       bool get_monitor_rect(index iMonitor,LPRECT lprect) override;
       ::count get_monitor_count() override;
 
-      bool get_wkspace_rect(index iWkspace,LPRECT lprect);
+      bool get_wkspace_rect(index iWkspace,LPRECT lprect) override;
 
-      virtual ::user::interaction * ui_from_handle(void * pdata);
+      virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
    };
 

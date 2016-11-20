@@ -16,12 +16,12 @@ namespace simpledb
       virtual ~file_set();
 
 
-      virtual void refresh();
+      virtual void refresh() override;
 
       using ::file::set::add_search;
       virtual void add_search(const ::file::path & pathSearchFolder, bool bRecursive) override;
 
-      virtual void clear_search();
+      virtual void clear_search() override;
 
       DECL_GEN_SIGNAL(data_on_after_change);
 

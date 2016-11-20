@@ -13,7 +13,9 @@ namespace ios
          ::object(papp),
          ::file::dir::system(papp),
          ::file::dir::axis::system(papp),
-         ::ios::dir(papp)
+         ::ios::dir(papp),
+         ::file_watcher::file_watcher(papp),
+         ::file_watcher::listener_thread(papp)
       {
 
 //      string strCa2Module = ca2module();
