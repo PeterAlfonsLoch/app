@@ -1667,7 +1667,9 @@ CLASS_DECL_AURA int trace_hr(const char * psz,HRESULT hr);
 
 
 
+CLASS_DECL_AURA string get_last_error_string();
 
+CLASS_DECL_AURA string get_error_string(uint64_t uiError);
 
 CLASS_DECL_AURA void set_aura(void * p,::aura::application * papp);
 CLASS_DECL_AURA ::aura::application * get_aura(void * p);

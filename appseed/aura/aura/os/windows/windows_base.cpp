@@ -813,3 +813,30 @@ int get_processor_count()
 
 }
 
+
+
+
+
+CLASS_DECL_AURA string get_last_error_string()
+{
+
+   return get_error_string(::GetLastError());
+
+}
+
+CLASS_DECL_AURA string get_error_string(uint64_t ui)
+{
+
+   DWORD dwError = (DWORD) ui;
+
+   wchar_t * pszError;
+
+   FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwError, 0, (LPWSTR)&pszError, 0, NULL);
+
+   string strError(pszError);
+
+   ::LocalFree(pszError);
+
+   return strError;
+
+}

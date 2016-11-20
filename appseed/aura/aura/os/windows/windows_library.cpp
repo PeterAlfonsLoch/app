@@ -1,32 +1,64 @@
 //#include "framework.h"
 
 
-void * __node_library_open(const char * pszPath)
+void * __node_library_open(const char * pszPath, string & strMessage)
 {
 
-   void * plibrary = NULL;
+   strMessage.Empty();
+
+   string strError;
 
    string strPath(pszPath);
 
-   if(str_ends_ci_dup(strPath,".ilk"))
+   uint32_t uiError;
+
+   void * plibrary = NULL;
+
+   if (str_ends_ci_dup(strPath, ".ilk"))
+   {
+    
       return false;
+
+   }
 
    if(str_ends_ci_dup(strPath,".pdb"))
+   {
+
       return false;
+
+   }
 
    if(str_ends_ci_dup(strPath,".lib"))
+   {
+
       return false;
+
+   }
 
    if(str_ends_ci_dup(strPath,".exp"))
+   {
+
       return false;
 
-   if(strstr_dup(file_name_dup(strPath),".") == NULL)
+   }
+
+   if (strstr_dup(file_name_dup(strPath), ".") == NULL)
+   {
+    
       strPath += ".dll";
+
+   }
+
+   ::output_debug_string("\n\nGoing to load library (1) " + string(strPath) + "\n");
+
+   ::file::path path;
+
+   path = strPath;
 
    try
    {
 
-      plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+      plibrary = ::LoadLibraryW(gen_utf8_to_16(path));
 
    }
    catch(...)
@@ -34,102 +66,159 @@ void * __node_library_open(const char * pszPath)
 
    }
 
-   if(plibrary == NULL)
+   if (plibrary != NULL)
    {
 
-      try
-      {
-
-         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + strPath));
-
-      }
-      catch(...)
-      {
-
-      }
+      goto finished;
 
    }
 
-   if(plibrary == NULL)
+   uiError = ::GetLastError();
+
+   strError = "\n (1) LoadLibraryW " + path + " failed with (" + ::str::from(uiError) + ") " + get_error_string(uiError);
+
+   strMessage += strError;
+
+   path = "\\\\?\\" + strPath;
+
+   try
    {
 
-      try
-      {
+      plibrary = ::LoadLibraryW(gen_utf8_to_16(path));
 
-         plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::ca2_module() / strPath));
-
-      }
-      catch(...)
-      {
-
-      }
+   }
+   catch (...)
+   {
 
    }
 
-   if(plibrary == NULL)
+   if (plibrary != NULL)
    {
 
-      try
-      {
-
-         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + string(::dir::ca2_module() / strPath)));
-
-      }
-      catch(...)
-      {
-
-      }
+      goto finished;
 
    }
 
-   if(plibrary == NULL)
+   uiError = ::GetLastError();
+
+   strError = "\n (2) LoadLibraryW " + path + " failed with (" + ::str::from(uiError) + ") " + get_error_string(uiError);
+
+   strMessage += strError;
+
+   path = ::dir::ca2_module() / strPath;
+
+   try
    {
 
-      try
-      {
+      plibrary = ::LoadLibraryW(gen_utf8_to_16(path));
 
-         plibrary = ::LoadLibraryW(gen_utf8_to_16(string(::dir::base_module()/strPath)));
-
-      }
-      catch(...)
-      {
-
-      }
-
-      if(plibrary == NULL)
-      {
-         DWORD dwError = ::GetLastError();
-         char * pszError;
-         FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,NULL,dwError,0,(LPTSTR)&pszError,8,NULL);
-         string strError(pszError);
-         //TRACE("dir::mk CreateDirectoryW last error(%d)=%s", dwError, pszError);
-         ::LocalFree(pszError);
-
-         ::OutputDebugString(strPath + " : LoadLibrary Error (" + ::str::from((uint32_t) dwError) + ") : " + strError);
-         if(dwError == 126)
-         {
-            ::SetDllDirectoryW(gen_utf8_to_16(::dir::base_module()));
-            plibrary = ::LoadLibraryW(gen_utf8_to_16(string(::dir::base_module()/strPath)));
-         }
-      }
+   }
+   catch (...)
+   {
 
    }
 
-   if(plibrary == NULL)
+   uiError = ::GetLastError();
+
+   strError = "\n (3) LoadLibraryW " + path + " failed with (" + ::str::from(uiError) + ") " + get_error_string(uiError);
+
+   strMessage += strError;
+
+   path = "\\\\?\\" + string(::dir::ca2_module() / strPath);
+
+   try
    {
 
-      try
-      {
-
-         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + string(::dir::base_module() / strPath)));
-
-      }
-      catch(...)
-      {
-
-      }
+      plibrary = ::LoadLibraryW(gen_utf8_to_16(path));
 
    }
+   catch (...)
+   {
+
+   }
+
+   if (plibrary != NULL)
+   {
+
+      goto finished;
+
+   }
+
+   uiError = ::GetLastError();
+
+   strError = "\n (4) LoadLibraryW " + path + " failed with (" + ::str::from(uiError) + ") " + get_error_string(uiError);
+
+   strMessage += strError;
+
+   path = ::dir::base_module() / strPath;
+
+   try
+   {
+
+      plibrary = ::LoadLibraryW(gen_utf8_to_16(path));
+
+   }
+   catch (...)
+   {
+
+   }
+
+   if (plibrary != NULL)
+   {
+
+      goto finished;
+
+   }
+
+   uiError = ::GetLastError();
+
+   strError = "\n (5) LoadLibraryW " + path + " failed with (" + ::str::from(uiError) + ") " + get_error_string(uiError);
+
+   strMessage += strError;
+
+   path = "\\\\?\\" + string(::dir::base_module() / strPath);
+
+   try
+   {
+
+      plibrary = ::LoadLibraryW(gen_utf8_to_16(path));
+
+   }
+   catch (...)
+   {
+
+   }
+
+   if (plibrary != NULL)
+   {
+
+      goto finished;
+
+   }
+
+   uiError = ::GetLastError();
+
+   strError = "\n (6) LoadLibraryW " + path + " failed with (" + ::str::from(uiError) + ") " + get_error_string(uiError);
+
+   strMessage += strError;
+
+
+finished:
+
+   if (plibrary != NULL)
+   {
+
+      strMessage = "node_library_open Success opening " + path;
+
+   }
+   else
+   {
+
+      strMessage = "node_library_open Failed opening " + strPath + strMessage;
+
+   }
+
+   ::output_debug_string(strMessage + "\n\n");
 
    return plibrary;
 
@@ -160,26 +249,32 @@ bool __node_library_close(void * plibrary)
 }
 
 
-void * __node_library_open_ca2(const char * psz)
+void * __node_library_open_ca2(const char * psz, string & strMessage)
 {
-   /*      string str(psz);
-   if(str.find("..") >= 0)
-   return FALSE;
-   if(str.find(":") >= 0)
-   return FALSE;
-   if(str.find("\\\\") >= 0)
-   return FALSE;
-   if(str[0] == '\\')
-   return FALSE;
-   if(str[0] == '/')
-   return FALSE;
-   #ifdef _M_X64
-   //::SetDllDirectory(dir::element("stage\\x64") + "\\");
-   #else
-   //::SetDllDirectory(dir::element("stage\\x86") + "\\");
-   #endif*/
 
-   return LoadLibrary(psz);
+   ::output_debug_string("\n\nGoing to load library (2) " + string(psz));
+
+   void * p = LoadLibrary(psz);
+
+   if (p != NULL)
+   {
+
+      strMessage = "__node_library_open_ca2 Successfully Loaded " + string(psz);
+
+   }
+   else
+   {
+
+      uint32_t uiError = GetLastError();
+
+      strMessage = "__node_library_open_ca2 Failed to Load " + string(psz) + " with error (" + str::from(uiError) +
+   ")" + get_error_string(uiError);
+
+   }
+
+   ::output_debug_string("\n" + strMessage + "\n\n");
+
+   return p;
 
 }
 

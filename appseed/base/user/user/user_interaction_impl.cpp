@@ -2235,7 +2235,6 @@ namespace user
       if (m_spgraphics.is_null())
          return;
 
-
       if (bUpdateBuffer)
       {
 
@@ -2479,14 +2478,11 @@ namespace user
       if (m_spgraphics.is_null())
       {
 
-         return;
-         //m_spgraphics.alloc(allocer());
+         m_spgraphics.alloc(allocer());
+
+         m_spgraphics->on_create_window(this);
 
       }
-
-      m_spgraphics.alloc(allocer());
-      m_spgraphics->on_create_window(this);
-
 
    }
 
