@@ -401,7 +401,9 @@ size simple_toolbar::CalcSize(int32_t nCount)
 
    int32_t buttonx, buttony;
 
-   for (int32_t i = 0; i < nCount; i++)
+   int iC = MIN(nCount, m_itema.get_size());
+
+   for (int32_t i = 0; i < iC; i++)
    {
       //WINBUG: The IE4 version of COMCTL32.DLL calculates the separation
       //  on a TBSTYLE_WRAP button as 100% of the value in iBitmap compared
@@ -1615,7 +1617,8 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
    ::draw2d::memory_graphics pgraphics(allocer());
     int32_t x = 0;
    string str;
-   for (int32_t i = 0; i < nCount; i++)
+   int iC = MIN(nCount, m_itema.get_count());
+   for (int32_t i = 0; i < iC; i++)
    {
       m_itema[i]->m_fsState &= ~TBSTATE_WRAP;
 

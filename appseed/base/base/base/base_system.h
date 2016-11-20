@@ -86,6 +86,7 @@ namespace base
 
       bool get_wkspace_rect(index iWkspace,LPRECT lprect) override;
 
+      virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
    };

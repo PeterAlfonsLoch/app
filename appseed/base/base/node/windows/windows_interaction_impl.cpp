@@ -298,6 +298,8 @@ namespace windows
    interaction_impl::~interaction_impl()
    {
 
+      ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
+
    }
 
 
@@ -775,25 +777,7 @@ namespace windows
 
       UNREFERENCED_PARAMETER(pobj);
 
-      try
-      {
-
-         if (m_pthreadDraw != NULL)
-         {
-
-            m_pthreadDraw->post_quit();
-
-
-            m_pthreadDraw->wait(seconds(10));
-
-         }
-
-      }
-      catch (...)
-      {
-
-
-      }
+      ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
 
       Default();
 
@@ -2392,6 +2376,13 @@ namespace windows
                {
 
                   dwStart = ::get_tick_count();
+
+                  if (m_pui == NULL)
+                  {
+
+                     break;
+
+                  }
 
                   if (!m_pui->m_bLockWindowUpdate)
                   {
@@ -6077,6 +6068,14 @@ lCallNextHook:
 // isso é um comentario e zero (0) se não processou
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
+
+   if (message == WM_LBUTTONDOWN)
+   {
+
+      output_debug_string("wm_lbuttondown");
+
+   }
+
 
    if (::aura::system::g_p == NULL)
    {

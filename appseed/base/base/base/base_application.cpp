@@ -632,18 +632,24 @@ namespace base
 
          }
 
-         ::user::interaction * pwindow = System.ui_from_handle(lpmsg->hwnd);
+         ::user::interaction_impl * pimpl = System.impl_from_handle(lpmsg->hwnd);
 
-         if(pwindow != NULL)
+         if(pimpl != NULL)
          {
+            
             try
             {
-               pwnd = pwindow;
+               
+               pwnd = pimpl->m_pui;
+
             }
             catch(...)
             {
+
                pwnd = NULL;
+
             }
+
          }
 
          if(pwnd == NULL)

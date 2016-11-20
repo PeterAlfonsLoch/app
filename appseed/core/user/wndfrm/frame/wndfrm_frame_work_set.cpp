@@ -23,7 +23,7 @@ namespace user
             m_bEnableMouse = true;
 
             m_bFullScreenEnable = false;
-            m_bNotifyIconEnable = false;
+//            m_bNotifyIconEnable = false;
 
             m_pwndRegion = NULL;
             m_pwndDraw = NULL;
@@ -1138,15 +1138,34 @@ namespace user
             m_bFullScreenEnable = bEnable;
          }
 
-         void WorkSet::EnableNotifyIcon(bool bEnable)
-         {
-            m_bNotifyIconEnable = bEnable;
-         }
+         //void WorkSet::EnableNotifyIcon(bool bEnable)
+         //{
+         //   m_bNotifyIconEnable = bEnable;
+         //}
 
          bool WorkSet::IsNotifyIconEnabled()
          {
 
-            return m_bNotifyIconEnable;
+            ::user::interaction * pui = GetWndDraw();
+
+            if (pui == NULL)
+            {
+
+               return false;
+
+            }
+
+            simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (pui);
+
+            if (pframe == NULL)
+            {
+
+               return false;
+
+            }
+
+            return pframe->m_bDefaultNotifyIcon;
+
          }
 
          void WorkSet::OnSize(UINT nType,int32_t cx,int32_t cy)

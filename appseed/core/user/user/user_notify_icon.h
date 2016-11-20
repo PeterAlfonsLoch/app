@@ -44,7 +44,8 @@ namespace user
 #elif defined(LINUX)
       void *    m_pindicator;
 #endif
-      notify_icon_listener * m_plistener;
+      notify_icon_listener *     m_plistener;
+      spa(::user::interaction)   m_wndptraHidden;
 
 
       notify_icon(::aura::application * papp);
@@ -67,6 +68,7 @@ namespace user
 
       }
 
+      void AddHiddenWindow(sp(::user::interaction) pwnd);
 
 
 

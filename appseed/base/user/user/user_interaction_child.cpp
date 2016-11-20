@@ -398,7 +398,7 @@ namespace user
    uint32_t interaction_child::GetExStyle() const
    {
 
-      return get_window_long(GWL_EXSTYLE);
+      return get_window_long(GWL_EXSTYLE) & ~(WS_EX_LAYERED);
 
    }
 

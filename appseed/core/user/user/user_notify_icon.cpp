@@ -253,6 +253,10 @@ namespace user
       return true;
 
    }
+   void notify_icon::AddHiddenWindow(sp(::user::interaction) pwnd)
+   {
+      m_wndptraHidden.add_unique(pwnd);
+   }
 
 
    bool notify_icon::Destroy()
@@ -294,6 +298,34 @@ namespace user
    {
 
       SCAST_PTR(::message::base, pbase, pobj);
+
+
+      if (pbase->m_lparam == WM_LBUTTONDOWN)
+      {
+
+         while (m_wndptraHidden.get_size() > 0)
+         {
+
+            try
+            {
+               sp(simple_frame_window) pframe = (m_wndptraHidden.element_at(0));
+               if (pframe != NULL)
+               {
+                  pframe->WfiRestore();
+               }
+               else
+               {
+                  m_wndptraHidden.element_at(0)->ShowWindow(SW_SHOW);
+               }
+            }
+            catch (...)
+            {
+            }
+            m_wndptraHidden.remove_at(0);
+         }
+
+
+      }
 
       m_plistener->OnNotifyIconMessage(m_uiId, (UINT) pbase->m_lparam);
 

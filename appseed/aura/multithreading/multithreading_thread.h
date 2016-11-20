@@ -423,6 +423,13 @@ namespace multithreading
 
       bool bOk = false;
 
+      if (pthread == NULL)
+      {
+
+         return true;
+
+      }
+
       try
       {
 

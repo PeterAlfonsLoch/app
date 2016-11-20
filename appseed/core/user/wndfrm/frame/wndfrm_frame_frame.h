@@ -40,6 +40,8 @@ namespace user
             point                                        m_pointWindowIcon;
             point                                        m_pointMoveGripMinimal;
 
+            COLORREF                         m_crMoveableBorder;
+            COLORREF                         m_crMoveableBorderShadow;
 
 
             //sp(type)                                     m_typeinfoControlBoxButton;

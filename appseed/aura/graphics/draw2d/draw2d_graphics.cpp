@@ -4566,6 +4566,38 @@ namespace draw2d
          DrawEllipse(rect2);
 
       }
+      else if (eicon == stock_icon_level_up)
+      {
+
+         rect.deflate(rect.height() / 3, rect.height() / 3);
+
+         point_array pta;
+
+         pta.add(rect.bottom_left());
+
+         pta.add(rect.bottom_right());
+
+         pta.add((rect.right + rect.left) / 2, rect.top);
+
+         Polygon(pta);
+
+      }
+      else if (eicon == stock_icon_level_down)
+      {
+
+         rect.deflate(rect.height() / 3, rect.height() / 3);
+
+         point_array pta;
+
+         pta.add(rect.top_left());
+
+         pta.add(rect.top_right());
+
+         pta.add((rect.right + rect.left) / 2, rect.bottom);
+
+         Polygon(pta);
+
+      }
       else
       {
 

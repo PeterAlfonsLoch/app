@@ -55,7 +55,7 @@ namespace user
             bool                          m_bMovingEnabled;
             bool                          m_bSizingEnabled;
             bool                          m_bSysMenuEnabled;
-            bool                          m_bNotifyIconEnable;
+            //bool                          m_bNotifyIconEnable;
             bool                          m_bFullScreenEnable;
 
 
@@ -102,7 +102,7 @@ namespace user
 
 
             bool IsNotifyIconEnabled();
-            void EnableNotifyIcon(bool bEnable = true);
+            //void EnableNotifyIcon(bool bEnable = true);
             void EnableFullScreen(bool bEnable = true);
             bool IsFullScreenEnabled();
             void WindowClose();

@@ -86,7 +86,7 @@ namespace user
    bool interaction_impl_base::check_need_layout()
    {
 
-      return m_rectParentClientRequest.size() != m_rectParentClient.size();
+      return m_pui->m_bNeedLayout || m_rectParentClientRequest.size() != m_rectParentClient.size();
 
    }
 
@@ -97,6 +97,8 @@ namespace user
       m_rectParentClient = m_rectParentClientRequest;
 
       m_bShowFlags = false;
+
+      m_pui->m_bNeedLayout = false;
 
    }
 
@@ -167,7 +169,7 @@ namespace user
       if (m_pui->m_pparent != NULL)
       {
 
-         m_pui->m_pparent->m_bNeedLayout = true;
+         m_pui->m_pparent->set_need_layout();
 
       }
 

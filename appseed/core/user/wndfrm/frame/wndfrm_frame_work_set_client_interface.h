@@ -22,7 +22,6 @@ namespace user
             WorkSet                    m_workset;
             ::user::EAppearance        m_eappearanceBefore;
             ::user::interaction *      m_pupdowntarget;
-            int32_t                    m_iType;
             int32_t                    m_iIndex;
             bool                       m_bFullScreenOnZoom;
             bool                       m_bInitialFramePosition;

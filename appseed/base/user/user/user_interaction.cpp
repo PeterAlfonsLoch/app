@@ -166,14 +166,14 @@ namespace user
    void interaction::set_need_layout()
    {
 
-      if (m_pimpl.is_null())
+      m_bNeedLayout = true;
+
+      if(m_pparent != NULL)
       {
 
-         return;
+         m_pparent->set_need_layout();
 
       }
-
-      return m_pimpl->set_need_layout();
 
    }
 
@@ -414,7 +414,7 @@ namespace user
    ::user::interaction * interaction::SetParent(::user::interaction * puiParent)
    {
 
-      if(puiParent == this || puiParent == GetParent())
+      if(puiParent == this || puiParent == GetParent() || IsDescendant(puiParent))
       {
 
          return GetParent();
@@ -548,27 +548,38 @@ namespace user
                if(pimplOld != NULL)
                {
 
-                  try
+                  ::user::interaction_impl * pimpl = pimplOld.cast < ::user::interaction_impl > ();
+
+                  if (pimpl != NULL)
                   {
 
-                     oswindow_remove(this);
-
-                     pimplOld->m_pui = NULL;
-
-                     oswindow wnd = pimplOld->get_handle();
-                     
-                     pimplOld.release();
-
-                     if (wnd != NULL)
+                     try
                      {
 
-                        ::DestroyWindow(wnd);
+                        oswindow oswindow = oswindow_remove(pimpl);
+
+                        pimpl->m_pui = NULL;
+
+                        pimplOld.release();
+
+                        if (oswindow != NULL)
+                        {
+
+                           ::DestroyWindow(oswindow);
+
+                        }
+
+                     }
+                     catch (...)
+                     {
 
                      }
 
                   }
-                  catch(...)
+                  else
                   {
+
+                     pimplOld.release();
 
                   }
 
@@ -1469,7 +1480,7 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
-      int iSaveDC = pgraphics->SaveDC();
+      ::draw2d::keep k(pgraphics);
 
       try
       {
@@ -1517,8 +1528,6 @@ namespace user
 
       }
 
-      pgraphics->RestoreDC(iSaveDC);
-
       if (m_pparent != NULL)
       {
 
@@ -1543,7 +1552,7 @@ namespace user
    void interaction::_008CallOnDraw(::draw2d::graphics * pgraphics)
    {
 
-      int iSaveDC = pgraphics->SaveDC();
+      ::draw2d::keep k(pgraphics);
 
       try
       {
@@ -1559,8 +1568,6 @@ namespace user
       {
 
       }
-
-      pgraphics->RestoreDC(iSaveDC);
 
    }
 
@@ -1579,7 +1586,7 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
-      int iSaveDC = pgraphics->SaveDC();
+      ::draw2d::keep k(pgraphics);
 
       // while drawing layout can occur and change z-order.
       // keep this past z-order
@@ -1608,7 +1615,7 @@ namespace user
 
       }
 
-      pgraphics->RestoreDC(iSaveDC);
+      
 
    }
 
@@ -1618,7 +1625,7 @@ namespace user
 
       {
 
-         int iSaveDC = pgraphics->SaveDC();
+         ::draw2d::keep k(pgraphics);
 
          try
          {
@@ -1631,13 +1638,11 @@ namespace user
 
          }
 
-         pgraphics->RestoreDC(iSaveDC);
-
       }
 
       {
 
-         int iSaveDC = pgraphics->SaveDC();
+         ::draw2d::keep k(pgraphics);
 
          try
          {
@@ -1650,8 +1655,6 @@ namespace user
 
          }
 
-         pgraphics->RestoreDC(iSaveDC);
-
       }
 
       if(&Session != NULL && Session.m_bDrawCursor)
@@ -1659,7 +1662,7 @@ namespace user
 
          {
 
-            int iSaveDC = pgraphics->SaveDC();
+            ::draw2d::keep k(pgraphics);
 
             try
             {
@@ -1686,8 +1689,6 @@ namespace user
             {
 
             }
-
-            pgraphics->RestoreDC(iSaveDC);
 
          }
 

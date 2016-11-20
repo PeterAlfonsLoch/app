@@ -84,7 +84,7 @@ namespace user
    void interaction_impl::set_need_layout()
    {
 
-      m_pui->m_bNeedLayout = true;
+      m_pui->set_need_layout();
 
    }
 
@@ -2543,9 +2543,9 @@ namespace user
       if(m_pui != NULL)
       {
 
-         oswindow_remove(m_pui);
+         oswindow_remove(this);
 
-         oswindow_assign(oswindow,m_pui);
+         oswindow_assign(oswindow,this);
 
       }
 
@@ -2607,7 +2607,7 @@ namespace user
       {
 
 
-         oswindow_remove(m_pui);
+         oswindow_remove(this);
 
          set_handle(NULL);
 

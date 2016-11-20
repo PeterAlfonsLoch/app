@@ -1400,7 +1400,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
 
    defer_check_zorder();
 
-   if (!(IsWindowVisible() && (GetParent() == NULL || GetTopLevelFrame() == NULL || !GetTopLevelFrame()->WfiIsIconic())))
+   if (!IsWindowVisible() || WfiIsIconic())
       return;
 
    rect rectClient;
@@ -2264,7 +2264,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
 
       {
 
-         int iSaveDC = pgraphics->SaveDC();
+         ::draw2d::keep k(pgraphics);
 
          try
          {
@@ -2287,15 +2287,13 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
 
          }
 
-         pgraphics->RestoreDC(iSaveDC);
-
       }
 
       _001DrawThis(pgraphics);
 
       {
 
-         int iSaveDC = pgraphics->SaveDC();
+         ::draw2d::keep k(pgraphics);
 
          try
          {
@@ -2340,8 +2338,6 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
          {
 
          }
-
-         pgraphics->RestoreDC(iSaveDC);
 
       }
 
@@ -2750,6 +2746,13 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
    }
 
    m_pimpl->show_task(bVisible && m_bShowTask);
+
+}
+
+bool simple_frame_window::has_pending_graphical_update()
+{
+
+   return IsWindowVisible();
 
 }
 

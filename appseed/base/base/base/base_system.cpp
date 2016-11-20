@@ -482,13 +482,28 @@ namespace base
    }
 
 
-   ::user::interaction * system::ui_from_handle(void * pdata)
+   ::user::interaction_impl * system::impl_from_handle(void * pdata)
    {
 
       return oswindow_get((oswindow) pdata);
 
    }
 
+   ::user::interaction * system::ui_from_handle(void * pdata)
+   {
+
+      ::user::interaction_impl * pimpl = impl_from_handle(pdata);
+
+      if (pimpl == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      return pimpl->m_pui;
+
+   }
 
 } // namespace base
 

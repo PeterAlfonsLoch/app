@@ -816,17 +816,6 @@ namespace user
          m_columna._001GetByKey(0)->m_iWidth = iMaxWidth;
       }
 
-      m_iTopIndex       = _001CalcDisplayTopIndex();
-
-      index iLow = 0;
-      for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
-      {
-         if(m_iTopIndex >= iLow && m_iTopIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
-            break;
-      }
-
-      m_nDisplayCount   = _001CalcDisplayItemCount();
-
       on_change_view_size();
 
       LayoutHeaderCtrl();
@@ -891,7 +880,6 @@ namespace user
 
       on_change_view_size();
 
-
       TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
 
       if(m_bGroup)
@@ -910,6 +898,19 @@ namespace user
 
    void list::on_change_view_size()
    {
+
+      m_iTopIndex = _001CalcDisplayTopIndex();
+
+      index iLow = 0;
+      for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
+      {
+         if (m_iTopIndex >= iLow && m_iTopIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
+            break;
+      }
+
+      m_nDisplayCount = _001CalcDisplayItemCount();
+
+
       rect rect;
       if(m_eview == view_list)
       {

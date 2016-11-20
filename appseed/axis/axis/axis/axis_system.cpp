@@ -963,13 +963,19 @@ namespace axis
 
    //}
 
-   ::user::interaction * system::ui_from_handle(void * posdata)
+   ::user::interaction_impl * system::impl_from_handle(void * posdata)
    {
 
       return NULL;
 
    }
 
+   ::user::interaction * system::ui_from_handle(void * posdata)
+   {
+
+      return NULL;
+
+   }
 
 
    string system::url_encode(const string & str)

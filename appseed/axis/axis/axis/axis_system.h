@@ -185,6 +185,7 @@ namespace axis
 
       //virtual string dir_appmatter_locator(::aura::application * papp);
 
+      virtual ::user::interaction_impl * impl_from_handle(void * posdata);
       virtual ::user::interaction * ui_from_handle(void * posdata);
 
       virtual void hist_hist(const char * psz);

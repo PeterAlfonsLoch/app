@@ -329,21 +329,33 @@ namespace base
 
    ::user::primitive * session::GetFocus()
    {
+
 #ifdef METROWIN
+
       return System.ui_from_handle(::WinGetFocus());
+
 #else
+
       return System.ui_from_handle(::GetFocus());
+
 #endif
+
    }
 
 
    ::user::primitive * session::GetActiveWindow()
    {
+
 #ifdef METROWIN
+
       return System.ui_from_handle(::WinGetActiveWindow());
+
 #else
+
       return System.ui_from_handle(::GetActiveWindow());
+
 #endif
+
    }
 
 
