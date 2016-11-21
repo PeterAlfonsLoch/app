@@ -2386,11 +2386,11 @@ namespace windows
 
                   if (!m_pui->m_bLockWindowUpdate)
                   {
-
+                     synch_lock sl(m_pui->m_pmutex);
                      if (m_pui->has_pending_graphical_update()
                         || m_pui->check_need_layout())
                      {
-
+                        sl.unlock();
                         _001UpdateWindow();
 
                         m_pui->on_after_graphical_update();
@@ -2401,6 +2401,10 @@ namespace windows
                         || m_pui->check_need_zorder())
                      {
 
+                        sl.unlock();
+                        _001UpdateWindow(false);
+
+                        m_pui->on_after_graphical_update();
 
                      }
 

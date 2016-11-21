@@ -1609,8 +1609,21 @@ bool simple_frame_window::on_before_set_parent(sp(::user::interaction) pinterfac
 void simple_frame_window::on_set_parent(::user::interaction * puiParent)
 {
 
+
+
    ::user::frame_window::on_set_parent(puiParent);
 
+   if (puiParent == NULL)
+   {
+
+      if (m_bLayered)
+      {
+
+         ModifyStyleEx(0, WS_EX_LAYERED);
+
+      }
+
+   }
    m_workset.m_pwndEvent = this;
 
    if (m_pupdowntarget != NULL && wfi_is_up_down())
@@ -1640,6 +1653,8 @@ void simple_frame_window::on_set_parent(::user::interaction * puiParent)
       }
 
       m_workset.install_message_handling(m_pimpl);
+
+      m_workset.m_pframeschema->get_control_box()->set_need_layout();
 
    }
    else

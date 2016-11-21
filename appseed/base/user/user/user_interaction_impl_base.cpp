@@ -889,6 +889,7 @@ namespace user
    bool interaction_impl_base::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
+      synch_lock sl(m_pui->m_pmutex);
 
       if (!(nFlags & SWP_NOZORDER))
       {

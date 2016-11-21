@@ -7528,12 +7528,7 @@ restart:
 
       bool bAttached = false;
 
-      if (pupdown->m_eupdown == updown_normal_frame)
-      {
-
-         pupdown->m_eupdown = updown_none;
-
-      }
+      pupdown->m_eupdown = updown_down;
 
       try
       {
@@ -7551,10 +7546,10 @@ restart:
 
       }
 
-      if(bAttached)
+      if(!bAttached)
       {
 
-         pupdown->m_eupdown = updown_down;
+         pupdown->m_eupdown = updown_none;
 
       }
 
@@ -7566,12 +7561,7 @@ restart:
 
       bool bDetached = false;
 
-      if (pupdown->m_eupdown == updown_normal_frame)
-      {
-
-         pupdown->m_eupdown = updown_none;
-
-      }
+      pupdown->m_eupdown = updown_up;
 
       try
       {
@@ -7589,10 +7579,10 @@ restart:
 
       }
 
-      if(bDetached)
+      if(!bDetached)
       {
 
-         pupdown->m_eupdown = updown_up;
+         pupdown->m_eupdown = updown_none;
 
       }
 
