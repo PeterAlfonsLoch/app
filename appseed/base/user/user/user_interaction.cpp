@@ -58,8 +58,6 @@ namespace user
       m_bHideOnTransparentFrame = false;
       m_pvoidUserInteraction = this;
 
-      m_eupdown = type_normal_frame;
-
       m_bMayProDevian = true;
       //m_pmutex                   = NULL;
       m_eappearance = AppearanceNormal;
@@ -421,7 +419,7 @@ namespace user
    ::user::interaction * interaction::SetParent(::user::interaction * puiParent)
    {
 
-      if(puiParent == this || puiParent == GetParent() || IsDescendant(puiParent))
+      if(puiParent != NULL && (puiParent == this || puiParent == GetParent() || IsDescendant(puiParent)))
       {
 
          return GetParent();
@@ -445,13 +443,40 @@ namespace user
          if(puiParent == NULL)
          {
 
-            m_pparent = NULL;
+            {
+
+            restart:
+
+               sp(::user::interaction) pui;
+
+               while (get_impl()->m_guieptraMouseHover.get_child(pui))
+               {
+
+                  if (IsDescendant(pui) || pui == this)
+                  {
+
+                     try
+                     {
+
+                        pui->send_message(WM_MOUSELEAVE);
+
+                     }
+                     catch (...)
+                     {
+
+                     }
+
+                     get_impl()->m_guieptraMouseHover.remove(pui);
+
+                     goto restart;
+
+                  }
+
+               }
+
+            }
 
             sp(::user::interaction_impl) pimplNew = Application.alloc(System.type_info < ::user::interaction_impl >());
-
-            pimplNew->m_pui = this;
-
-            m_pimpl = pimplNew;
 
             string strName;
 
@@ -465,7 +490,7 @@ namespace user
 
             GetWindowRect(rectWindow);
 
-            if(!pimplNew->create_window_ex(0,NULL,strName,iStyle,rectWindow,NULL,GetDlgCtrlId()))
+            if(!pimplNew->create_window_ex(this, 0,NULL,strName,iStyle,rectWindow,NULL,GetDlgCtrlId()))
             {
 
                pimplNew.release();
@@ -477,6 +502,20 @@ namespace user
             }
             else
             {
+
+               {
+
+                  single_lock sl(m_pmutex);
+
+                  on_set_parent(puiParent);
+
+                  pimplNew->m_pui = this;
+
+                  m_pimpl = pimplNew;
+
+                  pimplNew->install_message_handling(pimplNew);
+
+               }
 
                if(pimplOld != NULL)
                {
@@ -500,7 +539,7 @@ namespace user
 
                }
 
-               on_set_parent(puiParent);
+               
 
             }
 
@@ -1885,6 +1924,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
+      m_bCreated = true;
 
       if(m_pauraapp == NULL)
          throw simple_exception(get_app(), "m_pauraapp cannot be null");
@@ -7483,80 +7523,95 @@ restart:
    //   m_eupdowntargettype = type_normal_frame;
    //}
 
-   void interaction::UpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
+   void interaction::UpDownTargetAttach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown)
    {
 
       bool bAttached = false;
 
-      if(m_eupdown == type_normal_frame)
-         m_eupdown = type_none;
+      if (pupdown->m_eupdown == updown_normal_frame)
+      {
+
+         pupdown->m_eupdown = updown_none;
+
+      }
 
       try
       {
-         if(OnUpDownTargetAttach(pupdown))
+         
+         if (OnUpDownTargetAttach(pupdown))
+         {
+
             bAttached = true;
+
+         }
+
       }
       catch(...)
       {
+
       }
 
       if(bAttached)
       {
-         m_eupdown = type_down;
+
+         pupdown->m_eupdown = updown_down;
+
       }
 
    }
 
 
-   void interaction::UpDownTargetDetach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
+   void interaction::UpDownTargetDetach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown)
    {
 
       bool bDetached = false;
 
+      if (pupdown->m_eupdown == updown_normal_frame)
+      {
 
-      if(m_eupdown == type_normal_frame)
-         m_eupdown = type_none;
+         pupdown->m_eupdown = updown_none;
+
+      }
 
       try
       {
-         if(OnUpDownTargetDetach(pupdown))
+
+         if (OnUpDownTargetDetach(pupdown))
+         {
+
             bDetached = true;
+
+         }
+
       }
       catch(...)
       {
+
       }
 
       if(bDetached)
       {
-         m_eupdown = type_up;
+
+         pupdown->m_eupdown = updown_up;
+
       }
 
    }
 
-   bool interaction::OnUpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
+   
+   bool interaction::OnUpDownTargetAttach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown)
    {
+      
       return false;
+
    }
 
-   bool interaction::OnUpDownTargetDetach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
+   
+   bool interaction::OnUpDownTargetDetach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown)
    {
+
       return false;
-   }
 
-
-   bool interaction::up_down_target_is_up()
-   {
-      return m_eupdown == type_up;
-   }
-
-   bool interaction::up_down_target_is_down()
-   {
-      return m_eupdown == type_down;
-   }
-
-   bool interaction::is_up_down_target()
-   {
-      return m_eupdown != type_normal_frame;
    }
 
 

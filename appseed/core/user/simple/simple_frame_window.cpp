@@ -1606,26 +1606,86 @@ bool simple_frame_window::on_before_set_parent(sp(::user::interaction) pinterfac
 }
 
 
-void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
+void simple_frame_window::on_set_parent(::user::interaction * puiParent)
 {
 
-   ::user::box::on_set_parent(puiParent);
+   ::user::frame_window::on_set_parent(puiParent);
 
-   UNREFERENCED_PARAMETER(puiParent);
-   m_workset.m_pwndEvent = m_pimpl->m_pui;
+   m_workset.m_pwndEvent = this;
 
-   if (m_pupdowntarget != NULL && m_pupdowntarget->is_up_down_target())
+   if (m_pupdowntarget != NULL && wfi_is_up_down())
    {
-      if (puiParent == NULL)
+
+      // an updowntarget always show the frame for upping/downing
+      
+      m_bWindowFrame = true;
+
+      m_workset.Enable(true);
+
+      if (wfi_is_up())
       {
-         m_bWindowFrame = true;
-         m_workset.Enable(true);
+
+         m_workset.m_bSizingEnabled = true;
+
+         m_workset.m_bMovingEnabled = true;
+
       }
       else
       {
-         m_bWindowFrame = false;
-         m_workset.Enable(false);
+
+         m_workset.m_bSizingEnabled = false;
+
+         m_workset.m_bMovingEnabled = false;
+
       }
+
+      m_workset.install_message_handling(m_pimpl);
+
+   }
+   else
+   {
+
+      if (m_bAutoWindowFrame)
+      {
+
+         if (!m_bWindowFrame)
+         {
+
+            m_bWindowFrame = m_bCustomFrameBefore;
+
+         }
+
+         if (!m_workset.IsEnabled())
+         {
+
+            m_workset.Enable(true);
+
+         }
+
+      }
+      else
+      {
+
+         if (puiParent != NULL)
+         {
+            
+            m_bCustomFrameBefore = m_bWindowFrame;
+            
+            m_bWindowFrame = false;
+            
+            m_workset.Enable(false);
+
+         }
+         else
+         {
+
+            m_bWindowFrame = m_bCustomFrameBefore;
+
+            m_workset.Enable(m_bWindowFrame);
+            
+         }
+      }
+
    }
 
    if (puiParent == NULL || !puiParent->is_place_holder())
@@ -1635,39 +1695,11 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
 
       WindowDataEnableSaveWindowRect(true);
 
-
    }
 
-   if (m_bAutoWindowFrame)
-   {
-      // an updowntarget always show the frame for upping/downing
-      if (!m_bWindowFrame)
-      {
-         m_bWindowFrame = m_bCustomFrameBefore;
-      }
-      if (!m_workset.IsEnabled())
-      {
-         m_workset.Enable(true);
-         on_layout();
-      }
-   }
-   else
-   {
-      if (puiParent != NULL)
-      {
-         m_bCustomFrameBefore = m_bWindowFrame;
-         m_bWindowFrame = false;
-         m_workset.Enable(false);
-         on_layout();
-      }
-      else
-      {
-         m_bWindowFrame = m_bCustomFrameBefore;
-         m_workset.Enable(m_bWindowFrame);
-         on_layout();
-      }
-   }
+   set_need_layout();
 
+   RedrawWindow();
 
 }
 
@@ -1804,18 +1836,16 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
 // persistent frame implemenation using updowntarget
 bool simple_frame_window::WndFrameworkDownUpGetUpEnable()
 {
-   return
-      m_pupdowntarget != NULL
-      && m_pupdowntarget->is_up_down_target()
-      && m_pupdowntarget->up_down_target_is_down();
+
+   return m_pupdowntarget != NULL && wfi_is_up_down() && wfi_is_down();
+
 }
 
 bool simple_frame_window::WndFrameworkDownUpGetDownEnable()
 {
-   return
-      m_pupdowntarget != NULL
-      && m_pupdowntarget->is_up_down_target()
-      && m_pupdowntarget->up_down_target_is_up();
+
+   return m_pupdowntarget != NULL && wfi_is_up_down() && wfi_is_up();
+
 }
 
 

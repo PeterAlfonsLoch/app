@@ -103,7 +103,7 @@ public:
    virtual void install_message_handling(::message::dispatch * pinterface);
 
    virtual bool on_before_set_parent(sp(::user::interaction) pinterface);
-   virtual void on_set_parent(sp(::user::interaction) puiParent);
+   virtual void on_set_parent(::user::interaction * puiParent) override;
 
    virtual bool GetClientRect(LPRECT lprect);
 

@@ -409,7 +409,7 @@ namespace user
    }
 
 
-   bool box::on_before_set_parent(sp(::user::box) puiParent)
+   bool box::on_before_set_parent(::user::interaction * puiParent)
    {
 
       if (!::simple_ui::interaction::on_before_set_parent(puiParent))
@@ -422,7 +422,7 @@ namespace user
    }
 
 
-   void box::on_set_parent(sp(::user::box) puiParent)
+   void box::on_set_parent(::user::interaction * puiParent)
    {
 
       try

@@ -395,6 +395,8 @@ using user_interaction = ::user::interaction;
 #include "base/user/user/user.h"
 
 
+#include "base/user/wndfrm/frame/wndfrm_frame_updowninterface.h"
+
 namespace user
 {
 

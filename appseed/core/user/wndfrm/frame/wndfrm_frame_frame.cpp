@@ -516,7 +516,12 @@ namespace user
          void frame::reset_layout()
          {
 
-            m_spcontrolbox->reset_layout();
+            if (m_spcontrolbox.is_set())
+            {
+
+               m_spcontrolbox->reset_layout();
+
+            }
 
             m_iCaptionHeight = calc_caption_height();
 

@@ -70,7 +70,7 @@ namespace user
 
 
       m_buttonBaseWndMenuItem.m_pfont.alloc(allocer());
-      m_buttonBaseWndMenuItem.m_pfont->create_point_font(FONT_SANS, 9.0);
+      m_buttonBaseWndMenuItem.m_pfont->create_point_font(FONT_SANS, 12.0);
       m_buttonBaseWndMenuItem.set_color(color_text_normal,ARGB(184,0,0,0));
       m_buttonBaseWndMenuItem.set_color(color_text_press,color | (184 << 24));
       m_buttonBaseWndMenuItem.set_color(color_text_disabled,ARGB(184,127,127,127));
@@ -107,6 +107,11 @@ namespace user
       m_menu.m_pschemaSysMenuButton = &m_buttonBaseWndMenuSysMenu;
       m_menu.m_pschemaItemButton = &m_buttonBaseWndMenuItem;
       m_menu.m_pschemaPopupButton = &m_buttonBaseWndMenuItemPopup;
+      m_menu.m_iElementPadding = 3;
+      m_menu.m_rectItemMargin.left = 4;
+      m_menu.m_rectItemMargin.top = 4;
+      m_menu.m_rectItemMargin.right = 4;
+      m_menu.m_rectItemMargin.bottom = 4;
 
 
       m_crTextNormal = ARGB(255, 0, 0, 0);
@@ -129,7 +134,7 @@ namespace user
    front_end_schema::menu::menu(::aura::application * papp) :
       m_font(papp->m_pcoreapp->allocer())
    {
-      //m_pschemaSysMenuButton = new button();
+      
 
    }
 

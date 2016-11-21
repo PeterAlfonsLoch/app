@@ -2350,7 +2350,7 @@ namespace windows
    void interaction_impl::_001OnCreate(signal_details * pobj)
    {
 
-      UNREFERENCED_PARAMETER(pobj);
+      SCAST_PTR(::message::create, pcreate, pobj);
 
       Default();
 
@@ -2420,6 +2420,15 @@ namespace windows
             });
 
          }
+
+      }
+
+      if (m_pui->m_bCreated)
+      {
+
+         pcreate->set_lresult(0);
+
+         pcreate->m_bRet = true;
 
       }
 

@@ -25,23 +25,26 @@ namespace user
       };
 
 
-      ::user::interaction *      m_oswindowParent;
-      menu *                     m_pmenuParent;
-      HMENU                      m_hmenu;
-      //menu *                     _m_pmenu;
-      bool                       m_bOwnItem;
-      size                       m_size;
-      int32_t                    m_iItemHeight;
-      bool                       m_bAutoDelete;
-      int32_t                    m_iHeaderHeight;
-      ::user::button             m_buttonClose;
-      id                         m_idSubMenu;
-      int32_t                    m_iHoverSubMenu;
-      uint32_t                   m_dwOut;
-      sp(menu)                     m_psubmenu;
-      id                         m_idTimerMenu;
-      point                      m_ptTrack;
-      ::user::interaction *      m_puiNotify;
+      ::user::interaction *                  m_oswindowParent;
+      menu *                                 m_pmenuParent;
+      HMENU                                  m_hmenu;
+      //menu *                                 _m_pmenu;
+      bool                                   m_bOwnItem;
+      size                                   m_size;
+      int32_t                                m_iItemHeight;
+      int32_t                                m_iCheckBoxSize;
+      bool                                   m_bAutoDelete;
+      int32_t                                m_iHeaderHeight;
+      ::user::button                         m_buttonClose;
+      id                                     m_idSubMenu;
+      int32_t                                m_iHoverSubMenu;
+      uint32_t                               m_dwOut;
+      sp(menu)                                 m_psubmenu;
+      id                                     m_idTimerMenu;
+      point                                  m_ptTrack;
+      ::user::interaction *                  m_puiNotify;
+      ::user::front_end_schema::menu  *      m_pschema;
+      
 
 
       menu();
@@ -93,10 +96,9 @@ namespace user
       /*DECL_GEN_SIGNAL(OnMouseProc);*/
       bool pre_create_window(::user::create_struct& cs);
       //virtual void PostNcDestroy();
-      ::user::front_end_schema::menu  * m_pschema;
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-
+      virtual bool get_font(::draw2d::font_sp & spfont) override;
 
       sp(::user::menu_item) get_item();
 

@@ -147,6 +147,18 @@
     <Filter Include="Header Files\base\message\NewFilter1">
       <UniqueIdentifier>{95110d94-f615-4015-a145-ed163150ee24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\wndfrm">
+      <UniqueIdentifier>{38d9abef-7afa-4abd-8c38-cf8433f41404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\wndfrm\frame">
+      <UniqueIdentifier>{97c95238-fc7c-4ac5-81e6-94add3751806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\wndfrm">
+      <UniqueIdentifier>{a0ffbbf1-2d0e-448b-bd22-f412d7aaaaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\wndfrm\frame">
+      <UniqueIdentifier>{b26ce49e-dc20-4147-81fd-34c99bedcba0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\os\cross.h">
@@ -466,6 +478,9 @@
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_c.h">
       <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_updowninterface.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -822,6 +837,9 @@
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_updowninterface.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

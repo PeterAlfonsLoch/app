@@ -41,8 +41,8 @@ namespace user
 
       virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
 
-      virtual void on_set_parent(sp(::user::box) puiParent);
-      virtual bool on_before_set_parent(sp(::user::box) pinterface);
+      virtual void on_set_parent(::user::interaction * puiParent) override;
+      virtual bool on_before_set_parent(::user::interaction * pinterface) override;
 
 
       virtual string calc_data_id();

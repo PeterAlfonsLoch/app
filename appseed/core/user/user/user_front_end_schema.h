@@ -22,13 +22,18 @@ namespace user
       class CLASS_DECL_CORE menu
       {
       public:
+         
+         ::draw2d::font_sp    m_font;
+         button *             m_pschemaSysMenuCloseButton;
+         button *             m_pschemaSysMenuButton;
+         button *             m_pschemaItemButton;
+         button *             m_pschemaPopupButton;
+         rect                 m_rectItemMargin;
+         int                  m_iElementPadding;
+         
          menu(::aura::application * papp);
          ~menu();
-         ::draw2d::font_sp     m_font;
-         button *          m_pschemaSysMenuCloseButton;
-         button *          m_pschemaSysMenuButton;
-         button *          m_pschemaItemButton;
-         button *          m_pschemaPopupButton;
+
       };
 
       class CLASS_DECL_CORE button :

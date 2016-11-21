@@ -27,10 +27,10 @@ namespace user
 
       enum e_updown
       {
-         type_normal_frame,
-         type_none,
-         type_up,
-         type_down,
+         updown_normal_frame,
+         updown_none,
+         updown_up,
+         updown_down,
       };
 
       bool                                m_bMouseHover;
@@ -43,7 +43,6 @@ namespace user
 
       bool                                m_bWorkspaceFullScreen;
       point                               m_ptScrollPassword1;
-      e_updown                            m_eupdown;
       bool                                m_bHideOnTransparentFrame;
       bool                                m_bMoving;
       bool                                m_bMoveWindow;
@@ -745,15 +744,12 @@ namespace user
       // Up Down Target();
 
 
-      virtual void UpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown);
-      virtual void UpDownTargetDetach(::user::wndfrm::frame::WorkSetClientInterface * pupdown);
+      virtual void UpDownTargetAttach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown);
+      virtual void UpDownTargetDetach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown);
 
-      virtual bool OnUpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown);
-      virtual bool OnUpDownTargetDetach(::user::wndfrm::frame::WorkSetClientInterface * pupdown);
+      virtual bool OnUpDownTargetAttach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown);
+      virtual bool OnUpDownTargetDetach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown);
 
-      virtual bool up_down_target_is_up();
-      virtual bool up_down_target_is_down();
-      virtual bool is_up_down_target();
 
 
       virtual void user_interaction_on_destroy();

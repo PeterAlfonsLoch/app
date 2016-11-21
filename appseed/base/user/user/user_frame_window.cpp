@@ -178,10 +178,10 @@ namespace user
 
 
 
-   void frame_window::on_set_parent(sp(::user::interaction) puiParent)
+   void frame_window::on_set_parent(::user::interaction * puiParent)
    {
 
-      UNREFERENCED_PARAMETER(puiParent);
+      ::user::box::on_set_parent(puiParent);
 
    }
 

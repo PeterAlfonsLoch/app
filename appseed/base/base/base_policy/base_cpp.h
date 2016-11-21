@@ -30,7 +30,10 @@ namespace user
 
       namespace frame
       {
+         
          class WorkSetClientInterface;
+
+         class WorkSetUpDownInterface;
 
       }
 

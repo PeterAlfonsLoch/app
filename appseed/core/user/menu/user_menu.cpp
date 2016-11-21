@@ -13,6 +13,7 @@ namespace user
    menu::menu():
       menu(get_app())
    {
+      
    }
 
    menu::menu(::aura::application * papp) :
@@ -124,6 +125,15 @@ namespace user
       return true;
    }
 
+   bool menu::get_font(::draw2d::font_sp & spfont)
+   {
+
+      spfont = m_pschema->m_font;
+
+      return true;
+
+   }
+
    void menu::layout_menu(point pt)
    {
 
@@ -138,10 +148,16 @@ namespace user
 
       ::draw2d::memory_graphics pgraphics(allocer());
 
-      pgraphics->SelectObject(m_pschema->m_font);
-      size size = pgraphics->GetTextExtent("XXXMMM");
+      pgraphics->SelectObject(m_pschema->m_pschemaItemButton->m_pfont);
+
+      size size = pgraphics->GetTextExtent(unitext("XXXMMMÁÇg"));
+
       int32_t iMaxHeight = size.cy;
+
       int32_t iMaxWidth = size.cx;
+
+      m_iCheckBoxSize = iMaxHeight;
+
       m_iHeaderHeight = size.cy;
 
       sp(::user::menu_item) pitem = get_item();
@@ -150,71 +166,130 @@ namespace user
 
       for (int32_t i = 0; i < spitema->get_size(); i++)
       {
+         
          string strButtonText = spitema->element_at(i)->m_button.GetWindowText();
+         
          class size size = pgraphics->GetTextExtent(strButtonText);
+
+         size.cx += m_pschema->m_rectItemMargin.left;
+
+         size.cx += m_pschema->m_rectItemMargin.right;
+
+         size.cx += m_pschema->m_iElementPadding;
+
+         size.cx += m_iCheckBoxSize;
+         
          if (spitema->element_at(i)->IsPopup())
-            size.cx += 12 + 16;
-         if(size.cy > iMaxHeight)
+         {
+
+            size.cx += m_pschema->m_iElementPadding;
+
+            size.cx += m_iCheckBoxSize;
+
+         }
+
+         size.cy += m_pschema->m_rectItemMargin.top;
+
+         size.cy += m_pschema->m_rectItemMargin.bottom;
+
+         if (size.cy > iMaxHeight)
+         {
+
             iMaxHeight = size.cy;
-         if(size.cx > iMaxWidth)
+
+         }
+         
+         if (size.cx > iMaxWidth)
+         {
+
             iMaxWidth = size.cx;
+
+         }
+
       }
-      m_iItemHeight = iMaxHeight + 6 + 2;
-      m_size.cx = iMaxWidth + 4 + 20 + 8;
 
+      m_iItemHeight = iMaxHeight;
+
+      m_size.cx = iMaxWidth + m_pschema->m_rectItemMargin.left + m_pschema->m_rectItemMargin.right;
+       
       ::count iItemCount = spitema->get_size();
-      int32_t iSeparatorCount = pitem->m_iSeparatorCount;
-//      int32_t iFullHeightItemCount = m_pitem->m_iFullHeightItemCount;
 
-   //   int32_t iMaxHeight = 0;
-     // int32_t iMaxWidth = 0;
-      rect rect(4, m_iHeaderHeight, m_size.cx - 8, 4);
+      int32_t iSeparatorCount = pitem->m_iSeparatorCount;
+
+      int x = m_pschema->m_rectItemMargin.left;
+
       string str;
+
+      int cx = iMaxWidth;
+
+      int cy;
+
+      int y = m_pschema->m_rectItemMargin.top;
+
+      y += m_iItemHeight;
+
+      y += m_pschema->m_iElementPadding;
+
       for(int32_t i = 0; i < iItemCount; i++)
       {
+
          ::user::menu_item * pitem = spitema->element_at(i);
+
          if(pitem->m_id == "separator")
          {
-            rect.bottom = rect.top + 5;
-            iSeparatorCount--;
+            
+            cy = m_pschema->m_rectItemMargin.top;
+
+            cy += m_pschema->m_rectItemMargin.bottom;
+            
          }
          else
          {
-            rect.bottom = rect.top + m_iItemHeight;
+            
+            cy = m_iItemHeight;
+
          }
+         
          pitem->m_button.create_window(null_rect(), this, pitem->m_id);
-         pitem->m_button.SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
+         
+         pitem->m_button.SetWindowPos(0, x, y, cx,cy, SWP_SHOWWINDOW | SWP_NOZORDER);
+         
          pitem->m_button.m_pschema = m_pschema->m_pschemaItemButton;
+         
          pitem->m_button.m_pitem = pitem;
+         
          pitem->m_pbase = this;
-   /*      if(pitem->IsPopup())
-         {
-            rect rectPopupArrow(rect);
-            rectPopupArrow.left = rectPopupArrow.right - 5;
-            array < point, point & > pta;
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
-            pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2));
-            pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
-            pgraphics->Polygon(pta.get_data(), pta.get_size());
-         }*/
-         rect.top = rect.bottom + 2;
+
+         pitem->m_button.m_rectCheckBox.left = m_pschema->m_rectItemMargin.left;
+         pitem->m_button.m_rectCheckBox.top = m_pschema->m_rectItemMargin.top;
+         pitem->m_button.m_rectCheckBox.bottom = cy - m_pschema->m_rectItemMargin.bottom;
+         pitem->m_button.m_rectCheckBox.right = pitem->m_button.m_rectCheckBox.left + m_iCheckBoxSize;
+
+         pitem->m_button.m_rectText.left = pitem->m_button.m_rectCheckBox.right + m_pschema->m_iElementPadding;
+         pitem->m_button.m_rectText.top = m_pschema->m_rectItemMargin.top;
+         pitem->m_button.m_rectText.bottom = cy - m_pschema->m_rectItemMargin.bottom;
+         pitem->m_button.m_rectText.right = cx - m_pschema->m_rectItemMargin.right;
+
+         y += cy;
+
+         y += m_pschema->m_iElementPadding;
+
       }
 
-      m_size.cy = rect.bottom;
+      y -= m_pschema->m_iElementPadding;
+
+      y += m_pschema->m_rectItemMargin.bottom;
+
+      m_size.cy = y;
 
 
       m_buttonClose.ResizeToFit();
 
-   //   rect rect;
-      m_buttonClose.GetWindowRect(rect);
       m_buttonClose.SetWindowPos(0, 0, 0, 0, 0, SWP_NOSIZE);
-      //m_buttonClose.ShowWindow(SW_NORMAL);
-
+      
       SetWindowPos(ZORDER_TOPMOST,pt.x,pt.y,m_size.cx,m_size.cy,SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 
       SetTimer(::user::BaseWndMenuCmdUi,100,NULL);
-
 
    }
 

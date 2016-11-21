@@ -1120,7 +1120,16 @@ namespace user
       for (index i = 0; i < ptra.get_count(); i++)
       {
 
-         add(ptra[i]);
+         try
+         {
+
+            add(ptra[i]);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 

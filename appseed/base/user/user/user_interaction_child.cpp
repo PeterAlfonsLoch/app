@@ -166,7 +166,12 @@ namespace user
 
       m_pui->pre_create_window(cs);
 
-      m_pui->send_message(WM_CREATE,0,(lparam)(LPARAM)&cs);
+      if (!m_pui->m_bCreated)
+      {
+
+         m_pui->send_message(WM_CREATE, 0, (lparam)(LPARAM)&cs);
+
+      }
 
       ::rect rectChild(rect);
 

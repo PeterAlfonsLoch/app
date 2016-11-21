@@ -200,7 +200,7 @@ namespace user
       DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate);
       DECL_GEN_SIGNAL(guserbaseOnInitialUpdate);
 
-      virtual void on_set_parent(sp(::user::interaction) puiParent);
+      virtual void on_set_parent(::user::interaction * puiParent) override;
 
       virtual void defer_synch_layered();
       virtual bool calc_layered();

@@ -307,29 +307,34 @@ namespace user
 
          Session.get_cursor_pos(ptCursor);
 
-         ref_array < ::user::interaction > uiptra;
-
-         while (m_guieptraMouseHover.get_child(pui))
-         {
-
-            pui->GetWindowRect(rectUi);
-
-            if (pui != m_pui)
-            {
-
-               pui->send_message(WM_MOUSELEAVE);
-
-            }
-
-         }
+         ::user::interaction_spa uia;
 
          {
 
             synch_lock sl(m_pmutex);
 
+            uia = m_guieptraMouseHover;
+
             m_guieptraMouseHover.remove_all();
 
          }
+
+         for(auto & pui : uia)
+         {
+
+            try
+            {
+
+               pui->send_message(WM_MOUSELEAVE);
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
 
       }
 
@@ -349,31 +354,24 @@ namespace user
 
       bool bPointInside = m_pui->_001IsPointInside(pmouse->m_pt);
 
-      if (m_pui->m_bTransparentMouseEvents)
+      
       {
 
-      restart_mouse_hover_check:
+         ::user::interaction_spa uia = m_guieptraMouseHover;
+
+         for(auto & pui : uia)
          {
 
-            sp(::user::interaction) pui;
-
-            while (m_guieptraMouseHover.get_child(pui))
+            if (!pui->_001IsPointInside(pmouse->m_pt))
             {
 
-               if (!pui->_001IsPointInside(pmouse->m_pt))
+               pui->send_message(WM_MOUSELEAVE);
+
                {
 
-                  pui->send_message(WM_MOUSELEAVE);
+                  synch_lock sl(m_pmutex);
 
-                  {
-
-                     synch_lock sl(m_pmutex);
-
-                     m_guieptraMouseHover.remove(pui);
-
-                  }
-
-                  goto restart_mouse_hover_check;
+                  m_guieptraMouseHover.remove(pui);
 
                }
 

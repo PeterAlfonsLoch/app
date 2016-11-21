@@ -15,8 +15,13 @@ namespace user
 
          WorkSetClientInterface::WorkSetClientInterface()
          {
+
+            m_eupdown = updown_normal_frame;
+
             m_workset.set_app(m_pauraapp);
+
             m_pupdowntarget = NULL;
+
             m_bFullScreenOnZoom = false;
 
             m_bInitialFramePosition = true;
@@ -631,6 +636,7 @@ namespace user
                m_pupdowntarget->UpDownTargetDetach(this);
             }
          }
+
 
          
          void WorkSetClientInterface::_001OnTimer(::timer * ptimer)

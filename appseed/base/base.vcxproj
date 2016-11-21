@@ -1040,6 +1040,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_updowninterface.cpp" />
     <ClCompile Include="user\_user.cpp" />
     <ClInclude Include="base\message\message_user.h" />
     <ClInclude Include="base\node\ansios\ansios.h">
@@ -1283,6 +1284,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_windowing.h" />
     <ClInclude Include="user\user\user_window_map.h" />
     <ClInclude Include="user\user\user_window_util.h" />
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_updowninterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">

@@ -14,14 +14,13 @@ namespace user
 
 
          class CLASS_DECL_CORE WorkSetClientInterface :
-            virtual public box
+            virtual public WorkSetUpDownInterface
          {
          public:
 
 
             WorkSet                    m_workset;
             ::user::EAppearance        m_eappearanceBefore;
-            ::user::interaction *      m_pupdowntarget;
             int32_t                    m_iIndex;
             bool                       m_bFullScreenOnZoom;
             bool                       m_bInitialFramePosition;
@@ -94,6 +93,8 @@ namespace user
             virtual void WfiOnAfterClose();
             virtual void WfiOnAfterFullScreen();
             virtual void WfiOnAfterNotifyIcon();
+
+
 
 
             virtual bool WndFrameworkDownUpGetUpEnable() = 0;

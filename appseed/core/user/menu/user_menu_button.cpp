@@ -31,11 +31,28 @@ namespace user
    void menu_button::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      button::_001OnDraw(pgraphics);
-
       rect rectClient;
 
       GetClientRect(rectClient);
+
+      if (m_id == "separator")
+      {
+
+         ::draw2d::pen_sp pen(allocer());
+
+         pen->create_solid(2.0, ARGB(127, 80, 80, 80));
+
+         pgraphics->SelectObject(pen);
+
+         pgraphics->MoveTo(rectClient.left, (rectClient.top + rectClient.bottom) / 2);
+         
+         pgraphics->LineTo(rectClient.right, (rectClient.top + rectClient.bottom) / 2);
+
+         return;
+
+      }
+
+      button::_001OnDraw(pgraphics);
 
       if(m_pitem != NULL && m_pitem->m_bPopup)
       {
@@ -69,25 +86,36 @@ namespace user
 
    void menu_button::on_layout()
    {
-      rect rect;
-      class rect rectClient;
-      
-      GetClientRect(rectClient);
+      //rect rect;
+      //class rect rectClient;
+      //
+      //GetClientRect(rectClient);
 
-      rect = rectClient;
-      rect.left   += 3 + 16 + 2;
-      rect.top    += 7;
-      rect.bottom -= 6;
-      m_rectText = rect;
+      //rect = rectClient;
+      //rect.left   += 3 + 16 + 2;
+      //rect.top    += 7;
+      //rect.bottom -= 6;
+      //m_rectText = rect;
 
-      rect = rectClient;
-      rect.left   += 3;
-      rect.top    += 3;
-      rect.right  -= 3;
-      rect.bottom -= 3;
-      m_rectCheckBox = rect;
+      //rect = rectClient;
+      //rect.left   += 3;
+      //rect.top    += 3;
+      //rect.right  -= 3;
+      //rect.bottom -= 3;
+      //m_rectCheckBox = rect;
    }
+   
+   void menu_button::_001OnNcDraw(::draw2d::graphics * pgraphics)
+   {
 
+      if (m_id != "separator")
+      {
+
+         ::user::button::_001OnNcDraw(pgraphics);
+
+      }
+
+   }
 
    void menu_button::_001DrawCheck(::draw2d::graphics * pgraphics)
    {
