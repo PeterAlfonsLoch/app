@@ -2749,14 +2749,6 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 
 }
 
-bool simple_frame_window::has_pending_graphical_update()
-{
-
-   return IsWindowVisible();
-
-}
-
-
 void simple_frame_window::show_task(bool bShow)
 {
 

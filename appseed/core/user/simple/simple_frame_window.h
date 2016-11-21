@@ -283,8 +283,6 @@ public:
 
    virtual void show_task(bool bShow);
 
-   virtual bool has_pending_graphical_update();
-
 };
 
 

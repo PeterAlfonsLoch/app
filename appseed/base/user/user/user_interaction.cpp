@@ -35,6 +35,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_bRedrawOnVisible = false;
+
       m_bNeedLayout = false;
 
       m_bCreated = false;
@@ -7885,6 +7887,13 @@ restart:
 #endif
 
       if (m_bRedraw)
+      {
+
+         return true;
+
+      }
+
+      if (m_bRedrawOnVisible && IsWindowVisible())
       {
 
          return true;

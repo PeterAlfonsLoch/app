@@ -46,6 +46,7 @@ namespace user
       bool                                m_bEnableSaveWindowRect;
       bool                                m_bLayoutEnable;
       bool                                m_bNeedLayout;
+      bool                                m_bRedrawOnVisible;
 
 
       alpha_source *                      m_palphasource;
