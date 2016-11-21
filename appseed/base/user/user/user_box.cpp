@@ -57,7 +57,6 @@ namespace user
    {
 
       pobj->previous();
-      UNREFERENCED_PARAMETER(pobj);
 
    }
 

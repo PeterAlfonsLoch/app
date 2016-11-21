@@ -305,6 +305,7 @@ namespace user
             index iOldHover = m_iHover;
             m_iHover = iHover;
             RedrawWindow();
+            track_mouse_hover();
             if(iOldHover == -1)
             {
                ::user::control_event ev;
@@ -323,7 +324,6 @@ namespace user
                   ::message::message_event, 0, (LPARAM)&ev);
   //             m_bActionHover = false;
             }
-            track_mouse_hover();
          }
          pobj->m_bRet = false;
       }
@@ -349,7 +349,6 @@ namespace user
             {
                GetParent()->send_message(::message::message_event, 0, (LPARAM)&ev);
             }
-            track_mouse_leave();
          }
          pbase->m_bRet = false;
       }

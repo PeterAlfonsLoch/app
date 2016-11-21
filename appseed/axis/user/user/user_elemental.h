@@ -40,6 +40,7 @@ namespace user
       virtual ::user::interaction * GetParent() const;
       virtual ::user::elemental * get_parent() const;
       virtual ::user::interaction * get_wnd() const;
+      virtual ::user::interaction_impl * get_impl() const;
       virtual ::user::elemental * get_wnd_elemental() const;
       virtual bool BaseOnControlEvent(control_event * pevent);
       virtual elemental * keyboard_get_next_focusable(elemental * pfocus = NULL,bool bSkipChild = false,bool bSkipSiblings = false,bool bSkipParent = false);

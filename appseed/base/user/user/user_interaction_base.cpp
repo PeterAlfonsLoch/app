@@ -133,6 +133,41 @@ Restart:
    }
 
 
+   ::user::interaction_impl * interaction_base::get_impl() const
+   {
+
+      ::user::interaction * pui = get_wnd();
+
+      if (pui == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      if (pui->m_pimpl.is_null())
+      {
+
+         return NULL;
+
+      }
+
+      try
+      {
+
+         return pui->m_pimpl->get_impl();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return NULL;
+
+   }
+
+
    bool interaction_base::is_window_enabled()
    {
 

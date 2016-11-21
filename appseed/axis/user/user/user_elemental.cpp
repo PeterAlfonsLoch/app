@@ -78,6 +78,14 @@ namespace user
 
    }
 
+
+   ::user::interaction_impl * elemental::get_impl() const
+   {
+
+      return NULL;
+
+   }
+
    bool elemental::BaseOnControlEvent(control_event * pevent)
    {
 

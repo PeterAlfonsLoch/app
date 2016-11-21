@@ -7253,7 +7253,15 @@ namespace metrowin
    ::user::interaction *  interaction_impl::get_wnd() const
    {
 
-      return (::user::interaction *) this;
+      return  m_pui;
+
+   }
+
+
+   ::user::interaction_impl *  interaction_impl::get_impl() const
+   {
+
+      return  this;
 
    }
 

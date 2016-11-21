@@ -720,6 +720,8 @@ namespace user
       virtual void _001BaseWndInterfaceMap();
 
 
+      virtual interaction_impl * get_impl() const;
+
       //virtual void _001UpdateScreen(bool bUpdateBuffer = true);
       //virtual void _001UpdateBuffer();
 

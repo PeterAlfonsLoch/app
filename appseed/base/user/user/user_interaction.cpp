@@ -8012,6 +8012,8 @@ restart:
 
                m_bMouseHover = false;
 
+               get_impl()->mouse_hover_remove(this);
+
                send_message(WM_MOUSELEAVE);
 
                RedrawWindow();
@@ -8029,21 +8031,12 @@ restart:
    void interaction::defer_notify_mouse_move()
    {
 
-#ifdef METROWIN
-      if (::WinGetCapture() != NULL)
+      if (System.os().get_capture() != NULL)
       {
 
          return;
 
       }
-#else
-      if (::GetCapture() != NULL)
-      {
-
-         return;
-
-      }
-#endif
 
       point ptCurrent;
 

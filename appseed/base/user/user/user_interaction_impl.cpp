@@ -453,13 +453,6 @@ namespace user
    void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
-      if (m_pui->m_bTransparentMouseEvents)
-      {
-
-         return;
-
-      }
-
       if (pinterface == NULL)
       {
 
@@ -482,6 +475,7 @@ namespace user
       m_guieptraMouseHover.remove(pinterface);
 
    }
+
 
    void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
    {
@@ -2223,6 +2217,14 @@ namespace user
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
+
+   }
+
+
+   interaction_impl * interaction_impl::get_impl() const
+   {
+
+      return (::user::interaction_impl *) this;
 
    }
 

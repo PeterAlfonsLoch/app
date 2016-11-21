@@ -464,7 +464,6 @@ namespace user
       virtual ::user::interaction * get_wnd() const override;
       virtual ::user::interaction * get_wnd(UINT nCmd) const override;
 
-
       virtual ::user::interaction * SetParent(::user::interaction * pui) override;
       virtual ::user::interaction * SetOwner(::user::interaction * pui) override;
 
