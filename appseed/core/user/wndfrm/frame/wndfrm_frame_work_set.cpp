@@ -349,9 +349,7 @@ namespace user
 
             m_psizemanager->SetMinSize(m_pframeschema->GetMinSize());
 
-            //pwndRegion->SetTimer(16319,100,NULL);
-
-            _001InstallEventHandling(pwndEvent->m_pimpl);
+            install_message_handling(pwndEvent->m_pimpl);
 
             return true;
 
@@ -1158,8 +1156,11 @@ namespace user
                //      m_pappearance->_001OnSize(nType, cx, cy);
             }
          }
-         void WorkSet::_001InstallEventHandling(::message::dispatch * pdispatch)
+
+
+         void WorkSet::install_message_handling(::message::dispatch * pdispatch)
          {
+
             IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&WorkSet::_001OnLButtonDown);
             IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&WorkSet::_001OnLButtonUp);
             IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&WorkSet::_001OnMouseMove);
@@ -1169,17 +1170,12 @@ namespace user
             IGUI_WIN_MSG_LINK(WM_NCHITTEST,pdispatch,this,&WorkSet::_001OnNcHitTest);
             IGUI_WIN_MSG_LINK(WM_ACTIVATE,pdispatch,this,&WorkSet::_001OnActivate);
             IGUI_WIN_MSG_LINK(WM_NCACTIVATE,pdispatch,this,&WorkSet::_001OnNcActivate);
-//            //IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&WorkSet::_001OnTimer);
             IGUI_WIN_MSG_LINK(WM_SIZE,pdispatch,this,&WorkSet::_001OnSize);
             IGUI_WIN_MSG_LINK(WM_COMMAND,pdispatch,this,&WorkSet::_001OnCommand);
             IGUI_WIN_MSG_LINK(WM_MOVE,pdispatch,this,&WorkSet::_001OnMove);
 
-            /*   if(m_pappearance != NULL)
-               {
-               m_pappearance->InitializeMessageHandling(pinterface);
-               }*/
-
          }
+
 
          void WorkSet::_001OnLButtonDown(signal_details * pobj)
          {
