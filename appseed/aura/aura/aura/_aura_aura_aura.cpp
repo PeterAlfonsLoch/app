@@ -46,7 +46,7 @@
 #include "aura_command_ui.cpp"
 #include "aura_command_ui_test.cpp"
 #include "aura_conv.cpp"
-#include "aura_core_os.cpp"
+#include "aura_os.cpp"
 //#include "aura_cpu_architecture.cpp"
 #include "aura_create_context.cpp"
 #include "aura_cregexp.cpp"

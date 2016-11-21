@@ -34,7 +34,8 @@ namespace user
       m_bUpdateGraphics                      = false;
       m_oswindow                             = NULL;
       m_puiFocus                             = NULL;
-      m_bMouseHover                          = false;
+
+
 
 
    }
@@ -293,10 +294,10 @@ namespace user
    void interaction_impl::_000OnMouseLeave(signal_details * pobj)
    {
 
+      m_pui->m_bMouseHover = false;
+
       if (!m_pui->m_bTransparentMouseEvents)
       {
-
-         m_bMouseHover = false;
 
          sp(::user::interaction) pui;
 
@@ -334,14 +335,24 @@ namespace user
 
    }
 
+   
+   void interaction_impl::_001OnTriggerMouseInside()
+   {
+
+      m_pui->m_bMouseHover = true;
+
+   }
+
 
    void interaction_impl::_008OnMouse(::message::mouse * pmouse)
    {
 
-   restart_mouse_hover_check:
+      bool bPointInside = m_pui->_001IsPointInside(pmouse->m_pt);
+
+      if (m_pui->m_bTransparentMouseEvents)
       {
 
-         if (m_pui->m_bTransparentMouseEvents)
+      restart_mouse_hover_check:
          {
 
             sp(::user::interaction) pui;
@@ -372,16 +383,12 @@ namespace user
 
       }
 
-#ifdef METROWIN
-      oswindow oswindow = ::WinGetCapture();
-#else
-      oswindow oswindow = ::GetCapture();
-#endif
+      oswindow oswindow = System.os().get_capture();
 
       if (oswindow == NULL || oswindow == get_handle())
       {
 
-         if (!m_bMouseHover)
+         if (!m_pui->m_bMouseHover && bPointInside)
          {
 
             m_pui->_001OnTriggerMouseInside();
@@ -2734,6 +2741,29 @@ namespace user
       return m_apmutexRedraw;
 
    }
+
+
+   bool interaction_impl::has_pending_graphical_update()
+   {
+
+      {
+
+         synch_lock sl(m_pmutex);
+
+         if (m_ptraRedraw.has_elements())
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+
+   }
+
 
 } // namespace user
 

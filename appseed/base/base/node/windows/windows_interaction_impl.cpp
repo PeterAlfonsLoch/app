@@ -2391,7 +2391,7 @@ namespace windows
                         || m_pui->check_need_layout())
                      {
 
-                        RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+                        _001UpdateWindow();
 
                         m_pui->on_after_graphical_update();
 
@@ -4411,6 +4411,13 @@ while (pui != NULL)
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
+      if (!IsWindowVisible())
+      {
+
+         return true;
+
+      }
+
       if (flags & RDW_UPDATENOW)
       {
 
@@ -5910,7 +5917,8 @@ lCallNextHook:
    void interaction_impl::_001OnTriggerMouseInside()
    {
 
-      m_bMouseHover = true;
+      ::user::interaction_impl::_001OnTriggerMouseInside();
+
       TRACKMOUSEEVENT tme = {sizeof(tme)};
       tme.dwFlags = TME_LEAVE;
       tme.hwndTrack = get_handle();

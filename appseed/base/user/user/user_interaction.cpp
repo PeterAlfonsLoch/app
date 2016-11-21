@@ -36,6 +36,13 @@ namespace user
    {
 
       m_bMouseHover = false;
+      m_bTransparentMouseEvents = false;
+      m_bRedraw = false;
+
+      m_bRedraw = false;
+
+      m_bCursorRedraw = false;
+
 
       m_bRedrawOnVisible = false;
 
@@ -44,8 +51,6 @@ namespace user
       m_bCreated = false;
 
       m_bLockWindowUpdate = false;
-
-      m_bTransparentMouseEvents = false;
 
       m_bRedrawing = false;
       m_pparent = NULL;
@@ -78,8 +83,6 @@ namespace user
       m_puserschema = NULL;
       m_bLockWindowUpdate = false;
 
-
-      m_bRedraw = false;
 
       m_bDefaultWalkPreTranslateParentTree = false;
 
@@ -2264,6 +2267,13 @@ namespace user
 
    bool interaction::_001IsPointInside(point64 pt)
    {
+
+      if (get_wnd()->WfiIsIconic() || !IsWindowVisible())
+      {
+
+         return false;
+
+      }
 
       rect64 rect;
 
@@ -7888,13 +7898,6 @@ restart:
       
 #endif
 
-      if (m_bRedraw)
-      {
-
-         return true;
-
-      }
-
       if (m_bRedrawOnVisible && IsWindowVisible())
       {
 
@@ -7902,7 +7905,14 @@ restart:
 
       }
 
-      if (m_bCursorRedraw || m_bTransparentMouseEvents)
+      if (m_bRedraw)
+      {
+
+         return true;
+
+      }
+
+      if (m_bCursorRedraw)
       {
 
          point ptCursor;
@@ -7915,27 +7925,7 @@ restart:
             if (_001IsPointInside(ptCursor))
             {
 
-               if (!m_bMouseHover)
-               {
-
-                  m_bMouseHover = true;
-
-               }
-
                return true;
-
-            }
-            else
-            {
-
-               if (m_bMouseHover)
-               {
-
-                  m_bMouseHover = false;
-
-                  return true;
-
-               }
 
             }
 
@@ -7943,16 +7933,10 @@ restart:
 
       }
 
+      if (m_pimpl->has_pending_graphical_update())
       {
 
-         synch_lock sl(m_pmutex);
-
-         if (m_ptraRedraw.has_elements())
-         {
-
-            return true;
-
-         }
+         return true;
 
       }
 
@@ -7988,21 +7972,12 @@ restart:
    void interaction::defer_notify_mouse_move(point & ptLast)
    {
 
-#ifdef METROWIN
-      if (::WinGetCapture() != NULL)
+      if (System.os().get_capture() != NULL)
       {
 
          return;
 
       }
-#else
-      if (::GetCapture() != NULL)
-      {
-
-         return;
-
-      }
-#endif
 
       point ptCurrent;
 
@@ -8013,13 +7988,38 @@ restart:
 
          ptLast = ptCurrent;
 
+         bool bPointInside = _001IsPointInside(ptCurrent);
+
+         if (bPointInside || m_bMouseHover)
+         {
+
 #if !defined(LINUX)
 
-         get_wnd()->ScreenToClient(ptCurrent);
+            get_wnd()->ScreenToClient(ptCurrent);
 
 #endif
 
-         get_wnd()->message_call(WM_MOUSEMOVE, 0, ptCurrent);
+            if (bPointInside)
+            {
+
+               m_bMouseHover = true;
+
+               get_wnd()->message_call(WM_MOUSEMOVE, 0, ptCurrent);
+
+            }
+            else
+            {
+
+               m_bMouseHover = false;
+
+               send_message(WM_MOUSELEAVE);
+
+               RedrawWindow();
+
+            }
+
+
+         }
 
       }
 
@@ -8075,7 +8075,21 @@ restart:
    }
 
 
+   void interaction::on_after_graphical_update()
+   {
+
+      ::user::interaction_base::on_after_graphical_update();
+
+      m_bRedraw = false;
+
+      Session.get_cursor_pos(m_ptCursor);
+
+   }
+
+
 } // namespace user
+
+
 
 
 

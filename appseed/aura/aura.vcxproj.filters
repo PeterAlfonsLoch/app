@@ -1226,9 +1226,6 @@
     <ClInclude Include="aura\aura\aura_number.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_os.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_plex.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1282,9 +1279,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_set.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_core_os.h">
-      <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_savings.h">
       <Filter>Header Files\aura\aura</Filter>
@@ -2210,6 +2204,12 @@
     <ClInclude Include="aura\aura\aura_pointer.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_nodeapp.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_os.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -2925,9 +2925,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_set.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_core_os.cpp">
-      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_savings.cpp">
       <Filter>Source Files\aura\aura</Filter>
@@ -3776,6 +3773,9 @@
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_heap_vld.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_os.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>

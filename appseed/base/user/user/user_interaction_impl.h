@@ -51,12 +51,16 @@ namespace user
    {
    public:
 
+
+      bool                          m_bLockWindowUpdate;
+
+      ref_array < object >          m_ptraRedraw;
+
       ::user::interaction *         m_puiFocus;
 
       sp(::user::interaction)       m_puiThis;
 
       oswindow                      m_oswindow;
-      bool                          m_bMouseHover;
       bool                          m_bScreenRelativeMouseMessagePosition;
       bool                          m_bTranslateMouseMessageCursor;
       bool                          m_bComposite;
@@ -743,6 +747,9 @@ namespace user
       virtual bool has_redraw();
       virtual mutex * mutex_redraw();
 
+      virtual void _001OnTriggerMouseInside();
+
+      virtual bool has_pending_graphical_update();
 
    };
 

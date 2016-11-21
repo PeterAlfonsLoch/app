@@ -9,10 +9,6 @@ namespace user
    interaction_base::interaction_base()
    {
 
-      m_bRedraw = false;
-
-      m_bCursorRedraw = false;
-
    }
 
 
@@ -2727,10 +2723,6 @@ Restart:
 
    void interaction_base::on_after_graphical_update()
    {
-
-      m_bRedraw = false;
-
-      Session.get_cursor_pos(m_ptCursor);
 
    }
 

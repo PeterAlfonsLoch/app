@@ -1169,7 +1169,7 @@ CLASS_DECL_AURA string get_exe_path();
 
 #include "aura/filesystem/filesystem/filesystem_dir_system.h"
 
-#include "aura/aura/aura/aura_core_os.h"
+#include "aura/aura/aura/aura_os.h"
 
 #include "aura/aura/aura/aura_system.h"
 
@@ -1340,7 +1340,7 @@ inline void string_format::format(const char * & s,const T & value,Args... args)
 
 
 
-#include "aura/aura/aura/aura_core_os.h"
+//#include "aura/aura/aura/aura_core_os.h"
 
 
 #include "aura/aura/aura/aura_microtimer.h"
@@ -1390,7 +1390,7 @@ inline void string_format::format(const char * & s,const T & value,Args... args)
 #include "aura/aura/aura_console_window.h"
 
 
-#include "aura/aura/aura/aura_os.h"
+#include "aura/aura/aura/os.h"
 
 
 #include "aura/multithreading/multithreading_data.h"

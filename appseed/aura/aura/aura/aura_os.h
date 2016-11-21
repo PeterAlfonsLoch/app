@@ -1,99 +1,105 @@
-#pragma once
+#ifndef AXIS_AXIS_CORE_OS_H
+#define AXIS_AXIS_CORE_OS_H
 
 
-#include "aura/os/os_binreloc.h"
 
 
-#if defined(MACOS)
+namespace aura
+{
 
 
-#include "aura/os/macos/os.h"
+    class CLASS_DECL_AURA os :
+      virtual public object 
+    {
+    public:
 
 
-#elif defined(APPLE_IOS)
+        os(::aura::application * papp);
+        virtual ~os();
 
 
-#include "aura/os/ios/os.h"
+        virtual bool reboot();
+        virtual bool shutdown(bool bPowerOff);
+
+        virtual void terminate_processes_by_title(const char * pszName);
+#ifdef WINDOWS
+        virtual ::file::path get_module_path(HMODULE hmodule);
+#endif
+        virtual bool get_pid_by_path(const char * pszName, uint32_t & dwPid);
+        virtual bool get_pid_by_title(const char * pszName, uint32_t & dwPid);
+        virtual void get_all_processes(uint_array & dwa);
+        virtual ::file::path get_process_path(uint32_t dwPid);
+
+        virtual int get_pid();
+
+        virtual bool connection_settings_get_auto_detect();
+        virtual string connection_settings_get_auto_config_url();
 
 
-#elif defined(LINUX)
+        virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand);
+        virtual bool local_machine_set_run_once(const char * pszKey, const char * pszCommand);
+        virtual bool current_user_set_run(const char * pszKey, const char * pszCommand);
+        virtual bool current_user_set_run_once(const char * pszKey, const char * pszCommand);
+
+        virtual bool defer_register_ca2_plugin_for_mozilla();
 
 
-#include "aura/os/linux/linux_linux.h"
+        virtual bool file_extension_get_open_with_list_keys(stringa & straKey, const char * pszExtension);
+        virtual bool file_extension_get_open_with_list_commands(stringa & straCommand, const char * pszExtension);
 
+        virtual bool file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath);
+        virtual bool file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszCommand, const char * pszParam);
+        virtual bool file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
 
-#define BSD_STYLE_SOCKETS
-#define HAVE_MYSQL
-#define HAVE_OPENSSL
+#ifdef WINDOWS
 
-
-#elif defined(METROWIN)
-
-#define BSD_STYLE_SOCKETS
-#define HAVE_OPENSSL
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-
-#include "aura/os/metrowin/metrowin_metrowin.h"
-
-
-#define BYESHYTOULA_STYLE_SOCKS
-
-
-#elif defined(WINDOWSEX)
-
-
-#include "aura/os/windows/windows_windows.h"
-
-
-#define BSD_STYLE_SOCKETS
-#define HAVE_MYSQL
-#define HAVE_OPENSSL
-
-
-#elif defined(ANDROID)
-
-
-#include "aura/os/android/android_android.h"
-
-#define BSD_STYLE_SOCKETS
-#define HAVE_MYSQL
-#define HAVE_OPENSSL
-
-
-#elif defined(SOLARIS)
-
-
-#include "aura/os/solaris/solaris_solaris.h"
-
-
-#define BSD_STYLE_SOCKETS
-#define HAVE_MYSQL
-#define HAVE_OPENSSL
-
-
-#elif defined(APPLE_IOS)
-
-
-#include "os/ansios/ansios.h"
-#include "aura/os/ios/ca_os.h"
-
-
-#else
-
-
-#error Not supported operating system
-
+        virtual bool open_in_ie(const char * lpcsz);
 
 #endif
 
+        
 
-#ifdef AMD64
-#define OS64BIT
-#elif defined(__LP64)
-#define OS64BIT
-#else
-#define OS32BIT
-#endif
+        virtual bool create_service(::aura::application * papp);
+        virtual bool remove_service(::aura::application * papp);
+
+        virtual bool start_service(::aura::application * papp);
+        virtual bool stop_service(::aura::application * papp);
+
+        virtual bool create_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "");
+        virtual bool remove_service(const string & strServiceName);
+
+        virtual bool start_service(const string & strServiceName);
+        virtual bool stop_service(const string & strServiceName);
+
+        DECLSPEC_NO_RETURN void raise_exception(uint32_t dwExceptionCode, uint32_t dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+
+
+        virtual bool is_remote_session();
+
+        
+        virtual void set_file_status(const char * lpszFileName, const ::file::file_status& status);
+
+        
+        virtual bool resolve_link(string & strTarget,string & strDirectory,string & strParams, const string & pszSource,::user::primitive * puiMessageParentOptional = NULL);
+
+
+        virtual bool initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch);
+
+        virtual bool file_open(string str);
+
+        virtual oswindow get_capture();
+
+    };
+
+
+    typedef smart_pointer < os > os_sp;
+
+
+} // namespace aura
+
+
+#endif // AXIS_AXIS_CORE_OS_H
+
 
 
 

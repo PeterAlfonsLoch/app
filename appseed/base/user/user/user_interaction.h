@@ -31,7 +31,15 @@ namespace user
          type_none,
          type_up,
          type_down,
-      } override;
+      };
+
+      bool                                m_bMouseHover;
+
+      bool                                m_bTransparentMouseEvents;
+      bool                                m_bRedraw;
+      DWORD                               m_dwLastRedraw;
+      bool                                m_bCursorRedraw;
+      point                               m_ptCursor;
 
       bool                                m_bWorkspaceFullScreen;
       point                               m_ptScrollPassword1;
@@ -53,7 +61,6 @@ namespace user
 
 
       point                               m_ptMoveCursor;
-      bool                                m_bMouseHover;
 
       bool                                m_bDefaultWalkPreTranslateParentTree;
 
@@ -97,7 +104,6 @@ namespace user
 
       sp(tooltip)                         m_ptooltip;
 
-      bool                                m_bTransparentMouseEvents;
 
 
 
@@ -808,6 +814,8 @@ namespace user
       inline void redraw_remove(T * p);
 
       inline bool has_redraw();
+
+      virtual void on_after_graphical_update();
 
    };
 
