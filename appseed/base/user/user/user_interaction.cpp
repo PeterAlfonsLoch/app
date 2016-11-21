@@ -507,13 +507,13 @@ namespace user
 
                   single_lock sl(m_pmutex);
 
-                  on_set_parent(puiParent);
-
                   pimplNew->m_pui = this;
 
                   m_pimpl = pimplNew;
 
                   pimplNew->install_message_handling(pimplNew);
+
+                  on_set_parent(puiParent);
 
                }
 
