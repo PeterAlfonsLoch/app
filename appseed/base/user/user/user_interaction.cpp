@@ -35,6 +35,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_bMouseHover = false;
+
       m_bRedrawOnVisible = false;
 
       m_bNeedLayout = false;
@@ -7910,7 +7912,32 @@ restart:
          if (m_ptCursor != ptCursor)
          {
 
-            return true;
+            if (_001IsPointInside(ptCursor))
+            {
+
+               if (!m_bMouseHover)
+               {
+
+                  m_bMouseHover = true;
+
+               }
+
+               return true;
+
+            }
+            else
+            {
+
+               if (m_bMouseHover)
+               {
+
+                  m_bMouseHover = false;
+
+                  return true;
+
+               }
+
+            }
 
          }
 

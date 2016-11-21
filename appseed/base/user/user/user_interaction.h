@@ -53,6 +53,7 @@ namespace user
 
 
       point                               m_ptMoveCursor;
+      bool                                m_bMouseHover;
 
       bool                                m_bDefaultWalkPreTranslateParentTree;
 
