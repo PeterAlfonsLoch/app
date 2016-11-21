@@ -1622,7 +1622,7 @@ void simple_frame_window::on_set_parent(::user::interaction * puiParent)
 
       m_workset.Enable(true);
 
-      if (wfi_is_up())
+      if (puiParent == NULL)
       {
 
          m_workset.m_bSizingEnabled = true;
@@ -2180,11 +2180,19 @@ void simple_frame_window::_001OnQueryEndSession(signal_details * pobj)
    return;
 }
 
+
 bool simple_frame_window::BaseOnControlEvent(::user::control_event * pevent)
 {
+   
    if (m_workset.BaseOnControlEvent(pevent))
+   {
+
       return true;
+
+   }
+
    return ::user::frame_window::BaseOnControlEvent(pevent);
+
 }
 
 
