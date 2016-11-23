@@ -603,9 +603,6 @@
     <ClInclude Include="graphics\graphics_window_graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\android\android_window_draw.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
@@ -613,9 +610,6 @@
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\node\windows\windows_interaction_impl.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_window_draw.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows.h">
@@ -646,9 +640,6 @@
       <Filter>Header Files\base\node\linux</Filter>
     </ClInclude>
     <ClInclude Include="base\node\linux\linux_root_tools.h">
-      <Filter>Header Files\base\node\linux</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\linux\linux_window_draw.h">
       <Filter>Header Files\base\node\linux</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user.h">
@@ -769,9 +760,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_wait_cursor.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_window_draw.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_window_map.h">

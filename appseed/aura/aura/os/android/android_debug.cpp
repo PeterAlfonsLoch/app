@@ -51,6 +51,11 @@ VOID WINAPI OutputDebugStringA(LPCSTR lpOutputString)
 }
 
 
+CLASS_DECL_AURA void simple_debug_print(const char * psz)
+{
+   __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", psz);
+}
+
 
 
 VOID WINAPI OutputDebugStringW(LPCWSTR lpOutputString)

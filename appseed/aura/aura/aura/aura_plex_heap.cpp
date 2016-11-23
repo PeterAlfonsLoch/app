@@ -654,26 +654,28 @@ void * plex_heap_alloc_array::_realloc(void * p, size_t size, size_t sizeOld, in
 
 void * g_pf1 = NULL;
 
+CLASS_DECL_AURA void simple_debug_print(const char * psz);
+
 void Free_check_pointer_in_cpp(void * p)
 {
 
    if((byte *) p <  (byte *)  g_pf1)
    {
-      debug_print("hit g_pf1");
+      simple_debug_print("hit g_pf1");
    }
    if((dword_ptr) p   & 0x8000000000000000LLU)
    {
-      debug_print("hit hiptr");
+      simple_debug_print("hit hiptr");
    }
    if ((dword_ptr)p == 0x0000000200000020LLU)
    {
 
-      debug_print("hit 0x0000000200000020LLU");
+      simple_debug_print("hit 0x0000000200000020LLU");
    }
    if ((int_ptr)p < (1024 * 1024))
    {
 
-      debug_print("Free_check_pointer_in_cpp WHAT!! < 1MB");
+      simple_debug_print("Free_check_pointer_in_cpp WHAT!! < 1MB");
 
    }
 

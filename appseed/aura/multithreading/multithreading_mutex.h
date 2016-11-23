@@ -27,7 +27,6 @@ public:
 
 #if defined(ANDROID)
 
-   string                  m_strName;
    sem_t *                 m_psem;
 
 #endif

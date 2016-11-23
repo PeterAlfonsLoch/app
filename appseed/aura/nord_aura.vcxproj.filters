@@ -2622,9 +2622,6 @@
     <ClInclude Include="aura\aura\aura_aura.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_auto_pointer.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_command.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2647,9 +2644,6 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_core.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_core_os.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_cpu_architecture.h">
@@ -3466,9 +3460,6 @@
     </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{08e2a220-5913-4f59-b0bc-95076e0fe8d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\aura\NewFilter1">
-      <UniqueIdentifier>{d420889a-cd4c-4e67-9fde-745c43579e8b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\aura\node\android\NewFilter1">
       <UniqueIdentifier>{7a261b4a-4079-4e5c-b186-9159a1e3b695}</UniqueIdentifier>

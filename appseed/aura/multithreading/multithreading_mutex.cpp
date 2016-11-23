@@ -74,29 +74,29 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       if(str::begins_ci(pstrName, "Global"))
       {
 
-         m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
-
-         ::dir::mk(::file::path(m_strName).folder());
+         strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
 
       }
       else
       {
 
-         m_strName = ::file::path(getenv("HOME")) / strName;
+         strName = ::file::path(getenv("HOME")) / strName;
 
       }
 
-      m_strName.replace("/", "_");
-      m_strName.replace(":", "_");
-      m_strName.replace("/", "_");
+      ::dir::mk(::file::path(strName).folder());
 
-      ::file_put_contents_dup(m_strName, m_strName);
+      strName.replace("/", "_");
+      strName.replace(":", "_");
+      strName.replace("/", "_");
 
-      string strTest = file_as_string_dup(m_strName);
+      ::file_put_contents_dup(strName, strName);
+
+      string strTest = file_as_string_dup(strName);
 
       //int isCreator = 0;
 
-      if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
+      if ((m_psem = sem_open(strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
       {
 
          // We got here first
@@ -110,14 +110,24 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
          int err = errno;
 
          if (err != EEXIST)
+         {
+
             throw resource_exception(get_app());
+
+         }
 
          // We're not first.  Try again
 
-         m_psem = sem_open(m_strName, 0);
+         m_psem = sem_open(strName, 0);
 
          if (m_psem == SEM_FAILED)
+         {
+
             throw resource_exception(get_app());;
+
+         }
+
+         m_pszName = strdup(strName);
 
       }
 
