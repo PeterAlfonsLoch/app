@@ -45,7 +45,7 @@ oswindow_dataptra * oswindow_data::s_pdataptra = new oswindow_dataptra;
 mutex * oswindow_data::s_pmutex = new mutex(NULL);
 
 
-int32_t oswindow_find_message_only_window(::user::interaction * pui)
+int32_t oswindow_find_message_only_window(::user::interaction_impl * pui)
 {
 
    if(pui == NULL)
@@ -103,7 +103,7 @@ int32_t oswindow_find(Window window)
 
 }
 
-oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
+oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pui)
 {
 
    if(pui == NULL)
@@ -276,7 +276,7 @@ bool oswindow_remove(Display * pdisplay, Window window)
 }
 
 
-bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow)
+bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow)
 {
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);

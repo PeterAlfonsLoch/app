@@ -71,7 +71,12 @@ CLASS_DECL_BASE int_bool PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,L
 
 CLASS_DECL_BASE int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 {
-   ::user::interaction * pui = oswindow_get(oswindow);
+   ::user::interaction_impl * pimpl = oswindow_get(oswindow);
+
+   if (pimpl == NULL)
+      return FALSE;
+
+   ::user::interaction * pui = pimpl->m_pui;
 
    if(pui == NULL)
       return FALSE;

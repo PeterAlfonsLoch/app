@@ -133,6 +133,9 @@ namespace aura
 
       ::aura::application * application_get(const char * pszType,const char * pszId,bool bCreate,bool bSynch,application_bias * pbiasCreate);
 
+      virtual oswindow get_capture();
+
+
    };
 
 

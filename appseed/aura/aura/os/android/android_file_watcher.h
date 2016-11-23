@@ -40,7 +40,7 @@ namespace file_watcher
 	public:
 		///
 		///
-		os_file_watcher();
+		os_file_watcher(::aura::application * papp);
 
 		///
 		///

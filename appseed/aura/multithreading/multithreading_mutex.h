@@ -17,7 +17,7 @@ public:
 
    pthread_mutex_t         m_mutex;
    
-#ifdef APPLEOS
+#if defined(APPLEOS) || defined(ANDROID)
    
    pthread_t               m_thread;
    pthread_cond_t          m_cond;
@@ -25,9 +25,15 @@ public:
    
 #endif
 
+#if defined(ANDROID)
+
+   string                  m_strName;
+   sem_t *                 m_psem;
+
+#endif
+
 #if defined(ANDROID) || defined(APPLEOS)
 
-   //sem_t *               m_psem;
    int                     m_iFd;
 
 #else

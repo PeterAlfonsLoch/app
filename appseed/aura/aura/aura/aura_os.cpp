@@ -378,20 +378,7 @@ namespace aura
    }
 
 
-   oswindow os::get_capture()
-   {
 
-#ifdef METROWIN
-
-      return ::WinGetCapture();
-
-#else
-
-      return ::GetCapture();
-
-#endif
-
-   }
 
 
 } // namespace core

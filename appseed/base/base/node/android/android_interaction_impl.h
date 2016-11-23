@@ -25,14 +25,14 @@ namespace android
 
       ::user::EAppearance                       m_eapperanceLayout;
       bool                                      m_bEnabled;
-
+      ::thread *                                m_pthreadDraw;
 
       interaction_impl();
       interaction_impl(::aura::application * papp);
       virtual ~interaction_impl();
 
 
-      virtual bool initialize(::user::native_window_initialize * pinitialize);
+      virtual bool initialize_native_window(::user::native_window_initialize * pinitialize) override;
 
       virtual void construct(oswindow oswindow);
 
@@ -50,10 +50,10 @@ namespace android
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
 
-      virtual uint32_t GetStyle() const;
-      virtual uint32_t GetExStyle() const;
-      virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
-      virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
+      //virtual uint32_t GetStyle() const;
+      //virtual uint32_t GetExStyle() const;
+      //virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
+      //virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
 
       //virtual ::user::interaction * get_owner();
       //virtual void set_owner(::user::interaction * pOwnerWnd);
@@ -63,7 +63,7 @@ namespace android
       void _002OnDraw(::draw2d::dib * pdib);
 
       //DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-      DECL_GEN_SIGNAL(_001OnSize);
+      //DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnProdevianSynch);
       //DECL_GEN_SIGNAL(_001OnWindowPosChanging);
@@ -82,10 +82,11 @@ namespace android
 
 #endif   // WINVER >= 0x0500
 
-      virtual ::user::interaction * from_os_data(void * pdata);
+      virtual ::user::interaction_impl * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
-      static_function ::user::interaction * from_handle(oswindow oswindow);
+      static ::user::interaction_impl * from_handle(oswindow oswindow);
+      static ::user::interaction * ui_from_handle(oswindow oswindow);
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
@@ -148,7 +149,7 @@ namespace android
 
       bool DragDetect(POINT pt) const;
 
-      virtual void RedrawWindow(UINT nFlags = 0) override;
+      //virtual void RedrawWindow(UINT nFlags = 0) override;
 
       // Window Text Functions
       void SetWindowText(const char * lpszString);
@@ -263,11 +264,11 @@ namespace android
 
 
       // capture and focus apply to all windows
-      static_function ::user::interaction * s_GetCapture();
-      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
-      virtual ::user::interaction * ReleaseCapture();
-      virtual ::user::interaction * GetCapture();
-      virtual ::user::interaction * SetFocus();
+      //static_function ::user::interaction * s_GetCapture();
+      //virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
+      //virtual ::user::interaction * ReleaseCapture();
+      //virtual ::user::interaction * GetCapture();
+      virtual bool SetFocus();
 
       virtual ::user::interaction * GetFocus();
 

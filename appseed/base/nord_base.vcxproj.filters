@@ -322,9 +322,6 @@
     <ClCompile Include="base\node\ios\ios_window_draw.cpp">
       <Filter>Source Files\base\node\ios</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\android\android_window_draw.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\_windows_node.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
@@ -459,6 +456,9 @@
     </ClCompile>
     <ClCompile Include="graphics\graphics_window_buffer.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_updowninterface.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -792,6 +792,9 @@
     <ClInclude Include="graphics\graphics_window.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_updowninterface.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -952,6 +955,18 @@
     </Filter>
     <Filter Include="Source Files\graphics\NewFilter1">
       <UniqueIdentifier>{0bfa70ce-e4ff-4689-9aab-7bfd3e4857f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\wndfrm">
+      <UniqueIdentifier>{aedd0780-8452-469a-9c2b-c2af541849d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\wndfrm\frame">
+      <UniqueIdentifier>{f72ce766-d8fb-41c3-8190-84a7396c8ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\wndfrm">
+      <UniqueIdentifier>{120bb7f6-b611-4791-8ff4-a510a73d1728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\wndfrm\frame">
+      <UniqueIdentifier>{77c6f5dd-bc94-4f57-b74b-0e971af59d32}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

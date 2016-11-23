@@ -68,7 +68,7 @@ oswindow_dataptra * oswindow_data::s_pdataptra = NULL;
 mutex * oswindow_data::s_pmutex = NULL;
 
 
-int32_t oswindow_find_message_only_window(::user::interaction * pui)
+int32_t oswindow_find_message_only_window(::user::interaction_impl * pui)
 {
 
    if(pui == NULL)
@@ -130,7 +130,7 @@ int32_t oswindow_find(Window window)
 
 }
 
-oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
+oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pui)
 {
 
    if(pui == NULL)
@@ -328,7 +328,7 @@ bool oswindow_remove(Display * pdisplay, Window window)
 }
 
 
-bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow)
+bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow)
 {
 
    //single_lock slOsWindow(::oswindow_data::s_pmutex, true);
@@ -455,30 +455,78 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 
 }
 
-::user::interaction * oswindow_data::get_user_interaction()
+::user::interaction * oswindow_data::get_impl()
 {
 
    single_lock slOsWindow(s_pmutex, true);
 
-   //xdisplay d(x11_get_display());
+   if (this == NULL)
+   {
 
-   if(this == NULL)
       return NULL;
 
-   return m_pui;
+   }
+
+   return m_pimpl;
 
 }
+
+
+::user::interaction * oswindow_data::get_impl() const
+{
+
+   single_lock slOsWindow(s_pmutex, true);
+
+   if (this == NULL)
+   {
+
+      return NULL;
+
+   }
+
+   return m_pimpl;
+
+}
+
+
+::user::interaction * oswindow_data::get_user_interaction()
+{
+
+   ::user::interaction_impl * pimpl = get_impl();
+
+   try
+   {
+
+      return pimpl->m_pui;
+
+   }
+   catch (...)
+   {
+
+   }
+   
+   return NULL;
+
+}
+
 
 ::user::interaction * oswindow_data::get_user_interaction() const
 {
 
-   single_lock slOsWindow(s_pmutex, true);
-   //xdisplay d(x11_get_display());
+   ::user::interaction_impl * pimpl = get_impl();
 
-   if(this == NULL)
-      return NULL;
+   try
+   {
 
-   return m_pui;
+      return pimpl->m_pui;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return NULL;
 
 }
 

@@ -15,7 +15,9 @@ namespace android
 			::object(papp),
 			::file::dir::system(papp),
 			::file::dir::axis::system(papp),
-			::android::dir(papp)
+			::android::dir(papp),
+         ::file_watcher::file_watcher(papp),
+         ::file_watcher::listener_thread(papp)
 		{
 
 

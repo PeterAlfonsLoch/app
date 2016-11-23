@@ -63,7 +63,7 @@ CLASS_DECL_BASE ::user::interaction_impl * oswindow_get(oswindow oswindow)
    }
 
 
-   return oswindow->m_pui;
+   return oswindow->m_pimpl;
 
 #endif
 

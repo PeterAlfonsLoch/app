@@ -214,7 +214,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::from_os_data(void * pdata)
+   ::user::interaction_impl * interaction_impl::from_os_data(void * pdata)
    {
 
       UNREFERENCED_PARAMETER(pdata);
@@ -381,7 +381,7 @@ namespace user
 
       }
 
-      oswindow oswindow = System.os().get_capture();
+      oswindow oswindow = Session.get_capture();
 
       if (oswindow == NULL || oswindow == get_handle())
       {

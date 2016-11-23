@@ -87,7 +87,6 @@ namespace aura
 
         virtual bool file_open(string str);
 
-        virtual oswindow get_capture();
 
     };
 

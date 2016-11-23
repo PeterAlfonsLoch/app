@@ -51,7 +51,8 @@ namespace file_watcher
 
 
 	//--------
-	os_file_watcher::os_file_watcher()
+	os_file_watcher::os_file_watcher(::aura::application * papp) :
+      ::object(papp)
 	{
 
       m_pDescriptorSet = new fd_set;

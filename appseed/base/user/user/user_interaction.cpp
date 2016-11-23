@@ -1938,7 +1938,7 @@ namespace user
 
          if((GetParent() == NULL
 #if defined(METROWIN) || defined(VSNORD)
-               || GetParent() == System.m_posdata->m_pui
+               || GetParent() == System.m_possystemwindow->m_pui
 #endif
             )
                && !is_message_only_window()
@@ -1990,7 +1990,7 @@ namespace user
       {
          if ((GetParent() != NULL
 #if defined(METROWIN) || defined(VSNORD)
-            && GetParent() != System.m_posdata->m_pui
+            && GetParent() != System.m_possystemwindow->m_pui
 #endif
             )
             && !is_message_only_window()
@@ -8017,7 +8017,7 @@ restart:
    void interaction::defer_notify_mouse_move(point & ptLast)
    {
 
-      if (System.os().get_capture() != NULL)
+      if (Session.get_capture() != NULL)
       {
 
          return;
@@ -8076,7 +8076,7 @@ restart:
    void interaction::defer_notify_mouse_move()
    {
 
-      if (System.os().get_capture() != NULL)
+      if (Session.get_capture() != NULL)
       {
 
          return;

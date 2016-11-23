@@ -1,4 +1,4 @@
-//#include "framework.h"
+Ôªø//#include "framework.h"
 //#include "core/user/user/user.h"
 
 
@@ -150,7 +150,7 @@ namespace user
 
       pgraphics->SelectObject(m_pschema->m_pschemaItemButton->m_pfont);
 
-      size size = pgraphics->GetTextExtent(unitext("XXXMMM¡«g"));
+      size size = pgraphics->GetTextExtent(unitext("XXXMMM√Å√ág"));
 
       int32_t iMaxHeight = size.cy;
 

@@ -699,6 +699,22 @@ defer_check_wndfrm_core:
    }
 
 
+   oswindow session::get_capture()
+   {
+
+#ifdef METROWIN
+
+      return ::WinGetCapture();
+
+#else
+
+      return ::GetCapture();
+
+#endif
+
+   }
+
+
 } // namespace base
 
 

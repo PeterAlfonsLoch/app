@@ -57,6 +57,10 @@ namespace base
 
       virtual void on_finally_focus_set(::user::elemental * pelementalFocus) override;
 
+
+      virtual oswindow get_capture();
+
+
    };
 
 

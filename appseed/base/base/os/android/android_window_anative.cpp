@@ -22,12 +22,10 @@ window_android_anative::~window_android_anative()
 }
 
 
-void window_android_anative::create_window_graphics(int64_t cxParam,int64_t cyParam,int iStrideParam)
+void window_android_anative::create_window_graphics_(int64_t cxParam,int64_t cyParam,int iStrideParam)
 {
 
-   destroy_window_graphics();
-
-
+   destroy_window_graphics_();
 
    synch_lock sl(m_pimpl->m_pui->m_pmutex);
 
@@ -41,7 +39,7 @@ void window_android_anative::create_window_graphics(int64_t cxParam,int64_t cyPa
 
    ANativeWindow_setBuffersGeometry(m_pimpl->m_oswindow->m_engine.app->window, w, h, WINDOW_FORMAT_RGBA_8888);
 
-   ::window_graphics::create_window_graphics(cxParam, cyParam, w * 4);
+   ::window_graphics::create_window_graphics_(cxParam, cyParam, w * 4);
 
 }
 
@@ -49,26 +47,26 @@ void window_android_anative::create_window_graphics(int64_t cxParam,int64_t cyPa
 
 
 
-void window_android_anative::destroy_window_graphics()
+void window_android_anative::destroy_window_graphics_()
 {
 
-   ::window_graphics::destroy_window_graphics();
+   ::window_graphics::destroy_window_graphics_();
 
 
 }
 
 
-void window_android_anative::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int iStride)
+void window_android_anative::update_window(::draw2d::dib * pdib)
 {
 
    ANativeWindow_Buffer buffer;
 
    ARect r;
 
-   r.left = rect.left;
-   r.top = rect.top;
-   r.right = rect.right;
-   r.bottom = rect.bottom;
+   r.left = 0;
+   r.top = 0;
+   r.right = pdib->m_size.cx;
+   r.bottom = pdib->m_size.cy;
 
    ZERO(buffer);
 
@@ -80,9 +78,9 @@ void window_android_anative::update_window(oswindow interaction_impl, COLORREF *
    */
 
 
-   ::draw2d::copy_colorref(width(rect), height(rect), (COLORREF *)buffer.bits, width(rect) * sizeof(COLORREF),  pOsBitmapData, iStride);
+   ::draw2d::copy_colorref(pdib->m_size.cx, pdib->m_size.cy, (COLORREF *)buffer.bits, pdib->m_size.cx * sizeof(COLORREF),  pdib->m_pcolorref, pdib->m_iScan);
 
-   ANativeWindow_unlockAndPost(interaction_impl->m_engine.app->window);
+   ANativeWindow_unlockAndPost(m_pimpl->m_oswindow->m_engine.app->window);
 
 }
 

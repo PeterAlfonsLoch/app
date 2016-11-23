@@ -184,80 +184,23 @@ namespace base
 
 #ifdef VSNORD
 
-      if (System.m_posdata != NULL)
+      if (System.m_possystemwindow != NULL)
       {
 
-         if (System.m_posdata->m_pui != NULL)
+         if (System.m_possystemwindow->m_pui != NULL)
          {
 
-            pui = System.m_posdata->m_pui->m_uiptraChild.get_child(pui);
-
-            return pui != NULL;
+            return System.m_possystemwindow->m_pui->m_uiptraChild.get_child(pui);
 
          }
 
       }
-
 
 #endif
 
       synch_lock sl(&m_mutexFrame);
 
-      if(m_uiptraFrame.get_count() <= 0)
-      {
-
-         return false;
-
-      }
-
-      if(pui == NULL)
-      {
-
-         pui = m_uiptraFrame[0];
-
-         if (pui == NULL)
-         {
-
-            m_uiptraFrame.remove_at(0);
-
-            return false;
-
-         }
-
-         return true;
-
-      }
-      else
-      {
-
-         for(index i = m_uiptraFrame.get_upper_bound(); i >= 0; i--)
-         {
-
-            if(m_uiptraFrame[i] == pui)
-            {
-
-               i++;
-
-               if(i < m_uiptraFrame.get_count())
-               {
-
-                  pui = m_uiptraFrame[i];
-
-                  return true;
-
-               }
-               else
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-      }
+      return m_uiptraFrame.get_child(pui);
 
       return false;
 

@@ -72,14 +72,12 @@ struct CLASS_DECL_BASE oswindow_data
 #endif
 
    bool                          m_bMessageOnlyWindow;
-   ::user::interaction *         m_pui;
+   ::user::interaction_impl *    m_pimpl;
    HTHREAD                       m_hthread;
    COLORREF *                    m_pcolorref;
    RECT                          m_rect;
-   int_map < LONG > *            m_plongmap;
    bool                          m_bDestroying;
    bool                          m_bIconic;
-   //bool                          m_bVisibl;
 
 
    static oswindow_dataptra * s_pdataptra;
@@ -125,7 +123,9 @@ struct CLASS_DECL_BASE oswindow_data
    int32_t select_all_input();
    int32_t map_window();
 
-   void set_user_interaction(::user::interaction * pui);
+   void set_impl(::user::interaction_impl * pimpl);
+   ::user::interaction_impl * get_impl();
+   ::user::interaction_impl * get_impl() const;
    ::user::interaction * get_user_interaction();
    ::user::interaction * get_user_interaction() const;
 
@@ -140,8 +140,8 @@ struct CLASS_DECL_BASE oswindow_data
    bool is_iconic();
    bool is_window_visible();
    bool ShowWindow(int nCmdShow);
-   LONG get_window_long(int32_t nIndex);
-   LONG set_window_long(int32_t nIndex, LONG l);
+   LONG_PTR get_window_long_ptr(int32_t nIndex);
+   LONG_PTR set_window_long_ptr(int32_t nIndex, LONG_PTR l);
    bool ClientToScreen(LPPOINT lppoint);
    bool ScreenToClient(LPPOINT lppoint);
 
@@ -215,4 +215,4 @@ class mutex;
 
 
 
-CLASS_DECL_BASE oswindow_data * oswindow_get(::user::interaction * pui);
+CLASS_DECL_BASE oswindow_data * oswindow_get(::user::interaction_impl * pui);

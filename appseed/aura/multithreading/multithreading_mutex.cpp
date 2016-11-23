@@ -69,61 +69,57 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
       m_psem = NULL;
 
-      return;
+      string strName(pstrName);
 
-      //string strName(pstrName);
+      if(str::begins_ci(pstrName, "Global"))
+      {
 
-      ////if(str::begins_ci(pstrName, "Global"))
-      ////{
+         m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
 
-      ////   m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
+         ::dir::mk(::file::path(m_strName).folder());
 
-      ////   ::dir::mk(::file::path(m_strName).folder());
+      }
+      else
+      {
 
-      ////}
-      ////else
-      ////{
+         m_strName = ::file::path(getenv("HOME")) / strName;
 
-      ////   m_strName = ::file::path(getenv("HOME")) / strName;
+      }
 
-      ////}
+      m_strName.replace("/", "_");
+      m_strName.replace(":", "_");
+      m_strName.replace("/", "_");
 
-      //s
+      ::file_put_contents_dup(m_strName, m_strName);
 
-      //m_strName.replace("/", "_");
-      //m_strName.replace(":", "_");
-      //m_strName.replace("/", "_");
+      string strTest = file_as_string_dup(m_strName);
 
-      ////::file_put_contents_dup(m_strName, m_strName);
+      //int isCreator = 0;
 
-      ////string strTest = file_as_string_dup(m_strName);
+      if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
+      {
 
-      ////int isCreator = 0;
+         // We got here first
 
-      //if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
-      //{
+         //isCreator = 1;
 
-      //   // We got here first
+      }
+      else
+      {
 
-      //   //isCreator = 1;
+         int err = errno;
 
-      //}
-      //else
-      //{
+         if (err != EEXIST)
+            throw resource_exception(get_app());
 
-      //   int err = errno;
+         // We're not first.  Try again
 
-      //   if (err != EEXIST)
-      //      throw resource_exception(get_app());
+         m_psem = sem_open(m_strName, 0);
 
-      //   // We're not first.  Try again
+         if (m_psem == SEM_FAILED)
+            throw resource_exception(get_app());;
 
-      //   m_psem = sem_open(m_strName, 0);
-
-      //   if (m_psem == SEM_FAILED)
-      //      throw resource_exception(get_app());;
-
-      //}
+      }
 
    }
 
@@ -343,7 +339,9 @@ mutex::mutex(::aura::application * papp, const char * pstrName, sem_t * psem, bo
 
    m_bOwner       = bOwner;
    m_pszName      = strdup(pstrName);
-   //m_psem         = psem;
+#ifdef ANDROID
+   m_psem         = psem;
+#endif
 
 }
 
@@ -353,7 +351,13 @@ mutex::mutex(const mutex & m):
 {
 
    m_bOwner       = false;
-   //m_psem         = m.m_psem;
+
+#ifdef ANDROID
+
+   m_psem         = m.m_psem;
+
+#endif
+
    m_mutex        = m.m_mutex;
 
 }
@@ -394,6 +398,22 @@ mutex::~mutex()
 {
 
 #ifndef WINDOWS
+
+#if defined(ANDROID)
+   
+   if (m_psem != SEM_FAILED)
+   {
+
+      //if(m_bOwner)
+      {
+         sem_close(m_psem);
+         sem_unlink(m_pszName);
+
+      }
+
+   }
+
+#endif
 
 #if defined(ANDROID) || defined(APPLEOS)
 
@@ -685,7 +705,7 @@ wait_result mutex::wait(const duration & duration)
 
 #endif
       
-#ifdef APPLEOS
+#if defined(APPLEOS) || defined(ANDROID)
    {
    
       int rc = pthread_mutex_lock(&m_mutex);
@@ -707,7 +727,15 @@ wait_result mutex::wait(const duration & duration)
          if (bFirst)
          {
          
+#ifdef ANDROID
+
+            clock_gettime(CLOCK_MONOTONIC, &abs_time);
+
+#else
+
             clock_gettime(CLOCK_REALTIME, &abs_time);
+
+#endif
             
             ::duration d;
             
@@ -724,8 +752,16 @@ wait_result mutex::wait(const duration & duration)
             bFirst = false;
             
          }
+
+#ifdef ANDROID
          
+         rc = pthread_cond_timedwait_monotonic_np(&m_cond, &m_mutex, &abs_time);
+
+#else
+
          rc = pthread_cond_timedwait(&m_cond, &m_mutex, &abs_time);
+
+#endif
          
          if(rc == ETIMEDOUT)
          {
@@ -818,7 +854,7 @@ wait_result mutex::wait(const duration & duration)
 bool mutex::lock()
 {
 
-#if defined(ANDROID) || defined(APPLEOS)
+#if defined(APPLEOS)
 
    if(m_pszName != NULL)
    {
@@ -932,6 +968,37 @@ bool mutex::lock()
       
       return false;
       
+   }
+
+#elif defined(ANDROID)
+   
+   if (m_psem != SEM_FAILED)
+   {
+
+      timespec delay;
+
+      int32_t ret = sem_wait(m_psem);
+
+      if (ret == 0)
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         if (errno == ETIMEDOUT)
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return false;
+
    }
 
 #else
@@ -1069,7 +1136,7 @@ bool mutex::unlock()
 
 #else
 
-#if defined(ANDROID) || defined(APPLEOS)
+#if defined(APPLEOS)
 
    //if(m_psem != SEM_FAILED)
    if(m_pszName != NULL)
@@ -1130,6 +1197,15 @@ bool mutex::unlock()
       
       return rc == 0;
       
+   }
+
+#elif defined(ANDROID)
+
+   if (m_psem != SEM_FAILED)
+   {
+
+      return sem_post(m_psem) == 0;
+
    }
 
 #else

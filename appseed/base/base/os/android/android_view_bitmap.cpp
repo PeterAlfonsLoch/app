@@ -103,7 +103,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (::aura::system::g_p->m_pbasesystem->m_posdata == NULL)
+   if (::aura::system::g_p->m_pbasesystem->m_possystemwindow == NULL)
    {
 
       output_debug_string("android_fill_plasma : os_data is null");
@@ -112,7 +112,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui.is_null())
+   if (::aura::system::g_p->m_pbasesystem->m_possystemwindow->m_pui.is_null())
    {
 
       output_debug_string("android_fill_plasma : window is null");
@@ -121,7 +121,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->m_pimpl == NULL)
+   if (::aura::system::g_p->m_pbasesystem->m_possystemwindow->m_pui->m_pimpl == NULL)
    {
 
       output_debug_string("android_fill_plasma : impl is null");
@@ -130,7 +130,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->m_pimpl->get_window_graphics() == NULL)
+   if (::aura::system::g_p->m_pbasesystem->m_possystemwindow->m_pui->m_pimpl->get_window_graphics() == NULL)
    {
 
       //   output_debug_string("android_fill_plasma : get_window_graphics returned null");
@@ -139,7 +139,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 
    }
 
-   auto pbuffer = dynamic_cast <::window_double_buffer *> (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->m_pimpl->get_window_graphics());
+   auto pbuffer = dynamic_cast <::window_double_buffer *> (::aura::system::g_p->m_pbasesystem->m_possystemwindow->m_pui->m_pimpl->get_window_graphics());
 
    if(pbuffer == NULL)
    {

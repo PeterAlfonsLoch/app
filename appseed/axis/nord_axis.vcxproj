@@ -98,7 +98,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;z;axisidn;aurasqlite;aura;ace;$(StlLibraryName);m;log;android</LibraryDependencies>
+      <LibraryDependencies>axisfreetype;axisfreeimage;nordopenssl;nordcrypto;axisbzip2;z;axisidn;aurasqlite;aura;ace;$(StlLibraryName);m;log;android</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

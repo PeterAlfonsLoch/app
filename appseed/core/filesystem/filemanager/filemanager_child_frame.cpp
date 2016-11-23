@@ -12,6 +12,7 @@ namespace filemanager
    {
    }
 
+
    child_frame::~child_frame()
    {
    }

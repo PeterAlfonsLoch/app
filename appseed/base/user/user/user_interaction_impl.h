@@ -128,7 +128,7 @@ namespace user
 
 
 
-      virtual ::user::interaction * from_os_data(void * pdata);
+      virtual ::user::interaction_impl * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
       bool attach(oswindow oswindow_New);

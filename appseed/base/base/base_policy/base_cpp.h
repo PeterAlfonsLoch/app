@@ -332,7 +332,7 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 //#include "base/base/base/base_command_target.h"
 
-CLASS_DECL_BASE ::user::interaction * window_from_handle(oswindow oswindow);
+CLASS_DECL_BASE ::user::interaction_impl * window_from_handle(oswindow oswindow);
 
 #include "base/base/base_static_start.h"
 
