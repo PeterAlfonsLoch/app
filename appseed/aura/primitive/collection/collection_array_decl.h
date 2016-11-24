@@ -666,7 +666,7 @@ public:
    ::count pred_each(PRED pred, index iStart = 0, ::count c = -1)
    {
       
-      index iEnd = c < 0 ? get_count() + iEnd : iStart + c - 1;
+      index iEnd = c < 0 ? get_count() + c : iStart + c - 1;
 
       int cProcessed = 0;
 

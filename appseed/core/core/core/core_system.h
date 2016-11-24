@@ -28,6 +28,12 @@ namespace core
       //core::session::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
 
+#ifdef WINDOWSEX
+
+      UINT                                         m_uiWindowsTaskbarCreatedMessage;
+
+#endif
+
       mutex                                        m_mutex;
       sp(::filehandler::handler)                   m_spfilehandler;
 

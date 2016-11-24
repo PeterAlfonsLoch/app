@@ -476,7 +476,7 @@ namespace str
 
          }
 
-         return strdup(p);
+         return _strdup(p);
 
       }
       catch (...)

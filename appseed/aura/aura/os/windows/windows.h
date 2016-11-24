@@ -61,3 +61,10 @@ CLASS_DECL_AURA HFONT wingdi_CreatePointFont(int nPointSize, const char * lpszFa
 CLASS_DECL_AURA HFONT wingdi_CreatePointFontIndirect(LOGFONTW* lpLogFont, HDC hdc);
 
 
+
+#ifdef cplusplus
+
+#define LOG_THIS_TAG (typeid(*this).name())
+#define LOG_MEMBER_PREFIX __FUNCTION__
+
+#endif

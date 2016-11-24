@@ -130,10 +130,11 @@ public:
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);
+   DECL_GEN_SIGNAL(_001OnTaskbarCreated);
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics);
 
-
+   virtual void defer_create_notification_icon();
 
    virtual bool LoadToolBar(sp(::type) sptype,id idToolBar,const char * pszToolBar,uint32_t dwCtrlStyle = TBSTYLE_FLAT,uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 

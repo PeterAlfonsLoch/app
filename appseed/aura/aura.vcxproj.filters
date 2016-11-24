@@ -2204,9 +2204,6 @@
     <ClInclude Include="aura\aura\aura_pointer.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_nodeapp.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_os.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>

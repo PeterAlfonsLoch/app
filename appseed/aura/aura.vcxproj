@@ -503,7 +503,6 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="aura\aura\aura_muldiv64.h" />
     <ClInclude Include="aura\aura\aura_new.h" />
     <ClInclude Include="aura\aura\aura_number.h" />
-    <ClInclude Include="aura\aura\aura_nodeapp.h" />
     <ClInclude Include="aura\aura\aura_plex.h" />
     <ClInclude Include="aura\aura\aura_plex_heap.h" />
     <ClInclude Include="aura\aura\aura_plex_heap_impl.h" />

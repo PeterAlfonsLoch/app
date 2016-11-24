@@ -170,6 +170,12 @@ void simple_frame_window::install_message_handling(::message::dispatch * pinterf
 
    IGUI_WIN_MSG_LINK(WM_APPEXIT, pinterface, this, &simple_frame_window::_001OnAppExit);
 
+#ifdef WINDOWSEX
+
+   IGUI_WIN_MSG_LINK(System.m_uiWindowsTaskbarCreatedMessage, pinterface, this, &simple_frame_window::_001OnTaskbarCreated);
+
+#endif
+
 }
 
 
@@ -553,6 +559,15 @@ void simple_frame_window::_001OnDisplayChange(signal_details * pobj)
    pbase->set_lresult(0);
 
    Default();
+
+}
+
+
+
+void simple_frame_window::_001OnTaskbarCreated(signal_details * pobj)
+{
+
+   defer_create_notification_icon();
 
 }
 
@@ -1794,6 +1809,48 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
 }
 
 
+void simple_frame_window::defer_create_notification_icon()
+{
+
+   if (!m_bDefaultNotifyIcon)
+   {
+
+      return;
+
+   }
+
+   if (m_pnotifyicon.is_set())
+   {
+
+      m_pnotifyicon->Destroy();
+
+   }
+
+   if (m_piconNotify.is_null())
+   {
+
+      m_piconNotify = canew(::visual::icon(get_app()));
+
+      const char * pszAppName = Application.m_strAppName;
+
+      m_piconNotify->load_app_tray_icon(pszAppName);
+
+   }
+
+   m_pnotifyicon = canew(::user::notify_icon(get_app()));
+
+   m_pnotifyicon->create(1, this, m_piconNotify);
+
+   if (m_workset.m_pframeschema != NULL)
+   {
+
+      m_workset.m_pframeschema->m_spcontrolbox->hide_button(::user::wndfrm::frame::button_minimize);
+
+   }
+
+}
+
+
 void simple_frame_window::_001OnUser184(signal_details * pobj)
 {
 
@@ -1810,27 +1867,7 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
    else if(pbase->m_wparam == 2)
    {
 
-      if(m_bDefaultNotifyIcon)
-      {
-
-         m_piconNotify = canew(::visual::icon(get_app()));
-
-         const char * pszAppName = Application.m_strAppName;
-
-         m_piconNotify->load_app_tray_icon(pszAppName);
-
-         m_pnotifyicon = canew(::user::notify_icon(get_app()));
-
-         m_pnotifyicon->create(1, this, m_piconNotify);
-
-         if(m_workset.m_pframeschema != NULL)
-         {
-
-            m_workset.m_pframeschema->m_spcontrolbox->hide_button(::user::wndfrm::frame::button_minimize);
-
-         }
-
-      }
+      defer_create_notification_icon();
 
       m_pimpl->show_task(IsWindowVisible() && m_bShowTask);
 

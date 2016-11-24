@@ -96,6 +96,13 @@ namespace core
          m_prunstartinstaller       = NULL;
          m_bLicense                 = false;
 
+#ifdef WINDOWSEX
+
+         m_uiWindowsTaskbarCreatedMessage = 0;
+
+#endif
+
+
 
       }
 
@@ -176,6 +183,17 @@ namespace core
       m_bProcessInitializeResult    = false;
 
       m_bProcessInitialize          = true;
+
+#ifdef WINDOWSEX
+
+      if (m_uiWindowsTaskbarCreatedMessage == 0)
+      {
+
+         m_uiWindowsTaskbarCreatedMessage = RegisterWindowMessageW(L"TaskbarCreated");
+
+      }
+
+#endif
 
       if (!::core::application::process_initialize())
       {
