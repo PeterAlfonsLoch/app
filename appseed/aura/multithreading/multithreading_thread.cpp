@@ -336,43 +336,10 @@ int32_t thread::run()
 
    ASSERT_VALID(this);
 
-   //m_bIdle = TRUE;
-
-   //m_lIdleCount = 0;
-
-   //sync_object_ptra soa;
-
-   //if(m_peventEvent == NULL)
-   //{
-
-   //   m_peventEvent = new manual_reset_event(get_app());
-
-   //}
-
-   //soa.add(m_peventEvent);
-
-   //defer_add_thread_run_wait(soa);
-
-   //multi_lock ml(soa);
-
-   ::output_debug_string("::thread::run " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)get_run_thread())+"\n\n");
-
+   thisstart;
 
    while(get_run_thread())
    {
-
-      //if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
-      //{
-
-      //      ml.lock(millis(25),false,QS_ALLEVENTS);
-
-      //}
-      //else
-      //{
-
-      //      ml.lock(m_durationRunLock,false,QS_ALLEVENTS);
-
-      //}
 
       if(!defer_pump_message())
       {
@@ -384,19 +351,7 @@ int32_t thread::run()
 
    }
 
-   string strThread = string(demangle(typeid(*this).name()));
-
-   string strRun = ::str::from((int)get_run_thread());
-
-   string strRet = ::str::from(m_iReturnCode);
-
-   ::output_debug_string("\n\n::thread::run Exiting " + strThread + " m_bRun = "+strRun+" m_iReturnCode = "+strRet+"\n\n");
-
-   const char * pszThread = strThread;
-
-   const char * pszRun = strRun;
-
-   const char * pszRet = strRet;
+   thisend << m_iReturnCode;
 
    return m_iReturnCode;
 

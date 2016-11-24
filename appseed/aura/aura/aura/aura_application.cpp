@@ -1281,43 +1281,56 @@ namespace aura
 
    int32_t application::on_run()
    {
+
       int32_t m_iReturnCode = 0;
 
       try
       {
+
          application_signal_details signal(m_psignal,application_signal_start);
+
          m_psignal->emit(&signal);
+
       }
       catch(...)
       {
+
       }
 
-      dappy(string(typeid(*this).name()) + " : starting on_run : " + ::str::from(m_iReturnCode));
-
-      ::output_debug_string(string(typeid(*this).name()) + " : starting on_run : " + ::str::from(m_iReturnCode) + "\n\n");
+      thisstart << m_iReturnCode;
 
       thread * pthread = ::get_thread();
 
       install_message_handling(pthread);
 
-      dappy(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode));
-
-      ::output_debug_string(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode) + "\n\n");
+      thisok << 1 << m_iReturnCode;
 
       try
       {
+         
          try
          {
+
             m_bReady = true;
-            if(m_peventReady != NULL)
+
+            if (m_peventReady != NULL)
+            {
+
                m_peventReady->SetEvent();
+
+            }
+
          }
          catch(...)
          {
+
          }
+
       run:
+
          try
          {
+
             m_iReturnCode = run();
 
          }
@@ -1329,13 +1342,26 @@ namespace aura
          }
          catch(const ::exception::exception & e)
          {
-            if(on_run_exception((::exception::exception &) e))
+
+            if (on_run_exception((::exception::exception &) e))
+            {
+
                goto run;
-            if(final_handle_exception((::exception::exception &) e))
+
+            }
+
+            if (final_handle_exception((::exception::exception &) e))
+            {
+
                goto run;
+
+            }
+
             try
             {
+
                m_iReturnCode = exit_thread();
+
             }
             catch(::exit_exception & e)
             {
@@ -1345,10 +1371,15 @@ namespace aura
             }
             catch(...)
             {
+
                m_iReturnCode = -1;
+
             }
+
             goto InitFailure;
+
          }
+
       }
       catch(::exit_exception & e)
       {
@@ -4300,6 +4331,8 @@ namespace aura
 
    ::aura::application * application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
    {
+
+      thisstart;
 
       ::aura::application * papp;
 
