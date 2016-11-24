@@ -33,7 +33,7 @@ namespace file
 {
 
 
-   exception::exception(::aura::application * papp, exception::e_cause cause , LONG lOsError, const char * lpszArchiveName) :
+   exception::exception(::aura::application * papp, exception::e_cause cause , LONG lOsError, const char * lpszArchiveName, UINT nOpenFlags) :
       object(papp),
       ::call_stack(papp),
       ::exception::base(papp),
@@ -41,14 +41,24 @@ namespace file
       ::io_exception(papp)
    {
 
-      m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0;
+      m_nOpenFlags = nOpenFlags;
+
+      m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(nOpenFlags & ::file::no_call_stack);
 
       const char * lpsz;
 
-      if(cause >= 0 && cause < _countof(rgszFileExceptionCause))
+      if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
+      {
+
          lpsz = rgszFileExceptionCause[cause];
+
+      }
       else
+      {
+
          lpsz = szUnknown;
+
+      }
 
       string strException;
 

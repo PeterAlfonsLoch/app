@@ -38,6 +38,7 @@ namespace file
       LONG              m_lOsError;
       ::file::path      m_strFileName;
       string            m_strAdd;
+      UINT              m_nOpenFlags;
 
 
 
@@ -54,7 +55,7 @@ namespace file
       }
 
 
-      exception(::aura::application * papp,e_cause cause = exception::none,LONG lOsError = -1,const char * lpszArchiveName = NULL);
+      exception(::aura::application * papp,e_cause cause = exception::none,LONG lOsError = -1,const char * lpszArchiveName = NULL, UINT nOpenFlags = 0);
 
       virtual void Construct(e_cause cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 

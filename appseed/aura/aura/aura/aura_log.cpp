@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 //#include <stdarg.h>
 
 #if defined(LINUX) || defined(ANDROID)

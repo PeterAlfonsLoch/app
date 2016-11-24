@@ -11,7 +11,7 @@
 //
 // Copyright (ca) 2003 Song Ho Ahn
 //////////////////////////////////////////////////////////////////////////////
-//#include "framework.h"
+#include "framework.h"
 
 
 #if defined(LINUX) || defined(APPLEOS)

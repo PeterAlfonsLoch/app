@@ -50,6 +50,8 @@ namespace exception
       result(std::initializer_list < exception * > list);
       ~result() { release(); }
 
+      
+      string get_all_messages();
 
       operator bool() { return get_count() <= 0; }
 

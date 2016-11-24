@@ -47,8 +47,6 @@ call_stack::call_stack(::aura::application * papp, uint32_t uiSkip) :
 
       m_strCallStack = call_stack::get(uiSkip);
 
-      output_debug_string(m_strCallStack);
-
    }
 
 }

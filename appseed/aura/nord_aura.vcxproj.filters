@@ -247,9 +247,6 @@
     <ClCompile Include="aura\aura\aura_conv.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_core_os.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_cpu_architecture.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -1429,19 +1426,10 @@
     <ClCompile Include="aura\os\os_binreloc.cpp">
       <Filter>Source Files\aura\os</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_heap_bare.cpp">
+    <ClCompile Include="aura\aura\aura_os.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_heap_mcheck.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_heap_mcrtdbg.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_heap_memdleak.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_heap_std.cpp">
+    <ClCompile Include="aura\aura\aura_md5.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>

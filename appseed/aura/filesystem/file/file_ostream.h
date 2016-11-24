@@ -4,7 +4,6 @@
 namespace file
 {
 
-
    class ostream;
 
    typedef smart_pointer < ostream > ostream_sp;
@@ -15,6 +14,7 @@ namespace file
       virtual public writer
    {
    public:
+
 
 
       ostream();
@@ -65,12 +65,14 @@ namespace file
       inline ostream & operator << (const LPCRECT lpcrect                ) { write(lpcrect         ); return *this;}
       inline ostream & operator << (const SIZE & size                    ) { write(size            ); return *this;}
       inline ostream & operator << (const sp(type) info                  ) { write(info            ); return *this;}
+      inline ostream & operator << (const std_type_info & info           ) { write(info            ); return *this;}
       inline ostream & operator << (const serializable & serializable    ) { write(serializable    ); return *this;}
       inline ostream & operator << (const char * psz                     ) { write(psz             ); return *this;}
       inline ostream & operator << (const id & id                        ) { write(id              ); return *this;}
       inline ostream & operator << (const var & var                      ) { write(var             ); return *this;}
-      inline ostream & operator << (const property & property            ) { write(property        ); return *this; }
+      inline ostream & operator << (const property & property            ) { write(property        ); return *this;}
       inline ostream & operator << (const string & str                   ) { write(str             ); return *this;}
+      inline ostream & operator << (e_str_flag eflag                     ) { m_estrflag = (e_str_flag)((int)m_estrflag | (int)eflag); return *this; }
 
 
       virtual void write_arbitrary(int32_t i);
@@ -102,6 +104,7 @@ namespace file
       virtual void write (LPCRECT lpcrect);
       virtual void write (const SIZE & size);
       virtual void write (const sp(type) info);
+      virtual void write (const std_type_info & info);
       virtual void write (const serializable & serializable);
       virtual void write (const char * psz);
       virtual void write (const id & id);

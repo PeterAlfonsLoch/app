@@ -3,7 +3,6 @@
 #include "axis/compress/zip/zip.h"
 
 
-
 namespace axis
 {
 
@@ -1222,64 +1221,64 @@ namespace axis
 
 
 
-   bool application::pre_run()
-   {
+   //bool application::pre_run()
+   //{
 
-      TRACE(string(typeid(*this).name()) + " main_start");;
-      try
-      {
+   //   TRACE(string(typeid(*this).name()) + " main_start");;
+   //   try
+   //   {
 
-         m_dwAlive = ::get_tick_count();
-         TRACE(string(typeid(*this).name()) + "application_pre_run");;
-         int32_t m_iReturnCode = application_pre_run();
-         if(m_iReturnCode != 0)
-         {
-            dappy(string(typeid(*this).name()) + " : applicationpre_run failure : " + ::str::from(m_iReturnCode));
-            m_bReady = true;
-            TRACE("application::main application_pre_run failure");
-            return false;
-         }
+   //      m_dwAlive = ::get_tick_count();
+   //      TRACE(string(typeid(*this).name()) + "application_pre_run");;
+   //      int32_t m_iReturnCode = application_pre_run();
+   //      if(m_iReturnCode != 0)
+   //      {
+   //         dappy(string(typeid(*this).name()) + " : applicationpre_run failure : " + ::str::from(m_iReturnCode));
+   //         m_bReady = true;
+   //         TRACE("application::main application_pre_run failure");
+   //         return false;
+   //      }
 
-         xxdebug_box("pre_runnned","pre_runnned",MB_ICONINFORMATION);
-         dappy(string(typeid(*this).name()) + " : pre_runned : " + ::str::from(m_iReturnCode));
-         TRACE(string(typeid(*this).name()) + " initial_check_directrix");;
-         if(!initial_check_directrix())
-         {
-            dappy(string(typeid(*this).name()) + " : initial_check_directrix failure");
-            m_iReturnCode = -1;
-            exit_thread();
-            m_bReady = true;
-            ::output_debug_string("exiting on check directrix\n");
-            return false;
-         }
+   //      xxdebug_box("pre_runnned","pre_runnned",MB_ICONINFORMATION);
+   //      dappy(string(typeid(*this).name()) + " : pre_runned : " + ::str::from(m_iReturnCode));
+   //      TRACE(string(typeid(*this).name()) + " initial_check_directrix");;
+   //      if(!initial_check_directrix())
+   //      {
+   //         dappy(string(typeid(*this).name()) + " : initial_check_directrix failure");
+   //         m_iReturnCode = -1;
+   //         exit_thread();
+   //         m_bReady = true;
+   //         ::output_debug_string("exiting on check directrix\n");
+   //         return false;
+   //      }
 
 
-         TRACE(string(typeid(*this).name()) + " os_native_bergedge_start");;
-         m_dwAlive = ::get_tick_count();
-         if(!os_native_bergedge_start())
-         {
-            dappy(string(typeid(*this).name()) + " : os_native_bergedge_start failure");
-            exit_thread();
-            m_iReturnCode = -1;
-            m_bReady = true;
-            ::output_debug_string("application::main os_native_bergedge_start failure");
-            return false;
-         }
+   //      TRACE(string(typeid(*this).name()) + " os_native_bergedge_start");;
+   //      m_dwAlive = ::get_tick_count();
+   //      if(!os_native_bergedge_start())
+   //      {
+   //         dappy(string(typeid(*this).name()) + " : os_native_bergedge_start failure");
+   //         exit_thread();
+   //         m_iReturnCode = -1;
+   //         m_bReady = true;
+   //         ::output_debug_string("application::main os_native_bergedge_start failure");
+   //         return false;
+   //      }
 
-         return true;
-      }
-      catch(::exit_exception &)
-      {
+   //      return true;
+   //   }
+   //   catch(::exit_exception &)
+   //   {
 
-         dappy(string(typeid(*this).name()) + " : main_start exit_exception");
+   //      dappy(string(typeid(*this).name()) + " : main_start exit_exception");
 
-         ::multithreading::post_quit(&System);
+   //      ::multithreading::post_quit(&System);
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 
@@ -1866,60 +1865,27 @@ namespace axis
    bool application::process_initialize()
    {
 
-      if(m_bAxisProcessInitialize)
+      if (m_bAxisProcessInitialize)
+      {
+
          return m_bAxisProcessInitializeResult;
 
+      }
+
+      thisstart;
+
       m_bAxisProcessInitialize = true;
+
       m_bAxisProcessInitializeResult = false;
 
+      if (!::aura::application::process_initialize())
+      {
 
+         thisfail << 1;
 
-
-      if(!::aura::application::process_initialize())
          return false;
 
-
-      //if(m_pthreadimpl == NULL)
-      //{
-
-      //   m_pthreadimpl.alloc(allocer());
-
-      //   m_pthreadimpl->m_pthread = this;
-
-      //}
-
-      //m_pimpl.alloc(allocer());
-
-      //m_pimpl->construct(NULL);
-
-      //m_pimpl->m_pimpl = this;
-
-      //if(::get_thread() == NULL)
-      //{
-      //   set_thread(dynamic_cast <thread *> (this));
-      //}
-
-      //if(is_system())
-      //{
-
-      //   if(!update_module_paths())
-      //      return false;
-
-      //}
-
-
-      //if(!ca_process_initialize())
-      //   return false;
-
-      //if(is_system())
-      //{
-
-
-      //}
-
-      //if(!m_pimpl->process_initialize())
-      //   return false;
-
+      }
 
       if (m_paurasystem->m_phtml == NULL)
       {
@@ -1928,6 +1894,8 @@ namespace axis
 
          if (m_paurasystem->m_phtml == NULL)
          {
+
+            thisfail << 2;
 
             return false;
 
@@ -1938,6 +1906,8 @@ namespace axis
       }
 
       m_bAxisProcessInitializeResult = true;
+
+      thisend;
 
       return true;
 

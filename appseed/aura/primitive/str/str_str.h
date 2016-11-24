@@ -462,6 +462,30 @@ namespace str
 
    CLASS_DECL_AURA string q_valid(string str);
 
+   inline char * dup(const char * p)
+   {
+
+
+      try
+      {
+
+         if (p == NULL)
+         {
+
+            return NULL;
+
+         }
+
+         return strdup(p);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
 } // namespace str
 
 

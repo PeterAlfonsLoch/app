@@ -1,5 +1,4 @@
-
-
+#include "framework.h"
 
 
 timer_event::timer_event(::aura::application * papp,int iTimer):

@@ -8,7 +8,9 @@
 #include <unistd.h>
 #endif
 
+#ifndef ANDROID
 #include "aura/_aura_aura_aura.cpp"
+#endif
 #include "exception/_exception.cpp"
 #include "message/_message.cpp"
 #include "xml/_xml.cpp"

@@ -503,10 +503,25 @@ restart:
       try
       {
 
-         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+         cres res;
 
-         if(spfile.is_null())
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none | ::file::no_call_stack, &res);
+
+         if (res.failed())
+         {
+
+            thiswarn << res->element_at(0)->m_strMessage;
+
             return;
+
+         }
+
+         if (spfile.is_null())
+         {
+
+            return;
+
+         }
 
          ::file::byte_istream is(spfile);
 

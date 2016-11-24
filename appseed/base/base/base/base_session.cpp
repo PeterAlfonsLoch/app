@@ -97,20 +97,49 @@ namespace base
    bool session::process_initialize()
    {
 
-      m_pschemasimple = get_new_user_schema(NULL);
+      thisstart;
+
+      m_pschemasimple               = get_new_user_schema(NULL);
+
+      if (m_pschemasimple == NULL)
+      {
+
+         thisfail << 1;
+
+         return false;
+
+      }
 
       m_puserschema                 = m_pschemasimple;
 
-      if(!::axis::session::process_initialize())
+      if (!::axis::session::process_initialize())
+      {
+
+         thisfail << 2;
+
          return false;
 
-      if(!::base::application::process_initialize())
+      }
+
+      if (!::base::application::process_initialize())
+      {
+
+         thisfail << 3;
+
          return false;
+
+      }
 
       m_puser = create_user();
 
-      if(m_puser == NULL)
+      if (m_puser == NULL)
+      {
+
+         thisfail << 4;
+
          return false;
+
+      }
 
       m_puser->construct(this);
 
@@ -562,6 +591,8 @@ namespace base
    sp(::user::schema) session::get_new_user_schema(const char * pszUinteractionLibrary)
    {
 
+      thisstart;
+
       stringa stra;
 
       string strAppId;
@@ -577,7 +608,7 @@ namespace base
       if(strId.is_empty())
       {
 
-         string strWndFrm = Application.file().as_string(::dir::system() / "config\\system\\wndfrm.txt");
+         string strWndFrm = Application.file().as_string(::dir::system() / "config/system/wndfrm.txt");
 
          if(strWndFrm.is_empty())
             goto defer_check_wndfrm_core;
@@ -594,8 +625,14 @@ namespace base
 
 restart:
 
-      if(!library.open(strLibrary,false))
+      if (!library.open(strLibrary, false))
+      {
+
+         thisinfo << "Failed to load " << strLibrary;
+
          goto defer_check_wndfrm_core;
+
+      }
 
       if(!library.open_ca2_library())
          goto defer_check_wndfrm_core;

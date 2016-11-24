@@ -1,6 +1,16 @@
 #pragma once
 
 
+enum e_str_flag
+{
+
+   str_flag_ifnumberspace = 1,
+   str_flag_ifnumberparenthesize = 2,
+   str_flag_ifnumberparenthesizeandspace = 3,
+
+};
+
+
 namespace file
 {
 
@@ -44,6 +54,7 @@ namespace file
       defer_create_directory           = (int32_t) 0x10000,
       hint_unknown_length_supported    = (int32_t) 0x20000,
       mode_truncate                    = (int32_t) 0x40000,
+      no_call_stack                    = (int32_t) 0x80000,
       binary                           = type_binary,
       out                              = mode_write,
       in                               = mode_read,
@@ -81,12 +92,12 @@ namespace file
    {
    public:
 
-
+      e_str_flag                 m_estrflag;
       buffer_sp                  m_spbuffer;
       e_iostate                  m_iostate;
       fmtflags                   m_fmtflags;
-      file_size_t                  m_width;
-      file_size_t                  m_precision;
+      file_size_t                m_width;
+      file_size_t                m_precision;
 
       stream_base();
       stream_base(buffer_sp pbuffer);

@@ -1,8 +1,13 @@
 #pragma once
 
-
 namespace file
 {
+
+   class string_buffer;
+
+
+   typedef sp(string_buffer) string_buffer_sp;
+
 
 
    class CLASS_DECL_AURA plain_text_ostream :
@@ -36,10 +41,12 @@ namespace file
       virtual void write (LPCRECT lpcrect);
       virtual void write (const SIZE & size);
       virtual void write (const sp(type) info);
+      virtual void write (const std_type_info & info);
       virtual void write (serializable & serializable);
       virtual void write (const char * psz);
 
       virtual void raw_print(const string & str);
+      virtual void print_number(const string & str);
 
       virtual ::string get_location() const;
 
@@ -56,5 +63,27 @@ namespace file
 
 
 } // namespace file
+
+
+class CLASS_DECL_AURA plain_text_stream_log_line :
+   virtual public ::file::plain_text_ostream
+{
+public:
+
+   
+   ::file::string_buffer_sp   m_pfile;
+   e_level                    m_elevel;
+   string                     m_strTag;
+   string                     m_strFile;
+   int                        m_iLine;
+
+
+   plain_text_stream_log_line(e_level elevel, const char * pszTag, const char * pszFile = NULL, int iLine = -1);
+   virtual ~plain_text_stream_log_line();
+
+};
+
+
+
 
 

@@ -167,19 +167,32 @@ namespace axis
    bool session::process_initialize()
    {
 
+      thisstart;
 
+      if (!::aura::session::process_initialize())
+      {
 
-      if(!::aura::session::process_initialize())
+         thisfail << 1;
+
          return false;
 
+      }
+
+      thisok << 1;
 
       if(m_pfontopus == NULL)
       {
 
          m_pfontopus = create_fontopus();
 
-         if(m_pfontopus == NULL)
-            throw simple_exception(this,"could not create fontopus for ::axis::session (::axis::session::construct)");
+         if (m_pfontopus == NULL)
+         {
+          
+            thisfail << 2 << "Failed to create fontopus";
+
+            return false;
+
+         }
 
          m_pfontopus->construct(this);
 
@@ -210,18 +223,31 @@ namespace axis
       {
 
          ::fs::set * pset = canew(class ::fs::set(this));
+
          ::fs::link * plink = canew(::fs::link(this));
+
          plink->fill_os_user();
+
          pset->m_spafsdata.add(plink);
+
          pset->m_spafsdata.add(canew(::fs::native(this)));
+
          m_spfsdata = pset;
 
       }
 
+      thisok << 2;
 
+      if (!::axis::application::process_initialize())
+      {
 
-      if(!::axis::application::process_initialize())
+         thisfail << 3;
+
          return false;
+
+      }
+
+      thisok << 3;
 
       if (m_psockets == NULL)
       {
@@ -231,17 +257,32 @@ namespace axis
          m_psockets->construct(this);
 
          if (!m_psockets->initialize1())
-            throw simple_exception(this, "could not initialize (1) sockets for application (application::construct)");
+         {
+          
+            thisfail << 4;
+
+            return false;
+
+         }
+
+         thisok << 4;
 
          if (!m_psockets->initialize())
-            throw simple_exception(this, "could not initialize sockets for application (application::construct)");
+         {
+
+            thisfail << 4.1;
+
+            return false;
+
+         }
+
+         thisok << 4.1;
 
       }
 
       m_splicensing = canew(class ::fontopus::licensing(this));
 
-
-
+      thisend;
 
       return true;
 

@@ -30,6 +30,7 @@ CLASS_DECL_AURA void writeln(const char * psz);
 
 
 
+
 //CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT * ppt);
 
 

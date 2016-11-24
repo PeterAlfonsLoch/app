@@ -1,3 +1,4 @@
+#include "framework.h"
 
 
 CLASS_DECL_AURA void * x86_memory_pool_alloc(memory_size_t s);

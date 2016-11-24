@@ -176,6 +176,62 @@ namespace exception
       throw not_implemented(papp);
    }
 
+
+   string result::get_all_messages()
+   {
+
+      ::count c = this->get_count();
+
+      if (c <= 0)
+      {
+
+         return "";
+
+      }
+      else if (c == 1)
+      {
+
+         return element_at(0)->m_strMessage;
+
+      }
+      else
+      {
+
+         string str;
+
+         index i = 0;
+
+         this->pred_each(
+
+            [&](auto & pe)
+            {
+
+               str += ::str::from(++i);
+
+               str += ". ";
+
+               str += pe->m_strMessage;
+
+               str += ";";
+
+               if (i < c)
+               {
+
+                  str += " ";
+
+               }
+
+            }
+
+         );
+
+         return str;
+
+      }
+   
+   }
+
+
 } // namespace exception
 
 

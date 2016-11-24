@@ -372,6 +372,47 @@ namespace aura
 
    }
 
+
+   template < typename T >
+   inline void free(T * & p)
+   {
+
+      //Thank you Mummi!!
+
+      //Nice late afternoon coffee of ever!!
+
+      //Thank you Fiora a Eterna!!
+
+      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
+
+      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+      //   Details
+
+      // BRT 2016-11-23 19:08
+      // catch all (...) here in aura::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+
+      try
+      {
+
+         if (p != NULL)
+         {
+
+            void * pdel = (void *) p;
+
+            p = NULL;
+
+            ::free(pdel);
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
 } // namespace aura
 
 

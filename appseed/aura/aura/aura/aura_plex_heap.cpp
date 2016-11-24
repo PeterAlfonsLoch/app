@@ -1,8 +1,9 @@
-//#include "framework.h"
+#include "framework.h"
 
 
 #undef new
 
+void Alloc_check_pointer_in_cpp(void * p);
 void Free_check_pointer_in_cpp(void * p);
 
 
@@ -17,7 +18,7 @@ plex_heap * plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbEleme
    plex_heap* p = (plex_heap*) system_heap_alloc(sizeof(plex_heap) + nMax * cbElement);
 
 #ifdef DEBUG
-   Free_check_pointer_in_cpp(p);
+   Alloc_check_pointer_in_cpp(p);
 #endif
          // may throw exception
    p->pNext = pHead;
@@ -656,6 +657,40 @@ void * g_pf1 = NULL;
 
 CLASS_DECL_AURA void simple_debug_print(const char * psz);
 
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
+#ifdef ANDROID
+#define QUOTED_KERNEL_SPACE (1024 * 1024)
+#else
+#define QUOTED_KERNEL_SPACE (1024 * 1024)
+#endif
+
+void Alloc_check_pointer_in_cpp(void * p)
+{
+
+   if ((uint_ptr)p < QUOTED_KERNEL_SPACE)
+   {
+
+      if (p == NULL)
+      {
+
+         simple_debug_print("Alloc_check_pointer_in_cpp return NULL ?!?!?!");
+
+      }
+      else
+      {
+
+         simple_debug_print("Alloc_check_pointer_in_cpp returning address less than " STR(QUOTED_KERNEL_SPACE));
+
+      }
+
+   }
+
+
+
+}
+
+
 void Free_check_pointer_in_cpp(void * p)
 {
 
@@ -672,10 +707,21 @@ void Free_check_pointer_in_cpp(void * p)
 
       simple_debug_print("hit 0x0000000200000020LLU");
    }
-   if ((int_ptr)p < (1024 * 1024))
+   if ((uint_ptr)p < QUOTED_KERNEL_SPACE)
    {
 
-      simple_debug_print("Free_check_pointer_in_cpp WHAT!! < 1MB");
+      if (p == NULL)
+      {
+
+         simple_debug_print("Free_check_pointer_in_cpp FREEING NULL?!?! WHAT!! == NULL!!");
+
+      }
+      else
+      {
+
+         simple_debug_print("Free_check_pointer_in_cpp WHAT!! < " STR(QUOTED_KERNEL_SPACE));
+
+      }
 
    }
 

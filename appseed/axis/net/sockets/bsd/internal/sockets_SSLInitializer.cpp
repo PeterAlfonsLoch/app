@@ -171,15 +171,15 @@ namespace sockets
       ::object(papp)
    {
 
+      thisstart;
+
 #ifdef _UWP
+
       OPENSSL_UplinkAll();
+
 #endif
 
-       //CRYPTO_set_mem_functions(&default_malloc_ex, &default_realloc_ex, &default_free_ex);
-
-      TRACE("SSLInitializer()\n");
-
-//      bio_err = NULL;
+      CRYPTO_set_mem_functions(&default_malloc_ex, &default_realloc_ex, &default_free_ex);
 
       m_rand_size = 1024;
 
@@ -191,16 +191,19 @@ namespace sockets
 
       g_pmutexMap = new mutex(get_app());
 
-      /* Global system initialization*/
-      //OpenSSL_add_all_algorithms();
-      
- # if OPENSSL_API_COMPAT < 0x10100000L
+      thisok << 1;
+
+#if OPENSSL_API_COMPAT < 0x10100000L
+
       CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
       CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
 
       SSL_load_error_strings();
       SSL_library_init();
+
 #endif
+
+      thisok << 2;
 
       rand_meth.add = &SSLInitializer_rand_add;
       rand_meth.bytes = &SSLInitializer_rand_bytes;

@@ -5,7 +5,7 @@
 //
 //
 
-//#include "framework.h"
+#include "framework.h"
 
 extern mutex * g_pmutexSignal;
 CLASS_DECL_AURA exception::engine * g_ee = NULL;

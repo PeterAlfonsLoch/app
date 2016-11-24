@@ -1,8 +1,8 @@
-#if defined(MCHECK) || defined(__VLD) || defined(__MCRTDBG)
+#include "framework.h"
 
-#error "MCHECK, __VLD or __MCRTDBG must not be defined for MEMDLEAK builds"
 
-#endif
+#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG) && MEMDLEAK
+
 
 #ifdef WINDOWSEX
 #include <mmsystem.h>
@@ -670,3 +670,9 @@ void memdleak_term()
    ::aura::del(g_pmutgen);
 
 }
+
+
+
+#endif
+
+

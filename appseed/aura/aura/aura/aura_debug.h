@@ -259,3 +259,46 @@ CLASS_DECL_AURA ::count get_mem_info2(int32_t ** ppiUse, const char *** ppszFile
 
 
 #endif
+
+
+
+enum e_level
+{
+
+   level_info,
+   level_warning,
+   level_error,
+   level_debug
+
+};
+
+
+CLASS_DECL_AURA void os_trace(e_level elevel, const char * pszTag, const char * pszMessage);
+CLASS_DECL_AURA void trace(e_level elevel, const char * pszTag, const char * psz, const char * pszFile = NULL, int iLine = -1);
+
+
+
+
+#define LOG(level, tag) ::plain_text_stream_log_line(level, tag, __FILE__, __LINE__)
+
+
+#define cinfo LOG(level_info, LOG_TAG)
+#define cwarn LOG(level_warning, LOG_TAG)
+#define cerr LOG(level_error, LOG_TAG)
+#define cdebug LOG(level_debug, LOG_TAG)
+
+
+#define thisinfo LOG(level_info, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+#define thiswarn LOG(level_warning, LOG_THIS_TAG)  << LOG_MEMBER_PREFIX << "; "
+#define thiserr LOG(level_error, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+#define thisdebug LOG(level_debug, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+
+#define thisstart thisinfo << "start "
+#define thisexit thisinfo << "exit " << str_flag_ifnumberparenthesizeandspace
+#define thisok thisinfo << "ok " << str_flag_ifnumberparenthesizeandspace
+#define thisexc thiserr << "exception " << str_flag_ifnumberparenthesizeandspace
+#define thisexcall thiserr << "exception(...) " << str_flag_ifnumberparenthesizeandspace
+#define thisfail thiserr << "failure " << str_flag_ifnumberparenthesizeandspace
+#define thisend thisinfo << "end "
+
+

@@ -571,10 +571,23 @@ restart:
                TRACE("left folder");
             }
 
-            spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+            cres res;
+
+            spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none, &res);
+
+            if (res.failed())
+            {
+
+               return;
+
+            }
 
             if (spfile.is_null())
+            {
+
                return;
+
+            }
 
             file_size_t filesize = spfile->get_length();
 

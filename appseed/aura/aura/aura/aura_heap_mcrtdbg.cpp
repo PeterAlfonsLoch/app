@@ -1,10 +1,6 @@
-//#include "framework.h"
+#include "framework.h"
 
-
-#include <crtdbg.h>
-
-
-#if !defined(__VLD) && !defined(__MCRTDBG) && !MEMDLEAK
+#if !defined(__VLD) && defined(__MCRTDBG) && !MEMDLEAK
 
 struct heap_memory
 {
@@ -141,7 +137,6 @@ c_class::~c_class()
 {
 }
 
-#endif
 
 plex_heap_alloc_array * g_pheap = NULL;
 
@@ -973,6 +968,8 @@ void destroy_id_space() // let it go with the ({"eco}system") processs
 }
 */
 
+
+#endif
 
 
 

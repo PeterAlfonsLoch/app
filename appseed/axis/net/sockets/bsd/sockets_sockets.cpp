@@ -17,7 +17,7 @@ namespace sockets
 
       m_iReturnCode = -1;
 
-      m_psslinit = new ::sockets::SSLInitializer(get_app());
+      m_psslinit = NULL;
 
       m_pajpaxissocketinit    = NULL;
 
@@ -71,6 +71,8 @@ namespace sockets
 
    bool sockets::initialize1()
    {
+
+      m_psslinit = new ::sockets::SSLInitializer(get_app());
 
       m_spnet = canew(::sockets::net(get_app()));
       //m_spnet.alloc(allocer());

@@ -195,6 +195,11 @@ namespace file
 
    }
 
+   void ostream::write(const std_type_info & info)
+   {
+
+   }
+
    void ostream:: write (const serializable & serializable)
    {
       serializable.write(*this);

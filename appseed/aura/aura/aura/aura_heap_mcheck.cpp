@@ -1,14 +1,9 @@
-#ifndef MEMCHECK
+#include "framework.h"
 
-#error "MEMCHECK build only"
 
-#endif
-
+#ifdef MEMCHECK
 
 #include "aura_heap_memory.h"
-
-
-
 
 BEGIN_EXTERN_C
 
@@ -836,6 +831,7 @@ void destroy_id_space() // let it go with the ({"eco}system") processs
 }
 */
 
+#endif
 
 
 

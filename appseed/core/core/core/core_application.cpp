@@ -198,22 +198,33 @@ namespace core
    bool application::process_initialize()
    {
 
-
-
-
+      thisinfo << "start";
 
       if (!::base::application::process_initialize())
+      {
+
+         thiserr << "end failure (1)";
+
          return false;
+
+      }
 
       m_puserfs = create_userfs();
 
       if (m_puserfs == NULL)
+      {
+
+         thiserr << "end failure (2)";
+
          return false;
+
+      }
 
       m_spobjectUserFs = m_puserfs;
 
       m_puserfs->construct(this);
 
+      thisinfo << "end";
 
       return true;
 

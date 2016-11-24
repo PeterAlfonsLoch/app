@@ -114,7 +114,7 @@ namespace axis
 
       virtual int32_t run() override;
 
-      virtual bool pre_run() override;
+      //virtual bool pre_run() override;
       virtual int32_t main() override;
       virtual int32_t on_run() override;
       virtual int32_t application_pre_run() override;

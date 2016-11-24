@@ -1,3 +1,4 @@
+#include "framework.h"
 
 
 BEGIN_EXTERN_C
@@ -83,7 +84,7 @@ void memory_free(void * pvoid)
 }
 
 
-size_t memory_size_t(void * pvoid)
+size_t memory_size(void * pvoid)
 {
 #ifdef WINDOWS
    return _msize(pvoid);
@@ -111,8 +112,6 @@ size_t memory_size_dbg(void * pvoid, int32_t iBlockType)
 #endif
 }
 
-
-#endif
 
 
 

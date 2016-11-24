@@ -1,8 +1,7 @@
-#if defined(MCHECK) || defined(_VLD) || defined(__MCRTDBG) || MEMDLEAK
+#include "framework.h"
 
-#error "Either MCHECK, _VLD, __MCRTDBG or MEMDLEAK were defined"
 
-#endif
+#if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
 
 
 #include "aura_heap_memory.h"
@@ -429,12 +428,10 @@ size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 }
 
 
-
-
 END_EXTERN_C
 
 
-
+#endif
 
 
 

@@ -248,7 +248,7 @@ namespace android
             {*/
 
 
-            return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName));
+            return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName, nOpenFlags));
 
             //}
 
@@ -286,7 +286,7 @@ namespace android
 
 
             DWORD dwLastError = ::GetLastError();
-            return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName));
+            return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName, nOpenFlags));
 
 
             //}

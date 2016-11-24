@@ -663,6 +663,27 @@ public:
    virtual void on_after_read();
 
    template < typename PRED >
+   ::count pred_each(PRED pred, index iStart = 0, ::count c = -1)
+   {
+      
+      index iEnd = c < 0 ? get_count() + iEnd : iStart + c - 1;
+
+      int cProcessed = 0;
+
+      for (index i = iStart; i <= iEnd; i++)
+      {
+
+         pred(m_pData[i]);
+
+         cProcessed++;
+
+      }
+
+      return cProcessed;
+
+   }
+
+   template < typename PRED >
    index pred_find_first(PRED pred, index iStart = 0)
    {
       for(index i = iStart; i < get_count(); i++)

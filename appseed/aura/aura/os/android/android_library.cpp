@@ -72,8 +72,6 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath, string & strMes
 
    }
 
-   output_debug_string(strMessage);
-
    return plibrary;
 
 }
@@ -106,8 +104,6 @@ CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath, string & st
       strMessage += psz2;
 
    }
-
-   ::output_debug_string(strMessage);
 
    return plibrary;
 

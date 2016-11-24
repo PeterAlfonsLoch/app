@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 
 
 string_map < INT_PTR,INT_PTR > & __library();
@@ -73,13 +73,15 @@ namespace aura
    bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
+      m_strMessage.Empty();
+
       m_bAutoClose = bAutoClose;
 
 #if defined(CUBE)
-      m_strPath = pszPath;
-#else
 
-      ::output_debug_string("\n\n::aura::library::open Going to load library : " + string(pszPath) + " (bCa2Path = "+::str::from((int)bCa2Path)+")\n\n");
+      m_strPath = pszPath;
+
+#else
 
       try
       {
@@ -100,7 +102,7 @@ namespace aura
          if(m_plibrary == NULL)
          {
 
-            ::output_debug_string("\n\n::aura::library::open :: Failed to open library : " + string(pszPath) + " (bCa2Path = "+::str::from((int)bCa2Path)+") \n\n");
+            thisfail << m_strMessage;
 
             return false;
 
@@ -112,13 +114,15 @@ namespace aura
       catch(...)
       {
 
-         ::output_debug_string("\n\n::aura::library::open :: An exception occurred while opening library : " + string(pszPath) + "\n\n");
+         thisexcall << "Failed to open library " << (bCa2Path ? " (ca2 path)" : "") << " with errors " << m_strMessage;
 
          return false;
 
       }
 
 #endif
+
+      thisend << m_strMessage;
 
       return true;
 

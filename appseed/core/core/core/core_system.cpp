@@ -164,52 +164,54 @@ namespace core
    bool system::process_initialize()
    {
 
+      if (m_bProcessInitialize)
+      {
 
-
-      if(m_bProcessInitialize)
          return m_bProcessInitializeResult;
 
+      }
+
+      thisinfo << "start";
+
       m_bProcessInitializeResult    = false;
+
       m_bProcessInitialize          = true;
 
-      if(!::core::application::process_initialize())
+      if (!::core::application::process_initialize())
+      {
+
+         thiserr << "end failure (1)";
+
          return false;
 
-      if(!::base::system::process_initialize())
+      }
+
+      if (!::base::system::process_initialize())
+      {
+
+         thiserr << "end failure (2)";
+
          return false;
 
-
-
-
-
+      }
 
       ::core::profiler::initialize();
 
-
-      //      System.factory().creatable < ::base::log >(System.type_info < ::base::log > (), 1);
-
-      /*      if(!::core::application::process_initialize())
-      {
-      return false;
-      }*/
-
-
-
-#ifdef LINUX
-
-         ::fork(get_app(),[=]()
-         {
-
-            ::get_thread()->unregister_from_required_threads();
-
-         g_pbasecore = dlopen("libbasecore.so", RTLD_LOCAL | RTLD_NOW);
-         BASECORE_INIT * f =  (BASECORE_INIT *) dlsym(g_pbasecore, "basecore_init");
-         (*f)();
-OutputDebugString("gtk_main exited");
-
-         });
-
-#endif
+//#ifdef LINUX
+//
+//   ::fork(get_app(),[=]()
+//         {
+//
+//            ::get_thread()->unregister_from_required_threads();
+//
+//         g_pbasecore = dlopen("libbasecore.so", RTLD_LOCAL | RTLD_NOW);
+//         BASECORE_INIT * f =  (BASECORE_INIT *) dlsym(g_pbasecore, "basecore_init");
+//         (*f)();
+//OutputDebugString("gtk_main exited");
+//
+//         });
+//
+//#endif
 
       //m_phtml = create_html();
 
@@ -220,9 +222,12 @@ OutputDebugString("gtk_main exited");
 
       //m_phtml->construct(this);
 
-
       m_bProcessInitializeResult = true;
+
+      thisinfo << "end";
+
       return true;
+
    }
 
 

@@ -1,3 +1,4 @@
+#include "framework.h"
 
 
 CLASS_DECL_AURA void * processor_cache_oriented_memory_alloc(size_t s)

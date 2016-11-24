@@ -6,7 +6,7 @@
 
 // 08/12/06 (mv)
 
-//#include "framework.h"
+#include "framework.h"
 //#include <wchar.h>
 //#include <stdarg.h>
 

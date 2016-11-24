@@ -30,3 +30,12 @@ END_EXTERN_C
 
 
 
+#ifdef cplusplus
+
+#define LOG_THIS_TAG (demangle(typeid(*this).name()))
+#define LOG_MEMBER_PREFIX __FUNCTION__
+
+#endif
+
+
+

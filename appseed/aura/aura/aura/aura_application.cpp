@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 
 
 #if defined(LINUX)
@@ -24,7 +24,6 @@
 #include "aura/node/android/android.h"
 
 #endif
-
 
 extern void * g_pf1;
 
@@ -1191,55 +1190,85 @@ namespace aura
    bool application::pre_run()
    {
 
-      TRACE(string(typeid(*this).name()) + " main_start");;
+      thisstart;
+
       try
       {
 
          m_dwAlive = ::get_tick_count();
-         TRACE(string(typeid(*this).name()) + "application_pre_run");;
+
          int32_t m_iReturnCode = application_pre_run();
-         if(m_iReturnCode != 0)
+
+         if(m_iReturnCode < 0)
          {
-            dappy(string(typeid(*this).name()) + " : applicationpre_run failure : " + ::str::from(m_iReturnCode));
+            
+            thisfail << 1 << m_iReturnCode;
+
             m_bReady = true;
-            TRACE("application::main application_pre_run failure");
+
             return false;
+
          }
 
-         xxdebug_box("pre_runnned","pre_runnned",MB_ICONINFORMATION);
-         dappy(string(typeid(*this).name()) + " : pre_runned : " + ::str::from(m_iReturnCode));
-         TRACE(string(typeid(*this).name()) + " initial_check_directrix");;
+         xxdebug_box("pre_run 1 ok","pre_run 1 ok",MB_ICONINFORMATION);
+
+         thisok << 1 << m_iReturnCode;
+         
          if(!initial_check_directrix())
          {
-            dappy(string(typeid(*this).name()) + " : initial_check_directrix failure");
-            m_iReturnCode = -1;
-            exit_thread();
+
+            thisfail << 2 << m_iReturnCode;
+            
+            if (m_iReturnCode >= 0)
+            {
+
+               m_iReturnCode = -1;
+
+            }
+
             m_bReady = true;
-            ::output_debug_string("exiting on check directrix");
+
             return false;
+
          }
 
-
-         TRACE(string(typeid(*this).name()) + " os_native_bergedge_start");;
+         thisok << 2 << m_iReturnCode;
+         
          m_dwAlive = ::get_tick_count();
+
          if(!os_native_bergedge_start())
          {
-            dappy(string(typeid(*this).name()) + " : os_native_bergedge_start failure");
-            exit_thread();
-            m_iReturnCode = -1;
+
+            thisfail << 3 << m_iReturnCode;
+
+            if (m_iReturnCode >= 0)
+            {
+
+               m_iReturnCode = -1;
+
+            }
+            
             m_bReady = true;
-            ::output_debug_string("application::main os_native_bergedge_start failure");
+            
             return false;
+
          }
 
+         thisend;
+
          return true;
+
       }
       catch(::exit_exception &)
       {
 
-         dappy(string(typeid(*this).name()) + " : main_start exit_exception");
+         thisexc << 4;
 
-         ::multithreading::post_quit(&System);
+      }
+      catch (...)
+      {
+
+         thisexcall << 4;
 
       }
 
@@ -1438,6 +1467,7 @@ namespace aura
    int32_t application::application_pre_run()
    {
 
+      thisstart;
 
 #ifdef WINDOWSEX
 
@@ -1457,137 +1487,192 @@ namespace aura
 
       m_dwAlive = ::get_tick_count();
 
-      if(!InitApplication())
+      try
       {
-         dappy(string(typeid(*this).name()) + " : InitApplication failure : " + ::str::from(m_iReturnCode));
+
+         if (!InitApplication())
+         {
+
+            thisfail << 1 << m_iReturnCode;
+
+            goto InitFailure;
+
+         }
+
+      }
+      catch (::exit_exception & e)
+      {
+
+         thisexit << 1 << m_iReturnCode;
+
+         throw e;
+
+      }
+      catch (const ::exception::exception &)
+      {
+
+         thisexc << 1 << m_iReturnCode;
+
          goto InitFailure;
+
+      }
+      catch (...)
+      {
+
+         thisexcall << 1 << m_iReturnCode;
+
+         goto InitFailure;
+
       }
 
-
-      //::simple_message_box(NULL,"e1","e1",MB_OK);
+      thisok << 1 << m_iReturnCode;
 
       m_dwAlive = ::get_tick_count();
 
       try
       {
-         try
+            
+         if(!process_initialize())
          {
-            if(!process_initialize())
-            {
-               dappy(string(typeid(*this).name()) + " : process_initialize failure : " + ::str::from(m_iReturnCode));
-               goto InitFailure;
-            }
-         }
-         catch(::exit_exception & e)
-         {
+               
+            thisfail << 2 << m_iReturnCode;
 
-            throw e;
-
-         }
-         catch(const ::exception::exception &)
-         {
             goto InitFailure;
-         }
-
-
-         dappy(string(typeid(*this).name()) + " : e2 : " + ::str::from(m_iReturnCode));
-         //::simple_message_box(NULL,"e2","e2",MB_OK);
-
-         System.install_progress_add_up();
-         m_dwAlive = ::get_tick_count();
-         try
-         {
-
-            if(!initialize_application())
-            {
-               dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
-               if(System.directrix()->m_varTopicQuery["app"] == m_strAppName)
-               {
-                  ::multithreading::post_quit(&System);
-               }
-               try
-               {
-                  exit_thread();
-               }
-               catch(...)
-               {
-               }
-               goto InitFailure;
-            }
-
-            if (!is_installing() && !is_uninstalling())
-            {
-
-               if (!start_instance())
-               {
-
-                  dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
-
-                  if (System.directrix()->m_varTopicQuery["app"] == m_strAppName)
-                  {
-
-                     ::multithreading::post_quit(&System);
-
-                  }
-                  try
-                  {
-                     exit_thread();
-                  }
-                  catch (...)
-                  {
-                  }
-                  goto InitFailure;
-
-               }
-
-            }
 
          }
-         catch(::exit_exception & e)
-         {
 
-            throw e;
-
-         }
-         catch(const ::exception::exception & e)
-         {
-            if(on_run_exception((::exception::exception &) e))
-               goto run;
-            if(final_handle_exception((::exception::exception &) e))
-               goto run;
-            try
-            {
-               m_iReturnCode = exit_thread();
-            }
-            catch(...)
-            {
-               m_iReturnCode = -1;
-            }
-            if(m_iReturnCode == 0)
-               m_iReturnCode = -1;
-            goto InitFailure;
-         }
       }
       catch(::exit_exception & e)
       {
 
+         thisexit << 2 << m_iReturnCode;
+
          throw e;
 
       }
-      catch(const char * psz)
+      catch(const ::exception::exception &)
       {
-         TRACE("String Exception: This is the Error Message : \"%s\"", psz);
-         m_iReturnCode = -666;
+
+         thisexc << 2 << m_iReturnCode;
+            
+         goto InitFailure;
+
       }
-      catch(...)
+      catch (...)
       {
-         m_iReturnCode = -66;
+
+         thisexcall << 2 << m_iReturnCode;
+
+         goto InitFailure;
+
       }
-      goto run;
+
+      thisinfo << 2 << m_iReturnCode;
+
+      System.install_progress_add_up();
+
+      m_dwAlive = ::get_tick_count();
+
+      try
+      {
+
+         if (!initialize_application())
+         {
+
+            thisfail << 3 << m_iReturnCode;
+
+            goto InitFailure;
+
+         }
+
+      }
+      catch (::exit_exception & e)
+      {
+
+         thisexit << 3 << m_iReturnCode;
+
+         throw e;
+
+      }
+      catch (const ::exception::exception &)
+      {
+
+         thisexc << 3 << m_iReturnCode;
+
+         goto InitFailure;
+
+      }
+      catch (...)
+      {
+
+         thisexcall << 3 << m_iReturnCode;
+
+         goto InitFailure;
+
+      }
+
+      thisok << 3 << m_iReturnCode;
+
+      m_dwAlive = ::get_tick_count();
+
+      try
+      {
+
+         if (!is_installing() && !is_uninstalling())
+         {
+
+            if (!start_instance())
+            {
+
+               thisfail << 3.1 << m_iReturnCode;
+
+               goto InitFailure;
+
+            }
+
+         }
+
+      }
+      catch (::exit_exception & e)
+      {
+
+         thisexit << 3.1 << m_iReturnCode;
+
+         throw e;
+
+      }
+      catch (const ::exception::exception &)
+      {
+
+         thisexc << 3.1 << m_iReturnCode;
+
+         goto InitFailure;
+
+      }
+      catch (...)
+      {
+
+         thisexcall << 3.1 << m_iReturnCode;
+
+         goto InitFailure;
+
+      }
+
+      thisend << m_iReturnCode;
+
+      return 0;
+
    InitFailure:
-      if(m_iReturnCode == 0)
+
+      if (m_iReturnCode == 0)
+      {
+
          m_iReturnCode = -1;
-   run:
+
+      }
+
+      thiserr << "end failure " << m_iReturnCode;
+
       return m_iReturnCode;
 
    }
@@ -2047,54 +2132,51 @@ namespace aura
    bool application::process_initialize()
    {
 
-      if(m_bAuraProcessInitialize)
+      if (m_bAuraProcessInitialize)
+      {
+
          return m_bAuraProcessInitializeResult;
 
+      }
+
+      thisstart;
+
       m_bAuraProcessInitialize = true;
+
       m_bAuraProcessInitializeResult = false;
 
       m_spdir.alloc(allocer());
+
       m_spfile.alloc(allocer());
-
-
-
-//      if(m_pthreadimpl == NULL)
-//      {
-//
-//         m_pthreadimpl.alloc(allocer());
-//
-//         m_pthreadimpl->m_pthread = this;
-//
-//      }
-
-      //m_pappimpl.alloc(allocer());
-
-      //      impl_construct(NULL);
 
       if(::get_thread() == NULL)
       {
+
          ::set_thread(dynamic_cast <thread *> (this));
+
       }
 
-      //if(is_system())
-      //{
-      //
-      //
-      //   TRACE("\n\n** %s **\n\n", "This command should work.");
+      if (!ca_process_initialize())
+      {
 
-      //   if(!update_module_paths())
-      //      return false;
+         thisfail << 1;
 
-      //}
-
-
-      if(!ca_process_initialize())
          return false;
 
-      if(!impl_process_initialize())
+      }
+
+      if (!impl_process_initialize())
+      {
+
+         thisfail << 2;
+
          return false;
+
+      }
 
       m_bAuraProcessInitializeResult = true;
+
+      thisend;
 
       return true;
 

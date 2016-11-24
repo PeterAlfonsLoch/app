@@ -29,6 +29,12 @@
 
 #include "aura/aura/aura.h"
 
+#undef clog
+#undef cerr
+#undef cinfo
+#undef cdebug
+#undef cwarn
+
 // Version information ------------------------------------------------------
 
 #define FREEIMAGE_MAJOR_VERSION   3
