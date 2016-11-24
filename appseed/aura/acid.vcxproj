@@ -453,7 +453,6 @@
     <ClInclude Include="aura\aura\aura_assert_running_task.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_aura.h" />
-    <ClInclude Include="aura\aura\aura_auto_pointer.h" />
     <ClInclude Include="aura\aura\aura_command.h" />
     <ClInclude Include="aura\aura\aura_command_msg.h" />
     <ClInclude Include="aura\aura\aura_command_target.h" />
@@ -462,7 +461,6 @@
     <ClInclude Include="aura\aura\aura_common.h" />
     <ClInclude Include="aura\aura\aura_conv.h" />
     <ClInclude Include="aura\aura\aura_core.h" />
-    <ClInclude Include="aura\aura\aura_core_os.h" />
     <ClInclude Include="aura\aura\aura_cpu_architecture.h" />
     <ClInclude Include="aura\aura\aura_create_context.h" />
     <ClInclude Include="aura\aura\aura_cregexp.h" />
@@ -1010,8 +1008,6 @@
     <ClCompile Include="test.cpp" />
     <ClCompile Include="user\colorertake5\_colorertake5.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
-    <ClInclude Include="version.config.h" />
-    <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="aura.def" />

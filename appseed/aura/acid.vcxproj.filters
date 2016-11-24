@@ -896,12 +896,6 @@
     <ClInclude Include="primitive\math\math_scalar_enum.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_relation_set.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -1259,9 +1253,6 @@
     <ClInclude Include="aura\aura\aura_async.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_auto_pointer.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_class.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1278,9 +1269,6 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_core.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_core_os.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_cpu_architecture.h">
@@ -1691,20 +1679,20 @@
     <ClInclude Include="aura\aura\aura_shell_launcher.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_department.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_department_container.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="aura\xml\xml_department.h">
+      <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
     <ClInclude Include="aura\process\process_department.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_department.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\aura\process</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_department.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_department_container.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_department.h">
+      <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
