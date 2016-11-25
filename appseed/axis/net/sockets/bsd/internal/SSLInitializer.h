@@ -38,8 +38,12 @@ namespace sockets
 
       //BIO *bio_err;
 
+#if OPENSSL_API_COMPAT < 0x10100000L
+
       string m_rand_file;
       long m_rand_size;
+
+#endif
 
       /**
          init openssl

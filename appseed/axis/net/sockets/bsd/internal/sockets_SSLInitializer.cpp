@@ -81,76 +81,13 @@ void OPENSSL_UplinkAll();
 namespace sockets
 {
 
-    static void *(*malloc_func)(size_t) = ace_memory_alloc;
-    static void *default_malloc_ex(size_t num, const char *file, int line)
-    {
-        return malloc_func(num);
-    }
-    static void *(*malloc_ex_func)(size_t, const char *file, int line)
-        = default_malloc_ex;
-
-    static void *(*realloc_func)(void *, size_t) = ace_memory_realloc;
-    static void *default_realloc_ex(void *str, size_t num,
-        const char *file, int line)
-    {
-        return realloc_func(str, num);
-    }
-    static void *(*realloc_ex_func)(void *, size_t, const char *file, int line)
-        = default_realloc_ex;
-    void default_free_ex(void * p, const char *file, int line) {
-       if (p == NULL)
-          return;
-       ace_memory_free(p);
-    }
-
-    void crypto_memory_free_func(void * p)
-    {
-        if (p == NULL)
-            return;
-        ace_memory_free(p);
-    }
-    static void(*free_func)(void *) = crypto_memory_free_func;
-
-    static void *(*malloc_locked_func)(size_t) = ace_memory_alloc;
-    static void *default_malloc_locked_ex(size_t num, const char *file, int line)
-    {
-        return malloc_locked_func(num);
-    }
-    static void *(*malloc_locked_ex_func)(size_t, const char *file, int line)
-        = default_malloc_locked_ex;
-
-    static void(*free_locked_func)(void *) = ace_memory_free;
-
-
-
-    /* may be changed as long as 'allow_customize_debug' is set */
-    /* XXX use correct function pointer types */
-#ifdef CRYPTO_MDEBUG
-    /* use default functions from mem_dbg.c */
-    static void(*malloc_debug_func)(void *, int, const char *, int, int)
-        = CRYPTO_dbg_malloc;
-    static void(*realloc_debug_func)(void *, void *, int, const char *, int, int)
-        = CRYPTO_dbg_realloc;
-    static void(*free_debug_func)(void *, int) = CRYPTO_dbg_free;
-    static void(*set_debug_options_func)(long) = CRYPTO_dbg_set_options;
-    static long(*get_debug_options_func)(void) = CRYPTO_dbg_get_options;
-#else
-    /* applications can use CRYPTO_malloc_debug_init() to select above case
-    * at run-time */
-    static void(*malloc_debug_func)(void *, int, const char *, int, int) = NULL;
-    static void(*realloc_debug_func)(void *, void *, int, const char *, int, int)
-        = NULL;
-    static void(*free_debug_func)(void *, int) = NULL;
-    static void(*set_debug_options_func)(long) = NULL;
-    static long(*get_debug_options_func)(void) = NULL;
-#endif
-
-
+#if OPENSSL_API_COMPAT < 0x10100000L
 
    map < int32_t, int32_t, mutex *, mutex *>  * g_pmapMutex = NULL;
 
    mutex * g_pmutexMap = NULL;
 
+#endif
 
 #ifdef LINUX
    // ssl_sigpipe_handle ---------------------------------------------------------
@@ -161,12 +98,12 @@ namespace sockets
 #endif
 
 
+#if OPENSSL_API_COMPAT < 0x10100000L
+   
    RAND_METHOD rand_meth;
 
-
-   ::aura::system * g_psystem = NULL;
-
-
+#endif
+   
    SSLInitializer::SSLInitializer(::aura::application * papp) :
       ::object(papp)
    {
@@ -179,21 +116,15 @@ namespace sockets
 
 #endif
 
-      CRYPTO_set_mem_functions(&default_malloc_ex, &default_realloc_ex, &default_free_ex);
-
       m_rand_size = 1024;
-
-      g_psystem = papp->m_paurasystem;
-
-      /* An error write context */
-
-      g_pmapMutex = new map < int32_t, int32_t, mutex *, mutex *>;
-
-      g_pmutexMap = new mutex(get_app());
 
       thisok << 1;
 
 #if OPENSSL_API_COMPAT < 0x10100000L
+
+      g_pmapMutex = new map < int32_t, int32_t, mutex *, mutex *>;
+
+      g_pmutexMap = new mutex(get_app());
 
       CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
       CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
@@ -205,6 +136,8 @@ namespace sockets
 
       thisok << 2;
 
+#if OPENSSL_API_COMPAT < 0x10100000L
+
       rand_meth.add = &SSLInitializer_rand_add;
       rand_meth.bytes = &SSLInitializer_rand_bytes;
       rand_meth.cleanup = &SSLInitializer_rand_cleanup;
@@ -213,6 +146,8 @@ namespace sockets
       rand_meth.status = &SSLInitializer_rand_status;
 
       RAND_set_rand_method(&rand_meth);
+
+#endif
 
       //ENGINE_load_openssl();
       //ENGINE_load_dynamic();
@@ -336,6 +271,7 @@ namespace sockets
             //DeleteRandFile();
             // %! delete mutexes
 
+#if OPENSSL_API_COMPAT < 0x10100000L
 
       if (g_pmapMutex != NULL)
       {
@@ -358,11 +294,15 @@ namespace sockets
          g_pmutexMap = NULL;
       }
 
+#endif
+
    }
 
 
    void SSLInitializer::DeleteRandFile()
    {
+
+#if OPENSSL_API_COMPAT < 0x10100000L
 
       if (m_rand_file.get_length())
       {
@@ -370,6 +310,8 @@ namespace sockets
          Application.file().del(m_rand_file);
 
       }
+
+#endif
 
    }
 
@@ -445,6 +387,9 @@ extern "C" unsigned long SSLInitializer_SSL_id_function()
 //
 }
 
+
+#if OPENSSL_API_COMPAT < 0x10100000L
+
 extern "C"
 #if defined(METROWIN) || defined(LINUX)
 void
@@ -499,6 +444,7 @@ extern "C" int32_t SSLInitializer_rand_status()
    return 1024;
 }
 
+#endif
 
 #endif // HAVE_OPENSSL
 
