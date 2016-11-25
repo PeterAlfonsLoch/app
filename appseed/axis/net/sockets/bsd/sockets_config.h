@@ -217,31 +217,31 @@ namespace sockets {
 #define Errno WSAGetLastError()
 CLASS_DECL_AXIS const char *StrError(int32_t x);
 
-namespace sockets
-{
-
-   // class WSAInitializer is a part of the socket class (on win32)
-   // as a static instance - so whenever an application uses a socket,
-   // winsock is initialized
-   class WSAInitializer // Winsock Initializer
-   {
-   public:
-
-      WSADATA m_wsadata;
-
-      WSAInitializer()
-      {
-         if (WSAStartup(0x101,&m_wsadata))
-         {
-            exit(-1);
-         }
-      }
-      ~WSAInitializer() {
-         WSACleanup();
-      }
-   };
-
-} // namespace sockets
+//namespace sockets
+//{
+//
+//   // class WSAInitializer is a part of the socket class (on win32)
+//   // as a static instance - so whenever an application uses a socket,
+//   // winsock is initialized
+//   class WSAInitializer // Winsock Initializer
+//   {
+//   public:
+//
+//      WSADATA m_wsadata;
+//
+//      WSAInitializer()
+//      {
+//         if (WSAStartup(0x101,&m_wsadata))
+//         {
+//            exit(-1);
+//         }
+//      }
+//      ~WSAInitializer() {
+//         WSACleanup();
+//      }
+//   };
+//
+//} // namespace sockets
 
 #elif defined(METROWIN)
 

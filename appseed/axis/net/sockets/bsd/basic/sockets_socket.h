@@ -1,7 +1,7 @@
 #pragma once
 
 #ifdef BSD_STYLE_SOCKETS
-#include <openssl/ossl_typ.h>
+#include <openssl/ssl.h>
 #endif
 
 
@@ -20,11 +20,11 @@ namespace sockets
 
 
 //#ifdef WINDOWSEX
-#ifdef WINDOWS
-
-      static WSAInitializer   m_winsock_init; ///< Winsock initialization singleton class
-
-#endif
+//#ifdef WINDOWS
+//
+//      static WSAInitializer   m_winsock_init; ///< Winsock initialization singleton class
+//
+//#endif
 
 
 

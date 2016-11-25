@@ -25,10 +25,10 @@ namespace sockets
 //#endif
 //
 
-   // statics
-#ifdef _WIN32
-   WSAInitializer socket::m_winsock_init;
-#endif
+//   // statics
+//#ifdef _WIN32
+//   WSAInitializer socket::m_winsock_init;
+//#endif
 
 
    socket::socket(base_socket_handler& h) :
