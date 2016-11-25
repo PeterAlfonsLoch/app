@@ -157,8 +157,10 @@ repeat:;
           sl.unlock();
 
           set["user"] = &ApplicationUser;
+          
+          Application.http().get(strUrl, set);
 
-          if(!System.http().request(m_handler, m_phttpsession, strUrl, set) || ::http::status_failed(set["get_status"]))
+          if(::http::status_failed(set["get_status"]))
           {
              Sleep(2000);
              goto repeat;
@@ -234,14 +236,16 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       strUrl += System.url().url_encode(lpKey);
 
       //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-      pcore-> m_phttpsession = System.http().request(pcore->m_handler, pcore->m_phttpsession,strUrl,set);
+      //pcore-> m_phttpsession = System.http().request(pcore->m_handler, pcore->m_phttpsession,strUrl,set);
 
-      if(pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
+      string strValue = Application.http().get(strUrl, set);
+
+      if(strValue.is_empty() || ::http::status_failed(set["get_status"]))
       {
          return false;
       }
 
-      *plValue = ::str::to_int64(string((const char *)pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(), pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str::to_int64(strValue);
 
       longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = *plValue;

@@ -191,7 +191,9 @@ repeat:;
 
              set["user"] = &ApplicationUser;
 
-             if(!System.http().request(m_handler, m_phttpsession, strUrl, set) || ::http::status_failed(set["get_status"]))
+             Application.http().get(strUrl, set);
+             
+             if(::http::status_failed(set["get_status"]))
              {
                 Sleep(2000);
                 System.dir().m_strApiCc = "";
@@ -299,16 +301,15 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       set["user"] = &ApplicationUser;
 
       set["get_response"] = "";
-
-      if(!System.http().request(pcore->m_handler, pcore->m_phttpsession, strUrl, set)
-      || pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
+      
+      strValue = Application.http().get(strUrl, set);
+      
+      if(strValue.is_empty() || ::http::status_failed(set["get_status"]))
       {
 
          return false;
 
       }
-
-      strValue = set["get_response"];
 
       stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
       stritem.m_str = strValue;
