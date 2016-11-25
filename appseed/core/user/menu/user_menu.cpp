@@ -286,8 +286,50 @@ namespace user
       m_buttonClose.ResizeToFit();
 
       m_buttonClose.SetWindowPos(0, 0, 0, 0, 0, SWP_NOSIZE);
-      
-      SetWindowPos(ZORDER_TOPMOST,pt.x,pt.y,m_size.cx,m_size.cy,SWP_FRAMECHANGED | SWP_SHOWWINDOW);
+
+      rect rectWindow;
+
+      rectWindow.left = pt.x;
+      rectWindow.top = pt.y;
+      rectWindow.right = rectWindow.left + m_size.cx;
+      rectWindow.bottom = rectWindow.top + m_size.cy;
+
+      rect rectMonitor;
+
+      if (Session.get_best_monitor(rectMonitor, rectWindow) >= 0)
+      {
+
+         rectMonitor.deflate(16, 16);
+
+         if (rectWindow.left < rectMonitor.left)
+         {
+
+            rectWindow.offset(rectMonitor.left - rectWindow.left, 0);
+
+         }
+         else if (rectWindow.right > rectMonitor.right)
+         {
+
+            rectWindow.offset(rectMonitor.right - rectWindow.right, 0);
+
+         }
+
+         if (rectWindow.top < rectMonitor.top)
+         {
+
+            rectWindow.offset(0, rectMonitor.top - rectWindow.top);
+
+         }
+         else if (rectWindow.bottom > rectMonitor.bottom)
+         {
+
+            rectWindow.offset(0, rectMonitor.bottom - rectWindow.bottom);
+
+         }
+
+      }
+
+      SetWindowPos(ZORDER_TOPMOST,rectWindow,SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 
       SetTimer(::user::BaseWndMenuCmdUi,100,NULL);
 

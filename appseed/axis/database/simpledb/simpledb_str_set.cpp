@@ -288,6 +288,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex,true);
 
+      string xxx = Session.fontopus()->m_puser->m_strFontopusServerSessId;
+
       property_set set(get_app());
 
       set["interactive_user"] = true;
@@ -300,8 +302,6 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       set["user"] = &ApplicationUser;
 
-      set["get_response"] = "";
-      
       strValue = Application.http().get(strUrl, set);
       
       if(strValue.is_empty() || ::http::status_failed(set["get_status"]))
