@@ -14,10 +14,30 @@ Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput = NULL;
 DWORD_PTR                        g_gdiplusToken = NULL;
 DWORD_PTR                        g_gdiplusHookToken = NULL;
 
+WSADATA g_wsadata;
+int g_iWsaStartup;
 
+
+CLASS_DECL_AXIS WSADATA get_wsadata()
+{
+
+   return g_wsadata;
+
+}
 
 bool __node_axis_pre_init()
 {
+
+   g_iWsaStartup = WSAStartup(0x101, &g_wsadata);
+   
+   if (g_iWsaStartup !=  0)
+   {
+
+      LOG(level_error, "__node_axis_pre_init") << "Failed to Initialize Windows Sockets : WSAStartup";
+
+      return false;
+
+   }
 
 
    g_pgdiplusStartupInput = new Gdiplus::GdiplusStartupInput();
@@ -76,6 +96,9 @@ bool __node_axis_pre_term()
 
 bool __node_axis_pos_term()
 {
+
+   WSACleanup();
+
 
    g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
 
