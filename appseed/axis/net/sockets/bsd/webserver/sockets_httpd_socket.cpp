@@ -198,7 +198,7 @@ namespace sockets
 
 	 // SSL_CTX_set_min_proto_version(m_ssl_ctx, TLS1_VERSION);
 
-      synch_lock sl(m_pmutexSslCtx);
+      //synch_lock sl(m_pmutexSslCtx);
 
       string strCipherList = m_strCipherList;
 

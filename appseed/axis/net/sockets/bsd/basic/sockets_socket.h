@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef BSD_STYLE_SOCKETS
+#include <openssl/ossl_typ.h>
+#endif
+
 
 namespace sockets
 {

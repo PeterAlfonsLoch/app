@@ -10,9 +10,9 @@ namespace sockets
       ::object(papp),
       ::aura::department(papp),
       m_mutexHttpPostBoundary(papp),
-      m_mutexResolvCache(papp),
-      m_clientcontextmap(papp),
-      m_servercontextmap(papp)
+      m_mutexResolvCache(papp)//,
+      //m_clientcontextmap(papp),
+      //m_servercontextmap(papp)
    {
 
       m_iReturnCode = -1;
@@ -26,24 +26,24 @@ namespace sockets
    sockets::~sockets()
    {
 
-#if defined(BSD_STYLE_SOCKETS)
-      try
-      {
-         m_clientcontextmap.remove_all();
-      }
-      catch (...)
-      {
-
-      }
-      try
-      {
-         m_servercontextmap.remove_all();
-      }
-      catch (...)
-      {
-
-      }
-#endif
+//#if defined(BSD_STYLE_SOCKETS)
+//      try
+//      {
+//         m_clientcontextmap.remove_all();
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//      try
+//      {
+//         m_servercontextmap.remove_all();
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//#endif
 
       try
       {

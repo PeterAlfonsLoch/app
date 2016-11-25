@@ -33,9 +33,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define TCP_BUFSIZE_READ (16400)
 #define TCP_OUTPUT_CAPACITY 1024000
 
-//#ifdef APPLEOS
-//#include <openssl/bio.h>
-//#endif
+#ifdef BSD_STYLE_SOCKETS
+#include <openssl/ssl.h>
+#endif
 
 namespace sockets
 {
@@ -86,7 +86,7 @@ namespace sockets
       ::file::circular_buffer ibuf; ///< Circular input buffer
       string m_strUrl;
 
-      mutex *        m_pmutexSslCtx;
+      //mutex *        m_pmutexSslCtx;
       //
       bool m_b_input_buffer_disabled;
       uint64_t m_bytes_sent;
@@ -97,7 +97,10 @@ namespace sockets
       size_t m_transfer_limit;
       size_t m_output_length;
 
+      int m_iSslCtxRetry;
       SSL_CTX *m_ssl_ctx; ///< ssl context
+      SSL_SESSION * m_ssl_session; ///< ssl session
+      const SSL_METHOD * m_ssl_method; ///< ssl method
       SSL *m_ssl; ///< ssl 'socket'
       BIO *m_sbio; ///< ssl bio
       string m_password; ///< ssl password
@@ -120,7 +123,7 @@ namespace sockets
       bool m_bCertCommonNameCheckEnabled;
 
       bool                       m_bClientSessionSet;
-      sp(ssl_client_context)     m_spsslclientcontext;
+      //sp(ssl_client_context)     m_spsslclientcontext;
       string                     m_strInitSSLClientContext;
 
       /** Constructor with standard values on input/output buffers. */
@@ -279,6 +282,7 @@ namespace sockets
       void buffer(const void * buf, memory_size_t len);
 
 
+      virtual void free_ssl_client_context();
 
 
    };

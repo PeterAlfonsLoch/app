@@ -1620,10 +1620,10 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h" />
+    <ClInclude Include="net\sockets\bsd\basic\aaa_want_to_remove_sockets_ssl_client_context.h" />
+    <ClInclude Include="net\sockets\bsd\basic\aaa_want_to_remove_sockets_ssl_client_context_map.h" />
+    <ClInclude Include="net\sockets\bsd\basic\aaa_want_to_remove_sockets_ssl_server_context.h" />
+    <ClInclude Include="net\sockets\bsd\basic\aaa_want_to_remove_sockets_ssl_server_context_map.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />

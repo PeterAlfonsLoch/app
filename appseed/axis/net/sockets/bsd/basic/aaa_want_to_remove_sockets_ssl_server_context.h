@@ -32,8 +32,8 @@ typedef struct ssl_session_st SSL_SESSION;
          //void set_context(const char * pszContext);
          //void set_context(const char * pszFontopus, const char * pszSessId);
 
-         void InitializeContext(const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in);
-         void InitializeContext(const string & context,const string & certfile,const string & keyfile,const string & password,const SSL_METHOD *meth_in);
+         static SSL_CTX *  InitializeContext(const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in);
+         static SSL_CTX *  InitializeContext(const string & context,const string & certfile,const string & keyfile,const string & password,const SSL_METHOD *meth_in);
 
 
       };

@@ -876,18 +876,6 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h">
       <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h">
       <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
@@ -1460,6 +1448,18 @@
     </ClInclude>
     <ClInclude Include="html_lite\html_lite\html_lite_html_tag.h">
       <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\aaa_want_to_remove_sockets_ssl_server_context.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\aaa_want_to_remove_sockets_ssl_server_context_map.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\aaa_want_to_remove_sockets_ssl_client_context.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\aaa_want_to_remove_sockets_ssl_client_context_map.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

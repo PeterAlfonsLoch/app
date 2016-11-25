@@ -16,8 +16,8 @@
          ssl_server_context_map(::aura::application * papp);
          virtual ~ssl_server_context_map();
 
-         SSL_CTX * InitializeContext(mutex ** ppmutex,const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in);
-         SSL_CTX * InitializeContext(mutex ** ppmutex,const string & context,const string & certfile,const string & keyfile,const string & password,const SSL_METHOD *meth_in);
+         static SSL_CTX * InitializeContext(mutex ** ppmutex,const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in);
+         static SSL_CTX * InitializeContext(mutex ** ppmutex,const string & context,const string & certfile,const string & keyfile,const string & password,const SSL_METHOD *meth_in);
 
       };
 

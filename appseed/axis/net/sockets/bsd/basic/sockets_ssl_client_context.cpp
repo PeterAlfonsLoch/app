@@ -12,54 +12,54 @@ namespace sockets
 {
 
 
-   ssl_client_context::ssl_client_context(::aura::application * papp, const SSL_METHOD * pmethod) :
-      ::object(papp),
-      m_mutex(papp)
-   {
-      
-      m_psession = NULL;
-      m_pcontext = NULL;
+   //ssl_client_context::ssl_client_context(::aura::application * papp, const SSL_METHOD * pmethod) :
+   //   ::object(papp),
+   //   m_mutex(papp)
+   //{
+   //   
+   //   m_psession = NULL;
+   //   m_pcontext = NULL;
 
-      if(pmethod == NULL)
-         pmethod = SSLv23_method();
+   //   if(pmethod == NULL)
+   //      pmethod = SSLv23_method();
 
-      m_pmethod = pmethod;
+   //   m_pmethod = pmethod;
 
-      InitializeContext(pmethod);
+   //   InitializeContext(pmethod);
 
-      m_iRetry = 0;
+   //   m_iRetry = 0;
 
-   }
-
-
-   ssl_client_context::~ssl_client_context()
-   {
-
-      free_ssl_client_context();
-
-   }
+   //}
 
 
-   void ssl_client_context::free_ssl_client_context()
-   {
+   //ssl_client_context::~ssl_client_context()
+   //{
 
-      if (m_psession != NULL)
-      {
+   //   free_ssl_client_context();
 
-         SSL_SESSION_free(m_psession);
+   //}
 
-         m_psession = NULL;
 
-      }
+   //void ssl_client_context::free_ssl_client_context()
+   //{
 
-      if (m_pcontext != NULL)
-      {
+   //   if (m_psession != NULL)
+   //   {
 
-         SSL_CTX_free(m_pcontext);
+   //      SSL_SESSION_free(m_psession);
 
-      }
+   //      m_psession = NULL;
 
-   }
+   //   }
+
+   //   if (m_pcontext != NULL)
+   //   {
+
+   //      SSL_CTX_free(m_pcontext);
+
+   //   }
+
+   //}
 
 
    void ssl_client_context::set_context(const char * pszContext)

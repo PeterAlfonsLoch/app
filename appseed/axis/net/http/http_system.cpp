@@ -621,20 +621,20 @@ namespace http
 
       if(strProtocol == "https")
       {
-#ifndef METROWIN
-         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].cast < ::sockets::ssl_client_context > ();
-         if(pcontext != NULL)
-         {
-            psession->m_spsslclientcontext = pcontext;
-         }
-         else
-         {
-            if(strSessId.has_char() && strSessId != "not_auth")
-            {
-               psession->m_strInitSSLClientContext = System.url().get_server(strUrl) + "?sessid=" + strSessId;
-            }
-         }
-#endif
+//#ifndef METROWIN
+//         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].cast < ::sockets::ssl_client_context > ();
+//         if(pcontext != NULL)
+//         {
+//            psession->m_spsslclientcontext = pcontext;
+//         }
+//         else
+//         {
+//            if(strSessId.has_char() && strSessId != "not_auth")
+//            {
+//               psession->m_strInitSSLClientContext = System.url().get_server(strUrl) + "?sessid=" + strSessId;
+//            }
+//         }
+//#endif
          psession->EnableSSL();
       }
 
@@ -996,18 +996,18 @@ retry:
 
 //            string strSessId;
 
-#ifdef BSD_STYLE_SOCKETS
-
-         if(psession->IsSSL())
-         {
-            strSessId = psession->m_response.m_cookies["sessid"];
-            if(strSessId.has_char())
-            {
-               Session.sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
-            }
-         }
-
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//
+//         if(psession->IsSSL())
+//         {
+//            strSessId = psession->m_response.m_cookies["sessid"];
+//            if(strSessId.has_char())
+//            {
+//               Session.sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
+//            }
+//         }
+//
+//#endif
 
          string strCookie = psession->response().cookies().get_cookie_header();
          set[__id(cookie)] = strCookie;
@@ -1017,7 +1017,7 @@ retry:
          if(iStatusCode == 0)
          {
 #if defined(BSD_STYLE_SOCKETS)
-            if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1 && iTry < 8)
+            if(psession->m_ssl_ctx != NULL && psession->m_iSslCtxRetry == 1 && iTry < 8)
             {
                goto retry;
             }
@@ -1584,16 +1584,16 @@ retry_session:
 
       set["get_headers"] = psocket->outheaders();
 
-#ifdef BSD_STYLE_SOCKETS
-      if(psocket->IsSSL())
-      {
-         strSessId = psocket->m_response.m_cookies["sessid"];
-         if(strSessId.has_char())
-         {
-            Session.sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psocket->m_spsslclientcontext;
-         }
-      }
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//      if(psocket->IsSSL())
+//      {
+//         strSessId = psocket->m_response.m_cookies["sessid"];
+//         if(strSessId.has_char())
+//         {
+//            Session.sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psocket->m_spsslclientcontext;
+//         }
+//      }
+//#endif
 
       string strCookie = psocket->response().cookies().get_cookie_header();
       set[__id(cookie)] = strCookie;
@@ -1607,7 +1607,8 @@ retry_session:
 #ifdef BSD_STYLE_SOCKETS
       if(iStatusCode == 0)
       {
-         if(psocket->m_spsslclientcontext.is_set() && psocket->m_spsslclientcontext->m_iRetry == 1)
+         //if(psocket->m_spsslclientcontext.is_set() && psocket->m_spsslclientcontext->m_iRetry == 1)
+         if (psocket->m_ssl_ctx != NULL && psocket->m_iSslCtxRetry == 1)
          {
             goto retry;
          }
