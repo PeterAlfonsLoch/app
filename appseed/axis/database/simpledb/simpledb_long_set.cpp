@@ -209,8 +209,10 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
    db_long_set_core * pcore = (db_long_set_core *)m_pcore->m_ptopthis;
 
-   if(m_pcore->m_pdataserver->m_bRemote)
+   if(m_pcore->m_pdataserver->m_bRemote && string(lpKey).find_ci(".local://") < 0)
    {
+
+      // Remote
 
       db_long_set_item longitem;
 
@@ -276,7 +278,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 #endif
    else
    {
-
+      // LOCAL (sqlite)
 
       single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
 

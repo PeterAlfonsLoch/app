@@ -271,6 +271,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
    if(m_pcore->m_pdataserver->m_bRemote && string(lpKey).find(".local://") < 0)
    {
+      
+      // Remote
 
       sl.unlock();
 
@@ -340,6 +342,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 #endif
    else
    {
+
+      // LOCAL (sqlite)
       
       db_server * pdb = m_pcore->db();
 

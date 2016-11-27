@@ -387,7 +387,7 @@ namespace database
    void client::defer_update_data_id()
    {
 
-      if(m_dataid.m_id.is_empty())
+      //if(m_dataid.m_id.is_empty())
       {
 
          m_dataid = calc_data_id();
