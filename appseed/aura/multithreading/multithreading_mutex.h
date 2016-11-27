@@ -1,9 +1,5 @@
 #pragma once
 
-#ifdef APPLEOS
-#include <semaphore.h>
-#endif
-
 
 
 class CLASS_DECL_AURA mutex :
@@ -17,7 +13,7 @@ public:
 
    pthread_mutex_t         m_mutex;
    
-#if defined(APPLEOS) || defined(ANDROID)
+#ifdef MUTEX_COND_TIMED
    
    pthread_t               m_thread;
    pthread_cond_t          m_cond;
@@ -25,17 +21,15 @@ public:
    
 #endif
 
-#if defined(ANDROID)
+#if defined(MUTEX_NAMED_POSIX)
 
-   sem_t *                 m_psem;
-
-#endif
-
-#if defined(ANDROID) || defined(APPLEOS)
+   sem_t *                 m_psem; // as of 2016-11-26
+                                   // not implemented (err=38) on android-19
+#elif defined(MUTEX_NAMED_FD)
 
    int                     m_iFd;
 
-#else
+#elif defined(MUTEX_NAMED_VSEM)
 
    key_t                   m_key;
    int32_t                 m_semid;
@@ -52,9 +46,11 @@ public:
    mutex(const mutex & m);
 #ifdef WINDOWS
    mutex(::aura::application * papp,const char * pstrName,void * posdata, bool bOwner = true);
-#elif defined(ANDROID) || defined(APPLEOS)
+#elif defined(MUTEX_NAMED_POSIX)
    mutex(::aura::application * papp,const char * pstrName,sem_t * psem,bool bOwner = true);
-#else
+#elif defined(MUTEX_NAMED_FD)
+   mutex(::aura::application * papp, const char * pstrName, int iFd, bool bOwner = true);
+#elif defined(MUTEX_NAMED_VSEM)
    mutex(::aura::application * papp,const char * pstrName,key_t key, int32_t semid, bool bOwner = true);
 #endif
    mutex(::aura::application * papp = NULL,bool bInitiallyOwn = FALSE,const char * lpszName = NULL,LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);

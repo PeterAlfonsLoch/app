@@ -694,7 +694,7 @@ oswindow GetFocus()
 int_bool GetClientRect(oswindow_data * pdata, RECT * prect)
 {
 
-	*prect = pdata->m_rect;
+	*prect = pdata->m_pimpl->m_rectParentClient;
 
 	prect->right -= prect->left;
 	prect->bottom -= prect->top;
@@ -709,7 +709,7 @@ int_bool GetClientRect(oswindow_data * pdata, RECT * prect)
 int_bool GetWindowRect(oswindow_data * pdata, RECT * prect)
 {
 
-	*prect = pdata->m_rect;
+	*prect = pdata->m_pimpl->m_rectParentClient;
 
 	return TRUE;
 
@@ -727,38 +727,39 @@ bool ShowWindow(oswindow_data * pdata, int nCmdShow)
 int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, int y, int cx, int cy, unsigned int uiFlags)
 {
 
-	if (uiFlags & SWP_NOMOVE)
-	{
-		if (uiFlags & SWP_NOSIZE)
-		{
-		}
-		else
-		{
-			pdata->m_rect.right = pdata->m_rect.left + cx;
-			pdata->m_rect.bottom = pdata->m_rect.top + cy;
-		}
-	}
-	else
-	{
-		if (uiFlags & SWP_NOSIZE)
-		{
-			int offsetX = pdata->m_rect.left - x;
-			int offsetY = pdata->m_rect.top - y;
-			pdata->m_rect.left += offsetX;
-			pdata->m_rect.top += offsetY;
-			pdata->m_rect.right += offsetX;
-			pdata->m_rect.bottom += offsetY;
-		}
-		else
-		{
-			pdata->m_rect.left = x;
-			pdata->m_rect.top = y;
-			pdata->m_rect.right = x + cx;
-			pdata->m_rect.bottom = y + cy;
+   return pdata->m_pimpl->SetWindowPos((int_ptr)pdataAfter, x, y, cx, cy, uiFlags);
+	//if (uiFlags & SWP_NOMOVE)
+	//{
+	//	if (uiFlags & SWP_NOSIZE)
+	//	{
+	//	}
+	//	else
+	//	{
+	//		pdata->m_rect.right = pdata->m_rect.left + cx;
+	//		pdata->m_rect.bottom = pdata->m_rect.top + cy;
+	//	}
+	//}
+	//else
+	//{
+	//	if (uiFlags & SWP_NOSIZE)
+	//	{
+	//		int offsetX = pdata->m_rect.left - x;
+	//		int offsetY = pdata->m_rect.top - y;
+	//		pdata->m_rect.left += offsetX;
+	//		pdata->m_rect.top += offsetY;
+	//		pdata->m_rect.right += offsetX;
+	//		pdata->m_rect.bottom += offsetY;
+	//	}
+	//	else
+	//	{
+	//		pdata->m_rect.left = x;
+	//		pdata->m_rect.top = y;
+	//		pdata->m_rect.right = x + cx;
+	//		pdata->m_rect.bottom = y + cy;
 
-		}
+	//	}
 
-	}
+	//}
 
 	return TRUE;
 

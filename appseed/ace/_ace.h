@@ -47,6 +47,13 @@
 #define del_throw_spec throw()
 #define MEMORY_DECL
 
+#elif defined(ANDROID)
+
+#define inplace_new_throw_spec
+#define new_throw_spec
+#define del_throw_spec throw()
+#define MEMORY_DECL
+
 #else
 
 #define inplace_new_throw_spec

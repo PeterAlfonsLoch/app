@@ -357,7 +357,9 @@ namespace str
    template < class TYPE >
    void format_type(string_format * pformat,const TYPE & t)
    {
+      
       ::str::format(pformat, t);
+
    }
 
    CLASS_DECL_AURA bool simple_escaped(const string & str,strsize pos);
@@ -483,6 +485,8 @@ namespace str
       {
 
       }
+
+      return NULL;
 
    }
 

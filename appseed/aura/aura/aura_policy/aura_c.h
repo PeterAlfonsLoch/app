@@ -58,21 +58,24 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #define low_byte(w)              ((BYTE)((w) & 0xff))
 
 #ifdef VSNORD
-#ifdef __arm__
+//#ifdef __arm__
 #define argb_get_b_value(rgb)    (low_byte(rgb))
 #define argb_get_g_value(rgb)    (low_byte((rgb)>>8))
 #define argb_get_r_value(rgb)    (low_byte((rgb)>>16))
 #define argb_get_a_value(rgb)    (low_byte((rgb)>>24))
-#define RGBA(r, g, b, a)         ((COLORREF)((low_byte(b)|((WORD)(low_byte(g))<<8))|(((uint32_t)low_byte(r))<<16)|(((uint32_t)low_byte(a))<<24)))
-#define ARGB(a, r, g, b)         RGBA(r, g, b, a)
-#else
-#define argb_get_b_value(rgb)    (low_byte(rgb))
-#define argb_get_g_value(rgb)    (low_byte((rgb)>>8))
-#define argb_get_r_value(rgb)    (low_byte((rgb)>>16))
-#define argb_get_a_value(rgb)    (low_byte((rgb)>>24))
+//#define RGBA(r, g, b, a)         ((COLORREF)((low_byte(b)|((WORD)(low_byte(g))<<8))|(((uint32_t)low_byte(r))<<16)|(((uint32_t)low_byte(a))<<24)))
+//#define ARGB(a, r, g, b)         RGBA(r, g, b, a)
 #define RGBA(r, g, b, a)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((uint32_t)low_byte(b))<<16)|(((uint32_t)low_byte(a))<<24)))
 #define ARGB(a, r, g, b)         RGBA(r, g, b, a)
-#endif
+#define REASSEMBLE_ARGB(a, r, g, b)      ARGB(a, b, g, r)
+//#else
+//#define argb_get_b_value(rgb)    (low_byte(rgb))
+//#define argb_get_g_value(rgb)    (low_byte((rgb)>>8))
+//#define argb_get_r_value(rgb)    (low_byte((rgb)>>16))
+//#define argb_get_a_value(rgb)    (low_byte((rgb)>>24))
+//#define RGBA(r, g, b, a)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((uint32_t)low_byte(b))<<16)|(((uint32_t)low_byte(a))<<24)))
+//#define ARGB(a, r, g, b)         RGBA(r, g, b, a)
+//#endif
 #else
 #define argb_get_r_value(rgb)    (low_byte(rgb))
 #define argb_get_g_value(rgb)    (low_byte((rgb)>>8))
@@ -80,26 +83,40 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #define argb_get_a_value(rgb)    (low_byte((rgb)>>24))
 #define RGBA(r, g, b, a)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((uint32_t)low_byte(b))<<16)|(((uint32_t)low_byte(a))<<24)))
 #define ARGB(a, r, g, b)         RGBA(r, g, b, a)
+#define REASSEMBLE_ARGB(a, r, g, b)      ARGB(a, r, g, b)
 #endif
 
+
+
 // risky
+//#ifdef __cpluplus
+//inline int void_ptr_is_null(const void * p)
+//{
+//#if defined(ANDROID) || defined(APPLE_IOS)
+//   return ((INT_PTR) p) == 0;
+//#else
+//   return ((INT_PTR)p) < 4096;
+//#endif
+//}
+//#else
+//static int void_ptr_is_null(const void * p)
+//{
+//#if defined(ANDROID) || defined(APPLE_IOS)
+//   return ((INT_PTR)p) == 0;
+//#else
+//   return ((INT_PTR)p) < 4096;
+//#endif
+//}
+//#endif
+
+
+#define void_ptr_is_null(p) (((UINT_PTR)(void *) p) < 4096)
+
 #ifdef __cpluplus
-inline int void_ptr_is_null(const void * p)
+template < typename T >
+inline int type_is_null(const T * p)
 {
-#if defined(ANDROID) || defined(APPLE_IOS)
-   return ((INT_PTR) p) == 0;
-#else
-   return ((INT_PTR)p) < 4096;
-#endif
-}
-#else
-static int void_ptr_is_null(const void * p)
-{
-#if defined(ANDROID) || defined(APPLE_IOS)
-   return ((INT_PTR)p) == 0;
-#else
-   return ((INT_PTR)p) < 4096;
-#endif
+   return (((UINT_PTR)(void *)p) < MAX(4096, sizeof(T));
 }
 #endif
 

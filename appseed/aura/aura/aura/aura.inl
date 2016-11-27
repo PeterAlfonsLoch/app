@@ -51,7 +51,7 @@ inline void * __cdecl operator new(size_t nSize, void * p)
 
 
 
-inline void __cdecl operator delete(void * p, void * palloc)
+inline void __cdecl operator delete(void * p, void * palloc) del_throw_spec
 {
 
    UNREFERENCED_PARAMETER(p);

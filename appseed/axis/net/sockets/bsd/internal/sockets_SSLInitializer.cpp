@@ -110,7 +110,7 @@ namespace sockets
 
       thisstart;
 
-#ifdef _UWP
+#if defined(_UWP)
 
       OPENSSL_UplinkAll();
 
@@ -131,6 +131,9 @@ namespace sockets
 
       SSL_load_error_strings();
       SSL_library_init();
+#else 
+
+      //OPENSSL_init_ssl(OPENSSL_INIT_SSL_DEFAULT, NULL);
 
 #endif
 

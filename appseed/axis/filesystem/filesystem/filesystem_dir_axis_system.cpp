@@ -1902,7 +1902,9 @@ namespace file
                output_debug_string(strUrl);
                output_debug_string("\n");
 
-               strPath = App(papp).http().get(strUrl, set);
+               auto & http = App(papp).http();
+
+               strPath = http.get(strUrl, set);
 
                strPath.trim();
 

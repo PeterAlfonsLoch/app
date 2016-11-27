@@ -1,5 +1,38 @@
 #pragma once
 
+
+#ifdef APPLEOS
+#include <semaphore.h>
+#endif
+
+
+#if defined(ANDROID)
+
+
+#define MUTEX_COND_TIMED
+#undef MUTEX_NAMED_POSIX // as of 2016-11-26
+// not implemented (err=38) on android-19 (POSIX semaphore)
+#define MUTEX_NAMED_FD
+#undef MUTEX_NAMED_VSEM
+
+#elif defined(APPLEOS)
+
+#define MUTEX_COND_TIMED
+#undef MUTEX_NAMED_POSIX
+#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+#undef MUTEX_NAMED_VSEM
+
+#elif defined(LINUX)
+
+#undef MUTEX_COND_TIMED
+#undef MUTEX_NAMED_POSIX 
+#undef MUTEX_NAMED_FD 
+#define MUTEX_NAMED_VSEM // System V Semaphore
+
+#endif
+
+
+
 class sync_object;
 class semaphore;
 class mutex;

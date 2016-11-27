@@ -419,17 +419,31 @@ namespace net
 //
 //#else
 
-      if (Sess(get_thread_app()).sockets().net().convert(u.m_addr6.sin6_addr, strAddress))
+      ::aura::application * pappThread = ::get_thread_app();
+
+      auto * psession = &Sess(pappThread);
+
+      auto * psockets = &psession->sockets();
+
+      auto * pnet = &psockets->net();
+
+      if (pnet->convert(u.m_addr6.sin6_addr, strAddress))
       {
+
          u.s.m_family = AF_INET6;
+
       }
-      else if (Sess(get_thread_app()).sockets().net().convert(u.m_addr.sin_addr, strAddress))
+      else if (pnet->convert(u.m_addr.sin_addr, strAddress))
       {
+
          u.s.m_family = AF_INET;
+
       }
       else
       {
+
          u.s.m_family = AF_UNSPEC;
+
       }
 
 //#endif

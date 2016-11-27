@@ -419,19 +419,28 @@ void string_format::format(const char * & s)
       }
 
 
+//#ifdef ANDROID
+//
+//
+//      void format(string_format * pformat, int64_t const long & i)
+//      {
+//         // TODO: use specs
+//         pformat->append(::str::from(i));
+//
+//      }
+//
+//
+//#endif
 #ifdef ANDROID
 
-
-      void format(string_format * pformat, int64_t const long & i)
+      CLASS_DECL_AURA void format(string_format * pformat, long int const & i)
       {
-         // TODO: use specs
-         pformat->append(::str::from(i));
+
+         format(pformat, (long int)i);
 
       }
 
-
 #endif
-
 
       void format(string_format * pformat, uint64_t const & ui)
       {

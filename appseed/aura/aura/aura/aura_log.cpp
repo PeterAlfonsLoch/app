@@ -626,7 +626,8 @@ namespace aura
 
    void log::trace(const char * pszFormat, ...)
    {
-      if(this == NULL)
+      
+      if (void_ptr_is_null(this))
       {
          va_list ptr;
          va_start(ptr, pszFormat);
@@ -634,6 +635,7 @@ namespace aura
          va_end(ptr);
          return;
       }
+
       if(!m_bTrace)
          return;
       va_list ptr;

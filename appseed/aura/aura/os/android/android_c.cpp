@@ -91,6 +91,36 @@ extern "C"
    }
 
 
+   // The lockf() function is not available on Android; we translate to flock().
+   CLASS_DECL_AURA int lockf(int fd, int cmd, off_t ignored_len)
+   {
+
+      return flock(fd, cmd);
+
+   }
+
+
+   uint64_t get_nanos()
+   {
+
+      struct timespec ts;
+
+      if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
+      {
+         //error
+         return 0;
+      }
+
+      uint64_t ui = ts.tv_sec;
+
+      ui *= 1000 * 1000 * 1000;
+
+      ui += ts.tv_nsec;
+
+      return  ui;
+
+   }
+
 } // extern "C"
 
 
@@ -111,23 +141,3 @@ extern "C"
 
 
 
-uint64_t get_nanos()
-{
-
-   struct timespec ts;
-
-   if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
-   {
-      //error
-      return 0;
-   }
-
-   uint64_t ui = ts.tv_sec;
-
-   ui *= 1000 * 1000 * 1000;
-
-   ui += ts.tv_nsec;
-
-   return  ui;
-
-}

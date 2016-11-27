@@ -609,7 +609,7 @@ namespace ios
        m_spdib->create(m_rectParentClient.size());
        }*/
 
-      m_pui->on_layout();
+      //m_pui->on_layout();
 
 
 

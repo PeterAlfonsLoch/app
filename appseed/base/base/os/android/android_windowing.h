@@ -75,7 +75,7 @@ struct CLASS_DECL_BASE oswindow_data
    ::user::interaction_impl *    m_pimpl;
    HTHREAD                       m_hthread;
    COLORREF *                    m_pcolorref;
-   RECT                          m_rect;
+   //RECT                          m_rect;
    bool                          m_bDestroying;
    bool                          m_bIconic;
 

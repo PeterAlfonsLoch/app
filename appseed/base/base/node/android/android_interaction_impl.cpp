@@ -442,6 +442,18 @@ namespace android
 
       m_spgraphics->on_create_window(this);
 
+      //m_oswindow->set_impl(this);
+
+      m_pui->ModifyStyle(0, WS_VISIBLE);
+
+      m_pui->send_message(WM_CREATE);
+
+      m_pui->send_message(WM_SIZE);
+
+      m_pui->send_message(WM_MOVE);
+
+      m_pui->send_message(WM_SHOWWINDOW, 1);
+
       output_debug_string("android_interaction_impl on _create_window");
 
       output_debug_string("android_interaction_impl initialize (width=" + ::str::from(width(pinitialize->m_rect)) + ",height=" + ::str::from(height(pinitialize->m_rect)) + ")");
@@ -2233,7 +2245,7 @@ void interaction_impl::_001OnCreate(::signal_details * pobj)
             if (!m_pui->m_bLockWindowUpdate)
             {
 
-               if (has_pending_graphical_update())
+               if (m_pui->has_pending_graphical_update())
                {
 
                   RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
@@ -3160,6 +3172,7 @@ oswindow interaction_impl::get_handle() const
 bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
 {
 
+   return ::user::interaction_impl::SetWindowPos(z, x, y, cx, cy, nFlags);
 
    //      single_lock sl(&user_mutex(), true);
 
@@ -3702,6 +3715,13 @@ void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
 
 LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
 {
+
+   if (::get_thread() == NULL)
+   {
+
+      ::set_thread(m_pui->get_app());
+
+   }
 
    return ::user::interaction_impl::send_message(message, wparam, lparam);
 
@@ -5509,6 +5529,29 @@ namespace android
       return oswindow->get_user_interaction();
 
    }
+
+   bool interaction_impl::has_pending_graphical_update()
+   {
+
+      synch_lock sl(m_pui->m_pmutex);
+
+      for (auto p : m_pui->m_uiptraChild)
+      {
+
+         if (p->has_pending_graphical_update())
+         {
+
+            return true;
+
+         }
+
+      }
+
+
+      return false;
+
+   }
+
 
 } // namespace android
 

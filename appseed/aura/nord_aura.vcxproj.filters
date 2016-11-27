@@ -3449,9 +3449,6 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{08e2a220-5913-4f59-b0bc-95076e0fe8d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura\node\android\NewFilter1">
-      <UniqueIdentifier>{7a261b4a-4079-4e5c-b186-9159a1e3b695}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem\filesystem\NewFilter1">
       <UniqueIdentifier>{38e5e1c2-aa82-4da7-9b73-a95bf4a89eb7}</UniqueIdentifier>
     </Filter>

@@ -206,7 +206,7 @@ namespace fontopus
 
    void login::_001OnDraw(::draw2d::graphics * pgraphics)
    {
-      //return;
+
 
       simple_ui_draw_frame_window_rect(pgraphics);
 

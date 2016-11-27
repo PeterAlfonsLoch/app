@@ -556,8 +556,12 @@ void * library::get_os_data()
    bool library::has_object_class(const char * pszClassId)
    {
 
-      if(get_ca2_library() == NULL)
-         return NULL;
+      if (get_ca2_library() == NULL)
+      {
+
+         return false;
+
+      }
 
       return get_ca2_library()->has_object_class(pszClassId);
 

@@ -321,17 +321,33 @@ int32_t image_list::add_dib(::draw2d::dib * pdib, int x, int y)
    return iItem;
 }
 
+
 int32_t image_list::add_matter(const char * lpcsz, ::aura::application * papp)
 {
+   
+   string strMatter;
+
    if(papp == NULL)
    {
-      return add_file(Application.dir().matter(lpcsz));
+
+      auto & dir = Application.dir();
+      
+      strMatter = dir.matter(lpcsz);
+
    }
    else
    {
-      return add_file(Sess(papp).dir().matter(lpcsz));
+
+      auto & dir = Sess(papp).dir();
+      
+      strMatter = dir.matter(lpcsz);
+
    }
+
+   return add_file(strMatter);
+
 }
+
 
 int32_t image_list::add_std_matter(const char * lpcsz)
 {

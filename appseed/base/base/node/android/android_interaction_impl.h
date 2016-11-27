@@ -689,6 +689,9 @@ namespace android
       virtual bool keyboard_focus_OnKillFocus();
       virtual bool keyboard_focus_OnChildKillFocus();
 
+
+      virtual bool has_pending_graphical_update();
+
    };
 
 
