@@ -4686,11 +4686,13 @@ namespace user
    {
       point ptOffset = get_viewport_offset();
 
-      if(iItem < ptOffset.y ||
-         (m_iItemHeight > 0
-         && iItem >= ptOffset.y / m_iItemHeight + m_nDisplayCount))
+      if(m_iItemHeight > 0
+         &&
+         (iItem < ptOffset.y / m_iItemHeight ||
+         iItem >= ptOffset.y / m_iItemHeight + m_nDisplayCount))
       {
          ptOffset.y = (LONG) (iItem * m_iItemHeight);
+         set_viewport_offset_y(ptOffset.y);
          on_change_viewport_offset();
          if(bRedraw)
          {
