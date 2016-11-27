@@ -5,10 +5,14 @@ namespace user
 {
 
 
-   mesh_cache_interface::mesh_cache_interface()
+   mesh_cache_interface::mesh_cache_interface(::aura::application * papp) :
+      ::object(papp)
    {
 
+      m_pmutex = new mutex(papp);
+
    }
+
 
    mesh_cache_interface::~mesh_cache_interface()
    {

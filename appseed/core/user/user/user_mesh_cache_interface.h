@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      mesh_cache_interface();
+      mesh_cache_interface(::aura::application * papp);
       virtual ~mesh_cache_interface();
 
 

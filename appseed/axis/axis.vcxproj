@@ -457,20 +457,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="axis\os\ansios\ansios_crypt.cpp" />
     <ClCompile Include="axis\os\windows\windows_trace_message.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_window_gdi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
@@ -1254,10 +1242,6 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />

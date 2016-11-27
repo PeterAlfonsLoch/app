@@ -17,8 +17,9 @@ namespace filemanager
 
 
          list_view::list_view(::aura::application * papp) :
-         object(papp),
-            simple_list_view(papp)
+            object(papp),
+            simple_list_view(papp),
+            m_cache(papp)
          {
             m_bKickActive = false;
 

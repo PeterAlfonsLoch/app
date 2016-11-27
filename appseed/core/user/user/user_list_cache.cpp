@@ -5,10 +5,10 @@ namespace user
 {
 
 
-   list_cache::list_cache()
+   list_cache::list_cache(::aura::application * papp) :
+      ::object(papp),
+      mesh_cache_interface(papp)
    {
-
-      m_bCaching = false;
 
    }
 
@@ -23,11 +23,9 @@ namespace user
    void list_cache::_001CacheHint(      ::user::mesh * pmesh,      index iItemStart,      index iItemCount)
    {
 
-      synch_lock sl(pmesh->m_pmutex);
+      single_lock sl(m_pmutex, false);
 
       ::user::list * plist = pmesh->m_plist;
-
-      keep < bool > keepCaching(&m_bCaching,true,false,true);
 
       if(iItemStart  < 0)
       {
@@ -80,7 +78,11 @@ namespace user
             if(item.m_bOk)
             {
 
+               sl.lock();
+
                m.set_at(item.m_iSubItem,item.m_strText);
+
+               sl.unlock();
 
             }
 
@@ -94,11 +96,10 @@ namespace user
    void list_cache::_001GetItemText(::user::mesh_item * pitem)
    {
 
-      if(m_bCaching)
-         return_(pitem->m_bOk,false);
-
       if(pitem->m_iItem < 0)
          return_(pitem->m_bOk,false);
+
+      synch_lock sl(m_pmutex);
 
       auto pmap = m_map.PLookup(pitem->m_iItem);
 
@@ -128,7 +129,7 @@ namespace user
    void list_cache::_001Invalidate(::user::mesh * pmesh)
    {
 
-      synch_lock sl(pmesh->m_pmutex);
+      synch_lock sl(m_pmutex);
 
       m_map.remove_all();
 

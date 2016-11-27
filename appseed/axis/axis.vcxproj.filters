@@ -306,9 +306,6 @@
     <Filter Include="Source Files\net\ftp">
       <UniqueIdentifier>{6ff501f4-1f68-49c4-b4a9-25f2e5ae9a9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\ftp\NewFilter1">
-      <UniqueIdentifier>{6c48bfde-f3f0-4593-be2a-3a3f98a09c7e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -435,12 +432,6 @@
       <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h">
       <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h">
@@ -668,20 +659,8 @@
     <ClInclude Include="axis\node\node.h">
       <Filter>Header Files\axis\node</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_ip_enum.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\ansios\ansios.h">
       <Filter>Header Files\axis\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_crypto.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_port_forward.h">
-      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="graphics\graphics.h">
       <Filter>Header Files\graphics</Filter>
@@ -760,15 +739,6 @@
     </ClInclude>
     <ClInclude Include="net\http\http_listener.h">
       <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\sockets_bsd.h">
       <Filter>Header Files\net\sockets\bsd</Filter>
@@ -992,12 +962,6 @@
     <ClInclude Include="filesystem\filesystem\filesystem_axis_system.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_axis_dir.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_axis_file_system.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\install\install.h">
       <Filter>Header Files\axis\install</Filter>
     </ClInclude>
@@ -1030,15 +994,6 @@
     </ClInclude>
     <ClInclude Include="axis\message\message_user.h">
       <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_copydesk.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_print_job.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_printer.h">
-      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="net\http\http_ostream.h">
       <Filter>Header Files\net\http</Filter>
@@ -1082,9 +1037,6 @@
     <ClInclude Include="user\user\user_elemental.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\aaa_windows_message_queue.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin_axis_file_system.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
@@ -1096,9 +1048,6 @@
     </ClInclude>
     <ClInclude Include="axis\fontopus\fontopus_validate.h">
       <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\aaa_want_to_remove_windows_file_set.h">
-      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -1181,22 +1130,46 @@
     <ClInclude Include="net\sockets\sockets_transfer_socket.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\windows\aaa_want_to_remove_windows_file_set.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\aaa_windows_message_queue.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_axis_dir.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_axis_file_system.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_copydesk.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_crypto.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_ip_enum.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_port_forward.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_print_job.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_printer.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\http_application.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\http_get_socket.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\http_signal.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\http_system.cpp">
-      <Filter>Source Files\net\http</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
@@ -1242,36 +1215,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp">
       <Filter>Source Files\net\sockets\bsd\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\smtp</Filter>
@@ -1411,9 +1354,6 @@
     <ClCompile Include="filesystem\fs\fs_set.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="net\http\http.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
     <ClCompile Include="axis\compress\compress_compress.cpp">
       <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
@@ -1440,9 +1380,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\http_status.cpp">
-      <Filter>Source Files\net\http</Filter>
     </ClCompile>
     <ClCompile Include="axis\geoip\geoip.cpp">
       <Filter>Source Files\axis\geoip</Filter>
@@ -1521,21 +1458,6 @@
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_glyph_set.cpp">
       <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_request.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_response.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
     </ClCompile>
     <ClCompile Include="net\net_sockets.cpp">
       <Filter>Source Files\net</Filter>
@@ -1861,20 +1783,11 @@
     <ClCompile Include="axis\node\windows\windows_print_job.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_trace_message.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\ansios\ansios_crypt.cpp">
       <Filter>Source Files\axis\os</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\http_ostream.cpp">
-      <Filter>Source Files\net\http</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -2022,6 +1935,72 @@
     </ClCompile>
     <ClCompile Include="net\sockets\sockets_transfer_socket.cpp">
       <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_application.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_get_socket.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_ostream.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_signal.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_status.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_system.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_request.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_response.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

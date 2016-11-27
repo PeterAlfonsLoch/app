@@ -6,7 +6,8 @@ namespace filemanager
 
 
    operation_list_view::operation_list_view(::aura::application * papp):
-      object(papp)
+      object(papp),
+      m_listcache(papp)
    {
          m_dwLast123Update = ::get_tick_count();
          m_pcache = &m_listcache;

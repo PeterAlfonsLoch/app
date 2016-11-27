@@ -6,17 +6,16 @@ namespace user
 
 
    class CLASS_DECL_CORE list_cache:
-      public mesh_cache_interface
+      virtual public mesh_cache_interface
    {
    public:
 
 
 
-      bool                                m_bCaching;
       int_ptr_to_int_ptr_to_string        m_map;
 
 
-      list_cache();
+      list_cache(::aura::application * papp);
       virtual ~list_cache();
 
 
