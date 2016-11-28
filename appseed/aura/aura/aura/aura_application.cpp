@@ -2224,6 +2224,8 @@ namespace aura
 
       }
 
+      thisstart;
+
       m_bAuraInitializeInstance = true;
 
       m_bAuraInitializeInstanceResult = false;
@@ -2244,12 +2246,18 @@ namespace aura
 
          }
 
+         thisok << 0.1;
+
          if(!check_exclusive())
          {
+
+            thisfail << 0.2;
 
             return false;
 
          }
+
+         thisok << 0.2;
 
          if(m_pipi != NULL)
          {
@@ -3015,7 +3023,6 @@ namespace aura
             if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
             {
                // Should in some way activate the other instance
-               //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
                TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
                on_exclusive_instance_conflict(ExclusiveInstanceGlobalId);
                return false;
@@ -3067,7 +3074,6 @@ namespace aura
             try
             {
             // Should in some way activate the other instance
-            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
             TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
             on_exclusive_instance_conflict(ExclusiveInstanceLocal);
             }
@@ -3100,8 +3106,7 @@ namespace aura
                try
                {
                // Should in some way activate the other instance
-               //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
+                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
                   on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
                }
                catch(...)

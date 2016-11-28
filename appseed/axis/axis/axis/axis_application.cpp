@@ -1920,19 +1920,27 @@ namespace axis
       if(m_bAxisInitializeInstance)
          return m_bAxisInitializeInstanceResult;
 
+      thisstart;
+
       m_bAxisInitializeInstance = true;
       m_bAxisInitializeInstanceResult = false;
 
       if(!::aura::application::initialize_application())
       {
 
+         thisfail << 1;
+
          return false;
 
       }
 
+      thisok << 1;
+
       m_dataid += m_strDataIdAddUp;
 
       m_bAxisInitializeInstanceResult = true;
+
+      thisend;
 
       return true;
 
@@ -2309,298 +2317,6 @@ namespace axis
    {
       return is_alive();
    }
-
-   //service_base * application::allocate_new_service()
-   //{
-
-   //   return NULL;
-
-   //}
-
-
-//   bool application::check_exclusive()
-//   {
-//
-//#ifdef METROWIN
-//
-//      return true;
-//
-//#endif
-//
-//      bool bSetOk;
-//
-//      LPSECURITY_ATTRIBUTES lpsa = NULL;
-//
-//      bool bResourceException = false;
-//
-//#ifdef WINDOWSEX
-//
-//      bSetOk = false;
-//
-//      SECURITY_ATTRIBUTES MutexAttributes;
-//      ZeroMemory(&MutexAttributes,sizeof(MutexAttributes));
-//      MutexAttributes.nLength = sizeof(MutexAttributes);
-//      MutexAttributes.bInheritHandle = FALSE; // object uninheritable
-//      // declare and initialize a security descriptor
-//      SECURITY_DESCRIPTOR SD;
-//      bool bInitOk = InitializeSecurityDescriptor(&SD,SECURITY_DESCRIPTOR_REVISION) != FALSE;
-//      if(bInitOk)
-//      {
-//         // give the security descriptor a Null Dacl
-//         // done using the  "TRUE, (PACL)NULL" here
-//         bSetOk = SetSecurityDescriptorDacl(&SD,
-//            TRUE,
-//            (PACL)NULL,
-//            FALSE) != FALSE;
-//      }
-//
-//      if(bSetOk)
-//      {
-//
-//         MutexAttributes.lpSecurityDescriptor = &SD;
-//
-//         lpsa = &MutexAttributes;
-//
-//      }
-//
-//#else
-//
-//      bSetOk = true;
-//
-//#endif
-//
-//      if(bSetOk)
-//      {
-//         // Make the security attributes point
-//         // to the security descriptor
-//         bResourceException = false;
-//         try
-//         {
-//            m_pmutexGlobal = new mutex(this,FALSE,get_global_mutex_name(),lpsa);
-//         }
-//         catch(resource_exception &)
-//         {
-//            try
-//            {
-//               m_pmutexGlobal = new mutex(this,FALSE,get_global_mutex_name());
-//            }
-//            catch(resource_exception &)
-//            {
-//               bResourceException = true;
-//            }
-//         }
-//
-//         if(m_eexclusiveinstance == ExclusiveInstanceGlobal
-//            && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
-//         {
-//            // Should in some way activate the other instance, but this is global, what to do? do not know yet.
-//            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-//            TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-//            on_exclusive_instance_conflict(ExclusiveInstanceGlobal);
-//            return false;
-//         }
-//         if(m_eexclusiveinstance == ExclusiveInstanceGlobalId)
-//         {
-//            bResourceException = false;
-//            try
-//            {
-//               m_pmutexGlobalId = new mutex(this,FALSE,get_global_id_mutex_name(),lpsa);
-//            }
-//            catch(resource_exception &)
-//            {
-//               try
-//               {
-//                  m_pmutexGlobalId = new mutex(this,FALSE,get_global_id_mutex_name());
-//               }
-//               catch(resource_exception &)
-//               {
-//                  bResourceException = true;
-//               }
-//            }
-//            if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
-//            {
-//               // Should in some way activate the other instance
-//               //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-//               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
-//               on_exclusive_instance_conflict(ExclusiveInstanceGlobalId);
-//               return false;
-//            }
-//         }
-//         bResourceException = false;
-//         try
-//         {
-//            m_pmutexLocal = new mutex(this,FALSE,get_local_mutex_name(),lpsa);
-//         }
-//         catch(resource_exception &)
-//         {
-//            try
-//            {
-//               m_pmutexLocal = new mutex(this,FALSE,get_local_mutex_name());
-//            }
-//            catch(resource_exception &)
-//            {
-//               bResourceException = true;
-//            }
-//         }
-//         if(m_eexclusiveinstance == ExclusiveInstanceLocal && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
-//         {
-//            // Should in some way activate the other instance
-//            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-//            TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-//            on_exclusive_instance_conflict(ExclusiveInstanceLocal);
-//            return false;
-//         }
-//         if(m_eexclusiveinstance == ExclusiveInstanceLocalId)
-//         {
-//            bResourceException = false;
-//            try
-//            {
-//               m_pmutexLocalId = new mutex(this,FALSE,get_local_id_mutex_name(),lpsa);
-//            }
-//            catch(resource_exception &)
-//            {
-//               try
-//               {
-//                  m_pmutexLocalId = new mutex(this,FALSE,get_local_id_mutex_name());
-//               }
-//               catch(resource_exception &)
-//               {
-//                  bResourceException = true;
-//               }
-//            }
-//            if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
-//            {
-//               // Should in some way activate the other instance
-//               //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-//               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-//               on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
-//               return false;
-//            }
-//         }
-//      }
-//      else
-//      {
-//         return false;
-//      }
-//
-//      return true;
-//
-//   }
-//
-//   bool application::release_exclusive()
-//   {
-//      if(m_pmutexGlobal.is_set())
-//      {
-//         m_pmutexGlobal.release();
-//      }
-//      if(m_pmutexGlobalId.is_set())
-//      {
-//         m_pmutexGlobalId.release();
-//      }
-//      if(m_pmutexLocal.is_set())
-//      {
-//         m_pmutexLocal.release();
-//      }
-//      if(m_pmutexLocalId.is_set())
-//      {
-//         m_pmutexLocalId.release();
-//      }
-//      return true;
-//   }
-
-
-
-
-   //string application::get_local_mutex_name(const char * pszAppName)
-   //{
-   //   string strMutex;
-   //   strMutex.Format("Local\\ca2_application_local_mutex:%s",pszAppName);
-   //   return strMutex;
-   //}
-
-   //string application::get_local_id_mutex_name(const char * pszAppName,const char * pszId)
-   //{
-   //   string strId(pszId);
-   //   string strMutex;
-   //   strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s",pszAppName,strId.c_str());
-   //   return strMutex;
-   //}
-
-   //string application::get_global_mutex_name(const char * pszAppName)
-   //{
-   //   string strMutex;
-   //   strMutex.Format("Global\\ca2_application_global_mutex:%s",pszAppName);
-   //   return strMutex;
-   //}
-
-   //string application::get_global_id_mutex_name(const char * pszAppName,const char * pszId)
-   //{
-   //   string strId(pszId);
-   //   string strMutex;
-   //   strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s",pszAppName,strId.c_str());
-   //   return strMutex;
-   //}
-
-   //string application::get_local_mutex_name()
-   //{
-   //   return get_local_mutex_name(get_mutex_name_gen());
-   //}
-
-   //string application::get_local_id_mutex_name()
-   //{
-   //   return get_local_id_mutex_name(get_mutex_name_gen(),get_local_mutex_id());
-   //}
-
-   //string application::get_global_mutex_name()
-   //{
-   //   return get_global_mutex_name(get_mutex_name_gen());
-   //}
-
-   //string application::get_global_id_mutex_name()
-   //{
-   //   return get_global_id_mutex_name(get_mutex_name_gen(),get_global_mutex_id());
-   //}
-
-
-
-
-   //void application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
-   //{
-   //   if(eexclusive == ExclusiveInstanceLocal)
-   //   {
-   //      on_exclusive_instance_local_conflict();
-   //   }
-   //}
-
-   //void application::on_exclusive_instance_local_conflict()
-   //{
-   //}
-
-
-   //string application::get_mutex_name_gen()
-   //{
-   //   return m_strAppName;
-   //}
-
-   //string application::get_local_mutex_id()
-   //{
-   //   return command()->m_varTopicQuery["local_mutex_id"];
-   //}
-
-   //string application::get_global_mutex_id()
-   //{
-   //   return command()->m_varTopicQuery["global_mutex_id"];
-   //}
-
-   //::mutex * application::get_local_mutex()
-   //{
-   //   return m_pmutexLocal;
-   //}
-
-   //::mutex * application::get_global_mutex()
-   //{
-   //   return m_pmutexGlobal;
-   //}
 
 
 

@@ -125,7 +125,7 @@ namespace sockets
       // Connection pool
       // -------------------------------------------------------------------------
       /** find available open connection (used by connection pool). */
-      virtual pool_socket * FindConnection(int type,const string & protocol, const ::net::address & address) = 0;
+      virtual sp(pool_socket) FindConnection(int type,const string & protocol, const ::net::address & address) = 0;
 
       /** Enable connection pool (by default disabled). */
       virtual void EnablePool(bool = true) = 0;

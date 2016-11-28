@@ -72,6 +72,14 @@ namespace sockets
       ,m_detached(false)
       ,m_pThread(NULL)
       ,m_slave_handler(NULL)
+#ifdef HAVE_OPENSSL
+      , m_iSslCtxRetry(0)
+      , m_ssl_ctx(NULL)
+      , m_ssl_session(NULL)
+      , m_ssl_method(NULL)
+      , m_ssl(NULL)
+      , m_sbio(NULL)
+#endif
       // Line protocol
       ,m_bLineProtocol(false)
       ,m_skip_c(false),
@@ -635,13 +643,33 @@ namespace sockets
 
    void base_socket::CopyConnection(base_socket * psocket)
    {
+
+      m_iSslCtxRetry = psocket->m_iSslCtxRetry;
+      m_ssl_ctx = psocket->m_ssl_ctx; ///< ssl context
+      m_ssl_session = psocket->m_ssl_session; ///< ssl session
+      m_ssl_method = psocket->m_ssl_method; ///< ssl method
+      //m_ssl = psocket->m_ssl; ///< ssl 'socket'
+      m_ssl = psocket->m_ssl; ///< ssl 'socket'
+      m_sbio = psocket->m_sbio; ///< ssl bio
+      m_password = psocket->m_password; ///< ssl password
+
       attach(psocket -> GetSocket());
+      
       SetIpv6(psocket -> IsIpv6());
       SetSocketType(psocket -> GetSocketType());
       SetSocketProtocol(psocket -> GetSocketProtocol());
 
       SetClientRemoteAddress(psocket -> GetClientRemoteAddress());
       SetRemoteHostname(psocket -> GetRemoteHostname());
+      psocket->m_socket = INVALID_SOCKET;
+      psocket->m_iSslCtxRetry = 0;
+      psocket->m_ssl_ctx = NULL;
+      psocket->m_ssl_session = NULL;
+      psocket->m_ssl_method = NULL;
+      psocket->m_ssl = NULL;
+      psocket->m_sbio = NULL;
+      psocket->m_password.Empty();
+
 
    }
 

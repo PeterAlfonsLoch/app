@@ -8,6 +8,8 @@ namespace user
    box::box() :
       ::object(get_app())
    {
+      
+      m_strWindowRectDataAddUp = ".local://";
 
    }
 
@@ -86,7 +88,7 @@ namespace user
 
          defer_update_display();
 
-         ::id idKey = m_dataid.m_id + ".WindowRect." + m_strDisplay;
+         ::id idKey = m_strWindowRectDataAddUp + m_dataid.m_id + ".WindowRect." + m_strDisplay;
 
          //sl.unlock();
 
@@ -109,7 +111,7 @@ namespace user
 
       defer_update_display();
 
-      ::id idKey = m_dataid.m_id + ".WindowRect." + m_strDisplay;
+      ::id idKey = m_strWindowRectDataAddUp + m_dataid.m_id + ".WindowRect." + m_strDisplay;
 
       //sl.unlock();
 
@@ -367,7 +369,7 @@ namespace user
       if (m_strDisplay.is_empty())
       {
 
-         if (!data_get(m_dataid.m_id + ".lastdisplay", m_strDisplay) || m_strDisplay.is_empty())
+         if (!data_get(m_strWindowRectDataAddUp + m_dataid.m_id + ".lastdisplay", m_strDisplay) || m_strDisplay.is_empty())
          {
 
             m_strDisplay = calc_display();
@@ -380,7 +382,7 @@ namespace user
 
          m_strDisplay = calc_display();
 
-         data_set(m_dataid.m_id + ".lastdisplay", m_strDisplay);
+         data_set(m_strWindowRectDataAddUp + m_dataid.m_id + ".lastdisplay", m_strDisplay);
 
       }
 

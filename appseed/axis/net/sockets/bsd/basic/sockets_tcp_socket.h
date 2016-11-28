@@ -33,9 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define TCP_BUFSIZE_READ (16400)
 #define TCP_OUTPUT_CAPACITY 1024000
 
-#ifdef BSD_STYLE_SOCKETS
-#include <openssl/ssl.h>
-#endif
 
 namespace sockets
 {
@@ -97,13 +94,6 @@ namespace sockets
       size_t m_transfer_limit;
       size_t m_output_length;
 
-      int m_iSslCtxRetry;
-      SSL_CTX *m_ssl_ctx; ///< ssl context
-      SSL_SESSION * m_ssl_session; ///< ssl session
-      const SSL_METHOD * m_ssl_method; ///< ssl method
-      SSL *m_ssl; ///< ssl 'socket'
-      BIO *m_sbio; ///< ssl bio
-      string m_password; ///< ssl password
 
       int32_t m_socks4_state; ///< socks4 support
       char m_socks4_vn; ///< socks4 support, temporary var

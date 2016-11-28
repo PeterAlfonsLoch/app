@@ -830,6 +830,8 @@ namespace user
 
       UNREFERENCED_PARAMETER(dwFlags);
 
+      point ptOffset = get_viewport_offset();
+
       m_nItemCount = _001GetItemCount();
       if(m_nItemCount < 0)
          return false;
@@ -888,6 +890,10 @@ namespace user
          TRACE("list::_001OnUpdateItemCount GroupCount %d\n", m_nGroupCount);
 
       }
+
+      set_viewport_offset(ptOffset.x, ptOffset.y);
+
+
 
       RedrawWindow();
 
@@ -960,30 +966,36 @@ namespace user
             itemFirst.m_iGroup            = 0;
             _001GetItemRect(&itemFirst);
 
-            draw_list_item itemLast(this);
+            rect = itemFirst.m_rectItem;
 
-            if(m_bFilter1)
-            {
-               itemLast.m_iDisplayItem       = m_piaFilterMesh->get_count() - 1;
-               itemLast.m_iItem              = m_piaFilterMesh->get_count() - 1;
-            }
-            else
-            {
-               itemLast.m_iDisplayItem       = m_nItemCount - 1;
-               itemLast.m_iItem              = m_nItemCount - 1;
-            }
-            if(m_bGroup)
-            {
-               itemLast.m_iGroupTopIndex = 0;
-//               int32_t igroup;
-               for(itemLast.m_iGroup = 0; itemLast.m_iGroup < m_nGroupCount; itemLast.m_iGroup++)
-               {
-                  itemLast.m_iGroupCount = _001GetGroupItemCount(itemLast.m_iGroup);
-                  if(itemLast.m_iItem >= itemLast.m_iGroupTopIndex && itemLast.m_iItem < (itemLast.m_iGroupTopIndex + itemLast.m_iGroupCount))
-                     break;
-               }
-            }
-            _001GetItemRect(&itemLast);
+            rect.top = 0;
+
+            rect.bottom = (_001GetItemCount() + (m_bHeaderCtrl ? 1 : 0)) * m_iItemHeight;
+
+//            draw_list_item itemLast(this);
+//
+//            if(m_bFilter1)
+//            {
+//               itemLast.m_iDisplayItem       = m_piaFilterMesh->get_count() - 1;
+//               itemLast.m_iItem              = m_piaFilterMesh->get_count() - 1;
+//            }
+//            else
+//            {
+//               itemLast.m_iDisplayItem       = m_nItemCount - 1;
+//               itemLast.m_iItem              = m_nItemCount - 1;
+//            }
+//            if(m_bGroup)
+//            {
+//               itemLast.m_iGroupTopIndex = 0;
+////               int32_t igroup;
+//               for(itemLast.m_iGroup = 0; itemLast.m_iGroup < m_nGroupCount; itemLast.m_iGroup++)
+//               {
+//                  itemLast.m_iGroupCount = _001GetGroupItemCount(itemLast.m_iGroup);
+//                  if(itemLast.m_iItem >= itemLast.m_iGroupTopIndex && itemLast.m_iItem < (itemLast.m_iGroupTopIndex + itemLast.m_iGroupCount))
+//                     break;
+//               }
+//            }
+//            _001GetItemRect(&itemLast);
 
             //::rect rectMargin;
 
@@ -991,8 +1003,8 @@ namespace user
 
             //itemLast.m_rectItem.right     -= (rectMargin.left + rectMargin.right);
             //itemLast.m_rectItem.bottom    -= (rectMargin.top  + rectMargin.bottom);
-            itemFirst.m_rectItem.top = 0;
-            rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
+//            itemFirst.m_rectItem.top = 0;
+  //          rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
          }
       }
       else if(m_eview == view_icon)
@@ -5309,20 +5321,61 @@ namespace user
 
       synch_lock sl(m_pmutex);
 
+      point pt = get_viewport_offset();
+
       m_iTopIndex = _001CalcDisplayTopIndex();
+
       index iLow = 0;
+      
       for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
-         if(m_iTopIndex >= iLow && m_iTopIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
+
+         if (m_iTopIndex >= iLow && m_iTopIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
+         {
+
             break;
+
+         }
+
       }
+      
       m_nDisplayCount = _001CalcDisplayItemCount();
+
+
+      if (m_iTopIndex < 0 && m_iItemHeight > 0 && m_eview == view_report && pt.y != 0 && m_nDisplayCount > 0)
+      {
+
+         rect rectScroll;
+
+         scroll_x::m_pscrollbarHorz->GetWindowRect(rectScroll);
+
+         if (pt.y > (_001GetItemCount() - m_nDisplayCount) * m_iItemHeight  + (m_bHeaderCtrl ? m_iItemHeight : 0))
+         {
+
+            pt.y = (_001GetItemCount()  - m_nDisplayCount) * m_iItemHeight  + (m_bHeaderCtrl ? m_iItemHeight : 0);
+
+         }
+
+         if (pt.y < 0)
+         {
+
+            pt.y = 0;
+
+         }
+
+         set_viewport_offset_y(pt.y);
+
+         m_iTopIndex = _001CalcDisplayTopIndex();
+
+      }
 
       HeaderCtrlLayout();
 
       CacheHint();
 
       UpdateHover();
+
+      RedrawWindow();
 
    }
 

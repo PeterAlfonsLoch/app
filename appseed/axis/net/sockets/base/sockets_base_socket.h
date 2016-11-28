@@ -1,5 +1,8 @@
 #pragma once
 
+#ifdef BSD_STYLE_SOCKETS
+#include <openssl/ssl.h>
+#endif
 
 #if defined(LINUX)
 //struct ucred {
@@ -87,6 +90,14 @@ namespace sockets
 
       };
 
+      // former TCP_SOCKET ::sockets::tcp_socket
+      int m_iSslCtxRetry;
+      SSL_CTX *m_ssl_ctx; ///< ssl context
+      SSL_SESSION * m_ssl_session; ///< ssl session
+      const SSL_METHOD * m_ssl_method; ///< ssl method
+      SSL *m_ssl; ///< ssl 'socket'
+      BIO *m_sbio; ///< ssl bio
+      string m_password; ///< ssl password
 
 
       base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket

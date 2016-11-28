@@ -1883,6 +1883,12 @@ bool thread::thread_entry()
 
    }
 
+   if (bError)
+   {
+
+      goto error;
+
+   }
 
    try
    {
@@ -1902,6 +1908,8 @@ bool thread::thread_entry()
       bError = true;
 
    }
+
+error:;
 
    if(bError)
    {

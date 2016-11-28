@@ -43,7 +43,7 @@ namespace sockets
       ,m_next_trigger_id(0)
       ,m_slave(false)
    {
-
+      m_pmutex = new mutex(papp);
       ZERO(m_socks4_host);
       //m_prfds = new fd_set;
       //m_pwfds = new fd_set;
@@ -314,6 +314,66 @@ namespace sockets
 
    }
 
+   bool socket_handler::call_on_connect()
+   {
+
+      // check CallOnConnect - EVENT
+      if (m_fds_callonconnect.get_size())
+      {
+         socket_id_list tmp = m_fds_callonconnect;
+         POSITION pos = tmp.get_head_position();
+         for (; pos != NULL; )
+         {
+            SOCKET socket = tmp.get_next(pos);
+            sp(base_socket) psocket;
+            if (!m_sockets.Lookup(socket, psocket)) // not found
+            {
+               log(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
+            }
+            if (psocket != NULL)
+            {
+               tcp_socket * tcp = psocket.cast < tcp_socket >();
+               if (tcp != NULL)
+               {
+                  if (tcp->CallOnConnect() && psocket->Ready())
+                  {
+                     psocket->SetConnected(); // moved here from inside if (tcp) check below
+                     if (psocket->IsSSL()) // SSL Enabled socket
+                        psocket->OnSSLConnect();
+                     else
+                        if (psocket->Socks4())
+                           psocket->OnSocks4Connect();
+                        else
+                        {
+
+                           if (tcp)
+                           {
+                              if (tcp->GetOutputLength())
+                              {
+                                 psocket->OnWrite();
+                              }
+                           }
+                           if (tcp && tcp->IsReconnect())
+                              psocket->OnReconnect();
+                           else
+                           {
+                              log(tcp, "Calling OnConnect", 0, "Because CallOnConnect", ::aura::log::level_info);
+                              psocket->OnConnect();
+                           }
+                        }
+                     tcp->SetCallOnConnect(false);
+                     AddList(psocket->GetSocket(), LIST_CALLONCONNECT, false);
+                  }
+               }
+            }
+         }
+         return true;
+      }
+
+
+      return false;
+   }
+
 
    int32_t socket_handler::select(struct timeval *tsel)
    {
@@ -369,20 +429,11 @@ namespace sockets
 
                tcp_socket * tcp = p.cast < tcp_socket >();
 
-               bool bWrite = tcp ? tcp -> GetOutputLength() != 0 : false;
+               bool bWrite = tcp ? tcp -> GetOutputLength() != 0 || tcp->CallOnConnect() : false;
 
-               if(p -> IsDisableRead())
-               {
+               bool bRead = !p->IsDisableRead();
 
-                  set(s,false,bWrite);
-
-               }
-               else
-               {
-
-                  set(s,true,bWrite);
-
-               }
+               set(s, bRead,bWrite);
 
             }
 
@@ -668,57 +719,8 @@ namespace sockets
          m_preverror = -1;
       } // if (n > 0)
 
-            // check CallOnConnect - EVENT
-      if(m_fds_callonconnect.get_size())
-      {
-         socket_id_list tmp = m_fds_callonconnect;
-         POSITION pos = tmp.get_head_position();
-         for(; pos != NULL; )
-         {
-            SOCKET socket = tmp.get_next(pos);
-            sp(base_socket) psocket;
-            if(!m_sockets.Lookup(socket,psocket)) // not found
-            {
-               log(NULL,"GetSocket/handler/4",(int32_t)socket,"Did not find expected socket using file descriptor",::aura::log::level_warning);
-            }
-            if(psocket != NULL)
-            {
-               tcp_socket * tcp = psocket.cast < tcp_socket >();
-               if(tcp != NULL)
-               {
-                  if(tcp -> CallOnConnect() && psocket -> Ready())
-                  {
-                     psocket -> SetConnected(); // moved here from inside if (tcp) check below
-                     if(psocket -> IsSSL()) // SSL Enabled socket
-                        psocket -> OnSSLConnect();
-                     else
-                        if(psocket -> Socks4())
-                           psocket -> OnSocks4Connect();
-                        else
-                        {
+      call_on_connect();
 
-                           if(tcp)
-                           {
-                              if(tcp -> GetOutputLength())
-                              {
-                                 psocket -> OnWrite();
-                              }
-                           }
-                           if(tcp && tcp -> IsReconnect())
-                              psocket -> OnReconnect();
-                           else
-                           {
-                              log(tcp,"Calling OnConnect",0,"Because CallOnConnect",::aura::log::level_info);
-                              psocket -> OnConnect();
-                           }
-                        }
-                     tcp -> SetCallOnConnect(false);
-                     AddList(psocket -> GetSocket(),LIST_CALLONCONNECT,false);
-                  }
-               }
-            }
-         }
-      }
       bool check_max_fd = false;
       // check detach of socket if master handler - EVENT
       if(!m_slave && m_fds_detach.get_size())
@@ -917,11 +919,19 @@ namespace sockets
                         }
                         if(p -> Retain() && !p -> Lost())
                         {
-                           sp(pool_socket) p2 = canew(pool_socket(*this,p));
-                           p2 -> SetDeleteByHandler();
-                           add(p2);
-                           //
-                           p -> SetCloseAndDelete(false); // added - remove from m_fds_close
+
+                           synch_lock sl(m_pmutex);
+                           
+                           sp(pool_socket) ppoolsocket = canew(pool_socket(*this,p));
+                           
+                           ppoolsocket-> SetDeleteByHandler();
+                           
+                           m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
+
+                           ppoolsocket->SetCloseAndDelete(false); // added - remove from m_fds_close
+
+                           //p -> SetCloseAndDelete(false); // added - remove from m_fds_close
+
                         }
                         else if (p.cast < http_session >() != NULL && !p->Lost())
                         {
@@ -1243,27 +1253,44 @@ namespace sockets
       return m_resolver_port;
    }
 
-   base_socket_handler::pool_socket *socket_handler::FindConnection(int32_t type,const string & protocol,const ::net::address & ad)
+   
+   sp(base_socket_handler::pool_socket) socket_handler::FindConnection(int32_t type,const string & protocol,const ::net::address & ad)
    {
-      socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
+
+      synch_lock sl(m_pmutex);
+      
+      socket_map::pair * ppair = m_pool.PGetFirstAssoc();
+
       while(ppair != NULL)
       {
-         auto pools = ppair->m_element2.cast <pool_socket>();
-         if(pools)
+
+         sp(pool_socket) psocket = ppair->m_element2;
+
+         if(psocket.is_set())
          {
-            if(pools -> GetSocketType() == type &&
-               pools -> GetSocketProtocol() == protocol &&
+
+            if(psocket-> GetSocketType() == type &&
+               psocket-> GetSocketProtocol() == protocol &&
                // %!             pools -> GetClientRemoteAddress() &&
-               pools -> GetClientRemoteAddress() == ad)
+               psocket-> GetClientRemoteAddress() == ad)
             {
-               m_sockets.remove_key(ppair->m_element1);
-               pools -> SetRetain(); // avoid close in socket destructor
-               return pools; // Caller is responsible that this socket is deleted
+               
+               m_pool.remove_key(ppair->m_element1);
+
+               psocket-> SetRetain(); // avoid close in socket destructor
+
+               return psocket; // Caller is responsible that this socket is deleted
+
             }
+
          }
+
          ppair = m_sockets.PGetNextAssoc(ppair);
+
       }
+
       return NULL;
+
    }
 
 

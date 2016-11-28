@@ -14,6 +14,7 @@ namespace user
 
 
       string         m_strDisplay;
+      string         m_strWindowRectDataAddUp;
 
       box();
       virtual ~box();

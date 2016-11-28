@@ -10,6 +10,8 @@ namespace http
       ::object(papp)
    {
 
+      m_phandler = new ::sockets::socket_handler(get_app());
+      m_phandler->EnablePool();
       oprop("dw") = ::get_tick_count();
 
       m_pmutexPac = NULL;
@@ -22,6 +24,8 @@ namespace http
 
    system::~system()
    {
+      
+      ::aura::del(m_phandler);
 
    }
 
@@ -1428,6 +1432,9 @@ retry_session:
          psocket->m_emethod = ::sockets::string_http_method(set.lookup(__id(http_method), "GET"));
       }
 
+      //psocket->m_output_length = 1; // at least one to trigger write and in case it is not set (in case of reuse currently);
+
+      psocket->m_bEnablePool = handler.PoolEnabled();
 
       if((bool)set["disable_common_name_cert_check"])
       {
@@ -1556,7 +1563,12 @@ retry_session:
          keeplive.keep(&Sys(papp));
       }
 
-      psocket->m_bEnablePool = false;
+      psocket->m_bEnablePool = handler.PoolEnabled();
+      if (handler.PoolEnabled())
+      {
+         psocket->SetRetain();
+
+      }
 
 //      ::file::timeout_buffer * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_buffer >();
 
@@ -1568,6 +1580,12 @@ retry_session:
          if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
          {
             break;
+         }
+         if (psocket->m_b_complete)
+         {
+
+            break;
+
          }
 //         if (ptimeoutbuffer != NULL)
 //         {
@@ -2112,14 +2130,41 @@ retry_session:
    bool system::get(const char * pszUrl, property_set & set)
    {
 
-      sockets::socket_handler h(set.cast < ::aura::application >("app", get_app()));
+      sockets::socket_handler * p;
+
+      bool bMember;
+
+      if (::str::ends_ci(System.url().get_server(pszUrl), "ca2.cc"))
+      {
+
+         p = m_phandler;
+
+         bMember = true;
+
+      }
+      else
+      {
+
+         p = new ::sockets::socket_handler(get_app());
+
+         bMember = false;
+
+      }
+
 
       sp(::sockets::http_client_socket) psocket;
       
-      if (!System.http().get(h, psocket, pszUrl, set))
+      if (!System.http().get(*p, psocket, pszUrl, set))
       {
 
          return false;
+
+      }
+
+      if (!bMember)
+      {
+
+         ::aura::del(p);
 
       }
 

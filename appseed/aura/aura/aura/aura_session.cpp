@@ -451,8 +451,20 @@ namespace aura
                   strType = "application";
 
                ::aura::application * papp = (application_get(strType,strApp,true,true,pcreatecontext->m_spCommandLine->m_pbiasCreate));
-               if(papp == NULL)
+               if (papp == NULL)
+               {
+
+                  if (System.directrix()->m_spcommandline->m_varQuery["app"].array_get_count() == 1
+                     && System.directrix()->m_spcommandline->m_varQuery["app"] == strApp)
+                  {
+
+                     ::multithreading::post_quit(&System);
+
+                  }
+
                   return;
+
+               }
 
                //simple_message_box(NULL, "appok", strApp, MB_ICONEXCLAMATION);
 

@@ -18,6 +18,7 @@ namespace sockets
       sp(logger)           m_splogger; ///< Registered log class, or NULL
 
 
+      socket_map           m_pool; ///< Active sockets map
       socket_map           m_sockets; ///< Active sockets map
       socket_map           m_add; ///< Sockets to be added to sockets map
       socket_list          m_delete; ///< Sockets to be deleted (failed when add)
@@ -61,6 +62,7 @@ namespace sockets
 
       void cleanup_handler();
 
+      bool call_on_connect();
 
       mutex & GetMutex() const override;
 
@@ -100,7 +102,7 @@ namespace sockets
 
       // Connection pool
       /** find available open connection (used by connection pool). */
-      pool_socket * FindConnection(int32_t type,const string & protocol, const ::net::address & address) override;
+      sp(pool_socket) FindConnection(int32_t type,const string & protocol, const ::net::address & address) override;
       /** Enable connection pool (by default disabled). */
       void EnablePool(bool x = true) override;
       /** Check pool status.

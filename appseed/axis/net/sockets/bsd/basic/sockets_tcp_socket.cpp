@@ -59,14 +59,6 @@ namespace sockets
       ,m_obuf_top(NULL)
       ,m_transfer_limit(0)
       ,m_output_length(0)
-#ifdef HAVE_OPENSSL
-      ,m_iSslCtxRetry(0)
-      ,m_ssl_ctx(NULL)
-      ,m_ssl_session(NULL)
-      ,m_ssl_method(NULL)
-      ,m_ssl(NULL)
-      ,m_sbio(NULL)
-#endif
       ,m_socks4_state(0)
       ,m_resolver_id(0)
       ,m_bReconnect(false)
@@ -97,14 +89,6 @@ namespace sockets
       ,m_obuf_top(NULL)
       ,m_transfer_limit(0)
       ,m_output_length(0)
-#ifdef HAVE_OPENSSL
-      ,m_iSslCtxRetry(0)
-      ,m_ssl_ctx(NULL)
-      ,m_ssl_session(NULL)
-      ,m_ssl_method(NULL)
-      ,m_ssl(NULL)
-      ,m_sbio(NULL)
-#endif
       ,m_socks4_state(0)
       ,m_resolver_id(0)
       ,m_bReconnect(false)
@@ -178,18 +162,28 @@ namespace sockets
       // check for pooling
       if(Handler().PoolEnabled())
       {
-         base_socket_handler::pool_socket *pools = Handler().FindConnection(SOCK_STREAM,"tcp",ad);
-         if(pools)
+         
+         sp(base_socket_handler::pool_socket) ppoolsocket = Handler().FindConnection(SOCK_STREAM,"tcp",ad);
+
+         if(ppoolsocket)
          {
-            CopyConnection(pools);
-            delete pools;
+
+            CopyConnection(ppoolsocket);
 
             SetIsClient();
+
             SetCallOnConnect(); // base_socket_handler must call OnConnect
+
+            oprop("from_pool") = true;
+
             log("SetCallOnConnect",0,"Found pooled connection",::aura::log::level_info);
+
             return true;
+
          }
+
       }
+
       // if not, create new connection
       SOCKET s = CreateSocket(ad.get_family(),SOCK_STREAM,"tcp");
       if(s == INVALID_SOCKET)
@@ -597,6 +591,16 @@ namespace sockets
 
    void tcp_socket::OnWrite()
    {
+
+      if ((bool)oprop("from_pool") && CallOnConnect())
+      {
+
+         SetCallOnConnect(false);
+         SetConnected(true);
+         OnConnect();
+
+         return;
+      }
       if(Connecting())
       {
          int32_t err = SoError();
@@ -1023,6 +1027,9 @@ namespace sockets
 
       //synch_lock slMap(&Session.sockets().m_clientcontextmap.m_mutex);
 
+      if ((bool)oprop("from_pool"))
+         return;
+
       {
          if(m_ssl_ctx)
          {
@@ -1046,6 +1053,12 @@ namespace sockets
             TRACE(" m_ssl is NULL\n");
             SetCloseAndDelete(true);
             return;
+         }
+
+         if (!m_bClientSessionSet && m_ssl_session != NULL)
+         {
+            SSL_set_session(m_ssl, m_ssl_session);
+            m_bClientSessionSet = true;
          }
 
          if (m_strTlsHostName.has_char())
@@ -1130,18 +1143,18 @@ namespace sockets
    {
       if(!IsSSLServer()) // client
       {
-         if(!m_bClientSessionSet && m_ssl_session != NULL)
-         {
-            SSL_set_session(m_ssl, m_ssl_session);
-            m_bClientSessionSet = true;
-         }
          TRACE("SSL_connect!!");
          int32_t r = SSL_connect(m_ssl);
          if(r > 0)
          {
             SetSSLNegotiate(false);
 
-
+            if (SSL_session_reused(m_ssl)) {
+               output_debug_string("REUSED SESSION\n");
+            }
+            else {
+               output_debug_string("NEW SESSION\n");
+            }
             long x509_err = cert_common_name_check(m_strHost);
             if(x509_err != X509_V_OK
                   && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN

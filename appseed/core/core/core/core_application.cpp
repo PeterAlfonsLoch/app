@@ -432,6 +432,8 @@ namespace core
    bool application::initialize_application()
    {
 
+      thisstart;
+
       //try
       //{
 
@@ -446,7 +448,15 @@ namespace core
       //}
 
       if (!::base::application::initialize_application())
+      {
+
+         thisfail << 1;
+
          return false;
+
+      }
+
+      thisok << 1;
 
       if (!is_session() && !is_system())
       {
@@ -481,7 +491,11 @@ namespace core
 
          }
 
+         thisok << 1.1;
+
       }
+
+      thisend;
 
       return true;
 

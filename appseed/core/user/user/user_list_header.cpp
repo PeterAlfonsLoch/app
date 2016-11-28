@@ -303,17 +303,21 @@ namespace user
    bool list_header::DIDDXColumn(bool bSave)
    {
 
+      string strDataAddUp;
+
+      strDataAddUp = ".local://";
+
       string str;
 
       int_array iaWidth;
 
-      str = "::user::list_column_width";
+      str = strDataAddUp+ "::user::list_column_width";
 
       draw_list_item item(m_plistctrlinterface);
 
-      if(bSave)
+      if (bSave)
       {
-         
+
          for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
          {
 
@@ -335,23 +339,23 @@ namespace user
             }
 
          }
-         
-         if(!data_save(str + m_plistctrlinterface->m_dataid.m_id, iaWidth))
+
+         if (!data_save(str + m_plistctrlinterface->m_dataid.m_id, iaWidth))
             return false;
 
       }
       else
       {
-         
-         if(data_load(str + m_plistctrlinterface->m_dataid.m_id,iaWidth))
+
+         if (data_load(str + m_plistctrlinterface->m_dataid.m_id, iaWidth))
          {
 
-            ::count c = MIN(iaWidth.get_count(),m_plistctrlinterface->_001GetColumnCount());
+            ::count c = MIN(iaWidth.get_count(), m_plistctrlinterface->_001GetColumnCount());
 
-            for(index iColumn = 0; iColumn < c; iColumn++)
+            for (index iColumn = 0; iColumn < c; iColumn++)
             {
 
-               m_plistctrlinterface->_001SetColumnWidth(iColumn,MAX(iaWidth[iColumn],50));
+               m_plistctrlinterface->_001SetColumnWidth(iColumn, MAX(iaWidth[iColumn], 50));
 
             }
 
