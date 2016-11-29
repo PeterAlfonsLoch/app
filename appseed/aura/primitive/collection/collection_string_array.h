@@ -1612,7 +1612,7 @@ r_only:
       if(iFindB > iPos)
       {
 
-         add((Type)RawType(&str[iPos],iFindA - iPos));
+         add((Type)RawType(&str[iPos],iFindB - iPos));
 
       }
       else if(bAddEmpty)
