@@ -23,8 +23,7 @@
 // ==========================================================
 
 #include  "FreeImageFramework.h"
-//#include "Utilities.h"
-//#include "PSDParser.h"
+#include "PSDParser.h"
 
 // --------------------------------------------------------------------------
 

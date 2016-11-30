@@ -107,6 +107,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 // ==========================================================
 //   Init
 // ==========================================================
+#undef Load
 
 void DLL_CALLCONV
 InitPSD(Plugin *plugin, int format_id) {
