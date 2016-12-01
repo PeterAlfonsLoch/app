@@ -218,6 +218,8 @@ CLASS_DECL_AURA void assert_valid_object(const object* pOb,
             const char * lpszFileName, int32_t nLine);
 CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 
+#define THIS_FILE          __FILE__
+
 
 // extern ::core::CTrace TRACE;
 #ifdef DEBUG
@@ -226,7 +228,6 @@ CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 #define APPTRACE ::aura::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
-#define THIS_FILE          __FILE__
 //#define VERIFY(f)          ASSERT(f)
 //#define DEBUG_ONLY(f)      (f)
 

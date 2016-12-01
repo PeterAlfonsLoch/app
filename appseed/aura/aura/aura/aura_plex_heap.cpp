@@ -729,7 +729,7 @@ void Free_check_pointer_in_cpp(void * p)
 
 }
 
-#ifdef DEBUG
+
 void plex_heap_alloc_array::_free(void * p,size_t size)
 {
 
@@ -763,7 +763,6 @@ void plex_heap_alloc_array::_free(void * p,size_t size)
    }
 
 }
-#endif
 
 
 void * plex_heap_alloc::Alloc()

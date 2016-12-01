@@ -77,7 +77,6 @@ extern "C" void CharGuessDestroy(charguess_det p)
 
 
 
-
 #ifdef _DEBUG
 
 #define TEST_LATIN1 "Aucun fichier ou répertoire de ce type"
