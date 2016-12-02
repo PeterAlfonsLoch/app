@@ -234,35 +234,7 @@ namespace url
    string department::url_encode(const char * psz)
    {
 
-      string str;
-
-      string strChar;
-
-      while(*psz != '\0')
-      {
-
-         if(isdigit_dup(*psz)
-         || isalpha_dup(*psz)
-         || *psz == '.'
-         || *psz == '-'
-         || *psz == '_')
-         {
-            str += *psz;
-         }
-         else if(*psz == ' ')
-         {
-            str += "+";
-         }
-         else
-         {
-            strChar.Format("%02X", *psz);
-            str += "%" + strChar.Right(2);
-         }
-
-         psz++;
-      }
-
-      return str;
+      return url_encode_dup(psz);
 
    }
 

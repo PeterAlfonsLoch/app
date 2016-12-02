@@ -2856,7 +2856,9 @@ namespace aura
    string system::url_encode(const string & str)
    {
 
-	   throw interface_only_exception(this);
+	   //throw interface_only_exception(this);
+
+      return url_encode_dup(str);
 
    }
 

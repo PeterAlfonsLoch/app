@@ -16,11 +16,11 @@ stringa install_get_plugin_base_library_list(const string & strVersion)
    straFile.add("sqlite.dll");
    straFile.add("axis.dll");
    straFile.add("bzip2.dll");
-   straFile.add("crypto.dll");
+   straFile.add("libcrypto-1_1.dll");
    straFile.add("axisfreeimage.dll");
    //straFile.add("axisfreetype.dll");
    //straFile.add("idn.dll");
-   straFile.add("openssl.dll");
+   straFile.add("libssl-1_1.dll");
    straFile.add("pcre.dll");
    straFile.add("zlib.dll");
    //straFile.add("axis.dll");
