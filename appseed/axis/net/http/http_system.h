@@ -59,7 +59,8 @@ namespace http
       mutex *                                m_pmutexDownload;
       stringa                                m_straDownloading;
       stringa                                m_straExists;
-      ::sockets::socket_handler *            m_phandler;
+      //::sockets::socket_handler *            m_phandler;
+
 
       system(::aura::application * papp);
       virtual ~system();

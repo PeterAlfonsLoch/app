@@ -10,8 +10,8 @@ namespace http
       ::object(papp)
    {
 
-      m_phandler = new ::sockets::socket_handler(get_app());
-      m_phandler->EnablePool();
+//      m_phandler = new ::sockets::socket_handler(get_app());
+  //    m_phandler->EnablePool();
       oprop("dw") = ::get_tick_count();
 
       m_pmutexPac = NULL;
@@ -25,7 +25,7 @@ namespace http
    system::~system()
    {
       
-      ::aura::del(m_phandler);
+//      ::aura::del(m_phandler);
 
    }
 
@@ -2130,43 +2130,43 @@ retry_session:
    bool system::get(const char * pszUrl, property_set & set)
    {
 
-      sockets::socket_handler * p;
+      sockets::socket_handler sockethandler(get_app());
 
-      bool bMember;
+      //bool bMember;
 
-      if (::str::ends_ci(System.url().get_server(pszUrl), "ca2.cc"))
-      {
+      //if (::str::ends_ci(System.url().get_server(pszUrl), "ca2.cc"))
+      //{
 
-         p = m_phandler;
+      //   p = m_phandler;
 
-         bMember = true;
+      //   bMember = true;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         p = new ::sockets::socket_handler(get_app());
+      //   p = new ::sockets::socket_handler(get_app());
 
-         bMember = false;
+      //   bMember = false;
 
-      }
+      //}
 
 
       sp(::sockets::http_client_socket) psocket;
       
-      if (!System.http().get(*p, psocket, pszUrl, set))
+      if (!System.http().get(sockethandler, psocket, pszUrl, set))
       {
 
          return false;
 
       }
 
-      if (!bMember)
-      {
+      //if (!bMember)
+      //{
 
-         ::aura::del(p);
+      //   ::aura::del(p);
 
-      }
+      //}
 
       return status_succeeded(set["get_status"]);
 

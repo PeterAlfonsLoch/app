@@ -31,6 +31,8 @@
          sp(::sockets::net)                           m_spnet;
          ::net::port_forward_sp                       m_spportforward;
 
+         mutex                                        m_mutexPool;
+         socket_map                                   m_pool; ///< Active sockets map
 
 
          sockets(::aura::application * papp);

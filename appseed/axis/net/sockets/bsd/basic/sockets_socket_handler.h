@@ -18,7 +18,6 @@ namespace sockets
       sp(logger)           m_splogger; ///< Registered log class, or NULL
 
 
-      socket_map           m_pool; ///< Active sockets map
       socket_map           m_sockets; ///< Active sockets map
       socket_map           m_add; ///< Sockets to be added to sockets map
       socket_list          m_delete; ///< Sockets to be deleted (failed when add)

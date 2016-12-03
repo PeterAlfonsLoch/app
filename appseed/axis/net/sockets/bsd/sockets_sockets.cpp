@@ -10,7 +10,8 @@ namespace sockets
       ::object(papp),
       ::aura::department(papp),
       m_mutexHttpPostBoundary(papp),
-      m_mutexResolvCache(papp)//,
+      m_mutexResolvCache(papp),
+      m_mutexPool(papp)//,
       //m_clientcontextmap(papp),
       //m_servercontextmap(papp)
    {

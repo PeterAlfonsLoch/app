@@ -920,13 +920,13 @@ namespace sockets
                         if(p -> Retain() && !p -> Lost())
                         {
 
-                           synch_lock sl(m_pmutex);
+                           synch_lock sl(&Session.sockets().m_mutexPool);
                            
                            sp(pool_socket) ppoolsocket = canew(pool_socket(*this,p));
                            
                            ppoolsocket-> SetDeleteByHandler();
                            
-                           m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
+                           Session.sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
 
                            ppoolsocket->SetCloseAndDelete(false); // added - remove from m_fds_close
 
@@ -1257,9 +1257,9 @@ namespace sockets
    sp(base_socket_handler::pool_socket) socket_handler::FindConnection(int32_t type,const string & protocol,const ::net::address & ad)
    {
 
-      synch_lock sl(m_pmutex);
+      synch_lock sl(&Session.sockets().m_mutexPool);
       
-      socket_map::pair * ppair = m_pool.PGetFirstAssoc();
+      socket_map::pair * ppair = Session.sockets().m_pool.PGetFirstAssoc();
 
       while(ppair != NULL)
       {
@@ -1275,7 +1275,7 @@ namespace sockets
                psocket-> GetClientRemoteAddress() == ad)
             {
                
-               m_pool.remove_key(ppair->m_element1);
+               Session.sockets().m_pool.remove_key(ppair->m_element1);
 
                psocket-> SetRetain(); // avoid close in socket destructor
 
@@ -1285,7 +1285,7 @@ namespace sockets
 
          }
 
-         ppair = m_sockets.PGetNextAssoc(ppair);
+         ppair = Session.sockets().m_pool.PGetNextAssoc(ppair);
 
       }
 
