@@ -198,13 +198,13 @@ public:
 
    virtual bool is_auto_delete();
 
-   virtual bool begin(int32_t epriority = ::multithreading::priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+   virtual bool begin(int32_t epriority = ::multithreading::priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL, IDTHREAD * puiId = NULL);
 
-   virtual bool create_thread(int32_t epriority = ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+   virtual bool create_thread(int32_t epriority = ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL, IDTHREAD * puiId = NULL);
 
-   virtual bool begin_synch(int32_t *piStartupError = NULL, int32_t epriority = ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+   virtual bool begin_synch(int32_t *piStartupError = NULL, int32_t epriority = ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL, IDTHREAD * puiId = NULL);
 
-   virtual bool create_thread_synch(int32_t *piStartupError,int32_t epriority = ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+   virtual bool create_thread_synch(int32_t *piStartupError,int32_t epriority = ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL, IDTHREAD * puiId = NULL);
 
 
    virtual int32_t get_thread_priority();
@@ -339,7 +339,7 @@ public:
    operator HTHREAD() const;
    void construct();
    void construct(__THREADPROC pfnthread_implProc, LPVOID pParam);
-   virtual bool begin_thread(bool bSynch = false,int32_t * piStartupError = NULL,int32_t epriority= ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlagsParam = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+   virtual bool begin_thread(bool bSynch = false,int32_t * piStartupError = NULL,int32_t epriority= ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlagsParam = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL, IDTHREAD * puiId = NULL);
    //virtual int_ptr item() const;
    virtual bool initialize_message_queue();
    virtual void message_handler(signal_details * pobj);

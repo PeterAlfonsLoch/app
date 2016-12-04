@@ -1233,7 +1233,7 @@ thread_startup::~thread_startup()
 
 
 
-bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlagsParam,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlagsParam,LPSECURITY_ATTRIBUTES lpSecurityAttrs, IDTHREAD * puiId)
 {
 
    DWORD dwCreateFlags = dwCreateFlagsParam;
@@ -1269,6 +1269,17 @@ bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority
       }
       return false;
    }
+   else
+   {
+
+      if (puiId != NULL)
+      {
+
+         *puiId = m_uiThread;
+
+      }
+
+   }
 
 
    pstartup->m_event2.SetEvent();
@@ -1295,44 +1306,52 @@ bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority
 
 }
 
-bool thread::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+
+bool thread::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs, IDTHREAD * puiId)
 {
 
-   return begin_thread(false,NULL,epriority,nStackSize, dwCreateFlags,lpSecurityAttrs);
-
-}
-
-bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-{
-
-   return begin_thread(true,piStartupError,epriority,nStackSize, dwCreateFlags,lpSecurityAttrs);
+   return begin_thread(false,NULL,epriority,nStackSize, dwCreateFlags,lpSecurityAttrs, puiId);
 
 }
 
 
-bool thread::begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs, IDTHREAD * puiId)
 {
 
-   if(!create_thread(epriority,nStackSize,dwCreateFlags, lpSecurityAttrs))
+   return begin_thread(true,piStartupError,epriority,nStackSize, dwCreateFlags,lpSecurityAttrs, puiId);
+
+}
+
+
+bool thread::begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs, IDTHREAD * puiId)
+{
+
+   if(!create_thread(epriority,nStackSize,dwCreateFlags, lpSecurityAttrs, puiId))
    {
+
       return false;
+
    }
 
    return true;
 
 }
 
-bool thread::begin_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+
+bool thread::begin_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs, IDTHREAD * puiId)
 {
 
-   if(!create_thread_synch(piStartupError, epriority,nStackSize, dwCreateFlags,lpSecurityAttrs))
+   if(!create_thread_synch(piStartupError, epriority,nStackSize, dwCreateFlags,lpSecurityAttrs, puiId))
    {
+
       return false;
+
    }
 
    return true;
 
 }
+
 
 void * thread::get_os_data() const
 {

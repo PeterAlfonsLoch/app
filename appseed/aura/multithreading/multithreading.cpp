@@ -252,19 +252,22 @@ void set_thread(::thread* pthread)
 
 
 
-
-thread* __begin_thread(::aura::application * papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority,UINT nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+thread* __begin_thread(::aura::application * papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority,UINT nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs, IDTHREAD * puiId)
 {
 
    ASSERT(pfnThreadProc != NULL);
 
    thread* pThread = new thread(papp,pfnThreadProc,pParam);
+
    ASSERT_VALID(pThread);
 
-   if(!pThread->create_thread(epriority,nStackSize, dwCreateFlags,lpSecurityAttrs))
+   if(!pThread->create_thread(epriority,nStackSize, dwCreateFlags,lpSecurityAttrs, puiId))
    {
+      
       pThread->Delete();
+      
       return NULL;
+
    }
 
    return pThread;
