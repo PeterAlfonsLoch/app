@@ -170,7 +170,7 @@ namespace userex
          if(panea[iTab]->m_pholder == pholder)
          {
 
-            ::user::view_creator_data * pcreatordata = get_impact(panea[iTab]->m_id,get_data()->m_rectTabClient);
+            ::user::view_creator_data * pcreatordata = get_impact(panea[iTab]->m_id,get_data()->m_rectTabClient, false);
 
             if(pcreatordata != NULL)
             {

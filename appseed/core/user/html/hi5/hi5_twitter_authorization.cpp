@@ -71,8 +71,8 @@ namespace hi5
          sp(user::tab_view) pview = m_pdoc->get_typed_view < user::tab_view >();
          pview->set_view_creator(this);
          m_ptabview = pview;
-         pview->add_tab("ca2open", 1);
-         pview->set_cur_tab_by_id(1);
+         pview->add_tab("ca2open", "twitter_authorization");
+         pview->set_cur_tab_by_id("twitter_authorization");
       }
 
 
@@ -209,23 +209,17 @@ namespace hi5
 
       void authorization::on_create_view(::user::view_creator_data * pcreatordata)
       {
-         switch(pcreatordata->m_id)
-         {
-         case 1:
-            {
-               m_pdocAuth = Application.create_child_form(this, pcreatordata->m_pholder);
-               if(m_pdocAuth != NULL)
-               {
-                  m_pviewAuth = m_pdocAuth->get_typed_view < ::user::form > ();
-                  m_pviewAuth->m_pcallback = this;
-                  pcreatordata->m_pdoc = m_pdocAuth;
-                  pcreatordata->m_pwnd = m_pviewAuth->GetParentFrame();
-               }
-            }
-            break;
-
-            break;
-         }
+		  if (pcreatordata->m_id == "twitter_authorization")
+		  {
+			  m_pdocAuth = Application.create_child_form(this, pcreatordata->m_pholder);
+			  if (m_pdocAuth != NULL)
+			  {
+				  m_pviewAuth = m_pdocAuth->get_typed_view < ::user::form >();
+				  m_pviewAuth->m_pcallback = this;
+				  pcreatordata->m_pdoc = m_pdocAuth;
+				  pcreatordata->m_pwnd = m_pviewAuth->GetParentFrame();
+			  }
+		  }
          if(pcreatordata->m_pwnd != NULL)
          {
             pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
