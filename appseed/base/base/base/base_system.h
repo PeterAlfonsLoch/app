@@ -80,9 +80,10 @@ namespace base
       virtual void set_focus_guie(::user::interaction * pui);
 
 
-
-      bool get_monitor_rect(index iMonitor,LPRECT lprect) override;
-      ::count get_monitor_count() override;
+      virtual DWORD get_monitor_color_temperature(index iMonitor);
+      virtual bool adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dwGamma);
+      virtual bool get_monitor_rect(index iMonitor,LPRECT lprect) override;
+      virtual ::count get_monitor_count() override;
 
       bool get_wkspace_rect(index iWkspace,LPRECT lprect) override;
 
