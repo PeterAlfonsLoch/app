@@ -179,7 +179,7 @@ void signalizable::unregister_signal(class signal * psignal)
 
          class signal * p = psignal;
 
-         ::count c = p->m_countReference;
+         int64_t c = p->m_countReference;
 
          m_signalptra.remove_at(i);
 
@@ -410,7 +410,7 @@ void signal::disconnect(signalizable * psignalizable)
 
             signalizable * p = psignalizable;
 
-            ::count c = p->m_countReference;
+            int64_t c = p->m_countReference;
 
             m_delegateptra.remove_at(i);
 

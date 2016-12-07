@@ -23,9 +23,9 @@ namespace ftp
 
       }
 
-      strLine = m_vBuffer.Mid(m_iCurrentPos, i - m_iCurrentPos);
+      strLine = m_vBuffer.Mid((strsize) m_iCurrentPos, (strsize) (i - m_iCurrentPos));
 
-      m_iCurrentPos = i + mc_strEolCharacterSequence.size();
+      m_iCurrentPos = (strsize) (i + mc_strEolCharacterSequence.size());
 
       return true;
 

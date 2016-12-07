@@ -94,7 +94,7 @@ void window_gdi::create_window_graphics_(int64_t cxParam, int64_t cyParam, int i
 
    ZERO(m_bitmapinfo);
 
-   int iStride = cxParam * 4;
+   int iStride = (int) (cxParam * 4);
 
    if (m_hmutex == NULL || m_hwnd != hwnd)
    {
@@ -257,7 +257,7 @@ void window_gdi::create_buffer(int64_t cxParam, int64_t cyParam, int iStridePara
 
    ZERO(m_bitmapinfo);
 
-   int iStride = cxParam * 4;
+   int iStride = (int) (cxParam * 4);
 
    m_bitmapinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
    m_bitmapinfo.bmiHeader.biWidth = (LONG)cxParam;

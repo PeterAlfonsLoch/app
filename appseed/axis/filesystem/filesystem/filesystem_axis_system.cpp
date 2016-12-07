@@ -591,13 +591,20 @@ restart:
 
             file_size_t filesize = spfile->get_length();
 
-            mem.allocate(filesize);
+			if (filesize > ::numeric_info < memory_size_t> ::max())
+			{
+
+				throw memory_exception(papp);
+
+			}
+
+            mem.allocate((memory_size_t) filesize);
 
             byte * pdata = mem.get_data();
 
             memory_size_t memsize = mem.get_size();
 
-            file_size_t uiRead = spfile->read(pdata, memsize);
+            memory_size_t uiRead = (memory_size_t) spfile->read(pdata, memsize);
 
             mem.allocate(uiRead);
 
@@ -1708,9 +1715,9 @@ restart:
 
          WHIRLPOOL_Init(&ns);
 
-         file_size_t iRead;
+         memory_size_t iRead;
 
-         while ((iRead = pfile->read(mem.get_data(), mem.get_size())) > 0)
+         while ((iRead = (memory_size_t) pfile->read(mem.get_data(), mem.get_size())) > 0)
          {
 
             WHIRLPOOL_Update(&ns, mem.get_data(), iRead);

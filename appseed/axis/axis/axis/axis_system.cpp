@@ -147,7 +147,7 @@ namespace axis
 
       UNREFERENCED_PARAMETER(iAddUp);
 
-      return install().m_progressApp()++;
+      return (int32_t) ( install().m_progressApp()++);
 
    }
 

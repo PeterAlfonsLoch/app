@@ -1032,7 +1032,7 @@ install_begin:;
             strExpand = "app\\stage\\metastage\\" + strExpand;
 
 
-            int iPreviousTotalProgress = m_iProgressTotalGzLen2; // keep progress rate total calculator
+            int64_t iPreviousTotalProgress = m_iProgressTotalGzLen2; // keep progress rate total calculator
 
             m_iProgressTotalGzLen2 = 0; // avoid progress rate change
 
@@ -3367,15 +3367,29 @@ RetryBuildNumber:
 
                ::file::buffer_sp file2 = Application.file().get_file(strIndexPath,::file::mode_create | ::file::type_binary | ::file::mode_write | ::file::defer_create_directory);
 
-               mem.allocate(len);
+               mem.allocate(1024 * 1024);
 
-               if(len != file.read(mem,len))
+               file_size_t uiTotalRead = 0;
+
+               memory_size_t uiRead;
+
+               while((uiRead = file.read(mem, mem.get_size())))
                {
-                  Sleep(184);
-                  goto RetryBuildNumber;
+                  
+                  file2->write(mem, uiRead);
+
+                  uiTotalRead += uiRead;
+
                }
 
-               file2->write(mem,len);
+               if (uiTotalRead != len)
+               {
+
+                  Sleep(184);
+
+                  goto RetryBuildNumber;
+
+               }
 
             }
 

@@ -635,7 +635,7 @@ namespace draw2d_direct2d
 
       ::draw2d::path_sp path(allocer());
 
-      rect rect(x1, y1, x1 + w, y1 + h);
+      rect rect((int64_t) x1, (int64_t)y1, (int64_t)(x1 + w), (int64_t)(y1 + h));
 
       path->begin_figure(false, ::draw2d::fill_mode_winding);
       path->add_arc(rect, start, extends);
@@ -653,7 +653,7 @@ namespace draw2d_direct2d
 
       double pi = 3.1415927f;
 
-      rect rect(x1, y1, x2, y2);
+      rect rect((int64_t)x1, (int64_t)y1, (int64_t)x2, (int64_t)y2);
 
       double centerx = (x2 + x1) / 2.0;
       double centery = (y2 + y1) / 2.0;
@@ -1560,7 +1560,7 @@ namespace draw2d_direct2d
    bool graphics::TextOut(double x, double y, const string & str)
    { 
 
-      return TextOut(x, y, str, (int) str.get_length()); 
+      return TextOut((int) x, (int) y, str, (int) str.get_length()); 
 
    }
 
@@ -4708,8 +4708,8 @@ namespace draw2d_direct2d
       
 
       m._11 *= (FLOAT) m_spfont->m_dFontWidth;
-      m._31 += x;
-      m._32 += y;
+      m._31 += (FLOAT) x;
+      m._32 += (FLOAT) y;
 
       m_prendertarget->SetTransform(&m);
 

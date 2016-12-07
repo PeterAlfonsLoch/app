@@ -39,7 +39,7 @@ void o_debug_string(const char * psz)
 CLASS_DECL_AURA void trace(e_level elevel, const char * pszTag, const char * pszText, const char * pszFile, int iLine)
 {
 
-   int iLen;
+   strsize iLen;
 
    iLen = strlen(pszText);
 

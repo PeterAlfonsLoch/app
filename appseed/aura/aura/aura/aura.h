@@ -9,10 +9,9 @@
 
 #define CA2_AURA
 
+#include "ace/ace.h"
 
 #include "aura_aura.h"
-
-#include "ace/ace.h"
 
 #include "aura_types.h"
 

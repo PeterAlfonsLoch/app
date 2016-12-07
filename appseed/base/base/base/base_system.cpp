@@ -3,7 +3,7 @@
 
 #include "base/node/node.h"
 
-CLASS_DECL_AURA void black_body(float * r, float * g, float * b, DWORD dwTemp);
+CLASS_DECL_BASE void black_body(float * r, float * g, float * b, DWORD dwTemp);
 
 #ifdef WINDOWSEX
 
@@ -1212,15 +1212,15 @@ static const float g_fa_blackbody_color[] = {
 static void
 interpolate_color(float a, const float *c1, const float *c2, float *r, float *g, float *b)
 {
-   *r = (1.0 - a)*c1[0] + a*c2[0];
-   *g = (1.0 - a)*c1[1] + a*c2[1];
-   *b = (1.0 - a)*c1[2] + a*c2[2];
+   *r = (1.0f - a)*c1[0] + a*c2[0];
+   *g = (1.0f - a)*c1[1] + a*c2[1];
+   *b = (1.0f - a)*c1[2] + a*c2[2];
 }
 
 
 
 
-void black_body(float * r, float * g, float * b, DWORD dwTemp)
+CLASS_DECL_BASE void black_body(float * r, float * g, float * b, DWORD dwTemp)
 {
 
    int temp_index = ((dwTemp - 1000) / 100) * 3;
@@ -1238,7 +1238,7 @@ void black_body(float * r, float * g, float * b, DWORD dwTemp)
 
    }
    
-   float alpha = (dwTemp % 100) / 100.0;
+   float alpha = (dwTemp % 100) / 100.0f;
 
    interpolate_color(alpha, &g_fa_blackbody_color[temp_index], &g_fa_blackbody_color[temp_index + 3], r, g, b);
 

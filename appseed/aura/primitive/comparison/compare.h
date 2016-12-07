@@ -180,6 +180,12 @@ namespace compare
    }
 
    template < >
+   inline bool ge(unsigned long long ul1, long long l2)
+   {
+      return l2 < 0 ? true : ul1 >= (unsigned long long) l2;
+   }
+
+   template < >
    inline bool ge(unsigned int ui,short sh)
    {
       return sh < 0 ? true : ui >= (unsigned int)sh;

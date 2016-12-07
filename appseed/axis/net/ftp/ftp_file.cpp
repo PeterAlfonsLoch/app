@@ -52,7 +52,7 @@ namespace ftp
 
       }
 
-      return m_file->get_position();
+      return (long) m_file->get_position();
 
    }
 
@@ -103,7 +103,7 @@ namespace ftp
          return 0;
 
 
-      return m_file->get_length();
+      return (UINT) m_file->get_length();
    }
 
    void file::SetLocalStreamOffset(DWORD dwOffsetFromBeginOfStream)

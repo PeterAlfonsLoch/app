@@ -1704,7 +1704,7 @@ namespace draw2d_cairo
    bool graphics::TextOut(double x, double y, const string & str)
    {
 
-      return TextOut(x, y, str, (int32_t)str.get_length());
+      return TextOut((int) x, (int) y, str, (int32_t)str.get_length());
 
    }
 
@@ -4830,7 +4830,7 @@ namespace draw2d_cairo
       if (str.is_empty())
       {
 
-         return -1;
+         return false;
 
       }
 
@@ -4839,14 +4839,14 @@ namespace draw2d_cairo
       if(m_spfont.is_null())
       {
 
-         return -1;
+         return false;
 
       }
 
       if(m_spfont->m_dFontWidth <= 0.0)
       {
 
-         return -1;
+         return false;
 
       }
 

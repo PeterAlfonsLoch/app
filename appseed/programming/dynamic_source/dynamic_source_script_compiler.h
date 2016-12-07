@@ -76,8 +76,8 @@ public:
    string                                    m_strSdk1;
    string                                    m_strPlatform;
    string                                    m_strStagePlatform;
-   ::file_watcher::id                        m_filewatchid;
-   ::file_watcher::id                        m_filewatchidFribox;
+   ::file_watcher::file_watch_id             m_filewatchid;
+   //::file_watcher::file_watch_id             m_filewatchidFribox;
 
    string                                    m_strPlat1;
    string                                    m_strPlat2;
@@ -122,7 +122,7 @@ public:
    //    bool library_DoesMatchVersion();
 
 
-   virtual void handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action action);
+   virtual void handle_file_action(::file_watcher::file_watch_id watchid, const char * dir, const char * filename, ::file_watcher::e_action action) override;
 
 
    void prepare1(const char * pszSource, const char * pszDest);

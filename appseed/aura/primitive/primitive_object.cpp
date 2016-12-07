@@ -66,7 +66,7 @@ int64_t object::add_ref()
 
 #ifdef WINDOWS
 
-   return InterlockedIncrement64(&m_countReference);
+	return InterlockedIncrement64(&m_countReference);
 
 #else
 
@@ -82,7 +82,7 @@ int64_t object::dec_ref()
 
 #ifdef WINDOWS
 
-   return InterlockedDecrement64(&m_countReference);
+	return InterlockedDecrement64(&m_countReference);
 
 #else
 

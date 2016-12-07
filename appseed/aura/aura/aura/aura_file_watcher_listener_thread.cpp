@@ -46,7 +46,7 @@ namespace file_watcher
 
       pop->m_event.wait();
 
-      id id  = pop->m_id;
+      file_watch_id id  = pop->m_id;
 
       delete pop;
 

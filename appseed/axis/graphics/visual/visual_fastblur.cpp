@@ -927,7 +927,7 @@ namespace visual
                           unsigned dx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      vector4 deltaX = vector4(1.0 / dx,1.0 / dx,1.0 / dx,1.0 / dx);
+      vector4 deltaX = vector4(1.0f / dx,1.0f / dx,1.0f / dx,1.0f / dx);
 
       int pixelLine = strideLine / 4;
 
@@ -1173,7 +1173,7 @@ namespace visual
             const int rbs = r1 - abs(i);
 
             // add pixel to accumulators
-            sum += sir * rbs;
+            sum += sir * (float) rbs;
             if(i > 0) {
                insum  += sir;
             }
@@ -1257,7 +1257,7 @@ namespace visual
             sir = p;
 
             const int rbs = r1 - abs(i);
-            sum += sir * rbs;
+            sum += sir * (float) rbs;
             if(i > 0) {
                insum  += sir;
             }

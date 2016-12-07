@@ -399,7 +399,7 @@ namespace sockets
          {
             return false;
          }
-         int32_t iLen = spfile->get_length();
+         memory_size_t iLen = (memory_size_t) spfile->get_length();
          if(prangea->get_count() > 1)
          {
             memory_size_t uiTotal = 0;
@@ -407,8 +407,8 @@ namespace sockets
             mem.allocate(128 * 1024 * 1024);
             for(int32_t i = 0; i < prangea->get_count(); i++)
             {
-               int32_t iStart = prangea->element_at(i)->element_at(0);
-               int32_t iEnd = prangea->element_at(i)->element_at(1);
+               memory_size_t iStart = prangea->element_at(i)->element_at(0);
+               memory_size_t iEnd = prangea->element_at(i)->element_at(1);
                if(iStart >= iLen)
                   continue;
                // iEnd > iLen is not verified because file may be growing
@@ -460,8 +460,8 @@ namespace sockets
             memory_size_t uiTotal = 0;
             memory mem;
             mem.allocate(128 * 1024 * 1024);
-            int32_t iStart = prangea->element_at(0)->element_at(0);
-            int32_t iEnd = prangea->element_at(0)->element_at(1);
+            memory_size_t iStart = prangea->element_at(0)->element_at(0);
+            memory_size_t iEnd = prangea->element_at(0)->element_at(1);
             if(iStart < iLen)
             {
                // iEnd > iLen is not verified because file may be growing

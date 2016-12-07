@@ -1211,7 +1211,7 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
 }
 
 
-void script_compiler::handle_file_action(::file_watcher::id watchid, const char * pszFolder, const char * psz, ::file_watcher::e_action eaction)
+void script_compiler::handle_file_action(::file_watcher::file_watch_id watchid, const char * pszFolder, const char * psz, ::file_watcher::e_action eaction)
 {
 
    synch_lock sl(&m_mutex);

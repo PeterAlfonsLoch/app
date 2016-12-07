@@ -25,7 +25,7 @@ namespace xml
 
    
    class CLASS_DECL_AURA entities : 
-      public array < entity >
+	   public ::array < entity >
    {
    public:
    

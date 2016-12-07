@@ -297,7 +297,7 @@ namespace draw2d
 
          size sSample;
 
-         int maxarea;
+         int64_t maxarea;
 
          ::draw2d::font::e_cs ecs;
 

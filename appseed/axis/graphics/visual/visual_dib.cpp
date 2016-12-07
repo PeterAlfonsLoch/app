@@ -793,9 +793,9 @@ HRESULT windows_GetBackgroundColor(::visual::dib_sp::array * pdiba,
    if (SUCCEEDED(hr))
    {
       pdiba->m_cra.set_size(cColorsCopied);
-      for (index i = 0; i < cColorsCopied; i++)
+      for (UINT ui = 0; ui < cColorsCopied; ui++)
       {
-         pdiba->m_cra[i] = rgColors[i];
+         pdiba->m_cra[ui] = rgColors[ui];
       }
       // Check whether background color is outside range
       hr = (pdiba->m_backgroundIndex >= cColorsCopied) ? E_FAIL : S_OK;
@@ -878,7 +878,7 @@ HRESULT windows_GetRawFrame(
 
    byte_array ba;
 
-   ba.allocate(pointer->m_dib->area());
+   ba.allocate((memory_size_t) pointer->m_dib->area());
 
    hr = pbitmap->CopyPixels(NULL, pointer->m_dib->m_size.cx, (UINT) ba.get_size(), (BYTE *)ba.get_data());
 
@@ -2292,9 +2292,9 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
 
    memory mem(papp);
 
-   mem.allocate(iSize);
+   mem.allocate((memory_size_t) iSize);
 
-   pfile->read(mem.get_data(), iSize);
+   pfile->read(mem.get_data(), (memory_size_t) iSize);
 
    try
    {
@@ -2493,16 +2493,16 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
 
       dibCompose->Fill(0);
 
-      for (index i = 0; i < cFrames; i++)
+      for (UINT ui = 0; ui < cFrames; ui++)
       {
 
-         pdiba->element_at(i) = canew(::visual::dib_sp::pointer());
+         pdiba->element_at(ui) = canew(::visual::dib_sp::pointer());
 
-         pdiba->element_at(i)->m_dib.alloc(papp->allocer());
+         pdiba->element_at(ui)->m_dib.alloc(papp->allocer());
 
-         windows_GetRawFrame(dibCompose, pdiba, piFactory, decoder, (UINT) i);
+         windows_GetRawFrame(dibCompose, pdiba, piFactory, decoder, (UINT) ui);
 
-         pdiba->m_dwTotal += pdiba->element_at(i)->m_dwTime;
+         pdiba->m_dwTotal += pdiba->element_at(ui)->m_dwTime;
 
       }
 
@@ -2529,9 +2529,10 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::buffer_sp pfile, :
 
    memory mem(papp);
 
-   mem.allocate(iSize);
+   mem.allocate((memory_size_t) iSize);
 
-   pfile->read(mem.get_data(), iSize);
+   pfile->read(mem.get_data(), (memory_size_t) iSize);
+
    try
    {
 

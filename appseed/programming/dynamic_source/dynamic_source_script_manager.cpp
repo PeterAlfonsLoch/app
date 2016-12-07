@@ -608,7 +608,7 @@ listener_thread(papp)
 
 }
 
-void script_manager::clear_include_matches_folder_watch::handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction)
+void script_manager::clear_include_matches_folder_watch::handle_file_action(::file_watcher::file_watch_id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction)
 {
 
    UNREFERENCED_PARAMETER(watchid);

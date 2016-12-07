@@ -143,6 +143,7 @@ namespace hex
       return &sz[i];
    }
 
+   template < typename INT >
    inline string lower_pad_from(INT iValue,int iWidth)
    {
       string str = lower_from(iValue);
@@ -153,6 +154,7 @@ namespace hex
       return str;
    }
 
+   template < typename INT >
    inline string upper_pad_from(INT iValue,int iWidth)
    {
       string str = upper_from(iValue);

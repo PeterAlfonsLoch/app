@@ -45,7 +45,7 @@ namespace dynamic_source
 
          clear_include_matches_folder_watch(::aura::application * papp);
 
-         virtual void handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction);
+         virtual void handle_file_action(::file_watcher::file_watch_id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction) override;
 
 
       };
