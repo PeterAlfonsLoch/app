@@ -216,14 +216,25 @@ namespace filemanager
                   }
                }
             }
+            
             form_update_hint * pmanageruh = dynamic_cast<form_update_hint * > (phint);
+            
             if(pmanageruh != NULL)
             {
-               if(!pmanageruh->m_strFind.is_empty())
+
+               if(pmanageruh->m_strFind.has_char())
                {
-                  Application.file().replace(m_strPath, pmanageruh->m_strFind, pmanageruh->m_strReplace);
+
+                  ::file::path pathFolder = get_filemanager_item().m_filepath;
+
+                  Application.file().replace(pathFolder, pmanageruh->m_strFind, pmanageruh->m_strReplace);
+
+
+
                }
+
             }
+
          }
 
       }
@@ -690,6 +701,8 @@ namespace filemanager
       Application.file().trash_that_is_not_trash(stra);
 
       _001Refresh();
+
+      pobj->m_bRet = true;
 
    }
 

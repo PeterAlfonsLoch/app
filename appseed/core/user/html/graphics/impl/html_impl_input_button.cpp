@@ -81,9 +81,9 @@ namespace html
 
          m_pbutton->ResizeToFit();
 
-         rect rectClient;
+         rect rectClient = m_pbutton->m_pimpl->m_rectParentClientRequest;
 
-         m_pbutton->GetClientRect(rectClient);
+         //m_pbutton->GetClientRect(rectClient);
 
          m_box.set_cxy((float) rectClient.width(), (float) rectClient.height());
 

@@ -570,7 +570,9 @@ namespace html
          if (etag == tag_br)
          {
 
-            pdata->m_layoutstate3.m_y += get_cy();
+            //pdata->m_layoutstate3.m_y += get_cy();
+
+            pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last();
 
             pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last();
 

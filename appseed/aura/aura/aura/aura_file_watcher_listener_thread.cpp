@@ -12,14 +12,14 @@ namespace file_watcher
 
    }
 
-   id listener_thread::add_file_watch(const char * directory, bool bRecursive)
+   file_watch_id listener_thread::add_file_watch(const char * directory, bool bRecursive)
    {
       
       return add_file_watch(directory, this, bRecursive);
 
    }
 
-   id listener_thread::add_file_watch(const char * directory, file_watch_listener * plistener, bool bRecursive, bool bOwn)
+   file_watch_id listener_thread::add_file_watch(const char * directory, file_watch_listener * plistener, bool bRecursive, bool bOwn)
    {
 
       if(get_os_data() == NULL)

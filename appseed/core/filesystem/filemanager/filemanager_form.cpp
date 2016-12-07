@@ -9,7 +9,9 @@ namespace filemanager
 
 
    form::form(::aura::application * papp):
-      object(papp)
+      object(papp),
+      html_form(papp),
+      html_form_view(papp)
    {
 
    }
@@ -17,11 +19,17 @@ namespace filemanager
    void form::on_update(::user::impact * pSender,LPARAM lHint,object* phint)
    {
       ::filemanager::impact::on_update(pSender,lHint,phint);
-      sp(::filemanager::manager) pdoc =  (get_filemanager_template());
+      if (m_pmanager == NULL)
+      {
+
+         m_pmanager = dynamic_cast <::filemanager::manager *> (get_document());
+
+      }
+      /*sp(::filemanager::manager) pdoc =  (get_filemanager_manager());
       if(pdoc != NULL)
       {
          pdoc->update_all_views(pSender,lHint,phint);
-      }
+      }*/
       ::user::form_view::on_update(pSender,lHint,phint);
    }
 
@@ -64,16 +72,16 @@ namespace filemanager
             else if(m_strPath == "filemanager_add_location_ftp.xhtml")
             {
             }
-            else if(m_strPath == "filemanager\\replace_name_in_file_system.xhtml")
+            else if(m_idCreator == "replace_name")
             {
                form_update_hint uh;
-               sp(::user::interaction) pui = get_child_by_name("encontrar");
+               sp(::user::interaction) pui = get_child_by_name("find");
                sp(::user::elemental) ptext =  (pui.m_p);
                ptext->_001GetText(uh.m_strFind);
-               pui = get_child_by_name("substituir");
+               pui = get_child_by_name("replace");
                ptext =  (pui.m_p);
                ptext->_001GetText(uh.m_strReplace);
-               sp(::filemanager::manager) pdoc =  (get_filemanager_template());
+               sp(::filemanager::manager) pdoc =  get_filemanager_manager();
                pdoc->update_all_views(NULL,0,&uh);
             }
          }

@@ -17,7 +17,7 @@ namespace user
    inline VIEW * impact::create_view(const RECT & rect,::user::interaction * pwndParent,id id,::user::interaction * pviewLast)
    {
 
-      return dynamic_cast < VIEW * > (create_view < VIEW >(NULL,rect,pwndParent,id,pviewLast));
+      return dynamic_cast < VIEW * > (create_view < VIEW >(get_document(),rect,pwndParent,id,pviewLast));
 
    }
 
@@ -26,14 +26,7 @@ namespace user
    inline VIEW * impact::create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast)
    {
 
-      VIEW * pview = create_view < VIEW >(pcreatordata->m_rectCreate, pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
-
-      if (pview != NULL)
-      {
-
-         pcreatordata->m_pdoc = get_document();
-
-      }
+      VIEW * pview = create_view < VIEW >(get_document(), pcreatordata->m_rectCreate, pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
 
       return pview;
 

@@ -38,7 +38,7 @@ namespace file_watcher
       file_watch_listener* m_plistener;
       bool  m_bOwn;
       string m_strDirName;
-      id m_id;
+      file_watch_id m_id;
       bool m_bRecursive;
 
 
@@ -220,10 +220,10 @@ namespace file_watcher
    }
 
 
-   id os_file_watcher::add_watch(const string & directory,file_watch_listener* watcher,bool bRecursive, bool bOwn)
+   file_watch_id os_file_watcher::add_watch(const string & directory,file_watch_listener* watcher,bool bRecursive, bool bOwn)
    {
 
-      id id = ++m_idLast;
+      file_watch_id id = ++m_idLast;
 
       watch_struct * pwatch = CreateWatch(directory,
          FILE_NOTIFY_CHANGE_CREATION
@@ -269,7 +269,7 @@ namespace file_watcher
 
    }
 
-   void os_file_watcher::remove_watch(id id)
+   void os_file_watcher::remove_watch(file_watch_id id)
    {
       watch_map::pair * ppair = m_watchmap.PLookup(id);
 
@@ -282,7 +282,7 @@ namespace file_watcher
       DestroyWatch(pwatch);
    }
 
-   string os_file_watcher::watch_path(id watchid)
+   string os_file_watcher::watch_path(file_watch_id watchid)
    {
       return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
    }

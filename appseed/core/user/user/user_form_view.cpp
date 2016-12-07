@@ -32,9 +32,7 @@ namespace user
             {
                if(!puh->m_strForm.is_empty())
                {
-                  string str;
-                  str = Application.dir().matter(puh->m_strForm);
-                  if(get_document()->on_open_document(str))
+                  if(get_document()->on_open_document(puh->m_strForm))
                   {
                      m_strPath = puh->m_strForm;
                   }

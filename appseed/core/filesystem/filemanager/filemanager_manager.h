@@ -6,15 +6,18 @@ namespace filemanager
 
    
    class CLASS_DECL_CORE manager :
+      virtual public ::file_watcher::file_watch_listener,
       virtual public ::userfs::document
    {
    public:
 
 
-      sp(::filemanager::data)       m_spfilemanagerdata;
-      sp(::fs::item)                m_item;
-      ::critical_section            m_csItemIdListAbsolute;
-      ::file::path                  m_strTopic;
+      sp(::filemanager::data)             m_spfilemanagerdata;
+      sp(::fs::item)                      m_item;
+      ::critical_section                  m_csItemIdListAbsolute;
+      ::file::path                        m_strTopic;
+      ::file_watcher::listener_thread *   m_pfilewatcherlistenerthread;
+      bool                                m_bFullBrowse;
 
 
       manager(::aura::application * papp);
@@ -70,7 +73,7 @@ namespace filemanager
       virtual void FileManagerSaveCancel();
 
 
-      
+      virtual void handle_file_action(::file_watcher::file_watch_id watchid, const char * dir, const char * filename, ::file_watcher::e_action action) override;
 
 
       string calc_data_key(::database::id & id);

@@ -21,7 +21,7 @@ namespace file_watcher
          bool                    m_bRecursive;
          file_watch_listener *   m_plistener;
          event                   m_event;
-         id                      m_id;
+         file_watch_id           m_id;
          bool                    m_bOwn;
 
          op() : m_event(get_thread_app(), false, true) {}
@@ -36,12 +36,12 @@ namespace file_watcher
 
 
 
-      id add_file_watch(const char * directory, bool bRecursive);
+      file_watch_id add_file_watch(const char * directory, bool bRecursive);
 
-      id add_file_watch(const char * directory, file_watch_listener * plistener, bool bRecursive, bool bOwn = false);
+      file_watch_id add_file_watch(const char * directory, file_watch_listener * plistener, bool bRecursive, bool bOwn = false);
 
       template < typename PRED >
-      id pred_add_watch(const char * directory, PRED pred, bool bRecursive)
+      file_watch_id pred_add_watch(const char * directory, PRED pred, bool bRecursive)
       {
 
          return add_file_watch(directory, new pred_file_watch_listener < PRED >(pred), bRecursive, true);

@@ -12,6 +12,8 @@ namespace filemanager
       ::user::document(papp),
       ::userfs::document(papp)
    {
+      m_bFullBrowse = false;
+      m_pfilewatcherlistenerthread = NULL;
 
          command_signalid id;
 
@@ -88,7 +90,23 @@ namespace filemanager
 
       }
 
-      return false;
+      if (m_pfilewatcherlistenerthread != NULL)
+      {
+
+         ::multithreading::post_quit(m_pfilewatcherlistenerthread);
+
+      }
+
+      if (m_item->m_filepath.has_char())
+      {
+
+         m_pfilewatcherlistenerthread = new ::file_watcher::listener_thread(get_app());
+
+         m_pfilewatcherlistenerthread->add_file_watch(m_item->m_filepath, this, false);
+
+      }
+
+      return true;
 
    }
 
@@ -267,6 +285,15 @@ namespace filemanager
 
    void manager::full_browse(string strPath, ::action::context actioncontext)
    {
+
+      if (m_bFullBrowse)
+      {
+
+         return;
+
+      }
+
+      keep <bool> keepFullBrowse(&m_bFullBrowse, true, false, true);
 
       browse(strPath, actioncontext);
 
@@ -737,6 +764,14 @@ namespace filemanager
       }
 
       return true;
+
+   }
+
+   
+   void manager::handle_file_action(::file_watcher::file_watch_id watchid, const char * dir, const char * filename, ::file_watcher::e_action action)
+   {
+
+      OnFileManagerBrowse(::action::source_sync);
 
    }
 

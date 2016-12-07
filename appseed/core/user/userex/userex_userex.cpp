@@ -719,6 +719,15 @@ namespace userex
 
       createcontext->m_puiAlloc = pview;
 
+      if (var.get_file_path().has_char())
+      {
+
+         createcontext->m_spCommandLine.alloc(allocer());
+
+         createcontext->m_spCommandLine->m_varFile = var.get_file_path();
+
+      }
+
       if (var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
       {
 
@@ -790,6 +799,15 @@ namespace userex
       createcontext->m_bMakeVisible                   = false;
 
       createcontext->m_puiParent                      = pwndParent;
+
+      if (var.get_file_path().has_char())
+      {
+
+         createcontext->m_spCommandLine.alloc(allocer());
+
+         createcontext->m_spCommandLine->m_varFile = var.get_file_path();
+
+      }
 
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
       {
@@ -866,6 +884,15 @@ namespace userex
 
       createcontext->m_puiAlloc                       = pview;
 
+      if (var.get_file_path().has_char())
+      {
+
+         createcontext->m_spCommandLine.alloc(allocer());
+
+         createcontext->m_spCommandLine->m_varFile = var.get_file_path();
+
+      }
+
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
       {
 
@@ -937,6 +964,15 @@ namespace userex
       createcontext->m_bMakeVisible                   = false;
 
       createcontext->m_puiParent                      = pwndParent;
+
+      if (var.get_file_path().has_char())
+      {
+
+         createcontext->m_spCommandLine.alloc(allocer());
+
+         createcontext->m_spCommandLine->m_varFile = var.get_file_path();
+
+      }
 
       sp(::user::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
 
@@ -1012,6 +1048,15 @@ namespace userex
       createcontext->m_bMakeVisible = false;
 
       createcontext->m_puiParent = pwndParent;
+
+      if (var.get_file_path().has_char())
+      {
+
+         createcontext->m_spCommandLine.alloc(allocer());
+
+         createcontext->m_spCommandLine->m_varFile = var.get_file_path();
+
+      }
 
       sp(::user::document) pdoc = psystem->open_document_file(createcontext);
 

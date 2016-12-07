@@ -65,7 +65,7 @@ namespace file_watcher
 	}
 
 
-	id file_watcher::add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive, bool bOwn)
+   file_watch_id file_watcher::add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive, bool bOwn)
 	{
 
       return m_pimpl->add_watch(directory, pwatcher, bRecursive, bOwn);
@@ -79,7 +79,7 @@ namespace file_watcher
 
 	}
 
-	void file_watcher::remove_watch(id id)
+	void file_watcher::remove_watch(file_watch_id id)
 	{
 
 		m_pimpl->remove_watch(id);
@@ -140,7 +140,7 @@ namespace file_watcher
 /// @param dir The directory
 /// @param filename The filename that was accessed (not full path)
 /// @param action Action that was performed
-   void file_watch_listener::handle_file_action(id idWatch, const char * szDir, const char * szFilename, e_action eaction)
+   void file_watch_listener::handle_file_action(file_watch_id idWatch, const char * szDir, const char * szFilename, e_action eaction)
    {
 
       UNREFERENCED_PARAMETER(idWatch);

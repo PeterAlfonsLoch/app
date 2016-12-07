@@ -147,16 +147,22 @@ namespace filemanager
          uh.m_etype = ::user::form_update_hint::type_browse;
          if (pcreatordata->m_id == "replace_name")
          {
-            uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
+            uh.m_strForm = "matter://filemanager/replace_name_in_file_system.html";
          }
          else if (pcreatordata->m_id == "add_location")
          {
-            uh.m_strForm = "filemanager_add_location_1.xhtml";
+            uh.m_strForm = "matter://filemanager/add_location_1.html";
          }
+
+         pformview->m_idCreator = pcreatordata->m_id;
+
+         //pformview->m_id = pcreatordata->m_id;
+
          pdoc->update_all_views(NULL, 0, &uh);
 
-         uh.m_etype = ::user::form_update_hint::type_get_form_view;
-         pdoc->update_all_views(NULL, 0, &uh);
+         //form * pformview =
+         //uh.m_etype = ::user::form_update_hint::type_get_form_view;
+         //pdoc->update_all_views(NULL, 0, &uh);
 
          uh.m_etype = ::user::form_update_hint::type_after_browse;
          pdoc->update_all_views(NULL, 0, &uh);

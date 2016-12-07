@@ -48,7 +48,7 @@ namespace user
       };
 
 
-
+      id                      m_idCreator;
       ::user::document *      m_pdocument;
 
 

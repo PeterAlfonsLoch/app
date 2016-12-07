@@ -551,7 +551,8 @@ namespace html
          if (m_etag == tag_br) //style.m_edisplay == display_block)
          {
 
-            pdata->m_layoutstate1.m_cya.last() += m_pimpl->m_box.get_cy();
+            //pdata->m_layoutstate1.m_cya.last() += m_pimpl->m_box.get_cy();
+            pdata->m_layoutstate1.m_cya.last() = MAX(pdata->m_layoutstate1.m_cya.last(), pdata->m_layoutstate1.m_cy);
 
          }
          else

@@ -34,8 +34,8 @@ namespace file_watcher
 
 
 	/// Type for a watch id
-	typedef uint64_t id;
-	typedef array < id > id_array;
+	typedef uint64_t file_watch_id;
+	typedef array < file_watch_id > file_watch_array;
 
 	// forward declarations
 	class file_watcher_impl;
@@ -98,7 +98,7 @@ namespace file_watcher
       /// @param dir The directory
       /// @param filename The filename that was accessed (not full path)
       /// @param action Action that was performed
-      virtual void handle_file_action(id watchid, const char * dir, const char * filename, e_action action);
+      virtual void handle_file_action(file_watch_id watchid, const char * dir, const char * filename, e_action action);
 
 
    }; // class file_watch_listener
@@ -122,7 +122,7 @@ namespace file_watcher
       /// @param dir The directory
       /// @param filename The filename that was accessed (not full path)
       /// @param action Action that was performed
-      virtual void handle_file_action(id watchid, const char * dir, const char * filename, e_action action)
+      virtual void handle_file_action(file_watch_id watchid, const char * dir, const char * filename, e_action action)
       {
 
          m_pred(watchid, dir, filename, action);
@@ -156,10 +156,10 @@ namespace file_watcher
 
 		/// Add a directory watch
 		/// @exception file_not_found_exception Thrown when the requested directory does not exist
-		id add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive, bool bOwn = false);
+      file_watch_id add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive, bool bOwn = false);
 
       template < typename PRED >
-      id pred_add_watch(const char * directory, PRED pred, bool bRecursive)
+      file_watch_id pred_add_watch(const char * directory, PRED pred, bool bRecursive)
       {
 
          return add_watch(directory, new pred_file_watch_listener < PRED >(pred), bRecursive, true);
@@ -169,7 +169,7 @@ namespace file_watcher
 		/// Remove a directory watch. This is a brute force search O(nlogn).
 		void remove_watch(const char * directory);
 
-      void remove_watch(id id);
+      void remove_watch(file_watch_id id);
 
 		/// Updates the watcher. Must be called often.
 		void update();
@@ -194,7 +194,7 @@ namespace file_watcher
    //   };
 
 
-   //   map < id, id, file_watcher *, file_watcher * > m_pool;
+   //   map < file_watch_id, file_watch_id, file_watcher *, file_watcher * > m_pool;
 
    //   file_watcher_pool() {}
    //   virtual ~file_watcher_pool() {}
@@ -203,10 +203,10 @@ namespace file_watcher
 
    //   /// Add a directory watch
    //   /// @exception file_not_found_exception Thrown when the requested directory does not exist
-   //   id add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive, bool bOwn = false);
+   //   file_watch_id add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive, bool bOwn = false);
 
    //   template < typename PRED >
-   //   id pred_add_watch(const char * directory, PRED pred, bool bRecursive)
+   //   file_watch_id pred_add_watch(const char * directory, PRED pred, bool bRecursive)
    //   {
 
    //      return add_watch(directory, new pred_file_watch_listener < PRED >(pred), bRecursive, true);

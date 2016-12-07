@@ -23,6 +23,8 @@ namespace filemanager
 
    bool filemanager::initialize()
    {
+      
+      
 
       set_data_server(Application.simpledb().get_data_server());
 
@@ -77,6 +79,7 @@ namespace filemanager
    void filemanager::InitializeFileManager(const char * pszMatter)
    {
 
+      System.factory().creatable_small < form >();
       System.factory().creatable_small < manager > ();
       System.factory().creatable_small < child_frame > ();
       System.factory().creatable_small < view > ();
@@ -115,9 +118,9 @@ namespace filemanager
       m_ptemplateForm = canew(::user::multiple_document_template(
          get_app(),
          pszMatter,
-         System.type_info < ::user::document > (),
+         System.type_info < ::html_document > (),
          System.type_info < form_child_frame > (),
-         System.type_info < ::user::form > ()));
+         System.type_info < form > ()));
 
       m_ptemplateOperation = canew(::user::single_document_template(
          get_app(),
