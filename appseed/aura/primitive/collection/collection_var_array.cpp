@@ -345,6 +345,12 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 {
    ::str::consume_spaces(pszJson, 0, pszEnd);
    ::str::consume(pszJson, "[", 1, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
+   if (*pszJson == ']')
+   {
+      pszJson++;
+      return;
+   }
    while(true)
    {
       ::var & var = add_new();

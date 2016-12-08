@@ -2410,10 +2410,10 @@ namespace windows
 
                   }
 
-                  if (::get_tick_count() - dwStart < 5)
+                  if (::get_tick_count() - dwStart < 20)
                   {
 
-                     Sleep(5);
+                     Sleep(20 - (::get_tick_count() - dwStart));
 
                   }
 
