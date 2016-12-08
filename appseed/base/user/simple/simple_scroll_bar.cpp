@@ -11,7 +11,8 @@ simple_scroll_bar::simple_scroll_bar(::aura::application * papp) :
    m_rgnB(allocer()) // região da segunda seta
 {
    //m_brushNull->CreateStockObject(NULL_BRUSH);
-
+   m_flagNonClient.unsignalize(non_client_background);
+   // m_flagNonClient.unsignalize(non_client_focus_rect);
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;
@@ -411,12 +412,21 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
 
    if(m_eorientation == orientation_horizontal)
    {
+      
       int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx;
-      nPos = point.x - m_ptTrackOffset.x;
-      nPos -= GetSystemMetrics(SM_CXHSCROLL);
-      nPos *= (m_scrollinfo.nMax - m_scrollinfo.nMin );
-      if(iWidth != 0)
-         nPos /= iWidth;
+      //nPos = point.x - m_ptTrackOffset.x;
+      //nPos -= GetSystemMetrics(SM_CXHSCROLL);
+      //nPos *= (m_scrollinfo.nMax - m_scrollinfo.nMin );
+      //if(iWidth != 0)
+      //   nPos /= iWidth;
+      //nPos += m_scrollinfo.nMin;
+
+      double dRate = (double)(point.x - m_ptTrackOffset.x) / (double)iWidth;
+
+      dRate = MIN(1.0, dRate);
+
+      nPos = (int32_t)(dRate * (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage));
+
       nPos += m_scrollinfo.nMin;
 
    }

@@ -357,6 +357,14 @@ Restart:
    }
 
 
+   bool interaction_base::GetFocusRect(LPRECT lprect)
+   {
+
+      return GetClientRect(lprect);
+
+   }
+
+
    bool interaction_base::GetClientRect(LPRECT lprect)
    {
 

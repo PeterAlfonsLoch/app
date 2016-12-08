@@ -194,6 +194,7 @@ namespace user
    {
    }
 
+
    void plain_edit::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
@@ -235,7 +236,7 @@ namespace user
 
 
       rect rectClient;
-      GetClientRect(rectClient);
+      GetFocusRect(rectClient);
 
       if(pprintjob != NULL)
       {
@@ -247,13 +248,6 @@ namespace user
       //rectClient.deflate(0, 0, 1, 1);
 
       //
-
-      if(pprintjob == NULL)
-      {
-
-         ::user::interaction::_001OnDraw(pgraphics);
-
-      }
 
 
 
@@ -331,6 +325,7 @@ namespace user
 
       }
 
+      pgraphics->OffsetViewportOrg(-ptOffset.x, 0);
 
       double y = rectClient.top;
       _001GetViewSel(iSelStart,iSelEnd);
@@ -1136,6 +1131,8 @@ namespace user
       ::user::control::on_change_viewport_offset();
 
       _001OnCalcLayout();
+
+      RedrawWindow();
 
    }
 

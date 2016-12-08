@@ -25,6 +25,15 @@ namespace user
    {
    public:
 
+
+      enum e_non_client
+      {
+
+         non_client_background = 1,
+         non_client_focus_rect = 2,
+
+      };
+
       enum e_updown
       {
          updown_normal_frame,
@@ -32,6 +41,8 @@ namespace user
          updown_up,
          updown_down,
       };
+
+      flags < e_non_client >              m_flagNonClient;
 
       bool                                m_bMouseHover;
 

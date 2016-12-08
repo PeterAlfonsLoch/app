@@ -91,6 +91,86 @@ namespace user
    }
 
 
+   void scroll_bar::_001OnClip(::draw2d::graphics * pgraphics)
+   {
+
+      //return;
+
+
+
+      try
+      {
+
+         rect rectClip;
+
+         ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
+
+         rect rectClient;
+
+         bool bFirst = true;
+
+         if (pdrawcontext != NULL)
+         {
+
+            rectClient = pdrawcontext->m_rectWindow;
+
+            ScreenToClient(rectClient);
+
+            rectClient.bottom++;
+            rectClient.right++;
+
+            rectClip = rectClient;
+
+            bFirst = false;
+
+         }
+
+         ::user::interaction * pui = this;
+
+         ::rect rectFocus;
+
+         index i = 0;
+
+         while (pui != NULL)
+         {
+
+            if (i != 1)
+            {
+
+               pui->GetWindowRect(rectClient);
+
+               pui->GetFocusRect(rectFocus);
+
+               rectFocus.offset(rectClient.top_left());
+
+               ScreenToClient(rectFocus);
+
+               rectFocus.bottom++;
+               rectFocus.right++;
+
+               pgraphics->IntersectClipRect(rectFocus);
+
+            }
+
+            i++;
+
+            pui = pui->GetParent();
+
+         }
+
+      }
+      catch (...)
+      {
+
+         throw simple_exception(::get_thread_app(), "no more a window");
+
+      }
+
+   }
+
+
+
+
 } // namespace user
 
 

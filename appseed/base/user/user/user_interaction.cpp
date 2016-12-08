@@ -35,6 +35,9 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_flagNonClient.signalize(non_client_background);
+      m_flagNonClient.signalize(non_client_focus_rect);
+
       m_bMouseHover = false;
       m_bTransparentMouseEvents = false;
       m_bRedraw = false;
@@ -1496,21 +1499,46 @@ namespace user
 
          ::user::interaction * pui = this;
 
+         ::rect rectFocus;
+
+         ::rect rectIntersect;
+
+         index i = 0;
+
          while(pui != NULL)
          {
 
             pui->GetWindowRect(rectClient);
 
-            ScreenToClient(rectClient);
+            pui->GetFocusRect(rectFocus);
 
-            rectClient.bottom++;
-            rectClient.right++;
+            rectFocus.offset(rectClient.top_left());
 
-            pgraphics->IntersectClipRect(rectClient);
+            ScreenToClient(rectFocus);
+
+            rectFocus.bottom++;
+            rectFocus.right++;
+
+            if (i == 0)
+            {
+
+               rectIntersect = rectFocus;
+
+            }
+            else
+            {
+
+               rectIntersect.intersect(rectFocus);
+
+            }
+            
+            i++;
 
             pui = pui->GetParent();
 
          }
+
+         pgraphics->IntersectClipRect(rectIntersect);
 
       }
       catch(...)
@@ -1804,6 +1832,12 @@ namespace user
    void interaction::_001OnNcDraw(::draw2d::graphics * pgraphics)
    {
 
+      if (m_flagNonClient.is_signalized(non_client_background))
+      {
+
+         draw_control_background(pgraphics);
+
+      }
 
    }
 
@@ -1811,7 +1845,6 @@ namespace user
    void interaction::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      draw_control_background(pgraphics);
 
    }
 
@@ -1839,7 +1872,7 @@ namespace user
       else
       {
 
-         GetClientRect(rectClient);
+         GetFocusRect(rectClient);
 
       }
 
@@ -7094,6 +7127,7 @@ restart:
    void interaction::on_change_viewport_offset()
    {
 
+      RedrawWindow();
 
    }
 

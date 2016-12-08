@@ -16,6 +16,10 @@ namespace user
       ::object(get_app()),
       ::user::interaction(get_app())
    {
+      
+      m_flagNonClient.unsignalize(non_client_background);
+      m_flagNonClient.unsignalize(non_client_focus_rect);
+
       m_pviewMain = NULL;
       m_bAutoWindowFrame = true;
       m_bWindowFrame = true;
@@ -2125,10 +2129,12 @@ namespace user
 
    }
 
-
-
+   
    void frame_window::_000OnDraw(::draw2d::graphics * pgraphics)
    {
+
+      UNREFERENCED_PARAMETER(pgraphics);
+
    }
 
 

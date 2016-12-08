@@ -103,7 +103,7 @@ namespace user
 
       virtual void PreSubClassWindow();
 
-
+      virtual bool GetFocusRect(LPRECT lprect);
       virtual bool GetClientRect(LPRECT lprect);
       virtual bool GetClientRect(RECT64 * lprect);
       virtual bool GetWindowRect(LPRECT lprect) override;

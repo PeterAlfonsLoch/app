@@ -43,6 +43,8 @@ namespace user
       virtual point get_ascendant_viewport_offset();
 
 
+      virtual void _001OnClip(::draw2d::graphics * pgraphics) override;
+
    };
 
 } // namespace user

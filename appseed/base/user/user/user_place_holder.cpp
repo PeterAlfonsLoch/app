@@ -11,6 +11,10 @@ namespace user
    place_holder::place_holder(::aura::application * papp) :
       ::object(papp)
    {
+
+      m_flagNonClient.unsignalize(non_client_background);
+      m_flagNonClient.unsignalize(non_client_focus_rect);
+
    }
 
 

@@ -370,7 +370,7 @@ namespace user
 
       rect rectClient;
 
-      pui->GetClientRect(rectClient);
+      pui->GetFocusRect(rectClient);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

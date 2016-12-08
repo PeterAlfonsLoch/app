@@ -11,6 +11,8 @@ namespace user
       place_holder_container(papp)
    {
 
+      m_flagNonClient.unsignalize(non_client_background);
+      m_flagNonClient.unsignalize(non_client_focus_rect);
       get_data()->m_pcallback       = this;
       m_pdroptargetwindow           = NULL;
       m_pviewdata                   = NULL;
@@ -793,6 +795,7 @@ namespace user
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);
    }
+
 
    void tab_drop_target_window::_001OnDraw(::draw2d::graphics * pgraphics)
    {

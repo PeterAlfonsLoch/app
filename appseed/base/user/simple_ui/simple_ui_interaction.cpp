@@ -182,7 +182,9 @@ namespace simple_ui
    void interaction::_001OnNcDraw(::draw2d::graphics * pgraphics)
    {
 
-      if(keyboard_focus_is_focusable())
+      ::user::interaction::_001OnNcDraw(pgraphics);
+
+      if(m_flagNonClient.is_signalized(non_client_focus_rect) && keyboard_focus_is_focusable())
       {
 
          simple_ui_draw_focus_rect(pgraphics);
@@ -223,7 +225,7 @@ namespace simple_ui
 
    void interaction::simple_ui_draw_focus_rect(::draw2d::graphics * pgraphics)
    {
-
+      
       Session.simple_ui_draw_focus_rect(this,pgraphics);
 
    }

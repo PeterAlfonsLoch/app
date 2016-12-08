@@ -102,7 +102,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics) override;
 
       DECL_GEN_SIGNAL(_001OnLButtonUp);
 

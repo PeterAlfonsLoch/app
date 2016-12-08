@@ -107,7 +107,7 @@ namespace user
 
       virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
 
-
+      
       //void on_change_view_size();
 
 
