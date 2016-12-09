@@ -387,6 +387,13 @@ namespace multithreading
    inline bool post_quit(THREAD * & pthread)
    {
 
+      if (pthread == NULL)
+      {
+
+         return true;
+
+      }
+
       bool bOk = false;
 
       try
@@ -421,14 +428,14 @@ namespace multithreading
    inline bool post_quit_and_wait(THREAD * & pthread, const duration & duration)
    {
 
-      bool bOk = false;
-
       if (pthread == NULL)
       {
 
          return true;
 
       }
+
+      bool bOk = false;
 
       try
       {
