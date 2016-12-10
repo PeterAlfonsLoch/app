@@ -72,3 +72,4 @@ CLASS_DECL_AXIS const SSL_METHOD * TLS_server_method();
 
 
 
+#include "sockets_websocket_client.h"

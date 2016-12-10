@@ -5481,6 +5481,187 @@ error:
    }
 
 
+   inline byte clampAndConvert(double v)
+   {
+      if (v < 0)
+         return 0;
+      if (v > 255)
+         return 255;
+      return (byte)(v);
+   }
+
+   //// exepcts a string and returns an object
+   //
+   //inline void rgbToHSL(int &h, double &s, double &l, byte &br, byte & bg, byte &bb)
+   //{
+
+   //   double r = br / 255.0;
+   //   double g = bg / 255.0;
+   //   double b = bb / 255.0;
+
+   //   double cMax = MAX(r, MAX(g, b));
+   //   double cMin = MIN(r, MIN(g, b));
+   //   double delta = cMax - cMin;
+   //   l = (cMax + cMin) / 2.0;
+   //   h = 0.0;
+   //   s = 0.0;
+
+   //   if (delta == 0)
+   //   {
+   //      h = 0;
+   //   }
+   //   else if (cMax == r)
+   //   {
+   //      h = 60.0 * fmod(((g - b) / delta), 6.0);
+   //   }
+   //   else if (cMax == g)
+   //   {
+   //      h = 60.0 * (((b - r) / delta) + 2.0);
+   //   }
+   //   else
+   //   {
+   //      h = 60.0 * (((r - g) / delta) + 4.0);
+   //   }
+
+   //   if (delta == 0)
+   //   {
+   //      s = 0;
+   //   }
+   //   else
+   //   {
+   //      s = (delta / (1.0 - fabs(2.0 * l - 1.0)));
+   //   }
+
+   //}
+
+   //// expects an object and returns a string
+   //inline void hslToRGB(byte & br, byte & bg, byte & bb, int h, double s, double l) 
+   //{
+   //   
+   //   int c = (1.0 - fabs(2.0 * l - 1.0)) * s;
+   //   double x = c * (1.0 - fabs(fmod((h / 60.0), 2.0) - 1.0));
+   //   double m = l - c / 2.0;
+
+   //   double r;
+   //   double g;
+   //   double b;
+
+   //   if (h < 60) {
+   //      r = c;
+   //      g = x;
+   //      b = 0;
+   //   }
+   //   else if (h < 120) {
+   //      r = x;
+   //      g = c;
+   //      b = 0;
+   //   }
+   //   else if (h < 180) {
+   //      r = 0;
+   //      g = c;
+   //      b = x;
+   //   }
+   //   else if (h < 240) {
+   //      r = 0;
+   //      g = x;
+   //      b = c;
+   //   }
+   //   else if (h < 300) {
+   //      r = x;
+   //      g = 0;
+   //      b = c;
+   //   }
+   //   else {
+   //      r = c;
+   //      g = 0;
+   //      b = x;
+   //   }
+
+   //   r = normalize_rgb_value(r, m);
+   //   g = normalize_rgb_value(g, m);
+   //   b = normalize_rgb_value(b, m);
+
+   //   return rgbToHex(r, g, b);
+   //}
+
+   //void changeHue(byte & r, byte & g, byte & b, byte degree)
+   //{
+   //   
+   //   int h;
+   //   int s;
+   //   int l;
+   //   
+   //   rgbToHSL(h, s, l, r, g, b);
+   //   
+   //   h += degree;
+
+   //   if (h > 360)
+   //   {
+   //      h -= 360;
+   //   }
+   //   else if (h < 0)
+   //   {
+   //      h += 360;
+   //   }
+   //   
+   //   hslToRGB(r, g, b, h, s, l);
+
+   //}
+
+   void dib::hue_offset(double dRate)
+   {
+
+      double degrees = dRate;
+
+      if (degrees >= 0.0)
+      {
+
+         degrees = fmod(degrees, 360.0);
+
+      }
+      else
+      {
+
+         degrees = 360.0 - fmod(-degrees, 360.0);
+
+      }
+
+      double cosA = ::cos(degrees*3.14159265f / 180.0);
+      double sinA = ::sin(degrees*3.14159265f / 180.0);
+      double rot = 1.0 / 3.0 * (1.0 - cosA) + sqrt(1.0 / 3.0) * sinA;
+      double com = (cosA + (1.0 - cosA) / 3.0f);
+
+
+      BYTE *dst = (BYTE*)get_data();
+
+      int64_t size = scan_area();
+      //http://stackoverflow.com/questions/8507885/shift-hue-of-an-rgb-color
+      //http://stackoverflow.com/users/630989/jacob-eggers
+      double U = ::cos(degrees*3.14159265f / 180.0);
+      double W = ::sin(degrees*3.14159265f / 180.0);
+
+
+      while (size--)
+      {
+         double oldr = dst[0];
+         double oldg = dst[1];
+         double oldb = dst[2];
+         dst[0] = clampAndConvert((.299 + .701*U + .168*W)*oldr
+            + (.587 - .587*U + .330*W)*oldg
+            + (.114 - .114*U - .497*W)*oldb);
+         dst[1] = clampAndConvert((.299 - .299*U - .328*W)*oldr
+            + (.587 + .413*U + .035*W)*oldg
+            + (.114 - .114*U + .292*W)*oldb);
+         dst[2] = clampAndConvert((.299 - .3*U + 1.25*W)*oldr
+            + (.587 - .588*U - 1.05*W)*oldg
+            + (.114 + .886*U - .203*W)*oldb);
+         dst += 4;
+      }
+
+
+   }
+
+
 } // namespace draw2d
 
 

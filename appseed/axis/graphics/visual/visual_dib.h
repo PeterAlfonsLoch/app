@@ -107,8 +107,9 @@ namespace visual
 
       };
 
-      sp(array)          m_sparray;
-      e_load             m_eload;
+      sp(array)            m_sparray;
+      e_load               m_eload;
+      double               m_dSpeed;
 
 
       dib_sp();

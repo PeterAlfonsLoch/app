@@ -1166,6 +1166,9 @@
     <ClInclude Include="axis\node\windows\windows_printer.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\sockets_websocket_client.h">
+      <Filter>Header Files\net\sockets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2001,6 +2004,9 @@
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_websocket_client.cpp">
+      <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -35,6 +35,7 @@ namespace math
 
 
       int64_t RandRange(int64_t iMin, int64_t iMax);
+      double frand_range(double iMin, double iMax);
 
 
       int32_t LinearMap(int32_t iMin, int32_t iMax, int32_t iValue, int32_t iValueMin, int32_t iValueMax);

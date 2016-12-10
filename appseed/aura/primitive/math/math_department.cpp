@@ -383,6 +383,17 @@ namespace math
       return (gen_rand() % (uiRange + 1)) + iMin;
    }
 
+   double math::frand_range(double d1, double d2)
+   {
+      // dRandRange == 0.0 is impossible event due this next statement;
+      if (d1 == d2)
+         return d1;
+      double dMin = MIN(d1, d2);
+      double dMax = MAX(d1, d2);
+      double dRange = dMax - dMin;
+      return (((double)(gen_rand() % (1000000000 + 1)) / 1000000000.0) * dRange) + dMin;
+   }
+
    /*
 
    uint64_t math::RandRange(uint64_t ui1, uint64_t ui2)

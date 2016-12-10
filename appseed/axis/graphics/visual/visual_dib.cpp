@@ -53,6 +53,9 @@ namespace visual
    dib_sp::dib_sp()
    {
       m_eload = load_none;
+      m_dSpeed = 1.0;
+
+
    }
 
 
@@ -60,6 +63,9 @@ namespace visual
       ::draw2d::dib_sp(allocer)
    {
       m_eload = load_none;
+      m_dSpeed = 1.0;
+
+
    }
 
 
@@ -365,7 +371,7 @@ namespace visual
             m_sparray->m_dwStart = get_tick_count();
          }
 
-         DWORD dwTime = get_tick_count() - m_sparray->m_dwStart;
+         DWORD dwTime = (DWORD) (((double)(get_tick_count()) - m_sparray->m_dwStart)  * m_dSpeed);
 
          UINT uiLoop = dwTime / m_sparray->m_dwTotal;
 

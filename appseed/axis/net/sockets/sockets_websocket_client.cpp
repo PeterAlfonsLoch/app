@@ -71,7 +71,7 @@ uint32_pack(uint32_t value, uint8_t *out)
 }
 
 
-void prefix_varuint(memory & m, unsigned int ui)
+CLASS_DECL_AXIS void websocket_prefix_varuint(memory & m, unsigned int ui)
 {
 
    int iSize = uint32_size(ui);

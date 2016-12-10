@@ -52,5 +52,7 @@ namespace sockets
 } // namespace sockets
 
 
+CLASS_DECL_AXIS void websocket_prefix_varuint(memory & m, unsigned int ui);
+
 
 
