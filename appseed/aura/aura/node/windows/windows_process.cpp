@@ -124,13 +124,18 @@ namespace windows
       }
 
       unichar * pwszCommandLine = (unichar * ) (const unichar *) wstrCommandLine;
+      DWORD dwFlags = 0;
+      if (oprop("inherit").is_new() || (bool) oprop("inherit"))
+      {
+         dwFlags = CREATE_NEW_CONSOLE | CREATE_UNICODE_ENVIRONMENT;
+      }
 
       bSuccess = CreateProcessW(NULL,
          pwszCommandLine, 
          NULL,          // process security attributes
          NULL,          // primary thread security attributes
          TRUE,          // handles are inherited
-         CREATE_NEW_CONSOLE | CREATE_UNICODE_ENVIRONMENT | dwPriorityClass,             // creation flags
+         dwFlags | dwPriorityClass,             // creation flags
          NULL,          // use parent's environment
          pwszDir,
          &m_si,  // STARTUPINFO pointer

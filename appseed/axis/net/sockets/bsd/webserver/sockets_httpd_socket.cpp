@@ -192,8 +192,8 @@ namespace sockets
    {
       // here's the server.pem file we just created above
       // %! remember to change the password to the one you used for your server key
-      InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
-//	  InitializeContext(m_strCat, m_strCat, "", TLS_server_method());
+      //InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
+	  InitializeContext(m_strCat, m_strCat, "", TLS_server_method());
 
 
 	 // SSL_CTX_set_min_proto_version(m_ssl_ctx, TLS1_VERSION);

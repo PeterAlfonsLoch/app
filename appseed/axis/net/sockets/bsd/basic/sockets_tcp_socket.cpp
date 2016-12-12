@@ -1398,7 +1398,7 @@ skip:
 
       m_ssl_method = meth_in != NULL ? meth_in : TLS_server_method();
 
-      SSL_CTX * m_pcontext = SSL_CTX_new(m_ssl_method);
+      m_ssl_ctx = SSL_CTX_new(m_ssl_method);
       SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
       // session id
       if (context.get_length())

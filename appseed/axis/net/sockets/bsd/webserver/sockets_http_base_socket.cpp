@@ -67,7 +67,20 @@ namespace sockets
 
    void http_base_socket::OnHeaderComplete()
    {
+      
+      string strHost = m_request.header("host");
+      if (::str::ends_eat_ci(strHost, ".test.ca2.cc"))
+      {
+         m_request.header("host") = strHost + ".ca2.cc";
+      }
+      else if (strHost == "test.ca2.cc")
+      {
+         m_request.header("host") = "ca2.cc";
+      }
+
       http_socket::OnHeaderComplete();
+
+      
 #ifndef DEBUG
       ::OutputDebugString(m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string() + "\n");
 #endif

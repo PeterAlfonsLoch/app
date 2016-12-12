@@ -111,7 +111,8 @@ namespace file_watcher
 
             string strFile = szFile;
 
-
+            ULONG ulAction = pNotify->Action;
+               
             ::fork(pWatch->m_pwatcher->get_app(), [=]()
             {
 
@@ -119,7 +120,7 @@ namespace file_watcher
 
                action.watch = pWatch;
                action.filename = strFile;
-               action.ulOsAction = pNotify->Action;
+               action.ulOsAction = ulAction;
 
                pWatch->m_pwatcher->handle_action(&action);
 

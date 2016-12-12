@@ -41,6 +41,7 @@ namespace windows
       if(!::process::pipe::create(bBlock,bInherit))
          return false;
 
+      ZERO(m_sa);
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
       m_sa.lpSecurityDescriptor = NULL;
@@ -53,7 +54,7 @@ namespace windows
 
          DWORD dwMode = PIPE_NOWAIT;
          VERIFY(SetNamedPipeHandleState(m_hRead,&dwMode,NULL,NULL));
-         VERIFY(SetNamedPipeHandleState(m_hWrite,&dwMode,NULL,NULL));
+         //VERIFY(SetNamedPipeHandleState(m_hWrite,&dwMode,NULL,NULL));
 
       }
 

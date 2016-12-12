@@ -78,12 +78,14 @@ void script_compiler::prepare_compile_and_link_environment()
 
 #ifndef METROWIN
 
-   strVars = getenv("VS140COMNTOOLS");
+   //strVars = getenv("VS141COMNTOOLS");
 
 #endif
 
-   m_strEnv = strVars.up(2);
-   m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
+   //m_strEnv = strVars.up(2);
+   //m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
+   m_strVCVersion = "10.0.14393.0";
+   m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
    //m_strEnv = ".\\vc_vars.bat";
 
    m_strTime = System.dir().element() / "time";
@@ -91,7 +93,7 @@ void script_compiler::prepare_compile_and_link_environment()
    //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
    //m_strSdk1 = "windows7.1sdk";
-   m_strSdk1 = "vc140";
+   m_strSdk1 = "vc141";
 #ifdef OS64BIT
 #ifdef LINUX
    m_strPlat1     = "64";
@@ -160,16 +162,17 @@ void script_compiler::prepare_compile_and_link_environment()
 //#endif
 
 
-#ifdef METROWIN
-
-   throw todo(get_app());
-
-#elif defined(LINUX)
-#else
-   var var = System.process().get_output("\"" + m_strEnv  + "\" "+ m_strPlat2);
-   TRACE0(var.get_string());
-
-#endif
+//#ifdef METROWIN
+//
+//   throw todo(get_app());
+//
+//#elif defined(LINUX)
+//#else
+//   string strCmd = "\"" + ::file::path(m_strEnv) + "\" " + m_strPlat2 + " " + m_strVCVersion;
+//   var var = System.process().get_output(strCmd);
+//   TRACE0(var.get_string());
+//
+//#endif
 
    string str;
    string strItem;
@@ -185,25 +188,26 @@ void script_compiler::prepare_compile_and_link_environment()
    dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
    str += lpsz;
    delete lpsz;
-#elif defined(METROWIN)
-
-   throw todo(get_app());
-
-#else
-   str += getenv("PATH");
 #endif
-   bool bResult;
-#ifdef WINDOWSEX
-   bResult = SetEnvironmentVariable("PATH", str) != FALSE;
-#elif defined(METROWIN)
-
-   throw todo(get_app());
-
-#elif defined(LINUX)
-#else
-   bResult = setenv("PATH", str, TRUE);
-#endif
-   TRACE("script_compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool %d", bResult);
+//#elif defined(METROWIN)
+//
+//   throw todo(get_app());
+//
+//#else
+//   str += getenv("PATH");
+//#endif
+//   bool bResult;
+//#ifdef WINDOWSEX
+//   bResult = SetEnvironmentVariable("PATH", str) != FALSE;
+//#elif defined(METROWIN)
+//
+//   throw todo(get_app());
+//
+//#elif defined(LINUX)
+//#else
+//   bResult = setenv("PATH", str, TRUE);
+//#endif
+//   TRACE("script_compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool %d", bResult);
 
 }
 
@@ -607,7 +611,11 @@ void script_compiler::compile(ds_script * pscript)
 
    set_thread_priority(::multithreading::priority_highest);
 
-   process->create_child_process(str,true,NULL,::multithreading::priority_highest);
+   process->oprop("inherit") = false;
+
+   process->create_child_process(str,true,"C:\\netnode\\app-core\\appseed\\netnode_dynamic_source_script",::multithreading::priority_highest);
+
+   //::system(str + " > " + "\"" + strClog + "\"");
 
    uint32_t dwStart = ::get_tick_count();
 
@@ -900,7 +908,7 @@ void script_compiler::cppize1(ds_script * pscript)
    stringa straId;
    string strDest;
    strDest = "";
-   strDest += "#include \"netnode_dynamic_source_script.h\"\r\n";
+   strDest += "#include \"netnode_dynamic_source_script_framework.h\"\r\n";
    //strDest += "#include \"11ca2_fontopus.h\"\r\n";
    //for(int32_t i = 0; i < m_straLibIncludePath.get_count(); i++)
    //{
@@ -1066,11 +1074,24 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    ::process::process_sp process(allocer());
 
 
-   file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
+   file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
 
    set_thread_priority(::multithreading::priority_highest);
+   process->oprop("inherit") = false;
 
-   process->create_child_process(::dir::system() / "env.bat",true,::file::path(m_strEnv).folder(),::multithreading::priority_highest);
+   ::file::path pathCommand = ::dir::system() / "env.bat";
+
+   ::file::path pathFolder = ::file::path(m_strEnv).folder();
+
+
+   {
+      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+      LPTSTR lpsz = new char[dwSize + 1];
+      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
+      delete lpsz;
+   }
+
+   process->create_child_process(pathCommand,true,pathFolder,::multithreading::priority_highest);
    string strLog;
 
    //   EnvVarValArray arrEnvVarVal;
@@ -1133,8 +1154,14 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    stringa stra;
 
    stra.add_lines(strLog);
+   {
+      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+      LPTSTR lpsz = new char[dwSize + 1];
+      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
+      delete lpsz;
+   }
 
-   Sleep(10000);
+   //Sleep(10000);
 
 #if defined(WINDOWSEX)
    EnvVarValArray arrEnvVarVal;
