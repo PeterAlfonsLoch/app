@@ -163,6 +163,9 @@ public:
    index find_first_ci(const char * lpcsz,index find = 0,index last = -1) const;
    index find_first(const char * lpcsz,index find = 0,index last = -1) const;
 
+   index find_last_ci(const char * lpcsz, index find = 0, index last = -1) const;
+   index find_last(const char * lpcsz, index find = 0, index last = -1) const;
+
    index reverse_find_ci(const char * lpcsz,index find = -1,index last = 0) const;
    index reverse_find(const char * lpcsz,index find = -1,index last = 0) const;
 
@@ -198,6 +201,10 @@ public:
 
    ::count remove_first_ci(const string & lpcsz,index find = 0,index last = -1);
    ::count remove_first(const string & lpcsz,index find = 0,index last = -1);
+
+   ::count remove_last_ci(const string & lpcsz, index find = 0, index last = -1);
+   using array < Type >::remove_last;
+   ::count remove_last(const string & lpcsz, index find = 0, index last = -1);
 
    ::count remove_ci(const string & lpcsz,index find = 0,index last = -1,::count countMin = 0,::count countMax = -1);
    ::count remove(const string & lpcsz,index find = 0,index last = -1,::count countMin = 0,::count countMax = -1);
@@ -1787,6 +1794,19 @@ index string_array < Type, RawType > ::find_first(const char * lpcsz,index find,
    return -1;
 }
 
+template < class Type, class RawType >
+index string_array < Type, RawType > ::find_last_ci(const char * lpcsz, index find, index last) const
+{
+   return reverse_find_ci(lpcsz, find, last);
+}
+
+
+template < class Type, class RawType >
+index string_array < Type, RawType > ::find_last(const char * lpcsz, index find, index last) const
+{
+   return reverse_find(lpcsz, find, last);
+}
+
 
 
 template < class Type, class RawType >
@@ -1962,6 +1982,23 @@ template < class Type, class RawType >
 index string_array < Type, RawType > ::remove_first(const string & lpcsz,index find,index last)
 {
    if((find = find_first(lpcsz,find,last)) >= 0)
+      this->remove_at(find);
+   return find;
+}
+
+template < class Type, class RawType >
+index string_array < Type, RawType > ::remove_last_ci(const string & lpcsz, index find, index last)
+{
+   if ((find = find_last_ci(lpcsz, find, last)) >= 0)
+      this->remove_at(find);
+   return find;
+}
+
+
+template < class Type, class RawType >
+index string_array < Type, RawType > ::remove_last(const string & lpcsz, index find, index last)
+{
+   if ((find = find_last(lpcsz, find, last)) >= 0)
       this->remove_at(find);
    return find;
 }

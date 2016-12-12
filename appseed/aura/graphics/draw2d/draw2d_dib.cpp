@@ -5481,7 +5481,7 @@ error:
    }
 
 
-   inline byte clampAndConvert(double v)
+   inline static byte clampAndConvert(double v)
    {
       if (v < 0)
          return 0;
@@ -5608,37 +5608,31 @@ error:
 
    //}
 
-   void dib::hue_offset(double dRate)
+   void dib::hue_offset(double dRadians)
    {
 
-      double degrees = dRate;
-
-      if (degrees >= 0.0)
+      if (dRadians >= 0.0)
       {
 
-         degrees = fmod(degrees, 360.0);
+         dRadians = fmod(dRadians, 3.1415 * 2.0);
 
       }
       else
       {
 
-         degrees = 360.0 - fmod(-degrees, 360.0);
+         dRadians = (3.1415 * 2.0) - fmod(-dRadians, 3.1415 * 2.0);
 
       }
 
-      double cosA = ::cos(degrees*3.14159265f / 180.0);
-      double sinA = ::sin(degrees*3.14159265f / 180.0);
-      double rot = 1.0 / 3.0 * (1.0 - cosA) + sqrt(1.0 / 3.0) * sinA;
-      double com = (cosA + (1.0 - cosA) / 3.0f);
+      //http://stackoverflow.com/questions/8507885/shift-hue-of-an-rgb-color
+      //http://stackoverflow.com/users/630989/jacob-eggers
+      double U = ::cos(dRadians);
+      double W = ::sin(dRadians);
 
 
       BYTE *dst = (BYTE*)get_data();
 
       int64_t size = scan_area();
-      //http://stackoverflow.com/questions/8507885/shift-hue-of-an-rgb-color
-      //http://stackoverflow.com/users/630989/jacob-eggers
-      double U = ::cos(degrees*3.14159265f / 180.0);
-      double W = ::sin(degrees*3.14159265f / 180.0);
 
 
       while (size--)

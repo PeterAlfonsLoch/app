@@ -88,7 +88,14 @@ CLASS_DECL_AXIS void websocket_prefix_varuint(memory & m, unsigned int ui)
 int client_send(memory & m, int fin, memory & memory, bool useMask)
 {
 
-   const uint8_t masking_key[4] = { 0x12, 0x34, 0x56, 0x78 };
+   uint8_t masking_key[4];
+
+   for (index i = 0; i < 4; i++)
+   {
+
+      masking_key[i] = (byte) ::aura::system::g_p->math().RandRange(0, 255);
+
+   }
 
    strsize len = memory.get_length();
 
@@ -309,6 +316,10 @@ namespace sockets
 
       m_bExpectRequest = true;
 
+      m_eping = ping_none;
+
+      m_dwLastPing = get_tick_count();
+
    }
 
 
@@ -322,6 +333,8 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in)
    {
+
+      m_dwLastPing = get_tick_count();
 
       m_bUseMask = false;
 
@@ -370,6 +383,76 @@ namespace sockets
 
    websocket_client::~websocket_client()
    {
+   }
+
+   bool websocket_client::client_ping_pong_ok()
+   {
+
+      if (!m_bWebSocket)
+      {
+         
+         if (get_tick_count() - m_dwLastPing > 60 * 1000)
+         {
+
+            return false;
+
+         }
+
+         m_dwLastPong = ::get_tick_count();
+
+         return true;
+
+      }
+
+      if (m_eping == ping_sent_ping && get_tick_count() - m_dwLastPing > 15 * 1000)
+      {
+
+         thisinfo << "PING TIMEOUT!!";
+
+         return false;
+
+      }
+
+      if ((m_eping == ping_none  || m_eping == ping_pong_received) && (get_tick_count() - m_dwLastPong) > 30 * 1000)
+      {
+
+         m_dwLastPing = get_tick_count();
+
+         m_eping = ping_sent_ping;
+
+         //if (mask)
+         //{
+
+         //   for (size_t i = 0; i < n; i++)
+         //   {
+
+         //      data[i + header_size] ^= masking_key[i & 0x3];
+
+         //   }
+
+         //}
+
+//         memory m1(&data[header_size], n);
+
+         memory m1;
+
+         memory m;
+
+         // bool bUseMask = m_bUseMask;
+         bool bUseMask = false;
+
+//         client_send(m, e_opcode::PONG, m1, m_bUseMask);
+         client_send(m, e_opcode::PING, m1, bUseMask);
+
+         write(m.get_data(), m.get_size());
+
+         //m_memResponse.erase(0, n + header_size);
+
+
+      }
+      
+      return true;
+
    }
 
 
@@ -437,7 +520,7 @@ namespace sockets
             if (outheader("connection").compare_value_ci("Upgrade") == 0)
             {
 
-
+               m_dwLastPing = get_tick_count();
 
                string strAccept = outheader("sec-websocket-accept");
 
@@ -704,6 +787,9 @@ namespace sockets
          else if (opcode == e_opcode::PONG)
          {
 
+            m_dwLastPong = get_tick_count();
+            m_eping = ping_pong_received;
+
          }
          else if (opcode == e_opcode::CLOSE)
          {
@@ -736,9 +822,18 @@ namespace sockets
    void websocket_client::on_websocket_data(byte * pdata, int len)
    {
 
+      m_dwLastPong = ::get_tick_count();
+
       string str((const char *) pdata, len);
 
-      on_websocket_data(str);
+      ::fork(get_app(), [=]()
+      {
+         
+         on_websocket_data(str);
+
+      });
+
+      
 
    }
 

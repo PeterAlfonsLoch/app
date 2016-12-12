@@ -76,6 +76,9 @@ public:
 
    void set_COLORREF(COLORREF cr);
 
+   void hue_offset(double dRadians);
+
+
 };
 
 

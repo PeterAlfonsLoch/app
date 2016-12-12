@@ -10,6 +10,14 @@ namespace sockets
    {
    public:
 
+      enum e_ping
+      {
+
+         ping_none,
+         ping_sent_ping,
+         ping_pong_received,
+
+      };
 
       bool        m_bTls;
       string      m_strBase64;
@@ -19,6 +27,11 @@ namespace sockets
       memory      m_memResponse;
       memory      m_memReceivedData;
       bool        m_bUseMask;
+      DWORD       m_dwLastPing;
+      DWORD       m_dwLastPong;
+      e_ping      m_eping;
+
+
 
 
       websocket_client(base_socket_handler&);
@@ -45,6 +58,8 @@ namespace sockets
 
       virtual void on_websocket_data(byte * pdata, int len);
       virtual void on_websocket_data(string str);
+
+      virtual bool client_ping_pong_ok();
 
    };
 

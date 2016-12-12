@@ -703,6 +703,33 @@ public:
    }
 
    template < typename PRED >
+   index pred_find_last(PRED pred, index iLast = -1)
+   {
+
+      if (iLast < 0)
+      {
+
+         iLast += get_count();
+
+      }
+
+      for (index i = iLast; i >= 0; i--)
+      {
+
+         if (pred(m_pData[i]))
+         {
+
+            return i;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+   template < typename PRED >
    TYPE * pred_get_first(PRED pred)
    {
       for(int i = 0; i < get_count(); i++)

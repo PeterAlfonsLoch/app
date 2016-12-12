@@ -544,6 +544,54 @@ void color::set_COLORREF(COLORREF cr)
    set_rgb(cr);
 }
 
+
+inline static byte clampAndConvert(double v)
+{
+   if (v < 0)
+      return 0;
+   if (v > 255)
+      return 255;
+   return (byte)(v);
+}
+
+void color::hue_offset(double dRadians)
+{
+
+   if (dRadians >= 0.0)
+   {
+
+      dRadians = fmod(dRadians, 3.1415 * 2.0);
+
+   }
+   else
+   {
+
+      dRadians = (3.1415 * 2.0) - fmod(-dRadians, 3.1415 * 2.0);
+
+   }
+
+   //http://stackoverflow.com/questions/8507885/shift-hue-of-an-rgb-color
+   //http://stackoverflow.com/users/630989/jacob-eggers
+   double U = ::cos(dRadians);
+   double W = ::sin(dRadians);
+
+   double oldr = m_uchR;
+   double oldg = m_uchG;
+   double oldb = m_uchB;
+   m_uchR = clampAndConvert((.299 + .701*U + .168*W)*oldr
+      + (.587 - .587*U + .330*W)*oldg
+      + (.114 - .114*U - .497*W)*oldb);
+   m_uchG = clampAndConvert((.299 - .299*U - .328*W)*oldr
+      + (.587 + .413*U + .035*W)*oldg
+      + (.114 - .114*U + .292*W)*oldb);
+   m_uchB = clampAndConvert((.299 - .3*U + 1.25*W)*oldr
+      + (.587 - .588*U - 1.05*W)*oldg
+      + (.114 + .886*U - .203*W)*oldb);
+   
+
+
+}
+
 void color::set_bgr(uint32_t bgr)
 {
    m_uchR   = bgr_get_r_value(bgr);
