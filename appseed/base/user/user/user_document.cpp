@@ -1141,7 +1141,7 @@ namespace user
       string strUrl(varFile);
       if(::str::begins_eat(strUrl,"ext://"))
       {
-         Application.open_link(strUrl,lpszTargetFrameName);
+         Application.open_link(strUrl,"", lpszTargetFrameName);
          /*         ::aura::shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/
 

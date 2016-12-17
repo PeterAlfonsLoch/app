@@ -1508,6 +1508,105 @@ namespace windows
 
    }
 
+
+   bool os::get_default_browser(string & strId, ::file::path & path, string & strParam)
+   {
+
+      registry::Key key;
+
+      key.OpenKey(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.html\\UserChoice", false);
+
+      string strProgId;
+
+      key.QueryValue("ProgId", strProgId);
+
+      //MessageBox(NULL, strProgId, "ProgId", MB_OK);
+
+      if (::str::begins_ci(strProgId, "IE."))
+      {
+
+         strId = "ie";
+
+      }
+      else if (::str::begins_ci(strProgId, "ChromeHTML"))
+      {
+
+         strId = "chrome";
+
+      }
+      else if (::str::begins_ci(strProgId, "FirefoxHTML"))
+      {
+
+         strId = "firefox";
+
+      }
+      else if (::str::begins_ci(strProgId, "Opera"))
+      {
+
+         strId = "opera";
+
+      }
+      else if (::str::begins_ci(strProgId, "VivaldiHTM."))
+      {
+
+         strId = "vivaldi";
+
+      }
+      else
+      {
+
+         strId = "edge";
+
+      }
+
+      //MessageBox(NULL, strId, "strBrowser", MB_OK);
+
+      key.OpenKey(HKEY_CLASSES_ROOT, strProgId + "\\shell\\open\\command", false);
+
+      string strDefault;
+
+      key.QueryValue("", strDefault);
+
+      //MessageBox(NULL, strDefault, "(Default)", MB_OK);
+
+      if (strDefault.is_empty())
+      {
+
+         return false;
+
+      }
+
+      bool bQuote = ::str::begins_eat_ci(strDefault, "\"");
+
+      strsize iFind = strDefault.find_ci(".exe");
+
+      if (iFind <= 0)
+      {
+
+         return false;
+
+      }
+
+      path = strDefault.Left(iFind);
+
+      path += ".exe";
+
+      //MessageBox(NULL, path, "pathProgram", MB_OK);
+
+      strParam = strDefault.Mid(iFind + 5);
+
+      if (bQuote)
+      {
+
+         ::str::begins_eat_ci(strParam, "\"");
+
+      }
+
+      return true;
+
+   }
+
+
    bool os::initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch)
    {
 

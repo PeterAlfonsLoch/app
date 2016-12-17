@@ -518,7 +518,7 @@ namespace html
       string strPath(pszPath);
       if(::str::begins_eat(strPath,"ext://"))
       {
-         Application.open_link(strPath);
+         Application.open_link(strPath, "", "");
          /*         ::aura::shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/
 

@@ -687,7 +687,6 @@ namespace user
                      MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
                      &cmdui, NULL))
                      continue;*/
-
                   if(puiTarget->_001SendUpdateCmdUi(&cmdui))
                      continue;
                }
@@ -754,7 +753,7 @@ namespace user
                   &cmdui, NULL))
                   continue;
                   */
-
+               
                if(pwndParent->_001SendUpdateCmdUi(&cmdui))
                   continue;
             }

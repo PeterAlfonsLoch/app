@@ -377,8 +377,37 @@ namespace aura
 
    }
 
+   string os::get_default_browser()
+   {
+
+      string strId;
+
+      ::file::path path;
+
+      string strParam;
+
+      if (!get_default_browser(strId, path, strParam))
+      {
+
+         return "";
+
+      }
+
+      return strId;
+
+   }
 
 
+   bool os::get_default_browser(string & strId, ::file::path & path, string & strParam)
+   {
+
+      UNREFERENCED_PARAMETER(strId);
+      UNREFERENCED_PARAMETER(path);
+      UNREFERENCED_PARAMETER(strParam);
+
+      return false;
+
+   }
 
 
 } // namespace core

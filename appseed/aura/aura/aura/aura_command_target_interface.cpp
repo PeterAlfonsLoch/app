@@ -3,15 +3,27 @@
 
 bool command_target_interface::_001SendCommand(id id)
 {
+   
    ::aura::cmd_msg msg(id);
+
+   msg.m_pcommandtargetSource = this;
+   
    return _001OnCmdMsg(&msg);
+
 }
+
 
 bool command_target_interface::_001SendUpdateCmdUi(cmd_ui * pcmdui)
 {
+   
    ::aura::cmd_msg msg(pcmdui);
+   
+   msg.m_pcommandtargetSource = this;
+
    return _001OnCmdMsg(&msg);
+
 }
+
 
 bool command_target_interface::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 {

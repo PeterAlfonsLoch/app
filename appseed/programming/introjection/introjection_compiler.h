@@ -34,6 +34,7 @@ public:
    string                                    m_strDynamicSourceConfiguration;
    ::file::path                              m_strDynamicSourceStage;
    ::file::path                              m_strDynamicSourceStageFolder;
+   string                                    m_strVCVersion;
 
    string                                    m_strApp;
 

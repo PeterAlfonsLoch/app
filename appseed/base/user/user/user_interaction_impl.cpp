@@ -1244,9 +1244,13 @@ namespace user
    {
 
 #ifdef METROWIN
+
       oswindow oswindow = ::WinGetCapture();
+
 #else
+
       oswindow oswindow = ::GetCapture();
+
 #endif
 
       if (oswindow == NULL)
@@ -1257,6 +1261,7 @@ namespace user
       }
 
       ::user::interaction * pui = System.ui_from_handle(oswindow);
+
       if (pui != NULL)
       {
 
@@ -1275,7 +1280,7 @@ namespace user
 
       }
 
-      return interaction_impl_base::GetCapture();
+      return NULL;
 
    }
 

@@ -468,7 +468,7 @@ namespace fontopus
          {
             string strUri = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
             System.url().string_set(strUri, "sessid", puser->m_strFontopusServerSessId);
-            System.open_link(strUri);
+            System.open_link(strUri, "", "");
          }
       }
 

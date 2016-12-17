@@ -404,7 +404,7 @@ namespace sockets
 
       }
 
-      if (m_eping == ping_sent_ping && get_tick_count() - m_dwLastPing > 15 * 1000)
+      if (m_eping == ping_sent_ping && get_tick_count() - m_dwLastPing > 60 * 1000)
       {
 
          thisinfo << "PING TIMEOUT!!";
@@ -412,6 +412,8 @@ namespace sockets
          return false;
 
       }
+
+      return true;
 
       if ((m_eping == ping_none  || m_eping == ping_pong_received) && (get_tick_count() - m_dwLastPong) > 30 * 1000)
       {
@@ -760,6 +762,10 @@ namespace sockets
          }
          else if (opcode == e_opcode::PING)
          {
+
+            m_dwLastPing = ::get_tick_count();
+
+            m_eping = ping_sent_ping;
 
             if (mask)
             {

@@ -221,12 +221,12 @@ namespace fontopus
          sp(::aura::application) papp = puiParent->get_app();
          if(papp != NULL)
          {
-            papp->open_link("ca2account:this");
+            papp->open_link("ca2account:this", "", "");
             Sleep(1984 + 1977);
          }
          else
          {
-            System.open_link("ca2account:this");
+            System.open_link("ca2account:this", "", "");
          }
          return "";
       }

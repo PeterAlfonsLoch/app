@@ -10,7 +10,6 @@
 #include "windows_multithreading.h"
 #include "windows_utils.h"
 
-
 char get_drive_letter(const char * lpDevicePath);
 
 CLASS_DECL_AURA void set_main_thread(HANDLE hThread);
@@ -21,6 +20,10 @@ CLASS_DECL_AURA HANDLE get_main_thread();
 CLASS_DECL_AURA UINT   get_main_thread_id();
 
 #ifdef __cplusplus
+
+CLASS_DECL_AURA string get_command_line(HANDLE handleProcess);
+
+CLASS_DECL_AURA string get_display_error(uint32_t NTStatusMessage);
 
 CLASS_DECL_AURA void attach_thread_input_to_main_thread(bool bAttach = true);
 

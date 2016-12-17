@@ -1978,7 +1978,7 @@ void XfplayerViewLine::OnLButtonUp(signal_details * pobj)
 
          ASSERT(m_oswindow->IsWindow());
 
-         System.open_link(str);
+         System.open_link(str, "", "");
 
       }
 

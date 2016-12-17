@@ -185,9 +185,9 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
       void process_machine_event_data(machine_event_data * pdata);
 
-      virtual bool open_link(const string & strLink,const string & pszTarget = "");
-      virtual void open_profile_link(string strUrl, string strProfile);
-      virtual void sync_open_profile_link(string strUrl, string strProfile);
+      virtual bool open_link(string strLink, string strProfile, string strTarget);
+      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+      virtual void sync_open_profile_link(string strUrl, string strProfile, string strTarget);
 
 
 

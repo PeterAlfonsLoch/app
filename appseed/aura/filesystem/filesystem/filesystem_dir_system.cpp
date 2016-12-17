@@ -605,6 +605,15 @@ namespace file
       }
 
 
+      ::file::path system::home()
+      {
+
+         synch_lock sl(m_pmutex);
+
+         return m_pathHome;
+
+      }
+
       ::file::path system::userfolder(::aura::application * papp)
       {
 

@@ -8,9 +8,8 @@ namespace aura
    cmd_msg::cmd_msg()
    {
 
-
+      m_pcommandtargetSource        = NULL;
       m_etype                       = type_command;
-
 
    }
 
@@ -18,10 +17,9 @@ namespace aura
    cmd_msg::cmd_msg(id id)
    {
 
-
+      m_pcommandtargetSource        = NULL;
       m_etype                       = type_command;
       m_id                          = id;
-
 
    }
 
@@ -29,10 +27,9 @@ namespace aura
    cmd_msg::cmd_msg(::cmd_ui * pcmdui)
    {
 
-
+      m_pcommandtargetSource        = NULL;
       m_etype                       = type_cmdui;
       m_pcmdui                      = pcmdui;
-
 
    }
 

@@ -79,6 +79,7 @@ namespace windows
 
       virtual bool initialize_wallpaper_fileset(::file::set * pset, bool bAddSearch);
 
+      virtual bool get_default_browser(string & strId, ::file::path & path, string & strParam) override;
 
    };
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+class command_target_interface;
+
+
 namespace aura
 {
 
@@ -17,11 +20,11 @@ namespace aura
          type_cmdui
       };
 
-
-      ::cmd_ui  *                                    m_pcmdui;
+      ::command_target_interface *                 m_pcommandtargetSource;
+      ::cmd_ui  *                                  m_pcmdui;
       id                                           m_id;
       e_type                                       m_etype;
-      ref_array < ::command_target >      m_commandtargetptraHandle;
+      ref_array < ::command_target >               m_commandtargetptraHandle;
 
 
       cmd_msg();

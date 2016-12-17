@@ -87,6 +87,10 @@ namespace aura
 
         virtual bool file_open(string str);
 
+        virtual string get_default_browser();
+
+        virtual bool get_default_browser(string & strId, ::file::path & path, string & strParam);
+
 
     };
 

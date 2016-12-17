@@ -100,16 +100,20 @@ namespace introjection
 
       Application.dir().mk(::dir::system() / "introjection\\symbols");
 
-      ::file::path strVars;
+      //::file::path strVars;
 
 #ifndef METROWIN
 
-      strVars = getenv("VS140COMNTOOLS");
+      //strVars = getenv("VS140COMNTOOLS");
 
 #endif
 
-      m_strEnv = strVars.up(2);
-      m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
+      m_strVCVersion = "10.0.14393.0";
+      m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+
+
+      //m_strEnv = strVars.up(2);
+      //m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
       //m_strEnv = ".\\vc_vars.bat";
 
       m_strTime = System.dir().element() / "time";
@@ -117,7 +121,7 @@ namespace introjection
       //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
       //m_strSdk1 = "windows7.1sdk";
-      m_strSdk1 = "vc140";
+      m_strSdk1 = "vc141";
 #ifdef OS64BIT
 #ifdef LINUX
       m_strPlat1     = "64";
@@ -220,7 +224,7 @@ namespace introjection
 #endif
       bool bResult;
 #ifdef WINDOWSEX
-      bResult = SetEnvironmentVariable("PATH",str) != FALSE;
+      //bResult = SetEnvironmentVariable("PATH",str) != FALSE;
 #elif defined(METROWIN)
 
       throw todo(get_app());

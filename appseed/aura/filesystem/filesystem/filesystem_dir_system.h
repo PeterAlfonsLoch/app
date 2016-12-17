@@ -59,6 +59,7 @@ namespace file
          ::file::path         m_pathModule;
          ::file::path         m_pathProfile;
          ::file::path         m_pathUser;
+         ::file::path         m_pathHome;
 
 
 
@@ -92,6 +93,8 @@ namespace file
 
          virtual ::file::path element();
          virtual ::file::path profile();
+
+         virtual ::file::path home();
 
          virtual ::file::path module();
          virtual ::file::path ca2module();

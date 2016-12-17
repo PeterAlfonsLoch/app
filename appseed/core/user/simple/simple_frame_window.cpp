@@ -163,6 +163,9 @@ void simple_frame_window::install_message_handling(::message::dispatch * pinterf
    IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE, pinterface, this, &simple_frame_window::_001OnDisplayChange);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &simple_frame_window::_001OnShowWindow);
 
+   connect_update_cmd_ui("transparent_frame", &simple_frame_window::_001OnUpdateToggleTransparentFrame);
+   connect_command("transparent_frame", &simple_frame_window::_001OnToggleTransparentFrame);
+
    connect_update_cmd_ui("view_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
    connect_command("view_full_screen", &simple_frame_window::_001OnViewFullScreen);
 
@@ -310,8 +313,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    m_puserschema = Session.m_puserschema;
 
-   //data_get("transparent_frame",m_bTransparentFrame);
-
+   data_get("transparent_frame",m_bTransparentFrame);
 
    sp(::user::place_holder) pplaceholder = GetParent();
 
@@ -880,6 +882,40 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(signal_details * pobj)
    pcmdui->m_pcmdui->_001SetCheck(m_bWindowFrame);
 }
 
+
+void simple_frame_window::_001OnToggleTransparentFrame(signal_details * pobj)
+{
+   
+   UNREFERENCED_PARAMETER(pobj);
+   
+   WfiToggleTransparentFrame();
+
+}
+
+
+void simple_frame_window::_001OnUpdateToggleTransparentFrame(signal_details * pobj)
+{
+   
+   SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
+   
+   pcmdui->m_pcmdui->Enable();
+
+   //if (GetTopLevelFrame()->frame_is_transparent())
+   //{
+
+   //   MessageBox(NULL, "ft", "", MB_OK);
+
+   //}
+   //else
+   //{
+
+   //   MessageBox(NULL, "fnt", "", MB_OK);
+
+   //}
+
+   pcmdui->m_pcmdui->_001SetCheck(frame_is_transparent());
+
+}
 
 
 void simple_frame_window::ActivateFrame(int32_t nCmdShow)
@@ -1949,6 +1985,15 @@ bool simple_frame_window::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    if (m_workset._001OnCmdMsg(pcmdmsg))
       return true;
 
+   if (pcmdmsg->m_pcommandtargetSource == this)
+   {
+
+      // then pump through frame
+      if (::user::frame_window::_001OnCmdMsg(pcmdmsg))
+         return true;
+
+   }
+
    // pump through current ::user::impact FIRST
    sp(::user::impact) pview = GetActiveView();
    if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
@@ -1958,9 +2003,14 @@ bool simple_frame_window::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   // then pump through frame
-   if (::user::frame_window::_001OnCmdMsg(pcmdmsg))
-      return TRUE;
+   if (pcmdmsg->m_pcommandtargetSource != this)
+   {
+
+      // then pump through frame
+      if (::user::frame_window::_001OnCmdMsg(pcmdmsg))
+         return true;
+
+   }
 
    // then pump through parent
    sp(::user::interaction) puiParent = GetParent();

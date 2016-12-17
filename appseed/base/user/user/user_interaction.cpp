@@ -4756,7 +4756,7 @@ ExitModal:
    void interaction::OnLinkClick(const char * psz,const char * pszTarget)
    {
 
-      System.open_link(psz,pszTarget);
+      System.open_link(psz,"",pszTarget);
 
    }
 

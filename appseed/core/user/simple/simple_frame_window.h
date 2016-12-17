@@ -181,6 +181,8 @@ public:
    DECL_GEN_SIGNAL(_001OnUpdateViewFullScreen);
    DECL_GEN_SIGNAL(_001OnToggleCustomFrame);
    DECL_GEN_SIGNAL(_001OnUpdateToggleCustomFrame);
+   DECL_GEN_SIGNAL(_001OnToggleTransparentFrame);
+   DECL_GEN_SIGNAL(_001OnUpdateToggleTransparentFrame);
    DECL_GEN_SIGNAL(_001OnGetMinMaxInfo);
    DECL_GEN_SIGNAL(_001OnUser184);
    DECL_GEN_SIGNAL(_001OnAppExit);

@@ -870,6 +870,9 @@ namespace windows
          //m_pathProfile,
          //CSIDL_PROFILE,
          //FALSE);
+
+      m_pathHome = get_known_folder(FOLDERID_Profile);
+
       m_pathProfile = get_known_folder(FOLDERID_RoamingAppData);
       //SHGetSpecialFolderPath(
       //   NULL,
