@@ -293,7 +293,7 @@ namespace sockets
       CLOSE = 8,
       PING = 9,
       PONG = 0xa,
-   } opcode;
+   };
 
    websocket_client::websocket_client(base_socket_handler& h) :
       object(h.get_app()),
@@ -303,7 +303,8 @@ namespace sockets
       tcp_socket(h),
       http_socket(h),
       http_tunnel(h),
-      http_client_socket(h)
+      http_client_socket(h),
+      m_mutexWebsocketWrite(h.get_app())
    {
 
       m_bUseMask = false;
@@ -331,7 +332,8 @@ namespace sockets
       tcp_socket(h),
       http_socket(h),
       http_tunnel(h),
-      http_client_socket(h, url_in)
+      http_client_socket(h, url_in),
+      m_mutexWebsocketWrite(h.get_app())
    {
 
       m_dwLastPing = get_tick_count();
@@ -383,7 +385,9 @@ namespace sockets
 
    websocket_client::~websocket_client()
    {
+
    }
+
 
    bool websocket_client::client_ping_pong_ok()
    {
@@ -394,7 +398,9 @@ namespace sockets
          if (get_tick_count() - m_dwLastPing > 60 * 1000)
          {
 
-            return false;
+            SetCloseAndDelete();
+
+            return true;
 
          }
 
@@ -409,11 +415,11 @@ namespace sockets
 
          thisinfo << "PING TIMEOUT!!";
 
-         return false;
+         SetCloseAndDelete();
+
+         return true;
 
       }
-
-      return true;
 
       if ((m_eping == ping_none  || m_eping == ping_pong_received) && (get_tick_count() - m_dwLastPong) > 30 * 1000)
       {
@@ -564,6 +570,16 @@ namespace sockets
 
    }
 
+   void websocket_client::write(const void *buf, memory_size_t c)
+   {
+
+      synch_lock sl(&m_mutexWebsocketWrite);
+
+      http_client_socket::write(buf, c);
+
+   }
+
+
    void websocket_client::InitSSLClient()
    {
    #if defined(HAVE_OPENSSL)
@@ -637,14 +653,15 @@ namespace sockets
 
          //TRACE("%s", strLine);
 
-
          m_memResponse.append(buf, len);
 
-         uint64_t uiLen = 0;
+         //uint64_t uiLen = 0;
 
-         int iOffset = 2;
+         //int iOffset = 2;
 
-         if (m_memResponse.get_size() <= 0)
+      repeat:
+
+         if (m_memResponse.get_size() < 2)
          {
 
             return;
@@ -656,95 +673,170 @@ namespace sockets
 
          byte * data = (byte *) m_memResponse.get_data(); // peek, but don't consume
 
-         int fin = (data[0] & 0x80) == 0x80; 
+         string strOut1;
 
-         int opcode = (data[0] & 0x0f);
+         string strHexa;
 
-         int mask = data[1] & 0x80;
+         string strChar;
 
-         int n0 = (data[1] & 0x7f);
-
-         int header_size = 2 + (n0 == 126 ? 2 : 0) + (n0 == 127 ? 8 : 0) + (mask ? 4 : 0);
-
-         byte masking_key[4] = {0, 0, 0, 0};
-
-         if (m_memResponse.get_size() < header_size)
+         for (index i = 0; i < m_memResponse.get_size(); i++)
          {
 
-            return; 
+            strHexa += ::hex::lower_from(&data[i], 1) + " ";
+            if (data[i] == 0)
+            {
+               strChar += "NL ";
+            }
+            else if (data[i] < 10)
+            {
+               strChar += "0";
+               strChar += ::str::from((int)data[i]);
+               strChar += " ";
+            }
+            else if (data[i] < 32)
+            {
+               strChar += ::str::from((int)data[i]);
+               strChar += " ";
+            }
+            else if (data[i] >= 128)
+            {
+               strChar += "UP ";
+            }
+            else
+            {
+               strChar += string((const char *) &data[i], 1);
+               strChar += "  ";
+            }
 
          }
 
-         int i = 0;
+         strOut1 += "\n";
+         strOut1 += "wsdata:   " + strHexa + "   <--\n";
+         strOut1 += "wschar:   " + strChar + "   <--\n..\n.\n";
 
-         uint64_t n = -1;
+         output_debug_string(strOut1);
 
-         if (n0 < 126)
+         m_fin = (data[0] & 0x80) == 0x80;
+
+         m_opcode = (data[0] & 0x0f);
+
+         m_mask = data[1] & 0x80;
+
+         m_n0 = (data[1] & 0x7f);
+
+         m_header_size = 2;
+         
+         if (m_n0 == 126)
          {
 
-            n = n0;
-            i = 2;
+            m_header_size += 2;
 
          }
-         else if (n0 == 126)
+         else if (m_n0 == 127)
          {
 
-            n = 0;
-            n |= ((uint64_t)data[2]) << 8;
-            n |= ((uint64_t)data[3]) << 0;
-            i = 4;
-
-         }
-         else if (n0 == 127)
-         {
-
-            n = 0;
-            n |= ((uint64_t)data[2]) << 56;
-            n |= ((uint64_t)data[3]) << 48;
-            n |= ((uint64_t)data[4]) << 40;
-            n |= ((uint64_t)data[5]) << 32;
-            n |= ((uint64_t)data[6]) << 24;
-            n |= ((uint64_t)data[7]) << 16;
-            n |= ((uint64_t)data[8]) << 8;
-            n |= ((uint64_t)data[9]) << 0;
-            i = 10;
+            m_header_size += 8;
 
          }
          
-         if (mask)
+         if (m_mask)
          {
 
-            masking_key[0] = ((uint8_t)data[i + 0]) << 0;
-            masking_key[1] = ((uint8_t)data[i + 1]) << 0;
-            masking_key[2] = ((uint8_t)data[i + 2]) << 0;
-            masking_key[3] = ((uint8_t)data[i + 3]) << 0;
+            m_header_size += 4;
 
          }
 
-         if (m_memResponse.get_size() < header_size + n)
+         ZERO(m_maskingkey);
+
+         if (m_memResponse.get_size() < m_header_size)
+         {
+
+            return;
+
+         }
+
+         m_i = 0;
+
+         m_iN = -1;
+
+         if (m_n0 < 126)
+         {
+
+            m_iN = m_n0;
+            m_i = 2;
+
+         }
+         else if (m_n0 == 126)
+         {
+
+            m_iN = 0;
+            m_iN |= ((uint64_t)data[2]) << 8;
+            m_iN |= ((uint64_t)data[3]) << 0;
+            m_i = 4;
+
+         }
+         else if (m_n0 == 127)
+         {
+
+            m_iN = 0;
+            m_iN |= ((uint64_t)data[2]) << 56;
+            m_iN |= ((uint64_t)data[3]) << 48;
+            m_iN |= ((uint64_t)data[4]) << 40;
+            m_iN |= ((uint64_t)data[5]) << 32;
+            m_iN |= ((uint64_t)data[6]) << 24;
+            m_iN |= ((uint64_t)data[7]) << 16;
+            m_iN |= ((uint64_t)data[8]) << 8;
+            m_iN |= ((uint64_t)data[9]) << 0;
+            m_i = 10;
+
+         }
+
+         if (m_mask)
+         {
+
+            m_maskingkey[0] = ((uint8_t)data[m_i + 0]) << 0;
+            m_maskingkey[1] = ((uint8_t)data[m_i + 1]) << 0;
+            m_maskingkey[2] = ((uint8_t)data[m_i + 2]) << 0;
+            m_maskingkey[3] = ((uint8_t)data[m_i + 3]) << 0;
+
+         }
+
+         memory_size_t iBufSize = m_memResponse.get_size();
+
+         if (iBufSize < m_header_size + m_iN)
          { 
+            
             return; /* Need: ws.header_size+ws.N - rxbuf.size() */ 
          
          }
 
+         int iStart = m_header_size;
+
          // We got a whole message, now do something with it:
-         if (opcode == e_opcode::TEXT_FRAME || opcode == e_opcode::BINARY_FRAME || opcode == e_opcode::CONTINUATION)
+         if (m_opcode == e_opcode::TEXT_FRAME || m_opcode == e_opcode::BINARY_FRAME || m_opcode == e_opcode::CONTINUATION)
          {
 
-            if (mask)
+            if (m_opcode == e_opcode::CONTINUATION)
+            {
+
+               output_debug_string("test");
+
+            }
+
+            if (m_mask)
             { 
 
-               for (size_t i = 0; i < n; i++)
+               for (size_t i = 0; i < m_iN; i++)
                { 
-                  data[i + header_size] ^= masking_key[i & 0x3]; 
+                  data[m_i + iStart] ^= m_maskingkey[m_i & 0x3]; 
 
                }
 
             }
 
-            m_memReceivedData.append(&data[header_size], n);// just feed
+            m_memReceivedData.append(&data[iStart], MIN(m_iN, m_memResponse.get_size() - iStart));// just feed
 
-            if (fin)
+            if (m_fin)
             {
 
                on_websocket_data(m_memReceivedData.get_data(), m_memReceivedData.get_size());
@@ -760,26 +852,26 @@ namespace sockets
             }
             
          }
-         else if (opcode == e_opcode::PING)
+         else if (m_opcode == e_opcode::PING)
          {
 
-            m_dwLastPing = ::get_tick_count();
+            //m_dwLastPing = ::get_tick_count();
 
-            m_eping = ping_sent_ping;
+            //m_eping = ping_sent_ping;
 
-            if (mask)
+            if (m_mask)
             {
 
-               for (size_t i = 0; i < n; i++)
+               for (size_t i = 0; i < m_iN; i++)
                {
 
-                  data[i + header_size] ^= masking_key[i & 0x3];
+                  data[m_i + m_header_size] ^= m_maskingkey[m_i & 0x3];
 
                }
 
             }
 
-            memory m1(&data[header_size], n);
+            memory m1(&data[m_header_size], m_iN);
 
             memory m;
 
@@ -787,17 +879,16 @@ namespace sockets
 
             write(m.get_data(), m.get_size());
 
-            m_memResponse.erase(0, n + header_size);
-
          }
-         else if (opcode == e_opcode::PONG)
+         else if (m_opcode == e_opcode::PONG)
          {
 
             m_dwLastPong = get_tick_count();
+
             m_eping = ping_pong_received;
 
          }
-         else if (opcode == e_opcode::CLOSE)
+         else if (m_opcode == e_opcode::CLOSE)
          {
 
             SetCloseAndDelete();
@@ -812,7 +903,16 @@ namespace sockets
          
          }
 
-         m_memResponse.erase(0, n + header_size);
+         m_memResponse.erase(0, m_iN + m_header_size);
+
+         if (m_memResponse.get_size() > 0)
+         {
+
+            goto repeat;
+
+         }
+
+         m_iN = 0;
 
       }
       else

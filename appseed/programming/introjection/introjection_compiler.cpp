@@ -46,6 +46,24 @@ namespace introjection
 
    {
 
+
+      m_strVs = Application.file().as_string(::dir::system() / "vs.txt");
+
+      m_strVs.trim();
+
+      if (m_strVs == "2015")
+      {
+
+         m_strVsTools = "140";
+
+      }
+      else if (m_strVs == "2017")
+      {
+
+         m_strVsTools = "141";
+
+      }
+
       ::file::path path;
 
       path = THIS_FILE;
@@ -100,28 +118,53 @@ namespace introjection
 
       Application.dir().mk(::dir::system() / "introjection\\symbols");
 
-      //::file::path strVars;
+      ::file::path strVars;
 
 #ifndef METROWIN
 
-      //strVars = getenv("VS140COMNTOOLS");
+      if (m_strVs == "2015")
+      {
+
+         strVars = getenv("VS140COMNTOOLS");
+
+      }
 
 #endif
 
-      m_strVCVersion = "10.0.14393.0";
-      m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+      if (m_strVs == "2017")
+      {
 
+         m_strVCVersion = "10.0.14393.0";
+         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
 
-      //m_strEnv = strVars.up(2);
-      //m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
-      //m_strEnv = ".\\vc_vars.bat";
+      }
+
+      if (m_strVs == "2015")
+      {
+
+         m_strEnv = strVars.up(2);
+         m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
+         //m_strEnv = ".\\vc_vars.bat";
+
+      }
 
       m_strTime = System.dir().element() / "time";
 
       //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
       //m_strSdk1 = "windows7.1sdk";
-      m_strSdk1 = "vc141";
+      if (m_strVs == "2015")
+      {
+         
+         m_strSdk1 = "vc140";
+
+      }
+      else if (m_strVs == "2017")
+      {
+
+         m_strSdk1 = "vc141";
+
+      }
 #ifdef OS64BIT
 #ifdef LINUX
       m_strPlat1     = "64";
@@ -336,7 +379,18 @@ namespace introjection
 
       string strBuildCmd = m_strEnv;
 
-      strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " 10.0.14393.0";
+      if (m_strVs == "2015")
+      {
+
+         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
+
+      }
+      else if (m_strVs == "2017")
+      {
+
+         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " 10.0.14393.0";
+
+      }
 
       ::process::process_sp process(allocer());
 
@@ -346,78 +400,14 @@ namespace introjection
       pathEnvTxt = dir::system() / "env.txt";
 
       file_put_contents_dup(::dir::system() / "env1.bat",::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
+      
       file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
-      //      set_thread_priority(::multithreading::priority_highest);
       RunSilent(::dir::system() / "env1.bat","");
-      //::system("Y:\\bergedge\\hi5\\program\\hstart.exe /NOCONSOLE \::dir::system() / "env1.bat\"");
+
       string strLog;
 
-//         EnvVarValArray arrEnvVarVal;
-//
-//         uint32_t dwStart = ::get_tick_count();
-//
-//         uint32_t dwExitCode;
-//
-////         string strLog;
-//
-//         stringa m_strArray;
-//         // Open the process for further operations
-//         HANDLE hProcess = CProcessEnvReader::OpenProcessToRead(process->m_iPid);
-//         if(hProcess)
-//         {
-//            _ENVSTRING_t stEnvData;
-//            // Read the process environment block
-//            if(!CProcessEnvReader::ReadEnvironmentBlock(hProcess,stEnvData))
-//            {
-//               return;
-//            }
-//
-//            // Parse the retrieved data
-//            CProcessEnvReader::ParseEnvironmentStrings(stEnvData.pData,
-//               stEnvData.nSize / 2,
-//               m_strArray);
-//
-//
-//            // Seperate values and variables
-//            CProcessEnvReader::SeparateVariablesAndValues(m_strArray,arrEnvVarVal);
-//            string_to_string map;
-//
-//            for(auto pair : arrEnvVarVal)
-//            {
-//               map[pair.m_element1] = pair.m_element2;
-//               SetEnvironmentVariable(pair.m_element1,pair.m_element2);
-//            }
-//
-//            // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
-//            CProcessEnvReader::ReleaseHandle(hProcess);
-//         }
-      //process->write("\n");
-      //uint32_t dwExitCode = 0;
-      //DWORD dwStart = get_tick_count();
-      //while(true)
-      //{
-
-      //   strLog += process->read();
-
-      //   if(process->has_exited(&dwExitCode))
-      //      break;
-
-      //   Sleep(100);
-
-      //   if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
-      //   {
-
-      //      //            bTimeout = true;
-
-      //      break;
-
-      //   }
-
-      //}
-
-      //strLog += process->read();
-      strLog = file_as_string_dup(  ::dir::system() / "env.txt");
+      strLog = file_as_string_dup(::dir::system() / "env.txt");
 
       stringa stra;
 
@@ -439,19 +429,6 @@ namespace introjection
       }
 
 
-
-      //SetEnvironmentVariable("INCLUDE",map["INCLUDE"]);
-      //SetEnvironmentVariable("LIBPATH",map["LIBPATH"]);
-      //SetEnvironmentVariable("PATH",map["PATH"]);
-
-      // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
-      //CProcessEnvReader::ReleaseHandle(hProcess);
-
-
-
-//      stra.add_lines(strLog);
-
-      //string strEnv = file_as_string_dup(::dir::system() / "env.txt");
 
 #endif
 #endif
@@ -934,9 +911,11 @@ namespace introjection
       string strBuildCmd;
 
 #ifdef LINUX
-      strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
+      strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash"));
+#elif defined(__APPLE__)
+      strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #else
-      strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
+      strBuildCmd.Format(System.dir().element() / ("nodeapp/stage/introjection_" + m_strVsTools) / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #endif
 
       str = Application.file().as_string(strBuildCmd);
@@ -1122,9 +1101,9 @@ namespace introjection
 #ifndef MACOS
 
 #ifdef LINUX
-         strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash");
+         strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
 #else
-         strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
+         strBuildCmd.Format(System.dir().element() / ("nodeapp\\stage\\introjection_" + m_strVsTools) / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
 #endif
 
          str = Application.file().as_string(strBuildCmd);

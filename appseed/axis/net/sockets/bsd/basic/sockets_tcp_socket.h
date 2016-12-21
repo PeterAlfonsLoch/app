@@ -150,7 +150,7 @@ namespace sockets
       \param len Length of data
       \param f Dummy flags -- not used */
       using ::sockets::socket::write;
-      void write(const void *buf, memory_size_t c);
+      virtual void write(const void *buf, memory_size_t c);
       /** This callback is executed after a successful read from the socket.
       \param buf Pointer to the data
       \param len Length of the data */

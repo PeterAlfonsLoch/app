@@ -4506,7 +4506,13 @@ string & var::get_json(string & str, bool bNewLine) const
    else
    {
 
-      return str += ("\"" + get_string() + "\"");
+      string strValue;
+
+      strValue = get_string();
+
+      strValue.replace("\"", "\\\"");
+
+      return str += ("\"" + strValue + "\"");
 
    }
 

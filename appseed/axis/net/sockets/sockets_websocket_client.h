@@ -30,8 +30,17 @@ namespace sockets
       DWORD       m_dwLastPing;
       DWORD       m_dwLastPong;
       e_ping      m_eping;
-
-
+      
+      int         m_fin;
+      int         m_opcode;
+      int         m_mask;
+      int         m_n0;
+      int         m_header_size;
+      int         m_iN;
+      int         m_i;
+      byte        m_maskingkey[4];
+      int         m_iLastPos;
+      mutex       m_mutexWebsocketWrite;
 
 
       websocket_client(base_socket_handler&);
@@ -50,6 +59,8 @@ namespace sockets
       virtual long cert_common_name_check(const char * common_name) override;
 
       virtual void OnDataComplete();
+
+      virtual void write(const void *buf, memory_size_t c) override;
 
       virtual void send_json(var varJson);
       virtual void send_memory(memory & memory);

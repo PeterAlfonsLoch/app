@@ -30,6 +30,8 @@ class CLASS_DECL_PROGRAMMING compiler:
 {
 public:
 
+   string                                    m_strVs;
+   string                                    m_strVsTools;
    ::file::path                              m_pathProjectDir;
    string                                    m_strDynamicSourceConfiguration;
    ::file::path                              m_strDynamicSourceStage;
