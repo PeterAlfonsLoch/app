@@ -84,7 +84,9 @@ namespace user
       virtual index get_pane_by_id(::id id);
 
 
-      ::count get_pane_count();
+      virtual ::count get_pane_count();
+      virtual ::count get_visible_pane_count();
+      virtual bool is_pane_visible(int iPane);
 
       ::count get_split_count();
       int32_t get_position(index iIndex);

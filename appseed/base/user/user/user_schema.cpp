@@ -162,7 +162,7 @@ namespace user
          if(_001IsTranslucent())
          {
 
-            return ARGB(184,255,255,255);
+            return ARGB(60,255,255,255);
 
          }
          else

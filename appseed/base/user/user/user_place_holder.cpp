@@ -38,23 +38,23 @@ namespace user
 
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
 
-      if (m_uiptraChild.get_size() > 0 && m_uiptraChild[0] != NULL)
-      {
+      //if (m_uiptraChild.get_size() > 0 && m_uiptraChild[0] != NULL)
+      //{
 
-         if (pshowwindow->m_bShow)
-         {
+      //   if (pshowwindow->m_bShow)
+      //   {
 
-            m_uiptraChild[0]->ShowWindow(SW_SHOW);
+      //      m_uiptraChild[0]->ShowWindow(SW_SHOW);
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            m_uiptraChild[0]->ShowWindow(SW_HIDE);
+      //      m_uiptraChild[0]->ShowWindow(SW_HIDE);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 

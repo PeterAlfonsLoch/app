@@ -6,6 +6,9 @@ html_form::html_form(::aura::application * papp) :
    ::user::interaction(papp)
 {
 
+   m_flagNonClient.unsignalize(non_client_background);
+   m_flagNonClient.unsignalize(non_client_focus_rect);
+
    m_phtmlform = canew(html::form());
 
    //m_phtmlform->m_sphtmldata = canew(html::data(papp));

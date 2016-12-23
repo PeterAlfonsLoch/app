@@ -12,6 +12,9 @@ namespace user
       split_layout(get_app())
    {
 
+      m_flagNonClient.unsignalize(non_client_background);
+      m_flagNonClient.unsignalize(non_client_focus_rect);
+
    }
 
 
@@ -21,6 +24,9 @@ namespace user
       m_panea(papp),
       place_holder_container(papp)
    {
+
+      m_flagNonClient.unsignalize(non_client_background);
+      m_flagNonClient.unsignalize(non_client_focus_rect);
 
       m_bInitialized    = true;
       m_iState          = stateInitial;
@@ -453,18 +459,21 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         CalcSplitBarRect(i, &rectBar);
-
          pwnd = m_splitbara.element_at(i);
 
-         uiFlags = uiBaseFlags;
-
-         if(!bIsWindowVisible)
+         if (!is_pane_visible(i) || !bIsWindowVisible)
          {
 
             pwnd->ShowWindow(SW_HIDE);
 
+            continue;
+
          }
+
+         CalcSplitBarRect(i, &rectBar);
+
+         uiFlags = uiBaseFlags;
+
 
          pwnd->SetWindowPos(
             0,
@@ -485,6 +494,13 @@ namespace user
 
       for(i = 0; i < get_pane_count(); i++)
       {
+
+         if (!is_pane_visible(i))
+         {
+
+            continue;
+
+         }
 
          rect & rectPane = m_panea[i]->m_rect;
 
@@ -598,6 +614,81 @@ namespace user
 
    }
 
+   ::count split_layout::get_visible_pane_count()
+   {
+
+      if (!m_bInitialized)
+      {
+
+         return get_pane_count();
+
+      }
+
+      ::count c = 0;
+
+      for (index i = 0; i < get_pane_count(); i++)
+      {
+
+         if (is_pane_visible(i))
+         {
+
+            c++;
+
+         }
+
+      }
+
+      return c;
+
+   }
+
+
+   bool split_layout::is_pane_visible(int iPane)
+   {
+      
+      if (iPane < 0)
+      {
+
+         return false;
+
+      }
+
+      if (iPane >= m_panea.get_size())
+      {
+
+         return false;
+
+      }
+
+      split_layout::Pane * ppane = m_panea[iPane];
+
+      sp(::user::place_holder) pholder = ppane->m_pholder;
+
+      if (pholder == NULL)
+      {
+
+         return true; // assume future place_holder by default is visible
+
+      }
+
+      if (pholder->m_uiptraChild.is_empty())
+      {
+
+         return true; // assume future child by default is visible
+
+      }
+
+      if (!pholder->m_uiptraChild[0]->is_this_visible())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
 
    void split_layout::CalcPaneRect(index iPane, LPRECT lpRect)
    {
@@ -695,7 +786,24 @@ namespace user
 
       }
 
-      int32_t nPos = m_splitbara[iIndex]->m_dwPosition;
+      int32_t nPos = 0;
+      
+      index i = 0;
+
+      while (i <= iIndex)
+      {
+
+         if (is_pane_visible(i))
+         {
+
+            nPos = m_splitbara[iIndex]->m_dwPosition;
+
+         }
+
+         i++;
+
+      }
+      
 
       GetClientRect(lpRect);
 
