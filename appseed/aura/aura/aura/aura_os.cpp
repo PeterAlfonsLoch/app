@@ -355,12 +355,12 @@ namespace aura
       
       ::file::path pathFolder;
       
-      pathFolder = "http://server.ca2.cc/image/cc/ca2core/bkimageoftheday/common/";
+      pathFolder = "https://server.ca2.cc/image/cc/ca2core/bkimageoftheday/common/";
 
       for (auto & str : stra)
       {
 
-         ::file::path path = string("https://ca2.cc/image/cc/ca2core/bkimageoftheday/common/") + str + string("?sessid=noauth");
+         ::file::path path = pathFolder / (str + string("?sessid=noauth"));
 
          pfileset->m_straFileAddUp.add(path);
 

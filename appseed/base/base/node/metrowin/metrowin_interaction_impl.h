@@ -43,7 +43,7 @@ namespace metrowin
 
       bool create_message_queue(::user::interaction * pui, const char * pszName);
 
-      virtual bool initialize(::user::native_window_initialize * pinitialize) override;
+      virtual bool initialize_native_window(::user::native_window_initialize * pinitialize) override;
 
 
       LONG_PTR get_window_long_ptr(int32_t nIndex) const;

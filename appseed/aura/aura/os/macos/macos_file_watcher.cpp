@@ -344,9 +344,13 @@ namespace file_watcher
 		close(mDescriptor);
 	}
 
+
 	//--------
 	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
 	{
+
+      synch_lock sl(m_pmutex);
+
 /*		int fd = open(directory.c_str(), O_RDONLY);
 		if(fd == -1)
 			perror("open");

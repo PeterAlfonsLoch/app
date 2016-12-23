@@ -8,7 +8,7 @@
 namespace user
 {
 
-   class interaction;
+   class interaction_impl;
 
 } // namespace user
 
@@ -29,26 +29,30 @@ oswindow_dataptra * g_oswindow_dataptra()
 }
 
 
-::user::interaction * oswindow_data::window()
+::user::interaction_impl * oswindow_data::window()
 {
 
    if(this == NULL)
       return NULL;
    
-   return m_pui;
+   return m_pimpl;
 
 }
 
 
-index oswindow_find(::user::interaction * pui)
+index oswindow_find(::user::interaction_impl * pimpl)
 {
 
    for(int i = 0; i < g_oswindow_dataptra()->get_count(); i++)
    {
-      if(g_oswindow_dataptra()->element_at(i)->m_pui == pui)
+
+      if(g_oswindow_dataptra()->element_at(i)->m_pimpl == pimpl)
       {
+
          return i;
+
       }
+
    }
 
    return -1;
@@ -56,17 +60,17 @@ index oswindow_find(::user::interaction * pui)
 }
 
 
-oswindow oswindow_get(::user::interaction * pui)
+oswindow oswindow_get(::user::interaction_impl * pimpl)
 {
 
-   int_ptr iFind = oswindow_find(pui);
+   int_ptr iFind = oswindow_find(pimpl);
 
    if(iFind >= 0)
       return g_oswindow_dataptra()->element_at(iFind);
 
    oswindow pdata  = new oswindow_data;
 
-   pdata->m_pui = pui;
+   pdata->m_pimpl = pimpl;
 
    g_oswindow_dataptra()->add(pdata);
 
@@ -77,7 +81,7 @@ oswindow oswindow_get(::user::interaction * pui)
 
 
 
-//int_bool oswindow_remove(::user::interaction * pui)
+//int_bool oswindow_remove(::user::interaction_impl * pui)
 //{
 //
 //   int_ptr iFind = oswindow_find(pui);
@@ -96,7 +100,7 @@ oswindow oswindow_get(::user::interaction * pui)
 Agile < Windows::UI::Core::CoreWindow > get_os_window(oswindow window)
 {
 
-   return window->m_pui->get_os_window();
+   return window->m_pimpl->m_pui->get_os_window();
 
 }
 
@@ -206,7 +210,7 @@ oswindow_data * WINAPI GetParent(oswindow_data * pdata)
    if(!::WinIsWindow(pdata))
       return NULL;
 
-   return (oswindow_data *) pdata->m_pui->GetParent()->get_os_data();
+   return (oswindow_data *) pdata->m_pimpl->m_pui->GetParent()->get_os_data();
 
 
 }
@@ -223,3 +227,9 @@ WINBOOL WinIsWindow(oswindow oswindow)
 
 }
 
+int DestroyWindow(oswindow oswindow)
+{
+
+   return TRUE;
+
+}

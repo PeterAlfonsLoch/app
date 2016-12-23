@@ -226,10 +226,6 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />
@@ -281,6 +277,7 @@
     <ClInclude Include="net\sockets\sockets_link_out_socket.h" />
     <ClInclude Include="net\sockets\sockets_logger.h" />
     <ClInclude Include="net\sockets\sockets_trace_logger.h" />
+    <ClInclude Include="net\sockets\sockets_websocket_client.h" />
     <ClInclude Include="programming\javascript\javascript.h" />
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
@@ -2157,6 +2154,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="net\sockets\sockets_websocket_client.cpp" />
     <ClCompile Include="net\sockets\_sockets.cpp" />
     <ClCompile Include="net\_net.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />

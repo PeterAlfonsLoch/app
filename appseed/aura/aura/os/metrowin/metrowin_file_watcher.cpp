@@ -22,6 +22,10 @@
 //#include "framework.h"
 //#include "metrowin.h"
 
+
+CLASS_DECL_AURA::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder);
+
+
 namespace file_watcher
 {
 
@@ -140,15 +144,22 @@ namespace file_watcher
 
       if(pwatch->m_bRecursive)
       {
+
          options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Deep;
+
       }
       else
       {
+
          options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Shallow;
+
       }
+
       options->IndexerOption = ::Windows::Storage::Search::IndexerOption::DoNotUseIndexer;
 
-      pwatch->m_folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(strDirectory));
+      string strPrefix;
+
+      pwatch->m_folder = winrt_get_folder(strDirectory, strPrefix);
 
       pwatch->m_queryresult = pwatch->m_folder->CreateItemQuery();
 
@@ -181,11 +192,16 @@ namespace file_watcher
          DestroyWatch(ppair->m_element2.w);
 		}
 		m_watchmap.remove_all();
+
 	}
 
-	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
+
+	file_watch_id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
 	{
-		id watchid = ++m_idLast;
+
+      synch_lock sl(m_pmutex);
+
+		file_watch_id watchid = ++m_idLast;
 
 		//watch_struct ^ pwatch = watch_struct::create_watch(m_str(directory), FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
       watch_struct ^ pwatch = watch_struct::create_watch(directory, bRecursive);
@@ -224,7 +240,7 @@ namespace file_watcher
 		}
 	}
 
-	void os_file_watcher::remove_watch(id watchid)
+	void os_file_watcher::remove_watch(file_watch_id watchid)
 	{
       watch_map::pair * ppair = m_watchmap.PLookup(watchid);
 
@@ -237,7 +253,7 @@ namespace file_watcher
 		DestroyWatch(pwatch);
 	}
 
-   string os_file_watcher::watch_path(id watchid)
+   string os_file_watcher::watch_path(file_watch_id watchid)
    {
       return begin(m_watchmap[watchid].w->m_strDirName);
    }

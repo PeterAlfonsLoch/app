@@ -12,6 +12,25 @@ namespace file_watcher
 
    }
 
+
+   listener_thread::~listener_thread()
+   {
+
+      for (auto & plistener : m_listenerptra)
+      {
+
+         if (plistener->m_pfilewatcherlistenerthread == plistener)
+         {
+
+            plistener->m_pfilewatcherlistenerthread = NULL;
+
+         }
+
+      }
+
+   }
+
+
    file_watch_id listener_thread::add_file_watch(const char * directory, bool bRecursive)
    {
       
@@ -19,8 +38,13 @@ namespace file_watcher
 
    }
 
+
    file_watch_id listener_thread::add_file_watch(const char * directory, file_watch_listener * plistener, bool bRecursive, bool bOwn)
    {
+
+      synch_lock sl(m_pmutex);
+
+#ifndef METROWIN
 
       if(get_os_data() == NULL)
       {
@@ -29,26 +53,11 @@ namespace file_watcher
 
       }
 
-      op * pop = new op;
+#endif
 
-      pop->m_str = directory;
-      pop->m_bRecursive = bRecursive;
-      pop->m_plistener = plistener;
-      pop->m_bOwn = bOwn;
+      file_watch_id id = file_watcher::add_watch(directory, plistener, bRecursive, bOwn);
 
-//      uint32_t uiId = m_nId;
-
-      //while(m_bUpdating)
-    //  {
-  //       Sleep(100);
-//      }
-      post_object(WM_USER + 123, 0, pop);
-
-      pop->m_event.wait();
-
-      file_watch_id id  = pop->m_id;
-
-      delete pop;
+      m_listenerptra.add_unique(plistener);
 
       return id;
 

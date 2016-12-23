@@ -23,7 +23,6 @@ namespace draw2d_direct2d
 
       m_hdcAttach = NULL;
 
-
       m_pmutex                = new mutex(papp);
 
 
@@ -3182,13 +3181,11 @@ namespace draw2d_direct2d
    int graphics::SaveDC()
    {
 
-      state s;
-
-      m_prendertarget->GetTransform(&s.m_m);
+      m_prendertarget->GetTransform(&m_state.m_m);
 
       ::count iSaveDC = m_statea.get_size();
 
-      m_statea.add(s);
+      m_statea.add(m_state);
 
       return (int) iSaveDC;
       //throw todo(get_app());
@@ -3215,6 +3212,46 @@ namespace draw2d_direct2d
       {
 
          return false;
+
+      }
+
+      ::count c;
+
+      index iStart = 0;
+
+      for (;
+         iStart < m_state.m_sparegionClip.get_size()
+         && iStart < m_statea[nSavedDC].m_sparegionClip.get_size()
+         && m_state.m_sparegionClip[iStart] == m_statea[nSavedDC].m_sparegionClip[iStart]; )
+      {
+         iStart++;
+      }
+
+      for (index i = iStart; i < m_state.m_sparegionClip.get_size(); i++)
+      {
+
+         m_prendertarget->PopLayer();
+
+         m_state.m_sparegionClip.remove_last();
+
+         m_state.m_maRegion.remove_last();
+
+      }
+
+      
+
+      for (index i = iStart;  i < m_statea[nSavedDC].m_sparegionClip.get_size(); i++)
+      {
+
+         m_prendertarget->SetTransform(&m_statea[nSavedDC].m_maRegion[i]);
+
+         ID2D1Geometry * pgeometry = (ID2D1Geometry *)(dynamic_cast < region * > (m_statea[nSavedDC].m_sparegionClip[i].m_p))->get_os_data();
+
+         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), NULL);
+
+         m_state.m_sparegionClip.add(m_statea[nSavedDC].m_sparegionClip[i]);
+
+         m_state.m_maRegion.add(m_statea[nSavedDC].m_maRegion[i]);
 
       }
 
@@ -3601,30 +3638,30 @@ namespace draw2d_direct2d
    {
 
       synch_lock sl(m_pmutex);
-   
-      for(index i = m_sparegionClip.get_upper_bound(); i >= 0; i--)
+
+      if (pregion == NULL)
       {
 
-         try
+         for (index i = 0; i < m_state.m_sparegionClip.get_size(); i++)
          {
 
             m_prendertarget->PopLayer();
 
          }
-         catch(...)
-         {
 
-         }
-
-         m_sparegionClip.remove_last();
-
+         m_state.m_sparegionClip.remove_all();
 
       }
-
-      if(pregion != NULL)
+      else
       {
 
-         m_sparegionClip.add(pregion);
+         D2D1::Matrix3x2F m;
+
+         m_prendertarget->GetTransform(&m);
+
+         m_state.m_sparegionClip.add(pregion);
+
+         m_state.m_maRegion.add(m);
 
          ID2D1Geometry * pgeometry = (ID2D1Geometry *) (dynamic_cast < region * > (pregion))->get_os_data();
 
@@ -3687,27 +3724,37 @@ namespace draw2d_direct2d
    int graphics::IntersectClipRect(int x1, int y1, int x2, int y2)
    {
       
-      throw todo(get_app());
+      synch_lock sl(m_pmutex);
 
-      //int nRetVal = ERROR;
-      //if(get_handle1() != NULL && get_handle1() != get_handle2())
-      //   nRetVal = ::IntersectClipRect(get_handle1(), x1, y1, x2, y2);
-      //if(get_handle2() != NULL)
-      //   nRetVal = ::IntersectClipRect(get_handle2(), x1, y1, x2, y2);
-      //return nRetVal;
+      {
+
+         ::draw2d::region_sp pregion(allocer());
+
+         pregion->create_rect(x1, y1, x2, y2);
+
+         D2D1::Matrix3x2F m;
+
+         m_prendertarget->GetTransform(&m);
+
+         m_state.m_sparegionClip.add(pregion);
+
+         m_state.m_maRegion.add(m);
+
+         ID2D1Geometry * pgeometry = (ID2D1Geometry *)(dynamic_cast < region * > (pregion.m_p))->get_os_data();
+
+         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), NULL);
+
+      }
+
+      return 0;
+
    }
 
    int graphics::IntersectClipRect(const RECT & lpRect)
    {
       
-      throw todo(get_app());
-
-      //int nRetVal = ERROR;
-      //if(get_handle1() != NULL && get_handle1() != get_handle2())
-      //   nRetVal = ::IntersectClipRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
-      //if(get_handle2() != NULL)
-      //   nRetVal = ::IntersectClipRect(get_handle2(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
-      //return nRetVal;
+      return IntersectClipRect(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
+      
    }
 
    int graphics::OffsetClipRgn(int x, int y)
@@ -5078,8 +5125,11 @@ namespace draw2d_direct2d
 
       if(m_player != NULL)
       {
+         
          m_prendertarget->PopLayer();
+
          m_player = nullptr;
+
       }
 
       m_ppathgeometryClip = nullptr;
@@ -5377,32 +5427,32 @@ namespace draw2d_direct2d
 
       synch_lock sl(m_pmutex);
 
-      if(m_bSaveClip)
-         return true;
+      //if(m_bSaveClip)
+      //   return true;
 
-      if(m_sparegionClip.get_count() > 0)
-      {
-         
-         m_bSaveClip = true;
-         for(index i = m_sparegionClip.get_upper_bound(); i >= 0; i--)
-         {
+      //if(m_sparegionClip.get_count() > 0)
+      //{
+      //   
+      //   m_bSaveClip = true;
+      //   for(index i = m_sparegionClip.get_upper_bound(); i >= 0; i--)
+      //   {
 
-            try
-            {
+      //      try
+      //      {
 
-               m_prendertarget->PopLayer();
+      //         m_prendertarget->PopLayer();
 
-            }
-            catch(...)
-            {
+      //      }
+      //      catch(...)
+      //      {
 
-            }
-
-
-         }
+      //      }
 
 
-      }
+      //   }
+
+
+      //}
 
       return true;
 
@@ -5414,23 +5464,23 @@ namespace draw2d_direct2d
 
       synch_lock sl(m_pmutex);
 
-      if(!m_bSaveClip)
-         return true;
+      //if(!m_bSaveClip)
+      //   return true;
 
-      if(m_sparegionClip.get_count() > 0)
-      {
-         m_bSaveClip = false;
+      //if(m_sparegionClip.get_count() > 0)
+      //{
+      //   m_bSaveClip = false;
 
-         for(auto pregion : m_sparegionClip)
-         {
+      //   for(auto pregion : m_sparegionClip)
+      //   {
 
-            ID2D1Geometry * pgeometry = (ID2D1Geometry *)pregion->get_os_data();
+      //      ID2D1Geometry * pgeometry = (ID2D1Geometry *)pregion->get_os_data();
 
-            m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(),pgeometry),NULL);
+      //      m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(),pgeometry),NULL);
 
-         }
+      //   }
 
-      }
+      //}
 
       return true;
 

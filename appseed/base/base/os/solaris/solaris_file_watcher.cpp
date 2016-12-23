@@ -76,6 +76,9 @@ namespace file_watcher
 	//--------
 	id os_file_watcher::add_watch(const vsstring & directory,  file_watch_listener * pwatcher, bool bRecursive)
 	{
+
+      synch_lock sl(m_pmutex);
+
 		int32_t wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 		if (wd < 0)
 		{
@@ -138,6 +141,9 @@ namespace file_watcher
 	//--------
 	void os_file_watcher::remove_watch(const vsstring & directory)
 	{
+
+      synch_lock sl(m_pmutex);
+
 		WatchMap::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
 		{
@@ -153,6 +159,8 @@ namespace file_watcher
 	//--------
 	void os_file_watcher::remove_watch(id watchid)
 	{
+      synch_lock sl(m_pmutex);
+
 		WatchMap::pair * ppair = m_watchmap.PLookup(watchid);
 
 		if(ppair == NULL)

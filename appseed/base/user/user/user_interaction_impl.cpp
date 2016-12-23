@@ -1167,7 +1167,7 @@ namespace user
    bool interaction_impl::WfiIsIconic()
    {
 
-      ::exception::throw_interface_only(get_app());
+      //::exception::throw_interface_only(get_app());
 
       return false;
 

@@ -40,6 +40,7 @@ namespace file_watcher
 	// forward declarations
 	class file_watcher_impl;
 	class file_watch_listener;
+   class listener_thread;
 
 	/// Base exception class
 	/// @class Exception
@@ -88,6 +89,9 @@ namespace file_watcher
    class CLASS_DECL_AURA file_watch_listener
    {
    public:
+
+
+      ::file_watcher::listener_thread *   m_pfilewatcherlistenerthread;
 
 
       file_watch_listener();

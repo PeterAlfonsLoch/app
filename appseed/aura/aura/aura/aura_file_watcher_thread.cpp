@@ -19,56 +19,56 @@ namespace file_watcher
 //
 //   }
 
-   void listener_thread::install_message_handling(::message::dispatch * pdispatch)
-   {
+   //void listener_thread::install_message_handling(::message::dispatch * pdispatch)
+   //{
 
-      ::thread::install_message_handling(pdispatch);
+   //   ::thread::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_USER + 123, pdispatch, this, &listener_thread::_001OnUser123);
+   //   IGUI_WIN_MSG_LINK(WM_USER + 123, pdispatch, this, &listener_thread::_001OnUser123);
 
-   }
+   //}
 
-   void listener_thread::_001OnUser123(signal_details * pobj)
-   {
+   //void listener_thread::_001OnUser123(signal_details * pobj)
+   //{
 
-      SCAST_PTR(::message::base, pbase, pobj);
+   //   SCAST_PTR(::message::base, pbase, pobj);
 
-      sp(listener_thread::op) pop(pbase->m_lparam);
+   //   sp(listener_thread::op) pop(pbase->m_lparam);
 
-      try
-      {
+   //   try
+   //   {
 
-         try
-         {
+   //      try
+   //      {
 
-            pop->m_id = add_watch(pop->m_str, pop->m_plistener, pop->m_bRecursive, pop->m_bOwn);
+   //         pop->m_id = add_watch(pop->m_str, pop->m_plistener, pop->m_bRecursive, pop->m_bOwn);
 
-         }
-         catch (...)
-         {
+   //      }
+   //      catch (...)
+   //      {
 
-            try
-            {
+   //         try
+   //         {
 
-               pop->m_id = -1;
+   //            pop->m_id = -1;
 
-            }
-            catch (...)
-            {
+   //         }
+   //         catch (...)
+   //         {
 
-            }
+   //         }
 
-         }
+   //      }
 
-         pop->m_event.set_event();
+   //      pop->m_event.set_event();
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-   }
+   //}
 
    
 
@@ -77,28 +77,28 @@ namespace file_watcher
 
 
 
-#ifndef METROWIN
+//#ifndef METROWIN
 
 
       try
       {
 
-         MESSAGE msg;
+//         MESSAGE msg;
 
          while(get_run_thread())
          {
 
-            if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
-            {
-             
-               if (!defer_pump_message())
-               {
+            //if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
+            //{
+            // 
+            //   if (!defer_pump_message())
+            //   {
 
-                  break;
+            //      break;
 
-               }
+            //   }
 
-            }
+            //}
 
             try
             {
@@ -121,7 +121,7 @@ namespace file_watcher
       {
 
       }
-#endif
+//#endif
 
       return 0;
 

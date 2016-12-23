@@ -439,6 +439,12 @@ namespace base
    DWORD system::get_monitor_color_temperature(index iMonitor)
    {
 
+#ifdef METROWIN
+
+      return 0;
+
+#else
+
       if (iMonitor < 0)
       {
 
@@ -464,13 +470,22 @@ namespace base
 
       return mc_color_kelvin(e);
 
+#endif
+
    }
 
    mutex g_monitor_adjust(NULL);
    bool system::adjust_monitor(index iMonitor, DWORD dwTemperature, double dBrightness, double dGamma)
    {
 
+#ifdef METROWIN
+
+      return true;
+
+#else
+
       synch_lock sl(&g_monitor_adjust);
+
       if (iMonitor < 0)
       {
 
@@ -792,6 +807,9 @@ error:;
       // Close the monitor handles.
       DestroyPhysicalMonitors(1, &monitor);
       return false;
+
+#endif
+
    }
 
 
@@ -800,7 +818,7 @@ error:;
 
 #ifdef METROWIN
 
-      get_window_rect(m_posdata->m_pwindow, lprect);
+      get_window_rect(m_possystemwindow->m_pwindow, lprect);
 
       return true;
 

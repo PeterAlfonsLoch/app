@@ -16,7 +16,6 @@ namespace filemanager
       sp(::fs::item)                      m_item;
       ::critical_section                  m_csItemIdListAbsolute;
       ::file::path                        m_strTopic;
-      ::file_watcher::listener_thread *   m_pfilewatcherlistenerthread;
       bool                                m_bFullBrowse;
 
 

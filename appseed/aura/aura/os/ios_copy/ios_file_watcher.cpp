@@ -346,6 +346,9 @@ namespace file_watcher
 	//--------
 	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive)
 	{
+
+      synch_lock sl(m_pmutex);
+
 /*		int fd = open(directory.c_str(), O_RDONLY);
 		if(fd == -1)
 			perror("open");
@@ -364,6 +367,9 @@ namespace file_watcher
 	//--------
 	void os_file_watcher::remove_watch(const string & directory)
 	{
+
+      synch_lock sl(m_pmutex);
+
 		watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
 		{
@@ -378,6 +384,9 @@ namespace file_watcher
 	//--------
 	void os_file_watcher::remove_watch(id watchid)
 	{
+
+      synch_lock sl(m_pmutex);
+
 		watch_map::pair * ppair = m_watchmap.PLookup((id &)watchid);
 
 		if(ppair == NULL)

@@ -53,7 +53,6 @@
     <ClInclude Include="aura\aura\aura_console_window.h" />
     <ClInclude Include="aura\aura\aura_conv.h" />
     <ClInclude Include="aura\aura\aura_core.h" />
-    <ClInclude Include="aura\aura\aura_core_os.h" />
     <ClInclude Include="aura\aura\aura_cpu_architecture.h" />
     <ClInclude Include="aura\aura\aura_create_context.h" />
     <ClInclude Include="aura\aura\aura_cregexp.h" />
@@ -211,6 +210,7 @@
     <ClInclude Include="aura\node\metrowin\metrowin_folder_watch.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_implementation.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_internal.h" />
+    <ClInclude Include="aura\node\metrowin\metrowin_native_buffer.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_os.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_pen.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_printer.h" />
@@ -472,7 +472,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h" />
     <ClInclude Include="aura\os\metrowin\metrowin.h" />
     <ClInclude Include="aura\os\metrowin\metrowin_base_file.h" />
     <ClInclude Include="aura\os\metrowin\metrowin_file_watcher.h" />
@@ -2259,6 +2258,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="aura\os\os_debug.cpp" />
     <ClCompile Include="aura\os\os_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>

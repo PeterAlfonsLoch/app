@@ -43,6 +43,8 @@ namespace file_watcher
       ::object(papp)
 	{
 
+      m_pmutex = new mutex(papp);
+
       m_bUpdating = false;
 
 		m_pimpl = new os_file_watcher(papp);
@@ -128,6 +130,9 @@ namespace file_watcher
 
    file_watch_listener::file_watch_listener()
    {
+
+      m_pfilewatcherlistenerthread = NULL;
+
    }
 
    file_watch_listener::~file_watch_listener()

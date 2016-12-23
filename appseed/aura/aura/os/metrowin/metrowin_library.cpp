@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-void * __node_library_open(const char * pszPath)
+void * __node_library_open(const char * pszPath, string & strMessage)
 {
 
    void * plibrary = NULL;
@@ -119,31 +119,9 @@ void * __node_library_open(const char * pszPath)
 }
 
 
-bool __node_library_close(void * plibrary)
-{
-
-   if(plibrary == NULL)
-      return false;
-
-   bool bOk = false;
-
-   try
-   {
-
-      bOk = ::FreeLibrary((HINSTANCE)plibrary) != FALSE;
-
-   }
-   catch(...)
-   {
-
-   }
-
-   return bOk;
-
-}
 
 
-void * __node_library_open_ca2(const char * psz)
+void * __node_library_open_ca2(const char * psz, string & strMessage)
 {
    /*      string str(psz);
    if(str.find("..") >= 0)
@@ -174,3 +152,26 @@ void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
 }
 
 
+
+bool __node_library_close(void * plibrary)
+{
+
+   if (plibrary == NULL)
+      return false;
+
+   bool bOk = false;
+
+   try
+   {
+
+      bOk = ::FreeLibrary((HINSTANCE)plibrary) != FALSE;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return bOk;
+
+}

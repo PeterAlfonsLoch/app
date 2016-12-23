@@ -411,7 +411,7 @@ SSLInitializer_rand_seed(const void * buf, int32_t num)
 
 extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num)
 {
-   ::sockets::g_psystem->math().gen_rand(buf, num);
+   ::aura::system::g_p->math().gen_rand(buf, num);
    return num;
 }
 
@@ -438,7 +438,7 @@ SSLInitializer_rand_add(const void * buf, int num, double entropy)
 
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num)
 {
-   ::sockets::g_psystem->math().gen_rand(buf, num);
+   ::aura::system::g_p->math().gen_rand(buf, num);
    return num;
 }
 

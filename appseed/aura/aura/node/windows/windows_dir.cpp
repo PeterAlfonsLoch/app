@@ -1188,62 +1188,57 @@ namespace windows
    //}
 
 
+   ::file::path dir::get_music_folder()
+   {
+
+      ::file::path path;
+
+      SHGetSpecialFolderPath(
+         NULL,
+         path,
+         CSIDL_MYMUSIC,
+         FALSE);
+
+      return path;
+
+   }
+
+
+   ::file::path dir::get_video_folder()
+   {
+
+      ::file::path path;
+
+      SHGetSpecialFolderPath(
+         NULL,
+         path,
+         CSIDL_MYVIDEO,
+         FALSE);
+
+      return path;
+
+   }
+
+
+   ::file::path dir::get_image_folder()
+   {
+
+      ::file::path path;
+
+      SHGetSpecialFolderPath(
+         NULL,
+         path,
+         CSIDL_MYPICTURES,
+         FALSE);
+
+      return path;
+
+   }
+
+
 
 
 } // namespace windows
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

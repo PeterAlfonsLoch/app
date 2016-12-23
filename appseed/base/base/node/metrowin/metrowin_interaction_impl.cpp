@@ -24,7 +24,7 @@ namespace metrowin
       m_bScreenRelativeMouseMessagePosition  = false;
       m_plistener                            = NULL;
       m_nModalResult                         = 0;
-      m_bMouseHover                          = false;
+//      m_bMouseHover                          = false;
       m_pfont                                = NULL;
       m_pguieCapture                         = NULL;
       m_pwindow                              = new ::user::native_window;
@@ -38,7 +38,7 @@ namespace metrowin
       m_bScreenRelativeMouseMessagePosition  = false;
       m_plistener = NULL;
       m_nModalResult = 0;
-      m_bMouseHover = false;
+     // m_bMouseHover = false;
       m_pfont = NULL;
       m_pguieCapture = NULL;
       m_pwindow = NULL;
@@ -53,7 +53,7 @@ namespace metrowin
       m_bScreenRelativeMouseMessagePosition  = false;
       m_plistener = NULL;
       m_nModalResult = 0;
-      m_bMouseHover = false;
+     // m_bMouseHover = false;
       m_pfont = NULL;
       m_pguieCapture = NULL;
       m_pwindow = new ::user::native_window;
@@ -245,7 +245,7 @@ namespace metrowin
 
       //   on_set_parent(pparent);
 
-      m_oswindow = oswindow_get(m_pui);
+      m_oswindow = oswindow_get(this);
 
       return true;
 
@@ -347,14 +347,14 @@ namespace metrowin
                       pParentWnd->get_handle(),id,(LPVOID)pContext);
    }
 
-   bool interaction_impl::initialize(::user::native_window_initialize * pinitialize)
+   bool interaction_impl::initialize_native_window(::user::native_window_initialize * pinitialize)
    {
 
       m_window = pinitialize->window;
 
       m_pwindow->m_pwindow  = pinitialize->pwindow;
 
-      m_oswindow = oswindow_get(m_pui);
+      m_oswindow = oswindow_get(this);
 
       ModifyStyle(0, WS_VISIBLE);
 
@@ -368,7 +368,8 @@ namespace metrowin
 
             dwLastRedraw = ::get_tick_count();
 
-            if (has_pending_graphical_update())
+            if (m_pui->has_pending_graphical_update()
+               || m_pui->defer_check_layout())
             {
 
                if (m_xapp != nullptr)
@@ -3727,7 +3728,7 @@ return TRUE;
       bool bIdle = TRUE;
       LONG lIdleCount = 0;
       bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
-      oswindow hWndParent = oswindow_get(GetParent());
+      oswindow hWndParent = oswindow_get(GetParent()->m_pimpl.cast < ::user::interaction_impl >());
       m_pui->m_iModal = m_pui->m_iModalCount;
       int iLevel = m_pui->m_iModal;
       oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = ::get_thread();
@@ -5107,7 +5108,7 @@ ExitModal:
 
       oswindow window = ::WinGetActiveWindow();
 
-      return window == NULL ? NULL : window->m_pui;
+      return window == NULL ? NULL : window->m_pimpl->m_pui;
 
    }
 
@@ -5120,7 +5121,7 @@ ExitModal:
       //
       oswindow window = ::WinSetActiveWindow(get_handle());
 
-      return window == NULL ? NULL : window->m_pui;
+      return window == NULL ? NULL : window->m_pimpl->m_pui;
 
    }
 
@@ -5136,7 +5137,7 @@ ExitModal:
    ::user::interaction *  interaction_impl::GetFocus()
    {
 
-      return ::WinGetFocus()->window();
+      return ::WinGetFocus()->window()->m_pui;
 
    }
 
@@ -6548,7 +6549,7 @@ lCallNextHook:
       //throw todo(get_app());
 
 
-      m_bMouseHover = true;
+//      m_bMouseHover = true;
       //TRACKMOUSEEVENT tme = { sizeof(tme) };
       //tme.dwFlags = TME_LEAVE;
       //tme.hwndTrack = get_handle();
@@ -7258,12 +7259,12 @@ namespace metrowin
    }
 
 
-   ::user::interaction_impl *  interaction_impl::get_impl() const
-   {
+   //::user::interaction_impl *  interaction_impl::get_impl() const
+   //{
 
-      return  this;
+   //   return  this;
 
-   }
+   //}
 
    Agile<Windows::UI::Core::CoreWindow> interaction_impl::get_os_window()
    {
@@ -7293,7 +7294,7 @@ namespace metrowin
    bool interaction_impl::has_pending_graphical_update()
    {
 
-      if (m_pui->has_pending_graphical_update())
+      if (::user::interaction_impl::has_pending_graphical_update())
       {
 
          return true;

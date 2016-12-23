@@ -741,16 +741,23 @@ namespace aura
 
 #if defined(METROWIN)
 
+
+      string * pstrNew = new string(strUrl);
+
       Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
          ref new Windows::UI::Core::DispatchedHandler([pstrNew]()
       {
+      
          ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(*pstrNew);
 
          delete pstrNew;
 
          LauncherOptions ^ options = ref new LauncherOptions();
+
          options->TreatAsUntrusted = false;
+
          Launcher::LaunchUriAsync(uri, options);
+
       }));
 
 #elif defined(LINUX)

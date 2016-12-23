@@ -299,10 +299,11 @@ namespace sockets
       int32_t n = getaddrinfo(str, NULL, &hints, &res);
       if (n)
       {
-         string error = "Error: ";
+         string error = "getaddrinfo Error: ";
    #ifndef __CYGWIN__
          error += gai_strerror(n);
    #endif
+         thiserr << error;
          return false;
    #endif // NO_GETADDRINFO
       }

@@ -119,9 +119,6 @@
     <ClCompile Include="Source\FreeImage\PixelAccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\_FreeImage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FreeImage\MNGHelper.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>

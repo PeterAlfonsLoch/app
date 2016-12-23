@@ -14,7 +14,9 @@ namespace draw2d_direct2d
       {
       public:
 
-         D2D1::Matrix3x2F m_m;
+         D2D1::Matrix3x2F              m_m;
+         array < D2D1::Matrix3x2F >    m_maRegion;
+         spa(::draw2d::region)         m_sparegionClip;
 
       };
 
@@ -31,8 +33,7 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<ID2D1PathGeometry>          m_ppathgeometryClip;
 
       array < state >                                    m_statea;
-
-      spa(::draw2d::region) m_sparegionClip;
+      state                                              m_state;
 
       bool m_bSaveClip;
 

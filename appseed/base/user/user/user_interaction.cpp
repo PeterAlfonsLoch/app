@@ -2718,7 +2718,7 @@ namespace user
          if (pwnd == NULL)
             return NULL;
 
-         return oswindow_get(pwnd);
+         return oswindow_get(pwnd->m_pimpl.cast < ::user::interaction_impl >());
 
       }
       catch (...)

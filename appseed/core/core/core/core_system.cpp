@@ -880,7 +880,7 @@ namespace core
       try
       {
 
-         rect = m_posdata->m_pwindow->get_window_rect();
+         rect = m_possystemwindow->m_pwindow->get_window_rect();
 
       }
       catch(...)

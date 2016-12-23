@@ -296,6 +296,7 @@ namespace sockets
          in_addr l;
          if(!Session.sockets().net().convert(l,host))
          {
+            thiserr << "Session.sockets().net().convert failed";
             SetCloseAndDelete();
             return false;
          }

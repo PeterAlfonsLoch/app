@@ -1506,9 +1506,6 @@
     <ClInclude Include="aura\aura\aura_core.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_core_os.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_cpu_architecture.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1881,9 +1878,6 @@
     <ClInclude Include="aura\os\metrowin\metrowin_user_impl.h">
       <Filter>Header Files\aura\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h">
-      <Filter>Header Files\aura\os\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="aura\node\node.h">
       <Filter>Header Files\aura\node</Filter>
     </ClInclude>
@@ -2081,6 +2075,9 @@
     </ClInclude>
     <ClInclude Include="user\user\user_primitive.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\metrowin\metrowin_native_buffer.h">
+      <Filter>Header Files\aura\os\metrowin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3396,6 +3393,9 @@
     </ClCompile>
     <ClCompile Include="aura\node\windows\windows_dir.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\os_debug.cpp">
+      <Filter>Source Files\aura\os</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

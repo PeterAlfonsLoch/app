@@ -142,6 +142,12 @@
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{71468b37-4273-4440-a035-97cd2de51a31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\wndfrm">
+      <UniqueIdentifier>{830087f5-9bb6-4b1c-8ffd-0999e44af85c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\wndfrm\frame">
+      <UniqueIdentifier>{114f7b2d-adc7-4b95-b836-a39f53b0af75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -783,6 +789,9 @@
     </ClCompile>
     <ClCompile Include="graphics\graphics_window_dc.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_updowninterface.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

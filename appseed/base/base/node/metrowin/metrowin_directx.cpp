@@ -400,14 +400,14 @@ namespace metrowin
             m_windowSizeChangeInProgress = true;
             CreateWindowSizeDependentResources();
             sl.unlock();
-            System.m_posdata->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
+            System.m_possystemwindow->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
             if(System.directrix()->m_varTopicQuery.has_property("client_only"))
             {
-               for(int i = 0; i < System.m_posdata->m_pui->m_uiptraChild.get_count(); i++)
+               for(int i = 0; i < System.m_possystemwindow->m_pui->m_uiptraChild.get_count(); i++)
                {
-                  if(System.m_posdata->m_pui->m_uiptraChild[i]->IsWindowVisible())
+                  if(System.m_possystemwindow->m_pui->m_uiptraChild[i]->IsWindowVisible())
                   {
-                     System.m_posdata->m_pui->m_uiptraChild[i]->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
+                     System.m_possystemwindow->m_pui->m_uiptraChild[i]->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
 
                      //System.m_posdata->m_pui->m_uiptraChild[i]->on_layout();
                   }
@@ -820,7 +820,7 @@ namespace metrowin
 
       m_dib->Fill(0, 0, 0, 0);
 
-      System.m_posdata->m_pui->_000OnDraw(m_dib->get_graphics());
+      Sys(::aura::system::g_p).m_possystemwindow->m_pui->_000OnDraw(m_dib->get_graphics());
 
       dc->from(m_dib->get_size(), m_dib->get_graphics(), SRCCOPY);
 

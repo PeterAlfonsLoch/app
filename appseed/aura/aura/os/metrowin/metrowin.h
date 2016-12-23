@@ -53,6 +53,9 @@ END_EXTERN_C
 
 CLASS_DECL_AURA string normalize_path(const char * lpcszPath);
 
+#define LOG_THIS_TAG (typeid(*this).name())
+#define LOG_MEMBER_PREFIX __FUNCTION__
+
 
 #endif
 

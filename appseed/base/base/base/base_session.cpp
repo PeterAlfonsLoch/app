@@ -717,7 +717,7 @@ defer_check_wndfrm_core:
 
          Windows::Foundation::Point p;
 
-         p = System.m_posdata->m_pwindow->get_cursor_pos();
+         p = System.m_possystemwindow->m_pwindow->get_cursor_pos();
 
          m_ptCursor.x = (LONG)p.X;
 

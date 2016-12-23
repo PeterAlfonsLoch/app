@@ -5,8 +5,63 @@
 #pragma once
 
 
+CLASS_DECL_AURA ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPath, string & strPrefix)
+{
+
+   if (str::begins_eat_ci(strPath, "winmetro-Pictures://"))
+   {
+
+      strPrefix = "winmetro-Pictures://";
+
+      return ::Windows::Storage::KnownFolders::PicturesLibrary;
+
+   }
+   else if (str::begins_eat_ci(strPath, "winmetro-Music://"))
+   {
+
+      strPrefix = "winmetro-Music://";
+
+      return ::Windows::Storage::KnownFolders::MusicLibrary;
+
+   }
+   else if (str::begins_eat_ci(strPath, "winmetro-Videos://"))
+   {
+
+      strPrefix = "winmetro-Videos://";
+
+      return ::Windows::Storage::KnownFolders::VideosLibrary;
+
+   }
+   else
+   {
+
+      return nullptr;
+
+   }
+
+}
 
 
+CLASS_DECL_AURA ::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder, string & strPrefix)
+{
+
+   string strPath = strFolder;
+
+   ::Windows::Storage::StorageFolder ^ folder = winrt_folder(strPath, strPrefix);
+
+   return wait(folder->GetFolderAsync(strPath));
+
+}
+
+
+CLASS_DECL_AURA::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder)
+{
+
+   string strPrefix;
+
+   return winrt_get_folder(strFolder, strPrefix);
+
+}
 
 
 
@@ -109,36 +164,13 @@ namespace metrowin
 
       string strPrefix;
 
-      ::Windows::Storage::StorageFolder ^ folder = nullptr;
+      ::Windows::Storage::StorageFolder ^ folder = winrt_folder(strPath, strPrefix);
 
-
-      if(str::begins_eat_ci(strPath,"winmetro-Pictures://"))
+      if(folder == nullptr)
       {
 
-         strPrefix = "winmetro-Pictures://";
-
-         folder = ::Windows::Storage::KnownFolders::PicturesLibrary;
-
-      }
-      else if (str::begins_eat_ci(strPath, "winmetro-Music://"))
-      {
-
-         strPrefix = "winmetro-Music://";
-
-         folder = ::Windows::Storage::KnownFolders::MusicLibrary;
-
-      }
-      else if (str::begins_eat_ci(strPath, "winmetro-Videos://"))
-      {
-
-         strPrefix = "winmetro-Videos://";
-
-         folder = ::Windows::Storage::KnownFolders::VideosLibrary;
-
-      }
-      else
-      {
          return failure;
+
       }
 
       ::file::path pathFolder = strPath;

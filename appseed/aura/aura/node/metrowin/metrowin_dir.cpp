@@ -736,6 +736,29 @@ try1:
 
    }
 
+   ::file::path dir::get_music_folder()
+   {
+
+      return "winmetro-Music://";
+
+   }
+
+
+   ::file::path dir::get_video_folder()
+   {
+
+      return "winmetro-Videos://";
+
+   }
+
+
+   ::file::path dir::get_image_folder()
+   {
+
+      return "winmetro-Pictures://";
+
+   }
+
 
 } // namespace metrowin
 

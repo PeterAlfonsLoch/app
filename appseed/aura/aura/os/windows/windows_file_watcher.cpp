@@ -224,6 +224,8 @@ namespace file_watcher
    file_watch_id os_file_watcher::add_watch(const string & directory,file_watch_listener* watcher,bool bRecursive, bool bOwn)
    {
 
+      synch_lock sl(m_pmutex);
+
       file_watch_id id = ++m_idLast;
 
       watch_struct * pwatch = CreateWatch(directory,
@@ -252,6 +254,8 @@ namespace file_watcher
    void os_file_watcher::remove_watch(const string & directory)
    {
 
+      synch_lock sl(m_pmutex);
+
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
 
       for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
@@ -270,23 +274,35 @@ namespace file_watcher
 
    }
 
+
    void os_file_watcher::remove_watch(file_watch_id id)
    {
+
+      synch_lock sl(m_pmutex);
+
       watch_map::pair * ppair = m_watchmap.PLookup(id);
 
       if(ppair == NULL)
          return;
 
       watch_struct * pwatch = ppair->m_element2;
+
       m_watchmap.remove_key(ppair->m_element1);
 
       DestroyWatch(pwatch);
+
    }
+
 
    string os_file_watcher::watch_path(file_watch_id watchid)
    {
+
+      synch_lock sl(m_pmutex);
+
       return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
+
    }
+
 
    void os_file_watcher::update()
    {

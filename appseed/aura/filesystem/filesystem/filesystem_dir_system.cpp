@@ -1444,6 +1444,29 @@ namespace file
 
       }
 
+      ::file::path system::get_music_folder()
+      {
+
+         return "music";
+
+      }
+
+
+      ::file::path system::get_video_folder()
+      {
+
+         return "video";
+
+      }
+
+
+      ::file::path system::get_image_folder()
+      {
+
+         return "image";
+
+      }
+
 
    }  // namespace dir
 

@@ -13,23 +13,26 @@ namespace file_watcher
    public:
 
 
-      struct op :
-         virtual public object
-      {
+      //struct op :
+      //   virtual public object
+      //{
 
-         string                  m_str;
-         bool                    m_bRecursive;
-         file_watch_listener *   m_plistener;
-         event                   m_event;
-         file_watch_id           m_id;
-         bool                    m_bOwn;
+      //   string                  m_str;
+      //   bool                    m_bRecursive;
+      //   file_watch_listener *   m_plistener;
+      //   event                   m_event;
+      //   file_watch_id           m_id;
+      //   bool                    m_bOwn;
 
-         op() : m_event(get_thread_app(), false, true) {}
+      //   op() : m_event(get_thread_app(), false, true) {}
 
-      };
+      //};
+
+      ref_array < file_watch_listener > m_listenerptra;
 
 
       listener_thread(::aura::application * papp);
+      virtual ~listener_thread();
 
 
       virtual int32_t run();
@@ -48,9 +51,9 @@ namespace file_watcher
 
       }
 
-      virtual void install_message_handling(::message::dispatch * pdispatch) override;
+      //virtual void install_message_handling(::message::dispatch * pdispatch) override;
 
-      DECL_GEN_SIGNAL(_001OnUser123);
+      //DECL_GEN_SIGNAL(_001OnUser123);
 
    };
 

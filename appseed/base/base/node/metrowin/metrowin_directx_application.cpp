@@ -442,9 +442,9 @@ namespace metrowin
       m_psystem = psystem;
 
 
-      m_psystem->m_pbasesystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
+      m_psystem->m_pbasesystem->m_possystemwindow->m_pui = new ::user::interaction(m_psystem);
 
-      m_psystem->m_pbasesystem->m_posdata->m_pwindow = this;
+      m_psystem->m_pbasesystem->m_possystemwindow->m_pwindow = this;
 
       m_papp = m_psystem;
 
@@ -490,7 +490,7 @@ namespace metrowin
    void directx_application::init_part_2ex()
    {
 
-      m_psystem->m_posdata->m_pwindow = this;
+      m_psystem->m_possystemwindow->m_pwindow = this;
 
       int nReturnCode = 0;
 
@@ -509,9 +509,9 @@ namespace metrowin
       initialize.pwindow = this;
       initialize.window = m_window.Get();
 
-      m_psystem->m_posdata->m_pui->initialize(&initialize);
+      m_psystem->m_possystemwindow->m_pui->initialize_native_window(&initialize);
 
-      m_psystem->m_posdata->m_pui->m_pimpl.cast < ::metrowin::interaction_impl >()->m_xapp = this;
+      m_psystem->m_possystemwindow->m_pui->m_pimpl.cast < ::metrowin::interaction_impl >()->m_xapp = this;
 
       //m_psystem->m_ptwf = create_twf_2ex();
 
@@ -685,7 +685,7 @@ namespace metrowin
 
             string str = eventArgs->Uri->AbsoluteUri;
 
-            ::aura::application * papp = m_psystem->m_posdata->m_pui->m_pimpl->get_app();
+            ::aura::application * papp = m_psystem->m_possystemwindow->m_pui->m_pimpl->get_app();
 
             if (papp->m_pipi == NULL)
             {
@@ -781,10 +781,10 @@ namespace metrowin
       if(m_psystem == NULL)
          return;
 
-      if (m_psystem->m_posdata->m_pui == NULL)
+      if (m_psystem->m_possystemwindow->m_pui == NULL)
          return;
 
-      if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
+      if (m_psystem->m_possystemwindow->m_pui->m_pimpl == NULL)
          return;
 
       smart_pointer < ::message::base > spbase;
@@ -794,12 +794,12 @@ namespace metrowin
       spbase = pkey;
 
       pkey->m_uiMessage = WM_CHAR;
-      pkey->m_pwnd = m_psystem->m_posdata->m_pui;
+      pkey->m_pwnd = m_psystem->m_possystemwindow->m_pui;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 //      pkey->m_charrecv = args;
 
 
-      m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
+      m_psystem->m_possystemwindow->m_pui->m_pimpl->message_handler(spbase);
 
    }
 
@@ -814,10 +814,10 @@ namespace metrowin
       if(m_psystem == NULL)
          return;
 
-      if (m_psystem->m_posdata->m_pui == NULL)
+      if (m_psystem->m_possystemwindow->m_pui == NULL)
          return;
 
-      if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
+      if (m_psystem->m_possystemwindow->m_pui->m_pimpl == NULL)
          return;
 
       smart_pointer < ::message::base > spbase;
@@ -827,7 +827,7 @@ namespace metrowin
       spbase = pkey;
 
       pkey->m_uiMessage          = WM_KEYDOWN;
-      pkey->m_pwnd               = m_psystem->m_posdata->m_pui;
+      pkey->m_pwnd               = m_psystem->m_possystemwindow->m_pui;
       pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
       pkey->m_ekey               = virtualkey_to_userkey(args->VirtualKey);
       pkey->m_wparam             = pkey->m_nChar;
@@ -836,7 +836,7 @@ namespace metrowin
 //      pkey->m_key = args;
 
 
-      m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
+      m_psystem->m_possystemwindow->m_pui->m_pimpl->message_handler(spbase);
 
    }
 
@@ -846,10 +846,10 @@ namespace metrowin
       if(m_psystem == NULL)
          return;
 
-      if (m_psystem->m_posdata->m_pui == NULL)
+      if (m_psystem->m_possystemwindow->m_pui == NULL)
          return;
 
-      if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
+      if (m_psystem->m_possystemwindow->m_pui->m_pimpl == NULL)
          return;
 
       smart_pointer < ::message::base > spbase;
@@ -865,7 +865,7 @@ namespace metrowin
       }
 
       pkey->m_uiMessage       = WM_KEYUP;
-      pkey->m_pwnd            = m_psystem->m_posdata->m_pui;
+      pkey->m_pwnd            = m_psystem->m_possystemwindow->m_pui;
       pkey->m_nChar           = virtualkey_to_char(args->VirtualKey);
       pkey->m_ekey               = virtualkey_to_userkey(args->VirtualKey);
       pkey->m_wparam          = pkey->m_nChar;
@@ -901,7 +901,7 @@ namespace metrowin
       //}
       //else
       //{
-         m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
+         m_psystem->m_possystemwindow->m_pui->m_pimpl->message_handler(spbase);
       //}
 
 
@@ -915,10 +915,10 @@ namespace metrowin
       if(m_psystem == NULL)
          return;
 
-      if(m_psystem->m_posdata->m_pui == NULL)
+      if(m_psystem->m_possystemwindow->m_pui == NULL)
          return;
 
-      if(m_psystem->m_posdata->m_pui->m_pimpl == NULL)
+      if(m_psystem->m_possystemwindow->m_pui->m_pimpl == NULL)
          return;
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
@@ -934,11 +934,11 @@ namespace metrowin
       pmouse->m_pt.x       = (LONG) pointerPoint->RawPosition.X;
       pmouse->m_pt.y       = (LONG) pointerPoint->RawPosition.Y;
       pmouse->m_uiMessage  = WM_MOUSEMOVE;
-      pmouse->m_pwnd       = m_psystem->m_posdata->m_pui;
+      pmouse->m_pwnd       = m_psystem->m_possystemwindow->m_pui;
 
       m_ptLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
+      m_psystem->m_possystemwindow->m_pui->m_pimpl->message_handler(spbase);
 
    }
 
@@ -949,10 +949,10 @@ namespace metrowin
       if(m_psystem == NULL)
          return;
 
-      if(m_psystem->m_posdata->m_pui == NULL)
+      if(m_psystem->m_possystemwindow->m_pui == NULL)
          return;
 
-      if(m_psystem->m_posdata->m_pui->m_pimpl == NULL)
+      if(m_psystem->m_possystemwindow->m_pui->m_pimpl == NULL)
          return;
 
       Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
@@ -1000,11 +1000,11 @@ namespace metrowin
 
       }
 
-      pmouse->m_pwnd = m_psystem->m_posdata->m_pui;
+      pmouse->m_pwnd = m_psystem->m_possystemwindow->m_pui;
 
       m_ptLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
+      m_psystem->m_possystemwindow->m_pui->m_pimpl->message_handler(spbase);
 
    }
 
@@ -1055,18 +1055,25 @@ namespace metrowin
 
 
 
-      if (m_psystem->m_posdata->m_pui == NULL)
+      if (m_psystem->m_possystemwindow->m_pui == NULL)
          return;
 
-      if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
+      if (m_psystem->m_possystemwindow->m_pui->m_pimpl == NULL)
          return;
 
 
-      pmouse->m_pwnd = m_psystem->m_posdata->m_pui;
+      pmouse->m_pwnd = m_psystem->m_possystemwindow->m_pui;
 
       m_ptLastCursor = pointerPoint->RawPosition;
 
-      m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
+      if (::get_thread() == NULL)
+      {
+       
+         ::set_thread(m_psystem->m_possystemwindow->m_pui->get_app());
+
+      }
+
+      m_psystem->m_possystemwindow->m_pui->m_pimpl->message_handler(spbase);
 
    }
 
