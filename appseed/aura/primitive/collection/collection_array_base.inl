@@ -668,7 +668,14 @@ template < class TYPE,class ALLOCATOR >
 
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);
-      ALLOCATOR::construct(&pNewData[m_nSize],nNewSize - m_nSize);
+
+      if (nNewSize > m_nSize)
+      {
+
+         ALLOCATOR::construct(&pNewData[m_nSize], nNewSize - m_nSize);
+
+      }
+
       // get rid of old stuff (note: no destructors called)
       ALLOCATOR::_free(m_pData);
       m_pData = pNewData;
