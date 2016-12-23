@@ -2558,6 +2558,7 @@ namespace user
                                  //               string strMap;
                   m_ptree->m_iSelEnd += str.get_length();
                   m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+                  //m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
                   m_ptree-> m_editfile.Insert(str,str.get_length());
                   IndexRegisterInsert(m_ptree->m_iSelEnd,str);
                   m_ptree->m_editfile.MacroEnd();

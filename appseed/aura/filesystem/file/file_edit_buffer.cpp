@@ -730,7 +730,7 @@ namespace file
       if (m_ptreeitem == m_ptreeitemFlush)
       {
 
-         return m_pfile->seek(lOff, nFrom);
+         return m_dwPosition=m_pfile->seek(lOff, nFrom);
 
       }
 

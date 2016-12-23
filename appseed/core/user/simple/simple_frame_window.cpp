@@ -2756,6 +2756,15 @@ bool simple_frame_window::create_bars()
 bool simple_frame_window::on_create_bars()
 {
 
+   ::file::path path = Application.dir().matter(m_pdocumenttemplate->m_strMatter / "toolbar.xml");
+
+   if (Application.file().exists(path))
+   {
+
+      LoadToolBar(m_pdocumenttemplate->m_strMatter, m_pdocumenttemplate->m_strMatter / "toolbar.xml");
+
+   }
+
    return true;
 
 }
