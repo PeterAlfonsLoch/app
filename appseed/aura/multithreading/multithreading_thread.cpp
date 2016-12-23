@@ -1591,8 +1591,6 @@ uint32_t __thread_entry(void * pparam)
    catch(...)
    {
 
-      ASSERT(FALSE);
-
       return -1;
 
    }

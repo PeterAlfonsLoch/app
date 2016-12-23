@@ -89,4 +89,36 @@ inline ::thread * object::fork(PRED pred)
 }
 
 
+template < typename T >
+inline void fork_release(::aura::application * papp, sp(T) & t)
+{
+
+   try
+   {
+
+      T * pt;
+
+      pt = t.m_p;
+
+      pt->add_ref();
+
+      t.release();
+
+      ::fork(papp, [&]()
+      {
+
+         ::release(pt);
+
+      });
+
+   }
+   catch (...)
+   {
+
+
+   }
+
+}
+
+
 
