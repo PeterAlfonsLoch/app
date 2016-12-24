@@ -2591,6 +2591,70 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::buffer_sp pfile, :
 
    }
 
+#ifdef METROWIN
+
+bool windows_load_dib_from_file(::draw2d::dib * pdib, Windows::Storage::Streams::IRandomAccessStream ^stream , ::aura::application * papp)
+{
+
+   if (!defer_co_initialize_ex())
+      return false;
+
+   try
+   {
+
+      comptr < IStream > pstream;
+
+      ::CreateStreamOverRandomAccessStream(stream, IID_PPV_ARGS(&pstream.get()));
+
+      comptr < IWICImagingFactory > piFactory = NULL;
+
+      comptr< IWICBitmapDecoder > decoder;
+      HRESULT hr = CoCreateInstance(
+         CLSID_WICImagingFactory,
+         NULL,
+         CLSCTX_INPROC_SERVER,
+         IID_IWICImagingFactory,
+         (LPVOID*)&piFactory);
+
+      if (SUCCEEDED(hr))
+      {
+
+         hr = piFactory->CreateDecoderFromStream(pstream, NULL, WICDecodeMetadataCacheOnDemand, &decoder.get());
+      }
+
+      //if(SUCCEEDED(hr))
+      //{
+
+      //   hr = decoder->Initialize(pstream,WICDecodeMetadataCacheOnDemand);
+
+      //}
+
+      comptr< IWICBitmapFrameDecode> pframe;
+
+      if (!windows_load_dib_from_frame(pframe, pdib, piFactory, decoder, 0))
+      {
+
+         return false;
+
+      }
+
+   }
+   catch (...)
+   {
+      return false;
+   }
+   //DWORD dw2 =::get_tick_count();
+   //TRACE("InPath %d ms\n",dw2 - dw1);
+   //dwLast = dw2;
+
+   //memfile.Truncate(0);
+
+   //}
+   return true;
+
+}
+
+#endif
 
 bool windows_write_dib_to_file(::file::buffer_sp pfile, ::draw2d::dib * pdib, ::visual::save_image * psaveimage, ::aura::application * papp)
 {

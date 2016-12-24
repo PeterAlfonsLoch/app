@@ -782,11 +782,18 @@ bool defer_co_initialize_ex()
    if(t_iCoInitialize != FALSE)
       return true;
 
-   t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+   HRESULT hr = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
 
-   if(FAILED(t_hresultCoInitialize))
+   t_hresultCoInitialize = hr;
+
+   if(FAILED(hr))
    {
+      if (hr == 0x80010106)
+      {
 
+         return true;
+
+      }
       ::output_debug_string("Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init");
 
       return false;

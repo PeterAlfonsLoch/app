@@ -17,9 +17,11 @@ namespace base
       {
       public:
 
+         bool                                         m_bWindowSizeChange;
          sp(::user::interaction)                      m_pui;
          ::axis::system_window ^                      m_pwindow;
 
+         os_system_window();
 
    };
 

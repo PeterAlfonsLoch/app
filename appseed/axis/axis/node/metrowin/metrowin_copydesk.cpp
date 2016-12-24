@@ -3,6 +3,9 @@
 #include "metrowin.h"
 #include <shlobj.h>
 
+bool windows_load_dib_from_file(::draw2d::dib * pdib, Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp);
+
+
 namespace metrowin
 {
 
@@ -264,6 +267,51 @@ namespace metrowin
 
    bool copydesk::desk_to_dib(::draw2d::dib * pdib)
    {
+
+      auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+
+      if (dataPackage == nullptr)
+      {
+
+         return false;
+
+      }
+
+      if (!dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Bitmap))
+      {
+
+         return false;
+
+      }
+
+      ::Windows::Storage::Streams::RandomAccessStreamReference ^ ref = ::wait(dataPackage->GetBitmapAsync());
+
+      if (ref == nullptr)
+      {
+
+         return false;
+
+      }
+
+      ::Windows::Storage::Streams::IRandomAccessStreamWithContentType ^ stream = ::wait(ref->OpenReadAsync());
+
+
+      if (stream == nullptr)
+      {
+
+         return false;
+
+      }
+
+      if (!windows_load_dib_from_file(pdib, stream, get_app()))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
 #ifdef WINDOWSEX
       if(!m_p->OpenClipboard())
          return false;

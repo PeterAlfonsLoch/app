@@ -111,6 +111,14 @@ namespace base
 {
 
 
+   system::os_system_window::os_system_window()
+   {
+
+      m_bWindowSizeChange = false;
+
+   }
+
+
    system::system(::aura::application * papp) :
       ::aura::system(this, NULL),
       ::axis::system(this)

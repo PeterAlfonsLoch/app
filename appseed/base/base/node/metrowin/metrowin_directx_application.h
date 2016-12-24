@@ -12,47 +12,43 @@ namespace metrowin
    internal:
 
 
-      Windows::Foundation::Point m_ptLastCursor;
+      Windows::Foundation::Point                m_ptLastCursor;
 
-      String ^ m_strId;
+      String ^                                  m_strId;
 
-      Agile<Windows::UI::Core::CoreWindow>  m_window;
+      Agile < Windows::UI::Core::CoreWindow >   m_window;
 
-      directx_base ^                         m_directx;
+      directx_base ^                            m_directx;
       
-      bool  m_bFontopusShift;
+      bool                                      m_bFontopusShift;
 
-      mutex m_mutex;
+      mutex                                     m_mutex;
 
-      ::base::system * m_psystem;
-      ::base::application * m_papp;
+      ::base::system *                          m_psystem;
 
-      bool        m_bLeftButton;
-      bool        m_bMiddleButton;
-      bool        m_bRightButton;
+      ::base::application *                     m_papp;
 
-      Windows::Foundation::Rect m_rectLastWindowRect;
+      bool                                      m_bLeftButton;
 
-      ::aura::application * get_app() const
-      {
-         return m_papp;
-      }
+      bool                                      m_bMiddleButton;
+
+      bool                                      m_bRightButton;
+
+      Windows::Foundation::Rect                 m_rectLastWindowRect;
 
 
       directx_application(::base::system * psystem,String ^ strId);
 
-
+      
       void init_part_2ex();
-      void install_message_handling_2ex();
-      //::user::window_draw * create_twf_2ex();
 
-      // DirectXBase Methods
-      //virtual void CreateDeviceIndependentResources() override;
-      //virtual void CreateDeviceResources() override;
-      //virtual void CreateWindowSizeDependentResources() override;
-      //virtual void Render() override;
+      void install_message_handling_2ex();
+
+      ::aura::application * get_app() const;
+
 
    public:
+
       // IFrameworkView Methods
       virtual void Initialize(_In_ Windows::ApplicationModel::Core::CoreApplicationView^ applicationView);
       virtual void SetWindow(_In_ Windows::UI::Core::CoreWindow^ window);

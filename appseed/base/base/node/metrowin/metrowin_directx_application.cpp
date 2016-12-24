@@ -1187,6 +1187,15 @@ namespace metrowin
 
    }
 
+
+   ::aura::application * directx_application::get_app() const
+   {
+
+      return m_papp;
+
+   }
+
+
 } // namespace metrowin
 
 

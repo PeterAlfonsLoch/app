@@ -102,7 +102,18 @@ namespace filemanager
 
          m_pfilewatcherlistenerthread = new ::file_watcher::listener_thread(get_app());
 
-         m_pfilewatcherlistenerthread->add_file_watch(m_item->m_filepath, this, false);
+         try
+         {
+
+            m_pfilewatcherlistenerthread->add_file_watch(m_item->m_filepath, this, false);
+
+         }
+         catch (...)
+         {
+
+         }
+
+
 
       }
 

@@ -61,6 +61,8 @@ namespace metrowin
       virtual void Present();
       void ValidateDevice();
 
+      virtual void OnWindowSizeChange();
+
    protected private:
       Agile<Windows::UI::Core::CoreWindow>  m_window;
 

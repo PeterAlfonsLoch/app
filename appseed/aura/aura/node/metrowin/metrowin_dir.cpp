@@ -409,47 +409,60 @@ namespace metrowin
 
       for(int i = 0; i < stra.get_size(); i++)
       {
-         if(!is(stra[i],papp) && ::GetLastError() != ERROR_ACCESS_DENIED)
+
+         ::file::path pathDir = stra[i];
+
+         if(!is(pathDir,papp) && ::GetLastError() != ERROR_ACCESS_DENIED)
          {
 
-            if(!::CreateDirectoryW(::str::international::utf8_to_unicode("\\\\?\\" + stra[i]),NULL))
+            if (!::CreateDirectoryW(::str::international::utf8_to_unicode(pathDir), NULL))
             {
-               uint32_t dwError = ::GetLastError();
-               if(dwError == ERROR_ALREADY_EXISTS)
-               {
-                  string str;
-                  str = "\\\\?\\" + stra[i];
-                  str.trim_right("\\/");
-                  try
-                  {
-                     Application.file().del(str);
-                  }
-                  catch(...)
-                  {
-                  }
-                  str = stra[i];
-                  str.trim_right("\\/");
-                  try
-                  {
-                     Application.file().del(str);
-                  }
-                  catch(...)
-                  {
-                  }
-                  if(::CreateDirectoryW(::str::international::utf8_to_unicode("\\\\?\\" + stra[i]),NULL))
-                  {
-                     m_isdirmap.set(stra[i],true,0);
-                     goto try1;
-                  }
-                  else
-                  {
-                     dwError = ::GetLastError();
-                  }
-               }
-               string strError = get_system_error_message(dwError);
 
-               APPTRACE("dir::mk CreateDirectoryW last error(%d)=%s",dwError,strError);
-               //m_isdirmap.set(stra[i], false);
+               if (!::CreateDirectoryW(::str::international::utf8_to_unicode("\\\\?\\" + pathDir), NULL))
+               {
+
+                  uint32_t dwError = ::GetLastError();
+
+                  if (dwError == ERROR_ALREADY_EXISTS)
+                  {
+                     string str;
+                     str = "\\\\?\\" + stra[i];
+                     str.trim_right("\\/");
+                     try
+                     {
+                        Application.file().del(str);
+                     }
+                     catch (...)
+                     {
+                     }
+                     str = stra[i];
+                     str.trim_right("\\/");
+                     try
+                     {
+                        Application.file().del(str);
+                     }
+                     catch (...)
+                     {
+                     }
+                     if (::CreateDirectoryW(::str::international::utf8_to_unicode("\\\\?\\" + stra[i]), NULL))
+                     {
+                        m_isdirmap.set(stra[i], true, 0);
+                        goto try1;
+                     }
+                     else
+                     {
+                        dwError = ::GetLastError();
+                     }
+                  }
+                  string strError = get_system_error_message(dwError);
+
+                  APPTRACE("dir::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
+                  //m_isdirmap.set(stra[i], false);
+               }
+               else
+               {
+                  m_isdirmap.set(stra[i], true, 0);
+               }
             }
             else
             {

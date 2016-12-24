@@ -368,6 +368,15 @@ namespace metrowin
 
             dwLastRedraw = ::get_tick_count();
 
+            if (::aura::system::g_p->m_pbasesystem->m_possystemwindow->m_bWindowSizeChange)
+            {
+
+               ::aura::system::g_p->m_pbasesystem->m_possystemwindow->m_bWindowSizeChange = false;
+
+               m_xapp->m_directx->OnWindowSizeChange();
+
+            }
+
             if (m_pui->has_pending_graphical_update()
                || m_pui->defer_check_layout())
             {

@@ -381,42 +381,50 @@ namespace metrowin
       m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal,ref new Windows::UI::Core::DispatchedHandler([this]()
       {
 
-         synch_lock sl(&draw2d_direct2_mutex());
+         ::aura::system::g_p->m_pbasesystem->m_possystemwindow->m_bWindowSizeChange = true;
 
-         //::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
-
-         //if(m_dpi != displayinformation->LogicalDpi)
-         //{
-         //   return;
-         //}
-
-         if(m_size.cx != m_windowBounds.Width ||
-               m_size.cy != m_windowBounds.Height)
-         {
-            m_d2dContext->SetTarget(nullptr);
-            m_d2dTargetBitmap = nullptr;
-            m_d3dRenderTargetView = nullptr;
-            m_d3dDepthStencilView = nullptr;
-            m_windowSizeChangeInProgress = true;
-            CreateWindowSizeDependentResources();
-            sl.unlock();
-            System.m_possystemwindow->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
-            if(System.directrix()->m_varTopicQuery.has_property("client_only"))
-            {
-               for(int i = 0; i < System.m_possystemwindow->m_pui->m_uiptraChild.get_count(); i++)
-               {
-                  if(System.m_possystemwindow->m_pui->m_uiptraChild[i]->IsWindowVisible())
-                  {
-                     System.m_possystemwindow->m_pui->m_uiptraChild[i]->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
-
-                     //System.m_posdata->m_pui->m_uiptraChild[i]->on_layout();
-                  }
-               }
-            }
-         }
       }));
 
    }
+
+   //::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+
+   //if(m_dpi != displayinformation->LogicalDpi)
+   //{
+   //   return;
+   //}
+   void directx_base::OnWindowSizeChange()
+   {
+
+      synch_lock sl(&draw2d_direct2_mutex());
+
+      if (m_size.cx != m_windowBounds.Width ||
+         m_size.cy != m_windowBounds.Height)
+      {
+         m_d2dContext->SetTarget(nullptr);
+         m_d2dTargetBitmap = nullptr;
+         m_d3dRenderTargetView = nullptr;
+         m_d3dDepthStencilView = nullptr;
+         m_windowSizeChangeInProgress = true;
+         CreateWindowSizeDependentResources();
+         sl.unlock();
+         System.m_possystemwindow->m_pui->SetWindowPos(ZORDER_TOP, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
+         if (System.directrix()->m_varTopicQuery.has_property("client_only"))
+         {
+            for (int i = 0; i < System.m_possystemwindow->m_pui->m_uiptraChild.get_count(); i++)
+            {
+               if (System.m_possystemwindow->m_pui->m_uiptraChild[i]->IsWindowVisible())
+               {
+                  System.m_possystemwindow->m_pui->m_uiptraChild[i]->SetWindowPos(ZORDER_TOP, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
+
+                  //System.m_posdata->m_pui->m_uiptraChild[i]->on_layout();
+               }
+            }
+         }
+      }
+
+   }
+
 
    // Allocate all memory resources that change on a window SizeChanged event.
    void directx_base::CreateWindowSizeDependentResources()

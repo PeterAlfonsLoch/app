@@ -161,6 +161,13 @@ namespace file_watcher
 
       pwatch->m_folder = winrt_get_folder(strDirectory, strPrefix);
 
+      if (pwatch->m_folder == nullptr)
+      {
+
+         return nullptr;
+
+      }
+
       pwatch->m_queryresult = pwatch->m_folder->CreateItemQuery();
 
 		if(pwatch->m_queryresult == nullptr)
