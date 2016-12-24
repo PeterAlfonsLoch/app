@@ -42,8 +42,6 @@ namespace file_watcher
    file_watch_id listener_thread::add_file_watch(const char * directory, file_watch_listener * plistener, bool bRecursive, bool bOwn)
    {
 
-      synch_lock sl(m_pmutex);
-
 #ifndef METROWIN
 
       if(get_os_data() == NULL)

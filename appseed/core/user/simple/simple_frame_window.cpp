@@ -1446,7 +1446,6 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
 void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
 {
-
    defer_check_layout();
 
    defer_check_zorder();
@@ -2389,6 +2388,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
    if (!is_this_visible())
       return;
 
+
    if(GetExStyle() & WS_EX_LAYERED)
    {
 
@@ -2428,6 +2428,8 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
          }
 
       }
+
+
 
       _001DrawThis(pgraphics);
 
@@ -2501,13 +2503,13 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
 void simple_frame_window::_011OnDraw(::draw2d::graphics * pgraphics)
 {
 
-   if ((m_bWindowFrame || _001IsTranslucent()) && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
+   if (m_bWindowFrame && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
    {
 
       ::user::wndfrm::frame::WorkSetClientInterface::_001OnDraw(pgraphics);
 
    }
-   else
+   else if(!_001IsTranslucent())
    {
 
       rect rect;

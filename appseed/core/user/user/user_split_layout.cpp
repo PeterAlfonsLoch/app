@@ -461,7 +461,7 @@ namespace user
 
          pwnd = m_splitbara.element_at(i);
 
-         if (!is_pane_visible(i) || !bIsWindowVisible)
+         if (!is_pane_visible(i) || !bIsWindowVisible || m_panea[i]->m_bFixedSize)
          {
 
             pwnd->ShowWindow(SW_HIDE);
@@ -473,7 +473,6 @@ namespace user
          CalcSplitBarRect(i, &rectBar);
 
          uiFlags = uiBaseFlags;
-
 
          pwnd->SetWindowPos(
             0,

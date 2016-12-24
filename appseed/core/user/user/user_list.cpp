@@ -517,6 +517,7 @@ namespace user
       {
          if(!pdrawitem->m_plist->m_bMorePlain)
          {
+            pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             pdrawitem->m_pgraphics->Draw3dRect(pdrawitem->m_rectItem, ARGB(77, 235, 235, 255), ARGB(77, 235, 235, 255));
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem,ARGB(40,255,255,255));
          }
