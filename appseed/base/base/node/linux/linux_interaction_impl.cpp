@@ -2891,49 +2891,7 @@ return 0;
                if (!m_pui->m_bLockWindowUpdate)
                {
 
-//                  if(m_pui->GetExStyle() & WS_EX_LAYERED)
-//                  {
-//
-//
-//                     if (m_rectLastPos != m_rectParentClient)
-//                     {
-//
-//                        m_dwLastPos = ::get_tick_count();
-//
-//                        m_rectLastPos = m_rectParentClient;
-//
-//                     }
-//                     else
-//                     {
-//
-//                        rect64 r2;
-//
-//                        GetWindowRect(r2);
-//
-//                        if (r2 != m_rectParentClient && ::get_tick_count() - m_dwLastPos > 400)
-//                        {
-//
-//                           ::SetWindowPos(m_oswindow, NULL,
-//                              m_rectParentClient.left,
-//                              m_rectParentClient.top,
-//                              m_rectParentClient.width(),
-//                              m_rectParentClient.height(),
-//                              SWP_NOZORDER
-//                              | SWP_NOREDRAW
-//                              | SWP_NOCOPYBITS
-//                              | SWP_NOACTIVATE
-//                              | SWP_NOOWNERZORDER
-//                              | SWP_NOSENDCHANGING
-//                              | SWP_DEFERERASE);
-//
-//                        }
-//
-//                     }
-//
-//                  }
-
-                  if (m_pui->has_pending_graphical_update()
-                  || m_pui->check_need_layout())
+                  if (m_pui->has_pending_graphical_update() || m_pui->check_need_layout())
                   {
 
                      RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
@@ -2944,10 +2902,12 @@ return 0;
 
                }
 
-               if (::get_tick_count() - dwStart < 5)
+               DWORD dwDiff = ::get_tick_count() - dwStart;
+
+               if (dwDiff < 20)
                {
 
-                  Sleep(5);
+                  Sleep(20 - dwDiff);
 
                }
 

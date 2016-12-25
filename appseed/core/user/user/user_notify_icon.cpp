@@ -1,18 +1,24 @@
-//#include "framework.h"
 
 
 static ::user::notify_icon * g_pnotifyiconLast = NULL;
+
+
 #ifdef LINUX
+
    #include <dlfcn.h>
    BEGIN_EXTERN_C
    typedef void * BASECORE_APP_INDICATOR_NEW(const char *, const char *, const char *, i_close_quit *);
    typedef void BASECORE_APP_INDICATOR_TERM(void *);
+   typedef void BASECORE_APP_INDICATOR_STEP(void *);
    END_EXTERN_C
    extern void * g_pbasecore;
+
 #endif
+
 
 namespace user
 {
+
 
    notify_icon::notify_icon(::aura::application * papp) :
       object(papp)
@@ -52,37 +58,59 @@ namespace user
 
    void notify_icon::install_message_handling(::message::dispatch * pinterface)
    {
-   #ifdef WINDOWSEX
+
+#ifdef WINDOWSEX
+
       IGUI_WIN_MSG_LINK(MessageNotifyIcon, pinterface, this, &notify_icon::_001OnNotifyIconMessage);
-      #endif
+
+#endif
+
    }
+
 
    bool notify_icon::create(UINT uiId, notify_icon_listener * plistener, sp(::visual::icon) hicon)
    {
 
       if(m_bCreated)
+      {
+
          return false;
+
+      }
 
       m_strId.Format("user::notify_icon - %d", uiId);
 
       m_strId = "ca2-" + hicon->m_strAppTrayIcon + "-" + m_strId;
 
-      #ifdef WINDOWSEX
+#ifdef WINDOWSEX
+
       if(!create_message_queue(m_strId))
+      {
+
          return false;
-         #endif
+
+      }
+
+#endif
 
       m_uiId                     = uiId;
+
 #ifdef WINDOWSEX
+
       m_nid.hWnd                 = get_safe_handle();
       m_nid.uID                  = uiId;
       m_nid.hIcon                = *hicon;
       m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
       m_nid.uCallbackMessage     = MessageNotifyIcon;
+
 #elif defined(LINUX)
+
 #elif defined(MACOS)
+
 #elif defined(METROWIN)
+
 #elif defined(VSNORD)
+
 #else
       throw todo(get_app());
 
@@ -160,6 +188,7 @@ namespace user
          return false;
 
       }
+
 #elif defined(MACOS)
 
       string strFolder;
@@ -222,6 +251,7 @@ namespace user
       notify_icon_init(strFile);
 
 #else
+
 #endif
 
       m_bCreated = true;
@@ -230,32 +260,47 @@ namespace user
 
    }
 
+
    bool notify_icon::ModifyIcon(sp(::visual::icon) hicon)
    {
 
       if(!m_bCreated)
+      {
+
          return false;
 
+      }
+
 #ifdef WINDOWSEX
+
       m_nid.hIcon       = (HICON) *hicon;
+
       m_nid.uFlags      = NIF_ICON;
 
 
       if(!Shell_NotifyIcon(NIM_MODIFY, &m_nid))
       {
+
          return false;
+
       }
 
 #else
+
       throw todo(get_app());
+
 #endif
 
       return true;
 
    }
+
+
    void notify_icon::AddHiddenWindow(sp(::user::interaction) pwnd)
    {
+
       m_wndptraHidden.add_unique(pwnd);
+
    }
 
 
@@ -263,8 +308,11 @@ namespace user
    {
 
       if(!m_bCreated)
+      {
+
          return false;
 
+      }
 
 #ifdef WINDOWSEX
 
@@ -272,33 +320,40 @@ namespace user
 
       if(!Shell_NotifyIcon(NIM_DELETE, &m_nid))
       {
+
          return false;
+
       }
+
       DestroyWindow();
+
 #elif defined(LINUX)
+
       {
+
          BASECORE_APP_INDICATOR_TERM * f =  (BASECORE_APP_INDICATOR_TERM *) dlsym(g_pbasecore, "basecore_app_indicator_term");
 
          (*f)(m_pindicator);
+
       }
+
 #else
+
       throw todo(get_app());
+
 #endif
 
       m_bCreated = false;
-
-
-
 
       return true;
 
    }
 
+
    void notify_icon::_001OnNotifyIconMessage(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base, pbase, pobj);
-
 
       if (pbase->m_lparam == WM_LBUTTONDOWN)
       {
@@ -308,22 +363,31 @@ namespace user
 
             try
             {
+
                sp(simple_frame_window) pframe = (m_wndptraHidden.element_at(0));
+
                if (pframe != NULL)
                {
+
                   pframe->WfiRestore();
+
                }
                else
                {
+
                   m_wndptraHidden.element_at(0)->ShowWindow(SW_SHOW);
+
                }
+
             }
             catch (...)
             {
-            }
-            m_wndptraHidden.remove_at(0);
-         }
 
+            }
+
+            m_wndptraHidden.remove_at(0);
+
+         }
 
       }
 
@@ -331,19 +395,28 @@ namespace user
 
    }
 
-void notify_icon::notify_icon_play(const char * action)
+
+   void notify_icon::notify_icon_play(const char * action)
    {
+
       string strAction(action);
 
       if(strAction == "close")
       {
+
          __close();
+
       }
       else if(strAction== "quite")
       {
+
          __quit();
+
       }
+
    }
+
+
    void notify_icon::__close()
    {
 
@@ -355,8 +428,6 @@ void notify_icon::notify_icon_play(const char * action)
    void notify_icon::__quit()
    {
 
-
-
       m_plistener->OnNotifyIconMessage(m_uiId, WM_QUIT);
 
    }
@@ -364,7 +435,6 @@ void notify_icon::notify_icon_play(const char * action)
 
    bool notify_icon::__close_is_closed()
    {
-
 
       return m_plistener->__close_is_closed();
 
@@ -379,6 +449,28 @@ void notify_icon::notify_icon_play(const char * action)
    }
 
 
+   void notify_icon::step()
+   {
+
+#if defined(LINUX)
+
+      if(m_pindicator != NULL)
+      {
+
+         BASECORE_APP_INDICATOR_STEP* f = (BASECORE_APP_INDICATOR_STEP *) dlsym(g_pbasecore, "basecore_step");
+
+         (*f)(m_pindicator);
+
+      }
+
+#endif
+
+   }
+
+
 } // namespace user
+
+
+
 
 

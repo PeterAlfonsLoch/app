@@ -199,7 +199,7 @@ struct indicator : public basecore_data
 
       m_piclosequit = piclosequit;
       m_pmenu = pmenu;
-      m_bLoop = true;
+      m_bLoop = false;
       m_bTerm = false;
 
    }
@@ -265,6 +265,16 @@ gboolean f1(gpointer p)
    basecore_data * data = (basecore_data *) p;
 
    return data->run();
+
+}
+
+
+void basecore_step(void * p)
+{
+
+   indicator * pind = (indicator *)p;
+
+   pind->post();
 
 }
 

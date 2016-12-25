@@ -93,6 +93,8 @@ namespace user
       virtual void notify_icon_play(const char * action);
       virtual bool notify_icon_frame_is_opened();
 
+      virtual void step();
+
    };
 
 

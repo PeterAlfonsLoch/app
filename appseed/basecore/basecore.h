@@ -6,7 +6,9 @@ extern "C"
 void basecore_init();
 void basecore_term();
 void * basecore_app_indicator_new(const char * pszId, const char * pszIcon, const char * pszFolder, struct i_close_quit * pi);
+void basecore_step(void * pind);
 void basecore_app_indicator_term(void * pind);
+
 
 } // extern "C"
 

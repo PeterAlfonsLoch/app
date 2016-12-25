@@ -542,6 +542,7 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
    if(m_bDefaultNotifyIcon)
    {
 
+      m_pnotifyicon->step();
       OnUpdateToolWindow(pshow->m_bShow);
 
    }
@@ -885,9 +886,9 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(signal_details * pobj)
 
 void simple_frame_window::_001OnToggleTransparentFrame(signal_details * pobj)
 {
-   
+
    UNREFERENCED_PARAMETER(pobj);
-   
+
    WfiToggleTransparentFrame();
 
 }
@@ -895,9 +896,9 @@ void simple_frame_window::_001OnToggleTransparentFrame(signal_details * pobj)
 
 void simple_frame_window::_001OnUpdateToggleTransparentFrame(signal_details * pobj)
 {
-   
+
    SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
-   
+
    pcmdui->m_pcmdui->Enable();
 
    //if (GetTopLevelFrame()->frame_is_transparent())
@@ -1680,7 +1681,7 @@ void simple_frame_window::on_set_parent(::user::interaction * puiParent)
    {
 
       // an updowntarget always show the frame for upping/downing
-      
+
       m_bWindowFrame = true;
 
       m_workset.Enable(true);
@@ -1733,11 +1734,11 @@ void simple_frame_window::on_set_parent(::user::interaction * puiParent)
 
          if (puiParent != NULL)
          {
-            
+
             m_bCustomFrameBefore = m_bWindowFrame;
-            
+
             m_bWindowFrame = false;
-            
+
             m_workset.Enable(false);
 
          }
@@ -1747,7 +1748,7 @@ void simple_frame_window::on_set_parent(::user::interaction * puiParent)
             m_bWindowFrame = m_bCustomFrameBefore;
 
             m_workset.Enable(m_bWindowFrame);
-            
+
          }
       }
 
@@ -2284,7 +2285,7 @@ void simple_frame_window::_001OnQueryEndSession(signal_details * pobj)
 
 bool simple_frame_window::BaseOnControlEvent(::user::control_event * pevent)
 {
-   
+
    if (m_workset.BaseOnControlEvent(pevent))
    {
 
