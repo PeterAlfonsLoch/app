@@ -121,13 +121,13 @@ namespace primitive
 
 
       inline LPBYTE           internal_get_data() const;
-      inline memory_size_t      get_size() const;
-      inline const LPBYTE     get_data() const;
-      inline LPBYTE           get_data();
+      memory_size_t      get_size() const;
+      const LPBYTE     get_data() const;
+      LPBYTE           get_data();
 
-      inline memory_size_t      size() const;
-      inline const LPBYTE     data() const;
-      inline LPBYTE           data();
+      memory_size_t      size() const;
+      const LPBYTE     data() const;
+      LPBYTE           data();
 
       char *                  get_psz(strsize & len);
 
@@ -136,53 +136,53 @@ namespace primitive
       memory_base & operator += (const memory_base & s);
 
 
-      inline void from_string(const unichar * pwsz);
-      inline void from_string(const char * psz);
-      inline void from_string(const string & str);
-      inline void from_string(const var & var);
-      inline void to_string(string & str, memory_position_t iStart = 0, memory_size_t uiSize = -1) const;
-      inline string to_string(memory_position_t iStart = 0, memory_size_t uiSize = -1) const;
+      void from_string(const unichar * pwsz);
+      void from_string(const char * psz);
+      void from_string(const string & str);
+      void from_string(const var & var);
+      void to_string(string & str, memory_position_t iStart = 0, memory_size_t uiSize = -1) const;
+      string to_string(memory_position_t iStart = 0, memory_size_t uiSize = -1) const;
 
       void delete_begin(memory_size_t iSize);
       inline void eat_begin(void * pdata, memory_size_t iSize);
-      inline void set_data(void * pdata, memory_size_t uiSize);
+      void set_data(void * pdata, memory_size_t uiSize);
       inline void copy_from(const memory_base * pstorage);
-      inline void set(byte b,memory_position_t iStart = 0,memory_size_t uiSize = -1);
-      inline void zero(memory_position_t iStart = 0, memory_size_t uiSize = -1);
+      void set(byte b,memory_position_t iStart = 0,memory_size_t uiSize = -1);
+      void zero(memory_position_t iStart = 0, memory_size_t uiSize = -1);
 
       inline void append(const memory_base & memory, memory_position_t iStart = 0, memory_size_t iCount = -1);
       inline void append(const void * pdata, memory_size_t iCount);
-      inline void assign(const void * pdata, memory_size_t iCount);
-      inline void assign(const void * pdata, memory_position_t iStart, memory_size_t iCount);
-      inline void append(memory_size_t iCount, uchar uch);
-      inline void assign(memory_size_t iCount, uchar uch);
+      void assign(const void * pdata, memory_size_t iCount);
+      void assign(const void * pdata, memory_position_t iStart, memory_size_t iCount);
+      void append(memory_size_t iCount, uchar uch);
+      void assign(memory_size_t iCount, uchar uch);
 
       void move_and_grow(memory_offset_t offset);
       void move(memory_offset_t offset, bool bGrow = false);
 
-      inline void assign(const char * psz);
+      void assign(const char * psz);
 
-      inline byte operator [] (uint64_t i) const;
-      inline byte & operator [] (uint64_t i);
-      inline byte operator [] (int i) const;
-      inline byte & operator [] (int i);
+      byte operator [] (uint64_t i) const;
+      byte & operator [] (uint64_t i);
+      byte operator [] (int i) const;
+      byte & operator [] (int i);
 
-      inline operator const byte *() const;
-      inline operator byte *();
+      operator const byte *() const;
+      operator byte *();
 
       inline operator const char *() const { return (const char *) operator const byte *(); }
       inline operator char *() { return (char *) operator byte *(); }
 
       inline operator const void *() const;
-      inline operator void *();
+      operator void *();
 
 
-      inline void to_hex(string & str, memory_position_t iStart = 0, memory_size_t size = -1);
-      inline string to_hex(memory_position_t iStart = 0, memory_size_t size = -1);
-      inline void from_hex(const char * psz, strsize nCount = -1);
+      void to_hex(string & str, memory_position_t iStart = 0, memory_size_t size = -1);
+      string to_hex(memory_position_t iStart = 0, memory_size_t size = -1);
+      void from_hex(const char * psz, strsize nCount = -1);
 
-      inline void to_asc(string & str);
-      inline void from_asc(const char * psz);
+      void to_asc(string & str);
+      void from_asc(const char * psz);
 
       inline bool operator == (const memory_base & s);
 
@@ -196,8 +196,8 @@ namespace primitive
       memory_base & prefix_der_uint();
       memory_base & prefix_der_sequence();
 
-      inline memory_size_t get_length() const;
-      inline memory_size_t length() const;
+      memory_size_t get_length() const;
+      memory_size_t length() const;
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)

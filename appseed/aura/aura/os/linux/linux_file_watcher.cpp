@@ -78,7 +78,7 @@ namespace file_watcher
 	}
 
 	//--------
-	id os_file_watcher::add_watch(const string & directory,  file_watch_listener * pwatcher, bool bRecursive, bool bOwn)
+	file_watch_id os_file_watcher::add_watch(const string & directory,  file_watch_listener * pwatcher, bool bRecursive, bool bOwn)
 	{
 
       synch_lock sl(m_pmutex);
@@ -168,7 +168,7 @@ namespace file_watcher
 	}
 
 	//--------
-	void os_file_watcher::remove_watch(id watchid)
+	void os_file_watcher::remove_watch(file_watch_id watchid)
 	{
 
       synch_lock sl(m_pmutex);
@@ -187,7 +187,7 @@ namespace file_watcher
 		watch = 0;
 	}
 
-	string os_file_watcher::watch_path(id id)
+	string os_file_watcher::watch_path(file_watch_id id)
 	{
 		return m_watchmap[id]->m_strDirName;
 	}

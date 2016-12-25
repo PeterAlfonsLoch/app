@@ -149,7 +149,7 @@ void process_message(osdisplay_data * pdata, Display * display)
       if(msg.hwnd != NULL)
       {
 
-         ::user::interaction * pui = msg.hwnd->m_pui;
+         ::user::interaction * pui = msg.hwnd->m_pimpl->m_pui;
 
          if(pui != NULL)
          {
@@ -453,10 +453,10 @@ void send_message(MESSAGE & msg)
       else
       {
 
-         ::user::interaction * pui = msg.hwnd->get_user_interaction();
-
-         if(pui != NULL)
+         if(msg.hwnd != NULL && msg.hwnd->m_pimpl != NULL && msg.hwnd->m_pimpl->m_pui != NULL)
          {
+
+            ::user::interaction * pui = msg.hwnd->m_pimpl->m_pui;
 
             pui->send_message(msg.message, msg.wParam, msg.lParam);
 
@@ -515,7 +515,7 @@ UINT __axis_x11mouse_thread(void * p)
       if(bOk)
       {
 
-         ::user::interaction * pui = msg.hwnd->get_user_interaction();
+         ::user::interaction * pui = msg.hwnd->m_pimpl->m_pui;
 
          if(pui != NULL)
          {

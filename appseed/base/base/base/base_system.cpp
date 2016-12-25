@@ -110,13 +110,15 @@ int xrr_GetScreenSize(int& width, int& height)
 namespace base
 {
 
-
+#ifdef METROWIN
    system::os_system_window::os_system_window()
    {
 
       m_bWindowSizeChange = false;
 
    }
+
+#endif
 
 
    system::system(::aura::application * papp) :
@@ -451,6 +453,10 @@ namespace base
 
       return 0;
 
+#elif defined(LINUX)
+
+      return 0;
+
 #else
 
       if (iMonitor < 0)
@@ -487,6 +493,10 @@ namespace base
    {
 
 #ifdef METROWIN
+
+      return true;
+
+#elif defined(LINUX)
 
       return true;
 
@@ -591,7 +601,7 @@ namespace base
 
       //MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
 
-      
+
 
       //if (!SetMonitorColorTemperature(monitor.hPhysicalMonitor, e))
       //{
@@ -1253,17 +1263,17 @@ CLASS_DECL_BASE void black_body(float * r, float * g, float * b, DWORD dwTemp)
 
    if (temp_index < 0)
    {
-      
+
       temp_index = 0;
 
    }
    else if (temp_index > (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3)
    {
-      
+
       temp_index = (sizeof(g_fa_blackbody_color) / sizeof(float)) - 3;
 
    }
-   
+
    float alpha = (dwTemp % 100) / 100.0f;
 
    interpolate_color(alpha, &g_fa_blackbody_color[temp_index], &g_fa_blackbody_color[temp_index + 3], r, g, b);

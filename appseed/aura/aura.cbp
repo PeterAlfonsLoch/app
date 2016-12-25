@@ -225,6 +225,10 @@
 		<Unit filename="aura/aura/aura_live_object.h" />
 		<Unit filename="aura/aura/aura_live_signal.h" />
 		<Unit filename="aura/aura/aura_local_memory_map.h" />
+		<Unit filename="aura/aura/aura_log.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_log.h" />
 		<Unit filename="aura/aura/aura_lparam.h" />
 		<Unit filename="aura/aura/aura_machine_event.h" />
@@ -313,6 +317,10 @@
 		<Unit filename="aura/charguess/_.cpp" />
 		<Unit filename="aura/charguess/charDistribution.cpp" />
 		<Unit filename="aura/exception/_exception.txt" />
+		<Unit filename="aura/exception/exception.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/exception/exception.h" />
 		<Unit filename="aura/exception/exception2.h" />
 		<Unit filename="aura/exception/exception_assert.h" />
@@ -323,6 +331,10 @@
 		<Unit filename="aura/exception/exception_base.h" />
 		<Unit filename="aura/exception/exception_call_stack.h" />
 		<Unit filename="aura/exception/exception_cancel.h" />
+		<Unit filename="aura/exception/exception_debug.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/exception/exception_debug.h" />
 		<Unit filename="aura/exception/exception_debug_stream.h" />
 		<Unit filename="aura/exception/exception_dump_context.h" />
@@ -379,6 +391,10 @@
 		<Unit filename="aura/node/linux/linux.h" />
 		<Unit filename="aura/node/linux/linux_application.h" />
 		<Unit filename="aura/node/linux/linux_console_window.h" />
+		<Unit filename="aura/node/linux/linux_dir.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/node/linux/linux_dir.h" />
 		<Unit filename="aura/node/linux/linux_factory_exchange.cpp">
 			<Option compile="0" />
@@ -388,6 +404,10 @@
 		<Unit filename="aura/node/linux/linux_file.h" />
 		<Unit filename="aura/node/linux/linux_file_system.h" />
 		<Unit filename="aura/node/linux/linux_internal.h" />
+		<Unit filename="aura/node/linux/linux_os.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/node/linux/linux_os.h" />
 		<Unit filename="aura/node/linux/linux_root_tools.h" />
 		<Unit filename="aura/node/linux/linux_shell.h" />
@@ -504,6 +524,7 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="aura/os/os_binreloc.h" />
+		<Unit filename="aura/os/os_debug.cpp" />
 		<Unit filename="aura/os/os_process.h" />
 		<Unit filename="aura/pcre/pcre.cpp" />
 		<Unit filename="aura/pcre/pcre.h" />
@@ -512,6 +533,10 @@
 		<Unit filename="aura/process/process_bidi_pipe.h" />
 		<Unit filename="aura/process/process_departament.h" />
 		<Unit filename="aura/process/process_pipe.h" />
+		<Unit filename="aura/process/process_process.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/process/process_process.h" />
 		<Unit filename="aura/veriwell_musical_studio/veriwell_musical_studio.h" />
 		<Unit filename="aura/veriwell_musical_studio/vms.h" />
@@ -537,7 +562,6 @@
 		<Unit filename="aura/xml/xml_tree_schema.h" />
 		<Unit filename="aura/xml/xml_var_exchange.h" />
 		<Unit filename="aura/xml/xml_xmlite.h" />
-		<Unit filename="aura_heap_memory.h" />
 		<Unit filename="filesystem/_filesystem.cpp" />
 		<Unit filename="filesystem/file/file.h" />
 		<Unit filename="filesystem/file/file_binary_buffer.h" />
@@ -873,6 +897,10 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="primitive/primitive_memory.h" />
+		<Unit filename="primitive/primitive_memory_base.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/primitive_memory_base.h" />
 		<Unit filename="primitive/primitive_memory_c.h" />
 		<Unit filename="primitive/primitive_memory_container.h" />
@@ -999,8 +1027,6 @@
 		<Unit filename="user/user/user_printer.h" />
 		<Unit filename="user/user/user_timer_array.h" />
 		<Unit filename="user/user/user_timer_item.h" />
-		<Unit filename="version.config.h" />
-		<Unit filename="version.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

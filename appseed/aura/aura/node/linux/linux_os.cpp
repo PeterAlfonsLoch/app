@@ -826,6 +826,8 @@ return ::getpid();
       return true;
 
    }
+
+
    //#elif defined(LINUX)
    //            }
    //
@@ -840,7 +842,32 @@ return ::getpid();
    //
    //#else
 
+   bool os::get_default_browser(string & strId, ::file::path & path, string & strParam)
+   {
 
+      string str = System.process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+
+      if(str.find_ci("chrome") >= 0)
+      {
+
+         strId = "chrome";
+
+         path = "google-chrome";
+
+      }
+      else
+      {
+
+         strId = "firefox";
+
+
+         path = "firefox";
+
+      }
+
+      return true;
+
+   }
 
 } // namespace linux
 

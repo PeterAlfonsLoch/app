@@ -35,7 +35,7 @@ oswindow_data::oswindow_data()
 
    m_window                = None;
 
-   m_pui                   = NULL;
+   m_pimpl                 = NULL;
 
    m_bMessageOnlyWindow    = false;
 
@@ -68,10 +68,10 @@ oswindow_dataptra * oswindow_data::s_pdataptra = NULL;
 mutex * oswindow_data::s_pmutex = NULL;
 
 
-int32_t oswindow_find_message_only_window(::user::interaction_impl * pui)
+int32_t oswindow_find_message_only_window(::user::interaction_impl * pimpl)
 {
 
-   if(pui == NULL)
+   if(pimpl == NULL)
       return -1;
 
    single_lock slOsWindow(oswindow_data::s_pmutex, true);
@@ -80,11 +80,15 @@ int32_t oswindow_find_message_only_window(::user::interaction_impl * pui)
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
+
       if(::oswindow_data::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
-      && ::oswindow_data::s_pdataptra->element_at(i)->m_pui == pui)
+      && ::oswindow_data::s_pdataptra->element_at(i)->m_pimpl == pimpl)
       {
+
          return i;
+
       }
+
    }
 
    return -1;
@@ -150,7 +154,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pui)
 
    pdata->m_bMessageOnlyWindow      = true;
    pdata->m_window                  = None;
-   pdata->m_pui                     = pui;
+   pdata->m_pimpl                   = pui;
    pdata->m_osdisplay               = NULL;
    pdata->m_parent                  = NULL;
 
@@ -412,7 +416,7 @@ void oswindow_data::post_nc_destroy()
 }
 
 
-void oswindow_data::set_user_interaction(::user::interaction * pui)
+void oswindow_data::set_user_interaction(::user::interaction_impl * pimpl)
 {
 
    single_lock slOsWindow(s_pmutex, true);
@@ -422,113 +426,15 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
    if(this == NULL)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
 
-   m_pui = pui;
+   m_pimpl = pimpl;
 
-   m_hthread = pui->m_pauraapp->get_os_handle();
+   m_hthread = pimpl->m_pauraapp->get_os_handle();
 
-   oswindow_assign(this, pui);
-
-}
-
-
-::user::interaction * oswindow_data::get_user_interaction_base()
-{
-
-   //single_lock slOsWindow(s_pmutex, true);
-
-   //xdisplay d(x11_get_display());
-
-   if(this == NULL)
-      return NULL;
-
-   return m_pui;
-
-}
-
-::user::interaction * oswindow_data::get_user_interaction_base() const
-{
-
-   if(this == NULL)
-      return NULL;
-
-   return m_pui;
-
-}
-
-::user::interaction * oswindow_data::get_impl()
-{
-
-   single_lock slOsWindow(s_pmutex, true);
-
-   if (this == NULL)
-   {
-
-      return NULL;
-
-   }
-
-   return m_pimpl;
+   oswindow_assign(this, pimpl);
 
 }
 
 
-::user::interaction * oswindow_data::get_impl() const
-{
-
-   single_lock slOsWindow(s_pmutex, true);
-
-   if (this == NULL)
-   {
-
-      return NULL;
-
-   }
-
-   return m_pimpl;
-
-}
-
-
-::user::interaction * oswindow_data::get_user_interaction()
-{
-
-   ::user::interaction_impl * pimpl = get_impl();
-
-   try
-   {
-
-      return pimpl->m_pui;
-
-   }
-   catch (...)
-   {
-
-   }
-   
-   return NULL;
-
-}
-
-
-::user::interaction * oswindow_data::get_user_interaction() const
-{
-
-   ::user::interaction_impl * pimpl = get_impl();
-
-   try
-   {
-
-      return pimpl->m_pui;
-
-   }
-   catch (...)
-   {
-
-   }
-
-   return NULL;
-
-}
 
 
 bool oswindow_data::is_child(::oswindow oswindow)
@@ -1266,7 +1172,7 @@ WINBOOL DestroyWindow(oswindow window)
 
    bool bIs = IsWindow(window);
 
-   sp(::user::interaction) pui = window->get_user_interaction();
+   sp(::user::interaction) pui = window->m_pimpl->m_pui;
 
    pui->send_message(WM_DESTROY, 0, 0);
 
@@ -1297,10 +1203,10 @@ bool oswindow_data::is_destroying()
    if(this == NULL)
       return true;
 
-   if(get_user_interaction() == NULL)
+   if(m_pimpl == NULL)
       return true;
 
-   if(get_user_interaction()->m_bDestroying)
+   if(m_pimpl->m_pui->m_bDestroying)
       return true;
 
    return false;
@@ -1332,14 +1238,14 @@ bool IsWindow(oswindow oswindow)
 
    }
 
-   if(oswindow->m_pui == NULL)
+   if(oswindow->m_pimpl == NULL)
    {
 
       return true;
 
    }
 
-   if(oswindow->m_pui->m_bDestroying)
+   if(oswindow->m_pimpl->m_pui->m_bDestroying)
    {
 
       return false;

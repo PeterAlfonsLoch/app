@@ -1,5 +1,7 @@
 #include "framework.h"
 #include <math.h>
+
+
 #if defined(LINUX)
 #include <fontconfig/fontconfig.h>
 
@@ -4361,10 +4363,20 @@ namespace draw2d_cairo
    }
 
 
+
    int32_t graphics::draw_text(const string & strParam, const RECT & lpRect, UINT nFormat)
    {
 
-      string str(strParam);
+      return internal_draw_text(strParam, strParam.get_length(), lpRect, nFormat, &cairo_show_text);
+
+   }
+
+
+   int32_t graphics::internal_draw_text(const char * lpszString, strsize nCount, const RECT & lpRect, UINT nFormat, PFN_CAIRO_TEXT ftext)
+   {
+
+
+      string str(lpszString, nCount);
 
       str = ::str::q_valid(str);
 
@@ -4478,7 +4490,7 @@ namespace draw2d_cairo
 
          cairo_move_to(m_pdc, lpRect.left + dx, lpRect.top + dy + e.ascent + sz.cy * (i) / stra.get_size());
 
-         cairo_show_text(m_pdc, strLine);
+         (*ftext)(m_pdc, strLine);
 
          cairo_status_t status = cairo_status(m_pdc);
 
@@ -4498,7 +4510,6 @@ namespace draw2d_cairo
       return 1;
 
    }
-
 
    int32_t graphics::draw_text_ex(LPTSTR lpszString, strsize nCount, const RECT & lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
    {
@@ -4822,6 +4833,12 @@ namespace draw2d_cairo
 
    bool graphics::TextOutRaw(double x, double y, const char * lpszString, strsize nCount)
    {
+
+      ::rect r = ::rect_dim(x, y, 65535, 65535);
+
+      internal_draw_text(lpszString, nCount, r, 0, &cairo_show_text);
+
+      return true;
 
       string str(lpszString, nCount);
 
@@ -5464,14 +5481,28 @@ namespace draw2d_cairo
 
    bool graphics::set(const ::draw2d::path * ppathParam)
    {
+
+      if(ppathParam == NULL)
+      {
+
+         return false;
+
+      }
+
+      ::draw2d_cairo::path * ppath = dynamic_cast <::draw2d_cairo::path *> ((::draw2d::path *) ppathParam);
+
+      if(ppath == NULL)
+      {
+
+         return false;
+
+      }
+
       synch_lock ml(cairo_mutex());
+
       cairo_keep keep(m_pdc);
 
       cairo_new_sub_path(m_pdc);
-
-
-
-      ::draw2d_cairo::path * ppath = dynamic_cast <::draw2d_cairo::path *> ((::draw2d::path *) ppathParam);
 
       if (ppath->m_bFill)
       {
@@ -5604,61 +5635,68 @@ namespace draw2d_cairo
    bool graphics::set(const ::draw2d_cairo::path::string_path & stringpath)
    {
 
-      string str;
-
-      str = ::str::q_valid(stringpath.m_strText);
-
-      if (str.is_empty())
-      {
-
-         return false;
-
-      }
-
-      synch_lock sl(cairo_mutex());
-
-      if(m_spfont.is_null())
-      {
-
-         return false;
-
-      }
-
-      if(m_spfont->m_dFontWidth <= 0.0)
-      {
-
-         return false;
-
-      }
-
-      cairo_keep keep(m_pdc);
-
       ((graphics *) this)->set(stringpath.m_spfont);
 
-      cairo_font_extents_t e;
+      ::rect r = ::rect_dim(stringpath.m_x, stringpath.m_y, 65535, 65535);
 
-      cairo_font_extents(m_pdc, &e);
 
-      double x = stringpath.m_x;
+      internal_draw_text(stringpath.m_strText, stringpath.m_strText.get_length(), r, 0, &cairo_text_path);
 
-      double y = stringpath.m_y;
-
-      cairo_move_to(m_pdc, x, y + e.ascent);
-
-      if(m_spfont->m_dFontWidth != 1.0)
-      {
-
-         cairo_matrix_t m;
-
-         cairo_get_matrix(m_pdc, &m);
-
-         cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
-
-         cairo_set_matrix(m_pdc, &m);
-
-      }
-
-      cairo_text_path(m_pdc, str);
+//      string str;
+//
+//      str = ::str::q_valid(stringpath.m_strText);
+//
+//      if (str.is_empty())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      synch_lock sl(cairo_mutex());
+//
+//      if(m_spfont.is_null())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if(m_spfont->m_dFontWidth <= 0.0)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      cairo_keep keep(m_pdc);
+//
+//      ((graphics *) this)->set(stringpath.m_spfont);
+//
+//      cairo_font_extents_t e;
+//
+//      cairo_font_extents(m_pdc, &e);
+//
+//      double x = stringpath.m_x;
+//
+//      double y = stringpath.m_y;
+//
+//      cairo_move_to(m_pdc, x, y + e.ascent);
+//
+//      if(m_spfont->m_dFontWidth != 1.0)
+//      {
+//
+//         cairo_matrix_t m;
+//
+//         cairo_get_matrix(m_pdc, &m);
+//
+//         cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
+//
+//         cairo_set_matrix(m_pdc, &m);
+//
+//      }
+//
+//      cairo_text_path(m_pdc, str);
 
       cairo_status_t status = cairo_status(m_pdc);
 

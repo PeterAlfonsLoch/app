@@ -24,10 +24,12 @@
 
 #elif defined(LINUX)
 
-#undef MUTEX_COND_TIMED
-#undef MUTEX_NAMED_POSIX 
-#undef MUTEX_NAMED_FD 
-#define MUTEX_NAMED_VSEM // System V Semaphore
+#define MUTEX_COND_TIMED
+#undef MUTEX_NAMED_POSIX
+#undef MUTEX_NAMED_FD
+#define MUTEX_NAMED_FD // File Descriptor "Semaphore"
+//#define MUTEX_NAMED_VSEM // System V Semaphore
+#undef MUTEX_NAMED_VSEM
 
 #endif
 
@@ -154,185 +156,185 @@ namespace multithreading
 //   struct value
 //   {
 //   public:
-//   
+//
 //      value() = default;
-//         
+//
 //      value(value&&) = delete;
 //      value & operator=(value&&) = delete;
-//         
+//
 //      ~value()
 //      {
 //         if(m_bInitialized)
 //            ptr()->~T();
-//         
+//
 //      }
-//         
+//
 //      template <typename... Args>
 //      void initialize(Args&&... args)
 //      {
-//         
+//
 //         ::new(ptr()) T(move<Args>(args)...);
-//         
+//
 //         m_bInitialized = true;
-//      
+//
 //      }
-//         
+//
 //      explicit operator bool() const { return m_bInitialized; }
-//         
+//
 //      T& operator*() { return *ptr(); }
 //      T const& operator*() const { return ptr(); }
 //      T* operator->() { return *ptr(); }
 //      T const* operator->() const { return ptr(); }
-//         
+//
 //      T* ptr() { return static_cast<T*>(static_cast<void*>(&m_t)); }
 //      T const* ptr() const { return static_cast<T*>(static_cast<void*>(&m_t)); }
-//         
+//
 //      bool m_bInitialized = false;
-//      
+//
 //      T m_t;
-//      
+//
 //   };
-//      
-//      
+//
+//
 //   template <typename T>
 //   struct state
 //   {
 //   public:
-//      
+//
 //      manual_reset_event   m_evReady;
 //      value < T >          m_value;
 //      ::exception::base *  m_pexception;
 //
-//      
+//
 //      void wait()
 //      {
-//      
+//
 //         m_evReady.wait();
-//         
+//
 //      }
-//         
+//
 //      T & get()
 //      {
-//        
+//
 //         if(m_value) return *m_value;
-//         
+//
 //         if(m_pexception) throw m_pexception;
-//      
+//
 //         throw ::simple_exception(::get_thread_app(), "WTF");
-//         
+//
 //      }
-//         
+//
 //      template <typename U>
 //      void set_value(U&& value)
 //      {
-//         
+//
 //         m_value.initialize(::move(value));
-//         
-//         
-//         
+//
+//
+//
 //      }
-//      
+//
 //      void set_exception(exception::base * pe)
 //      {
-//      
+//
 //         m_pexception = pe;
-//         
+//
 //         m_evReady.SetEvent();
-//         
+//
 //      }
-//      
+//
 //   };
-//   
+//
 //} // namespace detail
 //
 //template <typename T> class hold;
-//   
+//
 //template <typename T>
 //struct fill
 //{
 //public:
-//   
+//
 //   fill() noexcept = default;
 //   fill(fill&&) noexcept = default;
 //   fill(fill const& other) = delete;
-//      
+//
 //   ~fill() = default;
-//      
+//
 //   fill& operator=(fill&& other) noexcept = default;
 //   fill& operator=(fill const& other) = delete;
-//      
+//
 //   T get()
 //   {
-//   
+//
 //      m_pstate->wait();
-//      
+//
 //      return ::move(m_pstate->get());
 //
 //   }
-//      
+//
 //   bool valid() const noexcept
 //   {
-//    
+//
 //      return m_pstate != NULL;
-//      
+//
 //   }
-//      
-//   
+//
+//
 //   ::detail::state < T > * m_pstate = NULL;
-//      
+//
 // };
-//   
-//   
+//
+//
 // template <typename T>
 // struct hold
 //{
 //public:
-//   
-//   ::detail::state < T >  * m_pstate;
-//   
 //
-//   
+//   ::detail::state < T >  * m_pstate;
+//
+//
+//
 //   hold()
 //      : m_pstate(NULL)
 //   {
-//   
+//
 //   }
-//   
+//
 //   hold(hold&& other) noexcept = default;
 //   hold(hold const& other) = delete;
-//      
+//
 //   ~hold() = default;
-//      
+//
 //   hold& operator=(hold&& other) noexcept = default;
 //   hold& operator=(hold const& rhs) = delete;
-//      
+//
 //   fill < T > filling()
 //   {
-//   
+//
 //      return m_pstate;
 //   }
-//      
+//
 //   void set_value(T const& value)
 //   {
 //      m_pstate->set_value(value);
 //   }
-//   
+//
 //   void set_value(T&& value)
 //   {
-//      
+//
 //      m_pstate->set_value(::move(value));
-//      
+//
 //   }
-//      
+//
 //   void set_exception(::exception::base * pe)
 //   {
-//      
+//
 //      m_pstate->set_exception(pe);
-//   
+//
 //   }
 //
 //};
-//   
+//
 
 
 

@@ -888,7 +888,7 @@ void script_compiler::cppize1(ds_script * pscript)
    string strSource;
 
    int iTry = 0;
-   
+
    while ((strSource = Application.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::get_thread_run() && get_run_thread())
    {
 
@@ -903,7 +903,7 @@ void script_compiler::cppize1(ds_script * pscript)
 
    }
 
-   
+
    strsize iPosId = -1;
    stringa straId;
    string strDest;
@@ -1083,13 +1083,15 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
 
    ::file::path pathFolder = ::file::path(m_strEnv).folder();
 
-
+#ifdef WINDOWSEX
    {
       uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       LPTSTR lpsz = new char[dwSize + 1];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       delete lpsz;
    }
+
+   #endif
 
    process->create_child_process(pathCommand,true,pathFolder,::multithreading::priority_highest);
    string strLog;
@@ -1154,12 +1156,15 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    stringa stra;
 
    stra.add_lines(strLog);
+
+   #ifdef WINDOWSEX
    {
       uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       LPTSTR lpsz = new char[dwSize + 1];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       delete lpsz;
    }
+   #endif
 
    //Sleep(10000);
 

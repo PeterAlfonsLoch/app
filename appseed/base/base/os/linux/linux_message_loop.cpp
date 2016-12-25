@@ -152,10 +152,10 @@ LRESULT axis_DispatchMessage(const MESSAGE * lpmessage)
 
    }
 
-   if(lpmessage->hwnd->get_user_interaction_base() == NULL)
+   if(lpmessage->hwnd->m_pimpl == NULL)
       return false;
 
-   return lpmessage->hwnd->get_user_interaction_base()->message_handler((LPMESSAGE)lpmessage);
+   return lpmessage->hwnd->m_pimpl->m_pui->message_handler((LPMESSAGE)lpmessage);
 
 }
 

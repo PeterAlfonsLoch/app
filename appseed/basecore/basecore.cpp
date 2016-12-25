@@ -66,7 +66,7 @@ static void __quit(GtkAction * action, gpointer data)
 }
 
 
-static gboolean f1(void * data);
+static gboolean f1(gpointer data);
 
 } // extern "C"
 
@@ -132,6 +132,18 @@ public:
    basecore_data();
    ~basecore_data()
    {
+      if(m_pszId != NULL)
+      {
+         free((void *)m_pszId);
+      }
+      if(m_pszIcon != NULL)
+      {
+         free((void *)m_pszIcon);
+      }
+      if(m_pszFolder != NULL)
+      {
+         free((void *)m_pszFolder);
+      }
 
    }
    virtual void post();
@@ -164,9 +176,9 @@ struct indicator_new : public basecore_data
 {
    indicator_new(const char * pszId, const char *pszIcon, const char * pszFolder)
    {
-      m_pszId     = pszId;
-      m_pszIcon   = pszIcon;
-      m_pszFolder = pszFolder;
+      m_pszId     = strdup(pszId);
+      m_pszIcon   = strdup(pszIcon);
+      m_pszFolder = strdup(pszFolder);
    }
 
 };

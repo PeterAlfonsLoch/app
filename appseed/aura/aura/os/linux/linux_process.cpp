@@ -116,7 +116,15 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
       else if(e == state_quote)
       {
 
-         if(*psz == quote)
+         if(*psz == '\\')
+         {
+
+            memmove(psz, psz + 1, strlen(psz));
+
+            psz = ::str::utf8_inc(psz);
+
+         }
+         else if(*psz == quote)
          {
 
             p = ::str::utf8_inc(psz);

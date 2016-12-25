@@ -558,6 +558,7 @@
 		<Unit filename="net/sockets/sockets_link_out_socket.h" />
 		<Unit filename="net/sockets/sockets_logger.h" />
 		<Unit filename="net/sockets/sockets_trace_logger.h" />
+		<Unit filename="net/sockets/sockets_websocket_client.cpp" />
 		<Unit filename="net/sockets/winrt/asynch_dns/sockets_resolv_server.h" />
 		<Unit filename="net/sockets/winrt/asynch_dns/sockets_resolv_socket.h" />
 		<Unit filename="net/sockets/winrt/basic/sockets_listen_socket.h" />

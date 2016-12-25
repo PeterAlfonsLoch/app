@@ -2,7 +2,7 @@
 //#include <dlfcn.h>
 
 
-CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
+CLASS_DECL_AURA void * __node_library_open(const char * pszPath, string & strMessage)
 {
 
    string strPath(pszPath);
@@ -40,7 +40,7 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
       if(psz != NULL)
       {
 
-         output_debug_string(psz);
+         strMessage += psz;
 
       }
 
@@ -51,7 +51,7 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
       if (errstr != NULL)
       {
 
-         output_debug_string (errstr);
+         strMessage += errstr;
 
       }
 
@@ -59,27 +59,18 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
    else
    {
 
-      output_debug_string("Successfully loaded library ");
+      strMessage += "Successfully loaded library ";
 
-      output_debug_string(pszPath);
+      strMessage += pszPath;
 
    }
-
-//   const char * psz2 = dlerror();
-//
-//   if(psz2 != NULL)
-//   {
-//
-//      fprintf(stderr, "%s\n", psz2);
-//
-//   }
 
    return plibrary;
 
 }
 
 
-CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath)
+CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath, string & strMessage)
 {
 
    void * plibrary = dlopen(pszPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
@@ -91,7 +82,7 @@ CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath)
    if(psz != NULL)
    {
 
-      fprintf(stderr, "%s\n", psz);
+      strMessage += psz;
 
    }
 
@@ -100,7 +91,7 @@ CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath)
    if(psz2 != NULL)
    {
 
-      fprintf(stderr, "%s\n", psz2);
+      strMessage += psz2;
 
    }
 

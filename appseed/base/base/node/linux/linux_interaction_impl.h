@@ -74,11 +74,11 @@ namespace linux
 
 #endif   // WINVER >= 0x0500
 
-      virtual ::user::interaction * from_os_data(void * pdata);
+      virtual ::user::interaction_impl * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
-      static_function user::interaction * from_handle(oswindow hWnd);
-      static_function user::interaction * FromHandlePermanent(oswindow hWnd);
+      static_function user::interaction_impl * from_handle(oswindow hWnd);
+      static_function user::interaction_impl * FromHandlePermanent(oswindow hWnd);
       //static_function void DeleteTempMap();
       bool Attach(oswindow hWndNew);
       oswindow Detach();

@@ -106,7 +106,7 @@ namespace linux
    }
 
 
-   ::user::interaction * interaction_impl::from_os_data(void * pdata)
+   ::user::interaction_impl * interaction_impl::from_os_data(void * pdata)
    {
       return from_handle((oswindow) pdata);
    }
@@ -171,24 +171,27 @@ namespace linux
    }
 
 
-   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
+   ::user::interaction_impl * interaction_impl::from_handle(oswindow oswindow)
    {
 
-      if(oswindow->get_user_interaction() == NULL)
+      if(oswindow == NULL)
          return NULL;
 
-      return oswindow->get_user_interaction();
+      if(oswindow->m_pimpl == NULL)
+         return NULL;
+
+      return oswindow->m_pimpl;
 
    }
 
 
-   ::user::interaction * interaction_impl::FromHandlePermanent(oswindow oswindow)
+   ::user::interaction_impl * interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
-      if(oswindow->get_user_interaction() == NULL)
+      if(oswindow->m_pimpl == NULL)
          return NULL;
 
-      return oswindow->get_user_interaction();
+      return oswindow->m_pimpl;
 
    }
 
@@ -323,7 +326,7 @@ namespace linux
       if(cs.hwndParent == (oswindow) HWND_MESSAGE)
       {
 
-         m_oswindow = oswindow_get_message_only_window(m_pui);
+         m_oswindow = oswindow_get_message_only_window(this);
 
          if(m_oswindow != NULL)
          {
@@ -472,7 +475,7 @@ namespace linux
 
          }
 
-         m_oswindow->set_user_interaction(m_pui);
+         m_oswindow->set_user_interaction(this);
 
          m_pui->add_ref();
 
@@ -817,7 +820,7 @@ namespace linux
 
          send_message(WM_NCDESTROY, 0, 0);
 
-         ::oswindow_remove_message_only_window(pui);
+         ::oswindow_remove_message_only_window(this);
 
          return true;
 
@@ -4824,14 +4827,33 @@ if(psurface == g_cairosurface)
    ::user::interaction * interaction_impl::GetActiveWindow()
    {
 
-      return ::linux::interaction_impl::from_handle(::GetActiveWindow());
+      ::user::interaction_impl * pimpl = ::linux::interaction_impl::from_handle(::GetActiveWindow());
+
+      if(pimpl == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      return pimpl->m_pui;
 
    }
 
    ::user::interaction * interaction_impl::SetActiveWindow()
    {
 
-      return ::linux::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+
+      ::user::interaction_impl * pimpl = ::linux::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+
+      if(pimpl == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      return pimpl->m_pui;
 
    }
 
@@ -4844,7 +4866,7 @@ if(psurface == g_cairosurface)
       if(w == NULL)
          return NULL;
 
-      return w->m_pui;
+      return w->m_pimpl->m_pui;
 
    }
 
@@ -4857,7 +4879,7 @@ if(psurface == g_cairosurface)
       if(w  == NULL)
          return NULL;
 
-      return w->m_pui;
+      return w->m_pimpl->m_pui;
 
    }
 
@@ -5113,7 +5135,7 @@ if(psurface == g_cairosurface)
 
       ASSERT(::IsWindow((oswindow) get_handle()));
 
-      return ::linux::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
+      return ::linux::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()))->m_pui;
 
    }
 
@@ -5719,7 +5741,7 @@ if(psurface == g_cairosurface)
    {
 
 
-      m_bMouseHover = true;
+//      m_bMouseHover = true;
 
    }
 

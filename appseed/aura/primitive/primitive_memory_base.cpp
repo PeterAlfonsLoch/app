@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 
 #ifdef WINDOWS
 #include <Shcore.h>
@@ -712,7 +712,7 @@ namespace primitive
 
    }
 
-   
+
    memory_size_t memory_base::get_size() const
    {
 

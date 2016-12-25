@@ -747,7 +747,7 @@ namespace aura
       Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
          ref new Windows::UI::Core::DispatchedHandler([pstrNew]()
       {
-      
+
          ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(*pstrNew);
 
          delete pstrNew;
@@ -760,9 +760,12 @@ namespace aura
 
       }));
 
-#elif defined(LINUX)
-      ::system("xdg-open \"" + strLink + "\"");
-      return true;
+//#elif defined(LINUX)
+//
+//      ::system("xdg-open \"" + strUrl + "\"");
+//
+//      return true;
+//
 #elif defined(APPLEOS)
       openURL(strLink);
       return true;
@@ -923,32 +926,72 @@ namespace aura
 
 #else
 
-      strUrl = "https://ca2.cc/open_tab?url=" + System.url_encode(strUrl) + "&target=" + strTarget;
-
-      string strCommand;
-
-      if (strApp == "native")
+      if(strUrl.has_char())
       {
 
-         strCommand = "epiphany";
+         strParam = "\"" + strUrl + "\"";
 
       }
-      else if (strApp == "chrome")
+
+      ::file::path pathDir;
+
+      pathDir = path.folder();
+
+      ::file::path shell;
+
+      shell = "/bin/bash";
+
+      if (strBrowser == "vivaldi")
       {
 
-         strCommand = "google-chrome";
+         ::file::path pathHome(getenv("HOME"));
+
+         ::file::path pathProfile;
+
+         pathProfile = pathHome / "ca2/Vivaldi/Profile" / strProfile;
+
+         call_async(shell, " -c \""+ path + " --user-data-dir=\\\"" + pathProfile + "\\\" " + strParam, pathHome, SW_SHOWDEFAULT, false);
+
+      }
+      else if (strBrowser == "chrome")
+      {
+
+         ::file::path pathHome(getenv("HOME"));
+
+         ::file::path pathProfile;
+
+         pathProfile = pathHome / "ca2/Chrome/Profile" / strProfile;
+
+         string strCmd = path + " --user-data-dir=\"" + pathProfile + "\" " + strParam;
+
+         strCmd.replace("\"", "\\\"");
+
+         strParam = " -c \""+ strCmd + "\"";
+
+         //MessageBox(NULL, strParam, path, MB_OK);
+
+         call_async(shell, strParam, pathHome, SW_SHOWDEFAULT, false);
+
+      }
+      else if (strBrowser == "firefox")
+      {
+
+         ::file::path pathHome(getenv("HOME"));
+
+         ::file::path pathProfile;
+
+         pathProfile = pathHome / "ca2/Firefox/Profile" / strProfile;
+
+         call_async(shell, "-c \""+ path + " -profile=\\\"" + pathProfile + "\\\" " + strParam + "\"", pathHome, SW_SHOWDEFAULT, false);
 
       }
       else
       {
 
-         strCommand = "firefox";
+         ::system("xdg-open " + strUrl);
 
       }
 
-      ::file::path path = command_find_path(strCommand);
-
-      call_async(path, "\"" + strUrl + "\"", "", SW_SHOWDEFAULT, false);
 
 
 #endif
@@ -1358,7 +1401,7 @@ namespace aura
 
          if(m_iReturnCode < 0)
          {
-            
+
             thisfail << 1 << m_iReturnCode;
 
             m_bReady = true;
@@ -1370,12 +1413,12 @@ namespace aura
          xxdebug_box("pre_run 1 ok","pre_run 1 ok",MB_ICONINFORMATION);
 
          thisok << 1 << m_iReturnCode;
-         
+
          if(!initial_check_directrix())
          {
 
             thisfail << 2 << m_iReturnCode;
-            
+
             if (m_iReturnCode >= 0)
             {
 
@@ -1390,7 +1433,7 @@ namespace aura
          }
 
          thisok << 2 << m_iReturnCode;
-         
+
          m_dwAlive = ::get_tick_count();
 
          if(!os_native_bergedge_start())
@@ -1404,9 +1447,9 @@ namespace aura
                m_iReturnCode = -1;
 
             }
-            
+
             m_bReady = true;
-            
+
             return false;
 
          }
@@ -1464,7 +1507,7 @@ namespace aura
 
       try
       {
-         
+
          try
          {
 
@@ -1719,10 +1762,10 @@ namespace aura
 
       try
       {
-            
+
          if(!process_initialize())
          {
-               
+
             thisfail << 2 << m_iReturnCode;
 
             goto InitFailure;
@@ -1742,7 +1785,7 @@ namespace aura
       {
 
          thisexc << 2 << m_iReturnCode;
-            
+
          goto InitFailure;
 
       }

@@ -55,7 +55,7 @@ public:
    int                           m_iDepth;
    int                           m_iScreen;
    bool                          m_bMessageOnlyWindow;
-   ::user::interaction *         m_pui;
+   ::user::interaction_impl *    m_pimpl;
    HTHREAD                       m_hthread;
    int_ptr_to_int_ptr *          m_plongptrmap;
    Colormap                      m_colormap;
@@ -147,11 +147,7 @@ public:
    int32_t select_all_input();
    int32_t map_window();
 
-   void set_user_interaction(::user::interaction * pui);
-   ::user::interaction * get_user_interaction_base();
-   ::user::interaction * get_user_interaction_base() const;
-   ::user::interaction * get_user_interaction();
-   ::user::interaction * get_user_interaction() const;
+   void set_user_interaction(::user::interaction_impl * pui);
 
 
    void post_nc_destroy();

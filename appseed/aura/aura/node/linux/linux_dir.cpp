@@ -3,6 +3,41 @@
 
 #include <unistd.h>
 
+::file::path xdg_get_dir(string str)
+{
+
+   ::file::path pathHome;
+
+   pathHome = getenv("HOME");
+
+   ::file::path path;
+
+   path = pathHome / ".config/user-dirs.dirs";
+
+   string strDirs = file_as_string_dup(path);
+
+   stringa stra;
+
+   stra.add_lines(strDirs);
+
+   stra.filter_begins_ci(str + "=");
+
+   if(stra.get_size() != 1)
+   {
+
+      return "";
+
+   }
+
+   path = stra[0];
+
+   path.replace("$HOME", pathHome);
+
+   path.trim("\"");
+
+   return path;
+
+}
 
 namespace linux
 {
@@ -1603,6 +1638,68 @@ namespace linux
       listing.ls_dir(pszDir);
 
       return listing.get_size() > 0;
+
+   }
+
+   ::file::path dir::get_music_folder()
+   {
+
+      ::file::path path = xdg_get_dir("XDG_MUSIC_DIR");
+
+      if(path.has_char())
+      {
+
+         return path;
+
+      }
+
+      path = getenv("HOME");
+
+      path /= "Music";
+
+      return path;
+
+   }
+
+
+   ::file::path dir::get_video_folder()
+   {
+
+      ::file::path path = xdg_get_dir("XDG_VIDEOS_DIR");
+
+      if(path.has_char())
+      {
+
+         return path;
+
+      }
+
+      path = getenv("HOME");
+
+      path /= "Videos";
+
+      return path;
+
+   }
+
+
+   ::file::path dir::get_image_folder()
+   {
+
+      ::file::path path = xdg_get_dir("XDG_PICTURES_DIR");
+
+      if(path.has_char())
+      {
+
+         return path;
+
+      }
+
+      path = getenv("HOME");
+
+      path /= "Pictures";
+
+      return path;
 
    }
 

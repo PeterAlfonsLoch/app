@@ -59,7 +59,9 @@ namespace linux
       virtual void post_to_all_threads(UINT message, WPARAM wParam, LPARAM lParam);
 
 
-      bool initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch);
+      virtual bool initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch) override;
+
+      virtual bool get_default_browser(string & strId, ::file::path & path, string & strParam) override;
 
    };
 

@@ -4,6 +4,7 @@
 #if defined(LINUX) || defined(SOLARIS) || defined(APPLEOS)
 #include <sys/ipc.h>
 #include <sys/sem.h>
+#include <fcntl.h>
 #include <pthread.h>
 #elif defined(ANDROID)
 #include <sys/types.h>
@@ -11,7 +12,6 @@
 #include <fcntl.h>
 #include <pthread.h>
 #endif
-
 
 static int g_iMutex = 0;
 
@@ -56,7 +56,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    }
 
 #else
-   
+
 #if defined(MUTEX_NAMED_POSIX)
 
    m_psem = SEM_FAILED;
@@ -142,35 +142,36 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    else
 
 #elif defined(MUTEX_NAMED_FD)
-   
-   m_count = 0;
-   
+
+   //m_count = 0;
+   //m_count = 0;
+
    if(pstrName != NULL && *pstrName != '\0')
    {
-      
+
       m_pmutex = NULL;
-      
+
       SetLastError(0);
-      
+
       ::file::path path;
-      
+
       if(str::begins_ci(pstrName, "Global"))
       {
-      
+
 #ifdef ANDROID
 
          path = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var/tmp/ca2/lock/mutex" / string(pstrName);
 
 #else
 
-         path = "/var/tmp/ca2/lock/mutex" / strName;
+         path = ::file::path("/var/tmp/ca2/lock/mutex") / pstrName;
 
 #endif
 
       }
       else
       {
-         
+
 #ifdef ANDROID
 
          path = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "home/user/ca2/lock/mutex" / string(pstrName);
@@ -185,34 +186,34 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
 
       }
-      
+
       path /= pstrName;
 
       dir::mk(path.folder());
-      
+
       m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
-      
+
       if(m_iFd < 0)
       {
 
          int iErr = errno;
 
          const char * pszError = strerror(iErr);
-         
+
          throw resource_exception(get_app());
-         
+
       }
-      
+
       m_pszName = strdup(path);
-      
+
       pthread_mutexattr_t attr;
-      
+
       pthread_mutexattr_init(&attr);
-      
+
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-      
+
       pthread_mutex_init(&m_mutex, &attr);
-      
+
    }
    else
 
@@ -226,26 +227,26 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    {
 
       m_pmutex = NULL;
-      
+
       ::file::path path;
-      
+
       if(str::begins_ci(pstrName, "Global"))
       {
-         
+
          path = "/var/lock/ca2/mutex/named";
-         
+
       }
       else
       {
-         
+
          path = getenv("HOME");
-         
+
          path /= ".config/ca2/lock/mutex/named";
-         
+
       }
-      
+
       path /= pstrName;
-      
+
       ::dir::mk(path.folder());
 
       ::file_put_contents_dup(path, m_pszName);
@@ -302,11 +303,11 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
       if(m_semid < 0)
       {
-       
+
          throw resource_exception(get_app());
-         
+
       }
-      
+
       m_pszName = strdup(path);
 
       semun semctl_arg;
@@ -330,15 +331,15 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
 
       pthread_mutex_init(&m_mutex, &attr);
-      
+
 #ifdef MUTEX_COND_TIMED
-      
+
       pthread_cond_init(&m_cond, NULL);
-      
+
       m_count = 0;
-      
+
       m_thread = 0;
-      
+
 #endif
 
    }
@@ -469,7 +470,7 @@ mutex::~mutex()
 #ifndef WINDOWS
 
 #if defined(MUTEX_NAMED_POSIX)
-   
+
    if (m_psem != SEM_FAILED)
    {
 
@@ -486,14 +487,14 @@ mutex::~mutex()
 
    if(m_pszName != NULL)
    {
-      
+
       if(m_iFd >= 0)
       {
-         
+
          close(m_iFd);
-         
+
       }
-      
+
       pthread_mutex_destroy(&m_mutex);
 
    }
@@ -520,11 +521,11 @@ mutex::~mutex()
    {
 
       pthread_mutex_destroy(&m_mutex);
-      
+
 #ifdef MUTEX_COND_TIMED
-      
+
       pthread_cond_destroy(&m_cond);
-      
+
 #endif
 
    }
@@ -770,29 +771,29 @@ wait_result mutex::wait(const duration & duration)
    else
 
 #endif
-      
+
 #if defined(MUTEX_COND_TIMED)
    {
-   
+
       int rc = pthread_mutex_lock(&m_mutex);
-      
+
       if(rc < 0)
       {
-         
+
          return wait_result(wait_result::Failure);
-         
+
       }
-      
+
       bool bFirst = true;
-      
+
       timespec abs_time;
-      
+
       while((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
       {
-      
+
          if (bFirst)
          {
-         
+
 #ifdef ANDROID
 
             clock_gettime(CLOCK_MONOTONIC, &abs_time);
@@ -802,25 +803,25 @@ wait_result mutex::wait(const duration & duration)
             clock_gettime(CLOCK_REALTIME, &abs_time);
 
 #endif
-            
+
             ::duration d;
-            
+
             d.m_iSeconds = abs_time.tv_sec + duration.m_iSeconds;
-            
+
             d.m_iNanoseconds = abs_time.tv_nsec + duration.m_iNanoseconds;
-            
+
             d.normalize();
-            
+
             abs_time.tv_sec = d.m_iSeconds;
-            
+
             abs_time.tv_nsec = d.m_iNanoseconds;
-            
+
             bFirst = false;
-            
+
          }
 
 #ifdef ANDROID
-         
+
          rc = pthread_cond_timedwait_monotonic_np(&m_cond, &m_mutex, &abs_time);
 
 #else
@@ -828,49 +829,49 @@ wait_result mutex::wait(const duration & duration)
          rc = pthread_cond_timedwait(&m_cond, &m_mutex, &abs_time);
 
 #endif
-         
+
          if(rc == ETIMEDOUT)
          {
-            
+
             int iError = pthread_mutex_unlock(&m_mutex);
-            
+
             ASSERT(iError == 0);
-            
+
             return wait_result(wait_result::Timeout);
-            
+
          }
          else if(rc != 0)
          {
-            
+
             int iError = pthread_mutex_unlock(&m_mutex);
-            
+
             ASSERT(iError == 0);
-            
+
             return wait_result(wait_result::Failure);
-            
+
          }
 
       }
-      
+
       if (m_count == 0)
       {
-      
+
          m_thread = pthread_self();
-         
+
       }
-      
+
       m_count++;
-      
+
       int iError = pthread_mutex_unlock(&m_mutex);
-      
+
       ASSERT(iError == 0);
-      
+
       return wait_result(wait_result::Event0);
-      
+
    }
-   
+
 #else
-   
+
    {
 
       timespec abs_time;
@@ -884,7 +885,7 @@ wait_result mutex::wait(const duration & duration)
       d.m_iNanoseconds = abs_time.tv_nsec + duration.m_iNanoseconds;
 
       d.normalize();
-      
+
       abs_time.tv_sec = d.m_iSeconds;
 
       abs_time.tv_nsec = d.m_iNanoseconds;
@@ -921,7 +922,7 @@ bool mutex::lock()
 {
 
 #if defined(MUTEX_NAMED_POSIX)
-   
+
    if (m_psem != SEM_FAILED)
    {
 
@@ -1093,54 +1094,54 @@ bool mutex::lock()
    else
 
 #endif
-   
+
 #ifdef MUTEX_COND_TIMED
    {
-   
+
       int rc = pthread_mutex_lock(&m_mutex);
-      
+
       if(rc < 0)
       {
-         
+
          return false;
-         
+
       }
-   
+
       while ((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
       {
-         
+
          rc = pthread_cond_wait(&m_cond, &m_mutex);
-         
+
          if(rc < 0)
          {
-            
+
             int iError = pthread_mutex_unlock(&m_mutex);
-            
+
             ASSERT(iError == 0);
-            
+
             return false;
-            
+
          }
-         
+
       }
-      
+
       if(m_count == 0)
       {
-         
+
          m_thread = pthread_self();
-         
+
       }
-      
+
       m_count++;
-      
+
       int iError = pthread_mutex_unlock(&m_mutex);
-      
+
       ASSERT(iError == 0);
-      
+
       return true;
-      
+
    }
-   
+
 #else
 
    {
@@ -1157,7 +1158,7 @@ bool mutex::lock()
    }
 
 #endif
-   
+
    return true;
 
 }
@@ -1295,79 +1296,78 @@ bool mutex::unlock()
    else
 
 #endif
-   
+
 #ifdef MUTEX_COND_TIMED
-   
+
   {
-      
+
       int rc = pthread_mutex_lock(&m_mutex);
-      
+
       if(rc < 0)
       {
-       
+
          return false;
-         
+
       }
 
       if(!pthread_equal(m_thread, pthread_self()))
       {
-         
-         
+
+
 #ifdef _DEBUG
-      
+
          ASSERT(FALSE);
-      
+
 #endif
-         
+
          int iError = pthread_mutex_unlock(&m_mutex);
-         
+
          ASSERT(iError == 0);
-         
+
          return false;
-         
+
       }
-      
+
       rc = 0;
-      
+
       if(m_count > 1)
       {
-         
+
          m_count--;
-         
+
       }
       else if(m_count == 1)
       {
-         
+
          rc = pthread_cond_signal(&m_cond);
-         
+
          if(rc == 0)
          {
-            
+
             m_thread = 0;
 
             m_count = 0;
-            
+
          }
-         
+
       }
-      
+
       int iError = pthread_mutex_unlock(&m_mutex);
-      
+
       ASSERT(iError == 0);
-      
+
       return true;
-      
+
    }
-   
+
 #else
 
-   else
    {
 
       return pthread_mutex_unlock(&m_mutex) == 0;
 
    }
-   
+
 #endif
 
 #endif // _WIN32
