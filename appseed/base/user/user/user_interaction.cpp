@@ -371,14 +371,14 @@ namespace user
    {
 
 //#if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
-//      
+//
 //      if(m_pparent == System.m_possystemwindow->m_pui)
 //      {
-//         
+//
 //         return NULL;
-//         
+//
 //      }
-//      
+//
 //#endif
 
       return m_pparent;
@@ -542,7 +542,7 @@ namespace user
 
                }
 
-               
+
 
             }
 
@@ -1531,7 +1531,7 @@ namespace user
                rectIntersect.intersect(rectFocus);
 
             }
-            
+
             i++;
 
             pui = pui->GetParent();
@@ -1689,7 +1689,7 @@ namespace user
 
       }
 
-      
+
 
    }
 
@@ -2848,33 +2848,33 @@ namespace user
 
    bool interaction::initialize_native_window(::user::native_window_initialize * pinitialize)
    {
-      
+
       if (IsWindow())
       {
-         
+
          DestroyWindow();
-         
+
       }
-      
+
       m_signalptra.remove_all();
-      
+
       m_pimpl = (Application.alloc(System.type_info < interaction_impl >()));
-      
+
       m_pimpl->m_pui = this;
 
       if (!m_pimpl->initialize_native_window(pinitialize))
       {
 
          m_pimpl.release();
-         
+
          return false;
-         
+
       }
-      
+
       return true;
-      
+
    }
-   
+
 
 #endif
 
@@ -7566,7 +7566,7 @@ restart:
 
       try
       {
-         
+
          if (OnUpDownTargetAttach(pupdown))
          {
 
@@ -7622,15 +7622,15 @@ restart:
 
    }
 
-   
+
    bool interaction::OnUpDownTargetAttach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown)
    {
-      
+
       return false;
 
    }
 
-   
+
    bool interaction::OnUpDownTargetDetach(::user::wndfrm::frame::WorkSetUpDownInterface * pupdown)
    {
 
@@ -7947,34 +7947,34 @@ restart:
 
    bool interaction::has_pending_graphical_update()
    {
-      
+
 #ifdef APPLE_IOS
-      
+
       {
-      
+
       synch_lock sl(m_pmutex);
-      
+
       for(index i = 0; i < m_uiptraChild.get_size(); i++)
       {
-         
+
          ::user::interaction * pui = m_uiptraChild[i];
-         
+
          sl.unlock();
-         
+
          if(pui->has_pending_graphical_update())
          {
-            
+
             return true;
-            
+
          }
-         
+
          sl.lock();
-         
-         
+
+
       }
-         
+
       }
-      
+
 #endif
 
       if (m_bRedrawOnVisible && IsWindowVisible())
@@ -8155,6 +8155,14 @@ restart:
       m_bRedraw = false;
 
       Session.get_cursor_pos(m_ptCursor);
+
+   }
+
+
+   void interaction::_001OnDeiconify(::user::EAppearance eappearance)
+   {
+
+      WfiRestore();
 
    }
 

@@ -548,6 +548,10 @@
 		<Unit filename="user/user/user_notify_icon.h" />
 		<Unit filename="user/user/user_notify_icon_listener.h" />
 		<Unit filename="user/user/user_orto_button.h" />
+		<Unit filename="user/user/user_shell.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_shell.h" />
 		<Unit filename="user/user/user_simple_list_data.h" />
 		<Unit filename="user/user/user_single_document_template.h" />

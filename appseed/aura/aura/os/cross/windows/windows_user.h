@@ -1093,7 +1093,6 @@ WINBOOL EndPaint(oswindow hwnd,PAINTSTRUCT * ps);
 
 WINBOOL SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,int32_t X,int32_t Y,int32_t cx,int32_t cy,UINT uFlags);
 
-
 WINBOOL IsWindowVisible(oswindow hWnd);
 
 WINBOOL IsIconic(oswindow hWnd);

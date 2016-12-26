@@ -101,7 +101,7 @@ namespace user
       bool                                m_bRectOk;
       sp(::axis::session)                 m_psession;
       bool                                m_bMessageWindow;
-      
+
       bool                                m_bCreated;
 
       string                              m_strWindowText;
@@ -155,9 +155,9 @@ namespace user
       virtual bool kick_queue();
 
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
-      
+
       virtual bool initialize_native_window(::user::native_window_initialize * pinitialize) override;
-      
+
 #endif
 
 
@@ -822,6 +822,9 @@ namespace user
       inline bool has_redraw();
 
       virtual void on_after_graphical_update();
+
+
+      virtual void _001OnDeiconify(::user::EAppearance eappearance);
 
    };
 

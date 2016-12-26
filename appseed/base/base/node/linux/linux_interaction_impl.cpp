@@ -6,9 +6,12 @@
 
 #define TEST 0
 
+void wm_iconify_window(oswindow w);
+
 Display * x11_get_display();
-void wm_state_above(oswindow w, bool bSet);
+void wm_state_above_raw(oswindow w, bool bSet);
 void wm_toolwindow(oswindow w, bool bSet);
+void wm_state_hidden(oswindow w, bool bSet);
 //#include <X11/extensions/Xcomposite.h>
 
 CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
@@ -405,7 +408,7 @@ namespace linux
 
          attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
 
-         attr.event_mask = ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask | PointerMotionMask | StructureNotifyMask | FocusChangeMask;
+         attr.event_mask = PropertyChangeMask | ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask | PointerMotionMask | StructureNotifyMask | FocusChangeMask;
 
          attr.background_pixmap = None;
 
@@ -3683,77 +3686,21 @@ throw not_implemented(get_app());
    bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
 
-      ::user::interaction_impl::SetWindowPos(z, x, y, cx, cy, nFlags);
+      //::user::interaction_impl::SetWindowPos(z, x, y, cx, cy, nFlags);
+
+      //m_rectParentClient = m_rectParentClientRequest;
 
       xdisplay d(m_oswindow->display());
 
-      wm_state_above((oswindow)get_handle(), nFlags == ZORDER_TOPMOST);
-
-      XSizeHints hints;
-
-      if(nFlags & SWP_NOMOVE)
+      if(!::IsWindowVisibleRaw(m_oswindow))
       {
 
-         if(nFlags & SWP_NOSIZE)
+         XSizeHints hints = {};
+
+         if(!(nFlags & SWP_NOSIZE))
          {
 
-            hints.flags = 0;
-
-         }
-         else
-         {
-
-            hints.flags = PSize;
-
-            hints.width = cx;
-
-            hints.height = cy;
-
-            //if(IsWindowVisible())
-            {
-
-               XResizeWindow(m_oswindow->display(), m_oswindow->window(), cx, cy);
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         if(nFlags & SWP_NOSIZE)
-         {
-
-            //if(IsWindowVisible())
-            {
-
-               XMoveWindow(m_oswindow->display(), m_oswindow->window(), x, y);
-
-            }
-
-            hints.flags = PPosition;
-
-            hints.x = x;
-
-            hints.y = y;
-
-         }
-         else
-         {
-
-            //if(IsWindowVisible())
-            {
-
-               XMoveResizeWindow(m_oswindow->display(), m_oswindow->window(), x, y, cx, cy);
-
-            }
-
-            hints.flags = PPosition | PSize;
-
-            hints.x = x;
-
-            hints.y = y;
+            hints.flags |= PSize;
 
             hints.width = cx;
 
@@ -3761,22 +3708,61 @@ throw not_implemented(get_app());
 
          }
 
-      }
+         if(!(nFlags & SWP_NOMOVE))
+         {
 
-      if(!IsWindowVisible())
-      {
+            hints.flags |= PPosition;
+
+            hints.x = x;
+
+            hints.y = y;
+
+         }
 
          XSetNormalHints(m_oswindow->display(), m_oswindow->window(), &hints);
 
-      }
-
-      if((nFlags & SWP_SHOWWINDOW))
-      {
-
-         if(!IsWindowVisible())
+         if((nFlags & SWP_SHOWWINDOW))
          {
 
             XMapWindow(m_oswindow->display(), m_oswindow->window());
+
+         }
+
+      }
+
+      {
+
+         if(!(nFlags & SWP_NOMOVE) && !(nFlags & SWP_NOSIZE))
+         {
+
+            XMoveResizeWindow(m_oswindow->display(), m_oswindow->window(), x, y, cx, cy);
+
+         }
+         else if(!(nFlags & SWP_NOMOVE))
+         {
+
+            XMoveWindow(m_oswindow->display(), m_oswindow->window(), x, y);
+
+         }
+         else if(!(nFlags & SWP_NOSIZE))
+         {
+
+            XResizeWindow(m_oswindow->display(), m_oswindow->window(), cx, cy);
+
+         }
+
+      }
+
+
+      if(!(nFlags & SWP_NOZORDER))
+      {
+
+         wm_state_above_raw((oswindow)get_handle(), z == ZORDER_TOPMOST);
+
+         if(z == ZORDER_TOP)
+         {
+
+            XRaiseWindow(m_oswindow->display(), m_oswindow->window());
 
          }
 
@@ -4085,7 +4071,27 @@ throw not_implemented(get_app());
 
    void interaction_impl::_001WindowMaximize()
    {
+
+
       ::user::interaction_impl::_001WindowMaximize();
+   }
+
+   void interaction_impl::_001WindowMinimize()
+   {
+
+      if(m_pui != NULL)
+      {
+
+         m_pui->m_eappearanceBefore = m_pui->m_eappearance;
+
+         m_pui->m_eappearance = ::user::AppearanceIconic;
+
+         m_pui->ModifyStyleEx(WS_VISIBLE, 0, 0);
+
+      }
+
+      wm_iconify_window(get_handle());
+
    }
 
    void interaction_impl::_001WindowRestore()
@@ -5758,7 +5764,7 @@ __STATIC void CLASS_DECL_BASE __post_init_dialog(
 
 
 
-void wm_state_above(oswindow w, bool bSet);
+void wm_state_above_raw(oswindow w, bool bSet);
 
 
 
@@ -5827,11 +5833,12 @@ namespace linux
    void interaction_impl::show_task(bool bShow)
    {
 
-      wm_toolwindow(get_handle(), bShow ? 1: 0);
+      wm_toolwindow(get_handle(), bShow ? 0: 1);
 
    }
 
 }
+
 
 
 

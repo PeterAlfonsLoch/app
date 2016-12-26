@@ -17,4 +17,4 @@
 
 
 
-
+WINBOOL IsWindowVisibleRaw(oswindow w);

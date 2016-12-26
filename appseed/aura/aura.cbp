@@ -247,6 +247,10 @@
 		</Unit>
 		<Unit filename="aura/aura/aura_new.h" />
 		<Unit filename="aura/aura/aura_number.h" />
+		<Unit filename="aura/aura/aura_os.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_os.h" />
 		<Unit filename="aura/aura/aura_os_alloc.h" />
 		<Unit filename="aura/aura/aura_plex.h" />

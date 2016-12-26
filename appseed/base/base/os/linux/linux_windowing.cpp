@@ -1,5 +1,6 @@
 #include "framework.h" // from ""axis/user/user.h"
 #include <X11/Xatom.h>
+#include <sys/stat.h>
 
 Display * x11_get_display();
 
@@ -1406,10 +1407,14 @@ void message_box_paint(::draw2d::graphics * pgraphics, stringa & stra, bool_arra
 #define _NET_WM_STATE_ADD           1    // add/set property
 #define _NET_WM_STATE_TOGGLE        2    // toggle property
 
-void wm_add_remove_state(oswindow w, const char * pszState, bool bSet)
-{
+Atom * wm_get_list_raw(oswindow w, Atom atomList, unsigned long int * items);
+int wm_test_state(oswindow w, const char * pszNetStateFlag);
+int wm_test_state_raw(oswindow w, const char * pszNetStateFlag);
+int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag);
+bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet);
 
-   xdisplay d(w->display());
+void wm_add_remove_state_mapped_raw(oswindow w, const char * pszNetStateFlag, bool bSet)
+{
 
    Display * display = w->display();
 
@@ -1419,25 +1424,52 @@ void wm_add_remove_state(oswindow w, const char * pszState, bool bSet)
 
    Window rootw=RootWindow(display,scr);
 
-   Atom wmStateAbove = XInternAtom(display, pszState, 1);
+   Atom atomFlag = XInternAtom(display, pszNetStateFlag, 1);
 
-   if( wmStateAbove == None )
+   if( atomFlag == None )
    {
 
-      output_debug_string("ERROR: cannot find atom for " + string(pszState) + "!\n");
+      output_debug_string("ERROR: cannot find atom for " + string(pszNetStateFlag) + "!\n");
 
       return;
 
    }
 
-   Atom wmNetWmState = XInternAtom(display, "_NET_WM_STATE", 1);
+   Atom atomNetState = XInternAtom(display, "_NET_WM_STATE", 1);
 
-   if( wmNetWmState == None )
+   if( atomNetState == None )
    {
 
       output_debug_string("ERROR: cannot find atom for _NET_WM_STATE !\n");
 
+      return;
+
    }
+
+   if(wm_test_list_raw(w, atomNetState, atomFlag))
+   {
+
+      if(bSet)
+      {
+
+         return;
+
+      }
+
+   }
+   else
+   {
+
+      if(!bSet)
+      {
+
+         return;
+
+      }
+
+
+   }
+
 
    XClientMessageEvent xclient;
 
@@ -1445,10 +1477,10 @@ void wm_add_remove_state(oswindow w, const char * pszState, bool bSet)
 
    xclient.type            = ClientMessage;
    xclient.window          = window;
-   xclient.message_type    = wmNetWmState;
+   xclient.message_type    = atomNetState;
    xclient.format          = 32;
    xclient.data.l[0]       = bSet ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
-   xclient.data.l[1]       = wmStateAbove;
+   xclient.data.l[1]       = atomFlag;
    xclient.data.l[2]       = 0;
    xclient.data.l[3]       = 0;
    xclient.data.l[4]       = 0;
@@ -1457,53 +1489,198 @@ void wm_add_remove_state(oswindow w, const char * pszState, bool bSet)
 
 }
 
+void wm_add_remove_state_mapped(oswindow w, const char * pszNetStateFlag, bool bSet)
+{
+
+   xdisplay d(w->display());
+
+   wm_add_remove_state_mapped_raw(w, pszNetStateFlag, bSet);
+
+}
+
+void wm_add_remove_state_unmapped_raw(oswindow w, const char * pszNetStateFlag, bool bSet)
+{
+
+   Display * display = w->display();
+
+   Window window = w->window();
+
+   int scr=DefaultScreen(display);
+
+   Window rootw=RootWindow(display,scr);
+
+   Atom atomFlag = XInternAtom(display, pszNetStateFlag, 1);
+
+   if( atomFlag == None )
+   {
+
+      output_debug_string("ERROR: cannot find atom for " + string(pszNetStateFlag) + "!\n");
+
+      return;
+
+   }
+
+   Atom atomNetState = XInternAtom(display, "_NET_WM_STATE", 1);
+
+   if( atomNetState == None )
+   {
+
+      output_debug_string("ERROR: cannot find atom for _NET_WM_STATE !\n");
+
+      return;
+
+   }
+
+   wm_add_remove_list_raw(w, atomNetState, atomFlag, bSet);
+
+}
+
+void wm_add_remove_state_unmapped(oswindow w, const char * pszNetStateFlag, bool bSet)
+{
+
+   xdisplay d(w->display());
+
+   wm_add_remove_state_unmapped_raw(w, pszNetStateFlag, bSet);
+
+}
+
+void wm_add_remove_state_raw(oswindow w, const char * pszState, bool bSet)
+{
+
+   if(IsWindowVisibleRaw(w))
+   {
+
+      wm_add_remove_state_mapped_raw(w, pszState, bSet);
+
+   }
+   else
+   {
+
+      wm_add_remove_state_unmapped_raw(w, pszState, bSet);
+
+   }
+
+}
+
+
+void wm_add_remove_state(oswindow w, const char * pszState, bool bSet)
+{
+
+   xdisplay d(w->display());
+
+   wm_add_remove_state_raw(w, pszState, bSet);
+
+}
+
+
+void wm_state_above_raw(oswindow w, bool bSet)
+{
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_HIDDEN", false);
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_BELOW", false);
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_ABOVE", bSet);
+
+}
+
+
+void wm_state_below_raw(oswindow w, bool bSet)
+{
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_HIDDEN", false);
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_ABOVE", false);
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_BELOW", bSet);
+
+}
+
+
+void wm_state_hidden_raw(oswindow w, bool bSet)
+{
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_BELOW", false);
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_ABOVE", false);
+
+   wm_add_remove_state_raw(w, "_NET_WM_STATE_HIDDEN", bSet);
+
+}
+
 
 void wm_state_above(oswindow w, bool bSet)
 {
 
-   wm_add_remove_state(w, "_NET_WM_STATE_ABOVE", bSet);
+   xdisplay d(w->display());
+
+   wm_state_above_raw(w, bSet);
 
 }
 
 void wm_state_below(oswindow w, bool bSet)
 {
 
-   wm_add_remove_state(w, "_NET_WM_STATE_BELOW", bSet);
+   xdisplay d(w->display());
+
+   wm_state_above_raw(w, bSet);
 
 }
 
 
-
-void wm_toolwindow(oswindow w,bool bSet)
+void wm_state_hidden(oswindow w, bool bSet)
 {
 
    xdisplay d(w->display());
+
+   wm_state_hidden_raw(w, bSet);
+
+}
+
+
+void wm_toolwindow(oswindow w,bool bToolWindow)
+{
+
+   xdisplay d(w->display());
+
    Display * display = w->display();
+
    Window window = w->window();
 
    int scr=DefaultScreen(display);
+
    Window rootw=RootWindow(display,scr);
 
-   Atom type = XInternAtom(display,"_NET_WM_WINDOW_TYPE",False);
+   Atom atomWindowType = XInternAtom(display,"_NET_WM_WINDOW_TYPE",False);
 
-   if(type != None)
+   if(atomWindowType != None)
    {
 
-      Atom window_type;
+      Atom atomWindowTypeValue;
 
-      window_type = XInternAtom(display,"_NET_WM_WINDOW_TYPE_SPLASH",False);
-
-      if(window_type != None)
+      if(bToolWindow)
       {
 
-         XChangeProperty(display,window,type,XA_ATOM,32,PropModeReplace, (unsigned char *)&window_type,1);
+         atomWindowTypeValue = XInternAtom(display,"_NET_WM_WINDOW_TYPE_SPLASH",False);
+
+      }
+      else
+      {
+
+         atomWindowTypeValue = XInternAtom(display,"_NET_WM_WINDOW_TYPE_NORMAL",False);
+
+      }
+
+      if(atomWindowType != None)
+      {
+
+         XChangeProperty(display,window,atomWindowType,XA_ATOM,32,PropModeReplace, (unsigned char *)&atomWindowTypeValue,1);
 
       }
 
    }
 
-
-   wm_add_remove_state(w, "_NET_WM_STATE_SKIP_TASKBAR", bSet);
+   wm_add_remove_state(w, "_NET_WM_STATE_SKIP_TASKBAR", bToolWindow);
 
 }
 
@@ -1561,10 +1738,446 @@ void wm_nodecorations(oswindow w, int map)
 //         (unsigned char *)&NET_WMHints,2);
 //   }
    //XSetTransientForHint(dpy,window,rootw);
+
    if(map)
    {
+
       XUnmapWindow(dpy,window);
+
       XMapWindow(dpy,window);
 
    }
+
+}
+
+
+
+void wm_iconify_window(oswindow w)
+{
+
+   xdisplay d(w->display());
+
+   Display * display = w->display();
+
+   Window window = w->window();
+
+   int scr=DefaultScreen(display);
+
+   XIconifyWindow(display, window, scr);
+
+}
+
+
+
+
+WINBOOL IsWindowVisibleRaw(Display * display, Window window)
+{
+
+   XWindowAttributes attr;
+
+   if(!XGetWindowAttributes(display, window, &attr))
+      return false;
+
+   return attr.map_state == IsViewable;
+
+}
+
+
+
+WINBOOL IsWindowVisibleRaw(oswindow w)
+{
+
+   Display * display = w->display();
+
+   Window window = w->window();
+
+   return IsWindowVisibleRaw(display, window);
+
+}
+
+Atom * wm_get_list_raw(oswindow w, Atom atomList, unsigned long int * pnum_items)
+{
+
+
+   if(atomList == None )
+   {
+
+      return NULL;
+
+   }
+
+   Display * display = w->display();
+
+   Window window = w->window();
+
+   Atom actual_type;
+
+   int actual_format;
+
+   unsigned long int bytes_after;
+
+   Atom *atoms = NULL;
+
+   XGetWindowProperty(display, window, atomList, 0, 1024, False, XA_ATOM, &actual_type, &actual_format, pnum_items, &bytes_after, (unsigned char**)&atoms);
+
+   return atoms;
+
+}
+
+
+int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag)
+{
+
+   Display * display = w->display();
+
+   Window window = w->window();
+
+   Atom actual_type;
+
+   int actual_format;
+
+   unsigned long i, num_items;
+
+   Atom *atoms = wm_get_list_raw(w, atomList, &num_items);
+
+   if(atoms == NULL)
+   {
+
+      return 0;
+
+   }
+
+   bool bFind = false;
+
+   for(i = 0; i < num_items; i++)
+   {
+
+      if(atoms[i] == atomFlag)
+      {
+
+         bFind = true;
+
+         break;
+
+      }
+
+   }
+
+   XFree(atoms);
+
+   return bFind ? 1 : 0;
+
+}
+
+
+int wm_test_state_raw(oswindow w, const char * pszNetStateFlag)
+{
+
+   Atom atomFlag = XInternAtom(w->display(), pszNetStateFlag, 1);
+
+   if( atomFlag == None )
+   {
+
+      output_debug_string("ERROR: cannot find atom for " + string(pszNetStateFlag) + "!\n");
+
+      return 0;
+
+   }
+
+   Atom atomNetState = XInternAtom(w->display(), "_NET_WM_STATE", 1);
+
+   if( atomNetState == None )
+   {
+
+      output_debug_string("ERROR: cannot find atom for _NET_WM_STATE !\n");
+
+      return 0;
+
+   }
+
+   return wm_test_list_raw(w, atomNetState, atomFlag);
+
+}
+
+
+int wm_test_state(oswindow w, const char * pszNetStateFlag)
+{
+
+   xdisplay d(w->display());
+
+   return wm_test_state_raw(w, pszNetStateFlag);
+
+}
+
+
+
+bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
+{
+
+   if( atomFlag == None )
+   {
+
+      return false;
+
+   }
+
+   if( atomList == None )
+   {
+
+      return false;
+
+   }
+
+   Display * display = w->display();
+
+   Window window = w->window();
+
+   int scr = DefaultScreen(display);
+
+   Window rootw = RootWindow(display,scr);
+
+   if(bSet)
+   {
+
+      if(!wm_test_list_raw(w, atomList, atomFlag))
+      {
+
+         XChangeProperty(display,window,atomList,XA_ATOM,32,PropModeAppend, (unsigned char *)&atomFlag,1);
+
+      }
+
+   }
+   else
+   {
+
+      unsigned long num_items;
+
+      Atom * plist = wm_get_list_raw(w, atomList, &num_items);
+
+      if(plist == NULL)
+      {
+
+         return false;
+
+      }
+
+      int iFind = -1;
+
+      int i;
+
+      for(i = 0; i < num_items; i++)
+      {
+
+         if(plist[i] == atomFlag)
+         {
+
+            iFind = i;
+
+            break;
+
+         }
+
+      }
+
+      if(iFind >= 0)
+      {
+
+         memmove(&plist[iFind], &plist[iFind + 1], (num_items - iFind - 1) *sizeof(Atom));
+
+         XChangeProperty(display,window,atomList,XA_ATOM,32,PropModeReplace, (unsigned char *)plist,num_items-1);
+
+      }
+
+      XFree(plist);
+
+   }
+
+   return true;
+
+}
+
+
+bool wm_set_icon(oswindow w, ::draw2d::dib * p)
+{
+
+   // http://stackoverflow.com/questions/10699927/xlib-argb-window-icon
+   // http://stackoverflow.com/users/432509/ideasman42
+
+   xdisplay d(w->display());
+
+
+   #if 0
+
+      unsigned int buffer[] = {
+            16, 16,
+            4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 338034905, 3657433343, 0, 184483840, 234881279, 3053453567, 3221225727, 1879048447, 0, 0, 0, 0, 0, 0, 0, 1224737023, 3305111807, 3875537151,0, 0, 2063597823, 1291845887, 0, 67109119, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 50266112, 3422552319, 0, 0, 3070230783, 2063597823, 2986344703, 771752191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3422552319, 0, 0, 3372220671, 1509949695, 704643327, 3355443455, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 3422552319, 0, 134152192, 3187671295, 251658495, 0, 3439329535, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3422552319, 0, 0, 2332033279, 1342177535, 167772415, 3338666239, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 3422552319, 0, 0, 436207871, 3322085628, 3456106751, 1375731967, 4278255360, 4026597120, 3758161664, 3489726208, 3204513536, 2952855296, 2684419840, 2399207168, 2130771712, 1845559040, 1593900800, 1308688128, 1040252672, 755040000, 486604544, 234946304, 4278255360, 4043374336, 3774938880, 3506503424, 3221290752, 2952855296, 2667642624, 2399207168, 2130771712, 1862336256, 1627453957, 1359017481, 1073805064, 788591627, 503379721, 218169088, 4278255360, 4043374336, 3758161664, 3506503424, 3221290752, 2952855296, 2684419840, 2415984384, 2130771712, 1862336256, 1577123584, 1308688128, 1040252672, 755040000, 486604544, 218169088, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2667577599, 2415919359, 2130706687, 1862271231, 1593835775, 1325400319, 1056964863, 771752191, 520093951, 234881279, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2667577599, 2415919359, 2130706687, 1862271231, 1593835775, 1325400319, 1056964863, 771752191, 503316735, 234881279, 4278190335, 4026532095, 3758096639, 3489661183, 3221225727, 2952790271, 2684354815, 2399142143, 2130706687, 1862271231, 1593835775, 1325400319, 1040187647, 771752191, 520093951, 234881279, 4294901760, 4043243520, 3774808064, 3506372608, 3221159936, 2952724480, 2684289024, 2399076352, 2147418112, 1862205440, 1593769984, 1308557312, 1040121856, 771686400, 503250944, 234815488, 4294901760, 4060020736, 3758030848, 3506372608, 3221159936, 2952724480, 2684289024, 2415853568, 2130640896, 1862205440, 1593769984, 1308557312, 1040121856, 771686400, 503250944, 234815488, 4294901760, 4043243520, 3774808064, 3489595392, 3237937152, 2952724480, 2684289024, 2415853568, 2147418112, 1862205440, 1593769984, 1325334528, 1056899072, 788463616, 503250944, 234815488,
+            32, 32,
+            4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 268369920, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 1509949695, 3120562431, 4009754879, 4194304255, 3690987775, 2130706687, 83886335, 0, 50331903, 1694499071, 3170894079, 3992977663, 4211081471, 3657433343, 1879048447, 16777471, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3087007999, 2281701631, 1191182591, 1040187647, 2030043391, 4127195391, 2566914303, 0, 16777471, 3254780159, 2181038335, 1191182591, 973078783, 2030043391,4177527039, 2130706687, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 2214592767, 4093640959, 0, 0, 0, 0, 0, 0, 0, 2298478847, 3909091583, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2214592767, 3607101695, 0, 0, 0, 0, 0, 0, 0, 1946157311, 4093640959, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 536871167, 1191182591, 2281701631,3019899135, 637534463, 0, 0, 0, 100597760, 251592704, 33488896, 0, 3321889023, 2919235839, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2550137087, 4278190335, 4278190335, 3405775103, 570425599, 0, 0, 0, 0, 0, 0, 2046820607, 4043309311, 620757247, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 33488896, 0, 0, 218104063, 1291845887, 3841982719, 3388997887, 0, 0, 0, 0, 0, 1996488959, 4093640959, 1073742079, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1761607935, 4278190335, 150995199, 0, 0, 67109119, 2550137087, 3909091583, 889192703, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 2181038335, 3925868799, 0, 0, 218104063, 3070230783, 3623878911, 570425599, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 805306623, 3288334591, 1795162367, 1040187647, 1023410431, 2231369983, 4211081471, 1694499071, 0, 369099007, 3456106751, 3825205503, 1174405375, 872415487, 872415487, 872415487, 872415487, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4293984270, 2046951677, 3422552319, 4110418175, 4177527039, 3405775103, 1409286399, 0, 0, 1409286399, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 4278190335, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760,4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 4294901760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3053518592, 2936078080, 2801860352, 2650865408, 2516647680, 2382429952, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528, 1577123584, 1459683072, 1325465344, 1191247616, 1040252672, 922812160, 771817216, 637599488, 503381760, 385941248, 234946304, 100728576, 4278255360, 4144037632, 4009819904, 3875602176, 3724607232, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2936078080, 2801860352, 2667642624, 2516647680, 2399207168, 2264989440, 2130771712, 1996553984, 1845559040, 1728118528, 1593900800, 1459683072, 1308688128, 1191247616, 1057029888, 922812160, 788594432, 637599488, 503381760, 369164032, 234946304, 117505792, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3053518592, 2919300864, 2801860352, 2650865408, 2533424896, 2399207168, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528,1593900800, 1459683072, 1325465344, 1191247616, 1040252672, 906034944, 771817216, 654376704, 503381760, 369164032, 234946304, 117505792, 4278255360, 4144037632, 4009819904, 3858824960, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2936078080, 2801860352, 2667642624, 2533424896, 2382429952, 2264989440, 2130771712, 1979776768, 1862336256, 1728118528, 1577123584, 1442905856, 1325465344, 1191247616, 1040252672, 922812160, 771817216, 637599488, 503381760, 369164032, 234946304, 100728576, 4278255360, 4144037632, 4009819904, 3875602176, 3741384448, 3607166720, 3472948992, 3338731264, 3204513536, 3070295808, 2919300864, 2801860352, 2667642624, 2533424896, 2399207168, 2264989440, 2113994496, 1996553984, 1862336256, 1728118528, 1593900800, 1442905856, 1342241795, 1174470400, 1057029888, 906034944, 788594432, 654376704, 503381760, 385941248, 251723520, 100728576, 4278190335, 4160749823, 4026532095, 3892314367, 3741319423, 3623878911, 3472883967, 3338666239, 3221225727, 3070230783, 2952790271, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2147483903, 1996488959, 1862271231, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951,385876223, 251658495, 117440767, 4278190335, 4160749823, 4026532095, 3892314367, 3741319423, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2936013055, 2801795327, 2667577599, 2533359871, 2399142143, 2281701631, 2130706687, 1996488959, 1862271231, 1728053503, 1593835775,1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 234881279, 100663551, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2936013055, 2801795327, 2667577599, 2550137087, 2415919359, 2264924415, 2130706687, 1996488959, 1862271231, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 503316735, 369099007, 251658495, 100663551, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3204448511, 3087007999, 2936013055, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2130706687, 1996488959, 1879048447, 1728053503, 1593835775, 1459618047, 1325400319, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 251658495, 117440767, 4278190335, 4160749823, 4026532095, 3892314367, 3758096639, 3623878911, 3489661183, 3355443455, 3221225727, 3087007999, 2952790271, 2818572543, 2667577599, 2533359871, 2399142143, 2264924415, 2147483903, 2013266175, 1862271231, 1744830719, 1610612991, 1476395263, 1342177535, 1191182591, 1056964863, 922747135, 788529407, 654311679, 520093951, 385876223, 251658495, 100663551, 4294901760, 4160684032, 4026466304, 3909025792, 3774808064, 3623813120, 3489595392, 3355377664, 3237937152, 3103719424, 2952724480, 2818506752, 2684289024, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1744764928, 1593769984, 1476329472,1325334528, 1207894016, 1056899072, 939458560, 788463616, 654245888, 520028160, 385810432, 251592704, 117374976, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3506372608, 3355377664, 3221159936, 3086942208, 2952724480, 2818506752, 2701066240, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1727987712, 1610547200, 1476329472, 1325334528, 1191116800, 1073676288, 922681344, 788463616, 654245888, 520028160, 385810432, 251592704, 100597760, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3489595392, 3372154880, 3237937152, 3103719424, 2952724480, 2818506752, 2700935170, 2550071296, 2415853568, 2281635840, 2147418112, 2013200384, 1878982656, 1744764928, 1610547200, 1459552256, 1342111744, 1191116800, 1056899072, 922681344, 788463616, 671023104, 520028160, 385810432, 251592704, 100597760, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3640590336, 3489595392, 3372154880, 3237937152, 3086942208, 2969501696, 2818506752, 2684289024, 2550071296, 2432630784, 2281635840, 2147418112, 2013200384, 1862205440, 1744764928, 1610547200, 1476329472, 1342111744, 1191116800, 1056899072, 922681344, 788463616, 654245888, 520028160, 385810432, 251592704, 117374976, 4294901760, 4177461248, 4043243520, 3909025792, 3774808064, 3623813120, 3506372608, 3372154880, 3237937152, 3103719424, 2952724480, 2835283968, 2684289024, 2550071296, 2432630784, 2281635840, 2147418112, 2046492676, 1862205440, 1744764928, 1610547200, 1476329472, 1342111744,1207894016, 1056899072, 939458560, 788463616, 654245888, 536281096, 385810432, 251592704, 134152192,
+    };
+    Display *display = w->display();
+    int s = DefaultScreen(display);
+    Atom net_wm_icon = XInternAtom(display, "_NET_WM_ICON", False);
+    Atom cardinal = XInternAtom(d, "CARDINAL", False);
+    //Window w;
+    //XEvent e; //w = XCreateWindow(d, RootWindow(d, s), 0, 0, 200, 200, 0,
+    //CopyFromParent, InputOutput, CopyFromParent, 0, 0);
+    int length = 2 + 16 * 16 + 2 + 32 * 32;
+    int status = XChangeProperty(d, w->window(), net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) buffer, length);
+    //XMapWindow(d, w);
+    //while(1)
+    //XNextEvent(d, &e);
+    //(void)argc, (void)argv;
+//}
+   if(status != 0)
+   {
+
+      //file_put_contents_dup("/home/camilo/window.txt", ::str::from((int)w->window()));
+      return false;
+
+   }
+   #else
+
+
+
+   ::draw2d::dib_sp d1(w->m_pimpl->m_pui->allocer());
+
+   if(!d1->create(24, 24))
+   {
+
+      return false;
+
+   }
+
+   d1->get_graphics()->SetStretchBltMode(HALFTONE);
+
+   d1->get_graphics()->StretchBlt(0, 0, d1->m_size.cx, d1->m_size.cy, p->get_graphics(), 0, 0, p->m_size.cx, p->m_size.cy);
+
+   ::draw2d::dib_sp d2(w->m_pimpl->m_pui->allocer());
+
+   if(!d2->create(54, 54))
+   {
+
+      return false;
+
+   }
+
+   d2->get_graphics()->SetStretchBltMode(HALFTONE);
+
+   d2->get_graphics()->StretchBlt(0, 0, d2->m_size.cx, d2->m_size.cy, p->get_graphics(), 0, 0, p->m_size.cx, p->m_size.cy);
+
+   memory m(w->m_pimpl->m_pui->get_app());
+
+   int length = 2 + d1->area() + 2 + d2->area();
+
+   m.allocate(length * 4);
+
+   unsigned int * pcr = (unsigned int *) m.get_data();
+
+   pcr[0] = d1->m_size.cx;
+
+   pcr[1] = d1->m_size.cy;
+
+   int c = d1->area();
+
+   for(int i = 0; i < c; i++)
+   {
+
+      pcr[i+2] = d1->m_pcolorref[i];
+
+   }
+
+   memory_offset_t o;
+
+   o = 2 + d1->area();
+
+   pcr[o] = d2->m_size.cx;
+
+   pcr[o+1] = d2->m_size.cy;
+
+   c = d2->area();
+
+   for(int i = 0; i < c; i++)
+   {
+
+      pcr[i+o+2] = d2->m_pcolorref[i];
+
+   }
+
+   Display *display = w->display();
+
+   Atom net_wm_icon = XInternAtom(display, "_NET_WM_ICON", False);
+
+   Atom cardinal = XInternAtom(display, "CARDINAL", False);
+
+   int status = XChangeProperty(display, w->window(), net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) pcr, length);
+
+
+   if(status != 0)
+   {
+
+      //file_put_contents_dup("/home/camilo/window.txt", ::str::from((int)w->window()));
+      return false;
+
+   }
+#endif
+   return true;
+
+}
+
+
+bool wm_set_icon(oswindow w, stringa & straMatter)
+{
+
+   ::file::path path;
+
+   for (auto & strMatter : straMatter)
+   {
+
+      path = strMatter;
+
+      path = App(w->m_pimpl->m_pui->get_app()).dir().matter(path / "linux.txt");
+
+      if(App(w->m_pimpl->m_pui->get_app()).file().exists(path))
+      {
+
+//         ::file::path path2;
+//
+//         path2 = getenv("HOME");
+//
+//         path2 /= ".local/share/applications";
+//
+//         path2 = App(w->m_pimpl->m_pui->get_app()).file().time(path2, 1, cnull, ".desktop");
+//
+//         App(w->m_pimpl->m_pui->get_app()).file().copy(path2, path);
+//
+//         chmod(path2, S_IRUSR | S_IWUSR );
+
+         xdisplay d(w->display());
+
+         Atom net_wm_icon = XInternAtom(w->display(), "_BAMF_DESKTOP_FILE", False);
+
+         Atom cardinal = XInternAtom(w->display(), "STRING", False);
+
+         int ixa= XA_STRING;
+
+         int status = XChangeProperty(w->display(), w->window(), net_wm_icon, ixa, 8, PropModeReplace, (const unsigned char*) (const char *) path, path.get_length());
+
+
+         if(status != 0)
+         {
+
+            //file_put_contents_dup("/home/camilo/window.txt", ::str::from((int)w->window()));
+
+            return false;
+
+         }
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
 }

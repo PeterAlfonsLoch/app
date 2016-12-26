@@ -171,8 +171,6 @@ namespace filemanager
 
       int32_t iImage = 0x80000000;
 
-#ifdef WINDOWSEX
-
       ImageKey imagekey;
 
       string str(lpcsz);
@@ -191,8 +189,6 @@ namespace filemanager
       iImage = GetImage(oswindow,lpcsz,NULL,eicon,eattribute == FileAttributeDirectory, crBk);
 
       m_imagemap.set_at(imagekey,iImage);
-
-#endif
 
       if(crBk != 0)
       {
@@ -385,7 +381,7 @@ namespace filemanager
       const char * psz,
       const unichar * lpcszExtra,
       EIcon eicon,
-      bool bFolder, 
+      bool bFolder,
       COLORREF crBk)
    {
 
@@ -449,7 +445,7 @@ namespace filemanager
          }
       }
 
-#ifdef WINDOWSEX
+//#ifdef WINDOWSEX
 
       string strExtension;
 
@@ -458,41 +454,116 @@ namespace filemanager
          output_debug_string("test");
       }
 
+#ifdef LINUX
 
+
+      if (::str::ends_ci(string(strPath), ".desktop"))
+      {
+
+         string str = Application.file().as_string(strPath);
+
+         stringa stra;
+
+         stra.add_lines(str);
+
+         stra.filter_begins_ci("icon=");
+
+         if(stra.get_size() <= 0)
+         {
+
+            return -1;
+
+         }
+
+         string strIcon = stra[0];
+
+         ::str::begins_eat_ci(strIcon, "icon=");
+
+         ::visual::dib_sp dib(allocer());
+
+         if(!dib.load_from_file(strIcon))
+         {
+
+            return -1;
+
+         }
+
+         ::draw2d::dib_sp dib48(allocer());
+
+         if(!dib48->create(48, 48))
+         {
+
+            return -1;
+
+         }
+
+         dib48->get_graphics()->SetStretchBltMode(HALFTONE);
+
+         dib48->get_graphics()->StretchBlt(0, 0, 48, 48, dib->get_graphics(), 0, 0, dib->m_size.cx, dib->m_size.cy);
+
+         synch_lock sl1(m_pil48Hover->m_pmutex);
+         synch_lock sl2(m_pil48->m_pmutex);
+         iImage = m_pil16->add_dib(dib48, 0, 0);
+         m_pil48Hover->add_dib(dib48, 0, 0);
+
+         if(crBk == 0)
+         {
+            System.visual().imaging().Createcolor_blend_ImageList(
+               m_pil48,
+               m_pil48Hover,
+               RGB(255,255,240),
+               64);
+         }
+         else
+         {
+            *m_pil48 = *m_pil48Hover;
+         }
+
+         return iImage;
+
+      }
+
+
+#endif
 
       string str(psz);
+
+#ifdef WINDOWSEX
 
       if(str == "foo")
       {
 
-         iImage = GetFooImage(oswindow,eicon,bFolder,"", crBk);
+         return GetFooImage(oswindow,eicon,bFolder,"", crBk);
 
       }
-      else
+
+      if(::str::begins_eat(str,"foo."))
       {
 
-         if(::str::begins_eat(str,"foo."))
-         {
-
-            iImage = GetFooImage(oswindow,eicon,bFolder,str,crBk);
-
-         }
-         else
-         {
-
-            LPITEMIDLIST lpiidlAbsolute;
-
-            _017ItemIDListParsePath(oswindow, &lpiidlAbsolute,psz);
-
-            iImage = GetImage(oswindow,lpiidlAbsolute,lpcszExtra,eicon, crBk);
-
-            _017ItemIDListFree(lpiidlAbsolute);
-
-         }
+         return GetFooImage(oswindow,eicon,bFolder,str,crBk);
 
       }
 
+      LPITEMIDLIST lpiidlAbsolute;
+
+      _017ItemIDListParsePath(oswindow, &lpiidlAbsolute,psz);
+
+      iImage = GetImage(oswindow,lpiidlAbsolute,lpcszExtra,eicon, crBk);
+
+      _017ItemIDListFree(lpiidlAbsolute);
+
+#elif defined(LINUX)
+
+
+      iImage = GetImageByExtension(oswindow, strPath, eicon, bFolder,crBk);
+
+#else
+
+      iImage = GetImageByExtension(oswindow, strPath, eicon, bFolder,crBk);
+
 #endif
+
+//#endif
 
       return iImage;
 

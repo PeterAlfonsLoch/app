@@ -331,7 +331,41 @@ namespace aura
    bool os::resolve_link(string & strTarget, string & strDirectory, string & strParams, const string & pszSource,::user::primitive * puiMessageParentOptional)
    {
 
-      ::exception::throw_interface_only(get_app());
+      if(::str::ends_ci(pszSource, ".desktop"))
+      {
+
+//      #ifdef LINUX
+
+  //       strTarget = pszSource;
+
+    //  #else
+
+         string str = Application.file().as_string(pszSource);
+
+         stringa stra;
+
+         stra.add_lines(str);
+
+         stra.filter_begins_ci("exec=");
+
+         if(stra.get_size() <= 0)
+         {
+
+            return false;
+
+         }
+
+         strTarget = stra[0];
+
+         ::str::begins_eat_ci(strTarget, "exec=");
+
+         strDirectory = ::file::path(strTarget).folder();
+
+//      #endif
+
+         return true;
+
+      }
 
       return false;
 
@@ -352,9 +386,9 @@ namespace aura
       stra.add("bambu3.jpg");
       stra.add("bambu33.png");
       stra.add("bambu4.jpg");
-      
+
       ::file::path pathFolder;
-      
+
       pathFolder = "https://server.ca2.cc/image/cc/ca2core/bkimageoftheday/common/";
 
       for (auto & str : stra)

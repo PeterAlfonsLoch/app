@@ -1272,7 +1272,7 @@ namespace draw2d
 
    }
 
-   
+
    bool graphics::BitBltRaw(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
 
@@ -1332,7 +1332,7 @@ namespace draw2d
 
          }
 
-         
+
 
       }
 
@@ -1343,7 +1343,7 @@ namespace draw2d
 
    bool graphics::StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {
-      
+
       if (StretchBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop))
       {
 
@@ -1581,7 +1581,7 @@ namespace draw2d
             dib1->get_graphics()->SelectObject(get_current_font());
 
             dib1->get_graphics()->SelectObject(get_current_brush());
-            
+
             dib1->get_graphics()->TextOut(0, 0, lpszString, nCount);
 
             dib1->blend(null_point(), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectText.size());
@@ -1594,7 +1594,7 @@ namespace draw2d
 
          }
 
-         
+
 
       }
 
@@ -2748,7 +2748,7 @@ namespace draw2d
       return -1;
    }
 
-   
+
    int32_t graphics::IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
@@ -2763,12 +2763,12 @@ namespace draw2d
 
    }
 
-   
+
    int32_t graphics::IntersectClipRect(const RECT &  r)
    {
 
       return IntersectClipRect(r.left, r.top, r.right, r.bottom);
-      
+
    }
 
 
@@ -3138,7 +3138,7 @@ namespace draw2d
 
          for(auto str : stra)
          {
-            
+
             size s1 = GetTextExtent(str);
 
             TextOut(lpRect.left + dx,lpRect.top + dy + offsety,str);
@@ -3406,7 +3406,7 @@ namespace draw2d
 
    }
 
-   
+
    void graphics::set_alpha_mode(e_alpha_mode ealphamode)
    {
       m_ealphamode = ealphamode;
@@ -3954,7 +3954,7 @@ namespace draw2d
 
       ::draw2d::graphics * pgraphics = this;
 
-      
+
 
       wstring wstr = ::str::international::utf8_to_unicode(strParam);
 
@@ -3996,9 +3996,9 @@ namespace draw2d
       }
       else if ((uiFormat & DT_END_ELLIPSIS) != 0)
       {
-         
+
          sz = pgraphics->GetTextExtent(str, (int32_t)iLen);
-         
+
          if (sz.cx > rectClip.width())
          {
 
@@ -4012,7 +4012,7 @@ namespace draw2d
 
             while (true)
             {
-               
+
                psz = ::str::utf8_inc(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";

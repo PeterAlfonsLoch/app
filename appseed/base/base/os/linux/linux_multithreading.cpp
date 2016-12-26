@@ -94,6 +94,7 @@ UINT __axis_x11_thread(void * p)
 
 }
 
+int g_xxx = 0;
 
 void process_message(osdisplay_data * pdata, Display * display)
 {
@@ -130,6 +131,70 @@ void process_message(osdisplay_data * pdata, Display * display)
       }
 
    }
+   else if(e.type == PropertyNotify)
+   {
+
+      msg.hwnd = oswindow_get(display, e.xproperty.window);
+
+
+
+      if(msg.hwnd != NULL)
+      {
+
+         ::user::interaction * pui = msg.hwnd->m_pimpl->m_pui;
+
+         if(pui != NULL)
+         {
+
+            ::user::interaction_impl_base * pimpl = pui->m_pimpl;
+
+            bool bHandled = false;
+
+            if(pimpl != NULL)
+            {
+
+               g_xxx++;
+
+               if(g_xxx >= 9)
+               {
+                  output_debug_string("g_xxx");
+               }
+               if(pui->m_eappearance == ::user::AppearanceIconic && !msg.hwnd->is_iconic())
+               {
+
+                  //file_put_contents_dup("/home/camilo/xxx.txt", "");
+
+                  pui->m_eappearance == ::user::AppearanceNone;
+
+                  ::fork(pui->get_app(), [=]()
+                  {
+
+                     if(pui->m_eappearanceBefore == ::user::AppearanceIconic)
+                     {
+
+                        pui->_001OnDeiconify(::user::AppearanceNormal);
+
+                     }
+                     else
+                     {
+
+                        pui->_001OnDeiconify(pui->m_eappearanceBefore);
+
+                     }
+
+                  });
+
+                  bHandled = true;
+
+
+               }
+
+            }
+
+         }
+      }
+
+   }
    else if(e.type == MapNotify || e.type == UnmapNotify)
    {
 
@@ -154,89 +219,70 @@ void process_message(osdisplay_data * pdata, Display * display)
          if(pui != NULL)
          {
 
-            ::user::interaction_impl * pimpl = dynamic_cast < ::user::interaction_impl * > (pui->m_pimpl.m_p);
+            ::user::interaction_impl_base * pimpl = pui->m_pimpl;
+
+            bool bHandled = false;
 
             if(pimpl != NULL)
             {
 
-               bool bMove;
+               g_xxx++;
 
-               bool bSize;
-
-               rect64 rectWindow;
-
-               rectWindow.left = e.xconfigure.x;
-
-               rectWindow.top = e.xconfigure.y;
-
-               rectWindow.right = rectWindow.left + e.xconfigure.width;
-
-               rectWindow.bottom = rectWindow.top + e.xconfigure.height;
-
-               if(rectWindow.top_left() == pimpl->m_rectParentClient.top_left())
+               if(g_xxx >= 9)
                {
-
-                  bMove = false;
-
-                  if(rectWindow.size() == pimpl->m_rectParentClient.size())
-                  {
-
-                     bSize = false;
-
-                  }
-                  else
-                  {
-
-                     pimpl->m_rectParentClient.right  = rectWindow.right;
-
-                     pimpl->m_rectParentClient.bottom  = rectWindow.bottom;
-
-                     bSize = true;
-
-                  }
-
+                  output_debug_string("g_xxx");
                }
-               else
+               if(pui->m_eappearance == ::user::AppearanceIconic)
                {
 
-                  bMove = true;
+                  //file_put_contents_dup("/home/camilo/xxx.txt", "");
 
-                  if(rectWindow.size() == pimpl->m_rectParentClient.size())
+                  pui->m_eappearance == ::user::AppearanceNone;
+
+                  ::fork(pui->get_app(), [=]()
                   {
 
-                     pimpl->m_rectParentClient = rectWindow;;
+                     if(pui->m_eappearanceBefore == ::user::AppearanceIconic)
+                     {
 
-                     bSize = false;
+                        pui->_001OnDeiconify(::user::AppearanceNormal);
 
-                  }
-                  else
-                  {
+                     }
+                     else
+                     {
 
-                     pimpl->m_rectParentClient = rectWindow;;
+                        pui->_001OnDeiconify(pui->m_eappearanceBefore);
 
-                     bSize = true;
-                  }
+                     }
+
+                  });
+
+                  bHandled = true;
+
 
                }
 
-               if(bSize || bMove)
+
+               if(!bHandled)
                {
 
-                  if(bSize)
-                  {
+                  //rect64 rectWindow;
 
-                     //pimpl->m_bUpdateGraphics = true;
+                  //rectWindow.left = e.xconfigure.x;
 
-                     pui->send_message(WM_SIZE, 0, rectWindow.size().lparam());
+                  //rectWindow.top = e.xconfigure.y;
 
-                  }
+                  //rectWindow.right = rectWindow.left + e.xconfigure.width;
 
-                  if(bMove)
-                  {
+                  //rectWindow.bottom = rectWindow.top + e.xconfigure.height;
 
-                     pui->send_message(WM_MOVE, 0, rectWindow.top_left().lparam());
+                  ::rect rectWindow;
 
-                  }
+                  ::GetWindowRect(msg.hwnd, rectWindow);
+
+                  ::copy(pimpl->m_rectParentClientRequest, rectWindow);
+
+                  pui->set_need_layout();
 
                }
 
@@ -537,3 +583,6 @@ UINT __axis_x11mouse_thread(void * p)
    return 0;
 
 }
+
+
+

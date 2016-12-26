@@ -34,6 +34,7 @@ namespace user
 
 
    CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath);
+   CLASS_DECL_CORE string get_wallpaper();
 
 
 

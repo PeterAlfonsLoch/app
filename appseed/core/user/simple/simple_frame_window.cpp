@@ -5,6 +5,8 @@
 
 #define TEST 0
 
+bool wm_set_icon(oswindow w, ::draw2d::dib * p);
+bool wm_set_icon(oswindow w, stringa & straMatter);
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
 manual_reset_event * simple_frame_window::helper_task::g_pevent = NULL;
@@ -283,7 +285,9 @@ HICON load_icon(::aura::application * papp, stringa & straMatter, string strIcon
    for (auto & strMatter : straMatter)
    {
 
-      path = App(papp).dir().matter(strMatter / strIcon);
+      path = strMatter;
+
+      path = App(papp).dir().matter(path / strIcon);
 
       hicon = (HICON)LoadImage(NULL, path, IMAGE_ICON, cx, cy, LR_LOADFROMFILE);
 
@@ -297,6 +301,33 @@ HICON load_icon(::aura::application * papp, stringa & straMatter, string strIcon
    }
 
    return hicon;
+
+}
+
+#else
+
+bool load_icon(::visual::dib_sp & d, ::aura::application * papp, stringa & straMatter, string strIcon)
+{
+
+   ::file::path path;
+
+   for (auto & strMatter : straMatter)
+   {
+
+      path = strMatter;
+
+      path = App(papp).dir().matter(path / strIcon);
+
+      if(d.load_from_file(path))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
 
 }
 
@@ -518,6 +549,59 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
       }
    }
+#else
+         if (GetParent() == NULL && !(bool)oprop("icon_set"))
+   {
+
+   oprop("icon_set") = true;
+      ::file::path strMatter = get_window_default_matter();
+
+      stringa straMatter;
+
+      if (strMatter.name(0).is_equal("system"))
+      {
+
+         straMatter.add("main");
+
+         straMatter.add(strMatter);
+
+      }
+      else
+      {
+
+         straMatter.add(strMatter);
+
+         straMatter.add("main");
+
+      }
+
+      if(::user::get_edesktop() == ::user::desktop_unity_gnome)
+      {
+
+         wm_set_icon(get_handle(), straMatter);
+
+      }
+      else
+      {
+
+         ::visual::dib_sp d(allocer());
+
+         if(load_icon(d, get_app(), straMatter, "icon.png"))
+         {
+
+            if(!wm_set_icon(get_handle(), d))
+            {
+
+               wm_set_icon(get_handle(), straMatter);
+
+            }
+
+         }
+
+      }
+
+   }
+
 #endif
 
 
@@ -539,10 +623,81 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
 
    SCAST_PTR(::message::show_window, pshow, pobj);
 
+   if(!pshow->m_bShow)
+   {
+
+      output_debug_string("test");
+
+   }
+   else
+   {
+
+
+
+   }
+
+            //if (GetParent() == NULL && !(bool)oprop("icon_set"))
+
+            if (GetParent() == NULL)
+   {
+
+   oprop("icon_set") = true;
+      ::file::path strMatter = get_window_default_matter();
+
+      stringa straMatter;
+
+      if (strMatter.name(0).is_equal("system"))
+      {
+
+         straMatter.add("main");
+
+         straMatter.add(strMatter);
+
+      }
+      else
+      {
+
+         straMatter.add(strMatter);
+
+         straMatter.add("main");
+
+      }
+
+      if(::user::get_edesktop() == ::user::desktop_unity_gnome)
+      {
+
+         wm_set_icon(get_handle(), straMatter);
+
+      }
+      else
+      {
+
+         ::visual::dib_sp d(allocer());
+
+         if(load_icon(d, get_app(), straMatter, "icon.png"))
+         {
+
+            if(!wm_set_icon(get_handle(), d))
+            {
+
+               wm_set_icon(get_handle(), straMatter);
+
+            }
+
+         }
+
+      }
+
+   }
+
    if(m_bDefaultNotifyIcon)
    {
 
-      m_pnotifyicon->step();
+      if(m_pnotifyicon != NULL)
+      {
+         m_pnotifyicon->step();
+
+      }
       OnUpdateToolWindow(pshow->m_bShow);
 
    }
@@ -1905,7 +2060,7 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
 
       defer_create_notification_icon();
 
-      m_pimpl->show_task(IsWindowVisible() && m_bShowTask);
+      m_pimpl->show_task(m_bShowTask);
 
    }
    else if(pbase->m_wparam == 123)

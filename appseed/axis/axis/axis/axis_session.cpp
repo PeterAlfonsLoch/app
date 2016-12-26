@@ -187,7 +187,7 @@ namespace axis
 
          if (m_pfontopus == NULL)
          {
-          
+
             thisfail << 2 << "Failed to create fontopus";
 
             return false;
@@ -258,7 +258,7 @@ namespace axis
 
          if (!m_psockets->initialize1())
          {
-          
+
             thisfail << 4;
 
             return false;
@@ -1527,13 +1527,13 @@ namespace axis
       int64_t iBestArea = -1;
       rect rectMatch;
       rect r(rectParam);
-      
+
       if(r.is_null())
       {
-         
+
          get_cursor_pos((POINT *)&r.left);
          *((POINT*)&r.right) = *((POINT*)&r.left);
-         
+
       }
 
       for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
@@ -1601,6 +1601,15 @@ namespace axis
       index iMatchingWkspace = -1;
       int64_t iBestArea = -1;
       rect rectMatch;
+      rect r(rectParam);
+
+      if(r.is_null())
+      {
+
+         get_cursor_pos((POINT *)&r.left);
+         *((POINT*)&r.right) = *((POINT*)&r.left);
+
+      }
 
       for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
       {
@@ -1612,7 +1621,7 @@ namespace axis
          if(get_wkspace_rect(iWkspace,rectMonitor))
          {
 
-            if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
+            if(rectIntersect.top_left_null_intersect(&r,rectMonitor))
             {
 
                if(rectIntersect.area() > iBestArea)
@@ -1627,6 +1636,15 @@ namespace axis
                }
 
             }
+            else if(rectMonitor.contains(r))
+            {
+
+               iMatchingWkspace = iWkspace;
+
+               rectMatch = rectMonitor;
+
+            }
+
 
          }
 

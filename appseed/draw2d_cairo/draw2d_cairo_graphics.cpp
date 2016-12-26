@@ -4590,10 +4590,11 @@ namespace draw2d_cairo
       */
    }
 
+
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
-      string str(lpszString, MIN(iIndex, nCount));
+      string str(lpszString, min_non_neg(iIndex, nCount));
 
       str = ::str::q_valid(str);
 

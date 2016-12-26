@@ -20,7 +20,9 @@
 
    stra.add_lines(strDirs);
 
-   stra.filter_begins_ci(str + "=");
+   string strPrefix = str + "=";
+
+   stra.filter_begins_ci(strPrefix);
 
    if(stra.get_size() != 1)
    {
@@ -30,6 +32,8 @@
    }
 
    path = stra[0];
+
+   ::str::begins_eat_ci(path, strPrefix);
 
    path.replace("$HOME", pathHome);
 

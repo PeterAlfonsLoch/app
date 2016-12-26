@@ -464,7 +464,7 @@ namespace axis
 
       try
       {
-         
+
          if(m_pmachineeventcentral != NULL)
          {
 
@@ -838,7 +838,7 @@ namespace axis
 
 #else
 
-      return 1;
+      return get_monitor_count();
 
 #endif
 
