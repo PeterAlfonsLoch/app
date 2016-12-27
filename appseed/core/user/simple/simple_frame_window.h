@@ -286,6 +286,9 @@ public:
 
    virtual void show_task(bool bShow);
 
+
+   virtual void defer_set_icon();
+
 };
 
 

@@ -483,7 +483,20 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    create_bars();
 
+   defer_set_icon();
+
+   post_message(WM_USER + 184, 2);
+
+   pcreate->m_bRet = false;
+
+}
+
+
+void simple_frame_window::defer_set_icon()
+{
+
 #ifdef WINDOWSEX
+
    if (GetParent() == NULL)
    {
       ::file::path strMatter = get_window_default_matter();
@@ -549,11 +562,12 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
       }
    }
+
 #else
-         if (GetParent() == NULL && !(bool)oprop("icon_set"))
+
+   if (GetParent() == NULL)
    {
 
-   oprop("icon_set") = true;
       ::file::path strMatter = get_window_default_matter();
 
       stringa straMatter;
@@ -575,45 +589,20 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
       }
 
-      if(::user::get_edesktop() == ::user::desktop_unity_gnome)
+      wm_set_icon(get_handle(), straMatter);
+
+      ::visual::dib_sp d(allocer());
+
+      if(load_icon(d, get_app(), straMatter, "icon.png"))
       {
 
-         wm_set_icon(get_handle(), straMatter);
-
-      }
-      else
-      {
-
-         ::visual::dib_sp d(allocer());
-
-         if(load_icon(d, get_app(), straMatter, "icon.png"))
-         {
-
-            if(!wm_set_icon(get_handle(), d))
-            {
-
-               wm_set_icon(get_handle(), straMatter);
-
-            }
-
-         }
+         wm_set_icon(get_handle(), d);
 
       }
 
    }
 
 #endif
-
-
-
-   post_message(WM_USER + 184, 2);
-
-
-
-
-   pcreate->m_bRet = false;
-
-
 
 }
 
@@ -629,66 +618,8 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
       output_debug_string("test");
 
    }
-   else
-   {
 
-
-
-   }
-
-            //if (GetParent() == NULL && !(bool)oprop("icon_set"))
-
-            if (GetParent() == NULL)
-   {
-
-   oprop("icon_set") = true;
-      ::file::path strMatter = get_window_default_matter();
-
-      stringa straMatter;
-
-      if (strMatter.name(0).is_equal("system"))
-      {
-
-         straMatter.add("main");
-
-         straMatter.add(strMatter);
-
-      }
-      else
-      {
-
-         straMatter.add(strMatter);
-
-         straMatter.add("main");
-
-      }
-
-      if(::user::get_edesktop() == ::user::desktop_unity_gnome)
-      {
-
-         wm_set_icon(get_handle(), straMatter);
-
-      }
-      else
-      {
-
-         ::visual::dib_sp d(allocer());
-
-         if(load_icon(d, get_app(), straMatter, "icon.png"))
-         {
-
-            if(!wm_set_icon(get_handle(), d))
-            {
-
-               wm_set_icon(get_handle(), straMatter);
-
-            }
-
-         }
-
-      }
-
-   }
+   defer_set_icon();
 
    if(m_bDefaultNotifyIcon)
    {

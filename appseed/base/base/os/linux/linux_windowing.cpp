@@ -2035,6 +2035,59 @@ bool wm_set_icon(oswindow w, ::draw2d::dib * p)
       return false;
 
    }
+   #elif 1
+
+      ::draw2d::dib_sp d1(w->m_pimpl->m_pui->allocer());
+
+   if(!d1->create(32, 32))
+   {
+
+      return false;
+
+   }
+
+   d1->get_graphics()->SetStretchBltMode(HALFTONE);
+
+   d1->get_graphics()->StretchBlt(0, 0, d1->m_size.cx, d1->m_size.cy, p->get_graphics(), 0, 0, p->m_size.cx, p->m_size.cy);
+
+   memory m(w->m_pimpl->m_pui->get_app());
+
+   int length = 2 + d1->area();
+
+   m.allocate(length * 4);
+
+   unsigned int * pcr = (unsigned int *) m.get_data();
+
+   pcr[0] = d1->m_size.cx;
+
+   pcr[1] = d1->m_size.cy;
+
+   int c = d1->area();
+
+   for(int i = 0; i < c; i++)
+   {
+
+      pcr[i+2] = d1->m_pcolorref[i];
+
+   }
+
+   Display *display = w->display();
+
+   Atom net_wm_icon = XInternAtom(display, "_NET_WM_ICON", False);
+
+   Atom cardinal = XInternAtom(display, "CARDINAL", False);
+
+   int status = XChangeProperty(display, w->window(), net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) pcr, length);
+
+
+   if(status != 0)
+   {
+
+      //file_put_contents_dup("/home/camilo/window.txt", ::str::from((int)w->window()));
+      return false;
+
+   }
+
    #else
 
 
@@ -2128,6 +2181,8 @@ bool wm_set_icon(oswindow w, ::draw2d::dib * p)
 bool wm_set_icon(oswindow w, stringa & straMatter)
 {
 
+   ::aura::application * papp = w->m_pimpl->m_pui->get_app();
+
    ::file::path path;
 
    for (auto & strMatter : straMatter)
@@ -2135,22 +2190,33 @@ bool wm_set_icon(oswindow w, stringa & straMatter)
 
       path = strMatter;
 
-      path = App(w->m_pimpl->m_pui->get_app()).dir().matter(path / "linux.txt");
+      path = App(papp).dir().matter(path / "linux.txt");
 
-      if(App(w->m_pimpl->m_pui->get_app()).file().exists(path))
+      if(App(papp).file().exists(path))
       {
 
-//         ::file::path path2;
-//
-//         path2 = getenv("HOME");
-//
-//         path2 /= ".local/share/applications";
-//
-//         path2 = App(w->m_pimpl->m_pui->get_app()).file().time(path2, 1, cnull, ".desktop");
-//
-//         App(w->m_pimpl->m_pui->get_app()).file().copy(path2, path);
-//
-//         chmod(path2, S_IRUSR | S_IWUSR );
+         ::file::path path2;
+
+         path2 = getenv("HOME");
+
+         path2 /= ".local/share/applications";
+
+         string strApp = App(papp).m_strAppName;
+
+         strApp.replace("-", "_");
+         strApp.replace("/", "_");
+         strApp.replace(".", "_");
+
+         path2 /= (strApp + ".desktop");
+
+         if(!App(papp).file().exists(path2))
+         {
+
+            App(papp).file().copy(path2, path);
+
+            chmod(path2, S_IRUSR | S_IWUSR );
+
+         }
 
          xdisplay d(w->display());
 
@@ -2160,8 +2226,7 @@ bool wm_set_icon(oswindow w, stringa & straMatter)
 
          int ixa= XA_STRING;
 
-         int status = XChangeProperty(w->display(), w->window(), net_wm_icon, ixa, 8, PropModeReplace, (const unsigned char*) (const char *) path, path.get_length());
-
+         int status = XChangeProperty(w->display(), w->window(), net_wm_icon, ixa, 8, PropModeReplace, (const unsigned char*) (const char *) path2, path2.get_length());
 
          if(status != 0)
          {
