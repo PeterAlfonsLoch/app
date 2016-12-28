@@ -485,3 +485,10 @@ namespace multithreading
 
 
 } // namespace multithreading
+
+
+CLASS_DECL_AURA bool is_thread_on(IDTHREAD id);
+CLASS_DECL_AURA void set_thread_on(IDTHREAD id);
+CLASS_DECL_AURA void set_thread_off(IDTHREAD id);
+
+

@@ -4456,7 +4456,12 @@ namespace draw2d_cairo
 
       }
 
-      set_os_color(m_spbrush->m_cr);
+      if(m_spbrush.is_set())
+      {
+
+         set_os_color(m_spbrush->m_cr);
+
+      }
 
       if (nFormat & DT_EXPANDTABS)
       {

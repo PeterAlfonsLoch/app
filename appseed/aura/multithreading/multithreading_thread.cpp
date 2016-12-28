@@ -1087,27 +1087,63 @@ void thread::dispatch_thread_message(signal_details * pbase)
 void thread::wait()
 {
 
-#if defined(WINDOWS)
-
-   ::WaitForSingleObject(m_hthread, INFINITE);
-
-#endif
+   wait(::duration::infinite());
 
 }
+
 
 wait_result thread::wait(const duration & duration)
 {
 
+
+
+   try
+   {
+
+      if(!is_thread_on(m_uiThread))
+      {
+
+         return wait_result(::wait_result::Event0);
+
+      }
+
 #if defined(WINDOWS)
 
-   DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
-   return wait_result((uint32_t) ::WaitForSingleObject(m_hthread, timeout));
+      DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
+
+      return wait_result((uint32_t) ::WaitForSingleObject(m_hthread, timeout));
 
 #else
 
-   return wait_result(::wait_result::Failure);
+      manual_reset_event ev(get_app());
+
+      ev.ResetEvent();
+
+      m_pevReady = &ev;
+
+      wait_result res = ev.wait(duration);
+
+      if(res.signaled())
+      {
+
+         return res;
+
+      }
+
+      m_pevReady = NULL;
+
+      return res;
 
 #endif
+
+   }
+   catch(...)
+   {
+
+
+   }
+
+   return wait_result(::wait_result::Event0);
 
 }
 
@@ -1393,6 +1429,8 @@ uint32_t __thread_entry(void * pparam)
       ASSERT(!pstartup->m_bError);
 
       ::thread * pthread = pstartup->m_pthread;
+
+      set_thread_on(::GetCurrentThreadId());
 //#ifndef MACOS
 //      pthread->translator::attach();
 //#endif
@@ -2824,3 +2862,36 @@ void thread::on_create(::create * pcreate)
 }
 
 
+
+mutex * g_pmutexThreadOn = NULL;
+
+map < IDTHREAD, IDTHREAD, IDTHREAD, IDTHREAD > * g_pmapThreadOn = NULL;
+
+CLASS_DECL_AURA bool is_thread_on(IDTHREAD id)
+{
+
+   synch_lock sl(g_pmutexThreadOn);
+
+   return g_pmapThreadOn->PLookup(id) != NULL;
+
+}
+
+
+CLASS_DECL_AURA void set_thread_on(IDTHREAD id)
+{
+
+   synch_lock sl(g_pmutexThreadOn);
+
+   g_pmapThreadOn->set_at(id, id);
+
+}
+
+
+CLASS_DECL_AURA void set_thread_off(IDTHREAD id)
+{
+
+   synch_lock sl(g_pmutexThreadOn);
+
+   g_pmapThreadOn->remove_key(id);
+
+}

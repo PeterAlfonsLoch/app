@@ -314,9 +314,11 @@ void signal::emit(signal_details * pobj)
       for(index i = m_delegateptra.get_size() - 1; i >= 0 ; i++)
       {
 
+         signal_delegate * pdelegate = m_delegateptra.element_at(i);
+
          sl.unlock();
 
-         m_delegateptra[i]->emit(NULL);
+         pdelegate->emit(NULL);
 
          sl.lock();
 

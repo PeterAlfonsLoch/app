@@ -97,73 +97,96 @@ namespace multithreading
 
       //}
 
+      int nExitCode = -1;
 
-
-
-      try
-      {
-
-         pthread->unregister_from_required_threads();
-
-      }
-      catch(...)
-      {
-
-
-      }
-
-
-      __node_term_thread(pthread);
-
-      ::multithreading::__node_on_term_thread(pthread);
-
-      ::aura::application * papp = pthread->get_app();
-
-      int nExitCode = pthread->m_iReturnCode;
+      manual_reset_event * pevReady = NULL;
 
       try
       {
 
-         pthread->m_signala.remove_all();
+        try
+        {
 
-      }
-      catch(...)
-      {
+            pevReady = pthread->m_pevReady;
 
-      }
-
-      try
-      {
-
-         pthread->m_signala.remove_all();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         pthread->thread_term();
-
-      }
-      catch(...)
-      {
-
-      }
+        }
+        catch(...)
+        {
 
 
-      __end_thread(papp);
+        }
 
-      try
-      {
 
-         if(pthread->m_bAutoDelete)
+         try
          {
 
-            ::aura::del(pthread);
+            pthread->unregister_from_required_threads();
+
+         }
+         catch(...)
+         {
+
+
+         }
+
+
+         __node_term_thread(pthread);
+
+         ::multithreading::__node_on_term_thread(pthread);
+
+         ::aura::application * papp = pthread->get_app();
+
+         nExitCode = pthread->m_iReturnCode;
+
+         try
+         {
+
+            pthread->m_signala.remove_all();
+
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            pthread->m_signala.remove_all();
+
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            pthread->thread_term();
+
+         }
+         catch(...)
+         {
+
+         }
+
+
+         __end_thread(papp);
+
+         try
+         {
+
+            if(pthread->m_bAutoDelete)
+            {
+
+               ::aura::del(pthread);
+
+            }
+
+         }
+         catch(...)
+         {
 
          }
 
@@ -172,6 +195,25 @@ namespace multithreading
       {
 
       }
+
+
+      try
+      {
+
+         if(pevReady != NULL)
+         {
+
+            pevReady->SetEvent();
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+      set_thread_off(::GetCurrentProcessId());
 
       return nExitCode;
 
@@ -263,9 +305,9 @@ thread* __begin_thread(::aura::application * papp,__THREADPROC pfnThreadProc,LPV
 
    if(!pThread->create_thread(epriority,nStackSize, dwCreateFlags,lpSecurityAttrs, puiId))
    {
-      
+
       pThread->Delete();
-      
+
       return NULL;
 
    }

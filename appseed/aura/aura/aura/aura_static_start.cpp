@@ -43,6 +43,10 @@ extern critical_section * g_pmutexSystemHeap;
 
 extern plex_heap_alloc_array * g_pheap;
 
+extern mutex * g_pmutexThreadOn;
+
+extern map < IDTHREAD, IDTHREAD, IDTHREAD, IDTHREAD > * g_pmapThreadOn;
+
 #ifdef WINDOWS
 
    extern LARGE_INTEGER g_freq;
@@ -221,6 +225,10 @@ namespace aura
          g_pmutexCvt = new mutex(NULL);
 
 #endif
+
+         g_pmutexThreadOn = new mutex();
+
+         g_pmapThreadOn = new ::map < IDTHREAD, IDTHREAD, IDTHREAD, IDTHREAD >;
 
          g_pmutexSignal = new mutex();
 
@@ -477,6 +485,10 @@ namespace aura
          ::aura::del(g_pmutexSystemHeap);
 
          ::aura::del(g_pmutexSignal);
+
+         ::aura::del(g_pmutexThreadOn);
+
+         ::aura::del(g_pmapThreadOn);
 
          // delete g_pstrLastGlsStatus;
 

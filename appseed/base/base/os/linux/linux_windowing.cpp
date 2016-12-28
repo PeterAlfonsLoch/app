@@ -1177,9 +1177,11 @@ WINBOOL DestroyWindow(oswindow window)
 
    pui->send_message(WM_DESTROY, 0, 0);
 
+   mq_remove_window_from_all_queues(window);
+
    pui->send_message(WM_NCDESTROY, 0, 0);
 
-   mq_remove_window_from_all_queues(window);
+   oswindow_remove(window->m_pimpl);
 
    oswindow_remove(pdisplay, win);
 
