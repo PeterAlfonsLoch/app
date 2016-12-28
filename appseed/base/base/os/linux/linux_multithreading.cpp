@@ -138,7 +138,7 @@ void process_message(osdisplay_data * pdata, Display * display)
 
 
 
-      if(msg.hwnd != NULL)
+      if(msg.hwnd != NULL && msg.hwnd->m_pimpl != NULL)
       {
 
          ::user::interaction * pui = msg.hwnd->m_pimpl->m_pui;

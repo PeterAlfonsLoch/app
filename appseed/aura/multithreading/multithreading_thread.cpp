@@ -1095,17 +1095,10 @@ void thread::wait()
 wait_result thread::wait(const duration & duration)
 {
 
-
+   IDTHREAD uiThread = m_uiThread;
 
    try
    {
-
-      if(!is_thread_on(m_uiThread))
-      {
-
-         return wait_result(::wait_result::Event0);
-
-      }
 
 #if defined(WINDOWS)
 
@@ -1115,24 +1108,32 @@ wait_result thread::wait(const duration & duration)
 
 #else
 
-      manual_reset_event ev(get_app());
-
-      ev.ResetEvent();
-
-      m_pevReady = &ev;
-
-      wait_result res = ev.wait(duration);
-
-      if(res.signaled())
+      if(duration.is_pos_infinity())
       {
 
-         return res;
+         while(is_thread_on(uiThread))
+         {
+
+            Sleep(100);
+
+         }
 
       }
+      else
+      {
 
-      m_pevReady = NULL;
+         DWORD dwDelay = duration.total_milliseconds();
 
-      return res;
+         DWORD dwStep = MIN(MAX(dwDelay / 10, 1), 100);
+
+         while(is_thread_on(uiThread))
+         {
+
+            Sleep(dwStep);
+
+         }
+
+      }
 
 #endif
 
@@ -1143,7 +1144,9 @@ wait_result thread::wait(const duration & duration)
 
    }
 
-   return wait_result(::wait_result::Event0);
+   return is_thread_on(uiThread) ?
+            wait_result(::wait_result::Timeout) :
+            wait_result(::wait_result::Event0);
 
 }
 

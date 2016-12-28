@@ -276,7 +276,7 @@ namespace linux
    {
 
 
-      if(::file::dir::axis::system::ls(papp, listing))
+      if(::file::dir::axis::system::ls(papp, listing).succeeded())
       {
 
          return listing;

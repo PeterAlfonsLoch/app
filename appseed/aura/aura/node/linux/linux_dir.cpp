@@ -355,7 +355,7 @@ namespace linux
    ::file::listing & dir::ls(::aura::application * papp, ::file::listing & listing)
    {
 
-      if(::file::dir::system::ls(papp, listing))
+      if(::file::dir::system::ls(papp, listing).succeeded())
       {
 
          return listing;

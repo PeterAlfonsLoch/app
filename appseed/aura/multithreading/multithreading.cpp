@@ -99,23 +99,8 @@ namespace multithreading
 
       int nExitCode = -1;
 
-      manual_reset_event * pevReady = NULL;
-
       try
       {
-
-        try
-        {
-
-            pevReady = pthread->m_pevReady;
-
-        }
-        catch(...)
-        {
-
-
-        }
-
 
          try
          {
@@ -196,24 +181,7 @@ namespace multithreading
 
       }
 
-
-      try
-      {
-
-         if(pevReady != NULL)
-         {
-
-            pevReady->SetEvent();
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      set_thread_off(::GetCurrentProcessId());
+      set_thread_off(::GetCurrentThreadId());
 
       return nExitCode;
 

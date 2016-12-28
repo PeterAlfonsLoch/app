@@ -838,7 +838,7 @@ namespace linux
 
          bResult = ::DestroyWindow(window) != FALSE;
 
-         Detach();
+         //Detach();
 
       }
 

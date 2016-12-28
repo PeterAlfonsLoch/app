@@ -405,8 +405,20 @@
 		<Unit filename="graphics/graphics_window_graphics.cpp" />
 		<Unit filename="graphics/graphics_window_graphics.h" />
 		<Unit filename="user/_user.cpp" />
+		<Unit filename="user/fontopus/fontopus.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/fontopus/fontopus.h" />
+		<Unit filename="user/fontopus/fontopus_login.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/fontopus/fontopus_login.h" />
+		<Unit filename="user/fontopus/fontopus_simple_ui.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/fontopus/fontopus_simple_ui.h" />
 		<Unit filename="user/fontopus/simple_ui_style.h" />
 		<Unit filename="user/hotplugin/hotplugin.h" />

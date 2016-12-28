@@ -646,13 +646,14 @@ namespace file
       }
 
 
-      ::file::path system::time_square(::aura::application * papp,const string & pszPrefix,const string & pszSuffix)
+      ::file::path system::time_square(::aura::application * papp, const string & strPrefix, const string & strSuffix)
       {
 
          UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(pszPrefix);
-         UNREFERENCED_PARAMETER(pszSuffix);
-         throw interface_only_exception(get_app(), "this is an interface");
+         UNREFERENCED_PARAMETER(strPrefix);
+         UNREFERENCED_PARAMETER(strSuffix);
+
+         return time() / "time";
 
       }
 

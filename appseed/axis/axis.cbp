@@ -134,6 +134,10 @@
 		<Unit filename="axis/fontopus/fontopus_user_authentication.h" />
 		<Unit filename="axis/fontopus/fontopus_user_set.h" />
 		<Unit filename="axis/fontopus/fontopus_usera.h" />
+		<Unit filename="axis/fontopus/fontopus_validate.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="axis/fontopus/fontopus_validate.h" />
 		<Unit filename="axis/geoip/geoip.h" />
 		<Unit filename="axis/geoip/geoip_city.h" />

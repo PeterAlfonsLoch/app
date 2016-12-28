@@ -1027,8 +1027,8 @@ namespace aura
       return NULL;
 
    }
-   
-   
+
+
    oswindow session::get_capture()
    {
 

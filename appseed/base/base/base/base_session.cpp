@@ -193,7 +193,7 @@ namespace base
 
 
 
-   
+
 
    index session::get_ui_wkspace(::user::interaction * pui)
    {

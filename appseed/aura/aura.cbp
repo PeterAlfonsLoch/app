@@ -624,6 +624,10 @@
 		<Unit filename="filesystem/filesystem/filesystem_application.h" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_application.h" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_system.h" />
+		<Unit filename="filesystem/filesystem/filesystem_listing.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="filesystem/filesystem/filesystem_listing.h" />
 		<Unit filename="filesystem/filesystem/filesystem_path.h" />
 		<Unit filename="filesystem/filesystem/filesystem_system.h" />
@@ -664,6 +668,10 @@
 		<Unit filename="graphics/visual/visual_icon.cpp" />
 		<Unit filename="graphics/visual/visual_icon.h" />
 		<Unit filename="multithreading/_multithreading.cpp" />
+		<Unit filename="multithreading/multithreading.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading.h" />
 		<Unit filename="multithreading/multithreading_condition.h" />
 		<Unit filename="multithreading/multithreading_critical_section.h" />
