@@ -225,6 +225,8 @@ namespace aura
          g_pmutexCvt = new mutex(NULL);
 
 #endif
+         
+         ::thread::s_pmutexDependencies = new mutex();
 
          g_pmutexThreadOn = new mutex();
 
@@ -489,6 +491,8 @@ namespace aura
          ::aura::del(g_pmutexThreadOn);
 
          ::aura::del(g_pmapThreadOn);
+         
+         ::aura::del(::thread::s_pmutexDependencies);
 
          // delete g_pstrLastGlsStatus;
 

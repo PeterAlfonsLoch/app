@@ -15,6 +15,7 @@
 #endif
 
 #import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 #if DEBUG
 #undef DEBUG

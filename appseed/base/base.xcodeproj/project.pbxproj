@@ -151,7 +151,8 @@
 		07EDC59F1B4F435600AF8928 /* ios_interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */; };
 		07EDC5A11B4F611B00AF8928 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */; };
 		07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5B51B4FE64F00AF8928 /* main_mm.mm */; };
-		9A80879A1DE126F500F70A07 /* ios_interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */; };
+		9A4B9CF71E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */; };
+		9A4B9CF81E149BC4000D0E92 /* wndfrm_frame_updowninterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4B9CF61E149BC4000D0E92 /* wndfrm_frame_updowninterface.h */; };
 		9A80879B1DE1270600F70A07 /* ios_interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */; };
 		9A986CF31D22666D001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CF21D22666D001F4C04 /* libios_aura.dylib */; };
 		9A986DA01D226E06001F4C04 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */; };
@@ -421,6 +422,8 @@
 		07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_interaction_impl.h; sourceTree = "<group>"; };
 		07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
 		07EDC5B51B4FE64F00AF8928 /* main_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main_mm.mm; sourceTree = "<group>"; };
+		9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wndfrm_frame_updowninterface.cpp; sourceTree = "<group>"; };
+		9A4B9CF61E149BC4000D0E92 /* wndfrm_frame_updowninterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wndfrm_frame_updowninterface.h; sourceTree = "<group>"; };
 		9A6716461D15495F0069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../macos/app/appseed/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
 		9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_interaction_impl.cpp; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
@@ -687,6 +690,7 @@
 				07D9671E1B4C63E3004A3D2A /* simple_ui */,
 				07D9672E1B4C63E3004A3D2A /* user */,
 				07D9678F1B4C63E3004A3D2A /* userex */,
+				9A4B9CF31E149BC4000D0E92 /* wndfrm */,
 				07D9678D1B4C63E3004A3D2A /* user.h */,
 				07D9678E1B4C63E3004A3D2A /* user.inl */,
 				07D966F81B4C63E3004A3D2A /* _user.cpp */,
@@ -859,6 +863,23 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
+		9A4B9CF31E149BC4000D0E92 /* wndfrm */ = {
+			isa = PBXGroup;
+			children = (
+				9A4B9CF41E149BC4000D0E92 /* frame */,
+			);
+			path = wndfrm;
+			sourceTree = "<group>";
+		};
+		9A4B9CF41E149BC4000D0E92 /* frame */ = {
+			isa = PBXGroup;
+			children = (
+				9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */,
+				9A4B9CF61E149BC4000D0E92 /* wndfrm_frame_updowninterface.h */,
+			);
+			path = frame;
+			sourceTree = "<group>";
+		};
 		9A4E84471D1FD1CB008A419B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,6 +973,7 @@
 				07D9681D1B4C63E3004A3D2A /* user_control.h in Headers */,
 				07D967E11B4C63E3004A3D2A /* simple_ui.h in Headers */,
 				07D968571B4C63E4004A3D2A /* user_interaction_impl.h in Headers */,
+				9A4B9CF81E149BC4000D0E92 /* wndfrm_frame_updowninterface.h in Headers */,
 				07D9683A1B4C63E4004A3D2A /* user_frame_window.h in Headers */,
 				07D968631B4C63E4004A3D2A /* user_menu_base_item.h in Headers */,
 				07D9687C1B4C63E4004A3D2A /* user_plain_text_data.h in Headers */,
@@ -1211,7 +1233,6 @@
 			files = (
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
 				07D966E41B4C55BD004A3D2A /* round_window.mm in Sources */,
-				9A80879A1DE126F500F70A07 /* ios_interaction_impl.cpp in Sources */,
 				070FC0EF1B85650800D12AD0 /* Keyboard.mm in Sources */,
 				9ACBD1D51DDFC846004AF08F /* macos_factory_exchange.cpp in Sources */,
 				9ACE46CD1D1FE39800A1E0AD /* graphics_window_buffer.cpp in Sources */,
@@ -1220,6 +1241,7 @@
 				9ACE46CF1D1FE39800A1E0AD /* graphics_window_dc.cpp in Sources */,
 				07D966E61B4C55BD004A3D2A /* RoundWindowApp.mm in Sources */,
 				07EDC5401B4F1CB700AF8928 /* graphics_window_graphics.cpp in Sources */,
+				9A4B9CF71E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp in Sources */,
 				07D968BE1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */,
 				07D966E71B4C55BD004A3D2A /* RoundWindowFrameView.mm in Sources */,
 				07D967991B4C63E3004A3D2A /* _user.cpp in Sources */,

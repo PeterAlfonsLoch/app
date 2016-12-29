@@ -29,19 +29,19 @@ END_EXTERN_C
 #else
 
 
-#if defined(__M)
-
-
-#include "aura_c.h"
-#include "aura_policy_objc.h"
-
-
-#elif defined(__MM)
+#if defined(__MM)
 
 
 #include "aura_c.h"
 #include "aura_policy_objc.h"
 #include "aura_policy_objcpp.h"
+
+
+#elif defined(__M)
+
+
+#include "aura_c.h"
+#include "aura_policy_objc.h"
 
 
 #elif defined(__cplusplus_winrt)

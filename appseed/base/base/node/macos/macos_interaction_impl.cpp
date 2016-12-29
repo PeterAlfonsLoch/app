@@ -71,7 +71,7 @@ namespace macos
    LRESULT CALLBACK __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
 
 
-   ::user::interaction *  interaction_impl::from_os_data(void * pdata)
+   ::user::interaction_impl *  interaction_impl::from_os_data(void * pdata)
    {
 
       return from_handle((oswindow)pdata);
@@ -171,24 +171,32 @@ namespace macos
    }
 
 
-   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
+   ::user::interaction_impl * interaction_impl::from_handle(oswindow oswindow)
    {
 
       if (oswindow == NULL)
+      {
+         
          return NULL;
+         
+      }
 
-      return oswindow->get_user_interaction();
+      return oswindow->m_pimpl;
 
    }
 
 
-   ::user::interaction * PASCAL interaction_impl::FromHandlePermanent(oswindow oswindow)
+   ::user::interaction_impl * interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
       if (oswindow == NULL)
+      {
+         
          return NULL;
+         
+      }
 
-      return oswindow->get_user_interaction();
+      return oswindow->m_pimpl;
 
    }
 
@@ -201,7 +209,12 @@ namespace macos
       // must not already be in permanent ::collection::map
 
       if (hWndNew == NULL)
+      {
+      
          return FALSE;
+         
+      }
+      
       //single_lock sl(afxMutexHwnd(), TRUE);
       //hwnd_map * pMap = afxMapHWND(TRUE); // create ::collection::map if not exist
       //ASSERT(pMap != NULL);
@@ -353,9 +366,9 @@ namespace macos
 
          m_spgraphics->on_create_window(this);
 
-         m_oswindow->set_user_interaction(m_pui);
+         m_oswindow->set_user_interaction_impl(this);
 
-         oswindow_assign(m_oswindow, m_pui);
+         oswindow_assign(m_oswindow, this);
 
       }
 
@@ -623,7 +636,7 @@ namespace macos
 
       Default();
 
-
+//      ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
 
       //      ::macos::window_draw * pdraw = dynamic_cast < ::macos::window_draw * > (System.get_twf());
       //
@@ -2875,14 +2888,16 @@ namespace macos
                   
                }
 
-               if (::get_tick_count() - dwStart < 5)
+               if (::get_tick_count() - dwStart < 20)
                {
 
-                  Sleep(5);
+                  Sleep(20);
 
                }
 
             }
+            
+            output_debug_string("m_pthreadDraw has finished!");
 
          });
 
@@ -4861,16 +4876,33 @@ namespace macos
 
    ::user::interaction *  interaction_impl::GetActiveWindow()
    {
+      
+      ::user::interaction_impl * pimpl = ::macos::interaction_impl::from_handle(::GetActiveWindow());
+      
+      if(pimpl == NULL)
+      {
+         
+         return NULL;
+         
+      }
 
-      return ::macos::interaction_impl::from_handle(::GetActiveWindow());
+      return pimpl->m_pui;
 
    }
 
    ::user::interaction *  interaction_impl::SetActiveWindow()
    {
-
-      ASSERT(::IsWindow(get_handle()));
-      return ::macos::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+      
+      ::user::interaction_impl * pimpl = ::macos::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+      
+      if(pimpl == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      return pimpl->m_pui;
 
    }
 
@@ -4878,7 +4910,16 @@ namespace macos
    ::user::interaction *  interaction_impl::GetFocus()
    {
 
-      return ::macos::interaction_impl::from_handle(::GetFocus());
+      ::user::interaction_impl * pimpl = ::macos::interaction_impl::from_handle(::GetFocus());
+      
+      if(pimpl == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      return pimpl->m_pui;
 
    }
 
@@ -4886,10 +4927,16 @@ namespace macos
    bool  interaction_impl::SetFocus()
    {
 
-      if (!::IsWindow(get_handle()))
+      ::user::interaction_impl * pimpl = ::macos::interaction_impl::from_handle(::SetFocus(get_handle()));
+      
+      if(pimpl == NULL)
+      {
+         
          return NULL;
-
-      return ::macos::interaction_impl::from_handle(::SetFocus(get_handle()));
+         
+      }
+      
+      return pimpl->m_pui;
 
    }
 
@@ -5142,9 +5189,17 @@ namespace macos
 
    ::user::interaction * interaction_impl::SetParent(::user::interaction * pWndNewParent)
    {
-
-      ASSERT(::IsWindow(get_handle()));
-      return ::macos::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow)pWndNewParent->get_handle()));
+      
+      ::user::interaction_impl * pimpl = ::macos::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow)pWndNewParent->get_handle()));
+      
+      if(pimpl == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      return pimpl->m_pui;
 
    }
 

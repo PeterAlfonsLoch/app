@@ -1131,11 +1131,12 @@
 		9A26A6FC1D7F01A5001F47A8 /* libaurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A26A6F91D7F0166001F47A8 /* libaurapcre.dylib */; };
 		9A33276B1D4C50EB00255105 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A33276A1D4C50EB00255105 /* file_path.h */; };
 		9A44E3FF19C5C10200143B94 /* math_departament.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A44E3FD19C5C10200143B94 /* math_departament.h */; };
+		9A4B9C2F1E148E1A000D0E92 /* macos_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C2E1E148E1A000D0E92 /* macos_mm.mm */; };
+		9A4B9C311E149015000D0E92 /* os_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C301E149015000D0E92 /* os_debug.cpp */; };
 		9A5DF96E1CEE2741008916A4 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A6715D11D14F65F0069A961 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */; };
 		9A6715D41D14F7970069A961 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A74846E1D210C0600207EF6 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libios_ace.dylib */; };
-		9A8087461DE0FF3000F70A07 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087451DE0FF3000F70A07 /* ios_library.cpp */; };
 		9A8087471DE1021A00F70A07 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087451DE0FF3000F70A07 /* ios_library.cpp */; };
 		9A9799151DAC3C2B001CD6D9 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
@@ -1956,6 +1957,8 @@
 		9A33276A1D4C50EB00255105 /* file_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_path.h; sourceTree = "<group>"; };
 		9A4421861D5B231E00199308 /* aura_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_application.cpp; sourceTree = "<group>"; };
 		9A44E3FD19C5C10200143B94 /* math_departament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_departament.h; sourceTree = "<group>"; };
+		9A4B9C2E1E148E1A000D0E92 /* macos_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_mm.mm; sourceTree = "<group>"; };
+		9A4B9C301E149015000D0E92 /* os_debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = os_debug.cpp; sourceTree = "<group>"; };
 		9A5DF96C1CEE2536008916A4 /* primitive.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primitive.inl; sourceTree = "<group>"; };
 		9A5DF96D1CEE2741008916A4 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../test.cpp; sourceTree = "<group>"; };
 		9A67166C1D1553BF0069A961 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../ace/ace.xcodeproj; sourceTree = "<group>"; };
@@ -2767,6 +2770,7 @@
 		9A163F6519C4A4CD00966C5E /* os */ = {
 			isa = PBXGroup;
 			children = (
+				9A4B9C301E149015000D0E92 /* os_debug.cpp */,
 				077A05301B4D70B7001C85FF /* ios */,
 				9A163F8919C4A4CD00966C5E /* ansios */,
 				9A163F9419C4A4CD00966C5E /* cross */,
@@ -2850,6 +2854,7 @@
 		9A16405619C4A4CD00966C5E /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9A4B9C2E1E148E1A000D0E92 /* macos_mm.mm */,
 				9A16405719C4A4CD00966C5E /* DDInvocationGrabber.h */,
 				9A16405819C4A4CD00966C5E /* DDInvocationGrabber.mm */,
 				9A16405A19C4A4CE00966C5E /* macos.h */,
@@ -4658,6 +4663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07CABC141B3DFF200009F5B9 /* user_frame.cpp in Sources */,
+				9A4B9C311E149015000D0E92 /* os_debug.cpp in Sources */,
 				0705619C1C4115F2004085DF /* exception_engine.cpp in Sources */,
 				07C64B7B1C9A29A400F54872 /* draw2d_nanosvg.cpp in Sources */,
 				07CABC161B3DFF200009F5B9 /* user_primitive.cpp in Sources */,
@@ -4686,9 +4692,9 @@
 				9A16447A19C4A4CF00966C5E /* UncaughtExceptionHandler.mm in Sources */,
 				077CEF1D1B23CE5F009A57EF /* _aura_aura.cpp in Sources */,
 				077CEF241B23D0FF009A57EF /* _multithreading.cpp in Sources */,
+				9A4B9C2F1E148E1A000D0E92 /* macos_mm.mm in Sources */,
 				9A1644A219C4A4CF00966C5E /* os_http.cpp in Sources */,
 				9A1644A519C4A4CF00966C5E /* os_thread.cpp in Sources */,
-				9A8087461DE0FF3000F70A07 /* ios_library.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4856,7 +4862,7 @@
 				CLANG_ANALYZER_GCD = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
@@ -4925,7 +4931,7 @@
 				CLANG_ANALYZER_GCD = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;

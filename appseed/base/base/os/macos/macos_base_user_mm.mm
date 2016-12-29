@@ -24,10 +24,17 @@ bool oswindow_data::is_window_visible()
 bool oswindow_data::is_iconic()
 {
    
+   return [window() isMiniaturized] != FALSE;
+   
+}
+
+
+bool oswindow_data::iconify()
+{
+   
    [window() miniaturize : 0];
    
    return 1;
-   
    
 }
 

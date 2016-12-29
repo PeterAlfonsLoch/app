@@ -766,9 +766,9 @@ namespace aura
 //
 //      return true;
 //
-#elif defined(APPLEOS)
-      openURL(strLink);
-      return true;
+//#elif defined(APPLEOS)
+  //    openURL(strLink);
+    //  return true;
 #elif defined(VSNORD)
 
       string strOpenUrl;

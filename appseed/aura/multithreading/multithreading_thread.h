@@ -68,6 +68,8 @@ private:
 
 public:
 
+   static mutex *                         s_pmutexDependencies;
+   
    class CLASS_DECL_AURA file_info
    {
    public:

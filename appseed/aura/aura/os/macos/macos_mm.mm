@@ -7,34 +7,53 @@
 //
 
 #import <Foundation/Foundation.h>
+//
+//char * str_clip_dup()
+//{
+// 
+//   NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+//   
+//   NSArray *classes = [[NSArray alloc] initWithObjects:[NSString class], nil];
+//   
+//   NSDictionary *options = [NSDictionary dictionary];
+//   
+//   NSArray *copiedItems = [pasteboard readObjectsForClasses:classes options:options];
+//   
+//   if (copiedItems == nil)
+//   {
+//      
+//      return NULL;
+//
+//   }
+//   
+//   if([copiedItems count] <= 0)
+//   {
+//    
+//      return NULL;
+//      
+//   }
+//  
+//   NSString * pstr = [copiedItems objectAtIndex:0];
+//   
+//   return strdup([pstr UTF8String]);
+//
+//}
 
-char * str_clip_dup()
+
+char * ns_get_default_browser_path()
 {
- 
-   NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
    
-   NSArray *classes = [[NSArray alloc] initWithObjects:[NSString class], nil];
+   CFURLRef appURL = LSCopyDefaultApplicationURLForURL((CFURLRef)[NSURL URLWithString: @"http:"], kLSRolesAll, NULL);
    
-   NSDictionary *options = [NSDictionary dictionary];
+   CFStringRef str = CFURLGetString(appURL);
    
-   NSArray *copiedItems = [pasteboard readObjectsForClasses:classes options:options];
+   char * psz = strdup([(NSString *)str UTF8String]);
    
-   if (copiedItems == nil)
-   {
-      
-      return NULL;
-
-   }
+   CFRelease(appURL);
    
-   if([copiedItems count] <= 0)
-   {
-    
-      return NULL;
-      
-   }
-  
-   NSString * pstr = [copiedItems objectAtIndex:0];
+   //CFRelease(str);
    
-   return strdup([pstr UTF8String]);
-
+   return psz;
+   
 }
+

@@ -13,6 +13,7 @@ namespace user
    
    
    class interaction;
+   class interaction_impl;
    
    
 } // namespace user
@@ -40,7 +41,7 @@ public:
    
    
    nswindow                      m_nswindow;
-   ::user::interaction *    m_pui;
+   ::user::interaction_impl *    m_pimpl;
    
    
    int_to_int *                  m_plongmap;
@@ -92,7 +93,7 @@ public:
    }
    
    
-   void set_user_interaction(::user::interaction * pui);
+   void set_user_interaction_impl(::user::interaction_impl * pimpl);
    ::user::interaction * get_user_interaction_base();
    ::user::interaction * get_user_interaction_base() const;
    ::user::interaction * get_user_interaction();
@@ -107,6 +108,7 @@ public:
    oswindow set_parent(oswindow oswindowNewParent);
    long get_state();
    bool is_iconic();
+   bool iconify();
    bool is_window_visible();
    bool show_window(int32_t nCmdShow);
    int_ptr get_window_long(int_ptr nIndex);

@@ -51,7 +51,7 @@ oswindow_data::oswindow_data()
 {
 
    m_nswindow  = NULL;
-   m_pui       = NULL;
+   m_pimpl       = NULL;
    m_plongmap  = new int_to_int;
 
 }
@@ -61,7 +61,7 @@ oswindow_data::oswindow_data(nswindow window)
 {
 
    m_nswindow  = window;
-   m_pui       = NULL;
+   m_pimpl       = NULL;
    m_plongmap  = new int_to_int;
 
 }
@@ -71,7 +71,7 @@ oswindow_data::oswindow_data(const oswindow_data & oswindow)
 {
 
    m_nswindow  = oswindow.m_nswindow;
-   m_pui       = oswindow.m_pui;
+   m_pimpl       = oswindow.m_pimpl;
    m_plongmap  = oswindow.m_plongmap;
 
 }
@@ -92,7 +92,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
    {
 
       m_nswindow  = oswindow.m_nswindow;
-      m_pui       = oswindow.m_pui;
+      m_pimpl       = oswindow.m_pimpl;
       m_plongmap  = oswindow.m_plongmap;
 
    }
@@ -117,13 +117,13 @@ bool oswindow_remove(nswindow window)
 }
 
 
-void oswindow_data::set_user_interaction(::user::interaction * pui)
+void oswindow_data::set_user_interaction_impl(::user::interaction_impl * pimpl)
 {
 
    if(this == NULL)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
 
-   m_pui = pui;
+   m_pimpl = pimpl;
 
 }
 
@@ -132,46 +132,87 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 {
 
    if(this == NULL)
+   {
+      
       return NULL;
+      
+   }
 
-   return m_pui;
+   if(m_pimpl == NULL)
+   {
+      
+      return NULL;
+      
+   }
+   
+   return m_pimpl->m_pui;
 
 }
+
 
 ::user::interaction * oswindow_data::get_user_interaction_base() const
 {
-
+   
    if(this == NULL)
+   {
+      
       return NULL;
-
-   return m_pui;
-
+      
+   }
+   
+   if(m_pimpl == NULL)
+   {
+      
+      return NULL;
+      
+   }
+   
+   return m_pimpl->m_pui;
+   
 }
+
 
 ::user::interaction * oswindow_data::get_user_interaction()
 {
-
+   
    if(this == NULL)
+   {
+      
       return NULL;
-
-   if(m_pui == NULL)
+      
+   }
+   
+   if(m_pimpl == NULL)
+   {
+      
       return NULL;
-
-   return m_pui;
-
+      
+   }
+   
+   return m_pimpl->m_pui;
+   
 }
+
 
 ::user::interaction * oswindow_data::get_user_interaction() const
 {
-
+   
    if(this == NULL)
+   {
+      
       return NULL;
-
-   if(m_pui == NULL)
+      
+   }
+   
+   if(m_pimpl == NULL)
+   {
+      
       return NULL;
-
-   return m_pui;
-
+      
+   }
+   
+   return m_pimpl->m_pui;
+   
 }
 
 
@@ -181,7 +222,7 @@ oswindow oswindow_data::get_parent()
    if(this == NULL)
       return NULL;
 
-   return m_pui->GetParentHandle();
+   return m_pimpl->m_pui->GetParentHandle();
 
 }
 
@@ -195,16 +236,16 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
    ::oswindow oswindowOldParent = get_parent();
 
    if(oswindow == NULL
-      || oswindow->m_pui == NULL)
+      || oswindow->m_pimpl == NULL)
    {
 
-      m_pui->SetParent(NULL);
+      m_pimpl->SetParent(NULL);
 
    }
    else
    {
 
-      m_pui->SetParent(oswindow->m_pui);
+      m_pimpl->SetParent(oswindow->m_pimpl->m_pui);
 
    }
 
@@ -342,13 +383,13 @@ oswindow GetFocus()
 }
 
 
-::user::interaction * window_from_handle(oswindow oswindow)
+::user::interaction_impl * window_from_handle(oswindow oswindow)
 {
 
    if(oswindow == NULL)
       return NULL;
 
-   return oswindow->m_pui;
+   return oswindow->m_pimpl;
 
 }
 
@@ -412,4 +453,14 @@ void defer_dock_application(bool bDock)
 
    }
 
+}
+
+
+WINBOOL DestroyWindow(oswindow w)
+{
+   
+   UNREFERENCED_PARAMETER(w);
+   
+   return 1;
+   
 }

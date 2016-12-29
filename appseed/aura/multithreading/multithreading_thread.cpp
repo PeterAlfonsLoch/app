@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+mutex * thread::s_pmutexDependencies = NULL;
+
 
 struct send_thread_message :
    virtual public object
@@ -645,21 +647,12 @@ void thread::on_unregister_dependent_thread(::thread * pthreadDependent)
 
    string strDependentThread = string(demangle(typeid(*pthreadDependent).name()));
 
-   {
+   synch_lock sl(s_pmutexDependencies);
 
-      synch_lock sl(m_pmutex);
+   m_threadptraDependent.remove(pthreadDependent);
 
-      m_threadptraDependent.remove(pthreadDependent);
+   pthreadDependent->m_threadptraRequired.remove(this);
 
-   }
-
-   {
-
-      synch_lock slThread(pthreadDependent->m_pmutex);
-
-      pthreadDependent->m_threadptraRequired.remove(this);
-
-   }
    // the system may do some extra processing (like quitting system in case pthreadDependent is the last thread virgin in America (North, most especifically US) ?!?!), so do a kick
    // (do not apply virgin to your self...)
    kick_thread();
@@ -787,7 +780,7 @@ void thread::register_at_required_threads()
 void thread::unregister_from_required_threads()
 {
 
-   synch_lock sl(m_pmutex);
+   synch_lock sl(s_pmutexDependencies);
 
    for(index i = m_threadptraRequired.get_upper_bound(); i >= 0;)
    {
@@ -800,8 +793,6 @@ void thread::unregister_from_required_threads()
          if (pthread != this)
          {
 
-            synch_lock slThread(pthread->m_pmutex);
-
             pthread->unregister_dependent_thread(this);
 
          }
@@ -813,10 +804,6 @@ void thread::unregister_from_required_threads()
       }
 
       i--;
-
-      sl.unlock();
-
-      sl.lock();
 
    }
 

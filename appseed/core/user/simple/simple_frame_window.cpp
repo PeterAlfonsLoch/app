@@ -563,7 +563,7 @@ void simple_frame_window::defer_set_icon()
       }
    }
 
-#else
+#elif defined(LINUX)
 
    if (GetParent() == NULL)
    {

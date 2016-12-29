@@ -457,6 +457,10 @@ namespace base
 
       return 0;
 
+#elif defined(MACOS)
+      
+      return 0;
+      
 #else
 
       if (iMonitor < 0)
@@ -500,6 +504,10 @@ namespace base
 
       return true;
 
+#elif defined(MACOS)
+      
+      return true;
+      
 #else
 
       synch_lock sl(&g_monitor_adjust);

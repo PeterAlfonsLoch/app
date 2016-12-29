@@ -65,6 +65,7 @@ namespace macos
       
       virtual bool initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch);
 
+      virtual bool get_default_browser(string & strId, ::file::path & path, string & strParam) override;
 
 
    };

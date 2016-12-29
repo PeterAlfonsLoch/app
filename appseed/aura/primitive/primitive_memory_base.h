@@ -117,7 +117,7 @@ namespace primitive
       virtual void transfer_from_begin(::file::reader & reader, memory_size_t uiBufferSize = 1024 * 1024);
 
 
-      inline  void allocate_add_up(memory_size_t dwAddUp);
+      void allocate_add_up(memory_size_t dwAddUp);
 
 
       inline LPBYTE           internal_get_data() const;
@@ -151,7 +151,7 @@ namespace primitive
       void zero(memory_position_t iStart = 0, memory_size_t uiSize = -1);
 
       inline void append(const memory_base & memory, memory_position_t iStart = 0, memory_size_t iCount = -1);
-      inline void append(const void * pdata, memory_size_t iCount);
+      void append(const void * pdata, memory_size_t iCount);
       void assign(const void * pdata, memory_size_t iCount);
       void assign(const void * pdata, memory_position_t iStart, memory_size_t iCount);
       void append(memory_size_t iCount, uchar uch);
@@ -211,8 +211,8 @@ namespace primitive
 
 #elif defined(APPLEOS)
 
-       inline CFDataRef get_os_cf_data(memory_position_t pos = 0, memory_size_t size = -1) const;
-       inline void set_os_cf_data(CFDataRef data, memory_position_t pos = 0, memory_size_t size = -1);
+       CFDataRef get_os_cf_data(memory_position_t pos = 0, memory_size_t size = -1) const;
+       void set_os_cf_data(CFDataRef data, memory_position_t pos = 0, memory_size_t size = -1);
 
 #endif
 

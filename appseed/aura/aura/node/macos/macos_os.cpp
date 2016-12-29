@@ -4,9 +4,32 @@
 
 #undef USERNAME_LENGTH // mysql one
 
+char * ns_get_default_browser_path();
+
 
 namespace macos
 {
+
+   ::file::path get_default_browser_path()
+   {
+      
+      string strPath;
+      
+      char * psz = ns_get_default_browser_path();
+      
+      strPath = psz;
+      
+      ::str::begins_eat_ci(strPath, "file://");
+      
+      free(psz);
+      
+      ::file::path path;
+      
+      path = strPath;
+      
+      return path;
+      
+   }
 
 
    os::os(::aura::application * papp) :
@@ -817,6 +840,34 @@ namespace macos
 
       return true;
 
+   }
+   
+   bool os::get_default_browser(string & strId, ::file::path & path, string & strParam)
+   {
+      
+      path = ::macos::get_default_browser_path();
+      
+      if(path.find_ci("chrome") >= 0)
+      {
+         
+         strId = "chrome";
+         
+      }
+      else if(path.find_ci("firefox") >= 0)
+      {
+         
+         strId = "firefox";
+         
+      }
+      else
+      {
+         
+         strId = "default";
+         
+      }
+         
+      return true;
+      
    }
 
 
