@@ -16,3 +16,6 @@
 #define LOG_MEMBER_PREFIX __FUNCTION__
 
 #endif
+
+
+bool ns_open_file(const char * psz);

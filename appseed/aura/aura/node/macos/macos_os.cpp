@@ -779,7 +779,10 @@ namespace macos
    {
 
 //      throw not_implemented(get_app());
-      return false;
+      
+      strTarget = strSource;
+      
+      return true;
 
       //      return vfxResolveShortcut(strTarget, pszSource, puiMessageParentOptional);
 

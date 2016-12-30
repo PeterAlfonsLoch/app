@@ -464,9 +464,10 @@ namespace filemanager
       
       dib48->create(48, 48);
       
+      dib48->Fill(0);
+      
       if(macos_get_file_image(dib48, strPath))
       {
-         
          synch_lock sl1(m_pil48Hover->m_pmutex);
          synch_lock sl2(m_pil48->m_pmutex);
          iImage = m_pil16->add_dib(dib48, 0, 0);

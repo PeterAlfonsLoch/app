@@ -57,3 +57,26 @@ char * ns_get_default_browser_path()
    
 }
 
+
+bool ns_open_file(const char * psz)
+{
+   
+   NSString * path = [NSString stringWithUTF8String:psz];
+   
+   if(path == NULL)
+   {
+      
+      return false;
+      
+   }
+   
+   if(![[NSWorkspace sharedWorkspace] openFile: path])
+   {
+      
+      return false;
+      
+   }
+   
+   return true;
+   
+}

@@ -8,10 +8,10 @@
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
 
-bool GetImagePixelData(unsigned int * pcr, int cx, int cy, CGImageRef inImage)
+bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage)
 ;
 
-bool mm_get_file_image(unsigned int * pcr, int cx, int cy, const char * psz)
+bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
 {
    
   NSString * str = [NSString stringWithUTF8String:psz];
@@ -40,7 +40,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, const char * psz)
    
    CGImageRef i = [image CGImageForProposedRect: &r context:nil hints:nil];
    
-   bool bOk = GetImagePixelData(pcr, cx, cy, i);
+   bool bOk = GetImagePixelData(pcr, cx, cy, iScan,  i);
    
    CFRelease(i);
                                 
