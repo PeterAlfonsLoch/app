@@ -1,7 +1,55 @@
 //#include "framework.h"
 
 
+#ifdef MACOS
 
+long long mm_get_user_wallpaper(char *** ppp);
+
+CLASS_DECL_CORE stringa macos_get_user_wallpaper()
+{
+   
+   stringa stra;
+   
+   char ** ppsz = NULL;
+   
+   long long ll = mm_get_user_wallpaper(&ppsz);
+   
+   if(ppsz == NULL)
+   {
+      
+      return stra;
+      
+   }
+   
+   for(index i = 0; i < ll; i++)
+   {
+      
+      if(ppsz[i] != NULL)
+      {
+   
+         stra.add(ppsz[i]);
+         
+         ::str::begins_eat_ci(stra.last(), "file://");
+         
+         //free(ppsz[i]);
+         
+      }
+      else
+      {
+         
+         stra.add("");
+         
+      }
+      
+   }
+   
+   //free(ppsz);
+   
+   return stra;
+   
+}
+
+#endif
 
 namespace user
 {
@@ -201,12 +249,19 @@ namespace user
    }
 
 #else
-
+   
    CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath)
    {
 
       return macos_set_user_wallpaper(strLocalImagePath);
 
+   }
+
+   CLASS_DECL_CORE stringa get_wallpaper()
+   {
+      
+      return macos_get_user_wallpaper();
+      
    }
 
 #endif

@@ -1,6 +1,11 @@
 //#include "framework.h"
 
 
+#ifdef MACOS
+
+bool macos_get_file_image(::draw2d::dib * pdib, const char * psz);
+
+#endif
 
 namespace filemanager
 {
@@ -453,6 +458,37 @@ namespace filemanager
       {
          output_debug_string("test");
       }
+#ifdef MACOS
+      
+      ::draw2d::dib_sp dib48(allocer());
+      
+      dib48->create(48, 48);
+      
+      if(macos_get_file_image(dib48, strPath))
+      {
+         
+         synch_lock sl1(m_pil48Hover->m_pmutex);
+         synch_lock sl2(m_pil48->m_pmutex);
+         iImage = m_pil16->add_dib(dib48, 0, 0);
+         m_pil48Hover->add_dib(dib48, 0, 0);
+         
+         if(crBk == 0)
+         {
+            System.visual().imaging().Createcolor_blend_ImageList(
+                                                                  m_pil48,
+                                                                  m_pil48Hover,
+                                                                  RGB(255,255,240),
+                                                                  64);
+         }
+         else
+         {
+            *m_pil48 = *m_pil48Hover;
+         }
+         
+         return iImage;
+
+      }
+#endif
 
 #ifdef LINUX
 
@@ -557,6 +593,10 @@ namespace filemanager
 
       iImage = GetImageByExtension(oswindow, strPath, eicon, bFolder,crBk);
 
+#elif defined(MACOS)
+      
+      iImage = -1;
+      
 #else
 
       iImage = GetImageByExtension(oswindow, strPath, eicon, bFolder,crBk);

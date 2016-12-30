@@ -180,7 +180,7 @@ namespace file
 
       void clear_results() { m_straTitle.remove_all(); m_cres.release(); remove_all(); }
 
-      string os_pattern() const { return m_strPattern.is_empty() ? string("*.*") : m_strPattern;  }
+      string os_pattern() const { return m_strPattern.is_empty() ||m_strPattern == "*.*" ? string("*") : m_strPattern;  }
 
 
       string title(index i)

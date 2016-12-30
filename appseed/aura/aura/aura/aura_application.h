@@ -6,6 +6,7 @@ namespace hotplugin
    class plugin;
 }
 
+
 namespace aura
 {
 
@@ -526,6 +527,8 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual void show_critical_error_log();
 
       virtual string get_app_user_friendly_task_bar_name();
+      
+      virtual void on_setting_changed(::aura::e_setting esetting);
 
    };
 

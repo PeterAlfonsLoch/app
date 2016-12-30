@@ -38,6 +38,9 @@ public:
    
    virtual void round_window_resized(CGRect rect) = 0;
    virtual void round_window_moved(CGPoint point) = 0;
+   
+   virtual void round_window_iconified() = 0;
+   virtual void round_window_deiconified() = 0;
 
    virtual void round_window_on_show() = 0;
    virtual void round_window_on_hide() = 0;

@@ -123,3 +123,13 @@ CLASS_DECL_AURA bool __node_aura_pos_term()
 }
 
 
+void macos_desktop_image_changed()
+{
+   
+   ::aura::system::g_p->on_setting_changed(::aura::setting_wallpaper);
+   
+}
+
+
+
+

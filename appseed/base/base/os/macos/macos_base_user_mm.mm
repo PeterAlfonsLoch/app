@@ -393,3 +393,21 @@ bool macos_set_user_wallpaper(const char * psz)
    return bOk;
    
 }
+
+
+
+long long mm_get_user_wallpaper(char *** ppp)
+{
+   
+   mmos * p = [mmos get];
+
+   *ppp = p->m_ppszWallpaper;
+      
+   return p->m_llWallpaper;
+   
+}
+
+
+
+
+

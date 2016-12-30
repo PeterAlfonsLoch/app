@@ -8165,6 +8165,13 @@ restart:
       WfiRestore();
 
    }
+   
+   
+   void interaction::on_setting_changed(::aura::e_setting esetting)
+   {
+      
+      
+   }
 
 
 } // namespace user

@@ -5203,6 +5203,13 @@ namespace aura
 
 
    }
+   
+   
+   void application::on_setting_changed(::aura::e_setting esetting)
+   {
+      
+      
+   }
 
 
 } // namespace aura

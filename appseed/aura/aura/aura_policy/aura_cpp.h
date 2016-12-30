@@ -43,6 +43,21 @@ enum e_context_switcher_failed
 };
 
 
+namespace aura
+{
+   
+   enum e_setting
+   {
+      
+      setting_none,
+      setting_wallpaper,
+      
+   };
+   
+} // namespace system
+
+
+
 template<class T>
 struct remove_reference
 {

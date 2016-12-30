@@ -1023,8 +1023,21 @@ namespace user
 
             draw_list_item itemLast(this);
 
-            itemLast.m_iDisplayItem = m_nItemCount - 1;
-            itemLast.m_iItem = m_nItemCount - 1;
+            if(m_nItemCount <= 0)
+            {
+               
+               itemLast.m_iDisplayItem = 0;
+               itemLast.m_iItem = 0;
+               
+            }
+            else
+            {
+            
+               itemLast.m_iDisplayItem = m_nItemCount - 1;
+               itemLast.m_iItem = m_nItemCount - 1;
+               
+            }
+            
 
             _001GetItemRect(&itemLast);
 

@@ -441,7 +441,7 @@ namespace aura
       virtual bool android_set_user_wallpaper(string strUrl);
 
 #endif
-
+      
    };
 
 

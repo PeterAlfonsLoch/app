@@ -33,7 +33,7 @@ namespace macos
       {
          
          
-         if(::file::dir::axis::system::ls(papp, listing))
+         if(::file::dir::axis::system::ls(papp, listing).succeeded())
          {
             
             return listing;
@@ -58,6 +58,20 @@ namespace macos
       
       bool dir::is(const ::file::path & lpcszPath, ::aura::application * papp)
       {
+         
+         if(lpcszPath.m_iDir > 0)
+         {
+         
+            return true;
+            
+         }
+         
+         if(lpcszPath.m_iDir == 0)
+         {
+            
+            return false;
+            
+         }
          
          if(::macos::dir::is(lpcszPath,papp))
             return true;

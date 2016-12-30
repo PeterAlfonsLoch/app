@@ -971,6 +971,20 @@ error:;
       return pimpl->m_pui;
 
    }
+   
+   void system::on_setting_changed(::aura::e_setting esetting)
+   {
+      
+      sp(::user::interaction) pui;
+      
+      while(Session.get_frame(pui))
+      {
+         
+         pui->on_setting_changed(esetting);
+         
+      }
+      
+   }
 
 } // namespace base
 

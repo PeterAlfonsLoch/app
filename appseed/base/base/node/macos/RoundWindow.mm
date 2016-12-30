@@ -64,7 +64,10 @@
 
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidExpose:) name:NSWindowDidExposeNotification object:self];
 
-   
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMiniaturize::) name:NSWindowDidMiniaturizeNotification object:self];
+
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidDeminiaturize:) name:NSWindowDidDeminiaturizeNotification object:self];
+
    m_controller = [[NSWindowController alloc] initWithWindow:self];
  
    [self create_view];
@@ -276,6 +279,36 @@
 
    
 }
+
+- (void)windowDidMiniaturize:(NSNotification *)notification
+{
+   
+   try
+   {
+      
+      m_pwindow->round_window_iconified();
+      
+   }
+   catch (...)
+   {
+      
+   }
+}
+- (void)windowDidDeminiaturize:(NSNotification *)notification
+{
+   
+   try
+   {
+      
+      m_pwindow->round_window_deiconified();
+      
+   }
+   catch (...)
+   {
+      
+   }
+}
+
 
 
 - (void)windowDidMove:(NSNotification *)notification

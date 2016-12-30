@@ -28,6 +28,7 @@
 
 #include "NSObject+DDExtensions.h"
 #include "DDInvocationGrabber.h"
+#include "mmos.h"
 
 
 //#include "macos_windowing.h"

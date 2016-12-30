@@ -91,6 +91,8 @@ namespace base
 
       virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       virtual ::user::interaction * ui_from_handle(void * pdata) override;
+      
+      virtual void on_setting_changed(::aura::e_setting) override;
 
    };
 

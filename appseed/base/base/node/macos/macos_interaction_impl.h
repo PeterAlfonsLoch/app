@@ -228,7 +228,13 @@ namespace macos
 
        virtual void round_window_resized(CGRect rect);
        virtual void round_window_moved(CGPoint point);
+      virtual void round_window_iconified() override;
+      virtual void round_window_deiconified() override;
       
+   
+   
+
+   
       virtual void round_window_on_show();
       virtual void round_window_on_hide();
 
@@ -681,6 +687,7 @@ namespace macos
 
       void _001UpdateWindow();
 
+      void _001WindowMinimize();
 
       void _001OnTriggerMouseInside();
 

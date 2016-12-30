@@ -127,6 +127,8 @@
 		9A19A3B919C6F5960018DF7D /* wndfrm_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A39419C6F5940018DF7D /* wndfrm_interaction.h */; };
 		9A19A3BB19C6F5960018DF7D /* wndfrm_wndfrm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A39619C6F5940018DF7D /* wndfrm_wndfrm.h */; };
 		9A5CD9101D20D0C70093150A /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5CD90F1D20D0C70093150A /* libios_axis.dylib */; };
+		9A7E85C01E169A9F00B4534B /* user_shell_macos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E85BF1E169A9F00B4534B /* user_shell_macos.cpp */; };
+		9A7E85C31E169ABB00B4534B /* user_shell_macos_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E85C21E169ABB00B4534B /* user_shell_macos_mm.mm */; };
 		9A986CF61D2266AC001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CF51D2266AC001F4C04 /* libios_aura.dylib */; };
 		9A9F05B21D7F24A300ED6D8A /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F05B11D7F24A300ED6D8A /* libace.dylib */; };
 		9A9F05B51D7F24B000ED6D8A /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F05B41D7F24B000ED6D8A /* libios_ace.dylib */; };
@@ -507,6 +509,8 @@
 		9A58847D16A20D5E0061C610 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9A5CD90C1D20D0B60093150A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
 		9A5CD90F1D20D0C70093150A /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
+		9A7E85BF1E169A9F00B4534B /* user_shell_macos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_shell_macos.cpp; sourceTree = "<group>"; };
+		9A7E85C21E169ABB00B4534B /* user_shell_macos_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = user_shell_macos_mm.mm; sourceTree = "<group>"; };
 		9A986CF51D2266AC001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
 		9A9F05B11D7F24A300ED6D8A /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/mac-core-agtgwqxmkwfnmrhgxcyggpkvtfhz/Build/Products/Debug/libace.dylib"; sourceTree = "<group>"; };
 		9A9F05B41D7F24B000ED6D8A /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../ace/build/Debug-iphoneos/libios_ace.dylib"; sourceTree = "<group>"; };
@@ -1057,6 +1061,8 @@
 				07184B531C9AA5FF009E07F2 /* user_notify_icon_mm.h */,
 				07184B541C9AA658009E07F2 /* user_notify_icon_mm_bridge.h */,
 				07184B551C9AA804009E07F2 /* user_notify_icon_mm_bridge.mm */,
+				9A7E85BF1E169A9F00B4534B /* user_shell_macos.cpp */,
+				9A7E85C21E169ABB00B4534B /* user_shell_macos_mm.mm */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -1443,7 +1449,9 @@
 				074DA88C1C8E61A500748EB7 /* _html_impl.cpp in Sources */,
 				07184B561C9AA804009E07F2 /* user_notify_icon_mm_bridge.mm in Sources */,
 				078451651B264E0F00C91416 /* _plugin.cpp in Sources */,
+				9A7E85C01E169A9F00B4534B /* user_shell_macos.cpp in Sources */,
 				074DA8351C8E61A500748EB7 /* _html_elemental.cpp in Sources */,
+				9A7E85C31E169ABB00B4534B /* user_shell_macos_mm.mm in Sources */,
 				07184B441C9AA5C7009E07F2 /* user_notify_icon.mm in Sources */,
 				07703CA81B6FE8D6009026EA /* _file.cpp in Sources */,
 				074DA78A1C8E619200748EB7 /* _userhtml.cpp in Sources */,

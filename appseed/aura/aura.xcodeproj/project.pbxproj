@@ -525,7 +525,6 @@
 		077A07B11B4D7403001C85FF /* macos_graphics_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16406A19C4A4CE00966C5E /* macos_graphics_mm.h */; };
 		077A07B21B4D7403001C85FF /* file_seekable.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B16B184A3B430092C3E1 /* file_seekable.h */; };
 		077A07B31B4D7403001C85FF /* collection.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B093DC18495C2A007A0560 /* collection.h */; };
-		077A07B41B4D7403001C85FF /* aura_core_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5019C4A4CC00966C5E /* aura_core_os.h */; };
 		077A07B51B4D7403001C85FF /* file_serializable.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B16C184A3B430092C3E1 /* file_serializable.h */; };
 		077A07B61B4D7403001C85FF /* exception_void_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163E3419C4A4CD00966C5E /* exception_void_implementation.h */; };
 		077A07B71B4D7403001C85FF /* collection_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B093F018495C2A007A0560 /* collection_decl.h */; };
@@ -862,7 +861,6 @@
 		9A16416619C4A4CE00966C5E /* aura_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4B19C4A4CC00966C5E /* aura_common.h */; };
 		9A16416819C4A4CE00966C5E /* aura_conv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4D19C4A4CC00966C5E /* aura_conv.h */; };
 		9A16416919C4A4CE00966C5E /* aura_core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D4E19C4A4CC00966C5E /* aura_core.h */; };
-		9A16416B19C4A4CE00966C5E /* aura_core_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5019C4A4CC00966C5E /* aura_core_os.h */; };
 		9A16416D19C4A4CE00966C5E /* aura_cpu_architecture.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5219C4A4CC00966C5E /* aura_cpu_architecture.h */; };
 		9A16416F19C4A4CE00966C5E /* aura_cregexp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5419C4A4CC00966C5E /* aura_cregexp.h */; };
 		9A16417119C4A4CE00966C5E /* aura_cregexp_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5619C4A4CC00966C5E /* aura_cregexp_util.h */; };
@@ -1130,6 +1128,8 @@
 		9A26A6DD1D7F0019001F47A8 /* pcre_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A26A6A41D7F0019001F47A8 /* pcre_util.h */; };
 		9A26A6FC1D7F01A5001F47A8 /* libaurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A26A6F91D7F0166001F47A8 /* libaurapcre.dylib */; };
 		9A33276B1D4C50EB00255105 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A33276A1D4C50EB00255105 /* file_path.h */; };
+		9A34F5D21E15763000AE2607 /* mmos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A34F5D01E15763000AE2607 /* mmos.h */; };
+		9A34F5D31E15763000AE2607 /* mmos.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A34F5D11E15763000AE2607 /* mmos.mm */; };
 		9A44E3FF19C5C10200143B94 /* math_departament.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A44E3FD19C5C10200143B94 /* math_departament.h */; };
 		9A4B9C2F1E148E1A000D0E92 /* macos_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C2E1E148E1A000D0E92 /* macos_mm.mm */; };
 		9A4B9C311E149015000D0E92 /* os_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C301E149015000D0E92 /* os_debug.cpp */; };
@@ -1658,7 +1658,6 @@
 		9A163D4B19C4A4CC00966C5E /* aura_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_common.h; sourceTree = "<group>"; };
 		9A163D4D19C4A4CC00966C5E /* aura_conv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_conv.h; sourceTree = "<group>"; };
 		9A163D4E19C4A4CC00966C5E /* aura_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_core.h; sourceTree = "<group>"; };
-		9A163D5019C4A4CC00966C5E /* aura_core_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_core_os.h; sourceTree = "<group>"; };
 		9A163D5219C4A4CC00966C5E /* aura_cpu_architecture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_cpu_architecture.h; sourceTree = "<group>"; };
 		9A163D5419C4A4CC00966C5E /* aura_cregexp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_cregexp.h; sourceTree = "<group>"; };
 		9A163D5619C4A4CC00966C5E /* aura_cregexp_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_cregexp_util.h; sourceTree = "<group>"; };
@@ -1955,6 +1954,8 @@
 		9A26A6EA1D7F0155001F47A8 /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../../../third/appseed/iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
 		9A26A6F31D7F0166001F47A8 /* aurapcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurapcre.xcodeproj; path = ../../../third/appseed/pcre/aurapcre.xcodeproj; sourceTree = "<group>"; };
 		9A33276A1D4C50EB00255105 /* file_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_path.h; sourceTree = "<group>"; };
+		9A34F5D01E15763000AE2607 /* mmos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mmos.h; sourceTree = "<group>"; };
+		9A34F5D11E15763000AE2607 /* mmos.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mmos.mm; sourceTree = "<group>"; };
 		9A4421861D5B231E00199308 /* aura_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_application.cpp; sourceTree = "<group>"; };
 		9A44E3FD19C5C10200143B94 /* math_departament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_departament.h; sourceTree = "<group>"; };
 		9A4B9C2E1E148E1A000D0E92 /* macos_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_mm.mm; sourceTree = "<group>"; };
@@ -2563,7 +2564,6 @@
 				9A163D4B19C4A4CC00966C5E /* aura_common.h */,
 				9A163D4D19C4A4CC00966C5E /* aura_conv.h */,
 				9A163D4E19C4A4CC00966C5E /* aura_core.h */,
-				9A163D5019C4A4CC00966C5E /* aura_core_os.h */,
 				9A163D5219C4A4CC00966C5E /* aura_cpu_architecture.h */,
 				9A163D5419C4A4CC00966C5E /* aura_cregexp.h */,
 				9A163D5619C4A4CC00966C5E /* aura_cregexp_util.h */,
@@ -2854,6 +2854,8 @@
 		9A16405619C4A4CD00966C5E /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9A34F5D01E15763000AE2607 /* mmos.h */,
+				9A34F5D11E15763000AE2607 /* mmos.mm */,
 				9A4B9C2E1E148E1A000D0E92 /* macos_mm.mm */,
 				9A16405719C4A4CD00966C5E /* DDInvocationGrabber.h */,
 				9A16405819C4A4CD00966C5E /* DDInvocationGrabber.mm */,
@@ -3746,7 +3748,6 @@
 				077A07B11B4D7403001C85FF /* macos_graphics_mm.h in Headers */,
 				077A07B21B4D7403001C85FF /* file_seekable.h in Headers */,
 				077A07B31B4D7403001C85FF /* collection.h in Headers */,
-				077A07B41B4D7403001C85FF /* aura_core_os.h in Headers */,
 				077A07B51B4D7403001C85FF /* file_serializable.h in Headers */,
 				077A07B61B4D7403001C85FF /* exception_void_implementation.h in Headers */,
 				077A07B71B4D7403001C85FF /* collection_decl.h in Headers */,
@@ -4243,6 +4244,7 @@
 				07B0954F18495C2B007A0560 /* str_str.h in Headers */,
 				07F5B258184A3B6A0092C3E1 /* draw2d_igui.h in Headers */,
 				9A1641CC19C4A4CE00966C5E /* aura_simple_app.h in Headers */,
+				9A34F5D21E15763000AE2607 /* mmos.h in Headers */,
 				07EC4CDD1B4C34CD00EB5965 /* aura_timer_item.h in Headers */,
 				9A1641F119C4A4CE00966C5E /* exception_base.h in Headers */,
 				07B094C518495C2A007A0560 /* collection_key_sort_array.h in Headers */,
@@ -4354,7 +4356,6 @@
 				07F5B1DB184A3B430092C3E1 /* file_seekable.h in Headers */,
 				079E279C1B6EB7A60065FDE7 /* math_int_biunique.h in Headers */,
 				07B094AA18495C2A007A0560 /* collection.h in Headers */,
-				9A16416B19C4A4CE00966C5E /* aura_core_os.h in Headers */,
 				07F5B1DC184A3B430092C3E1 /* file_serializable.h in Headers */,
 				9A16424319C4A4CE00966C5E /* exception_void_implementation.h in Headers */,
 				07B094BC18495C2A007A0560 /* collection_decl.h in Headers */,
@@ -4677,6 +4678,7 @@
 				9A26A6AB1D7F0019001F47A8 /* charDistribution.cpp in Sources */,
 				9A16447719C4A4CF00966C5E /* NSObject+DDExtensions.mm in Sources */,
 				07B0953418495C2B007A0560 /* str_ch.cpp in Sources */,
+				9A34F5D31E15763000AE2607 /* mmos.mm in Sources */,
 				9A26A6DB1D7F0019001F47A8 /* pcre.cpp in Sources */,
 				9A16421B19C4A4CE00966C5E /* exception_mm.mm in Sources */,
 				07C530BD1B6FBA1300379625 /* ns_exe_path.cpp in Sources */,

@@ -126,7 +126,7 @@ namespace macos
         else
         {
             
-            if(::file::dir::system::ls(papp,listing))
+            if(::file::dir::system::ls(papp,listing).succeeded())
             {
                 
                 return listing;

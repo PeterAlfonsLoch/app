@@ -6313,6 +6313,31 @@ namespace macos
    }
    
    
+   void interaction_impl::round_window_iconified()
+   {
+      
+      m_pui->m_eappearanceBefore = m_pui->m_eappearance;
+      
+      m_pui->m_eappearance = ::user::AppearanceIconic;
+      
+   }
+   
+
+   void interaction_impl::round_window_deiconified()
+   {
+      
+      if(m_pui->m_eappearanceBefore == ::user::AppearanceIconic)
+      {
+         
+         m_pui->m_eappearanceBefore = ::user::AppearanceNormal;
+         
+      }
+   
+      m_pui->_001OnDeiconify(m_pui->m_eappearanceBefore);
+      
+   }
+   
+   
    void interaction_impl::round_window_on_show()
    {
       
@@ -6561,6 +6586,21 @@ namespace macos
    }
 
 
+   void interaction_impl::_001WindowMinimize()
+   {
+      
+      if(get_handle() == NULL)
+      {
+         
+         return;
+         
+      }
+      
+      round_window_iconified();
+      
+      get_handle()->iconify();
+      
+   }
 
 
 } // namespace macos

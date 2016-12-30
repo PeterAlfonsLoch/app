@@ -825,6 +825,9 @@ namespace user
 
 
       virtual void _001OnDeiconify(::user::EAppearance eappearance);
+      
+      virtual void on_setting_changed(::aura::e_setting esetting);
+      
 
    };
 

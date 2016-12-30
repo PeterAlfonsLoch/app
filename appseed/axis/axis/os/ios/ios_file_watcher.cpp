@@ -327,7 +327,7 @@ namespace file_watcher
    ::object(papp)
 	{
 		mDescriptor = kqueue();
-		mTimeOut.tv_sec = 0;
+		mTimeOut.tv_sec = 1;
 		mTimeOut.tv_nsec = 0;
 	}
 
