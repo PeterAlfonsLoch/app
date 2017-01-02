@@ -88,7 +88,7 @@ namespace user
    }
 
 
-   CLASS_DECL_CORE string get_wallpaper()
+   CLASS_DECL_CORE stringa get_wallpaper()
    {
 
       wchar_t sz[MAX_PATH * 8];
@@ -100,7 +100,7 @@ namespace user
 
       }
 
-      return sz;
+      return stringa(sz);
 
    }
 
