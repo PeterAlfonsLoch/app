@@ -57,6 +57,14 @@ namespace windows
 }
 
 
+::file::path dir::local()
+{
+
+   return root() / "local";
+
+}
+
+
 ::file::path dir::root()
 {
 

@@ -490,6 +490,14 @@ namespace str
 
    }
 
+
+   CLASS_DECL_AURA string signed_double(double d);
+
+   CLASS_DECL_AURA string signed_int(int i);
+
+
+
+
 } // namespace str
 
 

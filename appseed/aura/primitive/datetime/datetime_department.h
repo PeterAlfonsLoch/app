@@ -108,8 +108,18 @@ namespace datetime
 
       string friend_time(aura::str_context * pcontext,::datetime::time timeNow,::datetime::time time);
 
+      virtual string  initial_locality_time_zone(string strCountry, string strLocality, double & dZone);
+      virtual string  initial_country_time_zone(string strCountry);
+      virtual string utc_offset_string(double dUTCOffset);
+      virtual double time_zone(string str, string strCountryCode);
+
+
 
    };
+
+
+   CLASS_DECL_AURA bool utc_offset_invalid(double dUTCOffset);
+
 
 
 } // namespace aura

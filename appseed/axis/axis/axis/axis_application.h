@@ -263,6 +263,8 @@ namespace axis
 
       virtual ::html::html * create_html();
 
+      virtual string http_get(const string & strUrl, ::property_set & set) override;
+
    };
 
 

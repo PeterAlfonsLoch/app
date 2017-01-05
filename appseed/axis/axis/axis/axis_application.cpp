@@ -4479,6 +4479,14 @@ finalize:
    }
 
 
+   string application::http_get(const string & strUrl, ::property_set & set)
+   {
+
+      return http().get(strUrl, set);
+
+   }
+
+
 } // namespace axis
 
 

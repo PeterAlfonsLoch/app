@@ -2524,10 +2524,10 @@ namespace aura
 
       auto & city_auto_pointer = m_mapCity[strQuery];
 
-      if (city_auto_pointer.m_p == NULL)
+      if (city_auto_pointer == NULL)
       {
 
-         city_auto_pointer.m_p = new city;
+         city_auto_pointer = new city;
 
          city_auto_pointer->m_iIndex = find_city2(
             strQuery,

@@ -93,7 +93,7 @@ namespace user
 
       wchar_t sz[MAX_PATH * 8];
 
-      if(!SystemParametersInfoW(SPI_GETDESKWALLPAPER, MAX_PATH * 8, sz, false));
+      if(!SystemParametersInfoW(SPI_GETDESKWALLPAPER, MAX_PATH * 8, sz, 0))
       {
 
          return "";

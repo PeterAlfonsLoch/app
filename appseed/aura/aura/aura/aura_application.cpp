@@ -5211,6 +5211,17 @@ namespace aura
       
    }
 
+   
+   string application::http_get(const string & strUrl, ::property_set & set)
+   {
+
+      UNREFERENCED_PARAMETER(strUrl);
+      UNREFERENCED_PARAMETER(set);
+
+      return "";
+
+   }
+
 
 } // namespace aura
 

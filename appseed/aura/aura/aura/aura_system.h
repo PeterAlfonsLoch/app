@@ -32,6 +32,7 @@ namespace aura
       public:
 
          index    m_iIndex;
+         string   m_strCnt;
          string   m_strCit;
          int64_t  m_iId;
          double   m_dLat;
@@ -138,7 +139,7 @@ namespace aura
 
       string_map < sp(::aura::library) >           m_mapLibrary;
 
-      string_map < pointer < city > >              m_mapCity;
+      string_map < city * >              m_mapCity;
       
       string                                       m_strIosHome;
       string                                       m_strIosTemp;

@@ -3824,6 +3824,55 @@ end:
    }
 
 
+   string signed_double(double d)
+   {
+
+      if (d > 0.0)
+      {
+
+         return "+" + ::str::from(d);
+
+      }
+      else if (d < 0.0)
+      {
+
+         return ::str::from(d);
+
+      }
+      else
+      {
+
+         return "0.0";
+
+      }
+
+   }
+
+   string signed_int(int i)
+   {
+
+      if (i > 0)
+      {
+
+         return "+" + ::str::from(i);
+
+      }
+      else if (i < 0)
+      {
+
+         return ::str::from(i);
+
+      }
+      else
+      {
+
+         return "0";
+
+      }
+
+   }
+
+
 } // namespace str
 
 

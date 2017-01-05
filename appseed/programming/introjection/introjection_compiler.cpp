@@ -46,21 +46,38 @@ namespace introjection
 
    {
 
-
-      m_strVs = Application.file().as_string(::dir::system() / "vs.txt");
-
-      m_strVs.trim();
-
-      if (m_strVs == "2015")
       {
 
-         m_strVsTools = "140";
+         ::file::path path;
 
-      }
-      else if (m_strVs == "2017")
-      {
+         path = ::dir::system() / "config/programming/vs.txt";
 
-         m_strVsTools = "141";
+         m_strVs = Application.file().as_string(path);
+
+         m_strVs.trim();
+
+         if (m_strVs == "2015")
+         {
+
+            m_strVsTools = "140";
+
+         }
+         else if (m_strVs == "2017")
+         {
+
+            m_strVsTools = "141";
+
+         }
+         else
+         {
+
+            string strMessage;
+
+            strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
+
+            ::MessageBox(NULL, strMessage, strMessage, MB_OK);
+
+         }
 
       }
 
