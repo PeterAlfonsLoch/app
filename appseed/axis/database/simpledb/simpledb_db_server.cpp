@@ -94,7 +94,28 @@ bool db_server::initialize()
 
    m_pdb          = canew(::sqlite::base(get_app()));
 
-   ::file::path str = Application.dir().userappdata() / "database.sqlite";
+   string strAppName = System.directrix()->m_spcommandline->m_strApp;
+
+   ::file::path str;
+
+   if (Application.is_system())
+   {
+
+      str = Application.dir().userappdata() / strAppName / "system.sqlite";
+
+   }
+   else if (Application.is_session())
+   {
+
+      str = Application.dir().userappdata() / strAppName / "session.sqlite";
+
+   }
+   else
+   {
+
+      str = Application.dir().userappdata() / strAppName / "app.sqlite";
+
+   }
 
    Application.dir().mk(str.folder());
 

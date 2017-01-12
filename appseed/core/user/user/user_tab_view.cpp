@@ -310,7 +310,9 @@ namespace user
 
       class id idSplit;
 
-      ::user::view_creator_data * pcreatordata = get_impact(id,get_data()->m_rectTabClient);
+      rect rectTabClient = get_data()->m_rectTabClient;
+
+      ::user::view_creator_data * pcreatordata = get_impact(id, rectTabClient);
 
       if (pcreatordata == NULL)
       {

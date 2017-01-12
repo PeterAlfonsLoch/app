@@ -38,23 +38,26 @@ namespace user
 
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
 
-      //if (m_uiptraChild.get_size() > 0 && m_uiptraChild[0] != NULL)
-      //{
+      ::user::interaction * phold = NULL;
 
-      //   if (pshowwindow->m_bShow)
-      //   {
+      if (m_uiptraChild.get_size() > 0)
+      {
 
-      //      m_uiptraChild[0]->ShowWindow(SW_SHOW);
+         phold = m_uiptraChild[0];
 
-      //   }
-      //   else
-      //   {
+      }
 
-      //      m_uiptraChild[0]->ShowWindow(SW_HIDE);
+      if(phold != NULL)
+      {
 
-      //   }
+         if (pshowwindow->m_bShow && !phold->is_this_visible())
+         {
 
-      //}
+            phold->ShowWindow(SW_SHOW);
+
+         }
+
+      }
 
    }
 
