@@ -4,7 +4,7 @@ stage\basis\audio_mmsystem.dll
 stage\basis\multimedia_mmsystem.dll
 stage\basis\music_midi_mmsystem.dll
 stage\basis\baseid3lib.dll
-stage\basis\basempg123.dll
+stage\basis\mpg123.dll
 stage\basis\libmp3lame.dll
 stage\basis\gcom.dll
 stage\basis\multimedia.dll

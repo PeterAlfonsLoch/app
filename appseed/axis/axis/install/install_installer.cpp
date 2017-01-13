@@ -2125,6 +2125,19 @@ install_begin:;
             strPathParam = ::str::replace_ci("vcruntime140d.dll","vcruntime140.dll",strPathParam);
             strPathParam = ::str::replace_ci("vcomp140d.dll","vcomp140.dll",strPathParam);
          }
+         
+         if (::str::begins_eat(strPathParam, "[32]") && strBinaryPlatform != "Win32")
+         {
+
+            continue;
+
+         }
+         else if (::str::begins_eat(strPathParam, "[64]") && strBinaryPlatform != "x64")
+         {
+
+            continue;
+
+         }
 
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
