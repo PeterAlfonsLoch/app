@@ -1111,7 +1111,7 @@ namespace install
 
          ::file::patha straFile;
 
-         ::lemon::array::copy(straFile, ::install_get_plugin_base_library_list(pszVersion));
+         ::lemon::array::copy(straFile, ::install_get_plugin_base_library_list(m_strPlatform, pszVersion));
 
          if (!::dir::is(strPath.folder()))
          {

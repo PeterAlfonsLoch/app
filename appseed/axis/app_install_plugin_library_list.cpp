@@ -4,7 +4,7 @@
 
 
 
-stringa install_get_plugin_base_library_list(const string & strVersion)
+stringa install_get_plugin_base_library_list(const string & strPlatform, const string & strVersion)
 {
 
    stringa straFile;
@@ -16,11 +16,25 @@ stringa install_get_plugin_base_library_list(const string & strVersion)
    straFile.add("sqlite.dll");
    straFile.add("axis.dll");
    straFile.add("bzip2.dll");
-   straFile.add("libcrypto-1_1.dll");
+
+   if(strPlatform == "x64")
+   { 
+   
+      straFile.add("libcrypto-1_1-x64.dll");
+      straFile.add("libssl-1_1-x64.dll");
+
+   }
+   else
+   {
+
+      straFile.add("libcrypto-1_1.dll");
+      straFile.add("libssl-1_1.dll");
+
+   }
+
    straFile.add("axisfreeimage.dll");
    //straFile.add("axisfreetype.dll");
    //straFile.add("idn.dll");
-   straFile.add("libssl-1_1.dll");
    straFile.add("pcre.dll");
    straFile.add("zlib.dll");
    //straFile.add("axis.dll");
