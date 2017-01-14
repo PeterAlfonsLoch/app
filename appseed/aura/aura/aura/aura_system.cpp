@@ -2756,6 +2756,22 @@ namespace aura
 
       strTry.replace("st.", "saint");
       strTry.replace("são", "sao");
+      strTry.replace("ž", "z");
+      strTry.replace("á", "a");
+      strTry.replace("à", "a");
+      strTry.replace("ä", "a");
+      strTry.replace("é", "e");
+      strTry.replace("è", "e");
+      strTry.replace("ë", "e");
+      strTry.replace("í", "i");
+      strTry.replace("ì", "i");
+      strTry.replace("ï", "i");
+      strTry.replace("ó", "o");
+      strTry.replace("ò", "o");
+      strTry.replace("ö", "o");
+      strTry.replace("ú", "u");
+      strTry.replace("ù", "u");
+      strTry.replace("ü", "u");
 
       iFind = m_straCityLo.find_first_begins(strTry);
 
@@ -2770,6 +2786,22 @@ namespace aura
 
       strTry.replace("st.", "saint");
       strTry.replace("são", "sao");
+      strTry.replace("ž", "z");
+      strTry.replace("á", "a");
+      strTry.replace("à", "a");
+      strTry.replace("ä", "a");
+      strTry.replace("é", "e");
+      strTry.replace("è", "e");
+      strTry.replace("ë", "e");
+      strTry.replace("í", "i");
+      strTry.replace("ì", "i");
+      strTry.replace("ï", "i");
+      strTry.replace("ó", "o");
+      strTry.replace("ò", "o");
+      strTry.replace("ö", "o");
+      strTry.replace("ú", "u");
+      strTry.replace("ù", "u");
+      strTry.replace("ü", "u");
 
       stra.explode(",", strTry);
 
