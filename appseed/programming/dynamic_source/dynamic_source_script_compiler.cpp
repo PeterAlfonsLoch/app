@@ -33,6 +33,47 @@ script_compiler::script_compiler(::aura::application * papp):
 
 {
 
+   {
+
+      ::file::path path;
+
+      path = ::dir::system() / "config/programming/vs.txt";
+
+      m_strVs = Application.file().as_string(path);
+
+      m_strVs.trim();
+
+      if (m_strVs == "2015")
+      {
+
+         m_strVsTools = "140";
+
+      }
+      else if (m_strVs == "2017")
+      {
+
+         m_strVsTools = "141";
+
+      }
+      else
+      {
+
+         string strMessage;
+
+         strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
+
+         ::MessageBox(NULL, strMessage, strMessage, MB_OK);
+
+      }
+
+   }
+
+   ::file::path path;
+
+   path = THIS_FILE;
+
+   m_pathProjectDir = path.folder();
+
 
 #if MEMDLEAK
 
@@ -73,27 +114,56 @@ void script_compiler::prepare_compile_and_link_environment()
 {
 
    Application.dir().mk(::dir::system() / "netnodelite\\symbols");
-   //string strVars = getenv("VS100COMNTOOLS");
+   
+   
    ::file::path strVars;
 
 #ifndef METROWIN
 
-   //strVars = getenv("VS141COMNTOOLS");
+   if (m_strVs == "2015")
+   {
+
+      strVars = getenv("VS140COMNTOOLS");
+
+   }
 
 #endif
 
-   //m_strEnv = strVars.up(2);
-   //m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
-   m_strVCVersion = "10.0.14393.0";
-   m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
-   //m_strEnv = ".\\vc_vars.bat";
+   if (m_strVs == "2017")
+   {
+
+      m_strVCVersion = "10.0.14393.0";
+      m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+
+   }
+   else if (m_strVs == "2015")
+   {
+
+      m_strEnv = strVars.up(2);
+      m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
+      //m_strEnv = ".\\vc_vars.bat";
+
+   }
 
    m_strTime = System.dir().element() / "time";
 
    //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
    //m_strSdk1 = "windows7.1sdk";
-   m_strSdk1 = "vc141";
+   if (m_strVs == "2015")
+   {
+
+      m_strSdk1 = "vc140";
+
+   }
+   else if (m_strVs == "2017")
+   {
+
+      m_strSdk1 = "vc141";
+
+   }
+
+
 #ifdef OS64BIT
 #ifdef LINUX
    m_strPlat1     = "64";

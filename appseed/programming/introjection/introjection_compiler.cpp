@@ -155,8 +155,7 @@ namespace introjection
          m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
 
       }
-
-      if (m_strVs == "2015")
+      else if (m_strVs == "2015")
       {
 
          m_strEnv = strVars.up(2);
@@ -182,6 +181,7 @@ namespace introjection
          m_strSdk1 = "vc141";
 
       }
+
 #ifdef OS64BIT
 #ifdef LINUX
       m_strPlat1     = "64";
