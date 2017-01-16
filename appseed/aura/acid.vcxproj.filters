@@ -144,6 +144,9 @@
     <Filter Include="Source Files\ace">
       <UniqueIdentifier>{89869236-176b-4a14-898f-a4010cebf230}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\datetime">
+      <UniqueIdentifier>{1b79cb30-9bcd-4135-8215-fb34390b14b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -1776,6 +1779,9 @@
     </ClCompile>
     <ClCompile Include="aura\os\os_debug.cpp">
       <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_zonetime.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

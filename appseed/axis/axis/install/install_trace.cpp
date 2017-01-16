@@ -44,7 +44,7 @@ namespace install
          }
       }
 
-      m_hfile = ::create_file(path::install_log(),GENERIC_WRITE,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
+      m_hfile = ::create_file(path::install_log(process_platform_dir_name2()),GENERIC_WRITE,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 
       ::SetFilePointer(m_hfile, 0, NULL, FILE_END);
 

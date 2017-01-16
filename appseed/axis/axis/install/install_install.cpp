@@ -455,8 +455,8 @@ namespace install
       string strDir;
       string strFile;
 
-      strDir = ::dir::stage();
-      strFile = ::path::app();
+      strDir = ::dir::stage(process_platform_dir_name2());
+      strFile = ::path::app(process_platform_dir_name2());
 
       string strParam;
 
@@ -489,7 +489,7 @@ namespace install
 
 #if 1
 
-      sp(mutex) spmutex = ::mutex::open_mutex(get_app(), "Global\\::ca::fontopus::ca2_spaboot_install_" + process_platform_dir_name() + "::7807e510-5579-11dd-ae16-0800200c7784");
+      sp(mutex) spmutex = ::mutex::open_mutex(get_app(), "Global\\::ca::fontopus::ca2_spaboot_install_" + process_platform_dir_name2() + "::7807e510-5579-11dd-ae16-0800200c7784");
 
       return spmutex.is_set();
 
@@ -578,7 +578,7 @@ namespace install
       }
 
 
-      string strStage(dir::stage());
+      string strStage(dir::stage(process_platform_dir_name2()));
 
 #ifdef WINDOWSEX
       ::SetDllDirectoryA(strStage);
@@ -599,7 +599,7 @@ namespace install
          //if (m_bCa2Installed)
          //{
          ::aura::library libraryCa2(get_app());
-         m_bCa2Installed = libraryCa2.open(dir::stage() / "core");
+         m_bCa2Installed = libraryCa2.open(dir::stage(process_platform_dir_name2()) / "core");
          if (m_bCa2Installed)
          {
 
@@ -1405,7 +1405,7 @@ namespace install
 
       xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-      strPath = ::dir::stage() / "app.install.exe";
+      strPath = ::dir::stage(process_platform_dir_name2()) / "app.install.exe";
 
 #else
 

@@ -6,10 +6,12 @@ namespace hotplugin
 {
 
 
-   container_launcher::container_launcher(const char * pszChannel)
+   container_launcher::container_launcher(string strPlatform, const char * pszChannel)
    {
       
-      m_strChannel = pszChannel;
+      m_strChannel   = pszChannel;
+
+      m_strPlatform  = strPlatform;
 
    }
 
@@ -17,7 +19,7 @@ namespace hotplugin
    string container_launcher::get_executable_path()
    {
 
-      return ::path::app_plugin_container();
+      return ::path::app_plugin_container(m_strPlatform);
 
    }
 

@@ -10,9 +10,11 @@ namespace hotplugin
    {
    public:
 
-      string m_strChannel;
+      
+      string      m_strChannel;
+      string      m_strPlatform;
 
-      container_launcher(const char * pszChannel);
+      container_launcher(string strPlatform, const char * pszChannel);
          
       virtual bool ensure_executable() { return true; }
 

@@ -303,7 +303,7 @@ namespace install
 
                   m_phost->m_strBitmapChannel = str;
 
-                  ::hotplugin::container_launcher launcher(str);
+                  ::hotplugin::container_launcher launcher(process_platform_dir_name2(), str);
 
                   launcher.m_iStart = 1; // only one attempt to start, as we repeatealy and accordingly make this process of
                   // reopening channel as needed. Repetdely trying to open channel using default m_iStart = 11, make
@@ -412,7 +412,7 @@ namespace install
 
       set.parse_url_query(m_straLinesNativeLaunch[1]);
 
-      string strPath = ::path::app();
+      string strPath = ::path::app(process_platform_dir_name2());
 
       string strCommandLine;
 
@@ -773,7 +773,7 @@ namespace install
 
          // remove install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.load(file_as_string_dup(dir::appdata() / "install.xml")))
+         if(!node.load(file_as_string_dup(dir::appdata(process_platform_dir_name2()) / "install.xml")))
             goto run_install;
 
 
@@ -809,7 +809,7 @@ namespace install
 
          lpnodeType->remove_child(pnode);
 
-         file_put_contents_dup(dir::appdata() / "install.xml", node.get_xml(NULL));
+         file_put_contents_dup(dir::appdata(process_platform_dir_name2()) / "install.xml", node.get_xml(NULL));
 
       }
 
@@ -1174,7 +1174,7 @@ namespace install
 
       DWORD dwRead;
 
-      HANDLE hfile = ::create_file(::path::install_log(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      HANDLE hfile = ::create_file(::path::install_log(process_platform_dir_name2()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       double dRate = 0.0;
 

@@ -173,7 +173,7 @@ namespace install
 
       //keep_true keeptrueInstalling(m_bInstalling);
 
-      mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install_" + process_platform_dir_name() + "::7807e510-5579-11dd-ae16-0800200c7784");
+      mutex mutexInstallingCa2(get_app(), false, "Global\\::ca::fontopus::ca2_spaboot_install_" + process_platform_dir_name2() + "::7807e510-5579-11dd-ae16-0800200c7784");
 
       System.install().trace().rich_trace("#----------");
       System.install().trace().rich_trace(":::::Thank you");
@@ -412,7 +412,7 @@ install_begin:;
 
          ::xml::document nodeInstall(get_app());
 
-         nodeInstall.load(file_as_string_dup(dir::appdata() / "install.xml"));
+         nodeInstall.load(file_as_string_dup(dir::appdata(process_platform_dir_name2()) / "install.xml"));
 
          ::xml::node * lpnodeVersion = nodeInstall.get_child(m_strVersion);
 
@@ -602,9 +602,9 @@ install_begin:;
 
          uint_array dwa;
 #ifndef METROWIN
-         dll_processes(dwa, m_straTerminateProcesses, dir::stage() / "axis.dll");
-         dll_processes(dwa,m_straTerminateProcesses,dir::stage() / "core.dll");
-         dll_processes(dwa,m_straTerminateProcesses,dir::stage() / "os.dll");
+         dll_processes(dwa, m_straTerminateProcesses, dir::stage(process_platform_dir_name2()) / "axis.dll");
+         dll_processes(dwa,m_straTerminateProcesses,dir::stage(process_platform_dir_name2()) / "core.dll");
+         dll_processes(dwa,m_straTerminateProcesses,dir::stage(process_platform_dir_name2()) / "os.dll");
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\npca2.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\iexca2.dll"));
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
@@ -3891,7 +3891,7 @@ RetryBuildNumber:
 
    void installer::add_spa_start(const char * pszId)
    {
-      string strPath = dir::appdata()/"spa_start.xml";
+      string strPath = dir::appdata(process_platform_dir_name2())/"spa_start.xml";
       string strContents = file_as_string_dup(strPath);
       ::xml::document node(get_app());
       node.load(strContents);
@@ -3907,7 +3907,7 @@ RetryBuildNumber:
 
    void installer::remove_spa_start(const char * pszId)
    {
-      string strPath = dir::appdata()/ "spa_start.xml";
+      string strPath = dir::appdata(process_platform_dir_name2())/ "spa_start.xml";
       string strContents = file_as_string_dup(strPath);
       ::xml::document node(get_app());
       node.load(strContents);
@@ -4133,7 +4133,7 @@ RetryBuildNumber:
 
       //::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
 
-      ::SetDllDirectory(dir::stage());
+      ::SetDllDirectory(dir::stage(process_platform_dir_name2()));
 
 #endif
 
@@ -4142,7 +4142,7 @@ RetryBuildNumber:
       string strCore = "core";
 
       // load core library so that a core system is alloced
-      libraryCore.open(dir::stage() / strCore);
+      libraryCore.open(dir::stage(process_platform_dir_name2()) / strCore);
 
       fn_defer_core_init * pfn_core_init = libraryCore.get< fn_defer_core_init *>("defer_" + strCore + "_init");
 
@@ -4150,13 +4150,13 @@ RetryBuildNumber:
 
       ::aura::library libraryOs(get_app());
 
-      libraryOs.open(dir::stage() / "app_core");
+      libraryOs.open(dir::stage(process_platform_dir_name2()) / "app_core");
 
       PFN_APP_CORE_MAIN pfn_app_core_main = (PFN_APP_CORE_MAIN)libraryOs.raw_get("app_core_main");
 
       string strFullCommandLine;
 
-      strFullCommandLine = ::path::app();
+      strFullCommandLine = ::path::app(process_platform_dir_name2());
 
       strFullCommandLine = "\"" + strFullCommandLine + "\" ";
 

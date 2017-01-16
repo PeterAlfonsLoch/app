@@ -4346,7 +4346,7 @@ finalize:
 
       {
 
-         spa_mutex mutex;
+         spa_mutex mutex(process_platform_dir_name2());
 
          if (mutex.already_exists())
          {
@@ -4370,7 +4370,7 @@ finalize:
 
 #else
 
-         return ::call_sync(::path::a_spa(),pszCommandLine,::dir::a_spa(),SW_SHOWNORMAL,840,84,NULL,0);
+         return ::call_sync(::path::a_spa(process_platform_dir_name2()),pszCommandLine,::dir::a_spa(process_platform_dir_name2()),SW_SHOWNORMAL,840,84,NULL,0);
 
 #endif
 
