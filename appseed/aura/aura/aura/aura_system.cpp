@@ -934,27 +934,27 @@ namespace aura
       return true;
    }
 
-   mutex * system::get_city_mutex()
+   mutex * system::get_openweather_city_mutex()
    {
       
       synch_lock sl(m_pmutex);
 
-      if (m_spmutexCit.is_null())
+      if (m_spmutexOpenweatherCity.is_null())
       {
          
 #ifdef METROWIN
 
-         m_spmutexCit = canew(mutex(this));
+         m_spmutexOpenweatherCity = canew(mutex(this));
 
 #else
 
-         m_spmutexCit = canew(mutex(this, false, "Global\\ca2_weather_city"));
+         m_spmutexOpenweatherCity = canew(mutex(this, false, "Global\\ca2_weather_city"));
 
 #endif
             
       }
 
-      return m_spmutexCit;
+      return m_spmutexOpenweatherCity;
 
    }
 
@@ -2385,11 +2385,11 @@ namespace aura
    }
 
 
-   void system::defer_check_city_list()
+   void system::defer_check_openweather_city_list()
    {
 
       
-      synch_lock sl(get_city_mutex());
+      synch_lock sl(get_openweather_city_mutex());
 
       if (m_straCityLo.get_size() == m_straCity.get_size()
          && m_straCity.get_size() == m_iaIds.get_size()
@@ -2519,7 +2519,7 @@ namespace aura
    }
 
 
-   ::aura::system::city * system::find_city(string strQuery)
+   openweather_city * system::openweather_find_city(string strQuery)
    {
 
       auto & city_auto_pointer = m_mapCity[strQuery];
@@ -2527,9 +2527,9 @@ namespace aura
       if (city_auto_pointer == NULL)
       {
 
-         city_auto_pointer = new city;
+         city_auto_pointer = new openweather_city;
 
-         city_auto_pointer->m_iIndex = find_city2(
+         city_auto_pointer->m_iIndex = openweather_find_city2(
             strQuery,
             city_auto_pointer->m_strCit,
             city_auto_pointer->m_iId,
@@ -2543,7 +2543,7 @@ namespace aura
    }
 
    
-   index system::find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon)
+   index system::openweather_find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon)
    {
 
       string strQueryLo;
@@ -2558,7 +2558,7 @@ namespace aura
 
       stringa stra;
 
-      defer_check_city_list();
+      defer_check_openweather_city_list();
 
       if (strQuery.CompareNoCase("Cologne, DE") == 0)
       {

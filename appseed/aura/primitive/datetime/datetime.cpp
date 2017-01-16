@@ -630,3 +630,27 @@ CLASS_DECL_AURA uint64_t get_first_nano()
 
 
 
+
+
+
+
+// http://stackoverflow.com/questions/32424125/c-code-to-get-local-time-offset-in-minutes-relative-to-utc
+// http://stackoverflow.com/questions/32424125/c-code-to-get-local-time-offset-in-minutes-relative-to-utc/32433950#32433950
+// http://stackoverflow.com/users/619295/trenki
+extern "C"
+CLASS_DECL_AURA int c_localtime_offset()
+{
+
+   time_t rawtime = time(NULL);
+
+   struct tm *ptm = gmtime(&rawtime);
+
+   // Request that mktime() looksup dst in timezone database
+
+   ptm->tm_isdst = -1;
+
+   time_t gmt = mktime(ptm);
+
+   return difftime(rawtime, gmt);
+
+}

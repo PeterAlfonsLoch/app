@@ -1037,6 +1037,13 @@ namespace aura
    }
 
 
+   string session::fontopus_get_user_sessid(const string & str)
+   {
+
+      return "";
+
+   }
+
 } // namespace aura
 
 

@@ -208,6 +208,8 @@ namespace axis // only usable from axis.dll and dependants
 } // namespace axis // only usable from axis.dll and dependants
 
 
+
+
 class dump_context;
 //class string_interface;
 class id_space;
@@ -751,6 +753,7 @@ namespace file
 #include "aura/primitive/datetime/datetime_date_span.h"
 #include "aura/primitive/datetime/datetime_time_span.h"
 #include "aura/primitive/datetime/datetime_time.h"
+#include "aura/primitive/datetime/datetime_zonetime.h"
 #include "aura/primitive/datetime/datetime_file_time_span.h"
 #include "aura/primitive/datetime/datetime_file_time.h"
 
@@ -943,6 +946,20 @@ CLASS_DECL_AURA mutex & draw2d_direct2_mutex();
 
 
 
+
+
+class CLASS_DECL_AURA openweather_city
+{
+public:
+
+   index    m_iIndex;
+   string   m_strCnt;
+   string   m_strCit;
+   int64_t  m_iId;
+   double   m_dLat;
+   double   m_dLon;
+
+};
 
 
 

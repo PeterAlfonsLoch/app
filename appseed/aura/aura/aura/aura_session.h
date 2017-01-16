@@ -136,6 +136,9 @@ namespace aura
       virtual oswindow get_capture();
 
 
+      virtual string fontopus_get_user_sessid(const string & str);
+
+
    };
 
 

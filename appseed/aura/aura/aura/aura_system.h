@@ -27,20 +27,6 @@ namespace aura
    {
    public:
 
-      class CLASS_DECL_AURA city
-      {
-      public:
-
-         index    m_iIndex;
-         string   m_strCnt;
-         string   m_strCit;
-         int64_t  m_iId;
-         double   m_dLat;
-         double   m_dLon;
-
-      };
-
-
       ::dump_context *                          m_pdumpcontext;
 
       ::aura::session::map                         m_aurabergedgemap;
@@ -129,7 +115,7 @@ namespace aura
       DWORD                                        m_dwAfterApplicationFirstRequest;
 
 
-      sp(mutex)                                    m_spmutexCit;
+      sp(mutex)                                    m_spmutexOpenweatherCity;
 
       stringa                                      m_straCityLo;
       stringa                                      m_straCity;
@@ -139,7 +125,7 @@ namespace aura
 
       string_map < sp(::aura::library) >           m_mapLibrary;
 
-      string_map < city * >              m_mapCity;
+      string_map < openweather_city * >            m_mapCity;
       
       string                                       m_strIosHome;
       string                                       m_strIosTemp;
@@ -200,7 +186,7 @@ namespace aura
       object * alloc(::aura::application * papp,const std_type_info & info);
       //   virtual sp(object) on_alloc(::aura::application * papp, sp(type) info);
 
-      mutex * get_city_mutex();
+      mutex * get_openweather_city_mutex();
 
       using ::aura::application::alloc;
       virtual object * alloc(::aura::application * papp,::type * ptype);
@@ -432,10 +418,10 @@ namespace aura
 
       virtual void on_command(::primitive::command * pcommand) override;
 
-      virtual void defer_check_city_list();
+      virtual void defer_check_openweather_city_list();
 
-      virtual city * find_city(string strQuery);
-      virtual index find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon);
+      virtual openweather_city * openweather_find_city(string strQuery);
+      virtual index openweather_find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon);
 
 #ifdef VSNORD
 

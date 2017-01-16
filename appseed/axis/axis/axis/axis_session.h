@@ -288,6 +288,9 @@ namespace axis
 
       virtual void on_finally_focus_set(::user::elemental * pelementalFocus);
 
+
+      virtual string fontopus_get_user_sessid(const string & str) override;
+
    };
 
 

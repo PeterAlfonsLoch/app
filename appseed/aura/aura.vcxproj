@@ -1624,6 +1624,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_time_span.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
+    <ClInclude Include="primitive\datetime\datetime_zonetime.h" />
     <ClInclude Include="primitive\enum.h" />
     <ClInclude Include="primitive\geometry\geometry.h" />
     <ClInclude Include="primitive\geometry\geometry_align.h" />
@@ -2331,6 +2332,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_zonetime.cpp" />
     <ClCompile Include="primitive\geometry\geometry_box.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

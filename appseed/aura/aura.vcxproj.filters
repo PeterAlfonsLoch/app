@@ -2207,6 +2207,9 @@
     <ClInclude Include="primitive\math\math_department.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_zonetime.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3780,6 +3783,9 @@
     </ClCompile>
     <ClCompile Include="aura\os\os_debug.cpp">
       <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_zonetime.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

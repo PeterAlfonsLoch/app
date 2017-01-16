@@ -2130,9 +2130,19 @@ namespace axis
 
    }
 
+
    ::user::primitive * session::get_focus_ui()
    {
+
       return NULL;
+
+   }
+
+
+   string session::fontopus_get_user_sessid(const string & str)
+   {
+
+      return fontopus()->get_user()->get_sessid(str);
 
    }
 

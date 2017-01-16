@@ -24,7 +24,7 @@ namespace datetime
 
 
 extern "C" CLASS_DECL_AURA time_t timegm(struct tm *tmp);
-
+extern "C" CLASS_DECL_AURA int c_localtime_offset();
 
 
 

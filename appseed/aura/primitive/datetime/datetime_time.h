@@ -102,6 +102,12 @@ namespace datetime
 
       time get_sunday() const;
 
+      __time64_t GetTimeOfDay() const NOTHROW;
+      __time64_t GetGmtTimeOfDay() const NOTHROW;
+
+      int64_t GetDaySig() const NOTHROW;
+      int64_t GetGmtDaySig() const NOTHROW;
+
 
       FILETIME to_file_time() const;
       SYSTEMTIME to_system_time() const;

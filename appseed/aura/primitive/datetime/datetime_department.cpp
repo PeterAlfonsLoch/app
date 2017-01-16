@@ -617,6 +617,153 @@ namespace datetime
 
    }
 
+   
+   bool department::locality_sunset(openweather_city * pcity, int & iRise, int & iSet)
+   {
+
+      if (pcity == NULL)
+      {
+
+         return false;
+
+      }
+
+#include "sensitive/openweather.txt"
+
+      double dZone = 0.0;
+
+      System.datetime().initial_locality_time_zone(pcity, dZone);
+
+      int iTimeZone = (int)(dZone * 3600.0);
+
+      property_set set;
+
+      string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + ::str::from(pcity->m_iId) + "&APPID=" + string(pszId);
+
+      string strGetUrl = "https://api.ca2.cc/account/openweather?sessid=" + Session.fontopus_get_user_sessid("api.ca2.cc")
+         + "&request=" + System.url_encode(strUrl);
+
+      string str = Application.http_get(strGetUrl, set);
+
+      synch_lock sl(m_pmutex);
+
+      const char * pszJson = str;
+
+      var v;
+
+      v.parse_json(pszJson);
+
+      ::datetime::zonetime timeSunrise(v["sys"]["sunrise"].int64(), iTimeZone);
+
+      ::datetime::zonetime timeSunset(v["sys"]["sunset"].int64(), iTimeZone);
+
+      iRise = timeSunrise.GetZoneTimeOfDay();
+
+      iSet = timeSunset.GetZoneTimeOfDay();
+
+      string strSunrise(timeSunrise.FormatZone(INTERNATIONAL_DATE_TIME_FORMAT));
+
+      string strSunset(timeSunset.FormatZone(INTERNATIONAL_DATE_TIME_FORMAT));
+
+      output_debug_string("sunrise:" + strSunrise + "\n");
+
+      output_debug_string("sunset:" + strSunset + "\n");
+
+      return true;
+
+   }
+
+
+   bool  department::locality_sunset(string strCountry, string strLocality, int & iRise, int & iSet)
+   {
+
+      auto pcity = System.openweather_find_city(strLocality + ", " + strCountry);
+
+      if (pcity == NULL)
+      {
+
+         return false;
+
+      }
+
+      return locality_sunset(pcity, iRise, iSet);
+
+
+   }
+
+
+   string department::initial_locality_time_zone(openweather_city * pcity, double & dZone)
+   {
+
+      if (pcity == NULL)
+      {
+
+         dZone = 0.0;
+
+         return "utc";
+
+      }
+
+      property_set set;
+
+      string strLat = ::str::from(pcity->m_dLat);
+
+      string strLng = ::str::from(pcity->m_dLon);
+
+      string strKey;
+
+#ifdef WINDOWS
+
+      strKey = file_as_string_dup("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+
+#else
+
+      strKey = file_as_string_dup("/sensitive/sensitive/seed/timezonedb.txt");
+
+#endif
+
+      string str = Application.http_get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+
+      if (str.has_char())
+      {
+
+         const char * pszJson = str;
+
+         var v;
+
+         try
+         {
+
+            v.parse_json(pszJson);
+
+            str = v["abbreviation"].get_string().lowered();
+
+            dZone = v["gmtoffset"].get_double() / 3600.0;
+
+         }
+         catch (...)
+         {
+
+            str = "utc";
+
+            dZone = 0.0;
+
+         }
+
+      }
+      else
+      {
+
+         str = "utc";
+
+         dZone = 0.0;
+
+      }
+
+      return str;
+
+   }
+
 
    string  department::initial_locality_time_zone(string strCountry, string strLocality, double & dZone)
    {
@@ -654,7 +801,7 @@ namespace datetime
 
       double dLon;
 
-      auto pcity = System.find_city(strQ);
+      auto pcity = System.openweather_find_city(strQ);
 
       if (pcity != NULL)
       {

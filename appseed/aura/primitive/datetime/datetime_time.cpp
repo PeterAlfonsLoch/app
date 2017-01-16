@@ -734,6 +734,60 @@ namespace datetime
    }
 
 
+   __time64_t time::GetTimeOfDay() const NOTHROW
+   {
+
+      struct tm ttm;
+
+      struct tm * ptm;
+
+      ptm = GetLocalTm(&ttm);
+
+      return ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0;
+
+   }
+
+
+   __time64_t time::GetGmtTimeOfDay() const NOTHROW
+   {
+
+      struct tm ttm;
+
+      struct tm * ptm;
+
+      ptm = GetGmtTm(&ttm);
+
+      return ptm ? ((ptm->tm_hour * 3600) + (ptm->tm_min * 60) + ptm->tm_sec) : 0;
+
+   }
+
+   int64_t time::GetDaySig() const NOTHROW
+   {
+
+      struct tm ttm;
+
+      struct tm * ptm;
+
+      ptm = GetLocalTm(&ttm);
+
+      return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
+
+   }
+
+
+   int64_t time::GetGmtDaySig() const NOTHROW
+   {
+
+      struct tm ttm;
+
+      struct tm * ptm;
+
+      ptm = GetGmtTm(&ttm);
+
+      return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
+
+   }
+
 } // namespace datetime
 
 
@@ -775,6 +829,9 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time)
    return is;
 
 }
+
+
+
 
 
 
