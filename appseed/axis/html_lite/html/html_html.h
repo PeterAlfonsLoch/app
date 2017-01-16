@@ -34,6 +34,7 @@ namespace html
 
       string special_chars(const char * psz);
       string entities(const char * psz);
+      string htmlpre(const char * psz);
       int32_t resolve_entity(const char * lpszEntity,string & strChar);
       string resolve_entities(const string & str);
 

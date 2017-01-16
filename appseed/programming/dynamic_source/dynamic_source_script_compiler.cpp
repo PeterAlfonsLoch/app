@@ -9,7 +9,7 @@
 #include <ctype.h>
 #endif
 
-
+DWORD RunSilent(const char* strFunct, char* strstrParams);
 
 
 
@@ -641,7 +641,7 @@ void script_compiler::compile(ds_script * pscript)
 #ifdef LINUX
    strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-   strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
+   strBuildCmd.Format(System.dir().element() / ("nodeapp\\stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
 #endif
 
    str = Application.file().as_string(strBuildCmd);
@@ -681,7 +681,7 @@ void script_compiler::compile(ds_script * pscript)
 
    set_thread_priority(::multithreading::priority_highest);
 
-   process->oprop("inherit") = false;
+   //process->oprop("inherit") = false;
 
    process->create_child_process(str,true,"C:\\netnode\\app-core\\appseed\\netnode_dynamic_source_script",::multithreading::priority_highest);
 
@@ -763,7 +763,7 @@ void script_compiler::compile(ds_script * pscript)
 #ifdef LINUX
       strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-      strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
+      strBuildCmd.Format(System.dir().element() / ("nodeapp\\stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
 #endif
 
       str = Application.file().as_string(strBuildCmd);
@@ -1137,131 +1137,239 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
 {
 
 
+#ifdef WINDOWS
+   //Sleep(15000);
+
    string strBuildCmd = m_strEnv;
 
-   strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
+   if (m_strVs == "2015")
+   {
+
+      strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
+
+   }
+   else if (m_strVs == "2017")
+   {
+
+      strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " 10.0.14393.0";
+
+   }
 
    ::process::process_sp process(allocer());
 
 
-   file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+   ::file::path pathEnvTxt;
 
-   set_thread_priority(::multithreading::priority_highest);
-   process->oprop("inherit") = false;
+   pathEnvTxt = dir::system() / "env.txt";
 
-   ::file::path pathCommand = ::dir::system() / "env.bat";
+   file_put_contents_dup(::dir::system() / "env1.bat", ::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-   ::file::path pathFolder = ::file::path(m_strEnv).folder();
+   file_put_contents_dup(::dir::system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
-#ifdef WINDOWSEX
-   {
-      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
-      LPTSTR lpsz = new char[dwSize + 1];
-      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
-      delete lpsz;
-   }
+   RunSilent(::dir::system() / "env1.bat", "");
 
-   #endif
-
-   process->create_child_process(pathCommand,true,pathFolder,::multithreading::priority_highest);
    string strLog;
 
-   //   EnvVarValArray arrEnvVarVal;
+   strLog = file_as_string_dup(::dir::system() / "env.txt");
 
-   //   uint32_t dwStart = ::get_tick_count();
-
-   //   uint32_t dwExitCode;
-
-   //   string strLog;
-
-   //   stringa m_strArray;
-   //   // Open the process for further operations
-   //   HANDLE hProcess = CProcessEnvReader::OpenProcessToRead(process->m_iPid);
-   //   if(hProcess)
-   //   {
-   //      _ENVSTRING_t stEnvData;
-   //      // Read the process environment block
-   //      if(!CProcessEnvReader::ReadEnvironmentBlock(hProcess,stEnvData))
-   //      {
-   //         return;
-   //      }
-
-   //      // Parse the retrieved data
-   //      CProcessEnvReader::ParseEnvironmentStrings(stEnvData.pData,
-   //         stEnvData.nSize / 2,
-   //         m_strArray);
-
-
-   //      // Seperate values and variables
-   //      CProcessEnvReader::SeparateVariablesAndValues(m_strArray,arrEnvVarVal);
-
-   //      // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
-   //      CProcessEnvReader::ReleaseHandle(hProcess);
-   //   }
-   //process->write("\n");
-   uint32_t dwExitCode;
-   DWORD dwStart = get_tick_count();
-   while(::get_thread_run() && get_run_thread())
-   {
-
-      strLog += process->read();
-
-      if(process->has_exited(&dwExitCode))
-         break;
-
-      Sleep(100);
-
-      if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
-      {
-
-         //            bTimeout = true;
-
-         break;
-
-      }
-
-   }
-
-   strLog += process->read();
    stringa stra;
 
    stra.add_lines(strLog);
 
-   #ifdef WINDOWSEX
-   {
-      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
-      LPTSTR lpsz = new char[dwSize + 1];
-      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
-      delete lpsz;
-   }
-   #endif
-
    //Sleep(10000);
 
-#if defined(WINDOWSEX)
+#ifdef WINDOWSEX
    EnvVarValArray arrEnvVarVal;
    // Seperate values and variables
-   CProcessEnvReader::SeparateVariablesAndValues(stra,arrEnvVarVal);
+   CProcessEnvReader::SeparateVariablesAndValues(stra, arrEnvVarVal);
 
    string_to_string map;
 
-   for(auto pair : arrEnvVarVal)
+   for (auto pair : arrEnvVarVal)
    {
       map[pair.m_element1] = pair.m_element2;
-      SetEnvironmentVariable(pair.m_element1,pair.m_element2);
+      SetEnvironmentVariable(pair.m_element1, pair.m_element2);
    }
 
 
 
-   //SetEnvironmentVariable("INCLUDE",map["INCLUDE"]);
-   //SetEnvironmentVariable("LIBPATH",map["LIBPATH"]);
-   //SetEnvironmentVariable("PATH",map["PATH"]);
-
-   // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
-   //CProcessEnvReader::ReleaseHandle(hProcess);
-
+#endif
 #endif
 
+//   ::file::path strFolder;
+//   strFolder = System.dir().element();
+//   if (!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
+//      strFolder += "/";
+//   string strTemplate;
+//   string strSource = "nodeapp/time/dynamic_source/";
+//   strSource += lpcszSource;
+//
+   ::file::path pathN = m_pathProjectDir;
+   pathN -= 3;
+   string strN = pathN;
+   strN.replace("\\", "/");
+   strN += "/";
+//
+//
+//   //#ifdef DEBUG
+//   strTemplate = strFolder / strSource;
+//   //#else
+//   // strTemplate = strFolder, "app/time/core/fontopus/app/main/matter/dynamic_source_cl.bat", false);
+//   //#endif
+//   string str;
+//   str = Application.file().as_string(strTemplate);
+//   /*string strVars = getenv("VS100COMNTOOLS");
+//   System.file().path().eat_end_level(strVars, 2, "/");
+//   strVars += "vc/bin/vcvars32.bat";*/
+//   str.replace("%VS_VARS%", m_strEnv);
+//   str.replace("%VS_VARS_PLAT2%", m_strPlat2);
+//
+//   string strV(System.dir().element());
+//   strV.replace("\\", "/");
+//   if (!::str::ends(strV, "/") && !::str::ends(strV, "\\"))
+//      strV += "/";
+//   str.replace("%CA2_ROOT%", strV);
+//   str.replace("%PROJECT_DIR%", m_pathProjectDir);
+//   str.replace("%NETNODE_ROOT%", strN);
+//   str.replace("%SDK1%", m_strSdk1);
+//   string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
+//   ::file::path strCmd;
+//   //#ifdef DEBUG
+//   strCmd = strFolder / strDest;
+//   //#else
+//   // strCmd = strFolder, "app\\time\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
+//   //#endif
+//   Application.dir().mk(strCmd.folder());
+//   //Application.file().put_contents_utf8(strCmd, str);
+//   Application.file().put_contents(strCmd, str);
+//   Application.dir().mk(m_strTime / "dynamic_source");
+//
+//
+//   string strBuildCmd = m_strEnv;
+//
+//   strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
+//
+//   ::process::process_sp process(allocer());
+//
+//
+//   file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+//
+//   set_thread_priority(::multithreading::priority_highest);
+//   process->oprop("inherit") = false;
+//
+//   ::file::path pathCommand = ::dir::system() / "env.bat";
+//
+//   ::file::path pathFolder = ::file::path(m_strEnv).folder();
+//
+//#ifdef WINDOWSEX
+//   {
+//      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+//      LPTSTR lpsz = new char[dwSize + 1];
+//      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
+//      delete lpsz;
+//   }
+//
+//   #endif
+//
+//   process->create_child_process(pathCommand,true,pathFolder,::multithreading::priority_highest);
+//   string strLog;
+//
+//   //   EnvVarValArray arrEnvVarVal;
+//
+//   //   uint32_t dwStart = ::get_tick_count();
+//
+//   //   uint32_t dwExitCode;
+//
+//   //   string strLog;
+//
+//   //   stringa m_strArray;
+//   //   // Open the process for further operations
+//   //   HANDLE hProcess = CProcessEnvReader::OpenProcessToRead(process->m_iPid);
+//   //   if(hProcess)
+//   //   {
+//   //      _ENVSTRING_t stEnvData;
+//   //      // Read the process environment block
+//   //      if(!CProcessEnvReader::ReadEnvironmentBlock(hProcess,stEnvData))
+//   //      {
+//   //         return;
+//   //      }
+//
+//   //      // Parse the retrieved data
+//   //      CProcessEnvReader::ParseEnvironmentStrings(stEnvData.pData,
+//   //         stEnvData.nSize / 2,
+//   //         m_strArray);
+//
+//
+//   //      // Seperate values and variables
+//   //      CProcessEnvReader::SeparateVariablesAndValues(m_strArray,arrEnvVarVal);
+//
+//   //      // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
+//   //      CProcessEnvReader::ReleaseHandle(hProcess);
+//   //   }
+//   //process->write("\n");
+//   uint32_t dwExitCode;
+//   DWORD dwStart = get_tick_count();
+//   while(::get_thread_run() && get_run_thread())
+//   {
+//
+//      strLog += process->read();
+//
+//      if(process->has_exited(&dwExitCode))
+//         break;
+//
+//      Sleep(100);
+//
+//      if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
+//      {
+//
+//         //            bTimeout = true;
+//
+//         break;
+//
+//      }
+//
+//   }
+//
+//   strLog += process->read();
+//   stringa stra;
+//
+//   stra.add_lines(strLog);
+//
+//   #ifdef WINDOWSEX
+//   {
+//      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+//      LPTSTR lpsz = new char[dwSize + 1];
+//      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
+//      delete lpsz;
+//   }
+//   #endif
+//
+//   //Sleep(10000);
+//
+//#if defined(WINDOWSEX)
+//   EnvVarValArray arrEnvVarVal;
+//   // Seperate values and variables
+//   CProcessEnvReader::SeparateVariablesAndValues(stra,arrEnvVarVal);
+//
+//   string_to_string map;
+//
+//   for(auto pair : arrEnvVarVal)
+//   {
+//      map[pair.m_element1] = pair.m_element2;
+//      SetEnvironmentVariable(pair.m_element1,pair.m_element2);
+//   }
+//
+//
+//
+//   //SetEnvironmentVariable("INCLUDE",map["INCLUDE"]);
+//   //SetEnvironmentVariable("LIBPATH",map["LIBPATH"]);
+//   //SetEnvironmentVariable("PATH",map["PATH"]);
+//
+//   // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
+//   //CProcessEnvReader::ReleaseHandle(hProcess);
+//
+//#endif
+//
    stra.add_lines(strLog);
 
    //string strEnv = file_as_string_dup(::dir::system() / "env.txt");
@@ -1274,10 +1382,10 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    string strSource = "nodeapp/stage/dynamic_source/";
    strSource += lpcszSource;
 
-   string strN = m_pmanager->m_strNetnodePath;
-   strN.replace("\\","/");
-   if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
-      strN += "/";
+//   string strN = m_pmanager->m_strNetnodePath;
+   //strN.replace("\\","/");
+   //if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
+     // strN += "/";
 
    //#ifdef DEBUG
    strTemplate = strFolder/ strSource;
@@ -1297,6 +1405,7 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
       strV += "/";
    str.replace("%CA2_ROOT%",strV);
+   str.replace("%PROJECT_DIR%", m_pathProjectDir);
    str.replace("%NETNODE_ROOT%", strN);
    str.replace("%SDK1%", m_strSdk1);
    string strDest = m_strDynamicSourceStage / "front"  / lpcszDest;

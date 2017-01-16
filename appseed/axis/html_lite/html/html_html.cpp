@@ -263,6 +263,49 @@ namespace html
       return str;
    }
 
+
+   string html::htmlpre(const char * psz)
+   {
+      if (psz == NULL)
+         return "";
+      string str;
+      string strChar;
+      while (*psz != '\0')
+      {
+         int32_t iChar = (int32_t) ::str::ch::uni_index(psz);
+         if (iChar == '&')
+         {
+            str += "&amp;";
+         }
+         else if (iChar == '\"')
+         {
+            str += "&quot;";
+         }
+         else if (iChar == '\'')
+         {
+            str += "&#039;"; // apenas quando ENT_QUOTES est・definida.
+         }
+         else if (iChar == '<')
+         {
+            str += "&lt;";
+         }
+         else if (iChar == '>')
+         {
+            str += "&gt;";
+         }
+         else if (iChar < 128)
+         {
+            str += (char)iChar;
+         }
+         else
+         {
+            strChar.Format("&#%d;", iChar);
+            str += strChar;
+         }
+         psz = ::str::utf8_inc(psz);
+      }
+      return str;
+   }
    int32_t html::resolve_entity(const char * lpszEntity,string & strChar)
    {
 
