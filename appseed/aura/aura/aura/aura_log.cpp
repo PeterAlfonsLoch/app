@@ -459,9 +459,9 @@ namespace aura
         // return false;
       m_id = id;
       m_bInitialized = true;
-      if(file_exists_dup(::dir::appdata() / "debug.txt"))
+      if(file_exists_dup(::dir::appdata(process_platform_dir_name2()) / "debug.txt"))
       {
-         string str = file_as_string_dup(::dir::appdata()/"debug.txt");
+         string str = file_as_string_dup(::dir::appdata(process_platform_dir_name2())/"debug.txt");
          if(str.get_length() == 0 || str.Left(2).trim() != "0")
          {
             m_bLog = true;

@@ -5,6 +5,16 @@ namespace aura
 {
 
 
+   app_launcher::app_launcher(string strPlatform, string strApp)
+   {
+
+      m_strPlatform     = strPlatform;
+
+      m_strApp          = strApp;
+
+   }
+
+
    string app_launcher::get_executable_path()
    {
 
@@ -70,7 +80,7 @@ namespace aura
 
 #else
 
-      return path::a_spa();
+      return path::a_spa(m_strPlatform);
 
 #endif
       #endif

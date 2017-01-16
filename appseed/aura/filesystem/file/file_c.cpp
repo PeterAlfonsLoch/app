@@ -89,16 +89,16 @@ int_bool file_path_is_relative_dup(const char * psz)
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA int_bool dir_appdata(char * psz,size_t size)
+CLASS_DECL_AURA int_bool dir_appdata(const char * pszPlatform, char * psz,size_t size)
 {
 
 #ifdef WINDOWS
 
-   return strncpy_s(psz,size, ::dir::appdata(),size) != NULL;
+   return strncpy_s(psz,size, ::dir::appdata(pszPlatform),size) != NULL;
 
 #else
 
-   return strncpy(psz,::dir::appdata(), size) != NULL;
+   return strncpy(psz,::dir::appdata(pszPlatform), size) != NULL;
 
 #endif
 

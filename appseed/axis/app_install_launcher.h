@@ -9,13 +9,13 @@ public:
    string   m_strPath;
    string   m_strVersion;
    string   m_strBuild;
+   string   m_strPlatform;
 
+   app_install_launcher(const char * pszPlatform, const char * pszVersion,const char * pszBuild);
 
-   app_install_launcher(const char * pszVersion,const char * pszBuild);
+   virtual bool ensure_executable() override;
 
-   virtual bool ensure_executable();
-
-   virtual string get_executable_path();
+   virtual string get_executable_path() override;
 
    virtual void start_in_context();
 

@@ -118,7 +118,7 @@ class CLASS_DECL_AURA spaadmin_mutex :
 {
 public:
 
-   spaadmin_mutex(string strSuffix = "");
+   spaadmin_mutex(string strPlatform, string strSuffix = "");
 
 };
 
@@ -131,7 +131,7 @@ class CLASS_DECL_AURA spa_mutex:
 {
 public:
 
-   spa_mutex(string strSuffix = "");
+   spa_mutex(string strPlatform, string strSuffix = "");
 
 };
 

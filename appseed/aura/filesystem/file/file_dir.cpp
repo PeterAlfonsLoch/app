@@ -1372,10 +1372,10 @@ retry:
 
 
 
-::file::path dir::usersystemappdata(const string & lpcszPrefix)
+::file::path dir::usersystemappdata(string strPlatform, const string & lpcszPrefix)
 {
 
-   return appdata() / lpcszPrefix;
+   return appdata(strPlatform) / lpcszPrefix;
 
 }
 
@@ -1548,30 +1548,23 @@ retry:
 
 
 
-::file::path dir::a_spa()
+::file::path dir::a_spa(string strPlatform)
 {
 
-   return program_files_x86() / "ca2/a_spa" / process_platform_dir_name();
+   return program_files_x86() / "ca2/a_spa" / strPlatform;
 
 }
 
-::file::path dir::stage()
+::file::path dir::stage(string strPlatform)
 {
 
-   return program_files_x86() / "ca2/time" / time_binary_platform(process_platform_dir_name()) / process_version_dir_name();
+   return program_files_x86() / "ca2/time" / time_binary_platform(strPlatform) / process_version_dir_name();
 
 }
 
 
 ::file::path dir::app_install(string strPlatform)
 {
-
-   if(strPlatform.is_empty())
-   {
-
-      strPlatform = process_platform_dir_name();
-
-   }
 
    return program_files_x86() / "ca2/install/stage" / strPlatform;
 

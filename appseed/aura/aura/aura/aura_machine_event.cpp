@@ -97,7 +97,7 @@ bool machine_event::initialize()
 
 bool machine_event::read(machine_event_data * pdata)
 {
-   HANDLE hfile = ::create_file(dir::appdata() / "machine\\event\\machine_event.bin", GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);   
+   HANDLE hfile = ::create_file(dir::appdata(process_platform_dir_name2()) / "machine\\event\\machine_event.bin", GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
    {
       memset_dup(pdata, 0, sizeof(machine_event_data));

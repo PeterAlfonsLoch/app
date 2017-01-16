@@ -243,7 +243,7 @@ string time_binary_platform(string strPlatform)
 
 
 
-CLASS_DECL_AURA string process_platform_dir_name()
+CLASS_DECL_AURA string process_platform_dir_name2()
 {
 
 #if defined(_M_IX86)

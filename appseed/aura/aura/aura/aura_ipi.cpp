@@ -203,7 +203,7 @@ namespace aura
 
       }
 
-      ::aura::app_launcher launcher(strApp);
+      ::aura::app_launcher launcher(process_platform_dir_name2(), strApp);
 
       int iPid = -1;
 

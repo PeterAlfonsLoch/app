@@ -1,12 +1,14 @@
 
 
 
-app_install_launcher::app_install_launcher(const char * pszVersion,const char * pszBuild)
+app_install_launcher::app_install_launcher(const char * pszPlatform, const char * pszVersion,const char * pszBuild)
 {
 
    m_strVersion   = pszVersion;
 
    m_strBuild     = pszBuild;
+
+   m_strPlatform = pszPlatform;
 
    m_bPrivileged = true;
 
@@ -16,7 +18,7 @@ app_install_launcher::app_install_launcher(const char * pszVersion,const char * 
 bool app_install_launcher::ensure_executable()
 {
 
-   m_strPath = path::app_install();
+   m_strPath = path::app_install(m_strPlatform);
 
    return true;
 
@@ -24,8 +26,12 @@ bool app_install_launcher::ensure_executable()
 
 string app_install_launcher::get_executable_path()
 {
+
    ensure_executable();
+
    return m_strPath;
+
 }
+
 
 

@@ -3,16 +3,16 @@ namespace path
 {
 
 
-   ::file::path app()
+   ::file::path app(string strPlatform)
    {
 
 #ifdef WINDOWS
 
-      return ::dir::stage() / "app.exe";
+      return ::dir::stage(strPlatform) / "app.exe";
 
 #else
 
-      return ::dir::stage() / "app";
+      return ::dir::stage(strPlatform) / "app";
 
 #endif
 
@@ -26,42 +26,42 @@ namespace path
    }
 
 
-   ::file::path app_plugin_container()
+   ::file::path app_plugin_container(string strPlatform)
    {
 
-      return ::dir::stage() / "app.plugin.container.exe";
+      return ::dir::stage(strPlatform) / "app.plugin.container.exe";
 
    }
 
 
-   ::file::path a_spa()
+   ::file::path a_spa(string strPlatform)
    {
 
 #ifdef WINDOWS
 
-      return ::dir::a_spa() / "a_spa.exe";
+      return ::dir::a_spa(strPlatform) / "a_spa.exe";
 
 #else
 
-      return ::dir::a_spa() / "a_spa";
+      return ::dir::a_spa(strPlatform) / "a_spa";
 
 #endif
 
    }
 
 
-   ::file::path a_spaadmin()
+   ::file::path a_spaadmin(string strPlatform)
    {
 
-      return ::dir::a_spa() / "a_spaadmin.exe";
+      return ::dir::a_spa(strPlatform) / "a_spaadmin.exe";
 
    }
 
 
-   ::file::path vcredist()
+   ::file::path vcredist(string strPlatform)
    {
 
-      return ::dir::a_spa() / "vcredist.exe";
+      return ::dir::a_spa(strPlatform) / "vcredist.exe";
 
    }
 
@@ -98,10 +98,10 @@ namespace path
 
    }
 
-   ::file::path install_log()
+   ::file::path install_log(string strPlatform)
    {
 
-      return dir::element() / ("install-" + process_platform_dir_name() + ".log");
+      return dir::element() / ("install-" + strPlatform + ".log");
 
    }
 

@@ -25,10 +25,10 @@ namespace windows
 }
 
 
-::file::path dir::appdata()
+::file::path dir::appdata(string strPlatform)
 {
 
-   return app() / process_platform_dir_name() / app_relative();
+   return app() / strPlatform / app_relative();
 
 }
 
