@@ -530,14 +530,15 @@ namespace filemanager
 
    }
 
-   void manager::Initialize(bool bMakeVisible)
+
+   void manager::Initialize(bool bMakeVisible, bool bInitialBrowsePath)
    {
+
       string str;
+      
       str.Format("manager(%s)",get_filemanager_data()->m_strDISection);
+      
       m_dataid = str;
-
-
-
 
       CreateViews();
 
@@ -546,37 +547,52 @@ namespace filemanager
 
       uh.m_pmanager = this;
 
-      if(data_get(".local://InitialBrowsePath",str))
+      if (bInitialBrowsePath)
       {
 
-         if(str == "machinefs://")
+         if (data_get(".local://InitialBrowsePath", str))
          {
 
-            id idMachine;
+            if (str == "machinefs://")
+            {
+
+               id idMachine;
 
 #ifdef LINUX
-            idMachine = "Linux";
+               idMachine = "Linux";
 #elif defined(WINDOWSEX)
-            idMachine = "Windows Desktop";
+               idMachine = "Windows Desktop";
 #endif
 
-            if(data_get(".local://InitialBrowsePath." + idMachine,str))
-            {
-               FileManagerBrowse(str,::action::source::database_default());
+               if (data_get(".local://InitialBrowsePath." + idMachine, str))
+               {
+                  
+                  FileManagerBrowse(str, ::action::source::database_default());
+
+               }
+               else
+               {
+
+                  FileManagerBrowse("", ::action::source::system_default());
+
+               }
+
             }
             else
             {
-               FileManagerBrowse("",::action::source::system_default());
+            
+               FileManagerBrowse(str, ::action::source::database_default());
+
             }
+
          }
          else
          {
-            FileManagerBrowse(str,::action::source::database_default());
+            
+            FileManagerBrowse("", ::action::source::system_default());
+
          }
-      }
-      else
-      {
-         FileManagerBrowse("",::action::source::system_default());
+
       }
 
       uh.set_type(update_hint::TypeCreateBars);

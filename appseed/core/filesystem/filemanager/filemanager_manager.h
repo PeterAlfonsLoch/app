@@ -93,7 +93,7 @@ namespace filemanager
       void PopViews();
       void CreateViews();
       void OpenFolder(sp(::fs::item) item,::action::context actioncontext);
-      void Initialize(bool bMakeVisible);
+      void Initialize(bool bMakeVisible, bool bInitialBrowsePath = true);
 
       bool set_filemanager_data(::filemanager::data * pdata);
 

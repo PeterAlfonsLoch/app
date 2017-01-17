@@ -24,52 +24,215 @@ namespace filemanager
 
    manager_template::~manager_template()
    {
-      if (m_pdoctemplate != NULL)
-      {
-         m_pdoctemplate.release();
-      }
+
    }
 
-   sp(manager) manager_template::open(sp(::create) pcreatecontext,::fs::data * pdata,::filemanager::data * pfilemanagerdataParam,callback * pcallback)
+
+   sp(::filemanager::data) manager_template::create_file_manager_data(sp(::create) pcreatecontext)
    {
-      
-      sp(::filemanager::data) pfilemanagerdata(pfilemanagerdataParam);
 
-      if (pcreatecontext.is_null())
-         pcreatecontext.alloc(allocer());
+      sp(::filemanager::data) pfilemanagerdata(canew(data(get_app())));
 
-      if (pfilemanagerdata.is_null())
+      callback * pcallback = NULL;
+
+      if (pcreatecontext.is_set())
       {
 
-         pfilemanagerdata = canew(::filemanager::data(get_app()));
-         pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Session.filemanager();
-         pfilemanagerdata->m_iTemplate = m_iTemplate;
-         pfilemanagerdata->m_iDocument = m_iNextDocument++;
-         pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
-         string strId;
-         strId.Format("filemanager(%d)", pfilemanagerdata->m_iDocument);
-         pfilemanagerdata->m_strDISection = m_strDISection + "." + strId;
-         pfilemanagerdata->m_bFileSize = true;
-
+         pcallback = pcreatecontext->oprop("filemanager::callback").cast < callback > ();
 
       }
 
+      pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Session.filemanager();
+      pfilemanagerdata->m_iTemplate = m_iTemplate;
+      pfilemanagerdata->m_iDocument = m_iNextDocument++;
+      pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
+      string strId;
+      strId.Format("filemanager(%d)", pfilemanagerdata->m_iDocument);
+      pfilemanagerdata->m_strDISection = m_strDISection + "." + strId;
+      pfilemanagerdata->m_bFileSize = true;
       pfilemanagerdata->m_pmanagertemplate = this;
 
-      pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
+      return pfilemanagerdata;
 
-      sp(manager) pdoc = (m_pdoctemplateMain->open_document_file(pcreatecontext));
+   }
+
+
+   sp(manager) manager_template::open_main(::id id, sp(::create) pcreatecontext,::fs::data * pdata,::filemanager::data * pfilemanagerdata,callback * pcallback)
+   {
+
+      ::file::path pathFolder;
+
+      if (pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
+      {
+
+         pathFolder = pcreatecontext->m_spCommandLine->m_varFile;
+
+         if (Application.dir().is(pathFolder))
+         {
+
+            pathFolder.m_iDir = 1;
+
+         }
+         else
+         {
+
+            pathFolder.Empty();
+
+         }
+
+      }
+
+
+      
+      sp(manager) pdoc;
+
+      if (id.int64() < -1 || id.int64() == m_pdoctemplateMain->get_document_count())
+      {
+
+         pcreatecontext->oprop("filemanager::template") = this;
+
+         pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
+
+         pcreatecontext->oprop("filemanager::callback") = pcallback;
+
+         pdoc = m_pdoctemplateMain->open_document_file(pcreatecontext);
+
+         if (pdoc != NULL)
+         {
+
+            bool bInitialBrowsePath = true;
+
+            if (pathFolder.m_iDir == 1)
+            {
+
+               bInitialBrowsePath = false;
+
+            }
+
+            pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible, bInitialBrowsePath);
+
+         }
+
+      }
+      else if (id.int64() < m_pdoctemplateMain->get_document_count())
+      {
+
+         pdoc = m_pdoctemplateMain->get_document(id);
+
+      }
 
       if (pdoc != NULL)
       {
 
-         pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible);
+         tab_view * ptabview = pdoc->get_typed_view < tab_view >();
 
-         return pdoc;
+         if (pathFolder.m_iDir == 1)
+         {
+
+            if (ptabview != NULL)
+            {
+
+               ptabview->set_cur_tab_by_id("verifile://" + pathFolder);
+
+            }
+
+         }
+         else
+         {
+
+            if (ptabview->get_tab_count() <= 0)
+            {
+
+               ptabview->set_cur_tab_by_id("0");
+
+            }
+
+         }
 
       }
 
-      return NULL;
+      return pdoc;
+
+   }
+
+
+   sp(manager) manager_template::open(id id, sp(::create) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
+   {
+
+      ::file::path pathFolder;
+
+      if (pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
+      {
+
+         pathFolder = pcreatecontext->m_spCommandLine->m_varFile;
+
+         if (Application.dir().is(pathFolder))
+         {
+
+            pathFolder.m_iDir = 1;
+
+         }
+         else
+         {
+
+            pathFolder.Empty();
+
+         }
+
+      }
+
+
+
+      sp(manager) pdoc;
+
+      if (id.int64() < -1 || id.int64() == m_pdoctemplateMain->get_document_count())
+      {
+
+         pcreatecontext->oprop("filemanager::template") = this;
+
+         pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
+
+         pcreatecontext->oprop("filemanager::callback") = pcallback;
+
+         pdoc = m_pdoctemplate->open_document_file(pcreatecontext);
+
+         if (pdoc != NULL)
+         {
+
+            bool bInitialBrowsePath = true;
+
+            if (pathFolder.m_iDir == 1)
+            {
+
+               bInitialBrowsePath = false;
+
+            }
+
+            pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible, bInitialBrowsePath);
+
+         }
+
+      }
+      else if (id.int64() < m_pdoctemplateMain->get_document_count())
+      {
+
+         pdoc = m_pdoctemplate->get_document(id);
+
+      }
+
+      if (pdoc != NULL)
+      {
+
+         if (pathFolder.m_iDir == 1)
+         {
+
+            pdoc->FileManagerBrowse(pathFolder, ::action::source_user);
+
+         }
+
+      }
+
+      return pdoc;
 
    }
 

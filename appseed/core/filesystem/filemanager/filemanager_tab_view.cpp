@@ -59,10 +59,10 @@ namespace filemanager
             if (puh->is_type_of(::user::view_update_hint::hint_open_document))
             {
 
-               if (m_viewmap.get_count() == 0)
+               //if (m_viewmap.get_count() == 0)
                {
 
-                  set_cur_tab_by_id(0);
+               //   set_cur_tab_by_id(0);
 
                }
                
@@ -225,10 +225,30 @@ namespace filemanager
 
             pwndTopLevel = (pview->GetTopLevelFrame());
 
+            string str = pcreatordata->m_id;
 
+            ::str::begins_eat_ci(str, "verifile://");
 
-            pmanager->Initialize(true);
+            ::file::path pathFolder = str;
+
+            if (Application.dir().is(pathFolder))
+            {
+
+               pathFolder.m_iDir = 1;
+
+            }
+
+            pmanager->Initialize(true, pathFolder.m_iDir != 1);
+
+            if (pathFolder.m_iDir == 1)
+            {
+
+               pmanager->FileManagerBrowse(pathFolder, ::action::source_user);
+
+            }
+
          }
+
          if (pmanager == NULL)
             return;
          //      sp(::user::impact) pview = pdoc->get_view(0);
@@ -249,6 +269,10 @@ namespace filemanager
       //   SCAST_PTR(::message::create, pcreate, pobj);
 
       pobj->previous();
+
+      m_pfilemanager = dynamic_cast < manager * > (get_document());
+
+
 
    }
 

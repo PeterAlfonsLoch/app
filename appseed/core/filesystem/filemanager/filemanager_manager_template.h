@@ -36,26 +36,28 @@ namespace filemanager
       string                     m_strLevelUp;
 
 
-      sp(::user::multiple_document_template) m_pdoctemplateMain;
-      sp(::user::multiple_document_template) m_pdoctemplate;
-      sp(::user::multiple_document_template) m_pdoctemplateChild;
-      sp(::user::multiple_document_template) m_pdoctemplateChildList;
-      sp(::user::multiple_document_template) m_pdoctemplateFolderSelectionList;
+      sp(::user::multiple_document_template)    m_pdoctemplateMain;
+      sp(::user::multiple_document_template)    m_pdoctemplate;
+      sp(::user::multiple_document_template)    m_pdoctemplateChild;
+      sp(::user::multiple_document_template)    m_pdoctemplateChildList;
+      sp(::user::multiple_document_template)    m_pdoctemplateFolderSelectionList;
 
 
       manager_template(::aura::application * papp);
       virtual ~manager_template();
 
 
-      sp(manager) open(sp(::create) pcreatecontext = NULL,::fs::data * pdata = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
+      sp(manager) open_main(::id id = -1, sp(::create) pcreatecontext = NULL,::fs::data * pdata = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
+      sp(manager) open(::id id = -1, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
       sp(manager) open_child(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL, callback * pcallback = NULL);
       sp(manager) open_child_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
       sp(manager) open_folder_selection_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
 
+
       sp(manager) create_new_document(callback * pinterface,sp(::create) pcreatecontext);
 
 
-
+      sp(::filemanager::data) create_file_manager_data(sp(::create) pcreatecontext = NULL);
 
       virtual void Initialize(int32_t iTemplate, const char * pszMatter);
 

@@ -148,6 +148,8 @@ public:
 
    inline operator int64_t() const;
 
+   inline int64_t int64() const;
+
 
    inline operator const char *() const;
    inline string & to_string(string & str) const;
@@ -485,10 +487,16 @@ inline bool id::operator >= (int_ptr i) const
 inline id::operator int64_t () const
 {
 
-   return m_etype == type_integer ? m_i : 0x8000000000000000ll;
+   return int64();
 
 }
 
+inline int64_t id::int64() const
+{
+
+   return m_etype == type_integer ? m_i : 0x8000000000000000ll;
+
+}
 
 
 

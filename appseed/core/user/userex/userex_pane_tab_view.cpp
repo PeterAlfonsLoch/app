@@ -311,7 +311,7 @@ namespace userex
          cc->m_bMakeVisible               = true;
          cc->m_puiParent                  = pcreatordata->m_pholder;
 
-         sp(::filemanager::manager) pmanager = Session.filemanager().std().open(cc);
+         sp(::filemanager::manager) pmanager = Session.filemanager().std().open(-1, cc);
 
          if(pmanager != NULL)
          {
