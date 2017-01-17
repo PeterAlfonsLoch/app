@@ -736,7 +736,20 @@ namespace filemanager
       if(m_spfilemanagerdata.is_null())
       {
 
-         m_spfilemanagerdata = canew(data(get_app()));
+         sp(manager_template) ptemplate = pcreatecontext->oprop("filemanager::template").cast < manager_template >();
+
+         if (ptemplate.is_null())
+         {
+
+            m_spfilemanagerdata = canew(data(get_app()));
+
+         }
+         else
+         {
+
+            m_spfilemanagerdata = ptemplate->create_file_manager_data(pcreatecontext);
+
+         }
 
       }
 
