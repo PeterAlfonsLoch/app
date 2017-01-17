@@ -2410,10 +2410,14 @@ namespace windows
 
                   }
 
-                  if (::get_tick_count() - dwStart < 20)
+                  DWORD dwTick = get_tick_count();
+
+                  DWORD dwOffset = dwTick - dwStart;
+
+                  if (dwOffset < 20)
                   {
 
-                     Sleep(20 - (::get_tick_count() - dwStart));
+                     Sleep(20 - dwOffset);
 
                   }
 
