@@ -2546,34 +2546,107 @@ namespace aura
    index system::openweather_find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon)
    {
 
+      stringa stra;
+
+      stra.explode(",", strQuery);
+
+      stra.trim();
+
+      stra.remove_empty();
+
+      if (stra.get_count() <= 0)
+      {
+
+         return -1;
+
+      }
+
+      if(stra.get_count() == 1)
+      {
+
+         return openweather_find_city2(strQuery, "", strCit, iId, dLat, dLon, true);
+
+      }
+      
+
+      for (index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
+      {
+
+         index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, false);
+
+         if (iIndex >= 0)
+         {
+
+            return iIndex;
+
+         }
+
+      }
+
+      for (index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
+      {
+
+         index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, true);
+
+         if (iIndex >= 0)
+         {
+
+            return iIndex;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+
+   
+   index system::openweather_find_city2(string strQ1, string strQ2, string & strCit, int64_t & iId, double & dLat, double & dLon, bool bPrefix)
+   {
+
       string strQueryLo;
-
-      strQueryLo = strQuery;
-
-      strQueryLo.make_lower();
 
       string strTry;
 
-      index iFind;
+      string strTry1;
 
-      stringa stra;
+      string strTry2;
+
+      index iFind;
 
       defer_check_openweather_city_list();
 
-      if (strQuery.CompareNoCase("Cologne, DE") == 0)
+      if (strQ1.CompareNoCase("Cologne") == 0 && strQ2.CompareNoCase("DE") == 0)
       {
 
-         strQuery = "Koeln, DE";
+         strQ1 = "Koeln";
 
       }
-      else if (::str::begins_ci(strQuery, "Washington DC"))
+      else if (strQ1.CompareNoCase("Washington DC") == 0)
       {
 
-         strQuery = "Washington, D. C., US";
+         strQ1 = "Washington, D. C.";
 
       }
 
-      iFind = m_straCityLo.find_first_begins(strQueryLo);
+      strQueryLo = strQ1 + ", " + strQ2;
+
+      strQueryLo.make_lower();
+
+      if (bPrefix)
+      {
+
+         iFind = m_straCityLo.find_first_begins(strQueryLo);
+
+      }
+      else
+      {
+
+         iFind = m_straCityLo.find_first(strQueryLo);
+
+      }
 
       if (iFind >= 0)
       {
@@ -2582,70 +2655,44 @@ namespace aura
 
       }
 
-      strTry = strQueryLo;
 
-      stra.explode(",", strTry);
 
-      stra.trim();
 
-      if (stra.get_size() > 2)
-      {
 
-         strTry = stra[0];
 
-         strTry += ", ";
 
-         strTry += stra.last();
 
-         iFind = m_straCityLo.find_first_begins(strTry);
 
-         if (iFind >= 0)
-         {
 
-            goto found;
 
-         }
 
-         strTry = stra[0];
 
-         strTry += ", ";
 
-         strTry += stra[1];
 
-         iFind = m_straCityLo.find_first_begins(strTry);
 
-         if (iFind >= 0)
-         {
 
-            goto found;
 
-         }
 
-      }
 
-      if (stra.get_size() >= 2)
-      {
 
-         strTry = stra[0];
 
-         strTry += ", ";
-
-         iFind = m_straCityLo.find_first_begins(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-      }
 
       strTry = strQueryLo;
 
       strTry.replace("'", "");
 
-      iFind = m_straCity.find_first_begins(strTry);
+      if (bPrefix)
+      {
+
+         iFind = m_straCityLo.find_first_begins(strTry);
+
+      }
+      else
+      {
+
+         iFind = m_straCityLo.find_first(strTry);
+
+      }
 
       if (iFind >= 0)
       {
@@ -2653,72 +2700,6 @@ namespace aura
          goto found;
 
       }
-
-      strTry = strQueryLo;
-
-      strTry.replace("'", "");
-
-      stra.explode(",", strTry);
-
-      stra.trim();
-
-      if (stra.get_size() > 2)
-      {
-
-         strTry = stra[0];
-
-         strTry += ", ";
-
-         strTry += stra.last();
-
-         iFind = m_straCityLo.find_first_begins(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-         strTry = stra[0];
-
-         strTry += ", ";
-
-         strTry += stra[1];
-
-         iFind = m_straCity.find_first_begins(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-      }
-
-
-      if (stra.get_size() >= 2)
-      {
-
-         strTry = stra[0];
-
-         strTry += ", ";
-
-         iFind = m_straCityLo.find_first_begins(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-      }
-
-
-
-
 
 
 
@@ -2773,7 +2754,18 @@ namespace aura
       strTry.replace("ù", "u");
       strTry.replace("ü", "u");
 
-      iFind = m_straCityLo.find_first_begins(strTry);
+      if (bPrefix)
+      {
+
+         iFind = m_straCityLo.find_first_begins(strTry);
+
+      }
+      else
+      {
+
+         iFind = m_straCityLo.find_first(strTry);
+
+      }
 
       if (iFind >= 0)
       {
@@ -2782,84 +2774,6 @@ namespace aura
 
       }
 
-      strTry = strQueryLo;
-
-      strTry.replace("st.", "saint");
-      strTry.replace("são", "sao");
-      strTry.replace("ž", "z");
-      strTry.replace("á", "a");
-      strTry.replace("à", "a");
-      strTry.replace("ä", "a");
-      strTry.replace("é", "e");
-      strTry.replace("è", "e");
-      strTry.replace("ë", "e");
-      strTry.replace("í", "i");
-      strTry.replace("ì", "i");
-      strTry.replace("ï", "i");
-      strTry.replace("ó", "o");
-      strTry.replace("ò", "o");
-      strTry.replace("ö", "o");
-      strTry.replace("ú", "u");
-      strTry.replace("ù", "u");
-      strTry.replace("ü", "u");
-
-      stra.explode(",", strTry);
-
-      stra.trim();
-
-      if (stra.get_size() > 2)
-      {
-
-         strTry = stra[0];
-
-         strTry += ", ";
-
-         strTry += stra.last();
-
-         iFind = m_straCityLo.find_first_begins(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-         strTry = stra[0];
-
-         strTry += ", ";
-
-         strTry += stra[1];
-
-         iFind = m_straCityLo.find_first_begins(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-      }
-
-
-      if (stra.get_size() >= 2)
-      {
-
-         strTry = stra[0];
-
-         strTry += ", ";
-
-         iFind = m_straCity.find_first_begins(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-      }
 
 
 

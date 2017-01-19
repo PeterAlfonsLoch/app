@@ -422,6 +422,7 @@ namespace aura
 
       virtual openweather_city * openweather_find_city(string strQuery);
       virtual index openweather_find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon);
+      virtual index openweather_find_city2(string strQ1, string strQ2, string & strCit, int64_t & iId, double & dLat, double & dLon, bool bPrefix);
 
 #ifdef VSNORD
 
