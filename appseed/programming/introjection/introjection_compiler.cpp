@@ -841,11 +841,11 @@ namespace introjection
       string strBuildCmd;
 
 #ifdef LINUX
-      strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash"));
+      strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash"));
 #elif defined(__APPLE__)
-      strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
+      strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #else
-      strBuildCmd.Format(System.dir().element() / ("nodeapp/stage/introjection_" + m_strVsTools) / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
+      strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #endif
 
       str = Application.file().as_string(strBuildCmd);
@@ -1031,9 +1031,9 @@ namespace introjection
 #ifndef MACOS
 
 #ifdef LINUX
-         strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
+         strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
 #else
-         strBuildCmd.Format(System.dir().element() / ("nodeapp\\stage\\introjection_" + m_strVsTools) / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
+         strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
 #endif
 
          str = Application.file().as_string(strBuildCmd);
