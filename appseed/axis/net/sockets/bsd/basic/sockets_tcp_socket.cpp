@@ -11,6 +11,112 @@
 //#include <assert.h>
 #include <openssl/rand.h>
 #include <openssl/err.h>
+#include <openssl/evp.h>
+
+static int SSL_app_data2_idx = -1;
+static int SSL_app_data3_idx = -1;
+
+void SSL_init_app_data2_3_idx(void)
+{
+   int i;
+
+   if (SSL_app_data2_idx > -1) {
+      return;
+   }
+
+   /* we _do_ need to call this twice */
+   for (i = 0; i <= 1; i++) {
+      SSL_app_data2_idx =
+         SSL_get_ex_new_index(0,
+            "Second Application Data for SSL",
+            NULL, NULL, NULL);
+   }
+
+   if (SSL_app_data3_idx > -1) {
+      return;
+   }
+
+   SSL_app_data3_idx =
+      SSL_get_ex_new_index(0,
+         "Third Application Data for SSL",
+         NULL, NULL, NULL);
+
+}
+void *SSL_get_app_data2(SSL *ssl)
+{
+   return (void *)SSL_get_ex_data(ssl, SSL_app_data2_idx);
+}
+
+void SSL_set_app_data2(SSL *ssl, void *arg)
+{
+   SSL_set_ex_data(ssl, SSL_app_data2_idx, (char *)arg);
+   return;
+}
+
+
+
+
+
+static int current_session_key(::sockets::tcp_socket * c, ssl_ticket_key *key)
+{
+   int result = FALSE;
+   synch_lock sl(c->m_pmutex);
+   if (c->m_ticketkeya.has_elements())
+   {
+      *key = c->m_ticketkeya.first();
+      result = TRUE;
+   }
+   //apr_thread_rwlock_unlock(c->mutex);
+   return result;
+}
+static int find_session_key(::sockets::tcp_socket *c, unsigned char key_name[16], ssl_ticket_key *key, int *is_current_key)
+{
+   int result = FALSE;
+   synch_lock sl(c->m_pmutex);
+   for (auto & ticketkey : c->m_ticketkeya)
+   {
+      // Check if we have a match for tickets.
+      if (memcmp(ticketkey.key_name, key_name, 16) == 0)
+      {
+         *key = ticketkey;
+         result = TRUE;
+         *is_current_key = &c->m_ticketkeya.first() == &ticketkey;
+         break;
+      }
+   }
+   return result;
+}
+
+static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned char *iv, EVP_CIPHER_CTX *ctx, HMAC_CTX *hctx, int enc) {
+   ::sockets::tcp_socket *c = (::sockets::tcp_socket *) SSL_get_app_data2(s);
+   ssl_ticket_key key;
+   int is_current_key;
+   if (enc) { /* create new session */
+      if (current_session_key(c, &key)) {
+         if (RAND_bytes(iv, EVP_MAX_IV_LENGTH) <= 0) {
+            return -1; /* insufficient random */
+         }
+         memcpy(key_name, key.key_name, 16);
+         EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), NULL, key.aes_key, iv);
+         HMAC_Init_ex(hctx, key.hmac_key, 16, EVP_sha256(), NULL);
+         return 1;
+      }
+      // No ticket configured
+      return 0;
+   }
+   else { /* retrieve session */
+      if (find_session_key(c, key_name, &key, &is_current_key)) {
+         HMAC_Init_ex(hctx, key.hmac_key, 16, EVP_sha256(), NULL);
+         EVP_DecryptInit_ex(ctx, EVP_aes_128_cbc(), NULL, key.aes_key, iv);
+         if (!is_current_key) {
+            return 2;
+         }
+         return 1;
+      }
+      // No ticket
+      return 0;
+   }
+}
 
 #ifndef ETIMEDOUT
    #define ETIMEDOUT       138
@@ -64,6 +170,8 @@ namespace sockets
       ,m_bReconnect(false)
       ,m_bTryingReconnect(false)
    {
+
+      SSL_init_app_data2_3_idx();
       m_bClientSessionSet = false;
       m_memRead.allocate(TCP_BUFSIZE_READ + 1);
       m_bCertCommonNameCheckEnabled = true;
@@ -94,6 +202,7 @@ namespace sockets
       ,m_bReconnect(false)
       ,m_bTryingReconnect(false)
    {
+      SSL_init_app_data2_3_idx();
       m_bClientSessionSet = false;
       m_memRead.allocate(TCP_BUFSIZE_READ + 1);
       m_bCertCommonNameCheckEnabled = true;
@@ -1123,6 +1232,7 @@ namespace sockets
             SetCloseAndDelete(true);
             return;
          }
+         SSL_set_app_data2(m_ssl, this);
          SSL_set_mode(m_ssl,SSL_MODE_AUTO_RETRY);
          m_sbio = BIO_new_socket((int32_t)GetSocket(),BIO_NOCLOSE);
          if(!m_sbio)
@@ -1402,9 +1512,9 @@ skip:
       m_ssl_ctx = SSL_CTX_new(m_ssl_method);
       SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
       // session id
-      if (context.get_length())
-         SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)(const  char *)context, (uint32_t)context.get_length());
-      else
+      //if (context.get_length())
+        // SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)(const  char *)context, (uint32_t)context.get_length());
+      //else
          SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)"--is_empty--", 9);
 
       if (!SSL_CTX_use_certificate_chain_file(m_ssl_ctx, keyfile))
@@ -1424,6 +1534,21 @@ skip:
          thiserr << "tcp_socket InitializeContext,0,Couldn't read private key file " << keyfile << "::aura::log::level_fatal";
       }
 
+      {
+         synch_lock sl(m_pmutex);
+         int i;
+         int cnt = sizeof(Session.sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
+         m_ticketkeya.set_size(cnt);                                                                    
+         int j;
+         for (i = 0; i < cnt; ++i) {
+            j = (SSL_SESSION_TICKET_KEY_SIZE * i);
+            memcpy(m_ticketkeya[i].key_name, Session.sockets().m_baTicketKey + j, 16);
+            memcpy(m_ticketkeya[i].hmac_key, Session.sockets().m_baTicketKey + j + 16, 16);
+            memcpy(m_ticketkeya[i].aes_key, Session.sockets().m_baTicketKey + j + 32, 16);
+         }
+      }
+
+      SSL_CTX_set_tlsext_ticket_key_cb(m_ssl_ctx, ssl_tlsext_ticket_key_cb);
 
    }
 
