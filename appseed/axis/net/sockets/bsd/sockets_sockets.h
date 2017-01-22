@@ -17,10 +17,10 @@
 
          byte                                         m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
-//#if defined(BSD_STYLE_SOCKETS)
-//         ssl_client_context_map                       m_clientcontextmap;
+#if defined(BSD_STYLE_SOCKETS)
+         ssl_client_context_map                       m_clientcontextmap;
 //         ssl_server_context_map                       m_servercontextmap;
-//#endif
+#endif
          AjpBaseSocket::Initializer *                 m_pajpaxissocketinit;
 
          ::count m_countHttpPostBoundary;

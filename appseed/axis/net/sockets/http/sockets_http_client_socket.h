@@ -124,3 +124,25 @@
    } // namespace sockets
 
 
+
+
+   namespace http
+   {
+
+
+      class CLASS_DECL_AXIS session :
+         virtual public ::object
+      {
+      public:
+
+         ::sockets::socket_handler           m_handler;
+         sp(::sockets::http_client_socket)   m_psocket;
+
+         session(::aura::application * papp);
+         virtual ~session();
+
+      };
+
+
+   } // namespace http
+

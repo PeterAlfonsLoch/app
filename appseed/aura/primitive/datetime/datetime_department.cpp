@@ -6,6 +6,7 @@
 //#endif
 
 
+
 namespace datetime
 {
 
@@ -23,6 +24,11 @@ namespace datetime
       m_str(papp)
    {
       m_str.m_pdatetime = this;
+      
+
+
+
+
    }
 
    class department::international & department::international()
@@ -768,16 +774,75 @@ namespace datetime
    string  department::initial_locality_time_zone(string strCountry, string strLocality, double & dZone)
    {
 
+      class time_zone timezone;
+
+      ::datetime::time_span spanTimeout(1, 0, 0, 0);
+
+      ::datetime::time now = ::datetime::time::get_current_time();
+
       string str;
 
       if (strLocality.is_empty())
       {
 
-         str = initial_country_time_zone(strCountry);
+         {
 
-         dZone = time_zone(str, strCountry);
+            synch_lock sl(System.m_pmutex);
+
+            if (m_countryTimeZone.Lookup(strCountry, timezone) && (now - timezone.m_time) < spanTimeout)
+            {
+
+               dZone = timezone.m_dZone;
+
+               return timezone.m_strZone;
+
+            }
+
+         }
+
+         timezone.m_strZone = str = initial_country_time_zone(strCountry);
+
+         timezone.m_dZone = dZone = time_zone(str, strCountry);
+
+         timezone.m_time = now;
+
+         {
+
+            synch_lock sl(System.m_pmutex);
+
+            m_countryTimeZone[strCountry] = timezone;
+
+            {
+
+               ::file::path path = ::dir::public_system() / "datetime_departament_m_countryTimeZone.bin";
+
+               auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+
+               ::file::byte_ostream os(file);
+
+               ::file::map::write(os, System.datetime().m_countryTimeZone);
+
+            }
+
+
+         }
 
          return str;
+
+      }
+
+      {
+
+         synch_lock sl(System.m_pmutex);
+
+         if (m_countryLocalityTimeZone[strCountry].Lookup(strLocality, timezone) && (now - timezone.m_time) < spanTimeout)
+         {
+
+            dZone = timezone.m_dZone;
+
+            return timezone.m_strZone;
+
+         }
 
       }
 
@@ -872,6 +937,29 @@ namespace datetime
 
       }
 
+
+      timezone.m_strZone = str;
+
+      timezone.m_dZone = dZone;
+
+      timezone.m_time = now;
+
+
+      {
+
+         synch_lock sl(System.m_pmutex);
+
+         m_countryLocalityTimeZone[strCountry][strLocality] = timezone;
+
+         ::file::path path = ::dir::public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
+
+         auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+
+         ::file::byte_ostream os(file);
+
+         ::file::map::write(os, System.datetime().m_countryLocalityTimeZone);
+
+      }
 
       return str;
 
@@ -1379,6 +1467,50 @@ namespace datetime
 
 
 } // namespace datetime
+
+
+
+
+
+CLASS_DECL_AURA file::istream &operator >> (file::istream & is, class ::datetime::department::time_zone & z)
+{
+
+   is >> z.m_strZone;
+   is >> z.m_dZone;
+   is >> z.m_time;
+
+   return is;
+}
+
+CLASS_DECL_AURA file::ostream &operator << (file::ostream & os, const class ::datetime::department::time_zone & z)
+{
+
+   os << z.m_strZone;
+   os << z.m_dZone;
+   os << z.m_time;
+
+   return os;
+}
+
+CLASS_DECL_AURA file::istream &operator >> (file::istream & is, string_map < class ::datetime::department::time_zone > & m)
+{
+
+   ::file::map::read(is, m);
+
+   return is;
+
+}
+
+CLASS_DECL_AURA ::file::ostream &operator << (file::ostream & os, const string_map < class ::datetime::department::time_zone > & m)
+{
+
+   ::file::map::write(os, m);
+
+   return os;
+
+}
+
+
 
 
 

@@ -8,6 +8,9 @@ namespace http
 {
 
 
+   class session;
+
+
    class CLASS_DECL_AXIS system :
       virtual public signalizable
    {
@@ -69,15 +72,19 @@ namespace http
       virtual void set_proxy_auth(::fontopus::user * puser, ::sockets::http_client_socket * pfile);
       virtual void clean_proxy_auth(::fontopus::user * puser);
 
+
       bool open(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession, const char * pszHost,const char * pszProtocol, property_set & set,::fontopus::user * puser,const char * pszVersion);
+
 
       bool request(::sockets::socket_handler & handler, sp(::sockets::http_session) & spsession,const char * pszUrl,property_set & set);
 
 
+      virtual bool get(::sockets::socket_handler & handler, sp(::sockets::http_client_socket) & m_psocket, const char * pszUrl, property_set & set);
 
 
+      virtual bool get(::http::session & session, const char * pszUrl, string & str, property_set & set);
 
-      bool get(::sockets::socket_handler & handler, sp(::sockets::http_client_socket) & psocket, const char * pszUrl,property_set & set);
+      virtual string get(::http::session & session, const char * pszUrl, property_set & set);
 
 
 

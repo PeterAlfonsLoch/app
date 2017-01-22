@@ -61,9 +61,23 @@ namespace datetime
          string get_gmt_date_time();
       };
 
+      class CLASS_DECL_AURA time_zone
+      {
+      public:
 
-      class ::datetime::department::international m_international;
-      class ::datetime::department::str m_str;
+         string            m_strZone;
+         double            m_dZone;
+         ::datetime::time  m_time; /// time when this time zone record was last updated
+
+      };
+
+
+      string_map < time_zone >                     m_countryTimeZone;
+      string_map < string_map < time_zone > >      m_countryLocalityTimeZone;
+
+
+      class ::datetime::department::international  m_international;
+      class ::datetime::department::str            m_str;
 
 
       department(::aura::application * papp);
@@ -126,3 +140,13 @@ namespace datetime
 
 
 } // namespace aura
+
+
+CLASS_DECL_AURA ::file::istream &operator >> (file::istream & is, class ::datetime::department::time_zone & z);
+CLASS_DECL_AURA ::file::ostream &operator << (file::ostream & os, const class ::datetime::department::time_zone & z);
+CLASS_DECL_AURA ::file::istream &operator >> (file::istream & is, string_map < class ::datetime::department::time_zone > & m);
+CLASS_DECL_AURA ::file::ostream &operator << (file::ostream & os, const string_map < class ::datetime::department::time_zone > & m);
+
+
+
+

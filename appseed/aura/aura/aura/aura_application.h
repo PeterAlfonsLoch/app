@@ -112,6 +112,11 @@ namespace aura
       application();
       virtual ~application();
 
+      virtual bool app_data_set(class id id, ::file::ostream & os);
+      virtual bool app_data_get(class id id, ::file::istream & is);
+
+      virtual bool app_data_set(class id id, ::file::serializable & obj);
+      virtual bool app_data_get(class id id, ::file::serializable & obj);
 
       virtual void install_message_handling(::message::dispatch * pdispatch) override;
 

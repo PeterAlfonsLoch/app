@@ -232,6 +232,36 @@ namespace aura
       ::thread::install_message_handling(pdispatch);
 
    }
+   bool application::app_data_set(class id id, ::file::ostream & os)
+   {
+
+      return false;
+
+   }
+
+
+   bool application::app_data_get(class id id, ::file::istream & is)
+   {
+
+      return false;
+
+   }
+
+   
+   bool application::app_data_set(class id id, ::file::serializable & obj)
+   {
+
+      return false;
+
+   }
+
+
+   bool application::app_data_get(class id id, ::file::serializable & obj)
+   {
+
+      return false;
+
+   }
 
 
    void application::on_command(::primitive::command * pcommand)

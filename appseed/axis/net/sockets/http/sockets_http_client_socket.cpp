@@ -85,6 +85,19 @@ namespace sockets
       m_request.attr(__id(request_uri))         = strRequestUri;
       m_response.attr(__id(request_uri))        = strRequestUri;
       m_strUrl                                  = strUrlParam;
+      
+      if (m_host.is_empty())
+      {
+
+         m_strInitSSLClientContext = System.url().get_server(strRequestUri);
+
+      }
+      else
+      {
+
+         m_strInitSSLClientContext = m_host;
+
+      }
 
       m_strConnectHost                          = m_host;
       m_iConnectPort                            = m_port;
@@ -580,4 +593,22 @@ namespace sockets
 } // namespace sockets
 
 
+namespace http
+{
 
+   session::session(::aura::application * papp) :
+      m_handler(papp)
+   {
+
+      //m_handler.EnablePool();
+
+   }
+
+
+   session::~session()
+   {
+
+
+   }
+
+}

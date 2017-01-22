@@ -1021,7 +1021,7 @@ retry:
          if(iStatusCode == 0)
          {
 #if defined(BSD_STYLE_SOCKETS)
-            if(psession->m_ssl_ctx != NULL && psession->m_iSslCtxRetry == 1 && iTry < 8)
+            if(psession->ssl_ctx() != NULL && psession->m_iSslCtxRetry == 1 && iTry < 8)
             {
                goto retry;
             }
@@ -1221,8 +1221,41 @@ retry:
 
 
 
+   bool system::get(::http::session & session, const char * pszUrl, string & str, property_set & set)
+   {
 
+      bool bOk = get(session.m_handler, session.m_psocket, pszUrl, set);
 
+      if (bOk)
+      {
+
+         const char * pszData = (const char *)session.m_psocket->GetDataPtr();
+
+         strsize iSize = session.m_psocket->GetContentLength();
+
+         str = string(pszData, iSize);
+
+      }
+
+      return bOk;
+
+   }
+
+   string system::get(::http::session & session, const char * pszUrl, property_set & set)
+   {
+
+      string str;
+
+      if (!get(session, pszUrl, str, set))
+      {
+
+         return "";
+
+      }
+
+      return str;
+
+   }
 
 
    bool system::get(::sockets::socket_handler & handler, sp(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set)
@@ -1626,7 +1659,7 @@ retry_session:
       if(iStatusCode == 0)
       {
          //if(psocket->m_spsslclientcontext.is_set() && psocket->m_spsslclientcontext->m_iRetry == 1)
-         if (psocket->m_ssl_ctx != NULL && psocket->m_iSslCtxRetry == 1)
+         if (psocket->ssl_ctx() != NULL && psocket->m_iSslCtxRetry == 1)
          {
             goto retry;
          }

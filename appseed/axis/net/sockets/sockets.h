@@ -29,6 +29,10 @@
 #include "sockets_logger.h"
 #include "sockets_trace_logger.h"
 
+#if defined(BSD_STYLE_SOCKETS)
+#include "bsd/basic/sockets_ssl_client_context.h"
+#include "bsd/basic/sockets_ssl_client_context_map.h"
+#endif
 
 #include "base/sockets_base_socket.h"
 

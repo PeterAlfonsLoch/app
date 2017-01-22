@@ -49,6 +49,14 @@ namespace windows
 }
 
 
+::file::path dir::public_system()
+{
+
+   return public_root() / "system";
+
+}
+
+
 ::file::path dir::system()
 {
 
@@ -73,6 +81,36 @@ namespace windows
 #ifdef WINDOWSEX
 
    str = ::windows::get_known_folder(FOLDERID_RoamingAppData);
+
+   str /= "ca2";
+
+#elif defined(METROWIN)
+
+   str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+
+#elif defined(VSNORD)
+
+   str = ::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir;
+
+#else
+
+   str = ::file::path(getenv("HOME")) / ".ca2/appdata";
+
+#endif
+
+   return str;
+
+}
+
+
+::file::path dir::public_root()
+{
+
+   ::file::path str;
+
+#ifdef WINDOWSEX
+
+   str = ::windows::get_known_folder(FOLDERID_ProgramData);
 
    str /= "ca2";
 

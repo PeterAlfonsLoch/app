@@ -196,7 +196,7 @@ namespace sockets
 	  InitializeContext(m_strCat, m_strCat, "", TLS_server_method());
 
 
-	 // SSL_CTX_set_min_proto_version(m_ssl_ctx, TLS1_VERSION);
+	 // SSL_CTX_set_min_proto_version(ssl_ctx(), TLS1_VERSION);
 
       //synch_lock sl(m_pmutexSslCtx);
 
@@ -256,7 +256,7 @@ namespace sockets
 
          }
 
-         SSL_CTX_set_tmp_dh_callback(m_ssl_ctx, &tmp_dh_callback);
+         SSL_CTX_set_tmp_dh_callback(ssl_ctx(), &tmp_dh_callback);
 
       }
 
@@ -268,24 +268,24 @@ namespace sockets
 
          EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
 
-         SSL_CTX_set_tmp_ecdh(m_ssl_ctx, ecdh);
+         SSL_CTX_set_tmp_ecdh(ssl_ctx(), ecdh);
 
       }
 
       if (m_strCipherList.find("DH") >= 0)
       {
 
-         SSL_CTX_set_options(m_ssl_ctx, SSL_CTX_get_options(m_ssl_ctx) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
+         SSL_CTX_set_options(ssl_ctx(), SSL_CTX_get_options(ssl_ctx()) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
 
       }
       else
       {
 
-         SSL_CTX_set_options(m_ssl_ctx, SSL_CTX_get_options(m_ssl_ctx) | SSL_OP_CIPHER_SERVER_PREFERENCE);
+         SSL_CTX_set_options(ssl_ctx(), SSL_CTX_get_options(ssl_ctx()) | SSL_OP_CIPHER_SERVER_PREFERENCE);
 
       }
 
-      SSL_CTX_set_cipher_list(m_ssl_ctx, strCipherList);
+      SSL_CTX_set_cipher_list(ssl_ctx(), strCipherList);
 
    }
 

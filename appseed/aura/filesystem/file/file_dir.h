@@ -20,9 +20,11 @@ namespace dir
    CLASS_DECL_AURA ::file::path appdata(string strPlatform); // appdata
    CLASS_DECL_AURA ::file::path userappdata();
    CLASS_DECL_AURA ::file::path app(); // appdata *root* (common to all apps in system or bundle)
+   CLASS_DECL_AURA ::file::path public_system();
    CLASS_DECL_AURA ::file::path system();
    CLASS_DECL_AURA ::file::path local();
    CLASS_DECL_AURA ::file::path root(); // writable root (non-bin, non-exe)
+   CLASS_DECL_AURA::file::path public_root(); // writable common root (non-bin, non-exe)
    CLASS_DECL_AURA bool is(const ::file::path & path);
    CLASS_DECL_AURA bool mk(const  ::file::path & path);
    CLASS_DECL_AURA void ls(::file::patha & patha,const ::file::path & path);

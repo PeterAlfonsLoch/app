@@ -55,6 +55,12 @@ namespace axis
       application();
       virtual ~application();
 
+      virtual bool app_data_get(class id id, ::file::ostream & os);
+      virtual bool app_data_set(class id id, ::file::istream & is);
+
+      virtual bool app_data_set(class id id, ::file::serializable & obj);
+      virtual bool app_data_get(class id id, ::file::serializable & obj);
+
 
       virtual string get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive) override;
       virtual string get_cred(string & strUsername, string & strPassword, string strToken);
