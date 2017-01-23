@@ -1969,39 +1969,6 @@ namespace axis
 
       m_dwAlive = ::get_tick_count();
 
-      if (is_system())
-      {
-         
-         mutex m(get_app(), false, "Global\\ca2_datetime_departament");
-
-         synch_lock sl(&m);
-         
-         {
-
-            ::file::path path = ::dir::public_system() / "datetime_departament_m_countryTimeZone.bin";
-
-            auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_read);
-
-            ::file::byte_istream is(file);
-
-            ::file::map::read(is, System.datetime().m_countryTimeZone);
-
-         }
-
-
-         {
-
-            ::file::path path = ::dir::public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
-
-            auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_read);
-
-            ::file::byte_istream is(file);
-
-            ::file::map::read(is, System.datetime().m_countryLocalityTimeZone);
-
-         }
-      }
-
       if(!::aura::application::initialize1())
          return false;
 

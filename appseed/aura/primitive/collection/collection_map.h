@@ -1617,3 +1617,15 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
 
 
 
+
+
+
+
+template < class VALUE, class ARG_VALUE = const VALUE & >
+using double_map = map < double, double, VALUE, ARG_VALUE >;
+
+using double_to_double = double_map < double, double >;
+
+
+
+

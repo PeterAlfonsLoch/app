@@ -94,9 +94,9 @@ namespace sockets
       int m_iSslCtxRetry;
       sp(ssl_client_context)     m_spsslclientcontext;
 
-      //SSL_CTX *m_ssl_ctx; ///< ssl context
-      //SSL_SESSION * ssl_session(); ///< ssl session
-      //const SSL_METHOD * ssl_method(); ///< ssl method
+      SSL_CTX *m_ssl_ctx; ///< ssl context
+      SSL_SESSION * m_ssl_session; ///< ssl session
+      const SSL_METHOD * m_ssl_method; ///< ssl method
       SSL *m_ssl; ///< ssl 'socket'
       BIO *m_sbio; ///< ssl bio
       string m_password; ///< ssl password
@@ -756,12 +756,6 @@ namespace sockets
 
 
       virtual string get_short_description();
-
-      virtual void free_ssl_client_context();
-      virtual SSL_CTX * & ssl_ctx(); ///< ssl context
-      virtual SSL_SESSION * & ssl_session(); ///< ssl session
-      virtual const SSL_METHOD * & ssl_method(); ///< ssl method
-
 
    };
 

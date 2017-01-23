@@ -1142,7 +1142,7 @@ namespace sockets
 
       //{
 
-      //   if(ssl_ctx())
+      //   if(m_ssl_ctx)
       //   {
 
       //      TRACE("SSL Context already initialized - closing socket\n");
@@ -1157,7 +1157,7 @@ namespace sockets
 
       //}
 
-//      if(!ssl_ctx())
+//      if(!m_ssl_ctx)
   //    {
 
          InitSSLClient();
@@ -1168,11 +1168,11 @@ namespace sockets
 
       //slMap.unlock();
 
-      if(ssl_ctx())
+      if(m_ssl_ctx)
       {
          
          /* Connect the SSL socket */
-         m_ssl = SSL_new(ssl_ctx());
+         m_ssl = SSL_new(m_ssl_ctx);
          
          if(!m_ssl)
          {
@@ -1185,7 +1185,7 @@ namespace sockets
 
          }
 
-         if (m_bClientSessionSet || ssl_session() == NULL)
+         if (m_bClientSessionSet || m_ssl_session == NULL)
          {
 
             if (m_strTlsHostName.has_char())
@@ -1241,7 +1241,7 @@ namespace sockets
       //synch_lock slMap(&Session.sockets().m_servercontextmap.m_mutex);
 
       {
-         if(ssl_ctx())
+         if(m_ssl_ctx)
          {
             TRACE("SSL Context already initialized - closing socket\n");
             SetCloseAndDelete(true);
@@ -1257,9 +1257,9 @@ namespace sockets
       //slMap.unlock();
 
 
-      if(ssl_ctx())
+      if(m_ssl_ctx)
       {
-         m_ssl = SSL_new(ssl_ctx());
+         m_ssl = SSL_new(m_ssl_ctx);
          if(!m_ssl)
          {
             TRACE(" m_ssl is NULL\n");
@@ -1286,14 +1286,15 @@ namespace sockets
 
    bool tcp_socket::SSLNegotiate()
    {
+
       if(!IsSSLServer()) // client
       {
          TRACE("SSL_connect!!");
 
-         if (!m_bClientSessionSet && ssl_session() != NULL)
+         if (!m_bClientSessionSet && m_ssl_session != NULL)
          {
 
-            SSL_set_session(m_ssl, ssl_session());
+            SSL_set_session(m_ssl, m_ssl_session);
 
             m_bClientSessionSet = true;
 
@@ -1322,13 +1323,25 @@ namespace sockets
                OnSSLConnectFailed();
                return false;
             }
-            if (ssl_session() != NULL)
+            
+            if (m_ssl_session != NULL)
             {
-               SSL_SESSION_free(ssl_session());
+            
+               SSL_SESSION_free(m_ssl_session);
+
+               m_spsslclientcontext->m_psession = NULL;
+
+               m_ssl_session = NULL;
+
             }
-            if (ssl_session() == NULL)
+
+            if (m_ssl_session == NULL)
             {
-               ssl_session() = SSL_get1_session(m_ssl);
+
+               m_ssl_session = SSL_get1_session(m_ssl);
+
+               m_spsslclientcontext->m_psession = m_ssl_session;
+
             }
 
             /// \todo: resurrect certificate check... client
@@ -1367,16 +1380,16 @@ namespace sockets
             int iErrorSsl = SSL_get_error(m_ssl,r);
 
             //if(m_spsslclientcontext.is_set() &&
-            if (ssl_ctx() != NULL &&
+            if (m_ssl_ctx != NULL &&
                iErrorSsl == SSL_ERROR_ZERO_RETURN
-               && (ssl_method() == TLS_client_method()))
+               && (m_ssl_method == TLS_client_method()))
             {
                TRACE("ssl_error_zero_return");
             }
 
             else
             {
-               if (ssl_session() != NULL)
+               if (m_ssl_session != NULL)
                {
 
                   if (m_iSslCtxRetry == 0)
@@ -1384,8 +1397,8 @@ namespace sockets
 
                      m_iSslCtxRetry = 1;
                      SSL_clear(m_ssl);
-                     SSL_SESSION_free(ssl_session());
-                     ssl_session() = NULL;
+                     SSL_SESSION_free(m_ssl_session);
+                     m_ssl_session = NULL;
                      goto skip;
                   }
                   else
@@ -1520,6 +1533,12 @@ skip:
             if (m_spsslclientcontext->m_pcontext != NULL)
             {
 
+               m_ssl_ctx = m_spsslclientcontext->m_pcontext;
+
+               m_ssl_session = m_spsslclientcontext->m_psession;
+
+               m_ssl_method = m_spsslclientcontext->m_pmethod;
+
                return;
 
             }
@@ -1531,16 +1550,16 @@ skip:
       //if (m_spsslclientcontext.is_set())
       //{
 
-      //   ssl_ctx() = m_spsslclientcontext->m_pcontext;
+      //   m_ssl_ctx = m_spsslclientcontext->m_pcontext;
 
       //   m_pmutexSslCtx = &m_spsslclientcontext->m_mutex;
 
       //}
 
       //ERR_load_ERR_strings();
-      ssl_method() = pmethod != NULL ? pmethod : TLS_client_method();
+      m_ssl_method = pmethod != NULL ? pmethod : TLS_client_method();
 
-      ssl_ctx() = SSL_CTX_new(ssl_method());
+      m_ssl_ctx = SSL_CTX_new(m_ssl_method);
 
       char buf[255];
 
@@ -1551,7 +1570,11 @@ skip:
 
       //         const char * pszReason = ERR_reason_error_string(err);
 
-      SSL_CTX_set_mode(ssl_ctx(), SSL_MODE_AUTO_RETRY);
+      SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
+
+      m_spsslclientcontext->m_pmethod = m_ssl_method;
+
+      m_spsslclientcontext->m_psession = m_ssl_session;
 
       ///* create our context*/
       //if(m_spsslclientcontext.is_null())
@@ -1572,7 +1595,7 @@ skip:
       //}
       //if(m_spsslclientcontext.is_set())
       //{
-      //   ssl_ctx() = m_spsslclientcontext->m_pcontext;
+      //   m_ssl_ctx = m_spsslclientcontext->m_pcontext;
       //   m_pmutexSslCtx = &m_spsslclientcontext->m_mutex;
       //}
    }
@@ -1581,29 +1604,29 @@ skip:
    void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in)
    {
 
-      ssl_method() = meth_in != NULL ? meth_in : TLS_server_method();
+      m_ssl_method = meth_in != NULL ? meth_in : TLS_server_method();
 
-      ssl_ctx() = SSL_CTX_new(ssl_method());
-      SSL_CTX_set_mode(ssl_ctx(), SSL_MODE_AUTO_RETRY);
+      m_ssl_ctx = SSL_CTX_new(m_ssl_method);
+      SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
       // session id
-      //if (context.get_length())
-        // SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)(const  char *)context, (uint32_t)context.get_length());
-      //else
-         SSL_CTX_set_session_id_context(ssl_ctx(), (const uchar *)"--is_empty--", 9);
+      if (context.get_length())
+          SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)(const  char *)context, (uint32_t)context.get_length());
+      else
+         SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)"--is_empty--", 9);
 
-      if (!SSL_CTX_use_certificate_chain_file(ssl_ctx(), keyfile))
+      if (!SSL_CTX_use_certificate_chain_file(m_ssl_ctx, keyfile))
       {
          /* Load our keys and certificates*/
-         if (!(SSL_CTX_use_certificate_file(ssl_ctx(), keyfile, SSL_FILETYPE_PEM)))
+         if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
          {
             thiserr << "tcp_socket InitializeContext,0,Couldn't read certificate file " << keyfile << "::aura::log::level_fatal";
          }
       }
 
       m_password = password;
-      SSL_CTX_set_default_passwd_cb(ssl_ctx(), tcp_socket_SSL_password_cb);
-      SSL_CTX_set_default_passwd_cb_userdata(ssl_ctx(), (socket *) this);
-      if (!(SSL_CTX_use_PrivateKey_file(ssl_ctx(), keyfile, SSL_FILETYPE_PEM)))
+      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
+      SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, (socket *) this);
+      if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
          thiserr << "tcp_socket InitializeContext,0,Couldn't read private key file " << keyfile << "::aura::log::level_fatal";
       }
@@ -1631,25 +1654,25 @@ skip:
    {
 
       /* create our context*/
-      ssl_method() = meth_in != NULL ? meth_in : TLS_client_method();
-      ssl_ctx() = SSL_CTX_new(ssl_method());
-      SSL_CTX_set_mode(ssl_ctx(), SSL_MODE_AUTO_RETRY);
+      m_ssl_method = meth_in != NULL ? meth_in : TLS_client_method();
+      m_ssl_ctx = SSL_CTX_new(m_ssl_method);
+      SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
       // session id
       if (context.get_length())
-         SSL_CTX_set_session_id_context(ssl_ctx(), (const uchar *)(const  char *)context, (uint32_t)context.get_length());
+         SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)(const  char *)context, (uint32_t)context.get_length());
       else
-         SSL_CTX_set_session_id_context(ssl_ctx(), (const uchar *)"--is_empty--", 9);
+         SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)"--is_empty--", 9);
 
       /* Load our keys and certificates*/
-      if (!(SSL_CTX_use_certificate_file(ssl_ctx(), certfile, SSL_FILETYPE_PEM)))
+      if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, certfile, SSL_FILETYPE_PEM)))
       {
          TRACE(string("tcp_socket InitializeContext(2),0,Couldn't read certificate file ") + keyfile + string("::aura::log::level_fatal"));
       }
 
       m_password = password;
-      SSL_CTX_set_default_passwd_cb(ssl_ctx(), tcp_socket_SSL_password_cb);
-      SSL_CTX_set_default_passwd_cb_userdata(ssl_ctx(), (socket *) this);
-      if (!(SSL_CTX_use_PrivateKey_file(ssl_ctx(), keyfile, SSL_FILETYPE_PEM)))
+      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
+      SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, (socket *) this);
+      if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
          TRACE(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("::aura::log::level_fatal"));
       }
@@ -1748,9 +1771,9 @@ skip:
 
       if(m_ssl)
       {
-         if (ssl_session() != NULL)
+         if (m_ssl_session != NULL)
          {
-            SSL_SESSION_up_ref(ssl_session());
+            SSL_SESSION_up_ref(m_ssl_session);
          }
          SSL_free(m_ssl);
          m_ssl = NULL;
@@ -1767,9 +1790,9 @@ skip:
 #ifdef HAVE_OPENSSL
    SSL_CTX *tcp_socket::GetSslContext()
    {
-      if(!ssl_ctx())
+      if(!m_ssl_ctx)
          log("GetSslContext",0,"SSL Context is NULL; check InitSSLServer/InitSSLClient",::aura::log::level_warning);
-      return ssl_ctx();
+      return m_ssl_ctx;
    }
 
    SSL *tcp_socket::GetSsl()

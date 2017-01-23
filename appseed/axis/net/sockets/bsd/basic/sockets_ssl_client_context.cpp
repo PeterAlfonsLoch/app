@@ -57,7 +57,12 @@ namespace sockets
 
          SSL_CTX_free(m_pcontext);
 
+         m_pcontext = NULL;
+
       }
+
+      m_pmethod = NULL;
+
 
    }
 

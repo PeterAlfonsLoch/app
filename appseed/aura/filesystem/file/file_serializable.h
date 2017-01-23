@@ -110,35 +110,71 @@ namespace file
       template < class type_map >
       void write(ostream & ostream,const type_map & m)
       {
-         ::count count = m.get_count();
-         ostream.write_arbitrary(count);
-         const typename type_map::pair * p = m.PGetFirstAssoc();
-         for(index index = 0; index < count; index++)
+         
+         ostream.write_arbitrary(m.get_count());
+
+         auto p = m.PGetFirstAssoc();
+
+         while(p != NULL)
          {
+
             ostream << p->m_element1;
+
             ostream << p->m_element2;
+
             p = m.PGetNextAssoc(p);
+
          }
+
       }
+
 
       template < class type_map >
       void read(istream & istream,type_map & m)
       {
+
          ::count count;
+
          istream.read_arbitrary(count);
-         if(istream.fail())
+
+         if (istream.fail())
+         {
+
             return;
+
+         }
+
          typename type_map::AXIS_KEY key;
+
          typename type_map::AXIS_VALUE value;
+
          for(index index = 0; index < count; index++)
          {
+
             istream >> key;
-            istream >> value;
-            if(istream.fail())
+
+            if (istream.fail())
+            {
+
                return;
+
+            }
+
+            istream >> value;
+
+            if (istream.fail())
+            {
+
+               return;
+
+            }
+
             m.set_at(key,value);
+
          }
+
          m.on_after_read();
+
       }
 
    } // namespace map

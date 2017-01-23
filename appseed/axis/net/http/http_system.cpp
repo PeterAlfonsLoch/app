@@ -1021,7 +1021,7 @@ retry:
          if(iStatusCode == 0)
          {
 #if defined(BSD_STYLE_SOCKETS)
-            if(psession->ssl_ctx() != NULL && psession->m_iSslCtxRetry == 1 && iTry < 8)
+            if(psession->m_ssl_ctx != NULL && psession->m_iSslCtxRetry == 1 && iTry < 8)
             {
                goto retry;
             }
@@ -1659,7 +1659,7 @@ retry_session:
       if(iStatusCode == 0)
       {
          //if(psocket->m_spsslclientcontext.is_set() && psocket->m_spsslclientcontext->m_iRetry == 1)
-         if (psocket->ssl_ctx() != NULL && psocket->m_iSslCtxRetry == 1)
+         if (psocket->m_ssl_ctx != NULL && psocket->m_iSslCtxRetry == 1)
          {
             goto retry;
          }

@@ -23,18 +23,25 @@ namespace datetime
       m_international(papp),
       m_str(papp)
    {
-      m_str.m_pdatetime = this;
+
+      m_pmutex = new mutex(papp);
       
+      m_str.m_pdatetime = this;
 
+      m_bInitialLocalityTimeZoneInit = false;
 
-
+      //m_bInitialCountryTimeZoneInit = false;
 
    }
+
 
    class department::international & department::international()
    {
+
       return m_international;
+
    }
+
 
    class department::str & department::str()
    {
@@ -710,6 +717,54 @@ namespace datetime
 
       }
 
+      class time_zone timezone;
+
+      ::datetime::time_span spanTimeout(1, 0, 0, 0);
+
+      ::datetime::time now = ::datetime::time::get_current_time();
+
+      mutex m(get_app(), false, "Global\\ca2_datetime_departament");
+
+      {
+
+         synch_lock sl(&m);
+
+         if (!m_bInitialLocalityTimeZoneInit)
+         {
+
+            m_bInitialLocalityTimeZoneInit = true;
+
+            {
+
+               ::file::path path = ::dir::public_system() / "datetime_departament_cityTimeZone.bin";
+
+               auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_read);
+
+               if (file.is_set())
+               {
+
+                  ::file::byte_istream is(file);
+
+                  is >> m_cityTimeZone;
+
+               }
+
+            }
+
+         }
+
+         if (m_cityTimeZone.Lookup(pcity->m_iId, timezone) && (now - timezone.m_time) < spanTimeout)
+         {
+
+            dZone = timezone.m_dZone;
+
+            return timezone.m_strZone;
+
+         }
+
+      }
+
+
       property_set set;
 
       string strLat = ::str::from(pcity->m_dLat);
@@ -766,6 +821,28 @@ namespace datetime
 
       }
 
+      timezone.m_strZone = str;
+
+      timezone.m_dZone = dZone;
+
+      timezone.m_time = now;
+
+      {
+
+         synch_lock sl(&m);
+
+         m_cityTimeZone[pcity->m_iId] = timezone;
+
+         ::file::path path = ::dir::public_system() / "datetime_departament_cityTimeZone.bin";
+
+         auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+
+         ::file::byte_ostream os(file);
+
+         os << m_cityTimeZone;
+
+      }
+
       return str;
 
    }
@@ -774,75 +851,16 @@ namespace datetime
    string  department::initial_locality_time_zone(string strCountry, string strLocality, double & dZone)
    {
 
-      class time_zone timezone;
-
-      ::datetime::time_span spanTimeout(1, 0, 0, 0);
-
-      ::datetime::time now = ::datetime::time::get_current_time();
-
       string str;
 
       if (strLocality.is_empty())
       {
 
-         {
+         str = initial_country_time_zone(strCountry);
 
-            synch_lock sl(System.m_pmutex);
-
-            if (m_countryTimeZone.Lookup(strCountry, timezone) && (now - timezone.m_time) < spanTimeout)
-            {
-
-               dZone = timezone.m_dZone;
-
-               return timezone.m_strZone;
-
-            }
-
-         }
-
-         timezone.m_strZone = str = initial_country_time_zone(strCountry);
-
-         timezone.m_dZone = dZone = time_zone(str, strCountry);
-
-         timezone.m_time = now;
-
-         {
-
-            synch_lock sl(System.m_pmutex);
-
-            m_countryTimeZone[strCountry] = timezone;
-
-            {
-
-               ::file::path path = ::dir::public_system() / "datetime_departament_m_countryTimeZone.bin";
-
-               auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
-
-               ::file::byte_ostream os(file);
-
-               ::file::map::write(os, System.datetime().m_countryTimeZone);
-
-            }
-
-
-         }
+         dZone = time_zone(str, strCountry);
 
          return str;
-
-      }
-
-      {
-
-         synch_lock sl(System.m_pmutex);
-
-         if (m_countryLocalityTimeZone[strCountry].Lookup(strLocality, timezone) && (now - timezone.m_time) < spanTimeout)
-         {
-
-            dZone = timezone.m_dZone;
-
-            return timezone.m_strZone;
-
-         }
 
       }
 
@@ -868,100 +886,103 @@ namespace datetime
 
       auto pcity = System.openweather_find_city(strQ);
 
-      if (pcity != NULL)
-      {
+      return initial_locality_time_zone(pcity, dZone);
 
-         property_set set;
-
-         string strLat = ::str::from(pcity->m_dLat);
-
-         string strLng = ::str::from(pcity->m_dLon);
-
-         string strKey;
-
-#ifdef WINDOWS
-
-         strKey = file_as_string_dup("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
-
-#else
-
-         strKey = file_as_string_dup("/sensitive/sensitive/seed/timezonedb.txt");
-
-#endif
-
-         str = Application.http_get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
-
-         if (str.has_char())
-         {
-
-            const char * pszJson = str;
-
-            var v;
-
-            try
-            {
-
-               v.parse_json(pszJson);
-
-               str = v["abbreviation"].get_string().lowered();
-
-               dZone = v["gmtoffset"].get_double() / 3600.0;
-
-            }
-            catch (...)
-            {
-
-               str = "utc";
-
-               dZone = 0.0;
-
-            }
-
-         }
-         else
-         {
-
-            str = "utc";
-
-            dZone = 0.0;
-
-         }
-
-      }
-      else
-      {
-
-         str = "utc";
-
-         dZone = 0.0;
-
-      }
-
-
-      timezone.m_strZone = str;
-
-      timezone.m_dZone = dZone;
-
-      timezone.m_time = now;
-
-
-      {
-
-         synch_lock sl(System.m_pmutex);
-
-         m_countryLocalityTimeZone[strCountry][strLocality] = timezone;
-
-         ::file::path path = ::dir::public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
-
-         auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
-
-         ::file::byte_ostream os(file);
-
-         ::file::map::write(os, System.datetime().m_countryLocalityTimeZone);
-
-      }
-
-      return str;
+//      if (pcity != NULL)
+//      {
+//
+//
+//
+//         property_set set;
+//
+//         string strLat = ::str::from(pcity->m_dLat);
+//
+//         string strLng = ::str::from(pcity->m_dLon);
+//
+//         string strKey;
+//
+//#ifdef WINDOWS
+//
+//         strKey = file_as_string_dup("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+//
+//#else
+//
+//         strKey = file_as_string_dup("/sensitive/sensitive/seed/timezonedb.txt");
+//
+//#endif
+//
+//         str = Application.http_get("http://api.timezonedb.com/?key=" + strKey + "&format=json&lat=" + strLat + "&lng=" + strLng, set);
+//
+//         if (str.has_char())
+//         {
+//
+//            const char * pszJson = str;
+//
+//            var v;
+//
+//            try
+//            {
+//
+//               v.parse_json(pszJson);
+//
+//               str = v["abbreviation"].get_string().lowered();
+//
+//               dZone = v["gmtoffset"].get_double() / 3600.0;
+//
+//            }
+//            catch (...)
+//            {
+//
+//               str = "utc";
+//
+//               dZone = 0.0;
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            str = "utc";
+//
+//            dZone = 0.0;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         str = "utc";
+//
+//         dZone = 0.0;
+//
+//      }
+//
+//
+//      timezone.m_strZone = str;
+//
+//      timezone.m_dZone = dZone;
+//
+//      timezone.m_time = now;
+//
+//      {
+//
+//         synch_lock sl(&m);
+//
+//         m_countryLocalityTimeZone[strCountry][strLocality] = timezone;
+//
+//         ::file::path path = ::dir::public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
+//
+//         auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+//
+//         ::file::byte_ostream os(file);
+//
+//         ::file::map::write(os, m_countryLocalityTimeZone);
+//
+//      }
+//
+//      return str;
 
    }
 
@@ -1510,7 +1531,21 @@ CLASS_DECL_AURA ::file::ostream &operator << (file::ostream & os, const string_m
 
 }
 
+CLASS_DECL_AURA file::istream &operator >> (file::istream & is, int_ptr_map < class ::datetime::department::time_zone > & m)
+{
 
+   ::file::map::read(is, m);
 
+   return is;
 
+}
+
+CLASS_DECL_AURA::file::ostream &operator << (file::ostream & os, const int_ptr_map < class ::datetime::department::time_zone > & m)
+{
+
+   ::file::map::write(os, m);
+
+   return os;
+
+}
 

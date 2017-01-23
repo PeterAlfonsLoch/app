@@ -72,12 +72,16 @@ namespace datetime
       };
 
 
-      string_map < time_zone >                     m_countryTimeZone;
-      string_map < string_map < time_zone > >      m_countryLocalityTimeZone;
+      int_ptr_map < time_zone >     m_cityTimeZone;
+      //string_map < time_zone >      m_countryTimeZone;
 
 
       class ::datetime::department::international  m_international;
       class ::datetime::department::str            m_str;
+
+
+      //bool                                         m_bInitialCountryTimeZoneInit;
+      bool                                         m_bInitialLocalityTimeZoneInit;
 
 
       department(::aura::application * papp);
@@ -144,8 +148,10 @@ namespace datetime
 
 CLASS_DECL_AURA ::file::istream &operator >> (file::istream & is, class ::datetime::department::time_zone & z);
 CLASS_DECL_AURA ::file::ostream &operator << (file::ostream & os, const class ::datetime::department::time_zone & z);
-CLASS_DECL_AURA ::file::istream &operator >> (file::istream & is, string_map < class ::datetime::department::time_zone > & m);
-CLASS_DECL_AURA ::file::ostream &operator << (file::ostream & os, const string_map < class ::datetime::department::time_zone > & m);
+CLASS_DECL_AURA ::file::istream &operator >> (file::istream & is, int_ptr_map < class ::datetime::department::time_zone > & m);
+CLASS_DECL_AURA ::file::ostream &operator << (file::ostream & os, const int_ptr_map < class ::datetime::department::time_zone > & m);
+//CLASS_DECL_AURA::file::istream &operator >> (file::istream & is, string_map < class ::datetime::department::time_zone > & m);
+//CLASS_DECL_AURA::file::ostream &operator << (file::ostream & os, const string_map < class ::datetime::department::time_zone > & m);
 
 
 

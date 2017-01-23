@@ -16,3 +16,8 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::InitHashTable(
    m_hashtable.InitHashTable(nHashSize,bAllocNow);
 
 }
+
+
+
+
+

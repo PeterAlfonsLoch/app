@@ -16,7 +16,7 @@ namespace sockets
       //m_servercontextmap(papp)
    {
 
-      System.math().random_bytes(Session.sockets().m_baTicketKey, sizeof(m_baTicketKey));
+      System.math().random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 
 
       m_iReturnCode = -1;

@@ -698,7 +698,15 @@ namespace aura
 
       m_spdir.release();
 
-      m_pdatetime.release();
+      {
+
+         mutex m(get_app(), false, "Global\\ca2_datetime_departament");
+
+         synch_lock sl(&m);
+
+         m_pdatetime.release();
+
+      }
 
       m_plog.release();
 
