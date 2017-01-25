@@ -29,6 +29,8 @@ public:
    static bool    match(const string & lpcsz, const string & strExp);
 
 
+   static index   match(stringa & stra, const string & lpcsz, cregexp * pre, strsize iSize);
+
    static index   match(stringa & stra, const string & lpcsz, const string & lpcszExp, bool bCaseInsensitive, strsize iSize);
 
 

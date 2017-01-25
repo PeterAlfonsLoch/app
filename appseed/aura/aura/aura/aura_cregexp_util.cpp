@@ -19,8 +19,20 @@ index cregexp_util::match(stringa & stra, const string & lpcsz, const string & l
 
    sp(cregexp) pre = CompileExpression(lpcszExp, bCaseInsensitive);
 
-   if(pre.is_null())
+   return match(stra, lpcsz, pre, iSize);
+
+}
+
+
+index cregexp_util::match(stringa & stra, const string & lpcsz, cregexp * pre, strsize iSize)
+{
+
+   if (pre == NULL)
+   {
+
       return -1;
+
+   }
 
    index i = pre->match(stra, lpcsz, iSize);
 
