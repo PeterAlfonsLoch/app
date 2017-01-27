@@ -81,6 +81,8 @@ namespace windows
 
       virtual bool get_default_browser(string & strId, ::file::path & path, string & strParam) override;
 
+      virtual bool register_user_auto_start(string strId, string strCommand) override;
+
    };
 
 

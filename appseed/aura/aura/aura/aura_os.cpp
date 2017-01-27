@@ -444,6 +444,14 @@ namespace aura
    }
 
 
+   bool os::register_user_auto_start(string strId, string strCommand)
+   {
+
+      return false;
+
+   }
+
+
 } // namespace core
 
 

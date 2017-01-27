@@ -1670,6 +1670,17 @@ namespace windows
 
    }
 
+
+   bool os::register_user_auto_start(string strId, string strCommand)
+   {
+
+      local_machine_set_run(strId, strCommand);
+
+      return true;
+
+   }
+
+
 } // namespace windows
 
 

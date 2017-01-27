@@ -91,6 +91,8 @@ namespace aura
 
         virtual bool get_default_browser(string & strId, ::file::path & path, string & strParam);
 
+        virtual bool register_user_auto_start(string strId, string strCommand);
+
 
     };
 
