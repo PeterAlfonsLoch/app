@@ -221,9 +221,9 @@ namespace aura
    void str::set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz)
    {
 
+      synch_lock sl(m_pmutex);
 
       (*this)[idLocale][idSchema][id] = psz;
-
 
    }
 
@@ -231,6 +231,15 @@ namespace aura
 
    string str::get(str_context * pcontext,const ::id & id, bool bIdAsDefaultValue)
    {
+
+      if (pcontext == NULL)
+      {
+
+         return "";
+
+      }
+
+      synch_lock sl(pcontext->m_pmutex);
 
       static ::id idEn("en");
       static ::id idStd("_std");
@@ -372,6 +381,15 @@ namespace aura
 
    void str::_get(stringa & stra, str_context * pcontext, const ::id & id)
    {
+
+      if (pcontext == NULL)
+      {
+
+         return;
+
+      }
+
+      synch_lock sl(pcontext->m_pmutex);
 
       static ::id idEn("en");
       static ::id idStd("_std");
