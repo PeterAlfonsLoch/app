@@ -51,7 +51,7 @@ extern int omp_get_thread_num();
 #include "install_canvas.cpp"
 #include "install_focus.cpp"
 #include "install_install.cpp"
-#include "install_installer.cpp"
+//#include "install_installer.cpp"
 //#include "install_installer_square.cpp"
 #include "install_small_bell.cpp"
 #include "install_trace.cpp"

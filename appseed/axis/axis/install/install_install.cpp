@@ -267,7 +267,7 @@ namespace install
 
       ::aura::ipc::tx txchannel(get_app());
 
-      installer::launcher launcher(get_app(), m_strVersion, pszBuild);
+      installer_launcher launcher(get_app(), m_strVersion, pszBuild);
 
       if (!txchannel.open(::aura::ipc::app_install(m_strPlatform), bLaunch ? &launcher : NULL))
          return false;
@@ -292,7 +292,7 @@ namespace install
 
       ::aura::ipc::tx txchannel(get_app());
 
-      installer::launcher launcher(get_app(), m_strVersion, pszBuild);
+      installer_launcher launcher(get_app(), m_strVersion, pszBuild);
 
       if (!txchannel.open("core/spaboot_install_callback"))
          return;
@@ -1209,180 +1209,184 @@ namespace install
 
 #endif
 
-            single_lock sl(pinstaller != NULL ? &pinstaller->m_mutexOmp : NULL);
-
-
-            {
-
-               if (pinstaller != NULL)
-               {
-
-                  pinstaller->m_daProgress.remove_all();
-                  pinstaller->m_daProgress.add(0.0);
-                  pinstaller->m_dAppInstallFileCount = straFile.get_size();
-                  pinstaller->m_dAppInstallProgressBase = 0.0;
-
-               }
-            }
-
-#pragma omp parallel for
-            for (index iFile = 0; iFile < straFile.get_size(); iFile++)
-            {
-
-               ::file::path strFile = straFile[iFile];
-
-               ::file::path strDownload = strPath.sibling(strFile);
-
-               if (pinstaller != NULL)
-               {
-                  sl.lock();
-                  pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
-                  sl.unlock();
-               }
-
-               if (!file_exists_dup(strDownload) || System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) != 0)
-               {
-
-                  trace().rich_trace("***Downloading installer");
-
-                  string strUrlPrefix = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/" + System.install().get_platform() + "/";
-
-                  string strUrl;
-
-                  property_set set;
-
-                  set["disable_ca2_sessid"] = true;
-
-                  set["raw_http"] = true;
-
-                  if (pinstaller != NULL)
-                  {
-
-                     set["int_scalar_source_listener"] = pinstaller;
-
-                  }
-
-                  int32_t iRetry;
-
-                  bool bFileNice;
-
-                  iRetry = 0;
-
-                  strUrl = strUrlPrefix + strFile + ".bz";
-
-                  bFileNice = false;
-
-
-                  sl.lock();
-                  sp(::sockets::http_session) & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
-                  sl.unlock();
-
-                  if (m_psockethandler == NULL)
-                  {
-
-                     m_psockethandler = new sockets::socket_handler(get_app());
-
-                  }
-
-
-                  while (iRetry < 8 && !bFileNice)
-                  {
-
-                     if (Application.http().download(*m_psockethandler, psession, strUrl, strDownload + ".bz", set))
-                     {
-
-                        System.compress().unbz(get_app(), strDownload, strDownload + ".bz");
-
-                        if (file_exists_dup(strDownload) && System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) == 0)
-                        {
-
-                           bFileNice = true;
-
-                        }
-
-
-                     }
-
-                     iRetry++;
-
-                  }
-
-                  if (!bFileNice)
-                  {
-
-                     // failed by too much retry in any number of the files already downloaded :
-                     // so, return failure (no eligible app.install.exe file).
-                     //return "";
-
-                  }
-                  else
-                  {
-                     if (pinstaller != NULL)
-                     {
-                        sl.lock();
-                        pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
-                        pinstaller->m_dAppInstallProgressBase += 1.0;
-                        sl.unlock();
-                     }
-
-                  }
-
-
-               }
-               else
-               {
-                  if (pinstaller != NULL)
-                  {
-                     sl.lock();
-                     pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
-                     pinstaller->m_dAppInstallProgressBase += 1.0;
-                     sl.unlock();
-                  }
-               }
-
-            }
-
-         }
-
-
-         //if (!System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild))
-         //{
-
-         //   return "";
-
-         //}
-
-         if (pmapMd5 != NULL || pmapLen != NULL)
-         {
-
-            for (index iFile = 0; iFile < straFile.get_count(); iFile++)
-            {
-
-               ::file::path strFile = straFile[iFile];
-
-               string strMap = "stage\\" + System.install().get_platform() + "\\" + strFile;
-
-               if (pmapMd5 != NULL)
-               {
-
-                  pmapMd5->set_at(strMap, straMd5[iFile]);
-
-               }
-
-               if (pmapLen != NULL)
-               {
-
-                  pmapLen->set_at(strMap, iaLen[iFile]);
-
-               }
-
-            }
-
          }
 
       }
 
+            //single_lock sl(pinstaller != NULL ? &pinstaller->m_mutexOmp : NULL);
 
+
+            //{
+
+            //   if (pinstaller != NULL)
+            //   {
+
+            //      pinstaller->m_daProgress.remove_all();
+            //      pinstaller->m_daProgress.add(0.0);
+            //      pinstaller->m_dAppInstallFileCount = straFile.get_size();
+            //      pinstaller->m_dAppInstallProgressBase = 0.0;
+
+            //   }
+            //}
+
+//#pragma omp parallel for
+//            for (index iFile = 0; iFile < straFile.get_size(); iFile++)
+//            {
+//
+//               ::file::path strFile = straFile[iFile];
+//
+//               ::file::path strDownload = strPath.sibling(strFile);
+//
+//               if (pinstaller != NULL)
+//               {
+//                  sl.lock();
+//                  pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
+//                  sl.unlock();
+//               }
+//
+//               if (!file_exists_dup(strDownload) || System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) != 0)
+//               {
+//
+//                  trace().rich_trace("***Downloading installer");
+//
+//                  string strUrlPrefix = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/" + System.install().get_platform() + "/";
+//
+//                  string strUrl;
+//
+//                  property_set set;
+//
+//                  set["disable_ca2_sessid"] = true;
+//
+//                  set["raw_http"] = true;
+//
+//                  if (pinstaller != NULL)
+//                  {
+//
+//                     set["int_scalar_source_listener"] = pinstaller;
+//
+//                  }
+//
+//                  int32_t iRetry;
+//
+//                  bool bFileNice;
+//
+//                  iRetry = 0;
+//
+//                  strUrl = strUrlPrefix + strFile + ".bz";
+//
+//                  bFileNice = false;
+//
+//
+//                  sl.lock();
+//                  sp(::sockets::http_session) & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+//                  sl.unlock();
+//
+//                  if (m_psockethandler == NULL)
+//                  {
+//
+//                     m_psockethandler = new sockets::socket_handler(get_app());
+//
+//                  }
+//
+//
+//                  while (iRetry < 8 && !bFileNice)
+//                  {
+//
+//                     if (Application.http().download(*m_psockethandler, psession, strUrl, strDownload + ".bz", set))
+//                     {
+//
+//                        System.compress().unbz(get_app(), strDownload, strDownload + ".bz");
+//
+//                        if (file_exists_dup(strDownload) && System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) == 0)
+//                        {
+//
+//                           bFileNice = true;
+//
+//                        }
+//
+//
+//                     }
+//
+//                     iRetry++;
+//
+//                  }
+//
+//                  if (!bFileNice)
+//                  {
+//
+//                     // failed by too much retry in any number of the files already downloaded :
+//                     // so, return failure (no eligible app.install.exe file).
+//                     //return "";
+//
+//                  }
+//                  else
+//                  {
+//                     if (pinstaller != NULL)
+//                     {
+//                        sl.lock();
+//                        pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
+//                        pinstaller->m_dAppInstallProgressBase += 1.0;
+//                        sl.unlock();
+//                     }
+//
+//                  }
+//
+//
+//               }
+//               else
+//               {
+//                  if (pinstaller != NULL)
+//                  {
+//                     sl.lock();
+//                     pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
+//                     pinstaller->m_dAppInstallProgressBase += 1.0;
+//                     sl.unlock();
+//                  }
+//               }
+//
+//            }
+//
+//         }
+//
+//
+//         //if (!System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild))
+//         //{
+//
+//         //   return "";
+//
+//         //}
+//
+//         if (pmapMd5 != NULL || pmapLen != NULL)
+//         {
+//
+//            for (index iFile = 0; iFile < straFile.get_count(); iFile++)
+//            {
+//
+//               ::file::path strFile = straFile[iFile];
+//
+//               string strMap = "stage\\" + System.install().get_platform() + "\\" + strFile;
+//
+//               if (pmapMd5 != NULL)
+//               {
+//
+//                  pmapMd5->set_at(strMap, straMd5[iFile]);
+//
+//               }
+//
+//               if (pmapLen != NULL)
+//               {
+//
+//                  pmapLen->set_at(strMap, iaLen[iFile]);
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//
       return strPath;
 
    }

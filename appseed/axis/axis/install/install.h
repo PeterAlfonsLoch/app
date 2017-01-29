@@ -22,7 +22,7 @@ CLASS_DECL_AXIS stringa install_get_plugin_base_library_list(const string & strP
 //#include "install_plugin.h"
 //#include "install_starter_start.h"
 #include "install_focus.h"
-#include "install_installer.h"
+#include "install_installer_launcher.h"
 #include "install_trace.h"
 
 
