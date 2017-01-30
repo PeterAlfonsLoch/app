@@ -1,4 +1,6 @@
 app\stage\metastage\bergedge.spa
 app\stage\metastage\app-cidadedecuritiba\alphaclock.spa
+app\stage\metastage\audio.spa
 stage\basis\userdatetime.dll
 stage\basis\app_core_timer.dll
+stage\basis\app_core_timer.exe

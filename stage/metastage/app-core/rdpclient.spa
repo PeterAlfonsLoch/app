@@ -3,6 +3,6 @@ app\stage\metastage\audio.spa
 app\stage\metastage\av.spa
 stage\basis\axisclientchannels.dll
 stage\basis\axisfreerdp.dll
-stage\basis\axisrdpclient.dll
 stage\basis\axiswinpr.dll
-stage\basis\app_core_hellomultiverse.dll
+stage\basis\app_core_rdpclient.dll
+stage\basis\app_core_rdpclient.exe
