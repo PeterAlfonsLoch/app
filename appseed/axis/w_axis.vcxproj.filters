@@ -1768,5 +1768,8 @@
     <ClCompile Include="net\sockets\sockets_websocket_client.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
+    <ClCompile Include="axis\install\install_installer_launcher.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

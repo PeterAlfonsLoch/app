@@ -3397,6 +3397,9 @@
     <ClCompile Include="aura\os\os_debug.cpp">
       <Filter>Source Files\aura\os</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_zonetime.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="aura.rc">

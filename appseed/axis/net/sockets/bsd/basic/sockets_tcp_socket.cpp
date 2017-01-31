@@ -1773,7 +1773,7 @@ skip:
       {
          if (m_ssl_session != NULL)
          {
-            SSL_SESSION_up_ref(m_ssl_session);
+            m_ssl_session = SSL_get1_session(m_ssl);
          }
          SSL_free(m_ssl);
          m_ssl = NULL;
