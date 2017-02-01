@@ -847,6 +847,8 @@ return ::getpid();
 
       string str = System.process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
+      //string str = System.process().get_output("xdg-settings get default-web-browser");
+
       if(str.find_ci("chrome") >= 0)
       {
 

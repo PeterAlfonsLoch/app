@@ -180,7 +180,7 @@ namespace ansios
 
       char *	cmd_line;
 
-      cmd_line = (char *) memory_alloc(strlen(pszCmdLine ) + 1 );
+      cmd_line = (char *) malloc(strlen(pszCmdLine ) + 1 );
 
       if(cmd_line == NULL)
       return 0;
@@ -308,65 +308,65 @@ namespace ansios
 
 
 //      string strFallback = ::ca2_module_folder_dup();
-      
+
       string str(pszCmdLineParam);
-      
-      
+
+
       {
-         
+
          stringa stra;
-         
+
          ref_array < char > argv;
-      
+
          stra.explode_command_line(str, &argv);
-         
+
          str = argv[0];
-         
+
       }
-      
+
       string strFallback;
-      
+
       ::file::path path = str;
-      
+
       if(Application.file().exists(path.folder() / "libaura.dylib"))
       {
-         
+
          ::file::path folderNew = path.folder();
-         
+
          folderNew -= 3;
-         
+
          if(Application.file().exists(folderNew / "libaura.dylib"))
          {
-            
+
             strFallback = folderNew;
-            
+
          }
          else
          {
-         
+
             strFallback = path.folder();
-            
+
          }
-         
+
       }
       else
       {
-         
+
          string strFolder = path.folder();
-         
+
          if(::str::ends_eat_ci(strFolder, (::file::path(str).name() + ".app")/"Contents"/ "MacOS"))
          {
-            
+
             strFallback = strFolder;
-            
+
          }
          else
          {
-          
+
             strFallback = ::ca2_module_folder_dup();
-            
+
          }
-         
+
       }
 
       string strFolder = strFallback;
@@ -606,11 +606,11 @@ namespace ansios
     //     m_iPid = pptp_pid;
 
          DWORD dwStart = get_tick_count();
-         
+
          DWORD dwTimeOut = durationTimeOut.get_total_milliseconds();
-         
+
          char sz[1025];
-         
+
          int iRead;
 
          while(!has_exited() && get_tick_count() - dwStart < dwTimeOut)

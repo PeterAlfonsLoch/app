@@ -5938,6 +5938,16 @@ namespace draw2d_cairo
 
       }
 
+
+      ::sort::quick_sort(stra,[&](index i1, index i2)
+      {
+
+         straFile.swap(i1, i2);
+
+         csa.swap(i1, i2);
+
+      });
+
 #elif defined(WINDOWS)
 
       ::draw2d::wingdi_enum_fonts(stra, csa, false, true, false);
