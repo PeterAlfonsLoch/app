@@ -94,7 +94,7 @@ namespace windows
 
 #else
 
-   str = ::file::path(getenv("HOME")) / ".ca2/appdata";
+   str = ::file::path(getenv("HOME")) / ".config/ca2";
 
 #endif
 
@@ -124,7 +124,7 @@ namespace windows
 
 #else
 
-   str = ::file::path(getenv("HOME")) / ".ca2/appdata";
+   str = ::file::path(getenv("HOME")) / ".config/ca2";
 
 #endif
 

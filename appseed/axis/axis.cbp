@@ -150,6 +150,7 @@
 		<Unit filename="axis/install/install_focus.h" />
 		<Unit filename="axis/install/install_install.h" />
 		<Unit filename="axis/install/install_installer.h" />
+		<Unit filename="axis/install/install_installer_launcher.cpp" />
 		<Unit filename="axis/install/install_installer_square.h" />
 		<Unit filename="axis/install/install_resource.h" />
 		<Unit filename="axis/install/install_small_bell.h" />

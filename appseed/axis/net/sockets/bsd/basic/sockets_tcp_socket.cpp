@@ -28,7 +28,7 @@ void SSL_init_app_data2_3_idx(void)
    for (i = 0; i <= 1; i++) {
       SSL_app_data2_idx =
          SSL_get_ex_new_index(0,
-            "Second Application Data for SSL",
+            (void *) "Second Application Data for SSL",
             NULL, NULL, NULL);
    }
 
@@ -38,7 +38,7 @@ void SSL_init_app_data2_3_idx(void)
 
    SSL_app_data3_idx =
       SSL_get_ex_new_index(0,
-         "Third Application Data for SSL",
+         (void *) "Third Application Data for SSL",
          NULL, NULL, NULL);
 
 }
@@ -271,7 +271,7 @@ namespace sockets
       // check for pooling
       if(Handler().PoolEnabled())
       {
-         
+
          sp(base_socket_handler::pool_socket) ppoolsocket = Handler().FindConnection(SOCK_STREAM,"tcp",ad);
 
          if(ppoolsocket)
@@ -1170,10 +1170,10 @@ namespace sockets
 
       if(m_ssl_ctx)
       {
-         
+
          /* Connect the SSL socket */
          m_ssl = SSL_new(m_ssl_ctx);
-         
+
          if(!m_ssl)
          {
 
@@ -1323,10 +1323,10 @@ namespace sockets
                OnSSLConnectFailed();
                return false;
             }
-            
+
             if (m_ssl_session != NULL)
             {
-            
+
                SSL_SESSION_free(m_ssl_session);
 
                m_spsslclientcontext->m_psession = NULL;
@@ -1489,7 +1489,7 @@ skip:
    {
       //InitializeContext(m_strInitSSLClientContext,SSLv23_method());
       //InitializeContext(m_strInitSSLClientContext,TLSv1_client_method());
-      
+
       InitializeContext(m_strInitSSLClientContext,TLS_client_method());
 
    }
@@ -1500,8 +1500,8 @@ skip:
       log("InitSSLServer",0,"You MUST implement your own InitSSLServer method",::aura::log::level_fatal);
       SetCloseAndDelete();
    }
-   
-   
+
+
    void tcp_socket::InitializeContext(const string & context,const SSL_METHOD * pmethod)
    {
 
@@ -1511,15 +1511,15 @@ skip:
          string_map < sp(ssl_client_context) > & clientcontextmap = Session.sockets().m_clientcontextmap;
 
          auto * p = clientcontextmap.PLookup(context);
-         
+
          if(p == NULL)
          {
 
             m_spsslclientcontext = canew(ssl_client_context(get_app(), pmethod));
-            
+
             if(context.has_char())
             {
-               
+
                clientcontextmap[context] = m_spsslclientcontext;
 
             }
@@ -1635,7 +1635,7 @@ skip:
          synch_lock sl(m_pmutex);
          int i;
          int cnt = sizeof(Session.sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
-         m_ticketkeya.set_size(cnt);                                                                    
+         m_ticketkeya.set_size(cnt);
          int j;
          for (i = 0; i < cnt; ++i) {
             j = (SSL_SESSION_TICKET_KEY_SIZE * i);

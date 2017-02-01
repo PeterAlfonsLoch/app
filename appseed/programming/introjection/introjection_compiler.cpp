@@ -46,6 +46,8 @@ namespace introjection
 
    {
 
+
+#ifdef WINDOWS
       {
 
          ::file::path path;
@@ -80,6 +82,8 @@ namespace introjection
          }
 
       }
+
+#endif
 
       ::file::path path;
 
@@ -171,7 +175,7 @@ namespace introjection
       //m_strSdk1 = "windows7.1sdk";
       if (m_strVs == "2015")
       {
-         
+
          m_strSdk1 = "vc140";
 
       }
@@ -330,7 +334,7 @@ namespace introjection
       pathEnvTxt = dir::system() / "env.txt";
 
       file_put_contents_dup(::dir::system() / "env1.bat",::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
-      
+
       file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
       RunSilent(::dir::system() / "env1.bat","");
@@ -841,7 +845,7 @@ namespace introjection
       string strBuildCmd;
 
 #ifdef LINUX
-      strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash"));
+      strBuildCmd = System.dir().element() / "nodeapp/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
 #elif defined(__APPLE__)
       strBuildCmd.Format(System.dir().element() / "nodeapp/stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #else

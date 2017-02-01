@@ -25,7 +25,7 @@ namespace datetime
    {
 
       m_pmutex = new mutex(papp);
-      
+
       m_str.m_pdatetime = this;
 
       m_bInitialLocalityTimeZoneInit = false;
@@ -630,7 +630,7 @@ namespace datetime
 
    }
 
-   
+
    bool department::locality_sunset(openweather_city * pcity, int & iRise, int & iSet)
    {
 
@@ -738,7 +738,7 @@ namespace datetime
 
                ::file::path path = ::dir::public_system() / "datetime_departament_cityTimeZone.bin";
 
-               auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_read);
+               auto file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_read);
 
                if (file.is_set())
                {
@@ -835,7 +835,7 @@ namespace datetime
 
          ::file::path path = ::dir::public_system() / "datetime_departament_cityTimeZone.bin";
 
-         auto & file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         auto file = Application.file().friendly_get_file(path, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          ::file::byte_ostream os(file);
 

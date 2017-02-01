@@ -33,7 +33,7 @@ namespace datetime
 
    }
 
-   
+
    zonetime::zonetime(const zonetime & zonetime) throw() :
       time(zonetime.m_time),
       m_iZoneOffset(zonetime.m_iZoneOffset)
@@ -73,7 +73,7 @@ namespace datetime
 
 #else
 
-      m_time = mkgmtime(&atm);
+      m_time = timegm(&atm);
 
 #endif
 
@@ -131,7 +131,7 @@ namespace datetime
 
          t += m_iZoneOffset;
 
-         ptmTemp = gmtime(&y);
+         ptmTemp = gmtime(&t);
 
          // gmtime can return NULL
          if (ptmTemp == NULL)

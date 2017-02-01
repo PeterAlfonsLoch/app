@@ -62,7 +62,7 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++14" />
+			<Add option="-std=c++0x" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -580,7 +580,15 @@
 		<Unit filename="filesystem/file/file_c.h" />
 		<Unit filename="filesystem/file/file_circular_buffer.h" />
 		<Unit filename="filesystem/file/file_composite.h" />
+		<Unit filename="filesystem/file/file_dir.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="filesystem/file/file_dir.h" />
+		<Unit filename="filesystem/file/file_dir2.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="filesystem/file/file_edit_buffer.h" />
 		<Unit filename="filesystem/file/file_exception.h" />
 		<Unit filename="filesystem/file/file_file_istream.h" />
@@ -851,6 +859,7 @@
 		<Unit filename="primitive/datetime/datetime_mktime.h" />
 		<Unit filename="primitive/datetime/datetime_time.h" />
 		<Unit filename="primitive/datetime/datetime_value.h" />
+		<Unit filename="primitive/datetime/datetime_zonetime.cpp" />
 		<Unit filename="primitive/geometry/geometry.h" />
 		<Unit filename="primitive/geometry/geometry_align.h" />
 		<Unit filename="primitive/geometry/geometry_geometry.h" />

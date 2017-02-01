@@ -114,8 +114,8 @@ void script_compiler::prepare_compile_and_link_environment()
 {
 
    Application.dir().mk(::dir::system() / "netnodelite\\symbols");
-   
-   
+
+
    ::file::path strVars;
 
 #ifndef METROWIN
@@ -682,8 +682,11 @@ void script_compiler::compile(ds_script * pscript)
    set_thread_priority(::multithreading::priority_highest);
 
    //process->oprop("inherit") = false;
-
+#ifdef WINDOWS
    process->create_child_process(str,true,"C:\\netnode\\app-core\\appseed\\netnode_dynamic_source_script",::multithreading::priority_highest);
+   #else
+   process->create_child_process(str,true,m_pathProjectDir,::multithreading::priority_highest);
+   #endif
 
    //::system(str + " > " + "\"" + strClog + "\"");
 
@@ -1136,6 +1139,11 @@ void script_compiler::cppize1(ds_script * pscript)
 void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
 {
 
+   stringa stra;
+
+
+   string strLog;
+
 
 #ifdef WINDOWS
    //Sleep(15000);
@@ -1168,11 +1176,7 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
 
    RunSilent(::dir::system() / "env1.bat", "");
 
-   string strLog;
-
    strLog = file_as_string_dup(::dir::system() / "env.txt");
-
-   stringa stra;
 
    stra.add_lines(strLog);
 
