@@ -144,7 +144,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 #elif defined(MUTEX_NAMED_FD)
 
    //m_count = 0;
-   //m_count = 0;
+   m_count = 0;
 
    if(pstrName != NULL && *pstrName != '\0')
    {

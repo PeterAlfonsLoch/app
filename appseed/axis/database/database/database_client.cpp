@@ -120,7 +120,20 @@ namespace database
       }
       return false;
    }
+   
+#ifdef APPLEOS
 
+   bool client::data_set(class id id, long l, update_hint * puh)
+   {
+      if(m_pdataserver != NULL)
+      {
+         var var(l);
+         return m_pdataserver->data_server_save(this, id, var, puh);
+      }
+      return false;
+   }
+   
+#endif
 
 
    bool client::data_set(class id id, const char * lpsz, update_hint * puh)
@@ -252,6 +265,21 @@ namespace database
       }
       return false;
    }
+
+#ifdef APPLEOS
+   bool client::data_get(class id id, long & l)
+   {
+      if(m_pdataserver != NULL)
+      {
+         var var;
+         if(!m_pdataserver->data_server_load(this, id, var))
+            return false;
+         l = var.int64();
+         return true;
+      }
+      return false;
+   }
+#endif
 
    bool client::data_get(class id id, string & str)
    {

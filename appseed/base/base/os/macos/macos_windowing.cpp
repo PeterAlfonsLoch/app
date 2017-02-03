@@ -464,3 +464,12 @@ WINBOOL DestroyWindow(oswindow w)
    return 1;
    
 }
+
+
+void macos_on_app_activate()
+{
+   
+   ::aura::system::g_p->on_setting_changed(::aura::setting_app_activation);
+   
+}
+

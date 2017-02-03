@@ -83,8 +83,8 @@ namespace primitive
       //virtual LPBYTE detach_virtual_memory();
       //virtual HGLOBAL detach_shared_memory();
 
-      inline bool is_enabled() const;
-      inline bool is_locked() const;
+      bool is_enabled() const;
+      bool is_locked() const;
 
       virtual bool allocate(memory_size_t dwNewLength);
       virtual bool allocate_internal(memory_size_t dwNewLength);
@@ -120,7 +120,7 @@ namespace primitive
       void allocate_add_up(memory_size_t dwAddUp);
 
 
-      inline LPBYTE           internal_get_data() const;
+      LPBYTE           internal_get_data() const;
       memory_size_t      get_size() const;
       const LPBYTE     get_data() const;
       LPBYTE           get_data();
@@ -144,13 +144,13 @@ namespace primitive
       string to_string(memory_position_t iStart = 0, memory_size_t uiSize = -1) const;
 
       void delete_begin(memory_size_t iSize);
-      inline void eat_begin(void * pdata, memory_size_t iSize);
+      void eat_begin(void * pdata, memory_size_t iSize);
       void set_data(void * pdata, memory_size_t uiSize);
-      inline void copy_from(const memory_base * pstorage);
+      void copy_from(const memory_base * pstorage);
       void set(byte b,memory_position_t iStart = 0,memory_size_t uiSize = -1);
       void zero(memory_position_t iStart = 0, memory_size_t uiSize = -1);
 
-      inline void append(const memory_base & memory, memory_position_t iStart = 0, memory_size_t iCount = -1);
+      void append(const memory_base & memory, memory_position_t iStart = 0, memory_size_t iCount = -1);
       void append(const void * pdata, memory_size_t iCount);
       void assign(const void * pdata, memory_size_t iCount);
       void assign(const void * pdata, memory_position_t iStart, memory_size_t iCount);
@@ -187,7 +187,7 @@ namespace primitive
       inline bool operator == (const memory_base & s);
 
 
-      inline memory_base & reverse();
+      memory_base & reverse();
 
       memory_base & prefix_der_uint_content();
       memory_base & prefix_der_length();

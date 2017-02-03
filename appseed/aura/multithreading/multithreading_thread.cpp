@@ -368,7 +368,7 @@ bool thread::pump_message()
    {
 
       MESSAGE msg;
-      if(::GetMessage(&msg,NULL,0,0) == 0)
+      if(!::GetMessage(&msg,NULL,0,0))
       {
 
          TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received wm_quit.\n");

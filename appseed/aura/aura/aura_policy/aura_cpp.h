@@ -51,6 +51,7 @@ namespace aura
       
       setting_none,
       setting_wallpaper,
+      setting_app_activation
       
    };
    

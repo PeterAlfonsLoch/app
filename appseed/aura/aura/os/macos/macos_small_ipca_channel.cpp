@@ -235,33 +235,21 @@ namespace aura
 
          m_bRun = true;
 
-         if(pthread_create(&m_thread,NULL,&rx::receive_proc,this) != 0)
-         {
-
-            m_bRunning = false;
-
-            m_bRun = false;
-
-            return false;
-
-         }
+         m_pthread = ::fork(get_app(), [&]()
+                            {
+                               receive();
+                            });
 
          return true;
 
       }
 
-      void * rx::receive_proc(void * param)
-      {
-
-         rx * pchannel = (rx *)param;
-
-         return pchannel->receive();
-
-      }
-
+      
       void rx::receiver::on_receive(rx * prx,const char * pszMessage)
       {
+         
       }
+      
 
       void rx::receiver::on_receive(rx * prx,int message,void * pdata,memory_size_t len)
       {
@@ -353,14 +341,14 @@ namespace aura
          CFRunLoopSourceRef runLoopSource =
          CFMessagePortCreateRunLoopSource(nil, m_port, 0);
          
-         CFRunLoopAddSource(CFRunLoopGetCurrent(),
+         CFRunLoopAddSource(CFRunLoopGetMain(),
                             runLoopSource,
                             kCFRunLoopCommonModes);
          
-         while(m_bRun)
-         {
-         CFRunLoopRun();
-         }
+         //while(m_bRun && ::get_thread_run())
+         //{
+         //CFRunLoopRun();
+         //}
 
 //         while(m_bRun)
 //         {

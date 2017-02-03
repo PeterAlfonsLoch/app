@@ -99,6 +99,9 @@ namespace database
       virtual bool data_set(class id, var & var, update_hint * puh = NULL);
       virtual bool data_set(class id, int32_t i, update_hint * puh = NULL);
       virtual bool data_set(class id, int64_t i, update_hint * puh = NULL);
+#ifdef APPLEOS
+      virtual bool data_set(class id, long l, update_hint * puh = NULL);
+#endif
       virtual bool data_set(class id, const char * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, const unichar * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, ::file::stream_buffer & obj, update_hint * puh = NULL);
@@ -134,6 +137,9 @@ namespace database
       virtual bool data_get(class id, var & var);
       virtual bool data_get(class id, int32_t & i);
       virtual bool data_get(class id, int64_t & i);
+#ifdef APPLEOS
+      virtual bool data_get(class id, long & l);
+#endif
       virtual bool data_get(class id, string & str);
       virtual bool data_get(class id, ::file::stream_buffer & obj);
       virtual bool data_get(class id, ::file::serializable & obj);

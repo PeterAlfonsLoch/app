@@ -10,7 +10,7 @@
 
 
 int32_t run_system();
-
+void macos_on_app_activate();
 
 @implementation RoundWindowApp
 
@@ -19,6 +19,18 @@ int32_t run_system();
 {
    
    run_system();
+   
+}
+
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender
+                    hasVisibleWindows:(BOOL)flag
+{
+   
+   macos_on_app_activate();
+
+   
+   return YES;
    
 }
 

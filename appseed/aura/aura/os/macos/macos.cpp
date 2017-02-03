@@ -132,4 +132,3 @@ void macos_desktop_image_changed()
 
 
 
-

@@ -468,11 +468,33 @@ namespace filemanager
       
       if(macos_get_file_image(dib48, strPath))
       {
+         ::draw2d::dib_sp dib16(allocer());
+         
+         dib16->create(16, 16);
+         
+         dib16->Fill(0);
+         
          synch_lock sl1(m_pil48Hover->m_pmutex);
          synch_lock sl2(m_pil48->m_pmutex);
-         iImage = m_pil16->add_dib(dib48, 0, 0);
-         m_pil48Hover->add_dib(dib48, 0, 0);
-         
+         if(macos_get_file_image(dib16, strPath))
+         {
+            iImage = m_pil16->add_dib(dib16, 0, 0);
+            m_pil48Hover->add_dib(dib48, 0, 0);
+            
+            
+         }
+         else
+         {
+            dib16->get_graphics()->SetStretchBltMode(HALFTONE);
+            
+            dib16->get_graphics()->StretchBlt(0, 0, 48, 48, dib48->get_graphics(), 0, 0, dib48->m_size.cx, dib48->m_size.cy);
+            
+            iImage = m_pil16->add_dib(dib16, 0, 0);
+            m_pil48Hover->add_dib(dib48, 0, 0);
+            
+         }
+
+
          if(crBk == 0)
          {
             System.visual().imaging().Createcolor_blend_ImageList(

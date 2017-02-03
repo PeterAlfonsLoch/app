@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+
+bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage)
+;
+
+
 //
 //char * str_clip_dup()
 //{
@@ -79,4 +84,56 @@ bool ns_open_file(const char * psz)
    
    return true;
    
+}
+
+
+
+
+bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+{
+   
+   NSString * str = [NSString stringWithUTF8String:psz];
+   
+   if(str == NULL)
+   {
+      
+      return false;
+      
+   }
+   
+   NSImage *image = [[NSWorkspace sharedWorkspace] iconForFile:str];
+   if(image == NULL)
+   {
+      
+      return false;
+      
+   }
+   
+   NSRect r;
+   
+   r.origin.x = 0;
+   r.origin.y = 0;
+   r.size.width = cx;
+   r.size.height = cy;
+   
+   CGImageRef i = [image CGImageForProposedRect: &r context:nil hints:nil];
+   
+   bool bOk = GetImagePixelData(pcr, cx, cy, iScan,  i);
+   
+   //CFRelease(i);
+   
+   return bOk;
+   
+   
+   
+}
+
+
+
+
+
+bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+{
+   
+   return mm2_get_file_image(pcr, cx, cy, iScan, psz);
 }

@@ -2,6 +2,12 @@
 {
 @public  char ** m_ppszWallpaper;
 @public   long long m_llWallpaper;
+@public  int m_iIcon;
+@public  unsigned int * m_picon;
+@public   int m_cxIcon;
+@public   int m_cyIcon;
+@public   int m_iScanIcon;
+@public  const char * m_pszIcon;
 
 }
 
@@ -18,5 +24,9 @@
 - (void)monitorWallpaper;
 
 - (void)deferWallpaper:(NSTimer *)timer;
+
+- (void)monitorIconForFile;
+
+- (void)deferIconForFile:(NSTimer *)timer;
 @end
 

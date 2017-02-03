@@ -1194,6 +1194,7 @@
 		9AC315F3198E4CB8008FB109 /* colorertake5_xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */; };
 		9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62DE91D20B82D00A4AC0A /* UIKit.framework */; };
 		9ACE46FF1D1FE56000A1E0AD /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716741D1553BF0069A961 /* libace.dylib */; };
+		9AE1F9FE1E43D30A0076C5C0 /* datetime_zonetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1F9FD1E43D30A0076C5C0 /* datetime_zonetime.cpp */; };
 		9AE4C7F21996D29C00E50F88 /* data_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E41996D29C00E50F88 /* data_data.h */; };
 		9AE4C7F41996D29C00E50F88 /* data_data_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E61996D29C00E50F88 /* data_data_container.h */; };
 		9AE4C7F61996D29C00E50F88 /* data_data_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E81996D29C00E50F88 /* data_data_listener.h */; };
@@ -2019,6 +2020,7 @@
 		9AC62DE91D20B82D00A4AC0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AC945281829225F00AA7325 /* primitive_factory_impl.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primitive_factory_impl.inl; sourceTree = "<group>"; };
 		9AD480B81D5A78B200354801 /* lib_ace.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib_ace.a; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/lib_ace.a"; sourceTree = "<group>"; };
+		9AE1F9FD1E43D30A0076C5C0 /* datetime_zonetime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_zonetime.cpp; sourceTree = "<group>"; };
 		9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aura_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE4C7E41996D29C00E50F88 /* data_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_data.h; sourceTree = "<group>"; };
 		9AE4C7E61996D29C00E50F88 /* data_data_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_data_container.h; sourceTree = "<group>"; };
@@ -2278,6 +2280,7 @@
 		07B0944618495C2A007A0560 /* datetime */ = {
 			isa = PBXGroup;
 			children = (
+				9AE1F9FD1E43D30A0076C5C0 /* datetime_zonetime.cpp */,
 				07B0944718495C2A007A0560 /* datetime_c.h */,
 				07B0944B18495C2A007A0560 /* datetime_duration.h */,
 				07B0944D18495C2A007A0560 /* datetime_time.h */,
@@ -4687,6 +4690,7 @@
 				07B0953618495C2B007A0560 /* str_ch_class.cpp in Sources */,
 				0747A6481B26375F00E85AC7 /* visual_icon.cpp in Sources */,
 				077CEF261B23D151009A57EF /* _primitive.cpp in Sources */,
+				9AE1F9FE1E43D30A0076C5C0 /* datetime_zonetime.cpp in Sources */,
 				07EC4CDF1B4C350E00EB5965 /* aura_timer.mm in Sources */,
 				07502CA51B251B0A008D207C /* net_url.cpp in Sources */,
 				9A26A6A71D7F0019001F47A8 /* _.cpp in Sources */,

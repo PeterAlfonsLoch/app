@@ -2,6 +2,7 @@
 #import "framework.h"
 
 void macos_desktop_image_changed();
+bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
 
 @implementation mmos
 
@@ -19,7 +20,13 @@ void macos_desktop_image_changed();
       
       s_mmos->m_llWallpaper = 0;
       
+      
+      s_mmos->m_iIcon = 0;
+      
+      
       [s_mmos monitorWallpaper];
+      
+      [s_mmos monitorIconForFile];
       
       //-(void)awakeFromNib
 //      {
@@ -161,4 +168,76 @@ void macos_desktop_image_changed();
    }
 
 }
+-(void)monitorIconForFile
+{
+   
+   NSRunLoop* myRunLoop = [NSRunLoop mainRunLoop];
+   
+   
+   
+   NSMethodSignature *sgn = [self methodSignatureForSelector:@selector(deferIconForFile:)];
+   NSInvocation *inv = [NSInvocation invocationWithMethodSignature: sgn];
+   [inv setTarget: self];
+   [inv setSelector:@selector(deferIconForFile:)];
+   
+   NSTimer *t = [NSTimer timerWithTimeInterval: 0.1
+                                    invocation:inv
+                                       repeats:YES];
+   
+   [myRunLoop addTimer:t forMode:NSDefaultRunLoopMode];
+   
+}
+-(void)deferIconForFile:(NSTimer *)timer
+{
+
+   if(self->m_iIcon != 1)
+   {
+      
+      return;
+      
+   }
+      
+   if(self->m_pszIcon == NULL)
+   {
+      
+      self->m_iIcon = 0;
+      
+      return;
+      
+   }
+   
+   mm2_get_file_image(self->m_picon, self->m_cxIcon, self->m_cyIcon, self->m_iScanIcon, self->m_pszIcon);
+   
+   self->m_iIcon = 0;
+   
+}
 @end
+
+
+
+
+bool mm1a_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+{
+   
+   mmos * os = [mmos get];
+   
+   if(os->m_iIcon == 0)
+   {
+      os->m_pszIcon = psz;
+      os->m_picon = pcr;
+      os->m_cxIcon = cx;
+      os->m_cyIcon = cy;
+      os->m_iScanIcon = iScan;
+      os->m_iIcon = 1;
+      while(os->m_iIcon != 0)
+      {
+         
+         Sleep(5);
+         
+      }
+   }
+      
+   
+   return true;
+      
+}

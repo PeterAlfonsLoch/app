@@ -76,29 +76,33 @@ namespace windows
 ::file::path dir::root()
 {
 
-   ::file::path str;
+   ::file::path path;
 
 #ifdef WINDOWSEX
 
-   str = ::windows::get_known_folder(FOLDERID_RoamingAppData);
+   path = ::windows::get_known_folder(FOLDERID_RoamingAppData);
 
-   str /= "ca2";
+   path /= "ca2";
 
 #elif defined(METROWIN)
 
-   str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+   path = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
 #elif defined(VSNORD)
 
-   str = ::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir;
+   path = ::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir;
 
+#elif defined(APPLEOS)
+   
+   path = ::file::path(getenv("HOME")) / "Library/ca2";
+   
 #else
 
-   str = ::file::path(getenv("HOME")) / ".config/ca2";
+   path = ::file::path(getenv("HOME")) / ".config/ca2";
 
 #endif
 
-   return str;
+   return path;
 
 }
 
@@ -106,29 +110,33 @@ namespace windows
 ::file::path dir::public_root()
 {
 
-   ::file::path str;
+   ::file::path path;
 
 #ifdef WINDOWSEX
 
-   str = ::windows::get_known_folder(FOLDERID_ProgramData);
+   path = ::windows::get_known_folder(FOLDERID_ProgramData);
 
-   str /= "ca2";
+   path /= "ca2";
 
 #elif defined(METROWIN)
 
-   str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+   path = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
 #elif defined(VSNORD)
 
-   str = ::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir;
+   path = ::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir;
+
+#elif defined(APPLEOS)
+   
+   path = ::file::path(getenv("HOME")) / "Library/ca2";
 
 #else
 
-   str = ::file::path(getenv("HOME")) / ".config/ca2";
+   path = ::file::path(getenv("HOME")) / ".config/ca2";
 
 #endif
 
-   return str;
+   return path;
 
 }
 

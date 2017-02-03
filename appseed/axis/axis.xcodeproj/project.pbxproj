@@ -156,7 +156,6 @@
 		07A374E61B26054100E4F888 /* install_cube_run.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3725F1B26054000E4F888 /* install_cube_run.h */; };
 		07A374E81B26054100E4F888 /* install_focus.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372611B26054000E4F888 /* install_focus.h */; };
 		07A374EA1B26054100E4F888 /* install_install.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372631B26054000E4F888 /* install_install.h */; };
-		07A374EC1B26054100E4F888 /* install_installer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372651B26054000E4F888 /* install_installer.h */; };
 		07A374EE1B26054100E4F888 /* install_installer_square.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372671B26054000E4F888 /* install_installer_square.h */; };
 		07A374EF1B26054100E4F888 /* install_resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372681B26054000E4F888 /* install_resource.h */; };
 		07A374F11B26054100E4F888 /* install_small_bell.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3726A1B26054000E4F888 /* install_small_bell.h */; };
@@ -329,11 +328,10 @@
 		9A19A12219C692650018DF7D /* visual_rgb_quad_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A10319C692650018DF7D /* visual_rgb_quad_array.h */; };
 		9A19A12419C692650018DF7D /* visual_visual.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A10519C692650018DF7D /* visual_visual.h */; };
 		9A19A12619C692650018DF7D /* visual_water_routine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A10719C692650018DF7D /* visual_water_routine.h */; };
-		9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */; };
-		9A19A12F19C6933E0018DF7D /* sockets_ssl_server_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */; };
 		9A2116E71D832A54000C4336 /* libios_axisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2116E61D832A54000C4336 /* libios_axisfreerdp.dylib */; };
 		9A2116E81D832A64000C4336 /* libios_axisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A331D7F341700ED6D8A /* libios_axisidn.dylib */; };
 		9A2116EB1D832A8C000C4336 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2116EA1D832A8C000C4336 /* libios_ace.dylib */; };
+		9A262A551E44C7F800057589 /* sockets_websocket_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A262A541E44C7F800057589 /* sockets_websocket_client.cpp */; };
 		9A331C631D4BCB3C00255105 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C621D4BCB3C00255105 /* libsqlite3.tbd */; };
 		9A331C7C1D4BCFC800255105 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C7B1D4BCFC800255105 /* libbz2.tbd */; };
 		9A331C7F1D4BD06000255105 /* libios_axisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C7E1D4BD06000255105 /* libios_axisfreetype.dylib */; };
@@ -364,6 +362,7 @@
 		9AC62E661D20BE4F00A4AC0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E651D20BE4F00A4AC0A /* UIKit.framework */; };
 		9ACBD0BF1DDFAEB2004AF08F /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A18AAF11DDFAB4D00C57231 /* libcrypto.a */; };
 		9ACBD0C01DDFAEB5004AF08F /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A18AAF21DDFAB4D00C57231 /* libssl.a */; };
+		9AE1FA031E43D3500076C5C0 /* install_installer_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1FA021E43D3500076C5C0 /* install_installer_launcher.cpp */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D4B1904CEFF001AEFFB /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libios_axis.dylib */; };
 		9AE7252717E83B69003E47F9 /* net.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7229717E83B69003E47F9 /* net.h */; };
@@ -688,7 +687,6 @@
 		07A3725F1B26054000E4F888 /* install_cube_run.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_cube_run.h; sourceTree = "<group>"; };
 		07A372611B26054000E4F888 /* install_focus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_focus.h; sourceTree = "<group>"; };
 		07A372631B26054000E4F888 /* install_install.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_install.h; sourceTree = "<group>"; };
-		07A372651B26054000E4F888 /* install_installer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_installer.h; sourceTree = "<group>"; };
 		07A372671B26054000E4F888 /* install_installer_square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_installer_square.h; sourceTree = "<group>"; };
 		07A372681B26054000E4F888 /* install_resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_resource.h; sourceTree = "<group>"; };
 		07A3726A1B26054000E4F888 /* install_small_bell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_small_bell.h; sourceTree = "<group>"; };
@@ -869,10 +867,9 @@
 		9A19A10319C692650018DF7D /* visual_rgb_quad_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_rgb_quad_array.h; sourceTree = "<group>"; };
 		9A19A10519C692650018DF7D /* visual_visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_visual.h; sourceTree = "<group>"; };
 		9A19A10719C692650018DF7D /* visual_water_routine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_water_routine.h; sourceTree = "<group>"; };
-		9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets_ssl_server_context_map.h; sourceTree = "<group>"; };
-		9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets_ssl_server_context.h; sourceTree = "<group>"; };
 		9A2116E61D832A54000C4336 /* libios_axisfreerdp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisfreerdp.dylib; path = "../../../third/appseed/freerdp/build/Debug-iphoneos/libios_axisfreerdp.dylib"; sourceTree = "<group>"; };
 		9A2116EA1D832A8C000C4336 /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/ios-basic-apgdmhfgxzjpfmdhucodqlzuwxoe/Build/Products/Debug-iphonesimulator/libios_ace.dylib"; sourceTree = "<group>"; };
+		9A262A541E44C7F800057589 /* sockets_websocket_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_websocket_client.cpp; sourceTree = "<group>"; };
 		9A331C621D4BCB3C00255105 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
 		9A331C7B1D4BCFC800255105 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		9A331C7E1D4BD06000255105 /* libios_axisfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisfreetype.dylib; path = "../../axis/freetype/build/Debug-iphoneos/libios_axisfreetype.dylib"; sourceTree = "<group>"; };
@@ -896,6 +893,7 @@
 		9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisidn.xcodeproj; path = ../../../third/appseed/idn/axisidn.xcodeproj; sourceTree = "<group>"; };
 		9AC18A441D4EA0C900977347 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
 		9AC62E651D20BE4F00A4AC0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9AE1FA021E43D3500076C5C0 /* install_installer_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_installer_launcher.cpp; sourceTree = "<group>"; };
 		9AE24D341904CEFE001AEFFB /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D361904CEFE001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE7229717E83B69003E47F9 /* net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = net.h; sourceTree = "<group>"; };
@@ -1221,13 +1219,13 @@
 		07A372561B26054000E4F888 /* install */ = {
 			isa = PBXGroup;
 			children = (
+				9AE1FA021E43D3500076C5C0 /* install_installer_launcher.cpp */,
 				07A372591B26054000E4F888 /* install.h */,
 				07A3725A1B26054000E4F888 /* install.rc */,
 				07A3725E1B26054000E4F888 /* install_canvas.h */,
 				07A3725F1B26054000E4F888 /* install_cube_run.h */,
 				07A372611B26054000E4F888 /* install_focus.h */,
 				07A372631B26054000E4F888 /* install_install.h */,
-				07A372651B26054000E4F888 /* install_installer.h */,
 				07A372671B26054000E4F888 /* install_installer_square.h */,
 				07A372681B26054000E4F888 /* install_resource.h */,
 				07A3726A1B26054000E4F888 /* install_small_bell.h */,
@@ -1391,6 +1389,7 @@
 				07B0967018495CBD007A0560 /* bsd */,
 				07B096E018495CBD007A0560 /* http */,
 				07502CEF1B25CB6D008D207C /* _sockets.cpp */,
+				9A262A541E44C7F800057589 /* sockets_websocket_client.cpp */,
 				07B096F418495CBE007A0560 /* sockets.h */,
 				07B096F618495CBE007A0560 /* sockets_http_batch_buffer.h */,
 				07B096F818495CBE007A0560 /* sockets_http_buffer.h */,
@@ -1441,8 +1440,6 @@
 		07B0967618495CBD007A0560 /* basic */ = {
 			isa = PBXGroup;
 			children = (
-				9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */,
-				9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */,
 				07B0967818495CBD007A0560 /* sockets_listen_socket.h */,
 				07B0967A18495CBD007A0560 /* sockets_net.h */,
 				07B0967C18495CBD007A0560 /* sockets_sctp_socket.h */,
@@ -2014,7 +2011,6 @@
 				07A374B31B26054100E4F888 /* zip_internal.h in Headers */,
 				07A374C31B26054100E4F888 /* fontopus_authentication_map.h in Headers */,
 				9A19A10B19C692650018DF7D /* visual_buffered_graphics.h in Headers */,
-				07A374EC1B26054100E4F888 /* install_installer.h in Headers */,
 				07A374D91B26054100E4F888 /* geoip_internal.h in Headers */,
 				07B097AA18495CBE007A0560 /* sip_socket.h in Headers */,
 				0747A6ED1B2637BB00E85AC7 /* simpledb_session.h in Headers */,
@@ -2032,7 +2028,6 @@
 				079AE08F1886489D00635C39 /* net_ip_enum.h in Headers */,
 				07A374EE1B26054100E4F888 /* install_installer_square.h in Headers */,
 				07B0978418495CBE007A0560 /* resolv_server.h in Headers */,
-				9A19A12F19C6933E0018DF7D /* sockets_ssl_server_context.h in Headers */,
 				07A376F41B260DB800E4F888 /* macos_axis_dir.h in Headers */,
 				07A3749A1B26054100E4F888 /* axis_system.h in Headers */,
 				07A375101B26054100E4F888 /* ansios.h in Headers */,
@@ -2068,7 +2063,6 @@
 				07B0978D18495CBE007A0560 /* sockets_sctp_socket.h in Headers */,
 				07A376991B26054200E4F888 /* macos_graphics_mm.h in Headers */,
 				9A9367B61D26C84200ED7535 /* fs_ifs_file.h in Headers */,
-				9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */,
 				07B0979B18495CBE007A0560 /* sockets_tcp_socket.h in Headers */,
 				0747A5F81B26226300E85AC7 /* user_keyboard_layout.h in Headers */,
 				079AE0871886488800635C39 /* http_status.h in Headers */,
@@ -2311,6 +2305,7 @@
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
 				07502CED1B25CB52008D207C /* _net.cpp in Sources */,
 				07A374871B26054100E4F888 /* _axis_axis.cpp in Sources */,
+				9A262A551E44C7F800057589 /* sockets_websocket_client.cpp in Sources */,
 				0747A6CE1B2637BB00E85AC7 /* _simpledb.cpp in Sources */,
 				0747A6FF1B2637BC00E85AC7 /* sqlitedb_set.cpp in Sources */,
 				0747A6AD1B2637BB00E85AC7 /* _database.cpp in Sources */,
@@ -2323,6 +2318,7 @@
 				07502CE51B25CADC008D207C /* dib_console.cpp in Sources */,
 				07A374F61B26054100E4F888 /* install_windows_win.cpp in Sources */,
 				07A374F41B26054100E4F888 /* install_windows_boot.cpp in Sources */,
+				9AE1FA031E43D3500076C5C0 /* install_installer_launcher.cpp in Sources */,
 				074DA74F1C8E5B7A00748EB7 /* _html_lite_html_lite.cpp in Sources */,
 				07F5B2D4184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp in Sources */,
 				0747A6441B2635D400E85AC7 /* _bsd.cpp in Sources */,
