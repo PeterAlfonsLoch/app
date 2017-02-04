@@ -8,7 +8,7 @@
 #include "macos_cross_win_file.cpp"
 #include "macos_debug.cpp"
 #include "macos_file.cpp"
-#include "macos_file_watcher.cpp"
+//#include "macos_file_watcher.cpp"
 #include "macos_graphics.cpp"
 #include "macos_launcher.cpp"
 #include "macos_library.cpp"

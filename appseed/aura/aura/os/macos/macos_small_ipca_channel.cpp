@@ -341,15 +341,31 @@ namespace aura
          CFRunLoopSourceRef runLoopSource =
          CFMessagePortCreateRunLoopSource(nil, m_port, 0);
          
-         CFRunLoopAddSource(CFRunLoopGetMain(),
+         CFRunLoopAddSource(CFRunLoopGetCurrent(),
                             runLoopSource,
                             kCFRunLoopCommonModes);
          
          //while(m_bRun && ::get_thread_run())
-         //{
-         //CFRunLoopRun();
-         //}
-
+         // Set up an autorelease pool here if not using garbage collection.
+         bool done = false;
+         
+         // Add your sources or timers to the run loop and do any other setup.
+         
+         do
+         {
+            // Start the run loop but return after each source is handled.
+            SInt32    result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 2, TRUE);
+            
+            // If a source explicitly stopped the run loop, or if there are no
+            // sources or timers, go ahead and exit.
+            if ((result == kCFRunLoopRunStopped) || (result == kCFRunLoopRunFinished))
+               done = true;
+            
+            // Check for any other exit conditions here and set the
+            // done variable as needed.
+         }
+         while (!done && ::get_thread_run());
+         
 //         while(m_bRun)
 //         {
 //

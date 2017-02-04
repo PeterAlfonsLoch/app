@@ -2887,11 +2887,13 @@ namespace macos
                   }
                   
                }
+               
+               DWORD dwSpan = ::get_tick_count() - dwStart;
 
-               if (::get_tick_count() - dwStart < 20)
+               if (dwSpan < 20)
                {
 
-                  Sleep(20);
+                  Sleep(20 - dwSpan);
 
                }
 

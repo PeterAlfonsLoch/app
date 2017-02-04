@@ -1143,6 +1143,7 @@
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
 		9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
+		9AA315591E462D4E009CF281 /* macos_file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA315581E462D4E009CF281 /* macos_file_watcher.cpp */; };
 		9AC315AE198E4CB8008FB109 /* colorertake5.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC31567198E4CB8008FB109 /* colorertake5.h */; };
 		9AC315B0198E4CB8008FB109 /* colorertake5_base_editor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC31569198E4CB8008FB109 /* colorertake5_base_editor.h */; };
 		9AC315B2198E4CB8008FB109 /* colorertake5_colorertake5.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC3156B198E4CB8008FB109 /* colorertake5_colorertake5.h */; };
@@ -1968,6 +1969,7 @@
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA315581E462D4E009CF281 /* macos_file_watcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_file_watcher.cpp; sourceTree = "<group>"; };
 		9AC31567198E4CB8008FB109 /* colorertake5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5.h; sourceTree = "<group>"; };
 		9AC31569198E4CB8008FB109 /* colorertake5_base_editor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5_base_editor.h; sourceTree = "<group>"; };
 		9AC3156B198E4CB8008FB109 /* colorertake5_colorertake5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5_colorertake5.h; sourceTree = "<group>"; };
@@ -2857,6 +2859,7 @@
 		9A16405619C4A4CD00966C5E /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9AA315581E462D4E009CF281 /* macos_file_watcher.cpp */,
 				9A34F5D01E15763000AE2607 /* mmos.h */,
 				9A34F5D11E15763000AE2607 /* mmos.mm */,
 				9A4B9C2E1E148E1A000D0E92 /* macos_mm.mm */,
@@ -4688,6 +4691,7 @@
 				9A26A6D91D7F0019001F47A8 /* framework.cpp in Sources */,
 				9AEEADB519C4E10900866C9E /* simple_message_box.cpp in Sources */,
 				07B0953618495C2B007A0560 /* str_ch_class.cpp in Sources */,
+				9AA315591E462D4E009CF281 /* macos_file_watcher.cpp in Sources */,
 				0747A6481B26375F00E85AC7 /* visual_icon.cpp in Sources */,
 				077CEF261B23D151009A57EF /* _primitive.cpp in Sources */,
 				9AE1F9FE1E43D30A0076C5C0 /* datetime_zonetime.cpp in Sources */,

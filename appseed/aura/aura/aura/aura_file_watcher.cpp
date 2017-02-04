@@ -85,12 +85,14 @@ namespace file_watcher
 		m_pimpl->remove_watch(id);
 
 	}
-   void file_watcher::update()
+   
+   
+   bool file_watcher::update()
 	{
 
       keep_true updating(m_bUpdating);
 
-		m_pimpl->update();
+      return m_pimpl->update();
 
 	}
 

@@ -195,7 +195,13 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
       virtual void sync_open_profile_link(string strUrl, string strProfile, string strTarget);
 
+      void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 
+      void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
+
+      void firefox(string strUrl, string strBrowser, string strProfile, string strParam);
+
+      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
 
 
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end

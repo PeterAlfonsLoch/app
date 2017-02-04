@@ -94,7 +94,7 @@ namespace file_watcher
       virtual void remove_watch(file_watch_id id) = 0;
 
 		/// Updates the watcher. Must be called often.
-		virtual void update() = 0;
+		virtual bool update() = 0;
 
 		/// Handles the action
 		virtual void handle_action(action * paction) = 0;

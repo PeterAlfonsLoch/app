@@ -716,10 +716,777 @@ namespace aura
 #endif
 
    }
+#ifdef WINDOWSEX
+   
+   WINBOOL CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
+   {
+      
+      application * papp = (application *) lparam;
+      CHAR sz[1024];
+      if (GetWindowTextA(hwnd, sz, sizeof(sz)))
+      {
+         
+         if (::str::ends_ci(sz, papp->m_strWindowEnd))
+         {
+            papp->m_hwnd = hwnd;
+            return FALSE;
+         }
+         
+      }
+      
+      return TRUE;
+      
+   }
+   
+   
+   WINBOOL CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
+   {
+      
+      application * papp = (application *)lparam;
+      CHAR sz[1024];
+      if (GetWindowTextA(hwnd, sz, sizeof(sz)))
+      {
+         
+         if (::str::ends_ci(sz, papp->m_strTopic))
+         {
+            papp->m_hwndaTopic.add(hwnd);
+         }
+         
+      }
+      
+      return TRUE;
+      
+   }
+   
+   WINBOOL CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
+   {
+      
+      application * papp = (application *)lparam;
+      CHAR sz[1024];
+      if (GetWindowTextA(hwnd, sz, sizeof(sz)))
+      {
+         
+         if (::str::ends_ci(sz, papp->m_strCounterTopic))
+         {
+            papp->m_hwndaCounterTopic.add(hwnd);
+         }
+         
+      }
+      
+      return TRUE;
+      
+   }
+   
+   void close_browser(const array < oswindow > & wa, int & iStep)
+   {
+      
+      if (iStep < 0)
+      {
+         
+         iStep = 0;
+         
+      }
+      
+      uint32_array uia;
+      
+      for (auto w : wa)
+      {
+         
+         switch (iStep % 3)
+         {
+               //case 0:
+               //{
+               //   DWORD dwPid;
+               //   GetWindowThreadProcessId(w, &dwPid);
+               //   uia.add_unique(dwPid);
+               
+               //}
+               //break;
+            case 0:
+               ::PostMessage(w, WM_CLOSE, NULL, NULL);
+               break;
+            case 1:
+               ::PostMessage(w, WM_CLOSE, NULL, NULL);
+               break;
+            case 2:
+               ::PostMessage(w, WM_CLOSE, NULL, NULL);
+               break;
+            case 3:
+               ::PostMessage(w, WM_QUIT, NULL, NULL);
+               break;
+            default:
+               ::PostMessage(w, WM_CLOSE, NULL, NULL);
+               break;
+         };
+         
+      }
+      
+      switch (iStep % 4)
+      {
+            //case 0:
+            //   User32EndTask(w, FALSE,FALSE);
+            //   break;
+            //case 0:
+            
+            //{
+            //   for (auto dwPid : uia)
+            //   {
+            
+            
+            //      string str;
+            //      str.Format("taskkill /pid " + ::str::from((unsigned int)dwPid));
+            //      ::system(str);
+            
+            //   }
+            //   Sleep(2000);
+            //}
+            //   break;
+         case 0:
+            Sleep(300);
+            break;
+         case 1:
+            Sleep(500);
+            break;
+         case 2:
+            Sleep(800);
+            break;
+         case 3:
+            Sleep(1000);
+            break;
+         default:
+            break;
+      };
+      
+      
+      iStep++;
+      
+      
+   }
+   
+#endif
+   
+   
+   void application::chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam)
+   {
+      
+      manual_reset_event evClose(this);
+      
+      ::file::path pathDir;
+      
+      pathDir = path.folder();
+      
+#ifdef WINDOWSEX
+      
+      ::file::path pathAppDataDir(getenv("APPDATA"));
+      
+#else
+      
+      ::file::path pathAppDataDir(getenv("HOME"));
+      
+#ifdef MACOS
+      
+      pathAppDataDir /= "Library";
+      
+#endif
+      
+#endif
+      
+      ::file::path pathProfile;
+      
+      string strBrowserProfile;
+      
+      if (strId == "chrome")
+      {
+         
+         strBrowserProfile = "Chrome";
+         
+      }
+      else if(strId == "vivaldi")
+      {
+         
+         strBrowserProfile = "Vivaldi";
+         
+      }
+      else
+      {
+         
+         strBrowserProfile = "Chromium";
+         
+      }
+      
+      pathProfile = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfile;
+      
+      strParam = "\""+ strUrl +"\" --user-data-dir=\"" + pathProfile + "\"";
+      
+#ifdef WINDOWSEX
+      
+      call_async(path, strParam, pathDir, SW_SHOWDEFAULT, false);
+      
+#else
+      
+      ::file::path shell;
+      
+      shell = "/bin/bash";
+      
+#ifdef MACOS
+      
+      path = url_decode_dup(path);
+      
+      string strCmd = "open -n -a \"" + path + "\" --args " + strParam;
+      
+      //strCmd.replace("\"", "\\\"");
+      
+      strParam = " -c '"+ strCmd + "'";
+      
+      
+#else
+      
+      string strCmd = path + " " + strParam;
+      
+      strCmd.replace("\"", "\\\"");
+      
+      strParam = " -c \""+ strCmd + "\"";
+      
+      
+#endif
+      
+      //MessageBox(NULL, strParam, path, MB_OK);
+      
+      output_debug_string(strParam);
+      
+      call_async(shell, strParam, pathDir, SW_SHOWDEFAULT, false);
+      
+#endif
+      
+   }
+   
+   
+   void application::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile)
+   {
+      
+      if (Application.dir().is(pathProfile))
+      {
+         
+         return;
+         
+      }
+      
+      ::file::path pathDir;
+      
+      pathDir = pathFirefox.folder();
+      
+      ::file::path pathProfileDir;
+      
+      pathProfileDir = pathProfile.folder();
+      
+      Application.dir().mk(pathProfileDir);
+      
+      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
+      
+      call_sync(pathFirefox, strParam, pathDir, SW_SHOWDEFAULT, false);
+      
+   }
+   
+   
+   void application::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+   {
+      
+      string strBrowserPath;
+      string strBrowserDir;
+      string strBrowserHelperPath;
+      string strBrowserHelperDir;
+      
+      manual_reset_event evClose(this);
+      
+      ::file::path pathAppDataDir(getenv("APPDATA"));
+      
+      ::file::path pathProfile;
+      
+      strParam = "-no-remote -P \"" + strProfile + "\"";
+      
+      if (strBrowser != "browser_night")
+      {
+         
+         // == browser_day or something else
+         
+         //xxx m_strTopic = " - Mozilla Firefox";
+         //xxx m_strCounterTopic = " - Firefox Developer Edition";
+         
+         strBrowser = "browser_day";
+         strBrowserPath = "C:\\Program Files (x86)\\Mozilla Firefox\\Firefox.exe";
+         strBrowserDir = "C:\\Program Files (x86)\\Mozilla Firefox";
+         strBrowserHelperPath = "C:\\Program Files (x86)\\Mozilla Firefox\\uninstall\\helper.exe";
+         strBrowserHelperDir = "C:\\Program Files (x86)\\Mozilla Firefox\\uninstall";
+         
+         pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / strProfile;
+         
+         
+      }
+      else
+      {
+         
+         // == browser_night
+         
+         //xxx m_strTopic = " - Firefox Developer Edition";
+         //xxx m_strCounterTopic = " - Mozilla Firefox";
+         
+         pathProfile = pathAppDataDir / "ca2/FirefoxDev/Profile" / strProfile;
+         
+         defer_create_firefox_profile(strBrowserPath, strProfile, pathProfile);
+         
+         strBrowser = "browser_night";
+         strBrowserPath = "C:\\Program Files (x86)\\Firefox Developer Edition\\Firefox.exe";
+         strBrowserDir = "C:\\Program Files (x86)\\Firefox Developer Edition\\";
+         strBrowserHelperPath = "C:\\Program Files (x86)\\Firefox Developer Edition\\uninstall\\helper.exe";
+         strBrowserHelperDir = "C:\\Program Files (x86)\\Firefox Developer Edition\\uninstall";
+         
+      }
+      
+      defer_create_firefox_profile(strBrowserPath, strProfile, pathProfile);
+      
+      bool bFound = false;
+      
+#ifdef WINDOWSEX
+      
+      ::fork(get_app(), [&]()
+             {
+                
+                int iStep = 0;
+                
+                while (true)
+                {
+                   
+                   m_hwndaCounterTopic.remove_all();
+                   
+                   ::EnumWindows(&enum_proc_ff_counter_topic, (LPARAM) this);
+                   
+                   if (m_hwndaCounterTopic.is_empty())
+                   {
+                      
+                      break;
+                      
+                   }
+                   
+                   close_browser(m_hwndaCounterTopic, iStep);
+                   
+                }
+                
+                evClose.SetEvent();
+                
+                
+             });
+      
+      m_hwndaTopic.remove_all();
+      
+      ::EnumWindows(&enum_proc_ff_topic, (LPARAM) this);
+      
+      if (m_hwndaTopic.has_elements())
+      {
+         
+         for (auto w : m_hwndaTopic)
+         {
+            
+            DWORD dwPid = 0;
+            
+            ::GetWindowThreadProcessId(w, &dwPid);
+            
+            if (dwPid != 0)
+            {
+               
+               HANDLE h = OpenProcess(PROCESS_ALL_ACCESS, TRUE, dwPid);
+               
+               if (h != INVALID_HANDLE_VALUE)
+               {
+                  
+                  string strCmd = get_command_line(h);
+                  
+                  if (strCmd.contains_ci(strProfile))
+                  {
+                     
+                     bFound = true;
+                     
+                     ShowWindow(w, SW_SHOW);
+                     
+                     ::SetWindowPos(w, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+                     
+                     ::BringWindowToTop(w);
+                     
+                     ::SetForegroundWindow(w);
+                     
+                  }
+                  
+               }
+               
+               ::CloseHandle(h);
+               
+            }
+            
+         }
+         
+      }
+      
+#endif
+      
+      if (!bFound)
+      {
+         
+         call_async(strBrowserPath, strParam, strBrowserDir, SW_SHOW, false);
+         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, SW_HIDE, false);
+         
+      }
+      
+      if (strBrowser.has_char())
+      {
+         
+         Application.file().put_contents_utf8(::dir::system() / "browser.txt", strBrowser);
+         
+         Application.file().put_contents_utf8(::dir::system() / "browser_path.txt", strBrowserPath);
+         
+         Application.file().put_contents_utf8(::dir::system() / "browser_dir.txt", strBrowserDir);
+         
+      }
+      
+      evClose.wait(seconds(60));
+      
+   }
+   
+   void application::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+   {
+      
+      string strBrowserPath;
+      string strBrowserDir;
+      string strBrowserHelperPath;
+      string strBrowserHelperDir;
+      
+      string strId;
+      
+      ::file::path path;
+      
+      string strParam;
+      
+      System.os().get_default_browser(strId, path, strParam);
+      
+      if (strProfile.is_empty() || strProfile == "native")
+      {
+         
+         strProfile = "default";
+         
+      }
+      
+      string strWeather = strBrowser;
+      
+      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
+      {
+         
+         strWeather = "browser_day";
+         
+      }
+      
+      strProfile = strWeather + "." + strProfile;
+      
+      if (strBrowser == "firefox")
+      {
+         
+         strUrl = "https://ca2.cc/open_f___?url=" + System.url_encode(strUrl) + "&profile=" + System.url_encode(strProfile) + "&target=" + System.url_encode(strTarget);
+         
+      }
+      else
+      {
+         
+         strUrl = "https://ca2.cc/open_tab?url=" + System.url_encode(strUrl) + "&profile=" + System.url_encode(strProfile) + "&target=" + System.url_encode(strTarget);
+         
+      }
+      
+      
+      if (strId == "firefox")
+      {
+         
+         firefox(strUrl, strBrowser, strProfile, strParam);
+         
+      }
+      else if (strId == "chrome")
+      {
+         
+         chromium(strUrl, strBrowser, strId, path, strProfile, strParam);
+         
+      }
+      else if (strId == "vivaldi")
+      {
+         
+         chromium(strUrl, strBrowser, strId, path, strProfile, strParam);
+         
+      }
+      else
+      {
+         
+#if defined(METROWIN)
+         
+         
+         string * pstrNew = new string(strUrl);
+         
+         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
+                                                                                                      ref new Windows::UI::Core::DispatchedHandler([pstrNew]()
+                                                                                                                                                   {
+                                                                                                                                                      
+                                                                                                                                                      ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(*pstrNew);
+                                                                                                                                                      
+                                                                                                                                                      delete pstrNew;
+                                                                                                                                                      
+                                                                                                                                                      LauncherOptions ^ options = ref new LauncherOptions();
+                                                                                                                                                      
+                                                                                                                                                      options->TreatAsUntrusted = false;
+                                                                                                                                                      
+                                                                                                                                                      Launcher::LaunchUriAsync(uri, options);
+                                                                                                                                                      
+                                                                                                                                                   }));
+         
+         //#elif defined(LINUX)
+         //
+         //      ::system("xdg-open \"" + strUrl + "\"");
+         //
+         //      return true;
+         //
+         //#elif defined(APPLEOS)
+         //    openURL(strLink);
+         //  return true;
+#elif defined(VSNORD)
+         
+         string strOpenUrl;
+         
+         if (System.m_pandroidinitdata->m_pszOpenUrl != NULL)
+         {
+            
+            strOpenUrl = System.m_pandroidinitdata->m_pszOpenUrl;
+            
+            free((void *)System.m_pandroidinitdata->m_pszOpenUrl);
+            
+            System.m_pandroidinitdata->m_pszOpenUrl = NULL;
+            
+         }
+         
+         
+         strOpenUrl = m_strLink + str::has_char(strOpenUrl, ";");
+         
+         if (strOpenUrl.has_char())
+         {
+            
+            System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
+            
+         }
+         
+         
+#elif defined(MACOS)
+         
+         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         
+#elif defined(WINDOWSEX)
+         
+         //if (strProfile == "native")
+         //{
+         
+         //   ::ShellExecuteW(NULL, L"open", wstring("microsoft-edge:" + strUrl), NULL, L"C:\\Windows", SW_SHOWDEFAULT);
+         
+         //}
+         //else if (strProfile == "ca2bot" || strProfile == "bot")
+         //{
+         
+         //   call_async("C:\\Program Files (x86)\\Google\\Chrome\\Application\\Chrome.exe", "\"" + strUrl + "\"", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\", SW_SHOWDEFAULT, false);
+         
+         //}
+         //else
+         //{
+         
+         //   string strFirefox = file().as_string(::dir::system() / "firefox.txt");
+         //   string strFirefoxPath = file().as_string(::dir::system() / "firefox_path.txt");
+         //   string strFirefoxDir = file().as_string(::dir::system() / "firefox_dir.txt");
+         
+         //   call_async(strFirefoxPath, "\"" + strUrl + "\"", strFirefoxDir, SW_SHOWDEFAULT, false);
+         
+         //}
+         
+         //if (strProfile.is_empty())
+         //{
+         
+         //   ::ShellExecuteW(NULL, L"open", wstring(strUrl), NULL, L"C:\\Windows", SW_SHOWDEFAULT);
+         
+         //   return;
+         
+         //}
+         
+         strsize iParam = strParam.find("%1");
+         
+         if (iParam < 0)
+         {
+            
+            strParam += " \"" + strUrl + "\"";
+            
+         }
+         else
+         {
+            
+            strParam = strParam.Left(iParam) + strUrl + strParam.Mid(iParam + 2);
+            
+         }
+         
+         // MessageBox(NULL, strAfter, "strAfter", MB_OK);
+         
+         ::file::path pathDir;
+         
+         pathDir = path.folder();
+         
+         if (strBrowser == "vivaldi")
+         {
+            
+            ::file::path pathAppDataDir(getenv("APPDATA"));
+            
+            ::file::path pathProfile;
+            
+            pathProfile = pathAppDataDir / "ca2/Vivaldi/Profile" / strProfile;
+            
+            call_async(path, "--user-data-dir=\"" + pathProfile + "\" " + strParam, pathDir, SW_SHOWDEFAULT, false);
+            
+         }
+         else if (strBrowser == "chrome")
+         {
+            
+            ::file::path pathAppDataDir(getenv("APPDATA"));
+            
+            ::file::path pathProfile;
+            
+            pathProfile = pathAppDataDir / "ca2/Chrome/Profile" / strProfile;
+            
+            strParam = "--user-data-dir=\"" + pathProfile + "\" " + strParam;
+            
+            //MessageBox(NULL, strParam, path, MB_OK);
+            
+            call_async(path, strParam, pathDir, SW_SHOWDEFAULT, false);
+            
+         }
+         else if (strBrowser == "firefox")
+         {
+            
+            ::file::path pathAppDataDir(getenv("APPDATA"));
+            
+            ::file::path pathProfile;
+            
+            pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / strProfile;
+            
+            call_async(path, "-profile=\"" + pathProfile + "\" " + strParam, pathDir, SW_SHOWDEFAULT, false);
+            
+         }
+         else
+         {
+            
+            ::ShellExecuteW(NULL, L"open", wstring(strUrl), NULL, L"C:\\Windows", SW_SHOWDEFAULT);
+            
+         }
+         
+         
+         
+         //      }
+         
+         //if (strProfile == "ca2bot")
+         //{
+         
+         //   strProfile = "bot";
+         
+         //}
+         //else
+         //{
+         
+         //   strProfile = "default";
+         
+         //}
+         
+         //::file::path path = getenv("APPDATA");
+         
+         //path /= strProfile;
+         
+         //call_sync("C:\\Program Files\\Opera.exe", "--user-data-dir=\"" + path + "\" " + strUrl, "C:\\Users\\camilo\\AppData\\Local\\Vivaldi\\Application", SW_SHOWNORMAL, 0);
+         
+#else
+         
+         if(strUrl.has_char())
+         {
+            
+            strParam = "\"" + strUrl + "\"";
+            
+         }
+         
+         ::file::path pathDir;
+         
+         pathDir = path.folder();
+         
+         ::file::path shell;
+         
+         shell = "/bin/bash";
+         
+         if (strBrowser == "vivaldi")
+         {
+            
+            ::file::path pathHome(getenv("HOME"));
+            
+            ::file::path pathProfile;
+            
+            pathProfile = pathHome / "ca2/Vivaldi/Profile" / strProfile;
+            
+            call_async(shell, " -c \""+ path + " --user-data-dir=\\\"" + pathProfile + "\\\" " + strParam, pathHome, SW_SHOWDEFAULT, false);
+            
+         }
+         else if (strBrowser == "chrome")
+         {
+            
+            ::file::path pathHome(getenv("HOME"));
+            
+            ::file::path pathProfile;
+            
+            pathProfile = pathHome / "ca2/Chrome/Profile" / strProfile;
+            
+            string strCmd = path + " --user-data-dir=\"" + pathProfile + "\" " + strParam;
+            
+            strCmd.replace("\"", "\\\"");
+            
+            strParam = " -c \""+ strCmd + "\"";
+            
+            //MessageBox(NULL, strParam, path, MB_OK);
+            
+            call_async(shell, strParam, pathHome, SW_SHOWDEFAULT, false);
+            
+         }
+         else if (strBrowser == "firefox")
+         {
+            
+            ::file::path pathHome(getenv("HOME"));
+            
+            ::file::path pathProfile;
+            
+            pathProfile = pathHome / "ca2/Firefox/Profile" / strProfile;
+            
+            call_async(shell, "-c \""+ path + " -profile=\\\"" + pathProfile + "\\\" " + strParam + "\"", pathHome, SW_SHOWDEFAULT, false);
+            
+         }
+         else
+         {
+            
+            ::system("xdg-open " + strUrl);
+            
+         }
+         
+         
+         
+#endif
+         
+      }
+      
+   }
 
 
    void application::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
    {
+      
+      browser(strUrl, "", strProfile, strTarget);
+      
+      return;
 
       if (strTarget.is_empty())
       {

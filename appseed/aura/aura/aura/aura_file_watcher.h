@@ -176,7 +176,7 @@ namespace file_watcher
       void remove_watch(file_watch_id id);
 
 		/// Updates the watcher. Must be called often.
-		void update();
+		virtual bool update();
 
 
 	};//end file_watcher

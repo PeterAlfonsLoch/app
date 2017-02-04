@@ -270,7 +270,7 @@ namespace file_watcher
 		}
 	};
 	
-	void os_file_watcher::update()
+	bool os_file_watcher::update()
 	{
 		int nev = 0;
 		struct kevent event;

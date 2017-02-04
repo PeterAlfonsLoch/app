@@ -69,9 +69,11 @@ namespace file_watcher
 	
 	struct watch_struct
 	{
+      ::aura::application * m_papp;
 		id m_id;
 		string m_strDirName;
 		file_watch_listener* m_plistener;
+      thread * m_pthread;
 		
 		// index 0 is always the directory
 		//KEvent m_keventaChange[MAX_CHANGE_EVENT_SIZE];
@@ -79,8 +81,8 @@ namespace file_watcher
       FSEventStreamRef m_stream;
 		//size_t m_iChangeCount;
 		
-		watch_struct(id watchid, const char * dirname, file_watch_listener* listener)
-		: m_id(watchid), m_strDirName(dirname), m_plistener(listener)
+      watch_struct(::aura::application * papp, id watchid, const char * dirname, file_watch_listener* listener)
+		: m_papp(papp), m_id(watchid), m_strDirName(dirname), m_plistener(listener)
 		{
          m_stream = NULL;
 			//m_iChangeCount = 0;
@@ -218,7 +220,7 @@ namespace file_watcher
 		
 		void handle_action(const char * filename, e_action action)
 		{
-         m_plistener->handle_file_action(m_id, m_strDirName, ::file::path(filename).name(), action);
+         m_plistener->handle_file_action(m_id, ::file::path(filename).folder(), ::file::path(filename).name(), action);
 		}
 		
       
@@ -236,6 +238,12 @@ namespace file_watcher
          // printf("Callback called\n");
          for (i=0; i<numEvents; i++)
          {
+            
+            if(eventFlags[i] & kFSEventStreamEventFlagItemRenamed)
+               {
+                  pstruct->handle_action(paths[i], action_modify);
+                  
+               }
             if(eventFlags[i] & kFSEventStreamEventFlagItemModified)
             {
                pstruct->handle_action(paths[i], action_modify);
@@ -281,8 +289,34 @@ namespace file_watcher
          
          CFRelease(mypath);
          CFRelease(pathsToWatch);
-         FSEventStreamScheduleWithRunLoop(m_stream,CFRunLoopGetMain(),kCFRunLoopCommonModes);
+         m_pthread = ::fork(m_papp, [&]()
+                            {
+         FSEventStreamScheduleWithRunLoop(m_stream,CFRunLoopGetCurrent(),kCFRunLoopCommonModes);
          FSEventStreamStart(m_stream);
+                               
+                               //while(m_bRun && ::get_thread_run())
+                               // Set up an autorelease pool here if not using garbage collection.
+                               bool done = false;
+                               
+                               // Add your sources or timers to the run loop and do any other setup.
+                               
+                               do
+                               {
+                                  // Start the run loop but return after each source is handled.
+                                  SInt32    result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 2, TRUE);
+                                  
+                                  // If a source explicitly stopped the run loop, or if there are no
+                                  // sources or timers, go ahead and exit.
+                                  if ((result == kCFRunLoopRunStopped) || (result == kCFRunLoopRunFinished))
+                                     done = true;
+                                  
+                                  // Check for any other exit conditions here and set the
+                                  // done variable as needed.
+                               }
+                               while (!done && ::get_thread_run());
+                               
+                               
+                            });
 
          
 			// add aura dir
@@ -344,7 +378,7 @@ namespace file_watcher
 
 	};
 	
-	void os_file_watcher::update()
+	bool os_file_watcher::update()
 	{
 //		int nev = 0;
 //		struct kevent event;
@@ -401,7 +435,12 @@ namespace file_watcher
 //					}
 //				}
 //			}
-//		}
+//		}]]
+      
+      // it is not needed, own OS monitors and dispatches events
+      return false;
+      
+      
 	}
 
 
@@ -444,7 +483,7 @@ namespace file_watcher
 			   0, (void*)"testing");
 */
 		
-		watch_struct* watch = new watch_struct(++mLastWatchID, directory, watcher);
+		watch_struct* watch = new watch_struct(get_app(), ++mLastWatchID, directory, watcher);
 		m_watchmap.set_at(mLastWatchID, watch);
 		return mLastWatchID;
 	}

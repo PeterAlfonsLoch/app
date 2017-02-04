@@ -59,7 +59,7 @@ namespace file_watcher
       string watch_path(file_watch_id watchid);
 
 		/// Updates the watcher. Must be called often.
-		void update();
+		bool update();
 
 		/// Handles the action
 		void handle_action(action * paction);
@@ -73,7 +73,7 @@ namespace file_watcher
 		struct timespec mTimeOut;
 		/// id allocator
 		file_watch_id mLastWatchID;
-
+      
 	};
 
 
