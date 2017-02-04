@@ -137,3 +137,21 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
    
    return mm2_get_file_image(pcr, cx, cy, iScan, psz);
 }
+
+
+
+char * mm_ca2_command_line()
+{
+   
+   NSString *ca2_command_line = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ca2_command_line"];
+   
+   if(ca2_command_line == NULL)
+   {
+      
+      return strdup("");
+      
+   }
+   
+   return strdup([ca2_command_line UTF8String]);
+   
+}

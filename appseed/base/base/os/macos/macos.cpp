@@ -1,5 +1,6 @@
 #include "framework.h"
 
+int32_t raw_main_command_line(const char * pszCommandLine, int argc, char *argv[]);
 
 string & get_command_line_string()
 {
@@ -106,9 +107,9 @@ int32_t run_system()
    
 }
 
-
 int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
 {
+   
    
    pid_t processid;
    
@@ -267,10 +268,18 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    }
    
    strCommandLine += str1 + strA + " : " + str2 + strB;
+
+   return raw_main_command_line(strCommandLine, argc, argv);
+
+}
+
+int32_t raw_main_command_line(const char * pszCommandLine, int argc, char *argv[])
+{
+
    
    setlocale(LC_ALL,"");
    
-   g_pszCommandLine = strdup_dup(strCommandLine);
+   g_pszCommandLine = strdup_dup(pszCommandLine);
    
    ns_shared_application(argc, argv);
    
