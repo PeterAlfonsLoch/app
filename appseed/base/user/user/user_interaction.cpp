@@ -131,6 +131,8 @@ namespace user
          }
 
       }
+      
+      do_show_flags();
 
       layout();
 
@@ -197,7 +199,9 @@ namespace user
          return defer_check_show_flags();
 
       }
-
+      
+      do_show_flags();
+      
       translate();
 
       clear_need_translation();

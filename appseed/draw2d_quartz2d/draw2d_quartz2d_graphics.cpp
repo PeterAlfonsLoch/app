@@ -5957,15 +5957,192 @@ namespace draw2d_quartz2d
    bool graphics::draw_inline(const ::draw2d_quartz2d::path::string_path & stringpath, ::draw2d::pen * ppen)
    {
 
-      internal_show_text(stringpath.m_x, stringpath.m_y, stringpath.m_strText, (int)stringpath.m_strText.get_length(), kCGTextStroke, true, NULL, NULL, NULL, NULL, ppen, NULL, stringpath.m_spfont);
+      
+      string str(stringpath.m_strText);
+      
+      synch_lock ml(m_pmutex);
+      
+      size sz = GetTextExtent(str);
+      
+      double dx;
+      
+      double dy;
+      
+//      if(nFormat & DT_RIGHT)
+//      {
+//         dx = lpRect.right - lpRect.left - sz.cx;
+//      }
+//      else if(nFormat & DT_CENTER)
+//      {
+//         dx = ((lpRect.right - lpRect.left) - (sz.cx)) / 2.0;
+//      }
+//      else
+      {
+         dx = 0.;
+      }
+      
+//      if(nFormat & DT_BOTTOM)
+//      {
+//         dy = lpRect.bottom - lpRect.top - sz.cy;
+//      }
+//      else if(nFormat & DT_VCENTER)
+//      {
+//         dy = ((lpRect.bottom - lpRect.top) - (sz.cy)) / 2.0;
+//      }
+      //else
+      {
+         dy = 0.;
+      }
+      
+//      if(nFormat & DT_EXPANDTABS)
+      {
+         
+         str.replace("\t", "        ");
+         
+      }
+//      else
+//      {
+//         
+//         str.replace("\t", "");
+//         
+//      }
+//      
+//      if(nFormat & DT_SINGLELINE)
+//      {
+//         
+//         str.replace("\r", "");
+//         
+//         str.replace("\n", "");
+//         
+//         //TextOut(lpRect.left + dx,lpRect.top + dy,str);
+//         
+//         internal_show_text(lpRect.left + dx,lpRect.top + dy, str, (int)str.get_length(), kCGTextStroke, true, NULL, NULL, NULL, NULL, ppen, NULL, stringpath.m_spfont);
+//
+//         
+//      }
+      //else
+      {
+         
+         size s = GetTextExtent(str);
+         
+         stringa stra;
+         
+         stra.add_lines(str);
+         
+         int offsety = 0;
+         
+         for(auto str : stra)
+         {
+            
+            size s1 = GetTextExtent(str);
+            
+            internal_show_text(stringpath.m_x + dx,stringpath.m_y + dy + offsety, str, (int)str.get_length(), kCGTextStroke, true, NULL, NULL, NULL, NULL, ppen, NULL, stringpath.m_spfont);
+            
+            offsety += s1.cy;
+            
+         }
+         
+         
+      }
+      
 
       return true;
 
    }
    bool graphics::fill_inline(const ::draw2d_quartz2d::path::string_path & stringpath, ::draw2d::brush * pbrush)
    {
-      internal_show_text(stringpath.m_x, stringpath.m_y, stringpath.m_strText, (int)stringpath.m_strText.get_length(), kCGTextFill, true, NULL, NULL, NULL, NULL, NULL, pbrush, stringpath.m_spfont);
+      string str(stringpath.m_strText);
+      
+      synch_lock ml(m_pmutex);
+      
+      size sz = GetTextExtent(str);
+      
+      double dx;
+      
+      double dy;
+      
+      //      if(nFormat & DT_RIGHT)
+      //      {
+      //         dx = lpRect.right - lpRect.left - sz.cx;
+      //      }
+      //      else if(nFormat & DT_CENTER)
+      //      {
+      //         dx = ((lpRect.right - lpRect.left) - (sz.cx)) / 2.0;
+      //      }
+      //      else
+      {
+         dx = 0.;
+      }
+      
+      //      if(nFormat & DT_BOTTOM)
+      //      {
+      //         dy = lpRect.bottom - lpRect.top - sz.cy;
+      //      }
+      //      else if(nFormat & DT_VCENTER)
+      //      {
+      //         dy = ((lpRect.bottom - lpRect.top) - (sz.cy)) / 2.0;
+      //      }
+      //else
+      {
+         dy = 0.;
+      }
+      
+      //      if(nFormat & DT_EXPANDTABS)
+      {
+         
+         str.replace("\t", "        ");
+         
+      }
+      //      else
+      //      {
+      //
+      //         str.replace("\t", "");
+      //
+      //      }
+      //
+      //      if(nFormat & DT_SINGLELINE)
+      //      {
+      //
+      //         str.replace("\r", "");
+      //
+      //         str.replace("\n", "");
+      //
+      //         //TextOut(lpRect.left + dx,lpRect.top + dy,str);
+      //
+      //         internal_show_text(lpRect.left + dx,lpRect.top + dy, str, (int)str.get_length(), kCGTextStroke, true, NULL, NULL, NULL, NULL, ppen, NULL, stringpath.m_spfont);
+      //
+      //
+      //      }
+      //else
+      {
+         
+         size s = GetTextExtent(str);
+         
+         stringa stra;
+         
+         stra.add_lines(str);
+         
+         int offsety = 0;
+         
+         for(auto str : stra)
+         {
+            
+            size s1 = GetTextExtent(str);
+            
+            //internal_show_text(stringpath.m_x + dx,stringpath.m_y + dy + offsety, str, (int)str.get_length(), kCGTextStroke, true, NULL, NULL, NULL, NULL, ppen, NULL, stringpath.m_spfont);
+                  internal_show_text(stringpath.m_x + dx, stringpath.m_y + dy + offsety, str, (int)str.get_length(), kCGTextFill, true, NULL, NULL, NULL, NULL, NULL, pbrush, stringpath.m_spfont);
+            
+            offsety += s1.cy;
+            
+         }
+         
+         
+      }
+      
+      
       return true;
+      //      internal_show_text(stringpath.m_x, stringpath.m_y, stringpath.m_strText, (int)stringpath.m_strText.get_length(), kCGTextFill, true, NULL, NULL, NULL, NULL, NULL, pbrush, stringpath.m_spfont);
+      //return true;
 
    }
 

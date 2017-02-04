@@ -369,6 +369,20 @@ namespace macos
          m_oswindow->set_user_interaction_impl(this);
 
          oswindow_assign(m_oswindow, this);
+         
+         if(cs.style & WS_VISIBLE)
+         {
+            
+            ShowWindow(SW_SHOW);
+            
+         }
+         else
+         {
+            
+            ShowWindow(SW_HIDE);
+            
+            
+         }
 
       }
 

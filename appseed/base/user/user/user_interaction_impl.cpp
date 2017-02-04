@@ -2299,8 +2299,13 @@ namespace user
                pgraphics->FillSolidRect(r, ARGB(255, 184, 184, 177));
 
             }
+            
+            if(m_pui->IsWindowVisible())
+            {
 
-            _001Print(pgraphics);
+               _001Print(pgraphics);
+               
+            }
 
 #if HARD_DEBUG
 
