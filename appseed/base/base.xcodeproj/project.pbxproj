@@ -154,6 +154,7 @@
 		9A4B9CF71E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */; };
 		9A4B9CF81E149BC4000D0E92 /* wndfrm_frame_updowninterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4B9CF61E149BC4000D0E92 /* wndfrm_frame_updowninterface.h */; };
 		9A80879B1DE1270600F70A07 /* ios_interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */; };
+		9A83702E1E46A7BA00803F9F /* wndfrm_frame_updowninterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */; };
 		9A986CF31D22666D001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CF21D22666D001F4C04 /* libios_aura.dylib */; };
 		9A986DA01D226E06001F4C04 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
@@ -1256,6 +1257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A83702E1E46A7BA00803F9F /* wndfrm_frame_updowninterface.cpp in Sources */,
 				9A80879B1DE1270600F70A07 /* ios_interaction_impl.cpp in Sources */,
 				9AC62E671D20BEFA00A4AC0A /* graphics_window_buffer.cpp in Sources */,
 				9AC62E681D20BEFA00A4AC0A /* graphics_window_dc.cpp in Sources */,
@@ -1334,6 +1336,7 @@
 			buildSettings = {
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app";
 			};
 			name = Debug;
 		};
@@ -1342,6 +1345,7 @@
 			buildSettings = {
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app";
 			};
 			name = Release;
 		};

@@ -26,7 +26,7 @@ namespace user
    
    
    class interaction;
-   class interaction;
+   class interaction_impl;
    
    
 } // namespace user
@@ -38,7 +38,7 @@ public:
    
    
    nswindow                      m_nswindow;
-   ::user::interaction *    m_pui;
+   ::user::interaction_impl *    m_pimpl;
    
    int m_x;
    int m_y;
@@ -95,11 +95,11 @@ public:
    }
    
    
-   void set_user_interaction(::user::interaction * pui);
-   ::user::interaction * get_user_interaction_base();
-   ::user::interaction * get_user_interaction_base() const;
-   ::user::interaction * get_user_interaction();
-   ::user::interaction * get_user_interaction() const;
+   void set_user_interaction(::user::interaction_impl * pui);
+   ::user::interaction_impl * get_user_interaction_base();
+   ::user::interaction_impl * get_user_interaction_base() const;
+   ::user::interaction_impl * get_user_interaction();
+   ::user::interaction_impl * get_user_interaction() const;
    
    
    void post_nc_destroy();

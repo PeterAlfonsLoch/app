@@ -35,9 +35,17 @@ namespace file_watcher
 	{
 	public:
 		/// type for a map from id to watch_struct pointer
-		typedef map < id ,id, watch_struct *, watch_struct*> watch_map;
+		typedef map < file_watch_id ,file_watch_id, watch_struct *, watch_struct*> watch_map;
 
-	public:
+      /// Map of id to watch_struct pointers
+      watch_map m_watchmap;
+      /// The descriptor for the kqueue
+      int mDescriptor;
+      /// time out data
+      struct timespec mTimeOut;
+      /// id allocator
+      file_watch_id mLastWatchID;
+
 		///
 		///
       os_file_watcher(::aura::application * papp);
@@ -48,31 +56,22 @@ namespace file_watcher
 
 		/// Add a directory watch
 		/// @exception FileNotFoundException Thrown when the requested directory does not exist
-		id add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn);
+		file_watch_id add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn) override;
 
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
-		void remove_watch(const string & directory);
+		void remove_watch(const string & directory) override;
 
 		/// Remove a directory watch. This is a map lookup O(logn).
-		void remove_watch(id watchid);
+		void remove_watch(file_watch_id watchid) override;
 
-      string watch_path(id watchid);
+      string watch_path(file_watch_id watchid);
 
 		/// Updates the watcher. Must be called often.
-		void update();
+		bool update() override;
 
 		/// Handles the action
-		void handle_action(action * paction);
+		void handle_action(action * paction) override;
 
-	private:
-		/// Map of id to watch_struct pointers
-		watch_map m_watchmap;
-		/// The descriptor for the kqueue
-		int mDescriptor;
-		/// time out data
-		struct timespec mTimeOut;
-		/// id allocator
-		int mLastWatchID;
 
 	};
 

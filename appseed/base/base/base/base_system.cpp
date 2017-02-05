@@ -461,6 +461,10 @@ namespace base
       
       return 0;
       
+#elif defined(APPLE_IOS)
+      
+      return 0;
+      
 #else
 
       if (iMonitor < 0)
@@ -505,6 +509,10 @@ namespace base
       return true;
 
 #elif defined(MACOS)
+      
+      return true;
+      
+#elif defined(APPLE_IOS)
       
       return true;
       

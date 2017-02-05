@@ -29,6 +29,11 @@
 
 #endif
 
+
+#ifdef APPLE_IOS
+int ui_open_url(const char * psz);
+#endif
+
 extern void * g_pf1;
 
 
@@ -1278,6 +1283,10 @@ namespace aura
 #elif defined(MACOS)
          
          ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         
+#elif defined(APPLE_IOS)
+         
+         ui_open_url(strUrl);
          
 #elif defined(WINDOWSEX)
          

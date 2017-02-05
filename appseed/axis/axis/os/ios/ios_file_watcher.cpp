@@ -272,54 +272,58 @@ namespace file_watcher
 	
 	bool os_file_watcher::update()
 	{
-		int nev = 0;
-		struct kevent event;
-		
-		watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
-
-		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
-		{
-			watch_struct* watch = ppair->m_element2;
-			
-			while((nev = kevent(mDescriptor, (KEvent*)&(watch->m_keventaChange), (int) (watch->m_iChangeCount + 1), &event, 1, &mTimeOut)) != 0)
-			{
-				if(nev == -1)
-            {
-					perror("kevent");
-            }
-				else
-				{
-					EntryStruct* entry = 0;
-					if((entry = (EntryStruct*)event.udata) != 0)
-					{
-						//fprintf(stderr, "File: %s -- ", (char*)entry->m_strFileName);
-						
-						if(event.fflags & NOTE_DELETE)
-						{
-							//fprintf(stderr, "File deleted\n");
-							//watch->handle_action(entry->m_strFileName, Action::Delete);
-							watch->removeFile(entry->m_strFileName);
-						}
-						if(event.fflags & NOTE_EXTEND || 
-						   event.fflags & NOTE_WRITE ||
-						   event.fflags & NOTE_ATTRIB)
-						{
-							//fprintf(stderr, "modified\n");
-							//watch->rescan();
-							struct stat attrib;
-							stat(entry->m_strFileName, &attrib);
-							entry->mModifiedTime = attrib.st_mtime;
-							watch->handle_action(entry->m_strFileName, action_modify);
-						}
-					}
-					else
-					{
-						//fprintf(stderr, "Dir: %s -- rescanning\n", watch->m_strDirName.c_str());
-						watch->rescan();
-					}
-				}
-			}
-		}
+      
+      return false;
+      
+      //   file_watcher_impl::update()
+//		int nev = 0;
+//		struct kevent event;
+//		
+//		watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
+//
+//		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
+//		{
+//			watch_struct* watch = ppair->m_element2;
+//			
+//			while((nev = kevent(mDescriptor, (KEvent*)&(watch->m_keventaChange), (int) (watch->m_iChangeCount + 1), &event, 1, &mTimeOut)) != 0)
+//			{
+//				if(nev == -1)
+//            {
+//					perror("kevent");
+//            }
+//				else
+//				{
+//					EntryStruct* entry = 0;
+//					if((entry = (EntryStruct*)event.udata) != 0)
+//					{
+//						//fprintf(stderr, "File: %s -- ", (char*)entry->m_strFileName);
+//						
+//						if(event.fflags & NOTE_DELETE)
+//						{
+//							//fprintf(stderr, "File deleted\n");
+//							//watch->handle_action(entry->m_strFileName, Action::Delete);
+//							watch->removeFile(entry->m_strFileName);
+//						}
+//						if(event.fflags & NOTE_EXTEND || 
+//						   event.fflags & NOTE_WRITE ||
+//						   event.fflags & NOTE_ATTRIB)
+//						{
+//							//fprintf(stderr, "modified\n");
+//							//watch->rescan();
+//							struct stat attrib;
+//							stat(entry->m_strFileName, &attrib);
+//							entry->mModifiedTime = attrib.st_mtime;
+//							watch->handle_action(entry->m_strFileName, action_modify);
+//						}
+//					}
+//					else
+//					{
+//						//fprintf(stderr, "Dir: %s -- rescanning\n", watch->m_strDirName.c_str());
+//						watch->rescan();
+//					}
+//				}
+//			}
+//		}
 	}
 	
 	//--------
@@ -345,7 +349,7 @@ namespace file_watcher
 	}
 
 	//--------
-	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
+	file_watch_id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
 	{
 /*		int fd = open(directory.c_str(), O_RDONLY);
 		if(fd == -1)
@@ -377,7 +381,7 @@ namespace file_watcher
 	}
 
 	//--------
-	void os_file_watcher::remove_watch(id watchid)
+	void os_file_watcher::remove_watch(file_watch_id watchid)
 	{
 		watch_map::pair * ppair = m_watchmap.PLookup((id &)watchid);
 
@@ -393,10 +397,11 @@ namespace file_watcher
 		watch = 0;
 	}
    
-	string os_file_watcher::watch_path(id watchid)
+   
+	string os_file_watcher::watch_path(file_watch_id watchid)
 	{
-      return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
       
+      return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
 	
 	}
    

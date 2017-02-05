@@ -105,6 +105,80 @@
 		9A4B9CEB1E149191000D0E92 /* IPTC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CE21E149191000D0E92 /* IPTC.cpp */; };
 		9A4B9CEC1E149191000D0E92 /* TagConversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CE31E149191000D0E92 /* TagConversion.cpp */; };
 		9A4B9CED1E149191000D0E92 /* TagLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CE41E149191000D0E92 /* TagLib.cpp */; };
+		9A8EC85F1E453E07009694BC /* Exif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CDD1E149191000D0E92 /* Exif.cpp */; };
+		9A8EC8601E453E07009694BC /* FIRational.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CDE1E149191000D0E92 /* FIRational.cpp */; };
+		9A8EC8611E453E07009694BC /* FreeImageTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CE01E149191000D0E92 /* FreeImageTag.cpp */; };
+		9A8EC8621E453E07009694BC /* IPTC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CE21E149191000D0E92 /* IPTC.cpp */; };
+		9A8EC8631E453E07009694BC /* TagConversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CE31E149191000D0E92 /* TagConversion.cpp */; };
+		9A8EC8641E453E07009694BC /* TagLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CE41E149191000D0E92 /* TagLib.cpp */; };
+		9A8EC8651E453E07009694BC /* BitmapAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C361E1490A6000D0E92 /* BitmapAccess.cpp */; };
+		9A8EC8661E453E07009694BC /* ZLibInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C791E1490A6000D0E92 /* ZLibInterface.cpp */; };
+		9A8EC8681E453E14009694BC /* CacheFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C371E1490A6000D0E92 /* CacheFile.cpp */; };
+		9A8EC8691E453E14009694BC /* ColorLookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C381E1490A6000D0E92 /* ColorLookup.cpp */; };
+		9A8EC86A1E453E14009694BC /* Conversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C391E1490A6000D0E92 /* Conversion.cpp */; };
+		9A8EC86B1E453E14009694BC /* Conversion4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C3A1E1490A6000D0E92 /* Conversion4.cpp */; };
+		9A8EC86C1E453E14009694BC /* Conversion8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C3B1E1490A6000D0E92 /* Conversion8.cpp */; };
+		9A8EC86D1E453E14009694BC /* Conversion16_555.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C3C1E1490A6000D0E92 /* Conversion16_555.cpp */; };
+		9A8EC86E1E453E14009694BC /* Conversion16_565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C3D1E1490A6000D0E92 /* Conversion16_565.cpp */; };
+		9A8EC86F1E453E15009694BC /* Conversion24.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C3E1E1490A6000D0E92 /* Conversion24.cpp */; };
+		9A8EC8701E453E15009694BC /* Conversion32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C3F1E1490A6000D0E92 /* Conversion32.cpp */; };
+		9A8EC8711E453E15009694BC /* ConversionFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C401E1490A6000D0E92 /* ConversionFloat.cpp */; };
+		9A8EC8721E453E15009694BC /* ConversionRGB16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C411E1490A6000D0E92 /* ConversionRGB16.cpp */; };
+		9A8EC8731E453E15009694BC /* ConversionRGBF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C421E1490A6000D0E92 /* ConversionRGBF.cpp */; };
+		9A8EC8741E453E15009694BC /* ConversionType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C431E1490A6000D0E92 /* ConversionType.cpp */; };
+		9A8EC8751E453E15009694BC /* ConversionUINT16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C441E1490A6000D0E92 /* ConversionUINT16.cpp */; };
+		9A8EC8761E453E15009694BC /* FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C451E1490A6000D0E92 /* FreeImage.cpp */; };
+		9A8EC8771E453E15009694BC /* FreeImageFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C461E1490A6000D0E92 /* FreeImageFramework.cpp */; };
+		9A8EC8781E453E15009694BC /* FreeImageIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C471E1490A6000D0E92 /* FreeImageIO.cpp */; };
+		9A8EC8791E453E15009694BC /* GetType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C481E1490A6000D0E92 /* GetType.cpp */; };
+		9A8EC87A1E453E15009694BC /* Halftoning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C491E1490A6000D0E92 /* Halftoning.cpp */; };
+		9A8EC87B1E453E15009694BC /* MemoryIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C4B1E1490A6000D0E92 /* MemoryIO.cpp */; };
+		9A8EC87C1E453E15009694BC /* MNGHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C4C1E1490A6000D0E92 /* MNGHelper.cpp */; };
+		9A8EC87D1E453E15009694BC /* MultiPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C4D1E1490A6000D0E92 /* MultiPage.cpp */; };
+		9A8EC87E1E453E15009694BC /* NNQuantizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C4E1E1490A6000D0E92 /* NNQuantizer.cpp */; };
+		9A8EC87F1E453E15009694BC /* PixelAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C4F1E1490A6000D0E92 /* PixelAccess.cpp */; };
+		9A8EC8801E453E15009694BC /* Plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C501E1490A6000D0E92 /* Plugin.cpp */; };
+		9A8EC8811E453E15009694BC /* PluginBMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C511E1490A6000D0E92 /* PluginBMP.cpp */; };
+		9A8EC8821E453E15009694BC /* PluginCUT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C521E1490A6000D0E92 /* PluginCUT.cpp */; };
+		9A8EC8831E453E15009694BC /* PluginDDS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C531E1490A6000D0E92 /* PluginDDS.cpp */; };
+		9A8EC8841E453E15009694BC /* PluginGIF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C561E1490A6000D0E92 /* PluginGIF.cpp */; };
+		9A8EC8851E453E15009694BC /* PluginHDR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C571E1490A6000D0E92 /* PluginHDR.cpp */; };
+		9A8EC8861E453E15009694BC /* PluginICO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C581E1490A6000D0E92 /* PluginICO.cpp */; };
+		9A8EC8871E453E15009694BC /* PluginIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C591E1490A6000D0E92 /* PluginIFF.cpp */; };
+		9A8EC8881E453E15009694BC /* PluginJNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C5B1E1490A6000D0E92 /* PluginJNG.cpp */; };
+		9A8EC8891E453E15009694BC /* PluginKOALA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C5F1E1490A6000D0E92 /* PluginKOALA.cpp */; };
+		9A8EC88A1E453E15009694BC /* PluginMNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C601E1490A6000D0E92 /* PluginMNG.cpp */; };
+		9A8EC88B1E453E15009694BC /* PluginPCD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C611E1490A6000D0E92 /* PluginPCD.cpp */; };
+		9A8EC88C1E453E15009694BC /* PluginPCX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C621E1490A6000D0E92 /* PluginPCX.cpp */; };
+		9A8EC88D1E453E15009694BC /* PluginPFM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C631E1490A6000D0E92 /* PluginPFM.cpp */; };
+		9A8EC88E1E453E15009694BC /* PluginPICT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C641E1490A6000D0E92 /* PluginPICT.cpp */; };
+		9A8EC88F1E453E15009694BC /* PluginPNM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C661E1490A6000D0E92 /* PluginPNM.cpp */; };
+		9A8EC8901E453E15009694BC /* PluginPSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C671E1490A6000D0E92 /* PluginPSD.cpp */; };
+		9A8EC8911E453E15009694BC /* PluginRAS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C681E1490A6000D0E92 /* PluginRAS.cpp */; };
+		9A8EC8921E453E15009694BC /* PluginSGI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C6A1E1490A6000D0E92 /* PluginSGI.cpp */; };
+		9A8EC8931E453E15009694BC /* PluginTARGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C6B1E1490A6000D0E92 /* PluginTARGA.cpp */; };
+		9A8EC8941E453E15009694BC /* PluginWBMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C6D1E1490A6000D0E92 /* PluginWBMP.cpp */; };
+		9A8EC8951E453E15009694BC /* PluginXBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C6F1E1490A6000D0E92 /* PluginXBM.cpp */; };
+		9A8EC8961E453E15009694BC /* PluginXPM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C701E1490A6000D0E92 /* PluginXPM.cpp */; };
+		9A8EC8971E453E15009694BC /* PSDParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C711E1490A6000D0E92 /* PSDParser.cpp */; };
+		9A8EC8981E453E15009694BC /* TIFFLogLuv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C721E1490A6000D0E92 /* TIFFLogLuv.cpp */; };
+		9A8EC8991E453E15009694BC /* tmoColorConvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C731E1490A6000D0E92 /* tmoColorConvert.cpp */; };
+		9A8EC89A1E453E15009694BC /* tmoDrago03.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C741E1490A6000D0E92 /* tmoDrago03.cpp */; };
+		9A8EC89B1E453E15009694BC /* tmoFattal02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C751E1490A6000D0E92 /* tmoFattal02.cpp */; };
+		9A8EC89C1E453E15009694BC /* tmoReinhard05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C761E1490A6000D0E92 /* tmoReinhard05.cpp */; };
+		9A8EC89D1E453E15009694BC /* ToneMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C771E1490A6000D0E92 /* ToneMapping.cpp */; };
+		9A8EC89E1E453E15009694BC /* WuQuantizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C781E1490A6000D0E92 /* WuQuantizer.cpp */; };
+		9A8EC89F1E453E24009694BC /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CC31E149169000D0E92 /* Background.cpp */; };
+		9A8EC8A01E453E24009694BC /* BSplineRotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CC41E149169000D0E92 /* BSplineRotate.cpp */; };
+		9A8EC8A11E453E24009694BC /* Channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CC51E149169000D0E92 /* Channels.cpp */; };
+		9A8EC8A21E453E24009694BC /* ClassicRotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CC61E149169000D0E92 /* ClassicRotate.cpp */; };
+		9A8EC8A31E453E24009694BC /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CC71E149169000D0E92 /* Colors.cpp */; };
+		9A8EC8A41E453E24009694BC /* CopyPaste.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CC81E149169000D0E92 /* CopyPaste.cpp */; };
+		9A8EC8A51E453E24009694BC /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CC91E149169000D0E92 /* Display.cpp */; };
+		9A8EC8A61E453E24009694BC /* Flip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CCA1E149169000D0E92 /* Flip.cpp */; };
+		9A8EC8A71E453E24009694BC /* MultigridPoissonSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CCC1E149169000D0E92 /* MultigridPoissonSolver.cpp */; };
+		9A8EC8A81E453E24009694BC /* Rescale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CCD1E149169000D0E92 /* Rescale.cpp */; };
+		9A8EC8A91E453E24009694BC /* Resize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CCE1E149169000D0E92 /* Resize.cpp */; };
 		9AC62DED1D20B99600A4AC0A /* FreeImageFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC62DEC1D20B99600A4AC0A /* FreeImageFramework.h */; };
 		9AEEB1D119C5080D00866C9E /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
 		9AEEB1D419C5080D00866C9E /* DeprecationMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */; };
@@ -620,6 +694,80 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8EC89F1E453E24009694BC /* Background.cpp in Sources */,
+				9A8EC8A01E453E24009694BC /* BSplineRotate.cpp in Sources */,
+				9A8EC8A11E453E24009694BC /* Channels.cpp in Sources */,
+				9A8EC8A21E453E24009694BC /* ClassicRotate.cpp in Sources */,
+				9A8EC8A31E453E24009694BC /* Colors.cpp in Sources */,
+				9A8EC8A41E453E24009694BC /* CopyPaste.cpp in Sources */,
+				9A8EC8A51E453E24009694BC /* Display.cpp in Sources */,
+				9A8EC8A61E453E24009694BC /* Flip.cpp in Sources */,
+				9A8EC8A71E453E24009694BC /* MultigridPoissonSolver.cpp in Sources */,
+				9A8EC8A81E453E24009694BC /* Rescale.cpp in Sources */,
+				9A8EC8A91E453E24009694BC /* Resize.cpp in Sources */,
+				9A8EC8681E453E14009694BC /* CacheFile.cpp in Sources */,
+				9A8EC8691E453E14009694BC /* ColorLookup.cpp in Sources */,
+				9A8EC86A1E453E14009694BC /* Conversion.cpp in Sources */,
+				9A8EC86B1E453E14009694BC /* Conversion4.cpp in Sources */,
+				9A8EC86C1E453E14009694BC /* Conversion8.cpp in Sources */,
+				9A8EC86D1E453E14009694BC /* Conversion16_555.cpp in Sources */,
+				9A8EC86E1E453E14009694BC /* Conversion16_565.cpp in Sources */,
+				9A8EC86F1E453E15009694BC /* Conversion24.cpp in Sources */,
+				9A8EC8701E453E15009694BC /* Conversion32.cpp in Sources */,
+				9A8EC8711E453E15009694BC /* ConversionFloat.cpp in Sources */,
+				9A8EC8721E453E15009694BC /* ConversionRGB16.cpp in Sources */,
+				9A8EC8731E453E15009694BC /* ConversionRGBF.cpp in Sources */,
+				9A8EC8741E453E15009694BC /* ConversionType.cpp in Sources */,
+				9A8EC8751E453E15009694BC /* ConversionUINT16.cpp in Sources */,
+				9A8EC8761E453E15009694BC /* FreeImage.cpp in Sources */,
+				9A8EC8771E453E15009694BC /* FreeImageFramework.cpp in Sources */,
+				9A8EC8781E453E15009694BC /* FreeImageIO.cpp in Sources */,
+				9A8EC8791E453E15009694BC /* GetType.cpp in Sources */,
+				9A8EC87A1E453E15009694BC /* Halftoning.cpp in Sources */,
+				9A8EC87B1E453E15009694BC /* MemoryIO.cpp in Sources */,
+				9A8EC87C1E453E15009694BC /* MNGHelper.cpp in Sources */,
+				9A8EC87D1E453E15009694BC /* MultiPage.cpp in Sources */,
+				9A8EC87E1E453E15009694BC /* NNQuantizer.cpp in Sources */,
+				9A8EC87F1E453E15009694BC /* PixelAccess.cpp in Sources */,
+				9A8EC8801E453E15009694BC /* Plugin.cpp in Sources */,
+				9A8EC8811E453E15009694BC /* PluginBMP.cpp in Sources */,
+				9A8EC8821E453E15009694BC /* PluginCUT.cpp in Sources */,
+				9A8EC8831E453E15009694BC /* PluginDDS.cpp in Sources */,
+				9A8EC8841E453E15009694BC /* PluginGIF.cpp in Sources */,
+				9A8EC8851E453E15009694BC /* PluginHDR.cpp in Sources */,
+				9A8EC8861E453E15009694BC /* PluginICO.cpp in Sources */,
+				9A8EC8871E453E15009694BC /* PluginIFF.cpp in Sources */,
+				9A8EC8881E453E15009694BC /* PluginJNG.cpp in Sources */,
+				9A8EC8891E453E15009694BC /* PluginKOALA.cpp in Sources */,
+				9A8EC88A1E453E15009694BC /* PluginMNG.cpp in Sources */,
+				9A8EC88B1E453E15009694BC /* PluginPCD.cpp in Sources */,
+				9A8EC88C1E453E15009694BC /* PluginPCX.cpp in Sources */,
+				9A8EC88D1E453E15009694BC /* PluginPFM.cpp in Sources */,
+				9A8EC88E1E453E15009694BC /* PluginPICT.cpp in Sources */,
+				9A8EC88F1E453E15009694BC /* PluginPNM.cpp in Sources */,
+				9A8EC8901E453E15009694BC /* PluginPSD.cpp in Sources */,
+				9A8EC8911E453E15009694BC /* PluginRAS.cpp in Sources */,
+				9A8EC8921E453E15009694BC /* PluginSGI.cpp in Sources */,
+				9A8EC8931E453E15009694BC /* PluginTARGA.cpp in Sources */,
+				9A8EC8941E453E15009694BC /* PluginWBMP.cpp in Sources */,
+				9A8EC8951E453E15009694BC /* PluginXBM.cpp in Sources */,
+				9A8EC8961E453E15009694BC /* PluginXPM.cpp in Sources */,
+				9A8EC8971E453E15009694BC /* PSDParser.cpp in Sources */,
+				9A8EC8981E453E15009694BC /* TIFFLogLuv.cpp in Sources */,
+				9A8EC8991E453E15009694BC /* tmoColorConvert.cpp in Sources */,
+				9A8EC89A1E453E15009694BC /* tmoDrago03.cpp in Sources */,
+				9A8EC89B1E453E15009694BC /* tmoFattal02.cpp in Sources */,
+				9A8EC89C1E453E15009694BC /* tmoReinhard05.cpp in Sources */,
+				9A8EC89D1E453E15009694BC /* ToneMapping.cpp in Sources */,
+				9A8EC89E1E453E15009694BC /* WuQuantizer.cpp in Sources */,
+				9A8EC85F1E453E07009694BC /* Exif.cpp in Sources */,
+				9A8EC8601E453E07009694BC /* FIRational.cpp in Sources */,
+				9A8EC8611E453E07009694BC /* FreeImageTag.cpp in Sources */,
+				9A8EC8621E453E07009694BC /* IPTC.cpp in Sources */,
+				9A8EC8631E453E07009694BC /* TagConversion.cpp in Sources */,
+				9A8EC8641E453E07009694BC /* TagLib.cpp in Sources */,
+				9A8EC8651E453E07009694BC /* BitmapAccess.cpp in Sources */,
+				9A8EC8661E453E07009694BC /* ZLibInterface.cpp in Sources */,
 				07108B751B4C97D500A28F80 /* half.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

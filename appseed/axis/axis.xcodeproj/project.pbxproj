@@ -344,6 +344,7 @@
 		9A8087631DE1101F00F70A07 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087611DE1101F00F70A07 /* libcrypto.a */; };
 		9A8087641DE1101F00F70A07 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087621DE1101F00F70A07 /* libssl.a */; };
 		9A80879D1DE13B4400F70A07 /* ios_file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A80879C1DE13B4400F70A07 /* ios_file_set.h */; };
+		9A8370281E46A38200803F9F /* install_installer_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1FA021E43D3500076C5C0 /* install_installer_launcher.cpp */; };
 		9A9367AD1D26C7F400ED7535 /* fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367AC1D26C7F400ED7535 /* fs.h */; };
 		9A9367B61D26C84200ED7535 /* fs_ifs_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B41D26C84200ED7535 /* fs_ifs_file.h */; };
 		9A9367B71D26C84200ED7535 /* fs_remote_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */; };
@@ -2331,6 +2332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8370281E46A38200803F9F /* install_installer_launcher.cpp in Sources */,
 				07EDC2C41B4ECB3C00AF8928 /* ios_win_base.cpp in Sources */,
 				07502CE61B25CADC008D207C /* dib_console.cpp in Sources */,
 				07502CF11B25CB6D008D207C /* _sockets.cpp in Sources */,
@@ -2463,7 +2465,7 @@
 		9AE24D541904CEFF001AEFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator10.1]" = (
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib",

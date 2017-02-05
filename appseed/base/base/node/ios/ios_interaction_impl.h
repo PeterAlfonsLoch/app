@@ -70,11 +70,11 @@ namespace ios
       
 #endif   // WINVER >= 0x0500
       
-      virtual ::user::interaction * from_os_data(void * pdata) override;
+      virtual ::user::interaction_impl * from_os_data(void * pdata) override;
       virtual void * get_os_data() const override;
       
-      static_function ::user::interaction * from_handle(oswindow hWnd);
-      static_function ::user::interaction * FromHandlePermanent(oswindow hWnd);
+      static_function ::user::interaction_impl * from_handle(oswindow hWnd);
+      static_function ::user::interaction_impl * FromHandlePermanent(oswindow hWnd);
       //static_function void DeleteTempMap();
       bool Attach(oswindow hWndNew);
       oswindow Detach();

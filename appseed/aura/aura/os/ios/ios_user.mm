@@ -194,3 +194,4 @@ int ui_open_url(const char * pszUrl)
    return b ? 1 : 0;
 
 }
+

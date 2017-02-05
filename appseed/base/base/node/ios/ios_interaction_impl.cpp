@@ -29,7 +29,7 @@ namespace ios
       //set_handle(NULL);
       //      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
-      m_bMouseHover        = false;
+      //m_bMouseHover        = false;
       m_oswindow           = NULL;
       m_proundwindow = NULL;
 
@@ -40,7 +40,7 @@ namespace ios
    {
 
       set_handle(hWnd);
-      m_bMouseHover        = false;
+      //m_bMouseHover        = false;
       m_oswindow           = NULL;
       m_proundwindow = NULL;
 
@@ -67,7 +67,7 @@ namespace ios
 
 
 
-   ::user::interaction *  interaction_impl::from_os_data(void * pdata)
+   ::user::interaction_impl *  interaction_impl::from_os_data(void * pdata)
    {
 
       return from_handle((oswindow) pdata);
@@ -167,7 +167,7 @@ namespace ios
    }
 
 
-   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
+   ::user::interaction_impl * interaction_impl::from_handle(oswindow oswindow)
    {
 
       if(oswindow == NULL)
@@ -178,7 +178,7 @@ namespace ios
    }
 
 
-   ::user::interaction * PASCAL interaction_impl::FromHandlePermanent(oswindow oswindow)
+   ::user::interaction_impl * PASCAL interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
       if(oswindow == NULL)
@@ -349,7 +349,7 @@ namespace ios
 
          m_spgraphics->on_create_window(this);
 
-         m_oswindow->set_user_interaction(m_pui);
+         m_oswindow->set_user_interaction(this);
 
       }
 
@@ -494,7 +494,7 @@ namespace ios
 
       m_spgraphics->on_create_window(this);
 
-      m_oswindow->set_user_interaction(m_pui);
+      m_oswindow->set_user_interaction(this);
 
       m_pui->ModifyStyle(0, WS_VISIBLE);
       
@@ -2884,7 +2884,7 @@ namespace ios
                                    if (!m_pui->m_bLockWindowUpdate)
                                    {
                                       
-                                      if (has_pending_graphical_update())
+                                      if (m_pui->has_pending_graphical_update())
                                       {
                                          
                                          RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
@@ -2894,11 +2894,13 @@ namespace ios
                                       }
                                       
                                    }
+                                      
+                                      DWORD dwSpan = ::get_tick_count() - dwStart;
                                    
-                                   if (::get_tick_count() - dwStart < 5)
+                                   if (dwSpan < 20)
                                    {
                                       
-                                      Sleep(5);
+                                      Sleep(20 - dwSpan);
                                       
                                    }
                                    
@@ -4911,8 +4913,26 @@ namespace ios
 
    ::user::interaction *  interaction_impl::GetActiveWindow()
    {
+      
+      oswindow oswindow = ::GetActiveWindow();
+      
+      if(oswindow == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      ::user::interaction_impl * pimpl = ::ios::interaction_impl::from_handle(oswindow);
 
-      return ::ios::interaction_impl::from_handle(::GetActiveWindow());
+      if(pimpl == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      return pimpl->m_pui;
 
    }
 
@@ -4920,7 +4940,26 @@ namespace ios
    {
 
       ASSERT(::IsWindow(get_handle()));
-      return ::ios::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+      
+      oswindow oswindow = ::SetActiveWindow(get_handle());
+      
+      if(oswindow == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      ::user::interaction_impl * pimpl = ::ios::interaction_impl::from_handle(oswindow);
+      
+      if(pimpl == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      return pimpl->m_pui;
 
    }
 
@@ -4930,8 +4969,26 @@ namespace ios
 
    ::user::interaction *  interaction_impl::GetFocus()
    {
+      
+      oswindow oswindow = ::GetFocus();
 
-      return from_handle(::GetFocus());
+      if(oswindow == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      ::user::interaction_impl * pimpl = ::ios::interaction_impl::from_handle(oswindow);
+      
+      if(pimpl == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      return pimpl->m_pui;
 
    }
 
@@ -4942,7 +4999,25 @@ namespace ios
       if(!::IsWindow(get_handle()))
          return NULL;
 
-      return from_handle(::SetFocus(get_handle()));
+      oswindow oswindow = ::SetFocus(get_handle());
+      
+      if(oswindow == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      ::user::interaction_impl * pimpl = ::ios::interaction_impl::from_handle(oswindow);
+      
+      if(pimpl == NULL)
+      {
+         
+         return NULL;
+         
+      }
+      
+      return pimpl->m_pui;
 
    }
 
@@ -5197,7 +5272,7 @@ namespace ios
    {
 
       ASSERT(::IsWindow(get_handle()));
-      return from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
+      return from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()))->m_pui;
 
    }
 
@@ -6210,7 +6285,7 @@ namespace ios
    bool interaction_impl::has_pending_graphical_update()
    {
       
-      if (m_pui->has_pending_graphical_update())
+      if (::user::interaction_impl::has_pending_graphical_update())
       {
          
          return true;

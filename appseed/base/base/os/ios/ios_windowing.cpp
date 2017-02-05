@@ -51,7 +51,7 @@ oswindow_data::oswindow_data()
 {
 
    m_nswindow  = NULL;
-   m_pui       = NULL;
+   m_pimpl       = NULL;
    m_plongmap  = new int_to_int;
 
 }
@@ -61,7 +61,7 @@ oswindow_data::oswindow_data(nswindow window)
 {
 
    m_nswindow  = window;
-   m_pui       = NULL;
+   m_pimpl       = NULL;
    m_plongmap  = new int_to_int;
 
 }
@@ -71,7 +71,7 @@ oswindow_data::oswindow_data(const oswindow_data & oswindow)
 {
 
    m_nswindow  = oswindow.m_nswindow;
-   m_pui       = oswindow.m_pui;
+   m_pimpl       = oswindow.m_pimpl;
    m_plongmap  = oswindow.m_plongmap;
 
 }
@@ -92,7 +92,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
    {
 
       m_nswindow  = oswindow.m_nswindow;
-      m_pui       = oswindow.m_pui;
+      m_pimpl       = oswindow.m_pimpl;
       m_plongmap  = oswindow.m_plongmap;
 
    }
@@ -117,60 +117,60 @@ bool oswindow_remove(nswindow window)
 }
 
 
-void oswindow_data::set_user_interaction(::user::interaction * pui)
+void oswindow_data::set_user_interaction(::user::interaction_impl * pui)
 {
 
    if(this == NULL)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
 
-   m_pui = pui;
+   m_pimpl = pui;
 
 }
 
 
-::user::interaction * oswindow_data::get_user_interaction_base()
+::user::interaction_impl * oswindow_data::get_user_interaction_base()
 {
 
    if(this == NULL)
       return NULL;
 
-   return m_pui;
+   return m_pimpl;
 
 }
 
-::user::interaction * oswindow_data::get_user_interaction_base() const
+::user::interaction_impl * oswindow_data::get_user_interaction_base() const
 {
 
    if(this == NULL)
       return NULL;
 
-   return m_pui;
+   return m_pimpl;
 
 }
 
-::user::interaction * oswindow_data::get_user_interaction()
+::user::interaction_impl * oswindow_data::get_user_interaction()
 {
 
    if(this == NULL)
       return NULL;
 
-   if(m_pui == NULL)
+   if(m_pimpl == NULL)
       return NULL;
 
-   return m_pui;
+   return m_pimpl;
 
 }
 
-::user::interaction * oswindow_data::get_user_interaction() const
+::user::interaction_impl * oswindow_data::get_user_interaction() const
 {
 
    if(this == NULL)
       return NULL;
 
-   if(m_pui == NULL)
+   if(m_pimpl == NULL)
       return NULL;
 
-   return m_pui;
+   return m_pimpl;
 
 }
 
@@ -181,10 +181,10 @@ oswindow oswindow_data::get_parent()
    if(::is_null(this))
       return NULL;
 
-   if(m_pui->GetParent() == NULL)
+   if(m_pimpl->GetParent() == NULL)
       return NULL;
 
-   return m_pui->GetParent()->get_handle();
+   return m_pimpl->GetParent()->get_handle();
 
 }
 
@@ -198,16 +198,16 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
    ::oswindow oswindowOldParent = get_parent();
 
 //   if(oswindow == NULL
-//      || oswindow->m_pui == NULL)
+//      || oswindow->m_pimpl == NULL)
 //   {
 //
-//      m_pui->set_parent_base(NULL);
+//      m_pimpl->set_parent_base(NULL);
 //
 //   }
 //   else
 //   {
 //
-//      m_pui->set_parent_base(oswindow->m_pui);
+//      m_pimpl->set_parent_base(oswindow->m_pimpl);
 //
 //   }
 
@@ -248,13 +248,13 @@ int32_t oswindow_data::set_window_long(int32_t iIndex, int32_t iNewLong)
 }
 
 
-::user::interaction * window_from_handle(oswindow oswindow)
+::user::interaction_impl * window_from_handle(oswindow oswindow)
 {
 
    if(oswindow == NULL)
       return NULL;
 
-   return oswindow->m_pui;
+   return oswindow->m_pimpl;
 
 }
 
@@ -390,9 +390,9 @@ WINBOOL ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, i
 {
    if(hwnd == NULL)
       return FALSE;
-   if(hwnd->m_pui == NULL)
+   if(hwnd->m_pimpl == NULL)
       return FALSE;
-   return hwnd->m_pui->SetWindowPos((int_ptr)hwndInsertAfter, x, y, cx, cy, uFlags);
+   return hwnd->m_pimpl->SetWindowPos((int_ptr)hwndInsertAfter, x, y, cx, cy, uFlags);
 
 }
 
@@ -400,9 +400,9 @@ WINBOOL ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, i
 
 WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 {
-   if(::void_ptr_is_null(hwnd))
+   if(void_ptr_is_null(hwnd))
       return FALSE;
-   if(::void_ptr_is_null(lprect))
+   if(void_ptr_is_null(lprect))
       return FALSE;
    lprect->left =hwnd->m_x;
    lprect->top = hwnd->m_y;

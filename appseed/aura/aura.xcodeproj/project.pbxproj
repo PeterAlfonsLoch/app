@@ -1138,6 +1138,9 @@
 		9A6715D41D14F7970069A961 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A74846E1D210C0600207EF6 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libios_ace.dylib */; };
 		9A8087471DE1021A00F70A07 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087451DE0FF3000F70A07 /* ios_library.cpp */; };
+		9A8370261E46931200803F9F /* ios_file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8370241E4692FB00803F9F /* ios_file_watcher.cpp */; };
+		9A8EC8551E453771009694BC /* os_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9C301E149015000D0E92 /* os_debug.cpp */; };
+		9A8EC8581E453784009694BC /* datetime_zonetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1F9FD1E43D30A0076C5C0 /* datetime_zonetime.cpp */; };
 		9A9799151DAC3C2B001CD6D9 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
@@ -1966,6 +1969,7 @@
 		9A5DF96D1CEE2741008916A4 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../test.cpp; sourceTree = "<group>"; };
 		9A67166C1D1553BF0069A961 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A8087451DE0FF3000F70A07 /* ios_library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_library.cpp; sourceTree = "<group>"; };
+		9A8370241E4692FB00803F9F /* ios_file_watcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_file_watcher.cpp; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2150,6 +2154,7 @@
 		077A05301B4D70B7001C85FF /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				9A8370241E4692FB00803F9F /* ios_file_watcher.cpp */,
 				9A8087451DE0FF3000F70A07 /* ios_library.cpp */,
 				077A05311B4D70B7001C85FF /* ca_os.h */,
 				077A05321B4D70B7001C85FF /* ca_os_thread.h */,
@@ -4627,6 +4632,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8370261E46931200803F9F /* ios_file_watcher.cpp in Sources */,
+				9A8EC8581E453784009694BC /* datetime_zonetime.cpp in Sources */,
+				9A8EC8551E453771009694BC /* os_debug.cpp in Sources */,
 				9A8087471DE1021A00F70A07 /* ios_library.cpp in Sources */,
 				9A2116ED1D832B5C000C4336 /* _.cpp in Sources */,
 				9A2116EE1D832B5C000C4336 /* charDistribution.cpp in Sources */,

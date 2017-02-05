@@ -190,7 +190,7 @@ int ios_initialize_window(round_window * proundwindow, UIWindow * window)
    
    puiimpl->m_oswindow = oswindow_get(window);
    
-   puiimpl->m_oswindow->set_user_interaction(puiimpl->m_pui);
+   puiimpl->m_oswindow->set_user_interaction(puiimpl);
    ::user::create_struct cs;
    cs.dwExStyle = 0;
    cs.lpszClass = 0;

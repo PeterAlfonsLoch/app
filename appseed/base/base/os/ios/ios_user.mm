@@ -36,7 +36,7 @@ bool oswindow_data::is_iconic()
    
 //   [window() miniaturize : 0];
    
-   return 1;
+   return 0;
    
    
 }

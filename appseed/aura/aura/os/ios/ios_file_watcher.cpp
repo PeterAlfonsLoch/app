@@ -265,15 +265,22 @@ namespace file_watcher
 				
 				// delete
 				close((int)ke->ident);
+            
 				delete((EntryStruct*)ke->udata);
+            
 			}
+         
 		}
-	};
-	
-	void os_file_watcher::update()
+      
+   };
+   
+   
+   bool os_file_watcher::update()
 	{
-		int nev = 0;
-		struct kevent event;
+
+      int nev = 0;
+		
+      struct kevent event;
 		
 		watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
 
@@ -320,7 +327,11 @@ namespace file_watcher
 				}
 			}
 		}
+      
+      return true;
+      
 	}
+   
 	
 	//--------
    os_file_watcher::os_file_watcher(::aura::application * papp) :
@@ -345,7 +356,7 @@ namespace file_watcher
 	}
 
 	//--------
-	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
+	file_watch_id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
 	{
 
       synch_lock sl(m_pmutex);
@@ -382,7 +393,7 @@ namespace file_watcher
 	}
 
 	//--------
-	void os_file_watcher::remove_watch(id watchid)
+	void os_file_watcher::remove_watch(file_watch_id watchid)
 	{
 
       synch_lock sl(m_pmutex);
@@ -401,7 +412,7 @@ namespace file_watcher
 		watch = 0;
 	}
    
-	string os_file_watcher::watch_path(id watchid)
+	string os_file_watcher::watch_path(file_watch_id watchid)
 	{
       return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
       
