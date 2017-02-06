@@ -304,7 +304,7 @@ namespace file_watcher
    }
 
 
-   void os_file_watcher::update()
+   bool os_file_watcher::update()
    {
 
       if(GetQueueStatus(QS_ALLINPUT) == 0)
@@ -313,6 +313,8 @@ namespace file_watcher
          MsgWaitForMultipleObjectsEx(0,NULL,100,QS_ALLINPUT,MWMO_ALERTABLE);
 
       }
+
+      return true;
 
    }
 

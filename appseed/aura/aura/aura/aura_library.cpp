@@ -53,19 +53,19 @@ namespace aura
          close();
 
       }
-      else
-      {
+      //else
+      //{
 
-         if (m_pca2library != NULL)
-         {
+      //   if (m_pca2library != NULL)
+      //   {
 
-            m_pca2library->m_bAutoClose = false;
+      //      m_pca2library->m_bAutoClose = false;
 
-            ::aura::del(m_pca2library);
+      //      ::aura::del(m_pca2library);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 

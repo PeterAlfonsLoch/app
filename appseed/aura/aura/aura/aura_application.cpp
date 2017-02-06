@@ -722,18 +722,32 @@ namespace aura
 
    }
 #ifdef WINDOWSEX
+
+
+   class open_browser_enum
+   {
+   public:
+
+      string                           m_strWindowEnd;
+      string                           m_strTopic;
+      string                           m_strCounterTopic;
+      oswindow                         m_hwnd;
+      comparable_array < oswindow >    m_hwndaTopic;
+      comparable_array < oswindow >    m_hwndaCounterTopic;
+
+   };
    
    WINBOOL CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
    {
       
-      application * papp = (application *) lparam;
+      open_browser_enum * penum = (open_browser_enum *) lparam;
       CHAR sz[1024];
       if (GetWindowTextA(hwnd, sz, sizeof(sz)))
       {
          
-         if (::str::ends_ci(sz, papp->m_strWindowEnd))
+         if (::str::ends_ci(sz, penum->m_strWindowEnd))
          {
-            papp->m_hwnd = hwnd;
+            penum->m_hwnd = hwnd;
             return FALSE;
          }
          
@@ -747,14 +761,14 @@ namespace aura
    WINBOOL CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
    {
       
-      application * papp = (application *)lparam;
+      open_browser_enum * penum = (open_browser_enum *)lparam;
       CHAR sz[1024];
       if (GetWindowTextA(hwnd, sz, sizeof(sz)))
       {
          
-         if (::str::ends_ci(sz, papp->m_strTopic))
+         if (::str::ends_ci(sz, penum->m_strTopic))
          {
-            papp->m_hwndaTopic.add(hwnd);
+            penum->m_hwndaTopic.add(hwnd);
          }
          
       }
@@ -766,14 +780,14 @@ namespace aura
    WINBOOL CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
    {
       
-      application * papp = (application *)lparam;
+      open_browser_enum * penum = (open_browser_enum *)lparam;
       CHAR sz[1024];
       if (GetWindowTextA(hwnd, sz, sizeof(sz)))
       {
          
-         if (::str::ends_ci(sz, papp->m_strCounterTopic))
+         if (::str::ends_ci(sz, penum->m_strCounterTopic))
          {
-            papp->m_hwndaCounterTopic.add(hwnd);
+            penum->m_hwndaCounterTopic.add(hwnd);
          }
          
       }
@@ -1052,6 +1066,8 @@ namespace aura
       bool bFound = false;
       
 #ifdef WINDOWSEX
+
+      open_browser_enum e;
       
       ::fork(get_app(), [&]()
              {
@@ -1061,18 +1077,18 @@ namespace aura
                 while (true)
                 {
                    
-                   m_hwndaCounterTopic.remove_all();
+                   e.m_hwndaCounterTopic.remove_all();
                    
-                   ::EnumWindows(&enum_proc_ff_counter_topic, (LPARAM) this);
+                   ::EnumWindows(&enum_proc_ff_counter_topic, (LPARAM) &e);
                    
-                   if (m_hwndaCounterTopic.is_empty())
+                   if (e.m_hwndaCounterTopic.is_empty())
                    {
                       
                       break;
                       
                    }
                    
-                   close_browser(m_hwndaCounterTopic, iStep);
+                   close_browser(e.m_hwndaCounterTopic, iStep);
                    
                 }
                 
@@ -1081,14 +1097,14 @@ namespace aura
                 
              });
       
-      m_hwndaTopic.remove_all();
+      e.m_hwndaTopic.remove_all();
       
-      ::EnumWindows(&enum_proc_ff_topic, (LPARAM) this);
+      ::EnumWindows(&enum_proc_ff_topic, (LPARAM) &e);
       
-      if (m_hwndaTopic.has_elements())
+      if (e.m_hwndaTopic.has_elements())
       {
          
-         for (auto w : m_hwndaTopic)
+         for (auto w : e.m_hwndaTopic)
          {
             
             DWORD dwPid = 0;
