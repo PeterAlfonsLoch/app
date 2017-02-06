@@ -173,14 +173,22 @@ bool script_manager::initialize_thread()
    return true;
 }
 
-
 script_instance * script_manager::get(const string & strName)
+{
+
+   script * pscript = NULL;
+
+   return get(strName, pscript);
+
+}
+
+script_instance * script_manager::get(const string & strName, script * & pscript)
 {
 
    if(m_pcache == NULL)
       return NULL;
 
-   return m_pcache->create_instance(strName);
+   return m_pcache->create_instance(strName, pscript);
 
 
 }
@@ -191,22 +199,24 @@ void script_manager::handle(::dynamic_source::httpd_socket * pdssocket)
    string strHead;
    sp(script_instance) pinstance = get(m_strSeed);
    t_pinstanceSeed = pinstance;
-   if(pinstance != NULL)
+   if (pinstance != NULL)
    {
       pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
       pinstance->m_strDebugThisScript = m_strSeed;
       pinstance->initialize(pinstance, NULL, pdssocket, this);
       pinstance->dinit();
-      if(pinstance->m_iDebug > 0)
-      {
-         //if(pinstance->get("debug_lib").is_set())
-         {
-            //m_pcompiler->m_memfileLibError.seek_to_begin();
-            ::file::ostream os(&pdssocket->response().file());
-            os << pinstance->m_pscript->m_strError;
-         }
-      }
+      //if (pinstance->m_iDebug > 0)
+      //{
+      //   //if(pinstance->get("debug_lib").is_set())
+      //   {
+      //      //m_pcompiler->m_memfileLibError.seek_to_begin();
+      //      ::file::ostream os(&pdssocket->response().file());
+      //      os << pinstance->m_pscript->m_strError;
+      //   }
+      //}   }
+
    }
+
    if(pinstance != NULL)
    {
       pinstance->main_initialize();
@@ -312,48 +322,59 @@ bool script_manager::get_output_internal(::dynamic_source::script_interface * & 
       }
       return false;
    }
-   pinstance = get(strName);
 
-   if(pinstance == NULL)
-      return false;
+   script * pscript = NULL;
 
-   pinstance->initialize(pinstanceParent->main_instance(), pinstanceParent, pinstanceParent->main_instance()->netnodesocket(), this);
+   pinstance = get(strName, pscript);
 
-   pinstance->dinit();
-
-   if(pinstance->main_instance()->m_iDebug > 0)
+   if (pinstanceParent != NULL && pscript != NULL)
    {
 
-      pinstance->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->m_request.m_strRequestUri;
-
-      pinstance->m_strDebugThisScript = strName;
-
-      ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
-
-      if(pdsscript != NULL)
+      if (pinstanceParent->main_instance()->m_iDebug > 0)
       {
 
-         try
+         pinstanceParent->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->m_request.m_strRequestUri;
+
+         pinstanceParent->m_strDebugThisScript = strName;
+
+         ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pscript);
+
+         if (pdsscript != NULL)
          {
 
-            if(pdsscript->m_memfileError.get_length() > 0)
+            try
             {
-               pdsscript->m_memfileError.seek_to_begin();
-               pdsscript->m_memfileError.seek_to_begin();
 
-               pinstance->ostream().transfer_from(pdsscript->m_memfileError);
+               if (pdsscript->m_strError.has_char())
+               {
+                  
+                  pinstanceParent->ostream() << pscript->m_strError;
+
+               }
 
             }
+            catch (...)
+            {
 
-         }
-         catch(...)
-         {
+            }
 
          }
 
       }
 
    }
+
+   if (pinstance == NULL)
+   {
+
+      return false;
+
+   }
+
+   pinstance->initialize(pinstanceParent->main_instance(), pinstanceParent, pinstanceParent->main_instance()->netnodesocket(), this);
+
+   pinstance->dinit();
+
 
    pinstance->run();
 

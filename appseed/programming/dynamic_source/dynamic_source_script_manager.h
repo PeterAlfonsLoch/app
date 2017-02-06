@@ -168,8 +168,8 @@ namespace dynamic_source
 
       sp(::dynamic_source::session) get_session(const char * pszId);
 
-
       script_instance * get(const string & strName);
+      script_instance * get(const string & strName, script * & pscript);
       using thread::handle;
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       bool get_output_internal(::dynamic_source::script_interface * & pinstance, ::dynamic_source::script_interface * pinstanceParent, const string & strName);

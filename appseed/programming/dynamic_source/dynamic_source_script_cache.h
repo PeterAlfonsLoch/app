@@ -20,7 +20,7 @@ public:
    script_cache(::aura::application * papp);
    ~script_cache();
 
-   script_instance * create_instance(const char * lpcszName);
+   script_instance * create_instance(const char * lpcszName, script * & pscript);
 
    void set_all_out_of_date();
 

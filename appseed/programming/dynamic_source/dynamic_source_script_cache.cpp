@@ -78,13 +78,15 @@ script * script_cache::register_script(const char * lpcszName, script * pscript)
 
 }
 
-script_instance * script_cache::create_instance(const char * lpcszName)
+script_instance * script_cache::create_instance(const char * lpcszName, script * & pscript)
 {
+
+   pscript = NULL;
 
    if(::str::begins(lpcszName, "netnode://"))
    {
       single_lock sl(&m_cs, TRUE);
-      script * pscript  = get(lpcszName);
+      pscript  = get(lpcszName);
       sl.unlock();
       return pscript->create_instance();
    }
@@ -99,7 +101,7 @@ script_instance * script_cache::create_instance(const char * lpcszName)
    strName.replace("\\", "/");
    single_lock sl(&m_cs, TRUE);
    m_pmanager->include_has_script(strName);
-   script * pscript  = get(strName);
+   pscript  = get(strName);
    sl.unlock();
    return pscript->create_instance();
 }
