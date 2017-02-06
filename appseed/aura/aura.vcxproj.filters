@@ -3778,14 +3778,14 @@
     <ClCompile Include="aura\aura\aura_os.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\window_process.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\os_debug.cpp">
       <Filter>Source Files\aura\os</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_zonetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_process.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

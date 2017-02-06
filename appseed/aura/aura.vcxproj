@@ -1852,6 +1852,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_process.cpp" />
     <ClCompile Include="aura\os\windows\windows_process_env_reader.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -1900,7 +1901,6 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\window_process.cpp" />
     <ClCompile Include="aura\os\windows\_windows_os.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>

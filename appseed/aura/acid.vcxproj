@@ -443,6 +443,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aura\os\os_debug.cpp" />
+    <ClCompile Include="aura\os\windows\windows_process.cpp" />
     <ClCompile Include="primitive\datetime\datetime_zonetime.cpp" />
     <ClCompile Include="version.cpp" />
     <ClInclude Include="aura\aura\aura.h" />

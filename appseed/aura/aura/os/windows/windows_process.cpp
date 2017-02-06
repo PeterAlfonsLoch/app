@@ -13,7 +13,7 @@ typedef NTSTATUS(NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, uint32
 
 PPEB GetPebAddress(HANDLE handleProcess);
 
-string get_command_line(HANDLE handleProcess)
+CLASS_DECL_AURA string get_command_line(HANDLE handleProcess)
 {
 
    PPEB ppeb = GetPebAddress(handleProcess);
