@@ -197,14 +197,15 @@ void script_manager::handle(::dynamic_source::httpd_socket * pdssocket)
       pinstance->m_strDebugThisScript = m_strSeed;
       pinstance->initialize(pinstance, NULL, pdssocket, this);
       pinstance->dinit();
-      //if(pinstance->m_iDebug > 0)
-      //{
-      //   if(pinstance->get("debug_lib").is_set())
-      //   {
-      //      m_pcompiler->m_memfileLibError.seek_to_begin();
-      //      pdssocket->response().file().transfer_from(m_pcompiler->m_memfileLibError);
-      //   }
-      //}
+      if(pinstance->m_iDebug > 0)
+      {
+         //if(pinstance->get("debug_lib").is_set())
+         {
+            //m_pcompiler->m_memfileLibError.seek_to_begin();
+            ::file::ostream os(&pdssocket->response().file());
+            os << pinstance->m_pscript->m_strError;
+         }
+      }
    }
    if(pinstance != NULL)
    {
