@@ -10,66 +10,147 @@
 
 int32_t atoi_dup(const char * psz)
 {
+   
    int32_t iResult = 0;
-   while(true)
+   
+   if (psz != NULL)
    {
-      char ch = *psz;
-      if(ch == '\0' || ch < '0' || ch > '9')
-         break;
-      iResult = iResult * 10 + (ch - '0');
-      psz++;
+
+      while (true)
+      {
+
+         char ch = *psz;
+         
+         if (ch == '\0' || ch < '0' || ch > '9')
+         {
+
+            break;
+
+         }
+
+         iResult = iResult * 10 + (ch - '0');
+
+         psz++;
+
+      }
+
    }
+
    return iResult;
+
 }
+
 
 int32_t atoi_dup(const char *psz, const char ** pszEnd)
 {
+   
    int32_t iResult = 0;
-   while(true)
+   
+   if (psz != NULL)
    {
-      char ch = *psz;
-      if(ch == '\0' || ch < '0' || ch > '9')
-         break;
-      iResult = iResult * 10 + (ch - '0');
-      psz++;
+      
+      while (true)
+      {
+         
+         char ch = *psz;
+         
+         if (ch == '\0' || ch < '0' || ch > '9')
+         {
+
+            break;
+
+         }
+
+         iResult = iResult * 10 + (ch - '0');
+
+         psz++;
+
+      }
+   
+      if (pszEnd != NULL)
+      {
+
+         *pszEnd = psz;
+
+      }
+
    }
-   if(pszEnd != NULL)
-   {
-      *pszEnd = psz;
-   }
+   
    return iResult;
+
 }
+
 
 uint32_t atoui_dup(const char * psz)
 {
+
    uint32_t uiResult = 0;
-   while(true)
+
+   if (psz != NULL)
    {
-      char ch = *psz;
-      if(ch == '\0' || ch < '0' || ch > '9')
-         break;
-      uiResult = uiResult * 10 + (ch - '0');
-      psz++;
+
+      while (true)
+      {
+
+         char ch = *psz;
+
+         if (ch == '\0' || ch < '0' || ch > '9')
+         {
+
+            break;
+
+         }
+
+         uiResult = uiResult * 10 + (ch - '0');
+
+         psz++;
+
+      }
+
    }
+
    return uiResult;
+
 }
+
 
 uint32_t atoui_dup(const char *psz, const char ** pszEnd)
 {
+
    uint32_t uiResult = 0;
-   while(true)
+
+   if (psz != NULL)
    {
-      char ch = *psz;
-      if(ch == '\0' || ch < '0' || ch > '9')
-         break;
-      uiResult = uiResult * 10 + (ch - '0');
-      psz++;
+
+      while (true)
+      {
+         
+         char ch = *psz;
+         
+         if (ch == '\0' || ch < '0' || ch > '9')
+         {
+
+            break;
+
+         }
+
+         uiResult = uiResult * 10 + (ch - '0');
+
+         psz++;
+
+      }
+
+      if (pszEnd != NULL)
+      {
+
+         *pszEnd = psz;
+
+      }
+
    }
-   if(pszEnd != NULL)
-   {
-      *pszEnd = psz;
-   }
+
    return uiResult;
+
 }
 
 /*int64_t atoi64_dup(const char *str)
