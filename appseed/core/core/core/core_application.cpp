@@ -474,7 +474,7 @@ namespace core
 
                }
 
-               if (m_strAppId != "app-core/netnodelite" && m_strAppId != "app-core/mydns")
+               if (!m_strAppId.begins_ci("app-core/netnode") && m_strAppId != "app-core/mydns")
                {
 
                   ApplicationUser;

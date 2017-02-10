@@ -99,8 +99,8 @@ namespace fontopus
       string strApp = command_thread()->property("app");
 
       if(strApp == "simpledbcfg"
-         || (strApp == "app-core/netnodelite" && command_thread()->property("root_handler") == "webserver")
-         || (strApp == "app-core/netnodelite")
+         || (strApp.begins_ci("app-core/netnode") && command_thread()->property("root_handler") == "webserver")
+         || (strApp.begins_ci("app-core/netnode"))
          || strApp == "veievserver"
          || strApp == "simpledbcfg"
          //|| command_thread()->property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
@@ -299,8 +299,8 @@ namespace fontopus
       if(strLicense == "netnodeapp"
          || strLicense == "netnodecfgapp"
          || strLicense == "simpledbcfg"
-         || (strLicense == "app-core/netnodelite" && command_thread()->property("root_handler") == "webserver")
-         || (strLicense == "app-core/netnodelite")
+         || (strLicense.begins_ci("app-core/netnode") && command_thread()->property("root_handler") == "webserver")
+         || (strLicense.begins_ci("app-core/netnode"))
          || strLicense == "veievserver"
          //|| strLicense == "veriwell_mplite"      // churrasco 2011 m_strLicense
          || strLicense == "mydns"

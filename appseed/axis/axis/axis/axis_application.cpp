@@ -2095,7 +2095,7 @@ namespace axis
       m_dwAlive = ::get_tick_count();
 
       if(is_system()
-         && command_thread()->m_varTopicQuery["app"] != "app-core/netnodelite"
+         && !command_thread()->m_varTopicQuery["app"].get_string().begins_ci("app-core/netnode")
          && command_thread()->m_varTopicQuery["app"] != "app-core/netnode_dynamic_web_server"
          && command_thread()->m_varTopicQuery["app"] != "app-gtech/alarm"
          && command_thread()->m_varTopicQuery["app"] != "app-gtech/sensible_service")
