@@ -1720,3 +1720,19 @@ CLASS_DECL_AURA string w_to_8(const wchar_t * pcwsz, strsize input_size)
 
 
 
+extern "C" 
+{
+
+   char * c_utf8_str(wchar_t * str)
+   {
+      return strdup(::str::international::unicode_to_utf8(str));
+   }
+
+   wchar_t * c_wide_str(char * str)
+   {
+
+      return wcsdup(::str::international::utf8_to_unicode(str));
+
+   }
+
+} // extern "C"

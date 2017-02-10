@@ -294,7 +294,10 @@ public:
 
    typedef const char * BASE_ARG_TYPE;
 
-
+   void c_add(char ** ppsz, ::count iCount);
+   void c_add(char ** ppsz);
+   void c_add(wchar_t ** ppsz, ::count iCount);
+   void c_add(wchar_t ** ppsz);
 
 
 
@@ -3285,6 +3288,90 @@ Type string_array < Type, RawType > ::_008IfImplode(const char * lpcszIfHasEleme
    Type str;
    _008IfImplode(str, lpcszIfHasElementPrefix, lpcszSeparator, lpcszLastSeparator, bUseLast, iStart, iEnd);
    return str;
+}
+
+
+/// expect strings allocated with malloc (sic, not memory_alloc) or strdup and array allocated with malloc (sic, not memory_alloc)
+template < class Type, class RawType >
+void string_array < Type, RawType > ::c_add(char ** ppsz, ::count c)
+{
+   
+   for (index i = 0; i < c; i++)
+   {
+
+      this->add(ppsz[i]);
+
+      free((void *)ppsz[i]);
+
+   }
+
+   free((void *)ppsz);
+   
+}
+
+/// expect strings allocated with malloc (sic, not memory_alloc) or strdup and array allocated with malloc (sic, not memory_alloc)
+template < class Type, class RawType >
+void string_array < Type, RawType > ::c_add(char ** ppszParam)
+{
+
+   char ** ppsz = ppszParam;
+
+   while(ppsz != NULL)
+   {
+
+      char * psz = *ppsz;
+
+      this->add(psz);
+
+      free((void *)psz);
+
+      ppsz++;
+
+   }
+
+   free((void *)ppsz);
+
+}
+
+/// expect strings allocated with malloc (sic, not memory_alloc) or wcsdup and array allocated with malloc (sic, not memory_alloc)
+template < class Type, class RawType >
+void string_array < Type, RawType > ::c_add(wchar_t ** ppsz, ::count c)
+{
+
+   for (index i = 0; i < c; i++)
+   {
+
+      this->add(ppsz[i]);
+
+      free((void *) ppsz[i]);
+
+   }
+
+   free((void *)ppsz);
+
+}
+/// expect strings allocated with malloc (sic, not memory_alloc) or wcsdup and array allocated with malloc (sic, not memory_alloc)
+template < class Type, class RawType >
+void string_array < Type, RawType > ::c_add(wchar_t ** ppszParam)
+{
+
+   wchar_t ** ppsz = ppszParam;
+
+   while (ppsz != NULL)
+   {
+
+      wchar_t * psz = *ppsz;
+
+      this->add(psz);
+
+      free((void *)psz);
+
+      ppsz++;
+
+   }
+
+   free((void *)ppsz);
+
 }
 
 

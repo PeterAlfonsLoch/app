@@ -65,3 +65,9 @@ CLASS_DECL_AURA strsize utf32_to_utf8_len(const unichar32 * pcwsz, strsize input
 #define unincpy wcsncpy_dup
 #endif
 
+BEGIN_EXTERN_C
+
+CLASS_DECL_AURA char * c_utf8_str(wchar_t * str);
+CLASS_DECL_AURA wchar_t * c_wide_str(char * str);
+
+END_EXTERN_C
