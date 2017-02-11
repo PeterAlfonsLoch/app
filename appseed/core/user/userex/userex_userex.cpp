@@ -457,7 +457,12 @@ namespace userex
 
       }
 
-      box.show(strMatter,&propertyset);
+      if (!box.show(strMatter, &propertyset))
+      {
+
+         throw resource_exception(get_app());
+
+      }
 
       if(box.m_strResponse == "ok")
       {

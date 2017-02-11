@@ -3273,6 +3273,8 @@ namespace aura
          if(!check_exclusive())
          {
 
+            simple_message_box_timeout(NULL, "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).", seconds(5), MB_ICONASTERISK);
+
             thisfail << 0.2;
 
             return false;

@@ -52,11 +52,18 @@ namespace user
 
    void multiple_document_template::remove_document(::user::document * pdocument)
    {
+
+      ::count cRef = pdocument->m_countReference;
       
       if (m_docptra.remove(pdocument) > 0)
       {
 
-         impact_system::remove_document(pdocument);
+         if (cRef > 1)
+         {
+
+            impact_system::remove_document(pdocument);
+
+         }
 
       }
       
@@ -86,7 +93,11 @@ namespace user
       if (pFrame == NULL)
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "Failed to create ::user::document");
+         string strId = typeid(*pcreatecontext->m_puiAlloc).name();
+         if (strId.find_ci("userex::message_box") < 0)
+         {
+            System.simple_message_box(NULL, "Failed to create ::user::document");
+         }
          remove_document(pdocument);
          return;
       }

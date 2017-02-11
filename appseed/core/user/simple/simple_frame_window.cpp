@@ -405,6 +405,16 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
          throw e;
 
       }
+      catch (...)
+      {
+
+         pcreate->m_lresult = -1;
+
+         pcreate->m_bRet = true;
+
+         return;
+
+      }
 
       //frame::FrameSchema * pschema = dynamic_cast < ::frame::FrameSchema * > (pinteractionframe);
 

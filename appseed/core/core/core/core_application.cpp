@@ -3539,7 +3539,18 @@ namespace core
       if (Session.userex() == NULL)
          return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
-      return Session.userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle, this);
+      try
+      {
+
+         return Session.userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle, this);
+
+      }
+      catch (...)
+      {
+         
+      }
+
+      return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
    }
 

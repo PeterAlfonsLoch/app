@@ -456,6 +456,10 @@ namespace windows
 
       }
 
+      // if window is not created, it may destroy this object,
+      // so keep the app as local var
+      ::aura::application * papp = m_pauraapp;
+
       oswindow oswindow = ::CreateWindowExW(cs.dwExStyle,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
 
       if(!unhook_window_create())
@@ -477,8 +481,15 @@ namespace windows
 
          //::simple_message_box(NULL,"h3","h3",MB_OK);
 
-         if(m_pauraapp == NULL)
-            return FALSE;
+         //if(m_pauraapp == NULL)
+         //   return FALSE;
+
+         if (papp == NULL)
+         {
+
+            return false;
+
+         }
 
          uint32_t dwLastError = GetLastError();
          string strLastError = FormatMessageFromSystem(dwLastError);
@@ -486,9 +497,9 @@ namespace windows
          strMessage.Format("%s\n\nSystem Error Code: %d",strLastError,dwLastError);
 
 
-         TRACE(::aura::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
+         APPTRACE(::aura::trace::category_AppMsg,0,"Warning: Window creation failed: GetLastError returned:\n");
 
-         TRACE(::aura::trace::category_AppMsg,0,"%s\n",strMessage);
+         APPTRACE(::aura::trace::category_AppMsg,0,"%s\n",strMessage);
 
          try
          {
@@ -496,13 +507,13 @@ namespace windows
             if(dwLastError == 0x0000057e)
             {
 
-               TRACE("Cannot create a top-level child interaction_impl.");
+               APPTRACE("Cannot create a top-level child interaction_impl.");
 
             }
             else
             {
 
-               TRACE0(strMessage);
+               APPTRACE("%s", strMessage);
 
             }
 
