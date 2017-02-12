@@ -242,11 +242,19 @@ namespace user
       // then pump through document
       if (::user::impact::get_document() != NULL)
       {
+         
          if (::user::impact::get_document()->_001OnCmdMsg(pcmdmsg))
-            return TRUE;
-         for (auto pview : ::user::impact::get_document()->m_viewptra)
          {
+
+            return TRUE;
+
+         }
+
+         for (auto pview : ::user::impact::get_document()->m_viewspa)
+         {
+
             ASSERT_VALID(pview);
+
             if (pview != NULL && pview != this && !IsAscendant(pview))
             {
 
@@ -258,6 +266,7 @@ namespace user
                }
 
             }
+
          }
 
       }
@@ -265,6 +274,7 @@ namespace user
       return false;
 
    }
+
 
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact drawing support

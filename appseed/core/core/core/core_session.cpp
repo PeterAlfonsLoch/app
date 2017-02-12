@@ -852,7 +852,7 @@ namespace core
       return filemanager().get_initial_browse_path();
    }
 
-   void session::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
+   bool session::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    {
       if(eexclusive == ExclusiveInstanceLocalId)
       {
@@ -868,6 +868,8 @@ namespace core
 
          ::SendMessage(oswindow, WM_COPYDATA, 0, (LPARAM) &data);
 
+         return true;
+
 #else
 
          throw todo(get_app());
@@ -875,6 +877,9 @@ namespace core
 #endif
 
       }
+
+      return false;
+
    }
 
 

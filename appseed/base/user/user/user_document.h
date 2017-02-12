@@ -19,7 +19,7 @@ namespace user
       string                           m_strTitle;
       ::file::path                     m_filepath;
       ::user::impact_system *          m_pimpactsystem;
-      ref_array < ::user::impact >     m_viewptra;
+      spa(::user::impact)              m_viewspa;
       bool                             m_bModified;
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
@@ -57,37 +57,43 @@ namespace user
       void add_view(::user::impact * pview);
       void remove_view(::user::impact * pview);
       virtual ::count get_view_count() const;
-      virtual ::user::impact * get_view(index index = 0) const;
+      virtual sp(::user::impact) get_view(index index = 0) const;
 
 
 
       template < class T >
-      T * get_typed_view_count() const
+      ::count get_typed_view_count() const
       {
+         synch_lock sl(((document *)this)->m_pmutex);
          ::count count = 0;
-         for (index index = 0; index < m_viewptra.get_count(); index++)
+         for (index index = 0; index < m_viewspa.get_count(); index++)
          {
-            T * pt = dynamic_cast <T *> (m_viewptra[index]);
-            if (pt != NULL)
+            if (m_viewspa[index].is_null())
+            {
+               continue;
+            }
+            sp(T) pt = m_viewspa[index].cast < T > ();
+            if (pt.is_set())
                count++;
          }
          return count;
       }
 
       template < class T >
-      T * get_typed_view(index indexFind = 0) const
+      sp(T) get_typed_view(index indexFind = 0) const
       {
-         if (indexFind < 0 || indexFind >= m_viewptra.get_count())
+         synch_lock sl(((document *)this)->m_pmutex);
+         if (indexFind < 0 || indexFind >= m_viewspa.get_count())
             return NULL;
          ::count count = 0;
-         for (index index = 0; index < m_viewptra.get_count(); index++)
+         for (index index = 0; index < m_viewspa.get_count(); index++)
          {
-            if(m_viewptra[index] == NULL)
+            if(m_viewspa[index].is_null())
             {
                continue;
             }
-            T * pt = dynamic_cast < T * >(m_viewptra[index]);
-            if (pt != NULL)
+            sp(T) pt = m_viewspa[index].cast < T > ();
+            if (pt.is_set())
             {
                if (indexFind == count)
                   return pt;
@@ -99,22 +105,24 @@ namespace user
       }
 
       template < class T >
-      T * get_typed_view_with_id(id id) const
+      sp(T) get_typed_view_with_id(id id) const
       {
+
+         synch_lock sl(((document *)this)->m_pmutex);
 
          ::count count = 0;
 
-         for(index index = 0; index < m_viewptra.get_count(); index++)
+         for(index index = 0; index < m_viewspa.get_count(); index++)
          {
 
-            if(m_viewptra[index] == NULL)
+            if(m_viewspa[index].is_null())
             {
                continue;
             }
 
-            T * pt =  dynamic_cast < T * > (m_viewptra[index]);
+            sp(T) pt = m_viewspa[index].cast < T >();
 
-            if(pt != NULL)
+            if(pt.is_set())
             {
 
                if(id == pt->m_id)

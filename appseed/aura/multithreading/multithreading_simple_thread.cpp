@@ -6,7 +6,7 @@ simple_thread::simple_thread(::aura::application * papp) :
    thread(papp)
 {
 
-   set_auto_delete(false);
+//   set_auto_delete(false);
 
    m_dwFinishTimeout = 1984 * 30; // default
 
@@ -15,6 +15,8 @@ simple_thread::simple_thread(::aura::application * papp) :
 
 simple_thread::~simple_thread()
 {
+   
+   ::multithreading::post_quit(this);
 
 }
 

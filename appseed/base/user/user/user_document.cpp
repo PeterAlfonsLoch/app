@@ -15,7 +15,7 @@ namespace user
       m_bModified = FALSE;
       m_bAutoDelete = TRUE;       // default to auto delete document
       m_bEmbedded = FALSE;        // default to file-based document
-      ASSERT(m_viewptra.is_empty());
+      //ASSERT(m.is_empty());
 
       m_dataid = typeid(*this).name();
 
@@ -37,7 +37,7 @@ namespace user
 
       // there should be no views left!
       disconnect_views();
-      ASSERT(m_viewptra.is_empty());
+      ASSERT(m_viewspa.is_empty());
 
       if (m_pimpactsystem != NULL)
          m_pimpactsystem->remove_document(this);
@@ -138,18 +138,29 @@ namespace user
       on_close_document();  // may 'delete this'
    }
 
+   
    void document::disconnect_views()
    {
-      single_lock sl(m_pmutex, true);
-      for (index index = 0; index < m_viewptra.get_count(); index++)
+      
+      synch_lock sl(m_pmutex);
+      
+      for (index index = 0; index < m_viewspa.get_count(); index++)
       {
-         sp(::user::impact) pview = m_viewptra[index];
+         
+         sp(::user::impact) pview = m_viewspa[index];
+         
          ASSERT_VALID(pview);
+
          ASSERT_KINDOF(::user::impact, pview);
+
          pview->m_pdocument = NULL;
+
       }
-      m_viewptra.remove_all();
+
+      m_viewspa.remove_all();
+
    }
+
 
    /*void document::on_alloc(::aura::application * papp)
    {
@@ -172,21 +183,27 @@ namespace user
    }
 
 
-   ::user::impact * document::get_view(index index) const
+   sp(::user::impact) document::get_view(index index) const
    {
-      single_lock sl(((document *) this)->m_pmutex, true);
-      if (index < 0 || index >= m_viewptra.get_count())
+      
+      synch_lock sl(((document *) this)->m_pmutex);
+
+      if (index < 0 || index >= m_viewspa.get_count())
          return NULL;
-      ::user::impact * pview = m_viewptra[index];
+
+      sp(::user::impact) pview = m_viewspa[index];
+
       ASSERT_KINDOF(::user::impact, pview);
+
       return pview;
+
    }
 
 
    void document::update_all_views(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
    {
 
-      ASSERT(pSender == NULL || !m_viewptra.is_empty());
+      ASSERT(pSender == NULL || !m_viewspa.is_empty());
 
       ::count count = get_view_count();
 
@@ -212,7 +229,7 @@ namespace user
    void document::send_update(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
    // walk through all views
    {
-      ASSERT(pSender == NULL || !m_viewptra.is_empty());
+      ASSERT(pSender == NULL || !m_viewspa.is_empty());
       // must have views if sent by one of them
 
       update * pupdate;
@@ -427,7 +444,7 @@ namespace user
 
    ::count document::get_view_count() const
    {
-      return m_viewptra.get_count();
+      return m_viewspa.get_count();
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -441,7 +458,7 @@ namespace user
       psl->lock();
       // if no more views on the document_interface, delete ourself
       // not called if directly closing the document_interface or terminating the cast
-      if (m_viewptra.is_empty() && m_bAutoDelete)
+      if (m_viewspa.is_empty() && m_bAutoDelete)
       {
          on_close_document(psl);
          return;
@@ -623,10 +640,10 @@ namespace user
       // the last destroy may destroy us
       bool bAutoDelete = m_bAutoDelete;
       m_bAutoDelete = FALSE;  // don't destroy document_interface while closing views
-      for (index index = 0; index < m_viewptra.get_count(); index++)
+      for (index index = 0; index < m_viewspa.get_count(); index++)
       {
          // get frame attached to the ::user::impact
-         sp(::user::impact) pview = m_viewptra[index];
+         sp(::user::impact) pview = m_viewspa[index];
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
 
@@ -638,7 +655,7 @@ namespace user
             // will destroy the ::user::impact as well
          }
       }
-      m_viewptra.remove_all();
+      m_viewspa.remove_all();
       m_bAutoDelete = bAutoDelete;
       psl->unlock();
 
@@ -1073,7 +1090,7 @@ namespace user
 
       ASSERT(pview->::user::impact::get_document() == NULL); // must not be already attached
 
-      if (m_viewptra.add_unique(pview))
+      if (m_viewspa.add_unique(pview))
       {
 
          pview->m_pdocument = this;
@@ -1094,7 +1111,7 @@ namespace user
 
       ASSERT(pview->::user::impact::get_document() == this); // must be attached to us
 
-      if (m_viewptra.remove(pview) > 0)
+      if (m_viewspa.remove(pview) > 0)
       {
 
          pview->m_pdocument = NULL;

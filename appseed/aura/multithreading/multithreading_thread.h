@@ -56,6 +56,7 @@ namespace primitive { class command;  }
 ///
 /// \author Camilo Sasuke Tsumanuma
 ///
+/// a thread must be always allocated in the heap
 class CLASS_DECL_AURA thread :
    virtual public command_target
 #ifdef WINDOWS
@@ -92,7 +93,7 @@ public:
 
    //thread_impl_sp                         m_pthreadimpl;
 
-   bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
+   //bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
@@ -198,7 +199,7 @@ public:
    int32_t priority();
 
 
-   virtual bool is_auto_delete();
+   //virtual bool is_auto_delete();
 
    virtual bool begin(int32_t epriority = ::multithreading::priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL, IDTHREAD * puiId = NULL);
 
@@ -263,7 +264,7 @@ public:
    //virtual ::user::primitive * get_ui(index iIndex);
    //virtual void set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse);
    //virtual void unset_timer(::user::primitive * pui, uint_ptr nIDEvent);
-   virtual void set_auto_delete(bool bAutoDelete = true);
+   //virtual void set_auto_delete(bool bAutoDelete = true);
    virtual ::user::primitive * get_active_ui();
    virtual ::user::primitive * set_active_ui(::user::primitive * pui);
    //virtual void step_timer();

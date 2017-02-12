@@ -341,8 +341,6 @@ namespace fontopus
 
          }
 
-         m_pthreadCreatingUser->m_bAutoDelete = true;
-
          m_pthreadCreatingUser->begin();
 
          if(!bSynch)

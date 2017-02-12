@@ -222,7 +222,7 @@ namespace aura
       try
       {
 
-         ::aura::del(m_pmachineeventcentral);
+         m_pmachineeventcentral.release();
 
       }
       catch (...)

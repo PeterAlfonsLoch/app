@@ -53,7 +53,7 @@ namespace aura
       class ::str::base64                          m_base64;
 
       ::string_to_string                           m_mapAppLibrary;
-      class machine_event_central *                m_pmachineeventcentral;
+      sp(class machine_event_central)              m_pmachineeventcentral;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
       ::aura::os_sp                                m_spos;

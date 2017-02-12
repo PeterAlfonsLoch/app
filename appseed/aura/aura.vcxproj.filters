@@ -428,12 +428,6 @@
     <ClInclude Include="primitive\primitive_check.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\multithreading_go_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_simple_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\collection.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -2066,18 +2060,6 @@
     <ClInclude Include="primitive\primitive_cflag.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_department.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_department_container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process_department.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_department.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\enum.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -2209,6 +2191,24 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_zonetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_go_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_simple_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_department.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_department_container.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_department.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\xml\xml_department.h">
+      <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2521,13 +2521,7 @@
     <ClCompile Include="primitive\primitive_color.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="multithreading\multithreading_simple_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\multithreading_signal_thread.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_go_thread.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
@@ -3786,6 +3780,12 @@
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows_process.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_go_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_simple_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

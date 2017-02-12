@@ -3270,10 +3270,18 @@ namespace aura
 
          thisok << 0.1;
 
-         if(!check_exclusive())
+         bool bHandled = false;
+
+         if(!check_exclusive(bHandled))
          {
 
-            simple_message_box_timeout(NULL, "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).", seconds(5), MB_ICONASTERISK);
+            if (!bHandled && (is_debugger_attached() || System.directrix()->m_varTopicQuery.has_property("install")
+               || System.directrix()->m_varTopicQuery.has_property("uninstall")))
+            {
+
+               simple_message_box_timeout(NULL, "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).", seconds(5), MB_ICONASTERISK);
+
+            }
 
             thisfail << 0.2;
 
@@ -3943,7 +3951,7 @@ namespace aura
 
 
 
-   bool application::check_exclusive()
+   bool application::check_exclusive(bool & bHandled)
    {
 
 #ifdef METROWIN
@@ -3951,8 +3959,6 @@ namespace aura
       return true;
 
 #endif
-
-
 
       bool bSetOk;
 
@@ -4023,7 +4029,7 @@ namespace aura
             // Should in some way activate the other instance, but this is global, what to do? do not know yet.
             //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
             TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-            on_exclusive_instance_conflict(ExclusiveInstanceGlobal);
+            bHandled = on_exclusive_instance_conflict(ExclusiveInstanceGlobal);
             return false;
          }
          if(m_eexclusiveinstance == ExclusiveInstanceGlobalId)
@@ -4048,7 +4054,7 @@ namespace aura
             {
                // Should in some way activate the other instance
                TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
-               on_exclusive_instance_conflict(ExclusiveInstanceGlobalId);
+               bHandled = on_exclusive_instance_conflict(ExclusiveInstanceGlobalId);
                return false;
             }
          }
@@ -4099,7 +4105,7 @@ namespace aura
             {
             // Should in some way activate the other instance
             TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-            on_exclusive_instance_conflict(ExclusiveInstanceLocal);
+            bHandled = on_exclusive_instance_conflict(ExclusiveInstanceLocal);
             }
             catch(...)
             {
@@ -4131,7 +4137,7 @@ namespace aura
                {
                // Should in some way activate the other instance
                   TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-                  on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
+                  bHandled = on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
                }
                catch(...)
                {
@@ -4261,15 +4267,22 @@ namespace aura
 
 
 
-   void application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
+   bool application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    {
+
       if(eexclusive == ExclusiveInstanceLocal)
       {
-         on_exclusive_instance_local_conflict();
+
+         return on_exclusive_instance_local_conflict();
+
       }
+
+      return false;
+
    }
 
-   void application::on_exclusive_instance_local_conflict()
+
+   bool application::on_exclusive_instance_local_conflict()
    {
 
       try
@@ -4278,7 +4291,14 @@ namespace aura
          if(m_pipi != NULL)
          {
 
-            m_pipi->ecall(m_pipi->m_strApp,{System.os().get_pid()},"application","on_exclusive_instance_local_conflict",System.file().module(),System.os().get_pid(), string(System.directrix()->m_spcommandline->m_strCommandLine));
+            int_map < var > map = m_pipi->ecall(m_pipi->m_strApp,{System.os().get_pid()},"application","on_exclusive_instance_local_conflict",System.file().module(),System.os().get_pid(), string(System.directrix()->m_spcommandline->m_strCommandLine));
+
+            if (!map[System.os().get_pid()].is_new())
+            {
+
+               return true;
+
+            }
 
          }
 
@@ -4289,13 +4309,15 @@ namespace aura
 
       }
 
+      return false;
 
    }
 
 
-   void application::on_exclusive_instance_local_conflict(string strModule,int iPid, string strCommandLine)
+   bool application::on_exclusive_instance_local_conflict(string strModule,int iPid, string strCommandLine)
    {
 
+      return false;
 
    }
 

@@ -170,7 +170,7 @@ void thread::CommonConstruct()
 
 //   m_preplacethread = NULL;
 
-   m_bAutoDelete = true;
+//   m_bAutoDelete = true;
 
    m_pfileinfo = NULL;
 
@@ -314,12 +314,12 @@ bool thread::is_alive()
 
 
 
-bool thread::is_auto_delete()
-{
-
-   return m_bAutoDelete;
-
-}
+//bool thread::is_auto_delete()
+//{
+//
+//   return m_bAutoDelete;
+//
+//}
 
 
 
@@ -491,12 +491,12 @@ bool thread::on_thread_on_idle(thread *pimpl, LONG lCount)
 
 
 
-void thread::set_auto_delete(bool bAutoDelete)
-{
-
-   m_bAutoDelete = bAutoDelete;
-
-}
+//void thread::set_auto_delete(bool bAutoDelete)
+//{
+//
+//   m_bAutoDelete = bAutoDelete;
+//
+//}
 
 
 
@@ -943,20 +943,21 @@ void thread::delete_this()
    try
    {
 
-      if(get_os_handle() != NULL)
-      {
+      /// "thread task" should be inactive here.
+      ASSERT(get_os_handle() == NULL);
+      //{
 
-         m_bAutoDelete = true;
+      //   m_bAutoDelete = true;
 
-         post_quit();
+      //   post_quit();
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
          ::command_target::delete_this();
 
-      }
+      //}
 
    }
    catch(...)
@@ -1280,20 +1281,33 @@ bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority
 
    pstartup->m_event2.ResetEvent();
 
+   add_ref();
+
    m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags,&m_uiThread);
 
    if(m_hthread == (HTHREAD) NULL)
    {
+      
       try
       {
 
-         if(piStartupError != NULL)
+         if (piStartupError != NULL)
+         {
+            
             *piStartupError = pstartup->m_iError;
+
+         }
+
       }
       catch(...)
       {
+      
       }
+      
+      release();
+
       return false;
+
    }
    else
    {

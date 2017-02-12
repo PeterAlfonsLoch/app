@@ -290,7 +290,24 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex,true);
 
-      string xxx = Session.fontopus()->m_puser->m_strFontopusServerSessId;
+      string xxx;
+      
+      if (&Session != NULL)
+      {
+         
+         if (Session.fontopus())
+         {
+
+            if (Session.fontopus()->m_puser != NULL)
+            {
+
+               xxx = Session.fontopus()->m_puser->m_strFontopusServerSessId;
+
+            }
+
+         }
+
+      }
 
       property_set set(get_app());
 

@@ -291,7 +291,7 @@ namespace process
 
       m_pthread = new process_thread(papp,strCmdLine,dur,&m_bPotentialTimeout,pstrRead, bElevated);
 
-      m_pthread->m_bAutoDelete = true;
+      //m_pthread->m_bAutoDelete = true;
 
       m_pthread->m_pbInitFailure = &m_bInitFailure;
 

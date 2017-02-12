@@ -385,9 +385,14 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
       virtual string get_mutex_name_gen();
 
-      virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
-      virtual void on_exclusive_instance_local_conflict();
-      virtual void on_exclusive_instance_local_conflict(string strModule,int iPid, string strCommandLine);
+      /// return true if handled
+      virtual bool on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
+
+      /// return true if handled
+      virtual bool on_exclusive_instance_local_conflict();
+
+      /// return true if handled
+      virtual bool on_exclusive_instance_local_conflict(string strModule,int iPid, string strCommandLine);
 
       virtual void on_new_instance(string strModule,int iPid);
 
@@ -407,7 +412,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual string get_global_mutex_name();
       virtual string get_global_id_mutex_name();
 
-      virtual bool check_exclusive();
+      virtual bool check_exclusive(bool & bHandled);
       virtual bool release_exclusive();
 
       virtual void on_set_scalar(e_scalar escalar,int64_t iValue,int iFlags) override;

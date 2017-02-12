@@ -21,6 +21,16 @@ extern "C"
 
 }
 
+#ifdef WINDOWS
+
+void * operator new(size_t nSize)
+{
+
+   return ace_memory_alloc(nSize);
+
+}
+
+#else
 
 void * operator new(size_t nSize) new_throw_spec
 {
@@ -29,6 +39,9 @@ void * operator new(size_t nSize) new_throw_spec
 
 }
 
+
+#endif
+
 void operator delete(void * p) del_throw_spec
 {
 
@@ -36,12 +49,25 @@ void operator delete(void * p) del_throw_spec
 
 }
 
+#ifdef WINDOWS
+
+void * operator new[](size_t nSize)
+{
+
+   return ::operator new(nSize);
+
+}
+
+#else
+
 void * operator new[](size_t nSize) new_throw_spec
 {
 
    return ::operator new(nSize);
 
 }
+
+#endif
 
 
 void operator delete[](void * p) del_throw_spec

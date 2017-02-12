@@ -165,8 +165,9 @@ namespace userstack
    }
 
 
-   void application::on_exclusive_instance_conflict(::EExclusiveInstance eexclusive)
+   bool application::on_exclusive_instance_conflict(::EExclusiveInstance eexclusive)
    {
+
       if(eexclusive == ::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
@@ -179,10 +180,15 @@ namespace userstack
          ::oswindow oswindow = ::FindWindowA(NULL, "::ca2::fontopus::message_wnd::application::");
 
          ::SendMessage(oswindow, WM_COPYDATA, (WPARAM) 0, (LPARAM) &data);
+
+         return true;
 #else
          throw todo(get_app());
 #endif
       }
+
+      return false;
+
    }
 
 

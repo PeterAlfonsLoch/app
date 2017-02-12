@@ -12,7 +12,7 @@ namespace filemanager
       m_mutexFileOperationA(papp),
       m_mutexStep(papp)
    {
-      set_auto_delete(false);
+//      set_auto_delete(false);
       m_bStep = false;
    }
 

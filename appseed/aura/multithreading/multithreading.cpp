@@ -162,12 +162,15 @@ namespace multithreading
          try
          {
 
-            if(pthread->m_bAutoDelete)
-            {
+//            if(pthread->m_bAutoDelete)
+  //          {
 
-               ::aura::del(pthread);
+      //         ::aura::del(pthread);
+                  
 
-            }
+    //        }
+
+            ::release(pthread);
 
          }
          catch(...)
