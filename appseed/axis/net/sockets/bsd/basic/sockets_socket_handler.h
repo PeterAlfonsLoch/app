@@ -27,8 +27,9 @@ namespace sockets
       fd_set               m_rfds; ///< file descriptor set monitored for read events
       fd_set               m_wfds; ///< file descriptor set monitored for write events
       fd_set               m_efds; ///< file descriptor set monitored for exceptions
-      int32_t              m_preverror; ///< debug select() error
-      int32_t              m_errcnt; ///< debug select() error
+      int32_t              m_iPreviousError; ///< debug select() error
+      //int32_t              m_iErrorCount; ///< debug select() error
+      DWORD                m_dwLastError;
       time_t               m_tlast; ///< timeout control
 
       // state lists

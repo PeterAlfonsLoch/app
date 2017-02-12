@@ -32,8 +32,8 @@ namespace sockets
       base_socket_handler(papp,plogger),
       m_b_use_mutex(false)
       ,m_maxsock(0)
-      ,m_preverror(-1)
-      ,m_errcnt(0)
+      ,m_iPreviousError(-1)
+      //,m_errcnt(0)
       ,m_tlast(0)
       ,m_socks4_port(0)
       ,m_bTryDirect(false)
@@ -476,33 +476,52 @@ namespace sockets
       FD_COPY(&m_efds,&efds);
 
       int32_t n;
+      
       dw1 = ::get_tick_count();
+      
       if(m_b_use_mutex)
       {
+         
          m_pmutex->unlock();
+         
          n = ::select((int) m_maxsock,&rfds,&wfds,&efds,tsel);
+         
          m_iSelectErrno = Errno;
+
          m_pmutex->lock();
+
       }
       else
       {
+         
          n = ::select((int)m_maxsock,&rfds,&wfds,&efds,tsel);
+         
          m_iSelectErrno = Errno;
+
       }
+
       dw2 = ::get_tick_count();
+
       //TRACE("socket_handler::Select select time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
-      if(n == -1)
+
+      if(n < 0)
       {
+         
+         DWORD dwNow = ::get_tick_count();
+
          /*
             EBADF  An invalid file descriptor was given in one of the sets.
             EINTR  A non blocked signal was caught.
             EINVAL n is negative. Or struct timeval contains bad time values (<0).
             ENOMEM select was unable to allocate memory for internal tables.
          */
-         if(m_maxsock > 0 && (Errno != m_preverror || m_errcnt++ % 10000 == 0))
+
+         if(m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || dwNow - m_dwLastError > 5000))
          {
-            log(NULL,"select",Errno,StrError(Errno));
-            int32_t iError = Errno;
+
+            log(NULL, "select", m_iSelectErrno, StrError(m_iSelectErrno));
+
+            int32_t iError = m_iSelectErrno;
 #ifdef LINUX
             TRACE("m_maxsock: %d\n",m_maxsock);
             TRACE("sockets::socket_handler select error : %s (%d)",strerror(Errno),Errno);
@@ -549,7 +568,6 @@ namespace sockets
                }
             }
 
-            m_preverror = Errno;
          }
 
          /// \no more todo rebuild fd_set's from active sockets list (m_sockets) here
@@ -634,14 +652,19 @@ namespace sockets
             m_wfds = wfds;
             m_efds = efds;
          }
+
+         m_iPreviousError = m_iSelectErrno;
+
+         m_dwLastError = dwNow;
+
       }
-      else if(n == 0)
+      else if (n == 0)
       {
 
-         m_preverror = -1;
+         m_iPreviousError = -1;
 
       }
-      else if(n > 0)
+      else
       {
          POSITION pos = m_fds.get_head_position();
          for(; pos != NULL && n;)
@@ -716,7 +739,7 @@ namespace sockets
                n--;
             }
          } // m_fds loop
-         m_preverror = -1;
+         m_iPreviousError = -1;
       } // if (n > 0)
 
       call_on_connect();
