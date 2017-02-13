@@ -831,6 +831,73 @@ namespace draw2d
       */
 
 
+   bool dib::flip_vertical(::draw2d::dib * pdib)
+   {
+      
+      if (!create(pdib->m_size))
+      {
+         
+         return false;
+
+      }
+
+      int w = m_size.cx;
+
+      int h = m_size.cy;
+
+      int sw = w * 4;
+
+      int dsw = m_iScan / 4;
+
+      int ssw = pdib->m_iScan / 4;
+
+      for (index y = 0; y < h; y++)
+      {
+
+         memcpy(&m_pcolorref[y * dsw], &pdib->m_pcolorref[(h - y - 1) * ssw], sw);
+
+      }
+
+      return true;
+
+   }
+
+
+   bool dib::flip_horizontal(::draw2d::dib * pdib)
+   {
+      
+      if (!create(pdib->m_size))
+      {
+
+         return false;
+
+      }
+
+      int half = -1;
+
+      int dsw = m_iScan / 4;
+
+      int ssw = pdib->m_iScan / 4;
+
+      int w = m_size.cx;
+
+      for (index y = 0; y < pdib->m_size.cy; y++)
+      {
+
+         for (index x = 0; x < w; x++)
+         {
+
+            m_pcolorref[y * dsw + x] = pdib->m_pcolorref[y * ssw + w - x - 1];
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
    void dib::ToAlpha(int32_t i)
    {
       BYTE *dst=(BYTE*)get_data();
@@ -3210,86 +3277,82 @@ namespace draw2d
 
    }
 
+
+   bool dib::rotate(dib * pdib, double dAngle)
+   {
+
+      double o = dAngle * pi() / 180.0;
+
+      int a = (int) (::fabs((double) pdib->m_size.cx * ::sin(o)) + ::fabs((double) pdib->m_size.cy * ::cos(o)));
+
+      int b = (int) (::fabs((double) pdib->m_size.cx * ::cos(o)) + ::fabs((double) pdib->m_size.cy * ::sin(o)));
+
+      if (!create(b, a))
+      {
+
+         return false;
+
+      }
+
+      rotate(pdib, dAngle, 1.0);
+
+      return true;
+
+   }
+
    void dib::rotate(dib * pdib, double dAngle, double dScale)
    {
-      // ::draw2d::dib_sp spdib(allocer());
-      //   spdib->Paste(this);
 
       int32_t l = MAX(m_size.cx, m_size.cy);
 
-
       int32_t jmax = MIN(l, m_size.cy / 2);
-      int32_t jmin = - jmax;
+
+      int32_t jmin = -jmax;
+
       int32_t imax = MIN(l, m_size.cx / 2);
-      int32_t imin = - imax;
 
+      int32_t imin = -imax;
 
-      int32_t joff = m_size.cy / 2;
-      int32_t ioff = m_size.cx / 2;
+      int xoff = pdib->m_size.cx / 2;
 
-      //int32_t iAngle = iStep % 360;
-      //int32_t iAngle = iStep;
-      //int32_t iAngle = 1;
-      //int32_t k = 0;
+      int yoff = pdib->m_size.cy / 2;
 
-      /*     for ( int32_t j=jmin; j<jmax; j++ )
-      {
-      for ( int32_t i=imin; i<imax; i++ )
-      {
-      int32_t x, y;
+      double o = dAngle * pi() / 180.0;
 
-      // A Combination of a 2d Translation/rotation/Scale Matrix
-      x=int32_t(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
-      y=int32_t(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
-      get_data()[(j+joff)*m_size.cx+(i+ioff)]=
-      spdib->get_data()[abs(y%m_size.cy)*m_size.cx+abs(x%m_size.cx)];
-      //k++;
-      }
-      (j+joff)*m_size.cx+(i+ioff)
-      }*/
-      int stride_unit = m_iScan / sizeof(COLORREF);
-      int32_t k = 0;
+      int ioff = m_size.cx / 2;
+
+      int joff = m_size.cy / 2;
+
+      int dsw = m_iScan / sizeof(COLORREF);
+      
+      int ssw = pdib->m_iScan / sizeof(COLORREF);
+      
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
+      
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int32_t cx1 = m_size.cx - 1;
-      int32_t cy1 = m_size.cy - 1;
-      for ( int32_t j=jmin; j<jmax; j++ )
+
+      int x;
+
+      int y;
+
+      for(int32_t j = jmin; j < jmax; j++)
       {
-         for ( int32_t i=imin; i<imax; i++ )
+
+         for(int32_t i = imin; i < imax; i++)
          {
-            int32_t x, y;
 
-            // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % m_size.cx);
-            //y=abs((int32_t(dSin * i + dCos * j) + joff) % m_size.cy);
+            x = (int32_t) fabs((dCos * i - dSin * j) + xoff);
 
-            x = (int32_t) fabs((dCos * i - dSin * j) + ioff);
-            y = (int32_t) fabs((dSin * i + dCos * j) + joff);
+            y = (int32_t) fabs((dSin * i + dCos * j) + yoff);
 
-            if((x / m_size.cx) % 2 == 0)
-            {
-               x %= m_size.cx;
-            }
-            else
-            {
-               x = cx1 - (x % m_size.cx);
-            }
+            x %= pdib->m_size.cx;
 
-            if((y / m_size.cy) % 2 == 0)
-            {
-               y %= m_size.cy;
-            }
-            else
-            {
-               y = cy1 - (y % m_size.cy);
-            }
+            y %= pdib->m_size.cy;
 
+            m_pcolorref[(j + joff) * dsw + (i + ioff)] = pdib->m_pcolorref[y * ssw + x];
 
-
-            get_data()[(j+joff)*stride_unit+(i+ioff)]=
-               pdib->get_data()[y * stride_unit + x];
-            k++;
          }
+
       }
    }
 

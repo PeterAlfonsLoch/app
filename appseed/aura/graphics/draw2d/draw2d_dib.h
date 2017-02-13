@@ -139,6 +139,8 @@ namespace draw2d
       virtual void unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
       virtual void set_mapped();
 
+      virtual bool flip_vertical(::draw2d::dib * pdib);
+      virtual bool flip_horizontal(::draw2d::dib * pdib);
 
       virtual bool is_rgb_black();
       virtual void do_xor(dib * pdib);
@@ -158,6 +160,7 @@ namespace draw2d
 
       virtual void rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale);
       virtual void rotate(dib * pdib, double dAngle, double dScale);
+      virtual bool rotate(dib * pdib, double dAngle);
       virtual void Rotate034(dib * pdib, double dAngle, double dScale);
 
 

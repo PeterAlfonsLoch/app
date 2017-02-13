@@ -664,6 +664,8 @@ bool imaging::from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP 
    pdib->mult_alpha();
 //#endif
 
+
+
    //   RGBQUAD bkcolor;
    FreeImage_Unload(pimage32);
    if(bUnloadFI)
@@ -871,12 +873,116 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
    ::draw2d::graphics_sp spgraphics(allocer());
    
    spgraphics->CreateCompatibleDC(NULL);
+
+   int iExifOrientation = -1;
+
+   bool bOrientation = false;
+
+   FITAG *tag = NULL;
+
+   FIMETADATA *mdhandle = FreeImage_FindFirstMetadata(FIMD_EXIF_MAIN, pfi, &tag);
+
+   if (mdhandle)
+   {
+      
+      do
+      {
+      
+         auto type = FreeImage_GetTagType(tag);
+
+         auto value = FreeImage_GetTagValue(tag);
+
+         if (!_stricmp(FreeImage_GetTagKey(tag), "orientation"))
+         {
+            
+            bOrientation = true;
+
+            if (type == FIDT_SHORT)
+            {
+
+               iExifOrientation = *((unsigned short*)value);
+
+            }
+               
+         }
+
+         if (bOrientation)
+         {
+
+            break;
+
+         }
+         
+      }
+      while (FreeImage_FindNextMetadata(mdhandle, &tag));
+
+      FreeImage_FindCloseMetadata(mdhandle);
+
+   }
    
    if(!from(pdib,spgraphics,(FIBITMAP *)pfi,true))
    {
     
       return false;
       
+   }
+
+   if (bOrientation)
+   {
+
+      ::draw2d::dib_sp dib(allocer());
+
+      //double dPiQuarter = ::atan(1.0);
+
+      //double dPi = dPiQuarter * 4.0;
+
+      // http://sylvana.net/jpegcrop/exif_orientation.html
+      //1) transform = "";;
+      //2) transform = "-flip horizontal";;
+      //3) transform = "-rotate 180";;
+      //4) transform = "-flip vertical";;
+      //5) transform = "-transpose";;
+      //6) transform = "-rotate 90";;
+      //7) transform = "-transverse";;
+      //8) transform = "-rotate 270";;
+      //*) transform = "";;
+      switch (iExifOrientation)
+      {
+      case 2:
+         dib->flip_horizontal(pdib);
+         pdib->from(dib);
+         break;
+      case 3:
+         dib->rotate(pdib, 180.0);
+         pdib->from(dib);
+         break;
+      case 4:
+         dib->flip_vertical(pdib);
+         pdib->from(dib);
+         break;
+      case 5:
+         dib->flip_horizontal(pdib);
+         pdib->rotate(dib, -270.0);
+         break;
+      case 6:
+         dib->rotate(pdib, -90.0);
+         pdib->from(dib);
+         break;
+      case 7:
+         dib->flip_horizontal(pdib);
+         pdib->rotate(dib, -90.0);
+         break;
+      case 8:
+         dib->rotate(pdib, -270.0);
+         pdib->from(dib);
+         break;
+      case 1:
+      default:
+         break;
+      }
+
+      
+
    }
    
    return true;
