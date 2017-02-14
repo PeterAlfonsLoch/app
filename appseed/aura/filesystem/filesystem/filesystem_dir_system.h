@@ -154,6 +154,8 @@ namespace file
 
          virtual bool update_module_path();
 
+         virtual ::file::path get_document_folder();
+
          virtual ::file::path get_music_folder();
          virtual ::file::path get_video_folder();
          virtual ::file::path get_image_folder();

@@ -1187,6 +1187,22 @@ namespace windows
    //   return TRUE;
    //}
 
+   ::file::path dir::get_document_folder()
+   {
+
+      ::file::path path;
+
+      SHGetSpecialFolderPath(
+         NULL,
+         path,
+         CSIDL_MYDOCUMENTS,
+         FALSE);
+
+      return path;
+
+   }
+
+
 
    ::file::path dir::get_music_folder()
    {

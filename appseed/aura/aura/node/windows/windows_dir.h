@@ -96,9 +96,12 @@ namespace windows
       virtual bool initialize();
 
 
-      virtual ::file::path get_music_folder();
-      virtual ::file::path get_video_folder();
-      virtual ::file::path get_image_folder();
+      virtual ::file::path get_document_folder() override;
+
+
+      virtual ::file::path get_music_folder() override;
+      virtual ::file::path get_video_folder() override;
+      virtual ::file::path get_image_folder() override;
 
 
    };

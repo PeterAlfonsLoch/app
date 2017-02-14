@@ -1445,6 +1445,14 @@ namespace file
 
       }
 
+      ::file::path system::get_document_folder()
+      {
+
+         return "document";
+
+      }
+
+
       ::file::path system::get_music_folder()
       {
 
