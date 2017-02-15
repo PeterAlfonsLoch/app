@@ -766,6 +766,19 @@ namespace draw2d
 
    };
 
+   class CLASS_DECL_AURA savedc
+   {
+   public:
+
+
+      graphics *     m_pgraphics;
+      int            m_iSavedDC;
+
+      savedc(graphics * pgraphics);
+      ~savedc();
+
+
+   };
 
 } // namespace draw2d
 

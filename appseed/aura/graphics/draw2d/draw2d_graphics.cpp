@@ -5232,6 +5232,36 @@ namespace draw2d
 
    }
 
+   savedc::savedc(graphics * pgraphics)
+   {
+      m_pgraphics = pgraphics;
+      try
+      {
+         if (m_pgraphics != NULL)
+         {
+            m_iSavedDC = m_pgraphics->SaveDC();
+         }
+      }
+      catch (...)
+      {
+
+      }
+   }
+   savedc::~savedc()
+   {
+      try
+      {
+         if (m_pgraphics != NULL)
+         {
+            m_pgraphics->RestoreDC(m_iSavedDC);
+         }
+      }
+      catch (...)
+      {
+
+      }
+
+   }
 
 
 } // namespace draw2d
