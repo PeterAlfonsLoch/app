@@ -960,11 +960,11 @@ namespace fontopus
 
          //if(m_strPasshash.is_empty())
          {
-            set["post"]["entered_password"] = strPass;
+         //   set["post"]["entered_password"] = strPass;
          }
          //else
          //{
-         //   set["post"]["entered_passhash"] = strPass;
+         set["post"]["entered_passhash"] = strPass;
          //}
          string strCrypt;
 
