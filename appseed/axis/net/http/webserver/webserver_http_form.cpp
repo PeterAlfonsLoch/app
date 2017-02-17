@@ -246,7 +246,8 @@ namespace http
          }
       }
       else
-      if (strstr(content_type, "x-www-form-urlencoded"))
+         // "x-www-form-urlencoded" is the default
+      //if (strstr(content_type, "x-www-form-urlencoded"))
       {
          string str;
          infil->full_read_string(str);

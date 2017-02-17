@@ -156,6 +156,7 @@ namespace aura
       m_pschemaEn    = &operator[]("en")["en"];
       m_pschemaStd   = &operator[]("_std")["_std"];
 
+      m_pmutex       = new mutex(papp);
 
    }
 
@@ -181,6 +182,8 @@ namespace aura
 
    bool str::load(const char * pszBaseDir)
    {
+
+      synch_lock sl(m_pmutex);
 
       string strMain = pszBaseDir;
 
@@ -239,7 +242,7 @@ namespace aura
 
       }
 
-      synch_lock sl(pcontext->m_pmutex);
+      synch_lock sl(m_pmutex);
 
       static ::id idEn("en");
       static ::id idStd("_std");
@@ -319,6 +322,8 @@ namespace aura
    string str::get(str_context * pcontext,const ::id & id,const ::id & idLocale,const ::id & idSchema,bool bIdAsDefaultValue)
    {
 
+      synch_lock sl(m_pmutex);
+
       if(!idLocale.is_empty())
       {
          string str;
@@ -351,6 +356,8 @@ namespace aura
 
    void str::get(stringa & stra, str_context * pcontext, const ::id & id)
    {
+
+      synch_lock sl(m_pmutex);
 
       _get(stra, pcontext, id);
 
@@ -389,7 +396,7 @@ namespace aura
 
       }
 
-      synch_lock sl(pcontext->m_pmutex);
+      synch_lock sl(m_pmutex);
 
       static ::id idEn("en");
       static ::id idStd("_std");
@@ -486,8 +493,7 @@ namespace aura
       {
          stack[m_pos].s = start;
          stack[m_pos].e = end;
-         m_pos++;
-         if(m_pos >= 8)
+         m_pos++;if(m_pos >= 8)
          {
             merge(pszTopic);
          }
@@ -592,6 +598,8 @@ namespace aura
 
    bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const char * pszFilePath)
    {
+
+      synch_lock sl(m_pmutex);
 
       memory mem;
 
@@ -794,6 +802,8 @@ namespace aura
    bool str::matches(str_context * pcontext, const ::id & id, const char * psz)
    {
 
+      synch_lock sl(m_pmutex);
+
       static ::id idEn("en");
       static ::id idStd("_std");
 
@@ -861,6 +871,8 @@ namespace aura
 
    bool str::begins(str_context * pcontext, const char * pszTopic, const ::id & id)
    {
+
+      synch_lock sl(m_pmutex);
 
       static ::id idEn("en");
       static ::id idStd("_std");
@@ -930,6 +942,8 @@ namespace aura
    bool str::begins_eat(str_context * pcontext, string & strTopic, const ::id & id)
    {
 
+      synch_lock sl(m_pmutex);
+
       static ::id idEn("en");
       static ::id idStd("_std");
 
@@ -998,6 +1012,8 @@ namespace aura
 
    bool str_context::match(const cregexp_util & u,stringa & stra,const char * psz,id pszExp,id pszRoot)
    {
+
+      synch_lock sl(m_pmutex);
 
       stringa straCandidate;
 
