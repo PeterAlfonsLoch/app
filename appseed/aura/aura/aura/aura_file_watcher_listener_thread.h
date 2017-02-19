@@ -12,24 +12,30 @@ namespace file_watcher
    {
    public:
 
+      enum
+      {
 
-      //struct op :
-      //   virtual public object
-      //{
+         message_add_watch = WM_APP + 54321,
 
-      //   string                  m_str;
-      //   bool                    m_bRecursive;
-      //   file_watch_listener *   m_plistener;
-      //   event                   m_event;
-      //   file_watch_id           m_id;
-      //   bool                    m_bOwn;
+      };
 
-      //   op() : m_event(get_thread_app(), false, true) {}
+      struct add :
+         virtual public object
+      {
 
-      //};
+         string                  m_str;
+         bool                    m_bRecursive;
+         file_watch_listener *   m_plistener;
+         event                   m_event;
+         file_watch_id           m_id;
+         bool                    m_bOwn;
+
+         add() : m_event(get_thread_app(), false, true) {}
+
+      };
 
       ref_array < file_watch_listener > m_listenerptra;
-
+      
 
       listener_thread(::aura::application * papp);
       virtual ~listener_thread();
@@ -51,9 +57,9 @@ namespace file_watcher
 
       }
 
-      //virtual void install_message_handling(::message::dispatch * pdispatch) override;
+      virtual void install_message_handling(::message::dispatch * pdispatch) override;
 
-      //DECL_GEN_SIGNAL(_001OnUser123);
+      DECL_GEN_SIGNAL(_001OnAddWatch);
 
    };
 

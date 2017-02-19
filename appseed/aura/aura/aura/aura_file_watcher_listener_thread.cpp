@@ -42,7 +42,11 @@ namespace file_watcher
    file_watch_id listener_thread::add_file_watch(const char * directory, file_watch_listener * plistener, bool bRecursive, bool bOwn)
    {
 
-#if !defined(METROWIN) && !defined(MACOS)
+#if defined(METROWIN) || defined(MACOS)
+
+      return file_watcher::add_watch(directory, plistener, bRecursive, bOwn);
+
+#else
 
       if(get_os_data() == NULL)
       {
@@ -51,13 +55,32 @@ namespace file_watcher
 
       }
 
-#endif
+      add * padd = new add;
 
-      file_watch_id id = file_watcher::add_watch(directory, plistener, bRecursive, bOwn);
+      padd->m_str = directory;
+      padd->m_plistener = plistener;
+      padd->m_id = -1;
+      padd->m_bOwn = bOwn;
+      padd->m_bRecursive = bRecursive;
 
-      m_listenerptra.add_unique(plistener);
+      file_watch_id id = padd->m_id;
+
+      padd->m_event.ResetEvent();
+
+      post_object(message_add_watch, 0, padd);
+
+      padd->m_event.wait();
+
+      if (id >= 0)
+      {
+
+         m_listenerptra.add_unique(plistener);
+
+      }
 
       return id;
+
+#endif
 
    }
 
