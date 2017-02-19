@@ -5,8 +5,8 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA streambuf:
-      virtual public ::file::stream_buffer
+   class CLASS_DECL_AURA stdio_file:
+      virtual public ::file::file
    {
    public:
 
@@ -14,9 +14,9 @@ namespace file
       _FILE *        m_pfile;
 
 
-      streambuf();
-      streambuf(const char * lpszFileName,UINT nOpenFlags);
-      virtual ~streambuf();
+      stdio_file();
+      stdio_file(const char * lpszFileName,UINT nOpenFlags);
+      virtual ~stdio_file();
 
 
       virtual file_position_t get_position() const;
@@ -33,7 +33,7 @@ namespace file
       //virtual void SetStatus(const char * lpszFileName,const file_status& status);
 
 
-      virtual ::file::buffer_sp  Duplicate() const;
+      virtual ::file::file_sp  Duplicate() const;
 
       virtual file_position_t seek(file_offset_t lOff,::file::e_seek  nFrom);
       virtual void set_length(file_size_t dwNewLen);

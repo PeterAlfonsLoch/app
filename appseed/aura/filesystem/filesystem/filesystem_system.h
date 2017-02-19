@@ -52,8 +52,8 @@ namespace file
       path time_square(::aura::application * papp,const string & pszPrefix = cnull,const string & pszSuffix = cnull);
       path time_log(::aura::application * papp,const string & pszId);
 
-      virtual buffer_sp time_square_file(::aura::application * papp, const string & pszPrefix = cnull, const string & pszSuffix = cnull);
-      virtual buffer_sp get(const path & name,::aura::application * papp);
+      virtual file_sp time_square_file(::aura::application * papp, const string & pszPrefix = cnull, const string & pszSuffix = cnull);
+      virtual file_sp get(const path & name,::aura::application * papp);
 
       template < class T >
       string time_square(::aura::application * papp,T * p,bool (T::*lpfnOutput)(ostream &,const path &),const path & lpszSource)
@@ -102,7 +102,7 @@ namespace file
       virtual string md5(const path & psz);
       virtual string nessie(const path & psz);
 
-      virtual string nessie(buffer_sp  pfile);
+      virtual string nessie(file_sp  pfile);
 
       virtual bool is_valid_fileset(const path & pszFile,::aura::application * papp);
 
@@ -119,7 +119,7 @@ namespace file
       virtual bool initialize();
 
 
-      virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
+      virtual ::file::file_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
 
       template < class T >
       bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, const path &), const path & lpszSource);
@@ -128,10 +128,7 @@ namespace file
       bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & lpszInput);
 
       template < class T >
-      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, const path &), ::file::file * pfile);
-
-      template < class T >
-      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & lpszInput);
+      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), ::file::file * pfileIn);
 
       template < class T >
       bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & istream);

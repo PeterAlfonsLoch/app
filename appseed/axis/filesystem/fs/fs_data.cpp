@@ -159,7 +159,7 @@ namespace fs
    //}
 
 
-   ::file::buffer_sp data::get_file(const ::file::path & varFile,UINT nOpenFlags,cres * pfesp)
+   ::file::file_sp data::get_file(const ::file::path & varFile,UINT nOpenFlags,cres * pfesp)
    {
       
       if(pfesp != NULL)

@@ -42,149 +42,65 @@ namespace file
 {
 
 
-   template < class T >
-   bool system::output(::aura::application * papp,const ::file::path & pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,const ::file::path &),const ::file::path & lpszSource)
+   namespace axis
    {
 
-      System.dir().mk(pszOutput.folder(),papp);
 
-      ::file::buffer_sp fileOut = papp->m_paxissession->file().get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-      if(fileOut.is_null())
-         return false;
-
-      ::file::ostream ostream(fileOut);
-
-      return (p->*lpfnOuput)(ostream,lpszSource);
-
-   }
-
-   /*
-   template < class T >
-   bool ::file::system::output(::aura::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::ostream &, const char *), const char * lpszSource)
-   {
-
-   App(papp).dir().mk(Application.dir_name(pszOutput));
-
-   ::file::buffer_sp fileOut = Sess(papp).file_get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-   if(fileOut.is_null())
-   return false;
-
-   ::file::ostream ostream(fileOut);
-
-   return (p->*lpfnOuput)(ostream, lpszSource);
-
-   }
-   */
-
-
-   template < class T >
-   bool ::file::system::output(::aura::application * papp,const ::file::path & pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,::file::istream &),const ::file::path & lpszInput)
-   {
-
-      App(papp).dir().mk(pszOutput.folder());
-
-      string strDownloading = pszOutput;
-
-      strDownloading += ".downloading";
-
-      ::file::buffer_sp fileOut = Sess(papp).file().get_file(strDownloading,::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-      if(fileOut.is_null())
-         return false;
-
-      ::file::buffer_sp fileIn = Sess(papp).file().get_file(lpszInput,::file::type_binary | ::file::mode_read);
-
-      if(fileIn.is_null())
-         return false;
-
+      template < class T >
+      bool system::output(::aura::application * papp, const path & pszOutput, const path & lpszSource)
       {
 
-         ::file::ostream ostream(fileOut);
-
-         ::file::istream istream(fileIn);
-
-         if(!(p->*lpfnOuput)(ostream,istream))
-            return false;
-
-      }
-
-      try
-      {
-
-         fileOut->close();
-
-      }
-      catch(...)
-      {
+         return output(papp, pszOutput, &System.compress(), &::axis::compress::null, lpszSource);
 
       }
 
 
-      try
+      template < class T >
+      bool system::output(::aura::application * papp, const path & pszOutput, ::file::file * pfileIn)
       {
 
-         fileIn->close();
-
-      }
-      catch(...)
-      {
+         return output(papp, pszOutput, &System.compress(), &::axis::compress::null, pfileIn);
 
       }
 
-      if(::rename(strDownloading,pszOutput) != 0)
-      {
-         
-         del(strDownloading, papp);
 
-         return false;
+      template < class T >
+      bool system::output(::aura::application * papp, const path & pszOutput, ::file::istream & istream)
+      {
+
+         return output(papp, pszOutput, &System.compress(), &::axis::compress::null, istream);
 
       }
 
-      return true;
+
+      template < class T >
+      bool application::output(const path & pszOutput, const path & lpszSource)
+      {
+
+         return output(pszOutput, &System.compress(), &::axis::compress::null, lpszSource);
+
+      }
+
+
+      template < class T >
+      bool application::output(const path & pszOutput, ::file::file * pfileIn)
+      {
+
+         return output(pszOutput, &System.compress(), &::axis::compress::null, pfileIn);
+
+      }
+
+
+      template < class T >
+      bool application::output(const path & pszOutput, ::file::istream & istream)
+      {
+
+         return output(pszOutput, &System.compress(), &::axis::compress::null, istream);
+
+      }
+
 
    }
-
-
-
-   template < class T >
-   bool system::output(::aura::application * papp,const ::file::path & pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,::file::istream &),::file::istream & istream)
-   {
-
-      ::file::ostream ostream(get(pszOutput,papp));
-
-      return (p->*lpfnOuput)(ostream,istream);
-
-   }
-
-
-   template < class T >
-   bool application::output(::aura::application * papp, const ::file::path & pszOutput, T * p, bool (T::*lpfnOuput)(::file::ostream &, const ::file::path &), const ::file::path & lpszSource)
-   {
-
-      return System.file().output(get_app(), pszOutput, lpfnOuput, lpszSource);
-
-   }
-
-
-   template < class T >
-   bool application::output(::aura::application * papp, const ::file::path & pszOutput, T * p, bool (T::*lpfnOuput)(::file::ostream &, ::file::istream &), const ::file::path & lpszInput)
-   {
-
-      return System.file().output(get_app(), pszOutput, lpfnOuput, pszInput);
-
-   }
-
-
-   template < class T >
-   bool application::output(const ::file::path & pszOutput, T * p, bool (T::*lpfnOuput)(::file::ostream &, ::file::istream &), ::file::istream & istream)
-   {
-
-      return System.file().output(get_app(), pszOutput, lpfnOuput, istream);
-
-   }
-
 
 } // namespace file
 

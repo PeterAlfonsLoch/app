@@ -489,7 +489,7 @@ namespace core
       }
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::file::buffer_sp friendly_get_file(var varFile,UINT nOpenFlags);
+      virtual ::file::file_sp friendly_get_file(var varFile,UINT nOpenFlags);
 
 
       virtual void data_on_after_change(signal_details * pobj);

@@ -15,8 +15,8 @@ namespace file
    }
 
 
-   stream_base::stream_base(buffer_sp pbuffer):
-      m_spbuffer(pbuffer)
+   stream_base::stream_base(file_sp pfile):
+      m_spfile(pfile)
    {
 
       m_iostate         = goodbit;
@@ -32,7 +32,7 @@ namespace file
       m_iostate         = buffer.m_iostate;
       m_fmtflags        = nofmtflags;
       m_precision       = 0;
-      m_spbuffer        = buffer.m_spbuffer;
+      m_spfile        = buffer.m_spfile;
 
    }
 
@@ -46,7 +46,7 @@ namespace file
    string stream_base::GetFilePath() const
    {
 
-      return m_spbuffer->GetFilePath();
+      return m_spfile->GetFilePath();
 
    }
 
@@ -54,7 +54,7 @@ namespace file
    void stream_base::close()
    {
 
-      m_spbuffer.release();
+      m_spfile.release();
 
    }
 
@@ -62,7 +62,7 @@ namespace file
    file_position_t stream_base::seek(file_offset_t offset, e_seek eseek)
    {
 
-      return m_spbuffer->seek(offset, eseek);
+      return m_spfile->seek(offset, eseek);
 
    }
 
@@ -137,10 +137,10 @@ namespace file
    bool stream_base::is_open() const
    {
 
-      if(m_spbuffer.is_null())
+      if(m_spfile.is_null())
          return false;
 
-      if(!m_spbuffer->is_open())
+      if(!m_spfile->is_open())
          return false;
 
       return true;

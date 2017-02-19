@@ -12,14 +12,14 @@ namespace file
 {
 
 
-   class string_buffer;
+   class string_file;
 
 
-   typedef sp(string_buffer) string_buffer_sp;
+   typedef sp(string_file) string_buffer_sp;
 
 
-   class CLASS_DECL_AURA string_buffer :
-      virtual public ::file::stream_buffer
+   class CLASS_DECL_AURA string_file :
+      virtual public ::file::file
    {
    public:
 
@@ -27,12 +27,12 @@ namespace file
       strsize        m_iPos;
       bool           m_bOwn;
 
-      string_buffer();
-      string_buffer(string * pstr, bool bReferenceOnly = true);
-      string_buffer(::aura::application * papp);
-      string_buffer(const string & str);
-      string_buffer(const string_buffer & str);
-      virtual ~string_buffer();
+      string_file();
+      string_file(string * pstr, bool bReferenceOnly = true);
+      string_file(::aura::application * papp);
+      string_file(const string & str);
+      string_file(const string_file & str);
+      virtual ~string_file();
 
 
       using ::file::reader::read;
@@ -99,13 +99,13 @@ namespace file
 
       }
 
-      string_buffer & operator += (const string & str)
+      string_file & operator += (const string & str)
       {
          append(str);
          return *this;
       }
 
-      string_buffer & operator = (const string & str)
+      string_file & operator = (const string & str)
       {
          set(str);
          return *this;

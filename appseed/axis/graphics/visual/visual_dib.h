@@ -124,11 +124,11 @@ namespace visual
 
       virtual bool load_from_file(var varFile, bool bCache = true);
       virtual bool load_from_matter(const char * pszMatter,bool bCache = true);
-      virtual bool read_from_file(::file::buffer_sp  pfile);
+      virtual bool read_from_file(::file::file_sp  pfile);
 
 
       virtual bool save_to_file(var varFile, save_image * psaveimage = NULL);
-      virtual bool write_to_file(::file::buffer_sp  pfile, save_image * psaveimage = NULL);
+      virtual bool write_to_file(::file::file_sp  pfile, save_image * psaveimage = NULL);
 
 #ifndef  WINDOWS
       virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);

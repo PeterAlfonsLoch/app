@@ -5,21 +5,21 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA text_buffer :
-      virtual public ::file::stream_buffer
+   class CLASS_DECL_AURA text_file :
+      virtual public ::file::file
    {
    public:
 
 
-      text_buffer();
-      virtual ~text_buffer();
+      text_file();
+      virtual ~text_file();
 
 
       virtual void write_string(const char * lpsz);
       virtual bool read_string(string & str);
       virtual UINT read_full_string(string & str);
 
-      inline text_buffer & operator << (const char * lpsz)
+      inline text_file & operator << (const char * lpsz)
       {
          write_string(lpsz);
          return *this;
@@ -29,7 +29,7 @@ namespace file
    };
 
 
-   typedef smart_pointer < text_buffer > text_buffer_sp;
+   typedef smart_pointer < text_file > text_buffer_sp;
 
 
 } // namespace file

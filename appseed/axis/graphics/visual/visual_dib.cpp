@@ -10,8 +10,8 @@
 
 ////#include FT_FREETYPE_H
 
-bool windows_write_dib_to_file(::file::buffer_sp, ::draw2d::dib * pdib, ::visual::save_image * psaveimage, ::aura::application * papp);
-bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::buffer_sp, ::aura::application * papp);
+bool windows_write_dib_to_file(::file::file_sp, ::draw2d::dib * pdib, ::visual::save_image * psaveimage, ::aura::application * papp);
+bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::file_sp, ::aura::application * papp);
 
 
 namespace visual
@@ -170,7 +170,7 @@ namespace visual
    }
 
 
-   bool dib_sp::read_from_file(::file::buffer_sp spfile)
+   bool dib_sp::read_from_file(::file::file_sp spfile)
    {
 
       if (!Sys(m_p->m_pauraapp).visual().imaging().LoadImageFromFile(m_p, spfile))
@@ -191,14 +191,14 @@ namespace visual
 
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
       spfile = Sess(m_p->m_pauraapp).file().get_file(varFile, ::file::mode_create | ::file::share_deny_write | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
       if (spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);
    }
 
-   bool dib_sp::write_to_file(::file::buffer_sp pfile, save_image * psaveimage)
+   bool dib_sp::write_to_file(::file::file_sp pfile, save_image * psaveimage)
    {
       save_image saveimageDefault;
       if (psaveimage == NULL)
@@ -2288,7 +2288,7 @@ HRESULT windows_GetRawFrame(
 }
 
 
-bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer_sp pfile, ::aura::application * papp)
+bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::file_sp pfile, ::aura::application * papp)
 {
 
    if (!defer_co_initialize_ex())
@@ -2525,7 +2525,7 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
 
 
 
-bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::buffer_sp pfile, ::aura::application * papp)
+bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::file_sp pfile, ::aura::application * papp)
 {
 
    if (!defer_co_initialize_ex())
@@ -2656,7 +2656,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib, Windows::Storage::Streams:
 
 #endif
 
-bool windows_write_dib_to_file(::file::buffer_sp pfile, ::draw2d::dib * pdib, ::visual::save_image * psaveimage, ::aura::application * papp)
+bool windows_write_dib_to_file(::file::file_sp pfile, ::draw2d::dib * pdib, ::visual::save_image * psaveimage, ::aura::application * papp)
 {
 
 #ifdef METROWIN

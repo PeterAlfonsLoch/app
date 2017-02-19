@@ -9,7 +9,7 @@ namespace file
    {
    }
 
-   plain_text_stream::plain_text_stream(stream_buffer * pbuffer) :
+   plain_text_stream::plain_text_stream(file * pbuffer) :
       plain_text_ostream(pbuffer),
       plain_text_istream(pbuffer)
    {

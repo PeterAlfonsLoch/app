@@ -573,7 +573,7 @@ namespace ftp
    /// @param[in] fPasv see documentation of client_socket::Passive
    bool client_socket::DownloadFile(const string& strRemoteFile, const string& strLocalFile, const representation& repType, bool fPasv)
    {
-      file file(get_app());
+      ::ftp::file file(get_app());
       if (!file.Open(strLocalFile, (m_fResumeIfPossible ? ::file::mode_no_truncate : ::file::mode_create) | ::file::mode_write
       | ::file::type_binary | ::file::defer_create_directory))
       {
@@ -633,7 +633,7 @@ namespace ftp
    /// @param[in] fPasv see documentation of client_socket::Passive
    bool client_socket::UploadFile(const string& strLocalFile, const string& strRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
    {
-      file file(get_app());
+      ::ftp::file file(get_app());
       if (!file.Open(strLocalFile, ::file::mode_read | ::file::type_binary))
       {
          ReportError(sys_error::GetErrorDescription(), __FILE__, __LINE__);
@@ -1047,6 +1047,7 @@ namespace ftp
    /// @param[in] dwByteOffset Server marker at which file transfer is to be restarted.
    bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
    {
+      
       if (m_econnectiontype == connection_type_tls_implicit)
       {
          reply Reply;
@@ -1072,6 +1073,7 @@ namespace ftp
 
       if (m_econnectiontype == connection_type_tls_implicit)
       {
+         
          sckDataConnection.EnableSSL();
 
       }
@@ -1098,6 +1100,8 @@ namespace ftp
          sckDataConnection.SetCloseAndDelete();
          return false;
       }
+
+      m_handler.add(&sckDataConnection);
 
       // if resuming is activated then set offset
       if (m_fResumeIfPossible &&
@@ -1356,7 +1360,11 @@ namespace ftp
    /// @param[out] Reply The Reply of the server to the sent command.
    bool client_socket::SendCommand(const command& Command, const stringa & Arguments, reply& Reply)
    {
-      if (!SendCommand(Command, Arguments) || !GetResponse(Reply))
+      if (!SendCommand(Command, Arguments))
+      {
+         return false;
+      }
+      if(!GetResponse(Reply))
          return false;
       return true;
    }
@@ -1449,7 +1457,7 @@ namespace ftp
                if (IsSSL())
                {
 
-                  Sleep(200);
+                  //Sleep(200);
 
                }
 

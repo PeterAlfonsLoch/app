@@ -100,9 +100,9 @@ namespace primitive
 
       virtual void random_bytes(::count c = -1);
 
-      //virtual void FullLoad(::file::stream_buffer & buffer);
+      //virtual void FullLoad(::file::file & buffer);
 
-      //memory_size_t read(::file::stream_buffer & buffer);
+      //memory_size_t read(::file::file & buffer);
 
 
       virtual void write(::file::ostream & ostream) const;

@@ -316,7 +316,7 @@ namespace macos
 //      m_bCloseOnDelete = FALSE;
    }
 
-   sp(::file::stream_buffer) stdio_file::Duplicate() const
+   sp(::file::file) stdio_file::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);

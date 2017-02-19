@@ -10,22 +10,20 @@ namespace file
       object(papp)
    {
 
-      m_spbinarybuffer.alloc(allocer());
+      m_spfile.alloc(allocer());
 
-      m_spbinarybuffer->open(pszFilePath, ((uiFlags & ~type_text) | type_binary) | mode_write);
+      m_spfile->open(pszFilePath, ((uiFlags & ~type_text) | type_binary) | mode_write);
 
-      if(m_spbinarybuffer.is_set() && m_spbinarybuffer->IsOpened())
+      if(m_spfile.is_set() && m_spfile->IsOpened())
       {
 
          clear();
-
-         m_spbuffer = m_spbinarybuffer;
 
       }
       else
       {
 
-         m_spbinarybuffer.release();
+         m_spfile.release();
 
          setstate(failbit);
 

@@ -11,7 +11,7 @@ namespace android
 
    class CLASS_DECL_AURA stdio_file :
       virtual public ::android::file,
-      virtual public ::file::text_buffer
+      virtual public ::file::text_file
    {
    public:
 
@@ -41,7 +41,7 @@ namespace android
       virtual file_size_t get_length() const;
 
       // Unsupported APIs
-      virtual ::file::buffer_sp Duplicate() const;
+      virtual ::file::file_sp Duplicate() const;
       virtual void LockRange(file_position_t dwPos, file_size_t dwCount);
       virtual void UnlockRange(file_position_t dwPos, file_size_t dwCount);
 

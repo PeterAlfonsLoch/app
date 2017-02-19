@@ -28,7 +28,7 @@ namespace user
    }
 
 
-   void plain_text_tree::SetFile(::file::buffer_sp  pfile)
+   void plain_text_tree::SetFile(::file::file_sp  pfile)
    {
       m_editfile.SetFile(pfile);
    }

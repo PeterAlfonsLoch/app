@@ -328,7 +328,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               ::file::buffer_sp spfile(allocer());
+               ::file::file_sp spfile(allocer());
                try
                {
                   if (spfile->open(response().m_strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())

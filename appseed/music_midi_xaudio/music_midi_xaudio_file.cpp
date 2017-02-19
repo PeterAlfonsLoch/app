@@ -213,7 +213,7 @@ smf_Open_File_Cleanup:
          *     SMFOPENFILESTRUCT were invalid.
          *
          *****************************************************************************/
-         e_result buffer::OpenFile(::file::stream_buffer & ar, int32_t openMode)
+         e_result buffer::OpenFile(::file::file & ar, int32_t openMode)
          {
             e_result               smfrc = ::music::success;
 
@@ -2080,7 +2080,7 @@ smf_Open_File_Cleanup:
             return ::music::success;
          }
 
-         e_result buffer::SaveFile(::file::stream_buffer &ar)
+         e_result buffer::SaveFile(::file::file &ar)
          {
             ar.write(GetImage(), GetImageSize());
             return ::music::success;

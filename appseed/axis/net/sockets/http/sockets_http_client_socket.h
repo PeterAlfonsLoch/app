@@ -30,7 +30,7 @@
 
          mutex                         m_mutexData;
          ::file::memory_buffer         m_memoryfile;
-         ::file::stream_buffer *       m_pfile;
+         ::file::file *       m_pfile;
          int64_t                       m_iFinalSize;
          int_progress                  m_progress;
          e_http_method                 m_emethod;

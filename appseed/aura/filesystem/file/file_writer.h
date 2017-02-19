@@ -11,7 +11,7 @@ namespace file
 
 
    class CLASS_DECL_AURA writer :
-      virtual public stream_buffer_base
+      virtual public file_base
    {
    public:
 

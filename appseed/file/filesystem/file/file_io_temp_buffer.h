@@ -18,8 +18,8 @@ namespace file
    public:
       //NWindows::NFile::NDirectory::CTempFile _tempFile;
       //NWindows::NFile::NIO::COutFile _outFile;
-      ::file::buffer_sp                      _tempFile;
-      ::file::buffer_sp                      _outFile;
+      ::file::file_sp                      _tempFile;
+      ::file::file_sp                      _outFile;
       string                           _tempFileName;
       bool                             _tempFileCreated;
       uint32_t                           _crc;

@@ -2,13 +2,13 @@
 
 
 class CLASS_DECL_AXIS ftpfs_file :
-   virtual public ::file::stream_buffer
+   virtual public ::file::file
 {
 public:
 
 
    ftpfs *                       m_pftp;
-   ::file::buffer_sp             m_file;
+   ::file::file_sp             m_file;
    var                           m_varFile;
    ::file::path                  m_filepath;
    ::ftp::client_socket *               m_pclient;

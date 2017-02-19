@@ -14,7 +14,7 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
 bool freeimage_load_diba_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba, int iFrame, FIBITMAP * pfi, ::aura::application * papp);
 
-bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer_sp pfile, ::aura::application * papp)
+bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::file_sp pfile, ::aura::application * papp)
 {
 
    if (pfile == NULL)
@@ -38,14 +38,14 @@ bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buff
 
       FREE_IMAGE_FORMAT format;
 
-      format = FreeImage_GetFileTypeFromHandle(&io, (::file::stream_buffer *)pfile.m_p);
+      format = FreeImage_GetFileTypeFromHandle(&io, (::file::file *)pfile.m_p);
 
       pfile->seek_to_begin();
 
       if (true)
       {
 
-         m = FreeImage_OpenMultiBitmapFromHandle(format, &io, (::file::stream_buffer *)pfile.m_p, 0);
+         m = FreeImage_OpenMultiBitmapFromHandle(format, &io, (::file::file *)pfile.m_p, 0);
 
          try
          {

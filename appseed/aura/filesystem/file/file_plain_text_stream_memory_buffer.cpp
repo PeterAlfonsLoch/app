@@ -10,7 +10,7 @@ namespace file
 
       m_spmemorybuffer = canew(memory_buffer(papp));
 
-      m_spbuffer = m_spmemorybuffer;
+      m_spfile = m_spmemorybuffer;
 
    }
 
@@ -20,7 +20,7 @@ namespace file
 
       m_spmemorybuffer = canew(memory_buffer(pbase->get_app(), pbase));
 
-      m_spbuffer = m_spmemorybuffer;
+      m_spfile = m_spmemorybuffer;
       
 
    }
@@ -31,7 +31,7 @@ namespace file
 
       m_spmemorybuffer = canew(memory_buffer(papp, (void *) data, c));
 
-      m_spbuffer = m_spmemorybuffer;
+      m_spfile = m_spmemorybuffer;
 
    }
 

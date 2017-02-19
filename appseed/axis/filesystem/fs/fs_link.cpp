@@ -152,10 +152,10 @@ namespace fs
    }
 
 
-   ::file::buffer_sp link::get_file(var varFile,UINT nOpenFlags)
+   ::file::file_sp link::get_file(var varFile,UINT nOpenFlags)
    {
 
-      ::file::buffer_sp spfile(allocer());
+      ::file::file_sp spfile(allocer());
 
       // ::file::mode_read | ::file::share_deny_none | ::file::type_binary
       if(spfile->open(varFile.get_string(),nOpenFlags).failed())

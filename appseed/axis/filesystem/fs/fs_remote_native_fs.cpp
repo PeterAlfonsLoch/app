@@ -303,7 +303,7 @@ namespace fs
    }
 
 
-   ::file::buffer_sp remote_native::get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp)
+   ::file::file_sp remote_native::get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp)
    {
 
       if(pfesp != NULL)
@@ -313,7 +313,7 @@ namespace fs
 
       ::cres cres;
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       spfile = new remote_native_file(get_app(),path);
 

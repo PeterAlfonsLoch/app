@@ -13,7 +13,7 @@ namespace file
    ostream2::ostream2(writer * pwriter)
    {
 
-      m_spbuffer = pwriter;
+      m_spfile = pwriter;
 
    }
 

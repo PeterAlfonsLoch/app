@@ -20,17 +20,17 @@ namespace file
    }
 
 
-   file_ostream::file_ostream(stream_buffer * preader)
+   file_ostream::file_ostream(file * preader)
    {
 
-      m_spbuffer = preader;
+      m_spfile = preader;
 
    }
 
    file_ostream::file_ostream(const file_ostream & istream)
    {
 
-      m_spbuffer = istream.m_spbuffer;
+      m_spfile = istream.m_spfile;
 
    }
 

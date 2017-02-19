@@ -304,7 +304,7 @@ namespace sockets
                "\r\n";
             write( tmp );
             {
-               ::file::buffer_sp spfile(allocer());
+               ::file::file_sp spfile(allocer());
                if(spfile->open(filename, ::file::type_binary | ::file::mode_read).succeeded())
                {
                   transfer_from(*spfile);

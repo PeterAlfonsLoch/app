@@ -5,34 +5,34 @@ namespace file
 {
 
 
-   string_buffer::string_buffer()
+   string_file::string_file()
    {
       m_pstr      = NULL;
       m_iPos = 0;
    }
 
-   string_buffer::string_buffer(::aura::application * papp) :
+   string_file::string_file(::aura::application * papp) :
       object(papp)
    {
       m_pstr = NULL;
       m_iPos = 0;
    }
 
-   string_buffer::string_buffer(const string & str)
+   string_file::string_file(const string & str)
    {
       m_pstr = NULL;
       m_iPos = 0;
       append(str);
    }
 
-   string_buffer::string_buffer(const string_buffer & text)
+   string_file::string_file(const string_file & text)
    {
       m_pstr       = NULL;
       m_iPos = 0;
       append(::to_string(text));
    }
 
-   string_buffer::string_buffer(string * pstr, bool bReferenceOnly)
+   string_file::string_file(string * pstr, bool bReferenceOnly)
    {
 
       m_pstr = pstr;
@@ -42,13 +42,13 @@ namespace file
 
    }
 
-   string_buffer::~string_buffer()
+   string_file::~string_file()
    {
       close();
    }
 
 
-   memory_size_t string_buffer::read(void *lpBuf, memory_size_t nCount)
+   memory_size_t string_file::read(void *lpBuf, memory_size_t nCount)
    {
       if(m_iPos >= m_pstr->get_length())
          return 0;
@@ -58,13 +58,13 @@ namespace file
       return uiRead;
    };
 
-   void string_buffer::write(const void *lpBuf, memory_size_t nCount)
+   void string_file::write(const void *lpBuf, memory_size_t nCount)
    {
       append((const char *) lpBuf, nCount);
    }
 
 
-   ::string string_buffer::str() const
+   ::string string_file::str() const
    {
 
       if(m_pstr == NULL)
@@ -78,18 +78,18 @@ namespace file
    }
 
 
-   void string_buffer::flush()
+   void string_file::flush()
    {
    }
 
-   void string_buffer::close()
+   void string_file::close()
    {
 
       destroy();
 
    }
 
-   file_position_t string_buffer::get_position() const
+   file_position_t string_file::get_position() const
    {
 
       return m_iPos;
@@ -97,7 +97,7 @@ namespace file
    }
 
 
-   void string_buffer::destroy()
+   void string_file::destroy()
    {
       if (m_bOwn)
       {
@@ -108,7 +108,7 @@ namespace file
    }
 
 
-   //void string_buffer::alloc(strsize iSize)
+   //void string_file::alloc(strsize iSize)
    //{
 
    //   if(iSize < 0)
@@ -136,7 +136,7 @@ namespace file
 
    //}
 
-   //void string_buffer::alloc_up(strsize iAtLeast)
+   //void string_file::alloc_up(strsize iAtLeast)
    //{
 
    //   if(iAtLeast <= 0)
@@ -146,7 +146,7 @@ namespace file
 
    //}
 
-   void string_buffer::set(const char * psz,strsize len)
+   void string_file::set(const char * psz,strsize len)
    {
       
       if(psz == NULL || *psz == '\0' || len <= 0)
@@ -167,7 +167,7 @@ namespace file
       m_pstr->assign(psz, len);
    }
 
-   void string_buffer::append(const char * psz,strsize len)
+   void string_file::append(const char * psz,strsize len)
    {
 
       if(psz == NULL || *psz == '\0' || len <= 0)

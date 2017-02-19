@@ -3,10 +3,10 @@
 namespace file
 {
 
-   class string_buffer;
+   class string_file;
 
 
-   typedef sp(string_buffer) string_buffer_sp;
+   typedef sp(string_file) string_buffer_sp;
 
 
 
@@ -18,7 +18,7 @@ namespace file
 
 
       plain_text_ostream();
-      plain_text_ostream(stream_buffer * pwriter);
+      plain_text_ostream(file * pwriter);
       plain_text_ostream(const ostream & ostream);
       virtual ~plain_text_ostream();
 

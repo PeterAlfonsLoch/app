@@ -21,7 +21,7 @@ namespace linux
       bool update_module_path();
       
       
-      virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
+      virtual ::file::file_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
       
       
    };

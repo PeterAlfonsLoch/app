@@ -1742,7 +1742,7 @@ namespace axis
 */
 
 
-   /*::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   /*::file::file_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
    try
@@ -2737,7 +2737,7 @@ namespace axis
 //   }
 //
 //
-//   ::file::buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
+//   ::file::file_sp application::file_get_file(var varFile,uint32_t uiFlags)
 //   {
 //
 //      return file().get_file(varFile,uiFlags);

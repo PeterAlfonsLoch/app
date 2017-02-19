@@ -470,7 +470,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 //      virtual CLASS_DECL_AURA string dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
 //#endif
 
-      //virtual ::file::buffer_sp file_get_file(var varFile,uint32_t uiFlags);
+      //virtual ::file::file_sp file_get_file(var varFile,uint32_t uiFlags);
 
       virtual string http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema);
 

@@ -23,7 +23,7 @@ namespace file
 
 
       byte_istream();
-      byte_istream(stream_buffer * preader);
+      byte_istream(file * preader);
       byte_istream(const istream & istream);
       virtual ~byte_istream();
 

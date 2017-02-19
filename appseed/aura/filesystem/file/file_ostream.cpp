@@ -17,23 +17,23 @@ namespace file
       if(papp == NULL)
       {
 
-         m_spbuffer = canew(::file::streambuf(lpszFileName,nOpenFlags | ::file::mode_write));
+         m_spfile = canew(::file::stdio_file(lpszFileName,nOpenFlags | ::file::mode_write));
 
       }
       else
       {
 
-         m_spbuffer = App(papp).file().get_file(lpszFileName,nOpenFlags | ::file::mode_write);
+         m_spfile = App(papp).file().get_file(lpszFileName,nOpenFlags | ::file::mode_write);
 
       }
 
    }
 
 
-   ostream::ostream(stream_buffer * pwriter)
+   ostream::ostream(file * pwriter)
    {
 
-      m_spbuffer     = pwriter;
+      m_spfile     = pwriter;
 
    }
 
@@ -41,7 +41,7 @@ namespace file
    ostream::ostream(const ostream & ostream) 
    {
 
-      m_spbuffer     = ostream.m_spbuffer;
+      m_spfile     = ostream.m_spfile;
 
    }
 
@@ -55,7 +55,7 @@ namespace file
    void ostream::write_from_hex(const void *lpBuf,memory_size_t nCount)
    {
 
-      m_spbuffer->write_from_hex(lpBuf,nCount);
+      m_spfile->write_from_hex(lpBuf,nCount);
 
    }
 
@@ -63,14 +63,14 @@ namespace file
    void ostream::write(const void *lpBuf,memory_size_t nCount)
    {
       
-      m_spbuffer->write(lpBuf, nCount);
+      m_spfile->write(lpBuf, nCount);
 
    }
 
    void ostream::write(const void *lpBuf, memory_size_t nCount, memory_size_t * dwWritten)
    {
 
-      m_spbuffer->write(lpBuf, nCount, dwWritten);
+      m_spfile->write(lpBuf, nCount, dwWritten);
 
    }
 
@@ -232,7 +232,7 @@ namespace file
    ostream & ostream::operator = (const ostream & ostream)
    {
 
-      m_spbuffer = ostream.m_spbuffer;
+      m_spfile = ostream.m_spfile;
 
       return *this;
 
@@ -241,10 +241,10 @@ namespace file
    void ostream::flush()
    {
       
-      if(m_spbuffer.is_set())
+      if(m_spfile.is_set())
       {
 
-         m_spbuffer->flush();
+         m_spfile->flush();
 
       }
 
@@ -264,7 +264,7 @@ namespace file
    bool ostream::is_writer_null()
    {
 
-      return m_spbuffer.is_null();
+      return m_spfile.is_null();
 
    }
 
@@ -272,7 +272,7 @@ namespace file
    bool ostream::is_writer_set()
    {
 
-      return m_spbuffer.is_set();
+      return m_spfile.is_set();
 
    }
 
@@ -280,14 +280,14 @@ namespace file
    void ostream:: write (const string & str)
    {
 
-      m_spbuffer->write(str, str.get_length());
+      m_spfile->write(str, str.get_length());
 
    }
 
    void ostream::set_length(file_size_t len)
    {
    
-      m_spbuffer->set_length(len);
+      m_spfile->set_length(len);
 
    }
 

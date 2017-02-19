@@ -134,12 +134,12 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spfile->time_log(m_pauraapp, pszId);
       }
 
-      ::file::buffer_sp application::time_square_file(const string & pszPrefix, const string & pszSuffix)
+      ::file::file_sp application::time_square_file(const string & pszPrefix, const string & pszSuffix)
       {
          return m_pauraapp->m_paurasystem->m_spfile->time_square_file(m_pauraapp, pszPrefix, pszSuffix);
       }
 
-      ::file::buffer_sp application::get(const ::file::path & name)
+      ::file::file_sp application::get(const ::file::path & name)
       {
          return m_pauraapp->m_paurasystem->m_spfile->get(name, m_pauraapp);
       }
@@ -223,7 +223,7 @@ namespace file
          return m_pauraapp->m_paxissystem->m_spcrypto->file_get(varFile, str, pszSalt, m_pauraapp);
       }
 
-      ::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags, cres * pfesp)
+      ::file::file_sp application::friendly_get_file(var varFile, UINT nOpenFlags, cres * pfesp)
       {
          if (pfesp != NULL)
          {
@@ -240,10 +240,10 @@ namespace file
          }
       }
 
-      ::file::buffer_sp application::get_file(var varFile, UINT nOpenFlags, cres * pfesp)
+      ::file::file_sp application::get_file(var varFile, UINT nOpenFlags, cres * pfesp)
       {
 
-         ::file::buffer_sp pfile = m_pauraapp->m_paxissystem->m_spfile->get_file(varFile,nOpenFlags,pfesp,m_pauraapp);
+         ::file::file_sp pfile = m_pauraapp->m_paxissystem->m_spfile->get_file(varFile,nOpenFlags,pfesp,m_pauraapp);
 
          if (pfile.is_set())
          {
@@ -270,14 +270,6 @@ namespace file
 
          }
          */
-
-      template < class T >
-      bool system::output(path & pszOutput, const path & lpszSource)
-      {
-
-         return output(pszOutput, &System.compress(), &::axis::compress::null, lpszSource);
-
-      }
 
 
    } // namespace axis

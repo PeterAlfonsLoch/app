@@ -5,19 +5,19 @@ namespace file
 {
 
 
-   text_buffer::text_buffer()
+   text_file::text_file()
    {
 
    }
 
 
-   text_buffer::~text_buffer()
+   text_file::~text_file()
    {
 
    }
 
 
-   void text_buffer::write_string(const char * lpsz)
+   void text_file::write_string(const char * lpsz)
    {
 
       UNREFERENCED_PARAMETER(lpsz);
@@ -25,14 +25,14 @@ namespace file
    }
 
 
-   bool text_buffer::read_string(string & str)
+   bool text_file::read_string(string & str)
    {
       UNREFERENCED_PARAMETER(str);
       return false;
    }
 
 
-   UINT text_buffer::read_full_string(string & str)
+   UINT text_file::read_full_string(string & str)
    {
       UINT uiRead;
       UINT uiTotal = 0;

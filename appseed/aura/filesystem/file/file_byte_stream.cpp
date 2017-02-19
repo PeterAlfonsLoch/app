@@ -11,7 +11,7 @@ namespace file
    }
 
 
-   byte_stream::byte_stream(stream_buffer * pbuffer) :
+   byte_stream::byte_stream(file * pbuffer) :
       stream(pbuffer)
    {
 
@@ -70,7 +70,7 @@ namespace file
    file_position_t byte_stream::get_position() const
    {
 
-      return m_spbuffer->get_position();
+      return m_spfile->get_position();
 
    }
 

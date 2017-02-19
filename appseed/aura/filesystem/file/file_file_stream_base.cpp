@@ -20,7 +20,7 @@ namespace file
    void file_stream_base::open(const ::file::path & lpszFileName,uint32_t nOpenFlags,::aura::application * papp)
    {
 
-      m_spbuffer.release();
+      m_spfile.release();
 
       try
       {
@@ -28,13 +28,13 @@ namespace file
          if(papp == NULL)
          {
 
-            m_spbuffer = canew(::file::streambuf(lpszFileName,nOpenFlags | ::file::mode_read));
+            m_spfile = canew(::file::stdio_file(lpszFileName,nOpenFlags | ::file::mode_read));
 
          }
          else
          {
 
-            m_spbuffer = App(papp).file().get_file(lpszFileName,nOpenFlags | ::file::mode_read);
+            m_spfile = App(papp).file().get_file(lpszFileName,nOpenFlags | ::file::mode_read);
 
          }
 
@@ -44,7 +44,7 @@ namespace file
 
       }
 
-      if(m_spbuffer.is_null())
+      if(m_spfile.is_null())
       {
 
          setstate(failbit);

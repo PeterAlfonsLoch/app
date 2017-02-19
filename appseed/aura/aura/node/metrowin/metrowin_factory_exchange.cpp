@@ -14,9 +14,9 @@ namespace metrowin
          ::object(papp)
       {
 
-         System.factory().cloneable_large < stdio_file            >(System.template type_info < ::file::text_buffer         >());
+         System.factory().cloneable_large < stdio_file            >(System.template type_info < ::file::text_file         >());
          System.factory().cloneable_large < file                  >(System.template type_info < ::file::binary_buffer       >());
-         System.factory().cloneable_large < file                  >(System.template type_info < ::file::stream_buffer       >());
+         System.factory().cloneable_large < file                  >(System.template type_info < ::file::file       >());
   //       System.factory().cloneable       < application           >(System.template type_info < ::aura::application         >(),1);
          System.factory().cloneable_small < folder_watch          >(System.template type_info < ::file::folder_watch        >());
          System.factory().creatable_large < ::thread                >(System.template type_info < ::thread               >());

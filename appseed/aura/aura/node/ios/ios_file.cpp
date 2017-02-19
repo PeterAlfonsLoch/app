@@ -65,7 +65,7 @@ namespace ios
 
    }
 
-   sp(::file::stream_buffer) file::Duplicate() const
+   sp(::file::file) file::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);

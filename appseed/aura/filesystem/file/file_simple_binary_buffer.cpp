@@ -53,7 +53,7 @@ namespace file
       char szMode[4]; // C-runtime open string
       int32_t nMode = 0;
 
-      // determine read/write mode depending on ::file::buffer_sp mode
+      // determine read/write mode depending on ::file::file_sp mode
       if (nOpenFlags & mode_create)
       {
          if (nOpenFlags & mode_no_truncate)
@@ -279,7 +279,7 @@ namespace file
       m_pfile = NULL;
    }
 
-   ::file::buffer_sp  simple_binary_buffer::Duplicate() const
+   ::file::file_sp  simple_binary_buffer::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_pfile != NULL);

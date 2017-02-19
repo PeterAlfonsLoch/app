@@ -24,7 +24,7 @@ namespace sockets
    /** base_socket base class.
    \ingroup basic */
    class CLASS_DECL_AXIS base_socket :
-      virtual public ::file::stream_buffer
+      virtual public ::file::file
    {
    public:
 
@@ -109,7 +109,7 @@ namespace sockets
 
       ::net::address          m_addressRemote; ///< Remote end ::net::address
       ::net::address          m_addressRemoteClient; ///< Address of last connect()
-      ::file::buffer_sp       m_spfileTrafficMonitor;
+      ::file::file_sp       m_spfileTrafficMonitor;
 
       bool                 m_b_chunked;
 
@@ -731,9 +731,9 @@ namespace sockets
       //@}
 
       /** write traffic to an IFile. base_socket will not delete this object. */
-      void SetTrafficMonitor(::file::buffer_sp p) { m_spfileTrafficMonitor = p; }
+      void SetTrafficMonitor(::file::file_sp p) { m_spfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      ::file::buffer_sp GetTrafficMonitor() { return m_spfileTrafficMonitor; }
+      ::file::file_sp GetTrafficMonitor() { return m_spfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

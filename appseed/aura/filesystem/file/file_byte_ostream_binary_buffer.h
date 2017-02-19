@@ -11,8 +11,6 @@ namespace file
    public:
 
 
-      buffer_sp     m_spbinarybuffer;
-
       byte_ostream_binary_buffer(::aura::application * papp, const char * pszFilePath, uint32_t uiFlags = 0);
       virtual ~byte_ostream_binary_buffer();
 

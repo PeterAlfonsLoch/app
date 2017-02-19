@@ -36,8 +36,8 @@ namespace file
       ::file::path time_log(const string & pszId);
 
 
-      virtual ::file::buffer_sp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::buffer_sp get(const ::file::path & name);
+      virtual ::file::file_sp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::file_sp get(const ::file::path & name);
 
 
       virtual string as_string(var varFile);
@@ -56,11 +56,11 @@ namespace file
       string sys_temp(const char * pszName, const char * pszExtension);
 
 
-      virtual ::file::buffer_sp get_file(var varFile, UINT nOpenFlags, cres * pfesp = NULL);
+      virtual ::file::file_sp get_file(var varFile, UINT nOpenFlags, cres * pfesp = NULL);
       //virtual ::file::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::file::buffer_sp friendly_get_file(var varFile, UINT nOpenFlags, cres * pfesp = NULL);
+      virtual ::file::file_sp friendly_get_file(var varFile, UINT nOpenFlags, cres * pfesp = NULL);
 
 
       void dtf(const ::file::path & pszFile,const ::file::path & pszDir);
@@ -83,6 +83,9 @@ namespace file
 
       template < class T >
       bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & lpszInput);
+
+      template < class T >
+      bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), ::file::file * pfileIn);
 
       template < class T >
       bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & istream);

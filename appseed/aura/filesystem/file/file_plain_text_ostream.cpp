@@ -7,17 +7,17 @@ namespace file
 
    plain_text_ostream::plain_text_ostream()
    {
-	   m_spbuffer = canew(string_buffer);
+	   m_spfile = canew(string_file);
    }
 
-   plain_text_ostream::plain_text_ostream(stream_buffer * pwriter)
+   plain_text_ostream::plain_text_ostream(file * pwriter)
    {
-	   m_spbuffer = pwriter;
+	   m_spfile = pwriter;
    }
 
    plain_text_ostream::plain_text_ostream(const ostream & ostream)
    {
-	   m_spbuffer = ostream.m_spbuffer;
+	   m_spfile = ostream.m_spfile;
    }
 
    plain_text_ostream::~plain_text_ostream()
@@ -35,7 +35,7 @@ namespace file
 
    void plain_text_ostream:: write (char ch)
    {
-      m_spbuffer->write(&ch, sizeof(ch)); // treat as char - character
+      m_spfile->write(&ch, sizeof(ch)); // treat as char - character
       
    }
 
@@ -205,7 +205,7 @@ namespace file
    void plain_text_ostream:: write (const char * psz)
    {
       
-      m_spbuffer->write(psz, strlen(psz));
+      m_spfile->write(psz, strlen(psz));
       
    }
 
@@ -221,7 +221,7 @@ namespace file
    void plain_text_ostream::raw_print(const string & str)
    {
       
-      m_spbuffer->write(str.c_str(), str.size());
+      m_spfile->write(str.c_str(), str.size());
       
       m_estrflag = (e_str_flag) ((int)m_estrflag  & ~(int)str_flag_ifnumberparenthesize);
 
@@ -266,8 +266,8 @@ plain_text_stream_log_line::plain_text_stream_log_line(e_level elevel, const cha
    m_strTag = pszTag;
    m_strFile = pszFile;
    m_iLine = iLine;
-   m_pfile = canew(::file::string_buffer);
-   m_spbuffer = m_pfile;
+   m_pfile = canew(::file::string_file);
+   m_spfile = m_pfile;
 
 }
 

@@ -139,7 +139,7 @@ namespace fs
    }
 
 
-   ::file::buffer_sp native::get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp)
+   ::file::file_sp native::get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp)
    {
 
       if(pfesp != NULL)
@@ -149,7 +149,7 @@ namespace fs
 
       ::cres cres;
 
-      ::file::buffer_sp spfile(allocer());
+      ::file::file_sp spfile(allocer());
 
       // ::file::mode_read | ::file::share_deny_none | ::file::type_binary
       cres  = spfile->open(path,nOpenFlags);

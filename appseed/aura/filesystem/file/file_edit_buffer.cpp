@@ -439,7 +439,7 @@ namespace file
    edit_buffer::edit_buffer(::aura::application * papp):
       object(papp),
       ::data::data(papp),
-      ::file::buffer_sp(papp),
+      ::file::file_sp(papp),
       ::data::tree(papp)
       {
 
@@ -457,7 +457,7 @@ namespace file
    }
 
 
-   void edit_buffer::SetFile(::file::buffer_sp  pfile)
+   void edit_buffer::SetFile(::file::file_sp  pfile)
    {
 
       if(pfile.cast < ::file::memory_buffer >() == NULL || pfile.cast < ::file::buffered_buffer >() == NULL)
@@ -902,7 +902,7 @@ namespace file
 
       strTimeFile = Application.file().time_square();
 
-      ::file::buffer_sp spfile = Application.file().get_file(strTimeFile,::file::type_binary | ::file::mode_read_write | ::file::mode_create | ::file::defer_create_directory);
+      ::file::file_sp spfile = Application.file().get_file(strTimeFile,::file::type_binary | ::file::mode_read_write | ::file::mode_create | ::file::defer_create_directory);
 
       if(spfile.is_null())
       {
@@ -950,7 +950,7 @@ namespace file
       return true;
    }
 
-   bool edit_buffer::Save(::file::stream_buffer & file)
+   bool edit_buffer::Save(::file::file & file)
    {
       char buf[4096];
       memory_size_t uiRead;
@@ -965,7 +965,7 @@ namespace file
       return true;
    }
 
-   bool edit_buffer::Save_N_to_CRLF(::file::stream_buffer & file)
+   bool edit_buffer::Save_N_to_CRLF(::file::file & file)
    {
       char buf[4096];
       string str;

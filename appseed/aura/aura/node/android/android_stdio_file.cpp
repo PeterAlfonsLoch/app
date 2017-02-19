@@ -43,7 +43,7 @@ cres stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    char szMode[4]; // C-runtime open string
    int32_t nMode = 0;
 
-   // determine read/write mode depending on ::file::buffer_sp mode
+   // determine read/write mode depending on ::file::file_sp mode
    if (nOpenFlags & ::file::mode_create)
    {
       if(nOpenFlags & ::file::mode_no_truncate)
@@ -314,7 +314,7 @@ void stdio_file::Abort()
 }
 
 
-::file::buffer_sp stdio_file::Duplicate() const
+::file::file_sp stdio_file::Duplicate() const
 {
    ASSERT_VALID(this);
    ASSERT(m_pStream != NULL);

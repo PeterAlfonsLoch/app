@@ -1076,7 +1076,7 @@ size script_manager::get_image_size(const ::file::path & strFile)
 bool script_manager::extract_image_size(const ::file::path & strFile,::size * psize)
 {
 
-   ::file::buffer_sp f;
+   ::file::file_sp f;
 
    try
    {

@@ -19,8 +19,8 @@ namespace filemanager
       ::file::path               m_strBase;
       double                     m_dSize;
       double                     m_dRead;
-      ::file::buffer_sp          m_fileSrc;
-      ::file::buffer_sp          m_fileDst;
+      ::file::file_sp          m_fileSrc;
+      ::file::file_sp          m_fileDst;
       int32_t                    m_iFile;
       bool                       m_bReplaceAll;
       char *                     m_pchBuffer;

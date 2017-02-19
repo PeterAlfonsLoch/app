@@ -28,7 +28,7 @@ extern "C"
 }
 
 
-bzip_stream::bzip_stream(::file::stream_buffer *  pfileDest):
+bzip_stream::bzip_stream(::file::file *  pfileDest):
 ostream(pfileDest)
 {
    construct();

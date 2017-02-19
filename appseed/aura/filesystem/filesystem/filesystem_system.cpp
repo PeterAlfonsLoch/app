@@ -395,7 +395,7 @@ restart:
    // fail if exists, create if not exists
    bool system::mk_time(const char * lpcszCandidate)
    {
-      ::file::buffer_sp spfile(allocer());
+      ::file::file_sp spfile(allocer());
       if(System.file().exists(lpcszCandidate, get_app()))
          return false;
       try
@@ -419,9 +419,9 @@ restart:
    string system::as_string(var varFile, var & varQuery, ::aura::application * papp)
    {
       memory storage;
-      if(varFile.cast < ::file::stream_buffer > () != NULL)
+      if(varFile.cast < ::file::file > () != NULL)
       {
-         ::file::byte_istream is(varFile.cast < ::file::stream_buffer >());
+         ::file::byte_istream is(varFile.cast < ::file::file >());
          storage.read(is);
       }
       else
@@ -498,7 +498,7 @@ restart:
 
       }
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       try
       {
@@ -543,7 +543,7 @@ restart:
       UNREFERENCED_PARAMETER(papp);
 
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       try
       {
@@ -569,7 +569,7 @@ restart:
    bool system::put_contents(var varFile, const void * pvoidContents, ::count count, ::aura::application * papp)
    {
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       try
       {
@@ -596,7 +596,7 @@ restart:
    bool system::add_contents(var varFile,const void * pvoidContents,::count count,::aura::application * papp)
    {
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       try
       {
@@ -653,7 +653,7 @@ restart:
 
    bool system::put_contents(var varFile, ::file::reader & reader, ::aura::application * papp)
    {
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
@@ -674,7 +674,7 @@ restart:
 
    bool system::put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application * papp)
    {
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
@@ -1152,7 +1152,7 @@ restart:
    }
 
 
-   ::file::buffer_sp system::time_square_file(::aura::application * papp, const string & pszPrefix, const string & pszSuffix)
+   ::file::file_sp system::time_square_file(::aura::application * papp, const string & pszPrefix, const string & pszSuffix)
    {
 
       return get(time_square(papp, pszPrefix, pszSuffix), papp);
@@ -1160,12 +1160,12 @@ restart:
    }
 
 
-   ::file::buffer_sp system::get(const ::file::path & name,::aura::application * papp)
+   ::file::file_sp system::get(const ::file::path & name,::aura::application * papp)
    {
 
       System.dir().mk(name.name(), papp);
 
-      ::file::buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+      ::file::file_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          throw ::file::exception(papp, ::file::exception::none,-1L, name);
@@ -1310,7 +1310,7 @@ restart:
    string system::nessie(const ::file::path & psz)
    {
 
-      ::file::buffer_sp spfile(allocer());
+      ::file::file_sp spfile(allocer());
       try
       {
          if(spfile->open(psz,::file::type_binary | ::file::mode_read).failed())
@@ -1325,7 +1325,7 @@ restart:
    }
 
 
-   string system::nessie(::file::buffer_sp  pfile)
+   string system::nessie(::file::file_sp  pfile)
    {
 
       throw interface_only_exception(get_app());
@@ -1360,7 +1360,7 @@ restart:
       
    }
 
-   ::file::buffer_sp system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
+   ::file::file_sp system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
    {
 
       if(pfesp != NULL)
@@ -1370,14 +1370,14 @@ restart:
 
       ::cres cres;
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       ::file::path strPath;
 
       if(varFile.get_type() == var::type_element)
       {
 
-         spfile = varFile.cast < ::file::stream_buffer >();
+         spfile = varFile.cast < ::file::file >();
 
          if(spfile.is_set())
             return spfile;
@@ -1421,7 +1421,7 @@ restart:
       if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_buffer >() != NULL)
       {
 
-         spfile = varFile.propset()["file"].cast < ::file::stream_buffer >();
+         spfile = varFile.propset()["file"].cast < ::file::file >();
 
       }
       else
@@ -1440,7 +1440,7 @@ restart:
          }
          */
 
-         spfile = App(papp).alloc(System.type_info < ::file::stream_buffer >());
+         spfile = App(papp).alloc(System.type_info < ::file::file >());
 
          cres = spfile->open(strPath,nOpenFlags);
 

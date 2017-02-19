@@ -8,7 +8,7 @@ namespace metrowin
    // native_buffer - raw unbuffered disk native_buffer I/O
 
    class CLASS_DECL_AURA native_buffer:
-      virtual public ::file::stream_buffer
+      virtual public ::file::file
    {
    public:
 
@@ -55,7 +55,7 @@ namespace metrowin
       uint64_t ReadHuge(void * lpBuffer,uint64_t dwCount);
       void WriteHuge(const void * lpBuffer,uint64_t dwCount);
 
-      virtual sp(::file::stream_buffer) Duplicate() const;
+      virtual sp(::file::file) Duplicate() const;
 
       virtual file_position_t seek(file_offset_t lOff,::file::e_seek nFrom);
       virtual void set_length(file_size_t dwNewLen);

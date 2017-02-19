@@ -37,7 +37,7 @@ namespace file
          *this << (uint32_t)     string.get_length();
       }
 
-      m_spbuffer->write((const char *) string, string.get_length());
+      m_spfile->write((const char *) string, string.get_length());
 
    }
 
@@ -50,7 +50,7 @@ namespace file
       m_b64bit = false;
    }
 
-   byte_ostream::byte_ostream(stream_buffer * pwriter) :
+   byte_ostream::byte_ostream(file * pwriter) :
       ostream(pwriter)
    {
       m_b64bit = false;
@@ -70,21 +70,21 @@ namespace file
    void byte_ostream:: write (bool b)
    {
 
-      m_spbuffer->write(&b, sizeof(b));
+      m_spfile->write(&b, sizeof(b));
 
    }
 
    void byte_ostream:: write (char ch)
    {
 
-      m_spbuffer->write(&ch, sizeof(ch));
+      m_spfile->write(&ch, sizeof(ch));
 
    }
 
    void byte_ostream:: write (uchar uch)
    {
 
-      m_spbuffer->write(&uch, sizeof(uch));
+      m_spfile->write(&uch, sizeof(uch));
 
    }
 
@@ -204,9 +204,9 @@ namespace file
 
       byte b = (signal << 6) | (len & 0x3f);
 
-      m_spbuffer->write(&b, sizeof(b));
+      m_spfile->write(&b, sizeof(b));
 
-      m_spbuffer->write(&ui, len);
+      m_spfile->write(&ui, len);
 
    }
 
@@ -233,22 +233,22 @@ namespace file
 
    void byte_ostream:: write (float f)
    {
-      m_spbuffer->write(&f, sizeof(f));
+      m_spfile->write(&f, sizeof(f));
 
    }
 
    void byte_ostream:: write (double d)
    {
-      m_spbuffer->write(&d, sizeof(d));
+      m_spfile->write(&d, sizeof(d));
 
    }
 
    void byte_ostream:: write (const RECT & rect)
    {
-      m_spbuffer->write(&rect.left,     sizeof(rect.left));
-      m_spbuffer->write(&rect.top,      sizeof(rect.top));
-      m_spbuffer->write(&rect.right,    sizeof(rect.right));
-      m_spbuffer->write(&rect.bottom,   sizeof(rect.bottom));
+      m_spfile->write(&rect.left,     sizeof(rect.left));
+      m_spfile->write(&rect.top,      sizeof(rect.top));
+      m_spfile->write(&rect.right,    sizeof(rect.right));
+      m_spfile->write(&rect.bottom,   sizeof(rect.bottom));
 
    }
 
@@ -261,19 +261,19 @@ namespace file
 
    void byte_ostream:: write (const SIZE & size)
    {
-      m_spbuffer->write(&size.cx,     sizeof(size.cx));
-      m_spbuffer->write(&size.cy,     sizeof(size.cy));
+      m_spfile->write(&size.cx,     sizeof(size.cx));
+      m_spfile->write(&size.cy,     sizeof(size.cy));
 
    }
 
    void byte_ostream:: write (const sp(type) info)
    {
       strsize iLen = strlen(info->name());
-      m_spbuffer->write(&iLen, sizeof(iLen));
-      m_spbuffer->write(info->name(), iLen);
+      m_spfile->write(&iLen, sizeof(iLen));
+      m_spfile->write(info->name(), iLen);
       iLen = strlen(info->friendly_name());
-      m_spbuffer->write(&iLen, sizeof(iLen));
-      m_spbuffer->write(info->friendly_name(), iLen);
+      m_spfile->write(&iLen, sizeof(iLen));
+      m_spfile->write(info->friendly_name(), iLen);
 
    }
 
@@ -286,7 +286,7 @@ namespace file
    void byte_ostream:: write (const char * psz)
    {
 
-      m_spbuffer->write(psz, strlen(psz));
+      m_spfile->write(psz, strlen(psz));
 
    }
 

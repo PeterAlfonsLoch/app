@@ -77,11 +77,11 @@ bool script_interface::main_finalize()
 
 }
 
-::file::stream_buffer & script_interface::output_file()
+::file::file & script_interface::output_file()
 {
    if(m_pinstanceMain == this)
    {
-      return *((::file::stream_buffer *) NULL);
+      return *((::file::file *) NULL);
    }
    else if(m_pinstanceMain != NULL)
    {
@@ -93,8 +93,8 @@ bool script_interface::main_finalize()
    }
    else
    {
-      m_ostreamFallback.m_spbuffer = m_spmemoryfileFallback;
-      return *m_ostreamFallback.m_spbuffer;
+      m_ostreamFallback.m_spfile = m_spmemoryfileFallback;
+      return *m_ostreamFallback.m_spfile;
    }
 }
 
@@ -114,7 +114,7 @@ bool script_interface::main_finalize()
    }
    else
    {
-      m_ostreamFallback.m_spbuffer = m_spmemoryfileFallback;
+      m_ostreamFallback.m_spfile = m_spmemoryfileFallback;
       return m_ostreamFallback;
    }
 }

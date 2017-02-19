@@ -198,7 +198,7 @@ namespace colorertake5
             }
             ::file::listing patha(get_app());
             patha.rls(path);
-            ::file::buffer_sp spfile(allocer());
+            ::file::file_sp spfile(allocer());
             for(int32_t i = 0; i < patha.get_count(); i++)
             {
                if(!Application.dir().is(patha[i]))

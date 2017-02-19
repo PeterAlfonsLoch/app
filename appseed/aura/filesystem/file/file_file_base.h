@@ -20,7 +20,7 @@ namespace file
    struct file_status;
 
 
-   class CLASS_DECL_AURA stream_buffer_base :
+   class CLASS_DECL_AURA file_base :
       virtual public ::object,
       virtual public ::file::seekable,
       virtual public ::file::writer_flush
@@ -28,8 +28,8 @@ namespace file
    public:
 
 
-      stream_buffer_base();
-      virtual ~stream_buffer_base();
+      file_base();
+      virtual ~file_base();
 
       virtual void * get_internal_data();
       virtual const void * get_internal_data() const;

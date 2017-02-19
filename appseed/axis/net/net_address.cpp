@@ -499,6 +499,8 @@ namespace net
       a.u.m_addr.sin_family = AF_INET;
       a.u.m_addr.sin_port = port;
       memcpy(&a.u.m_addr.sin_addr, &ui, sizeof(a.u.m_addr.sin_addr));
+      ::sort::swap(&a.u.m_addr.sin_addr.S_un.S_un_b.s_b1, &a.u.m_addr.sin_addr.S_un.S_un_b.s_b4);
+      ::sort::swap(&a.u.m_addr.sin_addr.S_un.S_un_b.s_b2, &a.u.m_addr.sin_addr.S_un.S_un_b.s_b3);
 
       a.sync_os_address();
       a.sync_os_service();

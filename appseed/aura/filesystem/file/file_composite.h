@@ -6,17 +6,17 @@ namespace file
 
 
    class CLASS_DECL_AURA composite :
-      virtual public ::file::stream_buffer
+      virtual public ::file::file
    {
    public:
 
 
 
-      ::file::buffer_sp      m_spfile;
+      ::file::file_sp      m_spfile;
 
 
       composite();
-      composite(::file::buffer_sp  pfile);
+      composite(::file::file_sp  pfile);
       virtual ~composite();
 
       virtual file_position_t get_position() const;
@@ -35,7 +35,7 @@ namespace file
       //virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
 
-      virtual ::file::buffer_sp  Duplicate() const;
+      virtual ::file::file_sp  Duplicate() const;
 
       virtual file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
       virtual void set_length(file_size_t dwNewLen);
@@ -62,11 +62,11 @@ namespace file
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
 
 
-      using ::file::stream_buffer::write;
+      using ::file::file::write;
       void write(ostream & ostream);
 
 
-      using ::file::stream_buffer::read;
+      using ::file::file::read;
       void read(istream & istream);
 
 

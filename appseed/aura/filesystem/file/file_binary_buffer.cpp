@@ -26,7 +26,7 @@ namespace file
       
       seek_to_begin();
 
-      transfer_to(*ostream.m_spbuffer);
+      transfer_to(*ostream.m_spfile);
 
    }
 
@@ -34,7 +34,7 @@ namespace file
    void binary_buffer::read(istream & istream)
    {
    
-      transfer_from(*istream.m_spbuffer);
+      transfer_from(*istream.m_spfile);
 
       seek_to_begin();
 
@@ -45,7 +45,7 @@ namespace file
    {
    }
 
-   ::file::buffer_sp  binary_buffer::Duplicate() const
+   ::file::file_sp  binary_buffer::Duplicate() const
    {
       return NULL;
    }

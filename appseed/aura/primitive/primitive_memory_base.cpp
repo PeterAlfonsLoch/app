@@ -955,6 +955,8 @@ namespace primitive
    void memory_base::to_asc(string & str)
    {
 
+      str.Empty();
+
       string strTo;
 
       to_hex(strTo);

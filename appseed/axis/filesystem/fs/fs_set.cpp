@@ -286,7 +286,7 @@ namespace fs
 
    }
 
-   ::file::buffer_sp set::get_file(const ::file::path & path, UINT nOpenFlags, cres * pfesp)
+   ::file::file_sp set::get_file(const ::file::path & path, UINT nOpenFlags, cres * pfesp)
    {
 
       ::fs::data * pdata = path_data(path);

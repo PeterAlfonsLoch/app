@@ -10,7 +10,7 @@ namespace file
    \ingroup internal */
 
    class CLASS_DECL_AURA circular_buffer :
-      virtual public stream_buffer
+      virtual public file
    {
    protected:
 
@@ -32,15 +32,15 @@ namespace file
       ~circular_buffer();
 
       /** append l bytes from p to buffer */
-      using ::file::stream_buffer::write;
+      using ::file::file::write;
       void write(const void * pdata, memory_size_t l);
       /** copy l bytes from buffer to dest */
-      using ::file::stream_buffer::read;
+      using ::file::file::read;
       memory_size_t read(void * pbuffer, memory_size_t l);
       /** skip l bytes from buffer */
       bool remove(size_t l);
       /** read l bytes from buffer, returns as string. */
-      using ::file::stream_buffer::read_string;
+      using ::file::file::read_string;
       string read_string(size_t l);
 
       /** total buffer length */

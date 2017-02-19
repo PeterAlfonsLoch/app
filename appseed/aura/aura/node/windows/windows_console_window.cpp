@@ -10,7 +10,7 @@ namespace windows
       object(papp)
    {
 
-      cout.m_spbuffer = canew(std_out_buffer());
+      cout.m_spfile = canew(std_out_buffer());
       AllocConsole();
       CONSOLE_FONT_INFOEX info ={};
       info.cbSize = sizeof(info);

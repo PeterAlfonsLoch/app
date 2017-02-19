@@ -31,7 +31,7 @@ namespace user
 
       sp(plain_text_group_command)     m_pgroupcommand;
       index                            m_iBranch;
-      ::file::buffer_sp                m_pfile;
+      ::file::file_sp                m_pfile;
       ::file::edit_buffer              m_editfile;
 
 
@@ -43,7 +43,7 @@ namespace user
       virtual ~plain_text_tree();
 
 
-      void SetFile(::file::buffer_sp  pfile);
+      void SetFile(::file::file_sp  pfile);
 
 
    };

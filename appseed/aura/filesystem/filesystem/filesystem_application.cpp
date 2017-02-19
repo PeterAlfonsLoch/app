@@ -125,12 +125,12 @@ namespace file
       return m_pauraapp->m_paurasystem->m_spfile->time_log(m_pauraapp, pszId);
    }
 
-   ::file::buffer_sp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
+   ::file::file_sp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
       return m_pauraapp->m_paurasystem->m_spfile->time_square_file(m_pauraapp, pszPrefix, pszSuffix);
    }
 
-   ::file::buffer_sp application::get(const ::file::path & name)
+   ::file::file_sp application::get(const ::file::path & name)
    {
       return m_pauraapp->m_paurasystem->m_spfile->get(name, m_pauraapp);
    }
@@ -192,7 +192,7 @@ namespace file
 
 
 
-   ::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags, cres * pfesp)
+   ::file::file_sp application::friendly_get_file(var varFile, UINT nOpenFlags, cres * pfesp)
    {
       if(pfesp != NULL)
       {
@@ -209,7 +209,7 @@ namespace file
       }
    }
 
-   ::file::buffer_sp application::get_file(var varFile, UINT nOpenFlags, cres * pfesp)
+   ::file::file_sp application::get_file(var varFile, UINT nOpenFlags, cres * pfesp)
    {
 
       if(pfesp != NULL)
@@ -219,14 +219,14 @@ namespace file
 
       ::cres cres;
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       ::file::path strPath;
 
       if (varFile.get_type() == var::type_element)
       {
          
-         spfile = varFile.cast < ::file::stream_buffer >();
+         spfile = varFile.cast < ::file::file >();
 
          if (spfile.is_set())
             return spfile;
@@ -319,7 +319,7 @@ namespace file
             return spfile;
          }
 
-         spfile = Application.alloc(System.type_info < ::file::stream_buffer > ());
+         spfile = Application.alloc(System.type_info < ::file::file > ());
 
          cres = spfile->open(strPath,nOpenFlags);
 

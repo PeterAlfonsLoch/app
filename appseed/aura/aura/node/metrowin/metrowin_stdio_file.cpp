@@ -52,7 +52,7 @@ namespace metrowin
       char szMode[4]; // C-runtime open string
       int nMode = 0;
 
-      // determine read/write mode depending on ::file::buffer_sp mode
+      // determine read/write mode depending on ::file::file_sp mode
       if (nOpenFlags & ::file::mode_create)
       {
          if (nOpenFlags & ::file::mode_no_truncate)
@@ -296,7 +296,7 @@ namespace metrowin
       m_bCloseOnDelete = FALSE;
    }
 
-   sp(::file::stream_buffer) stdio_file::Duplicate() const
+   sp(::file::file) stdio_file::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);

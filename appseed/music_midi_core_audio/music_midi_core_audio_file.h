@@ -118,13 +118,13 @@ namespace music
           
           ::music::e_result OpenFile(::music::midi::file::buffer &file, int32_t openMode);
           
-          ::music::e_result OpenFile(::file::stream_buffer & file, int32_t openMode);
+          ::music::e_result OpenFile(::file::file & file, int32_t openMode);
           
           ::music::e_result OpenFile(primitive::memory * pmemstorage, int32_t openMode, ::music::e_storage);
           
           ::music::e_result OpenFile(primitive::memory * pmemstorage, ::music::midi::file::e_open eopenmode, ::music::e_storage estorage);
           
-          ::music::e_result SaveFile(::file::stream_buffer & file);
+          ::music::e_result SaveFile(::file::file & file);
           
           ::music::e_result CloseFile();
           

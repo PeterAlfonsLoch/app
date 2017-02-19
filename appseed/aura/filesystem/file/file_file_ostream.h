@@ -19,7 +19,7 @@ namespace file
 
       file_ostream();
       file_ostream(const char * lpszFileName,uint32_t nOpenFlags,::aura::application * papp = ::get_thread_app());
-      file_ostream(stream_buffer * pwriter);
+      file_ostream(file * pwriter);
       file_ostream(const file_ostream & pwriter);
       virtual ~file_ostream();
 

@@ -296,7 +296,7 @@ namespace http
       return System.http().put(pszUrl, memory, process_set(set, pszUrl));
    }
 
-   bool application::put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set)
+   bool application::put(const char * pszUrl, ::file::file_sp  pfile, property_set & set)
    {
       return System.http().put(pszUrl, pfile, process_set(set, pszUrl));
    }

@@ -108,10 +108,10 @@ namespace metrowin
 
    }
 
-   ::file::buffer_sp file_system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
+   ::file::file_sp file_system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
    {
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       ::file::path strPath;
 

@@ -67,7 +67,7 @@ namespace linux
 
    }
 
-   sp(::file::stream_buffer) file::Duplicate() const
+   sp(::file::file) file::Duplicate() const
 
    {
 

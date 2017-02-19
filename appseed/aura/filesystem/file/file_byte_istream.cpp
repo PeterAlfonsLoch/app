@@ -56,7 +56,7 @@ namespace file
    {
    }
 
-   byte_istream::byte_istream(stream_buffer * preader) :
+   byte_istream::byte_istream(file * preader) :
       istream(preader)
    {
 
@@ -76,7 +76,7 @@ namespace file
    void byte_istream::read(char & ch)
    {
 
-      if(m_spbuffer->read(&ch, sizeof(ch)) != sizeof(ch))
+      if(m_spfile->read(&ch, sizeof(ch)) != sizeof(ch))
          throw io_exception(get_app(), "byte_istream::read");
 
 
@@ -94,7 +94,7 @@ namespace file
 
       }
 
-      if(m_spbuffer->read(&uch,sizeof(uch)) != sizeof(uch))
+      if(m_spfile->read(&uch,sizeof(uch)) != sizeof(uch))
       {
 
          setstate(failbit);
@@ -129,7 +129,7 @@ namespace file
 #endif
    void byte_istream::read(bool & b)
    {
-      m_spbuffer->read(&b, sizeof(b));
+      m_spfile->read(&b, sizeof(b));
 
    }
 
@@ -355,17 +355,17 @@ namespace file
 
    /*file_position_t byte_istream::seek(file_offset_t offset, e_seek seekOrigin)
    {
-   return m_spbuffer->seek(offset, seekOrigin);
+   return m_spfile->seek(offset, seekOrigin);
    }*/
 
 
    void byte_istream::full_load(string & str)
    {
 
-      if(m_spbuffer.is_null())
+      if(m_spfile.is_null())
          return;
 
-      sp(seekable) spseekable = m_spbuffer;
+      sp(seekable) spseekable = m_spfile;
 
       if(spseekable.is_set())
       {
@@ -385,7 +385,7 @@ namespace file
          while(uiCount > 0)
          {
 
-            memory_size_t uiRead =  m_spbuffer->read(&lpstr[uiPos], (memory_size_t) uiCount);
+            memory_size_t uiRead =  m_spfile->read(&lpstr[uiPos], (memory_size_t) uiCount);
 
             uiCount -= uiRead;
 
@@ -399,7 +399,7 @@ namespace file
       else
       {
 
-         ::file::string_buffer strbuffer;
+         ::file::string_file strbuffer;
 
          ::strsize uiPos = 0;
 
@@ -428,7 +428,7 @@ namespace file
 
             }
 
-            uiRead =  m_spbuffer->read((void *) &((const char *) strbuffer)[uiPos], (memory_size_t) (strbuffer.get_length() - uiPos));
+            uiRead =  m_spfile->read((void *) &((const char *) strbuffer)[uiPos], (memory_size_t) (strbuffer.get_length() - uiPos));
 
             uiPos += uiRead;
 
@@ -470,7 +470,7 @@ namespace file
          ASSERT(nByteLen != 0);
 
          // read new data
-         if (m_spbuffer->read(lpBuf, nByteLen) != nByteLen)
+         if (m_spfile->read(lpBuf, nByteLen) != nByteLen)
          {
             //   ::core::ThrowArchiveException(CArchiveException::endOfFile);
          }

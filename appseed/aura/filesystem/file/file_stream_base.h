@@ -93,14 +93,14 @@ namespace file
    public:
 
       e_str_flag                 m_estrflag;
-      buffer_sp                  m_spbuffer;
+      file_sp                    m_spfile;
       e_iostate                  m_iostate;
       fmtflags                   m_fmtflags;
       file_size_t                m_width;
       file_size_t                m_precision;
 
       stream_base();
-      stream_base(buffer_sp pbuffer);
+      stream_base(file_sp pfile);
       stream_base(const stream_base & stream);
       virtual ~stream_base();
 

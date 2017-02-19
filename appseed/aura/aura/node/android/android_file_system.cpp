@@ -303,7 +303,7 @@ namespace android
 //   // fail if exists, create if not exists
 //   bool file_system::mk_time(const char * lpcszcandidate)
 //   {
-//      ::file::buffer_sp spfile(get_app());
+//      ::file::file_sp spfile(get_app());
 //      if(System.file().exists(lpcszcandidate, get_app()))
 //         return false;
 //      try
@@ -327,9 +327,9 @@ namespace android
 //   string file_system::as_string(var varFile, var & varQuery, ::aura::application * papp)
 //   {
 //      memory storage;
-//      if(varFile.cast < ::file::stream_buffer > () != NULL)
+//      if(varFile.cast < ::file::file > () != NULL)
 //      {
-//         storage.transfer_from(*varFile.cast < ::file::stream_buffer >());
+//         storage.transfer_from(*varFile.cast < ::file::file >());
 //      }
 //      else
 //      {
@@ -411,7 +411,7 @@ namespace android
 //         if(strPath.is_empty())
 //         {
 //
-//            TRACE("::file::stream_buffer::file_system::as_memory varFile is a empty file name!!");
+//            TRACE("::file::file::file_system::as_memory varFile is a empty file name!!");
 //
 //            return;
 //
@@ -432,7 +432,7 @@ namespace android
 //
 //      }
 //
-//      ::file::buffer_sp spfile;
+//      ::file::file_sp spfile;
 //
 //      try
 //      {
@@ -477,7 +477,7 @@ namespace android
 //   bool file_system::put_contents(var varFile, const void * pvoidContents, count count, ::aura::application * papp)
 //   {
 //
-//      ::file::buffer_sp spfile;
+//      ::file::file_sp spfile;
 //
 //      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
 //
@@ -504,7 +504,7 @@ namespace android
 //
 //   bool file_system::put_contents(var varFile, ::file::reader & file, ::aura::application * papp)
 //   {
-//      ::file::buffer_sp spfile;
+//      ::file::file_sp spfile;
 //      spfile = App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
 //      if(spfile.is_null())
 //         return false;
@@ -525,7 +525,7 @@ namespace android
 //
 //   bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application * papp)
 //   {
-//      ::file::buffer_sp spfile;
+//      ::file::file_sp spfile;
 //      spfile = App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
 //      if(spfile.is_null())
 //         return false;
@@ -701,7 +701,7 @@ namespace android
 //            strNew = pszNew;
 //         }
 //
-//         ::file::buffer_sp ofile;
+//         ::file::file_sp ofile;
 //         ofile = App(papp).file().get_file(strNew,::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
 //         if(ofile.is_null())
 //         {
@@ -710,7 +710,7 @@ namespace android
 //            throw strError;
 //         }
 //
-//         ::file::buffer_sp ifile;
+//         ::file::file_sp ifile;
 //         ifile = App(papp).file().get_file(psz,::file::mode_read | ::file::type_binary | ::file::share_deny_none);
 //         if(ifile.is_null())
 //         {
@@ -1161,19 +1161,19 @@ namespace android
 //
 //   }
 //
-//   ::file::buffer_sp file_system::time_square_file(::aura::application * papp, const char * pszPrefix, const char * pszSuffix)
+//   ::file::file_sp file_system::time_square_file(::aura::application * papp, const char * pszPrefix, const char * pszSuffix)
 //   {
 //
 //      return get(time_square(papp, pszPrefix, pszSuffix), papp);
 //
 //   }
 //
-//   ::file::buffer_sp file_system::get(const char * name, ::aura::application * papp)
+//   ::file::file_sp file_system::get(const char * name, ::aura::application * papp)
 //   {
 //
 //      System.dir().mk(System.dir().name(name), papp);
 //
-//      ::file::buffer_sp fileOut = Sess(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      ::file::file_sp fileOut = Sess(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 //
 //      if(fileOut.is_null())
 //         throw ::file::exception(papp, -1, ::file::exception::none, name);

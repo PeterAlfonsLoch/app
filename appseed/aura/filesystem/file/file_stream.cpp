@@ -11,8 +11,8 @@ namespace file
    }
 
 
-   stream::stream(buffer_sp pbuffer):
-      stream_base(pbuffer)
+   stream::stream(file_sp pfile):
+      stream_base(pfile)
    {
 
    }
@@ -58,7 +58,7 @@ namespace file
    void * stream::get_internal_data()
    {
       
-      return m_spbuffer->get_internal_data();
+      return m_spfile->get_internal_data();
 
    }
 
@@ -66,7 +66,7 @@ namespace file
    memory_size_t stream::get_internal_data_size() const
    {
       
-      return m_spbuffer->get_internal_data_size();
+      return m_spfile->get_internal_data_size();
 
    }
 
@@ -74,7 +74,7 @@ namespace file
    bool stream::set_internal_data_size(memory_size_t c)
    {
       
-      return m_spbuffer->set_internal_data_size(c);
+      return m_spfile->set_internal_data_size(c);
 
    }
 
@@ -82,7 +82,7 @@ namespace file
    file_position_t stream::get_position() const
    {
       
-      return m_spbuffer->get_position();
+      return m_spfile->get_position();
 
    }
 

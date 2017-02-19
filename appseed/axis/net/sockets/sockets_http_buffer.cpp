@@ -8,7 +8,7 @@ namespace sockets
 
    http_buffer::http_buffer(::aura::application * papp, mutex * pmutex) :
       ::object(papp),
-      transfer_buffer(papp, pmutex)
+      transfer_file(papp, pmutex)
    {
 
    }
@@ -18,7 +18,7 @@ namespace sockets
    //
    http_buffer::http_buffer(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn) :
       ::object(papp),
-      transfer_buffer(papp, pmemoryfileIn)
+      transfer_file(papp, pmemoryfileIn)
    {
 
    }

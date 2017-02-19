@@ -64,8 +64,8 @@ namespace ios
 //         string time_square(::aura::application *  papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
 //         string time_log(::aura::application *  papp, const char * pszId);
 //         
-//         virtual ::file::buffer_sp time_square_file(::aura::application *  papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-//         virtual ::file::buffer_sp get(const char * name, ::aura::application *  papp);
+//         virtual ::file::file_sp time_square_file(::aura::application *  papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+//         virtual ::file::file_sp get(const char * name, ::aura::application *  papp);
 //         
 //         
 //         int32_t filterex_time_square(const char * pszPrefix, stringa & stra);
@@ -94,7 +94,7 @@ namespace ios
          
          file_system(::aura::application *  papp);
 
-         virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
+         virtual ::file::file_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
      
          
       };

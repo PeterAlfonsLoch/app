@@ -167,7 +167,7 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
    }
 
 
-   inline void string_buffer::set_length(strsize nLength )
+   inline void string_file::set_length(strsize nLength )
    {
       ASSERT( nLength >= 0 );
       ASSERT( nLength <= m_nBufferLength );

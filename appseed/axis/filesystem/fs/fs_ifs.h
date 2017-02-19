@@ -52,7 +52,7 @@ public:
 
    virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc);
 
-   virtual ::file::buffer_sp get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp);
+   virtual ::file::file_sp get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp);
 
    virtual bool file_exists(const ::file::path & pszPath);
    virtual var file_length(const ::file::path & pszPath);

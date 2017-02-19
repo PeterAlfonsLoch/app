@@ -11,7 +11,7 @@ namespace http
    }
 
 
-   ostream::ostream(::file::stream_buffer * pbuffer) :
+   ostream::ostream(::file::file * pbuffer) :
       ::file::plain_text_ostream(pbuffer)
    {
    
@@ -88,7 +88,7 @@ namespace http
       return str.has_char();
    }*/
 
-   ::file::ostream & ostream::operator << (::file::buffer_sp spbuf)
+   ::file::ostream & ostream::operator << (::file::file_sp spbuf)
    {
       uint_ptr nRead;
       memory mem;

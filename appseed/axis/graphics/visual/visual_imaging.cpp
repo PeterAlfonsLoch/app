@@ -20,10 +20,10 @@
 
 #endif
 
-bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer_sp, ::aura::application * papp);
+bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::file_sp, ::aura::application * papp);
 
-bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer_sp, ::aura::application * papp);
-bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp,::aura::application * papp);
+bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::file_sp, ::aura::application * papp);
+bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::file_sp,::aura::application * papp);
 
 template <typename T>
 inline void SafeRelease(T *&p)
@@ -678,7 +678,7 @@ bool imaging::from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP 
    return true;
 
 }
-FIBITMAP * imaging::LoadImageFile(::file::buffer_sp  pfile)
+FIBITMAP * imaging::LoadImageFile(::file::file_sp  pfile)
 {
 
    if(pfile == NULL)
@@ -694,11 +694,11 @@ FIBITMAP * imaging::LoadImageFile(::file::buffer_sp  pfile)
    {
       pfile->seek_to_begin();
       FREE_IMAGE_FORMAT format;
-      format = FreeImage_GetFileTypeFromHandle(&io,(::file::stream_buffer *)pfile.m_p);
+      format = FreeImage_GetFileTypeFromHandle(&io,(::file::file *)pfile.m_p);
       pfile->seek_to_begin();
       if(true)
       {
-         lpVoid = FreeImage_LoadFromHandle(format,&io,(::file::stream_buffer *)pfile.m_p);
+         lpVoid = FreeImage_LoadFromHandle(format,&io,(::file::file *)pfile.m_p);
       }
    }
    catch(...)
@@ -734,7 +734,7 @@ return false;
 
 file.seek_to_begin();
 
-::file::buffer_sp  pfile = &file;
+::file::file_sp  pfile = &file;
 
 FreeImageIO io;
 io.read_proc   = ___Ex1File__ReadProc;
@@ -798,7 +798,7 @@ return hBitmapSource;
 bool imaging::LoadImage(::visual::dib_sp::array * pdiba, var varFile)
 {
 
-   ::file::buffer_sp file = App(pdiba->get_app()).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
+   ::file::file_sp file = App(pdiba->get_app()).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
 
    if(file.is_null())
    {
@@ -822,7 +822,7 @@ bool imaging::LoadImage(::visual::dib_sp::array * pdiba, var varFile)
 bool imaging::LoadImage(::draw2d::dib * pdib,var varFile)
 {
 
-   ::file::buffer_sp file = App(pdib->get_app()).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
+   ::file::file_sp file = App(pdib->get_app()).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
    
    if(file.is_null())
    {
@@ -843,7 +843,7 @@ bool imaging::LoadImage(::draw2d::dib * pdib,var varFile)
 }
 
 
-bool imaging::LoadImageFromFile(::visual::dib_sp::array * pdiba, ::file::stream_buffer * pfile)
+bool imaging::LoadImageFromFile(::visual::dib_sp::array * pdiba, ::file::file * pfile)
 {
    
    if(!freeimage_load_diba_from_file(pdiba, pfile, get_app()))
@@ -858,7 +858,7 @@ bool imaging::LoadImageFromFile(::visual::dib_sp::array * pdiba, ::file::stream_
 }
 
 
-bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pfile)
+bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::file * pfile)
 {
    
    FIBITMAP * pfi = LoadImageFile(pfile);
@@ -7351,7 +7351,7 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
       //   {
       //      try
       //      {
-      //         ::file::buffer_sp file = Sess(papp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+      //         ::file::file_sp file = Sess(papp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
       //         if (file.is_null())
       //         {
       //            return true;
@@ -7395,7 +7395,7 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
       //   try
       //   {
 
-      //      ::file::buffer_sp file = App(papp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+      //      ::file::file_sp file = App(papp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
 
       //      if (file.is_set())
       //      {
@@ -7438,7 +7438,7 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
          {
             try
             {
-               ::file::buffer_sp file = Session.file().get_file(strFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+               ::file::file_sp file = Session.file().get_file(strFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
                if(file.is_null())
                {
                   return true;
@@ -7483,7 +7483,7 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
          try
          {
 
-            ::file::buffer_sp file =Application.file().get_file(strFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+            ::file::file_sp file =Application.file().get_file(strFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
 
             if(file.is_set())
             {

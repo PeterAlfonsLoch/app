@@ -333,7 +333,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 }
 
 
-::file::buffer_sp ifs::get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp)
+::file::file_sp ifs::get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp)
 {
 
    if(pfesp != NULL)
@@ -343,7 +343,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 
    ::cres cres;
 
-   ::file::buffer_sp spfile;
+   ::file::file_sp spfile;
 
    spfile = canew(ifs_file(get_app(), path));
 

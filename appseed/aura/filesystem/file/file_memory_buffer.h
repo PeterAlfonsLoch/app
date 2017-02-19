@@ -12,7 +12,7 @@ namespace file
 
 
    class CLASS_DECL_AURA memory_buffer :
-      virtual public ::file::stream_buffer,
+      virtual public ::file::file,
       virtual public primitive::memory_container
    {
    protected:
@@ -47,10 +47,10 @@ namespace file
       void Truncate(file_size_t iPosition);
       void clear();
       
-      using ::file::stream_buffer::read;
+      using ::file::file::read;
       virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
       
-      using ::file::stream_buffer::write;
+      using ::file::file::write;
       virtual void write(const void * lpBuf, memory_size_t nCount);
       virtual void write_from_hex(const void * lpBuf,memory_size_t nCount);
 
@@ -64,7 +64,7 @@ namespace file
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      using ::file::stream_buffer::get_internal_data;
+      using ::file::file::get_internal_data;
       virtual void * get_internal_data();
       virtual memory_size_t get_internal_data_size() const;
       virtual bool set_internal_data_size(memory_size_t c);

@@ -388,7 +388,7 @@ restart:
       // fail if exists, create if not exists
       bool system::mk_time(const ::file::path & lpcszCandidate)
       {
-         ::file::buffer_sp spfile(allocer());
+         ::file::file_sp spfile(allocer());
          if (System.file().exists(lpcszCandidate, get_app()))
             return false;
          try
@@ -412,9 +412,9 @@ restart:
       string system::as_string(var varFile, var & varQuery, ::aura::application * papp)
       {
          memory storage;
-         if (varFile.cast < ::file::stream_buffer >() != NULL)
+         if (varFile.cast < ::file::file >() != NULL)
          {
-            ::file::byte_istream is(varFile.cast < ::file::stream_buffer >());
+            ::file::byte_istream is(varFile.cast < ::file::file >());
             storage.read(is);
          }
          else
@@ -561,7 +561,7 @@ restart:
 #endif
          }
 
-         ::file::buffer_sp spfile;
+         ::file::file_sp spfile;
 
          try
          {
@@ -644,7 +644,7 @@ restart:
       bool system::put_contents(var varFile, const void * pvoidContents, ::count count, ::aura::application * papp)
       {
 
-         ::file::buffer_sp spfile;
+         ::file::file_sp spfile;
 
          try
          {
@@ -682,7 +682,7 @@ restart:
 
       bool system::put_contents(var varFile, ::file::reader & reader, ::aura::application * papp)
       {
-         ::file::buffer_sp spfile;
+         ::file::file_sp spfile;
          spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
          if (spfile.is_null())
             return false;
@@ -703,7 +703,7 @@ restart:
 
       bool system::put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application * papp)
       {
-         ::file::buffer_sp spfile;
+         ::file::file_sp spfile;
          spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
          if (spfile.is_null())
             return false;
@@ -895,7 +895,7 @@ restart:
                strNew = pszNew;
             }
 
-            ::file::buffer_sp ofile;
+            ::file::file_sp ofile;
             ofile = App(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
             if (ofile.is_null())
             {
@@ -904,7 +904,7 @@ restart:
                throw strError;
             }
 
-            ::file::buffer_sp ifile;
+            ::file::file_sp ifile;
             ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
             if (ifile.is_null())
             {
@@ -1322,7 +1322,7 @@ restart:
       }
 
 
-      ::file::buffer_sp system::time_square_file(::aura::application * papp, const string & pszPrefix, const string & pszSuffix)
+      ::file::file_sp system::time_square_file(::aura::application * papp, const string & pszPrefix, const string & pszSuffix)
       {
 
          return get(time_square(papp, pszPrefix, pszSuffix), papp);
@@ -1330,12 +1330,12 @@ restart:
       }
 
 
-      ::file::buffer_sp system::get(const ::file::path & name, ::aura::application * papp)
+      ::file::file_sp system::get(const ::file::path & name, ::aura::application * papp)
       {
 
          System.dir().mk(name.folder(), papp);
 
-         ::file::buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+         ::file::file_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
          if (fileOut.is_null())
             throw ::file::exception(papp, ::file::exception::none, -1L, name);
@@ -1420,7 +1420,7 @@ restart:
       string system::md5(const ::file::path & psz)
       {
 
-         ::file::buffer_sp spfile(allocer());
+         ::file::file_sp spfile(allocer());
 
          try
          {
@@ -1460,7 +1460,7 @@ restart:
       void system::dtf(const ::file::path & pszFile, ::file::patha & stra, ::aura::application * papp)
       {
 
-         ::file::buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write | ::file::type_binary);
+         ::file::file_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write | ::file::type_binary);
 
          if (spfile.is_null())
             throw "failed";
@@ -1473,7 +1473,7 @@ restart:
 
          write_gen_string(spfile, NULL, strVersion);
 
-         ::file::buffer_sp file2(allocer());
+         ::file::file_sp file2(allocer());
 
          memory_size_t iBufSize = 1024 * 1024;
 
@@ -1525,7 +1525,7 @@ restart:
 
          string strVersion;
 
-         ::file::buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read | ::file::type_binary);
+         ::file::file_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read | ::file::type_binary);
 
          if (spfile.is_null())
             throw "failed";
@@ -1542,7 +1542,7 @@ restart:
          buf.allocate(iBufSize);
          int64_t iLen;
          MD5_CTX ctx;
-         ::file::buffer_sp file2(allocer());
+         ::file::file_sp file2(allocer());
          memory_size_t uiRead;
          if (strVersion == "fileset v1")
          {
@@ -1576,7 +1576,7 @@ restart:
          }
       }
 
-      void system::write_n_number(::file::stream_buffer *  pfile, void * pctx, int64_t iNumber)
+      void system::write_n_number(::file::file *  pfile, void * pctx, int64_t iNumber)
       {
 
          string str;
@@ -1594,7 +1594,7 @@ restart:
 
       }
 
-      void system::read_n_number(::file::stream_buffer *  pfile, void * pctx, int64_t & iNumber)
+      void system::read_n_number(::file::file *  pfile, void * pctx, int64_t & iNumber)
       {
 
          uint64_t uiRead;
@@ -1630,7 +1630,7 @@ restart:
 
       }
 
-      void system::write_gen_string(::file::stream_buffer *  pfile, void * pctx, string & str)
+      void system::write_gen_string(::file::file *  pfile, void * pctx, string & str)
       {
          ::count iLen = str.get_length();
          write_n_number(pfile, pctx, iLen);
@@ -1641,7 +1641,7 @@ restart:
          }
       }
 
-      void system::read_gen_string(::file::stream_buffer * pfile, void * pctx, string & str)
+      void system::read_gen_string(::file::file * pfile, void * pctx, string & str)
       {
          int64_t iLen;
          read_n_number(pfile, pctx, iLen);
@@ -1689,7 +1689,7 @@ restart:
       string system::nessie(const ::file::path & psz)
       {
 
-         ::file::buffer_sp spfile(allocer());
+         ::file::file_sp spfile(allocer());
          try
          {
             if (spfile->open(psz, ::file::type_binary | ::file::mode_read).failed())
@@ -1704,7 +1704,7 @@ restart:
       }
 
 
-      string system::nessie(::file::buffer_sp  pfile)
+      string system::nessie(::file::file_sp  pfile)
       {
 
          memory mem(get_app());
@@ -1740,7 +1740,7 @@ restart:
 
       //}
 
-      ::file::buffer_sp system::get_file(var varFile,UINT nOpenFlags,cres * pfesp, ::aura::application * papp)
+      ::file::file_sp system::get_file(var varFile,UINT nOpenFlags,cres * pfesp, ::aura::application * papp)
       {
 
          if(pfesp != NULL)
@@ -1750,14 +1750,14 @@ restart:
 
          ::cres cres;
 
-         ::file::buffer_sp spfile;
+         ::file::file_sp spfile;
 
          ::file::path strPath;
 
          if(varFile.get_type() == var::type_element)
          {
 
-            spfile = varFile.cast < ::file::stream_buffer >();
+            spfile = varFile.cast < ::file::file >();
 
             if(spfile.is_set())
                return spfile;
@@ -2089,15 +2089,6 @@ restart:
          }
 
          return spfile;
-
-      }
-
-
-      template < class T >
-      bool system::output(::aura::application * papp, path & pszOutput, const path & lpszSource)
-      {
-
-         return output(papp, pszOutput, &Sys(papp).compress(), &::axis::compress::null, lpszSource);
 
       }
 

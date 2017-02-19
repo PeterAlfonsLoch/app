@@ -490,7 +490,7 @@ namespace user
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
 #endif
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       try
       {
@@ -545,7 +545,7 @@ namespace user
    bool document::on_save_document(var varFile)
    {
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       if (m_file.is_set() && varFile.get_file_path() == m_file->GetFilePath())
       {

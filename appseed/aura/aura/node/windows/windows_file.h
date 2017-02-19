@@ -72,7 +72,7 @@ namespace windows
       uint64_t ReadHuge(void * lpBuffer, uint64_t dwCount);
       void WriteHuge(const void * lpBuffer, uint64_t dwCount);
 
-      virtual ::file::buffer_sp  Duplicate() const;
+      virtual ::file::file_sp  Duplicate() const;
 
       virtual file_position_t seek(file_offset_t lOff, ::file::e_seek nFrom);
       virtual void set_length(file_size_t dwNewLen);

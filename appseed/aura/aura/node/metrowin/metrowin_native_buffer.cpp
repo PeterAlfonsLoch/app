@@ -124,7 +124,7 @@ namespace metrowin
 
    }
 
-   sp(::file::stream_buffer) native_buffer::Duplicate() const
+   sp(::file::file) native_buffer::Duplicate() const
    {
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (UINT)hnative_bufferNull);
@@ -787,7 +787,7 @@ namespace metrowin
 
 
 
-   //// ::file::buffer_sp
+   //// ::file::file_sp
    //native_buffer::operator HFILE() const
    //{
    //   //return m_hnative_buffer;

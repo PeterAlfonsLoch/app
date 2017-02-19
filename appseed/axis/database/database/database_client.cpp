@@ -191,7 +191,7 @@ namespace database
       return bOk;
    }
 
-   bool client::data_set(class id id, ::file::stream_buffer & readable, update_hint * puh)
+   bool client::data_set(class id id, ::file::file & readable, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -296,7 +296,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, ::file::stream_buffer & writable)
+   bool client::data_get(class id id, ::file::file & writable)
    {
       if(m_pdataserver != NULL)
       {

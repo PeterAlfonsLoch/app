@@ -23,7 +23,7 @@ namespace file
 
 
       istream();
-      istream(stream_buffer * preader);
+      istream(file * preader);
       istream(const istream & preader);
       virtual ~istream();
 
@@ -110,11 +110,11 @@ namespace file
       virtual int peek();
 
       memory_size_t gcount() { return m_gcount; }
-      file_position_t tellg() { return m_spbuffer->tell(); }
-      istream & seekg(file_position_t position) { m_spbuffer->seek_from_begin(position); return *this; }
-      istream & seekg(file_offset_t offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
+      file_position_t tellg() { return m_spfile->tell(); }
+      istream & seekg(file_position_t position) { m_spfile->seek_from_begin(position); return *this; }
+      istream & seekg(file_offset_t offset, e_seek eseek) { m_spfile->seek(offset, eseek); return *this; }
 
-      file_size_t get_left() { return m_spbuffer->get_length() - m_spbuffer->get_position(); }
+      file_size_t get_left() { return m_spfile->get_length() - m_spfile->get_position(); }
 
    };
 

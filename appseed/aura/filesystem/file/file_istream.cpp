@@ -27,10 +27,10 @@ namespace file
 
 
 
-   istream::istream(stream_buffer * preader)
+   istream::istream(file * preader)
    {
 
-      m_spbuffer = preader;
+      m_spfile = preader;
       m_gcount = 0;
 
    }
@@ -38,7 +38,7 @@ namespace file
    istream::istream(const istream & istream)
    {
 
-      m_spbuffer = istream.m_spbuffer;
+      m_spfile = istream.m_spfile;
       m_gcount = 0;
 
    }
@@ -54,7 +54,7 @@ namespace file
    memory_size_t istream::read(void * lpBuf, memory_size_t nCount)
    {
 
-      return m_gcount = m_spbuffer->read(lpBuf, nCount);
+      return m_gcount = m_spfile->read(lpBuf, nCount);
 
    }
 
@@ -69,7 +69,7 @@ namespace file
       }
 
 
-      if(!m_spbuffer->full_read(lpBuf,nCount))
+      if(!m_spfile->full_read(lpBuf,nCount))
       {
 
          setstate(failbit);
@@ -326,7 +326,7 @@ namespace file
    istream & istream::operator = (const istream & istream)
    {
 
-      m_spbuffer = istream.m_spbuffer;
+      m_spfile = istream.m_spfile;
 
       return *this;
 
@@ -335,12 +335,12 @@ namespace file
 
    bool istream::is_reader_null()
    {
-      return m_spbuffer.is_null();
+      return m_spfile.is_null();
    }
 
    bool istream::is_reader_set()
    {
-      return m_spbuffer.is_set();
+      return m_spfile.is_set();
    }
 
 

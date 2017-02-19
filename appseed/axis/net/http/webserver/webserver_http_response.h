@@ -29,7 +29,7 @@ namespace http
       //list<string> CookieNames() const;
 
       ::http::ostream & ostream()   { return m_ostream; }
-      ::file::stream_buffer & file()      { return m_memfileBody; }
+      ::file::file & file()      { return m_memfileBody; }
 
       /** replace memfile with file on disk, opened for read. */
    //   void SetFile( const string & path );

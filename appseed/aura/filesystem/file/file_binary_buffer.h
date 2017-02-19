@@ -10,7 +10,7 @@ namespace file
 
 
    class CLASS_DECL_AURA binary_buffer :
-      virtual public ::file::stream_buffer
+      virtual public ::file::file
    {
    public:
 
@@ -40,7 +40,7 @@ namespace file
 
 
    // Overridables
-      virtual ::file::buffer_sp  Duplicate() const;
+      virtual ::file::file_sp  Duplicate() const;
 
       virtual file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
       virtual void set_length(file_size_t dwNewLen);
@@ -69,11 +69,11 @@ namespace file
 
 
 
-      using ::file::stream_buffer::write;
+      using ::file::file::write;
       void write(ostream & ostream);
 
 
-      using ::file::stream_buffer::read;
+      using ::file::file::read;
       void read(istream & istream);
 
 

@@ -946,7 +946,7 @@ void var::read(::file::istream & is)
       {
          sp(type) info;
          is >> info;
-         m_sp = Sys(is.m_spbuffer->get_app()).alloc(info);
+         m_sp = Sys(is.m_spfile->get_app()).alloc(info);
          if(m_sp.is_null())
          {
             throw "object allocation is not implemented";
@@ -958,7 +958,7 @@ void var::read(::file::istream & is)
          }
          else
          {
-            throw io_exception(is.m_spbuffer->get_app(), "object serialization is not implemented");
+            throw io_exception(is.m_spfile->get_app(), "object serialization is not implemented");
          }
       }
       break;
@@ -1030,7 +1030,7 @@ void var::write(::file::ostream & ostream) const
       break;
    case type_element:
       {
-         sp(type) info(Sys(ostream.m_spbuffer->get_app()).get_type_info(typeid(*m_sp.m_p)));
+         sp(type) info(Sys(ostream.m_spfile->get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
 
          ::file::serializable * pserializable = m_sp.cast < ::file::serializable > ();
@@ -1041,7 +1041,7 @@ void var::write(::file::ostream & ostream) const
          }
          else
          {
-            throw io_exception(ostream.m_spbuffer->get_app(), "object is not serializable");
+            throw io_exception(ostream.m_spfile->get_app(), "object is not serializable");
          }
       }
       break;

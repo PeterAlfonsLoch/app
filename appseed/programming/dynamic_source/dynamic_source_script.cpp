@@ -119,7 +119,7 @@ void ds_script::on_start_build()
 
    m_bHasTempOsError          = false;
 
-   m_memfileError.m_spbuffer->set_length(0);
+   m_memfileError.m_spfile->set_length(0);
 
    m_strError.Empty();
 

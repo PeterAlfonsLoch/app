@@ -863,7 +863,7 @@ namespace file
 #include "aura/aura/aura/aura_cmp.h"
 
 
-#include "aura/filesystem/file/file_string_buffer.h"
+#include "aura/filesystem/file/file_string_file.h"
 
 
 #include "aura/primitive/str/str_format.h"
@@ -1593,7 +1593,7 @@ namespace std
    using stack = ::stack < T >;
 
 
-   using filebuf = ::file::streambuf;
+   using filebuf = ::file::stdio_file;
 
    //using ios_base = ::file::stream_base;
 
@@ -1602,7 +1602,7 @@ namespace std
 
    using runtime_error = ::runtime_error;
 
-   using streambuf = ::file::stream_buffer;
+   using stdio_file = ::file::file;
 
 
    template < typename T >

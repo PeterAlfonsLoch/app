@@ -23,7 +23,7 @@ namespace http
    }
 
 
-   void form::parse_body(file::stream_buffer *infil, const char * pszContentType, size_t content_length)
+   void form::parse_body(file::file *infil, const char * pszContentType, size_t content_length)
    {
 
       ::file::plain_text_istream is(infil);
@@ -180,7 +180,7 @@ namespace http
 
                      }
                      
-                     ::file::buffer_sp spfile(Application.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
+                     ::file::file_sp spfile(Application.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
                      //sl.unlock();
                      if(spfile.is_set())
                      {

@@ -30,23 +30,23 @@ namespace file
 {
 
 
-   stream_buffer::stream_buffer()
+   file::file()
    {
    }
 
 
 
-   stream_buffer::~stream_buffer()
+   file::~file()
    {
    }
 
-   ::file::buffer_sp  stream_buffer::Duplicate() const
+   ::file::file_sp  file::Duplicate() const
    {
       return NULL;
    }
 
    
-   cres stream_buffer::open(const ::file::path & lpszFileName,UINT nOpenFlags)
+   cres file::open(const ::file::path & lpszFileName,UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(nOpenFlags);
@@ -54,43 +54,43 @@ namespace file
    }
 
    
-   file_position_t stream_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
+   file_position_t file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
       UNREFERENCED_PARAMETER(nFrom);
       return 0;
    }
 
-   file_position_t stream_buffer::seek_from_begin(file_position_t lPos)
+   file_position_t file::seek_from_begin(file_position_t lPos)
    {
       return seek(lPos, seek_begin);
    }
 
-   file_position_t stream_buffer::get_position() const
+   file_position_t file::get_position() const
    {
-      return ((stream_buffer *) this)->seek(0, ::file::seek_current);
+      return ((file *) this)->seek(0, ::file::seek_current);
    }
 
-   file_position_t stream_buffer::tell() const
+   file_position_t file::tell() const
    {
       return get_position();
    }
 
-   void stream_buffer::flush()
+   void file::flush()
    {
    }
 
-   void stream_buffer::close()
+   void file::close()
    {
    }
 
-   memory_size_t stream_buffer::read(void *lpBuf, memory_size_t nCount)
+   memory_size_t file::read(void *lpBuf, memory_size_t nCount)
    {
       return ::file::reader::read(lpBuf, nCount);
    }
 
 
-   bool stream_buffer::full_read(void * lpBuf, memory_size_t nCount)
+   bool file::full_read(void * lpBuf, memory_size_t nCount)
    {
 
       memory_size_t uiRead;
@@ -119,7 +119,7 @@ namespace file
    }
 
 
-   void stream_buffer::write_from_hex(const void * lpBuf,memory_size_t nCount)
+   void file::write_from_hex(const void * lpBuf,memory_size_t nCount)
    {
 
       memory memory(get_app());
@@ -131,60 +131,60 @@ namespace file
    }
 
 
-   void stream_buffer::write(const void * lpBuf, memory_size_t nCount)
+   void file::write(const void * lpBuf, memory_size_t nCount)
    {
       ::file::writer::write(lpBuf, nCount);
    }
 
 
-   void stream_buffer::write(ostream & ostream)
+   void file::write(ostream & ostream)
    {
 
       seek_to_begin();
 
-      transfer_to(*ostream.m_spbuffer);
+      transfer_to(*ostream.m_spfile);
 
    }
 
 
-   void stream_buffer::read(istream & istream)
+   void file::read(istream & istream)
    {
 
-      transfer_from(*istream.m_spbuffer);
+      transfer_from(*istream.m_spfile);
 
       seek_to_begin();
 
    }
 
 
-   void stream_buffer::Abort()
+   void file::Abort()
    {
    }
 
-   void stream_buffer::LockRange(file_position_t dwPos, file_size_t dwCount)
+   void file::LockRange(file_position_t dwPos, file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void stream_buffer::UnlockRange(file_position_t dwPos, file_size_t dwCount)
+   void file::UnlockRange(file_position_t dwPos, file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void stream_buffer::set_length(file_size_t dwNewLen)
+   void file::set_length(file_size_t dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    }
 
-   file_size_t stream_buffer::get_length() const
+   file_size_t file::get_length() const
    {
       return 0;
    }
 
    // file does not support direct buffering (CMemFile does)
-   uint64_t stream_buffer::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
+   uint64_t file::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
    {
       UNREFERENCED_PARAMETER(nCommand);
       UNREFERENCED_PARAMETER(nCount);
@@ -193,24 +193,24 @@ namespace file
       return 0;
    }
 
-/*   void stream_buffer::Rename(const char * lpszOldName, const char * lpszNewName)
+/*   void file::Rename(const char * lpszOldName, const char * lpszNewName)
    {
       UNREFERENCED_PARAMETER(lpszOldName);
       UNREFERENCED_PARAMETER(lpszNewName);
    }
 
-   void stream_buffer::remove(const char * lpszFileName)
+   void file::remove(const char * lpszFileName)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
    }*/
 
-   void stream_buffer::assert_valid() const
+   void file::assert_valid() const
    {
    //   object::assert_valid();
       // we permit the descriptor m_hFile to be any value for derived classes
    }
 
-   void stream_buffer::dump(dump_context & dumpcontext) const
+   void file::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
    //   object::dump(dumpcontext);
@@ -322,17 +322,17 @@ namespace file
    /////////////////////////////////////////////////////////////////////////////
    // file name handlers
 
-   string stream_buffer::GetFileName() const
+   string file::GetFileName() const
    {
       return m_strFileName.name();
    }
 
-   string stream_buffer::GetFileTitle() const
+   string file::GetFileTitle() const
    {
       return m_strFileName.title();
    }
 
-   string stream_buffer::GetFilePath() const
+   string file::GetFilePath() const
    {
       return m_strFileName;
    }
@@ -356,13 +356,13 @@ namespace file
    /////////////////////////////////////////////////////////////////////////////
    // file Status implementation
 
-   bool stream_buffer::GetStatus(file_status & rStatus) const
+   bool file::GetStatus(file_status & rStatus) const
    {
       UNREFERENCED_PARAMETER(rStatus);
       return FALSE;
    }
 
-   //bool stream_buffer::GetStatus(const char * lpszFileName, file_status & rStatus)
+   //bool file::GetStatus(const char * lpszFileName, file_status & rStatus)
    //{
    //   UNREFERENCED_PARAMETER(lpszFileName);
    //   UNREFERENCED_PARAMETER(rStatus);
@@ -370,7 +370,7 @@ namespace file
    //}
 
 
-   //void stream_buffer::SetStatus(const char * lpszFileName, const file_status & status)
+   //void file::SetStatus(const char * lpszFileName, const file_status & status)
    //{
    //   UNREFERENCED_PARAMETER(lpszFileName);
    //   UNREFERENCED_PARAMETER(status);
@@ -378,24 +378,24 @@ namespace file
 
 
 
-   bool stream_buffer::IsOpened()
+   bool file::IsOpened()
    {
       return false;
    }
 
 
-   bool stream_buffer::is_open()
+   bool file::is_open()
    {
       return IsOpened();
    }
 
-   string stream_buffer::get_location() const
+   string file::get_location() const
    {
       return GetFileName();
    }
 
 
-   bool stream_buffer::read(char * pch)
+   bool file::read(char * pch)
    {
       if(read(pch, 1) == 1)
       {
@@ -407,7 +407,7 @@ namespace file
       }
    }
 
-   bool stream_buffer::read(uchar * puch)
+   bool file::read(uchar * puch)
    {
       if(read(puch, 1) == 1)
       {
@@ -419,7 +419,7 @@ namespace file
       }
    }
 
-   bool stream_buffer::peek(char * pch)
+   bool file::peek(char * pch)
    {
       if(read(pch, 1) == 1)
       {
@@ -432,7 +432,7 @@ namespace file
       }
    }
 
-   bool stream_buffer::peek(uchar * puch)
+   bool file::peek(uchar * puch)
    {
       if(read(puch, 1) == 1)
       {
@@ -445,29 +445,29 @@ namespace file
       }
    }
 
-   bool stream_buffer::read(char & ch)
+   bool file::read(char & ch)
    {
       return read(&ch);
    }
 
-   bool stream_buffer::read(uchar & uch)
+   bool file::read(uchar & uch)
    {
       return read(&uch);
    }
 
-   bool stream_buffer::peek(char & ch)
+   bool file::peek(char & ch)
    {
       return peek(&ch);
    }
 
 
-   bool stream_buffer::peek(uchar & uch)
+   bool file::peek(uchar & uch)
    {
       return peek(&uch);
    }
 
 
-   int stream_buffer::sgetc()
+   int file::sgetc()
    {
 
       char ch;
@@ -479,7 +479,7 @@ namespace file
 
    }
 
-   int stream_buffer::sbumpc()
+   int file::sbumpc()
    {
 
       char ch;
@@ -491,7 +491,7 @@ namespace file
 
    }
 
-   bool stream_buffer::read_string(string & str)
+   bool file::read_string(string & str)
    {
 
       str.Empty();
@@ -523,7 +523,7 @@ namespace file
 
    }
 
-   bool stream_buffer::full_read_string(string & str)
+   bool file::full_read_string(string & str)
    {
 
       str.Empty();
@@ -545,13 +545,13 @@ namespace file
 
    }
 
-   void stream_buffer::SetFilePath(const char * lpszNewName)
+   void file::SetFilePath(const char * lpszNewName)
    {
       UNREFERENCED_PARAMETER(lpszNewName);
    }
 
 
-   void stream_buffer::write(const string & str)
+   void file::write(const string & str)
    {
 
       write(str,  str.get_length());
@@ -559,7 +559,7 @@ namespace file
    }
 
 
-   void stream_buffer::writef(const char *format, ...)
+   void file::writef(const char *format, ...)
    {
 
       string strFormat;

@@ -49,7 +49,7 @@ namespace windows
 
    }
 
-   ::file::buffer_sp  file::Duplicate() const
+   ::file::file_sp  file::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != hFileNull);
@@ -994,7 +994,7 @@ namespace windows
 
 
 
-   // ::file::buffer_sp
+   // ::file::file_sp
    file::operator HANDLE() const
    {
 

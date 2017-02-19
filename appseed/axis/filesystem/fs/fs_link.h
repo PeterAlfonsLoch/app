@@ -42,7 +42,7 @@ namespace fs
 
       //virtual bool file_move(const char * pszDst,const char * pszSrc);
 
-      //virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags);
+      //virtual ::file::file_sp get_file(var varFile,UINT nOpenFlags);
 
       virtual void fill_os_user();
 

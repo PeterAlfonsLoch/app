@@ -54,7 +54,7 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 #include "file_writer_flush.h"
 
 
-#include "file_stream_buffer_base.h"
+#include "file_file_base.h"
 
 
 #include "file_stream_base.h"
@@ -68,7 +68,7 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 #include "file_reader.h"
 #include "file_writer.h"
 
-#include "file_stream_buffer.h"
+#include "file_file.h"
 
 #include "file_istream.h"
 #include "file_ostream_flush.h"
@@ -105,7 +105,7 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 #include "file_buffer.h"
 
 
-#include "file_text_buffer.h"
+#include "file_text_file.h"
 
 
 #include "file_folder_watch.h"
@@ -122,7 +122,7 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 
 
 
-#include "file_streambuf.h"
+#include "file_stdio_file.h"
 
 
 #include "file_file_stream_base.h"

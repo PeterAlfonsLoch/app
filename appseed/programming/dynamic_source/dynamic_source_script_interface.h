@@ -60,7 +60,7 @@ public:
    virtual bool main_finalize();
 
 
-   virtual ::file::stream_buffer & output_file();
+   virtual ::file::file & output_file();
    virtual ::file::ostream & ostream();
 
 

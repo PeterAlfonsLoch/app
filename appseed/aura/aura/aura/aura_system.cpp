@@ -168,7 +168,7 @@ namespace aura
       m_pfactory->set_app(this);
 
       m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
-      m_pfactory->creatable_large < ::file::string_buffer >();
+      m_pfactory->creatable_large < ::file::string_file >();
       m_pfactory->creatable_large < ::file::memory_buffer >();
       m_pfactory->creatable_large < ::int64_array >();
 
@@ -1923,7 +1923,7 @@ namespace aura
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::file::buffer_sp file = Session.m_spfile->get_file(System.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
+      ::file::file_sp file = Session.m_spfile->get_file(System.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -1995,7 +1995,7 @@ namespace aura
       if(!bSave)
          return true;
 
-      ::file::buffer_sp file;
+      ::file::file_sp file;
 
       try
       {

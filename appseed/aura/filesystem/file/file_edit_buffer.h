@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_AURA edit_buffer:
-      public ::file::buffer_sp,
+      public ::file::file_sp,
       public ::data::tree
    {
    public:
@@ -171,14 +171,14 @@ namespace file
       sp(::data::tree_item)               m_ptreeitemBeg;
       sp(::data::tree_item)               m_ptreeitemEnd;
       memory_offset_t                     m_iBranch;
-      ::file::buffer_sp                   m_pfile;
+      ::file::file_sp                   m_pfile;
       sp(GroupItem)                       m_pgroupitem;
       bool                                m_bRootDirection;
 
       edit_buffer(::aura::application * papp);
       virtual ~edit_buffer();
 
-      void SetFile(::file::buffer_sp  pfile);
+      void SetFile(::file::file_sp  pfile);
 
       void FillFilePosition(Item * pitem);
 
@@ -203,8 +203,8 @@ namespace file
 
       void flush();
       bool SaveTo(::file::ostream & file);
-      bool Save(::file::stream_buffer & file);
-      bool Save_N_to_CRLF(::file::stream_buffer & file);
+      bool Save(::file::file & file);
+      bool Save_N_to_CRLF(::file::file & file);
 
 
       void Insert(DeleteItem * pitem);

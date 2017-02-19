@@ -104,7 +104,7 @@ namespace http
 
 
       bool put(const char * pszUrl, primitive::memory_base & memory, property_set & set);
-      bool put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set);
+      bool put(const char * pszUrl, ::file::file_sp  pfile, property_set & set);
 
       void defer_auto_initialize_proxy_configuration();
       void auto_config_proxy(int32_t i);

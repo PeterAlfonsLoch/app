@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   buffered_buffer::buffered_buffer(::aura::application * papp, ::file::buffer_sp pfile, memory_size_t iBufferSize) :
+   buffered_buffer::buffered_buffer(::aura::application * papp, ::file::file_sp pfile, memory_size_t iBufferSize) :
       object(papp)
    {
       m_storage.allocate(iBufferSize);

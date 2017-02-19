@@ -46,7 +46,7 @@ namespace http
       http::form & form();
 
       ::http::ostream & ostream()   { return m_ostream; }
-      ::file::stream_buffer & file()      { return m_memfileBody; }
+      ::file::file & file()      { return m_memfileBody; }
 
       virtual void clear();
 

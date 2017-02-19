@@ -75,7 +75,7 @@ namespace file
       //virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
 
-      virtual ::file::buffer_sp  Duplicate() const;
+      virtual ::file::file_sp  Duplicate() const;
 
       virtual file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
       virtual file_position_t seek_from_begin(file_position_t lPos);

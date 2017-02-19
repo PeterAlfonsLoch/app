@@ -20,7 +20,7 @@ typedef  GZIP* LPGZIP;
 //static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip_stream magic header */
 
 
-gzip_stream::gzip_stream(::file::stream_buffer * pfileDest) :
+gzip_stream::gzip_stream(::file::file * pfileDest) :
    ::file::ostream(pfileDest)
 {
 

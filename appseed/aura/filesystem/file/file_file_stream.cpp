@@ -19,10 +19,10 @@ namespace file
    }
 
 
-   file_stream::file_stream(stream_buffer * pbuffer)
+   file_stream::file_stream(file * pbuffer)
    {
       
-      m_spbuffer = pbuffer;
+      m_spfile = pbuffer;
 
    }
 

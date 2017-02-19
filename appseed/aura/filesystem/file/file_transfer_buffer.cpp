@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   transfer_buffer::transfer_buffer(::aura::application * papp, mutex * pmutex) :
+   transfer_file::transfer_file(::aura::application * papp, mutex * pmutex) :
       object(papp)
    {
 
@@ -35,7 +35,7 @@ namespace file
 
    // it is not currently designed to call open.
    //
-   transfer_buffer::transfer_buffer(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn) :
+   transfer_file::transfer_file(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn) :
       object(papp)
    {
 
@@ -59,18 +59,18 @@ namespace file
 
    }
 
-   transfer_buffer::~transfer_buffer()
+   transfer_file::~transfer_file()
    {
 
    }
 
    /*
-   file_position_t transfer_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
+   file_position_t transfer_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
    return m_ptimeoutfile->seek(lOff, nFrom);
    }
 
-   file_size_t transfer_buffer::get_length() const
+   file_size_t transfer_file::get_length() const
    {
    return m_ptimeoutfile->get_length();
    }*/

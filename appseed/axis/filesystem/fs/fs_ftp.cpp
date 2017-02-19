@@ -339,7 +339,7 @@ bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 }
 
 
-::file::buffer_sp ftpfs::get_file(const ::file::path & path, UINT nOpenFlags, cres * pfesp)
+::file::file_sp ftpfs::get_file(const ::file::path & path, UINT nOpenFlags, cres * pfesp)
 {
 
    if (is_dir(path))
@@ -415,7 +415,7 @@ bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 
       defer_initialize(&pclient, path);
 
-      ::file::buffer_sp spfile;
+      ::file::file_sp spfile;
 
       spfile = canew(ftpfs_file(this, pclient));
 

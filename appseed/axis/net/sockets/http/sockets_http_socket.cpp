@@ -412,7 +412,7 @@ namespace sockets
 
          response().m_strFile.Empty();
 
-         ::file::buffer_sp spfile(allocer());
+         ::file::file_sp spfile(allocer());
 
          try
          {

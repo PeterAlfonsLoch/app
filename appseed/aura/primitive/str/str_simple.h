@@ -408,7 +408,7 @@ public:
 
 
 
-      class string_buffer;
+      class string_file;
 
 class CLASS_DECL_AURA simple_string
 {
@@ -1005,13 +1005,13 @@ protected:
    }
 
 public :
-   typedef string_buffer CStrBuf;
+   typedef string_file CStrBuf;
 public:
    char * m_pszData;
 
 };
 
-class CLASS_DECL_AURA string_buffer
+class CLASS_DECL_AURA string_file
 {
 public:
 
@@ -1022,7 +1022,7 @@ public:
    };
 
 public:
-   explicit string_buffer(simple_string& str ) THROWS :
+   explicit string_file(simple_string& str ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
       m_nLength( str.get_length() )
@@ -1033,7 +1033,7 @@ public:
       m_pszBuffer = m_str.GetBuffer();
    }
 
-   string_buffer(simple_string & str,strsize nMinLength,uint32_t dwFlags = AUTO_LENGTH ) THROWS :
+   string_file(simple_string & str,strsize nMinLength,uint32_t dwFlags = AUTO_LENGTH ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
       m_nLength( (dwFlags&AUTO_LENGTH) ? -1 : nMinLength )
@@ -1051,7 +1051,7 @@ public:
       }
    }
 
-   ~string_buffer()
+   ~string_file()
    {
       m_str.ReleaseBuffer( m_nLength );
    }
@@ -1078,8 +1078,8 @@ private:
 
    // Private copy constructor and copy assignment operator to prevent accidental use
 private:
-   string_buffer( const string_buffer& ) NOTHROW;
-   string_buffer& operator=( const string_buffer& ) NOTHROW;
+   string_file( const string_file& ) NOTHROW;
+   string_file& operator=( const string_file& ) NOTHROW;
 };
 
 ///////////////////////////////////////////

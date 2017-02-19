@@ -3,7 +3,7 @@
 
 class CLASS_DECL_AXIS dib_console:
    virtual public ::console::window,
-   virtual public ::file::stream_buffer
+   virtual public ::file::file
 {
 public:
 

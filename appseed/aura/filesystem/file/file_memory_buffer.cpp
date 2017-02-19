@@ -356,7 +356,7 @@ namespace file
 
    string memory_buffer::GetFilePath() const
    {
-      return stream_buffer::GetFilePath();
+      return file::GetFilePath();
    }
 
 
@@ -383,12 +383,12 @@ namespace file
 
    void memory_buffer::assert_valid() const
    {
-      stream_buffer::assert_valid();
+      file::assert_valid();
    }
 
    void memory_buffer::dump(dump_context & dumpcontext) const
    {
-      stream_buffer::dump(dumpcontext);
+      file::dump(dumpcontext);
    }
 
 
@@ -406,7 +406,7 @@ namespace file
       
       storage.allocate(1024 * 1024 * 8);
       
-      ::file::buffer_sp spfile(allocer());
+      ::file::file_sp spfile(allocer());
       
       if(spfile->open(psz, type_binary | mode_read | share_deny_none).failed())
          return;

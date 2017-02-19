@@ -760,6 +760,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="filesystem\file\file_dir.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
+    <ClInclude Include="filesystem\file\file_file.h" />
     <ClInclude Include="filesystem\file\file_file_istream.h" />
     <ClInclude Include="filesystem\file\file_file_ostream.h" />
     <ClInclude Include="filesystem\file\file_file_stream.h" />
@@ -788,13 +789,12 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="filesystem\file\file_status.h" />
     <ClInclude Include="filesystem\file\file_stream.h" />
     <ClInclude Include="filesystem\file\file_stream2.h" />
-    <ClInclude Include="filesystem\file\file_streambuf.h" />
+    <ClInclude Include="filesystem\file\file_stdio_file.h" />
     <ClInclude Include="filesystem\file\file_stream_base.h" />
-    <ClInclude Include="filesystem\file\file_file.h" />
-    <ClInclude Include="filesystem\file\file_stream_buffer_base.h" />
-    <ClInclude Include="filesystem\file\file_string_buffer.h" />
-    <ClInclude Include="filesystem\file\file_text_buffer.h" />
-    <ClInclude Include="filesystem\file\file_transfer_buffer.h" />
+    <ClInclude Include="filesystem\file\file_file_base.h" />
+    <ClInclude Include="filesystem\file\file_string_file.h" />
+    <ClInclude Include="filesystem\file\file_text_file.h" />
+    <ClInclude Include="filesystem\file\file_transfer_file.h" />
     <ClInclude Include="filesystem\file\file_writer.h" />
     <ClInclude Include="filesystem\file\file_writer_flush.h" />
     <ClCompile Include="aura\aura\aura_allocate_processor_cache_oriented.cpp">
@@ -2076,7 +2076,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_streambuf.cpp">
+    <ClCompile Include="filesystem\file\file_stdio_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -3411,25 +3411,25 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_buffer.cpp">
+    <ClCompile Include="filesystem\file\file_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp">
+    <ClCompile Include="filesystem\file\file_file_base.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_string_buffer.cpp">
+    <ClCompile Include="filesystem\file\file_string_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_text_buffer.cpp">
+    <ClCompile Include="filesystem\file\file_text_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

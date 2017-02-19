@@ -27,7 +27,7 @@ namespace file
 
 
       byte_ostream();
-      byte_ostream(stream_buffer * pwriter);
+      byte_ostream(file * pwriter);
       byte_ostream(const ostream & ostream);
       virtual ~byte_ostream();
 

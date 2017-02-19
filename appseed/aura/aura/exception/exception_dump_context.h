@@ -6,7 +6,7 @@ class CLASS_DECL_AURA dump_context :
 {
 public:
 
-   dump_context(::file::buffer_sp  pFile = NULL);
+   dump_context(::file::file_sp  pFile = NULL);
 
 // Attributes
    int32_t GetDepth() const;      // 0 => this object, 1 => children objects
@@ -59,6 +59,6 @@ protected:
    int32_t m_nDepth;
 
 public:
-   ::file::buffer_sp  m_pfile;
+   ::file::file_sp  m_pfile;
 };
 

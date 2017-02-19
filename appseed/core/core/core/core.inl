@@ -37,14 +37,14 @@ _AFX_INLINE CArchiveException::~CArchiveException()
 _AFX_INLINE ::core::file_exception_sp::~::core::file_exception_sp()
    { }
 
-// ::file::buffer_sp
-_AFX_INLINE ::file::buffer_sp::operator HANDLE() const
+// ::file::file_sp
+_AFX_INLINE ::file::file_sp::operator HANDLE() const
    { return m_hFile; }
-_AFX_INLINE ULONGLONG ::file::buffer_sp::SeekToEnd()
-   { return seek(0, ::file::buffer_sp::end); }
-_AFX_INLINE void ::file::buffer_sp::seek_to_begin()
-   { seek(0, ::file::buffer_sp::begin); }
-_AFX_INLINE void ::file::buffer_sp::SetFilePath(LPCTSTR lpszNewName)
+_AFX_INLINE ULONGLONG ::file::file_sp::SeekToEnd()
+   { return seek(0, ::file::file_sp::end); }
+_AFX_INLINE void ::file::file_sp::seek_to_begin()
+   { seek(0, ::file::file_sp::begin); }
+_AFX_INLINE void ::file::file_sp::SetFilePath(LPCTSTR lpszNewName)
 {
    ASSERT_VALID(this);
    ASSERT(AfxIsValidString(lpszNewName));
@@ -83,7 +83,7 @@ _AFX_INLINE int_bool CArchive::IsByteSwapping() const
    { return FALSE; }
 _AFX_INLINE int_bool CArchive::IsBufferEmpty() const
    { return m_lpBufCur == m_lpBufMax; }
-_AFX_INLINE ::file::buffer_sp  CArchive::GetFile() const
+_AFX_INLINE ::file::file_sp  CArchive::GetFile() const
    { return m_pFile; }
 _AFX_INLINE void CArchive::SetObjectSchema(UINT nSchema)
    { m_nObjectSchema = nSchema; }

@@ -4,7 +4,7 @@ void RedirectIOToConsole();
 
 
 class std_out_buffer:
-   virtual public ::file::stream_buffer
+   virtual public ::file::file
 {
 public:
 
@@ -83,7 +83,7 @@ namespace console
          object(p->get_app()),
          m_p(p)
       {
-         cout.m_spbuffer = m_p->cout.m_spbuffer;
+         cout.m_spfile = m_p->cout.m_spfile;
       }
 
       virtual void redirect_io() { m_p->redirect_io(); }

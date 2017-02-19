@@ -12,7 +12,7 @@ namespace file
 
 
    class CLASS_DECL_AURA reader :
-      virtual public stream_buffer_base
+      virtual public file_base
    {
    public:
 

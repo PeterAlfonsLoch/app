@@ -66,7 +66,7 @@ namespace android
 
    }
 
-   ::file::buffer_sp file::Duplicate() const
+   ::file::file_sp file::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != hFileNull);

@@ -291,7 +291,7 @@ namespace str
 
       string str(pszBase64);
 
-      ::file::string_buffer buf(str);
+      ::file::string_file buf(str);
 
       ::file::plain_text_istream istream(&buf);
 
@@ -329,7 +329,7 @@ namespace str
       
       string str(pszBase64);
 
-      ::file::string_buffer bufIn(str);
+      ::file::string_file bufIn(str);
 
       ::file::plain_text_istream istream(&bufIn);
 

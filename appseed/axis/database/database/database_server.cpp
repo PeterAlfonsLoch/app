@@ -19,7 +19,7 @@ namespace database
    }
 
 
-   bool server::data_server_load(client * pclient, class id id, ::file::stream_buffer & writable, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id id, ::file::file & writable, update_hint * puh)
    {
 
       file::ostream ostream(&writable);
@@ -69,7 +69,7 @@ namespace database
    }
 
 
-   bool server::data_server_save(client * pclient, class id id, ::file::stream_buffer & readable, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id id, ::file::file & readable, update_hint * puh)
    {
       ::file::istream istream(&readable);
       return var_save(pclient, id, istream, puh);

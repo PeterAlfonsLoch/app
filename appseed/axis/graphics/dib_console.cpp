@@ -30,7 +30,7 @@ m_dib(allocer()),
 m_sizeTile(sizeTile),
 m_mutex(papp)
 {
-   cout.m_spbuffer = this;
+   cout.m_spfile = this;
    m_x = 0;
    m_y = 0;
    m_iBorder = 23;

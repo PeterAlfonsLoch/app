@@ -15,7 +15,7 @@ namespace http
       //virtual void to_string(string & str);
 
       ostream();
-      ostream(::file::stream_buffer * pbuffer);
+      ostream(::file::file * pbuffer);
       virtual ~ostream();
 
 
@@ -27,7 +27,7 @@ namespace http
       using ::file::plain_text_ostream::operator<<;
       ::file::ostream & operator << (::file::memory_buffer & memfile);
 
-      ::file::ostream & operator << (::file::buffer_sp filesp);
+      ::file::ostream & operator << (::file::file_sp filesp);
 
 
 

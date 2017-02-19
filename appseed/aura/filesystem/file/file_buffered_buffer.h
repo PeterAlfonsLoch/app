@@ -11,7 +11,7 @@ namespace file
    public:
 
 
-      ::file::buffer_sp                m_pfile;
+      ::file::file_sp                m_pfile;
 
       memory_size_t   m_uiBufferSize;
       file_position_t              m_uiPosition;
@@ -23,7 +23,7 @@ namespace file
       memory          m_storage;
 
 
-      buffered_buffer(::aura::application * papp, ::file::buffer_sp pfile, memory_size_t iBufferSize = 1024 * 128);
+      buffered_buffer(::aura::application * papp, ::file::file_sp pfile, memory_size_t iBufferSize = 1024 * 128);
       virtual ~buffered_buffer();
 
 
@@ -32,10 +32,10 @@ namespace file
       file_position_t get_position() const;
       file_size_t get_length() const;
 
-      using ::file::stream_buffer::read;
+      using ::file::file::read;
       virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
       
-      using ::file::stream_buffer::write;
+      using ::file::file::write;
       virtual void write(const void * lpBuf, memory_size_t nCount);
       
       virtual void flush();

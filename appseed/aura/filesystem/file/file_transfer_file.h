@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA transfer_buffer :
+   class CLASS_DECL_AURA transfer_file :
       virtual public ::file::composite
    {
    public:
@@ -18,9 +18,9 @@ namespace file
       sp(mutex)                        m_spmutex;
 
 
-      transfer_buffer(::aura::application * papp, mutex * pmutex = NULL);
-      transfer_buffer(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn);
-      virtual ~transfer_buffer();
+      transfer_file(::aura::application * papp, mutex * pmutex = NULL);
+      transfer_file(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn);
+      virtual ~transfer_file();
 
 
       //      virtual file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);

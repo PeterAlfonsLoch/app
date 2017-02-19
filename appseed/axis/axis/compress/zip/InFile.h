@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   class stream_buffer;
+   class file;
 
 
 } // namespace file
@@ -66,7 +66,7 @@ namespace zip
       virtual bool zip_open(const char *,UINT);
       virtual bool zip_open(File * pzfile,const char * lpcszFileName);
 
-      virtual bool unzip_open(::file::buffer_sp pfile);
+      virtual bool unzip_open(::file::file_sp pfile);
       virtual bool unzip_open(const char *,UINT);
       virtual bool unzip_open(File * pzfile,const char * lpcszFileName);
 
@@ -74,9 +74,9 @@ namespace zip
 
       virtual void add_file(const ::file::path & pszDir,const ::file::path & pszRelative);
 
-      bool dump(::file::buffer_sp pfile);
+      bool dump(::file::file_sp pfile);
 
-      virtual ::file::buffer_sp Duplicate() const;
+      virtual ::file::file_sp Duplicate() const;
 
       File * get_zip_file();
       const File * get_zip_file() const;
@@ -85,10 +85,10 @@ namespace zip
       virtual void set_length(file_size_t dwNewLen);
       virtual file_size_t get_length() const;
 
-      using ::file::stream_buffer::read;
+      using ::file::file::read;
       virtual memory_size_t read(void * lpBuf,memory_size_t nCount);
 
-      using ::file::stream_buffer::write;
+      using ::file::file::write;
       virtual void write(const void * lpBuf,memory_size_t nCount);
 
       virtual void LockRange(file_position_t dwPos,file_size_t dwCount);

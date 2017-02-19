@@ -13,7 +13,7 @@ namespace file
 
 
       plain_text_istream();
-      plain_text_istream(stream_buffer * preader);
+      plain_text_istream(file * preader);
       plain_text_istream(const istream & istream);
       virtual ~plain_text_istream();
 

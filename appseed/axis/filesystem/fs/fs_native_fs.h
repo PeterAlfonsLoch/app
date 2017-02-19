@@ -37,7 +37,7 @@ namespace fs
 
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc);
 
-      virtual ::file::buffer_sp get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp);
+      virtual ::file::file_sp get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp);
 
    };
 

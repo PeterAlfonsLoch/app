@@ -51,7 +51,7 @@ namespace metrowin
 
    }
 
-   sp(::file::stream_buffer) file::Duplicate() const
+   sp(::file::file) file::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
@@ -1498,7 +1498,7 @@ namespace metrowin
 
 
 
-   // ::file::buffer_sp
+   // ::file::file_sp
    file::operator HFILE() const
    { return m_hFile; }
    uint64_t file::ReadHuge(void * lpBuffer, uint64_t dwCount)

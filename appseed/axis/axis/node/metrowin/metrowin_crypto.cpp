@@ -210,7 +210,7 @@ namespace metrowin
 //            //TRACE("SSLInitializer: no random file generated\n");
 //            //   }
 //
-//            ::file::buffer_sp spfile(allocer());
+//            ::file::file_sp spfile(allocer());
 //
 //            spfile->open(m_rand_file, ::file::type_binary | ::file::mode_read);
 //

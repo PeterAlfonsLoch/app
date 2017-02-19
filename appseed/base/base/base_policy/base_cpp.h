@@ -134,7 +134,7 @@ namespace file
 {
 
 
-   class stream_buffer;
+   class file;
    class istream;
    class ostream;
    class serializable;

@@ -8,7 +8,7 @@ namespace ftp
    {
    public:
 
-      ::file::buffer_sp          m_file;
+      ::file::file_sp          m_file;
       string                     m_strFileName;
 
       //enum TOriginEnum { orBegin = SEEK_SET, orEnd = SEEK_END, orCurrent = SEEK_CUR };

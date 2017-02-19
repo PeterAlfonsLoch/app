@@ -12,7 +12,7 @@ namespace ios
       ::object(papp)
    {
 
-//      System.factory().cloneable_large < stdio_file           >   (System.type_info < ::file::text_buffer     > ());
+//      System.factory().cloneable_large < stdio_file           >   (System.type_info < ::file::text_file     > ());
 //      System.factory().cloneable_large < file                 >   (System.type_info < ::file::binary_buffer   > ());
 //      System.factory().creatable_large < file_set             >   (System.type_info < ::file::set             > ());
 //      System.factory().cloneable < file_system                >   (System.type_info < ::file::system          > (), 1);

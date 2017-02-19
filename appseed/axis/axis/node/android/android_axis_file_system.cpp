@@ -95,10 +95,10 @@ namespace android
 		//      return true;
 		//   }
 
-      ::file::buffer_sp file_system::get_file(var varFile, UINT nOpenFlags, cres * pfesp, ::aura::application * papp)
+      ::file::file_sp file_system::get_file(var varFile, UINT nOpenFlags, cres * pfesp, ::aura::application * papp)
       {
 
-         ::file::buffer_sp spfile;
+         ::file::file_sp spfile;
 
          spfile = ::file::axis::system::get_file(varFile, nOpenFlags, pfesp, papp);
 

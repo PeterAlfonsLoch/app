@@ -11,7 +11,7 @@ namespace metrowin
 
    class stdio_file : 
       virtual public file,
-      virtual public ::file::text_buffer
+      virtual public ::file::text_file
    {
    public:
 
@@ -41,7 +41,7 @@ namespace metrowin
       virtual file_size_t get_length() const;
 
       // Unsupported APIs
-      virtual sp(::file::stream_buffer) Duplicate() const;
+      virtual sp(::file::file) Duplicate() const;
       virtual void LockRange(file_position_t dwPos, file_size_t dwCount);
       virtual void UnlockRange(file_position_t dwPos, file_size_t dwCount);
 

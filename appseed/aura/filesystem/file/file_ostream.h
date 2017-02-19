@@ -19,7 +19,7 @@ namespace file
 
       ostream();
       ostream(const char * lpszFileName, uint32_t nOpenFlags, ::aura::application * papp = ::get_thread_app());
-      ostream(stream_buffer * pwriter);
+      ostream(file * pwriter);
       ostream(const ostream & pwriter);
       virtual ~ostream();
 
@@ -112,9 +112,9 @@ namespace file
       virtual void write (const property & property);
       virtual void write (const string & str);
 
-      file_position_t tellp() { return m_spbuffer->tell(); }
-      ostream & seekp(file_position_t position) { m_spbuffer->seek_from_begin(position); return *this; }
-      ostream & seekp(file_offset_t offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
+      file_position_t tellp() { return m_spfile->tell(); }
+      ostream & seekp(file_position_t position) { m_spfile->seek_from_begin(position); return *this; }
+      ostream & seekp(file_offset_t offset, e_seek eseek) { m_spfile->seek(offset, eseek); return *this; }
 
 
       ostream & put(char ch);

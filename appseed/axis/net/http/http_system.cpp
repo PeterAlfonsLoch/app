@@ -884,7 +884,7 @@ retry:
          }
          if(set.has_property("file"))
          {
-            psession->m_pfile = set["file"].cast < ::file::stream_buffer >();
+            psession->m_pfile = set["file"].cast < ::file::file >();
          }
          if(set.has_property("int_scalar_source_listener"))
          {
@@ -1441,12 +1441,12 @@ retry_session:
 
       bool bPost;
       bool bPut;
-      if (set["put"].cast < ::file::stream_buffer >() != NULL || set.lookup(__id(http_method)) == "PUT")
+      if (set["put"].cast < ::file::file >() != NULL || set.lookup(__id(http_method)) == "PUT")
       {
          bPost = false;
          bPut = true;
          psocket = canew(::sockets::http_put_socket(handler, strUrl));
-         dynamic_cast < ::sockets::http_put_socket * > (psocket.m_p)->m_file = set["put"].cast < ::file::stream_buffer >();
+         dynamic_cast < ::sockets::http_put_socket * > (psocket.m_p)->m_file = set["put"].cast < ::file::file >();
          psocket->m_emethod = ::sockets::http_method_put;
       }
       else if (set["post"].propset().get_count() > 0)
@@ -1506,7 +1506,7 @@ retry_session:
       }
       if(set.has_property("file"))
       {
-         psocket->m_pfile = set["file"].cast < ::file::stream_buffer >();
+         psocket->m_pfile = set["file"].cast < ::file::file >();
       }
       if (set["cookies"].cast < ::http::cookies >() != NULL && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
       {
@@ -1921,7 +1921,7 @@ retry_session:
    bool system::download(sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const char * pszRequest,var varFile,property_set & set)
    {
 
-      ::file::buffer_sp spfile = set.cast < ::aura::application >("app",get_app())->m_paxissession->file().get_file(varFile,
+      ::file::file_sp spfile = set.cast < ::aura::application >("app",get_app())->m_paxissession->file().get_file(varFile,
                                  ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
@@ -1940,7 +1940,7 @@ retry_session:
 
       ::sockets::socket_handler handler(get_app());
 
-      ::file::buffer_sp spfile = set.cast < ::aura::application >("app", get_app())->m_paxissession->file().get_file(varFile,
+      ::file::file_sp spfile = set.cast < ::aura::application >("app", get_app())->m_paxissession->file().get_file(varFile,
                                  ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
@@ -2149,7 +2149,7 @@ retry_session:
    }
 
 
-   bool system::put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set)
+   bool system::put(const char * pszUrl, ::file::file_sp  pfile, property_set & set)
    {
 
       set["put"] = pfile;

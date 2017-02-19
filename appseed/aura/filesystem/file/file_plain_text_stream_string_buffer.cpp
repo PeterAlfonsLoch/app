@@ -17,7 +17,7 @@ namespace file
 
          clear();
 
-         m_spbuffer = m_spstringbuffer;
+         m_spfile = m_spstringbuffer;
 
       }
       else

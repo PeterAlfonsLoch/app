@@ -3061,7 +3061,7 @@ namespace aura
 
 
 
-   /*::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   /*::file::file_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
    try
@@ -4613,7 +4613,7 @@ namespace aura
 
       {
 
-         ::file::buffer_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_read);
+         ::file::file_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_read);
 
          if(file.is_null())
          {
@@ -4654,7 +4654,7 @@ namespace aura
 
       {
 
-         ::file::buffer_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::file_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -4934,10 +4934,10 @@ namespace aura
    }
 /*
 
-   ::file::buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
+   ::file::file_sp application::file_get_file(var varFile,uint32_t uiFlags)
    {
 
-      ::file::buffer_sp buffer(allocer());
+      ::file::file_sp buffer(allocer());
 
       if(!buffer->open(varFile,uiFlags))
          return NULL;

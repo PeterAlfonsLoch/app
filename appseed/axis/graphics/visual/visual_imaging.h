@@ -305,8 +305,8 @@ public:
 
    virtual bool LoadImage(::visual::dib_sp::array * pdiba, var varFile);
    virtual bool LoadImage(::draw2d::dib * pdib, var varFile);
-   virtual bool LoadImageFromFile(::visual::dib_sp::array * pdiba, ::file::stream_buffer * buffer);
-   virtual bool LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * buffer);
+   virtual bool LoadImageFromFile(::visual::dib_sp::array * pdiba, ::file::file * buffer);
+   virtual bool LoadImageFromFile(::draw2d::dib * pdib, ::file::file * buffer);
 
 //#ifdef WINDOWS
 
@@ -322,7 +322,7 @@ public:
    virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage);
    virtual bool from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP *pfibitmap,bool bUnloadFI,::aura::application * papp = NULL);
    virtual FIBITMAP * LoadImageFile(var varFile,::aura::application * papp);
-   virtual FIBITMAP * LoadImageFile(::file::buffer_sp  pfile);
+   virtual FIBITMAP * LoadImageFile(::file::file_sp  pfile);
    virtual ::draw2d::bitmap_sp FItoHBITMAP(FIBITMAP * pfibitmap, bool bDestroyFI);
    virtual FIBITMAP * dib_to_FI(::draw2d::dib * pdib);
    virtual void SavePng(const char * lpcszFile,FIBITMAP * pfi,bool bUnload);
