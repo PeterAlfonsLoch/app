@@ -44,7 +44,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA stream_buffer :
+   class CLASS_DECL_AURA file :
       virtual public ::file::reader,
       virtual public ::file::writer,
       virtual public ::file::seekable,
@@ -56,8 +56,8 @@ namespace file
       ::file::path      m_strFileName;
 
 
-      stream_buffer();
-      virtual ~stream_buffer();
+      file();
+      virtual ~file();
 
 
       virtual file_position_t get_position() const;

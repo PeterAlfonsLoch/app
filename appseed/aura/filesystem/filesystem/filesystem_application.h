@@ -77,6 +77,17 @@ namespace file
       virtual bool save_lines(var varFile,stringa & stra);
       virtual bool load_lines(stringa & stra,var varFile);
 
+
+      template < class T >
+      bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, const path &), const path & lpszSource);
+
+      template < class T >
+      bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & lpszInput);
+
+      template < class T >
+      bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & istream);
+
+
    };
 
 

@@ -148,10 +148,14 @@ namespace file
          virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
 
 
+         using ::file::system::output;
+
+
+         template < class T >
+         bool output(::aura::application * papp, path & pszOutput, const path & lpszSource);
+
+
       };
-
-
-      
 
 
    } // namespace axis

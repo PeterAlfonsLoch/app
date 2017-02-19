@@ -159,6 +159,33 @@ namespace file
    }
 
 
+   template < class T >
+   bool application::output(::aura::application * papp, const ::file::path & pszOutput, T * p, bool (T::*lpfnOuput)(::file::ostream &, const ::file::path &), const ::file::path & lpszSource)
+   {
+
+      return System.file().output(get_app(), pszOutput, lpfnOuput, lpszSource);
+
+   }
+
+
+   template < class T >
+   bool application::output(::aura::application * papp, const ::file::path & pszOutput, T * p, bool (T::*lpfnOuput)(::file::ostream &, ::file::istream &), const ::file::path & lpszInput)
+   {
+
+      return System.file().output(get_app(), pszOutput, lpfnOuput, pszInput);
+
+   }
+
+
+   template < class T >
+   bool application::output(const ::file::path & pszOutput, T * p, bool (T::*lpfnOuput)(::file::ostream &, ::file::istream &), ::file::istream & istream)
+   {
+
+      return System.file().output(get_app(), pszOutput, lpfnOuput, istream);
+
+   }
+
+
 } // namespace file
 
 

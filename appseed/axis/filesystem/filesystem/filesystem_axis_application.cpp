@@ -271,6 +271,15 @@ namespace file
          }
          */
 
+      template < class T >
+      bool system::output(path & pszOutput, const path & lpszSource)
+      {
+
+         return output(pszOutput, &System.compress(), &::axis::compress::null, lpszSource);
+
+      }
+
+
    } // namespace axis
 
 

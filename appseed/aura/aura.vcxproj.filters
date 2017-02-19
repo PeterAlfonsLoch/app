@@ -770,9 +770,6 @@
     <ClInclude Include="filesystem\file\file_stream_base.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_stream_buffer_base.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -2209,6 +2206,9 @@
     </ClInclude>
     <ClInclude Include="aura\xml\xml_department.h">
       <Filter>Header Files\aura\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

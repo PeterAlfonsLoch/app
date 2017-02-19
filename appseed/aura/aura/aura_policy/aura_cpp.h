@@ -291,7 +291,7 @@ namespace file
    class listing;
    class path;
    typedef CLASS_DECL_AURA ::string_array < ::file::path,string > patha;
-   class stream_buffer;
+   class file;
    class istream;
    class ostream;
    class serializable;
@@ -728,7 +728,7 @@ namespace file
 {
 
 
-   using buffer_sp = sp(stream_buffer);
+   using file_sp = sp(file);
 
 
 } // namespace file

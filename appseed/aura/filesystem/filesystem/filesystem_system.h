@@ -42,18 +42,6 @@ namespace file
       virtual var length(const path & path,var * pvarQuery,::aura::application * papp);
 
 
-      template < class T >
-      bool output(::aura::application * papp,const path & pszOutput,T * p,bool (T::*lpfnOuput)(ostream &,const path &),const path & lpszSource);
-
-      template < class T >
-      bool output(::aura::application * papp,const path & pszOutput,T * p,bool (T::*lpfnOuput)(ostream &,istream &),const path & lpszInput);
-
-      template < class T >
-      bool output(::aura::application * papp,const path & pszOutput,T * p,bool (T::*lpfnOuput)(ostream &,istream &),istream & istream);
-
-
-
-
       virtual ::file::path module();
       virtual ::file::path ca2module();
 
@@ -132,6 +120,21 @@ namespace file
 
 
       virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
+
+      template < class T >
+      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, const path &), const path & lpszSource);
+
+      template < class T >
+      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & lpszInput);
+
+      template < class T >
+      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, const path &), ::file::file * pfile);
+
+      template < class T >
+      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & lpszInput);
+
+      template < class T >
+      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & istream);
 
 
    };

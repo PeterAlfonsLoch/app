@@ -790,7 +790,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="filesystem\file\file_stream2.h" />
     <ClInclude Include="filesystem\file\file_streambuf.h" />
     <ClInclude Include="filesystem\file\file_stream_base.h" />
-    <ClInclude Include="filesystem\file\file_stream_buffer.h" />
+    <ClInclude Include="filesystem\file\file_file.h" />
     <ClInclude Include="filesystem\file\file_stream_buffer_base.h" />
     <ClInclude Include="filesystem\file\file_string_buffer.h" />
     <ClInclude Include="filesystem\file\file_text_buffer.h" />

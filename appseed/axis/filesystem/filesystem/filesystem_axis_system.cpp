@@ -2092,6 +2092,16 @@ restart:
 
       }
 
+
+      template < class T >
+      bool system::output(::aura::application * papp, path & pszOutput, const path & lpszSource)
+      {
+
+         return output(papp, pszOutput, &Sys(papp).compress(), &::axis::compress::null, lpszSource);
+
+      }
+
+
    } // namespace axis
 
 
