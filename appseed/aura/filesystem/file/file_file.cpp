@@ -61,10 +61,30 @@ namespace file
       return 0;
    }
 
+
    file_position_t file::seek_from_begin(file_position_t lPos)
    {
-      return seek(lPos, seek_begin);
+
+      return seek(lPos, ::file::seek_begin);
+
    }
+
+   
+   file_position_t file::seek_to_begin(file_position_t lPos)
+   {
+
+      return seek_from_begin(lPos);
+
+   }
+
+
+   file_position_t file::seek_begin(file_position_t lPos)
+   {
+
+      return seek_to_begin(lPos);
+
+   }
+
 
    file_position_t file::get_position() const
    {

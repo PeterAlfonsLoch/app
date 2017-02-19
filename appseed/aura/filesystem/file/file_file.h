@@ -78,7 +78,9 @@ namespace file
       virtual ::file::file_sp  Duplicate() const;
 
       virtual file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
-      virtual file_position_t seek_from_begin(file_position_t lPos);
+      virtual file_position_t seek_from_begin(file_position_t lPos = 0);
+      virtual file_position_t seek_to_begin(file_position_t lPos = 0);
+      virtual file_position_t seek_begin(file_position_t lPos = 0);
       virtual void set_length(file_size_t dwNewLen);
       virtual file_size_t get_length() const;
 

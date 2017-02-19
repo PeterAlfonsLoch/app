@@ -563,7 +563,7 @@ namespace file
 
       ASSERT(m_pfile != NULL);
 
-      seek((LONG)dwNewLen, seek_begin);
+      seek((LONG)dwNewLen, ::file::seek_begin);
 
       if (!::ftruncate(_fileno(m_pfile), dwNewLen))
          throw_exception(get_app(), ::file::exception::invalidFile, _doserrno, m_strFileName);

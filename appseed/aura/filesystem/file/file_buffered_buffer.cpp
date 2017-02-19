@@ -171,7 +171,7 @@ namespace file
       }
       //if(uiGrow == 0 && m_uiPosition > m_pfile->get_length())
         // return false;
-      m_pfile->seek((file_offset_t) m_uiPosition, seek_begin);
+      m_pfile->seek((file_offset_t) m_uiPosition, ::file::seek_begin);
       memory_size_t uiCopy;
       if(uiGrow > 0)
          uiCopy = MIN(m_uiBufferSize, uiGrow);
@@ -215,7 +215,7 @@ namespace file
    {
       if(m_bDirty)
       {
-         m_pfile->seek((file_offset_t) m_uiWriteLPos, seek_begin);
+         m_pfile->seek((file_offset_t) m_uiWriteLPos, ::file::seek_begin);
          m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (memory_size_t) (m_uiWriteUPos - m_uiWriteLPos + 1));
          m_bDirty = false;
          m_uiWriteLPos = 0xffffffff;
