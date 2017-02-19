@@ -14,6 +14,9 @@ namespace net
 {
 
 
+
+
+
    class CLASS_DECL_AXIS address
    {
    public:
@@ -233,6 +236,9 @@ namespace net
 #endif
 
 
+   address ipv4(uint32_t ui, port_t port = 0);
+
+   address ipv6(void * p128bits, port_t port = 0);
 
 } // namespace sockets
 

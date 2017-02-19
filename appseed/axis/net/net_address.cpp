@@ -488,6 +488,43 @@ namespace net
    }
 
 
+   address ipv4(uint32_t ui, port_t port)
+   {
+
+      address a;
+
+      zero(&a, sizeof(a));
+
+      a.m_iLen = -1;
+      a.u.m_addr.sin_family = AF_INET;
+      a.u.m_addr.sin_port = port;
+      memcpy(&a.u.m_addr.sin_addr, &ui, sizeof(a.u.m_addr.sin_addr));
+
+      a.sync_os_address();
+      a.sync_os_service();
+
+      return a;
+
+   }
+
+   address ipv6(void * p128bits, port_t port)
+   {
+
+      address a;
+
+      zero(&a, sizeof(a));
+
+      a.m_iLen = sizeof(sockaddr_in6);
+      a.u.m_addr6.sin6_family = AF_INET6;
+      a.u.m_addr6.sin6_port = port;
+      memcpy(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
+      
+      a.sync_os_address();
+      a.sync_os_service();
+   
+      return a;
+   
+   }
 
 
 } // namespace net

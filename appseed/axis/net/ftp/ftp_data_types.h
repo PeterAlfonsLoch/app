@@ -20,6 +20,14 @@
 namespace ftp
 {
 
+   enum e_connection_type
+   {
+      
+      connection_type_plain,
+      connection_type_tls_implicit,
+      connection_type_tls_explicit,
+
+   };
 
 
 
@@ -226,7 +234,7 @@ namespace ftp
    class CLASS_DECL_AXIS command
    {
    public:
-      enum e_command { cmdABOR, cmdACCT, cmdALLO, cmdAPPE, cmdCDUP, cmdCWD, cmdDELE, cmdHELP, cmdLIST, cmdMDTM, cmdMKD, cmdMODE, cmdNLST, cmdNOOP, cmdOPEN, cmdPASS, cmdPASV, cmdPORT, cmdPWD, cmdQUIT, cmdREIN, cmdREST, cmdRETR, cmdRMD, cmdRNFR, cmdRNTO, cmdSITE, cmdSIZE, cmdSMNT, cmdSTAT, cmdSTOR, cmdSTOU, cmdSTRU, cmdSYST, cmdTYPE, cmdUSER, };
+      enum e_command { cmdABOR, cmdACCT, cmdALLO, cmdAPPE, cmdCDUP, cmdCWD, cmdDELE, cmdHELP, cmdLIST, cmdMDTM, cmdMKD, cmdMODE, cmdNLST, cmdNOOP, cmdOPEN, cmdPASS, cmdPASV, cmdPORT, cmdPWD, cmdQUIT, cmdREIN, cmdREST, cmdRETR, cmdRMD, cmdRNFR, cmdRNTO, cmdSITE, cmdSIZE, cmdSMNT, cmdSTAT, cmdSTOR, cmdSTOU, cmdSTRU, cmdSYST, cmdTYPE, cmdUSER, cmdPROT};
       enum TSpecificationEnum { Unknown, RFC959, RFC3659, };
       enum e_type { DatachannelRead, DatachannelWrite, NonDatachannel, };
 
@@ -302,6 +310,7 @@ namespace ftp
       static const command SYST() { return cmdSYST; }
       static const command TYPE() { return cmdTYPE; }
       static const command USER() { return cmdUSER; }
+      static const command PROT() { return cmdPROT; }
 
       class extended_info;
       class info2;
@@ -402,7 +411,7 @@ namespace ftp
       const string&       FwPassword() const  { return m_strFwPassword;  }
       WINUSHORT               FwPort()     const  { return m_ushFwPort;      }
       const firewall_type& FwType()     const  { return m_FwType;         }
-
+      bool           m_bFailedBecauseOfSecurityLevelCanUpgrade;
    private:
       string        m_strHostname;   ///< name or ip-address of the ftp-server
       WINUSHORT         m_ushHostport;   ///< port of the ftp-server

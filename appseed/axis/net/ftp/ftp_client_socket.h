@@ -66,6 +66,8 @@ namespace ftp
          state_logged
 
       };
+
+      e_connection_type                      m_econnectiontype;
       // data members
       const unsigned int                     mc_uiTimeout;               ///< timeout for socket-functions
       const unsigned int                     mc_uiResponseWait;          ///< sleep time between receive calls to socket when getting the response
@@ -94,6 +96,8 @@ namespace ftp
          unsigned int uiTimeout = 10, unsigned int uiBufferSize = 2048,
          unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = _T("/"));
       virtual ~client_socket();
+
+      virtual long cert_common_name_check(const char * common_name) override;
 
       void AttachObserver(notification* pObserver);
       void DetachObserver(notification* pObserver);

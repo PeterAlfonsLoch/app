@@ -13,7 +13,7 @@ public:
    bool           m_bInitialized;
    string         m_strServer;
 
-   stringa        m_straServer;
+   stringa        m_straFtpServer;
 
    string_map < sp(::ftp::output) > m_mapOutput;
    string_map < sp(::ftp::client_socket) > m_mapClient;

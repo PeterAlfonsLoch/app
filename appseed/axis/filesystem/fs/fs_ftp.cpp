@@ -12,7 +12,7 @@ ftpfs::ftpfs(::aura::application * papp, const char * pszRoot) :
    m_strRoot = pszRoot;
    m_bInitialized = false;
 
-   m_straServer.add("localhost");
+   m_straFtpServer.add("localhost");
 
 }
 
@@ -91,7 +91,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
    if (listing.m_path == "ftp://")
    {
 
-      for (auto strServer : m_straServer)
+      for (auto strServer : m_straFtpServer)
       {
 
          string strUrl;
@@ -195,7 +195,7 @@ retry:
 
    strPath = System.url().get_object(listing.m_path);
 
-   if (!pclient->List(strPath, ptra))
+   if (!pclient->List(strPath, ptra, true))
    {
 
       if (iTry > 3)
@@ -290,7 +290,7 @@ bool ftpfs::is_dir(const ::file::path & path)
 
       ::str::ends_eat(strPath, "/");
 
-      if(m_straServer.contains_ci(strPath))
+      if(m_straFtpServer.contains_ci(strPath))
       {
 
          return true;
@@ -492,8 +492,17 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
       Application.get_cred(strUrl, ::null_rect(), logon.Username(), logon.Password(), strToken, strUrl, true);
 
+      retry_login:
+
       if (!client->Login(logon))
       {
+
+         if (logon.m_bFailedBecauseOfSecurityLevelCanUpgrade)
+         {
+
+            goto retry_login;
+
+         }
 
          Application.set_cred_ok(strToken, false);
 

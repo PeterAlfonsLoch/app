@@ -229,6 +229,7 @@ namespace ftp
       insert(cmdSYST, _T("SYST"), _T("SYST <CRLF>"), 0, 0, RFC959, NonDatachannel);
       insert(cmdTYPE, _T("TYPE"), _T("TYPE <SP> <type-code> <CRLF>"), 1, 0, RFC959, NonDatachannel);
       insert(cmdUSER, _T("USER"), _T("USER <SP> <username> <CRLF>"), 1, 0, RFC959, NonDatachannel);
+      insert(cmdPROT, _T("PROT"), _T("PROT <SP> <prot level> <CRLF>"), 1, 0, RFC959, NonDatachannel);
    }
 
    const command::iextended_info& command::info2::Get(e_command enCommand)

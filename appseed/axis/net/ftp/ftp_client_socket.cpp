@@ -98,6 +98,8 @@ namespace ftp
       m_fResumeIfPossible(true)
    {
 
+      m_econnectiontype = connection_type_plain;
+
       m_pmutex = new mutex(get_app());
 
       m_estate = state_initial;
@@ -242,10 +244,27 @@ namespace ftp
       return FTP_ERROR;
    }
 
+   long client_socket::cert_common_name_check(const char * common_name)
+   {
+
+      long l = ::sockets::tcp_socket::cert_common_name_check(common_name);
+
+      if (l == X509_V_ERR_DEPTH_ZERO_SELF_SIGNED_CERT)
+      {
+
+         return X509_V_OK;
+
+      }
+
+      return l;
+
+   }
+
    /// Logs on to a FTP server.
    /// @param[in] logonInfo Structure with logon information.
    bool client_socket::Login(logon& logonInfo)
    {
+      logonInfo.m_bFailedBecauseOfSecurityLevelCanUpgrade = false;
       m_LastLogonInfo = logonInfo;
 
       enum {
@@ -276,10 +295,30 @@ namespace ftp
       string   strTemp;
       WINUSHORT    ushPort = 0;
 
+      if (_is_connected())
+         Logout();
+
+
       if (logonInfo.FwType() == firewall_type::None())
       {
-         strTemp = logonInfo.Hostname();
-         ushPort = logonInfo.Hostport();
+
+         if (m_econnectiontype == connection_type_tls_implicit)
+         {
+
+            strTemp = logonInfo.Hostname();
+            ushPort = 990;
+            EnableSSL();
+            m_strHost = strTemp;
+
+         }
+         else
+         {
+
+            strTemp = logonInfo.Hostname();
+            ushPort = logonInfo.Hostport();
+
+         }
+
       }
       else
       {
@@ -291,11 +330,16 @@ namespace ftp
       if (logonInfo.Hostport() != DEFAULT_FTP_PORT)
          strHostnamePort = logonInfo.Hostname() + ":" + ::str::from(logonInfo.Hostport()); // add port to hostname (only if port is not 21)
 
-      if (_is_connected())
-         Logout();
 
       if (!OpenControlChannel(strTemp, ushPort))
          return false;
+
+      if (m_econnectiontype == connection_type_tls_implicit)
+      {
+
+         // SetCallOnConnect();
+
+      }
 
       // get initial connect msg off server
       reply Reply;
@@ -327,7 +371,27 @@ namespace ftp
          }
 
          if (!Reply.Code().IsPositiveCompletionReply() && !Reply.Code().IsPositiveIntermediateReply())
+         {
+            
+            if (atoi(Reply.Code().Value()) == 530)
+            {
+
+               if (m_econnectiontype == connection_type_plain && Reply.Value().find_ci("ftp over tls") >= 0)
+               {
+
+                  m_econnectiontype = connection_type_tls_implicit;
+
+                  logonInfo.m_bFailedBecauseOfSecurityLevelCanUpgrade = true;
+
+                  Sleep(1000);
+
+               }
+
+            }
+
             return false;
+
+         }
 
          const unsigned int uiFirstDigitOfReplyCode = atoi_dup(Reply.Code().Value()) / 100;
          iLogonPoint = iLogonSeq[logonInfo.FwType().AsEnum()][iLogonPoint + uiFirstDigitOfReplyCode - 1]; //get next command from array
@@ -343,6 +407,27 @@ namespace ftp
                return false;
             return true;
          }
+      }
+
+      if (m_econnectiontype == connection_type_tls_implicit)
+      {
+
+         reply Reply;
+         if (!SendCommand(command::PROT(), { "P" }, Reply))
+         {
+
+            return false;
+
+         }
+
+         if (!Reply.Code().IsPositiveCompletionReply() && !Reply.Code().IsPositiveIntermediateReply())
+         {
+
+            return false;
+
+         }
+
+
       }
       //return false;
    }
@@ -962,6 +1047,18 @@ namespace ftp
    /// @param[in] dwByteOffset Server marker at which file transfer is to be restarted.
    bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
    {
+      if (m_econnectiontype == connection_type_tls_implicit)
+      {
+         reply Reply;
+         if (!SendCommand(command::PROT(), { "P" }, Reply))
+            return false;
+
+         if (!Reply.Code().IsPositiveCompletionReply())
+            return false;
+
+
+      }
+
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
          ASSERT(false);
@@ -973,6 +1070,12 @@ namespace ftp
       WINULONG   ulRemoteHostIP = 0;
       WINUSHORT  ushServerSock = 0;
 
+      if (m_econnectiontype == connection_type_tls_implicit)
+      {
+         sckDataConnection.EnableSSL();
+
+      }
+
       // set passive mode
       // the FTP server opens a port and tell us the socket (ip ::net::address + port)
       // this socket is used for opening the data connection
@@ -980,7 +1083,7 @@ namespace ftp
          return false;
 
       // establish connection
-      ::net::address sockAddrTemp(ulRemoteHostIP, ushServerSock);
+      ::net::address sockAddrTemp(::net::ipv4(ulRemoteHostIP, ushServerSock));
       try
       {
          if (!sckDataConnection.open(sockAddrTemp))
@@ -1001,6 +1104,7 @@ namespace ftp
          (crDatachannelCmd == command::STOR() || crDatachannelCmd == command::RETR() || crDatachannelCmd == command::APPE()) &&
          (dwByteOffset != 0 && Restart(dwByteOffset) != FTP_OK))
          return false;
+
 
       // send FTP command RETR/STOR/NLST/LIST to the server
       reply Reply;
@@ -1243,7 +1347,7 @@ namespace ftp
          const_cast<client_socket*>(this)->SetCloseAndDelete();
          return false;
       }
-
+      Sleep(200);
       return true;
    }
 
@@ -1313,8 +1417,9 @@ namespace ftp
 
          DWORD dwStart = get_tick_count();
 
-         
-         while (get_tick_count() - dwStart < 10 * 1000)
+         // xxx yyy zzz
+         //while (get_tick_count() - dwStart < 10 * 1000)
+         while (get_tick_count() - dwStart < 100 * 1000)
          {
 
             {
@@ -1339,7 +1444,14 @@ namespace ftp
             else
             {
 
-               m_handler.select(0, 100 * 1000);
+               m_handler.select(1,0);
+
+               if (IsSSL())
+               {
+
+                  Sleep(200);
+
+               }
 
             }
 
