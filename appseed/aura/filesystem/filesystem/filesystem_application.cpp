@@ -460,6 +460,30 @@ namespace file
    }
 
 
+   bool application::output(const path & pszOutput, const path & lpszSource)
+   {
+
+      return System.file().output(get_app(), pszOutput, lpszSource);
+
+   }
+
+
+   bool application::output(const path & pszOutput, ::file::file * pfileIn)
+   {
+
+      return System.file().output(get_app(), pszOutput, pfileIn);
+
+   }
+
+
+   bool application::output(const path & pszOutput, ::file::istream & istream)
+   {
+
+      return System.file().output(get_app(), pszOutput, istream);
+
+   }
+
+
 } // namespace file
 
 

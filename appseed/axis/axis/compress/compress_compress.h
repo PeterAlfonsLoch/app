@@ -32,8 +32,6 @@ namespace axis
       bool _compress(class memory & memory, void * pdata, memory_size_t ulSizeUncompressed);
       bool _uncompress(memory & memoryUncompressed, memory & memoryCompressed, memory_size_t ulSizeUncompressed);
 
-      bool null(::file::ostream & ostream, ::file::istream & istream);
-
       void extract_all(const ::file::path & pszFile, ::aura::application * papp);
 
       void zip(const ::file::path & pszZip,const ::file::path & psz,::aura::application * papp);

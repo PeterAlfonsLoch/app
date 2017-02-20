@@ -338,20 +338,6 @@ namespace axis
 
    }
 
-   bool compress::null(::file::ostream & ostream, ::file::istream & istream)
-   {
-      class memory memory;
-      memory.allocate(1024 * 256);
-      memory_size_t  uiRead;
-      while ((uiRead = istream.read(memory, memory.get_size())) > 0)
-      {
-         ostream.write(memory, uiRead);
-      }
-      return true;
-   }
-
-
-
 
 } // namespace core
 

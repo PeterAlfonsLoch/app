@@ -237,60 +237,6 @@ namespace file
    }
 
 
-   template < class T >
-   bool system::output(::aura::application * papp, const path & pszOutput, const path & lpszSource)
-   {
-
-      return output(papp, pszOutput, &System.compress(), &::axis::compress::null, lpszSource);
-
-   }
-
-
-   template < class T >
-   bool system::output(::aura::application * papp, const path & pszOutput, ::file::file * pfileIn)
-   {
-
-      return output(papp, pszOutput, &System.compress(), &::axis::compress::null, pfileIn);
-
-   }
-
-
-   template < class T >
-   bool system::output(::aura::application * papp, const path & pszOutput, ::file::istream & istream)
-   {
-
-      return output(papp, pszOutput, &System.compress(), &::axis::compress::null, istream);
-
-   }
-
-
-   template < class T >
-   bool application::output(const path & pszOutput, const path & lpszSource)
-   {
-
-      return output(pszOutput, &System.compress(), &::axis::compress::null, lpszSource);
-
-   }
-
-
-   template < class T >
-   bool application::output(const path & pszOutput, ::file::file * pfileIn)
-   {
-
-      return output(pszOutput, &System.compress(), &::axis::compress::null, pfileIn);
-
-   }
-
-
-   template < class T >
-   bool application::output(const path & pszOutput, ::file::istream & istream)
-   {
-
-      return output(pszOutput, &System.compress(), &::axis::compress::null, istream);
-
-   }
-
-
 } // namespace file
 
 

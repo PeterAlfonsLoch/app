@@ -1467,6 +1467,43 @@ restart:
    }
 
 
+   bool system::output(::aura::application * papp, const path & pszOutput, const path & lpszSource)
+   {
+
+      return output(papp, pszOutput, this, &system::transfer, lpszSource);
+
+   }
+
+
+   bool system::output(::aura::application * papp, const path & pszOutput, ::file::file * pfileIn)
+   {
+
+      return output(papp, pszOutput, this, &system::transfer, pfileIn);
+
+   }
+
+
+   bool system::output(::aura::application * papp, const path & pszOutput, ::file::istream & istream)
+   {
+
+      return output(papp, pszOutput, this, &system::transfer, istream);
+
+   }
+
+
+   bool system::transfer(::file::ostream & ostream, ::file::istream & istream)
+   {
+      class memory memory;
+      memory.allocate(1024 * 256);
+      memory_size_t  uiRead;
+      while ((uiRead = istream.read(memory, memory.get_size())) > 0)
+      {
+         ostream.write(memory, uiRead);
+      }
+      return true;
+   }
+
+
 } // namespace file
 
 
