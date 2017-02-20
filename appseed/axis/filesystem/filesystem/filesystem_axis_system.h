@@ -133,19 +133,6 @@ namespace file
          virtual ::file::file_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
 
 
-         using ::file::system::output;
-
-
-         template < class T >
-         bool output(::aura::application * papp, const path & pszOutput, const path & lpszSource);
-
-         template < class T >
-         bool output(::aura::application * papp, const path & pszOutput, ::file::file * pfileIn);
-
-         template < class T >
-         bool output(::aura::application * papp, const path & pszOutput, ::file::istream & istream);
-
-
       };
 
 

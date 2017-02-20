@@ -74,17 +74,6 @@ namespace file
          virtual bool crypto_set(var varFile,const char * pszData,const char * pszSalt);
          virtual bool crypto_get(var varFile,string & str,const char * pszSalt);
 
-         using ::file::application::output;
-
-         template < class T >
-         bool output(const path & pszOutput, const path & lpszSource);
-
-         template < class T >
-         bool output(const path & pszOutput, ::file::file * pfileIn);
-
-         template < class T >
-         bool output(const path & pszOutput, ::file::istream & istream);
-
 
       };
 

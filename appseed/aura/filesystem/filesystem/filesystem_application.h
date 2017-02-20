@@ -90,6 +90,16 @@ namespace file
       template < class T >
       bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & istream);
 
+      template < class T >
+      bool output(const path & pszOutput, const path & lpszSource);
+
+      template < class T >
+      bool output(const path & pszOutput, ::file::file * pfileIn);
+
+      template < class T >
+      bool output(const path & pszOutput, ::file::istream & istream);
+
+
 
    };
 
