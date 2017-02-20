@@ -175,7 +175,7 @@ namespace file
 
       }
 
-      if (::rename(strDownloading, pszOutput) != 0)
+      if (rename(strDownloading, pszOutput) != 0)
       {
 
          del(strDownloading, papp);
