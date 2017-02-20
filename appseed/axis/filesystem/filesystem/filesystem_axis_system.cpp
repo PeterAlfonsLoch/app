@@ -917,7 +917,7 @@ restart:
 
             ::file::istream istream(ifile);
 
-            System.compress().null(ostream, istream);
+            System.file().transfer(ostream, istream);
 
 
 
@@ -1944,13 +1944,12 @@ restart:
                      try
                      {
 
-                        ::file::istream is(spfile);
-
-                        System.file().output(papp,strFile,&System.compress(),&::axis::compress::null,is);
+                        App(papp).file().output(strFile, spfile);
 
                      }
                      catch(...)
                      {
+
                      }
 
                      sl.lock();
