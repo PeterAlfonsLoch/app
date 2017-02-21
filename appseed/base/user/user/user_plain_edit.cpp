@@ -409,6 +409,16 @@ namespace user
          }
          else
          {
+            COLORREF crOverride;
+
+            bool bOverride = false;
+
+            if (!m_bPassword)
+            {
+
+               bOverride = get_line_color(crOverride, strLine);
+
+            }
             strsize iErrorBeg = -1;
             strsize iErrorEnd = -1;
             strsize iErrorA = 0;
@@ -460,7 +470,14 @@ namespace user
                str_fill(strExtent3,'*');
             }
 
-            brushText->create_solid(cr);
+            if (bOverride)
+            {
+               brushText->create_solid(crOverride);
+            }
+            else
+            {
+               brushText->create_solid(cr);
+            }
             pgraphics->SelectObject(brushText);
             pgraphics->TextOut(left,y,strExtent1);
 
@@ -493,7 +510,14 @@ namespace user
                pgraphics->TextOut(left + size1.cx,y,strExtent2);
             }
 
-            brushText->create_solid(cr);
+            if (bOverride)
+            {
+               brushText->create_solid(crOverride);
+            }
+            else
+            {
+               brushText->create_solid(cr);
+            }
             pgraphics->SelectObject(brushText);
             pgraphics->TextOut(left + size1.cx + size2.cx,y,strExtent3);
 
@@ -2993,6 +3017,13 @@ namespace user
       string str;
       _001GetSelText(str);
       Session.copydesk().set_plain_text(str);
+   }
+
+   bool plain_edit::get_line_color(COLORREF & cr, const string & strLine)
+   {
+
+      return false;
+
    }
 
    void plain_edit::clipboard_paste()

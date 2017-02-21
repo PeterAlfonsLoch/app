@@ -93,6 +93,8 @@ namespace user
 
       bool                          m_bActionHover;
 
+      
+
 
       plain_edit();
       plain_edit(::aura::application * papp);
@@ -146,7 +148,7 @@ namespace user
       void clipboard_copy();
       void clipboard_paste();
 
-
+      virtual bool get_line_color(COLORREF & crOverride, const string & strLine);
 
       virtual void pre_translate_message(signal_details * pobj);
 

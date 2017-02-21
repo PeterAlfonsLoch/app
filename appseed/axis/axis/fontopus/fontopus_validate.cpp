@@ -854,7 +854,7 @@ namespace fontopus
          return Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
       }
 
-      m_strRequestingServer = "account.ca2.cc";
+      //m_strRequestingServer = "account.ca2.cc";
 
       string strFontopusServer = Session.fontopus()->get_fontopus_server(m_strRequestingServer);
 
@@ -894,8 +894,7 @@ namespace fontopus
          strApiServer = m_strFontopusServer;
 
       }
-
-      strApiServer = "account.ca2.cc";
+//     strApiServer = "account.ca2.cc";
 
       m_strFontopusServer = strApiServer;
 
