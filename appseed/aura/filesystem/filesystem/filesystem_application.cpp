@@ -460,26 +460,74 @@ namespace file
    }
 
 
-   bool application::output(const path & pszOutput, const path & lpszSource)
+   bool application::transfer(const path & pathOut, const path & lpszSource)
    {
 
-      return System.file().output(get_app(), pszOutput, lpszSource);
+      return System.file().transfer(get_app(), pathOut, lpszSource);
 
    }
 
 
-   bool application::output(const path & pszOutput, ::file::file * pfileIn)
+   bool application::transfer(const path & pathOut, ::file::file * pfileIn)
    {
 
-      return System.file().output(get_app(), pszOutput, pfileIn);
+      return System.file().transfer(get_app(), pathOut, pfileIn);
 
    }
 
 
-   bool application::output(const path & pszOutput, ::file::istream & istream)
+   bool application::transfer(const path & pathOut, ::file::istream & is)
    {
 
-      return System.file().output(get_app(), pszOutput, istream);
+      return System.file().transfer(get_app(), pathOut, is);
+
+   }
+
+
+   bool application::transfer(file * pfileOut, const path & lpszSource)
+   {
+
+      return System.file().transfer(get_app(), pfileOut, lpszSource);
+
+   }
+
+
+   bool application::transfer(file * pfileOut, ::file::file * pfileIn)
+   {
+
+      return System.file().transfer(get_app(), pfileOut, pfileIn);
+
+   }
+
+
+   bool application::transfer(file * pfileOut, ::file::istream & is)
+   {
+
+      return System.file().transfer(get_app(), pfileOut, is);
+
+   }
+
+
+   bool application::transfer(ostream & os, const path & lpszSource)
+   {
+
+      return System.file().transfer(get_app(), os, lpszSource);
+
+   }
+
+
+   bool application::transfer(ostream & os, ::file::file * pfileIn)
+   {
+
+      return System.file().transfer(get_app(), os, pfileIn);
+
+   }
+
+
+   bool application::transfer(ostream & os, ::file::istream & is)
+   {
+
+      return System.file().transfer(get_app(), os, is);
 
    }
 

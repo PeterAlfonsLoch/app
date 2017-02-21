@@ -1,11 +1,8 @@
 #include "framework.h"
 
-#include "bzlib.h"
-#include "axis/compress/bzip_stream.h"
 #include "zlib.h"
 #include "zutil.h"
 #include "zip/zip.h"
-#include "gzip_stream.h"
 
 
 
@@ -28,9 +25,7 @@
 
 
 
-#include "bzip_stream.cpp"
 #include "compress_compress.cpp"
-#include "gzip_stream.cpp"
 //2015-01-04  19:21                 0 _compress.cpp"
 //               4 arquivo(s)         16.402 bytes
 //

@@ -11,13 +11,15 @@ public:
 
    typedef memory data_type;
 
+   bool m_bOwn;
+
 
    bool m_bAligned;
 
-   memory(manager * pmanager);
-   memory(const memory & strSrc,manager * pmanager);
-   memory(const memory * pmemory,manager * pmanager);
-   memory(const byte * pchSrc,strsize nLength,manager * pmanager);
+   memory();
+   memory(const memory & strSrc);
+   memory(const memory * pmemory);
+   memory(const byte * pchSrc,strsize nLength);
 
    memory(::aura::application * papp);
    memory(::aura::application * papp, bool bAligned);

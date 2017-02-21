@@ -44,41 +44,23 @@ int32_t  aLen=plain.Length;    // Length is length of unzipped data.
 */
 #pragma once
 
-extern "C"
-{
-#include <bzlib.h>
-}
 
 
 
-class CLASS_DECL_AXIS bzip_stream:
-   virtual public ::file::ostream
+class CLASS_DECL_AXIS compress_bz:
+   virtual public ::object
 {
 public:
 
+   int m_iBlockSize;
+   int m_iVerbosity;
+   int m_iWorkFactor;
 
-   memory          m_memory;
-   int32_t                    m_CurrentBufferSize;
-   bz_stream                  m_zstream;
-   int32_t                    m_z_err;   /* error code for last stream operation */
-   //byte *                   m_outbuf; /* output buffer */
-   //uint_ptr                   m_crc;     /* crc32 of uncompressed data */
-
-
-   bzip_stream(::file::file * pfileDest);
-   bzip_stream(::file::ostream & ostreamDest);
-   virtual ~bzip_stream();
+   compress_bz(::aura::application * papp, int iBlockSize, int iVerbosity, int iWorkFactor);
+   virtual ~compress_bz();
 
 
-   using ::file::ostream::write;
-   void write(const void * buf,memory_size_t iSize);
-   void finish();
-
-
-protected:
-
-
-   void construct();
+   virtual bool transfer(::file::ostream & osCompressed, ::file::istream & isUncompressed);
 
 
 };

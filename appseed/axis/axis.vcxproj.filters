@@ -788,12 +788,6 @@
     <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
       <Filter>Header Files\net\sockets\base</Filter>
     </ClInclude>
-    <ClInclude Include="axis\compress\bzip_stream.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\gzip_stream.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
     <ClInclude Include="axis\fontopus\fontopus.h">
       <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
@@ -1175,6 +1169,12 @@
     <ClInclude Include="axis\install\install_installer_launcher.h">
       <Filter>Header Files\axis\install</Filter>
     </ClInclude>
+    <ClInclude Include="axis\compress\compress_gz.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\compress_bz.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1497,12 +1497,6 @@
     </ClCompile>
     <ClCompile Include="axis\axis\axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\gzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
     <ClCompile Include="axis\fontopus\fontopus.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
@@ -2013,6 +2007,12 @@
     </ClCompile>
     <ClCompile Include="axis\install\install_installer_launcher.cpp">
       <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\compress_gz.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\compress_bz.cpp">
+      <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

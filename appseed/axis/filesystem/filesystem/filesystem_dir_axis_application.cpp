@@ -101,7 +101,7 @@ namespace file
                   else
                      return "";
                }
-               if (Application.file().output(strFile, strPath))
+               if (Application.file().transfer(strFile, strPath))
                {
                   Application.file().put_contents(strFileExists, "yes");
                   return strFile;

@@ -4,7 +4,7 @@
 #include "zlib.h"
 #include "zutil.h"
 #include "axis/compress/zip/zip.h"
-#include "axis/compress/gzip_stream.h"
+//#include "axis/compress/gzip_stream.h"
 
 
 namespace sockets
@@ -317,35 +317,23 @@ namespace sockets
 
             m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
 
-
             ::file::memory_buffer file(get_app());
-
-            gzip_stream gz(&file);
-
-
-            response().file().seek_to_begin();
 
             if (response().m_strFile.has_char())
             {
 
-               ::file::file_sp spfile(allocer());
-               try
-               {
-                  if (spfile->open(response().m_strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
-                  {
-                     return ;
-                  }
-               }
-               catch (...)
-               {
-                  return;
-               }
-               gz.transfer_from(*spfile);
+               System.compress().gz(&file, response().m_strFile);
+
                response().m_strFile.Empty();
+
             }
             else
             {
-               gz.transfer_from(response().file());
+
+               response().file().seek_to_begin();
+
+               System.compress().gz(&file, &response().file());
+
             }
 
 

@@ -38,8 +38,6 @@ namespace primitive
    {
    public:
 
-      typedef bstring_manager manager;
-
       typedef byte value_type;
 
 

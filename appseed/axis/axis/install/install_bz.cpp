@@ -1,6 +1,6 @@
 //#include "framework.h"
 #include "bzlib.h"
-#include "axis/compress/bzip_stream.h"
+#include "axis/compress/compress_bz.h"
 
 
 

@@ -79,23 +79,50 @@ namespace file
 
 
       template < class T >
-      bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, const path &), const path & lpszSource);
+      bool output(const path & pathOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & pathIn);
 
       template < class T >
-      bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & lpszInput);
+      bool output(const path & pathOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), file * pfileIn);
 
       template < class T >
-      bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), ::file::file * pfileIn);
+      bool output(const path & pathOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & is);
 
       template < class T >
-      bool output(const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & istream);
+      bool output(file * pfileOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & pathIn);
 
-      virtual bool output(const path & pszOutput, const path & lpszSource);
+      template < class T >
+      bool output(file * pfileOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), file * pfileIn);
 
-      virtual bool output(const path & pszOutput, ::file::file * pfileIn);
+      template < class T >
+      bool output(file * pfileOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & is);
 
-      virtual bool output(const path & pszOutput, ::file::istream & istream);
+      template < class T >
+      bool output(ostream & os, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & pathIn);
 
+      template < class T >
+      bool output(ostream & os, T * p, bool (T::*lpfnOuput)(ostream &, istream &), file * pfileIn);
+
+      template < class T >
+      bool output(ostream & os, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & is);
+
+
+      virtual bool transfer(const path & pathOut, const path & pathIn);
+
+      virtual bool transfer(const path & pathOut, file * pfileIn);
+
+      virtual bool transfer(const path & pathOut, istream & is);
+
+      virtual bool transfer(file * pfileOut, const path & pathIn);
+
+      virtual bool transfer(file * pfileOut, file * pfileIn);
+
+      virtual bool transfer(file * pfileOut, istream & is);
+
+      virtual bool transfer(ostream & os, const path & pathIn);
+
+      virtual bool transfer(ostream & os, file * pfileIn);
+
+      virtual bool transfer(ostream & os, istream & is);
 
    };
 

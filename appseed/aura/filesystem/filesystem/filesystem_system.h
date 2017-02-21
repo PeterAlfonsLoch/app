@@ -11,8 +11,8 @@ namespace file
    public:
 
 
-      ::file::path         m_pathCa2Module;
-      ::file::path         m_pathModule;
+      path         m_pathCa2Module;
+      path         m_pathModule;
 
       system(::aura::application * papp);
       virtual ~system();
@@ -42,8 +42,8 @@ namespace file
       virtual var length(const path & path,var * pvarQuery,::aura::application * papp);
 
 
-      virtual ::file::path module();
-      virtual ::file::path ca2module();
+      virtual path module();
+      virtual path ca2module();
 
 
       virtual bool update_module_path();
@@ -119,27 +119,64 @@ namespace file
       virtual bool initialize();
 
 
-      virtual ::file::file_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
+      virtual file_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
+
+      virtual bool prepare_output(::aura::application * papp, path & pathDownloading, const path & pathOut, ostream & os);
+
+      virtual bool prepare_input(::aura::application * papp, istream & is, const path & pathIn);
+
+      virtual bool prepare_input(::aura::application * papp, istream & is, file * pfileIn);
+
+      virtual bool prepare_input(::aura::application * papp, istream & is);
+
+      virtual bool post_output(::aura::application * papp, path pathOut, path pathDownloading);
 
       template < class T >
-      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, const path &), const path & lpszSource);
+      bool output(::aura::application * papp, const path & pathOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & pathIn);
 
       template < class T >
-      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & lpszInput);
+      bool output(::aura::application * papp, const path & pathOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), file * pfileIn);
 
       template < class T >
-      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), ::file::file * pfileIn);
+      bool output(::aura::application * papp, const path & pathOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & is);
 
       template < class T >
-      bool output(::aura::application * papp, const path & pszOutput, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & istream);
+      bool output(::aura::application * papp, file * pfileOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & pathIn);
 
-      virtual bool output(::aura::application * papp, const path & pszOutput, const path & lpszSource);
+      template < class T >
+      bool output(::aura::application * papp, file * pfileOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), file * pfileIn);
 
-      virtual bool output(::aura::application * papp, const path & pszOutput, ::file::file * pfileIn);
+      template < class T >
+      bool output(::aura::application * papp, file * pfileOut, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & is);
 
-      virtual bool output(::aura::application * papp, const path & pszOutput, ::file::istream & istream);
+      template < class T >
+      bool output(::aura::application * papp, ostream & os, T * p, bool (T::*lpfnOuput)(ostream &, istream &), const path & pathIn);
 
-      bool transfer(::file::ostream & ostream, ::file::istream & istream);
+      template < class T >
+      bool output(::aura::application * papp, ostream & os, T * p, bool (T::*lpfnOuput)(ostream &, istream &), file * pfileIn);
+
+      template < class T >
+      bool output(::aura::application * papp, ostream & os, T * p, bool (T::*lpfnOuput)(ostream &, istream &), istream & is);
+
+      virtual bool transfer(::aura::application * papp, const path & pathOut, const path & pathIn);
+
+      virtual bool transfer(::aura::application * papp, const path & pathOut, file * pfileIn);
+
+      virtual bool transfer(::aura::application * papp, const path & pathOut, istream & is);
+
+      virtual bool transfer(::aura::application * papp, file * pfileOut, const path & pathIn);
+
+      virtual bool transfer(::aura::application * papp, file * pfileOut, file * pfileIn);
+
+      virtual bool transfer(::aura::application * papp, file * pfileOut, istream & is);
+
+      virtual bool transfer(::aura::application * papp, ostream & os, const path & pathIn);
+
+      virtual bool transfer(::aura::application * papp, ostream & os, file * pfileIn);
+
+      virtual bool transfer(::aura::application * papp, ostream & os, istream & is);
+
+      virtual bool transfer(ostream & os, istream & is);
 
    };
 

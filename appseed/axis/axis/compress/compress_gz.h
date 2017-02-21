@@ -45,39 +45,23 @@
 
 #pragma once
 
-
-
-
-class CLASS_DECL_AXIS gzip_stream:
-   virtual public ::file::ostream
+class CLASS_DECL_AXIS compress_gz :
+   virtual public ::object
 {
 public:
 
 
-   memory             m_memory;
-   z_stream                      m_zstream;
-   int32_t                       m_z_err;   /* error code for last stream operation */
-   uint32_t                      m_crc;     /* crc32 of uncompressed data */
+   int      m_iLevel;
 
 
-   gzip_stream(::file::file *  pfileDest);
-   gzip_stream(::file::ostream & ostreamDest);
-   virtual ~gzip_stream();
+   compress_gz(::aura::application * papp, int iLevel = 6);
+   virtual ~compress_gz();
 
-   using ::file::ostream::write;
-   virtual void write(const void * buf, memory_size_t iSize);
-   void finish();
 
-protected:
-   
-   
-   void construct();
-   int32_t _finish();
-   int32_t destroy();
-   void putLong (uint_ptr x);
-   
-   
+   bool transfer(::file::ostream & ostreamGzFileCompressed, ::file::istream & istreamUncompressed);
+
+
+
 };
-
 
 

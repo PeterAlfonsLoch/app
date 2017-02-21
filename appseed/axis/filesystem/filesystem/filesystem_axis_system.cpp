@@ -3,7 +3,6 @@
 #include "zlib.h"
 #include "zutil.h"
 #include "axis/compress/zip/zip.h"
-#include "axis/compress/gzip_stream.h"
 
 
 #ifndef METROWIN
@@ -1018,10 +1017,45 @@ restart:
                   ::str::international::utf8_to_unicode(psz),
                   ::str::international::utf8_to_unicode(pszNew)))
          {
+            
             uint32_t dwError = ::GetLastError();
+
+            if (dwError == ERROR_ALREADY_EXISTS)
+            {
+
+               if (::CopyFileW(
+                  ::str::international::utf8_to_unicode(psz),
+                  ::str::international::utf8_to_unicode(pszNew),
+                  FALSE))
+               {
+
+                  if (!::DeleteFileW(::str::international::utf8_to_unicode(psz)))
+                  {
+
+                     dwError = ::GetLastError();
+
+                     string strError;
+
+                     strError.Format("Failed to delete the file to move \"%s\" error=%d", psz, dwError);
+
+                     TRACE0(strError);
+
+                  }
+
+                  return no_exception;
+
+               }
+
+               dwError = ::GetLastError();
+
+            }
+
             string strError;
+
             strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
+
             throw strError;
+
          }
 #elif defined(METROWIN)
 
@@ -1944,7 +1978,7 @@ restart:
                      try
                      {
 
-                        App(papp).file().output(strFile, spfile);
+                        App(papp).file().transfer(strFile, spfile);
 
                      }
                      catch(...)

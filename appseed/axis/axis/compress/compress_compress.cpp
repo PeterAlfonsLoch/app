@@ -1,7 +1,7 @@
 //#include"framework.h"
 //#include"axis/compress/compress.h"
-
-
+#include "compress_gz.h"
+#include "compress_bz.h"
 
 
 namespace axis
@@ -11,70 +11,37 @@ namespace axis
    bool compress::ungz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszGzFileCompressed)
    {
 
-      int32_t fileUn = ansi_open(lpcszGzFileCompressed, ansi_file_flag(::file::type_binary | ::file::mode_read));
-
-      if (fileUn == -1)
-      {
-
-         TRACE("ungz wopen error %s", lpcszGzFileCompressed);
-
-         return false;
-
-      }
-
-      gzFile file = gzdopen(fileUn, "rb");
-
-      if (file == NULL)
-      {
-
-         TRACE("ungz gzopen error %s", lpcszGzFileCompressed);
-
-         return false;
-
-      }
-
-      class memory memory;
-
-      memory.allocate(1024 * 256);
-
-      int_ptr uncomprLen;
-
-      while ((uncomprLen = gzread(file, memory, (uint32_t)memory.get_size())) > 0)
-      {
-
-         ostreamUncompressed.write(memory, uncomprLen);
-
-      }
-
-      gzclose(file);
-
-      return true;
-
+      return Application.file().output(ostreamUncompressed, this, &::axis::compress::ungz, lpcszGzFileCompressed);
+      
    }
 
 
-   bool compress::ungz(::file::memory_buffer & memoryfile)
+   bool compress::ungz(::file::ostream & ostreamUncompressed, ::file::istream & istreamGzFileCompressed)
    {
 
-      int64_t dataLength = memoryfile.get_length();
-
       bool done = false;
+
       int32_t status;
 
-      z_stream strm;
-      strm.next_in = (byte *)memoryfile.get_data();
-      strm.avail_in = (uint32_t)dataLength;
-      strm.total_out = 0;
-      strm.zalloc = Z_NULL;
-      strm.zfree = Z_NULL;
+      class memory memIn;
+      memIn.allocate(1024 * 8);
 
-      ::file::memory_buffer memoryfileOut(get_app());
+      int64_t uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
+
+      z_stream zstream;
+      ZERO(zstream);
+      zstream.next_in = (byte *)memIn.get_data();
+      zstream.avail_in = (uint32_t)uiRead;
+      zstream.total_out = 0;
+      zstream.zalloc = Z_NULL;
+      zstream.zfree = Z_NULL;
+
       class memory memory;
-      memory.allocate(1024 * 64);
+      memory.allocate(1024 * 256);
       ASSERT(memory.get_size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
-      if (inflateInit2(&strm, (15 + 32)) != Z_OK)
+      if (inflateInit(&zstream) != Z_OK)
       {
          return false;
       }
@@ -82,36 +49,66 @@ namespace axis
       while (!done)
       {
 
-         strm.next_out = memory.get_data();
-         strm.avail_out = (uint32_t)memory.get_size();
+         zstream.next_out = memory.get_data();
+         zstream.avail_out = (uint32_t)memory.get_size();
 
-         // Inflate another chunk.
-         status = inflate(&strm, Z_SYNC_FLUSH);
-
-         memoryfileOut.write(memory.get_data(), memory.get_size() - strm.avail_out);
-
-         if (status == Z_STREAM_END)
+         while (zstream.avail_out == 0)
          {
-            done = true;
+
+            // Inflate another chunk.
+            status = inflate(&zstream, Z_NO_FLUSH);
+
+            ostreamUncompressed.write(memory.get_data(), zstream.total_out);
+
+            if (status == Z_STREAM_END)
+            {
+
+               done = true;
+
+            }
+            else if (status != Z_OK)
+            {
+
+               break;
+
+            }
+
          }
-         else if (status != Z_OK)
-         {
-            break;
-         }
+
+         uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
+
+         zstream.next_in = (byte *)memIn.get_data();
+
+         zstream.avail_in = (uint32_t)uiRead;
+
+         zstream.total_out = 0;
+
+
       }
 
-      memoryfile = memoryfileOut;
-
-      if (inflateEnd(&strm) != Z_OK || !done)
+      if (inflateEnd(&zstream) != Z_OK || !done)
       {
+         
          return true;
+
       }
 
       return true;
 
    }
 
-   bool compress::ungz(memory & memory)
+
+
+
+   bool compress::ungz(::file::file * pfileOut, ::file::file * pfileIn)
+   {
+
+      return Application.file().output(pfileOut, this, &::axis::compress::ungz, pfileIn);
+
+   }
+
+
+   bool compress::uncompress(memory & memory)
    {
 
       ::memory dest;
@@ -148,29 +145,16 @@ namespace axis
 
    }
 
-   bool compress::gz(::file::ostream & ostreamCompressed, const ::file::path & lpcszUncompressed)
+
+   bool compress::gz(::file::ostream & ostreamCompressed, const ::file::path & lpcszUncompressed, int iLevel)
    {
-      string str(lpcszUncompressed);
-      FILE * fileUn = ansi_fopen(lpcszUncompressed, "rb");
-      if (fileUn == NULL)
-      {
-         int32_t err;
-         ansi_get_errno(&err);
-         fprintf(stderr, "gz fopen error %d %s", err, lpcszUncompressed.c_str());
-         return false;
-      }
-      gzip_stream gz(ostreamCompressed);
-      class memory memory;
-      memory.allocate(1024 * 256);
-      memory_size_t uncomprLen;
-      while ((uncomprLen = (memory_size_t) fread(memory, 1, (size_t)memory.get_size(), fileUn)) > 0)
-      {
-         gz.write(memory, uncomprLen);
-      }
-      fclose(fileUn);
-      gz.finish();
-      return true;
+
+      compress_gz gz(get_app(), iLevel);
+
+      return System.file().output(get_app(), ostreamCompressed, &gz, &compress_gz::transfer, lpcszUncompressed);
+
    }
+
 
 
    bool compress::ungz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
@@ -181,10 +165,12 @@ namespace axis
    }
 
 
-   bool compress::gz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed)
+   bool compress::gz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed, int iLevel)
    {
 
-      return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
+      compress_gz gz(papp, iLevel);
+
+      return System.file().output(papp, lpcszGzFileCompressed, &gz, &compress_gz::transfer, lpcszUncompressed);
 
    }
 
@@ -192,79 +178,48 @@ namespace axis
    bool compress::unbz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszBzFileCompressed)
    {
 
-      BZFILE * file = BZ2_bzopen(lpcszBzFileCompressed, "rb");
-
-      if (file == NULL)
-      {
-
-         TRACE("unbz bzopen error %s", lpcszBzFileCompressed);
-
-         return false;
-
-      }
-
-      memory memory;
-
-      memory.allocate(1024 * 16 * 1024);
-
-      int32_t uncomprLen;
-
-      while ((uncomprLen = BZ2_bzread(file, memory, (int32_t)memory.get_size())) > 0)
-      {
-
-         ostreamUncompressed.write(memory, uncomprLen);
-
-      }
-
-      BZ2_bzclose(file);
-
-      return true;
+      return Application.file().output(ostreamUncompressed, this, &compress::unbz, lpcszBzFileCompressed);
 
    }
 
 
-   bool compress::bz(::file::ostream & ostreamBzFileCompressed, const ::file::path & lpcszUncompressed)
+   bool compress::bz(::file::ostream & ostreamBzFileCompressed, const ::file::path & lpcszUncompressed, int iBlockSize, int iVerbosity, int iWorkFactor)
    {
 
-      ::file::file_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
+      compress_bz bz(get_app(), iBlockSize, iVerbosity, iWorkFactor);
 
-      if (file.is_null())
-      {
-
-         return false;
-
-      }
-
-      ::file::istream is(file);
-
-      return bz_stream(ostreamBzFileCompressed, is);
+      return Application.file().output(ostreamBzFileCompressed, &bz, &::compress_bz::transfer, lpcszUncompressed);
 
    }
 
 
-   bool compress::bz_stream(::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamFileUncompressed)
+   bool compress::bz(::aura::application * papp, const ::file::path & lpcszBzFileCompressed, const ::file::path & lpcszUncompressed, int iBlockSize, int iVerbosity, int iWorkFactor)
    {
-      bzip_stream bz(ostreamBzFileCompressed);
-      class memory memory;
-      memory.allocate(1024 * 256);
-      memory_size_t uncomprLen;
-      while ((uncomprLen = istreamFileUncompressed.read(memory, memory.get_size())) > 0)
-      {
-         bz.write(memory, uncomprLen);
-      }
-      bz.finish();
-      return true;
+
+      compress_bz bz(papp, iBlockSize, iVerbosity, iWorkFactor);
+
+      return App(papp).file().output(lpcszBzFileCompressed, &bz, &::compress_bz::transfer, lpcszUncompressed);
+
    }
+
+
+   bool compress::bz(::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamUncompreseed, int iBlockSize, int iVerbosity, int iWorkFactor)
+   {
+
+      compress_bz bz(get_app(), iBlockSize, iVerbosity, iWorkFactor);
+
+      return Application.file().output(ostreamBzFileCompressed, &bz, &::compress_bz::transfer, istreamUncompreseed);
+
+   }
+
 
    bool compress::unbz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
    {
+
       return System.file().output(papp, lpcszUncompressed, this, &compress::unbz, lpcszGzFileCompressed);
+
    }
 
-   bool compress::bz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed)
-   {
-      return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
-   }
 
    bool compress::_compress(class memory & memory, void * pdata, memory_size_t ulSize)
    {

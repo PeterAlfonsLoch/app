@@ -1360,6 +1360,123 @@ restart:
       
    }
 
+   bool system::prepare_output(::aura::application * papp, path & pathDownloading, const path & pathOut, ostream & os)
+   {
+
+      Sys(papp).dir().mk(pathOut.folder(), papp);
+
+      ::file::file_sp fileOut;
+
+      int64_t iTry = 0;
+
+      while (true)
+      {
+
+         pathDownloading = pathOut + ".downloading." + ::str::zero_pad(::str::from(iTry), 20);
+
+         fileOut = papp->file().get_file(pathOut, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+
+         if (fileOut.is_set())
+         {
+
+            break;
+
+         }
+
+         iTry++;
+
+      }
+
+      os.m_spfile = fileOut;
+
+      if (os.m_spfile.is_null())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+   bool system::prepare_input(::aura::application * papp, istream & is, const path & pathIn)
+   {
+
+      ::file::file_sp fileIn = Sess(papp).file().get_file(pathIn, ::file::type_binary | ::file::mode_read);
+
+      if (fileIn.is_null())
+      {
+
+         return false;
+
+      }
+
+      return prepare_input(papp, is, fileIn);
+
+   }
+
+   bool system::prepare_input(::aura::application * papp, istream & is, ::file::file * pfileIn)
+   {
+
+      is.m_spfile = pfileIn;
+
+      if (is.m_spfile.is_null())
+      {
+
+         return false;
+
+      }
+
+      return prepare_input(papp, is);
+
+   }
+
+   bool system::prepare_input(::aura::application * papp, istream & is)
+   {
+
+      if (is.m_spfile.is_null())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool system::post_output(::aura::application * papp, ::file::path pathDownloading, ::file::path pathOut)
+   {
+
+      try
+      {
+
+         if (rename(pathOut, pathDownloading, papp))
+         {
+
+            TRACE("Failed to rename \"downloading\" file from %s to %s", pathDownloading, pathOut);
+
+            del(pathDownloading, papp);
+
+            return false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    ::file::file_sp system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
    {
 
@@ -1467,7 +1584,7 @@ restart:
    }
 
 
-   bool system::output(::aura::application * papp, const path & pszOutput, const path & lpszSource)
+   bool system::transfer(::aura::application * papp, const path & pszOutput, const path & lpszSource)
    {
 
       return output(papp, pszOutput, this, &system::transfer, lpszSource);
@@ -1475,7 +1592,7 @@ restart:
    }
 
 
-   bool system::output(::aura::application * papp, const path & pszOutput, ::file::file * pfileIn)
+   bool system::transfer(::aura::application * papp, const path & pszOutput, ::file::file * pfileIn)
    {
 
       return output(papp, pszOutput, this, &system::transfer, pfileIn);
@@ -1483,13 +1600,60 @@ restart:
    }
 
 
-   bool system::output(::aura::application * papp, const path & pszOutput, ::file::istream & istream)
+   bool system::transfer(::aura::application * papp, const path & pszOutput, ::file::istream & istream)
    {
 
       return output(papp, pszOutput, this, &system::transfer, istream);
 
    }
 
+
+   bool system::transfer(::aura::application * papp, file * pfileOut, const path & lpszSource)
+   {
+
+      return output(papp, pfileOut, this, &system::transfer, lpszSource);
+
+   }
+
+
+   bool system::transfer(::aura::application * papp, file * pfileOut, ::file::file * pfileIn)
+   {
+
+      return output(papp, pfileOut, this, &system::transfer, pfileIn);
+
+   }
+
+
+   bool system::transfer(::aura::application * papp, file * pfileOut, ::file::istream & istream)
+   {
+
+      return output(papp, pfileOut, this, &system::transfer, istream);
+
+   }
+
+
+   bool system::transfer(::aura::application * papp, ostream & os, const path & lpszSource)
+   {
+
+      return output(papp, os, this, &system::transfer, lpszSource);
+
+   }
+
+
+   bool system::transfer(::aura::application * papp, ostream & os, ::file::file * pfileIn)
+   {
+
+      return output(papp, os, this, &system::transfer, pfileIn);
+
+   }
+
+
+   bool system::transfer(::aura::application * papp, ostream & os, ::file::istream & istream)
+   {
+
+      return output(papp, os, this, &system::transfer, istream);
+
+   }
 
    bool system::transfer(::file::ostream & ostream, ::file::istream & istream)
    {

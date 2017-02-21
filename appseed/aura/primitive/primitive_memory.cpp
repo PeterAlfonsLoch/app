@@ -6,6 +6,7 @@ memory::memory(manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
+   m_bOwn = false;
    m_pprimitivememory   = this;
    m_pbStorage          = NULL;
    m_pbComputed         = NULL;
@@ -21,7 +22,7 @@ memory::memory(const memory & s,manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
-
+   m_bOwn = false;
    m_pprimitivememory   = this;
    m_pbStorage    = NULL;
    m_pbComputed   = NULL;
@@ -38,7 +39,7 @@ memory::memory(const memory * ps,manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
-
+   m_bOwn = false;
    m_pprimitivememory   = this;
    m_pbStorage    = NULL;
    m_pbComputed   = NULL;
@@ -55,7 +56,7 @@ memory::memory(const byte * pchSrc,strsize nLength,manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
-
+   m_bOwn = false;
    m_pprimitivememory   = this;
    m_pbStorage    = NULL;
    m_pbComputed   = NULL;

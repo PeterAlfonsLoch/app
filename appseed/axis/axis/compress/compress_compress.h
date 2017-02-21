@@ -11,26 +11,30 @@ namespace axis
    public:
 
 
-      bool ungz(::aura::application * papp,const ::file::path & lpcszUncompressed,const ::file::path & lpcszGzFileCompressed);
-      bool gz(::aura::application * papp,const ::file::path & lpcszGzFileCompressed,const ::file::path & lpcszUncompressed);
+      bool compress(class memory & memory, void * pdata, memory_size_t ulSizeUncompressed);
+      bool uncompress(memory & memoryUncompressed, memory & memoryCompressed);
 
-      bool ungz(::file::ostream & ostreamUncompressed,const ::file::path & lpcszGzFileCompressed);
-      bool gz(::file::ostream & ostreamGzFileCompressed,const ::file::path & lpcszUncompressed);
 
-      bool ungz(::file::memory_buffer & memoryfile);
+      bool gz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed, int iLevel = 6);
+      bool gz(::aura::application * papp, const ::file::file * pfileOut, const ::file::path & lpcszUncompressed, int iLevel = 6);
+      bool gz(::aura::application * papp, const ::file::file * pfileOut, const ::file::file * pfileIn, int iLevel = 6);
 
-      bool ungz(memory & memory);
+
+      bool ungz(::aura::application * papp, const ::file::path & lpcszUncompressed,const ::file::path & lpcszGzFileCompressed);
+      bool ungz(::aura::application * papp, ::file::ostream & ostreamUncompressed,const ::file::path & lpcszGzFileCompressed);
+      bool ungz(::aura::application * papp, ::file::file * pfileOut, ::file::file * pfileIn);
+
+
+      bool ungz(::file::ostream & ostreamUncompressed, ::file::istream & istreamGzFileCompressed);
+
+      bool bz(::aura::application * papp, const ::file::path & lpcszBzFileCompressed, const ::file::path & lpcszUncompressed, int iBlockSize = 9, int iVerbosity = 0, int iWorkFactor = 0);
+      bool bz(::aura::application * papp, ::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamUncompressed, int iBlockSize = 9, int iVerbosity = 0, int iWorkFactor = 0);
 
       bool unbz(::aura::application * papp,const ::file::path & lpcszUncompressed,const ::file::path & lpcszBzFileCompressed);
-      bool bz(::aura::application * papp,const ::file::path & lpcszBzFileCompressed,const ::file::path & lpcszUncompressed);
+      bool unbz(::aura::application * papp, ::file::ostream & ostreamUncompressed, const ::file::path & lpcszBzFileCompressed);
 
-      bool unbz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszBzFileCompressed);
-      bool bz(::file::ostream & ostreamBzFileCompressed,const ::file::path & lpcszUncompressed);
+      bool unbz(::file::ostream & ostreamUncompressed, ::file::istream & istreamBzFileCompressed);
 
-      bool bz_stream(::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamFileUncompressed);
-
-      bool _compress(class memory & memory, void * pdata, memory_size_t ulSizeUncompressed);
-      bool _uncompress(memory & memoryUncompressed, memory & memoryCompressed, memory_size_t ulSizeUncompressed);
 
       void extract_all(const ::file::path & pszFile, ::aura::application * papp);
 
