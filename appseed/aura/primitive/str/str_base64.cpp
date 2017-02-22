@@ -254,15 +254,17 @@ namespace str
       
       string strRet;
 
-      ::file::memory_buffer buf(get_app(), &storageBinary);
+      ::memory_file buf(get_app(), &storageBinary);
 
       ::file::byte_istream istream(&buf);
 
-      ::file::plain_text_ostream_string_buffer ostream(get_app());
+      ::file::string_file file(&strRet);
+
+      ::file::plain_text_ostream ostream(&file);
 
       encode(ostream, istream);
 
-      return ostream.str();
+      return strRet;
 
    }
 
@@ -295,7 +297,7 @@ namespace str
 
       ::file::plain_text_istream istream(&buf);
 
-      ::file::memory_buffer bufOut(get_app(), &storageBinary);
+      ::memory_file bufOut(get_app(), &storageBinary);
 
       ::file::byte_ostream ostream(&bufOut);
 
@@ -308,7 +310,7 @@ namespace str
 
       memory storageBinary;
       
-      ::file::memory_buffer buf(get_app(), &storageBinary);
+      ::memory_file buf(get_app(), &storageBinary);
 
       ::file::byte_stream stream(&buf);
 
@@ -316,13 +318,18 @@ namespace str
 
       buf.seek_to_begin();
 
-      ::file::plain_text_ostream_string_buffer ostream;
+      string strRet;
+
+      ::file::string_file file(&strRet);
+
+      ::file::plain_text_ostream ostream(&file);
 
       encode(ostream, stream);
 
-      return ostream.str();
+      return strRet;
 
    }
+
 
    void base64::unserialize(::file::serializable & serializable, const char * pszBase64)
    {
@@ -335,7 +342,7 @@ namespace str
 
       memory storageBinary;
       
-      ::file::memory_buffer buf(get_app(), &storageBinary);
+      ::memory_file buf(get_app(), &storageBinary);
 
       ::file::byte_stream stream(&buf);
 

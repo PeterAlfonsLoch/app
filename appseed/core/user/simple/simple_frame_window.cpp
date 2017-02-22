@@ -1,6 +1,6 @@
 //#include "framework.h"
 #ifdef WINDOWSEX
-   //#include <dde.h>
+#include <dde.h>
 #endif
 
 #define TEST 0
@@ -2140,20 +2140,22 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
    SetActiveWindow();      // activate us first !
    UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, NULL, 0);
 
-   ::userex::userex* puser = Session.userex();
-   ASSERT(puser != NULL);
+   ::file::patha patha;
+   wchar_t szFileName[_MAX_PATH];
    for (UINT iFile = 0; iFile < nFiles; iFile++)
    {
-      char szFileName[_MAX_PATH];
-      ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
+      
+      if (::DragQueryFileW(hDropInfo, iFile, szFileName, _MAX_PATH))
+      {
 
-      sp(::create) createcontext(allocer());
-      createcontext->m_spCommandLine->m_varFile = szFileName;
+         patha.add(szFileName);
 
-      puser->open_document_file(createcontext);
+      }
+
    }
    ::DragFinish(hDropInfo);
 
+   Session.on_frame_window_drop_files(this, patha);
 
 }
 
@@ -3008,5 +3010,28 @@ void simple_frame_window::show_task(bool bShow)
    }
 
    m_pimpl->show_task(bShow);
+
+}
+
+
+::user::front_end_schema * simple_frame_window::get_user_front_end_schema()
+{
+
+   if (m_workset.m_pframeschema == NULL)
+   {
+
+      return NULL;
+
+   }
+
+   return m_workset.m_pframeschema->get_user_front_end_schema();
+
+}
+
+
+bool simple_frame_window::IsNotifyIconEnabled()
+{
+
+   return m_bDefaultNotifyIcon;
 
 }

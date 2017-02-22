@@ -1,5 +1,6 @@
-//#include "framework.h" // from "axis/user/user.h"
-//#include "base/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
+#include "base/user/core_user.h"
+#include "base/user/common_user.h"
 #include "base/os/windows/windows_system_interaction_impl.h"
 
 #ifdef METROWIN
@@ -22,6 +23,7 @@ namespace base
    application::application()
    {
 
+      m_puiptraFrame = new ::user::interaction_spa();
       m_peventReady = NULL;
 
 
@@ -91,6 +93,7 @@ namespace base
 
    application::~application()
    {
+      ::aura::del(m_puiptraFrame);
    }
 
 
@@ -200,9 +203,7 @@ namespace base
 
       synch_lock sl(&m_mutexFrame);
 
-      return m_uiptraFrame.get_child(pui);
-
-      return false;
+      return m_puiptraFrame->get_child(pui);
 
    }
 
@@ -238,7 +239,7 @@ namespace base
 
       synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
-      if(m_uiptraFrame.add_unique(pwnd))
+      if(m_puiptraFrame->add_unique(pwnd))
       {
 
          TRACE("::base::application::add_frame ::user::interaction = %0x016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
@@ -280,7 +281,7 @@ namespace base
 
       }
 
-      if (m_uiptraFrame.remove(pwnd) > 0)
+      if (m_puiptraFrame->remove(pwnd) > 0)
       {
 
          TRACE("::base::application::remove_frame ::user::interaction = %0x016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());

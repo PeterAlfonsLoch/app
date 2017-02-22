@@ -6,67 +6,43 @@ memory::memory(manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
-   m_bOwn = false;
-   m_pprimitivememory   = this;
-   m_pbStorage          = NULL;
-   m_pbComputed         = NULL;
-   m_pcontainer         = NULL;
-   m_iOffset            = 0;
-   m_dwAllocation       = 0;
-   m_cbStorage          = 0;
-   m_bAligned = false;
-
-}
-
-memory::memory(const memory & s,manager * pmanager)
-{
-
-   UNREFERENCED_PARAMETER(pmanager);
-   m_bOwn = false;
-   m_pprimitivememory   = this;
-   m_pbStorage    = NULL;
-   m_pbComputed   = NULL;
-   m_iOffset      = 0;
-   m_dwAllocation = 0;
-   m_cbStorage    = 0;
-   m_bAligned = false;
-   memory_base::operator = (s);
+   m_pprimitivememory      = this;
+   m_bAligned              = false;
 
 }
 
 
-memory::memory(const memory * ps,manager * pmanager)
+memory::memory(const memory & s, manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
-   m_bOwn = false;
-   m_pprimitivememory   = this;
-   m_pbStorage    = NULL;
-   m_pbComputed   = NULL;
-   m_iOffset      = 0;
-   m_dwAllocation = 0;
-   m_cbStorage    = 0;
-   m_bAligned = false;
-   memory_base::operator = (*ps);
+   m_pprimitivememory      = this;
+   m_bAligned              = false;
+   memory_base::operator   = (s);
 
 }
 
 
-memory::memory(const byte * pchSrc,strsize nLength,manager * pmanager)
+memory::memory(const memory * ps, manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
-   m_bOwn = false;
-   m_pprimitivememory   = this;
-   m_pbStorage    = NULL;
-   m_pbComputed   = NULL;
-   m_iOffset      = 0;
-   m_bAligned = false;
+   m_pprimitivememory      = this;
+   m_bAligned              = false;
+   memory_base::operator   = (*ps);
+
+}
+
+
+memory::memory(const byte * pchSrc, strsize nLength, manager * pmanager)
+{
+
+   UNREFERENCED_PARAMETER(pmanager);
+   m_pprimitivememory      = this;
+   m_bAligned              = false;
    allocate(nLength);
    ASSERT(__is_valid_address(pchSrc,nLength,FALSE));
    memcpy(m_pbStorage,pchSrc,nLength);
-
-
 }
 
 
@@ -74,107 +50,85 @@ memory::memory(::aura::application * papp) :
    object(papp)
 {
 
-   m_pprimitivememory   = this;
-   m_pbStorage          = NULL;
-   m_pbComputed         = NULL;
-   m_pcontainer         = NULL;
-   m_iOffset            = 0;
-   m_dwAllocation       = 0;
-   m_cbStorage          = 0;
-   m_bAligned = false;
+   m_pprimitivememory      = this;
+   m_bAligned              = false;
 
 }
+
 
 memory::memory(::aura::application * papp, bool bAligned) :
    object(papp)
 {
 
-   m_pprimitivememory = this;
-   m_pbStorage = NULL;
-   m_pbComputed = NULL;
-   m_pcontainer = NULL;
-   m_iOffset = 0;
-   m_dwAllocation = 0;
-   m_cbStorage = 0;
-   m_bAligned = bAligned;
+   m_pprimitivememory      = this;
+   m_bAligned              = bAligned;
 
 }
 
-memory::memory(const byte * pdata,memory_size_t iCount)
+
+memory::memory(const byte * pdata, memory_size_t iCount)
 {
-   m_pprimitivememory   = this;
-   m_pbStorage    = NULL;
-   m_pbComputed   = NULL;
-   m_iOffset      = 0;
-   m_bAligned = false;
-   allocate(iCount);
-   if(pdata != NULL)
-   {
-      ASSERT(__is_valid_address(pdata,iCount,FALSE));
-      memcpy(m_pbStorage,pdata,iCount);
-   }
+
+   m_pprimitivememory      = this;
+   m_pbStorage             = (LPBYTE)pdata;
+   m_pbComputed            = m_pbComputed;
+   m_bAligned              = false;
+   m_cbStorage             = iCount;
+   m_dwAllocation          = m_cbStorage;
+
 }
+
 
 memory::memory(const void * pdata, memory_size_t iCount)
 {
-   m_pprimitivememory   = this;
-   m_pbStorage    = NULL;
-   m_pbComputed   = NULL;
-   m_iOffset      = 0;
-   m_bAligned = false;
-   allocate(iCount);
 
-   if (pdata != NULL && iCount > 0)
-   {
-    
-      memcpy(m_pbStorage, pdata, iCount);
-
-   }
+   m_pprimitivememory      = this;
+   m_pbStorage             = (LPBYTE) pdata;
+   m_pbComputed            = m_pbStorage;
+   m_bAligned              = false;
+   m_cbStorage             = iCount;
+   m_dwAllocation          = m_cbStorage;
 
 }
 
 memory::memory(const memory_base & s)
 {
-   m_pprimitivememory   = this;
-   m_pbStorage    = NULL;
-   m_pbComputed   = NULL;
-   m_iOffset      = 0;
-   m_dwAllocation = 0;
-   m_cbStorage    = 0;
-   m_bAligned = false;
-   memory_base::operator = (s);
+
+   m_pprimitivememory      = this;
+   m_bAligned              = false;
+   memory_base::operator   = (s);
+
 }
+
 
 memory::memory(const memory & s)
 {
-   m_pprimitivememory   = this;
-   m_pbStorage    = NULL;
-   m_pbComputed   = NULL;
-   m_iOffset      = 0;
-   m_dwAllocation = 0;
-   m_cbStorage    = 0;
-   m_bAligned = s.m_bAligned;
-   memory_base::operator = (s);
+   
+   m_pprimitivememory      = this;
+   m_bAligned              = s.m_bAligned;
+   memory_base::operator   = (s);
+
 }
+
 
 memory::memory(const char * psz)
 {
+
    m_pprimitivememory   = this;
-   m_pbStorage    = NULL;
-   m_pbComputed   = NULL;
-   m_iOffset      = 0;
-   m_dwAllocation = 0;
-   m_cbStorage    = 0;
-   m_bAligned = false;
-   from_string(psz);
+   m_pbStorage          = (LPBYTE) psz;
+   m_pbComputed         = m_pbStorage;
+   m_cbStorage          = strlen(psz);
+   m_dwAllocation       = m_cbStorage;
+   m_bAligned           = false;
+
 }
+
 
 memory::memory(primitive::memory_container * pcontainer, memory_size_t dwAllocationAddUp, UINT nAllocFlags)
 {
+
    UNREFERENCED_PARAMETER(nAllocFlags);
    m_pprimitivememory   = this;
-   m_pbStorage          = NULL;
-   m_pbComputed         = NULL;
    m_pcontainer         = pcontainer;
    if(dwAllocationAddUp == 0)
    {
@@ -185,26 +139,22 @@ memory::memory(primitive::memory_container * pcontainer, memory_size_t dwAllocat
 #endif
    }
    m_dAllocationRateUp  = m_dAllocationRateUp;
-   m_iOffset            = 0;
-   m_dwAllocation       = 0;
-   m_cbStorage          = 0;
-   m_bAligned = false;
+   m_bAligned           = false;
+
 }
+
 
 memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_size_t dwSize)
 {
+   
    m_pprimitivememory   = this;
-   m_pbStorage          = NULL;
-   m_pbComputed         = NULL;
+   m_pbStorage          = (LPBYTE) pMemory;
+   m_pbComputed         = m_pbStorage;
    m_pcontainer         = pcontainer;
-   m_iOffset            = 0;
-   m_dwAllocation       = 0;
-   m_cbStorage          = 0;
-   m_bAligned = false;
+   m_cbStorage          = dwSize;
+   m_dwAllocation       = m_cbStorage;
+   m_bAligned           = false;
 
-   allocate(dwSize);
-   ASSERT(__is_valid_address(pMemory, (uint_ptr) dwSize, FALSE));
-   memcpy(m_pbStorage, pMemory, (size_t) dwSize);
 }
 
 
@@ -240,6 +190,8 @@ memory::~memory()
    {
 
       impl_free(m_pbStorage);
+
+      m_pbStorage = NULL;
 
    }
 
@@ -327,7 +279,12 @@ LPBYTE memory::impl_realloc(void * pdata, memory_size_t dwAllocation)
 void memory::impl_free(LPBYTE pdata)
 {
 
-   memory_free(pdata);
+   if (m_bOwn)
+   {
+
+      memory_free(pdata);
+
+   }
 
 }
 

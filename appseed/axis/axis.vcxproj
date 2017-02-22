@@ -698,7 +698,7 @@
     <ClInclude Include="axis\axis\axis_system.h" />
     <ClInclude Include="axis\compress\compress_bz.h" />
     <ClInclude Include="axis\compress\compress.h" />
-    <ClInclude Include="axis\compress\compress_compress.h" />
+    <ClInclude Include="axis\compress\compress_department.h" />
     <ClInclude Include="axis\compress\compress_gz.h" />
     <ClInclude Include="axis\compress\zip\api.h" />
     <ClInclude Include="axis\compress\zip\crypt.h" />

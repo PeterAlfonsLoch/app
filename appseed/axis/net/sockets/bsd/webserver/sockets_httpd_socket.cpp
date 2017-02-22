@@ -27,7 +27,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 #include "axis/net/net_sockets.h"
-#include "axis/axis/compress/compress_compress.h"
+#include "axis/axis/compress/compress_department.h"
 #include <openssl/ssl.h>
 
 
@@ -343,7 +343,7 @@ namespace sockets
       {
          if(::str::begins_ci(strContentType,"audio/"))
          {
-            if(!System.compress().ungz(response().ostream(),lpcsz))
+            if(!System.compress().ungz(get_app(), response().ostream(),lpcsz))
             {
                ::file::file_sp spfile(allocer());
                if(spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
@@ -414,7 +414,7 @@ namespace sockets
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart,::file::seek_begin);
                memory_size_t uiRead;
-               ::file::memory_buffer memfile(get_app());
+               ::memory_file memfile(get_app());
                memory_size_t iPos = iStart;
                if(iEnd >= iStart)
                {
@@ -467,7 +467,7 @@ namespace sockets
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart,::file::seek_begin);
                memory_size_t uiRead;
-               ::file::memory_buffer memfile(get_app());
+               ::memory_file memfile(get_app());
                memory_size_t iPos = iStart;
                if(iEnd >= iStart)
                {

@@ -11,7 +11,7 @@ namespace primitive
    shared_file::shared_file(::aura::application * papp, UINT nAllocFlags, UINT nGrowBytes) :
       ::object(papp),
       memory_container(papp),
-      memory_buffer(papp)
+      memory_file(papp)
    {
 
       UNREFERENCED_PARAMETER(nGrowBytes);

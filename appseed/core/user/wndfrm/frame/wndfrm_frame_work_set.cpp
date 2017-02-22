@@ -1133,16 +1133,7 @@ namespace user
 
             }
 
-            simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (pui);
-
-            if (pframe == NULL)
-            {
-
-               return false;
-
-            }
-
-            return pframe->m_bDefaultNotifyIcon;
+            return pui->IsNotifyIconEnabled();
 
          }
 

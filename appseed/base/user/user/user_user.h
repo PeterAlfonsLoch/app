@@ -20,6 +20,9 @@ namespace user
       ::user::elemental *                    m_pmousefocusRButtonDown;
       sp(::user::window_map)                 m_pwindowmap;
       stringa                                m_straEscape;
+      ::user::front_end_schema *             m_pufeschema;
+      ::user::front_end *                    m_pufe;
+
 
 
 
@@ -27,6 +30,10 @@ namespace user
       virtual ~user();
 
       
+
+      ::user::front_end_schema * GetUfeSchema();
+      ::user::front_end * GetUfe();
+
 
       virtual bool initialize1();
       virtual bool initialize2();
@@ -55,9 +62,16 @@ namespace user
       #endif
 
 
+      virtual sp(type) controltype_to_typeinfo(::user::e_control_type type);
+
+
+
+
 
    };
 
+   CLASS_DECL_BASE ::user::front_end_schema * GetUfeSchema(::aura::application * papp);
+   CLASS_DECL_BASE ::user::front_end * GetUfe(::aura::application * papp);
 
 } // namespace user
 

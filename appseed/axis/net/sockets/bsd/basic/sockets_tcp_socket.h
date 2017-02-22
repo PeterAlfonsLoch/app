@@ -81,7 +81,7 @@ namespace sockets
       };
       typedef list<OUTPUT> output_list;
 
-      ::file::circular_buffer ibuf; ///< Circular input buffer
+      ::file::circular_file ibuf; ///< Circular input buffer
       string m_strUrl;
 
       mutex *        m_pmutexSslCtx;

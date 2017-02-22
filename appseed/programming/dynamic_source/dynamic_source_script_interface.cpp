@@ -11,7 +11,7 @@ script_interface::script_interface()
 
    if(get_app() != NULL)
    {
-      m_spmemoryfileFallback = canew(::file::memory_buffer(get_app()));
+      m_spmemoryfileFallback = canew(::memory_file(get_app()));
    }
 
    m_pinstanceMain      = NULL;

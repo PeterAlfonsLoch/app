@@ -267,10 +267,10 @@ namespace file
 
       }
 
-      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_buffer >() != NULL)
+      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_file >() != NULL)
       {
 
-         spfile = varFile.propset()["file"].cast < ::file::binary_buffer >();
+         spfile = varFile.propset()["file"].cast < ::file::binary_file >();
 
       }
       //else if(::str::find_file_extension("zip:", strPath) >= 0)
@@ -398,7 +398,7 @@ namespace file
    bool application::save(var varFile,::file::serializable & o)
    {
 
-      sp(::file::memory_buffer) pfile = Application.file().get_file(varFile,::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory);
+      sp(::memory_file) pfile = Application.file().get_file(varFile,::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory);
 
       if(pfile.is_null())
       {
@@ -419,7 +419,7 @@ namespace file
    bool application::load(::file::serializable & o,var varFile)
    {
 
-      sp(::file::memory_buffer) pfile = Application.file().get_file(varFile,::file::mode_read | ::file::type_binary);
+      sp(::memory_file) pfile = Application.file().get_file(varFile,::file::mode_read | ::file::type_binary);
 
       if(pfile.is_null())
       {

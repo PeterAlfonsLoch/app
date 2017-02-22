@@ -8,8 +8,8 @@ namespace file
 
 
    class exception;         // file exception
-   class binary_buffer;
-   typedef sp(binary_buffer) binary_buffer_sp;
+   class binary_file;
+   typedef sp(binary_file) binary_buffer_sp;
 
    class byte_ostream;
    class byte_istream;

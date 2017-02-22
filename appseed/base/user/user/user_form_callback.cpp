@@ -7,24 +7,25 @@ namespace user
 
    form_callback::form_callback()
    {
-
+      m_pmapform = new ::user::map_form_window;
    }
 
 
    form_callback::~form_callback()
    {
 
-      strsp(::user::form_window)::pair * ppair = m_mapform.PGetFirstAssoc();
+      strsp(::user::form_window)::pair * ppair = m_pmapform->PGetFirstAssoc();
 
       while(ppair != NULL)
       {
 
          ppair->m_element2->DestroyWindow();
 
-         ppair = m_mapform.PGetNextAssoc(ppair);
+         ppair = m_pmapform->PGetNextAssoc(ppair);
 
       }
 
+      ::aura::del(m_pmapform);
 
    }
 
@@ -69,14 +70,14 @@ namespace user
    form_view * form_callback::get_form_view(const string & strId)
    {
 
-      return m_mapform[strId]->m_pformview;
+      return m_pmapform->operator[](strId)->m_pformview;
 
    }
 
    ::user::document * form_callback::get_form_document(const string & strId)
    {
 
-      auto passoc = m_mapform.PLookup(strId);
+      auto passoc = m_pmapform->PLookup(strId);
 
       if(passoc == NULL)
          return NULL;

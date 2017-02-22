@@ -105,7 +105,7 @@ namespace user
    bool elemental::keyboard_focus_OnSetFocus()
    {
 
-      m_dwFocustStart = get_tick_count();
+      on_reset_focus_start_tick();
 
       // get_keyboard_focus will return the control with focus
 
@@ -434,6 +434,14 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(ptimer);
+
+   }
+
+   
+   void elemental::on_reset_focus_start_tick()
+   {
+
+      m_dwFocusStartTick = ::get_tick_count();
 
    }
 

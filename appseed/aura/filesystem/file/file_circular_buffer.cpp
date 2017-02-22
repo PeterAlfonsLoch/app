@@ -4,7 +4,7 @@
 namespace file
 {
 
-   circular_buffer::circular_buffer(size_t size) :
+   circular_file::circular_file(size_t size) :
       m_max(size),
       m_q(0),
       m_b(0),
@@ -16,17 +16,17 @@ namespace file
 
    }
 
-   circular_buffer::circular_buffer(const circular_buffer& buffer)
+   circular_file::circular_file(const circular_file& buffer)
    {
       operator =(buffer);
    }
 
-   circular_buffer::~circular_buffer()
+   circular_file::~circular_file()
    {
    }
 
 
-   void circular_buffer::write(const void * pdata, memory_size_t l)
+   void circular_file::write(const void * pdata, memory_size_t l)
    {
 
       const char * s = (const char *) pdata;
@@ -56,7 +56,7 @@ namespace file
    }
 
 
-   memory_size_t circular_buffer::read(void * pbuffer, memory_size_t l)
+   memory_size_t circular_file::read(void * pbuffer, memory_size_t l)
    {
 
       byte * s = (byte *) pbuffer;
@@ -64,7 +64,7 @@ namespace file
 
       if (l > m_q)
       {
-         throw io_exception(get_app(), "circular_buffer::read");
+         throw io_exception(get_app(), "circular_file::read");
       }
 
       if (m_b + l > m_max) // block crosses circular border
@@ -118,7 +118,7 @@ namespace file
    }
 
 
-   bool circular_buffer::remove(size_t l)
+   bool circular_file::remove(size_t l)
    {
 
       try
@@ -137,7 +137,7 @@ namespace file
    }
 
 
-   file_size_t circular_buffer::get_length() const
+   file_size_t circular_file::get_length() const
    {
 
       return m_q;
@@ -145,7 +145,7 @@ namespace file
    }
 
 
-   const char *circular_buffer::GetStart()
+   const char *circular_file::GetStart()
    {
 
       return (const char * ) (m_memory.get_data() + m_b);
@@ -153,7 +153,7 @@ namespace file
    }
 
 
-   size_t circular_buffer::GetL()
+   size_t circular_file::GetL()
    {
 
       return (m_b + m_q > m_max) ? m_max - m_b : m_q;
@@ -161,13 +161,13 @@ namespace file
    }
 
 
-   size_t circular_buffer::Space()
+   size_t circular_file::Space()
    {
       return m_max - m_q;
    }
 
 
-   uint_ptr circular_buffer::ByteCounter(bool clear)
+   uint_ptr circular_file::ByteCounter(bool clear)
    {
       if (clear)
       {
@@ -179,7 +179,7 @@ namespace file
    }
 
 
-   string circular_buffer::read_string(size_t l)
+   string circular_file::read_string(size_t l)
    {
       
       memory mem;
@@ -199,7 +199,7 @@ namespace file
 
    }
 
-   circular_buffer& circular_buffer::operator=(const circular_buffer& buffer)
+   circular_file& circular_file::operator=(const circular_file& buffer)
    {
       if(&buffer != this)
       {

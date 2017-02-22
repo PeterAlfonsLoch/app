@@ -32,7 +32,7 @@ namespace sockets
       string      m_strRequest;
       memory      m_memoryBody;
       memory      m_memoryBuf;
-      ::file::memory_buffer m_fileBody;
+      ::memory_file m_fileBody;
       int32_t         m_iContentLength;
       bool        m_bHeaders;
       bool        m_bDirect;

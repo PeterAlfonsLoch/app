@@ -29,7 +29,7 @@
 
 
          mutex                         m_mutexData;
-         ::file::memory_buffer         m_memoryfile;
+         ::memory_file         m_memoryfile;
          ::file::file *       m_pfile;
          int64_t                       m_iFinalSize;
          int_progress                  m_progress;

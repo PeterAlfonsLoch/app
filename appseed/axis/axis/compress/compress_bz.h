@@ -65,3 +65,18 @@ public:
 
 };
 
+
+class CLASS_DECL_AXIS uncompress_bz :
+   virtual public ::object
+{
+public:
+
+
+   uncompress_bz(::aura::application * papp);
+   virtual ~uncompress_bz();
+
+
+   bool transfer(::file::ostream & ostreamUncompressed, ::file::istream & istreamBzFileCompressed);
+
+
+};

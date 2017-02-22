@@ -35,21 +35,21 @@ namespace core
 #endif
 
       mutex                                        m_mutex;
-      sp(::filehandler::handler)                   m_spfilehandler;
+      ::filehandler::handler *                     m_pfilehandler;
 
 
       mutex                                        m_mutexDelete;
 //      class ::core::stra                           m_stra;
   //    class ::core::service                        m_service;
 
-      class ::core::patch                          m_patch;
+      class ::core::patch   *                      m_ppatch;
 
-      sp(::core::run_start_installer)    m_prunstartinstaller;
-      sp(::core::session::map)                    m_pbergedgemap;
-      spa(::core::session)                        m_planesessionptra;
+      sp(::core::run_start_installer)              m_prunstartinstaller;
+      sp(::core::session::map)                     m_pbergedgemap;
+      spa(::core::session)                         m_planesessionptra;
 
 
-      sp(class ::core::history)                    m_phistory;
+      class ::core::history *                      m_phistory;
       //      ::sockets::net                               m_net;
       //      sp(::core::filehandler::handler)  m_spfilehandler;
 

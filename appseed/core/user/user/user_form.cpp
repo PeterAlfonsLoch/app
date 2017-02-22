@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 
 
 namespace user
@@ -1173,7 +1173,7 @@ namespace user
 
       }
 
-      pdescriptor->m_typeinfo = Session.userex()->controltype_to_typeinfo(pdescriptor->get_type());
+      pdescriptor->m_typeinfo = Session.user()->controltype_to_typeinfo(pdescriptor->get_type());
 
       if(pdescriptor->m_typeinfo)
       {

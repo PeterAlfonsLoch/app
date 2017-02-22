@@ -13,7 +13,7 @@ namespace base
 
 
       mutex                                           m_mutexFrame;
-      ::user::interaction_spa                         m_uiptraFrame;
+      ::user::interaction_spa *                       m_puiptraFrame;
 
 
 

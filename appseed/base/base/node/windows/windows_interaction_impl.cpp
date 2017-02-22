@@ -1,9 +1,11 @@
-//#include "framework.h" // from "base/user/user.h"
-//#include "base/user/user.h"
-//#include "aura/node/windows/windows.h"
-//#include "windows.h"
-//#include <windows.h>
-//#include <shobjidl.h>
+#include "framework.h" // from "base/user/user.h"
+#include "base/user/core_user.h"
+#include "aura/node/windows/windows.h"
+#include "windows.h"
+#include <windows.h>
+#include <shobjidl.h>
+#include "base/os/windows/windows_system_interaction_impl.h"
+
 
 // const GUID CLSID_TaskbarList = { 0x56FDF344, 0xFD6D, 0x11D0,{ 0x95, 0x8A, 0x00, 0x60, 0x97, 0xC9, 0xA0, 0x90 } };
 //const GUID IID_ITaskbarList = { 0x56FDF342, 0xFD6D, 0x11D0,{ 0x95, 0x8A, 0x00, 0x60, 0x97, 0xC9, 0xA0, 0x90 } };
@@ -1310,7 +1312,7 @@ namespace windows
    void interaction_impl::PrepareForHelp()
    {
 
-      sp(::user::frame_window) pFrameWnd = m_pui;
+      sp(::user::interaction) pFrameWnd = m_pui;
 
       if(pFrameWnd.is_set())
       {
@@ -1619,7 +1621,7 @@ namespace windows
 
          user::oswindow_array oswindowa;
          user::interaction_spa wnda;
-         wnda = System.m_uiptraFrame;
+         wnda = *System.m_puiptraFrame;
          oswindowa = wnda.get_hwnda();
          user::window_util::SortByZOrder(oswindowa);
          for(int32_t i = 0; i < oswindowa.get_size(); i++)
@@ -1677,10 +1679,7 @@ namespace windows
       }
       if(pbase->m_uiMessage == ::message::message_event)
       {
-         if(m_pui != NULL)
-         {
-            ((::user::control_event *) pbase->m_lparam.m_lparam)->m_bRet = m_pui->BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
-         }
+         m_pui->BaseOnControlEvent(pbase);
          return;
       }
       ::user::interaction_impl::message_handler(pobj);
@@ -5936,10 +5935,6 @@ lCallNextHook:
       perasebkgnd->set_result(TRUE);
    }
 
-   void interaction_impl::_001BaseWndInterfaceMap()
-   {
-      Session.user()->window_map().set((int_ptr)get_handle(),this);
-   }
 
 
    void interaction_impl::_001OnTriggerMouseInside()

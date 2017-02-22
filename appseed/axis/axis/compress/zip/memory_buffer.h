@@ -7,8 +7,8 @@
 namespace zip
 {
 
-   class CLASS_DECL_AXIS memory_buffer :
-      public ::file::memory_buffer
+   class CLASS_DECL_AXIS memory_file :
+      public ::memory_file
 
    {
    public:
@@ -17,9 +17,9 @@ namespace zip
       zlib_filefunc_def_s m_filefuncdef;
 
 
-      memory_buffer(::aura::application * papp);
-      memory_buffer(::aura::application * papp, ::primitive::memory_base * pmemory);
-      virtual ~memory_buffer();
+      memory_file(::aura::application * papp);
+      memory_file(::aura::application * papp, ::primitive::memory_base * pmemory);
+      virtual ~memory_file();
 
 
       void common_construct();

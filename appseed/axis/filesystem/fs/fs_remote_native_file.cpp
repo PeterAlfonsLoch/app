@@ -94,7 +94,7 @@ namespace fs
       string strUrl;
 
 
-      if(m_varFile["xmledit"].cast < ::file::memory_buffer >() != NULL)
+      if(m_varFile["xmledit"].cast < ::memory_file >() != NULL)
       {
 
          strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
@@ -104,7 +104,7 @@ namespace fs
 
          setRequest["get_response"] = ""; // touch/create property to get_response
 
-         Application.http().put(strUrl,m_varFile["xmledit"].cast < ::file::memory_buffer >(),setRequest);
+         Application.http().put(strUrl,m_varFile["xmledit"].cast < ::memory_file >(),setRequest);
 
          string strResponse(setRequest["get_response"]);
 
@@ -119,7 +119,7 @@ namespace fs
 
             MD5_Init(&ctx);
 
-            MD5_Update(&ctx, m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_size());
+            MD5_Update(&ctx, m_varFile["xml"].cast < ::memory_file >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::memory_file >()->get_primitive_memory()->get_size());
 
             to_string(strMd5Here, ctx);
 
@@ -135,7 +135,7 @@ namespace fs
 
          property_set setPut(get_app());
 
-         Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
+         Application.http().put(strUrl, m_varFile["xml"].cast < ::memory_file >(), setPut);
 
          return;
       }

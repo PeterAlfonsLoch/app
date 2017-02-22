@@ -108,7 +108,7 @@ namespace sockets
       {
 
 
-         System.factory().creatable_small < ::file::memory_buffer > ();
+         System.factory().creatable_small < ::memory_file > ();
 
          m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
 

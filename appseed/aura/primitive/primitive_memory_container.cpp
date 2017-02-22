@@ -160,37 +160,59 @@ namespace primitive
 
    void memory_container ::keep_pointer(void **ppvoid)
    {
-         vppa().add(ppvoid);
+      
+      vppa().add(ppvoid);
+
    }
 
 
    void memory_container ::offset_kept_pointers(memory_offset_t iOffset)
    {
-      if(m_pvppa == NULL)
+
+      if (m_pvppa == NULL)
+      {
+
          return;
+
+      }
+
       for(int32_t i = 0; i < m_pvppa->get_size(); i++)
       {
+
          *m_pvppa->element_at(i) = ((LPBYTE)*m_pvppa->element_at(i)) + iOffset;
+
       }
+
    }
+
 
    bool memory_container ::IsValid() const
    {
+
       return true;
+
    }
 
 
-   memory_container & memory_container ::operator =(const memory_container &container)
+   void memory_container::copy_this(const memory_container & container)
    {
-      if(container.m_spmemory.is_null())
+
+      if (container.m_spmemory.is_null())
+      {
+       
          m_spmemory.release();
+
+      }
       else
       {
+
          m_spmemory = canew(memory(this));
+
          m_spmemory->copy_from(container.m_spmemory);
+
       }
 
-      if(m_pvppa != NULL)
+      if (m_pvppa != NULL)
       {
 
          delete m_pvppa;
@@ -198,8 +220,22 @@ namespace primitive
          m_pvppa = NULL;
 
       }
+
+   }
+
+   memory_container & memory_container ::operator =(const memory_container &container)
+   {
+
+      if (&container == this)
+      {
+
+         return *this;
+
+      }
+
+      object::copy_this(container);
       
-      //m_pvppa->remove_all();
+      memory_container::copy_this(container);
 
       return *this;
 
@@ -224,7 +260,7 @@ namespace primitive
    }
 
 
-   memory *          memory_container::get_primitive_memory()
+   memory * memory_container::get_primitive_memory()
    {
       
       if (m_spmemory.is_null())

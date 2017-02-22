@@ -117,7 +117,7 @@ namespace filemanager
       else if (id.int64() < m_pdoctemplateMain->get_document_count())
       {
 
-         pdoc = m_pdoctemplateMain->get_document(id);
+         pdoc = m_pdoctemplateMain->get_document((index) id);
 
       }
 
@@ -216,7 +216,7 @@ namespace filemanager
       else if (id.int64() < m_pdoctemplateMain->get_document_count())
       {
 
-         pdoc = m_pdoctemplate->get_document(id);
+         pdoc = m_pdoctemplate->get_document((index) id);
 
       }
 

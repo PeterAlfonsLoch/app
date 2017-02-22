@@ -2221,6 +2221,8 @@ namespace user
    void interaction_impl::_001BaseWndInterfaceMap()
    {
 
+      Session.user()->window_map().set((int_ptr)get_handle(), this);
+
    }
 
 
@@ -2773,6 +2775,7 @@ namespace user
 
 
    }
+
 
 
 } // namespace user

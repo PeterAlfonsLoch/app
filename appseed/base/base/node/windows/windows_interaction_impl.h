@@ -670,8 +670,6 @@ namespace windows
       virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const;
       virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue);
 
-      virtual void _001BaseWndInterfaceMap();
-
 
       void _001OnTriggerMouseInside();
 

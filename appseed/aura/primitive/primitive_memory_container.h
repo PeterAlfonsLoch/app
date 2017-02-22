@@ -55,6 +55,8 @@ namespace primitive
 
       bool IsValid() const;
 
+      void copy_this(const memory_container & container);
+
       memory_container & operator =(const memory_container &container);
 
       bool attach(memory_base *pstorage);

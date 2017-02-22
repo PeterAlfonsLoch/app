@@ -30,7 +30,7 @@ class CLASS_DECL_PROGRAMMING library_class :
 public:
 
 
-   file::memory_buffer                    m_memfileError;
+   memory_file                    m_memfileError;
    string                                 m_strName;
    stringa                                m_straSourcePath;
    stringa                                m_straCppPath;

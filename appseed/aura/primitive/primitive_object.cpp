@@ -110,43 +110,6 @@ int64_t object::release()
 }
 
 
-object & object::operator=(const object & objectSrc)
-{
-
-   if(objectSrc.m_psetObject == NULL)
-   {
-
-      if(m_psetObject != NULL)
-      {
-
-         ::aura::del(m_psetObject);
-
-      }
-
-   }
-   else
-   {
-
-      if(m_psetObject == NULL)
-      {
-
-         m_psetObject = new property_set(get_app());
-
-      }
-
-      *m_psetObject     = *objectSrc.m_psetObject;
-
-   }
-
-   m_pauraapp        = objectSrc.m_pauraapp;
-
-   m_ulFlags = objectSrc.m_ulFlags;
-
-   m_pfactoryitembase   = objectSrc.m_pfactoryitembase;
-
-   return *this;
-
-}
 
 
 void object::assert_valid() const
@@ -702,6 +665,11 @@ namespace aura
 
    }
 
+   
+   
+   
+   
+
 
 } // namespace aura
 
@@ -715,3 +683,41 @@ namespace aura
 
 
 
+void object::copy_this(const object & o)
+{
+
+   // uint64_t                      m_ulFlags;
+   // factory_item_base *           m_pfactoryitembase;
+   // void *                        m_pthis;
+   // int64_t                       m_countReference;
+   // mutex *                       m_pmutex;
+
+   m_pauraapp = o.m_pauraapp;
+
+   ::aura::del(m_psetObject);
+
+   if (o.m_psetObject != NULL)
+   {
+
+      m_psetObject = new property_set(*o.m_psetObject);
+
+   }
+
+}
+
+
+object & object::operator = (const object & o)
+{
+
+   if (&o == this)
+   {
+
+      return *this;
+
+   }
+
+   copy_this(o);
+
+   return *this;
+
+}

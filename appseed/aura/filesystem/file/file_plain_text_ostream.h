@@ -6,7 +6,7 @@ namespace file
    class string_file;
 
 
-   typedef sp(string_file) string_buffer_sp;
+   typedef sp(string_file) string_file_sp;
 
 
 
@@ -71,7 +71,7 @@ class CLASS_DECL_AURA plain_text_stream_log_line :
 public:
 
    
-   ::file::string_buffer_sp   m_pfile;
+   ::file::string_file_sp   m_pfile;
    e_level                    m_elevel;
    string                     m_strTag;
    string                     m_strFile;

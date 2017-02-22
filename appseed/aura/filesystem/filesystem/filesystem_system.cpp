@@ -486,7 +486,7 @@ restart:
          if(strPath.is_empty())
          {
 
-            TRACE("::file::binary_buffer::system::as_memory varFile is a empty file name!!");
+            TRACE("::file::binary_file::system::as_memory varFile is a empty file name!!");
 
             return;
 
@@ -1535,7 +1535,7 @@ restart:
 
       }
 
-      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_buffer >() != NULL)
+      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_file >() != NULL)
       {
 
          spfile = varFile.propset()["file"].cast < ::file::file >();

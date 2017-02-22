@@ -1,14 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////////////////
-//
-//   All Pure and Aural ca2 and God and Gods and Goddssesses and devils's blessings
-//
-//   C++
-//
-//   C => in ca2 scope
-//
-//   Thank you God for C++!!
-//
-
 #pragma once
 
 #pragma warning(disable: 4251)
@@ -28,6 +17,8 @@ namespace user
    namespace wndfrm
    {
 
+      class wndfrm;
+
       namespace frame
       {
          
@@ -43,6 +34,27 @@ namespace user
 
 
    class interaction_impl_base;
+   class interaction;
+   class user;
+   class schema_simple_impl;
+   class window_draw;
+   class control_event;
+   class interaction_impl;
+   class frame_window;
+   class place_holder;
+   class form_view;
+   class view_creator_data;
+   class message;
+   class map_form_window;
+   class document_manager;
+
+   class interaction_spa;
+
+#if defined(METROWIN) || defined(APPLE_IOS)
+
+   class native_window_initialize;
+
+#endif
 
    CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance);
 
@@ -83,26 +95,6 @@ namespace visual
 } // namespace visual
 
 
-namespace user
-{
-
-   class interaction;
-   class user;
-   class schema_simple_impl;
-   class window_draw;
-   class control_event;
-   class interaction_impl;
-   class frame_window;
-   class place_holder;
-
-#if defined(METROWIN) || defined(APPLE_IOS)
-
-   class native_window_initialize;
-
-#endif
-
-
-} // namespace user
 
 using window_sp = sp(::user::interaction_impl);
 
@@ -330,19 +322,21 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 //CLASS_DECL_BASE void __trace_message(const char * lpszPrefix,LPMESSAGE lpmsg);
 
 
-//#include "base/base/base/base_command_target.h"
+#include "base/user/user/user_schema.h"
+//#include "base/user/user/user_window_util.h"
+#include "base/user/user/user_form_callback.h"
 
 CLASS_DECL_BASE ::user::interaction_impl * window_from_handle(oswindow oswindow);
 
 #include "base/base/base_static_start.h"
 
-#include "axis/graphics/graphics.h"
+//#include "axis/graphics/graphics.h"
 
-#include "base/user/user/user_schema.h"
+//#include "base/user/user/user_schema.h"
 
-#include "base/user/user.h"
+//#include "base/user/user.h"
 
-#include "base/database/database.h"
+//#include "base/database/database.h"
 
 
 //#include "base/base/base_platform_interface.h"
@@ -372,9 +366,6 @@ CLASS_DECL_BASE ::user::interaction_impl * window_from_handle(oswindow oswindow)
 //#include "base/user/userpresence/userpresence.h"
 
 //#include "base/user/fontopus/fontopus.h"
-
-
-#include "base/user/user.inl"
 
 
 #include "base/base/base.inl"

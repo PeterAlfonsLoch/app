@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/user/core_user.h"
 #include  "windows_system_interaction_impl.h"
 
 namespace base

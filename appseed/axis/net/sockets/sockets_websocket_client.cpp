@@ -102,7 +102,7 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    int64_t message_size = memory.get_size();
 
-   int length = 2 + (message_size >= 126 ? 2 : 0) + (message_size >= 65536 ? 6 : 0) + (useMask ? 4 : 0) + message_size;
+   int length = (int) (2 + (message_size >= 126 ? 2 : 0) + (message_size >= 65536 ? 6 : 0) + (useMask ? 4 : 0) + message_size);
 
    m.allocate(length);
 
@@ -169,7 +169,7 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
    memcpy(&frame[iOffset], memory.get_data(), memory.get_length());
    if (useMask)
    {
-      for (index i = 0; i < memory.get_length(); i++)
+      for (memory_size_t i = 0; i < memory.get_length(); i++)
       {
          frame[iOffset+i] ^= masking_key[i & 3];
       }
@@ -192,7 +192,7 @@ int client_send(memory & m, memory & memory)
 int client_send(memory & m, int fin, const char* src)
 {
 
-   strsize len = 0;
+   memory_size_t len = 0;
 
    if (src != NULL)
    {
@@ -265,7 +265,7 @@ int client_send(memory & m, int fin, const char* src)
 
    }
 
-   for (size_t i = 0; i < len; i++)
+   for (memory_size_t i = 0; i < len; i++)
    {
 
       frame[iOffset + i] = src[i];//read src into frame
@@ -826,7 +826,7 @@ namespace sockets
                if (m_mask)
                {
 
-                  for (size_t i = 0; i < m_iN; i++)
+                  for (memory_size_t i = 0; i < m_iN; i++)
                   {
 
                      data[i + iStart] ^= m_maskingkey[i & 0x3];
@@ -863,7 +863,7 @@ namespace sockets
                if (m_mask)
                {
 
-                  for (size_t i = 0; i < m_iN; i++)
+                  for (memory_size_t i = 0; i < m_iN; i++)
                   {
 
                      data[m_i + m_header_size] ^= m_maskingkey[m_i & 0x3];

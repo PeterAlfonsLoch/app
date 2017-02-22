@@ -914,11 +914,11 @@ retry:
 
          bool bPost;
          bool bPut;
-         if (set["put"].cast < ::file::binary_buffer >() != NULL || set.lookup(__id(http_method)) == "PUT")
+         if (set["put"].cast < ::file::binary_file >() != NULL || set.lookup(__id(http_method)) == "PUT")
          {
             bPost = false;
             bPut = true;
-            psession.cast < ::sockets::http_put_socket>()->m_file = set["put"].cast < ::file::binary_buffer >();
+            psession.cast < ::sockets::http_put_socket>()->m_file = set["put"].cast < ::file::binary_file >();
             psession->request("PUT",strRequest);
          }
          else if (set["post"].propset().get_count() > 0 || set.lookup(__id(http_method)) == "POST")
@@ -969,11 +969,11 @@ retry:
             {
                break;
             }
-//            if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
+//            if(set["file_out"].cast < ::file::timeout_file >() != NULL)
 //            {
-//               if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
+//               if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_file >()->m_uiExpectedSize != psession->m_iFinalSize)
 //               {
-//                  set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
+//                  set["file_out"].cast < ::file::timeout_file >()->m_uiExpectedSize = psession->m_iFinalSize;
 //               }
 //            }
             dw2 = ::get_tick_count();
@@ -982,11 +982,11 @@ retry:
          }
 
 
-//         if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
+//         if(set["file_out"].cast < ::file::timeout_file >() != NULL)
 //         {
-//            if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
+//            if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_file >()->m_uiExpectedSize != psession->m_iFinalSize)
 //            {
-//               set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
+//               set["file_out"].cast < ::file::timeout_file >()->m_uiExpectedSize = psession->m_iFinalSize;
 //            }
 //         }
 
@@ -1603,7 +1603,7 @@ retry_session:
 
       }
 
-//      ::file::timeout_buffer * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_buffer >();
+//      ::file::timeout_file * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_file >();
 
       while(handler.get_count() > 0 && (::get_thread() == NULL || ::get_thread_run()))
       {
@@ -2142,7 +2142,7 @@ retry_session:
    bool system::put(const char * pszUrl, primitive::memory_base & memory, property_set & set)
    {
 
-      ::file::memory_buffer file(get_app(), &memory);
+      ::memory_file file(get_app(), &memory);
 
       return put(pszUrl, &file, set);
 

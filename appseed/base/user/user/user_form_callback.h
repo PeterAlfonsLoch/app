@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      strsp(::user::form_window)                        	m_mapform;
+      ::user::map_form_window *                        	m_pmapform;
 
 
       form_callback();

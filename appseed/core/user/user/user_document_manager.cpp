@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
 
@@ -652,7 +652,7 @@ namespace user
       if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
          return; // open cancelled
 
-      Session.userex()->open_document_file(createcontext);
+      Session.userex_open_document_file(createcontext);
       // if returns NULL, the ::fontopus::user has already been alerted
    }
 
@@ -896,3 +896,54 @@ namespace user
 
 
 
+namespace core
+{
+
+
+   void application::add_document_template(::user::impact_system * ptemplate)
+   {
+
+      if (ptemplate == NULL)
+      {
+
+         throw invalid_argument_exception(this, "impact system template should be valid");
+
+         return;
+
+      }
+
+      if (m_pdocmanager == NULL)
+      {
+
+         m_pdocmanager = canew(::user::document_manager(get_app()));
+
+      }
+
+      //m_pdocmanager->add_ref();
+
+      document_manager().add_document_template(ptemplate);
+
+   }
+
+   void application::remove_document_template(::user::impact_system * pimpactsystem)
+   {
+
+      if (m_pdocmanager == NULL)
+         return;
+
+      document_manager().remove_document_template(pimpactsystem);
+
+   }
+
+
+
+   ::user::document * application::open_document_file(const char * lpszFileName)
+   {
+      ASSERT(Application.m_pdocmanager != NULL);
+      sp(::create) cc(allocer());
+      cc->m_spCommandLine->m_varFile = lpszFileName;
+      return (Application.document_manager().open_document_file(cc));
+   }
+
+
+} // namespace core

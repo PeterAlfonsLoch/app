@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   buffered_buffer::buffered_buffer(::aura::application * papp, ::file::file_sp pfile, memory_size_t iBufferSize) :
+   buffered_file::buffered_file(::aura::application * papp, ::file::file_sp pfile, memory_size_t iBufferSize) :
       object(papp)
    {
       m_storage.allocate(iBufferSize);
@@ -19,22 +19,22 @@ namespace file
       m_bDirty = false;
    }
 
-   buffered_buffer::~buffered_buffer()
+   buffered_file::~buffered_file()
    {
       flush();
    }
 
-   uint64_t buffered_buffer::GetBufferSize()
+   uint64_t buffered_file::GetBufferSize()
    {
       return m_uiBufferSize;
    }
 
-   bool buffered_buffer::IsValid() const
+   bool buffered_file::IsValid() const
    {
       return m_pfile.is_set();
    }
 
-   /*int32_t buffered_buffer::remove_begin(void * lpBuf, UINT uiCount)
+   /*int32_t buffered_file::remove_begin(void * lpBuf, UINT uiCount)
    {
       ASSERT(IsValid());
       if(uiCount > get_length())
@@ -59,11 +59,11 @@ namespace file
       return uiCount;
    }*/
 
-   /*void buffered_buffer::load_string(string & str)
+   /*void buffered_file::load_string(string & str)
    {
    }*/
 
-   file_position_t buffered_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
+   file_position_t buffered_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       uint64_t uiBegBufPosition = m_uiBufLPos;
       uint64_t uiEndBufPosition = m_uiBufUPos;
@@ -91,7 +91,7 @@ namespace file
       }
       else
       {
-         throw invalid_argument_exception(get_app(), "::file::buffered_buffer::seek invalid seek option");
+         throw invalid_argument_exception(get_app(), "::file::buffered_file::seek invalid seek option");
       }
 
       if(uiNewPos >= uiBegBufPosition
@@ -112,27 +112,27 @@ namespace file
       return m_uiPosition;
    }
 
-   file_position_t buffered_buffer::get_position() const
+   file_position_t buffered_file::get_position() const
    {
       return m_uiPosition;
    }
 
-   file_size_t buffered_buffer::get_length() const
+   file_size_t buffered_file::get_length() const
    {
       return m_pfile->get_length();
    }
 
-   /*void buffered_buffer::Truncate(int32_t iPosition)
+   /*void buffered_file::Truncate(int32_t iPosition)
    {
       m_pfile->Truncate();
    }
 
-   void buffered_buffer::clear()
+   void buffered_file::clear()
    {
       m_pfile->clear();
    }*/
 
-   memory_size_t buffered_buffer:: read(void *lpBufParam, memory_size_t nCount)
+   memory_size_t buffered_file:: read(void *lpBufParam, memory_size_t nCount)
    {
       if(nCount == 0)
          return 0;
@@ -163,30 +163,49 @@ namespace file
       return uiRead;
    }
 
-   bool buffered_buffer::buffer(memory_size_t uiGrow)
+   bool buffered_file::buffer(memory_size_t uiGrow)
    {
+
       if(m_bDirty)
       {
+
          flush();
+
       }
-      //if(uiGrow == 0 && m_uiPosition > m_pfile->get_length())
-        // return false;
+
       m_pfile->seek((file_offset_t) m_uiPosition, ::file::seek_begin);
+
       memory_size_t uiCopy;
-      if(uiGrow > 0)
+
+      if (uiGrow > 0)
+      {
+
          uiCopy = MIN(m_uiBufferSize, uiGrow);
+
+      }
       else
+      {
+
          uiCopy = m_uiBufferSize;
+
+      }
+
       memory_size_t uiRead    = m_pfile->read(m_storage.get_data(), uiCopy);
-      m_uiBufLPos     = m_uiPosition;
-      m_uiBufUPos     = m_uiPosition + uiRead - 1;
-      m_uiWriteLPos   = 0xffffffff;
-      m_uiWriteUPos   = 0xffffffff;
+      
+      m_uiBufLPos             = m_uiPosition;
+      
+      m_uiBufUPos             = m_uiPosition + uiRead - 1;
+      
+      m_uiWriteLPos           = 0xffffffff;
+      
+      m_uiWriteUPos           = 0xffffffff;
+
       return uiRead > 0;
+
    }
 
 
-   void buffered_buffer::write(const void * lpBuf, memory_size_t nCount)
+   void buffered_file::write(const void * lpBuf, memory_size_t nCount)
    {
       memory_size_t uiWrite = 0;
       memory_size_t uiWriteNow = 0;
@@ -211,7 +230,7 @@ namespace file
       }
    }
 
-   void buffered_buffer::flush()
+   void buffered_file::flush()
    {
       if(m_bDirty)
       {
@@ -224,7 +243,7 @@ namespace file
    }
 
 
-   void buffered_buffer::set_length(file_size_t dwNewLen)
+   void buffered_file::set_length(file_size_t dwNewLen)
    {
       m_pfile->set_length(dwNewLen);
       m_uiPosition = 0;

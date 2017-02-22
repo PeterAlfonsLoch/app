@@ -60,8 +60,8 @@ namespace zip
 
    bool File::unzip_open(::file::file_sp pfile)
    {
-      m_pbuffile1 = new ::file::buffered_buffer(get_app(), pfile, 1024 * 256);
-      m_pbuffile2 = new ::file::buffered_buffer(get_app(), m_pbuffile1, 1024 * 256);
+      m_pbuffile1 = new ::file::buffered_file(get_app(), pfile, 1024 * 256);
+      m_pbuffile2 = new ::file::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
       m_pbuffile2->seek_to_begin();
       m_pfile = m_pbuffile2;
       m_filefuncdef.opaque = (voidpf) this;
@@ -94,8 +94,8 @@ namespace zip
 
    bool File::zip_open(::file::file_sp pfile)
    {
-      m_pbuffile1 = new ::file::buffered_buffer(get_app(), pfile, 1024 * 256);
-      m_pbuffile2 = new ::file::buffered_buffer(get_app(), m_pbuffile1, 1024 * 256);
+      m_pbuffile1 = new ::file::buffered_file(get_app(), pfile, 1024 * 256);
+      m_pbuffile2 = new ::file::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
       m_pbuffile2->seek_to_begin();
       m_pfile = m_pbuffile2;
       m_filefuncdef.opaque = (voidpf) this;

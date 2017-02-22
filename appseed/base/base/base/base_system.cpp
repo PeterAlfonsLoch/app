@@ -1,11 +1,13 @@
-//#include "framework.h" // from "axis/user/user.h"
-//#include "base/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
+#include "base/user/user/user_windowing.h"
+#include "base/user/core_user.h"
 
 #include "base/node/node.h"
 
 CLASS_DECL_BASE void black_body(float * r, float * g, float * b, DWORD dwTemp);
 
 #ifdef WINDOWSEX
+
 
 
 #include "base/os/windows/windows_system_interaction_impl.h"

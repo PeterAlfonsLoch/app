@@ -2417,7 +2417,7 @@ namespace axis
 
       }
 
-      ::file::memory_buffer file(get_app(),set["get_memory"].cast < memory >());
+      ::memory_file file(get_app(),set["get_memory"].cast < memory >());
 
       if(set["get_memory"].cast < memory >() != NULL && set["get_memory"].cast < memory >()->get_size() > 0)
       {

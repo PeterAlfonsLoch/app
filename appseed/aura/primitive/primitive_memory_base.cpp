@@ -14,6 +14,7 @@ namespace primitive
 #if MEMDLEAK
       m_iLine              = 0;
 #endif
+      m_bOwn               = false;
       m_pbStorage          = NULL;
       m_pbComputed         = NULL;
       m_cbStorage          = 0;
@@ -31,16 +32,18 @@ namespace primitive
 
    }
 
+   
    memory_base::~memory_base()
    {
 
-      m_cbStorage = 0;
-      m_dwAllocation =  0;
-      m_pbStorage = NULL;
-      m_pbComputed      = NULL;
-      m_iOffset         = 0;
+      m_cbStorage          = 0;
+      m_dwAllocation       =  0;
+      m_pbStorage          = NULL;
+      m_pbComputed         = NULL;
+      m_iOffset            = 0;
 
    }
+
 
    memory_base & memory_base::prefix_der_length()
    {
@@ -121,8 +124,14 @@ namespace primitive
 
       if((m_iOffset + dwNewLength) > m_dwAllocation)
       {
-         if(!allocate_internal(m_iOffset + dwNewLength))
+         
+         if (!allocate_internal(m_iOffset + dwNewLength))
+         {
+
             return false;
+
+         }
+
       }
 
       if((m_iOffset + dwNewLength) > m_dwAllocation)
@@ -133,7 +142,9 @@ namespace primitive
       m_pbComputed   = m_pbStorage + m_iOffset;
 
       return true;
+
    }
+
 
    LPBYTE memory_base::impl_alloc(memory_size_t dwAllocation)
    {
@@ -174,7 +185,7 @@ namespace primitive
 
       LPBYTE lpb;
 
-      if(m_pbStorage == NULL)
+      if(m_pbStorage == NULL || !m_bOwn)
       {
 
          lpb = (LPBYTE) impl_alloc(dwAllocation);
@@ -183,6 +194,13 @@ namespace primitive
          {
 
             return false;
+
+         }
+
+         if (!m_bOwn)
+         {
+
+            memcpy(lpb, m_pbStorage, MIN(m_dwAllocation, dwAllocation));
 
          }
 
@@ -197,7 +215,18 @@ namespace primitive
 
          }
 
-         lpb = impl_realloc(m_pbStorage,(size_t)dwAllocation);
+         if (m_bOwn)
+         {
+
+            lpb = impl_realloc(m_pbStorage, (size_t)dwAllocation);
+
+         }
+         else
+         {
+
+            lpb = NULL;
+
+         }
 
          if(lpb == NULL)
          {
@@ -213,7 +242,12 @@ namespace primitive
 
             memcpy(lpb,m_pbStorage,m_cbStorage);
 
-            impl_free(m_pbStorage);
+            if (!m_bOwn)
+            {
+
+               impl_free(m_pbStorage);
+
+            }
 
          }
 
@@ -233,6 +267,8 @@ namespace primitive
       m_pbStorage       = lpb;
 
       m_pbComputed      = m_pbStorage;
+
+      m_bOwn            = true;
 
       return true;
 
@@ -285,48 +321,8 @@ namespace primitive
    }
 
 
-   /*
-   void memory_base::FullLoad(::file::binary_buffer & file)
-   {
-
-   if(!is_enabled())
-   {
-   ASSERT(false);
-   return;
-   }
-
-   uint64_t dwTemp;
-   memory_size_t cbStorage = (memory_size_t) file.get_length();
-   file.seek_to_begin();
-   allocate(cbStorage);
-   try
-   {
-   dwTemp = file.read(get_data(), cbStorage);
-   }
-   #ifdef DEBUG
-   catch(::file::exception & e)
-   #else
-   catch(::file::exception & )
-   #endif
-   {
-   throw "smfOpenFile: read error on image!";
-   #ifdef DEBUG
-   e.dump(*::aura::system::g_p->m_pdumpcontext);
-   #endif
-   }
-   if (cbStorage != dwTemp)
-   {
-   throw "smfOpenFile: read error on image!";
-   }
-
-   }
-   */
-
-
    memory_size_t memory_base::calc_allocation(memory_size_t size)
    {
-
-      //int s = size + exp((m_dAllocationRateUp - (double)size) / ((double) m_dAllocationRateUp - (double) m_dwAllocationAddUp / 2.0));
 
       return (memory_size_t) (((size + m_dwAllocationAddUp) ) / m_dwAllocationAddUp * m_dwAllocationAddUp);
 
@@ -338,31 +334,6 @@ namespace primitive
 
       transfer_from(istream);
 
-      /*memory_size_t uiRead;
-
-      memory_size_t uiBufSize = 1024 + 1024;
-
-      memory_size_t uiSize = 0;
-
-      while(true)
-      {
-
-      allocate(uiSize + uiBufSize);
-
-      uiRead = istream.read(&((byte *)get_data())[uiSize], uiBufSize);
-
-      if(uiRead < uiBufSize)
-      {
-      allocate(uiSize + uiRead);
-
-      break;
-
-      }
-
-      uiSize += uiBufSize;
-
-      }*/
-
    }
 
 
@@ -370,31 +341,9 @@ namespace primitive
    {
 
       transfer_to(ostream);
-      //ostream.write(get_data(), this->get_size());
 
    }
 
-
-
-   /*   memory_size_t memory_base::read(::file::binary_buffer & file)
-      {
-
-      file_size_t dwEnd = file.get_length();
-
-      file_position_t dwPos = file.get_position();
-
-      memory_size_t dwRemain = (memory_size_t)(dwEnd - dwPos);
-
-      allocate((memory_size_t) dwRemain);
-
-      memory_size_t dwRead = file.read(get_data(), dwRemain);
-
-      allocate(dwRead);
-
-      return dwRead;
-
-      }
-      */
 
    void memory_base::delete_begin(memory_size_t iSize)
    {
@@ -420,7 +369,6 @@ namespace primitive
          remove_offset();
 
       }
-
 
    }
 
@@ -627,55 +575,6 @@ namespace primitive
 
    }
 
-   //LPBYTE memory_base::detach()
-   //{
-
-   //   LPBYTE pbStorage = m_pbStorage;
-
-   //   if(m_iOffset > 0)
-   //   {
-
-   //      sp(memory_base) pbase = clone();
-
-   //      impl_free(m_pbStorage);
-
-   //      pbStorage = pbase->detach();
-
-   //   }
-   //   else
-   //   {
-
-   //      pbStorage = m_pbStorage;
-
-   //   }
-
-   //   m_pbStorage       = NULL;
-
-   //   m_pbComputed      = NULL;
-
-   //   m_cbStorage       = 0;
-
-   //   m_dwAllocation    = 0;
-
-   //   m_iOffset         = 0;
-
-   //   return pbStorage;
-
-   //}
-
-
-   //LPBYTE memory_base::detach_shared_memory(HGLOBAL & hglobal)
-   //{
-
-   //   throw not_supported_exception(get_app(),"valid only for Global Memory(\"HGLOBAL\")");
-
-   //}
-
-
-
-
-
-
 
    bool memory_base::is_locked() const
    {
@@ -705,88 +604,6 @@ namespace primitive
    }
 
 
-   LPBYTE memory_base::internal_get_data() const
-   {
-
-      return m_pbComputed;
-
-   }
-
-
-   memory_size_t memory_base::get_size() const
-   {
-
-      return m_cbStorage;
-
-   }
-
-
-   memory_size_t memory_base::size() const
-   {
-      return get_size();
-   }
-
-
-   const LPBYTE memory_base::get_data() const
-   {
-      return m_pbComputed;
-      /*if(is_enabled())
-      return internal_get_data() + m_iOffset;
-      else
-      {
-      ASSERT(FALSE);
-      return NULL;
-      }*/
-
-   }
-
-   LPBYTE memory_base::get_data()
-   {
-      return m_pbComputed;
-      /*      if(is_enabled())
-      return internal_get_data() + m_iOffset;
-      else
-      {
-      ASSERT(FALSE);
-      return NULL;
-      }*/
-
-   }
-
-
-
-   const LPBYTE memory_base::data() const
-   {
-      return get_data();
-   }
-
-   LPBYTE memory_base::data()
-   {
-      return get_data();
-   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    bool memory_base::operator == (const memory_base & s)
    {
@@ -807,86 +624,157 @@ namespace primitive
    }
 
 
-
    void memory_base::copy_from(const memory_base *pstorage)
    {
+
       ASSERT(pstorage != NULL);
+
       allocate(pstorage->get_size());
+
       memcpy(get_data(), pstorage->get_data(), (size_t) this->get_size());
+
    }
 
+   
    void memory_base::set_data(void *pdata, memory_size_t uiSize)
    {
+
       allocate(uiSize);
+
       memcpy(get_data(), pdata, (size_t)uiSize);
+
    }
+
 
    void memory_base::set(byte b, memory_position_t iStart, memory_size_t uiSize)
    {
+
       if (uiSize + iStart > get_size())
          uiSize = get_size() - iStart;
+
       memset(get_data() + iStart, b, (size_t)uiSize);
+
    }
+
 
    void memory_base::zero(memory_position_t iStart, memory_size_t uiSize)
    {
+
       set(0, iStart, uiSize);
+
    }
+
 
    void memory_base::eat_begin(void * pdata, memory_size_t iSize)
    {
+
       ASSERT(iSize <= this->get_size());
+
       if (iSize <= this->get_size())
       {
+
          delete_begin(iSize);
+
       }
+
    }
+
 
    memory_base & memory_base::operator = (const memory_base & s)
    {
+
       if (this != &s)
       {
+
          copy_from(&s);
+
       }
+
       return *this;
+
    }
+
 
    memory_base & memory_base::operator += (const memory_base & s)
    {
+
       append(s);
+
       return *this;
+
    }
+
 
    void memory_base::to_hex(string & str, memory_position_t pos, memory_size_t size)
    {
+
       if (pos > this->get_size())
+      {
+
          throw invalid_argument_exception(get_app());
+
+      }
+
       if (pos + size > get_size())
+      {
+
          size = get_size() - pos;
+
+      }
+
       char * pchSrc = (char *)get_data();
+
       char * pchDst = str.GetBufferSetLength(size * 2);
+
       uint64_t dwEnd = pos + size;
+
       for (uint64_t dw = pos; dw < dwEnd; dw++)
       {
+
          if (((pchSrc[dw] & 0xf0) >> 4) < 10)
+         {
+
             *pchDst = (char)(((pchSrc[dw] & 0xf0) >> 4) + '0');
+
+         }
          else
+         {
+
             *pchDst = (char)(((pchSrc[dw] & 0xf0) >> 4) + 'A' - 10);
+
+         }
+
          pchDst++;
+         
          if (((pchSrc[dw] & 0x0f)) < 10)
+         {
+
             *pchDst = (char)((pchSrc[dw] & 0x0f) + '0');
+
+         }
          else
+         {
+
             *pchDst = (char)((pchSrc[dw] & 0x0f) + 'A' - 10);
+
+         }
+
          pchDst++;
+
       }
+
       str.ReleaseBuffer();
+
    }
 
+   
    string memory_base::to_hex(memory_position_t pos, memory_size_t size)
    {
 
       string str;
+
       to_hex(str, pos, size);
+
       return str;
 
    }
@@ -904,7 +792,9 @@ namespace primitive
 
       if (bOdd)
       {
+
          iLen++;
+
       }
 
       allocate(iLen / 2);
@@ -926,21 +816,41 @@ namespace primitive
          {
 
             if (*psz > '9')
+            {
+
                ch |= ((*psz - 'A' + 10) & 0x0f) << 4;
+
+            }
             else
+            {
+
                ch |= ((*psz - '0') & 0x0f) << 4;
 
+            }
+
             if (*psz == '\0')
+            {
+
                break;
+
+            }
 
             psz++;
 
          }
 
          if (*psz > '9')
+         {
+
             ch |= ((*psz - 'A' + 10) & 0x0f);
+
+         }
          else
+         {
+
             ch |= ((*psz - '0') & 0x0f);
+
+         }
 
          *pch = ch;
 
@@ -951,6 +861,7 @@ namespace primitive
       }
 
    }
+
 
    void memory_base::to_asc(string & str)
    {
@@ -969,20 +880,37 @@ namespace primitive
       {
 
          if (strTo[i] <= '9')
+         {
+
             ch = (strTo[i] - '0') << 4;
+
+         }
          else
+         {
+
             ch = (strTo[i] - 'A' + 10) << 4;
 
+         }
+
          if (strTo[i + 1] <= '9')
+         {
+
             ch |= (strTo[i + 1] - '0');
+
+         }
          else
+         {
+
             ch |= (strTo[i + 1] - 'A' + 10);
+
+         }
 
          str += ch;
 
       }
 
    }
+
 
    void memory_base::from_asc(const char * psz)
    {
@@ -995,18 +923,34 @@ namespace primitive
          char ch = ((*psz & 0xf0) >> 4);
 
          if (ch < 10)
+         {
+
             ch += '0';
+
+         }
          else
+         {
+
             ch += 'A' - 10;
+
+         }
 
          str += ch;
 
          ch = ((*psz & 0xf));
 
          if (ch < 10)
+         {
+
             ch += '0';
+
+         }
          else
+         {
+
             ch += 'A' - 10;
+
+         }
 
          str += ch;
 
@@ -1026,6 +970,7 @@ namespace primitive
 
    }
 
+
    void memory_base::from_string(const char * psz)
    {
 
@@ -1034,6 +979,7 @@ namespace primitive
       memcpy(get_data(), psz, this->get_size());
 
    }
+
 
    void memory_base::from_string(const string & str)
    {
@@ -1044,6 +990,7 @@ namespace primitive
 
    }
 
+
    void memory_base::from_string(const var & var)
    {
 
@@ -1051,20 +998,37 @@ namespace primitive
 
    }
 
+
    void memory_base::to_string(string & str, memory_position_t iStart, memory_size_t iCount) const
    {
 
       if ((memory_offset_t)iStart < 0)
+      {
+
          *((memory_offset_t*)iStart) += this->get_size();
 
+      }
+
       if (iStart > this->get_size())
+      {
+
          return;
+
+      }
 
       if (iStart + iCount > this->get_size())
+      {
+
          iCount = this->get_size() - iStart - iCount;
 
+      }
+
       if (iCount <= 0)
+      {
+
          return;
+
+      }
 
       LPSTR lpsz = str.GetBufferSetLength(iCount + 1);
 
@@ -1075,6 +1039,7 @@ namespace primitive
       str.ReleaseBuffer();
 
    }
+
 
    string memory_base::to_string(memory_position_t iStart, memory_size_t iCount) const
    {
@@ -1087,6 +1052,7 @@ namespace primitive
 
    }
 
+
    void memory_base::move_and_grow(memory_offset_t offset)
    {
 
@@ -1094,47 +1060,86 @@ namespace primitive
 
    }
 
+
    void memory_base::move(memory_offset_t offset, bool bGrow)
    {
 
       if (offset > 0)
       {
+
          if (bGrow)
          {
+
             this->allocate_add_up(offset);
+
          }
+
          if ((memory_size_t)offset > this->get_size())
+         {
+
             return;
+
+         }
+
          memmove(&this->get_data()[offset], this->get_data(), this->get_size() - offset);
+
       }
       else if (offset < 0)
       {
+
          offset = -offset;
+
          if (bGrow)
          {
+
             this->allocate_add_up(offset);
+
          }
+
          if ((memory_size_t)offset > this->get_size())
+         {
+
             return;
+
+         }
+
          memmove(this->get_data(), &this->get_data()[offset], this->get_size() - offset);
+
       }
 
    }
+
 
    void memory_base::append(const memory_base & mem, memory_position_t iStart, memory_size_t iCount)
    {
 
       if ((memory_offset_t)iStart < 0)
+      {
+
          *((memory_offset_t*)iStart) += this->get_size();
 
+      }
+
       if (iStart > this->get_size())
+      {
+
          return;
+
+      }
 
       if (iStart + iCount > this->get_size())
+      {
+
          iCount = this->get_size() - iStart - iCount;
 
+      }
+
       if (iCount <= 0)
+      {
+
          return;
+
+      }
 
       allocate_add_up(iCount);
 
@@ -1147,7 +1152,11 @@ namespace primitive
    {
 
       if (iCount <= 0)
+      {
+
          return;
+
+      }
 
       memory_size_t iOldSize = get_size();
 
@@ -1156,6 +1165,7 @@ namespace primitive
       memcpy(&get_data()[iOldSize], pdata, (size_t)iCount);
 
    }
+
 
    void memory_base::assign(const void * pdata, memory_size_t iCount)
    {
@@ -1166,6 +1176,7 @@ namespace primitive
 
    }
 
+
    void memory_base::assign(const void * pdata, memory_position_t iStart, memory_size_t iCount)
    {
 
@@ -1175,6 +1186,7 @@ namespace primitive
 
    }
 
+   
    void memory_base::append(memory_size_t iCount, uchar uch)
    {
 
@@ -1193,6 +1205,7 @@ namespace primitive
 
    }
 
+   
    void memory_base::assign(memory_size_t iCount, uchar uch)
    {
 
@@ -1209,62 +1222,8 @@ namespace primitive
 
    }
 
-   uchar memory_base::operator [] (uint64_t ui) const
-   {
 
-      return this->get_data()[(memory_position_t)ui];
-
-   }
-
-   uchar & memory_base::operator [] (uint64_t ui)
-   {
-
-      return this->get_data()[(memory_position_t)ui];
-
-   }
-
-   uchar memory_base::operator [] (int i) const
-   {
-
-      return this->get_data()[i];
-
-   }
-
-   uchar & memory_base::operator [] (int i)
-   {
-
-      return this->get_data()[i];
-
-   }
-
-   memory_base::operator const byte *() const
-   {
-
-      return this->get_data();
-
-   }
-
-   memory_base::operator byte *()
-   {
-
-      return this->get_data();
-
-   }
-
-   memory_base::operator const void *() const
-   {
-
-      return this->get_data();
-
-   }
-
-   memory_base::operator void *()
-   {
-
-      return this->get_data();
-
-   }
-
+   
    void memory_base::assign(const char * psz)
    {
 

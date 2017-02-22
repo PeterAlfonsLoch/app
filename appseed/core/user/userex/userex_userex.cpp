@@ -2,7 +2,7 @@
 
 
 #include "base/database/simpledb/simpledb.h"
-#include "core/user/html/html/html.h"
+#include "core/user/html/html/all_html.h"
 
 
 namespace userex
@@ -15,8 +15,6 @@ namespace userex
    {
 
       m_pshellimageset  = NULL;
-      m_pufeschema      = NULL;
-      m_pufe            = NULL;
 
    }
 
@@ -229,9 +227,6 @@ namespace userex
       set_data_server(Application.simpledb().get_data_server());
 
 
-      m_pufeschema      = new ::user::front_end_schema(get_app());
-      m_pufe            = new ::user::front_end();
-
       System.factory().creatable_small < pane_tab_view >();
       System.factory().creatable_small < form_frame >();
       System.factory().creatable_small < form_child_frame >();
@@ -286,10 +281,6 @@ namespace userex
       {
 
       }
-
-      ::aura::del(m_pufeschema);
-
-      ::aura::del(m_pufe);
 
       try
       {
@@ -612,13 +603,6 @@ namespace userex
    }
 
 
-   sp(type) userex::controltype_to_typeinfo(::user::e_control_type e_type)
-   {
-
-      return sp(type)();
-
-   }
-
 
    void userex::SendMessageToWindows(UINT message,WPARAM wparam,LPARAM lparam)
    {
@@ -650,20 +634,6 @@ namespace userex
    }
 
 
-   ::user::front_end_schema * GetUfeSchema(::aura::application * papp)
-   {
-
-      return Sess(papp).userex()->GetUfeSchema();
-
-   }
-
-
-   ::user::front_end * GetUfe(::aura::application * papp)
-   {
-
-      return Sess(papp).userex()->GetUfe();
-
-   }
 
 
    void userex::_001OnFileNew()
@@ -674,20 +644,6 @@ namespace userex
    }
 
    
-   ::user::front_end_schema * userex::GetUfeSchema()
-   {
-      
-      return m_pufeschema;
-
-   }
-
-   
-   ::user::front_end * userex::GetUfe()
-   {
-   
-      return m_pufe;
-
-   }
 
 
    int32_t userex::exit_application()
@@ -1168,3 +1124,386 @@ namespace userex
 
 
 
+
+
+namespace core
+{
+
+
+   bool application::initialize_userex()
+   {
+
+      if (is_system())
+      {
+
+         System.factory().creatable_small < ::userex::keyboard_layout >();
+
+      }
+
+      return true;
+
+   }
+
+
+   ::userex::userex * application::create_userex()
+   {
+
+      return canew(::userex::userex(this));
+
+   }
+
+   int32_t application::simple_message_box(::user::primitive * puiOwner, const char * pszMessage, UINT fuStyle)
+   {
+
+      ::output_debug_string("\n\napp_simple_message_box: " + string(pszMessage) + "\n\n");
+
+      if (&Session == NULL || Session.userex() == NULL)
+         return ::base::application::simple_message_box(puiOwner, pszMessage, fuStyle);
+
+      return Session.userex()->simple_message_box(puiOwner, pszMessage, fuStyle);
+
+   }
+
+
+   int32_t application::simple_message_box_timeout(::user::primitive * pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
+   {
+
+      if (Session.userex() == NULL)
+         return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+
+      try
+      {
+
+         return Session.userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle, this);
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
+
+   }
+   sp(type) application::user_default_controltype_to_typeinfo(::user::e_control_type e_type)
+   {
+
+      return Sess(this).user()->controltype_to_typeinfo(e_type);
+
+
+   }
+
+   void application::set_form_impact_system(::user::impact_system * pdoctemplate, ::user::impact_system * pdoctemplateChild, ::user::impact_system * pdoctemplatePlaceHolder)
+   {
+      Session.userex()->m_ptemplateForm = pdoctemplate;
+      add_document_template(pdoctemplate);
+      Session.userex()->m_ptemplateChildForm = pdoctemplateChild;
+      add_document_template(pdoctemplateChild);
+      Session.userex()->m_ptemplatePlaceHolder = pdoctemplatePlaceHolder;
+      add_document_template(pdoctemplatePlaceHolder);
+
+   }
+
+
+   sp(::user::document)   application::create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   {
+
+      return Sess(this).userex()->create_form(this, pcallback, pwndParent, var);
+
+   }
+
+
+   sp(::user::document)   application::create_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   {
+
+      return Sess(this).userex()->create_form(this, pview, pcallback, pwndParent, var);
+
+   }
+
+
+   sp(::user::document)   application::create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   {
+
+      return Sess(this).userex()->create_child_form(this, pcallback, pwndParent, var);
+
+
+   }
+
+   sp(::user::document)  application::create_child_form(sp(::type) pt, sp(::user::interaction) pwndParent, var var)
+   {
+
+      return Sess(this).userex()->create_child_form(this, pt, pwndParent, var);
+
+   }
+
+   sp(::user::document)   application::create_child_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   {
+
+      return Sess(this).userex()->create_child_form(this, pview, pcallback, pwndParent, var);
+
+   }
+
+
+   ::user::document * application::hold(sp(::user::interaction) pui)
+   {
+
+      return Sess(this).userex()->hold(pui);
+
+   }
+
+   string application::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+   {
+
+      string strRet;
+
+      manual_reset_event ev(this);
+
+      ::fork(this, [&]()
+      {
+
+         string str = ::fontopus::get_cred(this, strUsername, strPassword, strToken);
+
+         if (str == "ok" && strUsername.has_char() && strPassword.has_char())
+         {
+
+            strRet = "ok";
+
+            goto finished;
+
+         }
+
+         if (!bInteractive)
+         {
+
+            str = "failed";
+
+            goto finished;
+
+         }
+
+         if (m_pmainpane != NULL && m_pmainpane == NULL)
+         {
+
+            try
+            {
+
+               strRet = m_pmainpane->get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+
+               goto finished;
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+#if !defined(LINUX) && !defined(APPLEOS) && !defined(VSNORD)
+         attach_thread_input_to_main_thread(false);
+#endif
+
+         strRet = ::base::application::get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+
+      finished:
+
+         ev.SetEvent();
+
+      });
+
+      ev.wait();
+
+      return strRet;
+
+   }
+
+
+   bool session::initialize1_userex()
+   {
+
+
+      if (!m_puserex->initialize())
+         return false;
+
+      if (!m_puserex->initialize1())
+         return false;
+
+      if (!m_puserex->initialize2())
+         return false;
+
+
+      return true;
+
+   }
+
+   int32_t session::exit_application()
+   {
+
+      try
+      {
+
+         ::base::session::exit_application();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         ::core::application::exit_application();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         if (m_pfilemanager != NULL)
+         {
+
+            m_pfilemanager->finalize();
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         if (m_pfilemanager != NULL)
+         {
+
+            delete m_pfilemanager;
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         m_puserex->finalize();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_puserex = NULL;
+
+      m_pobjectUserex.release();
+
+      return 0;
+
+   }
+
+
+   void session::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
+   {
+
+      UNREFERENCED_PARAMETER(pdata);
+
+      m_pdocs->m_ptemplate_html->open_document_file(itema[0]->m_filepath);
+
+   }
+
+   void session::initialize_bergedge_application_interface()
+   {
+      //      int32_t iCount = 32; // todo: get from bergedge profile
+      m_pdocs->m_pnaturedocument = NULL;
+   }
+
+   bool session::process_initialize_userex()
+   {
+
+      if (m_puserex == NULL)
+      {
+
+         m_puserex = create_userex();
+
+         if (m_puserex == NULL)
+            return false;
+
+         m_pobjectUserex = m_puserex;
+
+      }
+
+      return true;
+
+   }
+
+   void session::on_frame_window_drop_files(::user::interaction * pui, ::file::patha & patha)
+   {
+
+      ::userex::userex* puser = userex();
+
+      ASSERT(puser != NULL);
+
+      for (auto & path : patha)
+      {
+
+         sp(::create) createcontext(allocer());
+
+         createcontext->m_spCommandLine->m_varFile = path;
+
+         puser->open_document_file(createcontext);
+
+      }
+
+   }
+   
+   ::user::document * session::userex_open_document_file(sp(::create) pcreate)
+   {
+
+      return userex()->open_document_file(pcreate);
+
+   }
+
+
+} // namespace core
+
+
+
+
+namespace user
+{
+
+   ::user::mesh_data * mesh::create_mesh_data()
+   {
+
+      return Session.userex()->default_create_mesh_data(get_app());
+
+   }
+
+   ::user::list_header * list::create_list_header()
+   {
+
+      return Session.userex()->default_create_list_header(get_app());
+
+   }
+
+
+   ::user::mesh_data * list::create_mesh_data()
+   {
+
+      return Session.userex()->default_create_list_data(get_app());
+
+   }
+
+
+} // namespace user

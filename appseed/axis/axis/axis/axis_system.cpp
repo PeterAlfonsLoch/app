@@ -36,7 +36,7 @@ namespace axis
 
       __node_axis_factory_exchange(this);
 
-      m_pcompress = new ::axis::compress;
+      m_pcompress = new ::axis::compress_department(this);
 
       m_pcompress->set_app(this);
 

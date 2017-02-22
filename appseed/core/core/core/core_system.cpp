@@ -35,6 +35,7 @@ namespace core
       m_mutex(this)
    {
 
+      m_ppatch = new core::patch();
       g_pszCooperativeLevel = "core";
 
 
@@ -109,6 +110,8 @@ namespace core
 
    system::~system()
    {
+
+      ::aura::del(m_ppatch);
 
    }
 
@@ -290,7 +293,7 @@ OutputDebugString("gtk_main exited");
 
 
 
-      m_spfilehandler = canew(::filehandler::handler(this));
+      m_pfilehandler = new ::filehandler::handler(this);
 
 
 
@@ -335,35 +338,35 @@ OutputDebugString("gtk_main exited");
    ::filehandler::handler & system::filehandler()
    {
 
-      return *m_spfilehandler;
+      return *m_pfilehandler;
 
    }
 
    void system::on_start_find_applications_from_cache()
    {
 
-      m_spfilehandler->m_sptree->remove_all();
+      m_pfilehandler->m_sptree->remove_all();
 
    }
 
    void system::on_end_find_applications_from_cache(::file::byte_istream & is)
    {
 
-      is >> *m_spfilehandler.m_p;
+      is >> *m_pfilehandler;
 
    }
 
    void system::on_end_find_applications_to_cache(::file::byte_ostream & os)
    {
 
-      os << *m_spfilehandler.m_p;
+      os << *m_pfilehandler;
 
    }
 
    void system::on_map_application_library(::aura::library & library)
    {
 
-      m_spfilehandler->defer_add_library(library.m_pca2library);
+      m_pfilehandler->defer_add_library(library.m_pca2library);
 
    }
 
@@ -718,7 +721,7 @@ OutputDebugString("gtk_main exited");
    ::core::patch & system::patch()
    {
 
-      return m_patch;
+      return *m_ppatch;
 
    }
 
@@ -961,20 +964,6 @@ OutputDebugString("gtk_main exited");
    }
 
 
-   sp(type) system::get_simple_frame_window_type_info()
-   {
-
-      return System.type_info < simple_frame_window >();
-
-   }
-
-
-   sp(type) system::get_simple_child_frame_type_info()
-   {
-
-      return System.type_info < simple_child_frame >();
-
-   }
 
 
 } // namespace plane

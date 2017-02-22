@@ -23,7 +23,7 @@ namespace sip
       //string Cookie(const string & name);
       //list<string> CookieNames() const;
 
-      file::memory_buffer & file() { return m_memfileBody; }
+      memory_file & file() { return m_memfileBody; }
 
       /** replace memfile with file on disk, opened for read. */
    //   void SetFile( const string & path );
@@ -33,7 +33,7 @@ namespace sip
    protected:
 
       //Utility::ncmap<string> m_cookie;
-      file::memory_buffer m_memfileBody;
+      memory_file m_memfileBody;
 
 
    }; // end of class

@@ -20,19 +20,19 @@ namespace filehandler
    void handler::defer_add_library(::aura::library * plibrary)
    {
 
-      menu_library * pmenulibrary = dynamic_cast < menu_library * > (plibrary);
-      if(pmenulibrary != NULL)
-      {
-         add_menu_library(pmenulibrary);
-      }
-      else
-      {
-         library * phandlerlibrary = dynamic_cast < library * > (plibrary);
-         if(phandlerlibrary != NULL)
-         {
-            add_library(phandlerlibrary);
-         }
-      }
+      //menu_library * pmenulibrary = dynamic_cast < menu_library * > (plibrary);
+      //if(pmenulibrary != NULL)
+      //{
+      //   add_menu_library(pmenulibrary);
+      //}
+      //else
+      //{
+      //   library * phandlerlibrary = dynamic_cast < library * > (plibrary);
+      //   if(phandlerlibrary != NULL)
+      //   {
+      //      add_library(phandlerlibrary);
+      //   }
+      //}
 
    }
 
@@ -67,36 +67,36 @@ namespace filehandler
 
    }
 
-   void handler::add_menu_library(menu_library * plibrary)
-   {
+   //void handler::add_menu_library(menu_library * plibrary)
+   //{
 
-      stringa straExtension;
+   //   stringa straExtension;
 
-      plibrary->get_extension_list(straExtension);
+   //   plibrary->get_extension_list(straExtension);
 
-      for(int32_t i = 0; i < straExtension.get_count(); i++)
-      {
-         sp(::data::tree_item) pitem = get_extension_tree_item(straExtension[i], true);
-         if(pitem == NULL)
-            continue;
-         pitem->m_pitem.cast < item > ()->m_straMenuLibrary.add(plibrary->m_strCa2Name);
-         plibrary->get_extension_app(pitem->m_pitem.cast < item > ()->m_straApp, straExtension[i]);
-      }
+   //   for(int32_t i = 0; i < straExtension.get_count(); i++)
+   //   {
+   //      sp(::data::tree_item) pitem = get_extension_tree_item(straExtension[i], true);
+   //      if(pitem == NULL)
+   //         continue;
+   //      pitem->m_pitem.cast < item > ()->m_straMenuLibrary.add(plibrary->m_strCa2Name);
+   //      plibrary->get_extension_app(pitem->m_pitem.cast < item > ()->m_straApp, straExtension[i]);
+   //   }
 
-      stringa straMimeType;
+   //   stringa straMimeType;
 
-      plibrary->get_mime_type_list(straMimeType);
+   //   plibrary->get_mime_type_list(straMimeType);
 
-      for(int32_t i = 0; i < straMimeType.get_count(); i++)
-      {
-         sp(::data::tree_item) pitem = get_mime_type_tree_item(straMimeType[i], true);
-         if(pitem == NULL)
-            continue;
-         pitem->m_pitem.cast < item > ()->m_straMenuLibrary.add(plibrary->m_strCa2Name);
-         plibrary->get_mime_type_app(pitem->m_pitem.cast < item > ()->m_straApp, straMimeType[i]);
-      }
+   //   for(int32_t i = 0; i < straMimeType.get_count(); i++)
+   //   {
+   //      sp(::data::tree_item) pitem = get_mime_type_tree_item(straMimeType[i], true);
+   //      if(pitem == NULL)
+   //         continue;
+   //      pitem->m_pitem.cast < item > ()->m_straMenuLibrary.add(plibrary->m_strCa2Name);
+   //      plibrary->get_mime_type_app(pitem->m_pitem.cast < item > ()->m_straApp, straMimeType[i]);
+   //   }
 
-   }
+   //}
 
    sp(::data::tree_item) handler::get_extension_tree_item(const char * pszExtension, bool bCreate)
    {

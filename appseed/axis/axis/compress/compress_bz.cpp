@@ -58,7 +58,8 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
    int32_t                    m_CurrentBufferSize;
    bz_stream                  zstream;
    int32_t                    m_z_err;   /* error code for last stream operation */
-   memory_size_t              n, n2, ret;
+//   memory_size_t              n, n2, ret;
+   memory_size_t              ret;
 
    ZERO(zstream);
 
@@ -111,12 +112,12 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
       zstream.next_out = (char *) memIn.get_data();
       zstream.avail_out = (uint32_t)memIn.get_size();
 
-      while (zstream.avail_out == 0)
+      do
       {
 
          ret = BZ2_bzCompress(&zstream, iState);
 
-         ostreamBzFileCompressed.write(memory.get_data(), MAKEU64(zstream.total_out_hi32, zstream.total_out_lo32));
+         ostreamBzFileCompressed.write(memory.get_data(), memIn.get_size() - zstream.avail_out);
 
          if (ret == BZ_STREAM_END)
          {
@@ -131,9 +132,7 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
 
          }
 
-      }
-
-      
+      } while (zstream.avail_out == 0);
 
       uiRead = istreamUncompressed.read(memIn.get_data(), memIn.get_size());
 
@@ -156,16 +155,100 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
 
    }
 
-   stop1:
+stop1:
+
+   BZ_SETERR(BZ_OK);
+   BZ2_bzCompressEnd(&(zstream));
 
 
-      BZ_SETERR(BZ_OK);
-      BZ2_bzCompressEnd(&(zstream));
-
-
-      return ret >= 0;
+   return ret >= 0;
 
 }
 
 
 
+uncompress_bz::uncompress_bz(::aura::application * papp) :
+   ::object(papp)
+{
+
+}
+
+uncompress_bz::~uncompress_bz()
+{
+}
+
+
+bool uncompress_bz::transfer(::file::ostream & ostreamUncompressed, ::file::istream & istreamGzFileCompressed)
+{
+
+   bool done = false;
+
+   int32_t status;
+
+   class memory memIn;
+   memIn.allocate(1024 * 8);
+
+   int64_t uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
+
+   bz_stream zstream;
+   ZERO(zstream);
+   zstream.next_in = (char *)memIn.get_data();
+   zstream.avail_in = (uint32_t)uiRead;
+
+   class memory memory;
+   memory.allocate(1024 * 256);
+   ASSERT(memory.get_size() <= UINT_MAX);
+
+   // inflateInit2 knows how to deal with gzip format
+   if (BZ2_bzDecompressInit(&zstream, 0, 0) != BZ_OK)
+   {
+      return false;
+   }
+
+   while (!done)
+   {
+
+      zstream.next_out = (char *) memory.get_data();
+      zstream.avail_out = (uint32_t)memory.get_size();
+
+      do
+      {
+
+         // Inflate another chunk.
+         status = BZ2_bzDecompress(&zstream);
+
+         ostreamUncompressed.write(memory.get_data(), memory.get_size()-zstream.avail_out);
+
+         if (status == BZ_STREAM_END)
+         {
+
+            done = true;
+
+         }
+         else if (status != BZ_OK)
+         {
+
+            break;
+
+         }
+
+      } while (zstream.avail_out == 0);
+
+      uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
+
+      zstream.next_in = (char *)memIn.get_data();
+
+      zstream.avail_in = (uint32_t)uiRead;
+
+   }
+
+   if (BZ2_bzDecompressEnd(&zstream) != BZ_OK || !done)
+   {
+
+      return true;
+
+   }
+
+   return true;
+
+}

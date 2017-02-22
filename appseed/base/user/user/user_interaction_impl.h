@@ -106,7 +106,7 @@ namespace user
 
       virtual void _000OnMouseLeave(signal_details * pobj);
       virtual void _008OnMouse(::message::mouse * pmouse);
-
+      virtual void _001BaseWndInterfaceMap();
 
       virtual void prio_install_message_handling(::message::dispatch * pinterface);
       virtual void last_install_message_handling(::message::dispatch * pinterface);
@@ -717,7 +717,6 @@ namespace user
       virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const;
       virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue);
 
-      virtual void _001BaseWndInterfaceMap();
 
 
       virtual interaction_impl * get_impl() const;

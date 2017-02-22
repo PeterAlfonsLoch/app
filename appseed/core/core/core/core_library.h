@@ -6,8 +6,8 @@ namespace core
 
 
    class CLASS_DECL_CORE library:
-      virtual public ::aura::single_application_library < application >,
-      virtual public ::filehandler::menu_library
+      virtual public ::aura::single_application_library < application >//,
+//      virtual public ::filehandler::menu_library
    {
    public:
 

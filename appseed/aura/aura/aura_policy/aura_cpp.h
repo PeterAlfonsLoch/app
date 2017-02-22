@@ -87,7 +87,6 @@ typename remove_reference<T>::TYPE&& move(T && t)
 
 
 
-
 template < class T >
 class smart_pointer;
 
@@ -203,7 +202,7 @@ namespace url
 namespace axis // only usable from axis.dll and dependants
 {
 
-   class compress; // only usable from axis.dll and dependants
+   class compress_department; // only usable from axis.dll and dependants
 
 
 } // namespace axis // only usable from axis.dll and dependants
@@ -1101,10 +1100,8 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 
-#include "aura/filesystem/file/file_memory_buffer.h"
-#include "aura/filesystem/file/file_byte_stream_memory_buffer.h"
-#include "aura/filesystem/file/file_plain_text_stream_memory_buffer.h"
-#include "aura/filesystem/file/file_circular_buffer.h"
+#include "aura/filesystem/file/file_memory_file.h"
+#include "aura/filesystem/file/file_circular_file.h"
 
 
 //#include "aura/filesystem/file/file_timeout_buffer.h"
@@ -1208,7 +1205,7 @@ CLASS_DECL_AURA string get_exe_path();
 
 
 
-#include "aura/filesystem/file/file_buffered_buffer.h"
+#include "aura/filesystem/file/file_buffered_file.h"
 
 
 #include "aura/aura/aura/aura_machine_event_data.h"
@@ -1569,8 +1566,8 @@ namespace std
    using iostream = ::file::stream;
    using iofstream = ::file::file_stream;
 
-   using stringstream = ::file::plain_text_stream_string_buffer;
-   using ostringstream = ::file::plain_text_ostream_string_buffer;
+//   using stringstream = ::file::plain_text_stream_string_buffer;
+  // using ostringstream = ::file::plain_text_ostream_string_buffer;
 
    template < typename T >
    using numeric_limits = ::numeric_info < T >;
@@ -1720,7 +1717,7 @@ CLASS_DECL_AURA void dappy(const char * psz);
 #include "aura/aura/aura/aura_str_context.h"
 
 
-#include "aura/filesystem/file/file_html_buffer.h"
+#include "aura/filesystem/file/file_html_file.h"
 
 
 #include "aura/primitive/data/data_simple_item.h"
@@ -1732,7 +1729,7 @@ CLASS_DECL_AURA void dappy(const char * psz);
 #include "aura/primitive/data/data_tree.h"
 
 
-#include "aura/filesystem/file/file_edit_buffer.h"
+#include "aura/filesystem/file/file_edit_file.h"
 
 
 CLASS_DECL_AURA int trace_hr(const char * psz,HRESULT hr);

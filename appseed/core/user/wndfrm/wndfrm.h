@@ -30,10 +30,16 @@ namespace user
 #include "wndfrm_interaction.h"
 
 
+#include "core/user/user/user.h"
+
+
 #include "core/user/databaseuser/databaseuser.h"
 
 
 #include "frame/wndfrm_frame.h"
+
+
+#include "user/user/user_orto_button.h"
 
 
 #include "wndfrm_wndfrm.h"

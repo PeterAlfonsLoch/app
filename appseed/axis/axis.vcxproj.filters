@@ -590,9 +590,6 @@
     <ClInclude Include="filesystem\fs\fs_set.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="axis\compress\compress_compress.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
     <ClInclude Include="axis\crypto\crypto.h">
       <Filter>Header Files\axis\crypto</Filter>
     </ClInclude>
@@ -1173,6 +1170,9 @@
       <Filter>Header Files\axis\compress</Filter>
     </ClInclude>
     <ClInclude Include="axis\compress\compress_bz.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\compress_department.h">
       <Filter>Header Files\axis\compress</Filter>
     </ClInclude>
   </ItemGroup>

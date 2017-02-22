@@ -1,4 +1,4 @@
-﻿//#include "framework.h"
+﻿#include "framework.h"
 
 namespace user
 {
@@ -745,20 +745,6 @@ namespace user
    }
 
 
-   ::user::list_header * list::create_list_header()
-   {
-
-      return Session.userex()->default_create_list_header(get_app());
-
-   }
-
-
-   ::user::mesh_data * list::create_mesh_data()
-   {
-
-      return Session.userex()->default_create_list_data(get_app());
-
-   }
 
 
    void list::_001OnSize(signal_details * pobj)

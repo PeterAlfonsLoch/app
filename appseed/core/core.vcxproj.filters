@@ -132,9 +132,6 @@
     <Filter Include="Source Files\user\html\hi5">
       <UniqueIdentifier>{1a2e55eb-4aa4-4c2f-94fe-60dadeeb002b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\userhtml">
-      <UniqueIdentifier>{0f713e2c-baf8-48ad-a8d4-e8e7c50c15b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\html">
       <UniqueIdentifier>{27f75661-b882-4e90-97c0-331a1453d4e4}</UniqueIdentifier>
     </Filter>
@@ -161,6 +158,15 @@
     </Filter>
     <Filter Include="Header Files\math\calculator">
       <UniqueIdentifier>{4e9bab7d-c9a0-4a02-a29d-db138f904fd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math\calculator">
+      <UniqueIdentifier>{a0f3fe87-8f82-4ec7-996c-f03856f0f7ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\user">
+      <UniqueIdentifier>{b0cfcf61-f101-4cb3-91d0-36cfb028b366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\html\user">
+      <UniqueIdentifier>{dee59842-661a-460a-83b9-d63a818b6cf8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1013,9 +1019,6 @@
     <ClInclude Include="user\html\graphics\html2.h">
       <Filter>Header Files\user\html\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="user\html\html\html.h">
-      <Filter>Header Files\user\html\html</Filter>
-    </ClInclude>
     <ClInclude Include="user\userhtml\userhtml.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
@@ -1066,6 +1069,33 @@
     </ClInclude>
     <ClInclude Include="math\calculator\calculator_value.h">
       <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\user\userhtml.h">
+      <Filter>Header Files\user\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\user\userhtml_child_frame.h">
+      <Filter>Header Files\user\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\user\userhtml_document.h">
+      <Filter>Header Files\user\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\user\userhtml_form.h">
+      <Filter>Header Files\user\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\user\userhtml_form_view.h">
+      <Filter>Header Files\user\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\user\userhtml_frame.h">
+      <Filter>Header Files\user\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\user\userhtml_view.h">
+      <Filter>Header Files\user\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\user\userhtml_view_update_hint.h">
+      <Filter>Header Files\user\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\html\all_html.h">
+      <Filter>Header Files\user\html\html</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1388,9 +1418,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_list_header.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_menu_list_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_multiple_document_template.cpp">
@@ -1795,9 +1822,6 @@
     <ClCompile Include="user\html\graphics\impl\html_impl_text.cpp">
       <Filter>Source Files\user\html\graphics\impl</Filter>
     </ClCompile>
-    <ClCompile Include="user\html\graphics\_graphics.cpp">
-      <Filter>Source Files\user\html\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="user\html\graphics\html_attribute.cpp">
       <Filter>Source Files\user\html\graphics</Filter>
     </ClCompile>
@@ -1840,32 +1864,59 @@
     <ClCompile Include="user\html\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\user\html\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="user\userhtml\_userhtml.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_child_frame.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_document.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_form.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_form_view.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_frame.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_view.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_view_update_hint.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
     <ClCompile Include="math\_math_math.cpp">
       <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\user\_userhtml.cpp">
+      <Filter>Source Files\user\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\user\userhtml_child_frame.cpp">
+      <Filter>Source Files\user\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\user\userhtml_document.cpp">
+      <Filter>Source Files\user\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\user\userhtml_form.cpp">
+      <Filter>Source Files\user\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\user\userhtml_form_view.cpp">
+      <Filter>Source Files\user\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\user\userhtml_frame.cpp">
+      <Filter>Source Files\user\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\user\userhtml_view.cpp">
+      <Filter>Source Files\user\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\user\userhtml_view_update_hint.cpp">
+      <Filter>Source Files\user\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\_wndfrm.cpp">
+      <Filter>Source Files\user\wndfrm</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\_userex.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\graphics\_html_graphics.cpp">
+      <Filter>Source Files\user\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\_html.cpp">
+      <Filter>Source Files\user\html</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\_simple.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_list_view.cpp">
+      <Filter>Source Files\user\menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1880,6 +1931,9 @@
     </None>
     <None Include="user\user\user.inl">
       <Filter>Header Files\user\user</Filter>
+    </None>
+    <None Include="core\core\core1.h">
+      <Filter>Header Files\core\core</Filter>
     </None>
   </ItemGroup>
 </Project>

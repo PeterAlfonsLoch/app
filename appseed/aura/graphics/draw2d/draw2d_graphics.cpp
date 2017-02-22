@@ -3048,7 +3048,7 @@ namespace draw2d
 
       RECTD r;
 
-      copy(&r, &lpRect);
+      ::copy(&r, &lpRect);
 
       return draw_text(str, r, nFormat);
 

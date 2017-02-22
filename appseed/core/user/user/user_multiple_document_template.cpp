@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 
 
 namespace user
@@ -53,7 +53,7 @@ namespace user
    void multiple_document_template::remove_document(::user::document * pdocument)
    {
 
-      ::count cRef = pdocument->m_countReference;
+      ::count cRef = (::count) pdocument->m_countReference;
       
       if (m_docptra.remove(pdocument) > 0)
       {

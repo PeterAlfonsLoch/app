@@ -25,7 +25,7 @@ namespace http
 
 
       using ::file::plain_text_ostream::operator<<;
-      ::file::ostream & operator << (::file::memory_buffer & memfile);
+      ::file::ostream & operator << (::memory_file & memfile);
 
       ::file::ostream & operator << (::file::file_sp filesp);
 

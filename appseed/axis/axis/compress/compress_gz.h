@@ -61,7 +61,24 @@ public:
    bool transfer(::file::ostream & ostreamGzFileCompressed, ::file::istream & istreamUncompressed);
 
 
+};
+
+
+class CLASS_DECL_AXIS uncompress_gz :
+   virtual public ::object
+{
+public:
+
+   
+   uncompress_gz(::aura::application * papp);
+   virtual ~uncompress_gz();
+   
+
+   bool transfer(::file::ostream & ostreamUncompressed, ::file::istream & istreamGzFileCompressed);
+
 
 };
+
+
 
 

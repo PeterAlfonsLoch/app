@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      DWORD                               m_dwFocustStart;
+      DWORD                               m_dwFocusStartTick;
       bool                                m_bDestroying;
 
 
@@ -77,6 +77,8 @@ namespace user
 
 
       virtual void _001OnTimer(::timer * ptimer);
+
+      virtual void on_reset_focus_start_tick();
 
    };
 

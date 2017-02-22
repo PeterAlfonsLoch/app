@@ -4,6 +4,8 @@
 namespace user
 {
 
+   class menu_item_ptra;
+   class menu_item;
 
    class CLASS_DECL_CORE menu_button_cmd_ui : public cmd_ui
    {

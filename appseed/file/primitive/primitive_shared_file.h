@@ -8,7 +8,7 @@ namespace primitive
 {
 
    class CLASS_DECL_CA2_FILE shared_file :
-      public ::file::memory_buffer
+      public ::memory_file
    {
    public:
 

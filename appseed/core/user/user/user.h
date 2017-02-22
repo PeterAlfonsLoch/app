@@ -1,6 +1,7 @@
 #pragma once
 
-#include "axis/user/user.h"
+#include "base/user/core_user.h"
+#include "base/user/common_user.h"
 #include "core/user/user/user_margin.h"
 
 #ifdef LINUX
@@ -89,9 +90,6 @@ protected:
    BaseMenuCentral * m_pmenucentral;
 };
 
-
-#include "user_front_end_schema.h"
-#include "user_front_end.h"
 
 
 #include "user_list_header.h"
@@ -389,8 +387,39 @@ namespace user
 
 #define new AURA_NEW
 
+#include "core/user/user/user_form.h"
+#include "core/user/user/user_form_mesh.h"
 
-//#include "core/core/core/core_timer.h"
+#include "math/calculator/calculator_plain_edit_view.h"
 
+namespace core
+{
+
+   class CLASS_DECL_CORE session_docs :
+      virtual public ::object
+   {
+   public:
+
+
+      ::user::single_document_template *                 m_ptemplate_bergedge;
+      ::user::single_document_template *                 m_ptemplate_platform;
+      ::user::single_document_template *                 m_ptemplate_nature;
+      ::user::single_document_template *                 m_ptemplate_html;
+      sp(::user::document)                               m_pbergedgedocument;
+      sp(::user::document)                               m_pplatformdocument;
+      sp(::user::document)                               m_pnaturedocument;
+
+
+      session_docs();
+
+      virtual ~session_docs();
+
+      void close_all_documents();
+
+   };
+
+} // namespace core
 
 #include "core/user/user/user.inl"
+
+

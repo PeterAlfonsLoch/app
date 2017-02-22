@@ -12,7 +12,7 @@ public:
 
    ::aura::library                           m_library;
    ::file::path                              m_pathScript;
-   file::plain_text_stream_memory_buffer     m_memfileError;
+   memory_file                               m_memfileError;
    string                                    m_strError;
    file_time                                 m_filetime;
 

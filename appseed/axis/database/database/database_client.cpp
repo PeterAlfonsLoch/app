@@ -432,19 +432,26 @@ namespace database
 namespace file
 {
 
+   
    data_trigger_ostream::data_trigger_ostream(data_trigger_ostream && d):
-      byte_stream_memory_buffer((byte_stream_memory_buffer &&)d)
+      byte_stream(::move(d)),
+      m_file(::move(d.m_file)),
+      m_id(::move(d.m_id))
    {
+      
+      m_spfile = &m_file;
       m_pclient = d.m_pclient;
-      m_id = d.m_id;
       d.m_pclient = NULL;
+
    }
+
 
    data_trigger_ostream::data_trigger_ostream(::database::client * pclient,class ::database::id id) :
       ::object(pclient->get_app()),
-      byte_stream_memory_buffer(pclient->get_app())
+      m_file(pclient->get_app())
    {
 
+      m_spfile = &m_file;
       m_id = id;
       m_pclient = pclient;
 
@@ -462,16 +469,18 @@ namespace file
 
    }
 
-   data_trigger_istream::data_trigger_istream(data_trigger_istream && d):
-      byte_stream_memory_buffer((byte_stream_memory_buffer &&) d)
+   data_trigger_istream::data_trigger_istream(data_trigger_istream && d) :
+      byte_stream(::move(d)),
+      m_file(::move(d.m_file))
    {
+      m_spfile = &m_file;
    }
 
    data_trigger_istream::data_trigger_istream(::database::client * pclient,class ::database::id id) :
       ::object(pclient->get_app()),
-      byte_stream_memory_buffer(pclient->get_app())
+      m_file(pclient->get_app())
    {
-
+      m_spfile = &m_file;
       pclient->data_get(id,(::file::ostream &)*this);
       seek_to_begin();
    }

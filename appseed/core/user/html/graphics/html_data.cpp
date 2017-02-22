@@ -577,7 +577,7 @@ restart:
                strPathName = varFile.propset()["url"];
             
             }
-            else if(varFile.cast < ::file::binary_buffer > () != NULL)
+            else if(varFile.cast < ::file::binary_file > () != NULL)
             {
          
                strPathName = System.datetime().international().get_gmt_date_time() + ".html";

@@ -423,7 +423,7 @@ restart:
             {
                if (!exists(strFilePath, papp))
                   return "";
-               ::file::memory_buffer memfile(papp, &storage);
+               ::memory_file memfile(papp, &storage);
                zip::InFile infile(papp);
                if (!infile.unzip_open(strFilePath, 0))
                   return "";
@@ -534,7 +534,7 @@ restart:
             if (strPath.is_empty())
             {
 
-               TRACE("::file::binary_buffer::system::as_memory varFile is a empty file name!!");
+               TRACE("::file::binary_file::system::as_memory varFile is a empty file name!!");
 
                return;
 
@@ -1832,10 +1832,10 @@ restart:
 
          }
 
-         if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_buffer >() != NULL)
+         if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_file >() != NULL)
          {
 
-            spfile = varFile.propset()["file"].cast < ::file::binary_buffer >();
+            spfile = varFile.propset()["file"].cast < ::file::binary_file >();
 
          }
          else if(::str::find_file_extension("zip:",strPath) >= 0)
@@ -1901,7 +1901,7 @@ restart:
 
                   sl.unlock();
 
-                  spfile = App(papp).alloc(System.type_info < ::file::binary_buffer >());
+                  spfile = App(papp).alloc(System.type_info < ::file::binary_file >());
 
                   try
                   {
@@ -2079,7 +2079,7 @@ restart:
 
                strPath = System.url().get_object("matter://" + strPath).Mid(1);
 
-               spfile = App(papp).alloc(System.type_info < ::file::binary_buffer >());
+               spfile = App(papp).alloc(System.type_info < ::file::binary_file >());
 
                cres = spfile->open(App(papp).dir().matter(strPath),nOpenFlags);
 

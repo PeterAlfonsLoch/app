@@ -6,5 +6,5 @@
 
 CLASS_DECL_AXIS int32_t bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed);
 
-#include "compress_compress.h"
+#include "compress_department.h"
 

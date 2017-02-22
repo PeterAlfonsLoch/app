@@ -7,8 +7,8 @@ class CLASS_DECL_AXIS ifs_file :
 public:
 
 
-   ::file::memory_buffer                        m_httpfile;
-   ::file::memory_buffer                        m_memfile;
+   ::memory_file                        m_httpfile;
+   ::memory_file                        m_memfile;
    var                                          m_varFile;
 
 

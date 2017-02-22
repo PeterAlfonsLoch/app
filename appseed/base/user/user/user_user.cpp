@@ -11,6 +11,8 @@ namespace user
       ::aura::department(papp)
    {
 
+      m_pufeschema = NULL;
+      m_pufe = NULL;
 
    }
 
@@ -23,6 +25,11 @@ namespace user
 
    bool user::initialize1()
    {
+
+      m_pufeschema = new ::user::front_end_schema(get_app());
+      m_pufe = new ::user::front_end();
+
+
 
       System.factory().creatable_small < ::user::document >();
       System.factory().creatable_small < ::user::application_as_proxy_document >();
@@ -129,6 +136,12 @@ namespace user
    bool user::finalize()
    {
       
+
+      ::aura::del(m_pufeschema);
+
+      ::aura::del(m_pufe);
+
+
       try
       {
 
@@ -220,6 +233,45 @@ namespace user
    }
 
 #endif
+
+   ::user::front_end_schema * GetUfeSchema(::aura::application * papp)
+   {
+
+      return Sess(papp).user()->GetUfeSchema();
+
+   }
+
+
+   ::user::front_end * GetUfe(::aura::application * papp)
+   {
+
+      return Sess(papp).user()->GetUfe();
+
+   }
+
+
+   ::user::front_end_schema * user::GetUfeSchema()
+   {
+
+      return m_pufeschema;
+
+   }
+
+
+   ::user::front_end * user::GetUfe()
+   {
+
+      return m_pufe;
+
+   }
+
+   sp(type) user::controltype_to_typeinfo(::user::e_control_type e_type)
+   {
+
+      return sp(type)();
+
+   }
+
 
 
 } //namespace user

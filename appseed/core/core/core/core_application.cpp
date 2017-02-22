@@ -192,8 +192,11 @@ namespace core
 
    bool application::os_native_bergedge_start()
    {
+      
       return true;
+
    }
+
 
    bool application::process_initialize()
    {
@@ -209,9 +212,8 @@ namespace core
 
       }
 
-      m_puserfs = create_userfs();
 
-      if (m_puserfs == NULL)
+      if(!process_initialize_userfs())
       {
 
          thiserr << "end failure (2)";
@@ -219,10 +221,6 @@ namespace core
          return false;
 
       }
-
-      m_spobjectUserFs = m_puserfs;
-
-      m_puserfs->construct(this);
 
       thisinfo << "end";
 
@@ -236,16 +234,26 @@ namespace core
    bool application::initialize1()
    {
 
+      thisstart;
+
       if (!::base::application::initialize1())
+      {
+
+         thiserr << "end failure (1)";
+
          return false;
 
-      m_pwndfrm = canew(::user::wndfrm::wndfrm(this));
+      }
 
-      wndfrm().construct(this);
 
-      if (!wndfrm().initialize())
+      if (!initialize1_wndfrm())
+      {
+
+         thiserr << "end failure (2)";
+
          return false;
 
+      }
 
 
       m_dwAlive = ::get_tick_count();
@@ -258,10 +266,14 @@ namespace core
       }
 
 
+      if (!initialize1_userfs())
+      {
 
+         thiserr << "end failure (3)";
 
-      if (!m_puserfs->initialize())
          return false;
+
+      }
 
 
       if (!is_system() && !is_session() && !is_installing() && !is_uninstalling())
@@ -1662,19 +1674,6 @@ namespace core
       //document_manager().on_file_open();
    }
 
-   // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
-   // if ptemplate==NULL => all document templates
-   {
-      if (Session.m_pfilemanager != NULL)
-      {
-         return Session.m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
-      }
-      ENSURE(m_pdocmanager != NULL);
-      /*      return document_manager().do_prompt_file_name(fileName, nIDSTitle, lFlags,
-      bOpenFileDialog, ptemplate);*/
-      return FALSE;
-   }
 
    // This is core API library.
    //
@@ -1900,125 +1899,6 @@ namespace core
       return TRUE;
    }
 
-   void application::close(e_end eend)
-   {
-
-      if (m_pdocmanager != NULL)
-      {
-
-         document_manager().close_all_documents(eend != end_close);
-
-      }
-
-      if (eend == end_close)
-      {
-
-         return;
-
-      }
-
-      try
-      {
-
-         m_pdocmanager.release();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      if (m_pcoresession->m_pdocmanager != NULL)
-      {
-
-         m_pcoresession->document_manager().close_all_documents(true);
-
-         m_pcoresession->m_pdocmanager.release();
-
-      }
-
-      if (m_pcoresystem->m_pdocmanager != NULL)
-      {
-
-         m_pcoresystem->document_manager().close_all_documents(true);
-
-         m_pcoresystem->m_pdocmanager.release();
-
-      }
-
-
-#if !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID) && !defined(APPLEOS)
-
-      try
-      {
-         if (m_pcoresystem != NULL && m_pcoresystem->m_psystemwindow != NULL)
-         {
-            m_pcoresystem->m_psystemwindow->DestroyWindow();
-
-         }
-
-      }
-      catch (...)
-      {
-
-         m_iReturnCode = -2;
-
-      }
-
-      if (eend == end_app)
-      {
-
-         post_quit();
-
-         return;
-
-      }
-
-      if (eend == end_session)
-      {
-
-         Session.post_quit();
-
-         return;
-
-      }
-
-      try
-      {
-
-         if (m_pcoresystem != NULL)
-         {
-            ::aura::del(m_pcoresystem->m_psystemwindow);
-
-         }
-
-      }
-      catch (...)
-      {
-
-         m_iReturnCode = -2;
-
-      }
-
-#endif
-
-      try
-      {
-
-         if (m_paurasystem != NULL)
-         {
-
-            m_paurasystem->post_quit();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
 
 
    bool application::OnDDECommand(LPTSTR lpszCommand)
@@ -2874,9 +2754,11 @@ namespace core
       //>>>>>>> .r7309
       m_dwAlive = ::get_tick_count();
 
-      if (is_system())
+      if (!initialize_userex())
       {
-         System.factory().creatable_small < ::userex::keyboard_layout >();
+         
+         return false;
+
       }
 
       //      if(!::cubebase::application::initialize())
@@ -2984,7 +2866,7 @@ namespace core
    sp(::user::interaction) application::uie_from_point(point pt)
    {
 
-      user::interaction_spa wnda = m_uiptraFrame;
+      user::interaction_spa wnda = *m_puiptraFrame;
 
       user::oswindow_array oswindowa;
 
@@ -3119,27 +3001,8 @@ namespace core
    }
 
 
-   ::user::wndfrm::wndfrm          &application::wndfrm()
-   {
-
-      return *m_pwndfrm.cast < ::user::wndfrm::wndfrm>();
-
-   }
 
 
-   ::user::document_manager          &application::document_manager()
-   {
-
-      return *m_pdocmanager.cast < ::user::document_manager >();
-
-   }
-
-   string application::message_box(const char * pszMatter, property_set & propertyset)
-   {
-      ::userex::message_box box(this);
-      box.show(pszMatter, &propertyset);
-      return box.m_strResponse;
-   }
 
 
    int32_t application::track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie)
@@ -3434,26 +3297,6 @@ namespace core
 
 
 
-   ::userex::userex * application::create_userex()
-   {
-
-      return canew(::userex::userex(this));
-
-   }
-
-
-   ::userfs::userfs * application::create_userfs()
-   {
-
-      return canew(::userfs::userfs(this));
-
-   }
-
-
-
-
-
-
 
 
 
@@ -3520,91 +3363,13 @@ namespace core
    }
 
 
-   int32_t application::simple_message_box(::user::primitive * puiOwner, const char * pszMessage, UINT fuStyle)
-   {
 
-      ::output_debug_string("\n\napp_simple_message_box: " + string(pszMessage) + "\n\n");
-
-      if (&Session == NULL || Session.userex() == NULL)
-         return ::base::application::simple_message_box(puiOwner, pszMessage, fuStyle);
-
-      return Session.userex()->simple_message_box(puiOwner, pszMessage, fuStyle);
-
-   }
-
-
-   int32_t application::simple_message_box_timeout(::user::primitive * pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
-   {
-
-      if (Session.userex() == NULL)
-         return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
-
-      try
-      {
-
-         return Session.userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle, this);
-
-      }
-      catch (...)
-      {
-         
-      }
-
-      return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
-
-   }
-
-
-   void application::add_document_template(::user::impact_system * ptemplate)
-   {
-
-      if (ptemplate == NULL)
-      {
-
-         throw invalid_argument_exception(this, "impact system template should be valid");
-
-         return;
-
-      }
-
-      if (m_pdocmanager == NULL)
-      {
-
-         m_pdocmanager = canew(::user::document_manager(get_app()));
-
-      }
-
-      //m_pdocmanager->add_ref();
-
-      document_manager().add_document_template(ptemplate);
-
-   }
-
-   void application::remove_document_template(::user::impact_system * pimpactsystem)
-   {
-
-      if (m_pdocmanager == NULL)
-         return;
-
-      document_manager().remove_document_template(pimpactsystem);
-
-   }
-
-
-
-   ::user::document * application::open_document_file(const char * lpszFileName)
-   {
-      ASSERT(Application.m_pdocmanager != NULL);
-      sp(::create) cc(allocer());
-      cc->m_spCommandLine->m_varFile = lpszFileName;
-      return (Application.document_manager().open_document_file(cc));
-   }
 
 
    int32_t application::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
    {
 
-      ::user::interaction_spa wnda = m_uiptraFrame;
+      ::user::interaction_spa wnda = *m_puiptraFrame;
 
       int32_t iCount = 0;
       for (int32_t i = 0; i < wnda.get_size(); i++)
@@ -3627,7 +3392,7 @@ namespace core
    int32_t application::GetVisibleFrameCount()
    {
 
-      ::user::interaction_spa wnda = m_uiptraFrame;
+      ::user::interaction_spa wnda = *m_puiptraFrame;
 
       int32_t iCount = 0;
       for (int32_t i = 0; i < wnda.get_size(); i++)
@@ -3658,72 +3423,6 @@ namespace core
       {
          Session.set_keyboard_layout(NULL, ::action::source::database());
       }
-
-   }
-
-   sp(type) application::user_default_controltype_to_typeinfo(::user::e_control_type e_type)
-   {
-
-      return Sess(this).userex()->controltype_to_typeinfo(e_type);
-
-
-   }
-
-   void application::set_form_impact_system(::user::impact_system * pdoctemplate, ::user::impact_system * pdoctemplateChild, ::user::impact_system * pdoctemplatePlaceHolder)
-   {
-      Session.userex()->m_ptemplateForm = pdoctemplate;
-      add_document_template(pdoctemplate);
-      Session.userex()->m_ptemplateChildForm = pdoctemplateChild;
-      add_document_template(pdoctemplateChild);
-      Session.userex()->m_ptemplatePlaceHolder = pdoctemplatePlaceHolder;
-      add_document_template(pdoctemplatePlaceHolder);
-
-   }
-
-
-   sp(::user::document)   application::create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
-   {
-
-      return Sess(this).userex()->create_form(this, pcallback, pwndParent, var);
-
-   }
-
-
-   sp(::user::document)   application::create_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
-   {
-
-      return Sess(this).userex()->create_form(this, pview, pcallback, pwndParent, var);
-
-   }
-
-
-   sp(::user::document)   application::create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
-   {
-
-      return Sess(this).userex()->create_child_form(this, pcallback, pwndParent, var);
-
-
-   }
-
-   sp(::user::document)  application::create_child_form(sp(::type) pt, sp(::user::interaction) pwndParent, var var)
-   {
-
-      return Sess(this).userex()->create_child_form(this, pt, pwndParent, var);
-
-   }
-
-   sp(::user::document)   application::create_child_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
-   {
-
-      return Sess(this).userex()->create_child_form(this, pview, pcallback, pwndParent, var);
-
-   }
-
-
-   ::user::document * application::hold(sp(::user::interaction) pui)
-   {
-
-      return Sess(this).userex()->hold(pui);
 
    }
 
@@ -3765,71 +3464,6 @@ namespace core
    }
 
 
-   string application::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
-   {
-
-      string strRet;
-
-      manual_reset_event ev(this);
-
-      ::fork(this, [&]()
-      {
-
-         string str = ::fontopus::get_cred(this, strUsername, strPassword, strToken);
-
-         if (str == "ok" && strUsername.has_char() && strPassword.has_char())
-         {
-
-            strRet = "ok";
-
-            goto finished;
-
-         }
-
-         if (!bInteractive)
-         {
-
-            str = "failed";
-
-            goto finished;
-
-         }
-
-         if (m_pmainpane != NULL && m_pmainpane == NULL)
-         {
-
-            try
-            {
-
-               strRet = m_pmainpane->get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
-
-               goto finished;
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-#if !defined(LINUX) && !defined(APPLEOS) && !defined(VSNORD)
-         attach_thread_input_to_main_thread(false);
-#endif
-
-         strRet = ::base::application::get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
-
-      finished:
-
-         ev.SetEvent();
-
-      });
-
-      ev.wait();
-
-      return strRet;
-
-   }
 
    string application::get_cred(string & strUsername, string & strPassword, string strToken)
    {

@@ -8,6 +8,8 @@ namespace core
 
    class view;
 
+   class session_docs;
+
 
    class CLASS_DECL_CORE session :
       virtual public ::core::application,
@@ -43,13 +45,7 @@ namespace core
 
       ::filemanager::filemanager *                       m_pfilemanager;
 
-      ::user::single_document_template *                 m_ptemplate_bergedge;
-      ::user::single_document_template *                 m_ptemplate_platform;
-      ::user::single_document_template *                 m_ptemplate_nature;
-      ::user::single_document_template *                 m_ptemplate_html;
-      sp(::user::document)                               m_pbergedgedocument;
-      sp(::user::document)                               m_pplatformdocument;
-      sp(::user::document)                               m_pnaturedocument;
+      session_docs *                                     m_pdocs;
       //nature::database *                                 m_pdatabase;
 
 
@@ -80,7 +76,8 @@ namespace core
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
-
+      virtual bool process_initialize_userex();
+      virtual bool initialize1_userex();
       virtual bool initialize2();
       bool initialize_application() override;
       bool on_initial_update();
@@ -96,6 +93,9 @@ namespace core
 
       //virtual application * get_app() const;
 
+
+      virtual ::user::document * userex_open_document_file(sp(::create) pcreate);
+
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
       void load_string_table();
@@ -109,6 +109,7 @@ namespace core
       virtual void on_app_request_bergedge_callback(::aura::application * papp);
 
 
+      virtual void on_frame_window_drop_files(::user::interaction * pui, ::file::patha & patha);
 
 
       // semantics defined by application

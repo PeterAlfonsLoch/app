@@ -167,9 +167,9 @@ namespace aura
       m_pfactory = canew(class base_factory(this));
       m_pfactory->set_app(this);
 
-      m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
+      m_pfactory->creatable_large < ::file::simple_binary_file >(type_info < ::file::binary_file >());
       m_pfactory->creatable_large < ::file::string_file >();
-      m_pfactory->creatable_large < ::file::memory_buffer >();
+      m_pfactory->creatable_large < ::memory_file >();
       m_pfactory->creatable_large < ::int64_array >();
 
       factory().default_cloneable_large < stringa >();

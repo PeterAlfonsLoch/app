@@ -39,7 +39,91 @@ namespace userfs
    }
 
 
+
 } // namespace core
+
+
+
+
+
+namespace core
+{
+
+   ::userfs::userfs * application::create_userfs()
+   {
+
+      ::userfs::userfs * puserfs = canew(::userfs::userfs(this));
+
+      if (puserfs == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      return puserfs;
+
+   }
+
+
+   bool application::process_initialize_userfs()
+   {
+
+      thisstart;
+
+      m_puserfs = create_userfs();
+
+      if (m_puserfs == NULL)
+      {
+
+         thiserr << "end failure (1)";
+
+         return false;
+
+      }
+
+      m_spobjectUserFs = m_puserfs;
+
+      m_puserfs->construct(this);
+
+      thisinfo << "end";
+
+      return true;
+
+   }
+
+
+   bool application::initialize1_userfs()
+   {
+
+      thisstart;
+
+      if (!m_puserfs->initialize())
+      {
+
+         thiserr << "err failure (1)";
+
+         return false;
+
+      }
+
+      thisend;
+
+
+      return true;
+
+   }
+
+
+
+
+
+
+
+
+} // namespace userfs
+
+
 
 
 

@@ -20,7 +20,7 @@ public:
    sp(script_manager)                        m_pmanager;
    string                                    m_strName;
    mutex                                     m_mutex;
-   file::plain_text_stream_memory_buffer     m_memfileError;
+   memory_file                               m_memfileError;
    string                                    m_strError;
 
    spa(script_instance)                      m_scriptinstanceptra;

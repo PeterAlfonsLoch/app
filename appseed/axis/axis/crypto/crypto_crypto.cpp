@@ -1204,7 +1204,7 @@ namespace crypto
 
       BCRYPT_RSAKEY_BLOB blob;
 
-      ::file::memory_buffer memfile(get_app());
+      ::memory_file memfile(get_app());
 
       //blob.Magic = 0x31415352; // BCRYPT_RSAPUBLIC_MAGIC;
       blob.Magic = 0x31415352; // BCRYPT_RSAPUBLIC_MAGIC;

@@ -1,5 +1,6 @@
 #pragma once
 
+class Ex1FormInterfaceComboBox;
 
 namespace user
 {

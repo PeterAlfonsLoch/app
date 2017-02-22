@@ -134,7 +134,7 @@ imaging::~imaging()
 
 FIBITMAP * imaging::LoadImageFile(var varFile,::aura::application * papp)
 {
-   ::file::memory_buffer memfile(get_app());
+   ::memory_file memfile(get_app());
    System.file().as_memory(varFile,*memfile.get_memory(),papp);
    if(memfile.get_size() <= 0)
       return NULL;
@@ -725,7 +725,7 @@ const char * lpszId)
 {
 ::exception::throw_not_implemented(get_app());
 /*
-::file::memory_buffer file(get_app());
+::memory_file file(get_app());
 
 ::core::Resource resource;
 

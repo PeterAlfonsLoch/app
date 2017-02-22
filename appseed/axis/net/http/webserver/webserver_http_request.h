@@ -16,7 +16,7 @@ namespace http
       string                           m_strQueryString;
       string                           m_strHttpHost;
       id                               m_idHttpMethod;
-      file::memory_buffer              m_memfileBody;
+      memory_file              m_memfileBody;
       ::http::ostream            m_ostream;
       string m_null;
       http::form m_form;

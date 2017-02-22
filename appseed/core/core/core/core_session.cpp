@@ -6,6 +6,10 @@
 namespace core
 {
 
+   session_docs * create_session_docs();
+
+   void destroy_session_docs(session_docs * pdocs);
+
 
    session::session(::aura::application * papp):
       object(papp),
@@ -14,6 +18,8 @@ namespace core
       ::base::session(papp),
       ::thread(papp)
    {
+
+      m_pdocs = create_session_docs();
 
       m_paurasystem                       = papp->m_paurasystem;
 
@@ -39,12 +45,6 @@ namespace core
 
       m_pcoresession                      = this;
 
-      m_pnaturedocument                   = NULL;
-      m_pplatformdocument                 = NULL;
-      m_pbergedgedocument                 = NULL;
-      m_pnaturedocument                   = NULL;
-      m_pplatformdocument                 = NULL;
-      m_pbergedgedocument                 = NULL;
       m_bLicense				               = false;
 
       m_strAppName                        = "bergedge";
@@ -57,20 +57,8 @@ namespace core
    session::~platform_parent
    {
 
-      if(m_pnaturedocument != NULL)
-      {
-         m_pnaturedocument.cast < ::user::document> ()->on_close_document();
-      }
+      destroy_session_docs(m_pdocs);
 
-      if(m_pplatformdocument != NULL)
-      {
-         m_pplatformdocument.cast < ::user::document>()->on_close_document();
-      }
-
-      if(m_pbergedgedocument != NULL)
-      {
-         m_pbergedgedocument.cast < ::user::document>()->on_close_document();
-      }
 
    }
 
@@ -107,15 +95,10 @@ namespace core
       if(!::base::session::process_initialize())
          return false;
 
-      if (m_puserex == NULL)
+      if (!process_initialize_userex())
       {
 
-         m_puserex = create_userex();
-
-         if (m_puserex == NULL)
-            return false;
-
-         m_pobjectUserex = m_puserex;
+         return false;
 
       }
 
@@ -135,14 +118,12 @@ namespace core
       if(!::base::session::initialize1())
          return false;
 
-      if(!m_puserex->initialize())
+      if (!initialize1_userex())
+      {
+
          return false;
 
-      if(!m_puserex->initialize1())
-         return false;
-
-      if(!m_puserex->initialize2())
-         return false;
+      }
 
       return true;
 
@@ -177,30 +158,6 @@ namespace core
 
    }
 
-
-   bool session::on_initial_update()
-   {
-
-      if (m_pfilemanager == NULL)
-      {
-
-         m_pfilemanager = new ::filemanager::filemanager(this);
-
-         m_pfilemanager->construct(this);
-
-         if (!m_pfilemanager->initialize())
-         {
-            return false;
-
-         }
-
-         filemanager().std().m_strLevelUp = "levelup";
-
-      }
-
-      return true;
-
-   }
 
 
    bool session::initialize_application()
@@ -286,81 +243,6 @@ namespace core
    }
 
 
-   int32_t session::exit_application()
-   {
-
-      try
-      {
-
-         ::base::session::exit_application();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         ::core::application::exit_application();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         if (m_pfilemanager != NULL)
-         {
-
-            m_pfilemanager->finalize();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         if (m_pfilemanager != NULL)
-         {
-
-            delete m_pfilemanager;
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         m_puserex->finalize();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      m_puserex = NULL;
-
-      m_pobjectUserex.release();
-
-      return 0;
-
-   }
 
 
    bool session::bergedge_start()
@@ -531,7 +413,7 @@ namespace core
    //      if(eexclusive == ExclusiveInstanceLocalId)
    //      {
    //         /*
-   //         ::file::memory_buffer file(get_app());
+   //         ::memory_file file(get_app());
    //         file.from_string(command()->m_varTopicFile);
    //         COPYDATASTRUCT data;
    //         data.dwData = 1984;
@@ -711,14 +593,7 @@ namespace core
 
 
 
-   void session::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
-   {
 
-      UNREFERENCED_PARAMETER(pdata);
-
-      m_ptemplate_html->open_document_file(itema[0]->m_filepath);
-
-   }
 
 
    bool session::open_file(::filemanager::data * pdata, ::fs::item_array & itema)
@@ -738,92 +613,10 @@ namespace core
    }
 
 
-   void session::initialize_bergedge_application_interface()
-   {
-//      int32_t iCount = 32; // todo: get from bergedge profile
-      m_pnaturedocument = NULL;
-   }
 
 
 
-   void session::on_app_request_bergedge_callback(::aura::application * papp)
-   {
-      if(&App(papp) != NULL)
-      {
 
-         Session.m_pappCurrent = papp;
-
-      }
-
-      if(Session.m_bShowPlatform)
-      {
-         //sp(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
-         //if(pframeApp != NULL)
-         //{
-         //   pframeApp->WfiFullScreen();
-         //}
-         //sp(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
-         //if(pframe != NULL)
-         //{
-         //   pframe->ShowWindow(SW_SHOW);
-         //}
-      }
-      else
-      {
-         //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
-         //{
-         //   sp(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
-         //   if(pframe != NULL)
-         //   {
-         //      pframe->ShowWindow(SW_SHOW);
-         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != NULL)
-         //      {
-         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout();
-         //      }
-         //      else
-         //      {
-         //         pframe->InitialFramePosition();
-         //      }
-         //   }
-         //}
-      }
-
-      if(Session.m_pappCurrent != NULL && Session.m_pappCurrent->m_pbasesession->m_pfontopus->m_puser != NULL)
-      {
-         try
-         {
-            get_view()->GetParentFrame()->SetWindowText(Session.m_pappCurrent->m_pbasesession->m_pfontopus->m_puser->m_strLogin);
-         }
-         catch(...)
-         {
-         }
-      }
-
-   }
-
-
-   sp(::user::document) session::get_document()
-   {
-      return m_pbergedgedocument;
-   }
-
-   sp(::user::impact) session::get_view()
-   {
-      if(get_document() == NULL)
-         return NULL;
-//      return get_document()->get_bergedge_view();
-      return NULL;
-   }
-
-   sp(::user::document) session::get_platform()
-   {
-      return m_pplatformdocument;
-   }
-
-   sp(::user::document) session::get_nature()
-   {
-      return m_pnaturedocument;
-   }
 
 
    bool session::InitializeLocalDataCentral()
@@ -847,17 +640,13 @@ namespace core
 
    }
 
-   string session::filemanager_get_initial_browse_path()
-   {
-      return filemanager().get_initial_browse_path();
-   }
 
    bool session::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    {
       if(eexclusive == ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
-         ::file::memory_buffer file(get_app());
+         ::memory_file file(get_app());
          file.from_string(command()->m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;
@@ -974,102 +763,6 @@ namespace core
       }
    }
 
-   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
-   {
-
-
-      sp(::user::interaction) puiParent = NULL;
-
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >() != NULL)
-         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >();
-
-      if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
-      {
-         puiParent = pcreatecontext->m_puiParent;
-      }
-
-      if(puiParent == NULL && pcreatecontext->m_spCommandLine->m_pbiasCreate != NULL)
-      {
-         puiParent = pcreatecontext->m_spCommandLine->m_pbiasCreate->m_puiParent;
-      }
-
-      if(puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
-      {
-         puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
-      }
-
-
-      /*      if(pui == NULL && m_puiInitialPlaceHolderContainer != NULL)
-      {
-      pui = m_puiInitialPlaceHolderContainer;
-      }*/
-
-      /*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
-      {
-      pui = Session.get_document()->get_bergedge_view();
-      }
-
-      return pui;
-
-      }*/
-
-      if( pcreatecontext->m_bClientOnly ||
-         Application.directrix()->m_varTopicQuery.has_property("client_only") ||
-         pcreatecontext->m_bOuterPopupAlertLike)
-      {
-         return puiParent;
-      }
-
-
-      //bool bCreateBergedge = false;
-
-      //if(bCreateBergedge)
-      //{
-
-      //   if(!create_bergedge(pcreatecontext))
-      //   {
-      //      return NULL;
-
-
-      //   }
-
-      //}
-
-
-
-
-      ::core::application & app = App(pinteraction->get_app());
-
-      string strAppName = app.m_strAppName;
-
-      if(strAppName != "bergedge")
-      {
-
-         if(get_document() != NULL)
-         {
-
-            //if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-            //{
-
-            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
-
-            //   puiParent = get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName));
-
-            //}
-            //else
-            //{
-
-            //   puiParent = get_document()->get_typed_view < ::bergedge::view >();
-
-            //}
-
-         }
-
-      }
-
-      return puiParent;
-
-   }
 
    //::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcreatecontext)
    //{
@@ -1111,44 +804,7 @@ namespace core
 
    }
 
-   ::count session::get_monitor_count()
-   {
 
-      if(get_document() != NULL && get_view() != NULL)
-      {
-         
-         return 1;
-
-      }
-      else
-      {
-
-         return ::base::session::get_monitor_count();
-
-      }
-
-   }
-
-
-   bool session::get_monitor_rect(index iMonitor, LPRECT lprect)
-   {
-      
-      if(get_document() != NULL && get_view() != NULL)
-      {
-         
-         get_view()->GetWindowRect(lprect);
-
-         return true;
-
-      }
-      else
-      {
-
-         return ::base::session::get_monitor_rect(iMonitor, lprect);
-
-      }
-
-   }
 
 
 

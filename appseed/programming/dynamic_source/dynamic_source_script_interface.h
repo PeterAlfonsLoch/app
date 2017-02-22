@@ -25,7 +25,7 @@ public:
    script_manager *                    m_pmanager;
 
 
-   sp(::file::memory_buffer)           m_spmemoryfileFallback;
+   sp(::memory_file)           m_spmemoryfileFallback;
    ::file::ostream               m_ostreamFallback;
 
    script *                            m_pscript;

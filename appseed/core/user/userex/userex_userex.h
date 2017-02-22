@@ -25,8 +25,6 @@ namespace userex
       sp(filemanager::_shell::ImageSet)         m_pshellimageset;
 
 
-      ::user::front_end_schema *                m_pufeschema;
-      ::user::front_end *                       m_pufe;
       stringa                                   m_straEscape;
 
       sp(::type)                                m_typeDefaultMeshData;
@@ -61,15 +59,9 @@ namespace userex
       class keyboard & keyboard();
 
 
-      virtual sp(type) controltype_to_typeinfo(::user::e_control_type type);
-
-
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual void AddToRecentFileList(const char * lpszPathName);
-
-      ::user::front_end_schema * GetUfeSchema();
-      ::user::front_end * GetUfe();
 
       virtual bool finalize();
 
@@ -109,8 +101,8 @@ namespace userex
    };
 
 
-   CLASS_DECL_CORE::user::front_end_schema * GetUfeSchema(::aura::application * papp);
-   CLASS_DECL_CORE::user::front_end * GetUfe(::aura::application * papp);
+   // CLASS_DECL_CORE::user::front_end_schema * GetUfeSchema(::aura::application * papp);
+   ///CLASS_DECL_CORE::user::front_end * GetUfe(::aura::application * papp);
 
 
 } // namespace core

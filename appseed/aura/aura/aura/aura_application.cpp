@@ -4622,7 +4622,7 @@ namespace aura
 
          }
 
-         ::file::buffered_buffer buffer(this,file);
+         ::file::buffered_file buffer(this,file);
 
          ::file::byte_istream is(&buffer);
 
@@ -4663,7 +4663,7 @@ namespace aura
 
          }
 
-         ::file::buffered_buffer buffer(this, file);
+         ::file::buffered_file buffer(this, file);
 
          ::file::byte_ostream os(&buffer);
 

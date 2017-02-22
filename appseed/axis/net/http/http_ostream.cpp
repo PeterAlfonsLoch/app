@@ -43,7 +43,7 @@ namespace http
    }
 
 
-   ::file::ostream & ostream::operator << (::file::memory_buffer & memfile)
+   ::file::ostream & ostream::operator << (::memory_file & memfile)
    {
 
       write(memfile.get_data(), (memory_size_t) memfile.get_length());

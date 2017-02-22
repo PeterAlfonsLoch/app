@@ -11,7 +11,7 @@ namespace http
 
 
       //Utility::ncmap<string>         m_cookie;
-      file::memory_buffer              m_memfileBody;
+      memory_file              m_memfileBody;
       ::http::ostream                  m_ostream;
       string                           m_strFile;
 

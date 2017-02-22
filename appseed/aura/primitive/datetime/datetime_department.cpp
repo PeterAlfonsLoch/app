@@ -670,9 +670,9 @@ namespace datetime
 
       ::datetime::zonetime timeSunset(v["sys"]["sunset"].int64(), iTimeZone);
 
-      iRise = timeSunrise.GetZoneTimeOfDay();
+      iRise = (int) timeSunrise.GetZoneTimeOfDay();
 
-      iSet = timeSunset.GetZoneTimeOfDay();
+      iSet = (int) timeSunset.GetZoneTimeOfDay();
 
       string strSunrise(timeSunrise.FormatZone(INTERNATIONAL_DATE_TIME_FORMAT));
 
@@ -753,7 +753,7 @@ namespace datetime
 
          }
 
-         if (m_cityTimeZone.Lookup(pcity->m_iId, timezone) && (now - timezone.m_time) < spanTimeout)
+         if (m_cityTimeZone.Lookup((int_ptr)pcity->m_iId, timezone) && (now - timezone.m_time) < spanTimeout)
          {
 
             dZone = timezone.m_dZone;
@@ -831,7 +831,7 @@ namespace datetime
 
          synch_lock sl(&m);
 
-         m_cityTimeZone[pcity->m_iId] = timezone;
+         m_cityTimeZone[(int_ptr)pcity->m_iId] = timezone;
 
          ::file::path path = ::dir::public_system() / "datetime_departament_cityTimeZone.bin";
 
@@ -878,11 +878,11 @@ namespace datetime
       }
 
 
-      int64_t iId;
+    //  int64_t iId;
 
-      double dLat;
+//      double dLat;
 
-      double dLon;
+  //    double dLon;
 
       auto pcity = System.openweather_find_city(strQ);
 
@@ -1267,7 +1267,7 @@ namespace datetime
 
          string strUTCOffset;
 
-         strUTCOffset = "UTC " + ::str::signed_int(dUTCOffset);
+         strUTCOffset = "UTC " + ::str::signed_int((int) dUTCOffset);
 
          double dMod = fmod(fabs(dUTCOffset), 1.0);
 

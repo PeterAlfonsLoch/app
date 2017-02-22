@@ -31,6 +31,7 @@ namespace user
          string      m_strMessage;
       };
 
+      DWORD                         m_dwLastDraw;
       array <error> m_errora;
       //WPARAM                        m_dwLastKeyWparam;
       //LPARAM                        m_dwLastKeyLparam;

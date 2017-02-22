@@ -13,7 +13,7 @@ namespace macos
    // File - raw unbuffered disk file I/O
 
    class CLASS_DECL_AURA file :
-      virtual public ::file::binary_buffer
+      virtual public ::file::binary_file
    {
    public:
 

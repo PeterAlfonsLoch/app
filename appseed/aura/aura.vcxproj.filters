@@ -701,25 +701,13 @@
     <ClInclude Include="filesystem\file\file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_buffered_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_byte_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_stream_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_c.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_circular_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_composite.h">
@@ -731,9 +719,6 @@
     <ClInclude Include="filesystem\file\file_exception.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_opened.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -743,12 +728,6 @@
     <ClInclude Include="filesystem\file\file_plain_text_stream_base.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream_memory_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_stream_string_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_reader.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -756,9 +735,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_serializable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_simple_binary_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_status.h">
@@ -1838,14 +1814,8 @@
     <ClInclude Include="aura\aura\aura_allocate_processor_cache_oriented.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_html_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_profiler.h">
       <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_edit_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\data_simple_item.h">
       <Filter>Header Files\primitive\data</Filter>
@@ -1889,13 +1859,7 @@
     <ClInclude Include="filesystem\file\file_byte_istream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_istream_binary_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_byte_ostream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_byte_ostream_binary_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_file_istream.h">
@@ -1917,9 +1881,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_plain_text_ostream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_plain_text_ostream_string_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="primitive\str\str_sz.h">
@@ -2210,6 +2171,30 @@
     <ClInclude Include="filesystem\file\file_transfer_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\file_memory_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_html_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_edit_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_primitive.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_binary_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_buffered_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_simple_binary_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_circular_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -2446,9 +2431,6 @@
     <ClCompile Include="filesystem\file\file_byte_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_composite.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -2461,28 +2443,16 @@
     <ClCompile Include="filesystem\file\file_exception.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_reader.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_seekable.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_stream.cpp">
@@ -2492,12 +2462,6 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_stream2.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_writer.cpp">
@@ -3442,14 +3406,8 @@
     <ClCompile Include="aura\aura\aura_allocate_processor_cache_oriented.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_profiler.cpp">
       <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="primitive\data\data_simple_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
@@ -3484,13 +3442,7 @@
     <ClCompile Include="filesystem\file\file_byte_istream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_istream_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_byte_ostream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_ostream_binary_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_file_istream.cpp">
@@ -3509,9 +3461,6 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_ostream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_ostream_string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="primitive\str\str_sz.cpp">
@@ -3785,6 +3734,24 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_text_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_memory_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_transfer_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_timeout_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_edit_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_html_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_simple_binary_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>

@@ -13,7 +13,7 @@ namespace ios
    {
 
 //      System.factory().cloneable_large < stdio_file           >   (System.type_info < ::file::text_file     > ());
-//      System.factory().cloneable_large < file                 >   (System.type_info < ::file::binary_buffer   > ());
+//      System.factory().cloneable_large < file                 >   (System.type_info < ::file::binary_file   > ());
 //      System.factory().creatable_large < file_set             >   (System.type_info < ::file::set             > ());
 //      System.factory().cloneable < file_system                >   (System.type_info < ::file::system          > (), 1);
 //    System.factory().cloneable_small < file_exception       >   (System.type_info < ::file::exception   > ());

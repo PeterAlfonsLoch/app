@@ -16,12 +16,15 @@ namespace file
 
 
    class CLASS_DECL_AXIS data_trigger_ostream :
-      virtual public byte_stream_memory_buffer
+      virtual public byte_stream
    {
    public:
 
-      ::database::client * m_pclient;
-      class ::database::id m_id;
+
+      memory_file             m_file;
+      ::database::client *    m_pclient;
+      class ::database::id    m_id;
+
 
       data_trigger_ostream(data_trigger_ostream && d);
       data_trigger_ostream(::database::client * pclient,class ::database::id);
@@ -32,12 +35,13 @@ namespace file
 
 
    class CLASS_DECL_AXIS data_trigger_istream :
-      virtual public byte_stream_memory_buffer
+      virtual public byte_stream
    {
    public:
 
-      //::database::client * m_pclient;
-      //class ::database::id m_id;
+      
+      memory_file    m_file;
+
 
       data_trigger_istream(data_trigger_istream && d);
       data_trigger_istream(::database::client * pclient,class ::database::id);

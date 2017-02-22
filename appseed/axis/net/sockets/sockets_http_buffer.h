@@ -12,7 +12,7 @@ namespace sockets
 
 
       http_buffer(::aura::application * papp, mutex * pmutex = NULL);
-      http_buffer(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn);
+      http_buffer(::aura::application * papp, ::memory_file * pmemoryfileIn);
       virtual ~http_buffer();
 
 

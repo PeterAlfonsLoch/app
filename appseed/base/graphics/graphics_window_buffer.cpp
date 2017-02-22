@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/user/core_user.h"
 #include "graphics_window_buffer.h"
 
 

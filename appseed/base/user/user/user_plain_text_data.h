@@ -32,7 +32,7 @@ namespace user
       sp(plain_text_group_command)     m_pgroupcommand;
       index                            m_iBranch;
       ::file::file_sp                m_pfile;
-      ::file::edit_buffer              m_editfile;
+      ::file::edit_file              m_editfile;
 
 
       strsize                          m_iSelStart;

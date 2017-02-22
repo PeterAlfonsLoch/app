@@ -168,7 +168,7 @@ namespace user
       else
       {
 
-         ::userex::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pgraphics);
+         ::user::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pgraphics);
 
       }
 

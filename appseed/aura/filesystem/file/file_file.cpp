@@ -596,6 +596,32 @@ namespace file
 
    }
 
+   void file::copy_this(const file & file)
+   {
+
+      m_strFileName = file.m_strFileName;
+
+   }
+
+   
+   file & file::operator = (const file & file)
+   {
+
+      if (&file == this)
+      {
+
+         return *this;
+
+      }
+
+      object::copy_this(file);
+
+      file::copy_this(file);
+
+      return *this;
+
+   }
+
 } // namespace file
 
 

@@ -38,6 +38,8 @@ namespace primitive
    {
    public:
 
+      typedef bstring_manager manager;
+
       typedef byte value_type;
 
 
@@ -51,7 +53,7 @@ namespace primitive
 
 
 
-
+      bool                    m_bOwn;
       LPBYTE                  m_pbStorage;
       LPBYTE                  m_pbComputed;
 
@@ -118,14 +120,28 @@ namespace primitive
       void allocate_add_up(memory_size_t dwAddUp);
 
 
-      LPBYTE           internal_get_data() const;
-      memory_size_t      get_size() const;
-      const LPBYTE     get_data() const;
-      LPBYTE           get_data();
+      inline LPBYTE           internal_get_data() const;
+      inline memory_size_t    get_size() const;
+      inline const LPBYTE     get_data() const;
+      inline LPBYTE           get_data();
 
-      memory_size_t      size() const;
-      const LPBYTE     data() const;
-      LPBYTE           data();
+      inline memory_size_t    size() const;
+      inline const LPBYTE     data() const;
+      inline LPBYTE           data();
+
+      inline byte operator [] (uint64_t i) const;
+      inline byte & operator [] (uint64_t i);
+      inline byte operator [] (int i) const;
+      inline byte & operator [] (int i);
+
+      inline operator const byte *() const;
+      inline operator byte *();
+
+      inline operator const char *() const { return (const char *) operator const byte *(); }
+      inline operator char *() { return (char *) operator byte *(); }
+
+      inline operator const void *() const;
+      inline operator void *();
 
       char *                  get_psz(strsize & len);
 
@@ -160,19 +176,6 @@ namespace primitive
 
       void assign(const char * psz);
 
-      byte operator [] (uint64_t i) const;
-      byte & operator [] (uint64_t i);
-      byte operator [] (int i) const;
-      byte & operator [] (int i);
-
-      operator const byte *() const;
-      operator byte *();
-
-      inline operator const char *() const { return (const char *) operator const byte *(); }
-      inline operator char *() { return (char *) operator byte *(); }
-
-      inline operator const void *() const;
-      operator void *();
 
 
       void to_hex(string & str, memory_position_t iStart = 0, memory_size_t size = -1);
@@ -222,6 +225,25 @@ namespace primitive
 
 
    };
+
+
+   inline LPBYTE memory_base::internal_get_data() const { return m_pbComputed; }
+   inline memory_size_t memory_base::get_size() const { return m_cbStorage; }
+   inline memory_size_t memory_base::size() const { return get_size(); }
+   inline const LPBYTE memory_base::get_data() const { return m_pbComputed; }
+   inline LPBYTE memory_base::get_data() { return m_pbComputed; }
+   inline const LPBYTE memory_base::data() const { return get_data(); }
+   inline LPBYTE memory_base::data() { return get_data(); }
+
+
+   inline uchar memory_base::operator [] (uint64_t ui) const { return this->get_data()[(memory_position_t)ui]; }
+   inline uchar & memory_base::operator [] (uint64_t ui) { return this->get_data()[(memory_position_t)ui]; }
+   inline uchar memory_base::operator [] (int i) const { return this->get_data()[i]; }
+   inline uchar & memory_base::operator [] (int i) { return this->get_data()[i]; }
+   inline memory_base::operator const byte *() const { return this->get_data(); }
+   inline memory_base::operator byte *() { return this->get_data(); }
+   inline memory_base::operator const void *() const { return this->get_data(); }
+   inline memory_base::operator void *() { return this->get_data(); }
 
 
 } // namespace primitive

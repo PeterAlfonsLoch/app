@@ -338,7 +338,7 @@ namespace android
 //            return "";
 //         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
 //         {
-//            ::file::memory_buffer memfile(papp, &storage);
+//            ::memory_file memfile(papp, &storage);
 //            zip::InFile infile(get_app());
 //            if(!infile.unzip_open(strFilePath, 0))
 //               return "";

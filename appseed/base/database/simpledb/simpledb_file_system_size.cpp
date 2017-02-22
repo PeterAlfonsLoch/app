@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/user/core_user.h"
 //#include "core/filesystem/filemanager/filemanager.h"
 //
 //
@@ -416,12 +417,15 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    size.m_bRet = false;
 
 
-   ::file::byte_stream_memory_buffer file(get_app());
-   size.write(file);
+   memory_file file(get_app());
+
+   ::file::byte_stream stream(&file);
+
+   size.write(stream);
 
    COPYDATASTRUCT data;
    data.dwData = 0;
-   data.cbData = (uint32_t) file.get_length();
+   data.cbData = (uint32_t)file.get_length();
    data.lpData = file.get_data();
    ::oswindow oswindowWparam = (::oswindow) m_pui->get_os_data();
    WPARAM wparam = (WPARAM) oswindowWparam;
@@ -461,11 +465,16 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
       db_server * pcentral = &System.m_simpledb.db();
       file_size_table::get_fs_size size;
-      ::file::byte_stream_memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
-      size.read(file);
+      memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+      
+      ::file::byte_stream stream(&file);
+
+      size.read(stream);
 
       cslock sl(&m_cs);
+
       size.m_oswindow = (oswindow) pbase->m_wparam;
+
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
          size.m_iSize,
          size.m_strPath,
@@ -476,11 +485,19 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
    else if(pstruct->dwData == 1)
    {
       file_size_table::get_fs_size size;
-      ::file::byte_stream_memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
-      size.read(file);
+
+      memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
+
+      ::file::byte_stream stream(&file);
+
+      size.read(stream);
+
       m_bRet = true;
+
       m_map.set_at(size.m_strPath, size);
+
       pbase->set_lresult(1);
+
    }
 
 #else
@@ -506,15 +523,16 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
          COPYDATASTRUCT data;
          data.dwData = 1;
 
+         memory_file file(get_app());
 
-         ::file::byte_stream_memory_buffer file(get_app());
+         ::file::byte_stream stream(&file);
 
          while(m_sizea.get_size() > 0)
          {
             cslock sl(&m_cs);
             file_size_table::get_fs_size & size = m_sizea[0];
-            file.m_spmemorybuffer->Truncate(0);
-            size.write(file);
+            file.Truncate(0);
+            size.write(stream);
             data.cbData = (uint32_t) file.get_length();
             data.lpData = file.get_data();
             ::SendMessage(size.m_oswindow, WM_COPYDATA, (WPARAM) m_pui->get_os_data(), (LPARAM) &data);

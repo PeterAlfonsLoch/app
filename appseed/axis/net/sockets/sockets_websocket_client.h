@@ -35,8 +35,8 @@ namespace sockets
       int         m_opcode;
       int         m_mask;
       int         m_n0;
-      int         m_header_size;
-      int         m_iN;
+      memory_size_t         m_header_size;
+      memory_size_t         m_iN;
       int         m_i;
       byte        m_maskingkey[4];
       int         m_iLastPos;

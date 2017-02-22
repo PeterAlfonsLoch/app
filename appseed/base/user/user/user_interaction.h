@@ -112,7 +112,7 @@ namespace user
 
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
 
-      sp(tooltip)                         m_ptooltip;
+      sp(interaction)                     m_ptooltip;
 
 
 
@@ -120,6 +120,9 @@ namespace user
       interaction();
       interaction(::aura::application * papp);
       virtual ~interaction();
+
+
+      tooltip *         get_tooltip();
 
 
       void user_interaction_common_construct();
@@ -176,6 +179,10 @@ namespace user
       virtual void on_set_may_pro_devian();
 
       virtual bool IsWindow() const override;
+
+      virtual void ExitHelpMode();
+
+      virtual void BaseOnControlEvent(::message::base * pbase);
 
       virtual LONG get_window_long(int32_t nIndex) const override;
       virtual LONG set_window_long(int32_t nIndex,LONG lValue) override;
@@ -591,7 +598,7 @@ namespace user
       //      Agile<Windows::UI::Core::CoreWindow> get_os_window();
       //#endif
 
-
+      virtual bool IsNotifyIconEnabled();
       virtual void set_viewport_org(::draw2d::graphics * pgraphics) override;
 
       virtual void viewport_screen_to_client(POINT * ppt) override;

@@ -264,13 +264,13 @@ namespace zip
       string str;
       int32_t i;
       smart_pointer_array < InFile, InFile & > izfilea;
-   //   smart_pointer_array < buffered_buffer, buffered_buffer & > bzfilea;
+   //   smart_pointer_array < buffered_file, buffered_file & > bzfilea;
       for(i = 1; i < wstraPath.get_size(); i++)
       {
          izfilea.add(new InFile(get_app()));
          str =  wstraPath[i];
          izfilea.last().open(&filea.last(), str);
-     //    bzfilea.add(new buffered_buffer(&izfilea.last(), 1024 * 1024, 1024 * 1024));
+     //    bzfilea.add(new buffered_file(&izfilea.last(), 1024 * 1024, 1024 * 1024));
          filea.add(new File(get_app()));
          //filea.last().open(&bzfilea.last());
          filea.last().open(&izfilea.last());

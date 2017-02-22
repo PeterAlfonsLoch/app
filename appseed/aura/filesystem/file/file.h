@@ -80,13 +80,7 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 #include "file_byte_stream.h"
 
 
-#include "file_binary_buffer.h"
-
-#include "file_byte_istream_binary_buffer.h"
-
-#include "file_byte_ostream_binary_buffer.h"
-
-
+#include "file_binary_file.h"
 
 #include "file_opened.h"
 
@@ -98,18 +92,20 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 
 #include "file_serializable.h"
 
-#include "file_simple_binary_buffer.h"
-
-
-
 #include "file_buffer.h"
-
 
 #include "file_text_file.h"
 
 
 #include "file_folder_watch.h"
 
+
+#include "file_plain_text_stream_base.h"
+#include "file_plain_text_istream.h"
+#include "file_plain_text_ostream.h"
+#include "file_plain_text_stream.h"
+
+#include "file_simple_binary_file.h"
 
 
 

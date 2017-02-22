@@ -46,9 +46,7 @@ namespace file
 
    class CLASS_DECL_AURA file :
       virtual public ::file::reader,
-      virtual public ::file::writer,
-      virtual public ::file::seekable,
-      virtual public ::file::writer_flush
+      virtual public ::file::writer
    {
    public:
 
@@ -137,7 +135,9 @@ namespace file
       /** Common interface for Send used by Tcp and Udp sockets. */
       virtual void write(const string &);
 
+      void copy_this(const file & file);
 
+      file & operator = (const file & file);
 
    };
 

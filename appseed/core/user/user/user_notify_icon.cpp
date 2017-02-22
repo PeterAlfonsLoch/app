@@ -364,7 +364,7 @@ namespace user
             try
             {
 
-               sp(simple_frame_window) pframe = (m_wndptraHidden.element_at(0));
+               sp(::user::interaction) pframe = (m_wndptraHidden.element_at(0));
 
                if (pframe != NULL)
                {

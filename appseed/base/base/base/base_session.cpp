@@ -1,5 +1,6 @@
-//#include "framework.h" // from "axis/user/user.h"
-//#include "base/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
+#include "base/user/core_user.h"
+#include "base/user/common_user.h"
 
 
 namespace base
@@ -140,6 +141,8 @@ namespace base
          return false;
 
       }
+
+      m_puser->add_ref();
 
       m_puser->construct(this);
 

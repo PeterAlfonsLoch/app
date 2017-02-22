@@ -209,3 +209,53 @@ namespace user
 
 
 
+
+
+
+namespace core
+{
+
+
+   bool application::initialize1_wndfrm()
+   {
+
+
+      thisstart;
+
+      m_pwndfrm = canew(::user::wndfrm::wndfrm(this));
+
+      if (m_pwndfrm == NULL)
+      {
+
+         thiserr << "end failure (1)";
+
+         return false;
+
+      }
+
+      wndfrm().construct(this);
+
+      if (!wndfrm().initialize())
+      {
+
+         thiserr << "end failure (2)";
+
+         return false;
+
+      }
+
+      thisend;
+
+      return true;
+
+   }
+
+   ::user::wndfrm::wndfrm          &application::wndfrm()
+   {
+
+      return *m_pwndfrm.cast < ::user::wndfrm::wndfrm>();
+
+   }
+
+
+} // namespace core

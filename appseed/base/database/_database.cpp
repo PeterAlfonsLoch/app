@@ -9,6 +9,8 @@
 #include "framework.h"
 
 
+#include "database.h"
+
 #include "database/_database_database.cpp"
 
 

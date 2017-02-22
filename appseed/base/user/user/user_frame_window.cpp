@@ -2196,7 +2196,14 @@ namespace user
 
    }
 
+   
+   ::user::front_end_schema * frame_window::get_user_front_end_schema()
+   {
 
+      return NULL;
+
+   }
+   
 
 } // namespace user
 

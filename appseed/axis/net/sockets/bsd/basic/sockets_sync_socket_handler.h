@@ -13,7 +13,7 @@ namespace sockets
 
 
       socket *                m_psocket;
-      ::file::memory_buffer   m_file;
+      ::memory_file   m_file;
       socket_handler          m_handler;
       int32_t                 m_iDefaultTimeout;
 

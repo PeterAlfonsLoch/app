@@ -667,7 +667,7 @@ namespace html
          }
 
 
-         bool bCaretOn = ((get_tick_count() - m_dwFocustStart) % (m_dwCaretTime * 2)) < m_dwCaretTime;
+         bool bCaretOn = ((get_tick_count() - m_dwFocusStartTick) % (m_dwCaretTime * 2)) < m_dwCaretTime;
 
          strsize iSelStart;
          strsize iSelEnd;

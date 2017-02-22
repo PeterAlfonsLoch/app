@@ -231,7 +231,7 @@ namespace userstack
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
          if(pstruct->dwData == 1984)
          {
-            ::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
+            ::memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
             Session.open_by_file_extension(strPath);

@@ -445,6 +445,11 @@ namespace core
 
       virtual bool add_library(::aura::library * plibrary);
 
+      virtual bool initialize_userex();
+      virtual bool initialize1_userfs();
+      virtual bool initialize1_wndfrm();
+      virtual bool process_initialize_userfs();
+
       virtual ::userex::userex * create_userex();
       virtual ::userfs::userfs * create_userfs();
 

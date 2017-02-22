@@ -454,7 +454,7 @@ void script_manager::LoadEnv()
 
 void script_manager::run(const char * lpcszName)
 {
-   file::memory_buffer memfile(get_app());
+   memory_file memfile(get_app());
    script_instance * pinstance = get(lpcszName);
    if(pinstance != NULL)
    {

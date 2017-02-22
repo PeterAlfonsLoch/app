@@ -10,7 +10,7 @@ namespace sip
    public:
    
       string m_null;
-      file::memory_buffer m_file;
+      memory_file m_file;
       http::form m_form;
 
 
@@ -35,7 +35,7 @@ namespace sip
 
       http::form & form();
 
-      file::memory_buffer & file() { return m_file; }
+      memory_file & file() { return m_file; }
 
       virtual void clear();
 

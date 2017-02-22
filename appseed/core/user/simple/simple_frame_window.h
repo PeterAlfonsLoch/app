@@ -121,7 +121,7 @@ public:
    virtual void WfiOnExitFullScreen();
    virtual void ShowControlBars(bool bShow = true, bool bLeaveFullScreenBarsOnHide = false);
 
-
+   virtual bool IsNotifyIconEnabled() override;
    void OnUpdateControlBarMenu(cmd_ui * pcmdui);
 
    virtual sp(::user::wndfrm::frame::frame) create_frame_schema();
@@ -286,8 +286,9 @@ public:
 
    virtual void show_task(bool bShow);
 
-
    virtual void defer_set_icon();
+
+   virtual ::user::front_end_schema * get_user_front_end_schema() override;
 
 };
 

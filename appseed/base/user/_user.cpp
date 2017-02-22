@@ -3,7 +3,8 @@
 
 
 #include "aura/user/colorertake5/colorertake5.h"
-#include "user.h"
+#include "core_user.h"
+#include "common_user.h"
 
 //O volume na unidade Z ‚ eco
 //O N£mero de S‚rie do Volume ‚ 4A91 - 94E4
@@ -84,6 +85,9 @@
 #include "user/user_windowing.cpp"
 #include "user/user_window_map.cpp"
 #include "user/user_window_util.cpp"
+
+#include "user/user_front_end.cpp"
+#include "user/user_front_end_schema.cpp"
 //47 arquivo(s)        656.222 bytes
 
 //#include "user/user_copydesk.cpp"

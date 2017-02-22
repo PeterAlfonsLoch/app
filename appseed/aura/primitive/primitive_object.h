@@ -88,19 +88,9 @@ class command_line;
 
 
 
-//class CLASS_DECL_AURA ::object :
 class CLASS_DECL_AURA object
-   // virtual public element
-   //class CLASS_DECL_AURA waitable :
-   //class CLASS_DECL_AURA object
-   //   virtual public ::object
 {
 public:
-
-   //class CLASS_DECL_AURA element //:
-   //   //virtual public root
-   //{
-   //public:
 
 
    enum flag
@@ -124,16 +114,6 @@ public:
    mutex *                       m_pmutex;
    property_set *                m_psetObject;
 
-
-
-//   ::datetime::time              m_time;
-
-   // OBJECT :: object :> is a a a root, and is an element
-
-   //element();
-   //element(const element & o);
-   //element(::aura::application * papp);
-   //virtual ~element();
 
    object();
    object(::aura::application * papp);
@@ -179,8 +159,9 @@ public:
    }
 
 
-   //   object & operator = (const object & o);
+   object & operator = (const object & o);
 
+   void copy_this(const object & o);
 
    inline void set_heap_alloc()
    {
@@ -235,39 +216,7 @@ public:
    virtual void on_request(sp(::create) pcreatecontext);
 
 
-
-
-   // OBJECT :: object :> is a waitable
-
-   //waitable();
-   //waitable(const waitable & objectSrc);
-   //virtual ~waitable();
-
-
-   //virtual void * get_os_data() const;
-
-
-   //virtual void lock();
-   //virtual bool lock(const duration & durationTimeout);
-   //virtual bool unlock();
-   //virtual bool unlock(LONG lCount,LPLONG lpPrevCount = NULL);
-
-
-   ///  \brief		abstract function to initialize a waiting action without a timeout
-   //virtual void wait();
-
-   ///  \brief		*no more as of 2012-05-12* abstract function to initialize a waiting action with a timeout
-   ///  \param		duration time period to wait for item
-   ///  \return	waiting action result as wait_result
-   //virtual wait_result wait(const duration & duration);
-
-
-   //virtual bool is_locked() const;
-
-
    virtual string lstr(id id, const string & strDefault = (const string &) *((const string *) NULL ));
-
-   // OBJECT :: object :> is a object
 
    void common_construct();
 
@@ -282,38 +231,16 @@ public:
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 
-   object & operator = (const object & objectSrc);       // no implementation
-
-
    inline sp(::command_thread) command_thread();
 
 
-   //DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-   // OBJECT :: object :> is an aura::live_object
-//{
-//
-//
-//   class CLASS_DECL_AURA live_object:
-//   virtual public root
-//   {
-//   public:
-
-      virtual void keep_alive();
-      virtual void on_keep_alive();
-      virtual bool is_alive();
-
-   //};
-
-
-//} // namespace aura
+   virtual void keep_alive();
+   virtual void on_keep_alive();
+   virtual bool is_alive();
 
 
 };
 
-
-
-
-//};
 
 
 namespace aura

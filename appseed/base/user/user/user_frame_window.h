@@ -382,6 +382,9 @@ namespace user
       virtual bool get_window_minimum_size(::size & sizeMin);
 
 
+      virtual ::user::front_end_schema * get_user_front_end_schema();
+
+
    };
 
 

@@ -18,7 +18,7 @@ namespace zip
    class File;
 
    class CLASS_DECL_AXIS InFile:
-      public ::file::binary_buffer,
+      public ::file::binary_file,
       virtual public ::file::listing_provider
    {
    public:
@@ -110,7 +110,7 @@ namespace zip
 
    private:
 
-      using ::file::binary_buffer::open;
+      using ::file::binary_file::open;
 
    };
 

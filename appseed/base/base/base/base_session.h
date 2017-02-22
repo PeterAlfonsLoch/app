@@ -15,7 +15,7 @@ namespace base
    public:
 
 
-      sp(::user::user)              m_puser;
+      ::user::user *                m_puser;
       sp(::user::schema)            m_pschemasimple;
 
       ::user::interaction *         m_puiCapture;
@@ -24,7 +24,8 @@ namespace base
       session(::aura::application * papp);
       virtual ~session_parent;
 
-      inline ::user::user *                        user()         { return m_puser; }
+      inline ::user::user *                        user() { return m_puser; }
+
 
       virtual index get_good_restore(LPRECT lprect,const RECT & rect,::user::interaction * pui);
       virtual index get_good_move(LPRECT lprect,const RECT & rect,::user::interaction * pui);

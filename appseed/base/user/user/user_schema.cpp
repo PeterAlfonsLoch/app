@@ -366,7 +366,7 @@ namespace user
 
       bool bError = pui->m_ptooltip.is_set()
          && pui->m_ptooltip->IsWindowVisible()
-         && pui->m_ptooltip->m_bError;
+         && pui->get_tooltip()->m_bError;
 
       rect rectClient;
 

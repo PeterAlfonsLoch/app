@@ -171,7 +171,7 @@ namespace userstack
       if(eexclusive == ::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
-         ::file::memory_buffer file(get_app());
+         ::memory_file file(get_app());
          file.from_string(command()->m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;

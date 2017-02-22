@@ -651,6 +651,6 @@ CLASS_DECL_AURA int c_localtime_offset()
 
    time_t gmt = mktime(ptm);
 
-   return difftime(rawtime, gmt);
+   return (int)(rawtime - gmt);
 
 }

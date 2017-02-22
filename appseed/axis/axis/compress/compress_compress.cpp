@@ -7,114 +7,195 @@
 namespace axis
 {
 
-
-   bool compress::ungz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszGzFileCompressed)
+   compress_department::compress_department(::aura::application * papp) :
+      ::object(papp),
+      ::aura::department(papp)
    {
 
-      return Application.file().output(ostreamUncompressed, this, &::axis::compress::ungz, lpcszGzFileCompressed);
+
+   }
+
+   bool compress_department::ungz(::aura::application * papp, ::file::ostream & ostreamUncompressed, const ::file::path & lpcszGzFileCompressed)
+   {
+
+      uncompress_gz ungz(papp);
+
+      return App(papp).file().output(ostreamUncompressed, &ungz, &::uncompress_gz::transfer, lpcszGzFileCompressed);
       
    }
 
 
-   bool compress::ungz(::file::ostream & ostreamUncompressed, ::file::istream & istreamGzFileCompressed)
+
+
+
+
+   bool compress_department::ungz(::aura::application * papp, ::file::file * pfileOut, ::file::file * pfileIn)
    {
 
-      bool done = false;
+      uncompress_gz ungz(papp);
 
-      int32_t status;
+      return App(papp).file().output(pfileOut, &ungz, &::uncompress_gz::transfer, pfileIn);
 
-      class memory memIn;
-      memIn.allocate(1024 * 8);
+   }
 
-      int64_t uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
 
-      z_stream zstream;
-      ZERO(zstream);
-      zstream.next_in = (byte *)memIn.get_data();
-      zstream.avail_in = (uint32_t)uiRead;
-      zstream.total_out = 0;
-      zstream.zalloc = Z_NULL;
-      zstream.zfree = Z_NULL;
+   bool compress_department::ungz(::aura::application * papp, ::primitive::memory_base & memOut, ::primitive::memory_base & memIn)
+   {
 
-      class memory memory;
-      memory.allocate(1024 * 256);
-      ASSERT(memory.get_size() <= UINT_MAX);
+      memory_file fileOut(papp, &memOut);
 
-      // inflateInit2 knows how to deal with gzip format
-      if (inflateInit(&zstream) != Z_OK)
+      memory_file fileIn(papp, &memIn);
+
+      return ungz(papp, &fileOut, &fileIn);
+
+   }
+
+
+   bool compress_department::ungz(::aura::application * papp, ::primitive::memory_base & mem)
+   {
+
+      memory memOut;
+
+      if (!ungz(papp, memOut, mem))
       {
+
          return false;
-      }
-
-      while (!done)
-      {
-
-         zstream.next_out = memory.get_data();
-         zstream.avail_out = (uint32_t)memory.get_size();
-
-         while (zstream.avail_out == 0)
-         {
-
-            // Inflate another chunk.
-            status = inflate(&zstream, Z_NO_FLUSH);
-
-            ostreamUncompressed.write(memory.get_data(), zstream.total_out);
-
-            if (status == Z_STREAM_END)
-            {
-
-               done = true;
-
-            }
-            else if (status != Z_OK)
-            {
-
-               break;
-
-            }
-
-         }
-
-         uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
-
-         zstream.next_in = (byte *)memIn.get_data();
-
-         zstream.avail_in = (uint32_t)uiRead;
-
-         zstream.total_out = 0;
-
 
       }
 
-      if (inflateEnd(&zstream) != Z_OK || !done)
-      {
-         
-         return true;
-
-      }
+      mem = memOut;
 
       return true;
 
    }
 
 
-
-
-   bool compress::ungz(::file::file * pfileOut, ::file::file * pfileIn)
+   bool compress_department::gz(::aura::application * papp, ::file::ostream & ostreamCompressed, const ::file::path & lpcszUncompressed, int iLevel)
    {
 
-      return Application.file().output(pfileOut, this, &::axis::compress::ungz, pfileIn);
+      compress_gz gz(papp, iLevel);
+
+      return App(papp).file().output(ostreamCompressed, &gz, &compress_gz::transfer, lpcszUncompressed);
+
+   }
+
+   bool compress_department::gz(::aura::application * papp, ::file::file * pfileOut, const ::file::path & lpcszUncompressed, int iLevel)
+   {
+
+      compress_gz gz(papp, iLevel);
+
+      return App(papp).file().output(pfileOut, &gz, &compress_gz::transfer, lpcszUncompressed);
+
 
    }
 
 
-   bool compress::uncompress(memory & memory)
+   bool compress_department::gz(::aura::application * papp, ::file::file * pfileOut, ::file::file * pfileIn, int iLevel)
    {
 
-      ::memory dest;
+      compress_gz gz(papp, iLevel);
+
+      return App(papp).file().output(pfileOut, &gz, &compress_gz::transfer, pfileIn);
+
+
+   }
+
+
+
+   bool compress_department::ungz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
+   {
+
+      uncompress_gz ungz(papp);
+
+      return App(papp).file().output(lpcszUncompressed, &ungz, &::uncompress_gz::transfer, lpcszGzFileCompressed);
+
+   }
+
+
+
+   bool compress_department::gz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed, int iLevel)
+   {
+
+      compress_gz gz(papp, iLevel);
+
+      return App(papp).file().output(lpcszGzFileCompressed, &gz, &compress_gz::transfer, lpcszUncompressed);
+
+   }
+
+
+   bool compress_department::unbz(::aura::application * papp, ::file::ostream & ostreamUncompressed, const ::file::path & lpcszBzFileCompressed)
+   {
+
+      uncompress_bz unbz(papp);
+
+      return App(papp).file().output(ostreamUncompressed, &unbz, &::uncompress_bz::transfer, lpcszBzFileCompressed);
+
+   }
+
+
+   bool compress_department::bz(::aura::application * papp, ::file::ostream & ostreamBzFileCompressed, const ::file::path & lpcszUncompressed, int iBlockSize, int iVerbosity, int iWorkFactor)
+   {
+
+      compress_bz bz(papp, iBlockSize, iVerbosity, iWorkFactor);
+
+      return App(papp).file().output(ostreamBzFileCompressed, &bz, &::compress_bz::transfer, lpcszUncompressed);
+
+   }
+
+
+   bool compress_department::bz(::aura::application * papp, const ::file::path & lpcszBzFileCompressed, const ::file::path & lpcszUncompressed, int iBlockSize, int iVerbosity, int iWorkFactor)
+   {
+
+      compress_bz bz(papp, iBlockSize, iVerbosity, iWorkFactor);
+
+      return App(papp).file().output(lpcszBzFileCompressed, &bz, &::compress_bz::transfer, lpcszUncompressed);
+
+   }
+
+
+   bool compress_department::bz(::aura::application * papp, ::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamUncompreseed, int iBlockSize, int iVerbosity, int iWorkFactor)
+   {
+
+      compress_bz bz(papp, iBlockSize, iVerbosity, iWorkFactor);
+
+      return App(papp).file().output(ostreamBzFileCompressed, &bz, &::compress_bz::transfer, istreamUncompreseed);
+
+   }
+
+
+   bool compress_department::unbz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
+   {
+
+      uncompress_bz unbz(papp);
+
+      return App(papp).file().output(lpcszUncompressed, &unbz, &::uncompress_bz::transfer, lpcszGzFileCompressed);
+
+
+   }
+
+
+   bool compress_department::compress(class memory & memory, void * pdata, memory_size_t ulSize)
+   {
+      memory.allocate(compressBound((uLong)ulSize) * 2);
+      uLongf ulDestSize = (uLongf)memory.get_size();
+      int32_t i = ::compress(memory.get_data(), &ulDestSize, (BYTE *)pdata, (uLongf)ulSize);
+      memory.allocate(ulDestSize);
+      return i == Z_OK;
+   }
+
+   bool compress_department::uncompress(memory & memoryUncompressed, memory & memoryCompressed, memory_size_t sizeUncompressed)
+   {
+      memoryUncompressed.allocate(sizeUncompressed);
+      uLongf ulSizeUncompressed = (uLongf)sizeUncompressed;
+      int32_t i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uLong)memoryCompressed.get_size());
+      return i == Z_OK;
+   }
+
+   bool compress_department::uncompress(memory & dest, memory & memory)
+   {
 
       int iRate = 1;
-      while(true)
+      while (true)
       {
 
          dest.allocate(memory.get_size() * 10);
@@ -124,7 +205,13 @@ namespace axis
          int i = ::uncompress(dest.get_data(), &l, memory.get_data(), memory.get_size());
 
          if (i == Z_OK)
-            break;
+         {
+
+            dest.allocate(l);
+          
+            return true;
+
+         }
 
          if (i == Z_BUF_ERROR)
          {
@@ -139,107 +226,9 @@ namespace axis
 
       }
 
-      memory = dest;
-
-      return true;
-
    }
 
-
-   bool compress::gz(::file::ostream & ostreamCompressed, const ::file::path & lpcszUncompressed, int iLevel)
-   {
-
-      compress_gz gz(get_app(), iLevel);
-
-      return System.file().output(get_app(), ostreamCompressed, &gz, &compress_gz::transfer, lpcszUncompressed);
-
-   }
-
-
-
-   bool compress::ungz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
-   {
-
-      return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
-
-   }
-
-
-   bool compress::gz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed, int iLevel)
-   {
-
-      compress_gz gz(papp, iLevel);
-
-      return System.file().output(papp, lpcszGzFileCompressed, &gz, &compress_gz::transfer, lpcszUncompressed);
-
-   }
-
-
-   bool compress::unbz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszBzFileCompressed)
-   {
-
-      return Application.file().output(ostreamUncompressed, this, &compress::unbz, lpcszBzFileCompressed);
-
-   }
-
-
-   bool compress::bz(::file::ostream & ostreamBzFileCompressed, const ::file::path & lpcszUncompressed, int iBlockSize, int iVerbosity, int iWorkFactor)
-   {
-
-      compress_bz bz(get_app(), iBlockSize, iVerbosity, iWorkFactor);
-
-      return Application.file().output(ostreamBzFileCompressed, &bz, &::compress_bz::transfer, lpcszUncompressed);
-
-   }
-
-
-   bool compress::bz(::aura::application * papp, const ::file::path & lpcszBzFileCompressed, const ::file::path & lpcszUncompressed, int iBlockSize, int iVerbosity, int iWorkFactor)
-   {
-
-      compress_bz bz(papp, iBlockSize, iVerbosity, iWorkFactor);
-
-      return App(papp).file().output(lpcszBzFileCompressed, &bz, &::compress_bz::transfer, lpcszUncompressed);
-
-   }
-
-
-   bool compress::bz(::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamUncompreseed, int iBlockSize, int iVerbosity, int iWorkFactor)
-   {
-
-      compress_bz bz(get_app(), iBlockSize, iVerbosity, iWorkFactor);
-
-      return Application.file().output(ostreamBzFileCompressed, &bz, &::compress_bz::transfer, istreamUncompreseed);
-
-   }
-
-
-   bool compress::unbz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
-   {
-
-      return System.file().output(papp, lpcszUncompressed, this, &compress::unbz, lpcszGzFileCompressed);
-
-   }
-
-
-   bool compress::_compress(class memory & memory, void * pdata, memory_size_t ulSize)
-   {
-      memory.allocate(compressBound((uLong)ulSize) * 2);
-      uLongf ulDestSize = (uLongf)memory.get_size();
-      int32_t i = ::compress(memory.get_data(), &ulDestSize, (BYTE *)pdata, (uLongf)ulSize);
-      memory.allocate(ulDestSize);
-      return i == Z_OK;
-   }
-
-   bool compress::_uncompress(memory & memoryUncompressed, memory & memoryCompressed, memory_size_t sizeUncompressed)
-   {
-      memoryUncompressed.allocate(sizeUncompressed);
-      uLongf ulSizeUncompressed = (uLongf)sizeUncompressed;
-      int32_t i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uLong)memoryCompressed.get_size());
-      return i == Z_OK;
-   }
-
-
-   void compress::extract_all(const ::file::path & pszFile, ::aura::application * papp)
+   void compress_department::extract_all(const ::file::path & pszFile, ::aura::application * papp)
    {
 
       string strDir = pszFile;
@@ -251,7 +240,7 @@ namespace axis
    }
 
 
-   void compress::zip(const ::file::path & pszZip, const ::file::path & psz, ::aura::application * papp)
+   void compress_department::zip(const ::file::path & pszZip, const ::file::path & psz, ::aura::application * papp)
    {
 
       zip::InFile infile(papp);
@@ -288,7 +277,7 @@ namespace axis
    }
 
 
-   void compress::zip(const ::file::path & psz, ::aura::application * papp)
+   void compress_department::zip(const ::file::path & psz, ::aura::application * papp)
    {
 
    }

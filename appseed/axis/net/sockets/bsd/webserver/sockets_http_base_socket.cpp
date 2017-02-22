@@ -317,12 +317,12 @@ namespace sockets
 
             m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
 
-            ::file::memory_buffer file(get_app());
+            ::memory_file file(get_app());
 
             if (response().m_strFile.has_char())
             {
 
-               System.compress().gz(&file, response().m_strFile);
+               System.compress().gz(get_app(), &file, response().m_strFile);
 
                response().m_strFile.Empty();
 
@@ -332,15 +332,12 @@ namespace sockets
 
                response().file().seek_to_begin();
 
-               System.compress().gz(&file, &response().file());
+               System.compress().gz(get_app(), &file, &response().file());
 
             }
 
-
-
-            gz.finish();
-
             response().file().set_length(0);
+
             response().file().write(file.get_data(), file.get_size());
 
          }

@@ -104,7 +104,7 @@ void ifs_file::set_file_data()
    string strUrl;
 
 
-   if(m_varFile["xmledit"].cast < ::file::memory_buffer > () != NULL)
+   if(m_varFile["xmledit"].cast < ::memory_file > () != NULL)
    {
 
       strUrl = "http://file.ca2.cc/ifs/xmledit?path=" + System.url().url_encode(m_varFile["url"]);
@@ -113,7 +113,7 @@ void ifs_file::set_file_data()
 
       setRequest["get_response"] = "";  // touch/create property to get_response
 
-      Application.http().put(strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >(), setRequest);
+      Application.http().put(strUrl, m_varFile["xmledit"].cast < ::memory_file >(), setRequest);
 
       string strResponse(setRequest["get_response"]);
 
@@ -129,7 +129,7 @@ void ifs_file::set_file_data()
 
          MD5_Init(&ctx);
 
-         MD5_Update(&ctx, m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_size());
+         MD5_Update(&ctx, m_varFile["xml"].cast < ::memory_file >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::memory_file >()->get_primitive_memory()->get_size());
 
          to_string(strMd5Here, ctx);
 
@@ -144,7 +144,7 @@ void ifs_file::set_file_data()
 
       property_set setPut(get_app());
 
-      Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
+      Application.http().put(strUrl, m_varFile["xml"].cast < ::memory_file >(), setPut);
 
       return;
 

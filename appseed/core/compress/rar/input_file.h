@@ -63,7 +63,7 @@ namespace rar
    };
 
    class input_file :
-      public ::file::binary_buffer
+      public ::file::binary_file
    {
    public:
 

@@ -16,7 +16,7 @@ namespace sockets
 
    // it is not currently designed to call open.
    //
-   http_buffer::http_buffer(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn) :
+   http_buffer::http_buffer(::aura::application * papp, ::memory_file * pmemoryfileIn) :
       ::object(papp),
       transfer_file(papp, pmemoryfileIn)
    {

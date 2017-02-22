@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "base/user/core_user.h"
+#include "base/user/common_user.h"
 
 namespace user
 {

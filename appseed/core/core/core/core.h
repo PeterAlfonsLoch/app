@@ -2,21 +2,21 @@
 
 #include "app/appseed/base/base/base/base.h"
 
-//#include "axis/html_lite/html_lite/html_lite.h"
-
-#if !defined(_MM) && !defined(_M)
-
-#include "nodeapp/operational_system/operational_system.h"
-
-#ifdef WINDOWS
-
-#pragma warning(disable: 4251)  // using non-exported as public in exported
-
-#endif
+////#include "axis/html_lite/html_lite/html_lite.h"
+//
+//#if !defined(_MM) && !defined(_M)
+//
+//#include "nodeapp/operational_system/operational_system.h"
+//
+//#ifdef WINDOWS
+//
+//#pragma warning(disable: 4251)  // using non-exported as public in exported
+//
+//#endif
 
 
 #ifdef _CORE_LIBRARY
-   #define CLASS_DECL_CORE  CLASS_DECL_EXPORT
+#define CLASS_DECL_CORE  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_CORE  CLASS_DECL_IMPORT
 #endif
@@ -50,7 +50,6 @@ namespace user
       class wndfrm;
 
    }
-
    enum e_mouse
    {
 
@@ -143,19 +142,19 @@ namespace dynamic_source
 #define CoreApp(pbaseapp) (*pbaseapp->m_pcoreapp)
 #define CoreApplication (CoreApp(m_pauraapp))
 
-//inline ::core::session & plat(::aura::application * papp)
-//{
-//
-//   return *papp->m_pcoresession;
-//
-//}
+  //inline ::core::session & plat(::aura::application * papp)
+  //{
+  //
+  //   return *papp->m_pcoresession;
+  //
+  //}
 
 
 
 
-//#if defined(WIN32) && !defined(VC6) && ! defined(VC71)
-//#include <vadefs.h>
-//#endif
+  //#if defined(WIN32) && !defined(VC6) && ! defined(VC71)
+  //#include <vadefs.h>
+  //#endif
 
 
 class job;
@@ -249,7 +248,7 @@ struct memory_state;
 
 
 #ifndef _OLEAUTO_H_
-   typedef unichar * BSTR;// must (semantically) match typedef in oleauto.h
+typedef unichar * BSTR;// must (semantically) match typedef in oleauto.h
 #endif
 
 #undef new
@@ -260,7 +259,7 @@ struct memory_state;
 
 
 
-//#include "core/primitive/primitive.h"
+                       //#include "core/primitive/primitive.h"
 
 
 #include "core_strn.h"
@@ -281,13 +280,13 @@ struct memory_state;
 #define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(::core::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
 #define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(::core::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
 
-// optional bit for schema number that enables object versioning
+                       // optional bit for schema number that enables object versioning
 #define VERSIONABLE_SCHEMA  (0x80000000)
 
-/////////////////////////////////////////////////////////////////////////////
-// other helpers
+                       /////////////////////////////////////////////////////////////////////////////
+                       // other helpers
 
-// zero fill everything after the vtbl pointer
+                       // zero fill everything after the vtbl pointer
 #define __ZERO_INIT_OBJECT(base_class) memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
 
 
@@ -301,31 +300,31 @@ struct memory_state;
 #endif
 
 
-/*typedef struct tagVMSNMHDR {
-    oswindow oswindowFrom;
-    UINT idFrom;
-    UINT code;
-} VMSNMHDR;
+                       /*typedef struct tagVMSNMHDR {
+                       oswindow oswindowFrom;
+                       UINT idFrom;
+                       UINT code;
+                       } VMSNMHDR;
 
-typedef struct tagE17_KEYDOWN {
-    VMSNMHDR hdr;
-    WORD wVKey;
-    UINT flags;
-} E17_KEYDOWN;
+                       typedef struct tagE17_KEYDOWN {
+                       VMSNMHDR hdr;
+                       WORD wVKey;
+                       UINT flags;
+                       } E17_KEYDOWN;
 
-typedef struct tagE17_SYSKEYDOWN {
-    VMSNMHDR hdr;
-    WORD wVKey;
-    UINT flags;
-} E17_SYSKEYDOWN;*/
+                       typedef struct tagE17_SYSKEYDOWN {
+                       VMSNMHDR hdr;
+                       WORD wVKey;
+                       UINT flags;
+                       } E17_SYSKEYDOWN;*/
 
 
 
 #define APPM_NOTIFY WM_APP + 1117
 #define APPN_CHILDDELETE 1000
 #define APPN_OPENLINK 1001
-   // lParam is a pointer to a Unicode string
-   // that can´t be deleted
+                       // lParam is a pointer to a Unicode string
+                       // that can´t be deleted
 
 #define VMSM_NOTIFY WM_USER + 1117
 #define VMSM_TIMER WM_USER + 1119
@@ -378,10 +377,10 @@ class CTimerCallback;
 
 typedef struct tag_TimerCallbackCreateTimer
 {
-    CTimerCallback *    m_pTimerCallback;
-    UINT                m_uiElapse;
-    UINT                m_uiIDEvent;
-} TIMERCALLBACKCREATETIMER, * LPTIMERCALLBACKCREATETIMER;
+   CTimerCallback *    m_pTimerCallback;
+   UINT                m_uiElapse;
+   UINT                m_uiIDEvent;
+} TIMERCALLBACKCREATETIMER, *LPTIMERCALLBACKCREATETIMER;
 
 
 
@@ -397,7 +396,7 @@ typedef struct tag_TimerCallbackCreateTimer
 
 #ifdef WINDOWS
 #ifndef _INC_SHELLAPI
-   #include <shellapi.h>
+#include <shellapi.h>
 #endif
 #endif
 
@@ -410,9 +409,11 @@ typedef struct tag_TimerCallbackCreateTimer
 #undef GetFileTitle
 inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WORD cbBuf)
 #ifdef UNICODE
-   { return ::GetFileTitleW(lpszFile, lpszTitle, cbBuf); }
+{
+   return ::GetFileTitleW(lpszFile, lpszTitle, cbBuf);
+}
 #else
-   { return ::GetFileTitleA(lpszFile, lpszTitle, cbBuf); }
+{ return ::GetFileTitleA(lpszFile, lpszTitle, cbBuf); }
 #endif
 #endif
 
@@ -441,76 +442,76 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
 
-         class resource_exception;// Win resource failure exception
-         class user_exception;    // Message Box alert and stop operation
-         namespace aura
-         {
-            class menu;                 // a menu
+class resource_exception;// Win resource failure exception
+class user_exception;    // Message Box alert and stop operation
+namespace aura
+{
+   class menu;                 // a menu
 
-         }
+}
 
-      namespace draw2d
-      {
-         class graphics;                   // a Display Context / HDC wrapper
-         class object;            // ::draw2d::graphics_sp drawing tool
-         class bitmap;           // a bitmap
-         class palette;          // a palette
-         class region;
-         class font;
-         class pen;
-         class brush;
-         class memory_graphics;         // ::draw2d::graphics_sp for client of window
-         class window_graphics;         // ::draw2d::graphics_sp for entire window
-         class paint_graphics;          // embeddable BeginPaint struct helper
-      }
+namespace draw2d
+{
+   class graphics;                   // a Display Context / HDC wrapper
+   class object;            // ::draw2d::graphics_sp drawing tool
+   class bitmap;           // a bitmap
+   class palette;          // a palette
+   class region;
+   class font;
+   class pen;
+   class brush;
+   class memory_graphics;         // ::draw2d::graphics_sp for client of window
+   class window_graphics;         // ::draw2d::graphics_sp for entire window
+   class paint_graphics;          // embeddable BeginPaint struct helper
+}
 
-      namespace core
-      {
-         class job;
-      }
+namespace core
+{
+   class job;
+}
 
-   class command_target;            // a target for ::fontopus::user commands
+class command_target;            // a target for ::fontopus::user commands
 
-   namespace user
-   {
-      class plain_edit;            // Edit control
-      class document_manager;      // impact_system manager object
-      class frame_window;        // standard SDI frame
-      class interaction_child;
-      class combo_box;        // ComboBox control
-   } // namespace user
-
-
-
-         class dialog;          // a dialog
-
-         // standard windows controls
-         class CStatic;          // Static control
-         class CListBox;         // ListBox control
-            class CCheckListBox;// special listbox with checks
-         class CScrollBar;       // ScrollBar control
-
-         // frame windows
-            class CMDIFrameWnd; // standard MDI frame
-            class CMDIChildWnd; // standard MDI child
-            class CMiniFrameWnd;// half-height caption frame wnd
-
-         // views on a document
-            class CScrollView;  // a scrolling ::user::impact
-
-               class thread;           // thread base class
-
-//      class impact_system;         // template for document creation
-         class single_document_template;// SDI support
-         class multiple_document_template; // MDI support
-
-//      class document;            // main document abstraction
+namespace user
+{
+   class plain_edit;            // Edit control
+   class document_manager;      // impact_system manager object
+   class frame_window;        // standard SDI frame
+   class interaction_child;
+   class combo_box;        // ComboBox control
+} // namespace user
 
 
-// Helper classes
+
+class dialog;          // a dialog
+
+                       // standard windows controls
+class CStatic;          // Static control
+class CListBox;         // ListBox control
+class CCheckListBox;// special listbox with checks
+class CScrollBar;       // ScrollBar control
+
+                        // frame windows
+class CMDIFrameWnd; // standard MDI frame
+class CMDIChildWnd; // standard MDI child
+class CMiniFrameWnd;// half-height caption frame wnd
+
+                    // views on a document
+class CScrollView;  // a scrolling ::user::impact
+
+class thread;           // thread base class
+
+                        //      class impact_system;         // template for document creation
+class single_document_template;// SDI support
+class multiple_document_template; // MDI support
+
+                                  //      class document;            // main document abstraction
+
+
+                                  // Helper classes
 class cmd_ui;           // Menu/button enabling
-//class CDataExchange;    // Data exchange and validation context
-//class CCommandLineInfo; // CommandLine parsing helper
+                        //class CDataExchange;    // Data exchange and validation context
+                        //class CCommandLineInfo; // CommandLine parsing helper
 
 enum __HELP_TYPE
 {
@@ -553,55 +554,55 @@ CLASS_DECL_CORE void __draw_dithered_bitmap(::aura::application * papp, ::draw2d
 class CRecentFileList;          // forward reference (see afxadv.h)
 
 
-/*class CLASS_DECL_CORE CCommandLineInfo : public ::core::object
-{
-public:
-   // Sets default values
-   CCommandLineInfo();
+                                /*class CLASS_DECL_CORE CCommandLineInfo : public ::core::object
+                                {
+                                public:
+                                // Sets default values
+                                CCommandLineInfo();
 
-   // plain char* version on UNICODE for source-code backwards compatibility
-   virtual void ParseParam(const char* pszParam, bool bFlag, bool bLast);
-#ifdef _UNICODE
-   virtual void ParseParam(const char* pszParam, bool bFlag, bool bLast);
-#endif
+                                // plain char* version on UNICODE for source-code backwards compatibility
+                                virtual void ParseParam(const char* pszParam, bool bFlag, bool bLast);
+                                #ifdef _UNICODE
+                                virtual void ParseParam(const char* pszParam, bool bFlag, bool bLast);
+                                #endif
 
-   bool m_bShowSplash;
-   bool m_bRunEmbedded;
-   bool m_bRunAutomated;
-   enum { FileNew, FileOpen, FilePrint, FilePrintTo, FileDDE, AppRegister,
-      AppUnregister, FileNothing = -1 } m_nShellCommand;
+                                bool m_bShowSplash;
+                                bool m_bRunEmbedded;
+                                bool m_bRunAutomated;
+                                enum { FileNew, FileOpen, FilePrint, FilePrintTo, FileDDE, AppRegister,
+                                AppUnregister, FileNothing = -1 } m_nShellCommand;
 
-   // not valid for FileNew
-   string m_strFileName;
+                                // not valid for FileNew
+                                string m_strFileName;
 
-   // valid only for FilePrintTo
-   string m_strPrinterName;
-   string m_strDriverName;
-   string m_strPortName;
+                                // valid only for FilePrintTo
+                                string m_strPrinterName;
+                                string m_strDriverName;
+                                string m_strPortName;
 
-   ~CCommandLineInfo();
-// Implementation
-protected:
-   void ParseParamFlag(const char* pszParam);
-   void ParseParamNotFlag(const char* pszParam);
-#ifdef _UNICODE
-   void ParseParamNotFlag(const char* pszParam);
-#endif
-   void ParseLast(bool bLast);
-};
-*/
-/////////////////////////////////////////////////////////////////////////////
-// ::user::document_manager
-
-
-/*CLASS_DECL_CORE bool __delete_reg_key(const char * lpszKey);
+                                ~CCommandLineInfo();
+                                // Implementation
+                                protected:
+                                void ParseParamFlag(const char* pszParam);
+                                void ParseParamNotFlag(const char* pszParam);
+                                #ifdef _UNICODE
+                                void ParseParamNotFlag(const char* pszParam);
+                                #endif
+                                void ParseLast(bool bLast);
+                                };
+                                */
+                                /////////////////////////////////////////////////////////////////////////////
+                                // ::user::document_manager
 
 
+                                /*CLASS_DECL_CORE bool __delete_reg_key(const char * lpszKey);
 
-CLASS_DECL_CORE bool _API
-__set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = NULL);
 
-*/
+
+                                CLASS_DECL_CORE bool _API
+                                __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = NULL);
+
+                                */
 
 
 
@@ -644,7 +645,7 @@ namespace user
 } // namespace user
 
 
-//#include "user_element_2d.h"
+  //#include "user_element_2d.h"
 #include "core/user/user/user_control_property.h"
 
 
@@ -653,7 +654,7 @@ namespace user
 
 
 
-//#include "core_profiler.h"
+  //#include "core_profiler.h"
 #include "core_history.h"
 
 
@@ -661,7 +662,7 @@ namespace user
 
 
 
-// former core
+  // former core
 
 #include "core_os_history.h"
 
@@ -699,9 +700,9 @@ extern CLASS_DECL_CORE UINT g_uiTraceFlags;
 //CLASS_DECL_CORE void ::core::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
 /*CLASS_DECL_CORE int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
-            UINT nIDHelp = 0);*/
+UINT nIDHelp = 0);*/
 /*CLASS_DECL_CORE int32_t System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
-            UINT nIDHelp = (UINT)-1);*/
+UINT nIDHelp = (UINT)-1);*/
 
 // Implementation string helpers
 //CLASS_DECL_CORE void __format_strings(string & rString, UINT nIDS,
@@ -806,7 +807,7 @@ class document;
 class main_frame;
 
 
-typedef sp(::aura::application) (* LP_GET_NEW_APP) ();
+typedef sp(::aura::application) (*LP_GET_NEW_APP) ();
 
 
 namespace core
@@ -856,7 +857,7 @@ namespace geometry
 
 CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
-typedef sp(::aura::application) (*LPFN_instantiate_application)(sp(::aura::application) pappParent,const char * pszId);
+typedef sp(::aura::application) (*LPFN_instantiate_application)(sp(::aura::application) pappParent, const char * pszId);
 
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
@@ -904,7 +905,6 @@ extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_applicati
 
 
 
-#endif
 
 
 
@@ -937,7 +937,6 @@ CLASS_DECL_CORE bool defer_core_term();
 #include "core/math/math/math_math.h"
 
 
-#include "core/core/core/core.h"
 
 
 class service_base;

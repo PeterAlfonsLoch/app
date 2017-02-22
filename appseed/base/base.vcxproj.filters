@@ -66,12 +66,6 @@
     <Filter Include="Header Files\base\base_policy">
       <UniqueIdentifier>{a16fcaca-ea5f-4d72-8dee-7ab35a286c93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\hotplugin">
-      <UniqueIdentifier>{b423da12-3cdd-4f7a-8701-5857cf2e774b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\install">
-      <UniqueIdentifier>{45cb13cf-a3e1-4627-833e-10c83bc06da8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{6965a8cf-00c7-400c-8cf8-dceedc729eda}</UniqueIdentifier>
     </Filter>
@@ -296,9 +290,6 @@
     <ClInclude Include="user\simple_ui\simple_ui_tap.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_application_as_proxy_document.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -416,9 +407,6 @@
     <ClInclude Include="user\user\user_windowing.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_interaction_impl.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
@@ -482,6 +470,24 @@
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_updowninterface.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
+    <ClInclude Include="base_cpp1.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\common_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\core_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_front_end.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_front_end_schema.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
@@ -502,28 +508,7 @@
     <ClCompile Include="base\os\windows\windows.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_host.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
     <ClCompile Include="base\base\base_application.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_core_copydesk.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_session.cpp">
@@ -534,45 +519,6 @@
     </ClCompile>
     <ClCompile Include="base\base\base_system.cpp">
       <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_plugin.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_starter_start.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\_hotplugin.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\_base_base_base.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\_install.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\_node.cpp">
-      <Filter>Source Files\base\node</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\_windows_node.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\_windows_os.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\_os.cpp">
-      <Filter>Source Files\base\os</Filter>
-    </ClCompile>
-    <ClCompile Include="base\_base_base.cpp">
-      <Filter>Source Files\base</Filter>
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
       <Filter>Source Files\user\fontopus</Filter>
@@ -820,9 +766,6 @@
     <ClCompile Include="base\message\message_user.cpp">
       <Filter>Source Files\base\message</Filter>
     </ClCompile>
-    <ClCompile Include="base\message\_message.cpp">
-      <Filter>Source Files\base\message</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_tooltip.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -840,6 +783,12 @@
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_updowninterface.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_front_end.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_front_end_schema.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

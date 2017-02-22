@@ -163,14 +163,22 @@ WINBOOL FIRational::isInteger() {
 }
 
 /// Convert as "numerator/denominator"
-std::string FIRational::toString() {
-	std::ostringstream s;
-	if(isInteger()) {
-		s << intValue();
-	} else {
-		s << _numerator << "/" << _denominator;
+std::string FIRational::toString()
+{
+	
+   if(isInteger())
+   {
+	
+      return ::str::from(intValue());
+
 	}
-	return s.str();
+   else 
+   {
+		
+      return ::str::from(_numerator) + "/" + ::str::from(_denominator);
+
+	}
+
 }
 
 

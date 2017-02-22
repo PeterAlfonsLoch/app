@@ -47,3 +47,5 @@
 #include "filemanager_tree.cpp"
 #include "filemanager_update_hint.cpp"
 #include "filemanager_view.cpp"
+
+#include "filemanager.cpp"

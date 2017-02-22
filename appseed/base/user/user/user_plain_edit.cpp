@@ -198,6 +198,8 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
+      m_dwLastDraw = ::get_tick_count();
+      
       //return;
 //#ifdef PROFILE_CALC_LAYOUT
 //      for(index i = 0; i < 1000; i++)
@@ -240,47 +242,23 @@ namespace user
 
       if(pprintjob != NULL)
       {
+
          TRACE("Print Job Is Printing page %d",pprintjob->m_iPrintingPage);
+
       }
 
-
-
-      //rectClient.deflate(0, 0, 1, 1);
-
-      //
-
-
-
-      //color ca;
-      //ca.set_rgb(RGB(227,227,210));
-      //ca.hls_rate(0.0,-0.33,-0.23);
-      ////      COLORREF crBorder = ca.get_rgb() | (0xff << 24);
-      ////pgraphics->Draw3dRect(rectClient, crBorder, crBorder);
-
-      bool bCaretOn = ((get_tick_count() - m_dwFocustStart) % (m_dwCaretTime * 2)) < m_dwCaretTime;
+      bool bCaretOn = ((get_tick_count() - m_dwFocusStartTick) % (m_dwCaretTime * 2)) < m_dwCaretTime;
 
       if(m_ptree == NULL)
          return;
-
-      //if(m_iLineHeight == 0)
-      //{
-      //   pgraphics->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,m_scrolldata.m_ptScroll.y);
-      //}
-      //else
-      //{
-      //   pgraphics->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,-(m_scrolldata.m_ptScroll.y % m_iLineHeight));
-      //}
 
       ::draw2d::region_sp rgn(allocer());
 
       rectClient.deflate(2,2);
 
-      //ClientToScreen(rectClient);
       rgn->create_rect(rectClient);
 
       double left = rectClient.left;
-
-      //   pgraphics->SelectClipRgn(&rgn);
 
       if(Session.get_keyboard_focus() == this)
       {
@@ -547,6 +525,7 @@ namespace user
    void plain_edit::_001OnCreate(signal_details * pobj)
    {
 
+
       SCAST_PTR(::message::create,pcreate,pobj);
 
 #if !defined(APPLE_IOS) && !defined(VSNORD)
@@ -566,14 +545,14 @@ namespace user
       //m_pitem          = get_base_item();
 
       pcreate->previous();
-      m_ptree->m_pfile = canew(::file::memory_buffer(get_app()));
+      m_ptree->m_pfile = canew(::memory_file(get_app()));
       if(m_bColorerTake5)
       {
          m_peditor->colorertake5::base_editor::initialize(m_plines);
          m_peditor->colorertake5::base_editor::setRegionMapper("rgb","default");
       }
 
-      //  m_peditfile = new ::file::edit_buffer(get_app());
+      //  m_peditfile = new ::file::edit_file(get_app());
 
       m_ptree->m_editfile.SetFile(m_ptree->m_pfile);
 
@@ -582,7 +561,7 @@ namespace user
       m_bGetTextNeedUpdate = true;
 
 
-//      SetTimer(100,100,NULL);
+      SetTimer(100,100,NULL);
       m_ptree->m_iSelStart  = 0;
       m_ptree->m_iSelEnd = 0;
       _001OnSetText(::action::source_system);
@@ -1166,7 +1145,7 @@ namespace user
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-         point pt = pmouse->m_pt;
+      point pt = pmouse->m_pt;
 
       ScreenToClient(&pt);
 
@@ -1190,6 +1169,8 @@ namespace user
       pmouse->m_bRet = true;
 
       pmouse->set_lresult(1);
+
+      on_reset_focus_start_tick();
 
    }
 
@@ -1216,6 +1197,8 @@ namespace user
       pmouse->m_bRet = true;
 
       pmouse->set_lresult(1);
+
+      on_reset_focus_start_tick();
 
    }
 
@@ -1574,7 +1557,7 @@ namespace user
 
          i2 = i1 + straLines[i].get_length();
 
-         if(iSel < i2)
+         if(iSel <= i2)
          {
 
             ::draw2d::memory_graphics pgraphics(allocer());
@@ -2231,13 +2214,6 @@ namespace user
 
          string strChar;
 
-         if(Session.is_key_pressed(::user::key_control))
-         {
-
-            return;
-
-         }
-
          if(pkey->m_ekey == ::user::key_s)
          {
             if(Session.is_key_pressed(::user::key_control))
@@ -2261,6 +2237,13 @@ namespace user
                return;
             }
          }
+         if (Session.is_key_pressed(::user::key_control))
+         {
+
+            return;
+
+         }
+
 
          {
 
@@ -2270,6 +2253,9 @@ namespace user
 
             if(pkey->m_ekey == ::user::key_back)
             {
+
+               on_reset_focus_start_tick();
+
                if(!m_bReadOnly)
                {
                   strsize i1 = m_ptree->m_iSelStart;
@@ -2385,6 +2371,10 @@ namespace user
             }
             else if(pkey->m_ekey == ::user::key_up)
             {
+
+
+               on_reset_focus_start_tick();
+
                int32_t x;
                index iLine = SelToLineX(m_ptree->m_iSelEnd,x);
                
@@ -2407,6 +2397,9 @@ namespace user
             }
             else if(pkey->m_ekey == ::user::key_down)
             {
+
+               on_reset_focus_start_tick();
+
                int32_t x;
 
                index iLine = SelToLineX(m_ptree->m_iSelEnd,x);
@@ -2430,6 +2423,9 @@ namespace user
             }
             else if(pkey->m_ekey == ::user::key_right)
             {
+
+               on_reset_focus_start_tick();
+
                if(!bShift && m_ptree->m_iSelStart > m_ptree->m_iSelEnd)
                {
                   m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
@@ -2461,6 +2457,9 @@ namespace user
             }
             else if(pkey->m_ekey == ::user::key_left)
             {
+
+               on_reset_focus_start_tick();
+
                if(!bShift && m_ptree->m_iSelStart < m_ptree->m_iSelEnd)
                {
                   m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
@@ -2501,6 +2500,9 @@ namespace user
             }
             else if(pkey->m_ekey == ::user::key_home)
             {
+
+               on_reset_focus_start_tick();
+
                index iLine = SelToLine(m_ptree->m_iSelEnd);
                m_ptree->m_iSelEnd = LineColumnToSel(iLine,0);
                if(!bShift)
@@ -2510,6 +2512,9 @@ namespace user
             }
             else if(pkey->m_ekey == ::user::key_end)
             {
+
+               on_reset_focus_start_tick();
+
                index iLine = SelToLine(m_ptree->m_iSelEnd);
                m_ptree->m_iSelEnd = LineColumnToSel(iLine,-1);
                if(!bShift)
@@ -2522,6 +2527,8 @@ namespace user
             }
             else
             {
+
+               on_reset_focus_start_tick();
                if(!m_bReadOnly)
                {
                   if(pkey->m_ekey == ::user::key_return)
@@ -2667,16 +2674,24 @@ namespace user
 
    void plain_edit::_001OnKeyboardFocusTimer(uint64_t iTimer)
    {
-      //if(iTimer == 0)
-      //{
-      //   if(m_dwLastCaret + m_dwCaretTime < get_tick_count())
-      //   {
-      //      m_dwLastCaret = get_tick_count();
-      //      m_bCaretOn = !m_bCaretOn;
-      //      //RedrawWindow();
-      //      RedrawWindow();
-      //   }
-      //}
+      if(iTimer == 0)
+      {
+
+         if (::get_tick_count() - m_dwLastDraw > m_dwCaretTime / 2)
+         {
+
+            RedrawWindow();
+
+         }
+
+         //if(m_dwFocusStart + m_dwCaretTime < get_tick_count())
+         //{
+         //   m_dwFocusStart = get_tick_count();
+         //   m_bCaretOn = !m_bCaretOn;
+         //   //RedrawWindow();
+         //   RedrawWindow();
+         //}
+      }
    }
 
    void plain_edit::OneLineUp()
@@ -3016,6 +3031,7 @@ namespace user
          return;
       string str;
       _001GetSelText(str);
+      str.replace("\r", "\r\n");
       Session.copydesk().set_plain_text(str);
    }
 
@@ -3179,11 +3195,8 @@ namespace user
 
       }
 
-      //m_bCaretOn = true;
-      //m_dwLastCaret = get_tick_count();
-      //SetTimer(100, 100, NULL);
-      //RedrawWindow();
       return true;
+
    }
 
 
@@ -3331,6 +3344,8 @@ namespace user
       return str;
 
    }
+
+
 
 
 } // namespace core

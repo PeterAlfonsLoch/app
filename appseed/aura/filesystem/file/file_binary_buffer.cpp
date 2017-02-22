@@ -5,23 +5,23 @@ namespace file
 {
 
 
-   binary_buffer::binary_buffer()
+   binary_file::binary_file()
    {
    }
 
 
-   memory_size_t binary_buffer::read(void *lpBuf, memory_size_t nCount)
+   memory_size_t binary_file::read(void *lpBuf, memory_size_t nCount)
    {
       return ::file::reader::read(lpBuf, nCount);
    }
 
-   void binary_buffer::write(const void * lpBuf, memory_size_t nCount)
+   void binary_file::write(const void * lpBuf, memory_size_t nCount)
    {
       ::file::writer::write(lpBuf, nCount);
    }
 
 
-   void binary_buffer::write(ostream & ostream)
+   void binary_file::write(ostream & ostream)
    {
       
       seek_to_begin();
@@ -31,7 +31,7 @@ namespace file
    }
 
 
-   void binary_buffer::read(istream & istream)
+   void binary_file::read(istream & istream)
    {
    
       transfer_from(*istream.m_spfile);
@@ -41,70 +41,70 @@ namespace file
    }
 
 
-   binary_buffer::~binary_buffer()
+   binary_file::~binary_file()
    {
    }
 
-   ::file::file_sp  binary_buffer::Duplicate() const
+   ::file::file_sp  binary_file::Duplicate() const
    {
       return NULL;
    }
 
-   cres binary_buffer::open(const ::file::path & lpszFileName, UINT nOpenFlags)
+   cres binary_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(nOpenFlags);
       return canew(::file::exception(get_app()));
    }
 
-   file_position_t binary_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
+   file_position_t binary_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
       UNREFERENCED_PARAMETER(nFrom);
       return 0;
    }
 
-   file_position_t binary_buffer::get_position() const
+   file_position_t binary_file::get_position() const
    {
-      return ((binary_buffer *) this)->seek(0, ::file::seek_current);
+      return ((binary_file *) this)->seek(0, ::file::seek_current);
    }
 
-   void binary_buffer::flush()
-   {
-   }
-
-   void binary_buffer::close()
+   void binary_file::flush()
    {
    }
 
-   void binary_buffer::Abort()
+   void binary_file::close()
    {
    }
 
-   void binary_buffer::LockRange(file_position_t dwPos, file_size_t dwCount)
+   void binary_file::Abort()
    {
-      UNREFERENCED_PARAMETER(dwPos);
-      UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void binary_buffer::UnlockRange(file_position_t dwPos, file_size_t dwCount)
+   void binary_file::LockRange(file_position_t dwPos, file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void binary_buffer::set_length(file_size_t dwNewLen)
+   void binary_file::UnlockRange(file_position_t dwPos, file_size_t dwCount)
+   {
+      UNREFERENCED_PARAMETER(dwPos);
+      UNREFERENCED_PARAMETER(dwCount);
+   }
+
+   void binary_file::set_length(file_size_t dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    }
 
-   file_size_t binary_buffer::get_length() const
+   file_size_t binary_file::get_length() const
    {
       return 0;
    }
 
    // file does not support direct buffering (CMemFile does)
-   uint64_t binary_buffer::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
+   uint64_t binary_file::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
    {
       UNREFERENCED_PARAMETER(nCommand);
       UNREFERENCED_PARAMETER(nCount);
@@ -124,13 +124,13 @@ namespace file
       UNREFERENCED_PARAMETER(lpszFileName);
    }*/
 
-   void binary_buffer::assert_valid() const
+   void binary_file::assert_valid() const
    {
    //   object::assert_valid();
       // we permit the descriptor m_hFile to be any value for derived classes
    }
 
-   void binary_buffer::dump(dump_context & dumpcontext) const
+   void binary_file::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
    //   object::dump(dumpcontext);
@@ -147,17 +147,17 @@ namespace file
    /////////////////////////////////////////////////////////////////////////////
    // file name handlers
 
-   string binary_buffer::GetFileName() const
+   string binary_file::GetFileName() const
    {
       return "";
    }
 
-   string binary_buffer::GetFileTitle() const
+   string binary_file::GetFileTitle() const
    {
       return "";
    }
 
-   string binary_buffer::GetFilePath() const
+   string binary_file::GetFilePath() const
    {
       return "";
    }
@@ -181,13 +181,13 @@ namespace file
    /////////////////////////////////////////////////////////////////////////////
    // file Status implementation
 
-   bool binary_buffer::GetStatus(file_status & rStatus) const
+   bool binary_file::GetStatus(file_status & rStatus) const
    {
       UNREFERENCED_PARAMETER(rStatus);
       return FALSE;
    }
 
-   //bool binary_buffer::GetStatus(const char * lpszFileName, file_status & rStatus)
+   //bool binary_file::GetStatus(const char * lpszFileName, file_status & rStatus)
    //{
    //   UNREFERENCED_PARAMETER(lpszFileName);
    //   UNREFERENCED_PARAMETER(rStatus);
@@ -195,7 +195,7 @@ namespace file
    //}
 
 
-   //void binary_buffer::SetStatus(const char * lpszFileName, const file_status & status)
+   //void binary_file::SetStatus(const char * lpszFileName, const file_status & status)
    //{
    //   UNREFERENCED_PARAMETER(lpszFileName);
    //   UNREFERENCED_PARAMETER(status);
@@ -203,12 +203,12 @@ namespace file
 
 
 
-   bool binary_buffer::IsOpened()
+   bool binary_file::IsOpened()
    {
       return false;
    }
 
-   string binary_buffer::get_location() const
+   string binary_file::get_location() const
    {
       return GetFileName();
    }

@@ -103,7 +103,7 @@ namespace aura
 
       ::html::html *                               m_phtml; // only defined and set in html library/component
       ::url::department *                         m_purldepartment;
-      ::axis::compress *                           m_pcompress;
+      ::axis::compress_department *                           m_pcompress;
 
       ::file::system_sp                            m_spfile;
       ::file::dir::system_sp                       m_spdir;
@@ -161,7 +161,7 @@ namespace aura
       ::process::department                       &  process();
 
 
-      ::xml::department                           &  xml();
+      ::xml::department                            &  xml();
       class ::str::base64                          &  base64();
 
       class ::aura::log                            &  log();
@@ -171,13 +171,13 @@ namespace aura
       geometry::geometry                           &  geometry() { return *m_pgeometry; }
       math::math                                   &  math() { return *m_pmath; }
       ::colorertake5::ParserFactory                &  parser_factory();
-      inline ::url::department                    & url() { return *m_purldepartment; } // only usable from base.dll and dependants
-      inline class ::axis::compress                & compress() { return *m_pcompress; } // only usable from base.dll and dependants
+      inline ::url::department                     &  url() { return *m_purldepartment; } // only usable from base.dll and dependants
+      inline class ::axis::compress_department     &  compress() { return *m_pcompress; } // only usable from base.dll and dependants
 
-      inline ::file::system                        & file()    { return *m_spfile; }
-      inline ::file::dir::system                   & dir()     { return *m_spdir; }
+      inline ::file::system                        &  file()    { return *m_spfile; }
+      inline ::file::dir::system                   &  dir()     { return *m_spdir; }
 
-      ::datetime::department                      & datetime();
+      ::datetime::department                       &  datetime();
 
 	  virtual string url_encode(const string & str);
 

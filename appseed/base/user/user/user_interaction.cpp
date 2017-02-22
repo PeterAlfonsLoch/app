@@ -107,7 +107,12 @@ namespace user
       m_uiptraChild.m_pmutex = NULL;
 
    }
+   tooltip *    interaction::get_tooltip()
+   {
 
+      return m_ptooltip.cast<tooltip>();
+
+   }
 
    bool interaction::defer_check_layout()
    {
@@ -3893,6 +3898,12 @@ namespace user
 
    }
 
+   bool interaction::IsNotifyIconEnabled()
+   {
+
+      return false;
+
+   }
 
    void interaction::viewport_screen_to_client(POINT * ppt)
    {
@@ -7815,11 +7826,11 @@ restart:
 
       }
 
-      m_ptooltip->m_str = str;
+      get_tooltip()->m_str = str;
 
-      m_ptooltip->m_bError = bError;
+      get_tooltip()->m_bError = bError;
 
-      m_ptooltip->CalcSize();
+      get_tooltip()->CalcSize();
 
       if(!layout_tooltip(true))
       {
@@ -7829,6 +7840,19 @@ restart:
       }
 
       return true;
+
+   }
+
+   void interaction::ExitHelpMode()
+   {
+
+   }
+
+
+   void interaction::BaseOnControlEvent(::message::base * pbase)
+   {
+
+      ((::user::control_event *) pbase->m_lparam.m_lparam)->m_bRet = BaseOnControlEvent((::user::control_event *) pbase->m_lparam.m_lparam);
 
    }
 
@@ -7859,7 +7883,7 @@ restart:
 
       }
 
-      ::size sizeTooltip = m_ptooltip->m_size;
+      ::size sizeTooltip = get_tooltip()->m_size;
 
       ::rect rectThisWindow;
 

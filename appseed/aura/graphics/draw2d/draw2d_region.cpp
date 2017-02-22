@@ -729,7 +729,7 @@ namespace draw2d
 
       max_bounding_box(rect);
 
-      copy(lprect,rect);
+      ::copy(lprect,rect);
 
    }
 
@@ -741,7 +741,7 @@ namespace draw2d
 
       max_bounding_box_rect(rect);
 
-      copy(lprect,rect);
+      ::copy(lprect,rect);
 
    }
 
@@ -752,7 +752,7 @@ namespace draw2d
 
       max_bounding_box_oval(rect);
 
-      copy(lprect,rect);
+      ::copy(lprect,rect);
 
    }
 
@@ -764,7 +764,7 @@ namespace draw2d
 
       max_bounding_box_polygon(rect);
 
-      copy(lprect,rect);
+      ::copy(lprect,rect);
 
    }
 
@@ -776,7 +776,7 @@ namespace draw2d
 
       max_bounding_box_poly_polygon(rect);
 
-      copy(lprect,rect);
+      ::copy(lprect,rect);
 
    }
 
@@ -788,7 +788,7 @@ namespace draw2d
 
       max_bounding_box_combine(rect);
 
-      copy(lprect,rect);
+      ::copy(lprect,rect);
 
    }
 

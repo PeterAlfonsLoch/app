@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 
 
 CLASS_DECL_AURA index array_translate_a(index_biunique & ia, index aNew, index aOld);
@@ -729,13 +729,6 @@ namespace user
    }
 
 
-
-   ::user::mesh_data * mesh::create_mesh_data()
-   {
-
-      return Session.userex()->default_create_mesh_data(get_app());
-
-   }
 
 
    /*bool mesh::pre_create_window(::user::create_struct& cs)

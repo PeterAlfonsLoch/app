@@ -12,6 +12,7 @@ namespace file
 
 
    byte_stream::byte_stream(file * pbuffer) :
+      stream_base(pbuffer),
       stream(pbuffer)
    {
 
@@ -19,6 +20,7 @@ namespace file
 
 
    byte_stream::byte_stream(const stream & strm) :
+      stream_base(strm),
       stream(strm)
    {
 

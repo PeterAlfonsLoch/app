@@ -40,7 +40,7 @@ namespace filehandler
 
       void defer_add_library(::aura::library * plibrary);
       void add_library(::filehandler::library * plibrary);
-      void add_menu_library(menu_library * plibrary);
+//      void add_menu_library(menu_library * plibrary);
 
 
       sp(::data::tree_item) get_extension_tree_item(const char * pszExtension, bool bCreate);

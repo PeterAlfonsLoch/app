@@ -44,3 +44,16 @@ namespace userex // ca8 + cube
 } // namespace userex // ca8 + cube
 
 
+
+namespace core
+{
+
+   string application::message_box(const char * pszMatter, property_set & propertyset)
+   {
+      ::userex::message_box box(this);
+      box.show(pszMatter, &propertyset);
+      return box.m_strResponse;
+   }
+
+
+} // namespace core

@@ -298,7 +298,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          void OnConnected(on_connected & connected);
 
-         ::file::circular_buffer ibuf; ///< Circular input buffer
+         ::file::circular_file ibuf; ///< Circular input buffer
       public:
 
          virtual string get_url();

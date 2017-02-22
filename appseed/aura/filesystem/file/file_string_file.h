@@ -1,11 +1,6 @@
 #pragma once
 
 
-#include "file_plain_text_stream_base.h"
-#include "file_plain_text_istream.h"
-#include "file_plain_text_ostream.h"
-#include "file_plain_text_stream.h"
-
 
 
 namespace file
@@ -15,7 +10,7 @@ namespace file
    class string_file;
 
 
-   typedef sp(string_file) string_buffer_sp;
+   typedef sp(string_file) string_file_sp;
 
 
    class CLASS_DECL_AURA string_file :
@@ -120,9 +115,6 @@ namespace file
 
 
 
-
-#include "file_plain_text_ostream_string_buffer.h"
-#include "file_plain_text_stream_string_buffer.h"
 
 
 

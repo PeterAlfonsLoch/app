@@ -12,14 +12,15 @@ class library  :
    virtual public ::object
 {
 public:
-   mutex m_mutex;
-   string m_strError;
-   file::plain_text_stream_memory_buffer     m_memfileError;
-   file::plain_text_stream_memory_buffer     m_memfileLibError;
-   ::file::listing                             m_straLibSourcePath;
+
+   mutex                                     m_mutex;
+   string                                    m_strError;
+   memory_file                               m_memfileError;
+   memory_file                               m_memfileLibError;
+   ::file::listing                           m_straLibSourcePath;
    ::file::patha                             m_straLibSourceRelPath;
    ::file::patha                             m_straLibCppPath;
-   ::file::listing                             m_straLibIncludePath;
+   ::file::listing                           m_straLibIncludePath;
    ::file::patha                             m_straLibIncludeRelPath;
    ::file::patha                             m_straLibHppPath;
    ::file::path                              m_strLibraryPath;

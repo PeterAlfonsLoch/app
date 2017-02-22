@@ -1,4 +1,4 @@
-//#include "framework.h"
+#include "framework.h"
 
 
 namespace user
@@ -470,14 +470,6 @@ namespace user
    }
 
 
-
-   //void button::_001OnSize(signal_details * pobj)
-   //{
-   //   SCAST_PTR(::message::base, pbase, pobj);
-   //      _001Layout();
-   //   pbase->m_bRet = false;
-   //}
-
    void button::_001OnCreate(signal_details * pobj)
    {
 
@@ -490,43 +482,33 @@ namespace user
 
       }
 
-      //m_pschema   = &::userex::GetUfeSchema(get_app())->m_button;
+      ::user::front_end_schema * pschema = NULL;
 
-      sp(::simple_frame_window) pframewindow = GetTypedParent < ::simple_frame_window > ();
+      sp(::user::frame_window) pframewindow = GetTypedParent < ::user::frame_window > ();
 
-      if(pframewindow != NULL)
+      if (pframewindow != NULL)
       {
 
-         if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
-         {
+         pschema = pframewindow->get_user_front_end_schema();
 
-            pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
+      }
 
-         }
+      if (pschema == NULL)
+      {
 
-         if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
-         {
+         pschema = Session.user()->GetUfeSchema();
 
-            pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
+      }
 
-         }
+      if(pschema != NULL)
+      {
 
-         if(pframewindow->m_workset.m_pframeschema == NULL)
-         {
-
-            m_pschema = &Session.userex()->GetUfeSchema()->m_button;
-
-         }
-         else
-         {
-
-            m_pschema = &pframewindow->m_workset.m_pframeschema->get_user_front_end_schema()->m_button;
-
-         }
+         m_pschema = &pschema->m_button;
 
       }
 
    }
+
 
    void button::on_layout()
    {

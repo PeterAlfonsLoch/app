@@ -6,7 +6,6 @@
 #include "user_windowing.h"
 
 
-
 // Note: afxData.cxBorder and afxData.cyBorder aren't used anymore
 #define CX_BORDER   1
 #define CY_BORDER   1
@@ -304,8 +303,17 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const unichar * lpw);
 
 #include "base/user/fontopus/fontopus.h"
 
+namespace user
+{
 
+   class CLASS_DECL_BASE map_form_window :
+      virtual public strsp(::user::form_window)
+   {
+   public:
 
+   };
+
+} // namespace user
 
 
 

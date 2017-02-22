@@ -213,12 +213,13 @@ namespace sockets
 
       if (outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
       {
-         m_memoryfile.seek_to_begin();
-         System.compress().ungz(m_memoryfile);
+         
+         System.compress().ungz(get_app(), *m_memoryfile.get_memory());
+
       }
 
       if(m_pfile != NULL && (m_response.attr(__id(http_status_code)) < 300 || m_response.attr(__id(http_status_code)) >= 400))
-     { 
+      { 
 
          m_pfile->write(m_memoryfile.get_data(), m_memoryfile.get_size());
 

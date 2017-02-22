@@ -156,10 +156,16 @@ namespace user
 
          sync_io_error error;
 
-         ::file::byte_stream_memory_buffer memstream(get_app());
+         memory_file file(get_app());
+
+         ::file::byte_stream memstream(&file);
 
          if (!data_get(id, memstream))
+         {
+
             return false;
+
+         }
 
          memstream.seek_to_begin();
 
@@ -268,10 +274,14 @@ namespace user
    {
       //WINDOWPLACEMENT wp;
       //pwindow->GetWindowPlacement(&wp);
-      ::file::byte_stream_memory_buffer memstream(get_app());
-      ::file::byte_stream_memory_buffer memstreamGet(get_app());
-      bool bGet = data_get(id, memstreamGet);
-      memstreamGet.seek_to_begin();
+
+      memory_file file(get_app());
+      ::file::byte_stream stream(&file);
+
+      memory_file fileGet(get_app());
+      ::file::byte_stream streamGet(&fileGet);
+      bool bGet = data_get(id, streamGet);
+      streamGet.seek_to_begin();
       int iBeforeOld = 0;
       bool bZoomedOld = false;
       bool bFullScreenOld = false;
@@ -283,12 +293,12 @@ namespace user
          try
          {
             sync_io_error error;
-            memstreamGet >> iBeforeOld;
-            memstreamGet >> bZoomedOld;
-            memstreamGet >> bFullScreenOld;
-            memstreamGet >> bIconicOld;
-            memstreamGet >> iAppearanceOld;
-            memstreamGet >> rectOld;
+            streamGet >> iBeforeOld;
+            streamGet >> bZoomedOld;
+            streamGet >> bFullScreenOld;
+            streamGet >> bIconicOld;
+            streamGet >> iAppearanceOld;
+            streamGet >> rectOld;
             bGet = error.none();
          }
          catch (...)
@@ -297,26 +307,26 @@ namespace user
          }
       }
       int iBefore = (int)get_appearance_before();
-      memstream << iBefore;
+      stream << iBefore;
       bool bZoomed = pwindow->WfiIsZoomed() != FALSE;
-      memstream << bZoomed;
+      stream << bZoomed;
       bool bFullScreen = pwindow->WfiIsFullScreen();
-      memstream << bFullScreen;
+      stream << bFullScreen;
       bool bIconic = pwindow->WfiIsIconic();
-      memstream << bIconic;
+      stream << bIconic;
       int iAppearance = (int)pwindow->get_appearance();
-      memstream << iAppearance;
+      stream << iAppearance;
       if (bGet && (bZoomed || bFullScreen || bIconic || ::user::is_docking_appearance((::user::EAppearance)iAppearance)))
       {
-         memstream << rectOld;
+         stream << rectOld;
       }
       else
       {
          rect rect;
          pwindow->GetWindowRect(rect);
-         memstream << rect;
+         stream << rect;
       }
-      return data_set(id, memstream);
+      return data_set(id, stream);
    }
 
 

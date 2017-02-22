@@ -11,15 +11,15 @@ namespace file
    public:
 
 
-      sp(::file::timeout_buffer)       m_ptimeoutfile;
+      sp(::file::timeout_file)       m_ptimeoutfile;
       sp(::primitive::memory_base)     m_pmemory;
-      sp(::file::memory_buffer)        m_pmemoryfileIn;
-      sp(::file::memory_buffer)        m_pmemoryfileOut;
+      sp(::memory_file)        m_pmemoryfileIn;
+      sp(::memory_file)        m_pmemoryfileOut;
       sp(mutex)                        m_spmutex;
 
 
       transfer_file(::aura::application * papp, mutex * pmutex = NULL);
-      transfer_file(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn);
+      transfer_file(::aura::application * papp, ::memory_file * pmemoryfileIn);
       virtual ~transfer_file();
 
 
