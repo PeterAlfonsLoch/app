@@ -109,11 +109,11 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
    while (true)
    {
 
-      zstream.next_out = (char *) memIn.get_data();
-      zstream.avail_out = (uint32_t)memIn.get_size();
-
       do
       {
+
+         zstream.next_out = (char *)memIn.get_data();
+         zstream.avail_out = (uint32_t)memIn.get_size();
 
          ret = BZ2_bzCompress(&zstream, iState);
 
@@ -149,9 +149,6 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
 
       zstream.avail_in = (uint32_t)uiRead;
 
-      zstream.total_out_hi32 = 0;
-
-      zstream.total_out_lo32 = 0;
 
    }
 
@@ -208,11 +205,11 @@ bool uncompress_bz::transfer(::file::ostream & ostreamUncompressed, ::file::istr
    while (!done)
    {
 
-      zstream.next_out = (char *) memory.get_data();
-      zstream.avail_out = (uint32_t)memory.get_size();
-
       do
       {
+
+         zstream.next_out = (char *)memory.get_data();
+         zstream.avail_out = (uint32_t)memory.get_size();
 
          // Inflate another chunk.
          status = BZ2_bzDecompress(&zstream);
@@ -223,6 +220,7 @@ bool uncompress_bz::transfer(::file::ostream & ostreamUncompressed, ::file::istr
          {
 
             done = true;
+            break;
 
          }
          else if (status != BZ_OK)

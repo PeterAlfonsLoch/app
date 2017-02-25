@@ -79,21 +79,23 @@
       ASSERT(memory.get_size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
-      if (deflateInit(&zstream, iLevel) != Z_OK)
+      if (deflateInit2(&zstream, iLevel, Z_DEFLATED, 16 + MAX_WBITS, 9, Z_DEFAULT_STRATEGY) != Z_OK)
       {
          return false;
       }
+
+      // use deflateSetHeader to set original file params
 
       int iFlush = Z_NO_FLUSH;
 
       while (true)
       {
 
-         zstream.next_out = memory.get_data();
-         zstream.avail_out = (uint32_t)memory.get_size();
-
          do
          {
+
+            zstream.next_out = memory.get_data();
+            zstream.avail_out = (uint32_t)memory.get_size();
 
             // Inflate another chunk.
             status = deflate(&zstream, iFlush);
@@ -113,7 +115,7 @@
 
             }
 
-         } while (zstream.avail_out == 0);
+         } while (zstream.avail_out == 0 || zstream.avail_in > 0);
 
          uiRead = istreamUncompressed.read(memIn.get_data(), memIn.get_size());
 
@@ -129,8 +131,6 @@
          zstream.next_in = (byte *)memIn.get_data();
 
          zstream.avail_in = (uint32_t)uiRead;
-
-         zstream.total_out = 0;
 
 
       }
@@ -194,11 +194,11 @@
       while (!done)
       {
 
-         zstream.next_out = memory.get_data();
-         zstream.avail_out = (uint32_t)memory.get_size();
-
          do
          {
+
+            zstream.next_out = memory.get_data();
+            zstream.avail_out = (uint32_t)memory.get_size();
 
             // Inflate another chunk.
             status = inflate(&zstream, Z_NO_FLUSH);
@@ -209,6 +209,7 @@
             {
 
                done = true;
+               break;
 
             }
             else if (status != Z_OK)
@@ -225,9 +226,6 @@
          zstream.next_in = (byte *)memIn.get_data();
 
          zstream.avail_in = (uint32_t)uiRead;
-
-         zstream.total_out = 0;
-
 
       }
 
