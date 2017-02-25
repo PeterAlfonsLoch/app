@@ -164,16 +164,16 @@
    bool uncompress_gz::transfer(::file::ostream & ostreamUncompressed, ::file::istream & istreamGzFileCompressed)
    {
 
-      bool done = false;
-
       int32_t status;
 
       class memory memIn;
+
       memIn.allocate(1024 * 8);
 
-      int64_t uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
+      uint32_t uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
 
       z_stream zstream;
+
       ZERO(zstream);
       zstream.next_in = (byte *)memIn.get_data();
       zstream.avail_in = (uint32_t)uiRead;
@@ -186,12 +186,14 @@
       ASSERT(memory.get_size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
-      if (inflateInit(&zstream) != Z_OK)
+      if (inflateInit2(&zstream, 16 + MAX_WBITS) != Z_OK)
       {
+         
          return false;
+
       }
 
-      while (!done)
+      while (true)
       {
 
          do
@@ -208,18 +210,17 @@
             if (status == Z_STREAM_END)
             {
 
-               done = true;
-               break;
+               goto stop1;
 
             }
             else if (status != Z_OK)
             {
 
-               break;
+               goto stop1;
 
             }
 
-         } while (zstream.avail_out == 0);
+         } while (zstream.avail_out == 0 || zstream.avail_in > 0);
 
          uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
 
@@ -229,7 +230,9 @@
 
       }
 
-      if (inflateEnd(&zstream) != Z_OK || !done)
+      stop1:
+
+      if (inflateEnd(&zstream) != Z_OK)
       {
 
          return true;
