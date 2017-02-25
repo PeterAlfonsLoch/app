@@ -142,7 +142,7 @@ namespace file
    void plain_text_stream_memory_file::set_length(file_size_t dwNewLen)
    {
 
-      plain_text_stream::set_length(dwNewLen);
+      memory_file::set_length(dwNewLen);
 
    }
 
