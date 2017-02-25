@@ -744,78 +744,78 @@ inline string::string(const property & prop):stdstring< simple_string> (string_t
 inline string::string(const id & id):stdstring< simple_string> (string_trait::GetDefaultManager()) { id.to_string(*this);}
 
 
-template < typename Type, typename RawType >
-memory string_array < Type, RawType > ::GetFormatV004()
-{
-
-   strsize iTotalLength = 0;
-
-   strsize i;
-
-   for(i = 0; i < this->m_nSize; i++)
-   {
-      iTotalLength += this->element_at(i).get_length();
-      iTotalLength++;
-   }
-
-   if(iTotalLength == 0)
-   {
-      iTotalLength = 2;
-   }
-   else
-   {
-      iTotalLength++;
-   }
-
-   memory mem;
-
-   mem.allocate(iTotalLength * sizeof(char));
-
-   char * lpsz = (char *)mem.get_data();
-
-   memset(lpsz,0x00,iTotalLength * sizeof(char));
-
-   char * lpszN = lpsz;
-
-   strsize iLength;
-
-   for(i = 0; i < this->m_nSize; i++)
-   {
-
-      Type * pstr = &this->element_at(i);
-
-      iLength = pstr->get_length();
-
-#ifdef WINDOWS
-      strcat_s(lpszN,iLength,*pstr);
-#else
-      strcat(lpszN,*pstr);
-#endif
-
-#ifdef WINDOWSEX
-      iLength = _tcsnbcnt(lpszN,iLength);
-#elif defined(METROWINDOW)
-      iLength = wcsnbcnt(lpszN,iLength);
-#else
-      iLength = strlen(lpszN);
-#endif
-
-      lpszN = (char *)((LPBYTE)lpszN) + iLength + sizeof(char);
-
-   }
-
-   if(iTotalLength == 2)
-   {
-      memset(lpsz,0x00,iTotalLength * sizeof(char));
-   }
-   else
-   {
-      memset(lpszN,0x00,sizeof(char));
-   }
-
-   return mem;
-
-}
+//template < typename Type, typename RawType >
+//memory string_array < Type, RawType > ::GetFormatV004()
+//{
+//
+//   strsize iTotalLength = 0;
+//
+//   strsize i;
+//
+//   for(i = 0; i < this->m_nSize; i++)
+//   {
+//      iTotalLength += this->element_at(i).get_length();
+//      iTotalLength++;
+//   }
+//
+//   if(iTotalLength == 0)
+//   {
+//      iTotalLength = 2;
+//   }
+//   else
+//   {
+//      iTotalLength++;
+//   }
+//
+//   memory mem;
+//
+//   mem.allocate(iTotalLength * sizeof(char));
+//
+//   char * lpsz = (char *)mem.get_data();
+//
+//   memset(lpsz,0x00,iTotalLength * sizeof(char));
+//
+//   char * lpszN = lpsz;
+//
+//   strsize iLength;
+//
+//   for(i = 0; i < this->m_nSize; i++)
+//   {
+//
+//      Type * pstr = &this->element_at(i);
+//
+//      iLength = pstr->get_length();
+//
+//#ifdef WINDOWS
+//      strcat_s(lpszN,iLength,*pstr);
+//#else
+//      strcat(lpszN,*pstr);
+//#endif
+//
+//#ifdef WINDOWSEX
+//      iLength = _tcsnbcnt(lpszN,iLength);
+//#elif defined(METROWINDOW)
+//      iLength = wcsnbcnt(lpszN,iLength);
+//#else
+//      iLength = strlen(lpszN);
+//#endif
+//
+//      lpszN = (char *)((LPBYTE)lpszN) + iLength + sizeof(char);
+//
+//   }
+//
+//   if(iTotalLength == 2)
+//   {
+//      memset(lpsz,0x00,iTotalLength * sizeof(char));
+//   }
+//   else
+//   {
+//      memset(lpszN,0x00,sizeof(char));
+//   }
+//
+//   return mem;
+//
+//}
 
 inline string::string(const istring & istr) :
 stdstring< simple_string>(istr.m_str,string_trait::GetDefaultManager())

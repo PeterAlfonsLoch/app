@@ -1349,3 +1349,130 @@ namespace primitive
 } // namespace primitive
 
 
+
+
+
+namespace lemon
+{
+
+
+
+   CLASS_DECL_AURA void transfer_to(::file::writer & writer, const ::primitive::memory_base & mem, memory_size_t uiBufferSize)
+   {
+
+      if (mem.get_data() == NULL || mem.get_size() <= 0)
+         return;
+
+      if (writer.increase_internal_data_size(mem.get_size()) && writer.get_internal_data() != NULL)
+      {
+
+         if (writer.get_internal_data() == mem.get_data())
+            return;
+
+         memmove(((byte *)writer.get_internal_data()) + writer.get_position() + mem.get_size(), ((byte *)writer.get_internal_data()) + writer.get_position(), writer.get_internal_data_size() - mem.get_size());
+         memcpy(((byte *)writer.get_internal_data()) + writer.get_position(), mem.get_data(), mem.get_size());
+         writer.seek(mem.get_size(), ::file::seek_current);
+
+      }
+      else
+      {
+
+         writer.write(mem.get_data(), mem.get_size());
+
+      }
+
+   }
+
+   CLASS_DECL_AURA void transfer_from_begin(::file::reader & reader, ::primitive::memory_base & mem, memory_size_t uiBufferSize)
+   {
+
+      reader.seek_to_begin();
+
+      transfer_from(reader, mem, uiBufferSize);
+
+   }
+
+   CLASS_DECL_AURA void transfer_from(::file::reader & reader, ::primitive::memory_base & mem, memory_size_t uiBufferSize)
+   {
+
+      if (reader.get_internal_data() != NULL && reader.get_internal_data_size() > reader.get_position())
+      {
+
+         mem.append((byte *)reader.get_internal_data() + reader.get_position(), (memory_size_t)(reader.get_internal_data_size() - reader.get_position()));
+
+      }
+      else
+      {
+
+         memory_size_t uiRead;
+
+         memory_size_t uiSize = 0;
+
+         while (true)
+         {
+
+            mem.allocate(uiSize + uiBufferSize);
+
+            uiRead = reader.read(&mem.get_data()[uiSize], uiBufferSize);
+
+            if (uiRead <= 0)
+            {
+               break;
+
+            }
+
+            uiSize += uiRead;
+
+         }
+
+         mem.allocate(uiSize);
+
+      }
+
+
+   }
+
+
+
+} // namespace lemon
+
+
+
+
+CLASS_DECL_AURA::file::istream & operator >> (::file::istream & istream, ::primitive::memory_container & memcontainer)
+{
+
+   if (memcontainer.get_memory() == NULL)
+   {
+
+      memcontainer.set_memory(canew(memory(&memcontainer)));
+
+   }
+
+   istream >> *memcontainer.get_memory();
+   return istream;
+}
+
+
+CLASS_DECL_AURA::file::ostream & operator << (::file::ostream & ostream, const ::primitive::memory_base & mem)
+{
+
+   ::lemon::transfer_to(ostream, mem);
+
+   return ostream;
+
+}
+
+
+
+CLASS_DECL_AURA::file::istream & operator >> (::file::istream & istream, ::primitive::memory_base & mem)
+{
+
+   ::lemon::transfer_from(istream, mem);
+
+   return istream;
+
+}
+
+
+

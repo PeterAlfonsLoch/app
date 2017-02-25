@@ -130,7 +130,7 @@ namespace file
             if(pfile->m_dwIterationPosition < (m_dwPosition + m_memstorage.get_size()))
             {
 
-               int iOffset = pfile->m_dwIterationPosition - m_dwPosition;
+               file_position_t iOffset = pfile->m_dwIterationPosition - m_dwPosition;
 
                if (pbyte != NULL)
                {
@@ -219,7 +219,7 @@ namespace file
             if(pfile->m_dwIterationPosition < (m_dwPosition + m_memstorage.get_size()))
             {
 
-               int iOffset = pfile->m_dwIterationPosition - m_dwPosition;
+               file_position_t iOffset = pfile->m_dwIterationPosition - m_dwPosition;
 
                if (pbyte != NULL)
                {
@@ -499,7 +499,7 @@ namespace file
       if (m_ptreeitem == m_ptreeitemFlush)
       {
 
-         return m_dwPosition = m_pfile->read(lpBuf, nCount);
+         return (memory_size_t) (m_dwPosition = m_pfile->read(lpBuf, nCount));
 
       }
       

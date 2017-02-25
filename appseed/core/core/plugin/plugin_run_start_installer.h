@@ -1,8 +1,12 @@
 #pragma once
 
 
+#include "core/core/core/core_run_start_installer.h"
+
+
 namespace plugin
 {
+
 
 
    class run_start_installer :

@@ -5,9 +5,11 @@
 //#include "framework.h"
 //#include "draw2d.h"
 //#include <math.h>
-
+#include <stdio.h>
 #include "nanosvg.h"
 #include "nanosvgrast.h"
+
+
 
 /*
 byte byte_clip(double d);

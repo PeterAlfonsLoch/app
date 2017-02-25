@@ -109,6 +109,7 @@
 //62 arquivo(s)        777.568 bytes
 //0 pasta(s)   65.245.597.696 bytes dispon¡veis
 
+#include "base/user/wndfrm/frame/wndfrm_frame_updowninterface.cpp"
 
 
 #include "hotplugin/_hotplugin.cpp"

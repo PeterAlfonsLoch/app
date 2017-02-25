@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef __OBJC__
+#else
+
+
 #include "app/appseed/base/base/base/base.h"
 
 ////#include "axis/html_lite/html_lite/html_lite.h"
@@ -989,6 +993,10 @@ namespace html
 #include "core.inl"
 
 
+
+
+
+#endif
 
 
 

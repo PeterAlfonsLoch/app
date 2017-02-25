@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <stdio.h>
 
 //#ifndef METROWIN
 //#include <openssl/ssl.h>

@@ -1,5 +1,7 @@
 #include "framework.h"
 
+#include <stdio.h>
+
 #ifdef WINDOWS
 #pragma warning(disable:4101)
 #endif

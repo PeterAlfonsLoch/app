@@ -1097,6 +1097,9 @@
     <ClInclude Include="user\html\html\all_html.h">
       <Filter>Header Files\user\html\html</Filter>
     </ClInclude>
+    <ClInclude Include="core\core\core_run_start_installer.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\simple\simple_child_frame.cpp">

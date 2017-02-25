@@ -112,16 +112,16 @@
 
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\datetime
 
-#include "datetime/datetime.cpp"
-#include "datetime/datetime_duration.cpp"
-#include "datetime/datetime_file_time_span.cpp"
-#include "datetime/datetime_file_time.cpp"
-#include "datetime/datetime_mktime.cpp"
-#include "datetime/datetime_time_span.cpp"
-#include "datetime/datetime_time.cpp"
-#include "datetime/datetime_value.cpp"
- //              5 arquivo(s)         49.027 bytes
-#include "datetime/datetime_department.cpp"
+//#include "datetime/datetime.cpp"
+//#include "datetime/datetime_duration.cpp"
+//#include "datetime/datetime_file_time_span.cpp"
+//#include "datetime/datetime_file_time.cpp"
+//#include "datetime/datetime_mktime.cpp"
+//#include "datetime/datetime_time_span.cpp"
+//#include "datetime/datetime_time.cpp"
+//#include "datetime/datetime_value.cpp"
+// //              5 arquivo(s)         49.027 bytes
+//#include "datetime/datetime_department.cpp"
 
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\geometry
 
@@ -135,25 +135,25 @@
 
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\math
 
-#include "math/_double.cpp"
-#include "math/_float.cpp"
-#include "math/_integer.cpp"
-#include "math/_number.cpp"
-#include "math/_value.cpp"
-
-#include "math/binary_operation.cpp"
-
-#include "math/math_cvt.cpp"
-#include "math/math_cvt_g.cpp"
-#include "math/math_department.cpp"
-#include "math/math_math.cpp"
-#include "math/math_math_rng.cpp"
-#include "math/math_mkint_c.cpp"
-#include "math/math_natural.cpp"
-#include "math/math_scalar.cpp"
-
-
-#include "math/math_int_biunique.cpp"
+//#include "math/math_number_double.cpp"
+//#include "math/math_number_float.cpp"
+//#include "math/math_number_integer.cpp"
+//#include "math/math_number.cpp"
+//#include "math/math_value.cpp"
+//
+//#include "math/math_binary_operation.cpp"
+//
+//#include "math/math_cvt.cpp"
+//#include "math/math_cvt_g.cpp"
+//#include "math/math_department.cpp"
+//#include "math/math_math.cpp"
+//#include "math/math_rng.cpp"
+//#include "math/math_mkint_c.cpp"
+//#include "math/math_natural.cpp"
+//#include "math/math_scalar.cpp"
+//
+//
+//#include "math/math_int_biunique.cpp"
  //              8 arquivo(s)         27.817 bytes
 
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\str

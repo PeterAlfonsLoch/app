@@ -35,6 +35,7 @@ namespace primitive
 
       virtual memory_base * create_memory();
       memory_base * get_memory();
+      void set_memory(memory_base * pmemory);
 
       memory_size_t get_size() const;
 

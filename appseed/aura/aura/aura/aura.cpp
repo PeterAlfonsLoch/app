@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <stdio.h>
 
 BEGIN_EXTERN_C
 CLASS_DECL_AURA int g_bAura = 0;

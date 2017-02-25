@@ -1,5 +1,7 @@
 //#include "framework.h"
 
+#include <stdio.h>
+
 
 namespace exception
 {

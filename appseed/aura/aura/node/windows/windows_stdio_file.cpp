@@ -5,7 +5,7 @@
 //#include <errno.h>
 //#include <io.h>
 //#include <fcntl.h>
-
+#include <stdio.h>
 
 namespace windows
 {

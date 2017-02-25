@@ -6,8 +6,8 @@ namespace user
 {
 
 
-   void init_windowing();
-   void term_windowing();
+   CLASS_DECL_BASE void init_windowing();
+   CLASS_DECL_BASE void term_windowing();
 
 
 } // namespace user

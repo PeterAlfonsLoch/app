@@ -6,16 +6,16 @@
 //
 //
 
-#include "_value.h"
-#include "_number.h"
+#include "math_value.h"
+#include "math_number.h"
 
 
-#include "_integer.h"
-#include "_float.h"
-#include "_double.h"
+#include "math_number_integer.h"
+#include "math_number_float.h"
+#include "math_number_double.h"
 
 
-#include "binary_operation.h"
+#include "math_binary_operation.h"
 
 
 #include "math_int_biunique.h"

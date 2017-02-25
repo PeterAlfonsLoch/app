@@ -1,8 +1,6 @@
 #include "framework.h"
 
-#include "core/user/user/user.h"
-#include "core/user/menu/menu.h"
-#include "simple.h"
+
 
 
 #include "simple_child_frame.cpp"

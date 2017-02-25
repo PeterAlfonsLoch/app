@@ -653,45 +653,45 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR >
 
 
 
-template < typename Type, typename RawType >
-Type string_array < Type, RawType >::get_at(index nIndex) const
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-      throw index_out_of_bounds(this->get_app());
-   return get_data()[nIndex];
-}
+//template < typename Type, typename RawType >
+//Type string_array < Type, RawType >::get_at(index nIndex) const
+//{
+//   if (nIndex < 0 || nIndex >= this->m_nSize)
+//      throw index_out_of_bounds(this->get_app());
+//   return get_data()[nIndex];
+//}
+//
+//template < typename Type, typename RawType >
+//void string_array < Type, RawType >::set_at(index nIndex,const char * newElement)
+//{
+//   if (nIndex < 0 || nIndex >= this->m_nSize)
+//      throw index_out_of_bounds(this->get_app());
+//   get_data()[nIndex] = newElement;
+//}
+//
+//
+//template < typename Type, typename RawType >
+//void string_array < Type, RawType >::set_at(index nIndex,const Type & newElement)
+//{
+//   if (nIndex < 0 || nIndex >= this->m_nSize)
+//      throw index_out_of_bounds(this->get_app());
+//   get_data()[nIndex] = newElement;
+//}
+//
+//
+//template < typename Type, typename RawType >
+//Type & string_array < Type, RawType >::element_at(index nIndex)
+//{
+//   if (nIndex < 0 || nIndex >= this->m_nSize)
+//      throw index_out_of_bounds(this->get_app());
+//   return get_data()[nIndex];
+//}
 
-template < typename Type, typename RawType >
-void string_array < Type, RawType >::set_at(index nIndex,const char * newElement)
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-      throw index_out_of_bounds(this->get_app());
-   get_data()[nIndex] = newElement;
-}
 
-
-template < typename Type, typename RawType >
-void string_array < Type, RawType >::set_at(index nIndex,const Type & newElement)
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-      throw index_out_of_bounds(this->get_app());
-   get_data()[nIndex] = newElement;
-}
-
-
-template < typename Type, typename RawType >
-Type & string_array < Type, RawType >::element_at(index nIndex)
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-      throw index_out_of_bounds(this->get_app());
-   return get_data()[nIndex];
-}
-
-
-template < typename Type, typename RawType >
-const Type & string_array < Type, RawType >::element_at(index nIndex) const
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-     throw index_out_of_bounds(this->get_app());
-   return get_data()[nIndex];
-}
+//template < typename Type, typename RawType >
+//const Type & string_array < Type, RawType >::element_at(index nIndex) const
+//{
+//   if (nIndex < 0 || nIndex >= this->m_nSize)
+//     throw index_out_of_bounds(this->get_app());
+//   return get_data()[nIndex];
+//}

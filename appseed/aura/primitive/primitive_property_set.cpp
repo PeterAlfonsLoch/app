@@ -1363,3 +1363,25 @@ string & property_set::get_http_post(string & strPost) const
 
 
 
+CLASS_DECL_AURA::file::ostream & operator << (::file::ostream & ostream, const property_set & set)
+{
+
+   ostream << (const ::property_map &) set;
+
+   return ostream;
+
+}
+
+
+CLASS_DECL_AURA::file::istream & operator >> (::file::istream & istream, property_set & set)
+{
+
+   istream >> (::property_map &) set;
+
+   return istream;
+
+
+}
+
+
+

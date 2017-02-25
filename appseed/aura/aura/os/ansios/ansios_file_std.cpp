@@ -6,7 +6,7 @@
 
 ////#include "framework.h"
 ////#include <stdarg.h>
-
+#include <stdio.h>
 
 #ifdef METROWIN
 

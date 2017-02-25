@@ -23,6 +23,7 @@ mktime.  */
 
 //#include "framework.h"
 
+
 #ifdef _LIBC
 # define HAVE_LIMITS_H 1
 # define HAVE_LOCALTIME_R 1
@@ -41,7 +42,7 @@ then it supports leap seconds; otherwise it probably doesn't.  */
 #else
 //#include <stddef.h>
 #endif
-//#include <time.h>
+#include <time.h>
 
 #if HAVE_LIMITS_H
 //#include <limits.h>

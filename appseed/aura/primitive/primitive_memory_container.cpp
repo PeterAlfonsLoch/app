@@ -128,6 +128,24 @@ namespace primitive
 
    }
 
+   
+   void memory_container::set_memory(memory_base * pmemory)
+   {
+
+      if (m_spmemory == pmemory)
+      {
+
+         return;
+
+      }
+
+      m_spmemory = pmemory;
+
+      ::aura::del(m_pvppa);
+
+   }
+
+
    ::primitive::memory_base * memory_container::create_memory()
    {
 

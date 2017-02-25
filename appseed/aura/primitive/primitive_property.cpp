@@ -460,13 +460,13 @@ var property::at(index iIndex) const
 void property::write(::file::ostream & ostream) const
 {
    ostream << m_element1;
-   ostream << get_value();
+   m_element2.write(ostream);
 }
 
 void property::read(::file::istream & istream)
 {
    istream >> m_element1;
-   istream >> get_value();
+   m_element2.read(istream);
 }
 
 ::count property::get_count() const

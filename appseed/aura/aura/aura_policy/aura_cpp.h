@@ -1123,7 +1123,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/primitive/primitive_factory.h"
 
 
-#include "aura/primitive/math/math_math_rng.h"
+#include "aura/primitive/math/math_rng.h"
 #include "aura/primitive/math/math_department.h"
 #include "aura/primitive/geometry/geometry_geometry.h"
 
@@ -1780,7 +1780,7 @@ namespace user
 
 } // namespace user
 
-
+#include "aura/primitive/collection/collection_string_array_impl.inl"
 
 #include "aura/primitive/primitive.inl"
 

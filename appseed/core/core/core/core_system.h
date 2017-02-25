@@ -1,18 +1,13 @@
 #pragma once
 
 
+#include "core_session.h"
+#include "core_run_start_installer.h"
+
+
 namespace core
 {
 
-
-
-   class run_start_installer :
-      virtual public ::object
-   {
-   public:
-      virtual void run_start_install(const char * pszInstall) = 0;
-
-   };
 
    class CLASS_DECL_CORE system :
       virtual public ::core::application,
