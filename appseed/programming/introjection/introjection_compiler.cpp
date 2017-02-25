@@ -1185,7 +1185,7 @@ namespace introjection
 
             }
 
-            lib->m_strError = lib->m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+            lib->m_strError = lib->m_memfileError.to_string();
 
             lib->m_strError.trim();
 

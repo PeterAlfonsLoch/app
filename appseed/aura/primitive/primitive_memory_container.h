@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "primitive_memory_base.h"
+
+
 namespace primitive
 {
 
@@ -44,6 +47,7 @@ namespace primitive
       void from_string(const string & str);
       void from_string(const var & str);
       void to_string(string & str);
+      string to_string();
 
       void read(memory_base *pmemorystorage);
       void read(::file::istream & is);
@@ -162,10 +166,36 @@ namespace primitive
    inline void memory_container ::to_string(string & str)
    {
 
-      if(m_spmemory.is_null())
-         m_spmemory = create_memory();
+      if (m_spmemory.is_null())
+      {
 
-      m_spmemory->to_string(str);
+         str.Empty();
+
+      }
+      else
+      {
+
+         m_spmemory->to_string(str);
+
+      }
+
+   }
+
+   inline string memory_container::to_string()
+   {
+
+      if (m_spmemory.is_null())
+      {
+
+         return "";
+
+      }
+      else
+      {
+
+         return m_spmemory->to_string();
+
+      }
 
    }
 

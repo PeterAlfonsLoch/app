@@ -13,6 +13,5 @@
 #include "core/user/hi5/hi5.h"
 #include "core/user/netuser/netuser.h"
 #include "core/filesystem/filemanager/filemanager.h"
-#include "core/filesystem/filemanager/filemanager.h"
-#include "core/user/html/html/all_html.h"
+#include "core/user/html/html/html.h"
 #include "core/user/userex/userex.h"

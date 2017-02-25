@@ -68,6 +68,7 @@ namespace install
       ::simple_ui::style(papp),
       ::aura::session(papp),
       ::axis::session(papp),
+      ::base::session(papp),
       hotplugin::plugin(papp),
       ::aura::ipc::base(papp),
       ::aura::ipc::tx(papp),

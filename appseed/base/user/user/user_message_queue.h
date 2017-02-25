@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "user_interaction.h"
+#include "user_message_queue_listener.h"
+
+
 namespace user
 {
 

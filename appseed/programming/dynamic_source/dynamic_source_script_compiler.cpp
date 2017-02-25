@@ -297,6 +297,9 @@ void script_compiler::compile(ds_script * pscript)
 
    TRACE("Compiling script \"%s\"\n",pscript->m_strName.c_str());
 
+
+   ::file::plain_text_ostream & ostreamError = pscript->m_memfileError;
+
    ::file::path strName(pscript->m_strName);
 
    pscript->on_start_build();
@@ -351,10 +354,10 @@ void script_compiler::compile(ds_script * pscript)
 
    if(!Application.file().exists(pscript->m_strSourcePath))
    {
-      pscript->m_memfileError << "<pre>";
+      ostreamError << "<pre>";
       str.Format("Source File : \"%s\" does not exist",pscript->m_strSourcePath);
-      pscript->m_memfileError << str;
-      pscript->m_memfileError << "</pre>";
+      ostreamError << str;
+      ostreamError << "</pre>";
       return;
    }
 
@@ -747,17 +750,17 @@ void script_compiler::compile(ds_script * pscript)
 
          Application.file().put_contents_utf8(strClog, strLog);
 
-         pscript->m_memfileError << "<pre>";
+         ostreamError << "<pre>";
 
-         pscript->m_memfileError << "Compiling...\n";
-         pscript->m_memfileError << pscript->m_strCppPath;
-         pscript->m_memfileError << "\n";
+         ostreamError << "Compiling...\n";
+         ostreamError << pscript->m_strCppPath;
+         ostreamError << "\n";
          if(bTimeout)
          {
-            pscript->m_memfileError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + pscript->m_strCppPath + "\" following this message, they may be out-of-date)";
+            ostreamError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + pscript->m_strCppPath + "\" following this message, they may be out-of-date)";
          }
          str.replace("\r\n","\n");
-         pscript->m_memfileError << str;
+         ostreamError << str;
 
       }
 
@@ -866,15 +869,15 @@ void script_compiler::compile(ds_script * pscript)
          {
 
             Application.file().put_contents_utf8(strLlog,strLog);
-            pscript->m_memfileError << "Linking...\n";
+            ostreamError << "Linking...\n";
             str.replace("\r\n","\n");
-            pscript->m_memfileError << str;
-            pscript->m_memfileError << "</pre>";
+            ostreamError << str;
+            ostreamError << "</pre>";
 
 
          }
 
-         pscript->m_strError = pscript->m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+         pscript->m_strError = pscript->m_memfileError.to_string();
 
          pscript->m_strError.trim();
 
@@ -1787,7 +1790,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
 
 
-         l.m_strError = l.m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+         l.m_strError = l.m_memfileError.to_string();
 
          l.m_strError.trim();
 
@@ -1927,7 +1930,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
       }
 
-      l.m_strError = l.m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+      l.m_strError = l.m_memfileError.to_string();
 
       l.m_strError.trim();
 

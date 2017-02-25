@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/primitive/primitive_memory_container.h"
+
+
 class memory_file;
 
    

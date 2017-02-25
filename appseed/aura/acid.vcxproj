@@ -444,8 +444,118 @@
   <ItemGroup>
     <ClCompile Include="aura\os\os_debug.cpp" />
     <ClCompile Include="aura\os\windows\windows_process.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_zonetime.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_zonetime.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\_datetime.cpp" />
+    <ClCompile Include="primitive\math\math.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_binary_operation.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_cvt.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_cvt_g.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_department.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_int_biunique.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_math.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_mkint_c.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_natural.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_number.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_number_double.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_number_float.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_number_integer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_rng.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_scalar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_value.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\_math.cpp" />
+    <ClCompile Include="primitive\math\_math_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="version.cpp" />
+    <ClCompile Include="_aura.cpp" />
     <ClInclude Include="aura\aura\aura.h" />
     <ClInclude Include="aura\aura\aura_action_context.h" />
     <ClInclude Include="aura\aura\aura_action_source.h" />
@@ -659,49 +769,53 @@
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_path.h" />
     <ClInclude Include="filesystem\file\file.h" />
-    <ClInclude Include="filesystem\file\file_binary_buffer.h" />
+    <ClInclude Include="filesystem\file\file_binary_file.h" />
     <ClInclude Include="filesystem\file\file_buffer.h" />
-    <ClInclude Include="filesystem\file\file_buffered_buffer.h" />
+    <ClInclude Include="filesystem\file\file_buffered_file.h" />
     <ClInclude Include="filesystem\file\file_byte_istream.h" />
-    <ClInclude Include="filesystem\file\file_byte_istream_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_byte_ostream.h" />
-    <ClInclude Include="filesystem\file\file_byte_ostream_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_byte_stream.h" />
-    <ClInclude Include="filesystem\file\file_byte_stream_memory_buffer.h" />
     <ClInclude Include="filesystem\file\file_c.h" />
-    <ClInclude Include="filesystem\file\file_circular_buffer.h" />
+    <ClInclude Include="filesystem\file\file_circular_file.h" />
+    <ClInclude Include="filesystem\file\file_common.h" />
     <ClInclude Include="filesystem\file\file_composite.h" />
     <ClInclude Include="filesystem\file\file_dir.h" />
-    <ClInclude Include="filesystem\file\file_edit_buffer.h" />
+    <ClInclude Include="filesystem\file\file_edit_file.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
+    <ClInclude Include="filesystem\file\file_file.h" />
+    <ClInclude Include="filesystem\file\file_file_base.h" />
     <ClInclude Include="filesystem\file\file_file_istream.h" />
     <ClInclude Include="filesystem\file\file_file_ostream.h" />
     <ClInclude Include="filesystem\file\file_file_stream.h" />
     <ClInclude Include="filesystem\file\file_file_stream_base.h" />
     <ClInclude Include="filesystem\file\file_folder_watch.h" />
-    <ClInclude Include="filesystem\file\file_html_buffer.h" />
+    <ClInclude Include="filesystem\file\file_html_file.h" />
     <ClInclude Include="filesystem\file\file_istream.h" />
-    <ClInclude Include="filesystem\file\file_memory_buffer.h" />
+    <ClInclude Include="filesystem\file\file_listing_provider.h" />
+    <ClInclude Include="filesystem\file\file_md5.h" />
+    <ClInclude Include="filesystem\file\file_memory_file.h" />
     <ClInclude Include="filesystem\file\file_opened.h" />
     <ClInclude Include="filesystem\file\file_ostream.h" />
     <ClInclude Include="filesystem\file\file_ostream_flush.h" />
     <ClInclude Include="filesystem\file\file_path.h" />
     <ClInclude Include="filesystem\file\file_plain_text_istream.h" />
     <ClInclude Include="filesystem\file\file_plain_text_ostream.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_ostream_string_buffer.h" />
     <ClInclude Include="filesystem\file\file_plain_text_stream.h" />
     <ClInclude Include="filesystem\file\file_plain_text_stream_base.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_stream_memory_buffer.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_stream_string_buffer.h" />
+    <ClInclude Include="filesystem\file\file_primitive.h" />
     <ClInclude Include="filesystem\file\file_reader.h" />
     <ClInclude Include="filesystem\file\file_seekable.h" />
     <ClInclude Include="filesystem\file\file_serializable.h" />
     <ClInclude Include="filesystem\file\file_set.h" />
-    <ClInclude Include="filesystem\file\file_simple_binary_buffer.h" />
+    <ClInclude Include="filesystem\file\file_simple_binary_file.h" />
     <ClInclude Include="filesystem\file\file_status.h" />
+    <ClInclude Include="filesystem\file\file_stdio_file.h" />
     <ClInclude Include="filesystem\file\file_stream.h" />
     <ClInclude Include="filesystem\file\file_stream2.h" />
     <ClInclude Include="filesystem\file\file_stream_base.h" />
+    <ClInclude Include="filesystem\file\file_string_file.h" />
+    <ClInclude Include="filesystem\file\file_text_file.h" />
+    <ClInclude Include="filesystem\file\file_transfer_file.h" />
     <ClInclude Include="filesystem\file\file_writer.h" />
     <ClInclude Include="filesystem\file\file_writer_flush.h" />
     <ClInclude Include="framework.h" />
@@ -806,19 +920,30 @@
     <ClInclude Include="primitive\geometry\geometry_point.h" />
     <ClInclude Include="primitive\geometry\geometry_rect.h" />
     <ClInclude Include="primitive\geometry\geometry_size.h" />
+    <ClInclude Include="primitive\math\math_binary_operation.h" />
+    <ClInclude Include="primitive\math\math_classes.h" />
     <ClInclude Include="primitive\math\math_complex.h" />
     <ClInclude Include="primitive\math\math_count.h" />
+    <ClInclude Include="primitive\math\math_c_number.h" />
     <ClInclude Include="primitive\math\math_department.h" />
+    <ClInclude Include="primitive\math\math_filestream.h" />
     <ClInclude Include="primitive\math\math_index.h" />
+    <ClInclude Include="primitive\math\math_int_biunique.h" />
     <ClInclude Include="primitive\math\math_math.h" />
-    <ClInclude Include="primitive\math\math_math_rng.h" />
     <ClInclude Include="primitive\math\math_natural.h" />
+    <ClInclude Include="primitive\math\math_number.h" />
+    <ClInclude Include="primitive\math\math_number_double.h" />
+    <ClInclude Include="primitive\math\math_number_float.h" />
+    <ClInclude Include="primitive\math\math_number_integer.h" />
     <ClInclude Include="primitive\math\math_numeric_info.h" />
+    <ClInclude Include="primitive\math\math_objects.h" />
+    <ClInclude Include="primitive\math\math_rng.h" />
     <ClInclude Include="primitive\math\math_scalar.h" />
     <ClInclude Include="primitive\math\math_scalar_enum.h" />
     <ClInclude Include="primitive\math\math_static_numeric_info.h" />
     <ClInclude Include="primitive\math\math_mkint_c.h" />
     <ClInclude Include="primitive\math\math_std_template.h" />
+    <ClInclude Include="primitive\math\math_value.h" />
     <ClInclude Include="primitive\primitive_application_bias.h" />
     <ClInclude Include="primitive\primitive_bit.h" />
     <ClInclude Include="primitive\primitive_check.h" />
@@ -998,13 +1123,33 @@
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\_multithreading.cpp" />
-    <ClCompile Include="net\net_url.cpp" />
+    <ClCompile Include="net\net_url.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="primitive\str\str_ch.cpp" />
     <ClCompile Include="primitive\str\str_ch_class.cpp" />
-    <ClCompile Include="primitive\_primitive.cpp" />
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="primitive\_primitive.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="user\colorertake5\_colorertake5.cpp" />
-    <ClCompile Include="user\simple\simple_message_box.cpp" />
+    <ClCompile Include="user\simple\simple_message_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="aura.def" />
@@ -1016,6 +1161,7 @@
     <None Include="aura\aura\aura_system_smart_pointer.inl" />
     <None Include="aura\aura\aura_system_xml.inl" />
     <None Include="aura\message\message.inl" />
+    <None Include="filesystem\file\file_serializable.inl" />
     <None Include="multithreading\multithreading.inl" />
     <None Include="primitive\collection\collection.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />

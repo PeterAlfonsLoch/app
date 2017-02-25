@@ -40,12 +40,14 @@ namespace axis
       bool unbz(::aura::application * papp,const ::file::path & lpcszUncompressed,const ::file::path & lpcszBzFileCompressed);
       bool unbz(::aura::application * papp, ::file::ostream & ostreamUncompressed, const ::file::path & lpcszBzFileCompressed);
 
-      void extract_all(const ::file::path & pszFile, ::aura::application * papp);
+      ::count extract_all(const ::file::path & pszFile, ::aura::application * papp);
 
-      void zip(const ::file::path & pszZip,const ::file::path & psz,::aura::application * papp);
-      void zip(const ::file::path & psz,::aura::application * papp);
+      bool zip(const ::file::path & pszZip,const ::file::path & psz,::aura::application * papp);
+      bool zip(const ::file::path & psz,::aura::application * papp);
 
+      bool unzip(::aura::application * papp, const ::file::path & pathUncompressed, const ::file::path & pathZipFileCompressed);
 
+      
    };
 
 

@@ -1,8 +1,14 @@
 #pragma once
 
 
+#include "user_window_util.h"
+
+
 namespace user
 {
+
+   
+   class menu_base_item;
 
 
    class CLASS_DECL_BASE interaction_base :

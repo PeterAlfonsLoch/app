@@ -26,6 +26,7 @@ namespace hotplugin
       ::simple_ui::style(this),
       ::aura::session(this),
       ::axis::session(this),
+      ::base::session(this),
       ::aura::ipc::base(this),
       ::aura::ipc::tx(this),
       ::aura::ipc::ipc(this)

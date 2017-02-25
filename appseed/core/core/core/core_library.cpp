@@ -29,9 +29,9 @@ namespace core
    library::library(::aura::application * papp) :
       object(papp),
       ::aura::library(papp, 0, "app"),
-      ::aura::single_application_library < application >(papp, "app")//,
-      //::filehandler::library(papp)//,
-//      ::filehandler::menu_library(papp)
+      ::aura::single_application_library < application >(papp, "app"),
+      ::filehandler::library(papp),
+      ::filehandler::menu_library(papp)
    {
 
    }

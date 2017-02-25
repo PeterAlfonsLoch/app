@@ -1,4 +1,5 @@
 //#include "framework.h"
+#include <stdio.h>
 
 
 string file_extension_dup(const char * path)

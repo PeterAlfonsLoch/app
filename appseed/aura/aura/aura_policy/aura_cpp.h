@@ -1566,8 +1566,8 @@ namespace std
    using iostream = ::file::stream;
    using iofstream = ::file::file_stream;
 
-//   using stringstream = ::file::plain_text_stream_string_buffer;
-  // using ostringstream = ::file::plain_text_ostream_string_buffer;
+   using stringstream = ::file::plain_text_stream_string_file;
+   using ostringstream = ::file::plain_text_stream_string_file;
 
    template < typename T >
    using numeric_limits = ::numeric_info < T >;
@@ -1746,6 +1746,7 @@ CLASS_DECL_AURA void set_aura(void * p,::aura::application * papp);
 CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 
 #include "aura/aura/aura_error.h"
+#include "aura/primitive/primitive.h"
 
 
 #include "aura/user/user.h"

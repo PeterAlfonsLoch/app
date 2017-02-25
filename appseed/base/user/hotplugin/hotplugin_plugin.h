@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/simple_ui/simple_ui_style.h"
+#include "base/user/simple_ui/simple_ui_interaction.h"
+#include "base/base/base/base_session.h"
+
 
 namespace hotplugin
 {
@@ -12,7 +16,7 @@ namespace hotplugin
    class CLASS_DECL_BASE plugin :
       virtual public ::simple_ui::style,
       virtual public ::simple_ui::interaction,
-      virtual public ::axis::session
+      virtual public ::base::session
 //#ifndef METROWIN
       , virtual public ::aura::ipc::ipc
 //#endif

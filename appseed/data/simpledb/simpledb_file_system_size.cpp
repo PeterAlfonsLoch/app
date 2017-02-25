@@ -399,7 +399,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    size.m_bRet = false;
 
 
-   ::file::byte_stream_memory_buffer file(get_app());
+   ::file::byte_stream_memory_file file(get_app());
    size.write(file);
 
    COPYDATASTRUCT data;
@@ -442,7 +442,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
       db_server * pcentral = &System.m_simpledb.db();
       file_size_table::get_fs_size size;
-      ::file::byte_stream_memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
+      ::file::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
       single_lock sl(&m_cs, TRUE);
@@ -457,7 +457,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
    else if(pstruct->dwData == 1)
    {
       file_size_table::get_fs_size size;
-      ::file::byte_stream_memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
+      ::file::byte_stream_memory_file file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
       m_bRet = true;
       m_map.set_at(size.m_strPath, size);
@@ -488,7 +488,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
          data.dwData = 1;
 
 
-         ::file::byte_stream_memory_buffer file(get_app());
+         ::file::byte_stream_memory_file file(get_app());
 
          while(m_sizea.get_size() > 0)
          {

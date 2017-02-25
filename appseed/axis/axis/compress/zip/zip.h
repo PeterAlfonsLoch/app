@@ -1,5 +1,7 @@
 #pragma once
 
+#include "zlib.h"
+#include "zutil.h"
 
 #include "zip_internal.h"
 

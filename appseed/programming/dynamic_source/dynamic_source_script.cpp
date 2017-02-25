@@ -119,7 +119,7 @@ void ds_script::on_start_build()
 
    m_bHasTempOsError          = false;
 
-   m_memfileError.m_spfile->set_length(0);
+   m_memfileError.set_length(0);
 
    m_strError.Empty();
 
@@ -252,7 +252,10 @@ bool ds_script::CalcHasTempError()
 
 void ds_script::Load()
 {
+   
    synch_lock sl(&m_mutex);
+
+   
 #ifdef WINDOWS
 
    m_strScriptPath.replace("/", "\\");
@@ -410,7 +413,7 @@ script_instance * ds_script::create_instance()
 
    }
 
-   check_should_build:
+//   check_should_build:
 
    if(ShouldBuild())
    {
@@ -440,7 +443,7 @@ script_instance * ds_script::create_instance()
          if (iRetry > 0)
          {
 
-            Sleep(System.math().RandRange(1977, 1977+ 1984));
+            Sleep((DWORD) System.math().RandRange(1977, 1977+ 1984));
 
          }
 

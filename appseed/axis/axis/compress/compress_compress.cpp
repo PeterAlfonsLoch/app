@@ -228,7 +228,7 @@ namespace axis
 
    }
 
-   void compress_department::extract_all(const ::file::path & pszFile, ::aura::application * papp)
+   ::count compress_department::extract_all(const ::file::path & pszFile, ::aura::application * papp)
    {
 
       string strDir = pszFile;
@@ -236,21 +236,26 @@ namespace axis
       ::str::ends_eat_ci(strDir, ".zip");
 
       Sess(papp).file().copy(strDir, pszFile, false);
+      
+      return -1;
+
 
    }
 
 
-   void compress_department::zip(const ::file::path & pszZip, const ::file::path & psz, ::aura::application * papp)
+   bool compress_department::zip(const ::file::path & pszZip, const ::file::path & psz, ::aura::application * papp)
    {
+
+      thisstart;
 
       zip::InFile infile(papp);
 
       if (!infile.zip_open(pszZip, 0))
       {
 
-         throw "Could not open zip file";
+         thiserr << "Could not open zip file";
 
-         return;
+         return false;
 
       }
 
@@ -274,13 +279,35 @@ namespace axis
 
       }
 
+      return true;
+
    }
 
 
-   void compress_department::zip(const ::file::path & psz, ::aura::application * papp)
+   bool compress_department::zip(const ::file::path & psz, ::aura::application * papp)
    {
 
+      throw todo(get_app());
+
+      return false;
+
    }
+
+
+   bool compress_department::unzip(::aura::application * papp, const ::file::path & pathUncompressed, const ::file::path & pathZipFileCompressed)
+   {
+
+      if (!zip::Util().extract(papp, pathZipFileCompressed, pathUncompressed))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+   
 
 
 } // namespace core

@@ -147,9 +147,6 @@
     <Filter Include="Header Files\user\html\html">
       <UniqueIdentifier>{8a9bdf0f-36d0-49c9-b2c3-133abfc444b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\userhtml">
-      <UniqueIdentifier>{a7f522f7-76ca-4bcc-ae7e-929d977d87c0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\math">
       <UniqueIdentifier>{1ba0560b-7893-4aad-83e3-11a6eaf1044a}</UniqueIdentifier>
     </Filter>
@@ -167,6 +164,9 @@
     </Filter>
     <Filter Include="Header Files\user\html\user">
       <UniqueIdentifier>{dee59842-661a-460a-83b9-d63a818b6cf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\html\userhtml">
+      <UniqueIdentifier>{fe0d4006-5a63-4373-bc1c-4f5f580fdede}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -507,12 +507,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_form_list.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_front_end.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_front_end_schema.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_image_manager.h">
@@ -1019,30 +1013,6 @@
     <ClInclude Include="user\html\graphics\html2.h">
       <Filter>Header Files\user\html\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_child_frame.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_document.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_form.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_form_view.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_frame.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_view.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_view_update_hint.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
     <ClInclude Include="math\calculator\calculator.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
@@ -1094,11 +1064,11 @@
     <ClInclude Include="user\html\user\userhtml_view_update_hint.h">
       <Filter>Header Files\user\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\html\html\all_html.h">
-      <Filter>Header Files\user\html\html</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_run_start_installer.h">
       <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="user\html\html\html.h">
+      <Filter>Header Files\user\html\html</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -15,8 +15,8 @@ public:
 
    mutex                                     m_mutex;
    string                                    m_strError;
-   memory_file                               m_memfileError;
-   memory_file                               m_memfileLibError;
+   ::file::plain_text_stream_memory_file     m_memfileError;
+   ::file::plain_text_stream_memory_file     m_memfileLibError;
    ::file::listing                           m_straLibSourcePath;
    ::file::patha                             m_straLibSourceRelPath;
    ::file::patha                             m_straLibCppPath;

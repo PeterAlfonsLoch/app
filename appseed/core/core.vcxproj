@@ -1206,7 +1206,7 @@
     <ClInclude Include="user\html\graphics\impl\html_impl_table_elemental.h" />
     <ClInclude Include="user\html\graphics\impl\html_impl_table_row.h" />
     <ClInclude Include="user\html\graphics\impl\html_impl_text.h" />
-    <ClInclude Include="user\html\html\all_html.h" />
+    <ClInclude Include="user\html\html\html.h" />
     <ClInclude Include="user\html\user\userhtml.h" />
     <ClInclude Include="user\html\user\userhtml_child_frame.h" />
     <ClInclude Include="user\html\user\userhtml_document.h" />
@@ -1247,14 +1247,6 @@
     <ClInclude Include="user\userex\userex_message_box.h" />
     <ClInclude Include="user\userex\userex_userex.h" />
     <ClInclude Include="user\userex\userex_wait_message_dialog.h" />
-    <ClInclude Include="user\userhtml\userhtml.h" />
-    <ClInclude Include="user\userhtml\userhtml_child_frame.h" />
-    <ClInclude Include="user\userhtml\userhtml_document.h" />
-    <ClInclude Include="user\userhtml\userhtml_form.h" />
-    <ClInclude Include="user\userhtml\userhtml_form_view.h" />
-    <ClInclude Include="user\userhtml\userhtml_frame.h" />
-    <ClInclude Include="user\userhtml\userhtml_view.h" />
-    <ClInclude Include="user\userhtml\userhtml_view_update_hint.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_00.h" />
     <ClInclude Include="user\user\user_button.h" />
@@ -1273,8 +1265,6 @@
     <ClInclude Include="user\user\user_form.h" />
     <ClInclude Include="user\user\user_form_list.h" />
     <ClInclude Include="user\user\user_form_list_view.h" />
-    <ClInclude Include="user\user\user_front_end.h" />
-    <ClInclude Include="user\user\user_front_end_schema.h" />
     <ClInclude Include="user\user\user_image_manager.h" />
     <ClInclude Include="user\user\user_inline.h" />
     <ClInclude Include="user\user\user_keyboard_layout_cfg.h" />

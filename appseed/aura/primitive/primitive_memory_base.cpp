@@ -1388,7 +1388,7 @@ namespace lemon
 
       reader.seek_to_begin();
 
-      transfer_from(reader, mem, uiBufferSize);
+      ::lemon::transfer_from(reader, mem, uiBufferSize);
 
    }
 

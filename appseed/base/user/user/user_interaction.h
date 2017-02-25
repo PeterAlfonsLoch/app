@@ -1,11 +1,28 @@
-#ifndef CA2_APP_BASE_USER_INTERACTION_H
-#define CA2_APP_BASE_USER_INTERACTION_H
+#pragma once
+
+
+#include "user_interaction_base.h"
 
 
 #define MESSAGE_POST_MESSAGE  14000
 
+
+namespace message
+{
+
+
+   class key;
+   class drag_and_drop;
+
+
+} // namespace message
+
+
 namespace user
 {
+
+   
+   class tooltip;
 
 
    class CLASS_DECL_BASE alpha_source
@@ -848,10 +865,5 @@ inline ::user::interaction * timer_ui(::timer * ptimer)
    return (::user::interaction *) ptimer->m_pvoidData;
 
 }
-
-
-#endif // CA2_APP_BASE_USER_INTERACTION_H
-
-
 
 

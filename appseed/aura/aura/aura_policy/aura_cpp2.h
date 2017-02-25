@@ -661,7 +661,7 @@ namespace std
    using iofstream = ::file::file_stream;
 
    //   using stringstream = ::file::plain_text_stream_string_buffer;
-   // using ostringstream = ::file::plain_text_ostream_string_buffer;
+   // using ostringstream = ::file::plain_text_stream_string_file;
 
    template < typename T >
    using numeric_limits = ::numeric_info < T >;

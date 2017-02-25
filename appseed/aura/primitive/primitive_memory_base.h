@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "aura/filesystem/file/file_serializable.h"
+
+
 template < typename N >
 inline int32_t msb(N n)
 {

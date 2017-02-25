@@ -18,6 +18,7 @@ namespace plugin
       plugin(papp),
       ::aura::session(papp),
       ::axis::session(papp),
+      ::base::session(papp),
       ::aura::ipc::base(papp),
       ::aura::ipc::tx(papp),
       ::aura::ipc::ipc(papp)
