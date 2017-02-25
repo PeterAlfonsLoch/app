@@ -1012,6 +1012,8 @@ namespace primitive
       if (iStart > this->get_size())
       {
 
+         str.Empty();
+
          return;
 
       }
@@ -1025,6 +1027,17 @@ namespace primitive
 
       if (iCount <= 0)
       {
+
+         str.Empty();
+
+         return;
+
+      }
+
+      if (get_data() == NULL)
+      {
+
+         str.Empty();
 
          return;
 

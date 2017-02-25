@@ -7,7 +7,6 @@ namespace file
 
    plain_text_ostream::plain_text_ostream()
    {
-	   m_spfile = canew(string_file);
    }
 
    plain_text_ostream::plain_text_ostream(file * pwriter)

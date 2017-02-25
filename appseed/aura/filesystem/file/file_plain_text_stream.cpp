@@ -57,7 +57,7 @@ namespace file
       memory_file(papp)
    {
 
-      m_spfile = this;
+      m_spfile = (memory_file *) this;
 
    }
 
@@ -163,7 +163,7 @@ namespace file
    plain_text_stream_string_file::plain_text_stream_string_file()
    {
 
-      m_spfile = this;
+      m_spfile = (string_file *) this;
 
    }
 

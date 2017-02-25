@@ -7,6 +7,7 @@ namespace file
 
    string_file::string_file()
    {
+      m_bOwn = false;
       m_pstr      = NULL;
       m_iPos = 0;
    }
@@ -14,12 +15,14 @@ namespace file
    string_file::string_file(::aura::application * papp) :
       object(papp)
    {
+      m_bOwn = false;
       m_pstr = NULL;
       m_iPos = 0;
    }
 
    string_file::string_file(const string & str)
    {
+      m_bOwn = false;
       m_pstr = NULL;
       m_iPos = 0;
       append(str);
@@ -27,6 +30,7 @@ namespace file
 
    string_file::string_file(const string_file & text)
    {
+      m_bOwn = false;
       m_pstr       = NULL;
       m_iPos = 0;
       append(::to_string(text));
