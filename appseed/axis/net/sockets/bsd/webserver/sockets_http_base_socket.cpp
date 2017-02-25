@@ -312,51 +312,37 @@ namespace sockets
          
          string str = outheader(__id(content_type)).get_string();
 
-         if (1)
+         if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
 
-            if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
+            m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
+
+            ::memory_file file(get_app());
+
+            if (response().m_strFile.has_char())
             {
 
-               m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
+               System.compress().gz(get_app(), &file, response().m_strFile);
 
-               ::memory_file file(get_app());
+               response().m_strFile.Empty();
 
-               if (response().m_strFile.has_char())
-               {
+            }
+            else
+            {
 
-                  System.compress().gz(get_app(), &file, response().m_strFile);
+               response().file().seek_to_begin();
 
-                  response().m_strFile.Empty();
-
-               }
-               else
-               {
-
-                  response().file().seek_to_begin();
-
-                  System.compress().gz(get_app(), &file, &response().file());
-
-               }
-
-               if (1)
-               {
-
-                  auto f = Application.file().get_file("C:\\archive\\test.gz", ::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-                  ::file::byte_ostream os(f);
-
-                  os.transfer_from_begin(file);
-
-               }
-
-               response().file().set_length(0);
-
-               response().file().write(file.get_data(), file.get_size());
+               System.compress().gz(get_app(), &file, &response().file());
 
             }
 
+
+            response().file().set_length(0);
+
+            response().file().write(file.get_data(), file.get_size());
+
          }
+
       }
 
    }
