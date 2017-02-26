@@ -1224,9 +1224,9 @@ namespace ftp
 
          }
 
-         int iNumRead;
+         memory_size_t iNumRead;
 
-         long lTotalBytes = 0;
+         memory_size_t lTotalBytes = 0;
 
          DWORD dwStart = ::get_tick_count();
 
@@ -1270,11 +1270,11 @@ namespace ftp
                for (auto * p : (observer_array &)m_setObserver)
                {
 
-                  p->OnBytesReceived(m_vBuffer, iNumRead);
+                  p->OnBytesReceived(m_vBuffer, (long) iNumRead);
 
                }
 
-               Observer.OnBytesReceived(m_vBuffer, iNumRead);
+               Observer.OnBytesReceived(m_vBuffer, (long) iNumRead);
 
             }
             else
@@ -1291,7 +1291,7 @@ namespace ftp
          for (auto * p : (observer_array &)m_setObserver)
          {
 
-            p->OnEndReceivingData(lTotalBytes);
+            p->OnEndReceivingData((long) lTotalBytes);
 
          }
 

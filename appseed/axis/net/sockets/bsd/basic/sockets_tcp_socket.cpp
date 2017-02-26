@@ -802,10 +802,10 @@ namespace sockets
    }
 
 
-   memory_size_t tcp_socket::try_write(const void * buf,memory_size_t len)
+   int tcp_socket::try_write(const void * buf,int len)
    {
 
-      memory_size_t n = 0;
+      int n = 0;
 
 #ifdef HAVE_OPENSSL
 
@@ -832,9 +832,9 @@ namespace sockets
                SetLost();
                const char *errbuf = ERR_error_string(errnr,NULL);
                log("OnWrite/SSL_write",errnr,errbuf,::aura::log::level_fatal);
-               throw io_exception(get_app(), errbuf);
+               //throw io_exception(get_app(), errbuf);
             }
-            return 0;
+            //return 0;
          }
          else if(!n)
          {
@@ -845,13 +845,13 @@ namespace sockets
             int32_t errnr = SSL_get_error(m_ssl,(int32_t)n);
             const char *errbuf = ERR_error_string(errnr,NULL);
             TRACE("SSL_write() returns 0: %d : %s\n",errnr,errbuf);
-            throw io_exception(get_app(), errbuf);
+            //throw io_exception(get_app(), errbuf);
          }
       }
       else
 #endif // HAVE_OPENSSL
       {
-         retry:
+//         retry:
 #if defined(APPLEOS)
          int iSocket = GetSocket();
          n = send(iSocket,buf,len,SO_NOSIGPIPE);
@@ -877,24 +877,24 @@ namespace sockets
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
-               throw io_exception(get_app(), StrError(Errno));
+               //throw io_exception(get_app(), StrError(Errno));
             }
-            else
-            {
-               fd_set w;
-               fd_set e;
-               FD_ZERO(&e);
-               FD_ZERO(&w);
-               FD_SET(GetSocket(), &e);
-               FD_SET(GetSocket(), &w);
-               struct timeval tv;
-               tv.tv_sec = 1;
-               tv.tv_usec = 0;
-               ::select((int) (GetSocket() + 1), NULL, &w, &e, &tv);
-               goto retry;
-            }
+            //else
+            //{
+            //   fd_set w;
+            //   fd_set e;
+            //   FD_ZERO(&e);
+            //   FD_ZERO(&w);
+            //   FD_SET(GetSocket(), &e);
+            //   FD_SET(GetSocket(), &w);
+            //   struct timeval tv;
+            //   tv.tv_sec = 1;
+            //   tv.tv_usec = 0;
+            //   ::select((int) (GetSocket() + 1), NULL, &w, &e, &tv);
+            //   goto retry;
+            //}
 
-            return 0;
+            //return 0;
          }
       }
       if(n > 0)
@@ -909,7 +909,7 @@ namespace sockets
    }
 
 
-   void tcp_socket::buffer(const void * pdata,memory_size_t len)
+   void tcp_socket::buffer(const void * pdata,int len)
    {
 
       const char * buf = (const char *)pdata;
@@ -975,20 +975,20 @@ namespace sockets
       if(!IsConnected())
       {
          log("write",-1,"Attempt to write to a non-connected socket, will be sent on connect"); // warning
-         buffer(buf,len);
+         buffer(buf,(int) len);
          return;
       }
       if(m_obuf_top)
       {
-         buffer(buf,len);
+         buffer(buf,(int) len);
          return;
       }
       else
       {
-         int32_t n = (int32_t)try_write(buf,len);
+         int32_t n = (int32_t)try_write(buf,(int) len);
          if(n >= 0 && n < (int32_t)len)
          {
-            buffer(buf + n,len - n);
+            buffer(buf + n,(int) (len - n));
          }
       }
       // if ( data in buffer || !IsConnected )
@@ -2065,7 +2065,7 @@ skip:
                   else
                   {
 
-                     int iFind = strCommon.find('.');
+                     strsize iFind = strCommon.find('.');
 
                      if(iFind >= 0)
                      {

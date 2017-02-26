@@ -267,9 +267,9 @@ namespace sockets
 
 
       /** the actual send() */
-      memory_size_t try_write(const void * buf, memory_size_t len);
+      int try_write(const void * buf, int len);
       /** add data to output buffer top */
-      void buffer(const void * buf, memory_size_t len);
+      void buffer(const void * buf, int len);
 
 
  

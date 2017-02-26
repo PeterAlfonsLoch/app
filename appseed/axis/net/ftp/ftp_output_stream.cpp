@@ -89,7 +89,7 @@ namespace ftp
 
    UINT output_stream::GetLocalStreamSize() const
    {
-      return m_pimpl->m_vBuffer.size();
+       return (UINT) natural(m_pimpl->m_vBuffer.size());
    }
 
    void output_stream::SetLocalStreamOffset(DWORD dwOffsetFromBeginOfStream)
