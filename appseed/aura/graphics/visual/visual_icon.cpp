@@ -108,7 +108,7 @@ namespace visual
 
 #ifdef WINDOWSEX
 
-      string strPath = System.dir().appmatter(strApp, "main/icon.ico");
+      string strPath = Application.dir().matter("main/icon.ico");
 
       int cx = GetSystemMetrics(SM_CXSMICON);
       int cy = GetSystemMetrics(SM_CYSMICON);
