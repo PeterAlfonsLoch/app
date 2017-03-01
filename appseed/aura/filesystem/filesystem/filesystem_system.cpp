@@ -575,7 +575,7 @@ restart:
       try
       {
 
-         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_exclusive | ::file::defer_create_directory);
 
       }
       catch(...)
@@ -602,7 +602,7 @@ restart:
       try
       {
 
-         spfile = App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate | ::file::share_deny_none | ::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate | ::file::share_exclusive | ::file::defer_create_directory);
 
       }
       catch(...)
@@ -655,7 +655,7 @@ restart:
    bool system::put_contents(var varFile, ::file::reader & reader, ::aura::application * papp)
    {
       ::file::file_sp spfile;
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_exclusive | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       memory mem;
@@ -676,7 +676,7 @@ restart:
    bool system::put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application * papp)
    {
       ::file::file_sp spfile;
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_exclusive | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       spfile->write("\xef\xbb\xbf", 3);

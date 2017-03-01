@@ -93,6 +93,8 @@ namespace aura
 
         virtual bool register_user_auto_start(string strId, string strCommand);
 
+        virtual ::file::path get_app_path(const string & strApp);
+
 
     };
 

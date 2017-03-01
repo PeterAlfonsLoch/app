@@ -452,6 +452,14 @@ namespace aura
    }
 
 
+   ::file::path os::get_app_path(const string & strApp)
+   {
+
+      return strApp;
+
+   }
+
+
 } // namespace core
 
 

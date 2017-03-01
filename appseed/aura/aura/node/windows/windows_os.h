@@ -83,6 +83,8 @@ namespace windows
 
       virtual bool register_user_auto_start(string strId, string strCommand) override;
 
+      virtual ::file::path get_app_path(const string & strApp) override;
+
    };
 
 

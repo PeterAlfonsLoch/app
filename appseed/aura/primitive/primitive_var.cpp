@@ -4458,10 +4458,14 @@ var str_ends_get(const char * lpcsz, const char * lpcszSuffix)
 }
 
 
+string var::get_json(bool bNewLine) const
+{
 
+   string str;
 
+   return get_json(str, bNewLine);
 
-
+}
 
 
 string & var::get_json(string & str, bool bNewLine) const

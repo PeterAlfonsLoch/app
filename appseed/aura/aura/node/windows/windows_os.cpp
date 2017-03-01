@@ -1520,8 +1520,6 @@ namespace windows
 
       key.QueryValue("ProgId", strProgId);
 
-      //MessageBox(NULL, strProgId, "ProgId", MB_OK);
-
       if (::str::begins_ci(strProgId, "IE."))
       {
 
@@ -1552,6 +1550,12 @@ namespace windows
          strId = "vivaldi";
 
       }
+      else if (::str::ends_ci(strProgId, "ca2_app_core_commander"))
+      {
+
+         strId = "commander";
+
+      }
       else
       {
 
@@ -1559,15 +1563,11 @@ namespace windows
 
       }
 
-      //MessageBox(NULL, strId, "strBrowser", MB_OK);
+      string strDefault;
 
       key.OpenKey(HKEY_CLASSES_ROOT, strProgId + "\\shell\\open\\command", false);
 
-      string strDefault;
-
       key.QueryValue("", strDefault);
-
-      //MessageBox(NULL, strDefault, "(Default)", MB_OK);
 
       if (strDefault.is_empty())
       {
@@ -1678,6 +1678,47 @@ namespace windows
 
       return true;
 
+   }
+
+   ::file::path os::get_app_path(const string & strApp)
+   {
+
+      string str(strApp);
+      
+      registry::Key key;
+
+      string strDefault;
+
+      repeat:
+
+      if (key.OpenKey(HKEY_LOCAL_MACHINE, "Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\" + str, false))
+      {
+
+         if (key.QueryValue("", strDefault))
+         {
+
+            if (strDefault.has_char())
+            {
+
+               return strDefault;
+
+            }
+
+         }
+
+      }
+
+      if (!::str::ends_ci(str, ".exe"))
+      {
+
+         str += ".exe";
+
+         goto repeat;
+
+      }
+
+      return ::aura::os::get_app_path(str);
+         
    }
 
 

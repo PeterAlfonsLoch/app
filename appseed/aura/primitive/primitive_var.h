@@ -632,6 +632,7 @@ public:
    bool parse_json_step(const char * & pszJson, const char * pszEnd);
 
    string & get_json(string & str, bool bNewLine = true) const;
+   string get_json(bool bNewLine = true) const;
 
    static void skip_number(const char * & psz);
    static void skip_number(const char * & psz, const char * pszEnd);

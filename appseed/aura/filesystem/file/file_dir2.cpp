@@ -72,6 +72,14 @@ namespace windows
 
 }
 
+#ifdef WINDOWSEX
+::file::path dir::roaming_app_data()
+{
+
+   return ::windows::get_known_folder(FOLDERID_RoamingAppData);
+
+}
+#endif
 
 ::file::path dir::root()
 {
