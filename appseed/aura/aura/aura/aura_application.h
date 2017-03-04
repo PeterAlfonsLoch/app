@@ -197,6 +197,8 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 
+      void commander(string strUrl, string strWeather, string strUser, ::file::path path, string strParam);
+
       void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
 
       void firefox(string strUrl, string strBrowser, string strProfile, string strParam);

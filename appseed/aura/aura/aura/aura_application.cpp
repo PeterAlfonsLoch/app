@@ -950,7 +950,7 @@ namespace aura
    void application::chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam)
    {
 
-      manual_reset_event evClose(this);
+//      manual_reset_event evClose(this);
 
       ::file::path pathDir;
 
@@ -997,145 +997,145 @@ namespace aura
       }
 
 
-      evClose.ResetEvent();
+      //evClose.ResetEvent();
 
       try
       {
 
-         //::fork(this, [&]()
-         {
+      //   //::fork(this, [&]()
+      //   {
 
-            try
-            {
+      //      try
+      //      {
 
-               string strParam1 = strParam;
+      //         string strParam1 = strParam;
 
-               open_browser_enum e;
+      //         open_browser_enum e;
 
-               if (strId == "chrome" || strId == "commander")
-               {
+      //         if (strId == "chrome" || strId == "commander")
+      //         {
 
-                  e.m_strTopic = " - Google Chrome";
+      //            e.m_strTopic = " - Google Chrome";
 
-                  e.m_strCounterTopic = " - Google Chrome";
+      //            e.m_strCounterTopic = " - Google Chrome";
 
-               }
-               else if (strId == "vivaldi")
-               {
+      //         }
+      //         else if (strId == "vivaldi")
+      //         {
 
-               }
-               else
-               {
-
-
-               }
-
-               ::file::path pathProfile = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfile;
-
-               e.m_hwndaCounterTopic.remove_all();
-
-               ::EnumWindows(&enum_proc_ff_counter_topic, (LPARAM)&e);
-
-               bool bFound;
-
-               string strProfilePrefix = strProfile;
-
-               string strProfileSuffix;
-
-               strsize iFind = strProfile.find_last_in('.');
-
-               if (iFind >= 0)
-               {
-
-                  strProfilePrefix = strProfile.Left(iFind + 1);
-
-                  strProfileSuffix = strProfile.Mid(iFind + 1);
-
-                  if (strProfileSuffix == "browser_day")
-                  {
-
-                     strProfileSuffix = "browser_night";
-
-                  }
-                  else
-                  {
-
-                     strProfileSuffix = "browser_day";
-
-                  }
-
-               }
-
-               ::file::path pathPrefix = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfilePrefix;
-
-               ::file::path pathCounter = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfilePrefix + strProfileSuffix;
-
-            repeat_counter_search:
-
-               bFound = false;
-
-               if (e.m_hwndaCounterTopic.has_elements())
-               {
-
-                  for (auto w : e.m_hwndaCounterTopic)
-                  {
-
-                     DWORD dwPid = 0;
-
-                     ::GetWindowThreadProcessId(w, &dwPid);
-
-                     if (dwPid != 0)
-                     {
-
-                        HANDLE h = OpenProcess(PROCESS_ALL_ACCESS, TRUE, dwPid);
-
-                        if (h != INVALID_HANDLE_VALUE)
-                        {
-
-                           string strCmd = get_command_line(h);
-
-                           if (strCmd.contains_ci(pathPrefix) && !strCmd.contains_ci(pathProfile))
-                           {
-
-                              do_events();
-
-                              SendCtrlShiftQToChrome(w, 30, this);
-
-                              do_events();
-
-                              bFound = true;
-
-                           }
-
-                        }
-
-                        ::CloseHandle(h);
-
-                     }
-
-                  }
-
-               }
-
-               if (bFound)
-               {
-
-                  goto repeat_counter_search;
-
-               }
-
-            }
-            catch (...)
-            {
+      //         }
+      //         else
+      //         {
 
 
-            }
+      //         }
 
-            evClose.SetEvent();
+      //         ::file::path pathProfile = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfile;
 
-            //});
+      //         e.m_hwndaCounterTopic.remove_all();
 
-         }
+      //         ::EnumWindows(&enum_proc_ff_counter_topic, (LPARAM)&e);
+
+      //         bool bFound;
+
+      //         string strProfilePrefix = strProfile;
+
+      //         string strProfileSuffix;
+
+      //         strsize iFind = strProfile.find_last_in('.');
+
+      //         if (iFind >= 0)
+      //         {
+
+      //            strProfilePrefix = strProfile.Left(iFind + 1);
+
+      //            strProfileSuffix = strProfile.Mid(iFind + 1);
+
+      //            if (strProfileSuffix == "browser_day")
+      //            {
+
+      //               strProfileSuffix = "browser_night";
+
+      //            }
+      //            else
+      //            {
+
+      //               strProfileSuffix = "browser_day";
+
+      //            }
+
+      //         }
+
+      //         ::file::path pathPrefix = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfilePrefix;
+
+      //         ::file::path pathCounter = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfilePrefix + strProfileSuffix;
+
+      //      repeat_counter_search:
+
+      //         bFound = false;
+
+      //         if (e.m_hwndaCounterTopic.has_elements())
+      //         {
+
+      //            for (auto w : e.m_hwndaCounterTopic)
+      //            {
+
+      //               DWORD dwPid = 0;
+
+      //               ::GetWindowThreadProcessId(w, &dwPid);
+
+      //               if (dwPid != 0)
+      //               {
+
+      //                  HANDLE h = OpenProcess(PROCESS_ALL_ACCESS, TRUE, dwPid);
+
+      //                  if (h != INVALID_HANDLE_VALUE)
+      //                  {
+
+      //                     string strCmd = get_command_line(h);
+
+      //                     if (strCmd.contains_ci(pathPrefix) && !strCmd.contains_ci(pathProfile))
+      //                     {
+
+      //                        do_events();
+
+      //                        //SendCtrlShiftQToChrome(w, 30, this);
+
+      //                        do_events();
+
+      //                        bFound = true;
+
+      //                     }
+
+      //                  }
+
+      //                  ::CloseHandle(h);
+
+      //               }
+
+      //            }
+
+      //         }
+
+      //         if (bFound)
+      //         {
+
+      //            goto repeat_counter_search;
+
+      //         }
+
+      //      }
+      //      catch (...)
+      //      {
+
+
+      //      }
+
+      //      evClose.SetEvent();
+
+      //      //});
+
+      //   }
 
          bool bFound = false;
 
@@ -1237,7 +1237,80 @@ namespace aura
             if (strUrl.has_char())
             {
 
-               strParam = "\"" + strUrl + "\" ";
+               strsize iFind = strParam.find("%1");
+
+               if (iFind >= 0)
+               {
+
+                  strParam = strParam.Left(iFind) + strUrl + strParam.Mid(iFind + 2) + " ";
+
+               }
+               else
+               {
+
+                  strParam = "\"" + strUrl + "\" ";
+
+               }
+
+            }
+            else
+            {
+               strParam.trim_left();
+
+               strsize iFind = strParam.find("%1");
+
+               if (iFind == 0 || iFind == 1)
+               {
+
+                  if (strParam.get_length() <= 4)
+                  {
+
+                     strParam = "";
+
+                  }
+                  else
+                  {
+
+                     if (iFind == 0)
+                     {
+
+                        strParam = strParam.Mid(2);
+
+                     }
+                     else
+                     {
+
+                        strParam = strParam.Mid(4);
+
+                     }
+
+                  }
+               }
+               else if(iFind >=2 )
+               {
+
+                  if (strParam[iFind-1] == '\"' && strParam[iFind + 2] == '\"')
+                  {
+
+                     strParam = strParam.Left(iFind - 1) + strParam.Mid(iFind + 3);
+
+                  }
+                  else if (strParam[iFind - 1] == '\"' && strParam[iFind + 2] == '\"')
+                  {
+
+                     strParam = strParam.Left(iFind - 1) + strParam.Mid(iFind + 3);
+
+                  }
+                  else
+                  {
+
+                     strParam = strParam.Left(iFind) + strParam.Mid(iFind + 2);
+
+                  }
+
+
+
+               }
 
             }
 
@@ -1330,7 +1403,7 @@ namespace aura
          //      
          //#endif
 
-         evClose.wait();
+//         evClose.wait();
 
       }
       catch (...)
@@ -1338,6 +1411,98 @@ namespace aura
 
 
       }
+
+   }
+
+
+   void application::commander(string strUrl, string strWeather, string strUser, ::file::path path, string strParam)
+   {
+
+      ::file::path pathDir;
+
+      pathDir = path.folder();
+
+      if (strUrl.has_char())
+      {
+
+         strsize iFind = strParam.find("%1");
+
+         if (iFind >= 0)
+         {
+
+            strParam = strParam.Left(iFind) + strUrl + strParam.Mid(iFind + 2) + " ";
+
+         }
+         else
+         {
+
+            strParam = "\"" + strUrl + "\" ";
+
+         }
+
+      }
+      else
+      {
+         strParam.trim_left();
+
+         strsize iFind = strParam.find("%1");
+
+         if (iFind == 0 || iFind == 1)
+         {
+
+            if (strParam.get_length() <= 4)
+            {
+
+               strParam = "";
+
+            }
+            else
+            {
+
+               if (iFind == 0)
+               {
+
+                  strParam = strParam.Mid(2);
+
+               }
+               else
+               {
+
+                  strParam = strParam.Mid(4);
+
+               }
+
+            }
+         }
+         else if (iFind >= 2)
+         {
+
+            if (strParam[iFind - 1] == '\"' && strParam[iFind + 2] == '\"')
+            {
+
+               strParam = strParam.Left(iFind - 1) + strParam.Mid(iFind + 3);
+
+            }
+            else if (strParam[iFind - 1] == '\"' && strParam[iFind + 2] == '\"')
+            {
+
+               strParam = strParam.Left(iFind - 1) + strParam.Mid(iFind + 3);
+
+            }
+            else
+            {
+
+               strParam = strParam.Left(iFind) + strParam.Mid(iFind + 2);
+
+            }
+
+         }
+
+      }
+
+      strParam += " : " + strWeather + "=" + strUser;
+
+      call_async(path, strParam, pathDir, SW_SHOWDEFAULT, false);
 
    }
 
@@ -1563,6 +1728,13 @@ namespace aura
       if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
       {
 
+         strWeather = Application.file().as_string(::dir::system() / "browser_weather.txt");
+
+      }
+
+      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
+      {
+
          strWeather = "browser_day";
 
       }
@@ -1606,10 +1778,21 @@ namespace aura
          chromium(strUrl, strBrowser, strId, path, strProfile, strParam);
 
       }
-      else if (strId == "commander" && m_strAppName == "commander")
+      else if (strId == "commander")
       {
 
-         chromium(strUrl, strBrowser, strId, System.os().get_app_path("chrome"), strProfile, strParam);
+         if (m_strAppName == "commander")
+         {
+
+            chromium(strUrl, strBrowser, strId, System.os().get_app_path("chrome"), strProfile, strParam);
+
+         }
+         else
+         {
+
+            commander(strUrl, strWeather, strUser, path, strParam);
+
+         }
 
       }
       else
@@ -1681,140 +1864,14 @@ namespace aura
 
 #elif defined(WINDOWSEX)
 
-         //if (strProfile == "native")
-         //{
-
-         //   ::ShellExecuteW(NULL, L"open", wstring("microsoft-edge:" + strUrl), NULL, L"C:\\Windows", SW_SHOWDEFAULT);
-
-         //}
-         //else if (strProfile == "ca2bot" || strProfile == "bot")
-         //{
-
-         //   call_async("C:\\Program Files (x86)\\Google\\Chrome\\Application\\Chrome.exe", "\"" + strUrl + "\"", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\", SW_SHOWDEFAULT, false);
-
-         //}
-         //else
-         //{
-
-         //   string strFirefox = file().as_string(::dir::system() / "firefox.txt");
-         //   string strFirefoxPath = file().as_string(::dir::system() / "firefox_path.txt");
-         //   string strFirefoxDir = file().as_string(::dir::system() / "firefox_dir.txt");
-
-         //   call_async(strFirefoxPath, "\"" + strUrl + "\"", strFirefoxDir, SW_SHOWDEFAULT, false);
-
-         //}
-
-         //if (strProfile.is_empty())
-         //{
-
-         //   ::ShellExecuteW(NULL, L"open", wstring(strUrl), NULL, L"C:\\Windows", SW_SHOWDEFAULT);
-
-         //   return;
-
-         //}
-
-         strsize iParam = strParam.find("%1");
-
-         if (strUrl.has_char())
-         {
-
-            if (iParam < 0)
-            {
-
-               strParam += " \"" + strUrl + "\"";
-
-            }
-            else
-            {
-
-               strParam = strParam.Left(iParam) + strUrl + strParam.Mid(iParam + 2);
-
-            }
-
-         }
-         else
+         if (strUrl.is_empty())
          {
 
             strUrl = "foo.html";
-            strParam = "";
 
          }
 
-         // MessageBox(NULL, strAfter, "strAfter", MB_OK);
-
-         ::file::path pathDir;
-
-         pathDir = path.folder();
-
-         if (strId == "vivaldi")
-         {
-
-            ::file::path pathAppDataDir(getenv("APPDATA"));
-
-            ::file::path pathProfile;
-
-            pathProfile = pathAppDataDir / "ca2/Vivaldi/Profile" / strProfile;
-
-            call_async(path, "--user-data-dir=\"" + pathProfile + "\" " + strParam, pathDir, SW_SHOWDEFAULT, false);
-
-         }
-         else if (strId == "chrome")
-         {
-
-            ::file::path pathAppDataDir(getenv("APPDATA"));
-
-            ::file::path pathProfile;
-
-            pathProfile = pathAppDataDir / "ca2/Chrome/Profile" / strProfile;
-
-            strParam = "--user-data-dir=\"" + pathProfile + "\" " + strParam;
-
-            //MessageBox(NULL, strParam, path, MB_OK);
-
-            call_async(path, strParam, pathDir, SW_SHOWDEFAULT, false);
-
-         }
-         else if (strId == "firefox")
-         {
-
-            ::file::path pathAppDataDir(getenv("APPDATA"));
-
-            ::file::path pathProfile;
-
-            pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / strProfile;
-
-            call_async(path, "-profile=\"" + pathProfile + "\" " + strParam, pathDir, SW_SHOWDEFAULT, false);
-
-         }
-         else if (strId == "commander")
-         {
-
-            call_async(path, " : " + strWeather + "=" + strUser, pathDir, SW_SHOWDEFAULT, false);
-
-         }
-         else
-         {
-
-            ::ShellExecuteW(NULL, L"open", wstring(strUrl), NULL, L"C:\\Windows", SW_SHOWDEFAULT);
-
-         }
-
-
-
-         //      }
-
-         //if (strProfile == "ca2bot")
-         //{
-
-         //   strProfile = "bot";
-
-         //}
-         //else
-         //{
-
-         //   strProfile = "default";
-
-         //}
+         ::ShellExecuteW(NULL, L"open", wstring(strUrl), NULL, L"C:\\Windows", SW_SHOWDEFAULT);
 
          //::file::path path = getenv("APPDATA");
 
