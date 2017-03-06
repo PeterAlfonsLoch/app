@@ -40,7 +40,8 @@ namespace data
       for (auto c : m_children)
       {
 
-         c->update_pointers();
+         c->m_pprevious = c->calc_previous(false);
+         c->m_ppreviousParent = c->calc_previous(true);
 
       }
 
@@ -59,10 +60,12 @@ namespace data
 
       m_pparent = pparent;
 
+
       for (auto c : m_pparent->m_children)
       {
 
-         c->update_pointers();
+         c->m_pprevious = c->calc_previous(false);
+         c->m_ppreviousParent = c->calc_previous(true);
 
       }
 
@@ -90,7 +93,8 @@ namespace data
       for (auto c : m_pparent->m_children)
       {
 
-         c->update_pointers();
+         c->m_pprevious = c->calc_previous(false);
+         c->m_ppreviousParent = c->calc_previous(true);
 
       }
 
@@ -486,87 +490,87 @@ namespace data
    void tree_item::update_pointers()
    {
 
-      update_previous_pointers(true);
+      update_previous_pointers();
 
       if (m_children.has_elements())
       {
          
-         m_children[0]->update_previous_pointers(true);
+         m_children[0]->update_previous_pointers();
 
       }
 
       if (m_children.get_count() > 1)
       {
 
-         m_children.last_sp()->update_next_pointers(true);
+         m_children.last_sp()->update_next_pointers();
 
       }
 
-      update_next_pointers(true);
+      update_next_pointers();
 
    }
 
-   void tree_item::update_previous_pointers(bool bUpdateNext)
+   void tree_item::update_previous_pointers()
    {
 
       m_pprevious = calc_previous(false);
 
-      if (bUpdateNext && m_pprevious != NULL)
+      if (m_pprevious != NULL)
       {
 
-         m_pprevious->update_next_pointers(false);
+         m_pprevious->update_next_pointers();
 
       }
 
       m_ppreviousParent = calc_previous(true);
 
-      if (bUpdateNext && m_ppreviousParent != NULL && m_ppreviousParent != m_pprevious)
+      if (m_ppreviousParent != NULL && m_ppreviousParent != m_pprevious)
       {
 
-         m_ppreviousParent->update_next_pointers(false);
+         m_ppreviousParent->update_next_pointers();
 
       }
 
    }
 
 
-   void tree_item::update_next_pointers(bool bUpdatePrevious)
+   void tree_item::update_next_pointers()
    {
 
       m_pnext = calc_next(false, false, &m_iLevelNext);
 
-      if (bUpdatePrevious && m_pnext != NULL)
+      if (m_pnext != NULL)
       {
 
-         m_pnext->update_previous_pointers(false);
+         m_pnext->update_previous_pointers();
 
       }
 
       m_pnextChild = calc_next(true, false, &m_iLevelNextChild);
 
-      if (bUpdatePrevious && m_pnextChild != NULL && m_pnextChild != m_pnext)
+      if (m_pnextChild != NULL && m_pnextChild != m_pnext)
       {
 
-         m_pnextChild->update_next_pointers(false);
+         m_pnextChild->update_next_pointers();
 
       }
 
       m_pnextParent = calc_next(false, true, &m_iLevelNextParent);
 
-      if (bUpdatePrevious && m_pnextParent != NULL && m_pnextParent != m_pnext  && m_pnextParent != m_pnextChild)
+      if (m_pnextParent != NULL && m_pnextParent != m_pnext  && m_pnextParent != m_pnextChild)
       {
 
-         m_pnextParent->update_next_pointers(false);
+         m_pnextParent->update_next_pointers();
 
       }
 
 
       m_pnextParentChild = calc_next(true, true, &m_iLevelNextParentChild);
 
-      if (bUpdatePrevious && m_pnextParentChild != NULL && m_pnextParentChild != m_pnext && m_pnextParentChild != m_pnextChild  && m_pnextParentChild != m_pnextParent)
+      if (m_pnextParentChild != NULL && m_pnextParentChild != m_pnext && m_pnextParentChild != m_pnextChild  && m_pnextParentChild != m_pnextParent)
       {
 
-         m_pnextParentChild->update_next_pointers(false);
+         m_pnextParentChild->update_next_pointers();
 
       }
 

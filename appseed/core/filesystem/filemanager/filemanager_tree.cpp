@@ -167,7 +167,7 @@ namespace filemanager
 
                }
 
-               pitem = pitem->get_next(false,false);
+               pitem = pitem->m_pnext;
 
             }
 

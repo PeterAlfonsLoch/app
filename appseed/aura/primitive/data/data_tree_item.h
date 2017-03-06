@@ -48,6 +48,16 @@ namespace data
 
       tree *                        m_ptree;
       tree_item *                   m_pparent;
+      tree_item *                   m_pprevious;
+      tree_item *                   m_ppreviousParent;
+      tree_item *                   m_pnext;
+      index                         m_iLevelNext;
+      tree_item *                   m_pnextParent;
+      index                         m_iLevelNextParent;
+      tree_item *                   m_pnextChild;
+      index                         m_iLevelNextChild;
+      tree_item *                   m_pnextParentChild;
+      index                         m_iLevelNextParentChild;
       spa(tree_item)                m_children;
       sp(::data::item)              m_pitem;
       uint_ptr                      m_dwUser;
@@ -75,13 +85,36 @@ namespace data
       ::count get_expandable_children_count();
       ::count get_proper_descendant_count();
       tree_item * get_expandable_child(index iIndex);
-      tree_item * get_previous(bool bParent = true);
-      tree_item * get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
+      //tree_item * get_previous(bool bParent = true)
+      //{
+      //   return bParent ? m_ppreviousParent : m_pprevious;
+      //}
+      //tree_item * get_next(bool bChild=true, bool bParent = true, index * pindexLevel = NULL)
+      //{
+      //   if (bChild)
+      //   {
+      //      if (bParent)
+      //      {
+      //         return m_pparent;
+      //      }
+      //   }
+      //   return bChild ?bParent ? m_ppreviousParent : m_pprevious;
+      //}
+      tree_item * calc_previous(bool bParent = true);
+      tree_item * calc_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
       
 
-      tree_item * previous();
+      tree_item * previous()
+      {
+
+         return m_pprevious;
+      }
       tree_item * first_child();
-      tree_item * next();
+      tree_item * next()
+      {
+         return m_pnext;
+
+      }
 
 
       void sort_children(index ( * lpfnCompare )(const sp(tree_item) &, const sp(tree_item) &));
@@ -113,6 +146,10 @@ namespace data
 
       virtual bool is_descendant(tree_item * pitem);
       virtual bool is_ascendant(tree_item * pitem);
+
+      virtual void update_pointers();
+      virtual void update_previous_pointers(bool bUpdateNext);
+      virtual void update_next_pointers(bool bUpdatePrevious);
 
    };
 

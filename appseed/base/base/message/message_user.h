@@ -195,7 +195,8 @@ namespace message
       point m_pt;
    };
 
-   class CLASS_DECL_BASE key: public base,
+   class CLASS_DECL_BASE key:
+      public base,
       public ::user::key
    {
    public:
@@ -216,6 +217,7 @@ namespace message
       virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
 
       key & operator = (const key & key);
+
    };
 
    class CLASS_DECL_BASE nc_activate: public base

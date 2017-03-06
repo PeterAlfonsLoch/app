@@ -5,6 +5,126 @@
 namespace filemanager
 {
 
+   
+   int get_manager_id_byte_len()
+   {
+
+      return 16;
+
+   }
+   
+
+   int get_manager_id_len()
+   {
+
+      return get_manager_id_byte_len() * 2;
+
+   }
+
+
+   string create_manager_id(::aura::application * papp)
+   {
+
+      memory mem;
+
+      mem.allocate(get_manager_id_byte_len());
+
+      Sys(papp).math().random_bytes(mem.get_data(), mem.get_size());
+
+      return mem.to_hex().uppered();
+
+   }
+
+
+   bool is_valid_manager_id(const char * psz)
+   {
+
+      ::count c = 0;
+
+      while(*psz != '\0')
+      {
+
+         if (*psz >= '0' && *psz <= '9')
+         {
+         }
+         else if (*psz >= 'A' && *psz <= 'F')
+         {
+         }
+         else
+         {
+            return false;
+         }
+
+         psz++;
+         c++;
+         if (c > get_manager_id_len())
+         {
+            return false;
+         }
+      }
+      return c == get_manager_id_len();
+   }
+
+   bool is_valid_filemanager_project_entry(const char * psz)
+   {
+
+      ::count c = 0;
+
+      while (*psz != '\0')
+      {
+
+         if (*psz >= '0' && *psz <= '9')
+         {
+         }
+         else if (*psz >= 'A' && *psz <= 'F')
+         {
+         }
+         else
+         {
+            return false;
+         }
+
+         psz++;
+         c++;
+         if (c >= get_manager_id_len())
+         {
+            if (*psz == ':')
+            {
+               return true;
+            }
+            else
+            {
+               return false;
+            }
+         }
+      }
+      return false;
+
+   }
+   
+   
+   ::file::path get_filemanager_project_entry(string & strManagerId, const char * psz, ::aura::application * papp)
+   {
+
+      if (is_valid_filemanager_project_entry(psz))
+      {
+
+         strManagerId = string(psz, get_manager_id_len());
+
+         return psz + get_manager_id_len() + 1;
+
+      }
+      else
+      {
+
+         strManagerId = create_manager_id(papp);
+
+         return psz;
+
+      }
+
+   }
+
 
    manager::manager(::aura::application * papp):
       object(papp),
@@ -29,6 +149,12 @@ namespace filemanager
          connect_command("file_save",&manager::_001OnFileSaveAs);
          connect_update_cmd_ui("cancel",&manager::_001OnUpdateEditPaste);
          connect_command("cancel",&manager::_001OnEditPaste);
+         connect_update_cmd_ui("new_manager", &manager::_001OnUpdateNewManager);
+         connect_command("new_manager", &manager::_001OnNewManager);
+         connect_update_cmd_ui("del_manager", &manager::_001OnUpdateDelManager);
+         connect_command("del_manager", &manager::_001OnDelManager);
+
+//         m_bInitialBrowsePath = true;
 
       }
 
@@ -191,6 +317,44 @@ namespace filemanager
 
    }
 
+   void manager::defer_check_manager_id(string strManagerId)
+   {
+
+      if (Session.filemanager().std().m_pathFilemanagerProject.has_char())
+      {
+
+         if (!is_valid_manager_id(m_strManagerId) || is_valid_manager_id(strManagerId))
+         {
+
+            if (is_valid_manager_id(strManagerId))
+            {
+
+               m_strManagerId = strManagerId;
+
+            }
+            else
+            {
+
+               m_strManagerId = create_manager_id(get_app());
+
+            }
+
+            m_dataid = string(Application.m_dataid.m_id.m_psz) + "/filemanager/document/" + m_strManagerId;
+
+            sp(main_frame) pframe = get_view()->GetTypedParent < main_frame >();
+
+            if (pframe.is_set())
+            {
+
+               pframe->m_dataid = string(Application.m_dataid.m_id.m_psz) + "/filemanager/main_frame/" + m_strManagerId;
+
+            }
+
+         }
+
+      }
+
+   }
 
 
    critical_section * manager::GetItemIdListCriticalSection()
@@ -236,10 +400,36 @@ namespace filemanager
 
       m_fsset->root_ones(listing);
 
+      defer_check_manager_id();
 
       return TRUE;
 
    }
+
+
+   bool manager::on_open_document(var varFile)
+   {
+      m_fsset->m_spafsdata.remove_all();
+
+
+      m_fsset->m_spafsdata.add(Session.fs());
+
+
+      ::file::listing listing(m_fsset);
+
+      m_fsset->root_ones(listing);
+
+
+      string strManagerId;
+
+      m_filepath = get_filemanager_project_entry(strManagerId, varFile.get_string(), get_app());
+
+      defer_check_manager_id(strManagerId);
+
+      return true;
+
+   }
+
 
    void manager::assert_valid() const
    {
@@ -329,21 +519,48 @@ namespace filemanager
          if(::str::begins(strPath,astr.strUifsProtocol)
             || ::str::begins(strPath,astr.strFsProtocol))
          {
-            data_set(".local://InitialBrowsePath",strPath);
+            
+            if (Session.filemanager().std().m_pathFilemanagerProject.is_empty())
+            {
+
+               data_set(".local://InitialBrowsePath", strPath);
+
+            }
+            else
+            {
+
+               Session.filemanager().std().save_filemanager_project();
+
+            }
+
          }
          else
          {
 
-            id idMachine;
+
+            if (Session.filemanager().std().m_pathFilemanagerProject.is_empty())
+            {
+
+               id idMachine;
 
 #ifdef LINUX
-            idMachine = "Linux";
+               idMachine = "Linux";
 #elif defined(WINDOWSEX)
-            idMachine = "Windows Desktop";
+               idMachine = "Windows Desktop";
 #endif
 
-            data_set(".local://InitialBrowsePath","machinefs://");
-            data_set(".local://InitialBrowsePath."+idMachine,strPath);
+               data_set(".local://InitialBrowsePath", "machinefs://");
+               data_set(".local://InitialBrowsePath." + idMachine, strPath);
+//               data_set(".local://InitialBrowsePath", strPath);
+
+            }
+            else
+            {
+
+               Session.filemanager().std().save_filemanager_project();
+
+            }
+
 
          }
 
@@ -422,6 +639,49 @@ namespace filemanager
    /*   return ::user::document::_001OnCmdMsg(pcmdmsg);
    }
    */
+
+   void manager::_001OnUpdateNewManager(signal_details * pobj)
+   {
+
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
+
+      pcmdui->m_pcmdui->Enable(TRUE);
+
+      pobj->m_bRet = true;
+
+   }
+
+
+   void manager::_001OnNewManager(signal_details * pobj)
+   {
+
+      Session.filemanager().std().add_manager("", canew(::create(Application.creation())));
+
+      pobj->m_bRet = true;
+
+   }
+
+
+   void manager::_001OnUpdateDelManager(signal_details * pobj)
+   {
+
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
+
+      pcmdui->m_pcmdui->Enable(TRUE);
+
+      pobj->m_bRet = true;
+
+   }
+
+
+   void manager::_001OnDelManager(signal_details * pobj)
+   {
+
+      Session.filemanager().std().remove_manager(this);
+
+      pobj->m_bRet = true;
+
+   }
 
 
    void manager::_001OnUpdateLevelUp(signal_details * pobj)
@@ -531,8 +791,37 @@ namespace filemanager
    }
 
 
+   void manager::Initialize(bool bMakeVisible, const ::file::path & path)
+   {
+
+      CreateViews();
+
+      update_hint uh;
+
+      uh.m_pmanager = this;
+
+      FileManagerBrowse(path, ::action::source::database_default());
+
+      uh.set_type(update_hint::TypeCreateBars);
+
+      update_all_views(NULL, 0, &uh);
+
+      if (bMakeVisible)
+      {
+
+         uh.set_type(update_hint::TypePop);
+
+         update_all_views(NULL, 0, &uh);
+
+      }
+
+   }
+
+
    void manager::Initialize(bool bMakeVisible, bool bInitialBrowsePath)
    {
+
+      //m_bInitialBrowsePath = true;
 
       string str;
       
@@ -543,7 +832,6 @@ namespace filemanager
       CreateViews();
 
       update_hint uh;
-
 
       uh.m_pmanager = this;
 
@@ -609,8 +897,11 @@ namespace filemanager
 
    void manager::OpenFolder(sp(::fs::item) item,::action::context actioncontext)
    {
+      
       FileManagerBrowse(item,actioncontext);
+
    }
+
 
    void manager::CreateViews()
    {

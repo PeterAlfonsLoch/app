@@ -20,6 +20,9 @@ namespace message
       bool                       m_bReflect;
       bool                       m_bDestroyed;
       bool                       m_bDoSystemDefault;
+      LRESULT *                  m_plresult;
+      LRESULT                    m_lresult;
+
 
       base(::aura::application * papp,class ::signal * psignal = NULL);
       base(::aura::application * papp,::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
@@ -33,8 +36,10 @@ namespace message
       virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
       virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam);
 
-      LRESULT * m_plresult;
-      LRESULT  m_lresult;
+      base & operator = (const base & base);
+
+      void copy_this(const base & base);
+
    };
 
 

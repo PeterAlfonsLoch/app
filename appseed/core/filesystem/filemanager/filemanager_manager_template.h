@@ -41,10 +41,29 @@ namespace filemanager
       sp(::user::multiple_document_template)    m_pdoctemplateChild;
       sp(::user::multiple_document_template)    m_pdoctemplateChildList;
       sp(::user::multiple_document_template)    m_pdoctemplateFolderSelectionList;
+      ::file::path                              m_pathFilemanagerProject;
+      bool                                      m_bRestoring;
+      
 
 
       manager_template(::aura::application * papp);
       virtual ~manager_template();
+
+      void load_filemanager_project(const ::file::path & pathFileManagerProject, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+
+      void save_filemanager_project();
+
+      sp(manager) find_manager(var varFile);
+
+      sp(manager) restore_manager(var varFile, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+
+      sp(manager) open_manager(var varFile, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+      
+      sp(manager) add_manager(const ::file::path & pathFolder, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+
+      bool remove_manager(var varFile);
+
+      bool remove_manager(manager * pmanager);
 
 
       sp(manager) open_main(::id id = -1, sp(::create) pcreatecontext = NULL,::fs::data * pdata = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);

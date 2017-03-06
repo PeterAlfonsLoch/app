@@ -46,6 +46,8 @@ public:
 
    property_set & operator()();
 
+   void copy_this(const signal_details & signaldetails);
+
 
 };
 

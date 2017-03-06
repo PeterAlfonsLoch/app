@@ -141,7 +141,7 @@
 
 
 
-string strResCallback = "https://ca2.cc/lctv_resident_callback";
+string strResCallback = "https://ca2.cc/liveedutv_resident_callback";
 
 
 
@@ -564,7 +564,7 @@ string strResSecret="w1UQprXgOkkGYIAmXnmdgiAq8zvs4W3CAN8qAYYOoRuefbNjE2R7YuzPwhd
 
 
 
-string strBotCallback = "https://ca2.cc/lctv_resident_callback";
+string strBotCallback = "https://ca2.cc/liveedutv_resident_callback";
 
 
 
@@ -984,7 +984,7 @@ string strBotSecret="YYsycZs54xKyfoSvXuDAm6ALrAJAwBo1NhBzTUIkd3pdlfB1S6yONpsiEp1
 
 
 
-string strCliCallback = "https://ca2.cc/lctv_resident_callback";
+string strCliCallback = "https://ca2.cc/liveedutv_resident_callback";
 
 
 
@@ -1307,7 +1307,7 @@ string strCliSecret="vMhSwxKyMVt6v5AlLgsexA3QV5qN4W3DH9Km3gVRAYsHTYf0Ije4yiHMjSI
 
 
 
-string strLctvCallback = "https://ca2.cc/lctv_resident_callback";
+string strLctvCallback = "https://ca2.cc/liveedutv_resident_callback";
 
 
 

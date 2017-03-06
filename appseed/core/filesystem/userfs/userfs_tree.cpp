@@ -498,7 +498,7 @@ namespace userfs
 
          }
 
-         pitem = pitem->get_next();
+         pitem = pitem->m_pnextParentChild;
 
          if(pitem == pitemStart)
             break;

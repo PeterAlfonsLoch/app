@@ -8,4 +8,6 @@
 <button id="spafy">spafy</button>
 <button id="spafy2">spafy2</button>
 <button id="change_view">v</button>
+<button id="new_manager">New</button>
+<button id="del_manager">Del</button>
 </toolbar>

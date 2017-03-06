@@ -22,7 +22,7 @@ namespace file
       };
 
       class Item :
-         virtual public ::data::item
+         public ::data::item
       {
       public:
 
@@ -57,7 +57,7 @@ namespace file
       };
 
       class DeleteItem :
-         virtual public Item
+         public Item
       {
       public:
 
@@ -80,7 +80,7 @@ namespace file
       };
 
       class InsertItem :
-         virtual public Item
+         public Item
       {
       public:
 
@@ -103,7 +103,7 @@ namespace file
       };
 
       class EditItem :
-         virtual public Item
+         public Item
       {
       public:
 
@@ -125,14 +125,14 @@ namespace file
       };
 
       class ItemPtrArray :
-         virtual public spa(Item)
+         public spa(Item)
       {
       public:
       };
 
       class GroupItem :
-         virtual public Item,
-         virtual public ItemPtrArray
+         public Item,
+         public ItemPtrArray
       {
       public:
 

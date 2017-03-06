@@ -58,8 +58,9 @@ namespace user
 
       ::user::e_key     m_ekey;
 
-      string   m_strText;
+      string            m_strText;
 
+      void copy_this(const key & key);
 
    };
 

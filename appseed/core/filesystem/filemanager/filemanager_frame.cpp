@@ -32,9 +32,7 @@ namespace filemanager
    bool  frame::on_create_bars()
    {
       
-      sp(manager) pmanager = (GetActiveDocument());
-
-      return pmanager->on_create_bars(this);
+      return simple_frame_window::on_create_bars();
 
    }
 

@@ -136,7 +136,7 @@ namespace user
             pFrame->DestroyWindow();
             return;
          }
-         pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
+         //pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
       }
 
       if(!pcreatecontext->m_bHold)

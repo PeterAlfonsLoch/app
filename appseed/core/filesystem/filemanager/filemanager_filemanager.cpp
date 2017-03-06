@@ -91,6 +91,7 @@ namespace filemanager
       System.factory().creatable_small < file_list > ();
       System.factory().creatable_small < preview > ();
       System.factory().creatable_small < main_frame > ();
+      System.factory().creatable_small < frame >();
       System.factory().creatable_small < tab_view > ();
 //      System.factory().creatable_small < ::user::document > ();
       System.factory().creatable_small < form_child_frame > ();

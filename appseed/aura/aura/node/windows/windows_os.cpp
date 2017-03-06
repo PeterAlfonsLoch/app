@@ -1424,21 +1424,25 @@ namespace windows
 
       bool bNativeUnicode = is_windows_native_unicode() != FALSE;
 
-      comptr < IShellLinkW > psl;
+      comptr < IShellLinkW > pshelllink;
 
       SHFILEINFOW info;
 
       ZERO(info);
 
-      if((::windows::shell::SHGetFileInfo(wstrFileIn,0,&info,sizeof(info),SHGFI_ATTRIBUTES) == 0) || !(info.dwAttributes & SFGAO_LINK))
+      DWORD_PTR dw = ::windows::shell::SHGetFileInfo(wstrFileIn, 0, &info, sizeof(info), SHGFI_ATTRIBUTES);
+      
+      if(dw == 0 || !(info.dwAttributes & SFGAO_LINK))
       {
+
          strTarget = wstrFileIn;
+
          return FALSE;
       }
 
       HRESULT hr ;
 
-      if(FAILED(hr = psl.CoCreateInstance(CLSID_ShellLink,NULL,CLSCTX_INPROC_SERVER)))
+      if(FAILED(hr = pshelllink.CoCreateInstance(CLSID_ShellLink,NULL,CLSCTX_INPROC_SERVER)))
       {
          
          return false;
@@ -1448,24 +1452,24 @@ namespace windows
       bool bOk = false;
 
 
-      comptr < IPersistFile > ppf;
+      comptr < IPersistFile > ppersistfile;
 
-      if(SUCCEEDED(psl.As(ppf)))
+      if(SUCCEEDED(hr = pshelllink.As(ppersistfile)))
       {
       
-         if(SUCCEEDED(ppf->Load(wstrFileIn,STGM_READ)))
+         if(SUCCEEDED(hr = ppersistfile->Load(wstrFileIn,STGM_READ)))
          {
 
          
             /* Resolve the link, this may post UI to find the link */
-            if(SUCCEEDED(psl->Resolve(pui == NULL ? NULL : pui->get_handle(), SLR_ANY_MATCH | (pui == NULL ? (SLR_NO_UI | (8400 << 16)) : 0))))
+            if(SUCCEEDED(pshelllink->Resolve(pui == NULL ? NULL : pui->get_handle(), SLR_ANY_MATCH | (pui == NULL ? (SLR_NO_UI | (8400 << 16)) : 0))))
             {
 
                wstring wstr;
 
                wstr.alloc(MAX_PATH * 8);
 
-               if(SUCCEEDED(psl->GetPath(wstr,MAX_PATH * 8,NULL,0)))
+               if(SUCCEEDED(pshelllink->GetPath(wstr,MAX_PATH * 8,NULL,0)))
                {
 
                   bOk = true;
@@ -1478,7 +1482,7 @@ namespace windows
 
                wstr.alloc(MAX_PATH * 8);
 
-               if(SUCCEEDED(psl->GetWorkingDirectory(wstr,MAX_PATH * 8)))
+               if(SUCCEEDED(pshelllink->GetWorkingDirectory(wstr,MAX_PATH * 8)))
                {
 
                   wstr.release_buffer();
@@ -1489,7 +1493,7 @@ namespace windows
       
                wstr.alloc(MAX_PATH * 8);
 
-               if(SUCCEEDED(psl->GetArguments(wstr,MAX_PATH * 8)))
+               if(SUCCEEDED(pshelllink->GetArguments(wstr,MAX_PATH * 8)))
                {
 
                   wstr.release_buffer();

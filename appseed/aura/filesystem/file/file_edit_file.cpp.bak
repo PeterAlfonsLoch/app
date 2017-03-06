@@ -417,7 +417,7 @@ namespace file
          for(index i = get_upper_bound(); i >= 0; i--)
          {
             
-            if (this->operator[](i)->read_byte(pbyte, pfile))
+            if (this->element_at(i)->read_byte(pbyte, pfile))
             {
 
                return true;
@@ -432,7 +432,7 @@ namespace file
          for(index i = 0; i < this->get_count(); i++)
          {
 
-            if (this->operator[](i)->read_byte(pbyte, pfile))
+            if (this->element_at(i)->read_byte(pbyte, pfile))
             {
 
                return true;
@@ -539,7 +539,7 @@ namespace file
       if (m_bRootDirection)
       {
 
-         m_ptreeitemBeg = m_ptreeitemFlush->m_pnextParentChild;
+         m_ptreeitemBeg = m_ptreeitemFlush->m_pnext;
 
          //m_ptreeitemBeg = m_ptreeitemEnd;
 
@@ -576,11 +576,11 @@ namespace file
             if (!m_bRootDirection)
             {
 
-               ptreeitem = ptreeitem->m_pnextParentChild;
+               ptreeitem = ptreeitem->m_pnext;
 
             }
 
-            Item * pitem = (Item *) ptreeitem->m_pitem.m_p;
+            sp(Item) pitem = ptreeitem->m_pitem;
 
             bRead = pitem->read_byte(&b, this);
 
@@ -601,7 +601,7 @@ namespace file
             if (m_bRootDirection)
             {
 
-               ptreeitem = ptreeitem->m_ppreviousParent;
+               ptreeitem = ptreeitem->m_pprevious;
                
             }
 
@@ -936,7 +936,7 @@ namespace file
 
       m_dwFileLength -= ((sp(Item))m_ptreeitem->m_pitem)->get_delta_length();
 
-      m_ptreeitem = m_ptreeitem->m_ppreviousParent;
+      m_ptreeitem = m_ptreeitem->m_pprevious;
 
       return true;
 
@@ -956,7 +956,7 @@ namespace file
          ptreeitem = m_ptreeitem->get_expandable_child(m_iBranch);
       }
       else
-         ptreeitem = m_ptreeitem->m_pnextParentChild;
+         ptreeitem = m_ptreeitem->m_pnext;
       if(ptreeitem == NULL)
          return false;
       m_dwFileLength += ((sp(Item)) ptreeitem->m_pitem)->get_delta_length();
@@ -994,7 +994,7 @@ namespace file
          return false;
       for(ptreeitem  = m_ptreeitem;
          ptreeitem != m_ptreeitemFlush && ptreeitem != get_base_item() && ptreeitem != NULL;
-         ptreeitem  = ptreeitem->m_ppreviousParent)
+         ptreeitem  = ptreeitem->m_pprevious())
       {
       }
       return ptreeitem == m_ptreeitemFlush;

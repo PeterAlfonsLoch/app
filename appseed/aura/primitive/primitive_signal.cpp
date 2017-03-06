@@ -99,6 +99,21 @@ bool signal_details::previous() // returns bRet;
 }
 
 
+void signal_details::copy_this(const signal_details & signaldetails)
+{
+
+   m_uiMessage = signaldetails.m_uiMessage;
+   m_wparam = signaldetails.m_wparam;
+   m_lparam = signaldetails.m_lparam;
+   m_iIndex = signaldetails.m_iIndex;
+   m_pset = signaldetails.m_pset;
+   m_iParam = signaldetails.m_iParam;
+   m_bRet = signaldetails.m_bRet;
+   m_psignal = signaldetails.m_psignal;
+
+}
+
+
 bool signal_details::emit()
 {
 

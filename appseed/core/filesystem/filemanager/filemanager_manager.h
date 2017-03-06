@@ -17,6 +17,8 @@ namespace filemanager
       ::critical_section                  m_csItemIdListAbsolute;
       ::file::path                        m_strTopic;
       bool                                m_bFullBrowse;
+      string                              m_strManagerId;
+      //bool                                m_bInitialBrowsePath;
 
 
       manager(::aura::application * papp);
@@ -41,7 +43,7 @@ namespace filemanager
       virtual sp(::filemanager::data)              get_filemanager_data();
       virtual sp(::filemanager::manager_template)  get_filemanager_template();
 
-
+      
 
       DECL_GEN_SIGNAL(_001OnLevelUp);
       DECL_GEN_SIGNAL(_001OnUpdateLevelUp);
@@ -53,7 +55,12 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
       DECL_GEN_SIGNAL(_001OnFileSaveAs);
       DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
+      DECL_GEN_SIGNAL(_001OnNewManager);
+      DECL_GEN_SIGNAL(_001OnUpdateNewManager);
+      DECL_GEN_SIGNAL(_001OnDelManager);
+      DECL_GEN_SIGNAL(_001OnUpdateDelManager);
 
+      virtual void defer_check_manager_id(string strNewManagerId = "");
 
       ::critical_section * GetItemIdListCriticalSection();
 
@@ -87,6 +94,7 @@ namespace filemanager
       virtual bool on_simple_update(cmd_ui * pcmdui);
 
       virtual bool on_new_document();
+      virtual bool on_open_document(var varFile);
 
       virtual bool HandleDefaultFileManagerItemCmdMsg(::aura::cmd_msg * pcmdmsg,::fs::item_array & itema);
 
@@ -94,6 +102,8 @@ namespace filemanager
       void CreateViews();
       void OpenFolder(sp(::fs::item) item,::action::context actioncontext);
       void Initialize(bool bMakeVisible, bool bInitialBrowsePath = true);
+      void Initialize(bool bMakeVisible, const ::file::path & path);
+
 
       bool set_filemanager_data(::filemanager::data * pdata);
 
@@ -104,6 +114,19 @@ namespace filemanager
       virtual void full_browse(string strPath, ::action::context actioncontext);
 
    };
+
+   
+   CLASS_DECL_CORE int get_manager_id_byte_len();
+
+   CLASS_DECL_CORE int get_manager_id_len();
+
+   CLASS_DECL_CORE string create_manager_id(::aura::application * papp);
+
+   CLASS_DECL_CORE bool is_valid_manager_id(const char *);
+
+   CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const char *);
+
+   CLASS_DECL_CORE ::file::path get_filemanager_project_entry(string & strManagerId, const char * psz, ::aura::application * papp);
 
 
 } // namespace filemanager

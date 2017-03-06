@@ -370,7 +370,7 @@ public:
       for(index i = iStart; i <= iEnd; i++)
       {
 
-         if(this->element_at(i).m_p == p)
+         if(this->operator[](i).m_p == p)
             return i;
 
       }
@@ -401,7 +401,7 @@ public:
       for(index i = iStart; i <= iEnd; i++)
       {
 
-         if(lpfnCompare(this->element_at(i).m_p, p) == 0)
+         if(lpfnCompare(this->operator[](i).m_p, p) == 0)
             return i;
 
       }
@@ -1221,7 +1221,7 @@ public:
       for(index i = iStart; i <= iEnd; i++)
       {
 
-         if(this->element_at(i).m_p == p)
+         if(this->operator[](i).m_p == p)
             return i;
 
       }
@@ -1252,7 +1252,7 @@ public:
       for(index i = iStart; i <= iEnd; i++)
       {
 
-         if(lpfnCompare(this->element_at(i).m_p,p) == 0)
+         if(lpfnCompare(this->operator[](i).m_p,p) == 0)
             return i;
 
       }

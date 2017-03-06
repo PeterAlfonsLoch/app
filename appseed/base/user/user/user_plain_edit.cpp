@@ -166,11 +166,11 @@ namespace user
          d /= GetSystemMetrics(SM_CYSCREEN);
          SetScale(d);
 
-         GetClientRect(m_rectKaraokeView);
+         GetFocusRect(m_rectKaraokeView);
 
 
          rect rectClient;
-         GetClientRect(rectClient);
+         GetFocusRect(rectClient);
          rect rect = rectClient;
 
          rect.top = rect.bottom - 24;
@@ -590,13 +590,13 @@ namespace user
 
          m_ptree->m_iSelEnd = char_hit_test(pgraphics,pt.x,pt.y);
 
-         m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
+         m_iColumn = SelToColumnX(m_ptree->m_iSelEnd, m_iColumnX);
 
          RedrawWindow();
 
          m_bMouseDown = false;
 
-         track_popup_xml_matter_menu("ystem/edit_focus_popup.xml",0,pobj);
+         track_popup_xml_matter_menu("system/edit_focus_popup.xml",0,pobj);
 
          pmouse->set_lresult(1);
 
@@ -1088,7 +1088,7 @@ namespace user
 
       ::rect rectClient;
 
-      GetClientRect(rectClient);
+      GetFocusRect(rectClient);
 
       int iCurrentPageOffsetStart = get_viewport_offset().y;
       
@@ -1160,6 +1160,8 @@ namespace user
 
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
+      m_iColumn = SelToColumnX(m_ptree->m_iSelEnd, m_iColumnX);
+
       RedrawWindow();
 
       Session.set_keyboard_focus(this);
@@ -1188,7 +1190,7 @@ namespace user
 
       m_ptree->m_iSelEnd = char_hit_test(pgraphics,pt.x,pt.y);
 
-      m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
+      m_iColumn = SelToColumnX(m_ptree->m_iSelEnd, m_iColumnX);
 
       RedrawWindow();
 
@@ -1253,7 +1255,7 @@ namespace user
 
    //   rect rectClient;
 
-   //   GetClientRect(rectClient);
+   //   GetFocusRect(rectClient);
 
    //   m_iLineHeight = size3.cy;
 
@@ -1281,7 +1283,7 @@ namespace user
 
       rect rectClient;
 
-      GetClientRect(rectClient);
+      GetFocusRect(rectClient);
 
       if(m_ptree == NULL)
       {
@@ -1544,6 +1546,10 @@ namespace user
 
       synch_lock sl(m_pmutex);
 
+      rect rectClient;
+
+      GetFocusRect(rectClient);
+
       iSel -= m_iViewOffset;
 
       stringa & straLines = m_plines->lines;
@@ -1570,7 +1576,7 @@ namespace user
 
             size size2 = pgraphics->GetTextExtent(straLines[i],(int32_t)iSel - i1);
 
-            x = (size1.cx + size2.cx) / 2;
+            x = rectClient.left + (size1.cx + size2.cx) / 2;
 
             return m_iLineStart + i;
 
@@ -1580,7 +1586,7 @@ namespace user
 
       }
 
-      x = 0;
+      x = rectClient.left;
 
       return m_iaLineLen.get_upper_bound();
 
@@ -1624,7 +1630,7 @@ namespace user
       for(int32_t i = 0; i < iLine; i++)
       {
 
-         iOffset += straLines[i].get_length();
+         iOffset += m_iaLineLen[i];
 
       }
 
@@ -1677,6 +1683,10 @@ namespace user
 
       select_font(pgraphics);
 
+      rect rectClient;
+
+      GetFocusRect(rectClient);
+
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
       int32_t iLineHeight = m_iLineHeight;
@@ -1685,9 +1695,63 @@ namespace user
 
       int32_t y = (int32_t)(iLineHeight * iLine + iLineHeight / 2 - ptOffset.y);
 
+      y += rectClient.top;
+
       strsize iChar = char_hit_test(pgraphics,x,y);
 
       return iChar;
+
+   }
+
+
+   index plain_edit::SelToColumnX(strsize iSel, int32_t & x)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      rect rectClient;
+
+      GetFocusRect(rectClient);
+
+      iSel -= m_iViewOffset;
+
+      stringa & straLines = m_plines->lines;
+
+      strsize i1;
+
+      strsize i2 = 0;
+
+      for (index i = 0; i < straLines.get_size(); i++)
+      {
+
+         i1 = i2;
+
+         i2 = i1 + m_iaLineLen[i];
+
+         if (iSel >= i1 && iSel <= i2)
+         {
+
+            ::draw2d::memory_graphics pgraphics(allocer());
+
+            select_font(pgraphics);
+
+            pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
+            size size1 = pgraphics->GetTextExtent(straLines[i], (int32_t)straLines[i].length(), (int32_t)(iSel - i1));
+
+            int iLen = ::str::get_utf8_char_length(&straLines[i][iSel - i1]);
+
+            size size2 = pgraphics->GetTextExtent(straLines[i], (int32_t)straLines[i].length(), (int32_t)iSel + iLen - i1);
+
+            x = rectClient.left + (size1.cx + size2.cx) / 2;
+
+            return iSel - i1;
+
+         }
+
+      }
+
+      return -1;
 
    }
 
@@ -1710,7 +1774,7 @@ namespace user
 
          i1 = i2;
 
-         i2 = i1 + straLines[i].get_length();
+         i2 = i1 + m_iaLineLen[i];
 
          if(iSel >= i1 && iSel <= i2)
          {
@@ -1735,7 +1799,7 @@ namespace user
 
       rect rectClient;
 
-      GetClientRect(rectClient);
+      GetFocusRect(rectClient);
 
       px -= rectClient.left;
 
@@ -2387,7 +2451,7 @@ namespace user
 
                }
 
-               m_ptree->m_iSelEnd = LineXToSel(iLine, x);
+               m_ptree->m_iSelEnd = LineXToSel(iLine, m_iColumnX);
                if (!bShift)
                {
                   m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
@@ -2413,7 +2477,7 @@ namespace user
 
                }
                   
-               m_ptree->m_iSelEnd = LineXToSel(iLine, x);
+               m_ptree->m_iSelEnd = LineXToSel(iLine, m_iColumnX);
 
                if (!bShift)
                {
@@ -2606,10 +2670,15 @@ namespace user
                }
             }
 
-            if(pkey->m_ekey != ::user::key_up && pkey->m_ekey != ::user::key_down)
+            int iColumnX;
+            int iColumn = SelToColumnX(m_ptree->m_iSelEnd, iColumnX);
+
+            if((pkey->m_ekey == ::user::key_left || pkey->m_ekey == ::user::key_right) &&
+               iColumn != m_iColumn)
             {
 
-               m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
+               m_iColumn = iColumn;
+               m_iColumnX = iColumnX;
 
             }
 
@@ -2897,7 +2966,7 @@ namespace user
 
       pcommand->Undo(m_ptree);
 
-      m_pitem = m_pitem->get_previous();
+      m_pitem = m_pitem->m_pprevious;
 
       CreateLineIndex();
 
@@ -2930,7 +2999,7 @@ namespace user
          ptreeitem = m_pitem->get_expandable_child(m_ptree->m_iBranch);
       }
       else
-         ptreeitem = m_pitem->get_next();
+         ptreeitem = m_pitem->m_pnext;
       if(ptreeitem == NULL)
          return false;
       m_pitem = ptreeitem;
@@ -2953,7 +3022,7 @@ namespace user
    bool plain_edit::CanRedo()
    {
       return m_ptree->m_iBranch < m_pitem->get_expandable_children_count()
-         || m_pitem->get_next(false,false) != NULL;
+         || m_pitem->m_pnext != NULL;
    }
 
    ::count plain_edit::GetRedoBranchCount()
@@ -3067,6 +3136,14 @@ namespace user
       _001OnCalcLayout();
       //RedrawWindow();
       //pobj->m_bRet = true;
+   }
+
+
+   int32_t plain_edit::get_wheel_scroll_delta()
+   {
+
+      return m_iLineHeight * 3;
+
    }
 
 

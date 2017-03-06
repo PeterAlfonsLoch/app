@@ -73,6 +73,7 @@ namespace user
       strsize                       m_iViewSize; // in bytes
       int32_t                       m_iLineHeight;
       index                         m_iColumn;
+      int32_t                       m_iColumnX;
       bool                          m_bMultiLine;
       bool                          m_bSendEnterKey;
       bool                          m_bReadOnly;
@@ -130,7 +131,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnUpdateEditFocusPaste);
       DECL_GEN_SIGNAL(_001OnEditFocusPaste);
 
-      DECL_GEN_SIGNAL(_009OnChar);
+      virtual DECL_GEN_SIGNAL(_009OnChar);
 
 //      DECL_GEN_SIGNAL(_001OnRButtonUp);
 
@@ -145,6 +146,7 @@ namespace user
       virtual bool keyboard_focus_OnSetFocus();
 
 
+      virtual int32_t get_wheel_scroll_delta() override;
 
       void clipboard_copy();
       void clipboard_paste();
@@ -206,6 +208,7 @@ namespace user
       void CreateLineIndex();
 
       index SelToColumn(strsize iSel);
+      index SelToColumnX(strsize iSel, int32_t & x);
       index SelToLine(strsize iSel);
       index SelToLineX(strsize iSel, int32_t & x);
       strsize LineColumnToSel(index iLine, index iColumn);

@@ -112,6 +112,35 @@ namespace message
    }
 
 
+   base & base::operator = (const base & base)
+   {
+
+      if (this != &base)
+      {
+
+         copy_this(base);
+
+      }
+
+      return *this;
+
+   }
+
+
+   void base::copy_this(const base & base)
+   {
+
+      m_pwnd = base.m_pwnd;
+      m_bConditional = base.m_bConditional;
+      m_bReflect = base.m_bReflect;
+      m_bDestroyed = base.m_bDestroyed;
+      m_bDoSystemDefault = base.m_bDoSystemDefault;
+      m_plresult = base.m_plresult;
+      m_lresult = base.m_lresult;
+
+   }
+
+
    void timer::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);

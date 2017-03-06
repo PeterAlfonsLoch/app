@@ -8,7 +8,7 @@ namespace filemanager
    manager_template::manager_template(::aura::application * papp) :
       object(papp)
    {
-
+      m_bRestoring = false;
       m_iTemplate = -1;
 
       m_pfilelistcallback = NULL;
@@ -53,6 +53,249 @@ namespace filemanager
       pfilemanagerdata->m_pmanagertemplate = this;
 
       return pfilemanagerdata;
+
+   }
+
+
+   void manager_template::load_filemanager_project(const ::file::path & pathFilemanagerProject, sp(::create) pcreatecontext, ::fs::data * pdata, data * pfilemanagerdata, callback * pcallback)
+   {
+
+      {
+
+         keep < bool > keepRestoring(&m_bRestoring, true, false, true);
+
+         if (pathFilemanagerProject.is_empty() || Application.dir().is(pathFilemanagerProject) 
+            || pathFilemanagerProject.extension().CompareNoCase("filemanager") != 0)
+         {
+
+            m_pathFilemanagerProject = ::dir::local() / "localconfig/user.filemanager";
+
+         }
+         else
+         {
+
+            m_pathFilemanagerProject = pathFilemanagerProject;
+
+         }
+
+         stringa stra;
+
+         {
+
+            mutex m(get_app(), "Local\\ca2-filemanagers");
+
+            synch_lock sl(&m);
+
+            stra.add_lines(Application.file().as_string(m_pathFilemanagerProject), true);
+
+         }
+
+         if (Application.dir().is(pathFilemanagerProject))
+         {
+
+            stra.add(create_manager_id(get_app()) + ":" + pathFilemanagerProject);
+
+         }
+
+         if (stra.is_empty())
+         {
+
+            stra.add(create_manager_id(get_app()) + ":");
+
+         }
+
+         string strManagerId;
+
+         ::file::path path;
+
+         for (auto str : stra)
+         {
+
+            restore_manager(str, pcreatecontext, pdata, pfilemanagerdata, pcallback);
+
+         }
+
+      }
+
+      save_filemanager_project();
+
+   }
+
+
+   void manager_template::save_filemanager_project()
+   {
+
+      if (m_bRestoring)
+      {
+
+         return;
+
+      }
+
+      stringa stra;
+
+      sp(manager) pdoc;
+
+      for (index i = 0; i < m_pdoctemplate->get_document_count(); i++)
+      {
+
+         pdoc = m_pdoctemplate->get_document(i);
+
+         if (pdoc.is_set())
+         {
+
+            pdoc->defer_check_manager_id();
+
+            stra.add(pdoc->m_strManagerId + ":" + pdoc->get_filemanager_item().m_filepath);
+
+         }
+
+      }
+
+      {
+
+         mutex m(get_app(), "Local\\ca2-filemanagers");
+
+         synch_lock sl(&m);
+
+         Application.file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
+
+      }
+
+   }
+
+
+   sp(manager) manager_template::find_manager(var varFile)
+   {
+
+      sp(manager) pdoc;
+
+      for (index i = 0; i < m_pdoctemplate->get_document_count(); i++)
+      {
+
+         pdoc = m_pdoctemplate->get_document(i);
+
+         if (pdoc.is_set())
+         {
+
+            if (pdoc->m_strManagerId == varFile.get_string().Left(get_manager_id_len()))
+            {
+
+               return pdoc;
+
+            }
+
+            if (pdoc->get_filemanager_item().m_filepath.is_equal(varFile))
+            {
+
+               return pdoc;
+
+            }
+
+         }
+
+      }
+
+      return NULL;
+
+   }
+
+
+   sp(manager) manager_template::open_manager(var varFile, sp(::create) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
+   {
+
+      sp(manager) pdoc;
+
+      if (pcreatecontext == NULL)
+      {
+
+         pcreatecontext = canew(::create(Application.creation(), varFile, true));
+
+      }
+
+      pcreatecontext->oprop("filemanager::template") = this;
+
+      pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
+
+      pcreatecontext->oprop("filemanager::callback") = pcallback;
+
+      pcreatecontext->m_spCommandLine->m_varFile = varFile;
+
+      m_pdoctemplate->m_bQueueDocumentOpening = false;
+
+      pdoc = m_pdoctemplate->open_document_file(pcreatecontext);
+
+      if (pdoc.is_null())
+      {
+
+         return NULL;
+
+      }
+
+      pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible, pdoc->m_filepath);
+
+      //pdoc->FileManagerBrowse(pdoc->m_filepath, ::action::source_user);
+
+      return pdoc;
+
+   }
+
+
+   sp(manager) manager_template::restore_manager(var varFile, sp(::create) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
+   {
+
+      sp(manager) pdoc;
+      
+      pdoc = open_manager(varFile, pcreatecontext, pdata, pfilemanagerdata, pcallback);
+
+      return pdoc;
+
+   }
+
+
+   sp(manager) manager_template::add_manager(const ::file::path & pathFolder, sp(::create) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
+   {
+
+      sp(manager) pdoc;
+      
+      pdoc = open_manager(pathFolder, pcreatecontext, pdata, pfilemanagerdata, pcallback);
+
+      if (pdoc == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      save_filemanager_project();
+
+      return pdoc;
+
+   }
+
+
+   bool manager_template::remove_manager(var varFile)
+   {
+
+      sp(manager) pdoc = find_manager(varFile);
+
+      m_pdoctemplate->remove_document(pdoc);
+
+      save_filemanager_project();
+
+      return pdoc.is_set();
+
+   }
+
+
+   bool manager_template::remove_manager(manager * pdoc)
+   {
+
+      pdoc->close_document();
+
+      save_filemanager_project();
+
+      return pdoc != NULL;
 
    }
 
@@ -441,7 +684,7 @@ namespace filemanager
          get_app(),
          pszMatter,
          System.type_info < manager >(),
-         System.type_info < frame >(),
+         System.type_info < main_frame >(),
          System.type_info < view >()));
 
       Application.add_document_template(m_pdoctemplate);

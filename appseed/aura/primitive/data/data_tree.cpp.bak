@@ -338,7 +338,7 @@ namespace data
       while(pitem != NULL)
       {
          pitem->sort_children(lpfnCompare);
-         pitem = pitem->m_pnextParentChild;
+         pitem = pitem->m_pnext;
       }
    }
 
