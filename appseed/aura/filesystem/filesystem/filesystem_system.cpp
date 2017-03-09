@@ -1244,7 +1244,7 @@ restart:
 
       }
 
-      if(!move(pszNew, psz, papp))
+      if(move(pszNew, psz, papp).failed())
       {
 
          return failure;
@@ -1375,7 +1375,7 @@ restart:
 
          pathDownloading = pathOut + ".downloading." + ::str::zero_pad(::str::from(iTry), 20);
 
-         fileOut = papp->file().get_file(pathOut, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+         fileOut = papp->file().get_file(pathDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
          if (fileOut.is_set())
          {
@@ -1448,7 +1448,7 @@ restart:
    }
 
 
-   bool system::post_output(::aura::application * papp, ::file::path pathDownloading, ::file::path pathOut)
+   bool system::post_output(::aura::application * papp, ::file::path pathOut, ::file::path pathDownloading)
    {
 
       try
