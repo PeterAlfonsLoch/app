@@ -41,6 +41,8 @@ namespace user
       bool                          m_bNeedCalcLayout;
       bool                          m_bCalcLayoutHintNoTextChange;
 
+      int                           m_iTabWidth;
+
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
       index                         m_iLineStart;
@@ -66,7 +68,7 @@ namespace user
       int32_t                       m_y;
       bool                          m_bGetTextNeedUpdate;
       bool                          m_bNeedScrollUpdate;
-
+      bool                          m_bTabInsertSpaces;
       //strsize                       m_iSelStart;
       //strsize                       m_iSelEnd;
       strsize                       m_iViewOffset; // in bytes
@@ -125,6 +127,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnKeyUp);
       void _001OnTimer(::timer * ptimer);
       DECL_GEN_SIGNAL(_001OnChar);
+      DECL_GEN_SIGNAL(_001OnUniChar);
 
       DECL_GEN_SIGNAL(_001OnUpdateEditFocusCopy);
       DECL_GEN_SIGNAL(_001OnEditFocusCopy);
@@ -167,6 +170,10 @@ namespace user
 
       void _001OnKeyboardFocusTimer(uint64_t iTimer);
 
+      string get_expanded_line(index iLine, array < strsize * > intptra = array < strsize * >());
+
+      string get_line(index iLine);
+
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 
       virtual void _001OnUpdate(::action::context actioncontext);
@@ -182,11 +189,14 @@ namespace user
       virtual bool create_control(class ::user::control::descriptor * pdescriptor, index iItem);
 
       virtual strsize char_hit_test(::draw2d::graphics * pgraphics, int32_t x, int32_t y);
+      virtual strsize line_char_hit_test(::draw2d::graphics * pgraphics, int32_t x, index iLine);
 
       colorertake5::file_type * colorer_select_type();
 
+      virtual strsize _001GetTextLength() const;
       virtual void _001GetText(string & str) const;
       virtual void _001GetSelText(string & str) const;
+      virtual void _001GetSelText(string & str, index iSelStart, index iSelEnd) const;
 
       void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd);
 
@@ -200,12 +210,14 @@ namespace user
 
       bool should_load_full_file();
 
-      void _001OnCalcLayout();
+      void _001OnCalcLayout(index iLine = -1);
       //void _001OnCalcLayoutProc(::user::primitive * pview);
 
       void FileSave();
       void OnFileUpdate();
       void CreateLineIndex();
+      void OnLineUpdate(index iLine, ::action::context actioncontext);
+      void UpdateLineIndex(index iLine);
 
       index SelToColumn(strsize iSel);
       index SelToColumnX(strsize iSel, int32_t & x);
@@ -256,6 +268,10 @@ namespace user
 
 
       virtual var get_ex_value();
+
+      virtual void insert_text(string str);
+
+      virtual void internal_edit_update(bool bFullUpdate, index iLineUpdate);
 
 
    };

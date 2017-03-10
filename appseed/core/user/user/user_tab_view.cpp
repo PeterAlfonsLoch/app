@@ -149,7 +149,7 @@ namespace user
 
       add_tab(strName1 + "->:<-" + strName2,id3);
 
-      ::user::view_creator_data * pcreatordata = m_pviewcreator->allocate(id3);
+      ::user::view_creator_data * pcreatordata = m_pviewcreator->allocate_creator_data(id3);
 
       sp(::user::place_holder) pholder = get_new_place_holder(get_data()->m_rectTabClient);
 
@@ -549,7 +549,7 @@ namespace user
       if (!bCallOnCreateView)
       {
 
-         pdata = create(id, lpcrectCreate);
+         pdata = allocate_creator_data(id, lpcrectCreate);
 
          return pdata;
 
@@ -587,6 +587,8 @@ namespace user
 
       if(pcreatordata != NULL)
       {
+
+         id = pcreatordata->m_id;
 
          if (id_pane(id) == -1)
          {

@@ -149,7 +149,8 @@ namespace user
       DWORD                            m_dwHidingTabs;
       bool                             m_bNoTabs;
       e_element                        m_eelement;
-      sp(::create)         m_spcreatecontext;
+      sp(::create)                     m_spcreatecontext;
+      ::count                          m_iRestoredTabCount;
 
 
       tab(::aura::application * papp);
@@ -260,8 +261,10 @@ namespace user
 
       virtual bool has_restore_tab();
       virtual void get_restore_tab(var_array & vara);
-      virtual void open_tabs(const var_array & vara);
-
+      virtual ::count open_tabs(const var_array & vara);
+      virtual ::count restore_tabs();
+      virtual void save_restorable_tabs();
+      virtual void on_create_tabs();
 
 
       void _001OnDraw(::draw2d::graphics * pgraphics);
@@ -289,10 +292,6 @@ namespace user
       virtual bool defer_handle_auto_hide_tabs(bool bLayout = true);
 
 
-      virtual void restore_tabs();
-
-
-      virtual void on_create_tabs();
 
 
    };

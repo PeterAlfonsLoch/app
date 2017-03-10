@@ -81,9 +81,6 @@
     <Filter Include="Source Files\user\userpresence">
       <UniqueIdentifier>{3f8a874b-39e0-418e-a25f-0fba2d5abbba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{1164d5d2-3fc6-424f-b2aa-07ee2f73a22b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\hotplugin">
       <UniqueIdentifier>{5930d214-6119-4d3d-84ed-31dcd6f1588c}</UniqueIdentifier>
     </Filter>
@@ -152,6 +149,9 @@
     </Filter>
     <Filter Include="Header Files\user\wndfrm\frame">
       <UniqueIdentifier>{b26ce49e-dc20-4147-81fd-34c99bedcba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user\simple_ui">
+      <UniqueIdentifier>{1164d5d2-3fc6-424f-b2aa-07ee2f73a22b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -572,25 +572,25 @@
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
+      <Filter>Source Files\user\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
+      <Filter>Source Files\user\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_label.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
+      <Filter>Source Files\user\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
+      <Filter>Source Files\user\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_password.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
+      <Filter>Source Files\user\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_style.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
+      <Filter>Source Files\user\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
+      <Filter>Source Files\user\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>

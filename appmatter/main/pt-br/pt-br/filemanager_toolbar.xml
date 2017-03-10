@@ -4,10 +4,11 @@
 <button id="replace_text_in_file_system">Substituir texto</button>
 <button id="edit_copy">Copiar</button>
 <button id="edit_paste">Colar</button>
+<button id="new_folder">Nova pasta</button>
 <button id="trash_that_is_not_trash">Lixo que não é lixo</button>
 <button id="spafy">spafy</button>
 <button id="spafy2">spafy2</button>
 <button id="change_view">v</button>
-<button id="new_manager">New</button>
-<button id="del_manager">Del</button>
+<button id="new_manager">Novo</button>
+<button id="del_manager">Remover</button>
 </toolbar>

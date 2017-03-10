@@ -21,7 +21,6 @@ CLASS_DECL_AURA int __cpp_assert_failed_line(const char * lpszFileName, int iLin
 
    if(pthread != NULL)
    {
-
       pthread->m_pauraapp->m_paurasystem->assert_failed_line(lpszFileName,iLineNumber);
 
    }

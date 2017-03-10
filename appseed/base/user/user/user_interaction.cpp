@@ -2670,43 +2670,48 @@ namespace user
 
       SCAST_PTR(::message::base,pbase,pobj);
 
-      if(pbase->m_uiMessage == WM_KEYDOWN)
-      {
+      //if(pbase->m_uiMessage == WM_KEYDOWN)
+      //{
 
-         SCAST_PTR(::message::key,pkey,pobj);
+      //   SCAST_PTR(::message::key,pkey,pobj);
 
-         if(pkey->m_ekey == ::user::key_tab)
-         {
+      //   if(pkey->m_ekey == ::user::key_tab)
+      //   {
 
-            ::user::control_event ev;
+      //      ::user::control_event ev;
 
-            ev.m_puie         = this;
+      //      ev.m_puie         = this;
 
-            ev.m_eevent       = ::user::event_tab_key;
+      //      ev.m_eevent       = ::user::event_tab_key;
 
-            ev.m_actioncontext        = ::action::source_user;
+      //      ev.m_actioncontext        = ::action::source_user;
 
-            if(!BaseOnControlEvent(&ev))
-            {
+      //      if(!BaseOnControlEvent(&ev))
+      //      {
 
-               sp(::user::interaction) pui = Session.get_keyboard_focus();
+      //         sp(::user::interaction) pui = Session.get_keyboard_focus();
 
-               pui =  pui.is_set() ? pui->keyboard_get_next_focusable() : keyboard_get_next_focusable();
+      //         pui =  pui.is_set() ? pui->keyboard_get_next_focusable() : keyboard_get_next_focusable();
 
-               if(pui != NULL)
-               {
+      //         if(pui != NULL)
+      //         {
 
-                  pui->keyboard_set_focus();
+      //            if (!pui->does_consume_key(::user::key_tab))
+      //            {
 
-                  pkey->m_bRet      = true;
+      //               pui->keyboard_set_focus();
 
-               }
+      //               pkey->m_bRet = true;
 
-            }
+      //            }
 
-         }
+      //         }
 
-      }
+      //      }
+
+      //   }
+
+      //}
 
 
    }

@@ -103,7 +103,24 @@ namespace userex
    }
 
    
-   bool pane_tab_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
+   bool pane_tab_view::on_prepare_view_creator_data(::user::view_creator_data * pcreatordata)
+   {
+
+      pcreatordata->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
+
+      if (pcreatordata->m_pholder == NULL)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool pane_tab_view::on_after_create_view_creator_data(::user::view_creator_data * pcreatordata)
    {
 
       ::index iPane = id_pane(pcreatordata->m_id);
@@ -131,10 +148,8 @@ namespace userex
 
       ::user::tab_pane * ppane = (::user::tab_pane *)get_data()->m_panea.element_at(iPane);
 
-      if(ppane == NULL)
+      if (ppane == NULL)
          return false;
-
-      pcreatordata->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
@@ -146,6 +161,8 @@ namespace userex
       }
 
       pcreatordata->m_pviewdata = (void *)ppane;
+
+      save_restorable_tabs();
 
       return true;
 
@@ -198,14 +215,16 @@ namespace userex
    ::index pane_tab_view::create_tab_by_id(id id)
    {
 
-      if(get_impact(id,get_data()->m_rectTabClient) == NULL)
+      ::user::view_creator_data * pcreatordata = get_impact(id, get_data()->m_rectTabClient);
+
+      if(pcreatordata == NULL)
       { 
 
          return -1;
       
       }
 
-      index iTab = id_tab(id);
+      index iTab = id_tab(pcreatordata->m_id);
 
       if (iTab < 0)
       {

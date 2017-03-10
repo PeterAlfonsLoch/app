@@ -153,6 +153,8 @@ namespace filemanager
          connect_command("new_manager", &manager::_001OnNewManager);
          connect_update_cmd_ui("del_manager", &manager::_001OnUpdateDelManager);
          connect_command("del_manager", &manager::_001OnDelManager);
+         connect_update_cmd_ui("new_folder", &manager::_001OnUpdateNewFolder);
+         connect_command("new_folder", &manager::_001OnNewFolder);
 
 //         m_bInitialBrowsePath = true;
 
@@ -166,6 +168,19 @@ namespace filemanager
 
    bool manager::FileManagerBrowse(sp(::fs::item) item, ::action::context actioncontext)
    {
+
+      if (m_fsset->m_spafsdata.is_empty())
+      {
+
+         m_fsset->m_spafsdata.remove_all();
+
+         m_fsset->m_spafsdata.add(Session.fs());
+
+         ::file::listing listing(m_fsset);
+
+         m_fsset->root_ones(listing);
+
+      }
 
       string strOldPath;
 
@@ -305,6 +320,49 @@ namespace filemanager
    }
 
 
+   sp(manager) manager::get_main_manager()
+   {
+
+	   sp(tab_view) ptabview = get_typed_view < tab_view >();
+
+	   if (ptabview.is_set())
+	   {
+
+         for (index i = 0; i < ptabview->get_pane_count(); i++)
+         {
+
+            ::user::tab_pane * ptabpane = ptabview->get_pane(i);
+
+            if (ptabpane != NULL && ptabpane->m_pholder != NULL)
+            {
+
+               sp(child_frame) pchildframe = ptabpane->m_pholder->first_child();
+
+               if (pchildframe.is_set())
+               {
+
+                  sp(manager) pdoc = pchildframe->GetActiveDocument();
+
+                  if (pdoc.is_set())
+                  {
+
+                     return pdoc;
+
+                  }
+
+               }
+
+            }
+
+         }
+
+	   }
+
+	   return this;
+
+   }
+
+
    bool manager::set_filemanager_data(::filemanager::data * pdata)
    {
 
@@ -350,6 +408,16 @@ namespace filemanager
 
             }
 
+
+         }
+
+         sp(manager) pdoc = get_main_manager();
+
+         if (pdoc.is_set() && pdoc.m_p != this && pdoc->m_strManagerId != m_strManagerId)
+         {
+
+            pdoc->defer_check_manager_id(m_strManagerId);
+
          }
 
       }
@@ -388,18 +456,6 @@ namespace filemanager
       if(!::user::document::on_new_document())
          return FALSE;
 
-
-
-      m_fsset->m_spafsdata.remove_all();
-
-
-      m_fsset->m_spafsdata.add(Session.fs());
-
-
-      ::file::listing listing(m_fsset);
-
-      m_fsset->root_ones(listing);
-
       defer_check_manager_id();
 
       return TRUE;
@@ -409,16 +465,6 @@ namespace filemanager
 
    bool manager::on_open_document(var varFile)
    {
-      m_fsset->m_spafsdata.remove_all();
-
-
-      m_fsset->m_spafsdata.add(Session.fs());
-
-
-      ::file::listing listing(m_fsset);
-
-      m_fsset->root_ones(listing);
-
 
       string strManagerId;
 
@@ -677,7 +723,25 @@ namespace filemanager
    void manager::_001OnDelManager(signal_details * pobj)
    {
 
-      Session.filemanager().std().remove_manager(this);
+      sp(manager) pdoc = this;
+
+      sp(view) pview = get_typed_view<view>();
+
+      if (pview.is_set())
+      {
+
+         sp(tab_view) ptabview = pview->GetTypedParent <tab_view>();
+
+         if (ptabview.is_set())
+         {
+
+            pdoc = ptabview->get_document();
+
+         }
+
+      }
+
+      Session.filemanager().std().remove_manager(pdoc.m_p);
 
       pobj->m_bRet = true;
 
@@ -741,7 +805,7 @@ namespace filemanager
 
       SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
 
-         pcmdui->m_pcmdui->Enable(TRUE);
+      pcmdui->m_pcmdui->Enable(TRUE);
 
       pobj->m_bRet = true;
 
@@ -750,9 +814,39 @@ namespace filemanager
 
    void manager::_001OnReplaceText(signal_details * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
-      update_all_views(NULL,89124593,NULL);
+      
+      update_all_views(NULL,hint_replace_name,NULL);
+
+      pobj->m_bRet = true;
+
    }
+
+
+   void manager::_001OnUpdateNewFolder(signal_details * pobj)
+   {
+
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
+
+      pcmdui->m_pcmdui->Enable(TRUE);
+
+      pobj->m_bRet = true;
+
+   }
+
+
+   void manager::_001OnNewFolder(signal_details * pobj)
+   {
+
+      UNREFERENCED_PARAMETER(pobj);
+
+      update_all_views(NULL, hint_new_folder, NULL);
+
+      pobj->m_bRet = true;
+
+   }
+
 
    void manager::_001OnUpdateEditPaste(signal_details * pobj)
    {

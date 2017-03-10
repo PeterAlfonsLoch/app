@@ -222,14 +222,32 @@ namespace filemanager
             if(pmanageruh != NULL)
             {
 
-               if(pmanageruh->m_strFind.has_char())
+               if (pmanageruh->m_ehint == manager::hint_replace_name)
                {
 
-                  ::file::path pathFolder = get_filemanager_item().m_filepath;
+                  if (pmanageruh->m_strFind.has_char())
+                  {
 
-                  Application.file().replace(pathFolder, pmanageruh->m_strFind, pmanageruh->m_strReplace);
+                     ::file::path pathFolder = get_filemanager_item().m_filepath;
+
+                     Application.file().replace(pathFolder, pmanageruh->m_strFind, pmanageruh->m_strReplace);
 
 
+
+                  }
+
+               }
+               else if (pmanageruh->m_ehint == manager::hint_new_folder)
+               {
+
+                  if (pmanageruh->m_str.has_char())
+                  {
+
+                     ::file::path pathFolder = get_filemanager_item().m_filepath / pmanageruh->m_str;
+
+                     Application.dir().mk(pathFolder);
+
+                  }
 
                }
 

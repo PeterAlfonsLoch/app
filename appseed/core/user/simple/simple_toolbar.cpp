@@ -1344,6 +1344,10 @@ void simple_toolbar::_001OnLButtonUp(signal_details * pobj)
          pTarget->SendMessageToDescendants(WM_IDLEUPDATECMDUI);
       m_iButtonPressItem = -1;
       RedrawWindow();
+      if (pobj->m_bRet)
+      {
+         return;
+      }
       pobj->previous();
    }
 }

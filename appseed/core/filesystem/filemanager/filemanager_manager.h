@@ -5,11 +5,23 @@ namespace filemanager
 {
 
    
+
+   
    class CLASS_DECL_CORE manager :
       virtual public ::file_watcher::file_watch_listener,
       virtual public ::userfs::document
    {
    public:
+
+      enum e_hint
+      {
+
+         hint_none,
+         hint_add_location = 1000,
+         hint_replace_name,
+         hint_new_folder,
+
+      };
 
 
       sp(::filemanager::data)             m_spfilemanagerdata;
@@ -43,7 +55,7 @@ namespace filemanager
       virtual sp(::filemanager::data)              get_filemanager_data();
       virtual sp(::filemanager::manager_template)  get_filemanager_template();
 
-      
+	  virtual sp(manager) get_main_manager();
 
       DECL_GEN_SIGNAL(_001OnLevelUp);
       DECL_GEN_SIGNAL(_001OnUpdateLevelUp);
@@ -59,6 +71,8 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnUpdateNewManager);
       DECL_GEN_SIGNAL(_001OnDelManager);
       DECL_GEN_SIGNAL(_001OnUpdateDelManager);
+      DECL_GEN_SIGNAL(_001OnNewFolder);
+      DECL_GEN_SIGNAL(_001OnUpdateNewFolder);
 
       virtual void defer_check_manager_id(string strNewManagerId = "");
 

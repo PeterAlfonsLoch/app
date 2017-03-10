@@ -266,6 +266,7 @@ namespace filemanager
                }
             }
             form_update_hint * pmanageruh = dynamic_cast<form_update_hint * > (phint);
+
             if(pmanageruh != NULL)
             {
                if(!pmanageruh->m_strFind.is_empty())

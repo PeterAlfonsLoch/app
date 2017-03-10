@@ -44,7 +44,8 @@ namespace user
 
       virtual ::count get_view_count();
 
-      virtual bool on_new_view_creator_data(::user::view_creator_data * pcreatordata);
+      virtual bool on_prepare_view_creator_data(::user::view_creator_data * pcreatordata) override;
+      virtual bool on_after_create_view_creator_data(::user::view_creator_data * pcreatordata) override;
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void on_show_view();
 
@@ -56,10 +57,9 @@ namespace user
 
       virtual ::user::view_creator_data * get(id id);
 
-      virtual ::user::view_creator_data * allocate(id id);
+      virtual ::user::view_creator_data * allocate_creator_data(id id);
 
-      using ::object::create;
-      virtual ::user::view_creator_data * create(id id, LPCRECT lpcrectCreate);
+      virtual ::user::view_creator_data * allocate_creator_data(id id, LPCRECT lpcrectCreate);
 
       virtual ::user::view_creator_data * create_impact(id id, LPCRECT lpcrectCreate, ::user::frame_window * pframewindow);
       virtual ::user::view_creator_data * create_impact(id id, LPCRECT lpcrectCreate);

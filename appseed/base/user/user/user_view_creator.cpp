@@ -89,24 +89,22 @@ namespace user
    }
 
 
-   view_creator_data * view_creator::allocate(id id)
+   view_creator_data * view_creator::allocate_creator_data(id id)
    {
 
       view_creator_data * pcreatordata = new ::user::view_creator_data;
 
       pcreatordata->m_id = id;
 
-      m_viewmap.set_at(id, pcreatordata);
-
       return pcreatordata;
 
    }
 
 
-   view_creator_data * view_creator::create(id id, LPCRECT lpcrectCreate)
+   view_creator_data * view_creator::allocate_creator_data(id id, LPCRECT lpcrectCreate)
    {
 
-      view_creator_data * pcreatordata = allocate(id);
+      view_creator_data * pcreatordata = allocate_creator_data(id);
 
       pcreatordata->m_rectCreate = *lpcrectCreate;
 
@@ -116,7 +114,7 @@ namespace user
          try
          {
 
-            m_pviewcontainer->on_new_view_creator_data(pcreatordata);
+            m_pviewcontainer->on_prepare_view_creator_data(pcreatordata);
 
          }
          catch (::exit_exception & e)
@@ -149,7 +147,7 @@ namespace user
          try
          {
 
-            on_new_view_creator_data(pcreatordata);
+            on_prepare_view_creator_data(pcreatordata);
 
          }
          catch (::exit_exception & e)
@@ -181,10 +179,10 @@ namespace user
    }
 
 
-   view_creator_data * view_creator::create_impact(id id,LPCRECT lpcrectCreate)
+   view_creator_data * view_creator::create_impact(id idInitialize,LPCRECT lpcrectCreate)
    {
 
-      view_creator_data * pcreatordata = create(id, lpcrectCreate);
+      view_creator_data * pcreatordata = allocate_creator_data(idInitialize, lpcrectCreate);
 
       try
       {
@@ -195,7 +193,7 @@ namespace user
       catch(create_exception & e)
       {
 
-         if(e.m_id == id)
+         if(e.m_id == idInitialize)
          {
 
             delete pcreatordata;
@@ -238,6 +236,72 @@ namespace user
 
       }
 
+      if (m_pviewcontainer != NULL)
+      {
+
+         try
+         {
+
+            m_pviewcontainer->on_after_create_view_creator_data(pcreatordata);
+
+         }
+         catch (::exit_exception & e)
+         {
+
+            throw e;
+
+         }
+         catch (::exception::exception & e)
+         {
+
+            if (!Application.on_run_exception(e))
+            {
+
+               throw exit_exception(get_app());
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      if (m_pviewcontainer != this)
+      {
+
+         try
+         {
+
+            on_after_create_view_creator_data(pcreatordata);
+
+         }
+         catch (::exit_exception & e)
+         {
+
+            throw e;
+
+         }
+         catch (::exception::exception & e)
+         {
+
+            if (!Application.on_run_exception(e))
+            {
+
+               throw exit_exception(get_app());
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
       return on_after_create_impact(pcreatordata);
 
    }
@@ -245,6 +309,8 @@ namespace user
 
    view_creator_data * view_creator::on_after_create_impact(view_creator_data * pcreatordata)
    {
+
+      m_viewmap.set_at(pcreatordata->m_id, pcreatordata);
 
       if (pcreatordata->m_pholder->m_uiptraChild.get_count() > 0)
       {
@@ -304,7 +370,7 @@ namespace user
    view_creator_data * view_creator::create_impact(id id, LPCRECT lpcrectCreate, ::user::frame_window * pframewindow)
    {
 
-      view_creator_data * pcreatordata = create(id, lpcrectCreate);
+      view_creator_data * pcreatordata = allocate_creator_data(id, lpcrectCreate);
 
       pcreatordata->m_pwnd = pframewindow;
 
@@ -394,7 +460,17 @@ namespace user
 
    //}
 
-   bool view_creator::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
+   bool view_creator::on_prepare_view_creator_data(::user::view_creator_data * pcreatordata)
+   {
+
+      UNREFERENCED_PARAMETER(pcreatordata);
+
+      return false;
+
+   }
+
+
+   bool view_creator::on_after_create_view_creator_data(::user::view_creator_data * pcreatordata)
    {
 
       UNREFERENCED_PARAMETER(pcreatordata);

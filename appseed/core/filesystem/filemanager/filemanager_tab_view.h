@@ -28,6 +28,7 @@ namespace filemanager
       
       virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
       
+      sp(manager) get_document();
 
    };
 

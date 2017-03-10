@@ -28,7 +28,9 @@ namespace userex
 
       virtual void on_show_view();
 
-      virtual bool on_new_view_creator_data(::user::view_creator_data * pcreatordata);
+      virtual bool on_prepare_view_creator_data(::user::view_creator_data * pcreatordata);
+
+      virtual bool on_after_create_view_creator_data(::user::view_creator_data * pcreatordata);
 
       virtual void GetTabClientRect(LPRECT lprect);
 

@@ -74,7 +74,7 @@ namespace filemanager
             }
             else if(m_idCreator == "replace_name")
             {
-               form_update_hint uh;
+               form_update_hint uh(manager::hint_replace_name);
                sp(::user::interaction) pui = get_child_by_name("find");
                sp(::user::elemental) ptext =  (pui.m_p);
                ptext->_001GetText(uh.m_strFind);
@@ -83,6 +83,15 @@ namespace filemanager
                ptext->_001GetText(uh.m_strReplace);
                sp(::filemanager::manager) pdoc =  get_filemanager_manager();
                pdoc->update_all_views(NULL,0,&uh);
+            }
+            else if (m_idCreator == "new_folder")
+            {
+               form_update_hint uh(manager::hint_new_folder);
+               sp(::user::interaction) pui = get_child_by_name("name");
+               sp(::user::elemental) ptext = (pui.m_p);
+               ptext->_001GetText(uh.m_str);
+               sp(::filemanager::manager) pdoc = get_filemanager_manager();
+               pdoc->update_all_views(NULL, 0, &uh);
             }
          }
       }

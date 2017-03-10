@@ -549,7 +549,15 @@ void object::request_file_query(var & varFile,var & varQuery)
    createcontext->m_spCommandLine->m_varQuery             = varQuery;
    if(!varFile.is_empty())
    {
+      
       createcontext->m_spCommandLine->m_ecommand = command_line::command_file_open;
+
+   }
+   else if (varQuery["command"] == "new_file")
+   {
+
+      createcontext->m_spCommandLine->m_ecommand = command_line::command_file_new;
+
    }
 
    request_create(createcontext);

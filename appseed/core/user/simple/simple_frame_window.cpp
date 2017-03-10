@@ -1915,26 +1915,29 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
 
    string strMatter = Application.dir().matter(pszToolBar);
 
+   if (ptoolbar->oprop("matter_annotation") == strMatter)
+   {
+
+      return true;
+
+   }
+
    string strXml = Application.file().as_string(strMatter);
 
    if(!ptoolbar->LoadXmlToolBar(strXml))
    {
-      try
-      {
-         ptoolbar;
-
-      }
-      catch(...)
-      {
-      }
+      
       return false;
+
    }
 
    m_toolbarmap.set_at(idToolBar,ptoolbar);
 
    AddControlBar(ptoolbar);
 
-   //on_layout();
+   ptoolbar->set_need_layout();
+
+   ptoolbar->oprop("matter_annotation") = strMatter;
 
    return true;
 

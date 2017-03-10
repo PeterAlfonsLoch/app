@@ -82,6 +82,8 @@ namespace user
       m_dcextension(papp)
    {
 
+      m_iRestoredTabCount = 0;
+
       m_spdata = canew(data(papp));
       get_data()->m_panea.set_app(papp);
       get_data()->m_iHeightAddUp = 0;
@@ -1456,7 +1458,7 @@ namespace user
 
       //post_message(WM_USER + 1342);
 
-      restore_tabs();
+      m_iRestoredTabCount = restore_tabs();
 
 
       on_create_tabs();
@@ -1486,8 +1488,10 @@ namespace user
    }
 
 
-   void tab::restore_tabs()
+   ::count tab::restore_tabs()
    {
+
+      ::count c = 0;
 
       keep < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
 
@@ -1499,11 +1503,13 @@ namespace user
          if(data_load("restore_tab",vara))
          {
 
-            open_tabs(vara);
+            c = open_tabs(vara);
 
          }
 
       }
+
+      return c;
 
    }
 
@@ -2506,17 +2512,33 @@ namespace user
 
    void tab::on_change_pane_count()
    {
-      if(m_bRestoringTabs)
+
+      save_restorable_tabs();
+
+      set_need_layout();
+
+   }
+
+
+   void tab::save_restorable_tabs()
+   {
+
+      if (m_bRestoringTabs)
          return;
 
-      if(get_data()->m_matchanyRestore.get_count() > 0)
+      if (get_data()->m_matchanyRestore.get_count() > 0)
       {
+         
          var_array vara;
+         
          get_restore_tab(vara);
+         
          data_save("restore_tab", vara);
+
       }
-      on_layout();
+
    }
+
 
    void tab::get_text_id(stringa & stra)
    {
@@ -2640,7 +2662,8 @@ namespace user
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i]->m_id;
-         if(matchany.matches(varId))
+         if(matchany.matches(varId) && 
+            (panea[i]->m_pholder == NULL || !(bool)panea[i]->m_pholder->oprop("void_restore")))
          {
             vara.add(varId);
          }
@@ -2665,26 +2688,44 @@ namespace user
             return true;
          }
       }
+
       return false;
+
    }
 
-   void tab::open_tabs(const var_array & vara)
+
+   ::count tab::open_tabs(const var_array & vara)
    {
+
+      ::count c = 0;
+
       stringa stra;
+
       for(int32_t i = 0; i < vara.get_count(); i++)
       {
+
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
+
          if(vara[i].get_type() == var::type_string && vara[i].get_string() == "app:bergedge")
             continue;
+
          if(vara[i].get_type() == var::type_string && vara[i].get_string() == "app:")
             continue;
+
          //if(stra.add_unique(vara[i]) >= 0)
          //{
             //create_tab_by_id(stra.last());
 
          set_cur_tab_by_id(vara[i].get_id());
+
+         c++;
+
          //}
+
       }
+
+      return c;
+
    }
 
    

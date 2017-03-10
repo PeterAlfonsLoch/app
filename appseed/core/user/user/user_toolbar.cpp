@@ -1591,6 +1591,8 @@ throw todo(get_app());
 
       m_itema.remove_all();
 
+
+
       xml::document doc(get_app());
 
       if(!doc.load(lpszXml))

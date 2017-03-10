@@ -22,6 +22,7 @@ public:
 
    enum e_command
    {
+      command_none,
       command_application_start,
       command_file_new,
       command_file_open,

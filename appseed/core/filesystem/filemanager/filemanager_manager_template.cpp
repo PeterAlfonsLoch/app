@@ -8,7 +8,9 @@ namespace filemanager
    manager_template::manager_template(::aura::application * papp) :
       object(papp)
    {
+
       m_bRestoring = false;
+
       m_iTemplate = -1;
 
       m_pfilelistcallback = NULL;
@@ -136,19 +138,30 @@ namespace filemanager
 
       sp(manager) pdoc;
 
-      for (index i = 0; i < m_pdoctemplate->get_document_count(); i++)
+      for (index i = 0; i < m_pdoctemplateMain->get_document_count(); i++)
       {
 
-         pdoc = m_pdoctemplate->get_document(i);
+         pdoc = m_pdoctemplateMain->get_document(i);
 
-         if (pdoc.is_set())
+         if (pdoc.is_null())
          {
 
-            pdoc->defer_check_manager_id();
-
-            stra.add(pdoc->m_strManagerId + ":" + pdoc->get_filemanager_item().m_filepath);
+            continue;
 
          }
+
+         pdoc->defer_check_manager_id();
+
+         pdoc = pdoc->get_main_manager();
+
+         if (pdoc.is_null())
+         {
+
+            continue;
+
+         }
+
+         stra.add(pdoc->m_strManagerId + ":" + pdoc->get_filemanager_item().m_filepath);
 
       }
 
@@ -170,31 +183,36 @@ namespace filemanager
 
       sp(manager) pdoc;
 
-      for (index i = 0; i < m_pdoctemplate->get_document_count(); i++)
+      for (index i = 0; i < m_pdoctemplateMain->get_document_count(); i++)
       {
 
-         pdoc = m_pdoctemplate->get_document(i);
+         pdoc = m_pdoctemplateMain->get_document(i);
 
-         if (pdoc.is_set())
+         if (pdoc.is_null())
          {
 
-            if (pdoc->m_strManagerId == varFile.get_string().Left(get_manager_id_len()))
-            {
-
-               return pdoc;
-
-            }
-
-            if (pdoc->get_filemanager_item().m_filepath.is_equal(varFile))
-            {
-
-               return pdoc;
-
-            }
+            continue;
 
          }
 
-      }
+         pdoc = pdoc->get_main_manager();
+
+		   if (pdoc->m_strManagerId == varFile.get_string().Left(get_manager_id_len()))
+		   {
+
+			   return pdoc;
+
+		   }
+
+		   if (pdoc->get_filemanager_item().m_filepath.is_equal(varFile))
+		   {
+
+			   return pdoc;
+
+		   }
+
+
+		}
 
       return NULL;
 
@@ -221,9 +239,9 @@ namespace filemanager
 
       pcreatecontext->m_spCommandLine->m_varFile = varFile;
 
-      m_pdoctemplate->m_bQueueDocumentOpening = false;
+      m_pdoctemplateMain->m_bQueueDocumentOpening = false;
 
-      pdoc = m_pdoctemplate->open_document_file(pcreatecontext);
+      pdoc = m_pdoctemplateMain->open_document_file(pcreatecontext);
 
       if (pdoc.is_null())
       {
@@ -232,9 +250,20 @@ namespace filemanager
 
       }
 
-      pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible, pdoc->m_filepath);
+      pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible, false);
 
-      //pdoc->FileManagerBrowse(pdoc->m_filepath, ::action::source_user);
+      tab_view * ptabview = pdoc->get_typed_view < tab_view >();
+
+      if (ptabview != NULL)
+      {
+
+         string strManagerId;
+
+         ::file::path pathFolder = get_filemanager_project_entry(strManagerId, varFile, get_app());
+
+         ptabview->set_cur_tab_by_id("verifile://" + pathFolder);
+
+      }
 
       return pdoc;
 
@@ -279,7 +308,7 @@ namespace filemanager
 
       sp(manager) pdoc = find_manager(varFile);
 
-      m_pdoctemplate->remove_document(pdoc);
+      m_pdoctemplateMain->remove_document(pdoc);
 
       save_filemanager_project();
 
@@ -292,6 +321,8 @@ namespace filemanager
    {
 
       pdoc->close_document();
+
+      //m_pdoctemplateMain->remove_document(pdoc);
 
       save_filemanager_project();
 
@@ -428,7 +459,7 @@ namespace filemanager
 
       sp(manager) pdoc;
 
-      if (id.int64() < -1 || id.int64() == m_pdoctemplateMain->get_document_count())
+      if (id.int64() < -1 || id.int64() == m_pdoctemplate->get_document_count())
       {
 
          pcreatecontext->oprop("filemanager::template") = this;
@@ -456,7 +487,7 @@ namespace filemanager
          }
 
       }
-      else if (id.int64() < m_pdoctemplateMain->get_document_count())
+      else if (id.int64() < m_pdoctemplate->get_document_count())
       {
 
          pdoc = m_pdoctemplate->get_document((index) id);

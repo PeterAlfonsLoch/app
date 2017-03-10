@@ -118,13 +118,17 @@ namespace filemanager
             }
          }
       }
-      if (lHint == 89124592)
+      if (lHint == manager::hint_add_location)
       {
          set_cur_tab_by_id("add_location");
       }
-      else if (lHint == 89124593)
+      else if (lHint == manager::hint_replace_name)
       {
          set_cur_tab_by_id("replace_name");
+      }
+      else if (lHint == manager::hint_new_folder)
+      {
+         set_cur_tab_by_id("new_folder");
       }
 
 
@@ -134,7 +138,8 @@ namespace filemanager
    {
 
       if (pcreatordata->m_id == "add_location"
-         || pcreatordata->m_id == "replace_name")
+         || pcreatordata->m_id == "replace_name"
+         || pcreatordata->m_id == "new_folder")
       {
          sp(::create) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
@@ -145,6 +150,10 @@ namespace filemanager
          form * pformview = pdoc->get_typed_view < form >();
          ::user::form_update_hint uh;
          uh.m_etype = ::user::form_update_hint::type_browse;
+         if (pcreatordata->m_id == "new_folder")
+         {
+            uh.m_strForm = "matter://filemanager/new_folder.html";
+         }
          if (pcreatordata->m_id == "replace_name")
          {
             uh.m_strForm = "matter://filemanager/replace_name_in_file_system.html";
@@ -156,68 +165,96 @@ namespace filemanager
 
          pformview->m_idCreator = pcreatordata->m_id;
 
-         //pformview->m_id = pcreatordata->m_id;
-
          pdoc->update_all_views(NULL, 0, &uh);
-
-         //form * pformview =
-         //uh.m_etype = ::user::form_update_hint::type_get_form_view;
-         //pdoc->update_all_views(NULL, 0, &uh);
 
          uh.m_etype = ::user::form_update_hint::type_after_browse;
+
          pdoc->update_all_views(NULL, 0, &uh);
 
-
          pformview->m_pmanager = dynamic_cast < ::filemanager::manager * > ( m_pviewdata->m_pdoc);
-         //pformview->VmsDataInitialize(simpledb::get(get_app())->GetDataServer());
-         //pcreatordata->m_pwnd = (pformview->GetParentFrame());
-         //      form_child_frame * pframe = dynamic_cast < form_child_frame * >(pcreatordata->m_pwnd);
-         //pframe->m_iTabId = iId;
+         
          pcreatordata->m_pdoc = pdoc;
+
       }
       else if(pcreatordata->m_id == "filemanager::operation")
       {
+         
          sp(::create) createcontext(allocer());
+
          createcontext->m_bMakeVisible = false;
+
          createcontext->m_puiParent = this;
-         //::exception::throw_not_implemented(get_app());
+
          sp(operation_document) pdoc = (Session.filemanager().m_ptemplateOperation->open_document_file(createcontext));
+
          if (pdoc == NULL)
+         {
+
             return;
+
+         }
+
          sp(::user::impact) pview = pdoc->get_view(0);
-         //::user::form * poperationview = dynamic_cast < ::user::form * > (pview);
+         
          pcreatordata->m_pwnd = (pview->GetParentFrame());
-         //      operation_child_frame * pframe = dynamic_cast < operation_child_frame * >(pcreatordata->m_pwnd);
-         //pframe->m_iTabId = iId;
+
          pcreatordata->m_pdoc = pdoc;
+
       }
       else
       {
 
          ::filemanager::data * pfilemanagerdata = canew(::filemanager::data(get_app()));
+
          pfilemanagerdata->m_pcallback = &Session.filemanager();
+
          pfilemanagerdata->m_pmanagertemplate = &Session.filemanager().std();
+
          pfilemanagerdata->m_bFileSize = true;
+
          pfilemanagerdata->m_bTransparentBackground = true;
 
          sp(::create) createcontext(allocer());
 
          createcontext->m_bMakeVisible = true;
+
          createcontext->m_puiParent = pcreatordata->m_pholder;
+
          createcontext->oprop("filemanager::data") = pfilemanagerdata;
 
+         string str = pcreatordata->m_id;
+
+         ::str::begins_eat_ci(str, "verifile://");
+
+         ::file::path pathFolder = str;
+
+         string strVarFile;
+
+         if (get_document()->m_strManagerId.has_char())
+         {
+
+            strVarFile = get_document()->m_strManagerId + ":" + pathFolder;
+
+         }
+
+         createcontext->m_spCommandLine->m_varFile = strVarFile;
+
+         Session.filemanager().std().m_pdoctemplateChild->m_bQueueDocumentOpening = false;
+
          sp(manager) pmanager = (Session.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
+
          sp(simple_frame_window) pwndTopLevel = NULL;
+
          if(pmanager != NULL)
          {
 
             m_pfilemanager = pmanager;
 
             pmanager->get_filemanager_data()->m_iTemplate = Session.filemanager().std().m_iTemplate;
+
             pmanager->get_filemanager_data()->m_iDocument = Session.filemanager().std().m_iNextDocument++;
+
             pmanager->get_filemanager_template()->m_strDISection.Format("filemanager(%d)",pmanager->get_filemanager_data()->m_iDocument);
-
-
 
             sp(::user::impact) pview = pmanager->get_view(0);
 
@@ -225,11 +262,6 @@ namespace filemanager
 
             pwndTopLevel = (pview->GetTopLevelFrame());
 
-            string str = pcreatordata->m_id;
-
-            ::str::begins_eat_ci(str, "verifile://");
-
-            ::file::path pathFolder = str;
 
             if (Application.dir().is(pathFolder))
             {
@@ -250,29 +282,40 @@ namespace filemanager
          }
 
          if (pmanager == NULL)
+         {
+
             return;
-         //      sp(::user::impact) pview = pdoc->get_view(0);
-         //pcreatordata->m_pwnd = (pview->GetParentFrame());
-         //      sp(child_frame) pframe = (pcreatordata->m_pwnd);
-         //pframe->m_iTabId = iId;
+
+         }
+
          pcreatordata->m_pdoc = pmanager;
+
          if (pwndTopLevel != NULL)
          {
+
             pwndTopLevel->on_layout();
+
          }
+
       }
+
    }
 
 
    void tab_view::_001OnCreate(signal_details * pobj)
    {
-      //   SCAST_PTR(::message::create, pcreate, pobj);
 
       pobj->previous();
 
-      m_pfilemanager = dynamic_cast < manager * > (get_document());
+      m_pfilemanager = get_document();
+
+   }
 
 
+   sp(manager) tab_view::get_document()
+   {
+
+      return m_pdocument;
 
    }
 

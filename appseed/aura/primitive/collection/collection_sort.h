@@ -14,6 +14,23 @@ namespace sort
       }
    }
 
+   template <class T> void sort_non_negative(T & t1, T & t2)
+   {
+      if (t1 < ::numeric_info<T>::null())
+      {
+         return;
+      }
+      if (t2 < ::numeric_info<T>::null())
+      {
+         return;
+      }
+      if (t1 > t2)
+      {
+         T t = t2;
+         t2 = t1;
+         t1 = t;
+      }
+   }
 
    template <class TYPE>
    static index NumericCompare(const TYPE * ptA, const TYPE * ptB);
