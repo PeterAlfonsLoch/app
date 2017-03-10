@@ -3787,6 +3787,9 @@
     <ClCompile Include="primitive\_primitive_file.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
+    <ClCompile Include="aura_keep.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">

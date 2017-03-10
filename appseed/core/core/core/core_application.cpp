@@ -2475,16 +2475,16 @@ namespace core
    void application::_001OnFileNew(signal_details * pobj)
    {
 
-      UNREFERENCED_PARAMETER(pobj);
-
       var varFile;
+
       var varQuery;
 
       varQuery["command"] = "new_file";
 
       request_file_query(varFile, varQuery);
 
-      //m_pimpl->_001OnFileNew();
+      pobj->m_bRet = true;
+
    }
 
 

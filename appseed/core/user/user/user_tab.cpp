@@ -95,7 +95,7 @@ namespace user
 
       get_data()->m_iDragTab     = -1;
 
-      m_bRestoringTabs           = true;
+      m_bDisableSavingRestorableTabs           = true;
 
       m_bShowTabs                = true;
 
@@ -199,14 +199,15 @@ namespace user
    }
 
 
-   bool tab::add_tab(const char * lpcsz, id id, bool bVisible, bool bPermanent)
+   bool tab::add_tab(const char * lpcsz, id id, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
    {
 
       sp(::user::tab_pane) ppane = canew(::user::tab_pane(get_app()));
 
       ppane->m_istrTitleEx       = lpcsz;
-      ppane->m_bTabPaneVisible         = bVisible;
-      ppane->m_bPermanent       = bPermanent;
+      ppane->m_bTabPaneVisible   = bVisible;
+      ppane->m_bPermanent        = bPermanent;
+      ppane->m_pholder           = pholder;
 
       if (id.is_empty())
       {
@@ -221,7 +222,7 @@ namespace user
 
       get_data()->m_panea.add(ppane);
 
-      on_change_pane_count();
+      on_change_pane_count({ ppane });
 
       return true;
 
@@ -230,11 +231,20 @@ namespace user
    bool tab::remove_tab_by_id(id id)
    {
 
+      bool bRestorableMatch = false;
+
       for(int32_t i = 0; i < get_data()->m_panea.get_count(); i++)
       {
 
          if(get_data()->m_panea[i]->m_id == id)
          {
+
+            if (!bRestorableMatch && matches_restorable_tab(get_data()->m_panea[i]->m_id, get_data()->m_panea[i]->m_pholder))
+            {
+
+               bRestorableMatch = true;
+
+            }
 
             get_data()->m_panea.remove_at(i);
 
@@ -242,19 +252,10 @@ namespace user
 
       }
 
-      if(get_data()->m_matchanyRestore.get_count() > 0)
+      if(bRestorableMatch)
       {
 
-         var_array vara;
-
-         data_load("restore_tab", vara);
-
-         if(vara.remove_ci(id) > 0)
-         {
-
-            data_save("restore_tab", vara);
-
-         }
+         on_change_pane_count({ NULL });
 
       }
 
@@ -295,10 +296,12 @@ namespace user
 
       get_data()->m_panea.add(ppane);
 
-      on_change_pane_count();
+      on_change_pane_count({ ppane });
 
       return true;
+
    }
+
 
    void tab::remove_tab(::index iPane, bool bVisible)
    {
@@ -1493,7 +1496,7 @@ namespace user
 
       ::count c = 0;
 
-      keep < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
+      keep_bool keepDisableSavingRestorableTabs(&m_bDisableSavingRestorableTabs);
 
       if(get_data()->m_matchanyRestore.get_count() > 0)
       {
@@ -1554,7 +1557,7 @@ namespace user
 
       }
 
-      on_change_pane_count();
+      //on_change_pane_count();
 
       on_show_view();
 
@@ -2509,11 +2512,39 @@ namespace user
       
    }
 
-
-   void tab::on_change_pane_count()
+   /// array - if you want, you can hint on_change_pane_count
+   /// with added panes info. Pass array with NULL value to force save restorable tabs
+   void tab::on_change_pane_count(array < ::user::tab_pane * > array)
    {
 
-      save_restorable_tabs();
+      bool bAny = false;
+
+      for (auto ppane : array)
+      {
+
+         if (ppane == NULL || matches_restorable_tab(ppane->m_id, ppane->m_pholder))
+         {
+
+            bAny = true;
+
+            break;
+
+         }
+
+      }
+
+      if (array.is_empty() || bAny)
+      {
+
+         save_restorable_tabs();
+
+      }
+      else
+      {
+
+         TRACE("Yup! Optimized Out a save_restorable_tabs {?A*dev}op! ...... . .\n");
+
+      }
 
       set_need_layout();
 
@@ -2523,19 +2554,40 @@ namespace user
    void tab::save_restorable_tabs()
    {
 
-      if (m_bRestoringTabs)
+      if (m_bDisableSavingRestorableTabs)
          return;
 
-      if (get_data()->m_matchanyRestore.get_count() > 0)
-      {
-         
-         var_array vara;
-         
-         get_restore_tab(vara);
-         
-         data_save("restore_tab", vara);
+         if (get_data()->m_matchanyRestore.get_count() > 0)
+         {
 
-      }
+            var_array vara;
+
+            get_restore_tab(vara);
+
+            //if (vara.get_size() > 0)
+            //{
+            //   TRACE(".");
+            //   for (index i = 0; i < 200; i++)
+            //   {
+
+
+                  data_save("restore_tab", vara);
+            //   }
+            //}
+            //else
+            //{
+            //   TRACE("o");
+            //   for (index i = 0; i < 200; i++)
+            //   {
+
+
+            //      data_save("restore_tab", vara);
+            //   }
+
+            //}
+
+         }
+
 
    }
 
@@ -2644,30 +2696,58 @@ namespace user
 
    }
 
-   
-   void tab::get_restore_tab(var_array & vara)
+
+   bool tab::matches_restorable_tab(const var & varId, ::user::place_holder * pholder)
    {
 
       ::core::match::any  & matchany = get_data()->m_matchanyRestore;
 
+      if (pholder != NULL && (bool) pholder->oprop("void_restore"))
+      {
+
+         return false;
+
+      }
+
       if (matchany.get_count() == 0)
       {
 
-         return;
+         return false;
 
       }
+
+      if (!matchany.matches(varId))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+   
+   void tab::get_restore_tab(var_array & vara)
+   {
 
       var varId;
+
       tab_pane_array & panea = get_data()->m_panea;
+
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
+
          varId = panea[i]->m_id;
-         if(matchany.matches(varId) && 
-            (panea[i]->m_pholder == NULL || !(bool)panea[i]->m_pholder->oprop("void_restore")))
+         
+         if(matches_restorable_tab(varId, panea[i]->m_pholder))
          {
+
             vara.add(varId);
+
          }
+
       }
+
    }
 
 

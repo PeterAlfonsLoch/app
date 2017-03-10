@@ -128,7 +128,9 @@ namespace userex
       if (iPane < 0)
       {
 
-         if (!add_tab("", pcreatordata->m_id))
+         keep_bool keepDisableSavingRestorableTabs(&m_bDisableSavingRestorableTabs, true, m_bDisableSavingRestorableTabs, true);
+
+         if (!add_tab("", pcreatordata->m_id, true, false, pcreatordata->m_pholder))
          {
 
             return false;
@@ -149,7 +151,11 @@ namespace userex
       ::user::tab_pane * ppane = (::user::tab_pane *)get_data()->m_panea.element_at(iPane);
 
       if (ppane == NULL)
+      {
+
          return false;
+
+      }
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
@@ -162,7 +168,12 @@ namespace userex
 
       pcreatordata->m_pviewdata = (void *)ppane;
 
-      save_restorable_tabs();
+      if (matches_restorable_tab(pcreatordata->m_id, pcreatordata->m_pholder))
+      {
+
+         save_restorable_tabs();
+
+      }
 
       return true;
 

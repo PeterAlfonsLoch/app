@@ -4046,9 +4046,22 @@ namespace user
       m_ptree->m_editfile.MacroBegin();
       strsize i1 = m_ptree->m_iSelStart;
       strsize i2 = m_ptree->m_iSelEnd;
+      ::sort::sort_non_negative(i1, i2);
+
+      bFullUpdate = strText.find('\n') >= 0 || strText.find('\r') >= 0;
+      if (!bFullUpdate)
+      {
+         string strSel;
+         _001GetSelText(strSel);
+         bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+      }
+      if (!bFullUpdate)
+      {
+         iLineUpdate = SelToLine(i1);
+      }
+
       if (i1 != i2)
       {
-         ::sort::sort_non_negative(i1, i2);
          m_ptree->m_editfile.seek(i1, ::file::seek_begin);
          m_ptree->m_editfile.Delete((memory_size_t)(i2 - i1));
          IndexRegisterDelete(i1, i2 - i1);
@@ -4069,19 +4082,13 @@ namespace user
 
       //index i1 = m_ptree->m_iSelEnd;
       //index i2 = i1 + iMultiByteUtf8DeleteCount;
-      string strSel = strText;
-      bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
-      if (!bFullUpdate)
-      {
-         iLineUpdate = SelToLine(i1);
-      }
 
 
-      m_ptree->m_iSelEnd += strSel.get_length();
+      m_ptree->m_iSelEnd += strText.get_length();
       m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
       //m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
-      m_ptree->m_editfile.Insert(strSel, strSel.get_length());
-      IndexRegisterInsert(m_ptree->m_iSelEnd, strSel);
+      m_ptree->m_editfile.Insert(strText, strText.get_length());
+      IndexRegisterInsert(m_ptree->m_iSelEnd, strText);
       m_ptree->m_editfile.MacroEnd();
       psetsel->m_iSelStart = m_ptree->m_iSelStart;
       psetsel->m_iSelEnd = m_ptree->m_iSelEnd;

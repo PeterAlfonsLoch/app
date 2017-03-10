@@ -67,3 +67,14 @@ void keep<TYPE>::KeepAway()
       m_bKept = false;
    }
 }
+
+
+class CLASS_DECL_AURA keep_bool :
+   public keep < bool >
+{
+public:
+
+   keep_bool(bool * pKept, bool keepValue = true, bool keepAwayValue = false, bool bStartKept = true);
+   ~keep_bool();
+
+};

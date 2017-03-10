@@ -1,7 +1,7 @@
 //#include "framework.h"
 //#include "axis/net/net_sockets.h"
 //#include "db_str_set.h"
-
+#include "sqlite3.h"
 
 class CLASS_DECL_AXIS db_str_set_item
 {
@@ -60,6 +60,9 @@ public:
    string                                       m_strUser;
 
    sp(class db_str_sync_queue)                    m_pqueue;
+   sqlite3_stmt *                               m_pstmtSelect;
+   sqlite3_stmt *                               m_pstmtUpdate;
+
 
 
 
@@ -73,7 +76,8 @@ public:
       m_psimpledbUser(pserver->m_psimpledbUser),
       m_strUser(pserver->m_strUser)
    {
-
+      m_pstmtSelect = NULL;
+      m_pstmtUpdate = NULL;
       m_ptopthis = this;
       m_pmutex = new mutex(pserver->get_app());
    
@@ -81,7 +85,18 @@ public:
 
    ~db_str_set_core()
    {
+      if (m_pstmtSelect != NULL)
+      {
 
+         sqlite3_finalize(m_pstmtSelect);
+         m_pstmtSelect = NULL;
+      }
+      if (m_pstmtUpdate != NULL)
+      {
+
+         sqlite3_finalize(m_pstmtUpdate);
+         m_pstmtUpdate = NULL;
+      }
    }
 
 
@@ -253,13 +268,17 @@ db_str_set::~db_str_set()
 
 
 // true if deleted
-bool db_str_set::remove(const char * lpKey)
+bool db_str_set::remove(const string & strKey)
 {
-   UNREFERENCED_PARAMETER(lpKey);
+   
+   UNREFERENCED_PARAMETER(strKey);
+
    return false;
+
 }
 
-bool db_str_set::load(const char * lpKey, string & strValue)
+
+bool db_str_set::load(const string & strKey, string & strValue)
 {
 
    synch_lock sl(m_pmutex);
@@ -269,7 +288,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    if(m_pcore->m_pdataserver == NULL)
       return false;
 
-   if(m_pcore->m_pdataserver->m_bRemote && string(lpKey).find(".local://") < 0)
+   if(m_pcore->m_pdataserver->m_bRemote && strKey.find(".local://") < 0)
    {
       
       // Remote
@@ -282,7 +301,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       db_str_set_item stritem;
 
-      if(pcore->m_map.Lookup(lpKey,stritem) && stritem.m_dwTimeout > get_tick_count())
+      if(pcore->m_map.Lookup(strKey,stritem) && stritem.m_dwTimeout > get_tick_count())
       {
          strValue = stritem.m_str;
          return true;
@@ -317,7 +336,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       strUrl = "https://" + System.dir().get_api_cc() + "/account/str_set_load?key=";
 
-      strUrl += System.url().url_encode(lpKey);
+      strUrl += System.url().url_encode(strKey);
 
       set["user"] = &ApplicationUser;
 
@@ -333,7 +352,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
       stritem.m_str = strValue;
 
-      pcore->m_map.set_at(lpKey,stritem);
+      pcore->m_map.set_at(strKey,stritem);
 
 
    }
@@ -344,7 +363,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       try
       {
 
-         strValue = pcore->m_psimpledbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + pcore->m_strUser + "' AND `key` = '" + pcore->m_psimpledbUser->real_escape_string(lpKey) + "'");
+         strValue = pcore->m_psimpledbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + pcore->m_strUser + "' AND `key` = '" + pcore->m_psimpledbUser->real_escape_string(strKey) + "'");
 
          return true;
 
@@ -362,47 +381,85 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       // LOCAL (sqlite)
       
-      db_server * pdb = m_pcore->db();
+      sp(::sqlite::base) pdb = m_pcore->db()->get_database();
 
-      ::sqlite::base * pdatabase = pdb->get_database();
+//      ::sqlite::base * pdatabase = pdb->get_database();
 
-      mutex * pmutex = pdatabase->m_pmutex;
+      mutex * pmutex = pdb->m_pmutex;
 
       sl.unlock();
 
-      single_lock slDatabase(pmutex);
+      synch_lock slDatabase(pmutex);
 
-      string strKey;
-      strKey = lpKey;
-      strKey.replace("'", "''");
-
-      string strSql;
-      strSql.Format(
-         "select value FROM stringtable WHERE id = '%s';",
-         strKey);
-
-
-      slDatabase.lock();
-      try
+      if (pcore->m_pstmtSelect == NULL)
       {
-         m_pcore->m_pdataset->query(strSql);
+
+         
+         if (pdb->setErr(sqlite3_prepare_v2(
+            (sqlite3 *)pdb->getHandle(),
+            "select value FROM stringtable WHERE id = :id;",
+            -1,
+            &pcore->m_pstmtSelect, NULL)) != SQLITE_OK)
+         {
+
+            return false;
+
+         }
+
       }
-      catch(...)
+      else
       {
-         return false;
+
+         sqlite3_reset(pcore->m_pstmtSelect);
+
       }
 
-      if(m_pcore->m_pdataset->num_rows() <= 0)
+
+      int index = sqlite3_bind_parameter_index(pcore->m_pstmtSelect, ":id");
+      if (index == 0)
          return false;
 
-      strValue = m_pcore->m_pdataset->fv("value");
+      int res = sqlite3_bind_text(pcore->m_pstmtSelect, index, strKey, strKey.get_length(), SQLITE_TRANSIENT);
+      if (res != SQLITE_OK)
+         return false;
+
+      res = sqlite3_step(pcore->m_pstmtSelect);
+
+
+      if (res != SQLITE_ROW)
+      {
+
+         return false;
+
+      }
+
+      const char * psz = (const char *) sqlite3_column_text(pcore->m_pstmtSelect, 0);
+
+      strsize iLen = sqlite3_column_bytes(pcore->m_pstmtSelect, 0);
+         
+      strValue = string(psz, iLen);
+      //TRACE("value=%s\n", strValue);
+      //slDatabase.lock();
+      //try
+      //{
+      //   m_pcore->m_pdataset->query(strSql);
+      //}
+      //catch(...)
+      //{
+      //   return false;
+      //}
+
+      //if(m_pcore->m_pdataset->num_rows() <= 0)
+      //   return false;
+
+      //strValue = m_pcore->m_pdataset->fv("value");
 
    }
 
    return true;
 }
 
-bool db_str_set::save(const char * lpKey, const char * lpcsz)
+bool db_str_set::save(const string & strKey, const string & strValue)
 {
 
    db_str_set_core * pcore = (db_str_set_core *)m_pcore->m_ptopthis;
@@ -410,37 +467,164 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
    if(m_pcore->m_pdataserver == NULL)
       return false;
 
-   if(!m_pcore->m_pdataserver->m_bRemote || string(lpKey).find(".local://") >= 0)
+   if(!m_pcore->m_pdataserver->m_bRemote || strKey.find(".local://") >= 0)
    {
       if(m_pcore->db() == NULL)
          return false;
       single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
+      
+      //string strKey;
+      //strKey = lpKey;
+      //strKey.replace("'", "''");
 
-      string strKey;
-      strKey = lpKey;
-      strKey.replace("'", "''");
-
-      string strValue(lpcsz);
-      strValue.replace("'", "''");
+      //string strValue(lpcsz);
+      //strValue.replace("'", "''");
 
       sp(::sqlite::base) pdb   = m_pcore->db()->get_database();
       string strSql;
       string str;
       slDatabase.lock();
-      if(load(lpKey, str))
-      {
-         strSql.Format(
-            "UPDATE stringtable SET value = '%s' WHERE id = '%s';",
-            strValue,
-            strKey);
 
-         pdb->start_transaction();
-         if(!m_pcore->m_pdataset->exec(strSql))
+      //if (1)
+      //{
+
+
+      //   string strSql;
+      //   strSql.Format(
+      //      "PRAGMA cache_size");
+
+
+      //   //slDatabase.lock();
+      //   try
+      //   {
+      //      m_pcore->m_pdataset->query(strSql);
+      //   }
+      //   catch (...)
+      //   {
+      //      return false;
+      //   }
+
+      //   //if (m_pcore->m_pdataset->num_rows() <= 0)
+      //     // return false;
+
+      //   strValue = m_pcore->m_pdataset->FieldValueAt(0);
+      //}
+
+      string_map < db_str_set_item >::pair * pitem = pcore->m_map.PLookup(strKey);
+
+      string strLoad;
+
+      if(pitem != NULL || load(strKey, strLoad))
+      {
+         
+         if (1)
          {
-            pdb->rollback_transaction();
-            return false;
+
+            if (pitem != NULL)
+            {
+
+               if (pitem->m_element2.m_str == strValue)
+               {
+
+                  return true;
+
+               }
+
+            }
+            else
+            {
+
+               if (strLoad == strValue)
+               {
+
+                  return true;
+
+               }
+
+            }
+
          }
-         pdb->commit_transaction();
+
+         if (pcore->m_pstmtUpdate == NULL)
+         {
+
+            if (pdb->setErr(sqlite3_prepare_v2(
+               (sqlite3 *)pdb->getHandle(),
+               "UPDATE stringtable SET value = :val WHERE id = :id;",
+               -1,
+               &pcore->m_pstmtUpdate, NULL)) != SQLITE_OK)
+            {
+
+               return false;
+
+            }
+
+         }
+         else
+         {
+
+            sqlite3_reset(pcore->m_pstmtUpdate);
+
+         }
+
+         int index = sqlite3_bind_parameter_index(pcore->m_pstmtUpdate, ":val");
+
+         if (index == 0)
+            return false;
+
+         int res = sqlite3_bind_text(pcore->m_pstmtUpdate, index, strValue, strValue.get_length(), SQLITE_TRANSIENT);
+         if (res != SQLITE_OK)
+            return false;
+
+         index = sqlite3_bind_parameter_index(pcore->m_pstmtUpdate, ":id");
+         if (index == 0)
+            return false;
+
+         res = sqlite3_bind_text(pcore->m_pstmtUpdate, index, strKey, strKey.get_length(), SQLITE_TRANSIENT);
+         if (res != SQLITE_OK)
+            return false;
+
+         res = sqlite3_step(pcore->m_pstmtUpdate);
+
+         if (res != SQLITE_OK && res != SQLITE_DONE)
+         {
+
+            return false;
+
+         }
+
+         //strSql.Format(
+         //   "UPDATE stringtable SET value = '%s' WHERE id = '%s';",
+         //   strValue,
+         //   strKey);
+         //if (!m_pcore->m_pdataset->exec(strSql))
+         //{
+
+         //   //pdb->rollback_transaction();
+
+         //   return false;
+
+         //}
+
+         if (pitem == NULL)
+         {
+            
+            db_str_set_item stritem;
+
+            stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
+            stritem.m_str = strValue;
+
+            pcore->m_map.set_at(strKey, stritem);
+
+         }
+         else
+         {
+            
+            pitem->m_element2.m_dwTimeout = get_tick_count() + 23 * (5000);
+
+         }
+
+
       }
       else
       {
@@ -450,21 +634,37 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
             strKey,
             strValue);
 
-         pdb->start_transaction();
-         if(!m_pcore->m_pdataset->exec(strSql))
+         //pdb->start_transaction();
+
+         if (!m_pcore->m_pdataset->exec(strSql))
          {
-            pdb->rollback_transaction();
+
+            //pdb->rollback_transaction();
+
             return false;
+
          }
-         pdb->commit_transaction();
+
+         //pdb->commit_transaction();
+
+
       }
+
+      //if (!bCachedLoadInfo)
+      //{
+
+      //   m_mapLoad[lpKey] = true;
+
+      //}
+
       return true;
+
    }
 #ifdef HAVE_MYSQL
    else if(pcore->m_psimpledbUser != NULL)
    {
 
-      string strSql = "REPLACE INTO fun_user_str_set VALUE('" + pcore->m_strUser + "', '" + pcore->m_psimpledbUser->real_escape_string(lpKey) + "', '" + pcore->m_psimpledbUser->real_escape_string(lpcsz) + "')";
+      string strSql = "REPLACE INTO fun_user_str_set VALUE('" + pcore->m_strUser + "', '" + pcore->m_psimpledbUser->real_escape_string(strKey) + "', '" + pcore->m_psimpledbUser->real_escape_string(strKey) + "')";
 
       TRACE(strSql);
 
@@ -486,14 +686,14 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       }
 
 
-      pcore->m_pqueue->queue(lpKey,lpcsz);
+      pcore->m_pqueue->queue(strKey,strValue);
 
       db_str_set_item stritem;
 
       stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
-      stritem.m_str = lpcsz;
+      stritem.m_str = strValue;
 
-      pcore->m_map.set_at(lpKey,stritem);
+      pcore->m_map.set_at(strKey,stritem);
 
 
       return true;

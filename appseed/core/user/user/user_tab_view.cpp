@@ -593,7 +593,7 @@ namespace user
          if (id_pane(id) == -1)
          {
 
-            ::user::tab::add_tab("", id);
+            ::user::tab::add_tab("", id, true, false, pcreatordata->m_pholder);
 
          }
 
@@ -618,7 +618,7 @@ namespace user
 
          }
 
-         on_change_pane_count();
+         //on_change_pane_count();
 
       }
 

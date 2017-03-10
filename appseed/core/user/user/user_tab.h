@@ -143,7 +143,7 @@ namespace user
 
       sp(data)                         m_spdata;
       ::visual::graphics_extension     m_dcextension;
-      bool                             m_bRestoringTabs;
+      bool                             m_bDisableSavingRestorableTabs;
       bool                             m_bShowTabs;
       bool                             m_bHidingTabs;
       DWORD                            m_dwHidingTabs;
@@ -208,7 +208,7 @@ namespace user
       virtual void GetTabClientRect(LPRECT lprect);
       virtual void GetTabClientRect(RECT64 * lprect);
 
-      virtual bool add_tab(const char * lpcsz, id idTab = id(), bool bVisible = true, bool bPermanent = false);
+      virtual bool add_tab(const char * lpcsz, id idTab = id(), bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = NULL);
       virtual bool set_tab(const char * lpcsz, id idTab = id(), bool bVisible = true);
       virtual bool add_image_tab(const char * lpcsz, const char * pszImage, id idTab = id(), bool bVisible = true, bool bPermanent = false);
       virtual bool set_image_tab(const char * lpcsz, const char * pszImage, id idTab = id(), bool bVisible = true);
@@ -243,7 +243,7 @@ namespace user
       virtual ::user::tab_pane * create_pane_by_id(id id);
       virtual ::index create_tab_by_id(id id);
 
-      virtual void on_change_pane_count();
+      virtual void on_change_pane_count(array < ::user::tab_pane * > array = array < ::user::tab_pane * >());
 
       virtual void get_text_id(stringa & stra);
 
@@ -261,6 +261,7 @@ namespace user
 
       virtual bool has_restore_tab();
       virtual void get_restore_tab(var_array & vara);
+      virtual bool matches_restorable_tab(const var & varId, ::user::place_holder * pholder = NULL);
       virtual ::count open_tabs(const var_array & vara);
       virtual ::count restore_tabs();
       virtual void save_restorable_tabs();
