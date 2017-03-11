@@ -3405,7 +3405,9 @@ namespace user
    {
 
       string str;
+
       GetWindowText(str);
+
       return str;
 
    }
@@ -3413,6 +3415,8 @@ namespace user
 
    void interaction::GetWindowText(string & rString)
    {
+
+      synch_lock sl(m_pmutex);
 
       rString = m_strWindowText;
 
@@ -3422,14 +3426,18 @@ namespace user
    strsize interaction::GetWindowTextLength()
    {
 
-      if(m_pimpl == NULL)
+      synch_lock sl(m_pmutex);
+
+      if (m_pimpl == NULL)
+      {
+       
          return 0;
-      else
-         return m_pimpl->GetWindowTextLength();
+
+      }
+      
+      return m_pimpl->GetWindowTextLength();
 
    }
-
-
 
 
    ::user::interaction * interaction::GetParentTopLevel() const

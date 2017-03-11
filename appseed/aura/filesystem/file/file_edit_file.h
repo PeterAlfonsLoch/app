@@ -202,8 +202,8 @@ namespace file
       //void clear();
       virtual memory_size_t read(void *lpBuf,memory_size_t nCount);
       virtual void write(const void * lpBuf,memory_size_t nCount);
-      virtual void Insert(const void * lpBuf,memory_size_t nCount);
-      virtual void Delete(memory_size_t uiCount);
+      virtual InsertItem * Insert(const void * lpBuf,memory_size_t nCount);
+      virtual DeleteItem * Delete(memory_size_t uiCount);
 
 
 

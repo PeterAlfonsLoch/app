@@ -79,7 +79,8 @@ namespace user
       bool                          m_bMultiLine;
       bool                          m_bSendEnterKey;
       bool                          m_bReadOnly;
-
+      point                         m_ptLastCursor;
+      ::draw2d::memory_graphics     m_pmemorygraphics;
       ::draw2d::font_sp             m_spfont;
 
       // Used for whatever it can make faster for large files (scroll for example)
@@ -96,9 +97,9 @@ namespace user
 
 
       bool                          m_bActionHover;
-
-      
-
+      array < int_array >           m_iaExtent;
+      ::file::edit_file::InsertItem *     m_pinsert;
+      plain_text_set_sel_command *  m_psetsel;
 
       plain_edit();
       plain_edit(::aura::application * papp);
@@ -173,6 +174,7 @@ namespace user
       string get_expanded_line(index iLine, array < strsize * > intptra = array < strsize * >());
 
       string get_line(index iLine);
+      int get_line_extent(index iLine, strsize iChar);
 
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 
@@ -188,8 +190,8 @@ namespace user
 
       virtual bool create_control(class ::user::control::descriptor * pdescriptor, index iItem);
 
-      virtual strsize char_hit_test(::draw2d::graphics * pgraphics, int32_t x, int32_t y);
-      virtual strsize line_char_hit_test(::draw2d::graphics * pgraphics, int32_t x, index iLine);
+      virtual strsize char_hit_test(int32_t x, int32_t y);
+      virtual strsize line_char_hit_test(int32_t x, index iLine);
 
       colorertake5::file_type * colorer_select_type();
 
@@ -269,7 +271,7 @@ namespace user
 
       virtual var get_ex_value();
 
-      virtual void insert_text(string str);
+      virtual void insert_text(string str, bool bForceNewStep);
 
       virtual void internal_edit_update(bool bFullUpdate, index iLineUpdate);
 

@@ -496,6 +496,13 @@ namespace file
    memory_size_t edit_file::read(void *lpBuf,memory_size_t nCount)
    {
 
+      if (nCount <= 0)
+      {
+
+         return 0;
+
+      }
+
       if (m_ptreeitem == m_ptreeitemFlush)
       {
 
@@ -677,7 +684,7 @@ namespace file
 
    void edit_file::write(const void * lpBuf,memory_size_t nCount)
    {
-      EditItem * pedit;
+      sp(EditItem) pedit;
       pedit = canew(EditItem);
       pedit->m_dwPosition = m_dwPosition;
       pedit->m_memstorage.allocate(nCount);
@@ -686,25 +693,28 @@ namespace file
       m_dwPosition += nCount;
    }
 
-   void edit_file::Insert(const void * lpBuf,memory_size_t nCount)
+   edit_file::InsertItem * edit_file::Insert(const void * lpBuf,memory_size_t nCount)
    {
-      InsertItem * pinsert;
+      sp(InsertItem) pinsert;
       pinsert = canew(InsertItem);
       pinsert->m_dwPosition = m_dwPosition;
       pinsert->m_memstorage.allocate(nCount);
       memcpy(pinsert->m_memstorage.get_data(),lpBuf,nCount);
       TreeInsert(pinsert);
       m_dwFileLength += nCount;
+      return pinsert;
+
    }
 
-   void edit_file::Delete(memory_size_t uiCount)
+
+   edit_file::DeleteItem * edit_file::Delete(memory_size_t uiCount)
    {
 
-      DeleteItem * pdelete;
+      sp(DeleteItem) pdelete;
 
       uiCount = MIN(uiCount,(memory_size_t) (get_length() - m_dwPosition));
       if(uiCount == 0)
-         return;
+         return NULL;
 
       pdelete = canew(DeleteItem);
       pdelete->m_dwPosition = m_dwPosition;
@@ -713,6 +723,8 @@ namespace file
       read(pdelete->m_memstorage.get_data(),uiCount);
       TreeInsert(pdelete);
       m_dwFileLength -= uiCount;
+
+      return pdelete;
 
    }
 
