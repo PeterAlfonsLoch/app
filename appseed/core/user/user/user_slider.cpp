@@ -51,26 +51,34 @@ namespace user
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      rect rect;
+      //rect rect;
 
-      get_slider_rect(rect);
+      //get_slider_rect(rect);
 
-      point pt(pmouse->m_pt);
+      //point pt(pmouse->m_pt);
 
-      ScreenToClient(&pt);
+      //ScreenToClient(&pt);
 
-      if(rect.contains(pt))
-      {
+      //if(rect.contains(pt))
+      //{
 
          SetCapture();
 
          m_bSlide = true;
 
+         m_pscalar->set_rate(get_slide_rate(), scalar_slide);
+
+         RedrawWindow();
+
          pmouse->m_bRet = true;
 
          pmouse->set_lresult(1);
 
-      }
+      //   pmouse->m_bRet = true;
+
+      //   pmouse->set_lresult(1);
+
+      //}
 
    }
 
