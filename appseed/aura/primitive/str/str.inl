@@ -539,6 +539,22 @@ namespace str
 
    }
 
+   inline bool begins_get_prefix(string & strGetPrefix, const string & str, const string & strPrefix)
+   {
+
+      if(strncmp(str, strPrefix, strPrefix.get_length()) == 0)
+      {
+
+         strGetPrefix = strPrefix;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
 
    inline bool begins(const id & id,const string & strPrefix)
    {
