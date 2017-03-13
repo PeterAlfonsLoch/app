@@ -230,6 +230,14 @@ bool uncompress_bz::transfer(::file::ostream & ostreamUncompressed, ::file::istr
          if (status == BZ_STREAM_END)
          {
 
+            done = true;
+
+            goto stop1;
+
+         }
+         else if(uiRead == 0 && zstream.avail_out > 0)
+         {
+
             goto stop1;
 
          }
@@ -252,13 +260,13 @@ bool uncompress_bz::transfer(::file::ostream & ostreamUncompressed, ::file::istr
 
    stop1:
 
-   if (BZ2_bzDecompressEnd(&zstream) != BZ_OK || !done)
+   if(BZ2_bzDecompressEnd(&zstream) != BZ_OK)
    {
 
-      return true;
+       
 
    }
 
-   return true;
+   return !done;
 
 }
