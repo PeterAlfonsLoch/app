@@ -85,9 +85,9 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
    zstream.bzalloc = (bzalloc)0;
    zstream.bzfree = (bzfree)0;
    zstream.opaque = (void *)0;
-   zstream.next_in = NULL;
+   zstream.next_in = (char *)memIn.get_data();
+   zstream.avail_in = (uint32_t)uiRead;
    zstream.next_out = NULL;
-   zstream.avail_in = 0;
    zstream.avail_out = 0;
    m_z_err = BZ_OK;
    
@@ -112,12 +112,12 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
       do
       {
 
-         zstream.next_out = (char *)memIn.get_data();
-         zstream.avail_out = (uint32_t)memIn.get_size();
+         zstream.next_out = (char *)memory.get_data();
+         zstream.avail_out = (uint32_t)memory.get_size();
 
          ret = BZ2_bzCompress(&zstream, iState);
 
-         ostreamBzFileCompressed.write(memory.get_data(), memIn.get_size() - zstream.avail_out);
+         ostreamBzFileCompressed.write(memory.get_data(), memory.get_size() - zstream.avail_out);
 
          if (ret == BZ_STREAM_END)
          {
@@ -125,6 +125,12 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
             goto stop1;
 
          }
+		 else if (ret == BZ_RUN_OK)
+		 {
+
+			break;
+
+		 }
          else if (ret != BZ_OK)
          {
 
@@ -141,14 +147,19 @@ bool compress_bz::transfer(::file::ostream & ostreamBzFileCompressed, ::file::is
 
          iState = BZ_FINISH;
 
-         continue;
+		 zstream.next_in = (char *)NULL;
 
-      }
+		 zstream.avail_in = (uint32_t)0;
 
-      zstream.next_in = (char *)memIn.get_data();
+	  }
+	  else
+	  {
 
-      zstream.avail_in = (uint32_t)uiRead;
+		  zstream.next_in = (char *)memIn.get_data();
 
+		  zstream.avail_in = (uint32_t)uiRead;
+
+	  }
 
    }
 

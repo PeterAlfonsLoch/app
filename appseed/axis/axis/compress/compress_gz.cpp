@@ -95,6 +95,7 @@
          {
 
             zstream.next_out = memory.get_data();
+
             zstream.avail_out = (uint32_t)memory.get_size();
 
             // Inflate another chunk.
@@ -124,14 +125,19 @@
 
             iFlush = Z_FINISH;
 
-            continue;
+			zstream.next_in = (byte *) NULL;
+
+			zstream.avail_in = (uint32_t)0;
 
          }
+		 else
+		 {
 
-         zstream.next_in = (byte *)memIn.get_data();
+			 zstream.next_in = (byte *)memIn.get_data();
 
-         zstream.avail_in = (uint32_t)uiRead;
+			 zstream.avail_in = (uint32_t)uiRead;
 
+		 }
 
       }
 
