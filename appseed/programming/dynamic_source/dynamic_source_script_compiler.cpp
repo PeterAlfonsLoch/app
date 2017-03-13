@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "dynamic_source.h"
+#ifdef WINDOWSEX
+#include "aura/aura/node/windows/windows_registry.h"
+#endif
 
 
 #include <sys/stat.h>
@@ -132,8 +135,28 @@ void script_compiler::prepare_compile_and_link_environment()
    if (m_strVs == "2017")
    {
 
-      m_strVCVersion = "10.0.14393.0";
-      m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+	  m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+
+	  ::windows::registry::Key key;
+
+	  if (key.OpenKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false))
+	  {
+
+		  string strPath;
+
+		  if (key.QueryValue("15.0", strPath))
+		  {
+
+			  ::file::path path = strPath;
+
+			  m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
+
+		  }
+
+	  }
+
+	  m_strVCVersion = "10.0.14393.0";
+
 
    }
    else if (m_strVs == "2015")
@@ -172,8 +195,8 @@ void script_compiler::prepare_compile_and_link_environment()
    m_strLibPlatform = "x86/";
 #else
    m_strPlat1     = "64";
-   //m_strPlat2 = "  x86_amd64";
-   m_strPlat2 = "amd64";
+   m_strPlat2 = "x86_amd64";
+   //m_strPlat2 = "amd64";
    m_strPlatform = "x64";
    m_strStagePlatform = "x64";
    m_strLibPlatform = "x64/";
