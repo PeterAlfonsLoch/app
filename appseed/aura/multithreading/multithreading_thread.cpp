@@ -1263,6 +1263,8 @@ thread_startup::~thread_startup()
 bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlagsParam,LPSECURITY_ATTRIBUTES lpSecurityAttrs, IDTHREAD * puiId)
 {
 
+   m_bRunThisThread = true;
+
    DWORD dwCreateFlags = dwCreateFlagsParam;
 
    ENSURE(m_hthread == (HTHREAD) NULL);
