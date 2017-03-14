@@ -373,6 +373,7 @@
     <ClInclude Include="estamira_application.h" />
     <ClInclude Include="estamira_character.h" />
     <ClInclude Include="estamira_game.h" />
+    <ClInclude Include="estamira_main_frame.h" />
     <ClInclude Include="estamira_tileset.h" />
     <ClInclude Include="framework.h" />
   </ItemGroup>
@@ -381,6 +382,7 @@
     <ClCompile Include="estamira_application.cpp" />
     <ClCompile Include="estamira_character.cpp" />
     <ClCompile Include="estamira_game.cpp" />
+    <ClCompile Include="estamira_main_frame.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>

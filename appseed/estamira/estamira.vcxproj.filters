@@ -29,6 +29,9 @@
     <ClInclude Include="estamira_application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="estamira_main_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -47,6 +50,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="estamira_application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="estamira_main_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

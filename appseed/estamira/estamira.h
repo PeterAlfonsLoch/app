@@ -45,6 +45,8 @@ namespace estamira
 
 #include "estamira_game.h"
 
+#include "estamira_main_frame.h"
+
 
 
 
