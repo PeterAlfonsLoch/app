@@ -1,11 +1,11 @@
 #pragma once
 
 
-//CLASS_DECL_AXIS bool vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn);
-//CLASS_DECL_AXIS bool vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
-//CLASS_DECL_AXIS UINT vfxGetFileName(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax);
-//CLASS_DECL_AXIS void vfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
-//CLASS_DECL_AXIS void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName);
+//CLASS_DECL_AURA bool vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn);
+//CLASS_DECL_AURA bool vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+//CLASS_DECL_AURA UINT vfxGetFileName(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax);
+//CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
+//CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName);
 
 
 namespace metrowin

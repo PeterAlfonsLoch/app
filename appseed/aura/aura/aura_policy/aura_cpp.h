@@ -1761,6 +1761,9 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/charguess/charguess.h"
 
 
+#include "aura/net/net.h"
+
+
 namespace user
 {
 
