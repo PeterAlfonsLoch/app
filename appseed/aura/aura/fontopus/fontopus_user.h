@@ -1,9 +1,6 @@
 #pragma once
 
 
-class ifs;
-
-
 namespace userpresence
 {
 
@@ -21,7 +18,7 @@ namespace fontopus
    class contact_list;
 
 
-   class CLASS_DECL_AURA user :
+   class CLASS_DECL_AXIS user :
       public object
    {
    public:
@@ -48,7 +45,7 @@ namespace fontopus
 
       ::userpresence::presence *             m_ppresence;
 
-      ::ifs *                                m_pifs;
+      sp(::ifs)                              m_pifs;
       string                                 m_strLoginStats;
       string                                 m_strFontopusServerInfo;
 

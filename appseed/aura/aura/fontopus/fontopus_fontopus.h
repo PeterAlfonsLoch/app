@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_AURA fontopus :
+   class CLASS_DECL_AXIS fontopus :
       virtual public ::aura::department
    {
    public:
@@ -67,7 +67,7 @@ namespace fontopus
 
 
 
-   class CLASS_DECL_AURA create_user_thread:
+   class CLASS_DECL_AXIS create_user_thread:
       virtual public thread
    {
    public:
