@@ -4517,6 +4517,39 @@ finalize:
 
    }
 
+
+   bool application::compress_ungz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszGzFileCompressed)
+   {
+
+      return System.compress().ungz(this, ostreamUncompressed, lpcszGzFileCompressed);
+
+   }
+
+   
+   bool application::compress_ungz(::primitive::memory_base & mem)
+   {
+
+      return System.compress().ungz(this, mem);
+
+   }
+
+
+   bool application::compress_gz(::file::file * pfileOut, const ::file::path & lpcszUncompressed, int iLevel)
+   {
+
+      return System.compress().gz(this, pfileOut, lpcszUncompressed, iLevel);
+
+   }
+
+
+   bool application::compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel)
+   {
+
+      return System.compress().gz(this, pfileOut, pfileIn, iLevel);
+
+   }
+
+
 } // namespace axis
 
 

@@ -108,6 +108,10 @@ namespace aura
       ::file::system_sp                            m_spfile;
       ::file::dir::system_sp                       m_spdir;
 
+      ::http::system                               m_httpsystem;
+
+
+
       string                                       m_strInstallVersion;
       string                                       m_strInstallPlatform;
 
@@ -370,6 +374,8 @@ namespace aura
       virtual ::file::path dir_appmatter_locator(::aura::application * papp);
 
       virtual string crypto_md5_text(const string & str);
+
+      inline class ::http::system                  & http() { return m_httpsystem; }
 
 
       virtual void * & ftlibrary();

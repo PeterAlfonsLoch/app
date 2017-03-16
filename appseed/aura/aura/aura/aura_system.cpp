@@ -40,7 +40,8 @@ namespace aura
 
    system::system(::aura::application * papp, void * pdata) :
       m_process(this),
-      m_base64(this)
+      m_base64(this),
+      m_httpsystem(this)
    {
       
       m_pdumpcontext = new dump_context();

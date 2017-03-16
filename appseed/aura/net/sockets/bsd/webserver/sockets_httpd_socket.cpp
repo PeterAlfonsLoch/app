@@ -26,8 +26,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
-#include "axis/net/net_sockets.h"
-#include "axis/axis/compress/compress_department.h"
+#include "aura/net/net_sockets.h"
 #include <openssl/ssl.h>
 
 
@@ -343,7 +342,7 @@ namespace sockets
       {
          if(::str::begins_ci(strContentType,"audio/"))
          {
-            if(!System.compress().ungz(get_app(), response().ostream(),lpcsz))
+            if(!Application.compress_ungz(response().ostream(),lpcsz))
             {
                ::file::file_sp spfile(allocer());
                if(spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())

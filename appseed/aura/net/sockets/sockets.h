@@ -20,10 +20,10 @@
 //#include "http_memory_file.h"
 
 
-#include "axis/net/http/webserver/webserver_http_form.h"
-#include "axis/net/http/webserver/webserver_http_transaction.h"
-#include "axis/net/http/webserver/webserver_http_request.h"
-#include "axis/net/http/webserver/webserver_http_response.h"
+#include "aura/net/http/webserver/webserver_http_form.h"
+#include "aura/net/http/webserver/webserver_http_transaction.h"
+#include "aura/net/http/webserver/webserver_http_request.h"
+#include "aura/net/http/webserver/webserver_http_response.h"
 
 
 #include "sockets_logger.h"
@@ -56,8 +56,8 @@ CLASS_DECL_AURA const SSL_METHOD * TLS_server_method();
 
 
 
-//#include "axis/filesystem/file/file_timeout_buffer.h"
-//#include "axis/filesystem/file/file_transfer_buffer.h"
+//#include "aura/filesystem/file/file_timeout_buffer.h"
+//#include "aura/filesystem/file/file_transfer_buffer.h"
 //#include "sockets_http_buffer.h"
 #include "sockets_http_batch_buffer.h"
 
@@ -67,12 +67,12 @@ CLASS_DECL_AURA const SSL_METHOD * TLS_server_method();
 
 
 
-#include "axis/net/mail/mail.h"
+#include "aura/net/mail/mail.h"
 
 
 
-#include "axis/net/net_ip_enum.h"
-#include "axis/net/net_port_forward.h"
+#include "aura/net/net_ip_enum.h"
+#include "aura/net/net_port_forward.h"
 
 
 

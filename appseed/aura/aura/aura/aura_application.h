@@ -58,6 +58,8 @@ namespace aura
 
       ::aura::main_init_data *                        m_pinitmaindata;
 
+      ::http::application                             m_http;
+
 
       EExclusiveInstance                              m_eexclusiveinstance;
 
@@ -178,6 +180,9 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
       inline class ::file::dir::application &   dir()          { return *m_spdir; }
       inline class ::file::application &        file()         { return *m_spfile; }
+      inline class ::http::application &        http() { return m_http; }
+
+
 
       virtual bool on_run_exception(::exception::exception & e) override;
       virtual bool handle_not_installed(::not_installed & notinstalled);
@@ -549,6 +554,11 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual void on_setting_changed(::aura::e_setting esetting);
 
       virtual string http_get(const string & strUrl, ::property_set & set);
+
+      virtual bool compress_ungz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszGzFileCompressed);
+      virtual bool compress_ungz(::primitive::memory_base & mem);
+      virtual bool compress_gz(::file::file * pfileOut, const ::file::path & lpcszUncompressed, int iLevel = 6);
+      virtual bool compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel = 6);
 
 
    };

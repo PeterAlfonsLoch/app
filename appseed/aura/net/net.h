@@ -37,8 +37,8 @@ namespace sockets
 
 
 
-#include "axis/net/net_url_department.h"
-#include "axis/net/net_url_domain.h"
+#include "aura/net/net_url_department.h"
+#include "aura/net/net_url_domain.h"
 
 
 
@@ -61,12 +61,12 @@ namespace sockets
 
 
 
-#include "axis/net/http/http_ostream.h"
+#include "aura/net/http/http_ostream.h"
 
 
 
 
-#include "axis/net/http/http_http.h"
+#include "aura/net/http/http_http.h"
 
 
 #include "sockets/sockets.h"

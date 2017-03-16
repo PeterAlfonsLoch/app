@@ -16,9 +16,6 @@ namespace axis
       //::url::department                           m_urldepartment;
 
 
-      ::http::system                               m_httpsystem;
-
-
       ::crypto::crypto_sp                          m_spcrypto;
       sp(::install::install)                       m_spinstall;
 
@@ -70,8 +67,6 @@ namespace axis
       virtual bool finalize() override;
 
       //::url::department                           & url()     { return m_urldepartment; }
-
-      inline class ::http::system                  & http()    { return m_httpsystem; }
 
       class ::crypto::crypto                       & crypto();
       ::install::install                           & install() { return *m_spinstall; }

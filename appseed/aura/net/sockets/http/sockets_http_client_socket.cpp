@@ -1,5 +1,5 @@
-#include "framework.h" // from "axis/net/net_sockets.h"
-#include "axis/net/net_sockets.h"
+#include "framework.h" // from "aura/net/net_sockets.h"
+#include "aura/net/net_sockets.h"
 
 
 #ifdef LINUX
@@ -213,8 +213,10 @@ namespace sockets
 
       if (outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
       {
-         
-         System.compress().ungz(get_app(), *m_memoryfile.get_memory());
+
+         ASSERT(System.m_pcompress != NULL);
+
+         Application.compress_ungz(*m_memoryfile.get_memory());
 
       }
 
@@ -476,7 +478,7 @@ namespace sockets
 
    }
 
-   CLASS_DECL_AXIS string http_method_string(e_http_method emethod)
+   CLASS_DECL_AURA string http_method_string(e_http_method emethod)
    {
 
       switch (emethod)
@@ -502,7 +504,7 @@ namespace sockets
    }
 
 
-   CLASS_DECL_AXIS e_http_method string_http_method(const string & str)
+   CLASS_DECL_AURA e_http_method string_http_method(const string & str)
    {
 
       string strMethod(str);

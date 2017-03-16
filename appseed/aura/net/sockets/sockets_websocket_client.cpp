@@ -1,5 +1,5 @@
-#include "framework.h" // from "axis/net/net_sockets.h"
-#include "axis/net/net_sockets.h"
+#include "framework.h" // from "aura/net/net_sockets.h"
+#include "aura/net/net_sockets.h"
 #include "openssl/ssl.h"
 
 #define DEEP_DATA_DEBUG 0
@@ -72,7 +72,7 @@ uint32_pack(uint32_t value, uint8_t *out)
 }
 
 
-CLASS_DECL_AXIS void websocket_prefix_varuint(memory & m, unsigned int ui)
+CLASS_DECL_AURA void websocket_prefix_varuint(memory & m, unsigned int ui)
 {
 
    int iSize = uint32_size(ui);

@@ -138,9 +138,6 @@ CLASS_DECL_AXIS bool __node_axis_pre_term();
 CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
-#include "axis/net/net.h"
-
-
 #include "axis/filesystem/filesystem.h"
 
 
@@ -249,8 +246,6 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "axis/axis/compress/compress.h"
 
 #include "axis/axis/crypto/crypto.h"
-
-#include "axis/net/net_email_department.h"
 
 #include "axis_system.h"
 

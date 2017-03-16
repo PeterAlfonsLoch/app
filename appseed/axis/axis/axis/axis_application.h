@@ -27,8 +27,6 @@ namespace axis
       string                                          m_strLicense;
 
 
-      ::http::application                             m_http;
-
       ::simpledb::simpledb                            m_simpledb;
 
       string                                          m_strDataIdAddUp;
@@ -83,8 +81,6 @@ namespace axis
       virtual bool is_serviceable() override;
 
 
-
-      inline class ::http::application &        http() { return m_http; }
 
       inline class ::simpledb::simpledb         & simpledb() { return m_simpledb; }
 
@@ -270,6 +266,12 @@ namespace axis
       virtual ::html::html * create_html();
 
       virtual string http_get(const string & strUrl, ::property_set & set) override;
+
+      virtual bool compress_ungz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszGzFileCompressed) override;
+      virtual bool compress_ungz(::primitive::memory_base & mem);
+      virtual bool compress_gz(::file::file * pfileOut, const ::file::path & lpcszUncompressed, int iLevel = 6);
+      virtual bool compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel = 6);
+
 
    };
 

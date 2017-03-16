@@ -1764,6 +1764,12 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/net/net.h"
 
 
+#include "aura/net/net_email_department.h"
+
+
+#include "aura/aura/fontopus/fontopus.h"
+
+
 namespace user
 {
 

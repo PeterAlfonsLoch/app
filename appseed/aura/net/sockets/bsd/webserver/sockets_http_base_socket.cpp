@@ -1,9 +1,9 @@
 #include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
-#include "axis/net/net_sockets.h"
-#include "axis/compress/compress.h"
-#include "zlib.h"
-#include "zutil.h"
-#include "axis/compress/zip/zip.h"
+#include "aura/net/net_sockets.h"
+//#include "axis/compress/compress.h"
+//#include "zlib.h"
+//#include "zutil.h"
+//#include "axis/compress/zip/zip.h"
 //#include "axis/compress/gzip_stream.h"
 
 
@@ -307,7 +307,8 @@ namespace sockets
    void http_base_socket::on_compress()
    {
        
-      if(inheader("accept-encoding").get_string().find("gzip") >= 0)
+      if(System.m_pcompress != NULL && 
+         inheader("accept-encoding").get_string().find("gzip") >= 0)
       {
          
          string str = outheader(__id(content_type)).get_string();
@@ -322,7 +323,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               System.compress().gz(get_app(), &file, response().m_strFile);
+               Application.compress_gz(&file, response().m_strFile);
 
                response().m_strFile.Empty();
 
@@ -332,7 +333,7 @@ namespace sockets
 
                response().file().seek_to_begin();
 
-               System.compress().gz(get_app(), &file, &response().file());
+               Application.compress_gz(&file, &response().file());
 
             }
 

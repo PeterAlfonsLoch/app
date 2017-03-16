@@ -351,6 +351,12 @@
     <Filter Include="Header Files\net\sockets\http">
       <UniqueIdentifier>{71f979a2-c1aa-43c2-8776-57ee4508df8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\fontopus">
+      <UniqueIdentifier>{ca0e68c0-a496-4f3b-b792-adb25ea83101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\fontopus">
+      <UniqueIdentifier>{02eca5dc-f9f4-47df-a64e-3f09e9b59eeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2606,6 +2612,39 @@
     <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
       <Filter>Header Files\net\sockets\http</Filter>
     </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_authentication_map.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_contact_list.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_fontopus.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_licensing.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_user.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_user_authentication.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_user_set.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_usera.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_validate.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\fontopus\fontopus_validate1.h">
+      <Filter>Header Files\aura\fontopus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4488,6 +4527,42 @@
     </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\_fontopus.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_authentication_map.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_contact_list.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_fontopus.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_licensing.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_user.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_user_authentication.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_user_set.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_usera.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_validate.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_validate1.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

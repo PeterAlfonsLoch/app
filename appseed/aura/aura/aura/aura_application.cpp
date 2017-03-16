@@ -6536,6 +6536,46 @@ namespace aura
    }
 
 
+   bool application::compress_ungz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszGzFileCompressed)
+   {
+
+      throw interface_only_exception(this);
+
+      return false;
+
+   }
+
+
+   bool application::compress_ungz(::primitive::memory_base & mem)
+   {
+
+      throw interface_only_exception(this);
+
+      return false;
+
+   }
+
+
+   bool application::compress_gz(::file::file * pfileOut, const ::file::path & lpcszUncompressed, int iLevel)
+   {
+
+      throw interface_only_exception(this);
+
+      return false;
+
+   }
+
+
+   bool application::compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel)
+   {
+
+      throw interface_only_exception(this);
+
+      return false;
+
+   }
+
+
 } // namespace aura
 
 

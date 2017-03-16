@@ -47,16 +47,12 @@ typedef in6_addr in_addr6;
 #include "net_port_forward.h"
 
 
-#include "axis/net/sockets/sockets.h"
+#include "aura/net/sockets/sockets.h"
 
 
 #include "net/http/http_get_socket.h"
 
 
-#include "filesystem/fs/fs_ifs_file.h"
-
-
-#include "filesystem/fs/fs_remote_native_file.h"
 
 
 CLASS_DECL_AURA string ip_reverse(string str);
