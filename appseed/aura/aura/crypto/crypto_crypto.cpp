@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "fiasco_finder.h"
-#include "zlib.h"
-#include "zutil.h"
+//#include "fiasco_finder.h"
+//#include "zlib.h"
+//#include "zutil.h"
 
 #if defined(OPENSSL_CRYPTO) || defined(METROWIN)
 
@@ -855,10 +855,6 @@ namespace crypto
       return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    }
 
-   uint32_t crypto::crc32(uint32_t dwPrevious, const char * psz)
-   {
-      return (uint32_t) ::crc32(dwPrevious, (const byte *)psz, (uInt)strlen(psz));
-   }
 
 
    void crypto::hmac(void * result, const memory & memMessage, const memory & memKey)

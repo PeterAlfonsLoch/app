@@ -9,7 +9,7 @@ namespace crypto
    class rsa;
 
 
-   class CLASS_DECL_AXIS crypto :
+   class CLASS_DECL_AURA crypto :
       virtual public ::object
    {
    public:
@@ -119,7 +119,7 @@ namespace crypto
 
 //#if (!defined(METROWIN) || defined(__cplusplus_winrt)) && ! defined(OPENSSL_CRYPTO)
 
-   class CLASS_DECL_AXIS rsa :
+   class CLASS_DECL_AURA rsa :
       virtual public object
    {
    public:
@@ -171,17 +171,17 @@ namespace crypto
 
 
 
-//CLASS_DECL_AXIS bool crypto_file_get(const char * pszFile, string & str, const char * pszSalt);
-//CLASS_DECL_AXIS bool crypto_file_set(const char * pszFile, const char * pszData, const char * pszSalt);
+//CLASS_DECL_AURA bool crypto_file_get(const char * pszFile, string & str, const char * pszSalt);
+//CLASS_DECL_AURA bool crypto_file_set(const char * pszFile, const char * pszData, const char * pszSalt);
 
 
 
 
 
 
-CLASS_DECL_AXIS void stunCalculateIntegrity_longterm(char* hmac, const char* input, int32_t length, const char *username, const char *realm, const char *password);
+CLASS_DECL_AURA void stunCalculateIntegrity_longterm(char* hmac, const char* input, int32_t length, const char *username, const char *realm, const char *password);
 
-CLASS_DECL_AXIS void stunCalculateIntegrity_shortterm(char* hmac, const char* input, int32_t length, const char* key);
+CLASS_DECL_AURA void stunCalculateIntegrity_shortterm(char* hmac, const char* input, int32_t length, const char* key);
 
 
-CLASS_DECL_AXIS void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);
+CLASS_DECL_AURA void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);

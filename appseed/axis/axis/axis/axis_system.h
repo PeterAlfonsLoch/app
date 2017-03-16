@@ -68,7 +68,6 @@ namespace axis
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      class ::crypto::crypto                       & crypto();
       ::install::install                           & install() { return *m_spinstall; }
 
       inline class ::visual::visual                & visual()     { return m_visual       ; }
@@ -189,6 +188,7 @@ namespace axis
       //virtual void on_request(sp(::create) pcreate);
 
 
+      virtual uint32_t crc32(uint32_t dwPrevious, const char * psz);
 
 
 	  virtual string url_encode(const string & str) override;

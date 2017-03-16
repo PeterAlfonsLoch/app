@@ -422,6 +422,11 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aura\crypto\crypto_crypto.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\crypto\_crypto.cpp" />
     <ClCompile Include="aura\fontopus\fontopus.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -1264,6 +1269,8 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="aura\charguess\types.h" />
     <ClInclude Include="aura\charguess\universal.h" />
     <ClInclude Include="aura\charguess\UTF8Prober.h" />
+    <ClInclude Include="aura\crypto\crypto.h" />
+    <ClInclude Include="aura\crypto\crypto_crypto.h" />
     <ClInclude Include="aura\exception\exception.h" />
     <ClInclude Include="aura\exception\exception2.h" />
     <ClInclude Include="aura\exception\exception_assert.h" />

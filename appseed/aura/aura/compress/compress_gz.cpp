@@ -248,3 +248,18 @@
       return true;
 
    }
+
+
+   namespace axis
+   {
+
+
+      uint32_t system::crc32(uint32_t dwPrevious, const char * psz)
+      {
+
+         return (uint32_t) ::crc32(dwPrevious, (const byte *)psz, (uInt)strlen(psz));
+
+      }
+
+
+   } // namespace axis

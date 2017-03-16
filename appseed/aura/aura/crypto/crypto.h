@@ -12,7 +12,7 @@
 
 #endif
 
-//CLASS_DECL_AXIS bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
+//CLASS_DECL_AURA bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 
 #ifdef MACOS_DEPRECATED
 
@@ -49,8 +49,8 @@ typedef struct rsa_st RSA;
 
 
 
-//CLASS_DECL_AXIS bool hex_to_memory(memory & memory, const char * pszHex);
-//CLASS_DECL_AXIS void memory_to_hex(string & strHex, memory & memory);
+//CLASS_DECL_AURA bool hex_to_memory(memory & memory, const char * pszHex);
+//CLASS_DECL_AURA void memory_to_hex(string & strHex, memory & memory);
 
 
 

@@ -357,6 +357,12 @@
     <Filter Include="Source Files\aura\fontopus">
       <UniqueIdentifier>{02eca5dc-f9f4-47df-a64e-3f09e9b59eeb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\crypto">
+      <UniqueIdentifier>{2dd80a60-2c9c-4ebf-96d6-46e272058645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\crypto">
+      <UniqueIdentifier>{963595c9-967a-4406-8e85-277bb71f1796}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2645,6 +2651,12 @@
     <ClInclude Include="aura\fontopus\fontopus_validate1.h">
       <Filter>Header Files\aura\fontopus</Filter>
     </ClInclude>
+    <ClInclude Include="aura\crypto\crypto.h">
+      <Filter>Header Files\aura\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\crypto\crypto_crypto.h">
+      <Filter>Header Files\aura\crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4563,6 +4575,12 @@
     </ClCompile>
     <ClCompile Include="aura\fontopus\fontopus_validate1.cpp">
       <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\crypto\_crypto.cpp">
+      <Filter>Source Files\aura\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\crypto\crypto_crypto.cpp">
+      <Filter>Source Files\aura\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

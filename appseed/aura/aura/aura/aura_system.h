@@ -377,6 +377,7 @@ namespace aura
 
       inline class ::http::system                  & http() { return m_httpsystem; }
 
+      class ::crypto::crypto                       & crypto();
 
       virtual void * & ftlibrary();
 
