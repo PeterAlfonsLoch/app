@@ -217,7 +217,7 @@ namespace windows
                
                {
                   auto ipv6 = (struct sockaddr_in6 *) ptr->ai_addr;
-                  ipa.add(::net::address(*ipv6,ptr->ai_addrlen));
+                  ipa.add(::net::address(*ipv6,(int)ptr->ai_addrlen));
                }
 
 

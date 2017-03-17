@@ -896,7 +896,7 @@ namespace axis
       else
       {
 
-         int iMainWkspace = m_iMainWkspace;
+         index iMainWkspace = m_iMainWkspace;
 
          if(iMainWkspace < 0 || iMainWkspace >= m_rectaWkspace.get_count())
          {
@@ -985,7 +985,7 @@ namespace axis
       else
       {
 
-         int iMainMonitor = m_iMainMonitor;
+         index iMainMonitor = m_iMainMonitor;
 
          if(iMainMonitor < 0 || iMainMonitor >= m_rectaMonitor.get_count())
          {
@@ -1133,7 +1133,7 @@ namespace axis
    bool session::wkspace_to_monitor(LPRECT lprect)
    {
 
-      int iWkspace = get_best_wkspace(NULL,rect(lprect));
+      index iWkspace = get_best_wkspace(NULL,rect(lprect));
 
       return wkspace_to_monitor(lprect,iWkspace,iWkspace);
 
@@ -1143,7 +1143,7 @@ namespace axis
    bool session::monitor_to_wkspace(LPRECT lprect)
    {
 
-      int iMonitor = get_best_monitor(NULL,rect(lprect));
+      index iMonitor = get_best_monitor(NULL,rect(lprect));
 
       return monitor_to_wkspace(lprect,iMonitor,iMonitor);
 
@@ -1378,7 +1378,7 @@ namespace axis
       aa.add(::user::AppearanceBottomRight);
       recta.add_dim(midcx,midcy,midcx,midcy);
 
-      int iFoundAppearance = recta.max_normal_intersect_area(rectParam,*lprect);
+      index iFoundAppearance = recta.max_normal_intersect_area(rectParam,*lprect);
 
       if(iFoundAppearance < 0)
       {

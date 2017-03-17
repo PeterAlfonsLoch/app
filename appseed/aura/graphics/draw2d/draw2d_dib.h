@@ -298,6 +298,9 @@ namespace draw2d
       virtual bool create_framed_square(dib * pdib, int inner, int outer, COLORREF cr);
 
 
+      virtual void invert_rgb(LPCRECT lpcrect);
+
+
       //virtual int32_t width();
       //virtual int32_t height();
       inline int64_t area() const {

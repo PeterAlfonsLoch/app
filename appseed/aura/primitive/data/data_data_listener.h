@@ -27,7 +27,8 @@ namespace data
 
    };
 
-
+   template < class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair < listener *, VALUE > >
+   using listener_map = map < listener *, listener *, VALUE, ARG_VALUE, PAIR >;
 
 
 } // namespace data

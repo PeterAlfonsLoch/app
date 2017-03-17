@@ -4042,9 +4042,9 @@ namespace user
 
       pobj->previous();
 
-      m_font->operator=(*System.visual().font_central().GetListCtrlFont());
+      m_font->operator=(*System.visual().fonts().GetListCtrlFont());
 
-      m_fontHover->operator=(*System.visual().font_central().GetListCtrlFont());
+      m_fontHover->operator=(*System.visual().fonts().GetListCtrlFont());
 
       m_fontHover->set_underline();
 

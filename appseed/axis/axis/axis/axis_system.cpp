@@ -655,7 +655,7 @@ namespace axis
    index system::get_main_monitor(LPRECT lprect)
    {
 
-      int iMainMonitor = 0;
+      index iMainMonitor = 0;
 
 #ifdef WINDOWSEX
 
@@ -774,7 +774,7 @@ namespace axis
    index system::get_main_wkspace(LPRECT lprect)
    {
 
-      int iMainWkspace = 0;
+      index iMainWkspace = 0;
 
 #ifdef WINDOWSEX
 

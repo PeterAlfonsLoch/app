@@ -3686,9 +3686,9 @@ namespace user
       on_create_draw_item();
 
 
-      m_font->operator=(*System.visual().font_central().GetMeshCtrlFont());
+      m_font->operator=(*System.visual().fonts().GetMeshCtrlFont());
 
-      m_fontHover->operator=(*System.visual().font_central().GetMeshCtrlFont());
+      m_fontHover->operator=(*System.visual().fonts().GetMeshCtrlFont());
 
       m_fontHover->set_underline();
       //m_fontHover->set_bold();

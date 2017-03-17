@@ -6,8 +6,9 @@
 #define FONTFACENAME_LUCIDA FONT_SANS
 
 
-font_central::font_central(::aura::application * papp) :
+font_department::font_department(::aura::application * papp) :
    ::object(papp),
+   ::aura::department(papp),
    m_fontCaption(allocer()),
    m_fontMenu(allocer()),
    m_fontStandard(allocer()),
@@ -17,6 +18,7 @@ font_central::font_central(::aura::application * papp) :
    m_fontGridCtrl(allocer())
 {
 
+   m_pfontenumeration = NULL;
    m_pfontLyric = NULL;
    m_pfontLyricCompact = NULL;
    m_pH3TitleFonts = NULL;
@@ -26,7 +28,7 @@ font_central::font_central(::aura::application * papp) :
 }
 
 
-font_central::~font_central()
+font_department::~font_department()
 {
 
    Finalize();
@@ -35,7 +37,7 @@ font_central::~font_central()
 
 
 
-bool font_central::IsInitialized()
+bool font_department::IsInitialized()
 {
    if(this == NULL)
       return false;
@@ -43,7 +45,7 @@ bool font_central::IsInitialized()
       return m_bInitialized;
 }
 
-bool font_central::Initialize()
+bool font_department::Initialize()
 {
 
    if(IsInitialized())
@@ -76,7 +78,7 @@ bool font_central::Initialize()
 }
 
 
-void font_central::Finalize()
+void font_department::Finalize()
 {
 
    DestroyLyricViewFonts();
@@ -90,87 +92,87 @@ void font_central::Finalize()
 }
 
 
-::draw2d::font * font_central::GetStandartFont()
+::draw2d::font * font_department::GetStandartFont()
 {
     return m_fontMenu;
 }
 
 //ref_array <  visual::font > *
-//   font_central::GetLyricViewFonts_()
+//   font_department::GetLyricViewFonts_()
 //{
 //   return m_pLyricViewFonts;
 
 //}
 
 //ref_array <  visual::font > *
-//   font_central::GetLyricViewCompactFonts_()
+//   font_department::GetLyricViewCompactFonts_()
 //{
 //   return m_pLyricViewCompactFonts;
 //}
 
 visual::font *
-   font_central::GetLyricViewFont()
+   font_department::GetLyricViewFont()
 {
    return m_pfontLyric;
 }
 
-visual::font * font_central::GetLyricViewCompactFont()
+visual::font * font_department::GetLyricViewCompactFont()
 {
    return m_pfontLyricCompact;
 }
 
-CVmsGdiFontPtrArray & font_central::GetTitleFonts()
+CVmsGdiFontPtrArray & font_department::GetTitleFonts()
 {
    return m_pTitleFonts;
 }
 
-CVmsGdiFontPtrArray & font_central::GetSubTitleFonts()
+CVmsGdiFontPtrArray & font_department::GetSubTitleFonts()
 {
    return m_pSubTitleFonts;
 }
 
-CVmsGdiFontPtrArray & font_central::GetH3TitleFonts()
+CVmsGdiFontPtrArray & font_department::GetH3TitleFonts()
 {
    return m_pH3TitleFonts;
 }
 
-visual::font * font_central::GetTitleFont()
+visual::font * font_department::GetTitleFont()
 {
     return m_pTitleFonts[0];
 }
 
-visual::font * font_central::GetSubTitleFont()
+visual::font * font_department::GetSubTitleFont()
 {
     return m_pSubTitleFonts[0];
 }
 
-visual::font * font_central::GetH3TitleFont()
+visual::font * font_department::GetH3TitleFont()
 {
    return m_pH3TitleFonts[0];
 }
 
-visual::font * font_central::GetMidiTrackNameFont()
+visual::font * font_department::GetMidiTrackNameFont()
 {
     return m_pxffontMidiTrackName;
 }
 
-visual::font * font_central::GetSongLabelFont()
+visual::font * font_department::GetSongLabelFont()
 {
     return m_lpSongLabelFont;
 }
 
-visual::font * font_central::GetSongListFont()
+visual::font * font_department::GetSongListFont()
 {
     return m_lpSongListFont;
 }
 
-::draw2d::font * font_central::GetMenuFont()
+::draw2d::font * font_department::GetMenuFont()
 {
     return m_fontMenu;
 }
 
 
-void font_central::DestroyLyricViewFonts()
+void font_department::DestroyLyricViewFonts()
 {
 
    if (!m_bLyric)
@@ -182,7 +184,7 @@ void font_central::DestroyLyricViewFonts()
 
 
 
-void font_central::CreateLyricViewFonts()
+void font_department::CreateLyricViewFonts()
 {
    //::draw2d::graphics_sp spgraphics(allocer());
    //spgraphics->CreateCompatibleDC(NULL);
@@ -288,25 +290,47 @@ void font_central::CreateLyricViewFonts()
 
 }
 
-::draw2d::font * font_central::GetCaptionFont()
+::draw2d::font * font_department::GetCaptionFont()
 {
    return m_fontCaption;
 }
 
-::draw2d::font * font_central::GetListCtrlFont()
+::draw2d::font * font_department::GetListCtrlFont()
 {
    return m_fontListCtrl;
 }
 
 
-::draw2d::font * font_central::GetMeshCtrlFont()
+::draw2d::font * font_department::GetMeshCtrlFont()
 {
    return m_fontMeshCtrl;
 }
 
 
 
-::draw2d::font * font_central::GetGridCtrlFont()
+::draw2d::font * font_department::GetGridCtrlFont()
 {
    return m_fontGridCtrl;
+}
+
+
+
+
+void font_department::defer_create_font_enumeration()
+{
+
+   if (m_pfontenumeration == NULL)
+   {
+
+      m_pfontenumeration = new ::visual::font_enumeration(get_app());
+
+   }
+
+}
+
+void font_department::update_font_enumeration()
+{
+
+   m_pfontenumeration->update();
+
 }

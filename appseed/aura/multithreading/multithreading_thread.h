@@ -144,6 +144,9 @@ public:
    int                                       m_iLine;
 
    sp(::command_thread)                      m_pcommandthread;
+   DWORD_PTR                                 m_dwThreadAffinityMask;
+   
+
 
 
 

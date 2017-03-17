@@ -193,22 +193,6 @@ void axis_on_init_thread()
 
 }
 
-thread_int_ptr < int_ptr > t_bSockets;
-
-CLASS_DECL_AXIS void thread_touch_sockets()
-{
-
-   t_bSockets = true;
-
-}
-
-
-CLASS_DECL_AXIS int thread_has_sockets()
-{
-
-   return t_bSockets;
-
-}
 
 void axis_on_term_thread()
 {

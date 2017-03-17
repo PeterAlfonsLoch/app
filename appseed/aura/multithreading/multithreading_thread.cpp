@@ -92,7 +92,6 @@ thread::thread() :
    m_puiptra = NULL;
 
 
-
 }
 
 
@@ -140,6 +139,7 @@ thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pP
 void thread::CommonConstruct()
 {
 
+   m_dwThreadAffinityMask = 0;
    //m_durationRunLock = ::duration::infinite();
 
    m_pinteractive = NULL;
@@ -1456,6 +1456,13 @@ uint32_t __thread_entry(void * pparam)
          int32_t nPriority = (int)pstartup->m_iPriority;
 
 #endif
+
+         if (pthread->m_dwThreadAffinityMask != 0)
+         {
+
+            ::SetThreadAffinityMask(::GetCurrentThread(), pthread->m_dwThreadAffinityMask);
+
+         }
 
          ::SetThreadPriority(::GetCurrentThread(), nPriority);
 
@@ -2917,5 +2924,13 @@ CLASS_DECL_AURA void set_thread_off(IDTHREAD id)
    synch_lock sl(g_pmutexThreadOn);
 
    g_pmapThreadOn->remove_key(id);
+
+}
+
+
+
+CLASS_DECL_AURA void forking_count_thread_null_end(int iOrder)
+{
+
 
 }

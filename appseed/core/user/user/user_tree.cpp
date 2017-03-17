@@ -440,7 +440,7 @@ namespace user
          ::draw2d::font_sp font(allocer());
 
 
-         font->operator=(*System.visual().font_central().GetListCtrlFont());
+         font->operator=(*System.visual().fonts().GetListCtrlFont());
          //font->set_bold();
          data.m_pdc->set_font(font);
          data.m_pdc->_DrawText(strItem, strItem.get_length(), rect, DT_LEFT | DT_BOTTOM);

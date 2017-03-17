@@ -65,6 +65,8 @@ template < typename PRED >
 }
 
 
+
+
 template < typename PRED >
 ::thread * fork(::aura::application * papp, PRED pred)
 {
@@ -120,5 +122,323 @@ inline void fork_release(::aura::application * papp, sp(T) & t)
 
 }
 
+CLASS_DECL_AURA DWORD_PTR translate_processor_affinity(int i);
+
+template < typename PRED >
+class forking_count_thread :
+   virtual public thread
+{
+public:
+
+   PRED     m_pred;
+
+   
+
+   index    m_iOrder;
+   index    m_iIndex;
+   ::count  m_iScan;
+   ::count  m_iCount;
+
+   sp(object) m_pholdref;
+
+   forking_count_thread(::aura::application * papp, sp(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+      object(papp),
+      thread(papp),
+      m_pholdref(pholdref),
+      m_pred(pred),
+      m_iOrder(iOrder),
+      m_iIndex(iIndex),
+      m_iScan(iScan),
+      m_iCount(iCount)
+   {
+      construct();
+   }
+
+   forking_count_thread(::aura::application * papp, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+      object(papp),
+      thread(papp),
+      m_pred(pred),
+      m_iOrder(iOrder),
+      m_iIndex(iIndex),
+      m_iScan(iScan),
+      m_iCount(iCount)
+   {
+      construct();
+   }
+
+   void construct()
+   {
+
+      m_dwThreadAffinityMask = translate_processor_affinity(m_iOrder);
+
+   }
+
+   virtual ~forking_count_thread()
+   {
+
+   }
+
+   int32_t run()
+   {
+
+      m_pred(m_iOrder, m_iIndex, m_iCount, m_iScan);
+
+      return 0;
+
+   }
+
+};
+
+
+template < typename PRED >
+::count fork_count(::aura::application * papp, ::count iCount, PRED pred, index iStart = 0)
+{
+
+   ::count iScan = MAX(1, MIN(iCount - iStart, get_current_process_affinity_order()));
+     
+   for (index iOrder = 0; iOrder < iScan; iOrder++)
+   {
+
+      auto pforkingthread = new forking_count_thread < PRED >(papp, iOrder, iOrder + iStart, iScan, iCount, pred);
+
+      ::thread * pthread = dynamic_cast <::thread *> (pforkingthread);
+
+      pthread->begin();
+
+   }
+
+   return iScan;
+
+}
+
+
+
+
+template < typename PRED >
+class forking_count_thread_end :
+   virtual public forking_count_thread < PRED >
+{
+public:
+
+   manual_reset_event m_evEnd;
+
+   forking_count_thread_end(::aura::application * papp, sp(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+      object(papp),
+      thread(papp),
+      forking_count_thread<PRED>(papp, pholdref, iOrder, iIndex, iScan, iCount, pred),
+      m_evEnd(papp)
+   {
+      construct();
+   }
+
+   forking_count_thread_end(::aura::application * papp, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+      object(papp),
+      thread(papp),
+      forking_count_thread<PRED>(papp, iOrder, iIndex, iScan, iCount, pred),
+      m_evEnd(papp)
+   {
+      construct();
+   }
+
+   void construct()
+   {
+
+      m_evEnd.ResetEvent();
+
+      forking_count_thread<PRED>::construct();
+
+   }
+
+   virtual ~forking_count_thread_end()
+   {
+
+   }
+
+   int32_t run()
+   {
+
+      try
+      {
+
+         m_pred(m_iOrder, m_iIndex, m_iCount, m_iScan);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      m_evEnd.SetEvent();
+
+      return 0;
+
+   }
+
+};
+
+template < typename PRED, typename PRED_END >
+::count fork_count_end(::aura::application * papp, ::count iCount, PRED pred, PRED_END predEnd, index iStart = 0)
+{
+
+   ::count iScan = MAX(1, MIN(iCount - iStart, get_current_process_affinity_order()));
+
+   spa(forking_count_thread_end < PRED >) threadptra;
+
+   sync_object_ptra ptra;
+
+   for (index iOrder = 0; iOrder < iScan; iOrder++)
+   {
+
+      sp(forking_count_thread_end < PRED >) pthread = new forking_count_thread_end < PRED >(papp, iOrder, iOrder + iStart, iScan, iCount, pred);
+
+      threadptra.add(pthread);
+
+      ptra.add(&pthread->m_evEnd);
+
+      pthread->begin();
+
+   }
+
+   multi_lock ml(ptra);
+
+   ml.lock();
+
+   predEnd();
+
+   return iScan;
+
+}
+
+
+
+
+//class pred_base
+//{
+//public:
+//
+//   virtual void run() = 0;
+//
+//};
+//
+//template < typename PRED >
+//class pred_holder
+//{
+//public:
+//
+//   PRED m_pred;
+//
+//   virtual void run()
+//   {
+//
+//      m_pred();
+//
+//   }
+//
+//};
+
+
+
+//class pred_holder_ptra :
+//   virtual public array < pred_holder_base * >
+//{
+//public:
+//
+//   pred_holder_ptra(::aura::application * papp) :
+//      object(papp)
+//   {
+//
+//
+//   }
+//
+//   virtual ~pred_holder_ptra()
+//   {
+//
+//   }
+//
+//   virtual ::count release()
+//   {
+//      ::count c = m_countReference - 1;
+//      if (m_countReference >= 2)
+//      {
+//         dec_ref();
+//      }
+//      else if (m_countReference == 1)
+//      {
+//
+//         ::fork(get_app(), [&]()
+//         {
+//
+//            for (index i = 0; i < get_size(); i++)
+//            {
+//
+//               try
+//               {
+//
+//                  element_at(i)->run();
+//
+//               }
+//               catch (...)
+//               {
+//
+//                  break;
+//
+//               }
+//
+//            }
+//
+//            for (index i = 0; i < get_size(); i++)
+//            {
+//
+//               try
+//               {
+//
+//                  delete element_at(i);
+//
+//               }
+//               catch (...)
+//               {
+//
+//                  break;
+//
+//               }
+//
+//            }
+//
+//            delete this;
+//
+//         });
+//
+//
+//      }
+//
+//      return c;
+//
+//   }
+//
+//   template < typename PRED >
+//   sp(pred_holder_ptra) then(PRED pred)
+//   {
+//
+//      add(new pred_holder <PRED>(get_app(), pred));
+//
+//      return this;
+//
+//   }
+//
+//};
+//
+//
+//template < typename PRED >
+//sp(pred_holder_ptra) then(::aura::application * papp, PRED pred)
+//{
+//
+//   sp(pred_holder_ptra) pptra = canew(pred_holder_ptra(papp));
+//
+//   pptra->add(new pred_holder <PRED>(papp, pred));
+//
+//   return pptra;
+//
+//}
 
 

@@ -1662,63 +1662,65 @@ restart:
             ::release(pfesp->m_p);
          }
 
-         ::cres cres;
+         //::cres cres;
 
-         ::file::file_sp spfile;
+         //::file::file_sp spfile;
 
-         ::file::path strPath;
+         //::file::path strPath;
 
-         if (varFile.get_type() == var::type_element)
-         {
+         //if (varFile.get_type() == var::type_element)
+         //{
 
-            spfile = varFile.cast < ::file::file >();
+         //   spfile = varFile.cast < ::file::file >();
 
-            if (spfile.is_set())
-               return spfile;
+         //   if (spfile.is_set())
+         //      return spfile;
 
-         }
-         else if (varFile.get_type() == var::type_string)
-         {
+         //}
+         //else
+         //if (varFile.get_type() == var::type_string)
+         //{
 
-            strPath = varFile;
+         //   strPath = varFile;
 
-            //strPath.trim("\"'");
+         //   //strPath.trim("\"'");
 
-         }
-         else if (varFile.get_type() == var::type_stra)
-         {
+         //}
+         //else if (varFile.get_type() == var::type_stra)
+         //{
 
-            if (varFile.stra().get_count() > 0)
-            {
+         //   if (varFile.stra().get_count() > 0)
+         //   {
 
-               strPath = varFile.stra()[0];
+         //      strPath = varFile.stra()[0];
 
-            }
+         //   }
 
-            //strPath.trim("\"'");
+         //   //strPath.trim("\"'");
 
-         }
-         else if (varFile.get_type() == var::type_propset)
-         {
+         //}
+         //else if (varFile.get_type() == var::type_propset)
+         //{
 
-            if (varFile.has_property("url"))
-            {
+         //   if (varFile.has_property("url"))
+         //   {
 
-               strPath = varFile["url"];
+         //      strPath = varFile["url"];
 
-               //strPath.trim("\"'");
+         //      //strPath.trim("\"'");
 
-            }
+         //   }
 
-         }
+         //}
 
-         if (varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_file >() != NULL)
-         {
+         //if (varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_file >() != NULL)
+         //{
 
-            spfile = varFile.propset()["file"].cast < ::file::binary_file >();
+         //   spfile = varFile.propset()["file"].cast < ::file::binary_file >();
 
-         }
-         else if (::str::find_file_extension("zip:", strPath) >= 0)
+         //}
+         //else
+         if (::str::find_file_extension("zip:", strPath) >= 0)
          {
 
             zip::InFile * pinfile = new zip::InFile(papp);

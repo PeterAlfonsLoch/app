@@ -5270,6 +5270,63 @@ namespace draw2d
    }
 
 
+   void dib::invert_rgb(LPCRECT lpcrect)
+   {
+
+      int s = m_iScan;
+
+      int left;
+      int right;
+      int top;
+      int bottom;
+
+      if (lpcrect == NULL)
+      {
+         
+         left = 0;
+
+         right = m_size.cx;
+
+         top = 0;
+
+         bottom = m_size.cy;
+
+      }
+      else
+      {
+         
+         left = MIN(MAX(0, lpcrect->left), m_size.cx);
+
+         right = MIN(MAX(0, lpcrect->right), m_size.cx);
+
+         top = MIN(MAX(0, lpcrect->top), m_size.cy);
+
+         bottom = MIN(MAX(0, lpcrect->bottom), m_size.cy);
+
+      }
+
+      int start = left * 4 + top * s;
+      
+      for (int y = top; y < bottom; y++, start+=s)
+      {
+         
+         byte * pb = &((byte *)m_pcolorref)[start];
+
+         for (int x = left; x < right; x++, pb+=4)
+         {
+            
+            pb[0] = ~pb[0];
+            pb[1] = ~pb[1];
+            pb[2] = ~pb[2];
+
+         }
+
+      }
+
+
+   }
+
+
    bool dib::create_circle(::draw2d::dib * pdib, int diameter)
    {
 

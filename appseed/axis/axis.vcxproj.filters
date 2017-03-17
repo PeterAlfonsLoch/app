@@ -263,9 +263,6 @@
     <ClInclude Include="graphics\visual\visual_font.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\visual\visual_font_central.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\visual\visual_graphics_extension.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
@@ -638,6 +635,15 @@
     <ClInclude Include="axis\axis\axis_system.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\visual\visual_font_department.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_font_enumeration.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_font_list_data.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\fs\fs_data.cpp">
@@ -731,9 +737,6 @@
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_api.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_font_central.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_buffered_graphics.cpp">
@@ -1110,6 +1113,15 @@
     </ClCompile>
     <ClCompile Include="axis\install\install_installer_launcher.cpp">
       <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font_enumeration.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font_department.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font_list_data.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

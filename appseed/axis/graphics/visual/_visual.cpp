@@ -42,7 +42,9 @@
 #include "visual_dib.cpp"
 #include "visual_fastblur.cpp"
 #include "visual_font.cpp"
-#include "visual_font_central.cpp"
+#include "visual_font_enumeration.cpp"
+#include "visual_font_list_data.cpp"
+#include "visual_font_department.cpp"
 //#ifndef WINDOWS
 #include "visual_FreeImageFileProc.cpp"
 //#endif

@@ -515,6 +515,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font_enumeration.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_font_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="html_lite\html\html_html.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -960,6 +972,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphics\dib_console.h" />
     <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="graphics\visual\visual_font_enumeration.h" />
     <ClInclude Include="graphics\visual\visual.h" />
     <ClInclude Include="graphics\visual\visual_api.h" />
     <ClInclude Include="graphics\visual\visual_buffered_graphics.h" />
@@ -968,7 +981,8 @@
     <ClInclude Include="graphics\visual\visual_dib_pal.h" />
     <ClInclude Include="graphics\visual\visual_fastblur.h" />
     <ClInclude Include="graphics\visual\visual_font.h" />
-    <ClInclude Include="graphics\visual\visual_font_central.h" />
+    <ClInclude Include="graphics\visual\visual_font_department.h" />
+    <ClInclude Include="graphics\visual\visual_font_list_data.h" />
     <ClInclude Include="graphics\visual\visual_FreeImageFileProc.h" />
     <ClInclude Include="graphics\visual\visual_glyph.h" />
     <ClInclude Include="graphics\visual\visual_glyph_set.h" />
@@ -1389,7 +1403,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="graphics\visual\visual_font_central.cpp">
+    <ClCompile Include="graphics\visual\visual_font_department.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>

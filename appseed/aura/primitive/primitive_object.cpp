@@ -648,7 +648,17 @@ object * object::clone()
 
 }
 
+void object::defer_create_mutex()
+{
 
+   if (m_pmutex == NULL)
+   {
+
+      m_pmutex = new mutex(get_app());
+
+   }
+
+}
 string object::lstr(id id,const string & strDefault)
 {
 

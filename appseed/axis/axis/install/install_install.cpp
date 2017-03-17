@@ -155,7 +155,7 @@ namespace install
          {
 
             string strMd5AndLen = straMd5[i];
-            int iFind = strMd5AndLen.find('|');
+            strsize iFind = strMd5AndLen.find('|');
             if (iFind < 0)
             {
                iaLen.remove_all();

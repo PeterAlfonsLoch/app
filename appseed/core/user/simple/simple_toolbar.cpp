@@ -204,7 +204,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
 
    ::user::interaction::_001OnDraw(pgraphics);
 
-   pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
+   pgraphics->SelectObject(System.visual().fonts().GetMenuFont());
 
    int iHover = _001GetHoverItem();
 
@@ -522,7 +522,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem)
    rect rectItem;
    rect rectImage;
 
-   pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
+   pgraphics->SelectObject(System.visual().fonts().GetMenuFont());
 
 
    ::user::toolbar_item & item = m_itema(iItem);
@@ -1145,7 +1145,7 @@ void simple_toolbar::on_layout()
    class size sizeText;
    ::draw2d::graphics_sp spgraphics(allocer());
    spgraphics->CreateCompatibleDC(NULL);
-   spgraphics->SelectObject(System.visual().font_central().GetMenuFont());
+   spgraphics->SelectObject(System.visual().fonts().GetMenuFont());
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
       ::user::toolbar_item & item = m_itema(iItem);

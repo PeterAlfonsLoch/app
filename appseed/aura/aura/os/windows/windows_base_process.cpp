@@ -172,6 +172,33 @@ int32_t get_current_process_affinity_order()
 
 }
 
+CLASS_DECL_AURA DWORD_PTR translate_processor_affinity(int iOrder)
+{
+
+   DWORD_PTR dwProcessAffinityMask;
+   DWORD_PTR dwSystemAffinityMask;
+   if (!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, &dwSystemAffinityMask))
+   {
+      return 0;
+   }
+   int32_t j = 0;
+   uint_ptr dwMask = 1;
+   for (int32_t i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+   {
+      if ((dwMask & dwProcessAffinityMask) != 0)
+      {
+         if (iOrder == j)
+         {
+            return dwMask;
+         }
+         j++;
+      }
+      dwMask = dwMask << 1;
+   }
+
+   return 0;
+
+}
 
 
 bool process_modules(stringa & stra, uint32_t processID)

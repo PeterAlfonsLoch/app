@@ -124,6 +124,8 @@ public:
    template < typename PRED >
    inline ::thread * fork(PRED pred);
 
+   void defer_create_mutex();
+
 
    virtual void delete_this();
 

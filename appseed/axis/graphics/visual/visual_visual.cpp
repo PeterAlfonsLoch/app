@@ -40,7 +40,7 @@ namespace visual
    {
 
       m_pimaging = NULL;
-      m_pfontcentral = NULL;
+      m_pfontdepartment = NULL;
       m_pvisualapi = new ::visual::api(papp);
       m_pmutex = new mutex(papp);
 
@@ -52,7 +52,7 @@ namespace visual
 
       ::aura::del(m_pimaging);
       ::aura::del(m_pvisualapi);
-      ::aura::del(m_pfontcentral);
+      ::aura::del(m_pfontdepartment);
 
    }
 
@@ -89,15 +89,15 @@ namespace visual
 
       synch_lock sl(m_pmutex);
 
-      if (m_pfontcentral == NULL)
+      if (m_pfontdepartment == NULL)
       {
 
-         m_pfontcentral = new class font_central(get_app());
+         m_pfontdepartment = new class font_department(get_app());
 
-         if (m_pfontcentral == NULL)
+         if (m_pfontdepartment == NULL)
             return false;
 
-         if (!m_pfontcentral->Initialize())
+         if (!m_pfontdepartment->Initialize())
             return false;
 
       }
@@ -190,10 +190,10 @@ namespace visual
       try
       {
 
-         if (m_pfontcentral != NULL)
+         if (m_pfontdepartment != NULL)
          {
 
-            m_pfontcentral->Finalize();
+            m_pfontdepartment->Finalize();
 
          }
 
@@ -206,7 +206,7 @@ namespace visual
 
       ::aura::del(m_pvisualapi);
 
-      ::aura::del(m_pfontcentral);
+      ::aura::del(m_pfontdepartment);
 
       ::aura::del(m_pimaging);
 
@@ -224,9 +224,9 @@ namespace visual
    }
 
 
-   class font_central & visual::font_central()
+   class font_department & visual::fonts()
    {
-      return *m_pfontcentral;
+      return *m_pfontdepartment;
    }
 
    cursor * visual::set_cursor_file(e_cursor ecursor, const ::file::path & psz, bool bFromCache)
