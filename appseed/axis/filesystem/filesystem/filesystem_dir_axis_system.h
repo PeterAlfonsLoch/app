@@ -34,9 +34,6 @@ namespace file
          public:
 
 
-            zip::Util *       m_pziputil;
-
-
             system(::aura::application * papp);
             virtual ~system();
 

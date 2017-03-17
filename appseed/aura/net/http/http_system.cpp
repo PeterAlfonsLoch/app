@@ -1921,7 +1921,7 @@ retry_session:
    bool system::download(sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const char * pszRequest,var varFile,property_set & set)
    {
 
-      ::file::file_sp spfile = set.cast < ::aura::application >("app",get_app())->m_paxissession->file().get_file(varFile,
+      ::file::file_sp spfile = set.cast < ::aura::application >("app",get_app())->m_paurasession->file().get_file(varFile,
                                  ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
@@ -1940,7 +1940,7 @@ retry_session:
 
       ::sockets::socket_handler handler(get_app());
 
-      ::file::file_sp spfile = set.cast < ::aura::application >("app", get_app())->m_paxissession->file().get_file(varFile,
+      ::file::file_sp spfile = set.cast < ::aura::application >("app", get_app())->m_paurasession->file().get_file(varFile,
                                  ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;

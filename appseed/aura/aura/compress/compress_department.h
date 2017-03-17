@@ -5,7 +5,7 @@ namespace axis
 {
 
 
-   class CLASS_DECL_AXIS compress_department :
+   class CLASS_DECL_AURA compress_department :
       virtual public ::aura::department
    {
    public:
@@ -56,12 +56,12 @@ namespace axis
 
 
 //#ifdef WINDOWS
-//CLASS_DECL_AXIS int32_t my_open(const char * psz, int32_t i);
-//CLASS_DECL_AXIS FILE * my_fopen(const char * psz, const char * pszMode);
+//CLASS_DECL_AURA int32_t my_open(const char * psz, int32_t i);
+//CLASS_DECL_AURA FILE * my_fopen(const char * psz, const char * pszMode);
 //#else
-//CLASS_DECL_AXIS void _get_errno(int32_t * perrno);
-//CLASS_DECL_AXIS int32_t my_open(const char * psz, int32_t i);
-//CLASS_DECL_AXIS FILE * my_fopen(const char * psz, const char * pszMode);
+//CLASS_DECL_AURA void _get_errno(int32_t * perrno);
+//CLASS_DECL_AURA int32_t my_open(const char * psz, int32_t i);
+//CLASS_DECL_AURA FILE * my_fopen(const char * psz, const char * pszMode);
 //#endif
 
 

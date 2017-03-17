@@ -41,7 +41,7 @@ namespace base
 
       bool initialize() override;
 
-      virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive) override;
+      virtual string fontopus_get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive, ::user::interactive * pinteractive = NULL) override;
 
       virtual void get_cursor_pos(LPPOINT lppoint) override;
 

@@ -47,7 +47,7 @@ int32_t  aLen=plain.Length;    // Length is length of unzipped data.
 
 
 
-class CLASS_DECL_AXIS compress_bz:
+class CLASS_DECL_AURA compress_bz:
    virtual public ::object
 {
 public:
@@ -66,7 +66,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS uncompress_bz :
+class CLASS_DECL_AURA uncompress_bz :
    virtual public ::object
 {
 public:

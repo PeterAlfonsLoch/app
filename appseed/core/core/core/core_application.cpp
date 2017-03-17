@@ -3468,7 +3468,7 @@ namespace core
    string application::get_cred(string & strUsername, string & strPassword, string strToken)
    {
 
-      return ::base::application::get_cred(strUsername, strPassword, strToken);
+      return ::base::application::fontopus_get_cred(strUsername, strPassword, strToken);
 
    }
 

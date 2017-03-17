@@ -152,7 +152,7 @@
     </ResourceCompile>
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
@@ -183,7 +183,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(ProjectDir);$(SolutionDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../..;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/aura;$(ProjectDir)../../include;Source;Source\FreeImage;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../nodeapp/$(PlatformName)/include/;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(ProjectDir);$(SolutionDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../..;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/aura;$(ProjectDir)../../include;Source;Source\FreeImage;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NO_LCMS;NO_JASPER;USE_JPIP;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;HALF_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -298,7 +298,7 @@
     <Link>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
@@ -327,7 +327,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(ProjectDir);$(SolutionDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../..;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/aura;$(ProjectDir)../../include;Source;Source\FreeImage;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../nodeapp/$(PlatformName)/include/;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(ProjectDir);$(SolutionDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../..;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/aura;$(ProjectDir)../../include;Source;Source\FreeImage;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NO_LCMS;NO_JASPER;USE_JPIP;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;HALF_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>

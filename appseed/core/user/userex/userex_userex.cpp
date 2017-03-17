@@ -1302,7 +1302,7 @@ namespace core
          attach_thread_input_to_main_thread(false);
 #endif
 
-         strRet = ::base::application::get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+         strRet = ::base::application::fontopus_get_cred(get_app(), strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive, NULL);
 
       finished:
 

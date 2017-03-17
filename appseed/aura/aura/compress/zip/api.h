@@ -6,7 +6,7 @@
 namespace zip
 {
 
-   class CLASS_DECL_AXIS api  
+   class CLASS_DECL_AURA api  
    {
    public:
 

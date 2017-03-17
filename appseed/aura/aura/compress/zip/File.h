@@ -9,7 +9,7 @@ namespace zip
 {
 
 
-   class CLASS_DECL_AXIS File :
+   class CLASS_DECL_AURA File :
       virtual public ::object
    {
    public:

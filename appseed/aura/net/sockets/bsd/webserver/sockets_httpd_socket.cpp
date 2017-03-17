@@ -192,7 +192,16 @@ namespace sockets
       // here's the server.pem file we just created above
       // %! remember to change the password to the one you used for your server key
       //InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
-	  InitializeContext(m_strCat, m_strCat, "", TLS_server_method());
+
+      string strId = m_strCat;
+
+      if (strId.begins_ci("cat://"))
+      {
+
+         strId = "cat://" + System.crypto().md5(strId);
+
+      }
+	  InitializeContext(strId, m_strCat, "", TLS_server_method());
 
 
 	 // SSL_CTX_set_min_proto_version(m_ssl_ctx, TLS1_VERSION);
@@ -226,7 +235,7 @@ namespace sockets
             if (g_dh[keylength] == NULL)
             {
 
-               string strTitle = m_strCat.name();
+               string strTitle = ::file::path(m_strCat).name();
 
                if (strTitle.find_ci(".") >= 0)
                {
@@ -236,7 +245,7 @@ namespace sockets
                }
 
 
-               string strFile = m_strCat.sibling(strTitle) + ".dh" + ::str::from(keylength) + ".pem";
+               string strFile = ::file::path(m_strCat).sibling(strTitle) + ".dh" + ::str::from(keylength) + ".pem";
 
                FILE * paramfile = fopen(strFile, "r");
 

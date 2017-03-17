@@ -361,7 +361,7 @@ namespace ftp
    };
 
 
-   class command::info2 : private map<e_command, e_command, sp(extended_info), extended_info * >
+   class CLASS_DECL_AURA command::info2 : private map<e_command, e_command, sp(extended_info), extended_info * >
    {
    public:
 

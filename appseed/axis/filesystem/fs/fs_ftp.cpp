@@ -490,7 +490,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    retry:
 
-      Application.get_cred(strUrl, ::null_rect(), logon.Username(), logon.Password(), strToken, strUrl, true);
+      Application.fontopus_get_cred(get_app(), strUrl, ::null_rect(), logon.Username(), logon.Password(), strToken, strUrl, true, NULL);
 
       retry_login:
 

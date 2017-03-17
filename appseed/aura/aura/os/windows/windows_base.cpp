@@ -13,6 +13,8 @@
 
 void __term_threading();
 void __term_windowing();
+WSADATA g_wsadata;
+int g_iWsaStartup;
 
 
 CLASS_DECL_AURA int32_t __cdecl _memory_type(const void * p);
@@ -77,6 +79,18 @@ bool defer_co_initialize_ex()
 bool __node_aura_pre_init()
 {
    
+
+   g_iWsaStartup = WSAStartup(0x101, &g_wsadata);
+
+   if (g_iWsaStartup != 0)
+   {
+
+      LOG(level_error, "__node_axis_pre_init") << "Failed to Initialize Windows Sockets : WSAStartup";
+
+      return false;
+
+   }
+
 
    OutputDebugStringW(L"__node_aura_pre_init\n");
 
@@ -158,9 +172,13 @@ bool __node_aura_pos_term()
    ::aura::del(g_pgdiplusStartupInput);
    ::aura::del(g_pgdiplusStartupOutput);
 
-   OutputDebugStringW(L"draw2d_gdiplus.dll terminating!\n");
+   OutputDebugStringW(L"aura terminating!\n");
 
    //::CoUninitialize();
+
+
+   WSACleanup();
+
 
    return true;
 
@@ -838,5 +856,13 @@ CLASS_DECL_AURA string get_error_string(uint64_t ui)
    ::LocalFree(pszError);
 
    return strError;
+
+}
+
+
+CLASS_DECL_AURA WSADATA get_wsadata()
+{
+
+   return g_wsadata;
 
 }

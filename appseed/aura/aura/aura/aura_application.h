@@ -1,11 +1,5 @@
 #pragma once
 
-namespace hotplugin
-{
-   class host;
-   class plugin;
-}
-
 
 namespace aura
 {
@@ -14,7 +8,8 @@ namespace aura
    class CLASS_DECL_AURA application :
       virtual public ::thread,
       virtual public int_scalar_source,
-      virtual public ::file::listing_provider
+      virtual public ::file::listing_provider,
+      virtual public ::user::interactive
    {
    public:
 
@@ -356,7 +351,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
-      virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
+      //virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 
       virtual bool get_temp_file_name_template(string & str,const char * pszName,const char * pszExtension,const char * pszTemplate);
 
@@ -559,6 +554,10 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual bool compress_ungz(::primitive::memory_base & mem);
       virtual bool compress_gz(::file::file * pfileOut, const ::file::path & lpcszUncompressed, int iLevel = 6);
       virtual bool compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel = 6);
+
+
+      virtual string fontopus_get_cred(::aura::application * papp, const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive, ::user::interactive * pinteractive = NULL) override;
+
 
 
    };

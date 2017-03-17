@@ -7,7 +7,7 @@
 namespace zip
 {
 
-   class CLASS_DECL_AXIS memory_file :
+   class CLASS_DECL_AURA memory_file :
       public ::memory_file
 
    {

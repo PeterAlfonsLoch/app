@@ -356,6 +356,8 @@ namespace base
    }
 
 
+
+
    bool application::on_thread_on_idle(::thread_impl * pimpl,LONG lCount)
    {
 

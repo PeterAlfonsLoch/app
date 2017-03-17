@@ -94,8 +94,6 @@ typedef sp(::user::interaction_impl) window_sp;
 #define App(paxisapp) (*paxisapp->m_paxisapp)
 #define Application (App(m_pauraapp->m_paxisapp))
 
-#define AppUser(paxisapp) (*paxisapp->m_paxissession->fontopus()->get_user())
-#define ApplicationUser (AppUser(m_pauraapp->m_paxisapp))
 
 
 
@@ -192,11 +190,11 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #endif
 
 
-#include "axis/programming/javascript/javascript.h"
+//#include "axis/programming/javascript/javascript.h"
 
 #include "axis/filesystem/fs/fs.h"
 
-#include "axis/axis/fontopus/fontopus.h"
+//#include "axis/axis/fontopus/fontopus.h"
 
 
 
@@ -243,9 +241,9 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/filesystem/filesystem/filesystem_dir_axis_system.h"
 
-#include "axis/axis/compress/compress.h"
+//#include "axis/axis/compress/compress.h"
 
-#include "axis/axis/crypto/crypto.h"
+//#include "axis/axis/crypto/crypto.h"
 
 #include "axis_system.h"
 

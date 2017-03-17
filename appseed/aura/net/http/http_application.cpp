@@ -49,11 +49,11 @@ namespace http
       if ((bool)set["optional_ca2_sessid"])
       {
          if (Session.fontopus()->m_puser != NULL)
-            set["user"] = get_app()->m_paxissession->fontopus()->get_user(true,pszUrl);
+            set["user"] = get_app()->m_paurasession->fontopus()->get_user(true,pszUrl);
       }
       else
       {
-         set["user"] = get_app()->m_paxissession->fontopus()->get_user(true,pszUrl);
+         set["user"] = get_app()->m_paurasession->fontopus()->get_user(true,pszUrl);
       }
       set["app"] = get_app();
 

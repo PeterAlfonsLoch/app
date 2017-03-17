@@ -5,7 +5,7 @@ namespace zip
 {
 
 
-   class CLASS_DECL_AXIS Util
+   class CLASS_DECL_AURA Util
    {
    public:
 

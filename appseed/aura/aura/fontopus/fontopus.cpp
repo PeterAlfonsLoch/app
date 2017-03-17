@@ -69,6 +69,7 @@ namespace fontopus
    }
 
 
+
    void set_cred(::aura::application * papp,string strToken,const char * pszUsername,const char * pszPassword)
    {
 
@@ -110,12 +111,13 @@ namespace fontopus
    }
 
 
-   string CLASS_DECL_AURA get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_AURA get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle, bool bInteractive, ::user::interactive * pinteractive)
    {
       
-      return Sess(papp).get_cred(papp, strRequestUrlParam, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+      return Sess(papp).fontopus_get_cred(papp, strRequestUrlParam, rect, strUsername, strPassword, strToken, strTitle, bInteractive, pinteractive);
 
    }
+
 
 
 } // namespace fontopus

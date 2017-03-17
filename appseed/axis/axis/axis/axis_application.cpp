@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "fiasco_finder.h"
-#include "axis/compress/zip/zip.h"
+#include "aura/compress/zip/zip.h"
 
 
 namespace axis
@@ -57,7 +57,6 @@ namespace axis
 //      m_pcoreapp                 = NULL;
 
 
-      m_http.set_app(this);
 
 
 
@@ -4443,14 +4442,15 @@ finalize:
 
    }
 
-   string application::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+
+   string application::fontopus_get_cred(::aura::application * papp,const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive, ::user::interactive * pinteractive)
    {
 
-      return ::fontopus::get_cred(this, strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+      return ::fontopus::get_cred(papp, strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive, pinteractive);
 
    }
 
-   string application::get_cred(string & strUsername, string & strPassword, string strToken)
+   string application::fontopus_get_cred(string & strUsername, string & strPassword, string strToken)
    {
 
       return ::fontopus::get_cred(this, strUsername, strPassword, strToken);

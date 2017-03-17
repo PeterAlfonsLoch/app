@@ -43,6 +43,8 @@ namespace aura
       m_base64(this),
       m_httpsystem(this)
    {
+
+      m_bAcid = false;
       
       m_pdumpcontext = new dump_context();
 
@@ -537,6 +539,13 @@ namespace aura
 
       }
 
+
+      //m_spcrypto.alloc(allocer());
+
+      m_spcrypto = canew(::crypto::crypto(this));
+
+      if (!m_spcrypto.is_set())
+         return false;
 
       return true;
 
@@ -2829,6 +2838,22 @@ namespace aura
    }
 
 #endif
+
+   class ::crypto::crypto & system::crypto()
+   {
+
+      return *m_spcrypto;
+
+   }
+
+
+   ::fontopus::user_set & system::userset()
+   {
+
+      return m_userset;
+
+   }
+
 
    
 

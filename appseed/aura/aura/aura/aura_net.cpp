@@ -437,7 +437,7 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,c
    else
    {
 
-      if(papp->get_cred("",null_rect(),strUsername,strPassword,strToken,strTitle, bInteractive != FALSE) != "ok")
+      if(papp->fontopus_get_cred(papp, "",null_rect(),strUsername,strPassword,strToken,strTitle, bInteractive != FALSE) != "ok")
          return FALSE;
 
    }

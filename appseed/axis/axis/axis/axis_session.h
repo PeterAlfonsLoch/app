@@ -57,7 +57,6 @@ namespace axis
 
       ::userpresence::userpresence *                           m_puserpresence;
       sp(::ftpfs)                                              m_pftpfs;
-      sp(::ifs)                                                m_pifs;
       sp(::fs::remote_native)                                  m_prfs;
       sp(::fs::fs)                                             m_spfs;
       sp(class ::fs::data)                                     m_spfsdata;
@@ -67,9 +66,6 @@ namespace axis
       bool                                                     m_bIfs;
       
 
-
-      sp(::fontopus::fontopus)                                 m_pfontopus;
-      sp(class ::fontopus::licensing)                          m_splicensing;
 
       //::user::schema_simple_impl                               m_schemasimple;
 
@@ -133,28 +129,6 @@ namespace axis
       //inline ::sockets::sockets &               sockets()      { return *m_psockets; }
 
 
-      inline sp(::fontopus::fontopus)              fontopus()     { return m_pfontopus; }
-      inline class ::fontopus::licensing &         licensing()      { return *m_splicensing; }
-
-
-      virtual ::fontopus::fontopus * create_fontopus();
-
-
-      virtual ::fontopus::user * safe_get_user();
-
-
-      virtual ::fontopus::user * get_user();
-      virtual ::fontopus::user * create_current_user();
-
-
-      virtual bool is_licensed(const char * pszId,bool bInteractive = true);
-
-
-      
-
-      virtual bool get_auth(const string & pszForm,string & strUsername,string & strPassword);
-
-
       virtual bool  get_window_minimum_size(LPSIZE lpsize);
 
 
@@ -174,7 +148,7 @@ namespace axis
       virtual void defer_initialize_user_presence();
 
 
-      virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
+      virtual string fontopus_get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive, ::user::interactive * pinteractive = NULL) override;
       //virtual bool is_session();
 
 

@@ -17,7 +17,7 @@ namespace zip
 
    class File;
 
-   class CLASS_DECL_AXIS InFile:
+   class CLASS_DECL_AURA InFile:
       public ::file::binary_file,
       virtual public ::file::listing_provider
    {

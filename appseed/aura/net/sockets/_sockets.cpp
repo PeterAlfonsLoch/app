@@ -46,3 +46,6 @@
 
 
 #include "sockets_transfer_socket.cpp"
+
+
+#include "sockets_websocket_client.cpp"

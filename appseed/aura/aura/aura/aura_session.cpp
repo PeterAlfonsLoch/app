@@ -176,6 +176,8 @@ namespace aura
    bool session::process_initialize()
    {
 
+      thisstart;
+
       if(!::aura::application::process_initialize())
          return false;
 
@@ -185,6 +187,42 @@ namespace aura
       if(m_puserstrcontext == NULL)
          return false;
 
+      thisok << 2;
+
+      if (m_psockets == NULL)
+      {
+
+         m_psockets = new ::sockets::sockets(this);
+
+         m_psockets->construct(this);
+
+         if (!m_psockets->initialize1())
+         {
+
+            thisfail << 4;
+
+            return false;
+
+         }
+
+         thisok << 4;
+
+         if (!m_psockets->initialize())
+         {
+
+            thisfail << 4.1;
+
+            return false;
+
+         }
+
+         thisok << 4.1;
+
+      }
+
+      m_splicensing = canew(class ::fontopus::licensing(this));
+
+      thisend;
 
       return true;
 
@@ -292,6 +330,32 @@ namespace aura
 
 
 
+   //string session::get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   //{
+
+   //   throw interface_only_exception(papp);
+
+   //   return "";
+
+   //}
+
+   ::fontopus::fontopus * session::create_fontopus()
+   {
+
+      return canew(::fontopus::fontopus(this));
+
+   }
+
+
+   ::fontopus::user * session::safe_get_user()
+   {
+
+      if (m_pfontopus == NULL)
+         return NULL;
+
+      return m_pfontopus->m_puser;
+
+   }
 
 
 
@@ -310,15 +374,6 @@ namespace aura
 
 
 
-
-   bool session::is_licensed(const char * pszId,bool bInteractive)
-   {
-
-      ::exception::throw_not_implemented(get_app());
-
-      return false;
-
-   }
 
 
    void session::on_request(sp(::create) pcreatecontext)
@@ -1043,6 +1098,103 @@ namespace aura
       return "";
 
    }
+
+
+   string session::fontopus_get_cred(::aura::application * papp, const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive, ::user::interactive * pinteractive)
+   {
+
+      throw not_implemented(papp);
+
+      return "";
+
+   }
+
+
+
+   void session::on_user_login(::fontopus::user * puser)
+   {
+
+
+
+   }
+
+
+   bool session::is_licensed(const char * pszId, bool bInteractive)
+   {
+
+      if (directrix()->m_varTopicQuery.has_property("install"))
+         return true;
+
+      if (directrix()->m_varTopicQuery.has_property("uninstall"))
+         return true;
+
+      if (&licensing() == NULL)
+      {
+
+         return false;
+
+      }
+
+      if (!licensing().has(pszId, bInteractive))
+      {
+
+         licensing().m_mapInfo.remove_key(pszId);
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+   ::fontopus::user * session::get_user()
+   {
+
+      return m_pfontopus->get_user();
+
+   }
+
+
+   /*::fontopus::user * application::create_user(const string & pszLogin)
+   {
+   return NULL;
+   }*/
+
+   ::fontopus::user * session::create_current_user()
+   {
+      return NULL;
+      /*   string str = get_current_user_login();
+      return create_user(str);*/
+   }
+
+   /*string application::get_current_user_login()
+   {
+   return "";
+   }*/
+
+
+
+
+
+
+
+
+
+   bool session::get_auth(const string & pszForm, string & strUsername, string & strPassword)
+   {
+
+      return fontopus()->get_auth(pszForm, strUsername, strPassword);
+
+   }
+
+
+   void session::defer_initialize_user_presence()
+   {
+
+
+   }
+
 
 } // namespace aura
 

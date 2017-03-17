@@ -12,29 +12,11 @@
     <Filter Include="Header Files\axis">
       <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\programming">
-      <UniqueIdentifier>{d0b4c014-e341-4901-87ae-635655fd469d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming">
-      <UniqueIdentifier>{0c781238-460c-42fb-8480-ad29ea72ff6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming\javascript">
-      <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress">
-      <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress\zip">
-      <UniqueIdentifier>{a8ba95fd-1ee1-4c54-885a-73221d29eba7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\fs">
       <UniqueIdentifier>{ac8dd5af-8993-4120-b887-6a1e4eaaa29d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\crypto">
-      <UniqueIdentifier>{827d6b98-e29f-4ba3-9835-3a7b78877deb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
@@ -81,15 +63,6 @@
     <Filter Include="Source Files\axis">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\compress">
-      <UniqueIdentifier>{75053c2a-c9d5-43d3-aa2e-3bd3da3bccac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress\zip">
-      <UniqueIdentifier>{487ab119-db2e-4fdd-b0b1-3d12dad9dd07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\crypto">
-      <UniqueIdentifier>{3447641d-5c92-4366-adec-9adba60127e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
     </Filter>
@@ -110,12 +83,6 @@
     </Filter>
     <Filter Include="Source Files\axis\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\fontopus">
-      <UniqueIdentifier>{26f038ab-32c4-4427-ac9c-28327cfe4906}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\fontopus">
-      <UniqueIdentifier>{dc227b1d-ec5c-47a2-ad78-290446c62dbd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{a7546116-5d20-4a4e-b2ff-307fd83109dc}</UniqueIdentifier>
@@ -165,9 +132,6 @@
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{ec94a243-1709-44eb-9551-5718edde2734}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\programming\javascript">
-      <UniqueIdentifier>{98a6cd29-48d6-498e-961b-98cd0a20ea23}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{87640a01-e954-4919-b50e-08d691754d40}</UniqueIdentifier>
     </Filter>
@@ -212,54 +176,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="programming\javascript\javascript.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_functions.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_tinyjs.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
-      <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\zip_internal.h">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\api.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\crypt.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\File.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\InFile.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\ioapi.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\iowin32.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\memory_buffer.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\unzip.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\Util.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\zip.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem.h">
       <Filter>Header Files\filesystem</Filter>
     </ClInclude>
@@ -295,12 +211,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\fs\fs_set.h">
       <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\crypto_crypto.h">
-      <Filter>Header Files\axis\crypto</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\os.h">
       <Filter>Header Files\axis\os</Filter>
@@ -427,39 +337,6 @@
     </ClInclude>
     <ClInclude Include="axis\axis\axis_static_start.h">
       <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_system.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\zipImpl.h">
-      <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_authentication_map.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_fontopus.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_licensing.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_user.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_user_authentication.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_contact_list.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_user_set.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_usera.h">
-      <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
     <ClInclude Include="version.config.h">
       <Filter>Header Files</Filter>
@@ -677,12 +554,6 @@
     <ClInclude Include="axis\node\metrowin\metrowin.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_validate1.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_validate.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -764,41 +635,11 @@
     <ClInclude Include="axis\install\install_installer_launcher.h">
       <Filter>Header Files\axis\install</Filter>
     </ClInclude>
-    <ClInclude Include="axis\compress\compress_gz.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress_bz.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress_department.h">
-      <Filter>Header Files\axis\compress</Filter>
+    <ClInclude Include="axis\axis\axis_system.h">
+      <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="axis\compress\zip\zip_api.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_file.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_in_file.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_ioapi.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_memory_buffer.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_unzip.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_util.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_zip.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\fs\fs_data.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
@@ -828,12 +669,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_set.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_compress.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\crypto_crypto.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
     </ClCompile>
     <ClCompile Include="axis\geoip\geoip.cpp">
       <Filter>Source Files\axis\geoip</Filter>
@@ -927,36 +762,6 @@
     </ClCompile>
     <ClCompile Include="axis\axis\axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_authentication_map.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_fontopus.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_licensing.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_user.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_user_authentication.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_contact_list.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_user_set.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_usera.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_validate.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_application.cpp">
       <Filter>Source Files\database\database</Filter>
@@ -1081,12 +886,6 @@
     <ClCompile Include="database\simpledb\_simpledb.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="axis\compress\_compress.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\_fontopus.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="axis\geoip\_geoip.cpp">
       <Filter>Source Files\axis\geoip</Filter>
     </ClCompile>
@@ -1119,9 +918,6 @@
     </ClCompile>
     <ClCompile Include="axis\_axis_axis.cpp">
       <Filter>Source Files\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\crypto\_crypto.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\_os.cpp">
       <Filter>Source Files\axis\os</Filter>
@@ -1225,15 +1021,6 @@
     <ClCompile Include="app_install_plugin_library_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="programming\javascript\javascript.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
-    </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1266,9 +1053,6 @@
     </ClCompile>
     <ClCompile Include="axis\node\metrowin\_metrowin_node.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_validate1.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\aaa_want_to_remove_windows_file_set.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
@@ -1326,12 +1110,6 @@
     </ClCompile>
     <ClCompile Include="axis\install\install_installer_launcher.cpp">
       <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_gz.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_bz.cpp">
-      <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

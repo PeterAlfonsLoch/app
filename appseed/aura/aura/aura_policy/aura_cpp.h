@@ -124,6 +124,12 @@ typedef FN_TIMER * PFN_TIMER;
 //template < typename Type,typename RawType = typename Type >
 //class string_array;
 //typedef string_array < string > stringa;
+namespace user
+{
+
+   class interactive;
+
+} // namespace user
 
 
 namespace aura
@@ -300,6 +306,15 @@ namespace file
 
 
 class machine_event_data;
+
+namespace hotplugin
+{
+   class host;
+   class plugin;
+}
+
+
+
 
 
 namespace html
@@ -649,6 +664,9 @@ namespace html
 #undef App
 #define App(pauraapp) (*pauraapp)
 #define Application (App(m_pauraapp))
+
+#define AppUser(pauraapp) (*pauraapp->m_paurasession->fontopus()->get_user())
+#define ApplicationUser (AppUser(m_pauraapp))
 
 
 // return - result - if not ok
@@ -1169,6 +1187,9 @@ CLASS_DECL_AURA string get_exe_path();
 #include "aura/primitive/primitive_application_bias.h"
 
 
+#include "aura/user/user/user_interactive.h"
+
+
 //#include "aura/aura/aura/aura_application_interface.h"
 #include "aura/aura/aura/aura_application.h"
 #include "aura/aura/aura/aura_application_ptra.h"
@@ -1178,6 +1199,8 @@ CLASS_DECL_AURA string get_exe_path();
 
 
 #include "aura/aura/aura/aura_application_signal_details.h"
+
+#include "aura/aura/fontopus/fontopus.h"
 
 #include "aura/aura/aura/aura_session.h"
 
@@ -1769,12 +1792,16 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/net/net_email_department.h"
 
 
-#include "aura/aura/fontopus/fontopus.h"
+#include "aura/aura/scripting/javascript/javascript.h"
+
+
+#include "aura/aura/compress/compress.h"
+
+
 
 
 namespace user
 {
-
 
    inline oswindow primitive::get_safe_handle() const
    {

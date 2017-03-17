@@ -16,6 +16,9 @@ namespace file
       public:
 
 
+         zip::Util *       m_pziputil;
+
+
 
          class CLASS_DECL_AURA is_dir
          {

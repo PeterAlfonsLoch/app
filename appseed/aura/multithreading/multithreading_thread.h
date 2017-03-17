@@ -89,21 +89,21 @@ public:
 
    single_lock *                          m_pslUser;
    static bool                            s_bAllocReady;
-   //mutex *                                m_pmutex;
+   //mutex *                              m_pmutex;
 
-   //thread_impl_sp                         m_pthreadimpl;
+   //thread_impl_sp                       m_pthreadimpl;
 
-   //bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
+   //bool                                 m_bAutoDelete;       // enables 'delete this' after thread termination
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
-   ::user::primitive *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
-   ::user::primitive *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
+   ::user::primitive *                    m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
+   ::user::primitive *                    m_puiActive;         // active main interaction_impl (may not be m_puiMain)
    //property_set                           m_set;
    string                                 m_strWorkUrl;
    ref_array < thread >                   m_threadptraDependent;
    ref_array < thread >                   m_threadptraRequired;
-
+   ::user::interactive *                  m_pinteractive;
 
    bool                                   m_bZipIsDir;
 
@@ -198,7 +198,7 @@ public:
 
    int32_t priority();
 
-
+   ::user::interactive * interactive();
    //virtual bool is_auto_delete();
 
    virtual bool begin(int32_t epriority = ::multithreading::priority_normal, uint_ptr nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL, IDTHREAD * puiId = NULL);

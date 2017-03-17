@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "zlib.h"
 #include "zutil.h"
-#include "axis/compress/zip/zip.h"
-#include "axis/compress/compress_gz.h"
+#include "aura/compress/zip/zip.h"
+#include "aura/compress/compress_gz.h"
 
 
 #ifdef MACOS

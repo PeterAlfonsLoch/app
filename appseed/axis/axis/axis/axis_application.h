@@ -60,8 +60,8 @@ namespace axis
       virtual bool app_data_get(class id id, ::file::serializable & obj);
 
 
-      virtual string get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive) override;
-      virtual string get_cred(string & strUsername, string & strPassword, string strToken);
+      virtual string fontopus_get_cred(::aura::application * papp, const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive, ::user::interactive * pinteractive) override;
+      virtual string fontopus_get_cred(string & strUsername, string & strPassword, string strToken);
       virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword);
       virtual void set_cred_ok(string strToken, bool bOk);
 

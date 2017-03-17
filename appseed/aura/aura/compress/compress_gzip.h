@@ -45,7 +45,7 @@
 
 #pragma once
 
-class CLASS_DECL_AXIS compress_gz :
+class CLASS_DECL_AURA compress_gz :
    virtual public ::object
 {
 public:
@@ -64,7 +64,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS uncompress_gz :
+class CLASS_DECL_AURA uncompress_gz :
    virtual public ::object
 {
 public:

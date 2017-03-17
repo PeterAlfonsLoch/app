@@ -1,4 +1,3 @@
-#pragma once
 
 
 
@@ -16,14 +15,12 @@ namespace axis
       //::url::department                           m_urldepartment;
 
 
-      ::crypto::crypto_sp                          m_spcrypto;
       sp(::install::install)                       m_spinstall;
 
 
 
       ::visual::visual                             m_visual;
 
-      class ::fontopus::user_set                   m_userset;
 
 
       ::net::email_department                     m_emaildepartment;
@@ -71,8 +68,6 @@ namespace axis
       ::install::install                           & install() { return *m_spinstall; }
 
       inline class ::visual::visual                & visual()     { return m_visual       ; }
-
-      ::fontopus::user_set                         & userset();
 
       ::net::email_department               & email();
 
@@ -188,7 +183,7 @@ namespace axis
       //virtual void on_request(sp(::create) pcreate);
 
 
-      virtual uint32_t crc32(uint32_t dwPrevious, const char * psz);
+      //virtual uint32_t crc32(uint32_t dwPrevious, const char * psz);
 
 
 	  virtual string url_encode(const string & str) override;

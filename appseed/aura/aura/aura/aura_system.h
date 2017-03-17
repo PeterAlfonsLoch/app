@@ -25,9 +25,16 @@ namespace aura
       ,virtual public ::exception::translator
 #endif
    {
-   public:
-
+   public:      
+      
+      
+      bool                                      m_bAcid;
+      
+      
       ::dump_context *                          m_pdumpcontext;
+
+
+
 
       ::aura::session::map                         m_aurabergedgemap;
 
@@ -35,6 +42,8 @@ namespace aura
 
 
       sp(class ::datetime::department)            m_pdatetime;
+      ::crypto::crypto_sp                          m_spcrypto;
+      class ::fontopus::user_set                   m_userset;
 
       stridsp(type)                                m_typemap;
       spa(service_base)                            m_serviceptra;
@@ -180,6 +189,8 @@ namespace aura
 
       inline ::file::system                        &  file()    { return *m_spfile; }
       inline ::file::dir::system                   &  dir()     { return *m_spdir; }
+
+      ::fontopus::user_set                         & userset();
 
       ::datetime::department                       &  datetime();
 
@@ -436,6 +447,8 @@ namespace aura
       virtual bool android_set_user_wallpaper(string strUrl);
 
 #endif
+
+      uint32_t crc32(uint32_t dwPrevious, const char * psz);
       
    };
 

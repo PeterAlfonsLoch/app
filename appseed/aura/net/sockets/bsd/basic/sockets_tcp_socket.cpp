@@ -5,6 +5,7 @@
 #include <openssl/ssl.h>
 #include <openssl/safestack.h>
 #include <openssl/x509v3.h>
+#include <openssl/rsa.h>
 
 
 #include <fcntl.h>
@@ -1614,22 +1615,62 @@ skip:
       else
          SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)"--is_empty--", 9);
 
-      if (!SSL_CTX_use_certificate_chain_file(m_ssl_ctx, keyfile))
+      if (keyfile.begins_ci("cat://"))
       {
-         /* Load our keys and certificates*/
-         if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
+
+         string strCert = keyfile;
+
+         ::str::begins_eat_ci(strCert, "cat://");
+
+         BIO *bio;
+         X509 *certificate;
+
+         bio = BIO_new(BIO_s_mem());
+         BIO_puts(bio, strCert);
+         certificate = PEM_read_bio_X509(bio, NULL, NULL, NULL);
+
+         if (!SSL_CTX_use_certificate(m_ssl_ctx, certificate))
          {
-            thiserr << "tcp_socket InitializeContext,0,Couldn't read certificate file " << keyfile << "::aura::log::level_fatal";
+            thiserr << "tcp_socket InitializeContext,-1,Couldn't read certificate string " << keyfile << "::aura::log::level_fatal";
+
+         }
+
+         X509_free(certificate);
+
+         m_password = password;
+         SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
+         SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, (socket *) this);
+         RSA *key = PEM_read_bio_RSAPrivateKey(bio, NULL, NULL, NULL);
+
+
+         if (!(SSL_CTX_use_RSAPrivateKey(m_ssl_ctx, key)))
+         {
+            thiserr << "tcp_socket InitializeContext,0,Couldn't read private key file " << keyfile << "::aura::log::level_fatal";
+         }
+         RSA_free(key);
+         BIO_free(bio);
+
+      }
+      else
+      {
+         if (!SSL_CTX_use_certificate_chain_file(m_ssl_ctx, keyfile))
+         {
+            /* Load our keys and certificates*/
+            if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
+            {
+               thiserr << "tcp_socket InitializeContext,0,Couldn't read certificate file " << keyfile << "::aura::log::level_fatal";
+            }
+         }
+         m_password = password;
+         SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
+         SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, (socket *) this);
+
+         if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
+         {
+            thiserr << "tcp_socket InitializeContext,0,Couldn't read private key file " << keyfile << "::aura::log::level_fatal";
          }
       }
 
-      m_password = password;
-      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
-      SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, (socket *) this);
-      if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
-      {
-         thiserr << "tcp_socket InitializeContext,0,Couldn't read private key file " << keyfile << "::aura::log::level_fatal";
-      }
 
       {
          synch_lock sl(m_pmutex);

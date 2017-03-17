@@ -447,10 +447,10 @@ namespace base
 
 
 
-   string session::get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string session::fontopus_get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive, ::user::interactive * pinteractive)
    {
 
-      string str = ::axis::session::get_cred(papp,strRequestUrlParam,rect,strUsername,strPassword,strToken,strTitle,bInteractive);
+      string str = ::axis::session::fontopus_get_cred(papp,strRequestUrlParam,rect,strUsername,strPassword,strToken,strTitle,bInteractive, pinteractive);
 
       if(str == "ok")
          return "ok";

@@ -26,8 +26,12 @@ namespace aura
 
       index                                                    m_iEdge;
 
+      ::ifs *                                                  m_pifs;
 
       bool                                                     m_bMatterFromHttpCache;
+
+      sp(::fontopus::fontopus)                                 m_pfontopus;
+      sp(class ::fontopus::licensing)                          m_splicensing;
 
 
 
@@ -126,7 +130,39 @@ namespace aura
 
       
 
-      virtual bool is_licensed(const char * pszId,bool bInteractive = true);
+      inline sp(::fontopus::fontopus)              fontopus() { return m_pfontopus; }
+      inline class ::fontopus::licensing &         licensing() { return *m_splicensing; }
+
+
+      virtual ::fontopus::fontopus * create_fontopus();
+
+
+      virtual ::fontopus::user * safe_get_user();
+
+
+      virtual ::fontopus::user * get_user();
+      virtual ::fontopus::user * create_current_user();
+
+
+      virtual void defer_initialize_user_presence();
+
+      virtual bool is_licensed(const char * pszId, bool bInteractive = true);
+
+
+
+
+      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
+
+
+
+      virtual string fontopus_get_user_sessid(const string & str);
+
+
+      virtual string fontopus_get_cred(::aura::application * papp, const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive, ::user::interactive * pinteractive = NULL) override;
+
+
+      virtual void on_user_login(::fontopus::user * puser);
+
 
 
       virtual void on_request(sp(::create) pcreatecontext);
@@ -136,7 +172,6 @@ namespace aura
       virtual oswindow get_capture();
 
 
-      virtual string fontopus_get_user_sessid(const string & str);
 
 
    };

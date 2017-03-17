@@ -15,7 +15,7 @@ namespace axis
 
    system::system(::aura::application * papp):
       aura::system(this, NULL),
-      m_httpsystem(this),
+//      m_httpsystem(this),
       m_visual(this),
       m_emaildepartment(this)
    {
@@ -210,11 +210,7 @@ namespace axis
 
       m_spos.alloc(allocer());
 
-      m_spcrypto.alloc(allocer());
-
-      if(!m_spcrypto.is_set())
-         return false;
-
+ 
 
 
 
@@ -531,22 +527,6 @@ namespace axis
    {
 
       return true;
-
-   }
-
-
-   class ::crypto::crypto & system::crypto()
-   {
-
-      return *m_spcrypto;
-
-   }
-
-
-   ::fontopus::user_set & system::userset()
-   {
-
-      return m_userset;
 
    }
 

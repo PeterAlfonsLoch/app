@@ -147,8 +147,8 @@
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
@@ -227,7 +227,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -306,8 +306,8 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -384,7 +384,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -422,6 +422,71 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aura\compress\bsdiff\bsdiff.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_bz.cpp" />
+    <ClCompile Include="aura\compress\compress_compress.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_department.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_gz.cpp" />
+    <ClCompile Include="aura\compress\zip\zip_api.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_in_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_ioapi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_memory_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_unzip.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_util.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_zip.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\compress\_compress.cpp" />
     <ClCompile Include="aura\crypto\crypto_crypto.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
@@ -494,6 +559,9 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\fontopus\_fontopus.cpp" />
+    <ClCompile Include="aura\scripting\javascript\javascript.cpp" />
+    <ClCompile Include="aura\scripting\javascript\javascript_functions.cpp" />
+    <ClCompile Include="aura\scripting\javascript\javascript_tinyjs_functions.cpp" />
     <ClCompile Include="aura_keep.cpp" />
     <ClCompile Include="graphics\_graphics.cpp" />
     <ClCompile Include="net\ftp\ftp_client_socket.cpp">
@@ -730,8 +798,18 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp" />
-    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp" />
+    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -1115,6 +1193,12 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="user\user\user_interactive.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="user\user\_user_user.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -1269,6 +1353,25 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="aura\charguess\types.h" />
     <ClInclude Include="aura\charguess\universal.h" />
     <ClInclude Include="aura\charguess\UTF8Prober.h" />
+    <ClInclude Include="aura\compress\bsdiff\libbsdiff.h" />
+    <ClInclude Include="aura\compress\compress.h" />
+    <ClInclude Include="aura\compress\compress_bz.h" />
+    <ClInclude Include="aura\compress\compress_bzip.h" />
+    <ClInclude Include="aura\compress\compress_department.h" />
+    <ClInclude Include="aura\compress\compress_gz.h" />
+    <ClInclude Include="aura\compress\compress_gzip.h" />
+    <ClInclude Include="aura\compress\zip\api.h" />
+    <ClInclude Include="aura\compress\zip\crypt.h" />
+    <ClInclude Include="aura\compress\zip\File.h" />
+    <ClInclude Include="aura\compress\zip\InFile.h" />
+    <ClInclude Include="aura\compress\zip\ioapi.h" />
+    <ClInclude Include="aura\compress\zip\iowin32.h" />
+    <ClInclude Include="aura\compress\zip\memory_buffer.h" />
+    <ClInclude Include="aura\compress\zip\unzip.h" />
+    <ClInclude Include="aura\compress\zip\Util.h" />
+    <ClInclude Include="aura\compress\zip\zip.h" />
+    <ClInclude Include="aura\compress\zip\zipImpl.h" />
+    <ClInclude Include="aura\compress\zip\zip_internal.h" />
     <ClInclude Include="aura\crypto\crypto.h" />
     <ClInclude Include="aura\crypto\crypto_crypto.h" />
     <ClInclude Include="aura\exception\exception.h" />
@@ -1433,6 +1536,10 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="aura\process\process_department.h" />
     <ClInclude Include="aura\process\process_pipe.h" />
     <ClInclude Include="aura\process\process_process.h" />
+    <ClInclude Include="aura\scripting\javascript\javascript.h" />
+    <ClInclude Include="aura\scripting\javascript\javascript_functions.h" />
+    <ClInclude Include="aura\scripting\javascript\javascript_tinyjs.h" />
+    <ClInclude Include="aura\scripting\javascript\javascript_tinyjs_functions.h" />
     <ClInclude Include="aura\xml\xml.h" />
     <ClInclude Include="aura\xml\xml_attr.h" />
     <ClInclude Include="aura\xml\xml_base_array.h" />
@@ -3389,6 +3496,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClInclude Include="user\user\user_interactive.h" />
     <ClInclude Include="user\user\user_primitive.h" />
     <ClInclude Include="user\user\user_frame.h" />
   </ItemGroup>
@@ -4988,6 +5096,10 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ProjectReference Include="..\aqua\aqua.vcxproj">
       <Project>{51778453-c0aa-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="aura\compress\zip\algorithm.txt" />
+    <Text Include="aura\scripting\javascript\from_tiny_js_42.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

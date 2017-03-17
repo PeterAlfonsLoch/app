@@ -142,6 +142,8 @@ void thread::CommonConstruct()
 
    //m_durationRunLock = ::duration::infinite();
 
+   m_pinteractive = NULL;
+
    m_dwAlive = ::get_tick_count();
 
    if (m_pmutex == NULL)
@@ -2681,6 +2683,22 @@ int32_t thread::priority()
    return ::GetThreadPriority(m_hthread);
 
 }
+
+
+::user::interactive * thread::interactive()
+{
+
+   if (m_pinteractive == NULL)
+   {
+
+      return get_app();
+
+   }
+
+   return m_pinteractive;
+
+}
+
 
 
 bool thread::on_run_exception(::exception::exception &)

@@ -5,7 +5,7 @@ namespace ftp
 {
 
 
-   class output : 
+   class CLASS_DECL_AURA output : 
       virtual public client_socket::notification
    {
    public:

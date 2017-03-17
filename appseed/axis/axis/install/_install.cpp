@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "axis/net/net_sockets.h"
-#include "axis/compress/compress.h"
+#include "aura/net/net_sockets.h"
+#include "aura/compress/compress.h"
 #include "fiasco_finder.h"
 
 

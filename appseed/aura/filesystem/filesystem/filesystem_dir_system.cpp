@@ -1,6 +1,12 @@
 #include "framework.h"
 
 
+#include "zlib.h"
+#include "zutil.h"
+#include "aura/aura/compress/zip/zip.h"
+
+
+
 #ifdef WINDOWS
 
    #define DIR_SEPARATOR "\\"
@@ -414,12 +420,62 @@ namespace file
       }
 
 
-      ::file::listing & system::ls(::aura::application * papp, listing & listing)
+      ::file::listing & system::ls(::aura::application * papp, listing & l)
       {
 
-         listing.m_cres = cres(failure_no_log);
+         if (l.m_bRecursive)
+         {
 
-         return listing;
+            if (l.m_eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (icmp(l.m_path.ext(), ".zip") == 0 || l.m_path.find_ci("zip:") >= 0))
+            {
+
+               //throw "should implement recursive zip";
+
+               //m_pziputil->ls(papp,l);
+
+               l.m_cres = failure_no_log;
+
+            }
+            else
+            {
+
+               l.m_cres = failure_no_log;
+
+
+            }
+
+
+         }
+         else
+         {
+
+            if (::str::begins_ci(l.m_path, "http://") || ::str::begins_ci(l.m_path, "https://"))
+            {
+
+               property_set set(get_app());
+
+               string str = Sess(papp).http().get(l.m_path, set);
+
+               l.add_tokens(str, "\n", false);
+
+            }
+            else if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(l.m_path, ".zip") || ::str::find_file_extension("zip:", l.m_path) >= 0))
+            {
+
+               m_pziputil->ls(papp, l);
+
+            }
+            else
+            {
+
+               l.m_cres = failure_no_log;
+
+
+            }
+
+         }
+
+         return l;
 
       }
 
@@ -469,28 +525,146 @@ namespace file
 #endif
 #endif
 
+         bIs = false;
+
+         if (::str::begins_ci(lpcszPath, "http://") || ::str::begins_ci(lpcszPath, "https://"))
+         {
+
+            property_set set(get_app());
+
+            bIs = !Sess(papp).http().exists(lpcszPath, set);
+
+            return true;
+
+         }
+
+         if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcszPath, ".zip")))
+         {
+
+            bIs = true;
+
+            return true;
+         }
+
+         if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_file_extension("zip:", lpcszPath) >= 0))
+         {
+
+            bool bHasSubFolder;
+
+            uint32_t dwLastError;
+
+            if (m_isdirmap.lookup(lpcszPath, bHasSubFolder, dwLastError))
+            {
+
+               bIs = bHasSubFolder;
+
+               return true;
+
+            }
+
+            bHasSubFolder = m_pziputil->HasSubFolder(papp, lpcszPath);
+
+            m_isdirmap.set(lpcszPath, bHasSubFolder, ::GetLastError());
+
+            bIs = bHasSubFolder;
+
+            return true;
+
+         }
+
+#ifdef WINDOWSEX
+#ifdef WINDOWSEX
+         if (::str::ends_ci(lpcszPath, ".lnk"))
+         {
+#endif
+
+            string strTarget;
+
+            string strFolder;
+
+            string strParams;
+
+            if (System.file().resolve_link(strTarget, strFolder, strParams, lpcszPath))
+            {
+
+               bIs = is(strTarget, papp);
+
+               return true;
+
+            }
+
+#ifdef WINDOWSEX
+         }
+#endif
+#endif
+
+
          return false;
 
       }
 
 
-      bool system::is(const ::file::path & lpcszPath,::aura::application * papp)
+      bool system::is(const ::file::path & strPath,::aura::application * papp)
       {
 
          bool bIs;
 
-         if (!is_or_definitively_not(bIs, lpcszPath, papp) || !bIs)
+         if (!is_or_definitively_not(bIs, strPath, papp) || !bIs)
             return false;
+
+         if (::str::begins_ci(strPath, "http://") || ::str::begins_ci(strPath, "https://"))
+         {
+
+            property_set set(get_app());
+
+            return Sess(papp).http().exists(strPath, set);
+
+         }
+
+
+         if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+         {
+            m_isdirmap.set(strPath, true, 0);
+            return true;
+         }
+         if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_file_extension("zip:", strPath) >= 0))
+         {
+            bool bHasSubFolder;
+            uint32_t dwLastError;
+            if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
+               return bHasSubFolder;
+            bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
+            m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
+            return bHasSubFolder;
+         }
+
 
          return true;
 
       }
 
 
-      bool system::name_is(const ::file::path & lpcszPath,::aura::application * papp)
+      bool system::name_is(const ::file::path & strPath,::aura::application * papp)
       {
 
-         return name_is((const string &) lpcszPath, papp);
+         //OutputDebugString(strPath);
+         if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(strPath, ".zip")))
+         {
+            m_isdirmap.set(strPath, true, 0);
+            return true;
+         }
+         if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_file_extension("zip:", strPath) >= 0))
+         {
+            bool bHasSubFolder;
+            uint32_t dwLastError;
+            if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
+               return bHasSubFolder;
+            bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
+            m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
+            return bHasSubFolder;
+         }
+         return false;
+
 
       }
 

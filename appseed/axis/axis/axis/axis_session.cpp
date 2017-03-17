@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "axis/net/net_sockets.h"
-#include "fiasco_finder.h"
+#include "aura/net/net_sockets.h"
+//#include "fiasco_finder.h"
 
 
 namespace axis
@@ -138,14 +138,15 @@ namespace axis
    }
 
 
-
-
-   bool session::get_auth(const string & pszForm,string & strUsername,string & strPassword)
+   void session::on_user_login(::fontopus::user * puser)
    {
 
-      return fontopus()->get_auth(pszForm, strUsername, strPassword);
+
+      ::aura::session::on_user_login(puser);
 
    }
+
+
 
 
 
@@ -198,7 +199,7 @@ namespace axis
 
       }
 
-      if (m_pifs.is_null())
+      if (m_pifs == NULL)
       {
 
          m_pifs = canew(ifs(this, ""));
@@ -246,41 +247,6 @@ namespace axis
          return false;
 
       }
-
-      thisok << 3;
-
-      if (m_psockets == NULL)
-      {
-
-         m_psockets = new ::sockets::sockets(this);
-
-         m_psockets->construct(this);
-
-         if (!m_psockets->initialize1())
-         {
-
-            thisfail << 4;
-
-            return false;
-
-         }
-
-         thisok << 4;
-
-         if (!m_psockets->initialize())
-         {
-
-            thisfail << 4.1;
-
-            return false;
-
-         }
-
-         thisok << 4.1;
-
-      }
-
-      m_splicensing = canew(class ::fontopus::licensing(this));
 
       thisend;
 
@@ -550,7 +516,7 @@ namespace axis
       try
       {
 
-         m_pifs.release();
+         ::release(m_pifs);
 
       }
       catch (...)
@@ -692,100 +658,16 @@ namespace axis
    }
 
 
-   bool session::is_licensed(const char * pszId,bool bInteractive)
-   {
-
-      if(directrix()->m_varTopicQuery.has_property("install"))
-         return true;
-
-      if(directrix()->m_varTopicQuery.has_property("uninstall"))
-         return true;
-
-      if(&licensing() == NULL)
-      {
-
-         return false;
-
-      }
-
-      if(!licensing().has(pszId,bInteractive))
-      {
-
-         licensing().m_mapInfo.remove_key(pszId);
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-   ::fontopus::user * session::get_user()
-   {
-
-      return m_pfontopus->get_user();
-
-   }
-
-
-   /*::fontopus::user * application::create_user(const string & pszLogin)
-   {
-   return NULL;
-   }*/
-
-   ::fontopus::user * session::create_current_user()
-   {
-      return NULL;
-      /*   string str = get_current_user_login();
-      return create_user(str);*/
-   }
-
-   /*string application::get_current_user_login()
-   {
-   return "";
-   }*/
-
-
-
-
-
-
-
 
    void session::defer_initialize_user_presence()
    {
+
+      ::aura::session::defer_initialize_user_presence();
 
       userpresence().defer_initialize_user_presence();
 
    }
 
-   //string session::get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
-   //{
-
-   //   throw interface_only_exception(papp);
-
-   //   return "";
-
-   //}
-
-   ::fontopus::fontopus * session::create_fontopus()
-   {
-
-      return canew(::fontopus::fontopus(this));
-
-   }
-
-
-   ::fontopus::user * session::safe_get_user()
-   {
-
-      if(m_pfontopus == NULL)
-         return NULL;
-
-      return m_pfontopus->m_puser;
-
-   }
 
    void session::on_request(sp(::create) pcreate)
    {
@@ -1931,7 +1813,8 @@ namespace axis
 
    //}
 
-   string session::get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   
+   string session::fontopus_get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive, ::user::interactive * pinteractive)
    {
 
       string str = ::fontopus::get_cred(papp,strUsername,strPassword,strToken);
@@ -1944,13 +1827,6 @@ namespace axis
    }
 
 
-   void session::on_user_login(::fontopus::user * puser)
-   {
-
-
-
-
-   }
 
 
    ::user::keyboard & session::keyboard()

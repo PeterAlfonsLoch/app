@@ -118,6 +118,8 @@ namespace aura
       m_mutexStr(this)
    {
 
+      m_http.set_app(this);
+
       m_eexclusiveinstance = ExclusiveInstanceNone;
 
       m_peventReady = NULL;
@@ -2463,12 +2465,12 @@ namespace aura
    //#endif
 
 
-   string CLASS_DECL_AURA application::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
-   {
+//   string CLASS_DECL_AURA application::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+  // {
 
-      throw not_implemented(this);
+    //  throw not_implemented(this);
 
-   }
+   //}
 
 
 
@@ -6576,6 +6578,15 @@ namespace aura
    }
 
 
+   string application::fontopus_get_cred(::aura::application * papp, const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive, ::user::interactive * pinteractive)
+   {
+
+      return Sess(papp).fontopus_get_cred(papp, strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive, pinteractive);
+
+   }
+
+
+
 } // namespace aura
 
 
@@ -7480,3 +7491,6 @@ BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam)
 
    return TRUE;
 }
+
+
+

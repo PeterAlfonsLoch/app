@@ -150,6 +150,72 @@
     <Filter Include="Source Files\primitive\math">
       <UniqueIdentifier>{b27df971-568e-4de4-8bf6-c8bb1399f677}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\scripting">
+      <UniqueIdentifier>{fc6c2bcb-211d-491d-8d9d-51d04baeeaf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\scripting\javascript">
+      <UniqueIdentifier>{7aae9105-b1b3-4f5b-8d3b-3cd562c12c6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\compress">
+      <UniqueIdentifier>{84ce13e4-d31c-4dca-a79c-c50a8d7aabb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\compress\bsdiff">
+      <UniqueIdentifier>{7c15997d-985e-4f79-8eeb-e72237ca4681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\compress\zip">
+      <UniqueIdentifier>{eab8a055-7205-4481-aa03-c5b716feb688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\crypto">
+      <UniqueIdentifier>{30b42070-832a-4303-a569-8b0431a92af8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\fontopus">
+      <UniqueIdentifier>{0d69c79c-2f7f-4cf0-942e-f95e28459398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\ftp">
+      <UniqueIdentifier>{4ebfef43-7906-4169-811a-cb9cc9ef2ef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http">
+      <UniqueIdentifier>{09ee17e6-b310-4a33-80ff-6785beec7de7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http\webserver">
+      <UniqueIdentifier>{cc7261d5-79f2-40e9-a11f-0e91847a0fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\mail">
+      <UniqueIdentifier>{89c8a2d5-550c-4484-a63c-b2fdfa7c9640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets">
+      <UniqueIdentifier>{7c44ca40-829f-4560-a794-179bc8e5615d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\base">
+      <UniqueIdentifier>{146eb77c-e9c0-49da-a2db-b05f8a50d010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd">
+      <UniqueIdentifier>{7535f157-feef-4acd-9977-917339d5f537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\asynch_dns">
+      <UniqueIdentifier>{6b982682-57bd-4c40-ba9d-8936e350efa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\basic">
+      <UniqueIdentifier>{8c1f17ad-b734-400f-a4cb-fbffff73a8eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\sip">
+      <UniqueIdentifier>{069ca9f1-26a5-4f69-8994-b522d299aec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\timer">
+      <UniqueIdentifier>{11713deb-e6a7-4584-b493-3829e976f567}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\smtp">
+      <UniqueIdentifier>{b85e98a0-a09a-4350-995e-91c0d9d213d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\webserver">
+      <UniqueIdentifier>{7e4e57a2-d73d-443d-b9b7-afdb1dd7d602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\http">
+      <UniqueIdentifier>{d7bd8371-2e0b-4891-b7fe-7bc34c152034}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\http\NewFilter1">
+      <UniqueIdentifier>{f1554d25-c712-45fd-a090-a4f232ee5b6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -1876,6 +1942,363 @@
     <ClCompile Include="primitive\math\_math.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
+    <ClCompile Include="aura\scripting\javascript\javascript.cpp">
+      <Filter>Source Files\aura\scripting\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\scripting\javascript\javascript_functions.cpp">
+      <Filter>Source Files\aura\scripting\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\scripting\javascript\javascript_tinyjs_functions.cpp">
+      <Filter>Source Files\aura\scripting\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_gz.cpp">
+      <Filter>Source Files\aura\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_department.cpp">
+      <Filter>Source Files\aura\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_compress.cpp">
+      <Filter>Source Files\aura\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\_compress.cpp">
+      <Filter>Source Files\aura\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_bz.cpp">
+      <Filter>Source Files\aura\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\bsdiff\bsdiff.cpp">
+      <Filter>Source Files\aura\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_zip.cpp">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_util.cpp">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_unzip.cpp">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_memory_buffer.cpp">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_ioapi.cpp">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_in_file.cpp">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_api.cpp">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\zip\zip_file.cpp">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\crypto\crypto_crypto.cpp">
+      <Filter>Source Files\aura\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\crypto\_crypto.cpp">
+      <Filter>Source Files\aura\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_authentication_map.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_contact_list.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_fontopus.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_licensing.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_user.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_usera.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_user_authentication.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_user_set.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_validate.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\fontopus_validate1.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\_fontopus.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_client_socket.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_data_types.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_file.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_file_list_parser.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_file_status.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_output.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_output_stream.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\_ftp.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_application.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_get_socket.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_ostream.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_signal.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_status.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_system.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_request.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_response.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3_socket.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_format.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_objects.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_parsing.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_queries.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_session.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\mail\pop3_socket.cpp">
+      <Filter>Source Files\net\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_http_buffer.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_trace_logger.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_transfer_socket.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\sockets_websocket_client.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\_sockets.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\_bsd.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp">
+      <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp">
+      <Filter>Source Files\net\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_session.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_socket.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
+      <Filter>Source Files\net\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="net\_net.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1925,5 +2348,13 @@
     <ResourceCompile Include="aura.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="aura\scripting\javascript\from_tiny_js_42.txt">
+      <Filter>Source Files\aura\scripting\javascript</Filter>
+    </Text>
+    <Text Include="aura\compress\zip\algorithm.txt">
+      <Filter>Source Files\aura\compress\zip</Filter>
+    </Text>
   </ItemGroup>
 </Project>

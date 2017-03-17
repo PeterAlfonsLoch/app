@@ -463,7 +463,7 @@ local uint_ptr ziplocal_SearchCentralDir(
 #endif /* !NO_ADDFILEINEXISTINGZIP*/
 
 /************************************************************/
-extern zipFile CLASS_DECL_AXIS zipOpen2 (
+extern zipFile CLASS_DECL_AURA zipOpen2 (
     const char *pathname,
     int32_t append,
     zipcharpc* globalcomment,
@@ -628,14 +628,14 @@ extern zipFile CLASS_DECL_AXIS zipOpen2 (
     }
 }
 
-extern zipFile CLASS_DECL_AXIS zipOpen (
+extern zipFile CLASS_DECL_AURA zipOpen (
     const char *pathname,
     int32_t append)
 {
     return zipOpen2(pathname,append,NULL,NULL);
 }
 
-extern int32_t CLASS_DECL_AXIS zipOpenNewFileInZip3 (
+extern int32_t CLASS_DECL_AURA zipOpenNewFileInZip3 (
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -839,7 +839,7 @@ extern int32_t CLASS_DECL_AXIS zipOpenNewFileInZip3 (
     return err;
 }
 
-extern int32_t CLASS_DECL_AXIS zipOpenNewFileInZip2(
+extern int32_t CLASS_DECL_AURA zipOpenNewFileInZip2(
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -860,7 +860,7 @@ extern int32_t CLASS_DECL_AXIS zipOpenNewFileInZip2(
                                  NULL, 0);
 }
 
-extern int32_t CLASS_DECL_AXIS zipOpenNewFileInZip (
+extern int32_t CLASS_DECL_AURA zipOpenNewFileInZip (
     zipFile file,
     const char* filename,
     const zip_fileinfo* zipfi,
@@ -900,7 +900,7 @@ local int32_t zipFlushWriteBuffer(
     return err;
 }
 
-extern int32_t CLASS_DECL_AXIS zipWriteInFileInZip (
+extern int32_t CLASS_DECL_AURA zipWriteInFileInZip (
     zipFile file,
     const void * buf,
     uint32_t len)
@@ -965,7 +965,7 @@ extern int32_t CLASS_DECL_AXIS zipWriteInFileInZip (
     return err;
 }
 
-extern int32_t CLASS_DECL_AXIS zipCloseFileInZipRaw (
+extern int32_t CLASS_DECL_AURA zipCloseFileInZipRaw (
     zipFile file,
     uint_ptr uncompressed_size,
     uint_ptr crc32)
@@ -1061,13 +1061,13 @@ extern int32_t CLASS_DECL_AXIS zipCloseFileInZipRaw (
     return err;
 }
 
-extern int32_t CLASS_DECL_AXIS zipCloseFileInZip (
+extern int32_t CLASS_DECL_AURA zipCloseFileInZip (
     zipFile file)
 {
     return zipCloseFileInZipRaw (file,0,0);
 }
 
-extern int32_t CLASS_DECL_AXIS zipClose (
+extern int32_t CLASS_DECL_AURA zipClose (
     zipFile file,
     const char* global_comment)
 {
