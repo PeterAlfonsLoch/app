@@ -129,13 +129,13 @@ enum SCRIPTVAR_FLAGS {
 /// convert the given string into a quoted string suitable for javascript
 string getJSString(const string &str);
 
-class CLASS_DECL_AXIS CScriptException {
+class CLASS_DECL_AURA CScriptException {
 public:
     string text;
     CScriptException(const string &exceptionText);
 };
 
-class CLASS_DECL_AXIS CScriptLex
+class CLASS_DECL_AURA CScriptLex
 {
 public:
     CScriptLex(const string &input);
@@ -176,7 +176,7 @@ class CScriptVar;
 
 typedef void (*JSCallback)(CScriptVar *var, void *userdata);
 
-class CLASS_DECL_AXIS CScriptVarLink
+class CLASS_DECL_AURA CScriptVarLink
 {
 public:
   string name;
@@ -195,7 +195,7 @@ public:
 };
 
 /// Variable class (containing a doubly-linked list of children)
-class CLASS_DECL_AXIS CScriptVar
+class CLASS_DECL_AURA CScriptVar
 {
 public:
     CScriptVar(); ///< Create undefined
@@ -281,7 +281,7 @@ protected:
     friend class tinyjs;
 };
 
-class CLASS_DECL_AXIS tinyjs :
+class CLASS_DECL_AURA tinyjs :
    virtual public ::object{
 public:
     tinyjs(::aura::application * papp);

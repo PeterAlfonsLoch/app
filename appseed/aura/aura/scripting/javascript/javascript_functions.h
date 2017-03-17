@@ -2,7 +2,7 @@
 
 
 
-CLASS_DECL_AXIS void registerJavascriptFunctions(tinyjs *tinyJS);
+CLASS_DECL_AURA void registerJavascriptFunctions(tinyjs *tinyJS);
 
 
 
