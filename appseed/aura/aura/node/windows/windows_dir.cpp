@@ -304,7 +304,7 @@ namespace windows
 
          file_find file_find;
 
-         bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != FALSE;
+         bool bWorking = file_find.FindFile(listing.m_path / "*") != FALSE;
 
          if(bWorking)
          {
@@ -320,11 +320,16 @@ namespace windows
                   if((listing.m_bDir && file_find.IsDirectory()) || (listing.m_bFile && !file_find.IsDirectory()))
                   {
 
-                     listing.add(file_find.GetFilePath());
+                     if (matches_wildcard_criteria_ci(listing.m_straPattern, file_find.GetFileName()))
+                     {
 
-                     listing.last().m_iSize = file_find.get_length();
+                        listing.add(file_find.GetFilePath());
 
-                     listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+                        listing.last().m_iSize = file_find.get_length();
+
+                        listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+
+                     }
 
                   }
 
@@ -362,7 +367,7 @@ namespace windows
 
          bool bWorking;
 
-         bWorking = file_find.FindFile(listing.m_path / listing.os_pattern());
+         bWorking = file_find.FindFile(listing.m_path / "*");
 
          if(!bWorking)
          {
@@ -382,11 +387,16 @@ namespace windows
                if((listing.m_bDir && file_find.IsDirectory()) || (listing.m_bFile && !file_find.IsDirectory()))
                {
 
-                  listing.add(file_find.GetFilePath());
+                  if (matches_wildcard_criteria_ci(listing.m_straPattern, file_find.GetFileName()))
+                  {
 
-                  listing.last().m_iSize = file_find.get_length();
+                     listing.add(file_find.GetFilePath());
 
-                  listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+                     listing.last().m_iSize = file_find.get_length();
+
+                     listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+
+                  }
 
                }
 

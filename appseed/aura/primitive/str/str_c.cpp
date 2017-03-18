@@ -4,7 +4,6 @@
 ////#include "ca/x/x_charcategory_names.h"
 ////#include "ca/x/x_charcategory.h"
 
-
 void strcat_dup(char * dest, const char * cat)
 {
    if(dest == NULL)
@@ -1039,164 +1038,6 @@ const char * wildcard_next_stop(const char * pszCriteria)
 
 
 
-int_bool matches_wildcard_criteria(const char * pszCriteria, const char * pszValue)
-{
-
-
-   const char * pszFind;
-   const char * pszStop;
-
-   int_ptr iLen;
-
-   while(true)
-   {
-
-      pszFind = wildcard_next_stop(pszCriteria);
-
-      if(pszFind == NULL)
-         break;
-
-      iLen = pszFind - pszCriteria;
-
-      if(*pszFind == '?')
-      {
-
-         if(pszFind > pszCriteria)
-         {
-            if(strncmp(pszValue, pszCriteria, iLen) != 0)
-               return false;
-            pszValue       += iLen;
-            pszCriteria    += iLen;
-         }
-
-         if(*pszValue == '\0')
-            return false;
-
-         pszCriteria++;
-         pszValue++;
-
-      }
-      else if(*pszFind == '*')
-      {
-
-         if(pszFind > pszCriteria)
-         {
-            if(strncmp(pszValue, pszCriteria, iLen) != 0)
-               return false;
-            pszValue       += iLen;
-            pszCriteria    += iLen;
-         }
-
-         pszStop = wildcard_next_stop(pszFind + 1);
-
-         if(pszStop == NULL)
-         {
-            return ::str::ends(pszValue, pszFind+1);
-         }
-
-         iLen = pszStop - (pszFind + 1);
-
-         pszValue = strnstr_dup(pszValue, pszFind + 1, iLen);
-
-         if(pszValue == NULL)
-            return false;
-
-         pszValue    = pszValue + iLen;
-         pszCriteria = pszStop;
-
-      }
-      else
-      {
-         throw "not_expected, check wildcard_next_stop function";
-      }
-
-
-   }
-
-   if(strcmp(pszValue, pszCriteria) != 0)
-      return false;
-
-   return true;
-
-}
-
-int_bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * pszValue)
-{
-
-   const char * pszFind;
-   const char * pszStop;
-
-   int_ptr iLen;
-
-   while(true)
-   {
-
-      pszFind = wildcard_next_stop(pszCriteria);
-
-      if(pszFind == NULL)
-         break;
-
-      iLen = pszFind - pszCriteria;
-
-      if(*pszFind == '?')
-      {
-
-         if(pszFind > pszCriteria)
-         {
-            if(strnicmp_dup(pszValue, pszCriteria, iLen) != 0)
-               return false;
-            pszValue       += iLen;
-            pszCriteria    += iLen;
-         }
-
-         if(*pszValue == '\0')
-            return false;
-
-         pszCriteria++;
-         pszValue++;
-
-      }
-      else if(*pszFind == '*')
-      {
-
-         if(pszFind > pszCriteria)
-         {
-            if(strnicmp_dup(pszValue, pszCriteria, iLen) != 0)
-               return false;
-            pszValue       += iLen;
-            pszCriteria    += iLen;
-         }
-
-         pszStop = wildcard_next_stop(pszFind + 1);
-
-         if(pszStop == NULL)
-            pszStop = pszFind + strlen_dup(pszFind);
-
-         iLen = pszStop - (pszFind + 1);
-
-         pszValue = strnistr_dup(pszValue, pszFind + 1, iLen);
-
-         if(pszValue == NULL)
-            return false;
-
-         pszValue       = pszValue + iLen;
-         pszCriteria    = pszStop;
-
-      }
-      else
-      {
-         throw "not_expected, check wildcard_next_stop function";
-      }
-
-
-   }
-
-   if(stricmp_dup(pszValue, pszCriteria) != 0)
-      return false;
-
-   return true;
-
-}
 
 
 //CLASS_DECL_AURA string get_md5(const char * psz)
@@ -1735,4 +1576,183 @@ extern "C"
 
    }
 
+   
+   CLASS_DECL_AURA int_bool matches_wildcard_criteria_dup(const char * pszCriteriaParam, const char * pszValue)
+   {
+
+      string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
+
+      const char * pszCriteria = strCriteria;
+
+      const char * pszFind;
+      const char * pszStop;
+
+      int_ptr iLen;
+
+      while (true)
+      {
+
+         pszFind = wildcard_next_stop(pszCriteria);
+
+         if (pszFind == NULL)
+            break;
+
+         iLen = pszFind - pszCriteria;
+
+         if (*pszFind == '?')
+         {
+
+            if (pszFind > pszCriteria)
+            {
+               if (strncmp(pszValue, pszCriteria, iLen) != 0)
+                  return false;
+               pszValue += iLen;
+               pszCriteria += iLen;
+            }
+
+            if (*pszValue == '\0')
+               return false;
+
+            pszCriteria++;
+            pszValue++;
+
+         }
+         else if (*pszFind == '*')
+         {
+
+            if (pszFind > pszCriteria)
+            {
+               if (strncmp(pszValue, pszCriteria, iLen) != 0)
+                  return false;
+               pszValue += iLen;
+               pszCriteria += iLen;
+            }
+
+            pszStop = wildcard_next_stop(pszFind + 1);
+
+            if (pszStop == NULL)
+            {
+               return ::str::ends(pszValue, pszFind + 1);
+            }
+
+            iLen = pszStop - (pszFind + 1);
+
+            pszValue = strnstr_dup(pszValue, pszFind + 1, iLen);
+
+            if (pszValue == NULL)
+               return false;
+
+            pszValue = pszValue + iLen;
+            pszCriteria = pszStop;
+
+         }
+         else
+         {
+            throw "not_expected, check wildcard_next_stop function";
+         }
+
+
+      }
+
+      if (strcmp(pszValue, pszCriteria) != 0)
+         return false;
+
+      return true;
+
+   }
+
+   CLASS_DECL_AURA int_bool matches_wildcard_criteria_ci_dup(const char * pszCriteriaParam, const char * pszValue)
+   {
+
+      string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
+
+      const char * pszCriteria = strCriteria;
+
+      const char * pszFind;
+      const char * pszStop;
+
+      int_ptr iLen;
+
+      while (true)
+      {
+
+         pszFind = wildcard_next_stop(pszCriteria);
+
+         if (pszFind == NULL)
+            break;
+
+         iLen = pszFind - pszCriteria;
+
+         if (*pszFind == '?')
+         {
+
+            if (pszFind > pszCriteria)
+            {
+               if (strnicmp_dup(pszValue, pszCriteria, iLen) != 0)
+                  return false;
+               pszValue += iLen;
+               pszCriteria += iLen;
+            }
+
+            if (*pszValue == '\0')
+               return false;
+
+            pszCriteria++;
+            pszValue++;
+
+         }
+         else if (*pszFind == '*')
+         {
+
+            if (pszFind > pszCriteria)
+            {
+               if (strnicmp_dup(pszValue, pszCriteria, iLen) != 0)
+                  return false;
+               pszValue += iLen;
+               pszCriteria += iLen;
+            }
+
+            pszStop = wildcard_next_stop(pszFind + 1);
+
+            if (pszStop == NULL)
+               pszStop = pszFind + strlen_dup(pszFind);
+
+            iLen = pszStop - (pszFind + 1);
+
+            pszValue = strnistr_dup(pszValue, pszFind + 1, iLen);
+
+            if (pszValue == NULL)
+               return false;
+
+            pszValue = pszValue + iLen;
+            pszCriteria = pszStop;
+
+         }
+         else
+         {
+            throw "not_expected, check wildcard_next_stop function";
+         }
+
+
+      }
+
+      if (stricmp_dup(pszValue, pszCriteria) != 0)
+         return false;
+
+      return true;
+
+   }
+
+
+
+
+
+
+
+
+
 } // extern "C"
+
+
+
+

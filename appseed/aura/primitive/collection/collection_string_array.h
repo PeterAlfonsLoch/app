@@ -268,8 +268,8 @@ public:
    void add_lines(const Type & str,bool bAddEmpty = true);
 
 
-   bool is_empty(::count countMinimum = 1);
-   bool has_elements(::count countMinimum = 1);
+   bool is_empty(::count countMinimum = 1) const;
+   bool has_elements(::count countMinimum = 1) const;
 
    Type encode_v16();
 
@@ -2741,14 +2741,14 @@ void string_array < Type, RawType > ::splice(const string_array < Type, RawType 
 
 
 template < class Type, class RawType >
-bool string_array < Type, RawType > ::is_empty(::count countMinimum)
+bool string_array < Type, RawType > ::is_empty(::count countMinimum) const
 {
    return this->get_size() < countMinimum;
 }
 
 
 template < class Type, class RawType >
-bool string_array < Type, RawType > ::has_elements(::count countMinimum)
+bool string_array < Type, RawType > ::has_elements(::count countMinimum) const
 {
    return this->get_count() >= countMinimum;
 }

@@ -517,3 +517,7 @@ inline c_number < T > & c_number < T >::from(const string & str)
 
 
 
+
+CLASS_DECL_AURA string normalize_wildcard_criteria(const string & strPattern);
+
+

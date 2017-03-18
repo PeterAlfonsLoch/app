@@ -3769,7 +3769,7 @@ end:
    ///
    CLASS_DECL_AURA bool utf8_check_is_valid(const string& string)
    {
-      int c, i, ix, n, j;
+      strsize i, c, ix, n, j;
       for (i = 0, ix = string.length(); i < ix; i++)
       {
          c = (unsigned char)string[i];

@@ -90,7 +90,7 @@ namespace file
 
       string strFilter;
 
-      int32_t i, j;
+      int32_t i;
 
       string strFile;
 
@@ -110,25 +110,18 @@ namespace file
 
          m_straFile.m_pprovider = get_app();
 
-         for(j = 0; j < m_straFilter.get_size(); j++)
+         ::file::path & pathFolder = m_pathaSearch.element_at(i);
+
+         if(bRecursive)
          {
 
-            string strFilter = m_straFilter.element_at(j);
+            m_straFile.rls_pattern(pathFolder, m_straFilter);
 
-            strFilter.trim("\\/");
+         }
+         else
+         {
 
-            if(bRecursive)
-            {
-
-               m_straFile.rls_pattern(m_pathaSearch.element_at(i), strFilter);
-
-            }
-            else
-            {
-
-               m_straFile.ls_pattern(m_pathaSearch.element_at(i), strFilter);
-
-            }
+            m_straFile.ls_pattern(pathFolder, m_straFilter);
 
          }
 

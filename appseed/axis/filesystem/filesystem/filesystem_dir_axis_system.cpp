@@ -392,7 +392,7 @@ namespace file
          {
 
             
-            return l;
+            return ::file::dir::system::ls(papp, l);
 
          }
 

@@ -1975,7 +1975,7 @@ namespace aura
 
       ::output_debug_string("\n\n\n");
 
-      straTitle.ls_pattern(pathCa2Module,"*.*");
+      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 
       for(int32_t i = 0; i < straTitle.get_count(); i++)
       {

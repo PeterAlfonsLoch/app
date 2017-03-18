@@ -127,9 +127,11 @@ CLASS_DECL_AURA size_t safe_strlen(const char * psz);
 
 
 
+CLASS_DECL_AURA const char * wildcard_next_stop_dup(const char * pszCriteria);
 
-CLASS_DECL_AURA int_bool matches_wildcard_criteria(const char * pszCriteria, const char * pszValue);
-CLASS_DECL_AURA int_bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * pszValue);
+CLASS_DECL_AURA int_bool matches_wildcard_criteria_dup(const char * pszCriteria, const char * pszValue);
+CLASS_DECL_AURA int_bool matches_wildcard_criteria_ci_dup(const char * pszCriteria, const char * pszValue);
+
 
 
 END_EXTERN_C

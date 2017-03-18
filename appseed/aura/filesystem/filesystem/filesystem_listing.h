@@ -39,7 +39,7 @@ namespace file
    public:
 
       ::file::path      m_path;
-      string            m_strPattern;
+      stringa           m_straPattern;
       stringa           m_straIgnoreName;
       cres              m_cres;
       stringa           m_straTitle;
@@ -127,50 +127,50 @@ namespace file
 
 
 
-      listing & ls_pattern(const ::file::path & path, const string & strPattern)
+      listing & ls_pattern(const ::file::path & path, const stringa & straPattern)
       {
          m_path = path;
-         m_strPattern = strPattern;
+         m_straPattern = straPattern;
          return ls();
       }
 
-      listing & ls_pattern_file(const ::file::path & path,const string & strPattern)
+      listing & ls_pattern_file(const ::file::path & path,const stringa & straPattern)
       {
          m_path = path;
-         m_strPattern = strPattern;
+         m_straPattern = straPattern;
          m_bDir = false;
          return ls();
       }
 
-      listing & ls_pattern_dir(const ::file::path & path,const string & strPattern)
+      listing & ls_pattern_dir(const ::file::path & path,const stringa & straPattern)
       {
          m_path = path;
-         m_strPattern = strPattern;
+         m_straPattern = straPattern;
          m_bFile = false;
          return ls();
       }
 
-      listing & rls_pattern(const ::file::path & path,const string & strPattern)
+      listing & rls_pattern(const ::file::path & path,const stringa & straPattern)
       {
          m_path = path;
-         m_strPattern = strPattern;
+         m_straPattern = straPattern;
          m_bRecursive = true;
          return ls();
       }
 
-      listing & rls_pattern_file(const ::file::path & path,const string & strPattern)
+      listing & rls_pattern_file(const ::file::path & path,const stringa & straPattern)
       {
          m_path = path;
-         m_strPattern = strPattern;
+         m_straPattern = straPattern;
          m_bRecursive = true;
          m_bDir = false;
          return ls();
       }
 
-      listing & rls_pattern_dir(const ::file::path & path,const string & strPattern)
+      listing & rls_pattern_dir(const ::file::path & path,const stringa & straPattern)
       {
          m_path = path;
-         m_strPattern = strPattern;
+         m_straPattern = straPattern;
          m_bRecursive = true;
          m_bFile = false;
          return ls();
@@ -179,8 +179,6 @@ namespace file
       listing & ls();
 
       void clear_results() { m_straTitle.remove_all(); m_cres.release(); remove_all(); }
-
-      string os_pattern() const { return m_strPattern.is_empty() ||m_strPattern == "*.*" ? string("*") : m_strPattern;  }
 
 
       string title(index i)
@@ -219,7 +217,7 @@ namespace file
          patha::operator         = (listing);
          *((listing_meta*)this)  = (const listing_meta &) listing;
          m_path                  = listing.m_path;
-         m_strPattern            = listing.m_strPattern;
+         m_straPattern           = listing.m_straPattern;
          m_straIgnoreName        = listing.m_straIgnoreName;
          m_cres                  = listing.m_cres;
          m_straTitle             = listing.m_straTitle;
@@ -282,5 +280,13 @@ namespace file
 
 
 
+//CLASS_DECL_AURA bool matches_wildcard_criteria(const string & strCriteria, const string & strValue);
+//CLASS_DECL_AURA bool matches_wildcard_criteria_ci(const string & pszCriteria, const string & strValue);
+
+CLASS_DECL_AURA string normalize_wildcard_criteria(const string & strPattern);
+
+
+CLASS_DECL_AURA bool matches_wildcard_criteria(const stringa & straCriteria, const string & strValue);
+CLASS_DECL_AURA bool matches_wildcard_criteria_ci(const stringa & straCriteria, const string & strValue);
 
 
