@@ -387,7 +387,15 @@ namespace windows
                if((listing.m_bDir && file_find.IsDirectory()) || (listing.m_bFile && !file_find.IsDirectory()))
                {
 
-                  if (matches_wildcard_criteria_ci(listing.m_straPattern, file_find.GetFileName()))
+                  string strFile = file_find.GetFileName();
+
+                  if (strFile.begins_ci("resident_"))
+                  {
+
+                     TRACE("resident_*");
+                  }
+
+                  if (matches_wildcard_criteria_ci(listing.m_straPattern, strFile))
                   {
 
                      listing.add(file_find.GetFilePath());

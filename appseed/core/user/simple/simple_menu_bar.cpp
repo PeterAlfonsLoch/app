@@ -217,7 +217,7 @@ void simple_menu_bar::_001OnCreate(signal_details * pobj)
 
    //m_menuhook.Install((sp(::user::frame_window)) (sp(::user::interaction))this);
 
-//   SetFont(System.visual().font_central().GetMenuFont());
+//   SetFont(System.visual().fonts().GetMenuFont());
 
    UpdateWindow();
 
@@ -447,7 +447,7 @@ bool simple_menu_bar::ReloadMenuBar()
          56);
    }
 
-   pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
+   pgraphics->SelectObject(System.visual().fonts().GetMenuFont());
    pgraphics->SetBkMode(TRANSPARENT);
    for(int32_t iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
@@ -521,7 +521,7 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 /*void simple_menu_bar::_001Layout()
 {
    ::draw2d::memory_graphics pgraphics(this);;
-   pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
+   pgraphics->SelectObject(System.visual().fonts().GetMenuFont());
 
    size size;
    int32_t ix = ITEMCHECKEDPADLEFT;
