@@ -744,6 +744,9 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="net\netnode\netnode_socket.cpp" />
+    <ClCompile Include="net\netnode\netnode_socket_handler.cpp" />
+    <ClCompile Include="net\netnode\netnode_socket_thread.cpp" />
     <ClCompile Include="net\net_address.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -2380,6 +2383,9 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="net\mail\pop3_socket.h" />
     <ClInclude Include="net\mail\simple_pop3.h" />
     <ClInclude Include="net\net.h" />
+    <ClInclude Include="net\netnode\netnode_socket.h" />
+    <ClInclude Include="net\netnode\netnode_handler.h" />
+    <ClInclude Include="net\netnode\netnode_thread.h" />
     <ClInclude Include="net\net_address.h" />
     <ClInclude Include="net\net_byte_order.h" />
     <ClInclude Include="net\net_email.h" />

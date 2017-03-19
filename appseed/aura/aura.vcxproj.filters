@@ -393,6 +393,12 @@
     <Filter Include="Source Files\aura\compress\zip">
       <UniqueIdentifier>{358f3108-25c6-448d-8ce9-f426f362557b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\net\netnode">
+      <UniqueIdentifier>{3decb257-1b90-4b87-a480-a2e0b4736d84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\netnode">
+      <UniqueIdentifier>{c08b4e8a-1480-46d8-ac58-4cbb5d9bce70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2759,6 +2765,15 @@
     <ClInclude Include="aura\compress\bsdiff\libbsdiff.h">
       <Filter>Header Files\aura\compress\bsdiff</Filter>
     </ClInclude>
+    <ClInclude Include="net\netnode\netnode_socket.h">
+      <Filter>Header Files\net\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netnode\netnode_handler.h">
+      <Filter>Header Files\net\netnode</Filter>
+    </ClInclude>
+    <ClInclude Include="net\netnode\netnode_thread.h">
+      <Filter>Header Files\net\netnode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4737,6 +4752,15 @@
     </ClCompile>
     <ClCompile Include="aura\scripting\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\aura\scripting\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netnode\netnode_socket_thread.cpp">
+      <Filter>Source Files\net\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netnode\netnode_socket.cpp">
+      <Filter>Source Files\net\netnode</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netnode\netnode_socket_handler.cpp">
+      <Filter>Source Files\net\netnode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
