@@ -2,16 +2,12 @@
 
 
 
-namespace a_spa
+namespace netserver
 {
 
 
-   class application;
-   class service;
-
-
-   class SPALIB_API socket :
-      virtual public ::netnode::socket
+   class CLASS_DECL_AURA socket :
+      virtual public ::sockets::httpd_socket
    {
    public:
 
@@ -24,22 +20,17 @@ namespace a_spa
       virtual void OnExecute();
       virtual void OnResponseComplete();
 
-      virtual void OnSSLAccept();
+      virtual void send_response();
 
-      void send_response();
-
-
+      virtual void on_send_response();
 
       virtual void simple_file_server(const char * pszPath);
-      //virtual void simple_image_server(const char * pszPath, int iMaxWidth = -1, int iMaxHeight = -1);
 
       virtual bool http_filter_response_header(id key, stringa & straValue);
-
-      //virtual void on_compress();
 
 
    };
 
 
-} // namespace a_spa
+} // namespace netserver
 

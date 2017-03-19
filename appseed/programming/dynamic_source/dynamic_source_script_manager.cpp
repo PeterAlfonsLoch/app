@@ -170,8 +170,13 @@ bool script_manager::initialize_thread()
       }
    }
 #endif
+
+   LoadEnv();
+
    return true;
+
 }
+
 
 script_instance * script_manager::get(const string & strName)
 {

@@ -15,6 +15,6 @@ CLASS_DECL_AURA void thread_touch_sockets()
 CLASS_DECL_AURA int thread_has_sockets()
 {
 
-   return t_bSockets;
+   return (int) (int_ptr) t_bSockets;
 
 }

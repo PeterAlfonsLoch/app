@@ -554,7 +554,7 @@ namespace crypto
 
 
       int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
-      int iShaLen = memSha1.get_size();
+      memory_size_t iShaLen = memSha1.get_size();
 
       EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 

@@ -393,11 +393,11 @@
     <Filter Include="Source Files\aura\compress\zip">
       <UniqueIdentifier>{358f3108-25c6-448d-8ce9-f426f362557b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\netnode">
-      <UniqueIdentifier>{3decb257-1b90-4b87-a480-a2e0b4736d84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\netnode">
+    <Filter Include="Header Files\net\netserver">
       <UniqueIdentifier>{c08b4e8a-1480-46d8-ac58-4cbb5d9bce70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\netserver">
+      <UniqueIdentifier>{3decb257-1b90-4b87-a480-a2e0b4736d84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2765,14 +2765,14 @@
     <ClInclude Include="aura\compress\bsdiff\libbsdiff.h">
       <Filter>Header Files\aura\compress\bsdiff</Filter>
     </ClInclude>
-    <ClInclude Include="net\netnode\netnode_socket.h">
-      <Filter>Header Files\net\netnode</Filter>
+    <ClInclude Include="net\netserver\netserver_socket.h">
+      <Filter>Header Files\net\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="net\netnode\netnode_handler.h">
-      <Filter>Header Files\net\netnode</Filter>
+    <ClInclude Include="net\netserver\netserver_socket_handler.h">
+      <Filter>Header Files\net\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="net\netnode\netnode_thread.h">
-      <Filter>Header Files\net\netnode</Filter>
+    <ClInclude Include="net\netserver\netserver_socket_thread.h">
+      <Filter>Header Files\net\netserver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4753,14 +4753,14 @@
     <ClCompile Include="aura\scripting\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\aura\scripting\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="net\netnode\netnode_socket_thread.cpp">
-      <Filter>Source Files\net\netnode</Filter>
+    <ClCompile Include="net\netserver\netserver_socket.cpp">
+      <Filter>Source Files\net\netserver</Filter>
     </ClCompile>
-    <ClCompile Include="net\netnode\netnode_socket.cpp">
-      <Filter>Source Files\net\netnode</Filter>
+    <ClCompile Include="net\netserver\netserver_socket_handler.cpp">
+      <Filter>Source Files\net\netserver</Filter>
     </ClCompile>
-    <ClCompile Include="net\netnode\netnode_socket_handler.cpp">
-      <Filter>Source Files\net\netnode</Filter>
+    <ClCompile Include="net\netserver\netserver_socket_thread.cpp">
+      <Filter>Source Files\net\netserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

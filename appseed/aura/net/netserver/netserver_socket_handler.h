@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace a_spa
+namespace netserver
 {
 
 
-   class SPALIB_API socket_handler :
+   class CLASS_DECL_AURA socket_handler :
       virtual public ::sockets::socket_handler
    {
    public:

@@ -1,7 +1,8 @@
 #include "framework.h"
 
 
-namespace a_spa
+
+namespace netserver
 {
 
 
@@ -13,7 +14,7 @@ namespace a_spa
    }
 
 
-} // namespace a_spa
+} // namespace netserver
 
 
 
