@@ -448,8 +448,6 @@ namespace aura
 
 #endif
 
-      uint32_t crc32(uint32_t dwPrevious, const char * psz);
-      
    };
 
 

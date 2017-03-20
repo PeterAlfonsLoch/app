@@ -31,6 +31,34 @@ namespace netserver
    }
 
 
+   ::sockets::listen_socket_base * socket_thread::create_listen_socket()
+   {
+
+      return new ::sockets::listen_socket < socket > (*m_psockethandler);
+
+   }
+
+   bool socket_thread::initialize_listen_socket()
+   {
+
+      m_plistensocket->m_strCat = m_strCat;
+
+      m_plistensocket->m_strCipherList = m_strCipherList;
+
+      m_plistensocket->m_bDetach = true;
+
+      if (m_plistensocket->m_strCat.has_char() &&
+         (m_iSsl > 0 || (m_iSsl < 0 && (m_iPort == 443 || ::str::ends(::str::from(m_iPort), "443")))))
+      {
+
+         m_plistensocket->EnableSSL();
+
+      }
+
+      return true;
+
+   }
+
    int32_t socket_thread::run()
    {
 
@@ -46,30 +74,14 @@ namespace netserver
 
             m_psockethandler->EnablePool();
 
-            ::sockets::listen_socket < socket > ll(*m_psockethandler);
+            m_plistensocket = create_listen_socket();
 
-            ll.m_strCat = m_strCat;
-
-            ll.m_strCipherList = m_strCipherList;
-
-            ll.m_bDetach = true;
-
-            if (ll.m_strCat.has_char() &&
-               (m_iSsl > 0 || (m_iSsl < 0 &&  (m_iPort == 443 || ::str::ends(::str::from(m_iPort), "443")))))
-            {
-               
-               ll.EnableSSL();
-
-            }
+            initialize_listen_socket();
 
             while (true)
             {
 
-               string strIp = m_strIp;
-
-               int iPort = m_iPort;
-
-               if (ll.Bind(strIp, (port_t)iPort))
+               if (m_plistensocket->Bind(m_strIp, (port_t)m_iPort))
                {
 
                   string strMessage;
@@ -82,7 +94,7 @@ namespace netserver
                else
                {
 
-                  m_psockethandler->add(&ll);
+                  m_psockethandler->add(m_plistensocket);
 
                }
 
@@ -94,7 +106,11 @@ namespace netserver
                }
 
                if (!get_run_thread())
+               {
+
                   break;
+
+               }
 
             }
 

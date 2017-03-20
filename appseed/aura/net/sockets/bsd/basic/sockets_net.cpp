@@ -221,9 +221,12 @@ namespace sockets
 
       single_lock sl(&m_mutexCache, true);
       dns_cache_item item;
-      if(m_mapCache.Lookup(str, item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (11 *((84 + 77) * 1000)))))
+      if(m_mapCache.Lookup(str, item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (5 * 60 * 1000))))
       {
-         l = item.m_ipaddr;
+         if (item.r)
+         {
+            l = item.m_ipaddr;
+         }
          //         uint32_t dwTimeProfile2 = get_tick_count();
          /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (uint32_t)((byte*)&pitem->m_ipaddr)[0],
@@ -304,6 +307,11 @@ namespace sockets
          error += gai_strerror(n);
    #endif
          thiserr << error;
+         item.r = false;
+         item.m_bTimeout = true;
+         item.m_dwLastChecked = ::get_tick_count();
+         m_mapCache.set_at(str, item);
+
          return false;
    #endif // NO_GETADDRINFO
       }

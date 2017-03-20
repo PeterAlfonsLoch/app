@@ -22,6 +22,7 @@ namespace netserver
       string                                       m_strCipherList;
 
       sp(::netserver::socket_handler)              m_psockethandler;
+      sp(::sockets::listen_socket_base)            m_plistensocket;
 
 
       socket_thread(::aura::application * papp);
@@ -31,7 +32,9 @@ namespace netserver
       virtual int32_t run() override;
 
       virtual ::netserver::socket_handler * create_socket_handler();
+      virtual ::sockets::listen_socket_base * create_listen_socket();
 
+      virtual bool initialize_listen_socket();
 
       ::netserver::socket_handler * socket_handler();
 
