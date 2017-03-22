@@ -267,7 +267,7 @@ bool uncompress_bz::transfer(::file::ostream & ostreamUncompressed, ::file::istr
 
    }
 
-   return !done;
+   return done;
 
 }
 
