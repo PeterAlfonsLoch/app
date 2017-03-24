@@ -378,6 +378,29 @@ namespace sockets
    int32_t socket_handler::select(struct timeval *tsel)
    {
 
+      {
+
+         try
+         {
+
+            for (auto & p : m_sockets)
+            {
+
+               while (p.m_element2->on_select_idle())
+               {
+
+               }
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
       uint32_t dw1,dw2;
 
       start_processing_adding:
@@ -478,6 +501,7 @@ namespace sockets
       int32_t n;
       
       dw1 = ::get_tick_count();
+
       
       if(m_b_use_mutex)
       {

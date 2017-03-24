@@ -223,7 +223,7 @@ namespace userex
 
       }
 
-      set_data_server(Application.simpledb().get_data_server());
+      set_data_server(&Application.dataserver());
 
 
       System.factory().creatable_small < pane_tab_view >();

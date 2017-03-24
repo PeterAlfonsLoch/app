@@ -26,7 +26,7 @@ namespace filemanager
       
       
 
-      set_data_server(Application.simpledb().get_data_server());
+      set_data_server(&Application.dataserver());
 
       if(!filemanager::file_list_callback::initialize())
          return false;

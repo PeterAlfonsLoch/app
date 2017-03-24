@@ -14,7 +14,6 @@ namespace axis
 
       //::url::department                           m_urldepartment;
 
-
       sp(::install::install)                       m_spinstall;
 
 

@@ -102,7 +102,7 @@ namespace user
    {
 
       //::user::document::on_alloc(papp);
-      ::database::client::initialize_data_client(&Application.dataserver());
+      ::database::client::initialize_data_client(&System.dataserver());
 
       m_dataid = Application.m_dataid +"." +m_dataid;
 

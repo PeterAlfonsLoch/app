@@ -27,8 +27,6 @@ namespace axis
       string                                          m_strLicense;
 
 
-      ::simpledb::simpledb                            m_simpledb;
-
       string                                          m_strDataIdAddUp;
 
 
@@ -36,6 +34,10 @@ namespace axis
 
 
       int32_t                                         m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+
+
+
+      ::simpledb::simpledb                            m_simpledb;
 
 
 
@@ -82,12 +84,13 @@ namespace axis
 
 
 
+
+
+
+
+
       inline class ::simpledb::simpledb         & simpledb() { return m_simpledb; }
-
-
-
-
-
+      inline ::database::server &               dataserver() { return *m_simpledb.get_data_server(); }
 
 
 
@@ -175,7 +178,6 @@ namespace axis
 
 
 
-      inline ::database::server &               dataserver() { return *m_simpledb.get_data_server(); }
 
 
 

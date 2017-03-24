@@ -41,7 +41,7 @@ namespace user
       if (pobj->previous())
          return;
 
-      set_data_server(&Application.dataserver());
+      set_data_server(&System.dataserver());
 
       if (m_id.is_empty())
       {

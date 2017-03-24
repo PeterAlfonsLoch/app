@@ -1954,13 +1954,14 @@ namespace axis
 
       m_simpledb.construct(this);
 
-      if(!m_simpledb.initialize())
+      if (!m_simpledb.initialize())
          return false;
 
-      if(!m_simpledb.initialize2())
+      if (!m_simpledb.initialize2())
          return false;
 
-      set_data_server(simpledb().get_data_server());
+
+      set_data_server(&Application.dataserver());
 
       m_bAxisInitialize1 = true;
 
@@ -2224,17 +2225,6 @@ namespace axis
             //   }
          }
 
-         try
-         {
-
-            m_simpledb.finalize();
-
-         }
-         catch (...)
-         {
-
-
-         }
 
          if (m_paurasystem->m_phtml != NULL)
          {
@@ -2278,7 +2268,17 @@ namespace axis
          }
          */
 
+         try
+         {
 
+            m_simpledb.finalize();
+
+         }
+         catch (...)
+         {
+
+
+         }
 
       return m_iReturnCode;
 

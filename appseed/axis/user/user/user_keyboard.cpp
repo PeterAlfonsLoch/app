@@ -354,7 +354,7 @@ namespace user
          if(playout->load(playout->m_strPath))
          {
             m_playout = playout;
-// xxx            System.simpledb().on_set_keyboard_layout(playout->m_strPath, actioncontext);
+// xxx            Application.simpledb().on_set_keyboard_layout(playout->m_strPath, actioncontext);
             TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
             return true;
          }

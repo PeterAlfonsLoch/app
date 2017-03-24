@@ -34,7 +34,7 @@ namespace filemanager
          SetDataInterface(canew(folder_list_data(get_app())));
          sp(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data > ();
          pdata->m_dataid = datakey;
-         pdata->initialize_data_client(Application.simpledb().get_data_server());
+         pdata->initialize_data_client(&Application.dataserver());
 
       }
       else
@@ -43,7 +43,7 @@ namespace filemanager
          SetDataInterface(canew(databaseuser::data_key_mesh_data(get_app())));
          sp(databaseuser::data_key_mesh_data) pdata = m_pmeshdata.cast  < ::databaseuser::data_key_mesh_data >();
          pdata->m_dataid = datakey;
-         pdata->initialize_data_client(Application.simpledb().get_data_server());
+         pdata->initialize_data_client(&Application.dataserver());
 
       }
 

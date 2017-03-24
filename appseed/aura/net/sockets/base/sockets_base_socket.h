@@ -340,6 +340,9 @@ namespace sockets
       * line protocol mode. */
       virtual void OnLine(const string & );
 
+
+      virtual bool on_select_idle();
+
       //virtual memory_size_t read(void * buf, memory_size_t c);
 
       virtual void on_read(const void * buf, int_ptr c);

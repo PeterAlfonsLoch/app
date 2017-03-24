@@ -72,6 +72,7 @@ namespace sockets
 
       virtual bool client_ping_pong_ok();
 
+
    };
 
 

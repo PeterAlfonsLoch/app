@@ -24,8 +24,7 @@ class CLASS_DECL_AXIS db_server :
 {
 public:
 
-
-   sp(::sqlite::base)         m_pdb;
+   sp(::sqlite::base)                              m_pdb;
 
    ::simpledb::base *         m_pbase;
 

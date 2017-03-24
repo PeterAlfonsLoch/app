@@ -428,6 +428,10 @@ namespace sockets
    {
    }
 
+   bool base_socket::on_select_idle()
+   {
+      return false;
+   }
 
    void base_socket::OnConnectFailed()
    {

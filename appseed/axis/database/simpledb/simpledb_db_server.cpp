@@ -98,24 +98,26 @@ bool db_server::initialize()
 
    ::file::path str;
 
-   if (Application.is_system())
-   {
+   //str = ::dir::system() / "database.sqlite";
 
-      str = Application.dir().userappdata() / strAppName / "system.sqlite";
+   //if (Application.is_system())
+   //{
 
-   }
-   else if (Application.is_session())
-   {
+   //   str = Application.dir().userappdata() / strAppName / "system.sqlite";
 
-      str = Application.dir().userappdata() / strAppName / "session.sqlite";
+   //}
+   //else if (Application.is_session())
+   //{
 
-   }
-   else
-   {
+   //   str = Application.dir().userappdata() / strAppName / "session.sqlite";
 
-      str = Application.dir().userappdata() / strAppName / "app.sqlite";
+   //}
+   //else
+   //{
 
-   }
+   str = Application.dir().userappdata() / strAppName / "app.sqlite";
+
+   //}
 
    Application.dir().mk(str.folder());
 

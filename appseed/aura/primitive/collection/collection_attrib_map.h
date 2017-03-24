@@ -52,3 +52,7 @@ using id_map = ::map < id,const id &, TYPE, ARG_TYPE, PAIR > ;
 using id_to_id = id_map < id,const id & > ;
 
 using id_to_index = id_map < index,index > ;
+
+
+template < typename KEY, typename TYPE, typename ARG_TYPE = const TYPE &, typename PAIR = pair < KEY *, TYPE > >
+using ptrmap = ::map < KEY *, KEY *, TYPE, ARG_TYPE, PAIR >;

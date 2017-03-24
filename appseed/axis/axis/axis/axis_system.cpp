@@ -474,6 +474,7 @@ namespace axis
 
       }
 
+
       m_plog.release();
 
 #ifdef METROWIN

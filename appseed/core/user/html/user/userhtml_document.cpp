@@ -13,7 +13,7 @@ html_document::html_document(::aura::application * papp) :
 bool html_document::on_new_document()
 {
 
-   ::database::client::initialize_data_client(Application.simpledb().get_data_server());
+   ::database::client::initialize_data_client(&Application.dataserver());
 
    if (!::user::document::on_new_document())
       return FALSE;
