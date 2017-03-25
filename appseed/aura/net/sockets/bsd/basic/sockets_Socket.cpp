@@ -104,38 +104,69 @@ namespace sockets
    }
 
 
-   SOCKET socket::CreateSocket(int32_t af,int32_t iType, const string & strProtocol)
+   SOCKET socket::CreateSocket(int32_t af, int32_t iType, const string & strProtocol)
    {
-      struct protoent *p = NULL;
+      
       SOCKET s;
 
       m_iSocketType = iType;
+
       m_strSocketProtocol = strProtocol;
-      int32_t protno = 0;
+      
+      int32_t protno;
+
 #ifdef ANDROID
+
+      protno = 6
+
       if (strProtocol.CompareNoCase("tcp") == 0)
       {
+
          protno = 6;
+
       }
+
 #else
-      if (strProtocol.get_length())
+
+      protno = IPPROTO_TCP;
+
       {
-         p = getprotobyname( strProtocol );
-         if (!p)
+
+         struct protoent *p = NULL;
+
+         if (strProtocol.get_length())
          {
-            log("getprotobyname", Errno, StrError(Errno), ::aura::log::level_fatal);
-            SetCloseAndDelete();
-            throw simple_exception(get_app(), string("getprotobyname() failed: ") + StrError(Errno));
-            return INVALID_SOCKET;
+
+            p = getprotobyname(strProtocol);
+
+            if (p == NULL)
+            {
+
+               log("getprotobyname", Errno, StrError(Errno), ::aura::log::level_fatal);
+
+               SetCloseAndDelete();
+
+               throw simple_exception(get_app(), string("getprotobyname() failed: ") + StrError(Errno));
+
+               return INVALID_SOCKET;
+
+            }
+
          }
+
+         if (p != NULL)
+         {
+
+            protno = p->p_proto;
+
+         }
+
       }
-      if (p != NULL)
-      {
-         protno = p->p_proto;
-      }
+
 #endif
 
       s = ::socket(af, iType, protno);
+
       if (s == INVALID_SOCKET)
       {
          log("socket", Errno, StrError(Errno), ::aura::log::level_fatal);

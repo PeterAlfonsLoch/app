@@ -1348,6 +1348,18 @@ namespace datetime
          return -4.0;
 
       }
+      else if (str == "mst")
+      {
+
+         return -7.0;
+
+      }
+      else if (str == "mdt")
+      {
+
+         return -6.0;
+
+      }
       else if (str == "jst")
       {
 

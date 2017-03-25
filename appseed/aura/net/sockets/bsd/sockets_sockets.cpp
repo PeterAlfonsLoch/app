@@ -30,6 +30,7 @@ namespace sockets
    sockets::~sockets()
    {
 
+      synch_lock sl(&m_mutexClientContextMap);
 #if defined(BSD_STYLE_SOCKETS)
       try
       {

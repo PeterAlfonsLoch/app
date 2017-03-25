@@ -202,8 +202,10 @@ string get_temp_file_name_dup(const char * pszName,const char * pszExtension)
       sprintf(buf,"%d",i);
       str = lpPathBuffer;
       str += pszName;
-      str += "-";
+      str += "\\";
       str += buf;
+      str += "\\";
+      str += pszName;
       str += ".";
       str += pszExtension;
       if(file_exists_dup(str.c_str()))

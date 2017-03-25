@@ -952,8 +952,22 @@ restart:
    {
 #ifdef WINDOWSEX
 
-      if(!::MoveFileW(::str::international::utf8_to_unicode(psz), ::str::international::utf8_to_unicode(pszNew)))
+      if(!::MoveFileExW(
+         ::str::international::utf8_to_unicode(psz), 
+         ::str::international::utf8_to_unicode(pszNew),
+         MOVEFILE_REPLACE_EXISTING |
+         MOVEFILE_WRITE_THROUGH))
       {
+
+         DWORD dwLastError = ::GetLastError();
+
+         string strLastError;
+
+         string strSystemError = get_system_error_message(dwLastError);
+
+         strLastError.Format("last error on rename file '%s' to '%s' : '%s' (%d)", pszNew, psz, strSystemError, dwLastError);
+
+         ::OutputDebugString(strLastError);
 
          return ::failure;
 

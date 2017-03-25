@@ -1940,16 +1940,22 @@ retry_session:
 
       ::sockets::socket_handler handler(get_app());
 
-      ::file::file_sp spfile = set.cast < ::aura::application >("app", get_app())->m_paurasession->file().get_file(varFile,
-                                 ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
-
-      set["file"] = spfile;
-
       sp(::sockets::http_client_socket) psocket;
-      
-      bool bOk = get(handler, psocket, pszUrl, set);
 
-      set["file"].null();
+      bool bOk = false;
+
+      {
+
+         ::file::file_sp spfile = set.cast < ::aura::application >("app", get_app())->m_paurasession->file().get_file(varFile,
+            ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+
+         set["file"] = spfile;
+
+         bOk = get(handler, psocket, pszUrl, set);
+
+         set["file"].null();
+
+      }
 
       if(!bOk)
          return false;

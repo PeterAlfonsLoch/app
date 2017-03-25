@@ -216,6 +216,9 @@
     <Filter Include="Source Files\net\sockets\http\NewFilter1">
       <UniqueIdentifier>{f1554d25-c712-45fd-a090-a4f232ee5b6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\net\netserver">
+      <UniqueIdentifier>{a39bbe8a-dd54-4867-895b-d51d50eb83ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2298,6 +2301,15 @@
     </ClCompile>
     <ClCompile Include="net\_net.cpp">
       <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\netserver_socket.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\netserver_socket_handler.cpp">
+      <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\netserver\netserver_socket_thread.cpp">
+      <Filter>Source Files\net\netserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

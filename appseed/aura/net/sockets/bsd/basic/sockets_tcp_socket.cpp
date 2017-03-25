@@ -1161,11 +1161,15 @@ namespace sockets
 //      if(!m_ssl_ctx)
   //    {
 
+      int iError = 0;
+
+      retry_init_ssl_client:
+
          InitSSLClient();
 
     //  }
 
-      //synch_lock sl(m_pmutexSslCtx);
+      synch_lock sl(&Session.sockets().m_mutexClientContextMap);
 
       //slMap.unlock();
 
@@ -1173,7 +1177,10 @@ namespace sockets
       {
 
          /* Connect the SSL socket */
+
          m_ssl = SSL_new(m_ssl_ctx);
+
+         sl.unlock();
 
          if(!m_ssl)
          {
@@ -1329,8 +1336,20 @@ namespace sockets
             {
 
                SSL_SESSION_free(m_ssl_session);
+               
+               {
 
-               m_spsslclientcontext->m_psession = NULL;
+                  synch_lock sl(&Session.sockets().m_mutexClientContextMap);
+
+                  if (m_spsslclientcontext.is_set()
+                     && m_spsslclientcontext->m_psession == m_ssl_session)
+                  {
+
+                     m_spsslclientcontext->m_psession = NULL;
+
+                  }
+
+               }
 
                m_ssl_session = NULL;
 
@@ -1341,7 +1360,19 @@ namespace sockets
 
                m_ssl_session = SSL_get1_session(m_ssl);
 
-               m_spsslclientcontext->m_psession = m_ssl_session;
+
+               {
+
+                  synch_lock sl(&Session.sockets().m_mutexClientContextMap);
+
+                  if (m_spsslclientcontext.is_set())
+                  {
+
+                     m_spsslclientcontext->m_psession = m_ssl_session;
+
+                  }
+
+               }
 
             }
 
@@ -1506,10 +1537,12 @@ skip:
    void tcp_socket::InitializeContext(const string & context,const SSL_METHOD * pmethod)
    {
 
+      synch_lock sl(&Session.sockets().m_mutexClientContextMap);
+
       if (m_spsslclientcontext.is_null())
       {
 
-         string_map < sp(ssl_client_context) > & clientcontextmap = Session.sockets().m_clientcontextmap;
+         ssl_client_context_map & clientcontextmap = Session.sockets().m_clientcontextmap;
 
          auto * p = clientcontextmap.PLookup(context);
 
