@@ -145,6 +145,13 @@ namespace windows
       if (!bSuccess)
       {
          DWORD dwLastError = ::GetLastError();
+         string strMessage = get_system_error_message(dwLastError);
+         OutputDebugStringW(pwszCommandLine);
+         output_debug_string("\r\n");
+         output_debug_string("CreateProcessW Error!!");
+         output_debug_string("\r\n");
+         output_debug_string(strMessage + " (" + ::str::from((uint32_t) dwLastError) + ")");
+         output_debug_string("\r\n");
          return false;
       }
       else
