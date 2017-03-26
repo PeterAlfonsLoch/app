@@ -1715,8 +1715,7 @@ extern "C"
             pszStop = wildcard_next_stop(pszFind + 1);
 
             if (pszStop == NULL)
-               return true;
-               //pszStop = pszFind + strlen_dup(pszFind);
+               pszStop = pszFind + strlen_dup(pszFind);
 
             iLen = pszStop - (pszFind + 1);
 

@@ -14,6 +14,13 @@ public:
 
    }
 
+   synch_lock(object * pobject) :
+      initial_single_lock(pobject == NULL ? NULL : pobject->m_pmutex)
+   {
+
+
+   }
+
 
 };
 
