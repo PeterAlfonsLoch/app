@@ -240,6 +240,11 @@ namespace sockets
       */
       base_socket_handler& MasterHandler() const;
 
+      virtual void free_ssl_session();
+
+      virtual void get_ssl_session();
+
+
       /** Called by listen_socket after accept but before base_socket is added to handler.
       * CTcpSocket uses this to create its ICrypt member var.
       * The ICrypt member var is created by a virtual method, therefore

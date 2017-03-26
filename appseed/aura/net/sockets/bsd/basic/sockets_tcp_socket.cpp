@@ -1335,46 +1335,18 @@ namespace sockets
             if (m_ssl_session != NULL)
             {
 
-               SSL_SESSION_free(m_ssl_session);
-               
-               {
-
-                  synch_lock sl(&Session.sockets().m_mutexClientContextMap);
-
-                  if (m_spsslclientcontext.is_set()
-                     && m_spsslclientcontext->m_psession == m_ssl_session)
-                  {
-
-                     m_spsslclientcontext->m_psession = NULL;
-
-                  }
-
-               }
-
-               m_ssl_session = NULL;
+               free_ssl_session();
 
             }
 
             if (m_ssl_session == NULL)
             {
 
-               m_ssl_session = SSL_get1_session(m_ssl);
-
-
-               {
-
-                  synch_lock sl(&Session.sockets().m_mutexClientContextMap);
-
-                  if (m_spsslclientcontext.is_set())
-                  {
-
-                     m_spsslclientcontext->m_psession = m_ssl_session;
-
-                  }
-
-               }
+               get_ssl_session();
 
             }
+
+
 
             /// \todo: resurrect certificate check... client
             //         CheckCertificateChain( "");//ServerHOST);
@@ -1429,8 +1401,9 @@ namespace sockets
 
                      m_iSslCtxRetry = 1;
                      SSL_clear(m_ssl);
-                     SSL_SESSION_free(m_ssl_session);
-                     m_ssl_session = NULL;
+
+                     free_ssl_session();
+
                      goto skip;
                   }
                   else
@@ -1539,7 +1512,7 @@ skip:
 
       synch_lock sl(&Session.sockets().m_mutexClientContextMap);
 
-      if (m_spsslclientcontext.is_null())
+      if (context.has_char() && m_spsslclientcontext.is_null())
       {
 
          ssl_client_context_map & clientcontextmap = Session.sockets().m_clientcontextmap;
@@ -1551,12 +1524,7 @@ skip:
 
             m_spsslclientcontext = canew(ssl_client_context(get_app(), pmethod));
 
-            if(context.has_char())
-            {
-
-               clientcontextmap[context] = m_spsslclientcontext;
-
-            }
+            clientcontextmap[context] = m_spsslclientcontext;
 
          }
          else
@@ -1785,6 +1753,25 @@ skip:
 
       SetNonblocking(true);
 
+      if (m_ssl)
+      {
+
+         if (m_ssl_session != NULL)
+         {
+
+            free_ssl_session();
+
+         }
+
+         if (m_spsslclientcontext.is_set())
+         {
+
+            m_spsslclientcontext->m_psession = SSL_get1_session(m_ssl);
+
+         }
+
+      }
+
       if (!Lost() && IsConnected() && !(GetShutdown() & SHUT_WR))
       {
 
@@ -1845,12 +1832,11 @@ skip:
 
       if(m_ssl)
       {
-         if (m_ssl_session != NULL)
-         {
-            m_ssl_session = SSL_get1_session(m_ssl);
-         }
+         
          SSL_free(m_ssl);
+
          m_ssl = NULL;
+
       }
 
 #endif
@@ -2235,7 +2221,7 @@ skip:
 
    }
 
-
+   
 
 
 } // namespace sockets

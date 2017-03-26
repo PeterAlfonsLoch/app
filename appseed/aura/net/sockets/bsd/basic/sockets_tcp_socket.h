@@ -224,7 +224,7 @@ namespace sockets
       set by SetTransferLimit. Default: 0 (disabled). */
       virtual void OnTransferLimit();
 
-      
+
       void OnRead();
       using ::sockets::stream_socket::read;
       virtual memory_size_t read(void * buf, memory_size_t n);

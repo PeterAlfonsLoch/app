@@ -2018,6 +2018,68 @@ namespace sockets
    }
 
 
+   void base_socket::free_ssl_session()
+   {
+
+      if (m_ssl_session != NULL)
+      {
+
+         SSL_SESSION_free(m_ssl_session);
+
+         try
+         {
+
+            synch_lock sl(&Session.sockets().m_mutexClientContextMap);
+
+            if (m_spsslclientcontext.is_set()
+               && m_spsslclientcontext->m_psession == m_ssl_session)
+            {
+
+               m_spsslclientcontext->m_psession = NULL;
+
+            }
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+         m_ssl_session = NULL;
+
+      }
+
+   }
+
+
+   void base_socket::get_ssl_session()
+   {
+
+      if (m_ssl_session == NULL)
+      {
+
+         m_ssl_session = SSL_get1_session(m_ssl);
+
+
+         {
+
+            synch_lock sl(&Session.sockets().m_mutexClientContextMap);
+
+            if (m_spsslclientcontext.is_set())
+            {
+
+               m_spsslclientcontext->m_psession = m_ssl_session;
+
+            }
+
+         }
+
+      }
+
+   }
+
+
 } // namespace sockets
 
 
