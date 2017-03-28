@@ -257,7 +257,7 @@ namespace str
    CLASS_DECL_AURA string          to_upper(const char * psz);
 
 
-   string CLASS_DECL_AURA GetWindowText(oswindow oswindow);
+   string CLASS_DECL_AURA get_window_text_timeout(oswindow oswindow, DWORD dwTimeout = 1000);
 
    string CLASS_DECL_AURA get_word(
       const char * psz,

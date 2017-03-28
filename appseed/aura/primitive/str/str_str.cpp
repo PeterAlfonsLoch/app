@@ -1393,7 +1393,7 @@ namespace str
 
    }
 
-   string GetWindowText(oswindow oswindow)
+   string get_window_text_timeout(oswindow oswindow, DWORD dwTimeout)
    {
 
       string str;
@@ -1405,12 +1405,18 @@ namespace str
 
          DWORD_PTR lresult = 0;
 
-         if(!::SendMessageTimeoutW(oswindow,WM_GETTEXTLENGTH,0,0,SMTO_ABORTIFHUNG,84,&lresult))
+         DWORD dwStart = get_tick_count();
+
+         dwTimeout = MAX(10, dwTimeout);
+
+         if(!::SendMessageTimeoutW(oswindow,WM_GETTEXTLENGTH,0,0,SMTO_ABORTIFHUNG,dwTimeout,&lresult))
             return "";
 
          wstring wstr;
 
-         if(!::SendMessageTimeoutW(oswindow,WM_GETTEXT,(LPARAM)wstr.alloc(lresult + 1),lresult + 1,SMTO_ABORTIFHUNG,84,&lresult))
+         dwTimeout = MIN(dwTimeout, MAX(10, (get_tick_count() - dwStart) - dwTimeout));
+
+         if(!::SendMessageTimeoutW(oswindow,WM_GETTEXT,(LPARAM)wstr.alloc(lresult + 1),lresult + 1,SMTO_ABORTIFHUNG,dwTimeout,&lresult))
             return "";
 
          str = wstr;

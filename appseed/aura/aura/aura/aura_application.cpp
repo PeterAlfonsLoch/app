@@ -801,19 +801,20 @@ namespace aura
 
    };
 
+   
    WINBOOL CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam;
-      CHAR sz[1024];
-      if (GetWindowTextA(hwnd, sz, sizeof(sz)))
+      
+      string str = ::str::get_window_text_timeout(hwnd, 1000);
+      
+      if (::str::ends_ci(str, penum->m_strWindowEnd))
       {
-
-         if (::str::ends_ci(sz, penum->m_strWindowEnd))
-         {
-            penum->m_hwnd = hwnd;
-            return FALSE;
-         }
+         
+         penum->m_hwnd = hwnd;
+         
+         return FALSE;
 
       }
 
@@ -826,14 +827,13 @@ namespace aura
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam;
-      CHAR sz[1024];
-      if (GetWindowTextA(hwnd, sz, sizeof(sz)))
-      {
 
-         if (::str::ends_ci(sz, penum->m_strTopic))
-         {
-            penum->m_hwndaTopic.add(hwnd);
-         }
+      string str = ::str::get_window_text_timeout(hwnd);
+
+      if (::str::ends_ci(str, penum->m_strTopic))
+      {
+         
+         penum->m_hwndaTopic.add(hwnd);
 
       }
 
@@ -845,14 +845,13 @@ namespace aura
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam;
-      CHAR sz[1024];
-      if (GetWindowTextA(hwnd, sz, sizeof(sz)))
+
+      string str = ::str::get_window_text_timeout(hwnd, 1000);
+
+      if (::str::ends_ci(str, penum->m_strCounterTopic))
       {
 
-         if (::str::ends_ci(sz, penum->m_strCounterTopic))
-         {
-            penum->m_hwndaCounterTopic.add(hwnd);
-         }
+         penum->m_hwndaCounterTopic.add(hwnd);
 
       }
 

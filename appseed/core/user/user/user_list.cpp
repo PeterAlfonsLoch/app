@@ -2991,6 +2991,12 @@ namespace user
          //   //m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
          //   //m_ptLButtonUp = pt;
          //   //SetTimer(12345679, 500, NULL);
+            // commented on 2017-03-28
+            //m_iClick++;
+            //m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
+            //m_ptLButtonUp = pt;
+            //SetTimer(12345679, 500, NULL);
+
 
          //}
 
