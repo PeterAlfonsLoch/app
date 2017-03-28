@@ -44,17 +44,17 @@ namespace user
       void _001UpdateFunctionStatic();
       virtual bool _001OnBeforeSave(sp(control) pcontrol);
       virtual void _001RemoveControls();
-      bool _001Validate(sp(control) pcontrol, var & var);
-      bool _001SaveEdit(sp(control) pcontrol);
+      virtual bool _001Validate(sp(control) pcontrol, var & var);
+      virtual bool _001SaveEdit(sp(control) pcontrol);
       virtual bool on_simple_action(id id);
       DECL_GEN_SIGNAL(_001OnNotify);
       DECL_GEN_SIGNAL(_001OnMessageNotify);
       virtual void _001GetSelection(::database::id & key, ::database::selection & selection);
-      void Update(bool bSave);
-      bool _001SetData(id uiId, bool bData);
-      bool _001GetData(id uiId, bool & bData);
-      int_ptr _001AddControl(class control::descriptor & descriptor);
-      void _001FillCombo(sp(control) pcontrol);
+      virtual void Update(bool bSave);
+      virtual bool _001SetData(id uiId, bool bData);
+      virtual bool _001GetData(id uiId, bool & bData);
+      virtual int_ptr _001AddControl(class control::descriptor & descriptor);
+      virtual void _001FillCombo(sp(control) pcontrol);
 
       virtual void WfiOnClose();
       

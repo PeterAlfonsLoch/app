@@ -537,6 +537,8 @@ namespace user
 
       virtual void _001GetItemText(mesh_item * pitem);
 
+      virtual void _001SetItemText(mesh_item * pitem);
+
       virtual void _001GetItemColor(mesh_item * pitem);
 
       virtual void _001SearchGetItemText(mesh_item * pitem);

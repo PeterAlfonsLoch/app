@@ -56,6 +56,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll);
       DECL_GEN_SIGNAL(_001OnKeyDown);
 
+      virtual void _001UpdateEdit(sp(control) pcontrol) override;
+      virtual bool _001SaveEdit(sp(control) pcontrol) override;
+
       virtual bool _001OnMouseActivate(::window_sp pDesktopWnd,UINT nHitTest,UINT message,LRESULT & iResult);
 
 

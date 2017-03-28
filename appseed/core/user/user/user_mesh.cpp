@@ -706,6 +706,13 @@ namespace user
       pitem->m_bOk = false;
    }
 
+   void mesh::_001SetItemText(::user::mesh_item * pitem)
+   {
+
+      pitem->m_bOk = false;
+
+   }
+
    void mesh::_001GetItemText(::user::mesh_item * pitem)
    {
       pitem->m_bOk = false;
@@ -2562,6 +2569,15 @@ namespace user
          {
             if(_001DisplayHitTest(pt,iItem))
             {
+
+               UINT uiDoubleClickTime = GetDoubleClickTime();
+
+               m_iClick++;
+               m_uiLButtonUpFlags = (UINT)pmouse->m_nFlags;
+               m_ptLButtonUp = pt;
+               SetTimer(12345679, uiDoubleClickTime, NULL);
+               KillTimer(12345678);
+
             }
             else
             {
@@ -2655,14 +2671,15 @@ namespace user
          }
 
       }
-      else
-      {
-         m_iClick++;
-         m_uiLButtonUpFlags = (UINT)pmouse->m_nFlags;
-         m_ptLButtonUp = pt;
-         SetTimer(12345679,500,NULL);
-         KillTimer(12345678);
-      }
+      //else
+      //{
+      // commented on 2017-03-28
+      //   m_iClick++;
+      //   m_uiLButtonUpFlags = (UINT)pmouse->m_nFlags;
+      //   m_ptLButtonUp = pt;
+      //   SetTimer(12345679, 500, NULL);
+      //   KillTimer(12345678);
+      //}
       pobj->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -3797,7 +3814,7 @@ namespace user
                if(m_iClick == 1)
                {
                   m_iClick = 0;
-                  if(!_001IsEditing())
+//                  if(!_001IsEditing())
                   {
                      uint_ptr nFlags = m_uiLButtonUpFlags;
                      point point = m_ptLButtonUp;

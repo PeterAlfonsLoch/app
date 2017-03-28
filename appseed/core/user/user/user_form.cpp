@@ -510,6 +510,7 @@ namespace user
 
       if(pcontrol->descriptor().has_function(control::function_vms_data_edit))
       {
+
          var var;
          ::database::selection selection;
          _001GetSelection(pcontrol->descriptor().m_dataid, selection);

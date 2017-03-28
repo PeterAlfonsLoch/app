@@ -137,7 +137,8 @@ namespace user
 
    void form_list::_001PlaceControl(sp(control) pcontrol)
    {
-      rect rect;
+      //rect rect;
+      _001HideEditingControls();
       draw_list_item item(this);
       item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
       item.m_iItem = pcontrol->m_iEditItem;
@@ -145,20 +146,165 @@ namespace user
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
       _001GetElementRect(&item,::user::mesh::element_text);
-      //if(item.m_bOk)
-      //{
-      //   _001Update(pcontrol);
-      //   pcontrol->SetWindowPos(
-      //      ZORDER_TOP,
-      //      rect.left,
-      //      rect.top,
-      //      rect.width(),
-      //      rect.height(),
-      //      SWP_SHOWWINDOW);
-      //   _001SetEditControl(pcontrol);
-      //   pcontrol->SetFocus();
-      //}
+      if(item.m_bOk)
+      {
+         _001Update(pcontrol);
+         pcontrol->SetWindowPos(
+            ZORDER_TOP,
+            item.m_rectSubItem.left,
+            item.m_rectSubItem.top,
+            item.m_rectSubItem.width(),
+            item.m_rectSubItem.height(),
+            SWP_SHOWWINDOW);
+         _001SetEditControl(pcontrol);
+         pcontrol->SetFocus();
+      }
    }
+
+
+   void form_list::_001UpdateEdit(sp(control) pcontrol)
+   {
+      ASSERT(pcontrol != NULL);
+      if (pcontrol == NULL)
+         return;
+
+      if (m_bOnEditUpdate)
+         return;
+      keep<bool> keepUpdateLock(&m_bOnEditUpdate, true, false, true);
+
+      ASSERT(pcontrol->descriptor().get_type() == control_type_edit
+         || pcontrol->descriptor().get_type() == control_type_edit_plain_text);
+
+      if (pcontrol->descriptor().has_function(control::function_vms_data_edit))
+      {
+
+         draw_list_item item(this);
+
+         item.m_iItem = pcontrol->m_iEditItem;
+         item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+
+         _001GetItemText(&item);
+
+         if (item.m_bOk)
+         {
+
+            pcontrol->_001SetText(item.m_strText, ::action::source_initialize);
+
+         }
+
+         //var var;
+         //::database::selection selection;
+         //_001GetSelection(pcontrol->descriptor().m_dataid, selection);
+         //if (selection.get_item_count() > 0)
+         //{
+         //   ::database::selection_item & item = selection.get_item(0);
+         //   sp(::user::elemental) ptext = NULL;
+         //   if (get_child_by_id(pcontrol->m_id) != NULL)
+         //   {
+         //      ptext = get_child_by_id(pcontrol->m_id);
+         //   }
+         //   if (ptext == NULL && pcontrol != NULL)
+         //   {
+         //      ptext = pcontrol;
+         //   }
+         //   if (ptext == NULL)
+         //      return;
+         //   if (data_get(pcontrol->descriptor().m_dataid.m_id + "." + item.m_id.m_id, var))
+         //   {
+         //      switch (var.get_type())
+         //      {
+         //      case var::type_string:
+         //      {
+         //         string str;
+         //         str = var.m_str;
+         //         ptext->_001SetText(str, ::action::source_database);
+         //      }
+         //      break;
+         //      case var::type_int32:
+         //      {
+         //         string str;
+         //         str.Format("%d", var.int32());
+         //         ptext->_001SetText(str, ::action::source_database);
+         //      }
+         //      break;
+         //      default:
+         //         ASSERT(FALSE);
+         //         break;
+         //      }
+         //   }
+         //}
+      }
+   }
+
+   bool form_list::_001SaveEdit(sp(control) pcontrol)
+   {
+
+      if (pcontrol == NULL)
+         return false;
+
+      ASSERT(pcontrol->descriptor().get_type() == control_type_edit || pcontrol->descriptor().get_type() == control_type_edit_plain_text);
+
+      sp(::user::elemental) pedit = get_child_by_id(pcontrol->m_id);
+
+      string str;
+
+      if (pedit == NULL)
+      {
+
+         sp(::user::elemental) ptext = pcontrol;
+
+         if (ptext == NULL)
+            return false;
+
+         ptext->_001GetText(str);
+
+      }
+      else
+      {
+
+         pedit->_001GetText(str);
+
+      }
+
+      if (!pcontrol->Validate(str))
+      {
+         // que tal um balão para indicar o erro
+         return false;
+      }
+
+      var var;
+      if (!pcontrol->get_data(pedit, var))
+      {
+         return false;
+      }
+
+      if (!_001Validate(pcontrol, var))
+      {
+         return false;
+      }
+
+      if (pcontrol->descriptor().has_function(control::function_vms_data_edit))
+      {
+         
+         draw_list_item item(this);
+
+         item.m_iItem = pcontrol->m_iEditItem;
+
+         item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+
+         item.m_strText = var.get_string();
+
+         _001SetItemText(&item);
+
+         on_update(NULL, ::user::impact::hint_control_saved, pcontrol);
+
+      }
+
+      return true;
+
+   }
+
+
 
    void form_list::_001SetEditControl(sp(control) pcontrol)
    {
@@ -658,6 +804,23 @@ namespace user
       //{
       //   pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
       //}
+
+      if (pevent->m_eevent == ::user::event_enter_key)
+      {
+
+         if(m_pcontrolEdit != NULL)
+         {
+
+            _001SaveEdit(pevent->m_puie);
+            _001HideControl(pevent->m_puie);
+
+         }
+
+      }
+
+      if (pevent->m_bRet)
+         return pevent->m_bProcessed;
+
       return form_mesh::BaseOnControlEvent(pevent);
    }
 
