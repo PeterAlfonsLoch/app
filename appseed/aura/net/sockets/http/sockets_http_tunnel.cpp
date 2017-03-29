@@ -21,6 +21,7 @@ namespace sockets
       m_bDirect = false;
       m_estate = state_initial;
       m_memoryBuf.allocate(1024 * 16);
+      m_iProxyPort = -1;
 
    }
 
@@ -154,7 +155,23 @@ namespace sockets
          m_fileBody.write(psz, size);
       }
 
-
+      bool http_tunnel::open(const string &host, port_t port)
+      {
+         m_strProxy = host;
+         m_iProxyPort = port;
+         m_bSslTunnel = IsSSL();
+         EnableSSL(false);
+         if (!tcp_socket::open(host, port))
+         {
+            if (!Connecting())
+            {
+               log("http_get_socket", -1, "connect() failed miserably", ::aura::log::level_fatal);
+               SetCloseAndDelete();
+            }
+            return false;
+         }
+         return true;
+      }
 
    bool http_tunnel::open(bool bConfigProxy)
    {

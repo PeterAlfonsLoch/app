@@ -171,7 +171,6 @@ namespace sockets
       ,m_bReconnect(false)
       ,m_bTryingReconnect(false)
    {
-
       SSL_init_app_data2_3_idx();
       m_bClientSessionSet = false;
       m_memRead.allocate(TCP_BUFSIZE_READ + 1);

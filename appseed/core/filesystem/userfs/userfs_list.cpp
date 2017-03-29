@@ -492,17 +492,29 @@ namespace userfs
       return NULL;
    }
 
+
    void list::_001OnFileRename(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       range range;
+
       _001GetSelection(range);
+
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
-         sp(::user::control) pcontrol = _001GetControl(range.ItemAt(0).get_lower_bound(), get_fs_mesh_data()->m_iNameSubItem);
-         _001PlaceControl(pcontrol);
+
+         int iEditItem = range.ItemAt(0).get_lower_bound();
+
+         sp(::user::control) pcontrol = _001GetControl(iEditItem, get_fs_mesh_data()->m_iNameSubItem);
+
+         _001PlaceControl(pcontrol, iEditItem);
+
       }
+
    }
+
 
    void list::_001OnUpdateFileRename(signal_details * pobj)
    {

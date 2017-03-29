@@ -622,7 +622,7 @@ namespace filemanager
 
          sp(::user::control) pcontrol = _001GetControl(iEditItem, m_iNameSubItem);
 
-         _001PlaceControl(pcontrol);
+         _001PlaceControl(pcontrol, iEditItem);
 
       }
 

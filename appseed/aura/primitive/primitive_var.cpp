@@ -3977,7 +3977,7 @@ end:
    }
    else
    {
-      operator = (atoi(string(pszStart, pszParse - pszStart)));
+      operator = (atoll(string(pszStart, pszParse - pszStart)));
    }
    psz = pszParse;
 }

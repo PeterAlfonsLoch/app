@@ -459,7 +459,8 @@ namespace sockets
       if (m_request.m_propertysetHeader[__id(host)].get_string().has_char())
       {
          strLine = "Host: " + m_request.m_propertysetHeader[__id(host)];
-         if((m_iConnectPort != 80 && !IsSSL()) || (m_iConnectPort != 443 && IsSSL()))
+         if(m_iProxyPort > 0 ||
+            (m_iConnectPort != 80 && !IsSSL()) || (m_iConnectPort != 443 && IsSSL()))
          {
             strLine += ":";
             strLine += ::str::from(m_iConnectPort);

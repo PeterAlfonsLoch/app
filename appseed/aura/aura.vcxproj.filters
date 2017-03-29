@@ -4405,9 +4405,6 @@
     <ClCompile Include="net\http\http_status.cpp">
       <Filter>Source Files\net\http</Filter>
     </ClCompile>
-    <ClCompile Include="net\http\http_system.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
     <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp">
       <Filter>Source Files\net\http\webserver</Filter>
     </ClCompile>
@@ -4761,6 +4758,9 @@
     </ClCompile>
     <ClCompile Include="net\netserver\netserver_socket_thread.cpp">
       <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\http_system.cpp">
+      <Filter>Source Files\net\http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -94,16 +94,21 @@ namespace user
             {
                m_iOnClickClickCount = 0;
                //pcontrol->m_iEditItem = iItem;
-               _001PlaceControl(pcontrol);
+               _001PlaceControl(pcontrol, iItem);
             }
          }
          else
          {
+      
             //pcontrol->m_iEditItem = iItem;
-            _001PlaceControl(pcontrol);
+            _001PlaceControl(pcontrol, iItem);
+
          }
+
       }
+
       return true;
+
    }
 
 
@@ -139,7 +144,7 @@ namespace user
 
    }
 
-   void form_list::_001PlaceControl(sp(control) pcontrol)
+   void form_list::_001PlaceControl(sp(control) pcontrol, int iEditItem)
    {
       //rect rect;
       
@@ -152,19 +157,34 @@ namespace user
       }
 
       _001HideEditingControls();
+
       draw_list_item item(this);
-      item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
-      item.m_iItem = pcontrol->m_iEditItem;
+
+      pcontrol->m_iEditItem = iEditItem;
+
+      item.m_iDisplayItem = DisplayToStrict(iEditItem);
+
+      item.m_iItem = iEditItem;
+
       _001EnsureVisible(item.m_iItem);
+
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
+
       item.m_iListItem = -1;
+
       _001GetElementRect(&item,::user::mesh::element_text);
+
       if(item.m_bOk)
       {
+
          rect rectControl(item.m_rectSubItem);
+
          rectControl.offset(get_viewport_offset());
+
          _001Update(pcontrol);
+
          pcontrol->SetWindowPos(
             ZORDER_TOP,
             rectControl.left,
@@ -172,10 +192,15 @@ namespace user
             rectControl.width(),
             rectControl.height(),
             SWP_SHOWWINDOW);
+
          _001SetEditControl(pcontrol);
+
          pcontrol->SetFocus();
+
          _001OnShowControl(pcontrol);
+
       }
+
    }
 
 
@@ -368,8 +393,11 @@ namespace user
 
       if(pcontrol != NULL)
       {
-         _001PlaceControl(pcontrol);
+
+         _001PlaceControl(pcontrol, pcontrol->m_iEditItem);
+
       }
+
    }
 
    void form_list::_001OnHScroll(signal_details * pobj)
@@ -382,7 +410,9 @@ namespace user
 
       if(pcontrol != NULL)
       {
-         _001PlaceControl(pcontrol);
+         
+         _001PlaceControl(pcontrol, pcontrol->m_iEditItem);
+
       }
 
    }
@@ -1047,9 +1077,10 @@ namespace user
          
             sp(control) pcontrol = _001GetControl(iItem, iSubItem);
 
-            _001PlaceControl(pcontrol);
+            _001PlaceControl(pcontrol, iItem);
 
             pevent->m_bRet = true;
+
             pevent->m_bProcessed = true;  
 
          }

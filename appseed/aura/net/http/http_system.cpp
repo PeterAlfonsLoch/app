@@ -1567,7 +1567,21 @@ retry_session:
 
       }
 
-      if(!psocket->open(bConfigProxy))
+      stringa straProxy;
+      if (set.has_property("proxy"))
+      {
+
+         straProxy.explode(":", set["proxy"].get_string());
+         if (straProxy.get_count() != 2 || !psocket->open(straProxy[0], atoi(straProxy[1])))
+         {
+            set["get_status"] = (int64_t)status_failed;
+            //         delete psocket;
+            uint32_t dwTimeProfile2 = get_tick_count();
+            TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255, strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            return NULL;
+         }
+      }
+      else if(!psocket->open(bConfigProxy))
       {
          set["get_status"] = (int64_t) status_failed;
 //         delete psocket;

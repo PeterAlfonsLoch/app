@@ -14,6 +14,8 @@ namespace sockets
    public:
 
 
+      string               m_strProxy;
+      int32_t              m_iProxyPort;
 
 
       ::http::request      m_request;

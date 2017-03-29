@@ -21,8 +21,6 @@ namespace sockets
 
 
       http_tunnel(base_socket_handler & h);
-      string      m_strProxy;
-      int32_t         m_iProxyPort;
       bool        m_bSslTunnel;
       bool        m_bOk ;
       string m_host; ///< Hostname from url_in
@@ -46,7 +44,7 @@ namespace sockets
 
       using ::sockets::http_socket::open;
       virtual bool open(bool bConfigProxy = true);
-
+      virtual bool open(const string &host, port_t port);
 
 
       void OnConnect();
