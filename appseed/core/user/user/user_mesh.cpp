@@ -2563,24 +2563,42 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 
+      if (!has_focus())
+      {
+         
+         SetFocus();
+
+      }
+
+      Session.set_keyboard_focus(this);
+
+      Session.user()->set_mouse_focus_LButtonDown(this);
+
       if(m_bSelect)
       {
+
          if(m_bHoverSelect)
          {
+
             if(_001DisplayHitTest(pt,iItem))
             {
 
-               UINT uiDoubleClickTime = GetDoubleClickTime();
+               uint_ptr nFlags = m_uiLButtonUpFlags;
 
-               m_iClick++;
-               m_uiLButtonUpFlags = (UINT)pmouse->m_nFlags;
-               m_ptLButtonUp = pt;
-               SetTimer(12345679, uiDoubleClickTime, NULL);
-               KillTimer(12345678);
+               point point = pt;
+
+               _001OnClick(nFlags, point);
+
+               Redraw();
+
+
+               m_iClick = 0;
+
 
             }
             else
             {
+
                m_rangeSelection.clear();
             }
          }
@@ -2632,12 +2650,6 @@ namespace user
       }
 
       RedrawWindow();
-      if(!has_focus())
-      {
-         SetFocus();
-      }
-      Session.set_keyboard_focus(this);
-      Session.user()->set_mouse_focus_LButtonDown(this);
       pobj->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -3811,44 +3823,8 @@ namespace user
          {
             if(m_bHoverSelect)
             {
-               if(m_iClick == 1)
-               {
-                  m_iClick = 0;
-//                  if(!_001IsEditing())
-                  {
-                     uint_ptr nFlags = m_uiLButtonUpFlags;
-                     point point = m_ptLButtonUp;
-                     _001OnClick(nFlags,point);
-                     Redraw();
-
-
-                     /* trans
-                     window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
-                     if(wndidNotify == NULL)
-                     wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
-
-                     //               LRESULT lresult = 0;
-
-                     /* trans            if(wndidNotify)
-                     {
-                     NMLISTVIEW nm;
-                     nm.hdr.idFrom = pwnd->GetDlgCtrlId();
-                     nm.hdr.code =   NM_CLICK;
-                     nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
-                     lresult = ::SendMessage(
-                     wndidNotify,
-                     WM_NOTIFY,
-                     nm.hdr.idFrom,
-                     (LPARAM) &nm);
-                     }*/
-                  }
-               }
-               else
-               {
-                  m_iClick = 0;
-               }
-
             }
+
          }
       }
       else if(ptimer->m_nIDEvent == 8477) // right click

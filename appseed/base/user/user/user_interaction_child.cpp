@@ -275,6 +275,8 @@ namespace user
 
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_child::_001OnDestroy);
 
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction_child::_001OnShowWindow);
+
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_child::_001OnNcDestroy);
 
       m_pui->install_message_handling(pinterface);
@@ -287,6 +289,20 @@ namespace user
    void interaction_child::_001OnShowWindow(signal_details * pobj)
    {
 
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      if (pshowwindow->m_bShow)
+      {
+
+         ModifyStyle(0, WS_VISIBLE);
+
+      }
+      else
+      {
+
+         ModifyStyle(WS_VISIBLE, 0);
+
+      }
 
 
    }
@@ -651,7 +667,7 @@ namespace user
 
       }
 
-      if(!(m_pui->GetStyle() & WS_VISIBLE))
+      if(!(m_pui->GetStyle() & WS_VISIBLE) && (!m_bShowFlags || !(m_iShowFlags & SWP_SHOWWINDOW)))
       {
 
          return false;

@@ -166,10 +166,11 @@ namespace user
    control * control::descriptor::get_control(::user::form_window * pform,index iItem)
    {
 
-      sp(control) & pcontrol = m_controlmap[iItem];
-
+      //sp(control) & pcontrol = m_controlmap[iItem];
+      sp(control) & pcontrol = m_controlmap[0];
       if(pcontrol != NULL)
       {
+         //pcontrol->m_iEditItem = iItem;
 
          return pcontrol;
 
@@ -435,7 +436,7 @@ namespace user
       case control_type_combo_box:
          {
 
-            throw todo(get_app());
+            //throw todo(get_app());
 
 //            m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
 

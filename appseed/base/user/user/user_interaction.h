@@ -852,6 +852,7 @@ namespace user
       
       virtual void on_setting_changed(::aura::e_setting esetting);
       
+      virtual bool is_this_visible();
 
    };
 

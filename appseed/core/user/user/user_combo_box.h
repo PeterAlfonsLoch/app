@@ -78,6 +78,7 @@ namespace user
       virtual index _001FindListText(const string & str) const;
       virtual count _001GetListCount() const;
 
+      virtual bool create_control(class control::descriptor * pdescriptor, index iItem);
 
       virtual bool get_element_rect(LPRECT lprect, e_element eelement) const;
       virtual e_element hit_test(point pt) const;
@@ -90,7 +91,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);
       DECL_GEN_SIGNAL(_001OnSetFocus);
+      DECL_GEN_SIGNAL(_001OnKillFocus);
       DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
       virtual void _001ShowDropDown(bool bShow = true);
       virtual void _001ToggleDropDown();

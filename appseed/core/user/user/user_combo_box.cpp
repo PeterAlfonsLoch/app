@@ -37,6 +37,9 @@ namespace user
    }
 
 
+
+
+
    void combo_box::install_message_handling(::message::dispatch * pdispatch)
    {
 
@@ -58,7 +61,9 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pdispatch,this,&combo_box::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP,pdispatch,this,&combo_box::_001OnKeyUp);
       IGUI_WIN_MSG_LINK(WM_SETFOCUS,pdispatch,this,&combo_box::_001OnSetFocus);
+      IGUI_WIN_MSG_LINK(WM_KILLFOCUS, pdispatch, this, &combo_box::_001OnKillFocus);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &combo_box::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pdispatch, this, &combo_box::_001OnShowWindow);
 
    }
 
@@ -524,6 +529,27 @@ namespace user
 
    }
 
+
+   void combo_box::_001OnShowWindow(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      if (!pshowwindow->m_bShow)
+      {
+
+         if (m_plist.is_set())
+         {
+
+            m_plist->post_message(WM_CLOSE);
+
+         }
+
+      }
+
+   }
+
+
    void combo_box::_001OnKeyDown(signal_details * pobj)
    {
 
@@ -624,6 +650,23 @@ namespace user
 
    }
 
+
+   void combo_box::_001OnKillFocus(signal_details * pobj)
+   {
+
+      //SCAST_PTR(::message::kill_focus, pkillfocus, pobj);
+
+      if (m_plist != NULL)
+      {
+
+         m_plist->post_message(WM_CLOSE);
+
+      }
+
+
+   }
+
+
    void combo_box::_001ToggleDropDown()
    {
 
@@ -649,9 +692,11 @@ namespace user
 
          m_plist->query_full_size(sizeFull);
 
-         rect rectWindow;
+         rect rectWindow = m_pimpl->m_rectParentClientRequest;
 
-         GetWindowRect(rectWindow);
+         ClientToScreen(rectWindow);
+
+         //GetWindowRect(rectWindow);
 
          rect rectMonitor;
 
@@ -730,11 +775,6 @@ namespace user
 
          m_plist->SetWindowPos(ZORDER_TOPMOST,rectList.left - m_plist->m_iBorder,rectList.top - m_plist->m_iBorder,rectList.width() + m_plist->m_iBorder * 2,rectList.height() + m_plist->m_iBorder * 2,SWP_SHOWWINDOW);
 
-         m_plist->SetActiveWindow();
-
-         m_plist->SetFocus();
-
-
       }
       else
       {
@@ -789,13 +829,16 @@ namespace user
 
       }
 
-      if(!m_plist->IsWindow())
+      if (!m_plist->IsWindow())
       {
 
-         if(!m_plist->create_window_ex(0, NULL, "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
+         if (!m_plist->create_window_ex(0, NULL, "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
          {
+            
             m_plist.release();
+            
             throw resource_exception(get_app());
+
          }
 
       }
@@ -1557,6 +1600,18 @@ namespace user
 
    }
 
+   bool combo_box::create_control(class control::descriptor * pdescriptor, index iItem)
+   {
+      ASSERT(pdescriptor->get_type() == control_type_combo_box);
+      if (!create_window(pdescriptor->m_rect, pdescriptor->m_pform, pdescriptor->m_id))
+      {
+         TRACE("Failed to create control");
+         return false;
+      }
+      ShowWindow(SW_HIDE);
+      m_bMultiLine = false;
+      return control::create_control(pdescriptor, iItem);
+   }
 
 } // namespace user
 

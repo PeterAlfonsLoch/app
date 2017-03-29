@@ -117,6 +117,7 @@ namespace user
       
       //void on_change_view_size();
 
+      virtual bool get_font(::draw2d::font_sp & spfont) override;
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);

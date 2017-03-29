@@ -2302,7 +2302,7 @@ namespace user
 
             }
             
-            if(m_pui->IsWindowVisible())
+            //if(m_pui->IsWindowVisible())
             {
 
                _001Print(pgraphics);

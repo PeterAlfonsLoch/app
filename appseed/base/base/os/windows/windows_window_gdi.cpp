@@ -402,6 +402,13 @@ void window_gdi::update_window(::draw2d::dib * pdib)
          | SWP_NOOWNERZORDER
          | SWP_DEFERERASE);
 
+      if (m_pimpl->m_iShowFlags & SWP_SHOWWINDOW)
+      {
+
+         ::ShowWindow(m_pimpl->m_oswindow, SW_NORMAL);
+
+      }
+
       m_rectLast = rectWindow;
 
       m_pimpl->m_bZ = false;

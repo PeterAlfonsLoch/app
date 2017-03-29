@@ -37,7 +37,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
-
+      void _001OnShowWindow(signal_details * pobj);
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void _001OnDrawVerisimple(::draw2d::graphics * pgraphics);
@@ -46,7 +46,7 @@ namespace user
       virtual void _002OnDrawVerisimple(::draw2d::graphics * pgraphics);
       virtual void _002OnDrawSimply(::draw2d::graphics * pgraphics);
 
-      virtual void query_full_size(LPSIZE lpsize) const;
+      virtual void query_full_size(LPSIZE lpsize);
 
       virtual int32_t _001GetItemHeight() const;
 
@@ -76,6 +76,9 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnKillFocus();
+
+
+      virtual bool ShowWindow(int nCmdShow);
 
 
    };

@@ -48,6 +48,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pdispatch, this, &combo_list::_001OnMButtonDown);
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pdispatch, this, &combo_list::_001OnRButtonDown);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &combo_list::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pdispatch, this, &combo_list::_001OnShowWindow);
 
    }
 
@@ -75,8 +76,6 @@ namespace user
 
    void combo_list::_001OnDrawVerisimple(::draw2d::graphics * pgraphics)
    {
-
-      
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -121,12 +120,6 @@ namespace user
       ScreenToClient(&ptCursor);
 
       br->create_solid(ARGB(255, 84, 84, 77));
-
-//      int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
-
-  //    GetFont()->m_dFontSize = dSize;
-    //  GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
-//      GetFont()->m_bUpdated = false;
 
       select_font(pgraphics);
 
@@ -479,7 +472,7 @@ namespace user
 
    }
 
-   void combo_list::query_full_size(LPSIZE lpsize) const
+   void combo_list::query_full_size(LPSIZE lpsize)
    {
 
       if (!((combo_list *)this)->IsWindow())
@@ -511,6 +504,7 @@ namespace user
       size sz;
 
       lpsize->cx = 0;
+      m_iItemHeight = 0;
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -528,6 +522,13 @@ namespace user
 
          }
 
+         if (sz.cy > m_iItemHeight)
+         {
+
+            ((combo_list *) this)->m_iItemHeight = sz.cy;
+
+         }
+
       }
 
       int iAddUp = 0;
@@ -541,7 +542,7 @@ namespace user
 
       lpsize->cy = (LONG) (_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
 
-      //lpsize->cx += m_iBorder * 2;
+      lpsize->cx += m_iBorder * 2;
 
       ::rect rectComboClient;
 
@@ -549,7 +550,7 @@ namespace user
 
       lpsize->cx = MAX(lpsize->cx,rectComboClient.width());
 
-      //lpsize->cy += m_iBorder * 2;
+      lpsize->cy += m_iBorder * 2;
 
    }
 
@@ -619,10 +620,28 @@ namespace user
       return TRUE;
    }
 
+   void combo_list::_001OnShowWindow(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      if (pshowwindow->m_bShow)
+      {
+
+         SetActiveWindow();
+
+         SetFocus();
+
+      }
+
+   }
+
    void combo_list::_001OnKillFocus(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base,pbase,pobj);
+
+      post_message(WM_CLOSE);
       
       pbase->m_bRet = true;
 
@@ -659,12 +678,12 @@ namespace user
 
          m_pcombo->ScreenToClient(&ptCursor);
 
-         if(m_pcombo->hit_test(ptCursor) != element_drop_down)
-         {
+         //if(m_pcombo->hit_test(ptCursor) != element_drop_down)
+         //{
 
-            m_pcombo->_001ShowDropDown(false);
+         //   m_pcombo->_001ShowDropDown(false);
 
-         }
+         //}
 
 
          
@@ -880,7 +899,9 @@ namespace user
    void combo_list::_001OnClose(signal_details * pobj)
    {
 
-      post_message(WM_DESTROY);
+      pobj->m_bRet = true;
+
+      ShowWindow(SW_HIDE);
 
    }
    
@@ -943,6 +964,26 @@ namespace user
 
    }
 
+
+   bool combo_list::ShowWindow(int nCmdShow)
+   {
+
+      if (nCmdShow == SW_HIDE)
+      {
+
+         output_debug_string("hiding combo list");
+
+      }
+      else
+      {
+
+         output_debug_string("showing combo list");
+
+      }
+
+      return ::user::control::ShowWindow(nCmdShow);
+
+   }
 
 
 

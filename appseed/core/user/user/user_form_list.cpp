@@ -93,13 +93,13 @@ namespace user
             if(m_iOnClickClickCount == 2)
             {
                m_iOnClickClickCount = 0;
-               pcontrol->m_iEditItem = iItem;
+               //pcontrol->m_iEditItem = iItem;
                _001PlaceControl(pcontrol);
             }
          }
          else
          {
-            pcontrol->m_iEditItem = iItem;
+            //pcontrol->m_iEditItem = iItem;
             _001PlaceControl(pcontrol);
          }
       }
@@ -133,31 +133,48 @@ namespace user
       return pdescriptor->get_control(this, iItem);
 
    }
+   void form_list::_001OnShowControl(sp(control) pcontrol)
+   {
 
+
+   }
 
    void form_list::_001PlaceControl(sp(control) pcontrol)
    {
       //rect rect;
+      
+      
+      if (_001GetEditControl() != NULL)
+      {
+
+         _001SaveEdit(_001GetEditControl());
+
+      }
+
       _001HideEditingControls();
       draw_list_item item(this);
       item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
       item.m_iItem = pcontrol->m_iEditItem;
+      _001EnsureVisible(item.m_iItem);
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
       _001GetElementRect(&item,::user::mesh::element_text);
       if(item.m_bOk)
       {
+         rect rectControl(item.m_rectSubItem);
+         rectControl.offset(get_viewport_offset());
          _001Update(pcontrol);
          pcontrol->SetWindowPos(
             ZORDER_TOP,
-            item.m_rectSubItem.left,
-            item.m_rectSubItem.top,
-            item.m_rectSubItem.width(),
-            item.m_rectSubItem.height(),
+            rectControl.left,
+            rectControl.top,
+            rectControl.width(),
+            rectControl.height(),
             SWP_SHOWWINDOW);
          _001SetEditControl(pcontrol);
          pcontrol->SetFocus();
+         _001OnShowControl(pcontrol);
       }
    }
 
@@ -175,8 +192,19 @@ namespace user
       ASSERT(pcontrol->descriptor().get_type() == control_type_edit
          || pcontrol->descriptor().get_type() == control_type_edit_plain_text);
 
+      sp(::user::plain_edit) pedit = pcontrol;
+
+      if (pedit.is_set())
+      {
+
+         pedit->m_spfont = m_font;
+
+      }
+
       if (pcontrol->descriptor().has_function(control::function_vms_data_edit))
       {
+
+         
 
          draw_list_item item(this);
 
@@ -242,7 +270,8 @@ namespace user
       if (pcontrol == NULL)
          return false;
 
-      ASSERT(pcontrol->descriptor().get_type() == control_type_edit || pcontrol->descriptor().get_type() == control_type_edit_plain_text);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_edit || pcontrol->descriptor().get_type() == control_type_edit_plain_text
+      || pcontrol->descriptor().get_type() == control_type_combo_box);
 
       sp(::user::elemental) pedit = get_child_by_id(pcontrol->m_id);
 
@@ -797,6 +826,163 @@ namespace user
       return _001DisplayHitTest(pt,m_iControlItem,m_iControlSubItem);
    }
 
+
+   bool form_list::_001PreviousEditableControl(int & iItem, int & iSubItem)
+   {
+
+      int iPreviousItem = iItem;
+
+      int iColumnCount = _001GetColumnCount();
+
+      ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
+
+      ::user::list_column * pcolumnPrevious = NULL;
+
+      for (index i = pcolumn->m_iKeyVisible -1; i >= 0; i--)
+      {
+
+         if (m_columna._001GetVisible(i)->m_iControl >= 0)
+         {
+
+
+            pcolumnPrevious = m_columna._001GetVisible(i);
+
+            break;
+
+         }
+
+      }
+
+      if (pcolumnPrevious == NULL)
+      {
+
+         iPreviousItem--;
+
+         for (index i = iColumnCount - 1; i >= pcolumn->m_iKeyVisible; i--)
+         {
+
+            if (m_columna._001GetVisible(i)->m_iControl >= 0)
+            {
+
+               pcolumnPrevious = m_columna._001GetVisible(i);
+
+               break;
+
+            }
+
+         }
+
+      }
+
+      if (pcolumnPrevious != NULL)
+      {
+
+         if (iPreviousItem < 0)
+         {
+
+            iPreviousItem = _001GetItemCount() - 1;
+
+         }
+
+         if (iPreviousItem < 0)
+         {
+
+            return false;
+
+         }
+
+         iItem = iPreviousItem;
+
+         iSubItem = pcolumnPrevious->m_iSubItem;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool form_list::_001NextEditableControl(int & iItem, int & iSubItem)
+   {
+
+      int iNextItem = iItem;
+
+      int iColumnCount = _001GetColumnCount();
+
+      ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
+
+      ::user::list_column * pcolumnNext = NULL;
+
+      for (index i = pcolumn->m_iKeyVisible + 1; i < iColumnCount; i++)
+      {
+
+         if (m_columna._001GetVisible(i)->m_iControl >= 0)
+         {
+
+
+            pcolumnNext = m_columna._001GetVisible(i);
+
+            break;
+
+         }
+
+      }
+
+      if (pcolumnNext == NULL)
+      {
+
+         iNextItem++;
+
+         for (index i = 0; i <= pcolumn->m_iKeyVisible; i++)
+         {
+
+            if (m_columna._001GetVisible(i)->m_iControl >= 0)
+            {
+
+               pcolumnNext = m_columna._001GetVisible(i);
+
+               break;
+
+            }
+
+         }
+
+      }
+
+      if (pcolumnNext != NULL)
+      {
+
+         if (iNextItem >= _001GetItemCount())
+         {
+
+            iNextItem = 0;
+
+         }
+
+         if (iNextItem >= _001GetItemCount())
+         {
+
+            return false;
+
+         }
+
+         iItem = iNextItem;
+
+         iSubItem = pcolumnNext->m_iSubItem;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+
+
    bool form_list::BaseOnControlEvent(::user::control_event * pevent)
    {
       //class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
@@ -811,8 +997,60 @@ namespace user
          if(m_pcontrolEdit != NULL)
          {
 
-            _001SaveEdit(pevent->m_puie);
-            _001HideControl(pevent->m_puie);
+            _001SaveEdit(m_pcontrolEdit);
+            _001HideControl(m_pcontrolEdit);
+
+            pevent->m_bRet = true;
+            pevent->m_bProcessed = true;
+
+         }
+
+      }
+      else if (pevent->m_eevent == ::user::event_tab_key)
+      {
+
+         int iItem = 0;
+         int iSubItem = 0;
+
+         if (m_pcontrolEdit != NULL)
+         {
+
+            iItem = m_pcontrolEdit->m_iEditItem;
+
+            iSubItem = m_pcontrolEdit->descriptor().m_iSubItem;
+
+            _001SaveEdit(m_pcontrolEdit);
+            _001HideControl(m_pcontrolEdit);
+
+            pevent->m_bRet = true;
+            pevent->m_bProcessed = true;
+
+         }
+
+         bool bOk;
+
+         if (Session.is_key_pressed(::user::key_shift))
+         {
+
+            bOk = _001PreviousEditableControl(iItem, iSubItem);
+
+         }
+         else
+         {
+
+            bOk = _001NextEditableControl(iItem, iSubItem);
+
+         }
+
+         if(bOk)
+         { 
+         
+            sp(control) pcontrol = _001GetControl(iItem, iSubItem);
+
+            _001PlaceControl(pcontrol);
+
+            pevent->m_bRet = true;
+            pevent->m_bProcessed = true;  
 
          }
 

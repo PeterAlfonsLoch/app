@@ -2750,15 +2750,15 @@ namespace user
 
       RedrawWindow();
 
-      if (!has_focus())
-      {
+      //if (!has_focus())
+      //{
 
-         SetFocus();
+      //   SetFocus();
 
-      }
+      //}
 
-      Session.set_keyboard_focus(this);
-      Session.user()->set_mouse_focus_LButtonDown(this);
+      //Session.set_keyboard_focus(this);
+      //Session.user()->set_mouse_focus_LButtonDown(this);
       //GetParentFrame()->SetActiveView(this);
       pobj->m_bRet = true;
       pmouse->set_lresult(1);

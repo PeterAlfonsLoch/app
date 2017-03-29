@@ -40,7 +40,8 @@ namespace user
       void _001UpdateColumns();
       sp(control) _001GetEditControl();
       void _001SetEditControl(sp(control) pcontrol);
-      virtual void _001PlaceControl(sp(control) pcontrol);
+      virtual void _001PlaceControl(sp(control) pcontrol, int iEditItem);
+      virtual void _001OnShowControl(sp(control) pcontrol);
       sp(control) _001GetControl(index iItem, index iSubItem);
       virtual bool _001OnClick(uint_ptr uiFlags,point point);
       virtual bool _001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem);
@@ -71,6 +72,9 @@ namespace user
 
       virtual void _001DrawChildren(::draw2d::graphics * pgraphics);
 
+
+      virtual bool _001PreviousEditableControl(int & iItem, int & iSubItem);
+      virtual bool _001NextEditableControl(int & iItem, int & iSubItem);
 
    };
 

@@ -1010,6 +1010,8 @@ namespace user
 
       }
 
+      pcontrol->m_iEditItem = iItem;
+
       _001OnInitializeForm(pcontrol);
 
       return true;

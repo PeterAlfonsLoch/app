@@ -269,6 +269,21 @@ namespace user
    {
    }
 
+   bool plain_edit::get_font(::draw2d::font_sp & spfont)
+   {
+
+      if (m_spfont.is_set())
+      {
+
+         spfont = m_spfont;
+
+         return true;
+
+      }
+
+      return ::user::schema::get_font(spfont);
+
+   }
 
    void plain_edit::_001OnDraw(::draw2d::graphics * pgraphics)
    {
@@ -776,25 +791,25 @@ namespace user
 
             pkey->previous();
 
-            //::user::control_event ev;
+            ::user::control_event ev;
 
-            //ev.m_puie         = this;
+            ev.m_puie         = this;
 
-            //ev.m_eevent       = ::user::event_tab_key;
+            ev.m_eevent       = ::user::event_tab_key;
 
-            //ev.m_actioncontext        = ::action::source_user;
+            ev.m_actioncontext        = ::action::source_user;
 
-            //if(!BaseOnControlEvent(&ev))
-            //{
+            if(!BaseOnControlEvent(&ev))
+            {
 
-            //   sp(::user::interaction) pui = keyboard_get_next_focusable();
+               sp(::user::interaction) pui = keyboard_get_next_focusable();
 
-            //   if(pui != NULL)
-            //      pui->keyboard_set_focus();
+               if(pui != NULL)
+                  pui->keyboard_set_focus();
 
-            //}
+            }
 
-            //pkey->m_bRet      = true;
+            pkey->m_bRet      = true;
 
             return;
 

@@ -3523,6 +3523,24 @@ namespace windows
 
       }
 
+      //if (!(GetExStyle() & WS_EX_LAYERED))
+      //{
+      //   
+      //   if (m_bShowFlags && (m_iShowFlags & SWP_SHOWWINDOW))
+      //   {
+
+      //      ShowWindow(SW_SHOW);
+
+      //   }
+      //   else if (m_bShowFlags && (m_iShowFlags & SWP_HIDEWINDOW))
+      //   {
+
+      //      ShowWindow(SW_HIDE);
+
+      //   }
+
+      //}
+
    }
 
 
@@ -4319,20 +4337,6 @@ namespace windows
 
       try
       {
-
-         //if(m_pui != NULL)
-         //{
-
-         //   if(!m_pui->m_bVisible)
-         //      return false;
-
-         //   if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
-         //      return false;
-
-         //}
-
-         //if(!::IsWindow(get_handle()))
-         //   return true;
 
          if(!::IsWindowVisible(get_handle()))
             return false;
@@ -5147,7 +5151,7 @@ while (pui != NULL)
    {
       //   Default();
 
-      Default();
+      //Default();
 
       if(GetParent() == NULL)
       {
