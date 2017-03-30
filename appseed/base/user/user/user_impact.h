@@ -117,6 +117,7 @@ namespace user
       template < class VIEW >
       VIEW * create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = NULL);
 
+      ::user::interaction * create_view(::user::interaction * pimpactAlloc, ::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = NULL);
 
       static_function::user::document * get_document(::user::interaction * pui);
 

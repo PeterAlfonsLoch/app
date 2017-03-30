@@ -570,6 +570,24 @@ namespace user
    }
 
 
+   ::user::interaction * impact::create_view(::user::interaction * pimpactAlloc, ::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast)
+   {
+
+      sp(::create) cacc(allocer());
+
+      stacker < ::aura::create_context > cc(cacc->m_user);
+
+      cc->m_puiNew = pimpactAlloc;
+
+      cc->m_pLastView = pviewLast;
+
+      cc->m_pCurrentDoc = get_document();
+
+      return s_create_view(cacc, pcreatordata->m_rectCreate, pcreatordata->m_pholder, pcreatordata->m_id);
+
+   }
+
+
    ::user::interaction * impact::create_view(type * pinfo, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
    {
 
