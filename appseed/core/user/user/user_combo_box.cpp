@@ -64,6 +64,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_KILLFOCUS, pdispatch, this, &combo_box::_001OnKillFocus);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &combo_box::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pdispatch, this, &combo_box::_001OnShowWindow);
+      IGUI_WIN_MSG_LINK(WM_MOVE, pdispatch, this, &combo_box::_001OnMove);
 
    }
 
@@ -549,6 +550,36 @@ namespace user
 
    }
 
+   void combo_box::_001OnMove(signal_details * pobj)
+   {
+
+      if (is_drop_down())
+      {
+
+         size sizeFull;
+
+         {
+
+            rect rW;
+
+            m_plist->GetWindowRect(rW);
+
+            sizeFull = rW.size();
+
+         }
+
+         m_plist->query_full_size(sizeFull);
+
+         rect rectWindow;
+
+         GetWindowRect(rectWindow);
+
+         m_plist->on_drop_down(rectWindow, sizeFull);
+
+      }
+
+   }
+
 
    void combo_box::_001OnKeyDown(signal_details * pobj)
    {
@@ -692,88 +723,15 @@ namespace user
 
          m_plist->query_full_size(sizeFull);
 
-         rect rectWindow = m_pimpl->m_rectParentClientRequest;
+         rect rectWindow;
 
-         ClientToScreen(rectWindow);
+         //rectWindow = m_pimpl->m_rectParentClientRequest;
 
-         //GetWindowRect(rectWindow);
+         //ClientToScreen(rectWindow);
 
-         rect rectMonitor;
+         GetWindowRect(rectWindow);
 
-         Session.get_best_monitor(rectMonitor, rectWindow);
-
-         bool bDown = true;
-
-         if(sizeFull.cy > (rectMonitor.bottom - rectWindow.bottom))
-         {
-            bDown = false;
-         }
-
-         size sizeList;
-
-         rect rectList;
-
-         rectList = rectMonitor;
-
-         sizeList.cx = MIN(sizeFull.cx, rectMonitor.width());
-
-         {
-
-            sizeList.cx = MAX(sizeList.cx, rectWindow.width());
-
-         }
-
-         if(sizeList.cx < rectWindow.width())
-         {
-
-            rectList.left = rectWindow.left;
-
-         }
-         else if(sizeList.cx < rectMonitor.width())
-         {
-
-            rectList.left = MIN(rectMonitor.right - sizeList.cx, ((rectWindow.left + rectWindow.right) / 2) - sizeList.cx / 2);
-
-         }
-
-         rectList.right = rectList.left + sizeList.cx;
-
-         if(bDown)
-         {
-
-            rectList.top = rectWindow.bottom + 1;
-
-            sizeList.cy = MIN(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
-            //sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
-
-
-            rectList.bottom = rectList.top + sizeList.cy;
-
-
-
-
-         }
-         else
-         {
-            rectList.bottom = rectWindow.top - 1;
-
-            sizeList.cy = MIN(sizeFull.cy, (rectWindow.top - rectMonitor.top));
-            //sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
-
-            rectList.top = rectList.bottom - sizeList.cy;
-
-         }
-
-         m_plist->m_iHover = _001GetCurSel();
-
-         if(m_plist->m_iHover < 0)
-         {
-
-            m_plist->m_iHover = 0;
-
-         }
-
-         m_plist->SetWindowPos(ZORDER_TOPMOST,rectList.left - m_plist->m_iBorder,rectList.top - m_plist->m_iBorder,rectList.width() + m_plist->m_iBorder * 2,rectList.height() + m_plist->m_iBorder * 2,SWP_SHOWWINDOW);
+         m_plist->on_drop_down(rectWindow, sizeFull);
 
       }
       else

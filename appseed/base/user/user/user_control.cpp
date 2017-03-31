@@ -176,6 +176,8 @@ namespace user
 
       }
 
+      iItem = 0;
+
       if(!pform->create_control(this,iItem))
       {
 

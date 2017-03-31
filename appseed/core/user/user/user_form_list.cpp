@@ -1010,6 +1010,56 @@ namespace user
 
    }
 
+   bool form_list::_001UpperEditableControl(int & iItem, int & iSubItem)
+   {
+
+      int iUpperItem = iItem - 1;
+
+      if (iUpperItem < 0)
+      {
+
+         iUpperItem = _001GetItemCount() - 1;
+
+      }
+
+      if (iUpperItem < 0)
+      {
+
+         return false;
+
+      }
+
+      iItem = iUpperItem;
+
+      return true;
+
+   }
+
+
+   bool form_list::_001LowerEditableControl(int & iItem, int & iSubItem)
+   {
+
+      int iLowerItem = iItem + 1;
+
+      if (iLowerItem >= _001GetItemCount())
+      {
+
+         iLowerItem = 0;
+
+      }
+
+      if (iLowerItem >= _001GetItemCount())
+      {
+
+         return false;
+
+      }
+
+      iItem = iLowerItem;
+
+      return true;
+
+   }
 
 
 
@@ -1082,6 +1132,143 @@ namespace user
             pevent->m_bRet = true;
 
             pevent->m_bProcessed = true;  
+
+         }
+
+      }
+      else if (pevent->m_eevent == ::user::event_key_down)
+      {
+
+         SCAST_PTR(::message::key, pkey, pevent->m_pobj);
+
+         if (pkey->m_ekey == key_down || pkey->m_ekey == key_up
+            || pkey->m_ekey == key_left || pkey->m_ekey == key_right)
+         {
+
+            int iItem = 0;
+
+            int iSubItem = 0;
+
+            if (m_pcontrolEdit != NULL)
+            {
+
+               sp(::user::plain_edit) pedit = m_pcontrolEdit;
+
+               if (pedit.is_set())
+               {
+
+                  strsize iSel;
+
+                  strsize iSelEnd;
+
+                  pedit->_001GetSel(iSel, iSelEnd);
+
+                  if (iSel != iSelEnd)
+                  {
+
+                     iSel = -1;
+
+                  }
+
+                  if (pkey->m_ekey == key_left && iSel != 0)
+                  {
+
+                     return false;
+
+                  }
+                  else if (pkey->m_ekey == key_right)
+                  {
+
+                     strsize iLen = pedit->_001GetTextLength();
+
+                     if (iSel != iLen)
+                     {
+
+                        return false;
+
+                     }
+
+                  }
+
+               }
+
+               iItem = m_pcontrolEdit->m_iEditItem;
+
+               iSubItem = m_pcontrolEdit->descriptor().m_iSubItem;
+
+               _001SaveEdit(m_pcontrolEdit);
+               _001HideControl(m_pcontrolEdit);
+
+               pevent->m_bRet = true;
+               pevent->m_bProcessed = true;
+
+            }
+
+            bool bOk;
+
+            if (pkey->m_ekey == key_left)
+            {
+
+               bOk = _001PreviousEditableControl(iItem, iSubItem);
+
+            }
+            else if (pkey->m_ekey == key_right)
+            {
+
+               bOk = _001NextEditableControl(iItem, iSubItem);
+
+            }
+            else if (pkey->m_ekey == key_up)
+            {
+
+               bOk = _001UpperEditableControl(iItem, iSubItem);
+
+            }
+            else if (pkey->m_ekey == key_down)
+            {
+
+               bOk = _001LowerEditableControl(iItem, iSubItem);
+
+            }
+
+            if (bOk)
+            {
+
+               sp(control) pcontrol = _001GetControl(iItem, iSubItem);
+
+               _001PlaceControl(pcontrol, iItem);
+
+
+               sp(::user::plain_edit) pedit = m_pcontrolEdit;
+
+
+               if(pedit.is_set())
+               {
+
+                  if (pkey->m_ekey == key_left)
+                  {
+
+                     strsize iLen = pedit->_001GetTextLength();
+
+                     pedit->_001SetSel(iLen, iLen);
+
+
+                  }
+                  else if (pkey->m_ekey == key_right)
+                  {
+
+                     pedit->_001SetSel(0, 0);
+
+
+                  }
+
+               }
+
+               pevent->m_bRet = true;
+
+               pevent->m_bProcessed = true;
+
+            }
 
          }
 

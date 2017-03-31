@@ -5,21 +5,21 @@ namespace user
 {
 
 
-   combo_list::combo_list(::aura::application * papp):
+   combo_list::combo_list(::aura::application * papp) :
       object(papp)
    {
 
-      m_bComboList                  = true;
+      m_bComboList = true;
 
-      m_puiDeactivateTogether       = NULL;
+      m_puiDeactivateTogether = NULL;
 
-      m_puiDeactivateTogetherSet    = NULL;
+      m_puiDeactivateTogetherSet = NULL;
 
-      m_pcombo                      = NULL;
+      m_pcombo = NULL;
 
-      m_iHover                      = -1;
+      m_iHover = -1;
 
-      m_iBorder                     = 6;
+      m_iBorder = 6;
 
    }
 
@@ -36,14 +36,14 @@ namespace user
 
       ::user::control::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_SETFOCUS,pdispatch,this,&combo_list::_001OnSetFocus);
+      IGUI_WIN_MSG_LINK(WM_SETFOCUS, pdispatch, this, &combo_list::_001OnSetFocus);
       IGUI_WIN_MSG_LINK(WM_KILLFOCUS, pdispatch, this, &combo_list::_001OnKillFocus);
       IGUI_WIN_MSG_LINK(WM_CLOSE, pdispatch, this, &combo_list::_001OnClose);
       IGUI_WIN_MSG_LINK(WM_ACTIVATE, pdispatch, this, &combo_list::_001OnActivate);
       IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE, pdispatch, this, &combo_list::_001OnMouseActivate);
-      IGUI_WIN_MSG_LINK(WM_KEYDOWN,pdispatch,this,&combo_list::_001OnKeyDown);
-      IGUI_WIN_MSG_LINK(WM_KEYUP,pdispatch,this,&combo_list::_001OnKeyUp);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&combo_list::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_KEYDOWN, pdispatch, this, &combo_list::_001OnKeyDown);
+      IGUI_WIN_MSG_LINK(WM_KEYUP, pdispatch, this, &combo_list::_001OnKeyUp);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_list::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_list::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pdispatch, this, &combo_list::_001OnMButtonDown);
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pdispatch, this, &combo_list::_001OnRButtonDown);
@@ -56,10 +56,10 @@ namespace user
    void combo_list::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      if(m_pcombo == NULL)
+      if (m_pcombo == NULL)
          return;
 
-      if(m_pcombo->m_estyle == ::user::combo_box::style_simply)
+      if (m_pcombo->m_estyle == ::user::combo_box::style_simply)
       {
 
          _002OnDrawSimply(pgraphics);
@@ -125,13 +125,13 @@ namespace user
 
       pgraphics->SelectObject(br);
 
-      for(index i = 0; i < ca; i++)
+      for (index i = 0; i < ca; i++)
       {
          rectItem.top = rectItem.bottom;
          rectItem.bottom = rectItem.top + _001GetItemHeight();
-         if(i != m_pcombo->m_iSel)
+         if (i != m_pcombo->m_iSel)
          {
-            if(rectItem.contains(ptCursor))
+            if (rectItem.contains(ptCursor))
             {
                ::draw2d::pen_sp pen(allocer());
                pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
@@ -143,11 +143,11 @@ namespace user
          }
       }
 
-      if(m_pcombo->m_iSel >= 0)
+      if (m_pcombo->m_iSel >= 0)
       {
-         rectItem.top = (LONG) (rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel)));
+         rectItem.top = (LONG)(rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel)));
          rectItem.bottom = rectItem.top + _001GetItemHeight();
-         if(rectItem.contains(ptCursor))
+         if (rectItem.contains(ptCursor))
          {
             br->create_solid(ARGB(123, 123, 149, 108));
          }
@@ -169,8 +169,8 @@ namespace user
 
    void combo_list::_001OnDrawSimply(::draw2d::graphics * pgraphics)
    {
-      
-      
+
+
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -226,13 +226,13 @@ namespace user
 
       pgraphics->SelectObject(br);
 
-      for(index i = 0; i < ca; i++)
+      for (index i = 0; i < ca; i++)
       {
          rectItem.top = rectItem.bottom;
          rectItem.bottom = rectItem.top + _001GetItemHeight();
-         if(i != m_pcombo->m_iSel)
+         if (i != m_pcombo->m_iSel)
          {
-            if(rectItem.contains(ptCursor))
+            if (rectItem.contains(ptCursor))
             {
                ::draw2d::pen_sp pen(allocer());
                pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
@@ -244,11 +244,11 @@ namespace user
          }
       }
 
-      if(m_pcombo->m_iSel >= 0)
+      if (m_pcombo->m_iSel >= 0)
       {
-         rectItem.top = (LONG) (rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel)));
+         rectItem.top = (LONG)(rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel)));
          rectItem.bottom = rectItem.top + _001GetItemHeight();
-         if(rectItem.contains(ptCursor))
+         if (rectItem.contains(ptCursor))
          {
             br->create_solid(ARGB(123, 123, 149, 108));
          }
@@ -271,7 +271,7 @@ namespace user
    void combo_list::_002OnDrawVerisimple(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -283,7 +283,7 @@ namespace user
 
       ::draw2d::brush_sp br(allocer());
 
-      br->create_solid(ARGB(230,255,255,255));
+      br->create_solid(ARGB(230, 255, 255, 255));
 
       pgraphics->SelectObject(br);
 
@@ -307,7 +307,7 @@ namespace user
 
       rectItem = rectClient;
 
-      if(m_pcombo->m_bEdit)
+      if (m_pcombo->m_bEdit)
       {
 
          rectItem.bottom = rectClient.top + _001GetItemHeight();
@@ -340,32 +340,32 @@ namespace user
 
       index iHover = m_iHover;
 
-      if(iHover < 0 || iHover >= ca)
+      if (iHover < 0 || iHover >= ca)
       {
 
          iHover = m_pcombo->_001GetCurSel();
 
       }
 
-      for(index i = 0; i < ca; i++)
+      for (index i = 0; i < ca; i++)
       {
          rectItem.top = rectItem.bottom;
          rectItem.bottom = rectItem.top + _001GetItemHeight();
-         if(iHover == i)
+         if (iHover == i)
          {
-            br->create_solid(ARGB(184,77,184,63));
+            br->create_solid(ARGB(184, 77, 184, 63));
             pgraphics->SelectObject(br);
             pgraphics->FillRectangle(rectItem);
-            br->create_solid(ARGB(255,255,255,240));
-            m_pcombo->_001GetListText(i,strItem);
+            br->create_solid(ARGB(255, 255, 255, 240));
+            m_pcombo->_001GetListText(i, strItem);
             pgraphics->SelectObject(br);
-            pgraphics->draw_text(strItem,rectItem,0);
+            pgraphics->draw_text(strItem, rectItem, 0);
          }
          else
          {
-            pgraphics->set_text_color(ARGB(255,84,84,77));
-            m_pcombo->_001GetListText(i,strItem);
-            pgraphics->draw_text(strItem,rectItem,0);
+            pgraphics->set_text_color(ARGB(255, 84, 84, 77));
+            m_pcombo->_001GetListText(i, strItem);
+            pgraphics->draw_text(strItem, rectItem, 0);
          }
       }
 
@@ -375,7 +375,7 @@ namespace user
    void combo_list::_002OnDrawSimply(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -387,7 +387,7 @@ namespace user
 
       ::draw2d::brush_sp br(allocer());
 
-      br->create_solid(ARGB(230,255,255,255));
+      br->create_solid(ARGB(230, 255, 255, 255));
 
       pgraphics->SelectObject(br);
 
@@ -413,7 +413,7 @@ namespace user
 
       rectItem.bottom = rectClient.top;
 
-      if(m_pcombo->m_bEdit)
+      if (m_pcombo->m_bEdit)
       {
 
          rectItem.bottom += _001GetItemHeight();
@@ -440,32 +440,32 @@ namespace user
 
       index iHover = m_iHover;
 
-      if(iHover < 0 || iHover >= ca)
+      if (iHover < 0 || iHover >= ca)
       {
 
          iHover = m_pcombo->_001GetCurSel();
 
       }
 
-      for(index i = 0; i < ca; i++)
+      for (index i = 0; i < ca; i++)
       {
          rectItem.top = rectItem.bottom;
          rectItem.bottom = rectItem.top + _001GetItemHeight();
-         if(i == iHover)
+         if (i == iHover)
          {
-            br->create_solid(ARGB(184,77,184,63));
+            br->create_solid(ARGB(184, 77, 184, 63));
             pgraphics->SelectObject(br);
             pgraphics->FillRectangle(rectItem);
-            br->create_solid(ARGB(255,255,255,240));
-            m_pcombo->_001GetListText(i,strItem);
+            br->create_solid(ARGB(255, 255, 255, 240));
+            m_pcombo->_001GetListText(i, strItem);
             pgraphics->SelectObject(br);
-            pgraphics->draw_text(strItem,rectItem,0);
+            pgraphics->draw_text(strItem, rectItem, 0);
          }
          else
          {
-            pgraphics->set_text_color(ARGB(255,84,84,77));
-            m_pcombo->_001GetListText(i,strItem);
-            pgraphics->draw_text(strItem,rectItem,0);
+            pgraphics->set_text_color(ARGB(255, 84, 84, 77));
+            m_pcombo->_001GetListText(i, strItem);
+            pgraphics->draw_text(strItem, rectItem, 0);
          }
       }
 
@@ -489,14 +489,14 @@ namespace user
 
       pgraphics->SelectObject(tameshi->get_bitmap());
 
-    //  int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
-////
-//      ((combo_list *) this)->GetFont()->m_dFontSize = dSize;
-//
-//      ((combo_list *) this)->GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
-//
-//      ((combo_list *) this)->GetFont()->m_bUpdated = false;
-//
+      //  int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
+  ////
+  //      ((combo_list *) this)->GetFont()->m_dFontSize = dSize;
+  //
+  //      ((combo_list *) this)->GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
+  //
+  //      ((combo_list *) this)->GetFont()->m_bUpdated = false;
+  //
       ((combo_list *)this)->select_font(pgraphics);
 
       string strItem;
@@ -508,14 +508,14 @@ namespace user
 
       ::count ca = m_pcombo->_001GetListCount();
 
-      for(index i = 0; i < ca; i++)
+      for (index i = 0; i < ca; i++)
       {
 
          m_pcombo->_001GetListText(i, strItem);
 
          sz = pgraphics->GetTextExtent(strItem);
 
-         if(sz.cx > lpsize->cx)
+         if (sz.cx > lpsize->cx)
          {
 
             lpsize->cx = sz.cx;
@@ -533,14 +533,14 @@ namespace user
 
       int iAddUp = 0;
 
-      if(m_pcombo->m_bEdit)
+      if (m_pcombo->m_bEdit)
       {
 
          iAddUp = 1;
 
       }
 
-      lpsize->cy = (LONG) (_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
+      lpsize->cy = (LONG)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
 
       lpsize->cx += m_iBorder * 2;
 
@@ -548,7 +548,7 @@ namespace user
 
       m_pcombo->GetClientRect(rectComboClient);
 
-      lpsize->cx = MAX(lpsize->cx,rectComboClient.width());
+      lpsize->cx = MAX(lpsize->cx, rectComboClient.width());
 
       lpsize->cy += m_iBorder * 2;
 
@@ -563,15 +563,15 @@ namespace user
 
    bool combo_list::GetClientRect(RECT64 * lprect)
    {
-      
-      if(!::user::control::GetClientRect(lprect))
+
+      if (!::user::control::GetClientRect(lprect))
       {
 
          return false;
 
       }
 
-      ::deflate_rect(lprect,m_iBorder);
+      ::deflate_rect(lprect, m_iBorder);
 
       return true;
 
@@ -606,9 +606,9 @@ namespace user
 
       if (cs.style & WS_BORDER)
       {
-   #ifdef WINDOWSEX
+#ifdef WINDOWSEX
          cs.dwExStyle |= WS_EX_CLIENTEDGE;
-   #endif
+#endif
          cs.style &= ~WS_BORDER;
       }
 
@@ -639,10 +639,10 @@ namespace user
    void combo_list::_001OnKillFocus(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       post_message(WM_CLOSE);
-      
+
       pbase->m_bRet = true;
 
       pbase->set_lresult(0);
@@ -652,7 +652,7 @@ namespace user
    void combo_list::_001OnSetFocus(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::set_focus,psetfocus,pobj);
+      SCAST_PTR(::message::set_focus, psetfocus, pobj);
 
       psetfocus->m_bRet = true;
 
@@ -669,7 +669,7 @@ namespace user
 
       sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
 
-      if(pactivate->m_nState == WA_INACTIVE)
+      if (pactivate->m_nState == WA_INACTIVE)
       {
 
          point ptCursor;
@@ -686,7 +686,7 @@ namespace user
          //}
 
 
-         
+
 
          //if(pActive != m_puiDeactivateTogether)
          //{
@@ -715,16 +715,16 @@ namespace user
 
 
 
-         //m_pcombo->_001ShowDropDown(false);
+      //m_pcombo->_001ShowDropDown(false);
 
-      //}
+   //}
 
    }
 
    void combo_list::_001OnMouseActivate(signal_details * pobj)
    {
 
-//      SCAST_PTR(::message::mouse_activate, pactivate, pobj);
+      //      SCAST_PTR(::message::mouse_activate, pactivate, pobj);
 
 
    }
@@ -741,24 +741,24 @@ namespace user
    void combo_list::_001OnKeyDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::key,pkey,pobj);
+      SCAST_PTR(::message::key, pkey, pobj);
 
-      if(pkey->m_ekey == ::user::key_escape)
+      if (pkey->m_ekey == ::user::key_escape)
       {
 
          m_pcombo->ShowDropDown(false);
 
-         
+
 
       }
-      else if(pkey->m_ekey == ::user::key_tab)
+      else if (pkey->m_ekey == ::user::key_tab)
       {
 
          m_pcombo->ShowDropDown(false);
 
          sp(::user::elemental) pelemental = m_pcombo->keyboard_get_next_focusable();
 
-         if(pelemental.is_set())
+         if (pelemental.is_set())
          {
 
             pelemental->keyboard_set_focus();
@@ -767,16 +767,16 @@ namespace user
 
 
       }
-      else if(pkey->m_ekey == ::user::key_down)
+      else if (pkey->m_ekey == ::user::key_down)
       {
 
-         m_iHover = MIN(m_iHover + 1, m_pcombo->_001GetListCount() -1);
+         m_iHover = MIN(m_iHover + 1, m_pcombo->_001GetListCount() - 1);
 
       }
-      else if(pkey->m_ekey == ::user::key_up)
+      else if (pkey->m_ekey == ::user::key_up)
       {
 
-         m_iHover = MAX(m_iHover - 1,0);
+         m_iHover = MAX(m_iHover - 1, 0);
 
       }
 
@@ -803,14 +803,14 @@ namespace user
 
       GetClientRect(rectClient);
 
-      if(rectClient.contains(pt))
+      if (rectClient.contains(pt))
       {
 
          e_element eelement;
 
          index iItem = hit_test(pt, eelement);
 
-         if(eelement == element_item)
+         if (eelement == element_item)
          {
 
             m_pcombo->_001SetCurSel(iItem, ::action::source_user);
@@ -838,7 +838,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      if(rectClient.contains(pt))
+      if (rectClient.contains(pt))
       {
 
       }
@@ -864,7 +864,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      if(rectClient.contains(pt))
+      if (rectClient.contains(pt))
       {
 
       }
@@ -891,7 +891,7 @@ namespace user
 
       e_element eelement;
 
-      m_iHover = hit_test(pt,eelement);
+      m_iHover = hit_test(pt, eelement);
 
    }
 
@@ -904,7 +904,7 @@ namespace user
       ShowWindow(SW_HIDE);
 
    }
-   
+
 
    index combo_list::hit_test(point pt, e_element & eelement)
    {
@@ -921,20 +921,20 @@ namespace user
 
       int iAddUp = 0;
 
-      if(m_pcombo->m_bEdit)
+      if (m_pcombo->m_bEdit)
       {
 
          iAddUp = 1;
 
       }
 
-      for(int32_t i = 0; i < ca; i++)
+      for (int32_t i = 0; i < ca; i++)
       {
 
          rectItem.top = rectClient.top + (_001GetItemHeight() * (iAddUp + i));
          rectItem.bottom = rectItem.top + _001GetItemHeight();
 
-         if(rectItem.contains(pt))
+         if (rectItem.contains(pt))
          {
 
             eelement = element_item;
@@ -949,7 +949,7 @@ namespace user
       rectItem.top = rectClient.top;
       rectItem.bottom = rectItem.top + _001GetItemHeight();
 
-      if(rectItem.contains(pt))
+      if (rectItem.contains(pt))
       {
 
          eelement = element_search_edit;
@@ -985,8 +985,94 @@ namespace user
 
    }
 
+   bool combo_list::has_pending_graphical_update()
+   {
+
+      return IsWindowVisible();
+
+   }
 
 
+   void combo_list::on_drop_down(rect rectWindow, size sizeFull)
+   {
+
+      rect rectMonitor;
+
+      Session.get_best_monitor(rectMonitor, rectWindow);
+
+      bool bDown = true;
+
+      if (sizeFull.cy > (rectMonitor.bottom - rectWindow.bottom))
+      {
+         bDown = false;
+      }
+
+      size sizeList;
+
+      rect rectList;
+
+      rectList = rectMonitor;
+
+      sizeList.cx = MIN(sizeFull.cx, rectMonitor.width());
+
+      {
+
+         sizeList.cx = MAX(sizeList.cx, rectWindow.width());
+
+      }
+
+      if (sizeList.cx < rectWindow.width())
+      {
+
+         rectList.left = rectWindow.left;
+
+      }
+      else if (sizeList.cx < rectMonitor.width())
+      {
+
+         rectList.left = MIN(rectMonitor.right - sizeList.cx, ((rectWindow.left + rectWindow.right) / 2) - sizeList.cx / 2);
+
+      }
+
+      rectList.right = rectList.left + sizeList.cx;
+
+      if (bDown)
+      {
+
+         rectList.top = rectWindow.bottom + 1;
+
+         sizeList.cy = MIN(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
+
+         rectList.bottom = rectList.top + sizeList.cy;
+
+      }
+      else
+      {
+         rectList.bottom = rectWindow.top - 1;
+
+         sizeList.cy = MIN(sizeFull.cy, (rectWindow.top - rectMonitor.top));
+         //sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
+
+         rectList.top = rectList.bottom - sizeList.cy;
+
+      }
+
+      m_iHover = m_pcombo->_001GetCurSel();
+
+      if (m_iHover < 0)
+      {
+
+         m_iHover = 0;
+
+      }
+
+      SetWindowPos(ZORDER_TOPMOST, 
+         rectList.left - m_iBorder, 
+         rectList.top - m_iBorder, 
+         rectList.width() + m_iBorder * 2, 
+         rectList.height() + m_iBorder * 2, SWP_SHOWWINDOW);
+
+   }
 
 } // namespace user
 

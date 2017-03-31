@@ -94,6 +94,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnKillFocus);
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECL_GEN_SIGNAL(_001OnMove);
 
       virtual void _001ShowDropDown(bool bShow = true);
       virtual void _001ToggleDropDown();

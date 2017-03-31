@@ -848,7 +848,7 @@ namespace user
    bool interaction_child::GetWindowRect(RECT64 * lprect)
    {
 
-      *lprect = m_rectParentClient;
+      *lprect = m_rectParentClientRequest;
 
       if(GetParent() != NULL)
       {

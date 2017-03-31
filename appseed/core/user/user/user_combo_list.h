@@ -80,6 +80,11 @@ namespace user
 
       virtual bool ShowWindow(int nCmdShow);
 
+      virtual bool has_pending_graphical_update() override;
+
+
+      void on_drop_down(rect rectWindow, size sizeFull);
+
 
    };
 

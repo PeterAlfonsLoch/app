@@ -733,6 +733,33 @@ namespace user
 
       //synch_lock sl(m_pmutex);
 
+      {
+
+         ::user::control_event ev;
+
+         ev.m_puie = this;
+
+         ev.m_eevent = ::user::event_key_down;
+
+         ev.m_pobj = pobj;
+
+         ev.m_actioncontext = ::action::source_user;
+
+         if (BaseOnControlEvent(&ev))
+         {
+
+            if (ev.m_bRet)
+            {
+
+               return;
+
+            }
+
+         }
+
+      }
+
+      
 
 
       SCAST_PTR(::message::key,pkey,pobj);

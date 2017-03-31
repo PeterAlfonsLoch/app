@@ -73,8 +73,10 @@ namespace user
       virtual void _001DrawChildren(::draw2d::graphics * pgraphics);
 
 
+      virtual bool _001UpperEditableControl(int & iItem, int & iSubItem);
       virtual bool _001PreviousEditableControl(int & iItem, int & iSubItem);
       virtual bool _001NextEditableControl(int & iItem, int & iSubItem);
+      virtual bool _001LowerEditableControl(int & iItem, int & iSubItem);
 
    };
 
