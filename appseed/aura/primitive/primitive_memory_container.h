@@ -42,6 +42,8 @@ namespace primitive
 
       memory_size_t get_size() const;
 
+      memory_size_t get_size_raw() const;
+
       void from_string(const unichar * pwsz);
       void from_string(const char * psz);
       void from_string(const string & str);
@@ -57,6 +59,9 @@ namespace primitive
 
       LPBYTE get_data();
       const LPBYTE get_data() const;
+
+      LPBYTE get_data_raw();
+      const LPBYTE get_data_raw() const;
 
       bool IsValid() const;
 
@@ -96,29 +101,43 @@ namespace primitive
 
    };
 
+   inline LPBYTE memory_container::get_data_raw()
+   {
+
+      return m_spmemory->get_data();
+
+   }
+
+   inline const LPBYTE memory_container::get_data_raw() const
+   {
+
+      return m_spmemory->get_data();
+
+   }
+
+   inline memory_size_t memory_container::get_size_raw() const
+   {
+      return m_spmemory->get_size();
+   }
+
+
    inline LPBYTE memory_container ::get_data()
    {
 
-      if(m_spmemory.is_null())
-         return NULL;
-      else
-         return (LPBYTE) m_spmemory->get_data();
+      return m_spmemory.is_null() ? 0 : get_data_raw();
 
    }
 
    inline const LPBYTE memory_container ::get_data() const
    {
 
-      if(m_spmemory.is_null())
-         return NULL;
-      else
-         return (LPBYTE) m_spmemory->get_data();
+      return m_spmemory.is_null() ? 0 : get_data_raw();
 
    }
 
    inline memory_size_t memory_container ::get_size() const
    {
-      return m_spmemory.is_set() ? m_spmemory->get_size() : 0;
+      return m_spmemory.is_null() ? 0 : get_size_raw();
    }
 
 

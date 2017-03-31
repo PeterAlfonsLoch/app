@@ -389,7 +389,7 @@ smf_Open_File_Cleanup:
 
             if (tkOffset > m_tkLength)
             {
-               TRACE( "sTTM: Clipping ticks to file length!");
+               //TRACE( "sTTM: Clipping ticks to file length!");
                tkOffset = m_tkLength;
             }
 
@@ -520,7 +520,7 @@ smf_Open_File_Cleanup:
 
             if (tkOffset > m_tkLength)
             {
-               TRACE( "sMTT: Clipping ticks to file length!");
+               //TRACE( "sMTT: Clipping ticks to file length!");
                tkOffset = m_tkLength;
             }
 

@@ -75,7 +75,63 @@ public:
    void copy_this(const memory_file & file);
 
    memory_file & operator = (const memory_file & file);
-      
+
+   memory_size_t read_inline(void *lpBuf, memory_size_t nCount)
+   {
+
+      if (nCount <= 0 || m_spmemory.is_null())
+         return 0;
+
+      memory_offset_t iDiff = m_spmemory->get_size() - m_dwPosition;
+
+      if (iDiff <= 0)
+         return 0;
+
+      if (nCount > iDiff)
+         nCount = iDiff;
+
+      memcpy(lpBuf, &((LPBYTE)get_data())[m_dwPosition], (size_t)nCount);
+
+      m_dwPosition += nCount;
+
+      return nCount;
+   }
+
+
+   void write_inline(const void * lpBuf, memory_size_t nCount)
+   {
+
+      if (nCount <= 0)
+         return;
+
+      memory_size_t iEndPosition = m_dwPosition + nCount;
+
+      if (iEndPosition <= 0)
+      {
+         
+         m_dwPosition = 0;
+         
+         return;
+
+      }
+
+      if (m_spmemory.is_null() || iEndPosition > m_spmemory->get_size())
+      {
+
+         allocate(iEndPosition);
+
+      }
+
+      LPBYTE lpb = get_data();
+
+      //ASSERT(__is_valid_address(&(lpb)[m_dwPosition], (uint_ptr)nCount, TRUE));
+
+      memcpy(&(lpb)[m_dwPosition], lpBuf, (size_t)nCount);
+
+      m_dwPosition = (memory_position_t)iEndPosition;
+
+   }
+
 };
 
 

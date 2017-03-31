@@ -303,7 +303,7 @@ char * strnstr_dup(const char * src, const char * find, int_ptr iLen)
 char * strnistr_dup(const char * src, const char * find, int_ptr iLen)
 {
    if(iLen == 0)
-      return (char *) src;
+      return (char *) src + strlen(src);
    if(iLen > strlen_dup(find))
       return NULL;
    int_ptr c;

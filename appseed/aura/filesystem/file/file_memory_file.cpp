@@ -74,56 +74,16 @@ memory_file::~memory_file()
 memory_size_t memory_file::read(void *lpBuf, memory_size_t nCount)
 {
 
-   single_lock sl(get_memory()->m_spmutex, TRUE);
-
-   ASSERT(IsValid());
-
-   if (m_dwPosition >= this->get_size())
-      return 0;
-
-   if (m_dwPosition + nCount > this->get_size())
-      nCount = this->get_size() - m_dwPosition;
-
-   memcpy(lpBuf, &((LPBYTE)get_data())[m_dwPosition], (size_t)nCount);
-
-   m_dwPosition += nCount;
-
-   return nCount;
+   return read_inline(lpBuf, nCount);
+   
 }
 
 
 void memory_file::write(const void * lpBuf, memory_size_t nCount)
 {
 
-   if (nCount <= 0)
-      return;
+   write_inline(lpBuf, nCount);
 
-   single_lock sl(get_memory()->m_spmutex, TRUE);
-
-
-
-   memory_size_t iEndPosition = m_dwPosition + nCount;
-
-   if (iEndPosition > this->get_size())
-   {
-
-      allocate(iEndPosition);
-
-   }
-
-   if (iEndPosition <= 0)
-   {
-      m_dwPosition = 0;
-      return;
-   }
-
-   LPBYTE lpb = get_data();
-
-   ASSERT(__is_valid_address(&(lpb)[m_dwPosition], (uint_ptr)nCount, TRUE));
-
-   memcpy(&(lpb)[m_dwPosition], lpBuf, (size_t)nCount);
-
-   m_dwPosition = (memory_position_t)iEndPosition;
 }
 
 void memory_file::write_from_hex(const void * lpBuf, memory_size_t nCount)

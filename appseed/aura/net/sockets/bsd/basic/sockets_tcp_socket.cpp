@@ -1573,9 +1573,14 @@ skip:
 
       SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
 
-      m_spsslclientcontext->m_pmethod = m_ssl_method;
+      if (m_spsslclientcontext.is_set())
+      {
 
-      m_spsslclientcontext->m_psession = m_ssl_session;
+         m_spsslclientcontext->m_pmethod = m_ssl_method;
+
+         m_spsslclientcontext->m_psession = m_ssl_session;
+
+      }
 
       ///* create our context*/
       //if(m_spsslclientcontext.is_null())
