@@ -2961,8 +2961,17 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   ::count graphics::GetEachCharTextExtent(array < size > & sizea, const string & str)
+   ::count graphics::GetEachCharTextExtent(array < size > & sizea, const string & str, strsize iStart, strsize iCount)
    {
+
+      if (iCount < 0)
+      {
+
+         iCount += str.get_length() - iStart + 1;
+
+      }
+
+      iCount++;
 
       sizea.remove_all();
       strsize_array iaLen;
@@ -2971,9 +2980,13 @@ namespace draw2d
       strsize iLen;
       const char * pszStart = str;
       const char * psz = pszStart;
-      while (*psz)
+      while (*psz && iRange < iStart + iCount)
       {
          const char * pszNext = ::str::utf8_inc(psz);
+         if (iRange >= iStart)
+         {
+            sizea.add(GetTextExtent(str, str.get_length(), iRange));
+         }
          if (pszNext == NULL)
             break;
          iLen = pszNext - psz;
@@ -2984,16 +2997,6 @@ namespace draw2d
             break;
          psz = pszNext;
       }
-
-
-      for (int iLen : iaLen)
-      {
-
-         sizea.add(GetTextExtent(str, str.get_length(), iLen));
-
-      }
-
-
 
       return sizea.get_size();
 
