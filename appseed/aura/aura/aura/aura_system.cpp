@@ -44,6 +44,8 @@ namespace aura
       m_httpsystem(this)
    {
 
+      m_typemap.InitHashTable(2048);
+
       m_bAcid = false;
       
       m_pdumpcontext = new dump_context();
@@ -1051,14 +1053,26 @@ namespace aura
 
       synch_lock sl(&m_mutexFactory);
 
-#ifdef WINDOWS
-      sp(type) & typeinfo = m_typemap[info.raw_name()];
-#else
-      sp(type) & typeinfo = m_typemap[info.name()];
-#endif
+      ::id id;
 
-      if(typeinfo.is_null())
+#ifdef WINDOWS
+
+      id = info.raw_name();
+
+#else
+
+      id = info.name();
+
+#endif
+      
+      sp(type) & typeinfo = m_typemap[id];
+
+      if (typeinfo.is_null())
+      {
+       
          typeinfo = canew(type(info));
+
+      }
 
       return typeinfo.m_p;
 

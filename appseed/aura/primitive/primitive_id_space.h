@@ -21,11 +21,12 @@ class CLASS_DECL_AURA id_space
 protected:
 
 
-   raw_array < char *  >      m_psza; 
+   //raw_array < char *  >      m_psza; 
+   string_map < char * >      m_map;
    critical_section *         m_pcs;
 
 
-   bool find(const char * pszFind,index & iIndex);
+   //bool find(const char * pszFind,index & iIndex);
 
    void free_all();
 
