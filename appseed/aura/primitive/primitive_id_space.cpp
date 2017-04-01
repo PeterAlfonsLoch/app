@@ -8,7 +8,6 @@ class ::id_space * id_space::s_pidspace = NULL;
 id_space::id_space()
 {
    m_pcs = new critical_section();
-   m_map.InitHashTable(8192);
 }
 
 // id_space is static, it goes aways only and with the application
@@ -31,16 +30,14 @@ void id_space::free_all()
 
    try
    {
-      for (auto p : m_map)
+      for (index i = 0; i < m_psza.get_count(); i++)
       {
-      //for (index i = 0; i < m_psza.get_count(); i++)
-      //{
          try
          {
 
-//            char * psz = (char *)m_psza.element_at(i);
+            char * psz = (char *)m_psza.element_at(i);
 
-            ::memory_free(p.m_element2);
+            ::memory_free(psz);
 
          }
          catch (...)
@@ -56,7 +53,7 @@ void id_space::free_all()
 
    }
 
-   //m_psza.remove_all();
+   m_psza.remove_all();
 
 }
 
@@ -68,12 +65,10 @@ id id_space::operator()(const char * psz)
 
    index iIndex = 0;
 
-   auto * p = m_map.get_assoc(psz);
-
-   if(p->m_element2 != NULL)
+   if(find(psz,iIndex))
    {
 
-      return id(p->m_element2, this);
+      return id(m_psza.element_at(iIndex), this);
 
    }
 
@@ -84,9 +79,7 @@ id id_space::operator()(const char * psz)
 
    strcpy(pszNew,psz);
 
-   //m_psza.insert_at(iIndex,pszNew);
-
-   p->m_element2 = pszNew;
+   m_psza.insert_at(iIndex,pszNew);
 
    return id(pszNew, this);
 
@@ -196,80 +189,80 @@ id id_space::operator()(int64_t i)
 //}
 
 
-//bool id_space::find(const char * pszFind,index & iIndex)
-//{
-//   
-//   if(m_psza.m_nSize == 0)
-//   {
-//
-//      iIndex = 0;
-//
-//      return false;
-//
-//   }
-//
-//   index iLowerBound = 0;
-//
-//   index iUpperBound = m_psza.get_upper_bound();
-//
-//   int64_t iCompare;
-//   
-//   const char * psz;
-//
-//   while(iUpperBound - iLowerBound >= 0)
-//   {
-//
-//      iIndex = (iUpperBound + iLowerBound) / 2;
-//
-//      psz =  m_psza[iIndex];
-//
-//      iCompare = strcmp(pszFind,psz);
-//
-//      if(iCompare == 0)
-//      {
-//
-//         return true;
-//
-//      }
-//      else if(iCompare > 0)
-//      {
-//
-//         if(iUpperBound == iLowerBound)
-//         {
-//
-//            break;
-//
-//         }
-//
-//         iLowerBound = iIndex + 1;
-//
-//      }
-//      else
-//      {
-//
-//         if(iUpperBound == iLowerBound)
-//         {
-//
-//            break;
-//
-//         }
-//
-//         iUpperBound = iIndex - 1;
-//
-//      }
-//
-//   }
-//
-//   if(iCompare > 0)
-//   {
-//
-//      iIndex++;
-//
-//   }
-//
-//   return false;
-//
-//}
+bool id_space::find(const char * pszFind,index & iIndex)
+{
+   
+   if(m_psza.m_nSize == 0)
+   {
+
+      iIndex = 0;
+
+      return false;
+
+   }
+
+   index iLowerBound = 0;
+
+   index iUpperBound = m_psza.get_upper_bound();
+
+   int64_t iCompare;
+   
+   const char * psz;
+
+   while(iUpperBound - iLowerBound >= 0)
+   {
+
+      iIndex = (iUpperBound + iLowerBound) / 2;
+
+      psz =  m_psza[iIndex];
+
+      iCompare = strcmp(pszFind,psz);
+
+      if(iCompare == 0)
+      {
+
+         return true;
+
+      }
+      else if(iCompare > 0)
+      {
+
+         if(iUpperBound == iLowerBound)
+         {
+
+            break;
+
+         }
+
+         iLowerBound = iIndex + 1;
+
+      }
+      else
+      {
+
+         if(iUpperBound == iLowerBound)
+         {
+
+            break;
+
+         }
+
+         iUpperBound = iIndex - 1;
+
+      }
+
+   }
+
+   if(iCompare > 0)
+   {
+
+      iIndex++;
+
+   }
+
+   return false;
+
+}
 
 
 
