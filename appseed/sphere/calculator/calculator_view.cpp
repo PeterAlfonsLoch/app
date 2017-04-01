@@ -167,15 +167,6 @@ namespace calculator
    }
 
 
-   /*xxxvoid view::data_on_after_change(int32_t iConfigurationId, ::database::id & idIndex CVmsDataUpdateHint * puh)
-   {
-   if(iConfigurationId == _vmsp::CConfiguration::CfgKaraokeEncoding)
-   {
-   PrepareLyricLines();
-   RedrawWindow();
-   }
-   }*/
-
 
    void view::_001OnSetCursor(signal_details * pobj)
    {
