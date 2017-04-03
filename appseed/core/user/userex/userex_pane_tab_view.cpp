@@ -330,10 +330,10 @@ namespace userex
             else
                pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_normal] = "filemanager_toolbar.xml";
 
-            if (set[::filemanager::manager::mode_save].is_set())
-               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_save] = set[::filemanager::manager::mode_save];
+            if (set[::filemanager::manager::mode_saving].is_set())
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_saving] = set[::filemanager::manager::mode_saving];
             else
-               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_save] = "filemanager_save_as_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_saving] = "filemanager_saving_toolbar.xml";
 
             if (set[::filemanager::manager::mode_import].is_set())
                pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_import] = set[::filemanager::manager::mode_import];
@@ -351,7 +351,7 @@ namespace userex
          {
 
             pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_normal] = "filemanager_toolbar.xml";
-            pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_save] = "filemanager_save_as_toolbar.xml";
+            pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_saving] = "filemanager_saving_toolbar.xml";
             pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_import] = "filemanager_import_toolbar.xml";
             pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_export] = "filemanager_export_toolbar.xml";
 

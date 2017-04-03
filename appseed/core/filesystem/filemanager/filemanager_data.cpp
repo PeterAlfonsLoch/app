@@ -256,7 +256,7 @@ namespace filemanager
             if(is_topic())
             {
 
-               if (m_pmanager->m_emode == manager::mode_save)
+               if (m_pmanager->m_emode == manager::mode_saving)
                {
 
                   cr = ARGB(184, 255, 210, 180);
@@ -296,7 +296,7 @@ namespace filemanager
             if(is_topic())
             {
 
-               if (m_pmanager->m_emode == manager::mode_save)
+               if (m_pmanager->m_emode == manager::mode_saving)
                {
 
                   cr = ARGB(255, 255, 210, 180);

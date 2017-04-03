@@ -887,7 +887,7 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      if(m_emode == mode_save || m_emode == mode_export)
+      if(m_emode == mode_saving || m_emode == mode_export)
       {
          update_hint uh;
          uh.m_pmanager = this;
@@ -916,7 +916,7 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      if (m_emode == mode_save)
+      if (m_emode == mode_saving)
       {
          update_hint uh;
          uh.m_pmanager = this;
@@ -1161,7 +1161,7 @@ namespace filemanager
 
       get_filemanager_data()->m_pdocumentTopic = pdocument;
 
-      m_emode = mode_save;
+      m_emode = mode_saving;
 
       update_hint uh;
       uh.m_pmanager = this;

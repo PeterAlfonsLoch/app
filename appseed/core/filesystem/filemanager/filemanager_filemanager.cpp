@@ -35,7 +35,7 @@ namespace filemanager
 
       m_ptemplateStd->m_strLevelUp.Empty();
       m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_normal] = "filemanager_toolbar.xml";
-      m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_save] = "filemanager_save_as_toolbar.xml";
+      m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_saving] = "filemanager_saving_toolbar.xml";
       m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_import] = "filemanager_import_toolbar.xml";
       m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_export] = "filemanager_export_toolbar.xml";
       m_ptemplateStd->m_dataidStatic = "FileManagerFavoritesList";
@@ -55,7 +55,7 @@ namespace filemanager
 
       m_ptemplateFs->m_strLevelUp.Empty();
       m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_normal] = "filemanager_toolbar.xml";
-      m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_save] = "filemanager_save_as_toolbar.xml";
+      m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_saving] = "filemanager_saving_toolbar.xml";
       m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_import] = "filemanager_import_toolbar.xml";
       m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_export] = "filemanager_export_toolbar.xml";
       m_ptemplateFs->m_dataidStatic = "FileManagerFavoritesList";
@@ -116,6 +116,12 @@ namespace filemanager
       m_ptemplateStd = canew(manager_template(get_app()));
       Session.userex()->shellimageset().initialize();
       m_ptemplateStd->Initialize(0, pszMatter);
+
+      m_ptemplateStd->m_setToolbar[manager::mode_normal] = "filemanager_toolbar.xml";
+      m_ptemplateStd->m_setToolbar[manager::mode_saving] = "filemanager_saving_toolbar.xml";
+      m_ptemplateStd->m_setToolbar[manager::mode_import] = "filemanager_import_toolbar.xml";
+      m_ptemplateStd->m_setToolbar[manager::mode_export] = "filemanager_export_toolbar.xml";
+
 
       m_ptemplateFs = canew(manager_template(get_app()));
       m_ptemplateFs->Initialize(0, string("fs.") + string(pszMatter));

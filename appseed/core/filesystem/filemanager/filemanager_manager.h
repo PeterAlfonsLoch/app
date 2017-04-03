@@ -26,7 +26,7 @@ namespace filemanager
       enum e_mode
       {
          mode_normal,
-         mode_save,
+         mode_saving,
          mode_import,
          mode_export,
 

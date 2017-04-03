@@ -2015,7 +2015,7 @@ namespace filemanager
       if (get_filemanager_template() != NULL && get_filemanager_data()->is_topic())
       {
          COLORREF cr;
-         if (m_pmanager->m_emode == manager::mode_save)
+         if (m_pmanager->m_emode == manager::mode_saving)
          {
 
             cr = ARGB(255, 255, 210, 180);

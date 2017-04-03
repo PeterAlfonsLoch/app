@@ -371,7 +371,7 @@ namespace filemanager
 
          COLORREF cr;
 
-         if (m_pmanager->m_emode == manager::mode_save)
+         if (m_pmanager->m_emode == manager::mode_saving)
          {
 
             cr = ARGB(184, 255, 177, 84);
