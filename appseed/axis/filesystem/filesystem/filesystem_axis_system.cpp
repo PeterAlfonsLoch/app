@@ -1339,7 +1339,7 @@ restart:
 
          }
 
-         return to_string(ctx);
+         return ::str::from(ctx);
 
       }
 
@@ -1396,7 +1396,7 @@ restart:
                MD5_Update(&ctx, buf, uiRead);
             }
             spfile->seek(iPos, ::file::seek_begin);
-            strMd5 = to_string(ctx);
+            strMd5 = ::str::from(ctx);
             write_gen_string(spfile, NULL, strMd5);
             spfile->seek_to_end();
 
@@ -1456,7 +1456,7 @@ restart:
                   iLen -= uiRead;
                }
                file2->close();
-               strMd5New = to_string(ctx);
+               strMd5New = ::str::from(ctx);
                if (strMd5 != strMd5New)
                   throw "failed";
             }

@@ -6,16 +6,14 @@
 #include "openssl/md5.h"
 
 template < > 
-CLASS_DECL_AXIS string &  to_string(string & str, MD5_CTX & ctx)
+CLASS_DECL_AXIS void to_string(string & str, const MD5_CTX & ctx)
 {
    
    unsigned char digest[MD5_DIGEST_LENGTH];
    
-   MD5_Final(digest,&ctx);
+   MD5_Final(digest,(MD5_CTX *) &ctx);
    
    str = ::hex::lower_from(digest,MD5_DIGEST_LENGTH);
-   
-   return str;
    
 }
 

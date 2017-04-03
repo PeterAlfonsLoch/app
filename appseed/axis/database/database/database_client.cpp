@@ -392,7 +392,7 @@ namespace database
       string str;
       str = get_data_id().m_id;
       str += ".";
-      str += id.m_id.to_string();
+      str += ::str::from(id.m_id);
       return str;
    }
 

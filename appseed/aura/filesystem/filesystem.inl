@@ -10,7 +10,7 @@ namespace file
    inline path & path::operator += (const var & var) { return operator += (var.get_string()); }
    inline path path::operator + (const var & var) const { return operator + (var.get_string()); }
    inline path path::operator + (const property & property) const { return operator + (property.get_string()); }
-   inline path path::operator + (const id & id) const { return operator + (id.to_string()); }
+   inline path path::operator + (const id & id) const { return operator + (id.str()); }
    inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
    inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
    inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }

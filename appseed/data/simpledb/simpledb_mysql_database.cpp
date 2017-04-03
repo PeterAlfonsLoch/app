@@ -269,9 +269,9 @@ namespace mysql
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(row[0] == NULL)
-            a.propset().add(::str::from(i), ::var(::var::type_null));
+            a.propset().set_at(::str::from(i), ::var(::var::type_null));
          else
-            a.propset().add(::str::from(i), var(row[0]));
+            a.propset().set_at(::str::from(i), var(row[0]));
          i++;
       }
       return a;

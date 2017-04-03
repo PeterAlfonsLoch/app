@@ -372,7 +372,7 @@ namespace sockets
 
 
 
-      for(auto property : m_response.m_propertysetHeader)
+      for(auto & property : m_response.m_propertysetHeader)
       {
          string strKey = property.name();
          stringa & straValue = property.stra();

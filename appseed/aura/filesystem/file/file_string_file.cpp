@@ -33,7 +33,7 @@ namespace file
       m_bOwn = false;
       m_pstr       = NULL;
       m_iPos = 0;
-      append(::to_string(text));
+      append(::str::from(text));
    }
 
    string_file::string_file(string * pstr, bool bReferenceOnly)

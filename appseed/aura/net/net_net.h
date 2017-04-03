@@ -14,17 +14,17 @@ typedef in6_addr in_addr6;
 
 CLASS_DECL_AURA int_bool from_string(in6_addr & addr,const string & str);
 template < >
-CLASS_DECL_AURA string & to_string(string & str, in6_addr & addr);
+CLASS_DECL_AURA void to_string(string & str, const in6_addr & addr);
 CLASS_DECL_AURA int_bool from_string(in_addr & addr,const string & str);
 template <  >
-CLASS_DECL_AURA string & to_string(string & str, in_addr & addr);
+CLASS_DECL_AURA void to_string(string & str, const in_addr & addr);
 template < >
-CLASS_DECL_AURA string & to_string(string & str, sockaddr_in &  addr);
+CLASS_DECL_AURA void to_string(string & str, const sockaddr_in &  addr);
 template < >
-CLASS_DECL_AURA string & to_string(string & str, sockaddr_in6 &  addr);
+CLASS_DECL_AURA void to_string(string & str, const sockaddr_in6 &  addr);
 #ifdef BSD_STYLE_SOCKETS
 template < >
-CLASS_DECL_AURA string & to_string(string & str, sockaddr & addr);
+CLASS_DECL_AURA void to_string(string & str, const sockaddr & addr);
 #endif
 
 

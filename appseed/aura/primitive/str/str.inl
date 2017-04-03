@@ -713,39 +713,35 @@ extern CLASS_DECL_AURA aura_str_pool * s_paurastrpool;
 //#endif
 
 
-
-
+//
+//
+//template < >
+//inline string & to_string(string & str, unichar * pwsz)
+//{
+//
+//   ::str::international::unicode_to_utf8(str,pwsz);
+//
+//   return str;
+//
+//}
+//
+//
 template < >
-inline string & to_string(string & str, unichar * pwsz)
-{
-
-   ::str::international::unicode_to_utf8(str,pwsz);
-
-   return str;
-
-}
-
-
-template < >
-inline string & to_string(string & str, verisimple_wstring & wstr)
-{
-
-   ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
-
-   return str;
-
-}
-
-
-
-
-template < >
-inline string & to_string(string & str, stdstring<verisimple_wstring> & wstr)
+inline void to_string(string & str, const verisimple_wstring & wstr)
 {
 
    ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
 
-   return str;
+}
+
+
+
+
+template < >
+inline void to_string(string & str, const stdstring<verisimple_wstring> & wstr)
+{
+
+   ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
 
 }
 
@@ -845,7 +841,7 @@ stdstring< simple_string>(istr.m_str,string_trait::GetDefaultManager())
 inline string & string::operator += (const id & id)
 {
 
-   return operator += (id.to_string());
+   return operator += (id.str());
 
 }
 
@@ -858,3 +854,112 @@ inline string string_format::to_string()
    return string(m_pszBuffer, m_iLength);
 
 }
+
+template < >
+inline void to_string(string & str, const int16_t & i)
+{
+
+   str = i64toa_dup(i);
+
+}
+
+
+template < >
+inline void to_string(string & str, const uint16_t & ui)
+{
+
+   str = ui64toa_dup(ui);
+
+}
+
+
+template < >
+inline void to_string(string & str, const int32_t & i)
+{
+
+   str = i64toa_dup(i);
+
+}
+
+template < >
+inline void to_string(string & str, const uint32_t & ui)
+{
+
+   str = ui64toa_dup(ui);
+
+}
+
+template < >
+inline void to_string(string & str, const int64_t & i)
+{
+
+   str = i64toa_dup(i);
+
+}
+
+template < >
+inline void to_string(string & str, const uint64_t & ui)
+{
+
+   str = ui64toa_dup(ui, 10);
+
+}
+
+
+template < >
+inline void to_string(string & str, const float & f)
+{
+   char sz[256];
+   sprintf(sz, "%f", f);
+   str = sz;
+
+}
+
+
+template < >
+inline void to_string(string & str, const double & d)
+{
+
+   char sz[256];
+   sprintf(sz, "%f", d);
+   str = sz;
+
+}
+
+
+#ifdef ANDROID
+
+template < >
+inline void to_string(string & str, const long int & i)
+{
+
+   str = i64toa_dup(i);
+
+}
+
+#endif
+
+
+
+#ifdef WINDOWS
+
+
+template < >
+inline void to_string(string & str, const LONG & i)
+{
+
+   str = i64toa_dup(i);
+
+}
+
+template < >
+inline void to_string(string & str, const DWORD & ui)
+{
+
+   str = ui64toa_dup(ui);
+
+}
+
+
+#endif
+

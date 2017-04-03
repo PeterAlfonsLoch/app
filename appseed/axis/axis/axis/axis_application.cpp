@@ -138,7 +138,7 @@ namespace axis
       if(!load_string(str,id))
       {
 
-         str = id.to_string();
+         id.to_string(str);
 
       }
 
@@ -2352,7 +2352,15 @@ namespace axis
          if(localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
             continue;
 
-         update_appmatter(handler, psession,pszRoot,pszRelative,localeschema.m_idaLocale[i].to_string(),localeschema.m_idaSchema[i].to_string());
+         string strLocale;
+
+         localeschema.m_idaLocale[i].to_string(strLocale);
+
+         string strSchema;
+
+         localeschema.m_idaSchema[i].to_string(strSchema);
+
+         update_appmatter(handler, psession,pszRoot,pszRelative,strLocale,strSchema);
 
          System.install().m_progressApp()++;
 

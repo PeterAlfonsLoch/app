@@ -25,23 +25,23 @@ inline UINT _gen_GetConversionACP()
 class string;
 
 
-template < typename STRINGABLE >
-inline string & to_string(string & str, STRINGABLE & stringable)
+template < typename T >
+inline void to_string(string & str, const T & t)
 {
 
-   return (&stringable)->to_string(str);
+   t.to_string(str);
 
 }
 
-template < typename STRINGABLE >
-inline string & to_string(string & str,STRINGABLE * pstringable)
-{
-
-   return pstringable->to_string(str);
-
-}
-
-
+//template < typename STRINGABLE >
+//inline string & to_string(string & str, const STRINGABLE * pstringable)
+//{
+//
+//   return pstringable->to_string(str);
+//
+//}
+//
+//
 
 //#ifdef __GNUC__
 //template < typename STRINGALBLE >
@@ -218,6 +218,9 @@ public:
       strSrc.m_pszData = NULL;
    }
 
+
+   
+
    string(e_context_switcher_null):
       stdstring< simple_string>(string_trait::GetDefaultManager())
    {
@@ -316,6 +319,10 @@ public:
    string & operator = (const unichar * pszSrc);
    string & operator = (const unichar32 * pszSrc);
    string & operator = (const uchar* pszSrc);
+   string & operator = (char * pszSrc);
+   string & operator = (unichar * pszSrc);
+   string & operator = (unichar32 * pszSrc);
+   string & operator = (uchar* pszSrc);
    string & operator = (char ch);
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string & operator = (const String ^ & str);
@@ -324,7 +331,7 @@ public:
 
    // Assignment operators
    template < typename T >
-   inline string & operator = (T o);
+   inline string & operator =(const T & o);
    //template < typename T >
    //inline string & operator = (T & o);
    //template < typename T >
@@ -952,8 +959,10 @@ public:
 
 
 
+
+
 template < typename T >
-inline string & string::operator = (T o)
+inline string & string::operator = (const T & o)
 {
 
    to_string(*this, o);
@@ -1162,11 +1171,11 @@ inline strsize string::utf8_length() const
 //   operator = (id.to_string());
 //
 //}
-
+//
 //inline string & string::operator = (const id & id)
 //{
 //
-//   return operator = (id.to_string());
+//   return operator = (id.m_psz);
 //
 //}
 
@@ -1607,72 +1616,70 @@ inline bool CLASS_DECL_AURA operator<=(int32_t i, const string & str)           
 }
 
 
+//template < >
+//inline string & to_string(string & str, const string & strSrc)
+//{
+//
+//   str.assign(strSrc);
+//
+//   return str;
+//
+//}
+
 template < >
-inline string & to_string(string & str, const string & strSrc)
+inline void to_string(string & str, const string & strSrc)
 {
 
    str.assign(strSrc);
 
-   return str;
-
-}
-
-template < >
-inline string & to_string(string & str, string & strSrc)
-{
-
-   str.assign(strSrc);
-
-   return str;
-
 }
 
 
 
-template < >
-inline string & to_string(string & str, const char * psz)
-{
+//template < >
+//inline string & to_string(string & str,  char const * & psz)
+//{
+//
+//   return str = psz;
+//
+//}
+//
+//template < >
+//inline string & to_string(string & str, char * psz)
+//{
+//
+//   str.assign(psz);
+//
+//   return str;
+//
+//}
 
-   return str = psz;
+//template < >
+//inline string & to_string(string & str,const unsigned char * & psz)
+//{
+//
+//   str.assign((const char *) psz);
+//
+//   return str;
+//
+//}
 
-}
-
-template < >
-inline string & to_string(string & str, char * psz)
-{
-
-   str.assign(psz);
-
-   return str;
-
-}
-
-template < >
-inline string & to_string(string & str, unsigned char * psz)
-{
-
-   str.assign((const char *) psz);
-
-   return str;
-
-}
-
-template < >
-inline string & to_string(string & str, const char & ch)
-{
-
-   return str = ch;
-
-}
-
-template < >
-inline string & to_string(string & str, const unichar * pwsz)
-{
-
-   return str = pwsz;
-
-}
-
+//template < >
+//inline string & to_string(string & str, const char & ch)
+//{
+//
+//   return str = ch;
+//
+//}
+//
+//template < >
+//inline string & to_string(string & str, const unichar *& pwsz)
+//{
+//
+//   return str = pwsz;
+//
+//}
+//
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
@@ -1768,31 +1775,31 @@ inline string string::upper() const
 
 
 
-template < typename STRINGALBLE >
-inline string to_string(STRINGALBLE & stringable)
-{
-
-   string str;
-
-   to_string(str, stringable);
-
-   return str;
-
-}
-
-template < typename STRINGALBLE >
-inline string to_string(STRINGALBLE * pstringable)
-{
-
-   string str;
-
-   to_string(str, pstringable);
-
-   return str;
-
-}
-
-
+//template < typename STRINGALBLE >
+//inline string to_string(STRINGALBLE & stringable)
+//{
+//
+//   string str;
+//
+//   to_string(str, stringable);
+//
+//   return str;
+//
+//}
+//
+//template < typename STRINGALBLE >
+//inline string to_string(STRINGALBLE * pstringable)
+//{
+//
+//   string str;
+//
+//   to_string(str, pstringable);
+//
+//   return str;
+//
+//}
+//
+//
 
 
 
@@ -1804,3 +1811,37 @@ inline const char * FormatArgument (const string & value) noexcept
    return value.c_str();
 }
 
+
+
+
+
+inline string & string::operator = (char * pszSrc)
+{
+
+   return operator =((const char *)pszSrc);
+
+}
+
+
+inline string & string::operator = (unichar * pszSrc)
+{
+
+   return operator =((const unichar *)pszSrc);
+
+}
+
+
+inline string & string::operator = (unichar32 * pszSrc)
+{
+
+   return operator =((const unichar32 *)pszSrc);
+
+}
+
+
+inline string & string::operator = (uchar* pszSrc)
+{
+
+   return operator =((const uchar *)pszSrc);
+
+}

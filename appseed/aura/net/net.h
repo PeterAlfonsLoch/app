@@ -14,6 +14,9 @@ typedef int32_t socklen_t;
 #endif
 
 
+//template < > CLASS_DECL_AURA  void to_string(string & str, const port_t & i);
+
+
 namespace net
 {
 

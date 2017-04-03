@@ -216,18 +216,30 @@ namespace str
    inline CLASS_DECL_AURA int32_t to_with_fallback(const char * psz, int32_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
    inline CLASS_DECL_AURA int64_t to_with_fallback(const char * psz, int64_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
 
+   template < typename T >
+   inline string  from(const T & t)
+   {
+
+      string str;
+
+      to_string(str, t);
+
+      return str;
+
+   }
 
 
-   inline CLASS_DECL_AURA string  from(int32_t i);
+
+   /*inline CLASS_DECL_AURA string  from(int32_t i);
    inline CLASS_DECL_AURA string  from(uint32_t ui);
    inline CLASS_DECL_AURA string  from(int64_t i);
    inline CLASS_DECL_AURA string  from(uint64_t ui);
    inline CLASS_DECL_AURA string  from(const var & var);
    inline CLASS_DECL_AURA string  from(const id & id);
    inline CLASS_DECL_AURA string  from(double d);
-   inline CLASS_DECL_AURA string  from(float f);
+   inline CLASS_DECL_AURA string  from(float f);*/
 
-
+/*
    CLASS_DECL_AURA  string &       from(string & str, int32_t i);
    CLASS_DECL_AURA  string &       from(string & str, uint32_t ui);
    CLASS_DECL_AURA  string &       from(string & str, int64_t i);
@@ -243,7 +255,7 @@ namespace str
    CLASS_DECL_AURA  string &       from(string & str, long int i);
 
 #endif
-
+*/
 
 
    //inline CLASS_DECL_AURA string   i64toa(int64_t i);
@@ -519,5 +531,8 @@ inline c_number < T > & c_number < T >::from(const string & str)
 
 
 CLASS_DECL_AURA string normalize_wildcard_criteria(const string & strPattern);
+
+
+
 
 

@@ -189,90 +189,90 @@ namespace str
    { return compare_ignore_case(left,right,len) == 0; }
 
 
-   inline CLASS_DECL_AURA  string  from(char ca)
-   {
-      string str;
-      from(str, ca);
-      return str;
-   }
-
-   inline CLASS_DECL_AURA  string  from(uchar uch)
-   {
-      string str;
-      from(str, uch);
-      return str;
-   }
-
-   inline CLASS_DECL_AURA  string  from(int16_t i)
-   {
-      string str;
-      from(str, i);
-      return str;
-   }
-
-   inline CLASS_DECL_AURA  string  from(uint16_t ui)
-   {
-      string str;
-      from(str, ui);
-      return str;
-   }
-
-   inline CLASS_DECL_AURA  string  from(int32_t i)
-   {
-      string str;
-      from(str, i);
-      return str;
-   }
-
-   inline CLASS_DECL_AURA  string  from(uint32_t ui)
-   {
-      string str;
-      from(str, ui);
-      return str;
-   }
-
-   inline CLASS_DECL_AURA  string  from(int64_t i)
-   {
-      string str;
-      from(str, i);
-      return str;
-   }
-
-
-#ifdef ANDROID
-
-
-   inline CLASS_DECL_AURA  string  from(long int i)
-   {
-      string str;
-      from(str, i);
-      return str;
-   }
-
-
-#endif
-
-
-   inline CLASS_DECL_AURA  string  from(uint64_t ui)
-   {
-      string str;
-      from(str, ui);
-      return str;
-   }
-
-   inline CLASS_DECL_AURA string from(float f)
-   {
-      string str;
-      from(str, f);
-      return str;
-   }
-   
-   inline CLASS_DECL_AURA string from(double d)
-   {
-      string str;
-      from(str, d);
-      return str;
-   }
+//   inline CLASS_DECL_AURA  string  from(char ca)
+//   {
+//      string str;
+//      from(str, ca);
+//      return str;
+//   }
+//
+//   inline CLASS_DECL_AURA  string  from(uchar uch)
+//   {
+//      string str;
+//      from(str, uch);
+//      return str;
+//   }
+//
+//   inline CLASS_DECL_AURA  string  from(int16_t i)
+//   {
+//      string str;
+//      from(str, i);
+//      return str;
+//   }
+//
+//   inline CLASS_DECL_AURA  string  from(uint16_t ui)
+//   {
+//      string str;
+//      from(str, ui);
+//      return str;
+//   }
+//
+//   inline CLASS_DECL_AURA  string  from(int32_t i)
+//   {
+//      string str;
+//      from(str, i);
+//      return str;
+//   }
+//
+//   inline CLASS_DECL_AURA  string  from(uint32_t ui)
+//   {
+//      string str;
+//      from(str, ui);
+//      return str;
+//   }
+//
+//   inline CLASS_DECL_AURA  string  from(int64_t i)
+//   {
+//      string str;
+//      from(str, i);
+//      return str;
+//   }
+//
+//
+//#ifdef ANDROID
+//
+//
+//   inline CLASS_DECL_AURA  string  from(long int i)
+//   {
+//      string str;
+//      from(str, i);
+//      return str;
+//   }
+//
+//
+//#endif
+//
+//
+//   inline CLASS_DECL_AURA  string  from(uint64_t ui)
+//   {
+//      string str;
+//      from(str, ui);
+//      return str;
+//   }
+//
+//   inline CLASS_DECL_AURA string from(float f)
+//   {
+//      string str;
+//      from(str, f);
+//      return str;
+//   }
+//   
+//   inline CLASS_DECL_AURA string from(double d)
+//   {
+//      string str;
+//      from(str, d);
+//      return str;
+//   }
 
    inline CLASS_DECL_AURA bool     trimmed_is_empty(const char * psz)
    {
@@ -290,7 +290,12 @@ namespace str
 
    }
 
-
+   //inline CLASS_DECL_AURA  string  from(int16_t i)
+   //{
+   //   string str;
+   //   from(str, i);
+   //   return str;
+   //}
 } // namespace str
 
 
@@ -313,4 +318,114 @@ CLASS_DECL_AURA void utf16_to_utf8_len(char * psz,const unichar * pwsz,strsize s
 
 CLASS_DECL_AURA string utf16_to_utf8(const unichar * pwsz, strsize srcLine = -1);
 
+#endif
+
+
+
+
+
+inline CLASS_DECL_AURA  void to_string(string & str, const char & ca)
+{
+   str = ca;
+}
+inline CLASS_DECL_AURA  void to_string(string & str, const uchar & ca)
+{
+   str = (const char &) ca;
+}
+
+//inline CLASS_DECL_AURA  void to_string(string & str, const char & i)
+//{
+//   str = ca;
+//}
+//
+
+
+//inline CLASS_DECL_AURA  string  from(uint16_t ui)
+//{
+//   string str;
+//   from(str, ui);
+//   return str;
+//}
+//
+//inline CLASS_DECL_AURA  string  from(int32_t i)
+//{
+//   string str;
+//   from(str, i);
+//   return str;
+//}
+//
+//inline CLASS_DECL_AURA  string  from(uint32_t ui)
+//{
+//   string str;
+//   from(str, ui);
+//   return str;
+//}
+//
+//inline CLASS_DECL_AURA  string  from(int64_t i)
+//{
+//   string str;
+//   from(str, i);
+//   return str;
+//}
+//
+//
+//#ifdef ANDROID
+//
+//
+//inline CLASS_DECL_AURA  string  from(long int i)
+//{
+//   string str;
+//   from(str, i);
+//   return str;
+//}
+//
+//
+//#endif
+//
+//
+//inline CLASS_DECL_AURA  string  from(uint64_t ui)
+//{
+//   string str;
+//   from(str, ui);
+//   return str;
+//}
+//
+//inline CLASS_DECL_AURA string from(float f)
+//{
+//   string str;
+//   from(str, f);
+//   return str;
+//}
+//   
+//inline CLASS_DECL_AURA string from(double d)
+//{
+//   string str;
+//   from(str, d);
+//   return str;
+//}
+//
+
+template < > inline void to_string(string & str, const int16_t & i);
+template < > inline void to_string(string & str, const uint16_t & i);
+template < > inline void to_string(string & str, const int32_t & i);
+template < > inline void to_string(string & str, const uint32_t & ui);
+template < > inline void to_string(string & str, const int64_t & i);
+template < > inline void to_string(string & str, const uint64_t &  ui);
+template < > inline void to_string(string & str, const float & f);
+template < > inline void to_string(string & str, const double & d);
+//inline CLASS_DECL_AURA string & to_string(string & str, const id & id);
+//inline CLASS_DECL_AURA string & to_string(string & str, const var & var);
+
+
+#ifdef ANDROID
+
+CLASS_DECL_AURA  string &       to_string(string & str, long int i);
+
+#endif
+
+
+#ifdef WINDOWS
+template < > inline void to_string(string & str, const long & i);
+template < > inline void to_string(string & str, const LONG & i);
+template < > inline void to_string(string & str, const DWORD & i);
 #endif

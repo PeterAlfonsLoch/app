@@ -805,7 +805,10 @@ namespace sockets
 
       single_lock sl(&m_mutexCache,true);
       reverse_cache_item item;
-      string strIpString = to_string(*(sockaddr *)sa);
+      string strIpString;
+      
+      strIpString = *(sockaddr *)sa;
+
       if(m_mapReverseCache.Lookup(strIpString,item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (11 * ((84 + 77) * 1000)))))
       {
          hostname = item.m_strReverse;

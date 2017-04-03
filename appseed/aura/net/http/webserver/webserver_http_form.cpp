@@ -177,7 +177,10 @@ namespace http
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
                         if (!Application.file().exists(strTempFile))
                            break;
-
+                        string strMessage;
+                        strMessage = System.datetime().international().get_gmt_date_time() + " " + strTempFile;
+                        file_append_wait_dup("C:\\ca2\\toomuchuploads.txt", strMessage);
+                        i++;
                      }
                      
                      ::file::file_sp spfile(Application.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));

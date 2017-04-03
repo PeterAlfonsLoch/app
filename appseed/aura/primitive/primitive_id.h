@@ -152,7 +152,7 @@ public:
 
 
    inline operator const char *() const;
-   inline string & to_string(string & str) const;
+   inline void to_string(string & str) const;
    inline string to_string() const;
 
 
@@ -319,13 +319,12 @@ inline id::operator const char *() const
 }
 
 
-inline string &  id::to_string(string & strRet) const
+inline void id::to_string(string & strRet) const
 {
 
-   return strRet =  str();
+   strRet =  str();
 
 }
-
 
 inline string id::to_string() const
 {
@@ -333,6 +332,13 @@ inline string id::to_string() const
    return str();
 
 }
+
+//inline string id::to_string() const
+//{
+//
+//   return str();
+//
+//}
 
 
 

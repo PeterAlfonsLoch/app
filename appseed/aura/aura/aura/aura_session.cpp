@@ -875,7 +875,7 @@ namespace aura
       sp(::aura::application) papp = library.get_new_app(pszAppId);
 
       ::output_debug_string("\n\n\n|(4)----");
-      ::output_debug_string("| app : " + strApplicationId + "(papp="+::str::from(papp)+")\n");
+      ::output_debug_string("| app : " + strApplicationId + "(papp=0x"+::hex::upper_from((uint_ptr)papp.m_p)+")\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|----");

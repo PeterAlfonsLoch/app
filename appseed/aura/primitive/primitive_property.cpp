@@ -209,14 +209,15 @@ property & property::operator = (const property & prop)
    if(&prop != this)
    {
 
-////      m_iIndex = prop.m_iIndex;
-//
-//      if(m_element1.is_empty())
-//      {
-//
-//         m_element1      = prop.m_element1;
-//
-//      }
+//      m_iIndex = prop.m_iIndex;
+
+      if(m_element1.is_empty())
+      {
+
+         output_debug_string("\nHI!! Shouldn't you use a reference find this by use reference and set a breakpoint here!!!\n");
+         m_element1      = prop.m_element1;
+
+      }
 
       m_element2 = prop.m_element2;
 
@@ -366,7 +367,7 @@ void property::skip_json_value( const char * & pszJson, const char * pszEnd)
 string & property::get_http_post(string & str) const
 {
 
-   str += m_element1.to_string();
+   str += m_element1.str();
 
    str += "=";
 

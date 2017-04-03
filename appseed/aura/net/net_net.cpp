@@ -190,7 +190,7 @@ static const char *basis_hex = "0123456789abcdef";
 * is not set on failure.)
 */
 template < >
-CLASS_DECL_AURA string & to_string(string & str, in6_addr  & addr)
+CLASS_DECL_AURA void to_string(string & str, const in6_addr  & addr)
 {
 
    str.Empty();
@@ -256,7 +256,7 @@ CLASS_DECL_AURA string & to_string(string & str, in6_addr  & addr)
             if (addr.pr_s6_addr[15] > 9) STUFF((addr.pr_s6_addr[15]%100)/10 + '0');
             STUFF(addr.pr_s6_addr[15]%10 + '0');
             STUFF('\0');
-            return str;
+//            return str;
       }
    }
 
@@ -282,7 +282,7 @@ CLASS_DECL_AURA string & to_string(string & str, in6_addr  & addr)
       if (department < 8 && department != double_colon) STUFF(':');
    }
    STUFF('\0');
-   return str;
+//   return str;
 #undef STUFF
 }
 
@@ -376,22 +376,22 @@ inline string ip_to_string(byte b1, byte b2, byte b3, byte b4)
 
 
 template < >
-CLASS_DECL_AURA string & to_string(string & str, in_addr &  addr)
+CLASS_DECL_AURA void to_string(string & str, const in_addr &  addr)
 {
 #if defined(WINDOWS)
-   return str = ip_to_string(
+   str = ip_to_string(
                              addr.S_un.S_un_b.s_b1,
                              addr.S_un.S_un_b.s_b2,
                              addr.S_un.S_un_b.s_b3,
                              addr.S_un.S_un_b.s_b4);
 #else
    char sz[32];
-   return str = inet_ntop(AF_INET, &addr, sz, sizeof(sz));
+   str = inet_ntop(AF_INET, &addr, sz, sizeof(sz));
 #endif
 }
 
 template < >
-CLASS_DECL_AURA string & to_string(string & str, sockaddr_in &  addr)
+CLASS_DECL_AURA void to_string(string & str, const sockaddr_in &  addr)
 {
 
    return to_string(str, addr.sin_addr);
@@ -399,7 +399,7 @@ CLASS_DECL_AURA string & to_string(string & str, sockaddr_in &  addr)
 }
 
 template < >
-CLASS_DECL_AURA string & to_string(string & str, sockaddr_in6 &  addr)
+CLASS_DECL_AURA void to_string(string & str, const sockaddr_in6 &  addr)
 {
 
    return to_string(str, addr.sin6_addr);
@@ -407,7 +407,7 @@ CLASS_DECL_AURA string & to_string(string & str, sockaddr_in6 &  addr)
 }
 
 template < >
-CLASS_DECL_AURA string & to_string(string & str, sockaddr & addr)
+CLASS_DECL_AURA void to_string(string & str, const sockaddr & addr)
 {
 
    if(addr.sa_family == AF_INET)
@@ -428,8 +428,6 @@ CLASS_DECL_AURA string & to_string(string & str, sockaddr & addr)
       throw "unexpected address family";
 
    }
-
-   return str;
 
 }
 

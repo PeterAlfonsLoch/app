@@ -1251,7 +1251,7 @@ namespace user
       if(get_document() != NULL && !get_document()->m_dataid.m_id.is_empty())
       {
 
-         str += get_document()->m_dataid.m_id.to_string();
+         str += get_document()->m_dataid.m_id;
 
       }
 

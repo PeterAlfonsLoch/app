@@ -134,7 +134,7 @@ namespace windows
                ipa.add(*ptr->ai_addr);
 
 
-               str = to_string(ipa.last().u.m_sa);
+               str = ::str::from(ipa.last().u.m_sa);
 
                // sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
                //printf("\tIPv4 address %s\n",

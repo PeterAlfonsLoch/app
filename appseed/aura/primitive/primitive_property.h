@@ -170,7 +170,7 @@ public:
 
       str += "\"";
 
-      str += m_element1.to_string();
+      str += m_element1.str();
 
       str += "\"";
 
