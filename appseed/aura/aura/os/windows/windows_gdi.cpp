@@ -615,7 +615,7 @@ namespace draw2d
 
       stra.quick_sort([&](index i1, index i2) {
          csa.swap(i1, i2);
-      }, true);
+      });
 
    }
 

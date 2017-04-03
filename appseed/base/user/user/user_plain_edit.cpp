@@ -16,7 +16,13 @@ CLASS_DECL_BASE void replace_tab(strsize iOffset, string & strParam, int iWidth,
 
       string strChar = ::str::get_utf8_char(psz);
 
-      if (strChar == "\t")
+      if (strChar.is_empty())
+      {
+
+         break;
+
+      }
+      else if (strChar == "\t")
       {
 
          strTab = string(iWidth - (iOffset % iWidth), ' ');
@@ -1955,6 +1961,13 @@ namespace user
             {
 
                pszNext = ::str::utf8_inc(psz);
+
+               if (pszNext == NULL)
+               {
+
+                  break;
+
+               }
 
                iLen = pszNext - psz;
 

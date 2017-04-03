@@ -105,7 +105,7 @@ namespace userex
          for (auto & p : m_viewmap)
          {
 
-            if (p.m_element2 == m_pviewdata)
+            if (p.m_element2 == m_pviewdata || !p.m_element2->m_id.is_text())
             {
 
                continue;

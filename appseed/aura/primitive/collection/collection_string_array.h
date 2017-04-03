@@ -105,8 +105,11 @@ public:
 
    template < typename SWAP >
    void quick_sort(
-      SWAP swap,
-      bool bNoCase = false);
+      SWAP swap);
+
+   template < typename SWAP >
+   void quick_sort_ci(
+      SWAP swap);
 
    void get_quick_sort_ci(index_array & ia);
 
@@ -310,9 +313,9 @@ public:
 template < class Type, class RawType >
 template < typename SWAP >
 void string_array < Type, RawType >::quick_sort(
-   SWAP swap, 
-   bool bNoCase)
+   SWAP swap)
 {
+
    index_array stackLowerBound;
    index_array stackUpperBound;
    index iLowerBound;
@@ -337,8 +340,7 @@ void string_array < Type, RawType >::quick_sort(
             {
                if (iMPos == iUPos)
                   break;
-               if ((bNoCase && this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0) ||
-                  (!bNoCase && this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0))
+               if (this->element_at(iMPos).Compare(this->element_at(iUPos)) <= 0)
                   iUPos--;
                else
                {
@@ -357,8 +359,7 @@ void string_array < Type, RawType >::quick_sort(
                if (iMPos == iLPos)
                   break;
 
-               if ((bNoCase && this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0) ||
-                  (!bNoCase && this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0))
+               if (this->element_at(iLPos).Compare(this->element_at(iMPos)) <= 0)
                   iLPos++;
                else
                {
@@ -389,6 +390,88 @@ void string_array < Type, RawType >::quick_sort(
    }
 
 }
+
+
+template < class Type, class RawType >
+template < typename SWAP >
+void string_array < Type, RawType >::quick_sort_ci(
+   SWAP swap)
+{
+   index_array stackLowerBound;
+   index_array stackUpperBound;
+   index iLowerBound;
+   index iUpperBound;
+   index iLPos, iUPos, iMPos;
+   Type t;
+
+   if (this->get_size() >= 2)
+   {
+      stackLowerBound.push(0);
+      stackUpperBound.push(this->get_size() - 1);
+      while (true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+         while (true)
+         {
+            while (true)
+            {
+               if (iMPos == iUPos)
+                  break;
+               if (this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0)
+                  iUPos--;
+               else
+               {
+                  t = get_at(iMPos);
+                  set_at(iMPos, get_at(iUPos));
+                  set_at(iUPos, t);
+                  swap(iUPos, iMPos);
+                  break;
+               }
+            }
+            if (iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while (true)
+            {
+               if (iMPos == iLPos)
+                  break;
+
+               if (this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0)
+                  iLPos++;
+               else
+               {
+                  t = get_at(iLPos);
+                  set_at(iLPos, get_at(iMPos));
+                  set_at(iMPos, t);
+                  swap(iLPos, iMPos);
+                  break;
+               }
+            }
+            if (iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+         if (iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if (iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if (stackLowerBound.get_size() == 0)
+            break;
+      }
+   }
+
+}
+
 
 static inline void ConstructElement(string * pNewData)
 {

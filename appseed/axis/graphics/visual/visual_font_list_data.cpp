@@ -176,6 +176,8 @@ namespace visual
       index iScan = 1;
       index iOrder = 0;
 
+      m_itemptra.set_size(iCount);
+
       OutputDebugString("Middle");
       ::fork_count(get_app(), m_straFontEnum.get_count(), [&](index iOrder, index i, index iCount, index iScan)
       {
@@ -205,7 +207,7 @@ namespace visual
 
             item * pitem = new item();
 
-            m_itemptra.add(pitem);
+            m_itemptra[i] = pitem;
 
             //         pitem->m_dibSel.alloc(allocer());
 
