@@ -1,7 +1,7 @@
 #pragma once
 
-
-
+using property = pair < id, var >;
+using property_map = map < id, const id &, var, const var &, property >;
 
 // property set key is case insensitive
 class CLASS_DECL_AURA property_set :

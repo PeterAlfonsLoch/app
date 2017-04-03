@@ -506,9 +506,6 @@
     <ClInclude Include="primitive\primitive_property_set.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive_property.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_object.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -2774,6 +2771,9 @@
     <ClInclude Include="net\netserver\netserver_socket_thread.h">
       <Filter>Header Files\net\netserver</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\aaa_want_to_remove_primitive_property.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -2849,9 +2849,6 @@
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_virtual_memory.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_property.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_object.cpp">

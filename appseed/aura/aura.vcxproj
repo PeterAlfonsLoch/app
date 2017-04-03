@@ -2618,7 +2618,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\primitive_job.h" />
     <ClInclude Include="primitive\primitive_memory_c.h" />
     <ClInclude Include="primitive\primitive_object.h" />
-    <ClInclude Include="primitive\primitive_property.h" />
+    <ClInclude Include="primitive\aaa_want_to_remove_primitive_property.h" />
     <ClInclude Include="primitive\primitive_property_set.h" />
     <ClInclude Include="primitive\primitive_relation_set.h" />
     <ClInclude Include="primitive\primitive_request_interface.h" />
@@ -4872,12 +4872,6 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="primitive\primitive_object.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_property.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
