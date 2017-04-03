@@ -1,7 +1,6 @@
 #pragma once
 
-using property = pair < id, var >;
-using property_map = map < id, const id &, var, const var &, property >;
+
 
 // property set key is case insensitive
 class CLASS_DECL_AURA property_set :
@@ -10,9 +9,7 @@ class CLASS_DECL_AURA property_set :
 {
 public:
 
-   int                  m_iIndex;
-
-   class signal         m_signal;
+   //class signal         m_signal;
 
 
    property_set(::aura::application * papp = NULL, bool bAutoAdd = true, bool bMultiValue = false);
@@ -120,8 +117,8 @@ public:
    bool is_empty(id idName) const;
 //   bool is_empty(string_interface & str) const;
 
-   void OnBeforePropertyChange(property * pproperty);
-   void OnAfterPropertyChange(const var & variableOld, property * pproperty);
+   //void OnBeforePropertyChange(property * pproperty);
+   //void OnAfterPropertyChange(const var & variableOld, property * pproperty);
 
    void _008ParseCommandLine(const char * pszCmdLine, var & varFile);
    void _008ParseCommandFork(const char * pszCmdLine, var & varFile, string & strApp);

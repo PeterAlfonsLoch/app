@@ -5,7 +5,7 @@ property_set::property_set(::aura::application * papp, bool bAutoAdd, bool bMult
    object(papp)
 {
 
-   m_iIndex = 0;
+//   m_iIndex = 0;
 
 }
 
@@ -387,26 +387,26 @@ bool property_set::is_empty(id idName) const
 //   return pproperty->is_empty();
 //}
 
-void property_set::OnBeforePropertyChange(property * pproperty)
-{
-   PropertySignalObject signal_details(&m_signal);
-   signal_details.m_etype = PropertySignalObject::TypeBeforeChange;
-   signal_details.m_pproperty = pproperty;
-   signal_details.m_pset = this;
-   m_signal.emit(&signal_details);
-}
-
-
-void property_set::OnAfterPropertyChange(const var & variableOld, property * pproperty)
-{
-   UNREFERENCED_PARAMETER(variableOld);
-   PropertySignalObject signal_details(&m_signal);
-   signal_details.m_etype = PropertySignalObject::TypeAfterChange;
-   signal_details.m_pproperty = pproperty;
-   signal_details.m_pset = this;
-   m_signal.emit(&signal_details);
-}
-
+//void property_set::OnBeforePropertyChange(property * pproperty)
+//{
+//   PropertySignalObject signal_details(&m_signal);
+//   signal_details.m_etype = PropertySignalObject::TypeBeforeChange;
+//   signal_details.m_pproperty = pproperty;
+//   signal_details.m_pset = this;
+//   m_signal.emit(&signal_details);
+//}
+//
+//
+//void property_set::OnAfterPropertyChange(const var & variableOld, property * pproperty)
+//{
+//   UNREFERENCED_PARAMETER(variableOld);
+//   PropertySignalObject signal_details(&m_signal);
+//   signal_details.m_etype = PropertySignalObject::TypeAfterChange;
+//   signal_details.m_pproperty = pproperty;
+//   signal_details.m_pset = this;
+//   m_signal.emit(&signal_details);
+//}
+//
 
 void property_set::_008ParseCommandLine(const char * pszCmdLineParam, var & varFile)
 {
@@ -1032,7 +1032,7 @@ property * property_set::find_value_ci(const char * psz) const
 property_set::property_set(const property_set & set)
 {
    
-   m_iIndex = 0;
+//   m_iIndex = 0;
 
    operator = (set);
 
@@ -1080,7 +1080,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      m_iIndex = set.m_iIndex;
+//      m_iIndex = set.m_iIndex;
 
       ::lemon::map::copy((property_map & )*this, (const property_map & ) set);
 
