@@ -21,15 +21,15 @@ namespace filemanager
          TypeFilter,
          TypeGetActiveViewSelection,
          TypeOpenSelectionProperties,
-         TypeSaveAsStart,
-         TypeSaveAsCancel,
-         TypeSaveAsOK,
-         TypeSaveAsSaveFailed,
-         TypeSaveAsSaved,
+         TypeTopicStart,
+         TypeTopicCancel,
+         TypeTopicOK,
+         TypeTopicSaveFailed,
+         TypeTopicSaved,
       };
 
 
-
+      ::filemanager::manager::e_mode   m_emode;
       ::fs::item_array              m_itemaSelected;
       string                        m_wstrFilter;
       ::filemanager::manager *      m_pmanager;

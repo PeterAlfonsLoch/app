@@ -35,6 +35,9 @@ public:
    //void remove_all();
    //void clear();
 
+   Type safe_at(index nIndex, Type tDefault = "") const;
+   Type safe_at(index nIndex, Type tDefault = "");
+
    Type get_at(index nIndex) const;
    void set_at(index nIndex, const char * newElement);
 

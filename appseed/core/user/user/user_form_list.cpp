@@ -295,6 +295,84 @@ namespace user
       if (pcontrol == NULL)
          return false;
 
+      if (pcontrol->descriptor().get_type() == control_type_check_box)
+      {
+         
+         sp(::user::elemental) pcheckbox = pcontrol;
+
+         ::check::e_check echeck = pcheckbox->_001GetCheck();
+
+         draw_list_item item(this);
+
+         item.m_iItem = pcontrol->m_iEditItem;
+
+         item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+
+         if (echeck == ::check::checked)
+         {
+
+            string str = pcontrol->descriptor().m_setValue[::check::checked];
+            
+            if(str.has_char())
+            {
+
+               item.m_strText = str;
+
+            }
+            else
+            {
+
+               item.m_strText = "true";
+
+            }
+
+         }
+         else if (echeck == ::check::unchecked)
+         {
+
+            string str = pcontrol->descriptor().m_setValue[::check::unchecked];
+
+            if (str.has_char())
+            {
+
+               item.m_strText = str;
+
+            }
+            else
+            {
+
+               item.m_strText = "false";
+
+            }
+
+         }
+         else
+         {
+
+            string str = pcontrol->descriptor().m_setValue[::check::tristate];
+
+            if (str.has_char())
+            {
+
+               item.m_strText = str;
+
+            }
+            else
+            {
+
+               item.m_strText = "";
+
+            }
+
+         }
+
+         _001SetItemText(&item);
+
+         on_update(NULL, ::user::impact::hint_control_saved, pcontrol);
+
+         return true;
+      }
+
       ASSERT(pcontrol->descriptor().get_type() == control_type_edit || pcontrol->descriptor().get_type() == control_type_edit_plain_text
       || pcontrol->descriptor().get_type() == control_type_combo_box);
 
@@ -337,7 +415,8 @@ namespace user
          return false;
       }
 
-      if (pcontrol->descriptor().has_function(control::function_vms_data_edit))
+      if (pcontrol->descriptor().has_function(control::function_vms_data_edit)
+         || pcontrol->descriptor().has_function(control::function_data_selection))
       {
          
          draw_list_item item(this);

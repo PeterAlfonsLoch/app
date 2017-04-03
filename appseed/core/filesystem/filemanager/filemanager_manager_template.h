@@ -14,9 +14,9 @@ namespace filemanager
       int32_t                    m_iTemplate;
       int32_t                    m_iNextDocument;
 
+      ::file::path               m_pathDefault;
       string                     m_strMenuBar;
-      string                     m_strToolBar;
-      string                     m_strToolBarSave;
+      property_set               m_setToolbar;
       string                     m_strDialogBar;
       string                     m_strPopup;
       string                     m_strFilePopup;

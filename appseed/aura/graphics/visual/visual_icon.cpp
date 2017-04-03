@@ -103,12 +103,10 @@ namespace visual
 #endif
 
 
-   bool icon::load_app_tray_icon(string strApp)
+   bool icon::load_file(string strPath)
    {
 
 #ifdef WINDOWSEX
-
-      string strPath = Application.dir().matter("main/icon.ico");
 
       int cx = GetSystemMetrics(SM_CXSMICON);
       int cy = GetSystemMetrics(SM_CYSMICON);
@@ -120,6 +118,48 @@ namespace visual
       on_update_icon();
 
       return m_picon != NULL;
+
+#else
+
+      m_strAppTrayIcon = strPath;
+
+      return true;
+
+#endif
+
+   }
+
+   bool icon::load_matter(string strMatter)
+   {
+
+      string strPath = Application.dir().matter(strMatter);
+
+      if (!load_file(strPath))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+   bool icon::load_app_tray_icon(string strApp)
+   {
+
+#ifdef WINDOWSEX
+
+      string strMatter = "main/icon.ico";
+
+      if (!load_matter(strMatter))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
 #else
 

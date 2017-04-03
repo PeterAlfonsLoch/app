@@ -208,12 +208,9 @@ namespace user
 
       _001OnUpdate(::action::source_system);
 
-      //m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = false;
 
       _001OnCalcLayout();
-
-//      ThreadProcScrollSize((LPVOID) this);
 
    }
 
@@ -230,35 +227,12 @@ namespace user
 
       _001OnUpdate(::action::source_system);
 
-      //m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = true;
+
       _001OnCalcLayout();
 
-
-      /*   pobj->previous();
-
-         double d = psize->m_size.cy;
-         d /= GetSystemMetrics(SM_CYSCREEN);
-         SetScale(d);
-
-         GetFocusRect(m_rectKaraokeView);
-
-
-         rect rectClient;
-         GetFocusRect(rectClient);
-         rect rect = rectClient;
-
-         rect.top = rect.bottom - 24;
-         m_viewlineStatus.SetPlacement(rect);
-
-
-         m_rectKaraokeView.bottom -= 16;
-
-         LayoutTitleLines();
-         LayoutLyricTemplateLines();
-         LayoutLyricLines();
-         LayoutKaraokeBouncingBall();*/
    }
+
 
    void plain_edit::_001OnPaint(signal_details * pobj)
    {
@@ -1221,7 +1195,7 @@ namespace user
 
       m_bCalcLayoutHintNoTextChange = true;
 
-      _001OnCalcLayout();
+      _001OnCalcOffset();
 
 
 #ifndef SEARCH_SCROLLING_PROFILING
@@ -1238,7 +1212,7 @@ namespace user
 
       ::user::control::on_change_viewport_offset();
 
-      _001OnCalcLayout();
+      _001OnCalcOffset();
 
       RedrawWindow();
 
@@ -1353,6 +1327,356 @@ namespace user
 
    }
 
+
+
+   void plain_edit::_001OnCalcOffset(index iLineUpdate)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      rect rectClient;
+
+      GetFocusRect(rectClient);
+
+      if (m_ptree == NULL)
+      {
+
+         m_iLineCount = 0;
+
+         m_iLineOffset = 0;
+
+         m_iLineStart = 0;
+
+         m_iLineEnd = 0;
+
+         m_iViewOffset = 0;
+
+         m_iViewSize = 0;
+
+         return;
+
+      }
+
+
+
+      ::index i;
+
+      ::index iLine;
+
+      ::draw2d::graphics_sp pgraphics = m_pmemorygraphics;
+
+      select_font(pgraphics);
+
+      const int iLenUniText = 14;
+
+      sized sizeUniText;
+
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
+      pgraphics->GetTextExtent(sizeUniText, unitext("gqYALﾍWMÍÎÄÃÄÅ"));
+
+      m_iLineHeight = (int)sizeUniText.cy;
+
+      if (m_iLineHeight <= 0)
+      {
+
+         m_iLineHeight = 18;
+
+      }
+
+      point ptOffset = get_viewport_offset();
+
+      m_iLineCount = ((rectClient.height() + m_iLineHeight - 1) / m_iLineHeight) + 2;
+
+      m_iLineOffset = MIN(MAX(0, ptOffset.y / m_iLineHeight), m_iaLineBeg.get_upper_bound());
+
+      m_iLineStart = should_load_full_file() ? 0 : MAX(0, m_iLineOffset);
+
+      m_iLineEnd = should_load_full_file() ? m_iaLineLen.get_size() : MIN(m_iaLineLen.get_size(), m_iLineCount + m_iLineStart);
+
+      if (m_iLineOffset < 0)
+      {
+
+         return;
+
+      }
+
+      m_iViewOffset = m_iaLineBeg[m_iLineStart];
+
+      strsize iBeg = m_iaLineBeg[m_iLineEnd - 1];
+
+      strsize iLen = m_iaLineLen[m_iLineEnd - 1];
+
+      m_iViewSize = iBeg + iLen - m_iViewOffset;
+
+      int iLineStart;
+
+      int iLineEnd;
+
+      int iViewOffset;
+
+      int iViewSize;
+
+      if (iLineUpdate < 0)
+      {
+
+         iLineStart = m_iLineStart;
+
+         iLineEnd = m_iLineEnd;
+
+         iViewOffset = m_iViewOffset;
+
+         iViewSize = m_iViewSize;
+
+      }
+      else
+      {
+
+         iLineStart = iLineUpdate;
+
+         iLineEnd = iLineStart + 1;
+
+         iViewOffset = m_iaLineBeg[iLineStart];
+
+         iBeg = m_iaLineBeg[iLineEnd - 1];
+
+         iLen = m_iaLineLen[iLineEnd - 1];
+
+         iViewSize = iBeg + iLen - iViewOffset;
+
+      }
+
+      string strLine;
+
+      memory mem;
+
+      mem.allocate(iViewSize + 1);
+
+      strsize iRead;
+
+      {
+
+         m_ptree->m_editfile.seek(iViewOffset, ::file::seek_begin);
+
+         iRead = m_ptree->m_editfile.read(mem.get_data(), iViewSize);
+
+         if (iRead < iViewSize)
+         {
+
+            TRACE("ops1");
+
+            iViewSize = iRead;
+
+         }
+
+         mem.get_data()[iViewSize] = 0;
+
+      }
+
+      strsize iPos = 0;
+
+      //      strsize iLen;
+
+      strsize iStrLen;
+
+      m_plines->lines.set_size(m_iLineEnd - m_iLineStart);
+
+      i = 0;
+
+      iLine = iLineStart;
+
+      m_iaExtent.set_size(m_iaLineLen.get_size());
+
+      for (; iLine < iLineEnd; i++, iLine++)
+      {
+
+         iLen = m_iaLineLen[iLine];
+
+         iStrLen = MAX(0, iLen - (m_iaLineEnd[iLine] & 255));
+
+         if (iPos + iStrLen > m_iViewSize)
+         {
+
+            TRACE("ops3");
+
+            iStrLen = iViewSize - iPos;
+
+            if (iStrLen <= 0)
+            {
+
+               TRACE("ops4");
+
+               break;
+
+            }
+
+         }
+
+         string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+
+         if (strLine != m_plines->lines[i])
+         {
+            m_plines->lines[i] = strLine;
+            m_iaExtent[i + iLineStart].set_size(0);
+         }
+         else
+         {
+
+            TRACE("optstr");
+
+         }
+
+
+
+
+         iPos += iLen;
+
+         if (iPos > iViewSize)
+         {
+
+            TRACE("ops2");
+
+            break;
+
+         }
+
+      }
+
+      m_y = ptOffset.y;
+
+      m_peditor->visibleTextEvent(m_iLineStart, m_iLineCount);
+
+      stringa & straLines = m_plines->lines;
+
+      if (iLineUpdate < 0)
+      {
+
+         //m_sizeTotal.cx = 0;
+
+      }
+
+      sized size;
+
+
+
+      string strLineGraphics;
+
+      strsize_array iaTab;
+
+      int iTab;
+
+      int iAddUp;
+
+
+      for (int32_t i = 0; i < straLines.get_size(); i++)
+      {
+
+         strLine = straLines[i];
+
+         iTab = -1;
+
+         iaTab.remove_all();
+
+         strLineGraphics = strLine;
+
+         replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+
+         const char * pszStart = strLine;
+
+         const char * psz = pszStart;
+
+         int iLen = 0;
+
+         iAddUp = 0;
+
+         iPos = 0;
+
+         const char * pszNext = pszStart;
+
+         if (m_iaExtent[m_iLineStart + i].get_size() <= 0)
+         {
+
+            m_iaExtent[m_iLineStart + i].set_size(strLine.get_length());
+
+            while (*pszNext != '\0')
+            {
+
+               pszNext = ::str::utf8_inc(psz);
+
+               iLen = pszNext - psz;
+
+               if (*psz == '\t')
+               {
+
+                  iTab++;
+
+                  iAddUp += iaTab[iTab] - 1;
+
+               }
+
+               size = pgraphics->GetTextExtent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+
+               for (int j = 0; j < iLen; j++)
+               {
+
+                  m_iaExtent[m_iLineStart + i][psz - pszStart + j] = size.cx;
+
+               }
+
+               psz = pszNext;
+
+            }
+
+            if (strLineGraphics.has_char())
+            {
+
+               size = pgraphics->GetTextExtent(strLineGraphics, strLineGraphics.get_length());
+
+               for (int j = 0; j < iLen; j++)
+               {
+
+                  m_iaExtent[m_iLineStart + i][psz - pszStart] = size.cx;
+
+               }
+
+            }
+
+
+            if (size.cx > m_sizeTotal.cx)
+            {
+
+               m_sizeTotal.cx = (int32_t)size.cx;
+
+            }
+
+         }
+
+
+      }
+
+      //if (iLineUpdate < 0)
+      //{
+
+      //   m_sizeTotal.cy = (((int32_t)m_iaLineLen.get_count() + (m_bMultiLine ? MAX(5, m_iLineCount) : 0)) * m_iLineHeight);
+
+      //   class size sizePage;
+
+      //   sizePage = rectClient.size();
+
+      //   if (m_sizeTotal.cy < sizePage.cy)
+      //   {
+
+      //      sizePage.cy = m_sizeTotal.cy;
+
+      //   }
+
+      //}
+
+      //on_change_view_size();
+
+      //m_bCalcLayoutHintNoTextChange = false;
+
+   }
 
    void plain_edit::_001OnCalcLayout(index iLineUpdate)
    {
@@ -3835,11 +4159,6 @@ namespace user
    void plain_edit::_001OnVScroll(signal_details * pobj)
    {
 
-      //m_bCalcLayoutHintNoTextChange = true;
-      m_bNeedCalcLayout = true;
-      _001OnCalcLayout();
-      //RedrawWindow();
-      //pobj->m_bRet = true;
    }
 
 
@@ -3856,29 +4175,14 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
-      if(should_load_full_file())
-      {
-
-         //m_bNeedScrollUpdate = true;
-         m_bCalcLayoutHintNoTextChange = true;
-         _001OnCalcLayout();
-
-      }
-      else
-      {
-
-         m_bGetTextNeedUpdate = true;
-
-      }
-
    }
 
 
    void plain_edit::_001OnSetText(::action::context actioncontext)
    {
 
-      //m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = false;
+
       _001OnCalcLayout();
 
    }
@@ -4070,8 +4374,8 @@ namespace user
    void plain_edit::on_layout()
    {
 
-      //m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = true;
+
       _001OnCalcLayout();
 
    }

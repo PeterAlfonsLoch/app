@@ -30,6 +30,8 @@ namespace xml
       attr_array(::aura::application * papp);
 
 
+      ::xml::attr * add_attr(id idName);
+
    };
 
 

@@ -19,7 +19,7 @@ namespace filemanager
       m_bIconView                = false;
       m_pholderFileList          = NULL;
       m_ptreeFileTreeMerge       = NULL;
-      m_pdocumentSave            = NULL;
+      m_pdocumentTopic            = NULL;
       m_pmanagertemplate         = NULL;
       m_bSetBergedgeTopicFile    = false;
       m_bTransparentBackground   = true;
@@ -90,16 +90,16 @@ namespace filemanager
 
       ASSERT(m_pcallback != NULL);
 
-      if(is_saving() && itema.get_count() == 1)
+      if(is_topic() && itema.get_count() == 1)
       {
 
          sp(manager) pdoc =  (m_pmanager);
          update_hint uh;
          uh.m_pmanager = m_pmanager;
          uh.m_filepath = itema[0]->m_filepath;
-         uh.set_type(update_hint::TypeSaveAsOK);
+         uh.set_type(update_hint::TypeTopicOK);
          pdoc->update_all_views(NULL, 0, &uh);
-         m_pdocumentSave = NULL;
+         m_pdocumentTopic = NULL;
 
       }
       else if(m_pcallback != NULL)
@@ -229,10 +229,9 @@ namespace filemanager
    }
 
 
-   bool data::is_saving()
+   bool data::is_topic()
    {
-
-      return m_pdocumentSave != NULL;
+      return m_pdocumentTopic != NULL;
 
    }
 
@@ -254,10 +253,33 @@ namespace filemanager
          if(m_bTransparentBackground)
          {
 
-            if(is_saving())
+            if(is_topic())
             {
 
-               cr = ARGB(184,255,210,180);
+               if (m_pmanager->m_emode == manager::mode_save)
+               {
+
+                  cr = ARGB(184, 255, 210, 180);
+
+               }
+               else if (m_pmanager->m_emode == manager::mode_import)
+               {
+
+                  cr = ARGB(184, 180, 210, 255);
+
+               }
+               else if (m_pmanager->m_emode == manager::mode_export)
+               {
+
+                  cr = ARGB(184, 255, 250, 210);
+
+               }
+               else
+               {
+
+                  cr = ARGB(184, 210, 255, 180);
+
+               }
 
             }
             else
@@ -271,10 +293,33 @@ namespace filemanager
          else
          {
 
-            if(is_saving())
+            if(is_topic())
             {
 
-               cr = ARGB(255,255,210,180);
+               if (m_pmanager->m_emode == manager::mode_save)
+               {
+
+                  cr = ARGB(255, 255, 210, 180);
+
+               }
+               else if (m_pmanager->m_emode == manager::mode_import)
+               {
+
+                  cr = ARGB(184, 180, 210, 255);
+
+               }
+               else if (m_pmanager->m_emode == manager::mode_export)
+               {
+
+                  cr = ARGB(184, 255, 250, 210);
+
+               }
+               else 
+               {
+
+                  cr = ARGB(184, 210, 255, 180);
+
+               }
 
             }
             else

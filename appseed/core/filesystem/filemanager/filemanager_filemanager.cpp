@@ -34,8 +34,10 @@ namespace filemanager
       InitializeFileManager("filemanager/filemanager");
 
       m_ptemplateStd->m_strLevelUp.Empty();
-      m_ptemplateStd->m_strToolBar = "filemanager_toolbar.xml";
-      m_ptemplateStd->m_strToolBarSave = "filemanager_save_as_toolbar.xml";
+      m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_normal] = "filemanager_toolbar.xml";
+      m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_save] = "filemanager_save_as_toolbar.xml";
+      m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_import] = "filemanager_import_toolbar.xml";
+      m_ptemplateStd->m_setToolbar[::filemanager::manager::mode_export] = "filemanager_export_toolbar.xml";
       m_ptemplateStd->m_dataidStatic = "FileManagerFavoritesList";
       //m_ptemplateStd->m_uiDialogBar = 0;
       //m_ptemplateStd->m_uiMenuBar = 0;
@@ -52,8 +54,10 @@ namespace filemanager
 
 
       m_ptemplateFs->m_strLevelUp.Empty();
-      m_ptemplateFs->m_strToolBar = "filemanager_toolbar.xml";
-      m_ptemplateFs->m_strToolBarSave = "filemanager_save_as_toolbar.xml";
+      m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_normal] = "filemanager_toolbar.xml";
+      m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_save] = "filemanager_save_as_toolbar.xml";
+      m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_import] = "filemanager_import_toolbar.xml";
+      m_ptemplateFs->m_setToolbar[::filemanager::manager::mode_export] = "filemanager_export_toolbar.xml";
       m_ptemplateFs->m_dataidStatic = "FileManagerFavoritesList";
       //m_ptemplateFs->m_uiDialogBar = 0;
       //m_ptemplateFs->m_uiMenuBar = 0;

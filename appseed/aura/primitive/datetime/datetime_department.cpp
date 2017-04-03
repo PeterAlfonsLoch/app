@@ -214,7 +214,7 @@ namespace datetime
    {
       ::datetime::time time;
       time = time.get_current_time();
-      return get_gmt_date_time(time);
+      return get_gmt_date_time(time, strFormat);
    }
 
    string department::international::get_local_date_time(const ::datetime::time & time, string strFormat)
@@ -228,7 +228,7 @@ namespace datetime
    {
       ::datetime::time time;
       time = time.get_current_time();
-      return get_local_date_time(time);
+      return get_local_date_time(time, strFormat);
    }
 
    department::str::str(::aura::application * papp)

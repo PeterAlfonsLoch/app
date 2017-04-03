@@ -8,6 +8,7 @@ namespace user
       ::user::interaction(papp)
    {
       m_echeck = check::unchecked;
+      m_estyle = style_normal;
    }
 
    check_box::~check_box()
@@ -46,8 +47,26 @@ namespace user
       }
    }
 
-
    void check_box::_001OnDraw(::draw2d::graphics * pgraphics)
+   {
+
+      if (m_estyle == style_red_green_circle)
+      {
+
+         _001OnDrawRedGreenCircle(pgraphics);
+
+      }
+      else
+      {
+
+         _001OnDrawNormal(pgraphics);
+
+      }
+
+   }
+
+
+   void check_box::_001OnDrawNormal(::draw2d::graphics * pgraphics)
    {
 
       
@@ -83,6 +102,77 @@ namespace user
          }
       }
       pgraphics->OffsetViewportOrg(-rectClient.left, -rectClient.top);
+
+   }
+
+
+   void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics * pgraphics)
+   {
+
+
+
+      rect rectClient;
+      GetClientRect(rectClient);
+
+      int iMin = MAX(MIN(rectClient.size().cx, rectClient.size().cy) -1, 1);
+
+      rect rectCheckBox;
+      rectCheckBox.left = 1;
+      rectCheckBox.top = 1;
+      rectCheckBox.right = iMin + 1;
+      rectCheckBox.bottom = iMin + 1;
+
+      COLORREF crPen = ARGB(255, 0, 0, 0);
+      COLORREF crBrush;
+
+      if (m_echeck == check::checked)
+      {
+         
+         crBrush = ARGB(255, 100, 220, 120);
+
+      }
+      else if (m_echeck == check::unchecked)
+      {
+
+         crBrush = ARGB(255, 220, 220, 100);
+
+      }
+      else
+      {
+
+         crBrush = ARGB(255, 128, 128, 128);
+
+      }
+
+      ::draw2d::pen_sp pen(allocer());
+
+      pen->create_solid(1.0, crPen);
+
+      pgraphics->SelectObject(pen);
+
+      ::draw2d::brush_sp brush(allocer());
+
+      brush->create_solid(crBrush);
+
+      pgraphics->SelectObject(brush);
+
+      pgraphics->Ellipse(rectCheckBox);
+      //   pgraphics->Draw3dRect(rectCheckBox, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
+      //   if (m_echeck == check::tristate
+      //      || m_echeck == check::checked)
+      //   {
+      //      ::draw2d::pen_sp pen(allocer());
+      //      pen->create_solid(1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
+      //      pgraphics->SelectObject(pen);
+      //      pgraphics->MoveTo(2, 8);
+      //      pgraphics->LineTo(6, 12);
+      //      pgraphics->LineTo(13, 5);
+      //      pgraphics->MoveTo(2, 9);
+      //      pgraphics->LineTo(6, 13);
+      //      pgraphics->LineTo(13, 6);
+      //   }
+      //}
+      //pgraphics->OffsetViewportOrg(-rectClient.left, -rectClient.top);
 
    }
 

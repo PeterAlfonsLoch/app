@@ -877,7 +877,8 @@ retry:
          psession->m_memoryfile.Truncate(0);
 
 
-         psession->inheaders().add(set["headers"]);
+         psession->inheaders() = set["headers"].propset();
+
          if(set.has_property("minimal_headers") && (bool)set["minimal_headers"])
          {
             psession->m_request.attrs()["minimal_headers"] = true;

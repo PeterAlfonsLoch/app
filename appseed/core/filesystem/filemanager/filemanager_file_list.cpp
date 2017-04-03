@@ -2012,9 +2012,34 @@ namespace filemanager
 
    COLORREF file_list::get_background_color()
    {
-      if (get_filemanager_template() != NULL && get_filemanager_data()->is_saving())
+      if (get_filemanager_template() != NULL && get_filemanager_data()->is_topic())
       {
-         return ARGB(255, 255, 210, 180);
+         COLORREF cr;
+         if (m_pmanager->m_emode == manager::mode_save)
+         {
+
+            cr = ARGB(255, 255, 210, 180);
+
+         }
+         else if (m_pmanager->m_emode == manager::mode_import)
+         {
+
+            cr = ARGB(184, 180, 210, 255);
+
+         }
+         else if (m_pmanager->m_emode == manager::mode_export)
+         {
+
+            cr = ARGB(184, 255, 250, 210);
+
+         }
+         else
+         {
+
+            cr = ARGB(184, 210, 255, 180);
+
+         }
+         return cr;
       }
       else
       {

@@ -228,7 +228,8 @@ namespace user
          void add_item(const item_range & itemrange);
          item_range & ItemAt(index iIndex);
          ::count get_item_count() const;
-         void get_item_indexes(index_array & ia) const;
+         ::count get_items(index_array & ia) const;
+         ::count get_item_indexes(index_array & ia) const;
 
       };
 

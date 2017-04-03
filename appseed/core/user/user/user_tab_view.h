@@ -10,7 +10,6 @@ namespace user
       virtual public ::user::impact,
       virtual public ::user::tab,
       virtual public ::user::tab_callback,
-      virtual public ::user::view_container,
       virtual public ::user::view_creator
    {
    public:

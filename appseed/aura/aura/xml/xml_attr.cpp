@@ -14,6 +14,13 @@ namespace xml
    }
 
 
+   ::xml::attr * attr_array::add_attr(id idName)
+   {
+
+      return &operator[](idName);
+
+   }
+
 } //namespace xml
 
 

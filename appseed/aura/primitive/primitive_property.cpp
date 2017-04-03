@@ -11,7 +11,11 @@
 void prop_id_debug(::aura::application * papp);
 
 
+property::property()
+{
 
+
+}
 
 //pair_set_interface::pair_set_interface()
 //{
@@ -152,12 +156,12 @@ void prop_id_debug(::aura::application * papp);
 //   return str::empty_string();
 //}
 
-property::property(::aura::application * papp, index iIndex)
-{
-
-   m_iIndex = iIndex;
-
-}
+//property::property(::aura::application * papp)
+//{
+//
+//   //m_iIndex = iIndex;
+//
+//}
 
 
 void property::get_value(var & value)
@@ -205,14 +209,14 @@ property & property::operator = (const property & prop)
    if(&prop != this)
    {
 
-      m_iIndex = prop.m_iIndex;
-
-      if(m_element1.is_empty())
-      {
-
-         m_element1      = prop.m_element1;
-
-      }
+////      m_iIndex = prop.m_iIndex;
+//
+//      if(m_element1.is_empty())
+//      {
+//
+//         m_element1      = prop.m_element1;
+//
+//      }
 
       m_element2 = prop.m_element2;
 
@@ -223,13 +227,13 @@ property & property::operator = (const property & prop)
 }
 
 
-property::property(::index iIndex)
-{
-   
-   m_iIndex = iIndex;
-
-}
-
+//property::property(::index iIndex)
+//{
+//   
+//   m_iIndex = iIndex;
+//
+//}
+//
 
 property::property(const property & prop)
 {
@@ -239,20 +243,16 @@ property::property(const property & prop)
 }
 
 
-property::property(id idName,::index iIndex)
+property::property(id idName)
 {
-
-   m_iIndex = iIndex;
 
    m_element1 = idName;
 
 }
 
 
-property::property(id idName, var var, ::index iIndex)
+property::property(id idName, var var)
 {
-
-   m_iIndex = iIndex;
 
    m_element1 = idName;
 

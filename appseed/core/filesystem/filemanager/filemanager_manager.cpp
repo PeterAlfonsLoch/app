@@ -431,11 +431,11 @@ namespace filemanager
    }
 
 
-   void manager::FileManagerSaveOK()
+   void manager::FileManagerTopicOK()
    {
    }
 
-   void manager::FileManagerSaveCancel()
+   void manager::FileManagerTopicCancel()
    {
    }
 
@@ -870,20 +870,61 @@ namespace filemanager
          pcmdui->m_pcmdui->Enable(TRUE);
    }
 
+   void manager::_001OnUpdateFileImport(signal_details * pobj)
+   {
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
+      pcmdui->m_pcmdui->Enable(TRUE);
+   }
+
+   void manager::_001OnUpdateFileExport(signal_details * pobj)
+   {
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
+      pcmdui->m_pcmdui->Enable(TRUE);
+   }
+
+
    void manager::_001OnFileSaveAs(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      if(get_filemanager_data()->is_saving())
+      if(m_emode == mode_save || m_emode == mode_export)
       {
          update_hint uh;
          uh.m_pmanager = this;
-         uh.set_type(update_hint::TypeSaveAsOK);
+         uh.set_type(update_hint::TypeTopicOK);
          update_all_views(NULL,0,&uh);
+      }
+      pobj->m_bRet = true;
+   }
+
+   void manager::_001OnFileImport(signal_details * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+
+      if (m_emode == mode_import)
+      {
+         update_hint uh;
+         uh.m_pmanager = this;
+         uh.set_type(update_hint::TypeTopicOK);
+         update_all_views(NULL, 0, &uh);
       }
 
    }
 
+
+   void manager::_001OnFileExport(signal_details * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+
+      if (m_emode == mode_save)
+      {
+         update_hint uh;
+         uh.m_pmanager = this;
+         uh.set_type(update_hint::TypeTopicOK);
+         update_all_views(NULL, 0, &uh);
+      }
+
+   }
 
    void manager::Initialize(bool bMakeVisible, const ::file::path & path)
    {
@@ -966,6 +1007,12 @@ namespace filemanager
                FileManagerBrowse(str, ::action::source::database_default());
 
             }
+
+         }
+         else if (get_filemanager_template()->m_pathDefault.has_char())
+         {
+
+            FileManagerBrowse(get_filemanager_template()->m_pathDefault, ::action::source_initialize);
 
          }
          else
@@ -1112,11 +1159,13 @@ namespace filemanager
    void manager::FileManagerSaveAs(::user::document * pdocument)
    {
 
-      get_filemanager_data()->m_pdocumentSave = pdocument;
+      get_filemanager_data()->m_pdocumentTopic = pdocument;
+
+      m_emode = mode_save;
 
       update_hint uh;
       uh.m_pmanager = this;
-      uh.set_type(update_hint::TypeSaveAsStart);
+      uh.set_type(update_hint::TypeTopicStart);
       update_all_views(NULL,0,&uh);
       uh.set_type(update_hint::TypeCreateBars);
       update_all_views(NULL,0,&uh);
@@ -1124,6 +1173,38 @@ namespace filemanager
    }
 
 
+   void manager::FileManagerImport(::user::document * pdocument)
+   {
+
+      get_filemanager_data()->m_pdocumentTopic = pdocument;
+
+      m_emode = mode_import;
+
+      update_hint uh;
+      uh.m_pmanager = this;
+      uh.set_type(update_hint::TypeTopicStart);
+      update_all_views(NULL, 0, &uh);
+      uh.set_type(update_hint::TypeCreateBars);
+      update_all_views(NULL, 0, &uh);
+
+   }
+
+
+   void manager::FileManagerExport(::user::document * pdocument)
+   {
+
+      get_filemanager_data()->m_pdocumentTopic = pdocument;
+
+      m_emode = mode_export;
+
+      update_hint uh;
+      uh.m_pmanager = this;
+      uh.set_type(update_hint::TypeTopicStart);
+      update_all_views(NULL, 0, &uh);
+      uh.set_type(update_hint::TypeCreateBars);
+      update_all_views(NULL, 0, &uh);
+
+   }
 
 
 
@@ -1164,22 +1245,11 @@ namespace filemanager
    bool manager::on_create_bars(simple_frame_window * pframe)
    {
 
-      string strToolBar;
+      string strToolbar;
 
-      if(get_filemanager_data()->is_saving())
-      {
+      strToolbar = get_filemanager_template()->m_setToolbar[m_emode];
 
-         strToolBar = get_filemanager_template()->m_strToolBarSave;
-
-      }
-      else
-      {
-
-         strToolBar = get_filemanager_template()->m_strToolBar;
-
-      }
-
-      if(!pframe->LoadToolBar("filemanager", strToolBar))
+      if(!pframe->LoadToolBar("filemanager", strToolbar))
       {
          
          TRACE0("Failed to create filemanager toolbar\n");

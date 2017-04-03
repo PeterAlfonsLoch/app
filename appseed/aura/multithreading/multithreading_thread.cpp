@@ -2055,6 +2055,14 @@ int32_t thread::main()
       }
    }
 
+   try
+   {
+      m_bRunThisThread = false;
+   }
+   catch (...)
+   {
+
+   }
 
    // let translator run undefinetely
    //translator::detach();

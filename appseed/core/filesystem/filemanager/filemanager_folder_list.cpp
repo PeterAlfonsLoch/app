@@ -366,9 +366,37 @@ namespace filemanager
 
    COLORREF folder_list::get_background_color()
    {
-      if (get_filemanager_data()->is_saving())
+      if (get_filemanager_data()->is_topic())
       {
-         return RGB(255, 177, 84);
+
+         COLORREF cr;
+
+         if (m_pmanager->m_emode == manager::mode_save)
+         {
+
+            cr = ARGB(184, 255, 177, 84);
+
+         }
+         else if (m_pmanager->m_emode == manager::mode_import)
+         {
+
+            cr = ARGB(184, 84, 177, 255);
+
+         }
+         else if (m_pmanager->m_emode == manager::mode_export)
+         {
+
+            cr = ARGB(184, 255, 255, 177);
+
+         }
+         else if (m_pmanager->m_emode == manager::mode_import)
+         {
+
+            cr = ARGB(184, 177, 255, 84);
+
+         }
+
+         return cr;
       }
       else
       {

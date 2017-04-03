@@ -106,17 +106,16 @@ class CLASS_DECL_AURA property :
 public:
 
 
-   index      m_iIndex;
+   //index      m_iIndex;
 
-   property(::aura::application * papp,::index iIndex = -1);
-   property(::index iIndex = -1);
+   property();
    property(const property & prop);
-   property(id strName,::index iIndex = -1);
-   property(id strName,var var,::index iIndex = -1);
+   property(id strName);
+   property(id strName,var var);
 #ifdef MOVE_SEMANTICS
    property(property && prop)
    {
-      m_iIndex = prop.m_iIndex;
+      //m_iIndex = prop.m_iIndex;
       m_element1.m_all = prop.m_element1.m_all;
       //m_element2.m_sp.release();
       //m_element2.m_str.~string();
@@ -130,6 +129,10 @@ public:
    {
    }
 
+
+   /// m_element1 : m_element1 is the property key, and
+   /// the property key should be only changed/manipulated by the
+   /// property_map/property_set
    inline id name()
    {
       return m_element1;
@@ -140,25 +143,26 @@ public:
       return m_element1;
    }
 
-   inline void set_name(id id)
-   {
-      m_element1 = id;
-   }
+   
+   //inline void set_name(id id)
+   //{
+   //   m_element1 = id;
+   //}
 
-   inline void set_name(string str)
-   {
-      m_element1 = id(str);
-   }
+   //inline void set_name(string str)
+   //{
+   //   m_element1 = id(str);
+   //}
 
-   inline void set_name(const var & var)
-   {
-      set_name(id(var.get_string()));
-   }
+   //inline void set_name(const var & var)
+   //{
+   //   set_name(id(var.get_string()));
+   //}
 
-   inline void set_name(const property & prop)
-   {
-      set_name(id(prop.get_string()));
-   }
+   //inline void set_name(const property & prop)
+   //{
+   //   set_name(id(prop.get_string()));
+   //}
 
 
    inline string & get_json(string & str, bool bNewLine) const
@@ -396,7 +400,7 @@ public:
    {
       if(this != &prop)
       {
-         m_iIndex = prop.m_iIndex;
+//         m_iIndex = prop.m_iIndex;
          m_element2.m_sp.release();
          m_element2.m_str.~string();
          m_element1.m_all = prop.m_element1.m_all;

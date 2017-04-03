@@ -7,6 +7,27 @@
 
 
 template < typename Type, typename RawType >
+Type string_array < Type, RawType >::safe_at(index nIndex, Type tDefault) const
+{
+   if (nIndex < 0 || nIndex >= this->get_size())
+      return tDefault;
+
+   return this->element_at(nIndex);
+
+}
+
+template < typename Type, typename RawType >
+Type string_array < Type, RawType >::safe_at(index nIndex, Type tDefault)
+{
+   if (nIndex < 0 || nIndex >= this->get_size())
+      return tDefault;
+
+   return this->element_at(nIndex);
+
+}
+
+
+template < typename Type, typename RawType >
 Type string_array < Type, RawType >::get_at(index nIndex) const
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)

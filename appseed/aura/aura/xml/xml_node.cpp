@@ -108,7 +108,7 @@ namespace xml
    attr * node::add_attr(const char * pszName, const var & var)
    {
 
-      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, var);
+      ::xml::attr * pattr = (::xml::attr *) m_attra.set_at(pszName, var);
 
       if(m_pdoc != NULL)
       {
@@ -352,7 +352,7 @@ namespace xml
 
 
             // add new attr
-            ::xml::attr * pattr = m_attra.add(strName);
+            ::xml::attr * pattr = m_attra.add_attr(strName);
 
             xml = pEnd;
 
@@ -525,7 +525,7 @@ namespace xml
             _SetString( xml, pEnd, &strName );
 
             // add new attr
-            ::xml::attr * pattr = m_attra.add(strName);
+            ::xml::attr * pattr = m_attra.add_attr(strName);
             xml = pEnd;
 
             // XML Attr Value

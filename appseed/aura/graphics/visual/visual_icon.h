@@ -30,6 +30,8 @@ namespace visual
       operator HICON();
 #endif
 
+      bool load_file(string strPath);
+      bool load_matter(string strPath);
       bool load_app_tray_icon(string strPath);
 
       ::size get_size();

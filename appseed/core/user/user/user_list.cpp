@@ -3263,6 +3263,11 @@ namespace user
       return m_rangeSelection.get_item_count();
    }
 
+   ::count list::_001GetSelectedItems(index_array  & ia)
+   {
+      return m_rangeSelection.get_items(ia);
+   }
+
    id list::_001GetColumnTextId(index iColumn)
    {
 

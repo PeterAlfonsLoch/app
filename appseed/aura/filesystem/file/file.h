@@ -11,6 +11,10 @@ CLASS_DECL_AURA string url_dir_name_for_relative(const char * pszPath);
 CLASS_DECL_AURA string defer_solve_relative_compresions(const string & str);
 CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute);
 CLASS_DECL_AURA string ca2_module_dup();
+CLASS_DECL_AURA bool file_append_dup(const string & strFile, const string & str);
+CLASS_DECL_AURA bool file_append_dup(const string & strFile, const char * psz, strsize s);
+CLASS_DECL_AURA bool file_append_wait_dup(const string & strFile, const string & str, DWORD dwTimeout = INFINITE);
+CLASS_DECL_AURA bool file_append_wait_dup(const string & strFile, const char * psz, strsize s, DWORD dwTimeout = INFINITE);
 
 
 

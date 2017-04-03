@@ -84,6 +84,7 @@ namespace userex
       System.factory().cloneable_small < XfplayerViewLine >();
       System.factory().creatable_small < ::user::place_holder >();
       System.factory().creatable_small < ::user::combo_box >();
+      System.factory().creatable_small < ::user::check_box >();
       System.factory().creatable_small < ::user::place_holder_container >();
 
       System.factory().creatable_small < ::fontopus::view >();

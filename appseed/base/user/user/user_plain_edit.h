@@ -214,6 +214,7 @@ namespace user
       bool should_load_full_file();
 
       void _001OnCalcLayout(index iLine = -1);
+      void _001OnCalcOffset(index iLine = -1);
       //void _001OnCalcLayoutProc(::user::primitive * pview);
 
       void FileSave();

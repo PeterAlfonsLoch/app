@@ -1,6 +1,6 @@
 #pragma once
 
-
+#define INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE "%Y-%m-%d %H-%M-%S"
 #define INTERNATIONAL_DATE_TIME_FORMAT "%Y-%m-%d %H:%M:%S"
 
 CLASS_DECL_AURA int32_t SWN(int32_t y,int32_t m,int32_t d);

@@ -205,14 +205,14 @@ namespace sockets
       else
       {
 
-         m_response.m_propertysetHeader.set(__id(content_length), (int64_t)m_response.file().get_length());
+         m_response.m_propertysetHeader.set_at(__id(content_length), (int64_t)m_response.file().get_length());
 
       }
 
       for(int32_t i = 0; i < m_response.cookies().get_size(); i++)
       {
       
-         m_response.m_propertysetHeader.add(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
+         m_response.m_propertysetHeader.set_at(__id(set_cookie), m_response.cookies().element_at(i)->get_cookie_string());
 
       }
 
@@ -316,7 +316,7 @@ namespace sockets
          if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
 
-            m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
+            m_response.m_propertysetHeader.set_at(__id(content_encoding), "gzip");
 
             ::memory_file file(get_app());
 

@@ -13,7 +13,7 @@ namespace filemanager
 
 
       ::draw2d::font_sp                   m_spfont;
-      ::user::document *                  m_pdocumentSave;
+      ::user::document *                  m_pdocumentTopic;
       callback   *                        m_pfilemanager;
       manager *                           m_pmanager;
       manager *                           m_pmanagerMain;
@@ -25,8 +25,8 @@ namespace filemanager
       ::user::tree *                      m_ptreeFileTreeMerge;
       bool                                m_bSetBergedgeTopicFile;
 
-      string                              m_strToolBar;
-      string                              m_strToolBarSave;
+      property_set                        m_setToolbar;
+
       bool                                m_bEnableRecursiveFolderSelectionList;
 
       id                                  m_id;
@@ -45,7 +45,7 @@ namespace filemanager
       data(::aura::application * papp);
       virtual ~data();
 
-      bool is_saving();
+      bool is_topic();
 
       void FileManagerBrowse(const char * lpcsz, ::action::context actioncontext);
       void FileManagerBrowse(sp(::fs::item) item, ::action::context actioncontext);

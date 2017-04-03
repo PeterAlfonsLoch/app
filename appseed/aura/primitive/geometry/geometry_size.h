@@ -74,6 +74,9 @@ public:
    POINT &        pt() throw() { return (POINT &)*this; }
    const POINT &  pt() const throw() { return (const POINT &)*this; }
 
+   inline LONG get_minimum_dimension() const throw();
+   inline LONG get_maximum_dimension() const throw();
+
    inline LONG get_dimension(e_orientation eorientation) const throw();
    inline LONG get_orthogonal_dimension(e_orientation eorientation) const throw();
    inline LONG get_orthogonal(e_orientation eorientation)const throw() { return get_orthogonal_dimension(eorientation); }
@@ -152,6 +155,9 @@ public:
    uint32_t    ui32() const throw();
    uint64_t    ui64() const throw();
    LPARAM    lparam() const throw();
+
+   inline int64_t get_minimum_dimension() const throw();
+   inline int64_t get_maximum_dimension() const throw();
 
 
    inline int64_t get_dimension(e_orientation eorientation) const throw();
@@ -233,6 +239,9 @@ public:
    uint64_t    ui64() const throw();
    LPARAM    lparam() const throw();
 
+   inline double get_minimum_dimension() const throw();
+   inline double get_maximum_dimension() const throw();
+
 
    inline double get_dimension(e_orientation eorientation) const throw();
    inline double get_orthogonal_dimension(e_orientation eorientation) const throw();
@@ -256,7 +265,20 @@ inline bool sized::is_empty() const throw()
    return cx <= 0 || cy <= 0;
 }
 
+inline LONG size::get_minimum_dimension() const throw()
+{
 
+   return MIN(cx, cy);
+
+}
+
+
+inline LONG size::get_maximum_dimension() const throw()
+{
+
+   return MAX(cx, cy);
+
+}
 
 inline LONG size::get_dimension(e_orientation eorientation) const throw()
 {
@@ -333,6 +355,19 @@ inline LONG size::set_orthogonal_dimension(e_orientation eorientation, LONG l) t
    }
 }
 
+inline int64_t size64::get_minimum_dimension() const throw()
+{
+
+   return MIN(cx, cy);
+
+}
+
+inline int64_t size64::get_maximum_dimension() const throw()
+{
+
+   return MAX(cx, cy);
+
+}
 
 
 inline int64_t size64::get_dimension(e_orientation eorientation) const throw()
@@ -402,6 +437,19 @@ inline int64_t size64::set_orthogonal_dimension(e_orientation eorientation,int64
    }
 }
 
+inline double sized::get_minimum_dimension() const throw()
+{
+
+   return MIN(cx, cy);
+
+}
+
+inline double sized::get_maximum_dimension() const throw()
+{
+
+   return MAX(cx, cy);
+
+}
 
 inline double sized::get_dimension(e_orientation eorientation) const throw()
 {

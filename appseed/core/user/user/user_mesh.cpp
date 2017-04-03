@@ -2310,7 +2310,7 @@ namespace user
       return false;
    }
 
-   void mesh::range::get_item_indexes(index_array & ia) const
+   ::count mesh::range::get_item_indexes(index_array & ia) const
    {
 
       for(index i = 0; i < m_itemrangea.get_size(); i++)
@@ -2321,6 +2321,8 @@ namespace user
          itemrange.get_item_indexes(ia);
 
       }
+
+      return ia.get_size();
 
    }
 
@@ -2915,6 +2917,20 @@ namespace user
    ::count mesh::range::get_item_count() const
    {
       return m_itemrangea.get_size();
+      /*   index iCount = 0;
+
+      for(index i = 0; i < m_itemrangea.get_size(); i++)
+      {
+      item_range & itemrange = m_itemrangea[i];
+      iCount += itemrange.get_count();
+      }
+
+      return iCount;*/
+   }
+
+   ::count mesh::range::get_items(index_array & ia) const
+   {
+      return get_item_indexes(ia);
       /*   index iCount = 0;
 
       for(index i = 0; i < m_itemrangea.get_size(); i++)

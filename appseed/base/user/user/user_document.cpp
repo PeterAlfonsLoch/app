@@ -1205,7 +1205,12 @@ namespace user
    bool document::open_document(var varFile)
    {
 
-      UNREFERENCED_PARAMETER(varFile);
+      if (!on_open_document(varFile))
+      {
+
+         return false;
+
+      }
 
       return false;
 

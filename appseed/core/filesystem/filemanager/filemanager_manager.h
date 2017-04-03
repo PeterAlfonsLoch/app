@@ -23,6 +23,15 @@ namespace filemanager
 
       };
 
+      enum e_mode
+      {
+         mode_normal,
+         mode_save,
+         mode_import,
+         mode_export,
+
+      };
+
 
       sp(::filemanager::data)             m_spfilemanagerdata;
       sp(::fs::item)                      m_item;
@@ -30,6 +39,7 @@ namespace filemanager
       ::file::path                        m_strTopic;
       bool                                m_bFullBrowse;
       string                              m_strManagerId;
+      e_mode                              m_emode;
       //bool                                m_bInitialBrowsePath;
 
 
@@ -67,6 +77,10 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
       DECL_GEN_SIGNAL(_001OnFileSaveAs);
       DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
+      DECL_GEN_SIGNAL(_001OnFileImport);
+      DECL_GEN_SIGNAL(_001OnUpdateFileImport);
+      DECL_GEN_SIGNAL(_001OnFileExport);
+      DECL_GEN_SIGNAL(_001OnUpdateFileExport);
       DECL_GEN_SIGNAL(_001OnNewManager);
       DECL_GEN_SIGNAL(_001OnUpdateNewManager);
       DECL_GEN_SIGNAL(_001OnDelManager);
@@ -89,8 +103,11 @@ namespace filemanager
 
 
       virtual void FileManagerSaveAs(::user::document * pdocument);
-      virtual void FileManagerSaveOK();
-      virtual void FileManagerSaveCancel();
+      virtual void FileManagerImport(::user::document * pdocument);
+      virtual void FileManagerExport(::user::document * pdocument);
+      virtual void FileManagerTopicOK();
+      virtual void FileManagerTopicCancel();
+
 
 
       virtual void handle_file_action(::file_watcher::file_watch_id watchid, const char * dir, const char * filename, ::file_watcher::e_action action) override;

@@ -27,11 +27,11 @@ public:
 
 
 
-   property * add(id idName);
-   property * add(id idName, var var);
-   property * set(id idName, var var);
-   property & defer_auto_add(id idName);
-   id get_new_id();
+   //property * add(id idName);
+   //property * add(id idName, var var);
+   //property * set(id idName, var var);
+   //property & defer_auto_add(id idName);
+   //id get_new_id();
    ::count remove_by_name(id idName);
    ::count remove_by_name(stringa & straName);
    property & operator[](string strName);
@@ -102,7 +102,7 @@ public:
    property * find(id idName) const;
    //property * find(string_interface & str) const;
 
-   index find_index(id idName) const;
+   //index find_index(id idName) const;
    //index find_index(string_interface & str) const;
 
 
@@ -224,26 +224,26 @@ public:
 //}
 
 
-inline property * property_set::add(id idName)
-{
+//inline property * property_set::add(id idName)
+//{
+//
+//   if(idName.is_null())
+//      idName = get_new_id();
+//
+//   return set_at(idName,property(idName, m_iIndex++));
+//
+//}
 
-   if(idName.is_null())
-      idName = get_new_id();
 
-   return set_at(idName,property(idName, m_iIndex++));
-
-}
-
-
-inline property * property_set::add(id idName, var var)
-{
-
-   if(idName.is_null())
-      idName = get_new_id();
-
-   return set_at(idName,property(idName, var, m_iIndex++));
-
-}
+//inline property * property_set::add(id idName, var var)
+//{
+//
+//   if(idName.is_null())
+//      idName = get_new_id();
+//
+//   return set_at(idName,property(idName, var, m_iIndex++));
+//
+//}
 
 
 //class property_pair
@@ -344,19 +344,19 @@ inline bool property_set::has_property(id idName) const
 //}
 
 
-inline property * property_set::set(id idName, var var)
-{
-   property * p = find(idName);
-   if(p != NULL)
-   {
-      p->get_value() = var;
-      return p;
-   }
-   else
-   {
-      return add(idName, var);
-   }
-}
+//inline property * property_set::set(id idName, var var)
+//{
+//   property * p = find(idName);
+//   if(p != NULL)
+//   {
+//      p->get_value() = var;
+//      return p;
+//   }
+//   else
+//   {
+//      return add(idName, var);
+//   }
+//}
 
 
 inline const property & property_set::operator[] (const char * pszKey) const
@@ -380,13 +380,7 @@ inline const property & property_set::operator[](id idName) const
 inline property & property_set::operator[](index iIndex)
 {
 
-   for(auto & property : *this)
-   {
-      if(property.m_iIndex == iIndex)
-         return property;
-   }
-
-   return *add(::property(::id(iIndex), iIndex));
+   return operator[](id(iIndex));
 
 }
 
@@ -456,24 +450,24 @@ inline var property_set::lookup(id idName, var varDefault) const
 
 
 
-inline index property_set::find_index(id idName) const
-{
-
-   for(auto property : *this)
-   {
-
-      if(property.name() == idName)
-      {
-
-         return property.m_iIndex;
-
-      }
-
-   }
-
-   return -1;
-
-}
+//inline index property_set::find_index(id idName) const
+//{
+//
+//   for(auto property : *this)
+//   {
+//
+//      if(property.name() == idName)
+//      {
+//
+//         return property.m_iIndex;
+//
+//      }
+//
+//   }
+//
+//   return -1;
+//
+//}
 
 
 //inline index property_set::find_index(string_interface & str) const
@@ -624,3 +618,29 @@ inline string & operator += (string & str, const property & property)
 }
 
 
+
+
+class CLASS_DECL_AURA fifo_property_set :
+   virtual public ::object
+{
+protected:
+
+   array < property >   m_propertya;
+
+
+public:
+
+   fifo_property_set();
+   virtual ~fifo_property_set();
+
+   bool is_new_or_null(id id);
+
+   bool has_property(id id);
+
+   index find(id id);
+
+   void set_at(id id, var varValue);
+
+   property & operator [](id id);
+
+};

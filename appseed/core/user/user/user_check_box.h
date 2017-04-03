@@ -10,15 +10,30 @@ namespace user
       virtual public elemental
    {
    public:
-      check_box(::aura::application * papp);
-      virtual ~check_box();
+      enum e_style
+      {
 
+         style_normal,
+         style_red_green_circle,
+
+      };
    protected:
       check::e_check    m_echeck;
       bool  m_bMouseDown;
 
+
+   public:
+
+      e_style     m_estyle;
+
+      check_box(::aura::application * papp);
+      virtual ~check_box();
+
+
    public:
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001OnDrawNormal(::draw2d::graphics * pgraphics);
+      virtual void _001OnDrawRedGreenCircle(::draw2d::graphics * pgraphics);
       virtual check::e_check _001GetCheck();
       virtual void _001SetCheck(check::e_check check, ::action::context actioncontext);
 

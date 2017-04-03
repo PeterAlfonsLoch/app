@@ -296,6 +296,76 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 #endif
 
 
+CLASS_DECL_AURA bool file_append_wait_dup(const string & strFile, const char * psz, strsize s, DWORD dwTimeout)
+{
+
+   ::dir::mk(::dir::name(strFile));
+
+   if (!::dir::is(::dir::name(strFile)))
+   {
+
+      return false;
+
+   }
+   
+   wstring wstr(strFile);
+
+   FILE * pfile = NULL;
+
+   DWORD dwStart = get_tick_count();
+
+   
+
+   while (true)
+   {
+
+      pfile = _wfopen(wstr, L"ab");
+
+      if (pfile != NULL)
+      {
+
+         break;
+
+      }
+
+      if (get_tick_count() - dwStart > dwTimeout)
+      {
+
+         return false;
+
+      }
+
+      Sleep(100);
+
+   }
+
+   fwrite(psz, s, 1, pfile);
+
+   fclose(pfile);
+
+   return true;
+
+}
 
 
 
+bool file_append_wait_dup(const string & strFile, const string & str, DWORD dwTimeout)
+{
+
+   return file_append_wait_dup(strFile, str, str.get_length(), dwTimeout);
+
+}
+
+CLASS_DECL_AURA bool file_append_dup(const string & strFile, const char * psz, strsize s)
+{
+
+   return file_append_wait_dup(strFile, psz, s, 0);
+
+}
+
+bool file_append_dup(const string & strFile, const string & str)
+{
+
+   return file_append_dup(strFile, str, str.get_length());
+
+}

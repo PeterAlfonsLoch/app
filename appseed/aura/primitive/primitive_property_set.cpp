@@ -12,45 +12,47 @@ property_set::property_set(::aura::application * papp, bool bAutoAdd, bool bMult
 
 property_set::~property_set()
 {
-}
-
-id property_set::get_new_id()
-{
-
-   index iMax = -1;
-
-   for(iterator it = begin(); it != end(); it++)
-   {
-
-      if(it->m_element1.m_etype == id::type_integer)
-      {
-
-         if(it->m_element1.m_i > iMax)
-         {
-
-            iMax = (index)it->m_element1.m_i;
-
-         }
-
-      }
-
-   }
-
-   return iMax + 1;
 
 }
 
 
+//id property_set::get_new_id()
+//{
+//
+//   index iMax = -1;
+//
+//   for(iterator it = begin(); it != end(); it++)
+//   {
+//
+//      if(it->m_element1.m_etype == id::type_integer)
+//      {
+//
+//         if(it->m_element1.m_i > iMax)
+//         {
+//
+//            iMax = (index)it->m_element1.m_i;
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   return iMax + 1;
+//
+//}
+//
 
 
 
 
-property & property_set::defer_auto_add(id idName)
-{
-
-   return *add(idName);
-
-}
+//
+//property & property_set::defer_auto_add(id idName)
+//{
+//
+//   return *add(idName);
+//
+//}
 
 
 bool property_set::is_set_empty(::count countMinimum) const
@@ -454,13 +456,13 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    else if (pszValue == NULL)
    {
       
-      pset->add(straKey[i], var::type_key_exists);
+      pset->operator[](straKey[i]) = var::type_key_exists;
 
    }
    else
    {
       
-      pset->add(straKey[i], var(pszValue));
+      pset->operator[](straKey[i])= var(pszValue);
 
    }
 
@@ -823,14 +825,17 @@ void property_set::parse_http_headers(const char * pszHeaders)
       if(iPos < 0)
       {
          strName = stra[i].make_lower();
-         add(strName, var(""));
+         set_at(strName, var::type_empty);
       }
       else
       {
          strName = stra[i].Left(iPos).make_lower();
-         add(strName, var(stra[i].Mid(iPos + 2)));
+         set_at(strName, stra[i].Mid(iPos + 2));
+
       }
+
    }
+
 }
 
 
@@ -1380,6 +1385,118 @@ CLASS_DECL_AURA::file::istream & operator >> (::file::istream & istream, propert
 
    return istream;
 
+
+}
+
+
+
+fifo_property_set::fifo_property_set()
+{
+
+}
+
+
+fifo_property_set::~fifo_property_set()
+{
+
+
+}
+
+
+bool fifo_property_set::is_new_or_null(id id)
+{
+
+   index iFind = find(id);
+
+   if (iFind < 0)
+   {
+
+      return true;
+
+   }
+
+   if (m_propertya[iFind].m_element2.is_new())
+   {
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+bool fifo_property_set::has_property(id id)
+{
+   
+   index iFind = find(id);
+
+   if (iFind < 0)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+index fifo_property_set::find(id id)
+{
+
+   for (index i = 0; i < m_propertya.get_size(); i++)
+   {
+
+      if (m_propertya[i].m_element1 == id)
+      {
+
+         return i;
+
+      }
+
+   }
+
+   return -1;
+
+}
+
+void fifo_property_set::set_at(id id, var varValue)
+{
+
+   index iFind = find(id);
+
+   if (iFind < 0)
+   {
+
+      m_propertya.add(property(id, varValue));
+
+   }
+   else
+   {
+
+      m_propertya[iFind].m_element2 = varValue;
+
+   }
+
+}
+
+
+property & fifo_property_set::operator [](id id)
+{
+
+   index iFind = find(id);
+
+   if (iFind < 0)
+   {
+
+      iFind = m_propertya.add(property(id));
+
+   }
+
+   return m_propertya[iFind];
 
 }
 

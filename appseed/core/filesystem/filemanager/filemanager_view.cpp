@@ -84,9 +84,10 @@ namespace filemanager
                   }
 
                }
-               else if(puh->is_type_of(update_hint::TypeSaveAsStart))
+               else if(puh->is_type_of(update_hint::TypeTopicStart))
                {
-                  if (!base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
+                  if (get_filemanager_manager()->m_emode != manager::mode_import
+                     && !base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
                   {
                      //create_context cc;
                      //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
@@ -100,7 +101,7 @@ namespace filemanager
                      }
                      ptopview->m_pmanager = get_filemanager_manager();
                      InsertPaneAt(0, ptopview, true);
-                     ::file::path path = get_filemanager_data()->m_pdocumentSave->get_file_path();
+                     ::file::path path = get_filemanager_data()->m_pdocumentTopic->get_file_path();
                      string strName = path.title() + " - " + System.datetime().international().get_gmt_date_time() + "." + path.ext();
                      strName.replace(":", "-");
                      strName = get_filemanager_item().m_filepath / strName;
@@ -120,7 +121,7 @@ namespace filemanager
                   }
 
                }
-               else if (puh->is_type_of(update_hint::TypeSaveAsCancel))
+               else if (puh->is_type_of(update_hint::TypeTopicCancel))
                {
                   if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
                   {
@@ -129,11 +130,14 @@ namespace filemanager
                      on_layout();
                   }
                }
-               else if (puh->is_type_of(update_hint::TypeSaveAsOK))
+               else if (puh->is_type_of(update_hint::TypeTopicOK))
                {
-                  ASSERT(get_filemanager_data()->m_pdocumentSave != NULL);
+
+
+                  ASSERT(get_filemanager_data()->m_pdocumentTopic != NULL);
 
                   string strPath = puh->m_filepath;
+
                   if (strPath.is_empty())
                   {
                      
@@ -168,43 +172,54 @@ namespace filemanager
 
                   }
 
-                  bool bSave = !Application.dir().is(strPath);
-
-                  if (bSave && get_filemanager_manager()->get_fs_data()->file_exists(strPath))
+                  if (get_filemanager_manager()->m_emode == manager::mode_import)
                   {
-                     if (System.simple_message_box(Session.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
-                     {
-                        bSave = false;
-                     }
-                  }
 
-                  update_hint uh;
+                     get_filemanager_data()->m_pdocumentTopic->open_document(strPath);
 
-                  if (bSave)
-                  {
-                     if (get_filemanager_data()->m_pdocumentSave->do_save(strPath))
-                     {
-                        uh.set_type(update_hint::TypeSaveAsSaved);
-                        uh.m_filepath = strPath;
-                     }
-                     else
-                     {
-                        uh.set_type(update_hint::TypeSaveAsSaveFailed);
-                     }
                   }
                   else
                   {
-                     uh.set_type(update_hint::TypeSaveAsCancel);
-                  }
-                  get_document()->update_all_views(NULL, 0, &uh);
 
-                  get_filemanager_data()->m_pdocumentSave = NULL;
+                     bool bSave = !Application.dir().is(strPath);
 
-                  if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
-                  {
-                     RemovePaneAt(0);
-                     set_position(0, 49);
-                     on_layout();
+                     if (bSave && get_filemanager_manager()->get_fs_data()->file_exists(strPath))
+                     {
+                        if (System.simple_message_box(Session.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
+                        {
+                           bSave = false;
+                        }
+                     }
+
+                     update_hint uh;
+
+                     if (bSave)
+                     {
+                        if (get_filemanager_data()->m_pdocumentTopic->do_save(strPath))
+                        {
+                           uh.set_type(update_hint::TypeTopicSaved);
+                           uh.m_filepath = strPath;
+                        }
+                        else
+                        {
+                           uh.set_type(update_hint::TypeTopicSaveFailed);
+                        }
+                     }
+                     else
+                     {
+                        uh.set_type(update_hint::TypeTopicCancel);
+                     }
+                     get_document()->update_all_views(NULL, 0, &uh);
+
+                     get_filemanager_data()->m_pdocumentTopic = NULL;
+
+                     if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
+                     {
+                        RemovePaneAt(0);
+                        set_position(0, 49);
+                        on_layout();
+                     }
+
                   }
                }
             }

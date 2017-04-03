@@ -88,7 +88,7 @@ namespace userex
    {
       ::user::tab_view::on_show_view();
       ::user::view_creator::on_show_view();
-      if(m_pviewdata != NULL && m_pviewdata->m_id != "file_manager" && m_pviewdataOld != NULL && m_pviewdataOld->m_id == "file_manager")
+      if(m_pviewdataOld != NULL && ::str::begins_ci(m_pviewdataOld->m_id, "file_manager"))
       {
          if(GetParentFrame()->ContinueModal(0))
          {
@@ -96,8 +96,31 @@ namespace userex
          }
          if(&filemanager_manager() != NULL)
          {
-            filemanager_manager().get_filemanager_data()->m_pdocumentSave = NULL;
+            filemanager_manager().get_filemanager_data()->m_pdocumentTopic = NULL;
          }
+      }
+      if (m_pviewdata && ::str::begins_ci(m_pviewdata->m_id, "file_manager"))
+      {
+
+         for (auto & p : m_viewmap)
+         {
+
+            if (p.m_element2 == m_pviewdata)
+            {
+
+               continue;
+
+            }
+
+            if (::str::find_ci(p.m_element2->m_id.m_psz, "file_manager") >= 0)
+            {
+
+               p.m_element2->m_pholder->ShowWindow(SW_HIDE);
+
+            }
+
+         }
+
       }
 
    }
@@ -279,7 +302,7 @@ namespace userex
 
       }
 
-      else if(pcreatordata->m_id == "file_manager"
+      else if(::str::begins_ci(pcreatordata->m_id, "file_manager")
          || pcreatordata->m_id == "left_file"
          || pcreatordata->m_id == "right_file"
          || pcreatordata->m_id == "pick_file")
@@ -295,15 +318,44 @@ namespace userex
 
          pfilemanagerdata->m_id = pcreatordata->m_id;
 
-         if(oprop("toolbar").is_set())
-            pfilemanagerdata->m_strToolBar = oprop("toolbar");
-         else
-            pfilemanagerdata->m_strToolBar = "toolbar.xml";
+         if (m_psetObject != NULL
+            && m_psetObject->has_property("filemanager_toolbar") 
+            && m_psetObject->operator[]("filemanager_toolbar").m_element2.m_etype == ::var::type_propset)
+         {
 
-         if(oprop("toolbar_save").is_set())
-            pfilemanagerdata->m_strToolBarSave = oprop("toolbar_save");
+            property_set & set = m_psetObject->operator[]("filemanager_toolbar").m_element2.propset();
+
+            if (set[::filemanager::manager::mode_normal].is_set())
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_normal] = set[::filemanager::manager::mode_normal];
+            else
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_normal] = "filemanager_toolbar.xml";
+
+            if (set[::filemanager::manager::mode_save].is_set())
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_save] = set[::filemanager::manager::mode_save];
+            else
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_save] = "filemanager_save_as_toolbar.xml";
+
+            if (set[::filemanager::manager::mode_import].is_set())
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_import] = set[::filemanager::manager::mode_import];
+            else
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_import] = "filemanager_import_toolbar.xml";
+
+            if (set[::filemanager::manager::mode_export].is_set())
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_export] = set[::filemanager::manager::mode_export];
+            else
+               pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_export] = "filemanager_export_toolbar.xml";
+
+
+         }
          else
-            pfilemanagerdata->m_strToolBarSave = "toolbar_save.xml";
+         {
+
+            pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_normal] = "filemanager_toolbar.xml";
+            pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_save] = "filemanager_save_as_toolbar.xml";
+            pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_import] = "filemanager_import_toolbar.xml";
+            pfilemanagerdata->m_setToolbar[::filemanager::manager::mode_export] = "filemanager_export_toolbar.xml";
+
+         }
 
          pfilemanagerdata->m_strDISection = Application.m_strAppName;
 
@@ -413,7 +465,7 @@ namespace userex
       ::user::tab::_001OnTabClose(iTab);
 
       if(GetParentFrame()->ContinueModal(0) && &filemanager_manager() != NULL
-         && filemanager_manager().get_filemanager_data()->m_pdocumentSave != NULL)
+         && filemanager_manager().get_filemanager_data()->m_pdocumentTopic!= NULL)
       {
          GetParentFrame()->EndModalLoop("yes");
       }

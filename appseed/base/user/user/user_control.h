@@ -25,6 +25,7 @@ namespace user
          // Text got from control m_uiText member
          function_static2,
          function_data_selection,
+         function_check_box,
          function_save_on_change,
          function_vms_data_edit,
          function_action,
@@ -91,7 +92,7 @@ namespace user
          flags < efunction >           m_flagsfunction;
          edatatype                     m_edatatype;
          rect                          m_rect;
-
+         property_set                  m_setValue;
 
          descriptor();
          descriptor(const descriptor & descriptor);

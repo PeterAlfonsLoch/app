@@ -455,6 +455,8 @@ namespace user
 
 
       ::count _001GetSelectedItemCount();
+      ::count _001GetSelectedItems(index_array & ia);
+
 
       id _001GetColumnTextId(index iColumn);
 

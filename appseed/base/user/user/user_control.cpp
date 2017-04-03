@@ -94,6 +94,7 @@ namespace user
       m_ddx.m_pvoid           = descriptor.m_ddx.m_pvoid;
       m_pform                 = descriptor.m_pform;
       m_iSubItem              = descriptor.m_iSubItem;
+      m_setValue = descriptor.m_setValue;
 
       return *this;
 

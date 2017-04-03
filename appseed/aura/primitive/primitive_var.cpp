@@ -2123,7 +2123,7 @@ property_set & var::propset(::aura::application * papp)
       pset = canew(property_set());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
-         pset->add(id(i), at(i));
+         pset->set_at(i, at(i));
       }
       set_type(type_propset, false);
       //ASSERT(m_sp.is_null());
