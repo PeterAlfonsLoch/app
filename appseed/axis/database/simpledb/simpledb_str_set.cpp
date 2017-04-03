@@ -299,12 +299,15 @@ bool db_str_set::load(const string & strKey, string & strValue)
 
       sl.lock();
 
-      db_str_set_item stritem;
+      auto ppair = pcore->m_map.PLookup(strKey);
 
-      if(pcore->m_map.Lookup(strKey,stritem) && stritem.m_dwTimeout > get_tick_count())
+      if(ppair != NULL && ppair->m_element2.m_dwTimeout > get_tick_count())
       {
-         strValue = stritem.m_str;
+         
+         strValue = ppair->m_element2.m_str;
+
          return true;
+
       }
 
       single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex,true);
@@ -348,6 +351,8 @@ bool db_str_set::load(const string & strKey, string & strValue)
          return false;
 
       }
+
+      db_str_set_item stritem;
 
       stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
       stritem.m_str = strValue;
