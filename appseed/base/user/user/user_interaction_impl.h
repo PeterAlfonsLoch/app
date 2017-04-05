@@ -52,6 +52,7 @@ namespace user
    public:
 
 
+      bool                          m_bIpcCopy;
       bool                          m_bLockWindowUpdate;
 
       ref_array < object >          m_ptraRedraw;

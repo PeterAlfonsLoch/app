@@ -469,7 +469,12 @@ void window_gdi::update_window(::draw2d::dib * pdib)
 
    }
 
-   ipc_copy(cx, cy);
+   if (m_pimpl->m_bIpcCopy)
+   {
+
+      ipc_copy(cx, cy);
+
+   }
 
 }
 

@@ -26,6 +26,7 @@ namespace user
    void interaction_impl::user_common_construct()
    {
 
+      m_bIpcCopy = true;
       m_pmutex                               = new mutex(get_app());
       m_guieptraMouseHover.m_pmutex          = m_pmutex;
       m_bScreenRelativeMouseMessagePosition  = true;

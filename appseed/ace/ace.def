@@ -1,3 +1,5 @@
 LIBRARY      "ace"
 
 EXPORTS
+ace_memory_alloc
+ace_memory_free
