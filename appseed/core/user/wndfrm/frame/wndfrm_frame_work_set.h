@@ -41,6 +41,7 @@ namespace user
             ::user::interaction *         m_pwndEvent;
             ::user::interaction *         m_pwndCommand;
 
+            bool                          m_bMinimizeToTray;
 
             UINT                          m_uiSWPFlags;
 
@@ -60,6 +61,7 @@ namespace user
 
 
             sp(appearance)                m_pappearance;
+            comparable_array < ::user::wndfrm::frame::e_button > m_ebuttonaHide;
 
 
             WorkSet();
@@ -133,7 +135,7 @@ namespace user
             //void OnDown();
             //void OnUp();
 
-
+            void update_control_box();
             void appearance_title_bar_layout(bool bInitialControlBoxPosition);
 
 

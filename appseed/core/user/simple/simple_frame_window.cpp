@@ -1996,10 +1996,11 @@ void simple_frame_window::defer_create_notification_icon()
 
    m_pnotifyicon->create(1, this, m_piconNotify);
 
-   if (m_workset.m_pframeschema != NULL)
+   //if (m_workset.m_pframeschema != NULL)
    {
 
-      m_workset.m_pframeschema->m_spcontrolbox->hide_button(::user::wndfrm::frame::button_minimize);
+      //m_workset.m_pframeschema->m_spcontrolbox->hide_button(::user::wndfrm::frame::button_minimize);
+      m_workset.m_bMinimizeToTray = true;
 
    }
 

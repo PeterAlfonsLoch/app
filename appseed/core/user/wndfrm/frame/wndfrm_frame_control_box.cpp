@@ -784,7 +784,14 @@ namespace user
          bool control_box::has_button(e_button ebutton)
          {
             bool bPresent;
-            if (m_buttonmapPresent.Lookup(ebutton, bPresent))
+
+            if (m_pworkset->m_ebuttonaHide.contains(ebutton))
+            {
+
+               return false;
+
+            }
+            else if (m_buttonmapPresent.Lookup(ebutton, bPresent))
                return bPresent;
             else
             {

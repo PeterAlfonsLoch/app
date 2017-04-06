@@ -385,25 +385,39 @@ namespace user
 
    void menu_list_window::_001OnDraw(::draw2d::graphics * pgraphics)
    {
-/*      rect rectClient;
-      GetClientRect(rectClient);
-      if(_001IsTranslucent())
+      
+      COLORREF crBackground = 0;
+
+      get_color(crBackground, ::user::color_background);
+
+      if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
       {
-         class imaging & imaging = System.visual().imaging();
-         imaging.color_blend(
-            pgraphics,
-            rectClient,
-            RGB(200, 255, 255),
-            127);
+
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
+         pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+
       }
-      else
-      {
-#ifdef WINDOWSEX
-         pgraphics->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
-#else
-         throw todo(get_app());
-#endif
-      }*/
+
+//      if(_001IsTranslucent())
+//      {
+//         class imaging & imaging = System.visual().imaging();
+//         imaging.color_blend(
+//            pgraphics,
+//            rectClient,
+//            RGB(200, 255, 255),
+//            127);
+//      }
+//      else
+//      {
+//#ifdef WINDOWSEX
+//         pgraphics->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
+//#else
+//         throw todo(get_app());
+//#endif
+//      }*/
 
       ::user::interaction::_001OnDraw(pgraphics);
 

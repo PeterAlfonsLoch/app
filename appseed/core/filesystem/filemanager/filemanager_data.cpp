@@ -247,8 +247,8 @@ namespace filemanager
          return true;
 
       }
-      else if(ecolor == ::user::color_background)
-      {
+      //else if(ecolor == ::user::color_background)
+      //{
 
          //if(m_bTransparentBackground)
          //{
@@ -333,7 +333,7 @@ namespace filemanager
 
          //return true;
 
-      }
+      //}
       else
       {
 

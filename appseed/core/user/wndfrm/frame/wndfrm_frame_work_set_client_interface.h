@@ -26,6 +26,7 @@ namespace user
             bool                       m_bInitialFramePosition;
 
 
+
             //CWorkSetDownUpInterface();
 
 

@@ -3770,7 +3770,7 @@ namespace windows
 
       //}
 
-      *lprect = m_rectParentClient;
+      *lprect = m_rectParentClientRequest;
 
       if(GetParent() != NULL)
       {

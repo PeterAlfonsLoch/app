@@ -59,6 +59,9 @@ namespace user
 
          void WorkSetClientInterface::WfiOnNotifyIcon()
          {
+
+            ShowWindow(SW_HIDE);
+
          }
 
          void WorkSetClientInterface::WfiOnMinimize()
@@ -145,6 +148,8 @@ namespace user
                }
             }
 
+            m_workset.update_control_box();
+
             return false;
 
          }
@@ -164,6 +169,8 @@ namespace user
             WfiOnDock(eappearance);
 
             WfiOnAfterDock(eappearance);
+
+            m_workset.update_control_box();
 
             return false;
 
@@ -245,6 +252,8 @@ namespace user
 
             WfiOnAfterRestore();
 
+            m_workset.update_control_box();
+
             return true;
 
          }
@@ -268,6 +277,8 @@ namespace user
             WfiOnMaximize();
 
             WfiOnAfterMaximize();
+
+            m_workset.update_control_box();
 
             return true;
 
@@ -300,6 +311,8 @@ namespace user
 
             WfiOnAfterFullScreen();
 
+            m_workset.update_control_box();
+
             return true;
 
          }
@@ -327,6 +340,8 @@ namespace user
 
             WfiOnAfterNotifyIcon();
 
+            m_workset.update_control_box();
+
             return true;
 
          }
@@ -334,6 +349,13 @@ namespace user
 
          bool WorkSetClientInterface::WfiMinimize()
          {
+
+            if (m_workset.m_bMinimizeToTray)
+            {
+
+               return WfiNotifyIcon();
+
+            }
 
             if(!WfiOnBeforeMinimize())
                return false;
@@ -345,6 +367,8 @@ namespace user
             WfiOnMinimize();
 
             WfiOnAfterMinimize();
+
+            m_workset.update_control_box();
 
             return true;
 
@@ -363,6 +387,8 @@ namespace user
 
             WfiOnAfterDown();
 
+            m_workset.update_control_box();
+
             return true;
 
          }
@@ -379,6 +405,8 @@ namespace user
             WfiOnUp();
 
             WfiOnAfterUp();
+
+            m_workset.update_control_box();
 
             return true;
 

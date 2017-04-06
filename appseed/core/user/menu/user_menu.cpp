@@ -347,6 +347,21 @@ namespace user
 
    void menu::_001OnDraw(::draw2d::graphics * pgraphics)
    {
+
+      COLORREF crBackground = 0;
+
+      get_color(crBackground, ::user::color_background);
+
+      if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      {
+
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
+         pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+
+      }
 //      bool bEnabled = is_window_enabled();
 //      rect rectClient;
 //      GetClientRect(rectClient);

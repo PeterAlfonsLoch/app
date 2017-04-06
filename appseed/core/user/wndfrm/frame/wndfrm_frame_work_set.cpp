@@ -17,6 +17,7 @@ namespace user
          WorkSet::WorkSet()
          {
 
+            m_bMinimizeToTray = false;
             m_pframeschema = NULL;
 
             m_bSizingCapture = false;
@@ -561,6 +562,29 @@ namespace user
          ::user::interaction * WorkSet::GetWndRegion()
          {
             return m_pwndRegion;
+         }
+
+
+         void WorkSet::update_control_box()
+         {
+
+            try
+            {
+
+               if (m_pframeschema == NULL)
+                  return;
+
+               if (m_pframeschema->m_spcontrolbox.is_null())
+                  return;
+
+               m_pframeschema->m_spcontrolbox->set_need_layout();
+
+            }
+            catch (...)
+            {
+
+            }
+
          }
 
 

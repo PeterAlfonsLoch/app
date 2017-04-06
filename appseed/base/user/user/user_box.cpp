@@ -306,7 +306,10 @@ namespace user
             bGet = false;
          }
       }
-      int iBefore = (int)get_appearance_before();
+
+      EAppearance eappearance = get_appearance_before();
+
+      int iBefore = (int)eappearance;
       stream << iBefore;
       bool bZoomed = pwindow->WfiIsZoomed() != FALSE;
       stream << bZoomed;
