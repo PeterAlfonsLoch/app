@@ -765,6 +765,29 @@ run:
 
    }
 
+
+   string application::preferred_userschema()
+   {
+
+      return "wndfrm_core";
+
+   }
+
+   ::user::schema * application::userschema()
+   {
+
+      if (m_pbasesession->m_puserschemaSchema == NULL)
+      {
+
+         m_pbasesession->defer_create_user_schema(preferred_userschema());
+
+      }
+
+      return m_pbasesession->m_puserschemaSchema;
+
+   }
+
+
    void application::draw2d_factory_exchange()
    {
 

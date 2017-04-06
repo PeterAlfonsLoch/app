@@ -93,6 +93,10 @@ namespace base
 
       virtual void remove_document_template(::user::impact_system * pimpactsystem);
 
+      virtual string preferred_userschema();
+
+      virtual ::user::schema * userschema();
+
    };
 
 

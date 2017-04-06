@@ -58,7 +58,7 @@ namespace data
       virtual index get_proper_item_index(tree_item * pitemParam, index * piLevel, index * piCount = NULL);
       virtual ::count get_proper_item_count();
 
-
+      virtual void update_levels();
 
       virtual tree_item * get_base_item();
 

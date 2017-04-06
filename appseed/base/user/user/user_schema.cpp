@@ -8,7 +8,7 @@ namespace user
    schema::schema()
    {
 
-      m_puserschema = NULL;
+      m_puserschemaSchema = NULL;
 
    }
 
@@ -22,10 +22,10 @@ namespace user
    bool schema::get_color(COLORREF & cr, e_color ecolor)
    {
 
-      if(m_puserschema != NULL && m_puserschema != this)
+      if(m_puserschemaSchema != NULL && m_puserschemaSchema != this)
       {
 
-         if(m_puserschema->get_color(cr,ecolor))
+         if(m_puserschemaSchema->get_color(cr,ecolor))
             return true;
 
       }
@@ -38,7 +38,7 @@ namespace user
 
       }
 
-      if( m_pauraapp != NULL && this != m_pauraapp->m_pbasesession &&m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
+      if( m_pauraapp != NULL && this != m_pauraapp->m_pbasesession &&m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschemaSchema && m_pauraapp->m_pbasesession->m_puserschemasimple != m_puserschemaSchema)
       {
 
          if(m_pauraapp->m_pbasesession->get_color(cr,ecolor))
@@ -53,10 +53,10 @@ namespace user
    bool schema::get_font(::draw2d::font_sp & spfont)
    {
 
-      if(m_puserschema != NULL && m_puserschema != this)
+      if(m_puserschemaSchema != NULL && m_puserschemaSchema != this)
       {
 
-         if(m_puserschema->get_font(spfont))
+         if(m_puserschemaSchema->get_font(spfont))
             return true;
 
       }
@@ -69,7 +69,7 @@ namespace user
 
       }
 
-      if(m_pauraapp != NULL && this != m_pauraapp->m_pbasesession && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
+      if(m_pauraapp != NULL && this != m_pauraapp->m_pbasesession && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschemaSchema && m_pauraapp->m_pbasesession->m_puserschemasimple != m_puserschemaSchema)
       {
 
          if(m_pauraapp->m_pbasesession->get_font(spfont))
@@ -84,10 +84,10 @@ namespace user
    bool schema::get_translucency(ETranslucency & etranslucency)
    {
 
-      if(m_puserschema != NULL && m_puserschema != this)
+      if(m_puserschemaSchema != NULL && m_puserschemaSchema != this)
       {
 
-         if(m_puserschema->get_translucency(etranslucency))
+         if(m_puserschemaSchema->get_translucency(etranslucency))
             return true;
 
       }
@@ -100,7 +100,7 @@ namespace user
 
       }
 
-      if(m_pauraapp != NULL && this != m_pauraapp->m_pbasesession && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
+      if(m_pauraapp != NULL && this != m_pauraapp->m_pbasesession && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschemaSchema && m_pauraapp->m_pbasesession->m_puserschemasimple != m_puserschemaSchema)
       {
 
          if(m_pauraapp->m_pbasesession->get_translucency(etranslucency))
@@ -289,10 +289,10 @@ namespace user
    ::user::schema * schema::get_user_schema()
    {
 
-      if(m_puserschema != NULL)
+      if(m_puserschemaSchema != NULL)
       {
 
-         return m_puserschema;
+         return m_puserschemaSchema;
 
       }
 
@@ -314,7 +314,7 @@ namespace user
 
 
       
-      m_puserschema = System.m_pschemaLayeredFrame;
+      m_puserschemaSchema = System.m_pschemaLayeredFrame;
 
       return true;
 
@@ -354,10 +354,10 @@ namespace user
    bool schema::simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics)
    {
 
-      if(m_puserschema != NULL && m_puserschema != this)
+      if(m_puserschemaSchema != NULL && m_puserschemaSchema != this)
       {
 
-         if(m_puserschema->simple_ui_draw_focus_rect(pui, pgraphics))
+         if(m_puserschemaSchema->simple_ui_draw_focus_rect(pui, pgraphics))
             return true;
 
       }

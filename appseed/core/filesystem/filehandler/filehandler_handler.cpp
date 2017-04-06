@@ -101,7 +101,7 @@ namespace filehandler
    sp(::data::tree_item) handler::get_extension_tree_item(const char * pszExtension, bool bCreate)
    {
 
-      sp(::data::tree_item) pitem = m_sptree->get_base_item()->m_pnext;
+      sp(::data::tree_item) pitem = m_sptree->get_base_item()->get_next();
 
       if(strcmp(pszExtension, "*") == 0)
       {
@@ -110,7 +110,7 @@ namespace filehandler
          {
             if(pitem->m_pitem.cast < item > ()->m_etopictype == item::topic_type_root)
                return pitem;
-            pitem = pitem->m_pnextParent;
+            pitem = pitem->get_next_or_parent();
          }
 
          if(!bCreate)
@@ -129,7 +129,7 @@ namespace filehandler
             if(dynamic_cast < item * > (pitem->m_pitem.m_p)->m_etopictype == item::topic_type_extension
             && dynamic_cast < item * > (pitem->m_pitem.m_p)->m_strTopic.CompareNoCase(pszExtension) == 0)
                return pitem;
-            pitem = pitem->m_pnextParent;
+            pitem = pitem->get_next_or_parent();
          }
 
          if(!bCreate)
@@ -150,14 +150,14 @@ namespace filehandler
    sp(::data::tree_item) handler::get_mime_type_tree_item(const char * pszMimeType, bool bCreate)
    {
 
-      sp(::data::tree_item) pitem = m_sptree->get_base_item()->m_pnextParentChild;
+      sp(::data::tree_item) pitem = m_sptree->get_base_item()->get_child_next_or_parent();
 
       while(pitem != NULL)
       {
          if(dynamic_cast < item * > (pitem->m_pitem.m_p)->m_etopictype == item::topic_type_mime_type
          && dynamic_cast < item * > (pitem->m_pitem.m_p)->m_strTopic.CompareNoCase(pszMimeType) == 0)
             return pitem;
-         pitem = pitem->m_pnextParent;
+         pitem = pitem->get_next_or_parent();
       }
 
       if(!bCreate)
@@ -201,8 +201,8 @@ namespace filehandler
 
       while(true)
       {
-         pitem = pitem->m_pnextParentChild;
-         iLevel = pitem->m_iLevelNextParentChild;
+         pitem = pitem->get_child_next_or_parent();
+         iLevel = pitem->m_iLevel;
          if(pitem == NULL)
             break;
          ostream << (int32_t) iLevel;

@@ -167,7 +167,7 @@ namespace filemanager
 
                }
 
-               pitem = pitem->m_pnext;
+               pitem = pitem->get_next();
 
             }
 
@@ -776,6 +776,8 @@ namespace filemanager
          estep = (e_step)(((int)estep) + 1);
 
       }
+
+      pusertree->on_change_viewport_offset();
 
    }
 

@@ -342,7 +342,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    if (pobj->previous())
       return;
 
-   m_puserschema = Session.m_puserschema;
+   m_puserschemaSchema = Application.userschema();
 
    data_get("transparent_frame",m_bTransparentFrame);
 
@@ -1594,7 +1594,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
    if(dAlpha > 0.0)
    {
 
-      if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pgraphics,this))
+      if(m_puserschemaSchema != NULL && m_puserschemaSchema->_001OnDrawMainFrameBackground(pgraphics,this))
       {
 
          _001DrawThis(pgraphics);

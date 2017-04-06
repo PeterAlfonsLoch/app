@@ -846,7 +846,9 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         m_splitbara.add_new();
+         sp(split_bar) pbar(allocer());
+
+         m_splitbara.insert_at(iIndex, pbar);
 
          ::user::split_bar & splitbar = *m_splitbara.element_at(i);
 
@@ -858,6 +860,7 @@ namespace user
             return false;
 
          }
+
       }
 
       {
@@ -1269,6 +1272,18 @@ namespace user
       m_rectClient.null();
 
       m_sizeFixed = ::size(0, 0);
+
+   }
+
+
+   void split_layout::_001OnDraw(::draw2d::graphics * pgraphics)
+   {
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
 
    }
 

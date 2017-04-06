@@ -1268,15 +1268,20 @@ namespace user
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      point pt = pmouse->m_pt;
-
-      ScreenToClient(&pt);
-      
+      if (m_bMouseDown)
       {
 
-         m_ptree->m_iSelEnd = char_hit_test(pt.x, pt.y);
+         point pt = pmouse->m_pt;
 
-         m_iColumn = SelToColumnX(m_ptree->m_iSelEnd, m_iColumnX);
+         ScreenToClient(&pt);
+
+         {
+
+            m_ptree->m_iSelEnd = char_hit_test(pt.x, pt.y);
+
+            m_iColumn = SelToColumnX(m_ptree->m_iSelEnd, m_iColumnX);
+
+         }
 
       }
 
@@ -3987,7 +3992,7 @@ namespace user
 
       }
 
-      m_pitem = m_pitem->m_ppreviousParent;
+      m_pitem = m_pitem->get_previous_or_parent();
 
    }
 
@@ -4027,7 +4032,7 @@ namespace user
             ptreeitem = m_pitem->get_expandable_child(m_ptree->m_iBranch);
          }
          else
-            ptreeitem = m_pitem->m_pnextParentChild;
+            ptreeitem = m_pitem->get_child_next_or_parent();
          if (ptreeitem == NULL)
             return false;
          m_pitem = ptreeitem;
@@ -4055,7 +4060,7 @@ namespace user
    {
       synch_lock sl(m_pmutex);
       return m_ptree->m_iBranch < m_pitem->get_expandable_children_count()
-         || m_pitem->m_pnext != NULL;
+         || m_pitem->get_next() != NULL;
    }
 
    ::count plain_edit::GetRedoBranchCount()
@@ -4063,7 +4068,7 @@ namespace user
       synch_lock sl(m_pmutex);
 
       return m_pitem->get_expandable_children_count()
-         + (m_pitem->next() != NULL ? 1 : 0)
+         + (m_pitem->get_next() != NULL ? 1 : 0)
          + (m_pitem->first_child() != NULL ? 1 : 0);
    }
 

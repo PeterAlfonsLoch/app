@@ -871,6 +871,23 @@ namespace user
       // default does nothing
    }
 
+
+   bool document::on_filemanager_open(::filemanager::manager * pmanager, var varFile)
+   {
+
+      return on_open_document(varFile);
+
+   }
+
+
+   bool document::on_filemanager_save(::filemanager::manager * pmanager, var varFile, bool bReplace)
+   {
+
+      return do_save(varFile, bReplace);
+
+   }
+
+
    bool document::do_save(var varFile, bool bReplace)
    // Save the document_interface data to a file
    // lpszPathName = path name where to save document_interface file

@@ -40,27 +40,161 @@ namespace user
 
    }
 
+
+   bool form_list::_001OnRightClick(uint_ptr uiFlags, point point)
+   {
+
+      list::_001OnClick(uiFlags, point);
+
+      index iItem;
+
+      index iSubItem;
+
+      if (_001HitTest_(point, iItem, iSubItem))
+      {
+
+         _001OnRightClick(uiFlags, point, iItem, iSubItem);
+
+      }
+      else
+      {
+
+         // Clicked in empty area
+
+         _001HideEditingControls();
+
+      }
+
+      return true;
+
+   }
+
+
+   bool form_list::_001OnRightClick(uint_ptr uiFlags, point point, index iItem, index iSubItem)
+   {
+
+      sp(control) pcontrol = _001GetControl(iItem, iSubItem);
+
+      if (pcontrol != NULL)
+      {
+
+         if (pcontrol->descriptor().has_function(::user::control::function_action))
+         {
+
+            if (pcontrol->descriptor().get_type() == ::user::control_type_button)
+            {
+
+
+               Session.m_puiLastLButtonDown = NULL;
+
+               ::user::control_event ev;
+
+               ev.m_puie = pcontrol;
+
+               ev.m_eevent = ::user::event_button_clicked;
+
+               m_iControlItem = iItem;
+
+               send_message(::message::message_event, 0, (LPARAM)&ev);
+
+            }
+
+         }
+         else if (m_columna._001GetBySubItem(iSubItem)->m_bEditOnSecondClick)
+         {
+
+            if (m_iOnClickClickItem == iItem && m_iOnClickClickSubItem == iSubItem)
+            {
+
+               m_iOnClickClickCount++;
+
+            }
+            else
+            {
+
+               m_iOnClickClickCount = 1;
+
+            }
+
+            m_iOnClickClickItem = iItem;
+
+            m_iOnClickClickSubItem = iSubItem;
+
+            if (m_iOnClickClickCount == 2)
+            {
+
+               m_iOnClickClickCount = 0;
+
+               _001PlaceControl(pcontrol, iItem);
+
+            }
+
+         }
+         else
+         {
+
+            _001PlaceControl(pcontrol, iItem, true);
+
+         }
+
+      }
+      else
+      {
+
+         // Click in subitem without editing controls.
+
+         _001HideEditingControls();
+
+      }
+
+      return true;
+
+   }
+
+
+
+
+
    bool form_list::_001OnClick(uint_ptr uiFlags,point point)
    {
-      //form::_000OnPosCreate
+      
       list::_001OnClick(uiFlags,point);
-      index iItem,iSubItem;
+
+      index iItem;
+      
+      index iSubItem;
+
       if(_001HitTest_(point,iItem,iSubItem))
       {
+
          _001OnClick(uiFlags,point,iItem,iSubItem);
+
       }
+      else
+      {
+
+         // Clicked in empty area
+
+         _001HideEditingControls();
+
+      }
+
       return true;
+
    }
+
 
    bool form_list::_001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem)
    {
-      UNREFERENCED_PARAMETER(uiFlags);
-      UNREFERENCED_PARAMETER(point);
+
       sp(control) pcontrol = _001GetControl(iItem, iSubItem);
+
       if(pcontrol != NULL)
       {
+
          if(pcontrol->descriptor().has_function(::user::control::function_action))
          {
+
             if(pcontrol->descriptor().get_type() == ::user::control_type_button)
             {
 
@@ -68,7 +202,9 @@ namespace user
                Session.m_puiLastLButtonDown      = NULL;
 
                ::user::control_event ev;
+            
                ev.m_puie                  = pcontrol;
+               
                ev.m_eevent                = ::user::event_button_clicked;
 
                m_iControlItem             = iItem;
@@ -76,34 +212,52 @@ namespace user
                send_message(::message::message_event,0,(LPARAM)&ev);
 
             }
+
          }
          else if(m_columna._001GetBySubItem(iSubItem)->m_bEditOnSecondClick)
          {
-            if(m_iOnClickClickItem == iItem &&
-               m_iOnClickClickSubItem == iSubItem)
+            
+            if(m_iOnClickClickItem == iItem && m_iOnClickClickSubItem == iSubItem)
             {
+
                m_iOnClickClickCount++;
+
             }
             else
             {
+
                m_iOnClickClickCount = 1;
+
             }
+
             m_iOnClickClickItem = iItem;
+
             m_iOnClickClickSubItem = iSubItem;
+
             if(m_iOnClickClickCount == 2)
             {
+
                m_iOnClickClickCount = 0;
-               //pcontrol->m_iEditItem = iItem;
+
                _001PlaceControl(pcontrol, iItem);
+
             }
+
          }
          else
          {
       
-            //pcontrol->m_iEditItem = iItem;
-            _001PlaceControl(pcontrol, iItem);
+            _001PlaceControl(pcontrol, iItem, true);
 
          }
+
+      }
+      else
+      {
+
+         // Click in subitem without editing controls.
+
+         _001HideEditingControls();
 
       }
 
@@ -144,10 +298,8 @@ namespace user
 
    }
 
-   void form_list::_001PlaceControl(sp(control) pcontrol, int iEditItem)
+   void form_list::_001PlaceControl(sp(control) pcontrol, int iEditItem, bool bClick)
    {
-      //rect rect;
-      
       
       if (_001GetEditControl() != NULL)
       {
@@ -197,9 +349,32 @@ namespace user
 
          pcontrol->SetFocus();
 
+         if (bClick)
+         {
+
+            sp(::user::plain_edit) pedit = pcontrol;
+
+            if (pedit.is_set())
+            {
+
+               pedit->_001SetSel(0, pedit->_001GetTextLength());
+
+            }
+
+         }
+
          _001OnShowControl(pcontrol);
 
       }
+
+   }
+
+   bool form_list::_001OnUpdateItemCount(uint32_t dwFlags)
+   {
+
+      _001HideEditingControls();
+
+      return ::user::list::_001OnUpdateItemCount(dwFlags);
 
    }
 
@@ -286,6 +461,56 @@ namespace user
          //      }
          //   }
          //}
+      }
+   }
+
+   void form_list::_001UpdateComboBox(sp(control) pcontrol)
+   {
+      
+      ASSERT(pcontrol != NULL);
+
+      if (pcontrol == NULL)
+         return;
+
+      if (m_bOnEditUpdate)
+         return;
+
+      keep<bool> keepUpdateLock(&m_bOnEditUpdate, true, false, true);
+
+      ASSERT(pcontrol->descriptor().get_type() == control_type_combo_box);
+
+      sp(::user::combo_box) pcombo = pcontrol;
+
+      if (pcombo.is_set())
+      {
+
+         pcombo->m_spfont = m_font;
+
+      }
+
+      if (pcontrol->descriptor().has_function(control::function_data_selection))
+      {
+
+
+
+         draw_list_item item(this);
+
+         item.m_iItem = pcontrol->m_iEditItem;
+         item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
+
+         _001GetItemText(&item);
+
+         if (item.m_bOk)
+         {
+
+            index iFind = pcombo->_001FindListText(item.m_strText);
+
+            pcombo->_001SetCurSel(iFind, ::action::source_sync);
+
+
+
+         }
+
       }
    }
 
@@ -768,6 +993,7 @@ namespace user
       return rectClient.contains(point) != FALSE;
    }
 
+
    void form_list::_001OnColumnChange()
    {
 
@@ -793,6 +1019,14 @@ namespace user
             }
          }
       }
+
+      if (m_pcontrolEdit != NULL && m_pcontrolEdit->IsWindowVisible())
+      {
+
+         _001PlaceControl(m_pcontrolEdit, m_pcontrolEdit->m_iEditItem);
+
+      }
+
    }
 
    void form_list::_000OnMouse(::message::mouse * pmouse)
@@ -1144,13 +1378,26 @@ namespace user
 
    bool form_list::BaseOnControlEvent(::user::control_event * pevent)
    {
-      //class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
-      //if(pdescriptor != NULL)
-      //{
-      //   pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
-      //}
 
-      if (pevent->m_eevent == ::user::event_enter_key)
+      if (pevent->m_eevent == ::user::event_after_change_cur_sel)
+      {
+
+         if (m_pcontrolEdit == pevent->m_puie)
+         {
+
+            if (m_pcontrolEdit->descriptor().has_function(::user::control::function_data_selection))
+            {
+               _001SaveEdit(m_pcontrolEdit);
+               pevent->m_bRet = true;
+               pevent->m_bProcessed = true;
+
+            }
+
+
+         }
+
+      }
+      else if (pevent->m_eevent == ::user::event_enter_key)
       {
 
          if(m_pcontrolEdit != NULL)

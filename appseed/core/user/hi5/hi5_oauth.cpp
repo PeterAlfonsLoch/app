@@ -983,8 +983,8 @@ void CSHA1::GetHash(UINT_8 *puDest)
          break;
       }
       sigBase.append(urlencode( rawUrl ) );
-      sigBase.append( "&" );
-      sigBase.append(urlencode( rawParams ));
+      sigBase.append("&");
+      sigBase.append(urlencode(rawParams));
 
       /* Now, hash the signature base string using HMAC_SHA1 class */
       string secretSigningKey;

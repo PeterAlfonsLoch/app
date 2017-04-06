@@ -163,7 +163,7 @@ namespace hi5
          if(pframe != NULL)
          {
 
-            pframe->m_puserschema = this;
+            pframe->m_puserschemaSchema = this;
             
             m_etranslucency = ::user::TranslucencyPresent;
 

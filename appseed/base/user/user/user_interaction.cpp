@@ -81,7 +81,7 @@ namespace user
       m_bBackgroundBypass = false;
       m_bEnableSaveWindowRect = false;
 
-      m_puserschema = NULL;
+      m_puserschemaSchema = NULL;
       m_bLockWindowUpdate = false;
 
 
@@ -8221,6 +8221,22 @@ restart:
    {
       
       
+   }
+
+   
+   bool interaction::_001OnClick(uint_ptr nFlag, point point)
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::_001OnRightClick(uint_ptr nFlag, point point)
+   {
+
+      return false;
+
    }
 
 

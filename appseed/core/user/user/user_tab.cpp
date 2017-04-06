@@ -538,7 +538,7 @@ namespace user
       if(GetTopLevel()->frame_is_transparent())
          return;
 
-      if(m_puserschema == NULL)
+      if(m_puserschemaSchema == NULL)
       {
 
          _001OnDrawStandard(pgraphics);
@@ -548,7 +548,7 @@ namespace user
       }
 
 
-      m_puserschema->_001TabOnDrawSchema01(pgraphics,this);
+      m_puserschemaSchema->_001TabOnDrawSchema01(pgraphics,this);
 //      _001OnDrawSchema01(pgraphics);
 
    }
@@ -787,10 +787,10 @@ namespace user
    {
 
 
-      if(m_puserschema != NULL)
+      if(m_puserschemaSchema != NULL)
       {
 
-         m_puserschema->_001OnTabLayout(this);
+         m_puserschemaSchema->_001OnTabLayout(this);
 
          return;
 
@@ -1452,7 +1452,7 @@ namespace user
       if(pobj->previous())
          return;
 
-      m_puserschema = Session.m_puserschema;
+      m_puserschemaSchema = Application.userschema();
    //  m_pimagelist = new image_list(get_app());
 
       get_data()->m_bCreated = true;

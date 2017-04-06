@@ -60,7 +60,12 @@ namespace user
    void split_bar::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      pgraphics->FillSolidRect(rectClient, ARGB(255, 180, 180, 180));
+      
 
    }
 

@@ -49,7 +49,7 @@ namespace filemanager
                   {
                      pframe->m_dataid = str;
                   }
-                  m_puserschema = get_filemanager_data();
+                  m_puserschemaSchema = get_filemanager_data();
 
                }
                else if (puh->is_type_of(update_hint::TypePop))
@@ -86,37 +86,55 @@ namespace filemanager
                }
                else if(puh->is_type_of(update_hint::TypeTopicStart))
                {
-                  if (get_filemanager_manager()->m_emode != manager::mode_import
-                     && !base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
+                  
+                  if (get_filemanager_manager()->m_emode != manager::mode_import && get_pane_count() == 2)
                   {
-                     //create_context cc;
-                     //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
-                     //cc.m_usercreatecontext.m_typeinfoNewView =  System.type_info < ::filemanager::save_as_view > ();
-                     //cc.m_usercreatecontext.m_pCurrentFrame = this;
+
+                     sp(simple_frame_window) pframe = (GetParentFrame());
+
+                     if (pframe != NULL)
+                     {
+
+                        pframe->create_bars();
+
+                     }
 
                      ::filemanager::save_as_view * ptopview = create_view < ::filemanager::save_as_view >();
+                     
                      if (ptopview == NULL)
                      {
+
                         System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
+
                      }
+                     
                      ptopview->m_pmanager = get_filemanager_manager();
+
                      InsertPaneAt(0, ptopview, true);
+
                      ::file::path path = get_filemanager_data()->m_pdocumentTopic->get_file_path();
+
                      string strName = path.title() + " - " + System.datetime().international().get_gmt_date_time() + "." + path.ext();
+
                      strName.replace(":", "-");
-                     strName = get_filemanager_item().m_filepath / strName;
-                     ptopview->_001SetText(strName, puh->m_actioncontext);
+
+                     strName =  strName;
+
+                     ptopview->m_pedit->_001SetText(strName, puh->m_actioncontext);
+
                      get_filemanager_data()->m_pmanager->m_strTopic = strName;
-                     set_position(0, 49);
-                     set_position(1, 49 + 49);
-                     on_layout();
-                  }
-                  sp(simple_frame_window) pframe = (GetParentFrame());
 
-                  if(pframe != NULL)
-                  {
+                     set_position(0, 28);
+                     
+                     set_position(1, 56);
 
-                      pframe->create_bars();
+                     rect rectClient;
+                     
+                     GetClientRect(rectClient);
+                     
+                     set_need_layout();
+
+                     pframe->set_need_layout();
 
                   }
 
@@ -125,102 +143,21 @@ namespace filemanager
                {
                   if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
                   {
-                     RemovePaneAt(0);
-                     set_position(0, 49);
-                     on_layout();
+                     //RemovePaneAt(0);
+                     //set_position(0, 49);
+                     //on_layout();
                   }
                }
                else if (puh->is_type_of(update_hint::TypeTopicOK))
                {
 
-
-                  ASSERT(get_filemanager_data()->m_pdocumentTopic != NULL);
-
-                  string strPath = puh->m_filepath;
-
-                  if (strPath.is_empty())
+                  if (m_pmanager->m_emode == manager::mode_import)
                   {
-                     
-                     ::file::path strTitle;
 
-                     dynamic_cast <::filemanager::save_as_view *>(get_pane_window(0).m_p)->_001GetText(strTitle);
-
-                     if (strTitle.folder().has_char() && get_filemanager_manager()->get_fs_data()->is_dir(strTitle.folder()))
-                     {
-
-                        strPath = strTitle;
-
-                     }
-                     else if (get_filemanager_manager()->get_fs_data()->is_dir(get_filemanager_item().m_filepath))
-                     {
-
-                        strPath = get_filemanager_item().m_filepath / strTitle;
-
-                     }
-                     else if (strTitle.has_char())
-                     {
-
-                        strPath = get_filemanager_item().m_filepath / strTitle;
-
-                     }
-                     else
-                     {
-
-                        strPath = get_filemanager_item().m_filepath;
-
-                     }
+                     puh->m_bOk = get_filemanager_data()->m_pdocumentTopic->on_filemanager_open(m_pmanager, puh->m_filepath);
 
                   }
 
-                  if (get_filemanager_manager()->m_emode == manager::mode_import)
-                  {
-
-                     get_filemanager_data()->m_pdocumentTopic->open_document(strPath);
-
-                  }
-                  else
-                  {
-
-                     bool bSave = !Application.dir().is(strPath);
-
-                     if (bSave && get_filemanager_manager()->get_fs_data()->file_exists(strPath))
-                     {
-                        if (System.simple_message_box(Session.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
-                        {
-                           bSave = false;
-                        }
-                     }
-
-                     update_hint uh;
-
-                     if (bSave)
-                     {
-                        if (get_filemanager_data()->m_pdocumentTopic->do_save(strPath))
-                        {
-                           uh.set_type(update_hint::TypeTopicSaved);
-                           uh.m_filepath = strPath;
-                        }
-                        else
-                        {
-                           uh.set_type(update_hint::TypeTopicSaveFailed);
-                        }
-                     }
-                     else
-                     {
-                        uh.set_type(update_hint::TypeTopicCancel);
-                     }
-                     get_document()->update_all_views(NULL, 0, &uh);
-
-                     get_filemanager_data()->m_pdocumentTopic = NULL;
-
-                     if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
-                     {
-                        RemovePaneAt(0);
-                        set_position(0, 49);
-                        on_layout();
-                     }
-
-                  }
                }
             }
          }
@@ -250,6 +187,8 @@ namespace filemanager
       {
 
          set_position(0, 24);
+
+         m_panea[0]->m_bFixedSize = true;
 
          initialize_split_layout();
 

@@ -69,15 +69,11 @@ namespace base
 
       //m_paxissystem->m_basesessionptra.add_unique(this);
 
-      m_pschemasimple               = NULL;
+      m_puserschemasimple           = NULL;
 
-      m_puserschema                 = m_pschemasimple;
+      m_puserschemaSchema           = NULL;
 
       m_pcopydesk                   = NULL;
-
-      m_pschemasimple               = NULL;
-
-      m_puserschema                 = m_pschemasimple;
 
    }
 
@@ -94,24 +90,35 @@ namespace base
 
    }
 
+   
+   void session::defer_create_user_schema(const char * pszUiInteractionLibrary)
+   {
+
+      if (m_puserschemasimple == NULL)
+      {
+
+         m_puserschemasimple = get_new_user_schema(pszUiInteractionLibrary);
+
+         if (m_puserschemasimple == NULL)
+         {
+
+            thisfail << 1;
+
+            throw resource_exception(this);
+
+         }
+
+         m_puserschemaSchema = m_puserschemasimple;
+
+      }
+
+   }
+
 
    bool session::process_initialize()
    {
 
       thisstart;
-
-      m_pschemasimple               = get_new_user_schema(NULL);
-
-      if (m_pschemasimple == NULL)
-      {
-
-         thisfail << 1;
-
-         return false;
-
-      }
-
-      m_puserschema                 = m_pschemasimple;
 
       if (!::axis::session::process_initialize())
       {
@@ -596,85 +603,120 @@ namespace base
 
       thisstart;
 
-      stringa stra;
+      stringa straLibrary;
 
-      string strAppId;
+      {
 
-      sp(::user::schema) pschema;
+         string strId(pszUinteractionLibrary);
 
-      string strId(pszUinteractionLibrary);
+         if (strId.has_char())
+         {
 
-      string strLibrary;
+            straLibrary.add(strId);
 
-      ::aura::library library(get_app(),0,NULL);
+         }
 
-      if(strId.is_empty())
+      }
+
       {
 
          string strWndFrm = Application.file().as_string(::dir::system() / "config/system/wndfrm.txt");
 
-         if(strWndFrm.is_empty())
-            goto defer_check_wndfrm_core;
+         if (strWndFrm.has_char())
+         {
 
-         strId = "wndfrm_" + strWndFrm;
+            straLibrary.add(strWndFrm);
 
-      }
-
-      strLibrary = strId;
-
-      strLibrary.replace("-","_");
-
-      strLibrary.replace("/","_");
-
-restart:
-
-      if (!library.open(strLibrary, false))
-      {
-
-         thisinfo << "Failed to load " << strLibrary;
-
-         goto defer_check_wndfrm_core;
+         }
 
       }
 
-      if(!library.open_ca2_library())
-         goto defer_check_wndfrm_core;
+      straLibrary.add("wndfrm_metro");
 
-      library.get_app_list(stra);
+      straLibrary.add("wndfrm_rootkiller");
 
-      if(stra.get_size() != 1) // a wndfrm OSLibrary should have one wndfrm
-         goto defer_check_wndfrm_core;
+      straLibrary.add("wndfrm_hyper");
 
-      strAppId = stra[0];
+      straLibrary.add("wndfrm_core");
 
-      if(strAppId.is_empty()) // trivial validity check
-         goto defer_check_wndfrm_core;
+      sp(::user::schema) pschema;
 
-      pschema = library.create_object(get_app(),"user_schema", NULL);
-
-      if(pschema == NULL)
-         goto defer_check_wndfrm_core;
-
-finish:
-
-      //pschema->m_plibrary = plibrary;
-
-      return pschema;
-
-defer_check_wndfrm_core:
-
-      if(strLibrary == "wndfrm_core")
+      for (string strLibrary : straLibrary)
       {
 
+         ::aura::library library(get_app(), 0, NULL);
+
+         strLibrary.replace("-", "_");
+
+         strLibrary.replace("/", "_");
+
+         if (!library.open(strLibrary, false))
+         {
+
+            thisinfo << "Failed to load " << strLibrary;
+
+            continue;
+
+         }
+
+         if (!library.open_ca2_library())
+         {
+
+            thisinfo << "Failed to load (2) " << strLibrary;
+
+            continue;
+
+         }
+
+         stringa stra;
+
+         library.get_app_list(stra);
+
+         if (stra.get_size() != 1)
+         {
+
+            // a wndfrm OSLibrary should have one wndfrm
+            thisinfo << "a wndfrm OSLibrary should have one wndfrm " << strLibrary;
+
+            continue;
+
+         }
+
+         string strAppId = stra[0];
+
+         if (strAppId.is_empty())
+         {
+
+            // trivial validity check
+            thisinfo << "app id should not be empty " << strLibrary;
+
+            continue;
+
+         }
+
+         pschema = library.create_object(get_app(), "user_schema", NULL);
+
+         if (pschema.is_null())
+         {
+
+            thisinfo << "could not create user_schema from " << strLibrary;
+
+            continue;
+
+         }
+
+         break;
+
+      }
+
+      if (pschema.is_null())
+      {
+         
          pschema = canew(::user::schema_simple_impl(get_app()));
 
-         goto finish;
-
       }
 
-      strLibrary = "wndfrm_core";
-
-      goto restart;
+      return pschema;
 
    }
 

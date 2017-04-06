@@ -16,7 +16,7 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h),
       m_fields(h.get_app()),
-      m_bMultipart(false)
+      m_pmultipart(NULL)
    {
 
       m_emethod = http_method_post;
@@ -34,7 +34,7 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in),
       m_fields(h.get_app()),
-      m_bMultipart(false)
+      m_pmultipart(NULL)
    {
 
       m_emethod = http_method_post;
@@ -85,10 +85,19 @@ namespace sockets
    {
       if (Application.file().exists(filename))
       {
-         m_mapFiles[name]              = filename;
-         m_mapContentLength[filename]  = Application.file().length(filename);
-         m_mapContentType[filename]    = type;
-         m_bMultipart                  = true;
+         if (m_pmultipart == NULL)
+         {
+
+            m_pmultipart = canew(multipart(get_app()));
+
+         }
+         m_pmultipart->m_map[name].m_spfile = Application.file().get_file(filename, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+         //m_mapFiles[name]              = filename;
+         m_pmultipart->m_map[name].m_uiContentLength = m_pmultipart->m_map[name].m_spfile->get_length();
+         m_pmultipart->m_map[name].m_strContentType = type;
+         //m_mapContentLength[filename]  = Application.file().length(filename);
+         //m_mapContentType[filename]    = type;
+         //m_bMultipart                  = true;
       }
       else
       {
@@ -102,9 +111,11 @@ namespace sockets
 
 
 
-      if (m_bMultipart)
+      if (m_pmultipart != NULL)
       {
+
          DoMultipartPost();
+
       }
       else
       {
@@ -198,48 +209,60 @@ namespace sockets
 
    void http_post_socket::DoMultipartPost()
    {
+      
       uint64_t length = 0; // calculate content_length of our post body
+      
       string tmp;
 
-      // fields
       {
-         for(auto property : m_fields)
+
+         for(auto & property : m_fields)
          {
-            string name = property.name();
-            var & var = property.get_value();
-            tmp = "--" + m_boundary + "\r\n"
-               "content-disposition: form-data; name=\"" + name + "\"\r\n"
-               "\r\n";
-            for(int j = 0; j < var.get_count(); j++)
-            {
-               string value = var[j].get_string();
-               tmp += value + "\r\n";
-            }
+
+            id & id = property.m_element1;
+
+            var & var = property.m_element2;
+
+            tmp = "--" + m_boundary + "\r\ncontent-disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
+
+            string value = var.get_string();
+
+            tmp += value + "\r\n";
+
             length += (long)tmp.get_length();
+
          }
+
       }
 
-      // files
       {
-         
-         POSITION pos = m_mapFiles.get_start_position();
-
-         for(; pos != NULL; )
+         for (auto & pair : m_pmultipart->m_map)
          {
             
-            string name;
+            string & name = pair.m_element1;
             
+            uint64_t content_length = pair.m_element2.m_uiContentLength;
+
             string filename;
-            
-            m_mapFiles.get_next_assoc(pos, name, filename);
-            
-            uint64_t content_length = m_mapContentLength[filename];
 
-            string content_type = m_mapContentType[filename];
+            if (pair.m_element2.m_spfile->GetFilePath().has_char())
+            {
 
-            tmp = "--" + m_boundary + "\r\n"
-               "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
-               "content-type: " + content_type + "\r\n"
+               filename = "; filename=\"" + pair.m_element2.m_spfile->GetFilePath() + "\"";
+
+            }
+
+            string content_type;
+
+            if (pair.m_element2.m_strContentType.has_char())
+            {
+
+               content_type = "content-type: " + pair.m_element2.m_strContentType + "\r\n";
+
+            }
+
+            tmp = "--" + m_boundary + "\r\ncontent-disposition: form-data; name=\"" + name + "\""+ filename + "\r\n"
+               +content_type+ 
                "\r\n";
 
             length += (long)tmp.get_length();
@@ -249,6 +272,33 @@ namespace sockets
             length += 2; // crlf after file
 
          }
+         //POSITION pos = m_mapFiles.get_start_position();
+
+         //for(; pos != NULL; )
+         //{
+         //   
+         //   string name;
+         //   
+         //   string filename;
+         //   
+         //   m_mapFiles.get_next_assoc(pos, name, filename);
+         //   
+         //   uint64_t content_length = m_mapContentLength[filename];
+
+         //   string content_type = m_mapContentType[filename];
+
+         //   tmp = "--" + m_boundary + "\r\n"
+         //      "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
+         //      "content-type: " + content_type + "\r\n"
+         //      "\r\n";
+
+         //   length += (long)tmp.get_length();
+
+         //   length += content_length;
+
+         //   length += 2; // crlf after file
+
+         //}
 
       }
 
@@ -273,45 +323,85 @@ namespace sockets
 
       // send fields
       {
-         for(auto property : m_fields)
+         for(auto & property : m_fields)
          {
-            string name = property.name();
-            var & var = property.get_value();
+            id & id = property.m_element1;
+            var & var = property.m_element2;
             tmp = "--" + m_boundary + "\r\n"
-               "content-disposition: form-data; name=\"" + name + "\"\r\n"
+               "content-disposition: form-data; name=\"" + id.to_string() + "\"\r\n"
                "\r\n";
-            for(int j = 0; j < var.get_count(); j++)
-            {
-               string value = var[j].get_string();
-               tmp += value + "\r\n";
-            }
+            string value = var.get_string();
+            tmp += value + "\r\n";
+            //for(int j = 0; j < var.get_count(); j++)
+            //{
+              // string value = var[j].get_string();
+               //tmp += value + "\r\n";
+            //}
             write( tmp );
          }
       }
 
       // send files
       {
-         POSITION pos = m_mapFiles.get_start_position();
-         for(; pos != NULL;)
+         for (auto & pair : m_pmultipart->m_map)
          {
-            string name;
+            string & name = pair.m_element1;
+
+            uint64_t content_length = pair.m_element2.m_uiContentLength;
+
             string filename;
-            m_mapFiles.get_next_assoc(pos, name, filename);
-            string content_type = m_mapContentType[filename];
-            tmp = "--" + m_boundary + "\r\n"
-               "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
-               "content-type: " + content_type + "\r\n"
+
+            if (pair.m_element2.m_spfile->GetFilePath().has_char())
+            {
+
+               filename = "; filename=\"" + pair.m_element2.m_spfile->GetFilePath() + "\"";
+
+            }
+
+            string content_type;
+
+            if (pair.m_element2.m_strContentType.has_char())
+            {
+
+               content_type = "content-type: " + pair.m_element2.m_strContentType + "\r\n";
+
+            }
+
+            tmp = "--" + m_boundary + "\r\ncontent-disposition: form-data; name=\"" + name + "\"" + filename + "\r\n"
+               + content_type +
                "\r\n";
+
             write( tmp );
             {
-               ::file::file_sp spfile(allocer());
-               if(spfile->open(filename, ::file::type_binary | ::file::mode_read).succeeded())
+               //::file::file_sp spfile(allocer());
+               //if(spfile->open(filename, ::file::type_binary | ::file::mode_read).succeeded())
                {
-                  transfer_from(*spfile);
+                  transfer_from(*pair.m_element2.m_spfile);
                }
             }
             write("\r\n");
          }
+         //POSITION pos = m_mapFiles.get_start_position();
+         //for (; pos != NULL;)
+         //{
+         //   string name;
+         //   string filename;
+         //   m_mapFiles.get_next_assoc(pos, name, filename);
+         //   string content_type = m_mapContentType[filename];
+         //   tmp = "--" + m_boundary + "\r\n"
+         //      "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
+         //      "content-type: " + content_type + "\r\n"
+         //      "\r\n";
+         //   write(tmp);
+         //   {
+         //      ::file::file_sp spfile(allocer());
+         //      if (spfile->open(filename, ::file::type_binary | ::file::mode_read).succeeded())
+         //      {
+         //         transfer_from(*spfile);
+         //      }
+         //   }
+         //   write("\r\n");
+         //}
       }
 
       // end of send
@@ -319,10 +409,10 @@ namespace sockets
    }
 
 
-   void http_post_socket::SetMultipart()
-   {
-      m_bMultipart = true;
-   }
+   //void http_post_socket::SetMultipart()
+   //{
+   //   m_pmulbMultipart = true;
+   //}
 
 
 }

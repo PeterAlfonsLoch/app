@@ -33,6 +33,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    namespace sockets
    {
 
+      class CLASS_DECL_AURA multipart :
+         virtual public object
+      {
+      public:
+
+         class CLASS_DECL_AURA item
+         {
+         public:
+
+            ::file::file_sp      m_spfile;
+            uint64_t             m_uiContentLength;
+            string               m_strContentType;
+
+         };
+
+         string_map < item > m_map;
+
+         multipart(::aura::application * papp):object(papp) {}
+         virtual ~multipart() {}
+
+      };
 
       class base_socket_handler;
 
@@ -45,10 +66,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
          string                           m_boundary;
-         string_to_string                 m_mapFiles;
-         ::string_map < uint64_t >        m_mapContentLength;
-         string_to_string                 m_mapContentType;
-         bool                             m_bMultipart;
+         //string_to_string                 m_mapFiles;
+         //::string_map < uint64_t >        m_mapContentLength;
+         //string_to_string                 m_mapContentType;
+         sp(multipart)                    m_pmultipart;
+         //bool                             m_bMultipart;
          //static int                     m_boundary_count;
          //static mutex                   m_boundary_mutex;
 
@@ -69,7 +91,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          /** use this to post with content-type multipart/form-data.
          // when adding a file to the post, this is the default and only content-type */
-         void SetMultipart();
+         //void SetMultipart();
 
          /** http put client implemented in OnConnect */
          void step();

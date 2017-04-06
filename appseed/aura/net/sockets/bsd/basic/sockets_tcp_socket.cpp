@@ -1760,12 +1760,12 @@ skip:
       if (m_ssl)
       {
 
-         if (m_ssl_session != NULL)
-         {
+         //if (m_ssl_session != NULL)
+         //{
 
-            free_ssl_session();
+         //   free_ssl_session();
 
-         }
+         //}
 
          if (m_spsslclientcontext.is_set())
          {

@@ -1272,6 +1272,22 @@ namespace user
 
       m_scrolldataVert.m_bScroll = m_scrolldataVert.m_bScrollEnable && m_scrolldataVert.m_bScroll;
 
+      if (!m_scrolldataHorz.m_bScroll)
+      {
+
+         set_viewport_offset_x(0);
+
+      }
+
+
+      if (!m_scrolldataVert.m_bScroll)
+      {
+
+         set_viewport_offset_y(0);
+
+      }
+
+
       rect rectScroll;
 
       GetScrollRect(rectScroll);

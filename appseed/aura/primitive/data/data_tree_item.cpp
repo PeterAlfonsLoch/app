@@ -14,8 +14,7 @@ namespace data
       m_dwState         = 0;
       m_ptree           = NULL;
       m_pparent         = NULL;
-      m_pprevious       = NULL;
-      m_ppreviousParent = NULL;
+      m_iLevel          = -1;
 
    }
 
@@ -40,7 +39,7 @@ namespace data
       for (auto c : m_children)
       {
 
-         c->update_pointers();
+//         c->update_pointers();
 
       }
 
@@ -62,7 +61,7 @@ namespace data
       for (auto c : m_pparent->m_children)
       {
 
-         c->update_pointers();
+//         c->update_pointers();
 
       }
 
@@ -90,7 +89,7 @@ namespace data
       for (auto c : m_pparent->m_children)
       {
 
-         c->update_pointers();
+//         c->update_pointers();
 
       }
 
@@ -200,33 +199,227 @@ namespace data
    }
 
 
+   tree_item * tree_item::get_previous_or_parent(index * iLevelOffset)
+   {
+
+      if (m_pparent == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      index iFind = m_pparent->m_children.find_first(this);
+
+      if (iFind <= 0)
+      {
+
+         if (iLevelOffset != NULL)
+         {
+
+            (*iLevelOffset)--;
+
+         }
+
+         return m_pparent;
+
+      }
+
+      return m_pparent->m_children[iFind - 1];
+
+   }
+
+   tree_item * tree_item::get_previous()
+   {
+      
+      if (m_pparent == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      index iFind = m_pparent->m_children.find_first(this);
+
+      if (iFind <= 0)
+      {
+
+         return NULL;
+
+      }
+
+      return m_pparent->m_children[iFind - 1];
+
+   }
+
+   tree_item * tree_item::get_next()
+   {
+      
+      if (m_pparent == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      index iFind = m_pparent->m_children.find_first(this);
+
+      if (iFind < 0 || iFind >= m_pparent->m_children.get_upper_bound())
+      {
+
+         return NULL;
+
+      }
+
+      return m_pparent->m_children[iFind + 1];
+
+   }
+
+   tree_item * tree_item::get_next_or_parent(index * iLevelOffset)
+   {
+      
+      if (m_pparent == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      index iFind = m_pparent->m_children.find_first(this);
+
+      if (iFind < 0 || iFind >= m_pparent->m_children.get_upper_bound())
+      {
+
+         if (iLevelOffset != NULL)
+         {
+
+            (*iLevelOffset)--;
+
+         }
+
+         return m_pparent->get_next_or_parent(iLevelOffset);
+
+      }
+
+      return m_pparent->m_children[iFind + 1];
+
+
+   }
+
+   tree_item * tree_item::get_child_or_next(index * iLevelOffset)
+   {
+      
+      tree_item * pitem = first_child();
+
+      if (pitem != NULL)
+      {
+
+         if (iLevelOffset != NULL)
+         {
+
+            (*iLevelOffset)++;
+
+         }
+
+         return pitem;
+
+      }
+
+      if (m_pparent == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      pitem = get_next();
+
+      if (pitem != NULL)
+      {
+
+
+         return pitem;
+
+      }
+
+      return NULL;
+
+   }
+
+
+   tree_item * tree_item::get_child_next_or_parent(index * iLevelOffset)
+   {
+
+      tree_item * pitem = first_child();
+
+      if (pitem != NULL)
+      {
+
+         if (iLevelOffset != NULL)
+         {
+
+            (*iLevelOffset)++;
+
+         }
+
+         return pitem;
+
+      }
+
+      if (m_pparent == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      pitem = get_next();
+
+      if (pitem != NULL)
+      {
+
+
+         return pitem;
+
+      }
+
+      if (iLevelOffset != NULL)
+      {
+
+         (*iLevelOffset)--;
+
+      }
+
+      return m_pparent->get_next_or_parent(iLevelOffset);
+
+
+   }
+
+
    tree_item * tree_item::get_item(ETreeNavigation enavigation, index * pindexLevel)
    {
+      tree_item * pitem;
       switch(enavigation)
       {
       case TreeNavigationExpandedForward:
-         if (pindexLevel != NULL)
-         {
-            *pindexLevel = m_iLevelNextParentChild;
-         }
-         return m_pnextParentChild;
+         
+         return get_child_next_or_parent(pindexLevel);
+
       case TreeNavigationProperForward:
+         
          if ((m_dwState & ::data::tree_item_state_expanded) != 0)
          {
-            if (pindexLevel != NULL)
-            {
-               *pindexLevel = m_iLevelNextParentChild;
-            }
-            return m_pnextParentChild;
+            
+            return get_child_next_or_parent(pindexLevel);
+
          }
          else
          {
-            if (pindexLevel != NULL)
-            {
-               *pindexLevel = m_iLevelNextParent;
-            }
-            return m_pnextParent;
+
+            return get_next_or_parent(pindexLevel);
+
          }
+
       default:
          // Not Expected
          ASSERT(FALSE);
@@ -483,94 +676,114 @@ namespace data
 
    }
 
-   void tree_item::update_pointers()
-   {
+   //void tree_item::update_pointers()
+   //{
 
-      update_previous_pointers(true);
+   //   if (m_pparent == NULL)
+   //   {
 
-      if (m_children.has_elements())
-      {
-         
-         m_children[0]->update_previous_pointers(true);
+   //      m_iLevel = 0;
 
-      }
+   //   }
+   //   else
+   //   {
 
-      if (m_children.get_count() > 1)
-      {
+   //      m_iLevel = m_pparent->m_iLevel + 1;
 
-         m_children.last_sp()->update_next_pointers(true);
+   //   }
 
-      }
+   //   update_previous_pointers(true);
 
-      update_next_pointers(true);
+   //   if (m_children.has_elements())
+   //   {
+   //      
+   //      m_children[0]->update_previous_pointers(true);
 
-   }
+   //   }
 
-   void tree_item::update_previous_pointers(bool bUpdateNext)
-   {
+   //   if (m_children.get_count() > 1)
+   //   {
 
-      m_pprevious = calc_previous(false);
+   //      m_children.last_sp()->update_next_pointers(true);
 
-      if (bUpdateNext && m_pprevious != NULL)
-      {
+   //   }
 
-         m_pprevious->update_next_pointers(false);
+   //   update_next_pointers(true);
 
-      }
+   //}
 
-      m_ppreviousParent = calc_previous(true);
+   //void tree_item::update_previous_pointers(bool bUpdateNext)
+   //{
 
-      if (bUpdateNext && m_ppreviousParent != NULL && m_ppreviousParent != m_pprevious)
-      {
+   //   m_pprevious = calc_previous(false);
 
-         m_ppreviousParent->update_next_pointers(false);
+   //   if (bUpdateNext && m_pprevious != NULL)
+   //   {
 
-      }
+   //      m_pprevious->update_next_pointers(false);
 
-   }
+   //   }
 
+   //   m_ppreviousParent = calc_previous(true);
 
-   void tree_item::update_next_pointers(bool bUpdatePrevious)
-   {
+   //   if (bUpdateNext && m_ppreviousParent != NULL && m_ppreviousParent != m_pprevious)
+   //   {
 
-      m_pnext = calc_next(false, false, &m_iLevelNext);
+   //      m_ppreviousParent->update_next_pointers(false);
 
-      if (bUpdatePrevious && m_pnext != NULL)
-      {
+   //   }
 
-         m_pnext->update_previous_pointers(false);
-
-      }
-
-      m_pnextChild = calc_next(true, false, &m_iLevelNextChild);
-
-      if (bUpdatePrevious && m_pnextChild != NULL && m_pnextChild != m_pnext)
-      {
-
-         m_pnextChild->update_next_pointers(false);
-
-      }
-
-      m_pnextParent = calc_next(false, true, &m_iLevelNextParent);
-
-      if (bUpdatePrevious && m_pnextParent != NULL && m_pnextParent != m_pnext  && m_pnextParent != m_pnextChild)
-      {
-
-         m_pnextParent->update_next_pointers(false);
-
-      }
+   //}
 
 
-      m_pnextParentChild = calc_next(true, true, &m_iLevelNextParentChild);
+   //void tree_item::update_next_pointers(bool bUpdatePrevious)
+   //{
+   //   
+   //   m_iLevelNext = m_iLevel;
 
-      if (bUpdatePrevious && m_pnextParentChild != NULL && m_pnextParentChild != m_pnext && m_pnextParentChild != m_pnextChild  && m_pnextParentChild != m_pnextParent)
-      {
+   //   m_pnext = calc_next(false, false, &m_iLevelNext);
 
-         m_pnextParentChild->update_next_pointers(false);
+   //   if (bUpdatePrevious && m_pnext != NULL)
+   //   {
 
-      }
+   //      m_pnext->update_previous_pointers(false);
 
-   }
+   //   }
+
+   //   m_iLevelNextChild = m_iLevel;
+
+   //   m_pnextChild = calc_next(true, false, &m_iLevelNextChild);
+
+   //   if (bUpdatePrevious && m_pnextChild != NULL && m_pnextChild != m_pnext)
+   //   {
+
+   //      m_pnextChild->update_next_pointers(false);
+
+   //   }
+
+   //   m_iLevelNextParent = m_iLevel;
+
+   //   m_pnextParent = calc_next(false, true, &m_iLevelNextParent);
+
+   //   if (bUpdatePrevious && m_pnextParent != NULL && m_pnextParent != m_pnext  && m_pnextParent != m_pnextChild)
+   //   {
+
+   //      m_pnextParent->update_next_pointers(false);
+
+   //   }
+
+   //   m_iLevelNextParentChild = m_iLevel;
+
+   //   m_pnextParentChild = calc_next(true, true, &m_iLevelNextParentChild);
+
+   //   if (bUpdatePrevious && m_pnextParentChild != NULL && m_pnextParentChild != m_pnext && m_pnextParentChild != m_pnextChild  && m_pnextParentChild != m_pnextParent)
+   //   {
+
+   //      m_pnextParentChild->update_next_pointers(false);
+
+   //   }
+
+   //}
 
 
    void tree_item::on_fill_children()

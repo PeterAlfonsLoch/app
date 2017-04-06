@@ -151,9 +151,13 @@ namespace user
    void split_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
+      
+      ::user::split_layout::_001OnDraw(pgraphics);
+
+
 //      int32_t i;
       
-      rect rect;
+      //rect rect;
       
       //COLORREF cr = ARGB(184, 92, 92, 80);
 

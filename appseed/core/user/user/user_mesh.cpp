@@ -124,6 +124,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pinterface,this,&mesh::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK,pinterface,this,&mesh::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN,pinterface,this,&mesh::_001OnRButtonDown);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pinterface, this, &mesh::_001OnRButtonUp);
 
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pinterface,this,&mesh::_001OnMouseMove);
 
@@ -2700,25 +2701,33 @@ namespace user
 
    void mesh::_001OnRButtonDown(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-         pmouse->previous();
+      pmouse->previous();
+
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
 
       if(!has_focus())
       {
+
          SetFocus();
+
       }
+
       if(Session.is_key_pressed(::user::key_shift))
       {
+
       }
       else if(Session.is_key_pressed(::user::key_control))
       {
+
       }
       else
       {
-         //      m_rangeSelection.clear();
+
          index iItem;
          if(_001DisplayHitTest(pt,iItem))
          {
@@ -2732,13 +2741,36 @@ namespace user
                RedrawWindow();
             }
          }
-         m_uiRButtonUpFlags = (UINT)pmouse->m_nFlags;
-         m_ptRButtonUp = pmouse->m_pt;
-         SetTimer(8477,500,NULL);
       }
 
 
       pobj->m_bRet = true;
+   }
+
+   
+   void mesh::_001OnRButtonUp(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      pmouse->previous();
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      if (!has_focus())
+      {
+
+         SetFocus();
+
+      }
+
+      _001OnRightClick(pmouse->m_ulFlags, pt);
+
+
+      pobj->m_bRet = true;
+
    }
 
 
@@ -2766,12 +2798,16 @@ namespace user
       return true;
    }
 
+
    bool mesh::_001OnRightClick(uint_ptr nFlag,point point)
    {
+
       UNREFERENCED_PARAMETER(nFlag);
       UNREFERENCED_PARAMETER(point);
       return false;
+
    }
+
 
    void mesh::range::clear()
    {

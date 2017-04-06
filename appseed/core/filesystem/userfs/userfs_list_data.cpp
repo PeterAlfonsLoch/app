@@ -11,6 +11,8 @@ namespace userfs
       ::user::list_data(papp),
       m_itema(papp)
    {
+      
+      defer_create_mutex();
 
    }
 

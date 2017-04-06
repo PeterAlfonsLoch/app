@@ -1650,12 +1650,12 @@ namespace user
 
       get_margin_rect(rectMargin);
 
-      int_ptr iLeft = (index)ptOffset.x - (rectMargin.left * 2);
+      int_ptr iLeft = (index)-ptOffset.x - (rectMargin.left * 2);
       if (m_bGroup && m_bLateralGroup)
          iLeft += m_iLateralGroupWidth;
       int_ptr iRight;
       draw_list_item item(this);
-      if (point.x < iLeft)
+      if (point.x < 0)
          return false;
       for (item.m_iWidthColumn = 0; item.m_iWidthColumn < iColumnCount; item.m_iWidthColumn++)
       {

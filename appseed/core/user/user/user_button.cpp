@@ -271,19 +271,33 @@ namespace user
 
       e_element eelement;
 
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
       if(hit_test(pmouse->m_pt, eelement) >= 0 && Session.m_puiLastLButtonDown == this)
       {
          Session.m_puiLastLButtonDown = NULL;
-         ::user::control_event ev;
-         ev.m_puie = this;
-         ev.m_eevent = ::user::event_button_clicked;
-         BaseOnControlEvent(&ev);
-         pobj->m_bRet = ev.m_bRet;
-         if(pobj->m_bRet)
+
+
+         pobj->m_bRet = _001OnClick(pmouse->m_ulFlags, pt);
+         if (pobj->m_bRet)
          {
             pmouse->set_lresult(1);
          }
+         else
+         {
 
+            ::user::control_event ev;
+            ev.m_puie = this;
+            ev.m_eevent = ::user::event_button_clicked;
+            BaseOnControlEvent(&ev);
+            pobj->m_bRet = ev.m_bRet;
+            if (pobj->m_bRet)
+            {
+               pmouse->set_lresult(1);
+            }
+         }
 
       }
 

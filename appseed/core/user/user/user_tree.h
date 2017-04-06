@@ -59,7 +59,6 @@ namespace user
       UINT                          m_uiLButtonUpFlags;
       point                         m_ptLButtonUp;
       ::data::tree_item *           m_pitemFirstVisible;
-      index                         m_iFirstVisibleItemLevel;
       index                         m_iFirstVisibleItemProperIndex;
       int32_t                       m_iCurrentViewWidth;
       //COLORREF                      m_crTextSelected;
@@ -101,9 +100,12 @@ namespace user
       void on_change_view_size();
 
       void _001OnTreeDataChange();
-      sp(::data::tree_item) CalcFirstVisibleItem(index & iLevel, index & iProperIndex);
+      sp(::data::tree_item) CalcFirstVisibleItem(index & iProperIndex);
       virtual int32_t _001CalcCurrentViewWidth();
+      virtual int32_t _001CalcTotalViewWidth();
+      virtual int32_t _001CalcTotalViewHeight();
       void _001SelectItem(::data::tree_item * pitem);
+      count _001GetProperItemCount();
       count _001GetVisibleItemCount();
       void _001SetCollapseImage(const char * pszMatter);
       void _001SetExpandImage(const char * pszMatter);
@@ -120,9 +122,9 @@ namespace user
 
       sp(::data::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
       
-      void _001OnClick(uint_ptr uiFlags, point point);
+      virtual bool _001OnClick(uint_ptr uiFlags, point point) override;
 
-      void _001OnRightClick(uint_ptr uiFlags, point point);
+      virtual bool _001OnRightClick(uint_ptr uiFlags, point point) override;
 
       virtual void perform_click();
 
@@ -180,7 +182,7 @@ namespace user
       virtual bool      can_merge(const ::data::tree * ptree) const;
       virtual bool      merge(::data::tree * ptree, bool bBind);
 
-      virtual sp(::data::tree_item) get_proper_item(index iIndex, index * piLevel, index * piCount = NULL);
+      virtual sp(::data::tree_item) get_proper_item(index iIndex, index * piLevel = NULL, index * piCount = NULL);
       virtual index     get_proper_item_index(::data::tree_item *pitemParam, index * piLevel);
       virtual index     get_proper_item_count();
 

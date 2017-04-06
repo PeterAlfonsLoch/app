@@ -293,6 +293,14 @@ namespace user
       }
 
 
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics)
+      {
+
+         VIEW::_001OnDraw(pgraphics);
+
+      }
+
+
    };
 
 

@@ -115,8 +115,15 @@ namespace hi5
        /* Twitter search APIs */
        bool search( string & query /* in */ );
 
+
+       string mediaUpload(::file::file_sp pfile, string strMimeType, string strCategory);
+       string mediaUploadInit(int iTotalSize, string strMimeType, string strCategory);
+       bool mediaUploadAppend(string strMediaId, index iIndex, memory & mem);
+       var mediaUploadFinalize(string strMediaId);
+       var mediaUploadStatus(string strMediaId);
+
        /* Twitter status APIs */
-       bool statusUpdate( string & newStatus /* in */ );
+       bool statusUpdate(string & newStatus /* in */, stringa straMediaIds = {});
        bool statusShowById( string & statusId /* in */ );
        bool statusDestroyById( string & statusId /* in */ );
 
@@ -149,6 +156,8 @@ namespace hi5
 
        /* Twitter ac::count APIs */
        bool accountRateLimitGet();
+
+
 
        /* Twitter favorites APIs */
        bool favoriteGet();
@@ -186,6 +195,7 @@ namespace hi5
        bool performGet( const string & getUrl, property_set & headers );
        bool performDelete( const string & deleteUrl );
        bool performPost( const string & postUrl, property_set & post );
+       bool performMultiPartPost(const string & postUrl, property_set & post, bool bMultiPartPost);
        //bool performPost( const string & postUrl, property_set & headers, property_set & post );
 
        string build_url(const char * baseUrl, const char * userInfo, bool isUserId );

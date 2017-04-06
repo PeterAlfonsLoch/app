@@ -66,7 +66,7 @@ namespace html
          elemental::implement_phase1(pdata, pelemental);
          m_pbutton->SetWindowText(pelemental->m_pbase->get_tag()->get_attr_value("value"));
          m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
-         m_pbutton->m_puserschema = pelemental;
+         m_pbutton->m_puserschemaSchema = pelemental;
          if(m_pbutton->m_id.is_empty())
          {
             m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("name");

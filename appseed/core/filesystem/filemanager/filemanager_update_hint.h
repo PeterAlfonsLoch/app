@@ -41,7 +41,7 @@ namespace filemanager
       e_type                        m_etype;
 
       ::action::context             m_actioncontext;
-
+      bool                              m_bOk;
 
       update_hint();
       virtual ~update_hint();

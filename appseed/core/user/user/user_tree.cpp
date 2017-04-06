@@ -10,52 +10,6 @@ namespace user
       m_dcextension(get_app())
    {
 
-      //try
-      //{
-      //   ::timer * p_car_doesnotexist = NULL;
-      //   p_car_doesnotexist->stop(); // the smart person is saying that the car is not stopping!!
-      //}
-      //catch(standard_exception &e)
-      //{
-      //   // the car is in the garage, it is not in the try
-      //}
-
-      //try
-      //{
-      //   ::timer * p_car_doesnotexist = NULL; // NULL = 123(a real bird) and you will see the bird has permission to delete all files... he is kung fu pand from another great cast in this great program...
-      // I am assuming I am perfect and that anyone that mess my code... oh noe, there is only mess...
-      //   p_car_doesnotexist->stop(); // the smart person is saying that the bird is not stopping, but it could not stop it is not stopping anyway... the crazynees of corruptness corruption is increasing!!
-      //}
-      //catch(standard_exception &e)
-      //{
-      //   // the car is in the garage, it is not in the try
-      //}
-
-
-      //try
-      //{
-      //   ::timer * p_car_doesnotexist = NULL; // car is a bus with format entire universe... system call (it will good peace for everybody... but okay, hopefully it will fail, and the hell make us feel a lot of pain and regret...)
-      //   p_car_doesnotexist->stop(); // the smart person is saying that the bird is not stopping, but it could not stop it is not stopping anyway... the crazynees of corruptness corruption is increasing!!
-      //   // permission denied...
-      //}
-      //catch(standard_exception &e)
-      ////{
-      //   // the car is in the garage, it is not in the try
-      ////}
-
-      /// or your very super perfect and undone program and you perfect and inaccessible person... it is just a word processor that will save the universe and is critical, that has a bug that cannot be corrected because there is a bug in 1+1=2, that dont save .doc files never and you do not want to fix!!
-      ////////      final crazyness!!
-      /// the one who talks about corruption don't make any move because, you know... Iam still trying to discover the continuation of you know...
-
-      // the most difficult error to ignore is the logic error in this person mind!!! For example, a difficult program to be whenever, wherever, not and ever used...
-      // an access violation is so shallow that can be totally ignored and continued and unrolled... the hardware will scramble the bits for your peace of mind after you *****TRYING***** to write to inaccessible place because in fact it is teeling that you f***ed evertyhing in the universe of perfection you are!!
-      // I know what are you feeling... the Community Helvetica (Swiss) sign... yes, you need help... probably me tooo...
-      // the red sign may be is telling for me to create a really great program... but if it happens in the customer... maybe they never detect that need to be launched now movie-with-todays-bad-special-effects-star-wars-watched-mainly-in-last-century...
-      // use, the entire and all pallette of swiss knives to improve and yourslef and don't show it to your customer... ... 6 dots... ...
-
-      // This is classy:
-      // Try Catch!!
-
       user_tree_common_construct();
 
    }
@@ -85,19 +39,15 @@ namespace user
       m_bHoverStart = false;
 
       m_pitemFirstVisible        = NULL;
-      m_iFirstVisibleItemLevel   = 0;
       m_pitemHover               = NULL;
       m_iClick                   = 0;
       m_iItemCount               = 0;
-      //      m_crText                   = ARGB(255, 0, 0, 0);
-      //    m_crTextSelected           = ARGB(255, 255, 255, 255);
-      //  m_crTextHighlight          = ARGB(255, 102, 153, 255);
-      //m_crTextSelectedHighlight  = ARGB(255, 172, 213, 255);
       m_iItemHeight              = 18;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
       m_pimagelist               = NULL;
       m_uchHoverAlphaInit        = 0;
+
    }
 
    void tree::_001OnCreate(signal_details * pobj)
@@ -106,58 +56,22 @@ namespace user
       if(pobj->previous())
          return;
 
-      if(IsWindowVisible())
-      {
-         RedrawWindow();
-      }
-
-
+      
       m_pimagelist = canew(image_list(get_app()));
+
       m_pimagelist->create(16, 16, 0, 10, 10);
       
-      ::fork(get_app(), [this](){
+      ::fork(get_app(), [this]()
+      {
 
-      _001SetCollapseImage("list/collapse.png");
-      _001SetExpandImage("list/expand.png");
+         _001SetCollapseImage("list/collapse.png");
+
+         _001SetExpandImage("list/expand.png");
          
       });
 
 
    }
-
-   //bool tree::_001DynamicGetItemData(BaseTreeItemData & itemdata, ::core::tree_path & itempath, int32_t iValidateCount)
-   //{
-   /*   if(m_pdatainterface001 != NULL)
-   {
-   Carray < uint32_t, uint32_t > ida;
-   Ex1TreeItemMetaData * pdata = _001StaticGetMetaData(itempath);
-   if(pdata == NULL)
-   return false;
-   pdata->GetId001(ida);
-   if(!m_pdatainterface001->_001GetItemData(itemdata, ida))
-   {
-   if(!_001StaticUpdateInfo(itempath, iValidateCount))
-   return false;
-   }
-   pdata->UpdateProperExpandedUserMeta(m_pdatainterface001, iValidateCount);
-   }
-   else
-   {
-   // There is no valid data interface
-   ASSERT(FALSE);
-   }*/
-   // return true;
-
-   /*if(itempath.IsRoot())
-   return false;
-   while(!m_pdata->_001GetItemData(itemdata, itempath))
-   {
-   if(!_001StaticUpdateInfo(itempath, iValidateCount))
-   return false;
-   }
-   return true;*/
-
-   //}
 
 
    void tree::_001OnDraw(::draw2d::graphics * pgraphics)
@@ -168,8 +82,6 @@ namespace user
       rect rectClient;
 
       GetClientRect(rectClient);
-
-
 
       point ptCursor;
 
@@ -221,96 +133,64 @@ namespace user
                m_uchHoverAlpha = (BYTE) (m_uchHoverAlphaInit - dwCurve);
          }
       }
-      //      ::aura::savings & savings = Session.savings();
-
-      ///      ::draw2d::graphics * pDCBuffer = pgraphics;
-
-      //      point ptOriginalViewportOrg = pgraphics->GetViewportOrg();
-      //
-      //      rect rectClientOffset = rectClient;
-
-      
 
       point ptOffset = get_viewport_offset();
 
-      pgraphics->OffsetViewportOrg((int32_t)-ptOffset.x,(int32_t)-(ptOffset.y % _001GetItemHeight()));
+      //pgraphics->OffsetViewportOrg((int32_t)-ptOffset.x,(int32_t)-(ptOffset.y % _001GetItemHeight()));
+      pgraphics->OffsetViewportOrg(-ptOffset.x, -ptOffset.y);
 
-
-      //   BaseTreeItemData itemdata;
-      /*      ::core::tree_path itempath;*/
       ::user::tree_draw_item drawitemdata;
+      
       drawitemdata.m_pdc = pgraphics;
+      
       drawitemdata.m_iIndentation = _001GetIndentation();
-      //   drawitemdata.m_pdata = &itemdata;
-      //      drawitemdata.m_ppath = &itempath;
-      drawitemdata.m_iItemHeight = 18;
+      
+      drawitemdata.m_iItemHeight = _001GetItemHeight();
+      
       GetClientRect(drawitemdata.m_rectClient);
-
 
       sp(::data::tree_item) pitem = m_pitemFirstVisible;
 
-
-
-      index iLevel = m_iFirstVisibleItemLevel;
       index iItem = m_iFirstVisibleItemProperIndex;
+
+      int iVisibleCount = _001GetVisibleItemCount();
+
       index iIndex = 0;
 
+      for(;pitem != NULL; pitem = pitem->get_item(::data::TreeNavigationProperForward))
+      {
 
-      for(;pitem != NULL; pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel))
-      {
          drawitemdata.m_pitem = pitem;
+
          drawitemdata.m_iItem = iItem;
+
          drawitemdata.m_rect = drawitemdata.m_rectClient;
-         drawitemdata.m_rect.left = (LONG) (drawitemdata.m_iIndentation * iLevel);
-         drawitemdata.m_rect.top += (LONG) (iIndex * drawitemdata.m_iItemHeight);
+
+         drawitemdata.m_rect.left = (LONG) (drawitemdata.m_iIndentation * pitem->m_iLevel);
+
+         drawitemdata.m_rect.top = (LONG) (iItem * drawitemdata.m_iItemHeight);
+
          drawitemdata.m_rect.bottom = (LONG) (drawitemdata.m_rect.top + drawitemdata.m_iItemHeight);
+
          drawitemdata.m_rect.right = m_iCurrentViewWidth;
-         if(pitem->m_dwState & ::data::tree_item_state_selected)
-         {
-            //         drawitemdata.m_dwMetaData |= 1;
-         }
-         else
-         {
-            //       drawitemdata.m_dwMetaData &= ~1;
-         }
+
          _001DrawItem(drawitemdata);
+
          iItem++;
+
          iIndex++;
+
+         if (iIndex > iVisibleCount)
+         {
+
+            break;
+
+         }
+
       }
-      /*int32_t iValidateItemCount = 30;
-      int32_t iItem = 0;
-      if(_001DynamicGetItemData(itemdata, m_itempathFirstVisible, iValidateItemCount))
-      {
-      m_iItemCount = m_pmetadataRoot->GetDescendantCount();
-      itempath = m_itempathFirstVisible;
-      while(true)
-      {
-      drawitemdata.m_iItem = iItem;
-      iLevel = itempath.m_iaPath.get_size() - 1;
-      drawitemdata.m_rect = drawitemdata.m_rectClient;
-      drawitemdata.m_rect.left = drawitemdata.m_iIndentation * iLevel;
-      drawitemdata.m_rect.top += iItem * drawitemdata.m_iItemHeight;
-      drawitemdata.m_rect.bottom = drawitemdata.m_rect.top + drawitemdata.m_iItemHeight;
-      Ex1TreeItemMetaData * pdata = _001StaticGetMetaData(itempath);
-      if(pdata == m_pmetadataSelected)
-      {
-      itemdata.m_dwMetaData |= 1;
-      }
-      else
-      {
-      itemdata.m_dwMetaData &= ~1;
-      }
-      _001DrawItem(drawitemdata);
-      iItem = _001StaticMoveNextItem(itempath, iItem);
-      if(iItem < 0)
-      break;
-      if(!_001DynamicGetItemData(itemdata, itempath, iValidateItemCount))
-      break;
-      iValidateItemCount--;
-      }
-      }*/
 
    }
+
 
    void tree::_001DrawItem(tree_draw_item & data)
    {
@@ -679,7 +559,8 @@ namespace user
             }
    }
 
-   void tree::_001OnClick(uint_ptr uiFlags, point point)
+
+   bool tree::_001OnClick(uint_ptr uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(point);
       //      if(uiFlags & MK_SHIFT)
@@ -697,9 +578,13 @@ namespace user
          //       m_pmetadataSelected = pdata;
          //   }
       }
+
+      return false;
+
    }
 
-   void tree::_001OnRightClick(uint_ptr uiFlags, point point)
+
+   bool tree::_001OnRightClick(uint_ptr uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(point);
       //      if(uiFlags & MK_SHIFT)
@@ -717,7 +602,11 @@ namespace user
          //       m_pmetadataSelected = pdata;
          //   }
       }
+
+      return false;
+
    }
+
 
    sp(::data::tree_item) tree::_001HitTest(POINT pt, ::user::e_tree_element & eelement)
    {
@@ -740,13 +629,15 @@ namespace user
 
       //   if(iItem >= _001StaticGetItemCount())
       //      return false;
-      index iLevel;
-      sp(::data::tree_item) pitem = get_proper_item(iItem, &iLevel);
+      
+      sp(::data::tree_item) pitem = get_proper_item(iItem);
 
       if(pitem == NULL)
          return NULL;
 
-      index x = (int32_t) (pt. x - _001GetIndentation() * iLevel + ptOffset.x);
+      index iLevel = pitem->m_iLevel;
+
+      index x = (int32_t) (pt. x - _001GetIndentation() * (iLevel) + ptOffset.x);
       if(x >= 0 && x < 16)
          eelement = tree_element_expand_box;
       if(x >= 18 && x < 34)
@@ -869,7 +760,9 @@ namespace user
 
             index iLastChildIndex = iParentIndex + pitem->get_proper_descendant_count();
 
-            index iLastVisibleIndex = (index) (ptOffset.y / _001GetItemHeight() + _001GetVisibleItemCount());
+            index iLastVisibleIndex = (index) (ptOffset.y / _001GetItemHeight() + _001GetVisibleItemCount()) + 1;
+
+            
 
             index iObscured; // obscured proper descendants
             iObscured = iLastChildIndex  - iLastVisibleIndex;
@@ -1011,10 +904,7 @@ namespace user
    void tree::on_change_viewport_offset()
    {
 
-      m_pitemFirstVisible = CalcFirstVisibleItem(
-         m_iFirstVisibleItemLevel,
-         m_iFirstVisibleItemProperIndex);
-
+      m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
       UpdateHover();
 
@@ -1058,11 +948,17 @@ namespace user
       if(rectClient.area() <= 0)
          return;
 
-      m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemLevel, m_iFirstVisibleItemProperIndex);
+      m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      m_iCurrentViewWidth = _001CalcCurrentViewWidth();
+      m_iCurrentViewWidth = _001CalcTotalViewWidth();
 
-      
+      m_sizeTotal.cx = m_iCurrentViewWidth;
+
+      m_sizeTotal.cy = _001CalcTotalViewHeight();
+
+      on_change_view_size();
+
+      on_change_viewport_offset();
 
    }
 
@@ -1159,26 +1055,28 @@ namespace user
       ::count iCount = _001GetVisibleItemCount();
       int32_t iMaxWidth = rectClient.width();
       int32_t iWidth;
-      index iLevel = m_iFirstVisibleItemLevel;
       index iIndent  = _001GetIndentation();
       sp(::data::tree_item) pitem = m_pitemFirstVisible;
       if(pitem == NULL)
          return iMaxWidth;
       for(int32_t i = 0; i < iCount; i++)
       {
-         iWidth = (int32_t) (200 + iIndent * iLevel);
+         iWidth = (int32_t) (200 + iIndent * pitem->m_iLevel);
          if(iWidth > iMaxWidth)
          {
             iMaxWidth = iWidth;
          }
-         pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
+         pitem = pitem->get_item(::data::TreeNavigationProperForward);
          if(pitem == NULL)
             break;
       }
+
       return iMaxWidth;
+
    }
 
-   sp(::data::tree_item) tree::CalcFirstVisibleItem(index & iLevel, index & iProperIndex)
+
+   sp(::data::tree_item) tree::CalcFirstVisibleItem(index & iProperIndex)
    {
       
       index nOffset;
@@ -1188,17 +1086,85 @@ namespace user
 
       point ptOffset = get_viewport_offset();
 
-      nOffset = ptOffset.y / _001GetItemHeight();
+      int iItemHeight = _001GetItemHeight();
 
+      nOffset = ptOffset.y / iItemHeight;
+      
       ::data::tree_item * pitem = NULL;
+
+      iProperIndex = 0;
 
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
          pitem = m_treeptra[i]->get_base_item();
 
+         for (;;)
+         {
+
+            ::data::tree_item * pitemNext = pitem->get_item(::data::TreeNavigationProperForward);
+
+            if (pitemNext == NULL)
+            {
+
+               break;
+
+            }
+
+            pitem = pitemNext;
+
+            if (nOffset <= 0)
+            {
+               
+               return pitem;
+
+            }
+
+            nOffset--;
+
+            iProperIndex++;
+
+         }
+
+      }
+
+      return pitem;
+
+   }
+
+
+   int32_t tree::_001CalcTotalViewWidth()
+   {
+
+      index nOffset;
+
+      if (_001GetItemHeight() == 0)
+         return NULL;
+
+      point ptOffset = get_viewport_offset();
+
+      nOffset = ptOffset.y / _001GetItemHeight();
+
+      nOffset++;
+
+      ::data::tree_item * pitem = NULL;
+
+      int iWidth;
+      int iMaxWidth = 0;
+      index iLevel = 0;
+      int iIndent = _001GetIndentation();
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         pitem = m_treeptra[i]->get_base_item();
+         iWidth = (int32_t)(200 + iIndent * iLevel);
+         if (iWidth > iMaxWidth)
+         {
+            iMaxWidth = iWidth;
+         }
+
          iLevel = 0;
-         iProperIndex = 0;
 
          for (;;)
          {
@@ -1210,15 +1176,50 @@ namespace user
                break;
             }
             nOffset--;
-            iProperIndex++;
          }
 
       }
 
-      return pitem;
+      return iMaxWidth;
 
    }
 
+   int tree::_001CalcTotalViewHeight()
+   {
+
+      return _001GetProperItemCount() & _001GetItemHeight();
+
+   }
+
+   count tree::_001GetProperItemCount()
+   {
+
+      ::count iProperCount = 0;
+
+      index nOffset;
+
+      index iLevel;
+
+      ::data::tree_item * pitem = NULL;
+
+      for (index i = 0; i < m_treeptra.get_count(); i++)
+      {
+
+         pitem = m_treeptra[i]->get_base_item();
+
+         for (;;)
+         {
+            pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
+            if (pitem == NULL)
+               break;
+            iProperCount++;
+         }
+
+      }
+
+      return iProperCount;
+
+   }
 
    void tree::_001OnTreeDataChange()
    {

@@ -107,6 +107,8 @@ namespace filemanager
       System.factory().creatable_small < operation_view > ();
       System.factory().creatable_small < operation_info_view > ();
       System.factory().creatable_small < operation_list_view > ();
+      System.factory().creatable_small < save_as_edit_view >();
+      System.factory().creatable_small < save_as_button>();
 
 
       System.factory().creatable_small < fs::simple::view > ();

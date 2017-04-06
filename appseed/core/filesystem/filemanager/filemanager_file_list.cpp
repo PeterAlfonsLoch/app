@@ -24,6 +24,10 @@ namespace filemanager
       m_bShow = false;
       m_dwLastFileSize = ::get_tick_count();
 
+      m_bHoverSelect = false;
+
+
+
       connect_update_cmd_ui("edit_copy", &file_list::_001OnUpdateEditCopy);
       connect_command("edit_copy", &file_list::_001OnEditCopy);
       connect_update_cmd_ui("trash_that_is_not_trash", &file_list::_001OnUpdateTrashThatIsNotTrash);
@@ -1054,8 +1058,6 @@ namespace filemanager
    void file_list::browse_sync(::action::context actioncontext)
    {
 
-      synch_lock lock(get_fs_mesh_data()->m_pmutex);
-
       if(m_bStatic)
       {
 
@@ -1064,6 +1066,10 @@ namespace filemanager
          stringa stra;
 
          get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic,stra);
+
+         synch_lock lock(get_fs_mesh_data()->m_pmutex);
+
+         get_fs_mesh_data()->m_itema.m_itema.remove_all();
 
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
@@ -1123,99 +1129,116 @@ namespace filemanager
       int32_t iSize;
       iSize = 0;
 
-      get_fs_mesh_data()->m_itema.m_itema.remove_all();
+      {
+
+         synch_lock lock(get_fs_mesh_data()->m_pmutex);
+
+         get_fs_mesh_data()->m_itema.m_itema.remove_all();
+
+      }
 
       m_pathaStrictOrder.remove_all();
 
       _001OnUpdateItemCount();
 
-
-      ::file::listing & listing = get_document()->m_listing;
-
-      for(int32_t i = 0; i < listing.get_size(); i++)
       {
 
-         item.m_flags.unsignalize_all();
+         synch_lock lock(get_fs_mesh_data()->m_pmutex);
 
-         ::file::path & path = listing[i];
+         ::file::listing & listing = get_document()->m_listing;
 
-         if (path.m_iDir < 0)
+         for (int32_t i = 0; i < listing.get_size(); i++)
          {
 
-            path.m_iDir = get_document()->get_fs_data()->is_dir(path) ? 1 : 0;
+            item.m_flags.unsignalize_all();
+
+            ::file::path & path = listing[i];
+
+            if (path.m_iDir < 0)
+            {
+
+               path.m_iDir = get_document()->get_fs_data()->is_dir(path) ? 1 : 0;
+
+            }
+
+            if (path.m_iDir == 1)
+            {
+
+               item.m_flags.signalize(::fs::FlagFolder);
+
+            }
+
+            item.m_iImage = -1;
+
+            item.m_filepath = path;
+
+            item.m_strName = path.name();
+
+            m_pathaStrictOrder.add(path);
+
+            get_fs_mesh_data()->m_itema.add_item(item);
+
+            iSize++;
+            if (iSize >= iMaxSize)
+            {
+               iMaxSize += 1000;
+            }
 
          }
 
-         if(path.m_iDir == 1)
-         {
-
-            item.m_flags.signalize(::fs::FlagFolder);
-
-         }
-
-         item.m_iImage = -1;
-         
-         item.m_filepath = path;
-
-         item.m_strName = path.name();
-
-         m_pathaStrictOrder.add(path);
-
-         get_fs_mesh_data()->m_itema.add_item(item);
-
-         iSize++;
-         if(iSize >= iMaxSize)
-         {
-            iMaxSize += 1000;
-         }
       }
-
-
 
       _001OnUpdateItemCount();
-      if(m_eview == view_icon)
+
       {
-         /*   // primeiro, todos System arquivos que foram removidos
-         // ou seja, que existem no array antigo,
-         // mas não existe no novo.
-         for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
+
+         synch_lock lock(get_fs_mesh_data()->m_pmutex);
+
+         if (m_eview == view_icon)
          {
-         string str = straStrictOrder[strictOld];
-         index find = m_pathaStrictOrder.find_first(str);
-         if(find < 0)
-         {
-         iaDisplayToStrictNew.remove_b(strictOld);
-         }
-         }*/
-         // segundo, reordena conforme a
-         // ordem que a listagem de arquivos fornecida pelo
-         // sistema operacional pode ser fornecida.
-         for(index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
-         {
-            string str = m_pathaStrictOrder[strictNew];
-            index strictOld = straStrictOrder.find_first(str);
-            if(strictOld >= 0)
+            /*   // primeiro, todos System arquivos que foram removidos
+            // ou seja, que existem no array antigo,
+            // mas não existe no novo.
+            for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
             {
-               index iDisplay = iaDisplayToStrict.get_a(strictOld);
-               iaDisplayToStrictNew.set(iDisplay,strictNew);
-            }
-         }
-         // terceiro, adiciona System novos arquivos nos primeiros espaços
-         // vazios
-         for(index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
-         {
-            string str = m_pathaStrictOrder[strictNew];
-            index strictOld = straStrictOrder.find_first(str);
-            if(strictOld < 0)
+            string str = straStrictOrder[strictOld];
+            index find = m_pathaStrictOrder.find_first(str);
+            if(find < 0)
             {
-               iaDisplayToStrictNew.add_b_in_first_free_a(strictNew);
+            iaDisplayToStrictNew.remove_b(strictOld);
             }
+            }*/
+            // segundo, reordena conforme a
+            // ordem que a listagem de arquivos fornecida pelo
+            // sistema operacional pode ser fornecida.
+            for (index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
+            {
+               string str = m_pathaStrictOrder[strictNew];
+               index strictOld = straStrictOrder.find_first(str);
+               if (strictOld >= 0)
+               {
+                  index iDisplay = iaDisplayToStrict.get_a(strictOld);
+                  iaDisplayToStrictNew.set(iDisplay, strictNew);
+               }
+            }
+            // terceiro, adiciona System novos arquivos nos primeiros espaços
+            // vazios
+            for (index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
+            {
+               string str = m_pathaStrictOrder[strictNew];
+               index strictOld = straStrictOrder.find_first(str);
+               if (strictOld < 0)
+               {
+                  iaDisplayToStrictNew.add_b_in_first_free_a(strictNew);
+               }
+            }
+            m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
          }
-         m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
-      }
-      else
-      {
-         get_fs_mesh_data()->m_itema.arrange(::fs::arrange_by_name);
+         else
+         {
+            get_fs_mesh_data()->m_itema.arrange(::fs::arrange_by_name);
+         }
+
       }
 
       _001CreateImageList();
@@ -1378,6 +1401,7 @@ namespace filemanager
          column.m_iControl = iControl;
          column.m_bCustomDraw = true;
          column.m_bEditOnSecondClick = true;
+         column.m_uiText = "";
          column.m_pil = pcallback->GetActionButtonImageList(i);
          _001AddColumn(column);
       }
@@ -1391,6 +1415,7 @@ namespace filemanager
          column.m_sizeIcon.cx = get_filemanager_data()->m_iIconSize;
          column.m_sizeIcon.cy = get_filemanager_data()->m_iIconSize;
          column.m_iControl = -1;
+         column.m_uiText = "Name"; 
          column.m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          column.m_bEditOnSecondClick = false;
          if (get_filemanager_data()->m_iIconSize >= 48)
@@ -2014,32 +2039,33 @@ namespace filemanager
    {
       if (get_filemanager_template() != NULL && get_filemanager_data()->is_topic())
       {
-         COLORREF cr;
-         if (m_pmanager->m_emode == manager::mode_saving)
-         {
+         return ARGB(255, 255, 255, 255);
+         //COLORREF cr;
+         //if (m_pmanager->m_emode == manager::mode_saving)
+         //{
 
-            cr = ARGB(255, 255, 210, 180);
+         //   cr = ARGB(255, 255, 210, 180);
 
-         }
-         else if (m_pmanager->m_emode == manager::mode_import)
-         {
+         //}
+         //else if (m_pmanager->m_emode == manager::mode_import)
+         //{
 
-            cr = ARGB(184, 180, 210, 255);
+         //   cr = ARGB(255, 180, 210, 255);
 
-         }
-         else if (m_pmanager->m_emode == manager::mode_export)
-         {
+         //}
+         //else if (m_pmanager->m_emode == manager::mode_export)
+         //{
 
-            cr = ARGB(184, 255, 250, 210);
+         //   cr = ARGB(255, 255, 250, 210);
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
-            cr = ARGB(184, 210, 255, 180);
+         //   cr = ARGB(184, 210, 255, 180);
 
-         }
-         return cr;
+         //}
+         //return cr;
       }
       else
       {

@@ -16,7 +16,7 @@ namespace base
 
 
       ::user::user *                m_puser;
-      sp(::user::schema)            m_pschemasimple;
+      sp(::user::schema)            m_puserschemasimple;
 
       ::user::interaction *         m_puiCapture;
 
@@ -60,6 +60,9 @@ namespace base
 
 
       virtual oswindow get_capture();
+
+
+      virtual void defer_create_user_schema(const char * pszUiInteractionLibrary = NULL);
 
 
    };

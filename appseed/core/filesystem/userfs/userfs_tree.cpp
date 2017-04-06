@@ -275,6 +275,8 @@ namespace userfs
 
       get_document()->browse(item->m_filepath, actioncontext);
 
+
+
    }
 
 
@@ -498,7 +500,7 @@ namespace userfs
 
          }
 
-         pitem = pitem->m_pnextParentChild;
+         pitem = pitem->get_child_next_or_parent();
 
          if(pitem == pitemStart)
             break;

@@ -29,22 +29,24 @@ namespace user
       void control_get_window_rect(sp(control) pcontrol,LPRECT lprect);
       bool control_001DisplayHitTest(POINT pt);
 
-      bool _001IsEditing();
+      virtual bool _001IsEditing();
 
       virtual bool _001IsPointInside(sp(control) pcontrol,point64 ptt);
 
-      void _001HideEditingControls();
-      void _001HideControl(sp(control) pcontrol);
+      virtual void _001HideEditingControls();
+      virtual void _001HideControl(sp(control) pcontrol);
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual LRESULT _001BaseWndGetProperty(EProperty eprop,LPARAM lparam);
       void _001UpdateColumns();
       sp(control) _001GetEditControl();
       void _001SetEditControl(sp(control) pcontrol);
-      virtual void _001PlaceControl(sp(control) pcontrol, int iEditItem);
+      virtual void _001PlaceControl(sp(control) pcontrol, int iEditItem, bool bClick = false) override;
       virtual void _001OnShowControl(sp(control) pcontrol);
-      sp(control) _001GetControl(index iItem, index iSubItem);
+      sp(control) _001GetControl(index iItem, index iSubItem) override;
       virtual bool _001OnClick(uint_ptr uiFlags,point point);
       virtual bool _001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem);
+      virtual bool _001OnRightClick(uint_ptr uiFlags, point point);
+      virtual bool _001OnRightClick(uint_ptr uiFlags, point point, index iItem, index iSubItem);
       void _001OnTimer(::timer * ptimer);
 
       using list::_001GetSelection;
@@ -56,6 +58,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnVScroll);
       DECL_GEN_SIGNAL(_001OnHScroll);
       DECL_GEN_SIGNAL(_001OnKeyDown);
+
+      virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0) override;
+
+      virtual void _001UpdateComboBox(sp(control) pcontrol) override;
 
       virtual void _001UpdateEdit(sp(control) pcontrol) override;
       virtual bool _001SaveEdit(sp(control) pcontrol) override;

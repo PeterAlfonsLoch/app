@@ -128,60 +128,94 @@ namespace user
       sp(::user::wndfrm::frame::frame) wndfrm::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
       {
 
-         string strLibrary(pszLibrary);
+         stringa straLibrary;
 
-         if(strLibrary.is_empty())
+         {
+
+            string strLibrary(pszLibrary);
+
+            if (strLibrary.has_char())
+            {
+
+               straLibrary.add(strLibrary);
+
+            }
+
+         }
+
+         {
+
+            string strLibrary = Application.preferred_userschema();
+
+            if (strLibrary.has_char())
+            {
+
+               straLibrary.add(strLibrary);
+
+            }
+
+         }
+
+         {
+
+            string strConfig = Application.directrix()->m_varTopicQuery["wndfrm"];
+
+            if (strConfig.has_char())
+            {
+
+               string strLibrary = string("wndfrm_") + strConfig;
+
+               straLibrary.add(strConfig);
+
+            }
+
+         }
+            
+            
          {
 
             string strConfig = Application.file().as_string(::dir::system() / "config\\system\\wndfrm.txt");
 
-            if(strConfig.is_empty())
+            if (strConfig.has_char())
             {
 
-               strConfig = Application.directrix()->m_varTopicQuery["wndfrm"];
+               string strLibrary = string("wndfrm_") + strConfig;
 
-               if(strConfig.is_empty())
-               {
-
-                  strConfig = "core";
-
-               }
+               straLibrary.add(strLibrary);
 
             }
 
-            strLibrary = string("wndfrm_") + strConfig;
-
          }
 
-         sp(::user::wndfrm::interaction) pinteraction = get_wndfrm(strLibrary);
+         straLibrary.add("wndfrm_metro");
+         straLibrary.add("wndfrm_rootkiller");
+         straLibrary.add("wndfrm_hyper");
+         straLibrary.add("wndfrm_core");
 
-         if(pinteraction == NULL)
+         sp(::user::wndfrm::interaction) pinteraction;
+
+         for(string strLibrary : straLibrary)
          {
-
-            wndfrm_core:
-
-            strLibrary = "wndfrm_core";
 
             pinteraction = get_wndfrm(strLibrary);
 
-            if(pinteraction == NULL)
+            if (pinteraction.is_set())
             {
 
-               throw exit_exception(get_app(),"wndfrm_core plugin or any other wndfrm_* plugin is installed");
+               break;
 
             }
 
          }
 
-
-         sp(::user::wndfrm::frame::frame) pframe = pinteraction->get_frame_schema(pszFrameSchemaName);
-
-         if(pframe.is_null() && strLibrary != "wndfrm_core")
+         if (pinteraction.is_null())
          {
 
-            goto wndfrm_core;
+            throw exit_exception(get_app(), "wndfrm_core plugin or any other wndfrm_* plugin is installed");
 
          }
+
+         sp(::user::wndfrm::frame::frame) pframe = pinteraction->get_frame_schema(pszFrameSchemaName);
 
          if(pframe.is_null())
          {

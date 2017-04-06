@@ -100,6 +100,19 @@ namespace filemanager
    }
 
 
+   void main_view::_001OnDraw(::draw2d::graphics * pgraphics)
+   {
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+
+
+   }
+
+
    void main_view::on_create_views()
    {
 

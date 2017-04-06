@@ -927,6 +927,10 @@ retry:
             bPost = true;
             bPut = false;
             psession.cast < ::sockets::http_post_socket>()->m_fields = set["post"].propset();
+            if (set.has_property("multipart"))
+            {
+               psession.cast < ::sockets::http_post_socket>()->m_pmultipart = set["multipart"].cast < ::sockets::multipart > ();
+            }
             psession->request("POST",strRequest);
          }
          else
@@ -1456,6 +1460,10 @@ retry_session:
          bPut = false;
          psocket = canew(::sockets::http_post_socket(handler, strUrl));
          dynamic_cast < ::sockets::http_post_socket * > (psocket.m_p)->m_fields = set["post"].propset();
+         if (set.has_property("multipart"))
+         {
+            psocket.cast < ::sockets::http_post_socket>()->m_pmultipart = set["multipart"].cast < ::sockets::multipart >();
+         }
          psocket->m_emethod = ::sockets::http_method_post;
       }
       else
@@ -1680,7 +1688,7 @@ retry_session:
          }
       }
 #endif
-      if(iStatusCode == 200 || psocket->outattr("http_status_code").is_empty())
+      if((iStatusCode >= 200 && iStatusCode <= 299 ) || psocket->outattr("http_status_code").is_empty())
       {
          estatus = status_ok;
       }

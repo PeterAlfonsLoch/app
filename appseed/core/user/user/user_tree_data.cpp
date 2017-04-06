@@ -43,6 +43,9 @@ namespace user
 
    void tree_data::_001OnTreeDataChange()
    {
+
+      ::data::tree::_001OnTreeDataChange();
+
    }
 
 

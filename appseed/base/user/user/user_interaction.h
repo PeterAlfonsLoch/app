@@ -854,6 +854,9 @@ namespace user
       
       virtual bool is_this_visible();
 
+      virtual bool _001OnClick(uint_ptr nFlag, point point);
+      virtual bool _001OnRightClick(uint_ptr nFlag, point point);
+
    };
 
 

@@ -546,7 +546,7 @@ namespace file
       if (m_bRootDirection)
       {
 
-         m_ptreeitemBeg = m_ptreeitemFlush->m_pnextParentChild;
+         m_ptreeitemBeg = m_ptreeitemFlush->get_child_next_or_parent();
 
          //m_ptreeitemBeg = m_ptreeitemEnd;
 
@@ -583,7 +583,7 @@ namespace file
             if (!m_bRootDirection)
             {
 
-               ptreeitem = ptreeitem->m_pnextParentChild;
+               ptreeitem = ptreeitem->get_child_next_or_parent();
 
             }
 
@@ -608,7 +608,7 @@ namespace file
             if (m_bRootDirection)
             {
 
-               ptreeitem = ptreeitem->m_ppreviousParent;
+               ptreeitem = ptreeitem->get_previous_or_parent();
                
             }
 
@@ -659,7 +659,7 @@ namespace file
 
       sp(::data::tree_item) pitemNew;
 
-      if(m_ptreeitem != NULL && m_ptreeitem->next() != NULL)
+      if(m_ptreeitem != NULL && m_ptreeitem->get_next() != NULL)
       {
 
          pitemNew = insert_item(pitem,::data::RelativeFirstChild, m_ptreeitem);
@@ -922,7 +922,7 @@ namespace file
    bool edit_file::CanRedo()
    {
       return m_iBranch < m_ptreeitem->get_expandable_children_count()
-         || m_ptreeitem->m_pnext != NULL;
+         || m_ptreeitem->get_next() != NULL;
    }
 
    ::count edit_file::GetRedoBranchCount()
@@ -931,7 +931,7 @@ namespace file
          return 1;
       else
          return   m_ptreeitem->get_expandable_children_count()
-         + (m_ptreeitem->m_pnext != NULL ? 1 : 0)
+         + (m_ptreeitem->get_next() != NULL ? 1 : 0)
          + (m_ptreeitem->m_children.has_elements() ? 1 : 0);
    }
 
@@ -948,7 +948,7 @@ namespace file
 
       m_dwFileLength -= ((sp(Item))m_ptreeitem->m_pitem)->get_delta_length();
 
-      m_ptreeitem = m_ptreeitem->m_ppreviousParent;
+      m_ptreeitem = m_ptreeitem->get_previous_or_parent();
 
       return true;
 
@@ -968,7 +968,7 @@ namespace file
          ptreeitem = m_ptreeitem->get_expandable_child(m_iBranch);
       }
       else
-         ptreeitem = m_ptreeitem->m_pnextParentChild;
+         ptreeitem = m_ptreeitem->get_child_next_or_parent();
       if(ptreeitem == NULL)
          return false;
       m_dwFileLength += ((sp(Item)) ptreeitem->m_pitem)->get_delta_length();
@@ -1006,7 +1006,7 @@ namespace file
          return false;
       for(ptreeitem  = m_ptreeitem;
          ptreeitem != m_ptreeitemFlush && ptreeitem != get_base_item() && ptreeitem != NULL;
-         ptreeitem  = ptreeitem->m_ppreviousParent)
+         ptreeitem  = ptreeitem->get_previous_or_parent())
       {
       }
       return ptreeitem == m_ptreeitemFlush;

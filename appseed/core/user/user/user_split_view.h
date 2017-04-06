@@ -33,7 +33,6 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
-
       template < class VIEW >
       inline VIEW * create_pane_view(index iPane, id id = ::id(), ::user::interaction * pviewLast = NULL);
 

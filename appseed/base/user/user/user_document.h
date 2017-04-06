@@ -1,5 +1,12 @@
 #pragma once
 
+namespace filemanager
+{
+
+   class manager;
+
+}
+
 
 namespace user
 {
@@ -185,6 +192,8 @@ namespace user
       virtual void assert_valid() const;
 
       // implementation helpers
+      virtual bool on_filemanager_open(::filemanager::manager * pmanager, var varFile);
+      virtual bool on_filemanager_save(::filemanager::manager * pmanager, var varFile, bool bReplace = true);
       virtual bool do_save(var varFile, bool bReplace = true);
       virtual bool do_file_save();
       virtual void update_frame_counts(single_lock * psl = NULL);

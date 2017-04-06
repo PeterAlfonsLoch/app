@@ -232,7 +232,311 @@ namespace hi5
       retVal = performGet( strUrl );
       return retVal;
    }
+   string twit::mediaUpload(::file::file_sp pfile, string strMimeType, string strCategory)
+   {
 
+      int64_t iLen = pfile->get_length();
+
+      if (iLen <= 0)
+      {
+
+         return "error: cannot upload media, it is zero size";
+
+      }
+
+      string strMediaId = mediaUploadInit(iLen, strMimeType, strCategory);
+
+      if (strMediaId.is_empty())
+      {
+
+         return "error: media Upload Init failed";
+
+      }
+
+      int64_t iChunkSize = 1024 * 1024;
+
+      int64_t iLastChunkSize = iLen % iChunkSize;
+
+      int64_t iChunkCount = iLen / iChunkSize;
+
+      if (iLastChunkSize <= 0)
+      {
+
+         iLastChunkSize = iChunkSize;
+
+      }
+      else
+      {
+
+         if (iLastChunkSize < 1024)
+         {
+
+            if (iChunkCount > 0)
+            {
+
+               iLastChunkSize += iChunkSize;
+
+            }
+            else
+            {
+
+               iChunkCount++;
+
+            }
+
+         }
+         else
+         {
+
+            iChunkCount++;
+
+         }
+
+      }
+
+      memory mem;
+
+      
+
+      for (index i = 0; i < iChunkCount; i++)
+      {
+
+         int64_t iSize;
+
+         if (i >= iChunkCount - 1)
+         {
+
+            iSize = iLastChunkSize;
+
+         }
+         else
+         {
+
+            iSize = iChunkSize;
+
+         }
+
+         mem.allocate(iSize);
+
+         pfile->seek_begin();
+
+         memory_size_t uiRead;
+
+         int64_t iPos = 0;
+
+         DWORD dwStart = get_tick_count();
+
+         while ((uiRead = pfile->read(&mem.get_data()[iPos], mem.get_size() - iPos)) > 0)
+         {
+            
+            Sleep(5);
+
+            if (get_tick_count() - dwStart > 60 * 1000)
+            {
+
+               return "error:timeout reading source file";
+
+            }
+
+         }
+
+         if (!mediaUploadAppend(strMediaId, i, mem))
+         {
+
+            return "error:mediaUploadAppend failed";
+
+         }
+
+      }
+
+      var v = mediaUploadFinalize(strMediaId);
+
+      if (v.is_new())
+      {
+
+         return "error: media upload failed";
+
+      }
+
+      if (v.has_property("processing_info"))
+      {
+
+         while (true)
+         {
+
+            string strState = v["processing_info"]["state"];
+
+            if (strState == "pending" || strState == "in_progress")
+            {
+
+               string strCheckAfterSecs = v["processing_info"]["check_after_secs"];
+
+               Sleep(atoi(strCheckAfterSecs) * 1000);
+
+            }
+            else if (strState == "succeeded")
+            {
+
+               return strMediaId;
+
+            }
+            else
+            {
+
+               string strErrorMessage;
+
+               strErrorMessage = "progress_percent:" + v["processing_info"]["progress_percent"];
+               strErrorMessage += "state:" + v["processing_info"]["state"];
+               strErrorMessage += "error.code:" + v["processing_info"]["error"]["code"];
+               strErrorMessage += "error.name:" + v["processing_info"]["error"]["name"];
+               strErrorMessage += "error.message:" + v["processing_info"]["error"]["message"];
+
+               return "error:" + strErrorMessage;
+
+            }
+
+            v = mediaUploadStatus(strMediaId);
+
+         }
+
+      }
+
+      return strMediaId;
+   }
+
+
+   string twit::mediaUploadInit(int iTotalSize, string strMimeType, string strCategory)
+   {
+
+      property_set post(get_app());
+
+      post["command"] = "INIT";
+      post["total_bytes"] = iTotalSize;
+      post["media_type"] = strMimeType;
+
+      if (!strMimeType.begins_ci("image/") || strMimeType.CompareNoCase("image/gif") == 0)
+      {
+
+         post["media_category"] = strCategory;
+
+      }
+
+      string strResp = m_strResponse;
+
+      string strUrl("https://upload.twitter.com/1.1/media/upload.json");
+
+      if (!performMultiPartPost(strUrl, post, false))
+      {
+
+         return "";
+
+      }
+
+      const char * psz = m_strResponse;
+
+      var v;
+
+      v.parse_json(psz);
+
+
+      return v["media_id_string"];
+
+
+
+   }
+
+   bool twit::mediaUploadAppend(string strMediaId, index iIndex, memory & mem)
+   {
+      
+      property_set post(get_app());
+
+      ::sockets::multipart multipart(get_app());
+
+      memory_file file(get_app());
+
+      *file.get_primitive_memory() = mem;
+
+      multipart.m_map["media"].m_spfile = &file;
+      multipart.m_map["media"].m_uiContentLength = mem.get_size();
+
+      post["multipart"] = &multipart;
+      post["post"]["command"] = "APPEND";
+      post["post"]["media_id"] = strMediaId;
+      post["post"]["segment_index"] = iIndex;
+
+      string strResp = m_strResponse;
+
+      string strUrl("https://upload.twitter.com/1.1/media/upload.json");
+
+      //strUrl += "?command=APPEND&segment_index=" + str::from(iIndex);
+
+      if (!performMultiPartPost(strUrl, post, true))
+      {
+
+         string strMessage = m_strResponse;
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   var twit::mediaUploadFinalize(string strMediaId)
+   {
+      property_set post(get_app());
+
+      post["command"] = "FINALIZE";
+      post["media_id"] = strMediaId;
+
+      string strResp = m_strResponse;
+
+      string strUrl("https://upload.twitter.com/1.1/media/upload.json");
+
+      if (!performMultiPartPost(strUrl, post, false))
+      {
+
+         return var::type_new;
+
+      }
+
+      const char * psz = m_strResponse;
+
+      var v;
+
+      v.parse_json(psz);
+
+
+      return v;
+   }
+
+   var twit::mediaUploadStatus(string strMediaId)
+   {
+
+      property_set post(get_app());
+
+      string strUrl("https://upload.twitter.com/1.1/media/upload.json");
+
+      strUrl += "?command=STATUS&media_id=" + strMediaId;
+
+      if (!performGet(strUrl))
+      {
+
+         return var::type_new;
+
+      }
+
+      const char * psz = m_strResponse;
+
+      var v;
+
+      v.parse_json(psz);
+
+
+      return v;
+   }
    /*++
    * @method: twit::statusUpdate
    *
@@ -244,17 +548,24 @@ namespace hi5
    *          response by twitter. Use get_response() for that.
    *
    *--*/
-   bool twit::statusUpdate( string & newStatus )
+   bool twit::statusUpdate( string & newStatus, stringa straMediaIds)
    {
       bool retVal = false;
-      if( true && newStatus.has_char() )
+      if( true && (newStatus.has_char() || straMediaIds.has_elements()))
       {
          /* Prepare new status message */
          property_set post(get_app());
          post["status"] = newStatus;
 
+         string strUrl("https://api.twitter.com/1.1/statuses/update.json");
+
+         if (straMediaIds.has_elements())
+         {
+            strUrl += "?media_ids=" + straMediaIds.implode(",");
+         }
+
          /* Perform POST */
-         retVal = performPost( "https://api.twitter.com/1.1/statuses/update.json", post );
+         retVal = performPost( strUrl, post );
       }
       return retVal;
    }
@@ -1384,6 +1695,56 @@ namespace hi5
          setHttp.merge(m_setHttp);
 
          setHttp["http_method"] = "POST";
+
+         return Application.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
+
+      }
+
+   }
+
+   bool twit::performMultiPartPost(const string & postUrl, property_set & set, bool bMultiPartPost)
+   {
+
+      if (set.has_property("headers"))
+      {
+
+         set.merge(m_setHttp);
+
+         if (set.has_property("post"))
+         {
+
+            set["http_method"] = "POST";
+
+         }
+
+         return Application.http().get(postUrl, m_strResponse, set);
+
+      }
+      else
+      {
+
+         property_set setHttp(get_app());
+
+         if (!bMultiPartPost)
+         {
+
+            setHttp["post"] = set;
+
+         }
+
+         m_oauth.getOAuthHeader(eOAuthHttpPost, postUrl, setHttp);
+
+         setHttp.merge(m_setHttp);
+
+         setHttp["http_method"] = "POST";
+
+         if (bMultiPartPost)
+         {
+
+            setHttp["post"] = set["post"];
+            setHttp["multipart"] = set["multipart"];
+
+         }
 
          return Application.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
 

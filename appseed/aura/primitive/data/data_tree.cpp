@@ -85,6 +85,9 @@ namespace data
 
    void tree::_001OnTreeDataChange()
    {
+      
+      update_levels();
+
    }
 
 
@@ -129,10 +132,11 @@ namespace data
 
       index iCount = 0;
 
-      if(*piLevel) 
+      if(piLevel) 
          *piLevel = 0;
 
       sp(::data::tree_item) pitem = get_base_item();
+      
       
       while(pitem != NULL && iIndex >= 0)
       {
@@ -303,7 +307,7 @@ namespace data
          break;
       case RelativeMacroRecord:
       {
-         if (pitemRelative->m_pnext != NULL)
+         if (pitemRelative->get_next() != NULL)
          {
             insert_item(pitemNew, ::data::RelativeFirstChild, pitemRelative);
          }
@@ -318,7 +322,7 @@ namespace data
             throw not_supported_exception(get_app());
       }
       pitemNew->m_ptree = this;
-      pitemNew->update_pointers();
+//      pitemNew->update_pointers();
 
 
       _001OnTreeDataChange();
@@ -334,12 +338,36 @@ namespace data
 
    void tree::sort(index ( * lpfnCompare )(const sp(tree_item) &, const sp(tree_item) &))
    {
+      
       sp(tree_item) pitem = get_base_item();
+
       while(pitem != NULL)
       {
+
          pitem->sort_children(lpfnCompare);
-         pitem = pitem->m_pnextParentChild;
+
+         pitem = pitem->get_child_next_or_parent();
+
       }
+
+   }
+
+   void tree::update_levels()
+   {
+
+      index iLevel = -1;
+
+      sp(tree_item) pitem = get_base_item();
+
+      while (pitem != NULL)
+      {
+
+         pitem->m_iLevel = iLevel;
+
+         pitem = pitem->get_child_next_or_parent(&iLevel);
+
+      }
+
    }
 
 

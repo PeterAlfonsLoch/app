@@ -14,6 +14,7 @@ namespace user
       m_bTrack = false;
       m_bLButtonDown = false;
       m_bHover = false;
+      m_font->create_point_font("Arial", 20.0);
    }
 
    list_header::~list_header()
@@ -40,10 +41,14 @@ namespace user
       string str;
 
       str = System.load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
+      m_font->create_point_font("Arial", 12.0);
+
 
       pgraphics->SelectObject(m_font);
 
 //      pgraphics->SetBkMode(TRANSPARENT);
+
+      pgraphics->set_text_color(ARGB(255, 0, 0, 0));
 
       pgraphics->_DrawText(str,str.get_length(),rectColumn,DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
 
@@ -553,7 +558,7 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
-      imaging.color_blend(pgraphics, rectUpdate, RGB(127, 127, 117), 128);
+      imaging.color_blend(pgraphics, rectUpdate, RGB(0, 0, 0), 80);
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;

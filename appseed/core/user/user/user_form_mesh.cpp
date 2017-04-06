@@ -89,12 +89,17 @@ namespace user
          }
          else
          {
-            pcontrol->m_iEditItem = iItem;
-            _001PlaceControl(pcontrol);
+            
+            _001PlaceControl(pcontrol, iItem, true);
+
          }
+
       }
+
       return true;
+
    }
+
 
    sp(control) form_mesh::_001GetControl(index iItem, index iSubItem)
    {
@@ -107,10 +112,13 @@ namespace user
 
 
 
-   void form_mesh::_001PlaceControl(sp(control) pcontrol)
+   void form_mesh::_001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick)
    {
+
       rect rect;
+
       draw_mesh_item item(this);
+
       item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
       item.m_iItem = pcontrol->m_iEditItem;
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
@@ -130,7 +138,9 @@ namespace user
          _001SetEditControl(pcontrol);
          pcontrol->SetFocus();
       }
+
    }
+
 
    void form_mesh::_001SetEditControl(sp(control) pcontrol)
    {
@@ -155,23 +165,29 @@ namespace user
       return m_pcontrolEdit;
    }
 
+
    void form_mesh::_001OnVScroll(signal_details * pobj)
    {
-      //SCAST_PTR(::message::scroll, pscroll, pobj);
+      
       pobj->previous();
-
 
       sp(control) pcontrol = _001GetEditControl();
 
       if(pcontrol != NULL)
       {
-         _001PlaceControl(pcontrol);
+
+         _001PlaceControl(pcontrol, pcontrol->m_iEditItem);
+
       }
+
    }
+
 
    void form_mesh::_001OnHScroll(signal_details * pobj)
    {
+      
       pobj->previous();
+
       if(pobj->m_bRet)
          return;
 
@@ -179,10 +195,13 @@ namespace user
 
       if(pcontrol != NULL)
       {
-         _001PlaceControl(pcontrol);
+
+         _001PlaceControl(pcontrol, pcontrol->m_iEditItem);
+
       }
 
    }
+
 
    bool form_mesh::_001OnMouseActivate(::window_sp pDesktopWnd,UINT nHitTest,UINT message,LRESULT & iResult)
    {

@@ -5,6 +5,5 @@
 <button id="edit_copy">Copy</button>
 <button id="edit_paste">Paste</button>
 <button id="trash_that_is_not_trash">Trash that is not trash</button>
-<button id="file_save">Export the File using the Path and Name Below</button>
 <button id="cancel">Cancel</button>
 </toolbar>

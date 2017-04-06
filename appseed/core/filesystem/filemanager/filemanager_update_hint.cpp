@@ -11,6 +11,7 @@ namespace filemanager
       
       m_pview = NULL;
       m_actioncontext = ::action::source_none;
+      m_bOk = false;
 
    }
 

@@ -56,7 +56,30 @@ namespace fs
 
       System.dir().root_ones(listing, get_app());
 
-      
+      {
+
+         ::file::path & path = listing.insert_at(0, System.dir().get_video_folder());
+         path.m_iDir = 1;
+         listing.m_straTitle.insert_at(0, unitext("Video"));
+
+      }
+
+      {
+
+         ::file::path & path = listing.insert_at(0, System.dir().get_image_folder());
+         path.m_iDir = 1;
+         listing.m_straTitle.insert_at(0, unitext("Image"));
+
+      }
+
+      {
+
+         ::file::path & path = listing.insert_at(0, System.dir().get_music_folder());
+         path.m_iDir = 1;
+         listing.m_straTitle.insert_at(0, unitext("Music"));
+
+      }
+
 #ifdef WINDOWSEX
 
       ::file::path strDesktopFolder;
@@ -69,7 +92,7 @@ namespace fs
 
       ::file::path & path = listing.insert_at(0,strDesktopFolder);
       path.m_iDir = 1;
-      listing.m_straTitle.insert_at(0,unitext("Área de Trabalho"));
+      listing.m_straTitle.insert_at(0,unitext("Desktop"));
       
 #endif
       

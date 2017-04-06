@@ -40,7 +40,7 @@ namespace user
    public:
 
       
-      ::user::schema *        m_puserschema;
+      ::user::schema *        m_puserschemaSchema;
 
       schema();
       virtual ~schema();

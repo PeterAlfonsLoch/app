@@ -80,7 +80,7 @@ namespace html
             
             m_pcombo->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"), ::action::source::add(::action::source_data, ::action::source_load));
 
-            m_pcombo->m_puserschema = pelemental;
+            m_pcombo->m_puserschemaSchema = pelemental;
 
             m_pcombo->m_bEdit = false;
 

@@ -152,6 +152,12 @@ namespace filemanager
    void path_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+
       ::user::plain_edit::_001OnDraw(pgraphics);
 
    }

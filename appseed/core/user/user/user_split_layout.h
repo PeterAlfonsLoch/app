@@ -106,6 +106,9 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+
+
    };
 
 

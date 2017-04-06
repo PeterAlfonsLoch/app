@@ -250,88 +250,88 @@ namespace filemanager
       else if(ecolor == ::user::color_background)
       {
 
-         if(m_bTransparentBackground)
-         {
+         //if(m_bTransparentBackground)
+         //{
 
-            if(is_topic())
-            {
+         //   if(is_topic())
+         //   {
 
-               if (m_pmanager->m_emode == manager::mode_saving)
-               {
+         //      if (m_pmanager->m_emode == manager::mode_saving)
+         //      {
 
-                  cr = ARGB(184, 255, 210, 180);
+         //         cr = ARGB(184, 255, 210, 180);
 
-               }
-               else if (m_pmanager->m_emode == manager::mode_import)
-               {
+         //      }
+         //      else if (m_pmanager->m_emode == manager::mode_import)
+         //      {
 
-                  cr = ARGB(184, 180, 210, 255);
+         //         cr = ARGB(184, 180, 210, 255);
 
-               }
-               else if (m_pmanager->m_emode == manager::mode_export)
-               {
+         //      }
+         //      else if (m_pmanager->m_emode == manager::mode_export)
+         //      {
 
-                  cr = ARGB(184, 255, 250, 210);
+         //         cr = ARGB(184, 255, 250, 210);
 
-               }
-               else
-               {
+         //      }
+         //      else
+         //      {
 
-                  cr = ARGB(184, 210, 255, 180);
+         //         cr = ARGB(184, 210, 255, 180);
 
-               }
+         //      }
 
-            }
-            else
-            {
+         //   }
+         //   else
+         //   {
 
-               cr = ARGB(184,255,255,250);
+         //      cr = ARGB(184,255,255,250);
 
-            }
+         //   }
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
-            if(is_topic())
-            {
+         //   if(is_topic())
+         //   {
 
-               if (m_pmanager->m_emode == manager::mode_saving)
-               {
+         //      if (m_pmanager->m_emode == manager::mode_saving)
+         //      {
 
-                  cr = ARGB(255, 255, 210, 180);
+         //         cr = ARGB(255, 255, 210, 180);
 
-               }
-               else if (m_pmanager->m_emode == manager::mode_import)
-               {
+         //      }
+         //      else if (m_pmanager->m_emode == manager::mode_import)
+         //      {
 
-                  cr = ARGB(184, 180, 210, 255);
+         //         cr = ARGB(184, 180, 210, 255);
 
-               }
-               else if (m_pmanager->m_emode == manager::mode_export)
-               {
+         //      }
+         //      else if (m_pmanager->m_emode == manager::mode_export)
+         //      {
 
-                  cr = ARGB(184, 255, 250, 210);
+         //         cr = ARGB(184, 255, 250, 210);
 
-               }
-               else 
-               {
+         //      }
+         //      else 
+         //      {
 
-                  cr = ARGB(184, 210, 255, 180);
+         //         cr = ARGB(184, 210, 255, 180);
 
-               }
+         //      }
 
-            }
-            else
-            {
+         //   }
+         //   else
+         //   {
 
-               cr = ARGB(255,255,255,250);
+         //      cr = ARGB(255,255,255,250);
 
-            }
+         //   }
 
-         }
+         //}
 
-         return true;
+         //return true;
 
       }
       else

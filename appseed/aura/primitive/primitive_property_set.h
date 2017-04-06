@@ -93,6 +93,8 @@ public:
    bool has_property(id idName) const;
    //bool has_property(string_interface & str) const;
 
+   bool is_true(id idName) const;
+
    bool is_set_empty(::count countMinimum = 1) const;
    bool has_properties(::count countMinimum = 1) const;
 
@@ -332,6 +334,18 @@ inline bool property_set::has_property(id idName) const
    const property * pproperty = find(idName);
 
    return pproperty != NULL && pproperty->m_element2.m_etype != var::type_new;
+
+}
+
+inline bool property_set::is_true(id idName) const
+{
+
+   const property * pproperty = find(idName);
+
+   if (pproperty == NULL)
+      return false;
+
+   return (bool)pproperty->m_element2;
 
 }
 
