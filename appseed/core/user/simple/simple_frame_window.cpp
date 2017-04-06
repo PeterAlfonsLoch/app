@@ -344,7 +344,18 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    m_puserschemaSchema = Application.userschema();
 
-   data_get("transparent_frame",m_bTransparentFrame);
+   if (m_workset.m_ebuttonHide.contains(::user::wndfrm::frame::button_transparent_frame))
+   {
+
+      m_bTransparentFrame = false;
+
+   }
+   else
+   {
+
+      data_get("transparent_frame", m_bTransparentFrame);
+
+   }
 
    sp(::user::place_holder) pplaceholder = GetParent();
 
@@ -839,6 +850,15 @@ void simple_frame_window::WfiOnFullScreen()
 
 bool simple_frame_window::WfiToggleTransparentFrame()
 {
+
+   if (m_workset.m_ebuttonHide.contains(::user::wndfrm::frame::button_transparent_frame))
+   {
+
+      m_bTransparentFrame = false;
+
+      return false;
+
+   }
 
    m_bTransparentFrame = !m_bTransparentFrame;
 
