@@ -969,22 +969,31 @@ public:
 void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
+   COLORREF crBackground = 0;
+
+   get_color(crBackground, ::user::color_background);
+
    rect rectClient;
 
    GetClientRect(rectClient);
 
-   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-   if(Session.savings().is_trying_to_save(::aura::resource_processing))
+   if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
    {
 
-      pgraphics->FillSolidRect(rectClient, RGB(255,255,255));
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   }
-   else
-   {
+      if (Session.savings().is_trying_to_save(::aura::resource_processing))
+      {
 
-      pgraphics->FillSolidRect(rectClient,ARGB(255, 210, 210, 210));
+         pgraphics->FillSolidRect(rectClient, RGB(255, 255, 255));
+
+      }
+      else
+      {
+
+         pgraphics->FillSolidRect(rectClient, ARGB(255, 210, 210, 210));
+
+      }
 
    }
 

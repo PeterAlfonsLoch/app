@@ -14,7 +14,7 @@ namespace filemanager
 
          m_ppropform = NULL;
 
-      }
+   }
 
 
    main_view::~main_view()
@@ -103,12 +103,20 @@ namespace filemanager
    void main_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      rect rectClient;
+      COLORREF crBackground = 0;
 
-      GetClientRect(rectClient);
+      get_color(crBackground, ::user::color_background);
 
-      pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+      if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      {
 
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
+         pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+
+      }
 
    }
 

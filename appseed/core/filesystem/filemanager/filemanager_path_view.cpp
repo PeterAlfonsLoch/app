@@ -5,14 +5,13 @@ namespace filemanager
 {
 
 
-
    path_view::path_view(::aura::application * papp) :
       object(papp),
       ::user::interaction(papp),
       ::user::plain_edit(papp)
    {
 
-         m_bVoidSync = false;
+      m_bVoidSync = false;
 
    }
 
@@ -152,13 +151,22 @@ namespace filemanager
    void path_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      rect rectClient;
+      COLORREF crBackground = 0;
 
-      GetClientRect(rectClient);
+      get_color(crBackground, ::user::color_background);
 
-      pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+      if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      {
 
-      ::user::plain_edit::_001OnDraw(pgraphics);
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
+         pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+
+         ::user::plain_edit::_001OnDraw(pgraphics);
+
+      }
 
    }
 
