@@ -298,7 +298,7 @@ namespace user
 
    }
 
-   void form_list::_001PlaceControl(sp(control) pcontrol, int iEditItem, bool bClick)
+   void form_list::_001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick)
    {
       
       if (_001GetEditControl() != NULL)
