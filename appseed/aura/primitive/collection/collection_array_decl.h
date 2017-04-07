@@ -621,6 +621,7 @@ public:
    inline bool empty(::count countMinimum = 1) const;
    inline bool has_elements(::count countMinimum = 1) const;
    inline index get_upper_bound(index i = -1) const;
+   inline bool bounds(index i) const;
 
 
    TYPE * element_at(index i) const { return &m_pData[i]; }

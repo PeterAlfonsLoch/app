@@ -55,7 +55,8 @@ namespace user
 
       bool                          m_bPassword;
 
-      bool                          m_bMouseDown;
+      bool                          m_bLMouseDown;
+      bool                          m_bRMouseDown;
       point                         m_ptSelStart;
       bool                          m_bFocus;
 //      bool                          m_bCaretOn;
@@ -131,10 +132,14 @@ namespace user
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnUniChar);
 
-      DECL_GEN_SIGNAL(_001OnUpdateEditFocusCopy);
-      DECL_GEN_SIGNAL(_001OnEditFocusCopy);
-      DECL_GEN_SIGNAL(_001OnUpdateEditFocusPaste);
-      DECL_GEN_SIGNAL(_001OnEditFocusPaste);
+      DECL_GEN_SIGNAL(_001OnUpdateEditCut);
+      DECL_GEN_SIGNAL(_001OnEditCut);
+      DECL_GEN_SIGNAL(_001OnUpdateEditCopy);
+      DECL_GEN_SIGNAL(_001OnEditCopy);
+      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
+      DECL_GEN_SIGNAL(_001OnEditPaste);
+      DECL_GEN_SIGNAL(_001OnUpdateEditDelete);
+      DECL_GEN_SIGNAL(_001OnEditDelete);
 
       virtual DECL_GEN_SIGNAL(_009OnChar);
 
@@ -205,6 +210,7 @@ namespace user
 
       void _001SetText(const string & str, ::action::context actioncontext);
       void _001SetSelText(const char * psz, ::action::context actioncontext);
+      void _001SetSelEnd(strsize iSelEnd);
       void _001SetSel(strsize iSelStart, strsize iSelEnd);
       void _001GetSel(strsize & iSelStart,strsize  & iSelEnd);
 
@@ -277,6 +283,8 @@ namespace user
 
       virtual void internal_edit_update(bool bFullUpdate, index iLineUpdate);
 
+
+      virtual void _001EditDelete();
 
    };
 

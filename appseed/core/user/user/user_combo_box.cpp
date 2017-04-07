@@ -76,7 +76,18 @@ namespace user
 
       string strText;
 
-      _001GetText(strText);
+      if (m_bEdit)
+      {
+
+         _001GetText(strText);
+
+      }
+      else
+      {
+
+         _001GetListText(_001GetCurSel(), strText);
+
+      }
 
       rect rectClient;
 
@@ -93,13 +104,13 @@ namespace user
 
       get_element_rect(rectText, element_text);;
 
-      int32_t iMargin = rectClient.height() / 8;
+      //int32_t iMargin = rectClient.height();
 
-      rectText.deflate(iMargin, iMargin);
+      //rectText.deflate(iMargin, iMargin);
 
       select_font(pgraphics);
 
-      pgraphics->draw_text(strText, rectText, 0);
+      pgraphics->TextOut(rectText.left, rectText.top, strText);
 
    }
 
@@ -443,7 +454,8 @@ namespace user
 
          ((combo_box *) this)->GetClientRect(rectClient);
 
-         int32_t iMargin = rectClient.height() / 8;
+         //int32_t iMargin = rectClient.height() / 8;
+         int32_t iMargin = 0;
 
          rect rectDropDown;
 
@@ -832,14 +844,20 @@ namespace user
       if(!IsWindow())
          return;
 
-      if(m_bEdit)
+      string strItem;
+
+      _001GetListText(iSel,strItem);
+
+      if (m_bEdit)
       {
 
-         string strItem;
+         _001SetText(strItem, actioncontext);
 
-         _001GetListText(iSel,strItem);
+      }
+      else
+      {
 
-         _001SetText(strItem,actioncontext);
+         _001SetText(strItem, ::action::source_sync);
 
       }
 
@@ -1374,16 +1392,20 @@ namespace user
 
 
 
-   void combo_box::_001GetListText(index iSel,string & str) const
+   bool combo_box::_001GetListText(index iSel,string & str) const
    {
 
-      if(iSel < 0)
-         throw invalid_argument_exception(get_app());
+      str.Empty();
 
-      if(iSel >= m_straList.get_count())
-         throw invalid_argument_exception(get_app());
+      if (iSel < 0)
+         return false;
+
+      if (iSel >= m_straList.get_count())
+         return false;
 
       str = m_straList[iSel];
+
+      return true;
 
    }
 

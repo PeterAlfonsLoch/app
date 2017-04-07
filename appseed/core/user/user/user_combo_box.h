@@ -74,7 +74,7 @@ namespace user
       virtual void _001SetText(const string & str, ::action::context actioncontext);
 
 
-      virtual void _001GetListText(index iSel, string & str) const;
+      virtual bool _001GetListText(index iSel, string & str) const;
       virtual index _001FindListText(const string & str) const;
       virtual count _001GetListCount() const;
 

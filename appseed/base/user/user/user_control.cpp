@@ -95,6 +95,10 @@ namespace user
       m_pform                 = descriptor.m_pform;
       m_iSubItem              = descriptor.m_iSubItem;
       m_setValue = descriptor.m_setValue;
+      m_iSubItemDisableCheckBox = descriptor.m_iSubItemDisableCheckBox;
+      m_iSubItemDuplicateCheckBox = descriptor.m_iSubItemDuplicateCheckBox;
+      m_iaSubItemDuplicate = descriptor.m_iaSubItemDuplicate;
+      m_iaSubItemDisable = descriptor.m_iaSubItemDisable;
 
       return *this;
 

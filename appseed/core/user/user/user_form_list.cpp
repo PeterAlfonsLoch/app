@@ -259,6 +259,92 @@ namespace user
 
          _001HideEditingControls();
 
+         sp(::user::list_column) pcolumn = m_columna._001GetBySubItem(iSubItem);
+
+         if (pcolumn.is_set() && pcolumn->m_iControl >= 0)
+         {
+
+            sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset.sp_at(pcolumn->m_iControl);
+
+            if (pdescriptor.is_set())
+            {
+
+               if (pdescriptor->has_function(::user::control::function_check_box))
+               {
+
+                  ::check::e_check echeck = _001GetSubItemCheck(iItem, iSubItem);
+
+                  if(echeck == ::check::checked)
+                  {
+
+                     echeck = ::check::unchecked;
+
+                  }
+                  else
+                  {
+
+                     echeck = ::check::checked;
+
+                  }
+
+                  _001SetSubItemCheck(iItem, iSubItem, echeck);
+
+                  if (echeck == ::check::checked)
+                  {
+
+                     for (auto & pitem : m_controldescriptorset)
+                     {
+
+                        if (pitem->has_function(::user::control::function_duplicate_on_check_box))
+                        {
+
+                           if (pitem->m_iSubItemDuplicateCheckBox == iSubItem)
+                           {
+
+                              for (auto iSubItemTarget : pitem->m_iaSubItemDuplicate)
+                              {
+
+                                 ::user::mesh_item itemSource(this);
+
+                                 itemSource.m_iItem = iItem;
+                                 itemSource.m_iSubItem = pitem->m_iSubItem;
+
+                                 _001GetItemText(&itemSource);
+
+                                 if (itemSource.m_bOk)
+                                 {
+
+                                    ::user::mesh_item itemTarget(this);
+
+                                    itemTarget.m_iItem = iItem;
+                                    itemTarget.m_iSubItem = iSubItemTarget;
+                                    itemTarget.m_strText = itemSource.m_strText;
+
+                                    _001SetItemText(&itemTarget);
+
+                                 }
+
+
+                              }
+
+                           }
+
+                        }
+
+                     }
+
+                  }
+
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+
       }
 
       return true;
@@ -363,6 +449,19 @@ namespace user
 
          }
 
+         if (_001IsSubItemEnabled(iEditItem, item.m_iSubItem))
+         {
+
+            pcontrol->enable_window();
+
+         }
+         else
+         {
+
+            pcontrol->enable_window(false);
+
+         }
+
          _001OnShowControl(pcontrol);
 
       }
@@ -374,7 +473,57 @@ namespace user
 
       _001HideEditingControls();
 
-      return ::user::list::_001OnUpdateItemCount(dwFlags);
+      bool bOk = ::user::list::_001OnUpdateItemCount(dwFlags);
+
+      for (auto & pitem : m_controldescriptorset)
+      {
+
+         if (pitem->has_function(::user::control::function_duplicate_on_check_box))
+         {
+
+            ::count iItemCount = _001GetItemCount();
+
+            for(index iItem = 0; iItem < iItemCount; iItem++)
+            {
+               
+               if (_001GetSubItemCheck(iItem, pitem->m_iSubItemDuplicateCheckBox) == ::check::checked)
+               {
+
+                  for (auto iSubItemTarget : pitem->m_iaSubItemDuplicate)
+                  {
+
+                     ::user::mesh_item itemSource(this);
+
+                     itemSource.m_iItem = iItem;
+                     itemSource.m_iSubItem = pitem->m_iSubItem;
+
+                     _001GetItemText(&itemSource);
+
+                     if (itemSource.m_bOk)
+                     {
+
+                        ::user::mesh_item itemTarget(this);
+
+                        itemTarget.m_iItem = iItem;
+                        itemTarget.m_iSubItem = iSubItemTarget;
+                        itemTarget.m_strText = itemSource.m_strText;
+
+                        _001SetItemText(&itemTarget);
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
+
+
+      return bOk;
 
    }
 
@@ -505,6 +654,7 @@ namespace user
 
             index iFind = pcombo->_001FindListText(item.m_strText);
 
+
             pcombo->_001SetCurSel(iFind, ::action::source_sync);
 
 
@@ -593,6 +743,7 @@ namespace user
 
          _001SetItemText(&item);
 
+
          on_update(NULL, ::user::impact::hint_control_saved, pcontrol);
 
          return true;
@@ -655,6 +806,44 @@ namespace user
          _001SetItemText(&item);
 
          on_update(NULL, ::user::impact::hint_control_saved, pcontrol);
+
+         if (pcontrol->descriptor().has_function(::user::control::function_duplicate_on_check_box))
+         {
+
+            if (_001GetSubItemCheck(item.m_iItem, pcontrol->descriptor().m_iSubItemDuplicateCheckBox) == ::check::checked)
+            {
+
+               for (auto iSubItemTarget : pcontrol->descriptor().m_iaSubItemDuplicate)
+               {
+
+                  ::user::mesh_item itemTarget(this);
+
+                  itemTarget.m_iItem = item.m_iItem;
+                  itemTarget.m_iSubItem = iSubItemTarget;
+                  itemTarget.m_strText = item.m_strText;
+
+                  _001SetItemText(&itemTarget);
+
+                  //sp(::list::column) pcolumn = m_columna._001GetBySubItem(iSubItemTarget);
+                  //
+                  //if (pcolumn.is_set() && m_controldescriptorset.bounds(pcolumn->m_iControl))
+                  //{
+
+                  //   sp(class ::user::control::descriptor) pdescriptorTarget = m_controldescriptorset.sp_at(pcolumn->m_iControl);
+
+                  //   if (pdescriptorTarget.is_set())
+                  //   {
+
+                  //      on_update(NULL, ::user::impact::hint_control_saved, pcontrol);
+                  //   }
+
+                  //}
+
+               }
+
+            }
+
+         }
 
       }
 
@@ -865,76 +1054,6 @@ namespace user
       pkey->previous();
    }
 
-   void form_list::_001DrawSubItem(draw_list_item * pdrawitem)
-   {
-
-      ::user::list::_001DrawSubItem(pdrawitem);
-
-      if(pdrawitem->m_pcolumn->m_bCustomDraw)
-      {
-
-         sp(control) pcontrol = _001GetControl(pdrawitem->m_iItem, pdrawitem->m_iSubItem);
-
-         if(pcontrol != NULL)
-         {
-
-            pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
-
-            pdrawitem->m_rectWindow = pdrawitem->m_rectClient;
-
-            ClientToScreen(pdrawitem->m_rectWindow);
-
-            ::rect rectWindow;
-
-            pcontrol->GetWindowRect(rectWindow);
-
-            ScreenToClient(rectWindow);
-
-            if(rectWindow != pdrawitem->m_rectClient)
-            {
-
-               pcontrol->SetWindowPos(0,pdrawitem->m_rectClient,SWP_SHOWWINDOW | SWP_NOZORDER);
-
-            }
-
-            //control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
-
-            if(pcontrol != Session.get_keyboard_focus())
-            {
-
-               sp(::user::plain_edit) pedit = pcontrol;
-
-               if(pedit.is_set())
-               {
-                  pdrawitem->m_bOk = false;
-                  _001GetItemText(pdrawitem);
-                  if(pdrawitem->m_bOk)
-                  {
-
-                     string strText;
-
-                     pedit->_001GetText(strText);
-
-
-                     if(strText != pdrawitem->m_strText)
-                     {
-
-                        pedit->_001SetText(pdrawitem->m_strText,::action::source_sync);
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-            //pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
-            //pdrawitem->m_pgraphics->SelectClipRgn(NULL);
-            //_001OnClip(pdrawitem->m_pgraphics);
-         }
-      }
-   }
 
 
    bool form_list::_001IsEditing()
@@ -1184,7 +1303,9 @@ namespace user
       for (index i = pcolumn->m_iKeyVisible -1; i >= 0; i--)
       {
 
-         if (m_columna._001GetVisible(i)->m_iControl >= 0)
+         if (m_columna._001GetVisible(i)->m_iControl >= 0
+            && _001GetControl(iItem, m_columna._001GetVisible(i)->m_iSubItem) != NULL
+            && _001IsSubItemEnabled(iItem, m_columna._001GetVisible(i)->m_iSubItem))
          {
 
 
@@ -1204,7 +1325,9 @@ namespace user
          for (index i = iColumnCount - 1; i >= pcolumn->m_iKeyVisible; i--)
          {
 
-            if (m_columna._001GetVisible(i)->m_iControl >= 0)
+            if (m_columna._001GetVisible(i)->m_iControl >= 0
+               && _001GetControl(iItem, m_columna._001GetVisible(i)->m_iSubItem) != NULL
+               && _001IsSubItemEnabled(iItem, m_columna._001GetVisible(i)->m_iSubItem))
             {
 
                pcolumnPrevious = m_columna._001GetVisible(i);
@@ -1261,7 +1384,9 @@ namespace user
       for (index i = pcolumn->m_iKeyVisible + 1; i < iColumnCount; i++)
       {
 
-         if (m_columna._001GetVisible(i)->m_iControl >= 0)
+         if (m_columna._001GetVisible(i)->m_iControl >= 0
+            && _001GetControl(iItem, m_columna._001GetVisible(i)->m_iSubItem) != NULL
+            && _001IsSubItemEnabled(iItem, m_columna._001GetVisible(i)->m_iSubItem))
          {
 
 
@@ -1281,7 +1406,9 @@ namespace user
          for (index i = 0; i <= pcolumn->m_iKeyVisible; i++)
          {
 
-            if (m_columna._001GetVisible(i)->m_iControl >= 0)
+            if (m_columna._001GetVisible(i)->m_iControl >= 0
+               && _001GetControl(iItem, m_columna._001GetVisible(i)->m_iSubItem) != NULL
+               && _001IsSubItemEnabled(iItem, m_columna._001GetVisible(i)->m_iSubItem))
             {
 
                pcolumnNext = m_columna._001GetVisible(i);
@@ -1328,23 +1455,44 @@ namespace user
 
       int iUpperItem = iItem - 1;
 
-      if (iUpperItem < 0)
+      for (; iUpperItem >= 0; iUpperItem--)
       {
 
-         iUpperItem = _001GetItemCount() - 1;
+         if (_001GetControl(iUpperItem, iSubItem) != NULL && _001IsSubItemEnabled(iUpperItem, iSubItem))
+         {
+
+            iItem = iUpperItem;
+
+            return true;
+
+         }
 
       }
 
-      if (iUpperItem < 0)
+      for (iUpperItem = _001GetItemCount() - 1; iUpperItem >= iItem; iUpperItem--)
       {
 
-         return false;
+         if (_001GetControl(iUpperItem, iSubItem) != NULL && _001IsSubItemEnabled(iUpperItem, iSubItem))
+         {
+
+            iItem = iUpperItem;
+
+            return true;
+
+         }
 
       }
 
-      iItem = iUpperItem;
+      iItem--;
 
-      return true;
+      if (iItem < 0)
+      {
+
+         iItem = _001GetItemCount() - 1;
+
+      }
+
+      return _001PreviousEditableControl(iItem, iSubItem);
 
    }
 
@@ -1354,23 +1502,44 @@ namespace user
 
       int iLowerItem = iItem + 1;
 
-      if (iLowerItem >= _001GetItemCount())
+      for (; iLowerItem <  _001GetItemCount() - 1; iLowerItem++)
       {
 
-         iLowerItem = 0;
+         if (_001GetControl(iLowerItem, iSubItem) != NULL && _001IsSubItemEnabled(iLowerItem, iSubItem))
+         {
+
+            iItem = iLowerItem;
+
+            return true;
+
+         }
 
       }
 
-      if (iLowerItem >= _001GetItemCount())
+      for (iLowerItem = 0; iLowerItem <= iItem; iLowerItem++)
       {
 
-         return false;
+         if (_001GetControl(iLowerItem, iSubItem) != NULL && _001IsSubItemEnabled(iLowerItem, iSubItem))
+         {
+
+            iItem = iLowerItem;
+
+            return true;
+
+         }
 
       }
 
-      iItem = iLowerItem;
+      iItem++;
 
-      return true;
+      if (iItem >= _001GetItemCount())
+      {
+
+         iItem = 0;
+
+      }
+
+      return _001NextEditableControl(iItem, iSubItem);
 
    }
 
@@ -1613,6 +1782,271 @@ namespace user
       return ::user::list::_001HitTest_(point,iItem,iSubItem);
 
    }
+
+
+   void form_list::_001DrawSubItem(draw_list_item * pdrawitem)
+   {
+
+      if (pdrawitem->m_pcolumn->m_iControl >= 0)
+      {
+
+         sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset.sp_at(pdrawitem->m_pcolumn->m_iControl);
+
+         if (pdescriptor.is_set())
+         {
+
+            if (pdescriptor->has_function(::user::control::function_check_box))
+            {
+
+               _001GetElementRect(pdrawitem, ::user::mesh::element_text);
+
+               if (pdrawitem->m_bOk)
+               {
+
+                  rect r;
+
+                  r.left = 0;
+                  r.top = 0;
+                  r.right = 15;
+                  r.bottom = 15;
+
+                  r.Align(::align_center, pdrawitem->m_rectSubItem);
+
+                  _001GetItemText(pdrawitem);
+
+                  ::check::e_check echeck;
+
+                  if (pdrawitem->m_strText == pdescriptor->m_setValue[::check::checked])
+                  {
+
+                     echeck = ::check::checked;
+
+                  }
+                  else
+                  {
+
+                     echeck = ::check::unchecked;
+
+                  }
+
+                  m_puserschemaSchema->_001DrawCheckBox(pdrawitem->m_pgraphics, r, echeck);
+
+               }
+
+               return;
+
+            }
+
+         }
+
+      }
+
+      ::user::list::_001DrawSubItem(pdrawitem);
+
+      if (pdrawitem->m_pcolumn->m_bCustomDraw)
+      {
+
+         sp(control) pcontrol = _001GetControl(pdrawitem->m_iItem, pdrawitem->m_iSubItem);
+
+         if (pcontrol != NULL)
+         {
+
+            pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
+
+            pdrawitem->m_rectWindow = pdrawitem->m_rectClient;
+
+            ClientToScreen(pdrawitem->m_rectWindow);
+
+            ::rect rectWindow;
+
+            pcontrol->GetWindowRect(rectWindow);
+
+            ScreenToClient(rectWindow);
+
+            if (rectWindow != pdrawitem->m_rectClient)
+            {
+
+               pcontrol->SetWindowPos(0, pdrawitem->m_rectClient, SWP_SHOWWINDOW | SWP_NOZORDER);
+
+            }
+
+            //control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
+
+            if (pcontrol != Session.get_keyboard_focus())
+            {
+
+               sp(::user::plain_edit) pedit = pcontrol;
+
+               if (pedit.is_set())
+               {
+                  pdrawitem->m_bOk = false;
+                  _001GetItemText(pdrawitem);
+                  if (pdrawitem->m_bOk)
+                  {
+
+                     string strText;
+
+                     pedit->_001GetText(strText);
+
+
+                     if (strText != pdrawitem->m_strText)
+                     {
+
+                        pedit->_001SetText(pdrawitem->m_strText, ::action::source_sync);
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+            //pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
+            //pdrawitem->m_pgraphics->SelectClipRgn(NULL);
+            //_001OnClip(pdrawitem->m_pgraphics);
+         }
+      }
+
+      ::user::list::_001DrawSubItem(pdrawitem);
+
+   }
+
+
+   ::check::e_check form_list::_001GetSubItemCheck(index iItem, index iSubItem)
+   {
+
+      sp(::user::list_column) pcolumn = m_columna._001GetBySubItem(iSubItem);
+
+      if (pcolumn.is_set() && pcolumn->m_iControl >= 0)
+      {
+
+         sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset.sp_at(pcolumn->m_iControl);
+
+         if (pdescriptor.is_set())
+         {
+
+            if (pdescriptor->has_function(::user::control::function_check_box))
+            {
+
+               ::user::mesh_item item(this);
+
+               item.m_iItem = iItem;
+               item.m_iSubItem = iSubItem;
+
+               _001GetItemText(&item);
+
+               if (!item.m_bOk)
+               {
+
+                  return ::check::undefined;
+
+               }
+
+               ::check::e_check echeck;
+
+               if (item.m_strText == pdescriptor->m_setValue[::check::checked])
+               {
+
+                  return ::check::checked;
+
+               }
+               else
+               {
+
+                  return ::check::unchecked;
+
+               }
+
+
+            }
+
+         }
+
+      }
+
+      return ::check::undefined;
+
+   }
+
+
+   bool form_list::_001SetSubItemCheck(index iItem, index iSubItem, ::check::e_check echeck)
+   {
+
+      sp(::user::list_column) pcolumn = m_columna._001GetBySubItem(iSubItem);
+
+      if (pcolumn.is_set() && pcolumn->m_iControl >= 0)
+      {
+
+         sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset.sp_at(pcolumn->m_iControl);
+
+         if (pdescriptor.is_set())
+         {
+
+            if (pdescriptor->has_function(::user::control::function_check_box))
+            {
+
+               ::user::mesh_item item(this);
+
+               item.m_iItem = iItem;
+               item.m_iSubItem = iSubItem;
+               item.m_strText = pdescriptor->m_setValue[echeck];
+
+               if (!item.m_strText.has_char())
+               {
+
+                  return false;
+
+               }
+
+               _001SetItemText(&item);
+
+               return item.m_bOk;
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   bool form_list::_001IsSubItemEnabled(index iItem, index iSubItem)
+   {
+
+      sp(::user::list_column) pcolumn = m_columna._001GetBySubItem(iSubItem);
+
+      if (pcolumn.is_set() && pcolumn->m_iControl >= 0)
+      {
+
+         sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset.sp_at(pcolumn->m_iControl);
+
+         if (pdescriptor.is_set())
+         {
+
+            if (pdescriptor->has_function(::user::control::function_disable_on_check_box))
+            {
+
+               if(_001GetSubItemCheck(iItem, pdescriptor->m_iSubItemDisableCheckBox) == ::check::checked)
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return true;
+
+   }
+
 
 
 

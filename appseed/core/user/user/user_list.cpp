@@ -4054,6 +4054,13 @@ namespace user
 
       pobj->previous();
 
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = Session.m_puserschemaSchema;
+
+      }
+
       m_font->operator=(*System.visual().fonts().GetListCtrlFont());
 
       m_fontHover->operator=(*System.visual().fonts().GetListCtrlFont());

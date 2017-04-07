@@ -344,7 +344,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    m_puserschemaSchema = Application.userschema();
 
-   if (m_workset.m_ebuttonHide.contains(::user::wndfrm::frame::button_transparent_frame))
+   if (m_workset.m_ebuttonaHide.contains(::user::wndfrm::frame::button_transparent_frame))
    {
 
       m_bTransparentFrame = false;
@@ -851,7 +851,7 @@ void simple_frame_window::WfiOnFullScreen()
 bool simple_frame_window::WfiToggleTransparentFrame()
 {
 
-   if (m_workset.m_ebuttonHide.contains(::user::wndfrm::frame::button_transparent_frame))
+   if (m_workset.m_ebuttonaHide.contains(::user::wndfrm::frame::button_transparent_frame))
    {
 
       m_bTransparentFrame = false;

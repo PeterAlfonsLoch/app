@@ -62,9 +62,6 @@ namespace user
       ::database::id                   m_datakey;
 
 
-
-
-
       list_column();
       list_column(const list_column & pcolumn);
       virtual ~list_column();

@@ -26,6 +26,8 @@ namespace user
          function_static2,
          function_data_selection,
          function_check_box,
+         function_duplicate_on_check_box,
+         function_disable_on_check_box,
          function_save_on_change,
          function_vms_data_edit,
          function_action,
@@ -93,6 +95,10 @@ namespace user
          edatatype                     m_edatatype;
          rect                          m_rect;
          property_set                  m_setValue;
+         int                           m_iSubItemDisableCheckBox;
+         int                           m_iSubItemDuplicateCheckBox;
+         int_array                     m_iaSubItemDuplicate;
+         int_array                     m_iaSubItemDisable;
 
          descriptor();
          descriptor(const descriptor & descriptor);

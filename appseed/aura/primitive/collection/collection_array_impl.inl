@@ -76,6 +76,12 @@ inline index array_base < TYPE, ALLOCATOR > ::get_upper_bound(index index) const
    return m_nSize + index;
 }
 
+template < class TYPE, class ALLOCATOR >
+inline bool array_base < TYPE, ALLOCATOR > ::bounds(index index) const
+{
+   return index >= 0 && index < m_nSize;
+}
+
 
 template < class TYPE, class ALLOCATOR >
 inline ::count array_base < TYPE, ALLOCATOR > ::remove_all()

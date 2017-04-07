@@ -69,39 +69,17 @@ namespace user
    void check_box::_001OnDrawNormal(::draw2d::graphics * pgraphics)
    {
 
-      
-
-      rect rectClient;
-      GetClientRect(rectClient);
-      pgraphics->OffsetViewportOrg(rectClient.left, rectClient.top);
-
-      // if no image
+      if (m_puserschemaSchema != NULL)
       {
-         rect rectCheckBox;
-         rectCheckBox.left = 0;
-         rectCheckBox.top = 0;
-         rectCheckBox.right = 15;
-         rectCheckBox.bottom = 15;
-         if(m_echeck == check::tristate)
-         {
-            pgraphics->FillSolidRect(rectCheckBox, ARGB(255, 220, 220, 220));
-         }
-         pgraphics->Draw3dRect(rectCheckBox, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
-         if(m_echeck == check::tristate
-         || m_echeck == check::checked)
-         {
-            ::draw2d::pen_sp pen(allocer());
-            pen->create_solid(1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
-            pgraphics->SelectObject(pen);
-            pgraphics->MoveTo(2, 8);
-            pgraphics->LineTo(6, 12);
-            pgraphics->LineTo(13, 5);
-            pgraphics->MoveTo(2, 9);
-            pgraphics->LineTo(6, 13);
-            pgraphics->LineTo(13, 6);
-         }
+
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
+         m_puserschemaSchema->_001DrawCheckBox(pgraphics, rectClient, _001GetCheck());
+
       }
-      pgraphics->OffsetViewportOrg(-rectClient.left, -rectClient.top);
+
 
    }
 

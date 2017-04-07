@@ -84,6 +84,12 @@ namespace user
       virtual bool _001NextEditableControl(int & iItem, int & iSubItem);
       virtual bool _001LowerEditableControl(int & iItem, int & iSubItem);
 
+      //virtual void _001DrawSubItem(draw_list_item * pdrawitem);
+
+      virtual ::check::e_check _001GetSubItemCheck(index iItem, index iSubItem);
+      virtual bool _001SetSubItemCheck(index iItem, index iSubItem, ::check::e_check echeck);
+      virtual bool _001IsSubItemEnabled(index iItem, index iSubItem);
+
    };
 
 } // namespace user
