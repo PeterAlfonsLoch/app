@@ -310,7 +310,7 @@ namespace file_watcher
       if(GetQueueStatus(QS_ALLINPUT) == 0)
       {
 
-         MsgWaitForMultipleObjectsEx(0,NULL,100,QS_ALLINPUT,MWMO_ALERTABLE);
+         MsgWaitForMultipleObjectsEx(0,NULL,1000,QS_ALLINPUT,MWMO_ALERTABLE);
 
       }
 
