@@ -51,7 +51,7 @@ namespace user
    {
    public:
 
-
+      double                        m_dFps;
       bool                          m_bIpcCopy;
       bool                          m_bLockWindowUpdate;
 
@@ -138,6 +138,7 @@ namespace user
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
       DECL_GEN_SIGNAL(_002OnDraw);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
 #if (WINVER >= 0x0500) && defined(WINDOWSEX)

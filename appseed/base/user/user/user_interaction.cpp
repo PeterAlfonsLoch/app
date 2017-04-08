@@ -178,15 +178,15 @@ namespace user
    }
 
 
-   void interaction::set_need_layout()
+   void interaction::set_need_layout(bool bAscendants)
    {
 
       m_bNeedLayout = true;
 
-      if(m_pparent != NULL)
+      if(bAscendants && m_pparent != NULL)
       {
 
-         m_pparent->set_need_layout();
+         m_pparent->set_need_layout(true);
 
       }
 

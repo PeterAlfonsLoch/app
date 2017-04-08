@@ -40,7 +40,7 @@ namespace user
       void _001UpdateColumns();
       sp(control) _001GetEditControl();
       void _001SetEditControl(sp(control) pcontrol);
-      virtual void _001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick = false) override;
+      virtual void _001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
       virtual void _001OnShowControl(sp(control) pcontrol);
       sp(control) _001GetControl(index iItem, index iSubItem) override;
       virtual bool _001OnClick(uint_ptr uiFlags,point point);

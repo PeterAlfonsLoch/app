@@ -2424,10 +2424,10 @@ namespace windows
 
                   DWORD dwOffset = dwTick - dwStart;
 
-                  if (dwOffset < 20)
+                  if (dwOffset < MAX(1, m_dFps / 1000.0))
                   {
 
-                     Sleep(20 - dwOffset);
+                     Sleep(MAX(1, m_dFps / 1000.0) - dwOffset);
 
                   }
 

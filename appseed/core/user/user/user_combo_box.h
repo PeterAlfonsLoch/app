@@ -33,7 +33,7 @@ namespace user
 
 
 
-
+      size                       m_sizeFull;
       index                      m_iSel;
       string                     m_strText;
       bool                       m_bCaseSensitiveMatch;

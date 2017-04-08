@@ -111,6 +111,8 @@ namespace user
 
       select_font(pgraphics);
 
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
+
       pgraphics->TextOut(rectText.left, rectText.top, strText);
 
    }
@@ -487,7 +489,7 @@ namespace user
 
          rect rectText = rectClient;
 
-         rectText.deflate(iMargin, iMargin);
+         rectText.deflate(0, 0, iMargin, iMargin);
 
          rectText.right -= (iW + iMargin);
 
@@ -569,25 +571,11 @@ namespace user
       if (is_drop_down())
       {
 
-         size sizeFull;
-
-         {
-
-            rect rW;
-
-            m_plist->GetWindowRect(rW);
-
-            sizeFull = rW.size();
-
-         }
-
-         m_plist->query_full_size(sizeFull);
-
          rect rectWindow;
 
          GetWindowRect(rectWindow);
 
-         m_plist->on_drop_down(rectWindow, sizeFull);
+         m_plist->on_drop_down(rectWindow, m_sizeFull);
 
       }
 
@@ -623,6 +611,8 @@ namespace user
 
    void combo_box::_001OnLButtonDown(signal_details * pobj)
    {
+
+      //output_debug_string("\nCOMBO_BOX: LBUTTONDOWN\n");
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
@@ -667,6 +657,8 @@ namespace user
    void combo_box::_001OnLButtonUp(signal_details * pobj)
    {
 
+
+      //output_debug_string("\nCOMBO_BOX: LBUTTON UP\n");
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
@@ -729,9 +721,9 @@ namespace user
 
          defer_create_combo_list();
 
-         size sizeFull;
+         get_font(m_plist->m_spfont);
 
-         m_plist->query_full_size(sizeFull);
+         m_plist->query_full_size(m_sizeFull);
 
          rect rectWindow;
 
@@ -741,7 +733,7 @@ namespace user
 
          GetWindowRect(rectWindow);
 
-         m_plist->on_drop_down(rectWindow, sizeFull);
+         m_plist->on_drop_down(rectWindow, m_sizeFull);
 
       }
       else
@@ -764,6 +756,8 @@ namespace user
 
          if(m_plist.is_set())
          {
+
+            m_plist->ModifyStyle(WS_VISIBLE, 0, 0);
 
             m_plist->ShowWindow(SW_HIDE);
 
@@ -806,6 +800,13 @@ namespace user
             throw resource_exception(get_app());
 
          }
+         sp(::user::interaction_impl) pimpl = m_plist->m_pimpl;
+
+         if (pimpl.is_set())
+         {
+            pimpl->m_dFps = 240.0;
+         }
+
 
       }
 
@@ -1593,9 +1594,11 @@ namespace user
    void combo_box::_001OnLButtonDblClk(signal_details * pobj)
    {
 
+      //output_debug_string("\nCOMBO_BOX: DOUBLE CLICK\n");
+
       _001OnLButtonDown(pobj);
 
-      pobj->m_bRet = true;
+      //pobj->m_bRet = true;
 
    }
 

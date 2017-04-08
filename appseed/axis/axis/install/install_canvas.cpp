@@ -122,7 +122,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
       pgraphics->Rectangle(rectParam);
 
    }
-   SIZE size = pgraphics->GetTextExtent("CCpp");
+   SIZED size = pgraphics->GetTextExtent("CCpp");
 //   int32_t iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
    if(iMode == 6) // if(m_bHealingSurface)
    {
@@ -214,7 +214,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
       size_t iRefresh = 1000;
       size_t iEat = 8;
       const char * psz = "development message so international english file \"C:\\core\\install.log\" excerpt  ::::::::";
-      pgraphics->TextOut(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
+      pgraphics->TextOut(10.0, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
 //      int32_t iLineMin = 5;
   //    int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -264,13 +264,13 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
                      bBold = true;
                      strLine = strLine.substr(3);
                      pgraphics->SelectObject(fontBold);
-                     pgraphics->TextOut(10, 10 + size.cy * 3, strLine);
+                     pgraphics->TextOut(10.0, 10 + size.cy * 3, strLine);
                   }
                   else if(!strLine.begins_ci("***") && strLine.length() > 0 && !bNormal && !bBold && bPreNormal)
                   {
                      bNormal = true;
                      pgraphics->SelectObject(font);
-                     pgraphics->TextOut(10, 10 + size.cy * 4, strLine);
+                     pgraphics->TextOut(10.0, 10 + size.cy * 4, strLine);
                   }
                   else if(strLine.length() > 0 && !bPreNormal && !bBold && !bNormal)
                   {
@@ -300,7 +300,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
       size_t iRefresh = 1000;
       size_t iEat = 8;
       const char * psz = "development message so international english last lines of file \"C:\\core\\install.log\" ::::::::";
-      pgraphics->TextOut(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
+      pgraphics->TextOut(10.0, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       pgraphics->SelectObject(fontBold);
       //pgraphics->TextOut( 10, 10 + size.cy * 3, s_strLastStatus);
       DWORD dwRead;
@@ -366,7 +366,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
                      pgraphics->SelectObject(font);
                   }
                   iLine--;
-                  pgraphics->TextOut(10, 10 + iLine * size.cy, strLine);
+                  pgraphics->TextOut(10.0, 10 + iLine * size.cy, strLine);
 //                  skip_text_out1:
                   strLine = ch;
                }
@@ -380,7 +380,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
             if(iLine >= iLineMin && strLine.length() > 0)
             {
                iLine--;
-               pgraphics->TextOut(10, 10 + iLine * size.cy, strLine);
+               pgraphics->TextOut(10.0, 10 + iLine * size.cy, strLine);
             }
          }
       }

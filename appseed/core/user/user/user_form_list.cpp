@@ -38,6 +38,9 @@ namespace user
       form_mesh::install_message_handling(pinterface);
       list::install_message_handling(pinterface);
 
+      IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &form_list::_001OnVScroll);
+      IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &form_list::_001OnHScroll);
+
    }
 
 
@@ -384,17 +387,22 @@ namespace user
 
    }
 
-   void form_list::_001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick)
+   void form_list::_001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick, bool bOnlySizeAndPosition)
    {
       
-      if (_001GetEditControl() != NULL)
+      if (!bOnlySizeAndPosition && _001GetEditControl() != NULL)
       {
 
          _001SaveEdit(_001GetEditControl());
 
       }
 
-      _001HideEditingControls();
+      if (!bOnlySizeAndPosition)
+      {
+
+         _001HideEditingControls();
+
+      }
 
       draw_list_item item(this);
 
@@ -404,7 +412,12 @@ namespace user
 
       item.m_iItem = iEditItem;
 
-      _001EnsureVisible(item.m_iItem);
+      if (!bOnlySizeAndPosition)
+      {
+
+         _001EnsureVisible(item.m_iItem);
+
+      }
 
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
 
@@ -421,7 +434,12 @@ namespace user
 
          rectControl.offset(get_viewport_offset());
 
-         _001Update(pcontrol);
+         if (!bOnlySizeAndPosition)
+         {
+
+            _001Update(pcontrol);
+
+         }
 
          pcontrol->SetWindowPos(
             ZORDER_TOP,
@@ -429,40 +447,51 @@ namespace user
             rectControl.top,
             rectControl.width(),
             rectControl.height(),
-            SWP_SHOWWINDOW);
+            SWP_SHOWWINDOW | (bOnlySizeAndPosition ? SWP_CHANGEVIEWPORTOFFSET : 0));
 
-         _001SetEditControl(pcontrol);
-
-         pcontrol->SetFocus();
-
-         if (bClick)
+         if (bOnlySizeAndPosition)
          {
 
-            sp(::user::plain_edit) pedit = pcontrol;
-
-            if (pedit.is_set())
-            {
-
-               pedit->_001SetSel(0, pedit->_001GetTextLength());
-
-            }
-
-         }
-
-         if (_001IsSubItemEnabled(iEditItem, item.m_iSubItem))
-         {
-
-            pcontrol->enable_window();
+            pcontrol->set_need_layout();
 
          }
          else
          {
 
-            pcontrol->enable_window(false);
+            _001SetEditControl(pcontrol);
+
+            pcontrol->SetFocus();
+
+            if (bClick)
+            {
+
+               sp(::user::plain_edit) pedit = pcontrol;
+
+               if (pedit.is_set())
+               {
+
+                  pedit->_001SetSel(0, pedit->_001GetTextLength());
+
+               }
+
+            }
+
+            if (_001IsSubItemEnabled(iEditItem, item.m_iSubItem))
+            {
+
+               pcontrol->enable_window();
+
+            }
+            else
+            {
+
+               pcontrol->enable_window(false);
+
+            }
+
+            _001OnShowControl(pcontrol);
 
          }
-
-         _001OnShowControl(pcontrol);
 
       }
 
@@ -887,7 +916,7 @@ namespace user
       if(pcontrol != NULL)
       {
 
-         _001PlaceControl(pcontrol, pcontrol->m_iEditItem);
+         _001PlaceControl(pcontrol, pcontrol->m_iEditItem, false, true);
 
       }
 
@@ -904,7 +933,7 @@ namespace user
       if(pcontrol != NULL)
       {
          
-         _001PlaceControl(pcontrol, pcontrol->m_iEditItem);
+         _001PlaceControl(pcontrol, pcontrol->m_iEditItem, false, true);
 
       }
 

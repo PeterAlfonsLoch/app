@@ -185,7 +185,7 @@ namespace user
 
       m_rectParentClient = m_rectParentClientRequest;
 
-      if (rectOld.top_left() != rectNew.top_left())
+      if (rectOld.top_left() != rectNew.top_left() || (m_iShowFlags & SWP_CHANGEVIEWPORTOFFSET))
       {
 
          m_pui->message_call(WM_MOVE);

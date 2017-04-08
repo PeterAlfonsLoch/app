@@ -453,6 +453,7 @@ namespace console
       return false;
    }
 
+   
    sp(::user::wndfrm::frame::frame) prompt_frame::create_frame_schema()
    {
 
@@ -460,15 +461,10 @@ namespace console
 
       sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema("wndfrm_core","002");
 
-//      pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
-
-      //      pschema->get_control_box()->hide_button(::user::wndfrm::frame::button_maximize);
-      //    pschema->get_control_box()->hide_button(::user::wndfrm::frame::button_minimize);
-      //  pschema->get_control_box()->hide_button(::user::wndfrm::frame::button_restore);
-
       return pschema;
 
    }
+
 
    bool prompt_frame::show_mini()
    {

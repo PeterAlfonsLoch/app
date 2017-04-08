@@ -398,6 +398,8 @@ namespace user
          if (iStyle == 1)
          {
 
+            bool bHover = pui->has_action_hover();
+
             if (pui->has_action_hover())
             {
 
@@ -428,7 +430,7 @@ namespace user
                {
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(195, 255, 130, 120) : ARGB(135, 120, 190, 255));
+                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(195, 255, 130, 120) : bHover? ARGB(220, 120, 190, 255) : ARGB(220, 150, 190, 235));
 
                   pgraphics->DrawRect(rectClient, pen);
 
@@ -450,7 +452,7 @@ namespace user
                   pathRound->end_figure(true);*/
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(84, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(155, 255, 150, 140) : ARGB(105, 140, 200, 255));
+                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(155, 255, 150, 140) : bHover?ARGB(200, 140, 200, 255 ) : ARGB(200, 150, 210, 235));
 
                   pgraphics->SelectObject(pen);
 
@@ -474,7 +476,7 @@ namespace user
                   pathRound->end_figure(true);
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(72, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(135, 255, 170, 160) : ARGB(95, 160, 210, 255));
+                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(135, 255, 170, 160) : bHover ? ARGB(160, 160, 210, 255) : ARGB(160, 180, 220, 255));
 
                   pgraphics->SelectObject(pen);
 
@@ -498,7 +500,7 @@ namespace user
                   pathRound->end_figure(true);
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(105, 255, 190, 180) : ARGB(75, 180, 220, 255));
+                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(105, 255, 190, 180) : bHover ? ARGB(120, 180, 220, 255):  ARGB(120, 200, 230, 235));
 
                   pgraphics->SelectObject(pen);
 
@@ -523,7 +525,7 @@ namespace user
                   pathRound->end_figure(true);
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(75, 255, 210, 200) : ARGB(55, 200, 230, 255));
+                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(75, 255, 210, 200) : bHover ? ARGB(80, 200, 230, 255) : ARGB(80, 220, 231, 235));
 
                   pgraphics->SelectObject(pen);
 
@@ -549,7 +551,7 @@ namespace user
                   pathRound->end_figure(true);
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(45, 255, 230, 220) : ARGB(45, 220, 240, 255));
+                  ::draw2d::pen_sp pen(pgraphics, 1.0, bError ? ARGB(45, 255, 230, 220) : bHover ? ARGB(40, 220, 240, 255) : ARGB(40, 230, 235, 240));
 
                   pgraphics->SelectObject(pen);
 

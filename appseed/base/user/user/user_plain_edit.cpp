@@ -312,7 +312,7 @@ namespace user
 
       ::draw2d::region_sp rgn(allocer());
 
-      rectClient.deflate(2, 2);
+      rectClient.deflate(0, 0, 0, 0);
 
       rgn->create_rect(rectClient);
 
@@ -368,6 +368,8 @@ namespace user
       strsize iCursor = iSelEnd;
       sort::sort(iSelStart, iSelEnd);
       select_font(pgraphics);
+
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
       //size size3;
       //size3 = pgraphics->GetTextExtent(unitext("gGYIﾍ"));
       int32_t iLineHeight = m_iLineHeight;
@@ -384,6 +386,8 @@ namespace user
       //index iLine = m_iLineStart;
       index i = 0;
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       string strLineGraphics;
 
@@ -493,19 +497,20 @@ namespace user
             {
                str_fill(strLine, '*');
             }
-            str1 = strLineGraphics.Mid(0, iStart);
-            str2 = strLineGraphics.Mid(iStart, iEnd - iStart);
-            str3 = strLineGraphics.Mid(iEnd);
-            strExtent1 = str1;
-            strExtent2 = str2;
-            strExtent3 = str3;
 
+            double x1 = get_line_extent(iLine, iStart1);
+            double x2 = get_line_extent(iLine, iEnd1);
             if (m_bPassword)
             {
-               str_fill(strExtent1, '*');
-               str_fill(strExtent2, '*');
-               str_fill(strExtent3, '*');
+               str_fill(strLineGraphics, '*');
             }
+            if (iEnd > iStart)
+            {
+               pgraphics->FillSolidRect((double)(left + x1), (double)y, (double)MIN(x2-x1, rectClient.right - (left + x1)), (double)MIN(m_iLineHeight, rectClient.bottom - y), ARGB(255, 120, 240, 180));
+               brushText->create_solid(crSel);
+               pgraphics->SelectObject(brushText);
+            }
+
 
             if (bOverride)
             {
@@ -516,17 +521,15 @@ namespace user
                brushText->create_solid(cr);
             }
             pgraphics->SelectObject(brushText);
-            pgraphics->TextOut(left, y, strExtent1);
-
-
-            int x1 = get_line_extent(iLine, iStart1);
+            pgraphics->TextOut(left, y, strLineGraphics);
 
             if (0 <= iErrorBeg && iErrorBeg <= strExtent1.length())
             {
 
-               int xA = get_line_extent(iLine, iErrorBeg);
+               double xA = get_line_extent(iLine, iErrorBeg);
 
-               int xB = get_line_extent(iLine, MIN(iErrorEnd, strExtent1.length()));
+
+               double xB = get_line_extent(iLine, MIN(iErrorEnd, strExtent1.length()));
 
                ::draw2d::pen_sp p(allocer());
 
@@ -538,40 +541,16 @@ namespace user
 
             }
 
-            //int xbsized sizeb(0.0,0.0);
-
-            //pgraphics->GetTextExtent(sizeb, strLineGraphics,iEnd);
-            int x2 = get_line_extent(iLine, iEnd1);
-            x2 -= x1;
-
-            if (iEnd > iStart)
-            {
-               pgraphics->FillSolidRect((int32_t)(left + x1), (int32_t)y, (int32_t)x2, (int32_t)m_iLineHeight, ARGB(255, 120, 240, 180));
-               brushText->create_solid(crSel);
-               pgraphics->SelectObject(brushText);
-               pgraphics->TextOut(left + x1, y, strExtent2);
-            }
-
-            if (bOverride)
-            {
-               brushText->create_solid(crOverride);
-            }
-            else
-            {
-               brushText->create_solid(cr);
-            }
-            pgraphics->SelectObject(brushText);
-            pgraphics->TextOut(left + x1 + x2, y, strExtent3);
 
             //maxcy = MAX(size1.cy, size2.cy);
             //maxcy = MAX(maxcy, size3.cy);
-            if (m_bFocus && bCaretOn && i3 == str1.get_length())
+            if (m_bFocus && bCaretOn && i3 == iStart)
             {
                pgraphics->SelectObject(penCaret);
                pgraphics->MoveTo(left + x1, y);
                pgraphics->LineTo(left + x1, y + iLineHeight);
             }
-            else if (m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
+            else if (m_bFocus && bCaretOn && i3 == iEnd1)
             {
                pgraphics->SelectObject(penCaret);
                pgraphics->MoveTo(left + x2 + x1, y);
@@ -1266,6 +1245,17 @@ namespace user
    void plain_edit::_001EnsureVisibleLine(index iLine)
    {
 
+
+      if (!m_bMultiLine)
+      {
+
+         set_viewport_offset_y(0);
+
+         return;
+
+      }
+
+
       ::rect rectClient;
 
       GetFocusRect(rectClient);
@@ -1471,7 +1461,7 @@ namespace user
 
       sized sizeUniText;
 
-      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       pgraphics->GetTextExtent(sizeUniText, unitext("gqYALﾍWMÍÎÄÃÄÅ"));
 
@@ -1585,7 +1575,7 @@ namespace user
 
       iLine = iLineStart;
 
-      m_iaExtent.set_size(m_iaLineLen.get_size());
+      m_daExtent.set_size(m_iaLineLen.get_size());
 
       for (; iLine < iLineEnd; i++, iLine++)
       {
@@ -1616,8 +1606,11 @@ namespace user
 
          if (strLine != m_plines->lines[i])
          {
+            
             m_plines->lines[i] = strLine;
-            m_iaExtent[i + iLineStart].set_size(0);
+
+            m_daExtent[i + iLineStart].set_size(0);
+
          }
          else
          {
@@ -1693,10 +1686,10 @@ namespace user
 
          const char * pszNext = pszStart;
 
-         if (m_iaExtent[m_iLineStart + i].get_size() <= 0)
+         if (m_daExtent[m_iLineStart + i].get_size() <= 0)
          {
 
-            m_iaExtent[m_iLineStart + i].set_size(strLine.get_length());
+            m_daExtent[m_iLineStart + i].set_size(strLine.get_length());
 
             while (*pszNext != '\0')
             {
@@ -1719,7 +1712,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  m_iaExtent[m_iLineStart + i][psz - pszStart + j] = size.cx;
+                  m_daExtent[m_iLineStart + i][psz - pszStart + j] = size.cx;
 
                }
 
@@ -1735,7 +1728,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  m_iaExtent[m_iLineStart + i][psz - pszStart] = size.cx;
+                  m_daExtent[m_iLineStart + i][psz - pszStart] = size.cx;
 
                }
 
@@ -1824,7 +1817,7 @@ namespace user
 
       sized sizeUniText;
 
-      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       pgraphics->GetTextExtent(sizeUniText, unitext("gqYALﾍWMÍÎÄÃÄÅ"));
 
@@ -1938,7 +1931,7 @@ namespace user
 
       iLine = iLineStart;
 
-      m_iaExtent.set_size(m_iaLineLen.get_size());
+      m_daExtent.set_size(m_iaLineLen.get_size());
 
       for (; iLine < iLineEnd; i++, iLine++)
       {
@@ -1969,8 +1962,11 @@ namespace user
 
          if (strLine != m_plines->lines[i])
          {
+            
             m_plines->lines[i] = strLine;
-            m_iaExtent[i + iLineStart].set_size(0);
+            
+            m_daExtent[i + iLineStart].set_size(0);
+
          }
          else
          {
@@ -2046,10 +2042,10 @@ namespace user
 
          const char * pszNext = pszStart;
 
-         if (m_iaExtent[m_iLineStart + i].get_size() <= 0)
+         if (m_daExtent[m_iLineStart + i].get_size() <= 0)
          {
 
-            m_iaExtent[m_iLineStart + i].set_size(strLine.get_length());
+            m_daExtent[m_iLineStart + i].set_size(strLine.get_length());
 
             while (*pszNext != '\0')
             {
@@ -2079,7 +2075,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  m_iaExtent[m_iLineStart + i][psz - pszStart + j] = size.cx;
+                  m_daExtent[m_iLineStart + i][psz - pszStart + j] = size.cx;
 
                }
 
@@ -2095,7 +2091,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  m_iaExtent[m_iLineStart + i][psz - pszStart] = size.cx;
+                  m_daExtent[m_iLineStart + i][psz - pszStart] = size.cx;
 
                }
 
@@ -2193,7 +2189,7 @@ namespace user
    }
 
 
-   int plain_edit::get_line_extent(index iLine, strsize iChar)
+   double plain_edit::get_line_extent(index iLine, strsize iChar)
    {
 
       if (iLine < 0 || iChar < 0)
@@ -2219,7 +2215,7 @@ namespace user
 
       }
 
-      if (iLine < m_iaExtent.get_size())
+      if (iLine < m_daExtent.get_size())
       {
 
          if (iChar == 0)
@@ -2228,10 +2224,10 @@ namespace user
             return 0;
 
          }
-         else if (iChar - 1 < m_iaExtent[iLine].get_size())
+         else if (iChar - 1 < m_daExtent[iLine].get_size())
          {
 
-            return m_iaExtent[iLine][iChar - 1];
+            return m_daExtent[iLine][iChar - 1];
 
          }
 
@@ -2241,9 +2237,11 @@ namespace user
 
       select_font(pgraphics);
 
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
+
       string strLine = get_expanded_line(iLine, { &iChar });
 
-      size size = pgraphics->GetTextExtent(strLine, (int32_t)strLine.length(), (int32_t)iChar);
+      sized size = pgraphics->GetTextExtent(strLine, (int32_t)strLine.length(), (int32_t)iChar);
 
       return size.cx;
 
@@ -2385,7 +2383,7 @@ namespace user
 
       GetFocusRect(rectClient);
 
-      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       strsize iChar = line_char_hit_test(x, iLine);
 

@@ -668,6 +668,7 @@ namespace user
       }
       pdrawitem->m_iListItem = -1;
       _001GetElementRect(pdrawitem, ::user::mesh::element_text);
+
       if (pdrawitem->m_bOk)
       {
          try
@@ -6250,6 +6251,7 @@ namespace user
             ::draw2d::brush_sp brushText(allocer());
             brushText->create_solid(m_cr);
             m_pgraphics->SelectObject(brushText);
+            m_pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
             m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);
             if (m_strText == "LOVE OR NOTHING")
             {

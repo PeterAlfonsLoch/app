@@ -473,9 +473,10 @@ namespace draw2d
 #endif
 
       virtual ::count graphics::GetEachCharTextExtent(array < size > & sizea, const string & str, strsize iStart = 0, strsize iCount = -1);
-      virtual size GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const;
-      virtual size GetTextExtent(const char * lpszString, strsize nCount) const;
-      virtual size GetTextExtent(const string & str) const;
+      virtual sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const;
+      virtual sized GetTextBegin(const char * lpszString, strsize nCount, strsize iIndex) const;
+      virtual sized GetTextExtent(const char * lpszString, strsize nCount) const;
+      virtual sized GetTextExtent(const string & str) const;
       virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const;
       virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
       virtual bool GetTextExtent(sized & size, const string & str) const;

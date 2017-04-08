@@ -38,16 +38,18 @@ namespace visual
 
 
       class font_department & fonts();
+      cursor * set_system_default_cursor(e_cursor ecursor);
       cursor * set_cursor_file(e_cursor ecursor,const ::file::path & psz, bool bFromCache = true);
       ::count set_cursor_set_from_matter(const ::file::path & pszMatter);
       ::count set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache = true);
+      ::count set_cursor_set_system_default();
       cursor * get_cursor(e_cursor ecursor);
 
 
       virtual int32_t exit_application();
 
 
-      static uint32_t c_cdecl thread_proc_parallel_initialize(void * pparamThis);
+      //static uint32_t c_cdecl thread_proc_parallel_initialize(void * pparamThis);
 
 
 

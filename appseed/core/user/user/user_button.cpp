@@ -308,64 +308,67 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      if(get_form() == NULL)
+      e_element eelement;
+
+      index iHover = hit_test(pmouse->m_pt, eelement);
+      if(iHover != m_iHover)
       {
+         index iOldHover = m_iHover;
+         m_iHover = iHover;
+         RedrawWindow();
 
-         e_element eelement;
-
-         index iHover = hit_test(pmouse->m_pt, eelement);
-         if(iHover != m_iHover)
+         if (iHover >= 0)
          {
-            index iOldHover = m_iHover;
-            m_iHover = iHover;
-            RedrawWindow();
-            track_mouse_hover();
-            if(iOldHover == -1)
-            {
-               ::user::control_event ev;
-               ev.m_puie = this;
-               ev.m_eevent = ::user::event_mouse_enter;
-               GetParent()->send_message(
-                  ::message::message_event, 0, (LPARAM)&ev);
-//               m_bActionHover = true;
-            }
-            else if(iHover == -1)
-            {
-               ::user::control_event ev;
-               ev.m_puie = this;
-               ev.m_eevent = ::user::event_mouse_leave;
-               GetParent()->send_message(
-                  ::message::message_event, 0, (LPARAM)&ev);
-  //             m_bActionHover = false;
-            }
-         }
-         pobj->m_bRet = false;
-      }
 
+            track_mouse_hover();
+
+         }
+
+
+         if(iOldHover == -1)
+         {
+            ::user::control_event ev;
+            ev.m_puie = this;
+            ev.m_eevent = ::user::event_mouse_enter;
+            GetParent()->send_message(
+               ::message::message_event, 0, (LPARAM)&ev);
+//               m_bActionHover = true;
+         }
+         else if(iHover == -1)
+         {
+            ::user::control_event ev;
+            ev.m_puie = this;
+            ev.m_eevent = ::user::event_mouse_leave;
+            GetParent()->send_message(
+               ::message::message_event, 0, (LPARAM)&ev);
+//             m_bActionHover = false;
+         }
+      }
+      pobj->m_bRet = false;
 
    }
 
 
    void button::_001OnMouseLeave(signal_details * pobj)
    {
+
       SCAST_PTR(::message::base, pbase, pobj);
-      if(get_form() == NULL)
+      index iOldHover = m_iHover;
+      m_iHover = -1;
+      if(iOldHover >= 0)
       {
-         index iOldHover = m_iHover;
-         m_iHover = -1;
-         if(iOldHover >= 0)
+         RedrawWindow();
+         ::user::control_event ev;
+         ev.m_puie = this;
+         ev.m_eevent = ::user::event_mouse_leave;
+         if(GetParent() != NULL)
          {
-            RedrawWindow();
-            ::user::control_event ev;
-            ev.m_puie = this;
-            ev.m_eevent = ::user::event_mouse_leave;
-            if(GetParent() != NULL)
-            {
-               GetParent()->send_message(::message::message_event, 0, (LPARAM)&ev);
-            }
+            GetParent()->send_message(::message::message_event, 0, (LPARAM)&ev);
          }
-         pbase->m_bRet = false;
       }
+
+      pbase->m_bRet = false;
+
    }
 
    index button::hit_test(point pt, e_element & eelement)

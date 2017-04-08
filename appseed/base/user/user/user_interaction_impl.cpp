@@ -26,6 +26,7 @@ namespace user
    void interaction_impl::user_common_construct()
    {
 
+      m_dFps = 50.0;
       m_bIpcCopy = true;
       m_pmutex                               = new mutex(get_app());
       m_guieptraMouseHover.m_pmutex          = m_pmutex;
@@ -288,6 +289,8 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &interaction_impl::_001OnCreate);
 
       ::user::interaction_impl_base::last_install_message_handling(pinterface);
+
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction_impl::_001OnShowWindow);
 
    }
 
@@ -2143,6 +2146,56 @@ namespace user
 
 
    }
+
+
+   void interaction_impl::_001OnShowWindow(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      if (pshowwindow->m_bShow)
+      {
+
+      }
+      else
+      {
+
+         {
+
+            ::user::interaction_spa uia;
+
+            {
+
+               synch_lock sl(m_pmutex);
+
+               uia = m_guieptraMouseHover;
+
+            }
+
+            for (auto & pui : uia)
+            {
+
+               pui->send_message(WM_MOUSELEAVE);
+
+            }
+
+            {
+
+               synch_lock sl(m_pmutex);
+
+               m_guieptraMouseHover.remove_all();
+
+            }
+
+         }
+
+
+
+      }
+
+
+   }
+
 
 
 #ifdef WINDOWSEX

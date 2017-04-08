@@ -82,6 +82,13 @@ namespace user
 
          }
 
+         bool frame::is_control_box_moveable()
+         {
+
+            return true;
+
+         }
+
          size frame::GetMinSize()
          {
 
@@ -618,7 +625,7 @@ namespace user
 
             bool bShow = true;
 
-            if(m_bInitialControlBoxPosition || bInitialControlBoxPosition)
+            if(!is_control_box_moveable() || m_bInitialControlBoxPosition || bInitialControlBoxPosition)
             {
 
                m_bInitialControlBoxPosition = false;
@@ -684,7 +691,7 @@ namespace user
 
             int x;
 
-            if (!bInitialControlBoxPosition)
+            if (!bInitialControlBoxPosition && is_control_box_moveable())
             {
 
                if (m_bControlBoxAlignRight)
@@ -797,12 +804,12 @@ namespace user
 
             m_pointMoveGripMinimal.y = prectMargin->top + prectControlBoxMargin->top;
 
-            m_pointWindowIcon.y = prectMargin->top + prectControlBoxMargin->top;
+            m_pointWindowIcon.y = prectMargin->top + ((iControlBoxHeight - rectIcon.height()) / 2);
 
             if (pappearance->m_picon != NULL)
             {
 
-               m_rectWindowText.left = m_pointWindowIcon.x + rectIcon.width() + 2;
+               m_rectWindowText.left = m_pointWindowIcon.x + rectIcon.width() + 5;
 
             }
             else
@@ -812,9 +819,9 @@ namespace user
 
             }
 
-            m_rectWindowText.top = prectControlBox->top;
+            m_rectWindowText.top = m_pointWindowIcon.y;
             m_rectWindowText.right = rectClient.width() - prectMargin->right;
-            m_rectWindowText.bottom = prectControlBox->bottom;
+            m_rectWindowText.bottom = prectMargin->top + iControlBoxHeight;
 
             m_rectCaptionTextBk.left = prectMargin->left;
             m_rectCaptionTextBk.top = prectMargin->top;

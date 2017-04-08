@@ -112,7 +112,7 @@ namespace user
 
 
 
-   void form_mesh::_001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick)
+   void form_mesh::_001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick, bool bOnlySizeAndPosition)
    {
 
       rect rect;

@@ -6,7 +6,7 @@
 
 #define MESSAGE_POST_MESSAGE  14000
 
-
+#define SWP_CHANGEVIEWPORTOFFSET  0x100000
 namespace message
 {
 
@@ -147,7 +147,7 @@ namespace user
       virtual bool defer_check_layout();
       virtual bool check_need_layout();
       virtual void clear_need_layout();
-      virtual void set_need_layout();
+      virtual void set_need_layout(bool bAscendants = false);
       virtual void layout();
 
       virtual bool defer_check_translation();

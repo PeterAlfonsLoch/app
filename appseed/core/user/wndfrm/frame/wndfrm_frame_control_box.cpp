@@ -58,15 +58,22 @@ namespace user
             SCAST_PTR(::message::mouse, pmouse, pobj);
 
 
-            m_bDrag = true;
+            if (m_pworkset != NULL
+               && m_pworkset->m_pframeschema != NULL
+               && m_pworkset->m_pframeschema->is_control_box_moveable())
+            {
 
-            m_ptDrag = pmouse->m_pt;
+               m_bDrag = true;
 
-            ScreenToClient(&m_ptDrag);
+               m_ptDrag = pmouse->m_pt;
 
-            SetCapture();
+               ScreenToClient(&m_ptDrag);
 
-            pmouse->m_bRet = true;
+               SetCapture();
+
+               pmouse->m_bRet = true;
+
+            }
 
          }
 
@@ -76,14 +83,21 @@ namespace user
 
             SCAST_PTR(::message::mouse, pmouse, pobj);
 
-            drag(pmouse->m_pt);
+            if (m_pworkset != NULL
+               && m_pworkset->m_pframeschema != NULL
+               && m_pworkset->m_pframeschema->is_control_box_moveable())
+            {
 
-            m_bDrag = false;
+               drag(pmouse->m_pt);
 
-            ReleaseCapture();
+               m_bDrag = false;
 
+               ReleaseCapture();
 
-            pmouse->m_bRet = true;
+               pmouse->m_bRet = true;
+
+            }
+
          }
 
 
@@ -92,12 +106,21 @@ namespace user
 
             SCAST_PTR(::message::mouse, pmouse, pobj);
 
-            if (m_bDrag)
+            if (m_pworkset != NULL
+               && m_pworkset->m_pframeschema != NULL
+               && m_pworkset->m_pframeschema->is_control_box_moveable())
             {
-               drag(pmouse->m_pt);
-            }
 
-            pmouse->m_bRet = true;
+               if (m_bDrag)
+               {
+
+                  drag(pmouse->m_pt);
+
+               }
+
+               pmouse->m_bRet = true;
+
+            }
 
          }
 

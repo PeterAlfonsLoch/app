@@ -1567,7 +1567,7 @@ namespace draw2d
 
          rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
 
-         rect rectText(point((int64_t)x, (int64_t)y), GetTextExtent(lpszString, nCount));
+         rect rectText(point((int64_t)x, (int64_t)y), ::size(GetTextExtent(lpszString, nCount)));
 
          if (rectIntersect.intersect(rectIntersect, rectText))
          {
@@ -3002,33 +3002,40 @@ namespace draw2d
 
    }
 
+   sized graphics::GetTextBegin(const char * lpszString, strsize nCount, count iIndex) const
+   {
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount,count iIndex) const
+      return GetTextExtent(lpszString, nCount, iIndex);
+
+   }
+
+
+   sized graphics::GetTextExtent(const char * lpszString, strsize nCount,count iIndex) const
    {
 
       return GetTextExtent(lpszString, iIndex);
 
    }
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
+   sized graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
       throw interface_only_exception(get_app());
-      return size(0, 0);
+      return sized(0, 0);
    }
 
-   size graphics::GetTextExtent(const string & str) const
+   sized graphics::GetTextExtent(const string & str) const
    {
       UNREFERENCED_PARAMETER(str);
       throw interface_only_exception(get_app());
-      return size(0, 0);
+      return sized(0, 0);
    }
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
-      ::size sz = GetTextExtent(string(lpszString), iIndex);
+      ::sized sz = GetTextExtent(string(lpszString), nCount, iIndex);
 
       size.cx = sz.cx;
       size.cy = sz.cy;
@@ -3040,7 +3047,7 @@ namespace draw2d
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
 
-      ::size sz = GetTextExtent(string(lpszString), nCount);
+      ::sized sz = GetTextExtent(string(lpszString), nCount);
 
       size.cx = sz.cx;
       size.cy = sz.cy;
@@ -3052,7 +3059,7 @@ namespace draw2d
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
 
-      ::size sz = GetTextExtent(str);
+      ::sized sz = GetTextExtent(str);
 
       size.cx = sz.cx;
       size.cy = sz.cy;
@@ -4009,7 +4016,7 @@ namespace draw2d
       if (rectClip.area() <= 0)
          return 0;
 
-      size sz;
+      sized sz;
 
       sz.cx = 0;
 
@@ -4192,7 +4199,7 @@ namespace draw2d
             rect.top,
             &wch,
             1);*/
-            pgraphics->TextOut(rect.left + sz.cx, rect.top, &wch, 1);
+            pgraphics->TextOut(rect.left + sz.cx, (double) rect.top, &wch, 1);
             pgraphics->SelectObject(&fPrevious);
             if (iUnderline + 1 <= str.get_length())
             {
@@ -4203,7 +4210,7 @@ namespace draw2d
                iUnderline + 1,
                &sz);*/
                strsize iCount = str.get_length() - iUnderline - 1;
-               pgraphics->TextOut(rect.left + sz.cx, rect.top, str.Right(iCount), (int32_t)iCount);
+               pgraphics->TextOut(rect.left + sz.cx, (double)rect.top, str.Right(iCount), (int32_t)iCount);
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
                rect.left + sz.cx,

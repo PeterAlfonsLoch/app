@@ -139,27 +139,27 @@ namespace visual
       if (!::aura::department::initialize())
          return false;
 
-      //if(Application.dir().is(System.dir().commonappdata("")))
-      {
+      ////if(Application.dir().is(System.dir().commonappdata("")))
+      //{
 
-         __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::multithreading::priority_highest);
+      //   __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::multithreading::priority_highest);
 
-      }
+      //}
 
       return true;
 
    }
 
-   uint32_t c_cdecl visual::thread_proc_parallel_initialize(void * pparamThis)
-   {
+   //uint32_t c_cdecl visual::thread_proc_parallel_initialize(void * pparamThis)
+   //{
 
-      visual * pvisual = (visual *)pparamThis;
+   //   visual * pvisual = (visual *)pparamThis;
 
-      pvisual->set_cursor_set_from_matter("cursor/antialiased-classic");
+   //   pvisual->set_cursor_set_from_matter("cursor/antialiased-classic");
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
    bool visual::finalize()
@@ -245,11 +245,38 @@ namespace visual
       else
       {
 
+         if (pcursor->initialize_system_default())
+         {
+
+            return pcursor;
+
+         }
+
          return NULL;
 
       }
 
    }
+
+   
+   cursor * visual::set_system_default_cursor(e_cursor ecursor)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      cursor * pcursor = get_cursor(ecursor);
+
+      if (pcursor->initialize_system_default())
+      {
+
+         return pcursor;
+
+      }
+
+      return NULL;
+
+   }
+
 
 
    cursor * visual::get_cursor(e_cursor ecursor)
@@ -402,6 +429,82 @@ namespace visual
 
       return count;
    }
+
+
+   ::count visual::set_cursor_set_system_default()
+   {
+
+      ::count count = 0;
+
+      if (set_system_default_cursor(::visual::cursor_arrow))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_hand))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_text_select))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_top_left))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_top))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_top_right))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_right))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_bottom_right))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_bottom))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_bottom_left))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_left))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_vertical))
+      {
+         count++;
+      }
+
+      if (set_system_default_cursor(::visual::cursor_size_horizontal))
+      {
+         count++;
+      }
+
+      return count;
+
+   }
+
 
    // should not call axis class implementation because visual::visual is inside a n-furcation of user::visual
    int32_t visual::exit_application()

@@ -1017,7 +1017,7 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::file * pfile)
 
       //   COLORREF                crOld;
       //   UINT                    uMode;
-      SIZE                    sizeText;
+      SIZED                    sizeText;
       RECT                    rcText;
 
       if(crShadow == (COLORREF)-1)

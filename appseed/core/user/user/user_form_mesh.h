@@ -79,7 +79,7 @@ namespace user
       ;;void _001UpdateColumns();
       sp(control) _001GetEditControl();
       void _001SetEditControl(sp(control) pcontrol);
-      virtual void _001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick = false);
+      virtual void _001PlaceControl(sp(control) pcontrol, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
       virtual sp(control) _001GetControl(index iItem, index iSubItem);
       virtual bool _001OnClick(uint_ptr uiFlags,point point);
       virtual bool _001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem);

@@ -6,8 +6,12 @@ namespace user
 
 
    combo_list::combo_list(::aura::application * papp) :
-      object(papp)
+      object(papp),
+      m_spfont(allocer())
    {
+
+
+      defer_create_mutex();
 
       m_bComboList = true;
 
@@ -20,6 +24,8 @@ namespace user
       m_iHover = -1;
 
       m_iBorder = 6;
+
+      m_spfont->create_point_font("Arial", 10.0);
 
    }
 
@@ -93,6 +99,8 @@ namespace user
 
       pgraphics->FillRectangle(rectClient);
 
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
+
       {
 
          color ca;
@@ -123,6 +131,9 @@ namespace user
 
       select_font(pgraphics);
 
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
+
+
       pgraphics->SelectObject(br);
 
       for (index i = 0; i < ca; i++)
@@ -139,7 +150,7 @@ namespace user
                pgraphics->DrawRectangle(rectItem);
             }
             m_pcombo->_001GetListText(i, strItem);
-            pgraphics->draw_text(strItem, rectItem, 0);
+            pgraphics->TextOut(rectItem.left, rectItem.top, strItem);
          }
       }
 
@@ -160,7 +171,7 @@ namespace user
          br->create_solid(ARGB(255, 255, 255, 240));
          m_pcombo->_001GetListText(m_pcombo->m_iSel, strItem);
          pgraphics->SelectObject(br);
-         pgraphics->draw_text(strItem, rectItem, 0);
+         pgraphics->TextOut(rectItem.left, rectItem.top, strItem);
       }
 
 
@@ -223,6 +234,8 @@ namespace user
       //GetFont()->m_bUpdated = false;
 
       select_font(pgraphics);
+
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       pgraphics->SelectObject(br);
 
@@ -326,17 +339,9 @@ namespace user
 
       ScreenToClient(&ptCursor);
 
-      //br->create_solid(ARGB(255,84,84,77));
-
-      //      int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
-
-      //    GetFont()->m_dFontSize = dSize;
-      //  GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
-      //      GetFont()->m_bUpdated = false;
-
       select_font(pgraphics);
 
-      //pgraphics->SelectObject(br);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       index iHover = m_iHover;
 
@@ -475,35 +480,38 @@ namespace user
    void combo_list::query_full_size(LPSIZE lpsize)
    {
 
+      ShowWindow(SW_HIDE);
+      
+      int i = 0;
+      while (IsWindowVisible() && i < 10)
+      {
+
+         Sleep(5);
+         
+         i++;
+
+
+      }
+
+      synch_lock sl(m_pmutex);
+
       if (!((combo_list *)this)->IsWindow())
          return;
 
       ::draw2d::graphics_sp pgraphics(((combo_list *) this)->allocer());
 
-
       pgraphics->CreateCompatibleDC(NULL);
 
-      ::draw2d::dib_sp tameshi(((combo_list *) this)->allocer());
+      select_font(pgraphics);
 
-      tameshi->create(100, 100);
-
-      pgraphics->SelectObject(tameshi->get_bitmap());
-
-      //  int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
-  ////
-  //      ((combo_list *) this)->GetFont()->m_dFontSize = dSize;
-  //
-  //      ((combo_list *) this)->GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
-  //
-  //      ((combo_list *) this)->GetFont()->m_bUpdated = false;
-  //
-      ((combo_list *)this)->select_font(pgraphics);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       string strItem;
 
       size sz;
 
       lpsize->cx = 0;
+
       m_iItemHeight = 0;
 
       ::count ca = m_pcombo->_001GetListCount();
@@ -525,7 +533,14 @@ namespace user
          if (sz.cy > m_iItemHeight)
          {
 
-            ((combo_list *) this)->m_iItemHeight = sz.cy;
+            m_iItemHeight = sz.cy;
+
+            if (sz.cy != 18)
+            {
+
+               output_debug_string("\nCOMBO LIST ITEM HEIGHT != 18\n");
+
+            }
 
          }
 
@@ -1000,60 +1015,52 @@ namespace user
 
       Session.get_best_monitor(rectMonitor, rectWindow);
 
-      bool bDown = true;
-
-      if (sizeFull.cy > (rectMonitor.bottom - rectWindow.bottom))
-      {
-         bDown = false;
-      }
-
-      size sizeList;
-
       rect rectList;
 
-      rectList = rectMonitor;
+      rectList.left = rectWindow.left;
+      rectList.right = rectWindow.left + sizeFull.cx;
+      rectList.top = rectWindow.bottom;
+      rectList.bottom = rectWindow.bottom + sizeFull.cy;
 
-      sizeList.cx = MIN(sizeFull.cx, rectMonitor.width());
-
+      if (rectList.bottom > rectMonitor.bottom -m_iBorder)
       {
 
-         sizeList.cx = MAX(sizeList.cx, rectWindow.width());
+         rectList.bottom = rectMonitor.bottom - m_iBorder;
+
+         rect rectListOver;
+
+         rectListOver.left = rectWindow.left;
+         rectListOver.right = rectWindow.left + sizeFull.cx;
+         rectListOver.bottom = rectWindow.top;
+         rectListOver.top = rectWindow.top - sizeFull.cy;
+         
+         if (rectListOver.top < rectMonitor.top + m_iBorder)
+         {
+
+            rectListOver.top = rectMonitor.top + m_iBorder;
+
+            if (rectListOver.height() > rectList.height())
+            {
+
+               rectList = rectListOver;
+
+            }
+
+         }
 
       }
 
-      if (sizeList.cx < rectWindow.width())
+      if (rectList.right > rectMonitor.right - m_iBorder)
       {
 
-         rectList.left = rectWindow.left;
-
-      }
-      else if (sizeList.cx < rectMonitor.width())
-      {
-
-         rectList.left = MIN(rectMonitor.right - sizeList.cx, ((rectWindow.left + rectWindow.right) / 2) - sizeList.cx / 2);
+         rectList.offset(rectMonitor.right - (rectList.right-m_iBorder), 0);
 
       }
 
-      rectList.right = rectList.left + sizeList.cx;
-
-      if (bDown)
+      if (rectList.left < rectMonitor.left)
       {
 
-         rectList.top = rectWindow.bottom + 1;
-
-         sizeList.cy = MIN(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
-
-         rectList.bottom = rectList.top + sizeList.cy;
-
-      }
-      else
-      {
-         rectList.bottom = rectWindow.top - 1;
-
-         sizeList.cy = MIN(sizeFull.cy, (rectWindow.top - rectMonitor.top));
-         //sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
-
-         rectList.top = rectList.bottom - sizeList.cy;
+         rectList.move_to_x(0);
 
       }
 
@@ -1071,6 +1078,23 @@ namespace user
          rectList.top - m_iBorder, 
          rectList.width() + m_iBorder * 2, 
          rectList.height() + m_iBorder * 2, SWP_SHOWWINDOW);
+
+   }
+
+
+   bool combo_list::get_font(::draw2d::font_sp & spfont)
+   {
+
+      if (m_spfont.is_set())
+      {
+
+         spfont = m_spfont;
+
+         return true;
+
+      }
+
+      return ::user::schema::get_font(spfont);
 
    }
 

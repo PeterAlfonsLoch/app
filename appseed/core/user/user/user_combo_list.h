@@ -26,6 +26,7 @@ namespace user
       int32_t                             m_iItemHeight;
       index                               m_iHover;
       int                                 m_iBorder;
+      ::draw2d::font_sp                   m_spfont;
 
       ::user::interaction *               m_puiDeactivateTogether;
       ::user::wndfrm::frame::WorkSet *    m_puiDeactivateTogetherSet;
@@ -34,7 +35,7 @@ namespace user
       combo_list(::aura::application * papp);
       virtual ~combo_list();
 
-
+      
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
       void _001OnShowWindow(signal_details * pobj);
@@ -86,6 +87,7 @@ namespace user
       void on_drop_down(rect rectWindow, size sizeFull);
 
 
+      virtual bool get_font(::draw2d::font_sp & spfont) override;
    };
 
 

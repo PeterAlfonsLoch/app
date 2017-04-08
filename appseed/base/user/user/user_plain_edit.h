@@ -98,7 +98,7 @@ namespace user
 
 
       bool                          m_bActionHover;
-      array < int_array >           m_iaExtent;
+      array < double_array >        m_daExtent;
       ::file::edit_file::InsertItem *     m_pinsert;
       plain_text_set_sel_command *  m_psetsel;
 
@@ -180,7 +180,7 @@ namespace user
       string get_expanded_line(index iLine, array < strsize * > intptra = array < strsize * >());
 
       string get_line(index iLine);
-      int get_line_extent(index iLine, strsize iChar);
+      double get_line_extent(index iLine, strsize iChar);
 
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 
