@@ -1712,6 +1712,31 @@ strsize string::find_ci(char ch,strsize iStart,strsize nCount) const RELEASENOTH
    return npos;
 }
 
+
+strsize string::find_whitespace_or_length(strsize iStart) const RELEASENOTHROW
+{
+
+   if (iStart >= get_length())
+   {
+
+      return get_length();
+
+   }
+
+   strsize iFound = find_first_in("\t\n\r ", iStart);
+
+   if (iFound < 0)
+   {
+
+      return get_length();
+
+   }
+
+   return iFound;
+
+}
+
+
 strsize string::find_first_of(char ch,strsize iStart) const RELEASENOTHROW
 {
    return find(ch,iStart);

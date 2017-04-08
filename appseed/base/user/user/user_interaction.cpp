@@ -1783,8 +1783,9 @@ namespace user
    bool interaction::is_this_visible()
    {
 
-      return ::user::interaction_base::is_this_visible() || 
-         (m_pimpl->m_bShowFlags && (m_pimpl->m_iShowFlags & SWP_SHOWWINDOW));
+      return (::user::interaction_base::is_this_visible() || 
+         (m_pimpl->m_bShowFlags && (m_pimpl->m_iShowFlags & SWP_SHOWWINDOW)))
+         && !(m_pimpl->m_bShowFlags && (m_pimpl->m_iShowFlags & SWP_HIDEWINDOW));
 
    }
 

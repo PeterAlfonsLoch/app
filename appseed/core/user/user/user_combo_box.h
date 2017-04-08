@@ -86,6 +86,7 @@ namespace user
       virtual void get_simple_drop_down_open_arrow_path(point_array & pointa) const;
 
 
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnKeyDown);

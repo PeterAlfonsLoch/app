@@ -56,6 +56,7 @@ namespace user
 
       }
 
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pdispatch, this, &combo_box::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_box::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_box::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pdispatch,this,&combo_box::_001OnKeyDown);
@@ -625,8 +626,6 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      pmouse->previous();
-
       point pt = pmouse->m_pt;
 
       ScreenToClient(&pt);
@@ -647,15 +646,12 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      pmouse->previous();
-
       point pt = pmouse->m_pt;
 
       ScreenToClient(&pt);
 
-      if (hit_test(pt) == element_drop_down)
+      if (!m_bEdit || hit_test(pt) == element_drop_down)
       {
-
 
          pmouse->m_ecursor = ::visual::cursor_arrow;
 
@@ -677,12 +673,14 @@ namespace user
 
       ScreenToClient(&pt);
 
-      if (hit_test(pt) == element_drop_down)
+      if (!m_bEdit || hit_test(pt) == element_drop_down)
       {
 
          pmouse->m_bRet = true;
 
+
       }
+
 
    }
 
@@ -716,7 +714,7 @@ namespace user
 
       defer_create_combo_list();
 
-      _001ShowDropDown(!m_plist->IsWindowVisible());
+      _001ShowDropDown(!m_plist->is_this_visible());
 
 
    }
@@ -767,9 +765,7 @@ namespace user
          if(m_plist.is_set())
          {
 
-            m_plist->post_message(WM_CLOSE);
-
-            m_plist.m_p = NULL;
+            m_plist->ShowWindow(SW_HIDE);
 
          }
 
@@ -1592,6 +1588,17 @@ namespace user
       m_bMultiLine = false;
       return control::create_control(pdescriptor, iItem);
    }
+
+
+   void combo_box::_001OnLButtonDblClk(signal_details * pobj)
+   {
+
+      _001OnLButtonDown(pobj);
+
+      pobj->m_bRet = true;
+
+   }
+
 
 } // namespace user
 

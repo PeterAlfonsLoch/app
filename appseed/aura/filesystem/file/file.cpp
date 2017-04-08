@@ -335,7 +335,7 @@ CLASS_DECL_AURA bool file_append_wait_dup(const string & strFile, const char * p
 
       }
 
-      Sleep(100);
+      Sleep(5);
 
    }
 

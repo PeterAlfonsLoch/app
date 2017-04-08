@@ -449,6 +449,8 @@ public:
    strsize find(char ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
    strsize find_ci(char ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
+   strsize find_whitespace_or_length(strsize start = 0) const RELEASENOTHROW;
+
    // look for a specific sub-string
 
    // find the first occurrence of string 'pszSub', starting at index 'iStart'
