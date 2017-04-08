@@ -43,7 +43,7 @@
 #include "fontopus_login.h"
 
 
-#include "fontopus_simple_ui.h"
+#include "fontopus_dialog.h"
 
 
 

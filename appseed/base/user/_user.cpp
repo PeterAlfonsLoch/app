@@ -19,7 +19,7 @@
 
 #include "fontopus/fontopus.cpp"
 #include "fontopus/fontopus_login.cpp"
-#include "fontopus/fontopus_simple_ui.cpp"
+#include "fontopus/fontopus_dialog.cpp"
 //3 arquivo(s)         26.019 bytes
 
 //Pasta de Z:\nordroid\app\appseed\base\user\simple

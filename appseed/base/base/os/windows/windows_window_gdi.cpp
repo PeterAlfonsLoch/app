@@ -388,6 +388,25 @@ void window_gdi::update_window(::draw2d::dib * pdib)
 
    if (m_rectLast != rectWindow || m_pimpl->m_bZ || m_pimpl->m_bShowFlags)
    {
+      
+      UINT uiFlags;
+      
+      if (bLayered)
+      {
+
+         uiFlags = SWP_NOREDRAW
+            | SWP_NOCOPYBITS
+            | SWP_NOACTIVATE
+            | SWP_NOOWNERZORDER
+            | SWP_DEFERERASE;
+
+      }
+      else
+      {
+
+         uiFlags = SWP_FRAMECHANGED;
+
+      }
 
       ::SetWindowPos(m_pimpl->m_oswindow, (m_pimpl->m_bZ ? (HWND)m_pimpl->m_iZ : 0),
          rectWindow.left,
@@ -396,17 +415,16 @@ void window_gdi::update_window(::draw2d::dib * pdib)
          rectWindow.height(),
          (m_pimpl->m_bZ ? 0 : SWP_NOZORDER)
          | m_pimpl->m_iShowFlags
-         | SWP_NOREDRAW
-         | SWP_NOCOPYBITS
-         | SWP_NOACTIVATE
-         | SWP_NOOWNERZORDER
-         | SWP_DEFERERASE);
+         | uiFlags);
 
-      if (m_pimpl->m_iShowFlags & SWP_SHOWWINDOW)
+      if (bLayered)
       {
+         if (m_pimpl->m_iShowFlags & SWP_SHOWWINDOW)
+         {
 
-         ::ShowWindow(m_pimpl->m_oswindow, SW_NORMAL);
+            ::ShowWindow(m_pimpl->m_oswindow, SW_NORMAL);
 
+         }
       }
 
       m_rectLast = rectWindow;

@@ -465,7 +465,7 @@ namespace base
       if(!bInteractive)
          return "failed";
 
-      sp(::fontopus::simple_ui) pui;
+      sp(::fontopus::dialog) pdialog;
 
       string strRequestUrl(strRequestUrlParam);
 
@@ -489,15 +489,15 @@ namespace base
 
       }
 
-      pui = canew(::fontopus::simple_ui(papp,strRequestUrl));
+      pdialog = canew(::fontopus::dialog(papp,strRequestUrl));
 
-      pui->m_login.m_peditUser->SetWindowText(strUsername);
+      pdialog->m_login.m_peditUser->SetWindowText(strUsername);
 
-      pui->m_login.m_ppassword->SetWindowText("");
+      pdialog->m_login.m_ppassword->SetWindowText("");
 
-      string strResult = pui->get_cred(rect,strUsername,strPassword,strToken,strTitle);
+      string strResult = pdialog->get_cred(rect,strUsername,strPassword,strToken,strTitle);
 
-      pui->DestroyWindow();
+      pdialog->DestroyWindow();
 
       return strResult;
 
