@@ -29,13 +29,19 @@ static const char * rgszFileExceptionCause[] =
 };
 static const char szUnknown[] = "unknown";
 
+
 namespace file
 {
 
+   bool should_ignore_file_exception_call_stack(exception::e_cause ecause)
+   {
+
+
+   }
 
    exception::exception(::aura::application * papp, exception::e_cause cause , LONG lOsError, const char * lpszArchiveName, UINT nOpenFlags) :
       object(papp),
-      ::call_stack(papp),
+      ::call_stack(papp, should_ignore_file_exception_call_stack(cause) ? SKIP_CALL_STACK : CALL_STACK_DEFAULT_SKIP),
       ::exception::base(papp),
       ::simple_exception(papp),
       ::io_exception(papp)

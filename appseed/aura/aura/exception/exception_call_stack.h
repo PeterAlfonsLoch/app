@@ -31,6 +31,21 @@
 
 #define SKIP_CALL_STACK ((uint32_t) -1)
 
+
+#if defined(APPLE_IOS)
+
+#define CALL_STACK_DEFAULT_SKIP 3
+
+#elif defined(VSNORD)
+
+#define CALL_STACK_DEFAULT_SKIP 4
+
+#else
+
+#define CALL_STACK_DEFAULT_SKIP 3
+
+#endif
+
 class CLASS_DECL_AURA call_stack :
    virtual public object
 {

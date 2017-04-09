@@ -3,21 +3,15 @@
 
 #if defined(APPLE_IOS)
 
-bool call_stack::s_bDoStackTrace = false;
-
-#define CALL_STACK_DEFAULT_SKIP 3
+bool call_stack::s_bDoStackTrace = true;
 
 #elif defined(VSNORD)
 
 bool call_stack::s_bDoStackTrace = true;
 
-#define CALL_STACK_DEFAULT_SKIP 4
-
 #else
 
-bool call_stack::s_bDoStackTrace = false;
-
-#define CALL_STACK_DEFAULT_SKIP 3
+bool call_stack::s_bDoStackTrace = true;
 
 #endif
 

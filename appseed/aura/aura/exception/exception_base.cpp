@@ -14,6 +14,9 @@ namespace exception
       // most exceptions are deleted when not needed
       m_ulFlags |= flag_auto_clean;
       m_ulFlags &= ~flag_ready_for_delete;
+
+      m_strMessage += m_strCallStack;
+
    }
 
    base::base(::aura::application * papp, bool bAutoDelete, uint32_t uiSkip) :
@@ -33,6 +36,8 @@ namespace exception
          m_ulFlags &= ~flag_auto_clean;
       }
       m_ulFlags &= ~flag_ready_for_delete;
+
+      m_strMessage += m_strCallStack;
    }
 
    base::~base()
