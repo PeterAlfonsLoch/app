@@ -15,7 +15,9 @@ bool call_stack::s_bDoStackTrace = true;
 
 #endif
 
-
+// 0 - most deep call stack logging
+// 4 - most lite call stack logging
+int g_iCallStackLevel = 4; 
 
 
 

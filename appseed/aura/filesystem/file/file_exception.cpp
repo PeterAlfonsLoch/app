@@ -4,6 +4,8 @@
 //#include <Shellapi.h>
 #endif
 
+extern int g_iCallStackLevel;
+
 #define DUMP_FILE_EXCEPTION_BACK_TRACE 0
 
 /////////////////////////////////////////////////////////////////////////////
@@ -36,6 +38,19 @@ namespace file
    bool should_ignore_file_exception_call_stack(exception::e_cause ecause)
    {
 
+      if (ecause == exception::fileNotFound)
+      {
+
+         if (g_iCallStackLevel >= 3)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
 
    }
 
