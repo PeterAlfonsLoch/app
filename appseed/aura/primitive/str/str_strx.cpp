@@ -50,26 +50,32 @@ const char * utf8_inc(const char * psz)
 
 
 
-int32_t uni_to_utf8(char * psz, int32_t w)
+int32_t uni_to_utf8(char * dest, int32_t ch)
 {
-   if(w < 0x0080 )
-   {
-      psz[0] = (char) w;
+   if (ch < 0x80) {
+      dest[0] = (char)ch;
       return 1;
    }
-   else if(w < 0x0800)
-   {
-      psz[0] = (char)(0xc0 | ((w) >> 6));
-      psz[1] = (char)(0x80 | ((w) & 0x3f));
+   if (ch < 0x800) {
+      dest[0] = (ch >> 6) | 0xC0;
+      dest[1] = (ch & 0x3F) | 0x80;
       return 2;
    }
-   else
-   {
-      psz[0] = (char)(0xe0 | ((w) >> 12));
-      psz[1] = (char)(0x80 | (((w) >> 6) & 0x3f));
-      psz[2] = (char)(0x80 | ((w) & 0x3f));
+   if (ch < 0x10000) {
+      dest[0] = (ch >> 12) | 0xE0;
+      dest[1] = ((ch >> 6) & 0x3F) | 0x80;
+      dest[2] = (ch & 0x3F) | 0x80;
       return 3;
    }
+   if (ch < 0x110000) {
+      dest[0] = (ch >> 18) | 0xF0;
+      dest[1] = ((ch >> 12) & 0x3F) | 0x80;
+      dest[2] = ((ch >> 6) & 0x3F) | 0x80;
+      dest[3] = (ch & 0x3F) | 0x80;
+      return 4;
+   }
+   return 0;
+
 }
 
 

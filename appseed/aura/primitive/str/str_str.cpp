@@ -1,11 +1,78 @@
 //#include "framework.h"
 
 
+
+
+namespace hex
+{
+
+   uint16_t parse_uint16_exc(const char * & psz, const char * pszEnd)
+   {
+      string strUni;
+      const char * pszNext = psz;
+      for (index i = 0; i < 4; i++)
+      {
+         psz = pszNext;
+         pszNext = ::str::__utf8_inc(psz);
+         if (pszNext > pszEnd)
+         {
+            throw_parsing_exception("hexadecimal digit expected, premature end");
+            return -1;
+         }
+         if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
+         {
+            strUni += *psz;
+         }
+         else
+         {
+            throw_parsing_exception("hexadecimal digit expect expected here");
+            return -1;
+         }
+      }
+      psz = pszNext;
+      return ::hex::to_uint(strUni);
+
+   }
+
+}
+
 #ifdef LINUX
    ////#include <ctype.h>
 #endif
+bool is_high_surrogate(uint16_t ui)
+{
+   return ui >= 0xD800 && ui <= 0xDBFF;
+      
+}
+bool is_low_surrogate(uint16_t ui)
+{
+   return ui >= 0xDC00 && ui <= 0xDFFF;
+}
+CLASS_DECL_AURA bool is_surrogated(uint32_t character)
+{
+   return 0x10000 <= character && character <= 0x10FFFF;
+}
+CLASS_DECL_AURA void
+encode_utf16_pair(uint32_t character, uint16_t *units)
+{
+   unsigned int code;
+   ASSERT(is_surrogated(character));
+   code = (character - 0x10000);
+   units[0] = 0xD800 | (code >> 10);
+   units[1] = 0xDC00 | (code & 0x3FF);
+}
 
-
+uint32_t
+decode_utf16_pair(uint16_t *units)
+{
+   uint32_t code;
+   ASSERT(is_high_surrogate(units[0]));
+   ASSERT(is_low_surrogate(units[1]));
+   code = 0x10000;
+   code += (units[0] & 0x03FF) << 10;
+   code += (units[1] & 0x03FF);
+   return code;
+}
 namespace str
 {
 
@@ -2613,7 +2680,7 @@ end:
          {
             m_sz[m_iPos] = (char)(0xe0 | ((w) >> 12));
             m_iPos++;
-            m_sz[m_iPos] = (char)(0x80 | (((w) >> 6) & 0x3f));
+            m_sz[m_iPos] = (char)(0xc0 | (((w) >> 6) & 0x3f));
             m_iPos++;
             m_sz[m_iPos] = (char)(0x80 | ((w) & 0x3f));
             m_iPos++;
@@ -2714,28 +2781,46 @@ end:
             }
             else if(*psz == 'u')
             {
-               string strUni;
-               for(index i = 0; i < 4; i++)
+               psz++;
+               uint16_t ui[2];
+               ui[0] = ::hex::parse_uint16_exc(psz, pszEnd);
+               if (is_high_surrogate(ui[0]))
                {
-                  psz = pszNext;
-                  pszNext = __utf8_inc(psz);
-                  if(pszNext > pszEnd)
+                  if (*psz != '\\')
                   {
-                     throw_parsing_exception("Quote character is required here, premature end");
-                     return "";
+                     throw_parsing_exception("expect back slash here (for low surrogate)");
                   }
-                  if((pszNext - psz == 1) &&((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
+                  psz++;
+                  if (*psz != 'u' && *psz != 'U')
                   {
-                     strUni += *psz;
+                     throw_parsing_exception("expect 'u' character here (for low surrogate)");
+                  }
+                  psz++;
+                  ui[1] = ::hex::parse_uint16_exc(psz, pszEnd);
+                  
+                  if (!is_low_surrogate(ui[1]))
+                  {
+
+                     throw_parsing_exception("expect low surrogate");
+
                   }
                   else
                   {
-                     throw_parsing_exception("16 bit unicode expect here");
-                     return "";
+
+                     unichar32 uni = (unichar32)decode_utf16_pair(ui);
+                     string strUtf8 = utf32_to_utf8(&uni, 1);
+                     str.append(strUtf8, strUtf8.get_length());
+
                   }
 
                }
-               str.append_uni((unichar)::hex::to_uint(strUni));
+               else
+               {
+
+                  str.append_uni((unichar)ui[0]);
+
+               }
+               pszNext = psz;
             }
             else if(*psz == '\"')
             {
