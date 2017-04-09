@@ -4536,7 +4536,7 @@ namespace draw2d_cairo
    }
 
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const
+   sized graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
       sized sz;
@@ -4544,18 +4544,18 @@ namespace draw2d_cairo
       if (!GetTextExtent(sz, lpszString, nCount, iIndex))
          return ::size(0, 0);
 
-      return size((int)sz.cx, (int)sz.cy);
+      return sized((int)sz.cx, (int)sz.cy);
 
    }
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
+   sized graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
 
       return GetTextExtent(lpszString, nCount, -1);
 
    }
 
-   size graphics::GetTextExtent(const string & str) const
+   sized graphics::GetTextExtent(const string & str) const
    {
 
       return GetTextExtent(str, str.get_length());
@@ -4567,7 +4567,7 @@ namespace draw2d_cairo
    {
 
       ::exception::throw_not_implemented(get_app());
-      return ::size(0, 0);
+      return ::sized(0, 0);
 
       /*
             ASSERT(get_handle1() != NULL);

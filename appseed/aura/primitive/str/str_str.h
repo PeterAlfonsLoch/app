@@ -228,6 +228,29 @@ namespace str
 
    }
 
+   template < typename T >
+   inline string  from_int(const T & t)
+   {
+
+      string str;
+
+      to_string(str, (int64_t) t);
+
+      return str;
+
+   }
+
+   template < typename T >
+   inline string  from_uint(const T & t)
+   {
+
+      string str;
+
+      to_string(str, (uint64_t)t);
+
+      return str;
+
+   }
 
 
    /*inline CLASS_DECL_AURA string  from(int32_t i);

@@ -4346,7 +4346,7 @@ namespace draw2d_direct2d
 #endif
 
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const
+   sized graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
       sized sz;
@@ -4368,7 +4368,7 @@ namespace draw2d_direct2d
 
    }
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
+   sized graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
 
       return GetTextExtent(lpszString, (int32_t) nCount, (int32_t) nCount);
@@ -4376,7 +4376,7 @@ namespace draw2d_direct2d
    }
 
 
-   size graphics::GetTextExtent(const string & str) const
+   sized graphics::GetTextExtent(const string & str) const
    {
 
       return GetTextExtent(str, str.get_length());

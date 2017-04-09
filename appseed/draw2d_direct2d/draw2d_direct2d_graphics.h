@@ -364,9 +364,9 @@ namespace draw2d_direct2d
 //      virtual int draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
   //    virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 
-      virtual size GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const;
-      virtual size GetTextExtent(const char * lpszString, strsize nCount) const;
-      virtual size GetTextExtent(const string & str) const;
+      virtual sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const override;
+      virtual sized GetTextExtent(const char * lpszString, strsize nCount) const override;
+      virtual sized GetTextExtent(const string & str) const override;
       virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const;
       virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
       virtual bool GetTextExtent(sized & size, const string & str) const;

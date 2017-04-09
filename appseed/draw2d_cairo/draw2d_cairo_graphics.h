@@ -328,9 +328,9 @@ namespace draw2d_cairo
       virtual int32_t draw_text_ex(LPTSTR lpszString, strsize nCount, const RECT & lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int32_t draw_text_ex(const string & str, const RECT & lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 
-      size GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const;
-      size GetTextExtent(const char * lpszString, strsize nCount) const;
-      size GetTextExtent(const string & str) const;
+      sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const override;
+      sized GetTextExtent(const char * lpszString, strsize nCount) const override;
+      sized GetTextExtent(const string & str) const override;
       bool _GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const;
       bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const;
       bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
