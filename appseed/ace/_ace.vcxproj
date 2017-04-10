@@ -153,7 +153,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
@@ -164,7 +164,7 @@
       <OpenMPSupport>false</OpenMPSupport>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
       <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeaderFile>_framework.h</PrecompiledHeaderFile>
@@ -358,12 +358,12 @@
       <OpenMPSupport>false</OpenMPSupport>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
       <AdditionalOptions>
       </AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAsManaged>false</CompileAsManaged>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <PrecompiledHeaderFile>_framework.h</PrecompiledHeaderFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <StringPooling>false</StringPooling>
