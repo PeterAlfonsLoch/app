@@ -116,7 +116,7 @@ namespace file
 
    };
 
-
+   CLASS_DECL_AURA bool should_ignore_file_exception_call_stack(exception::e_cause ecause);
 
 } // namespace file
 

@@ -4,8 +4,6 @@
 
 bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath,const wstring & wstrPath);
 
-
-
 namespace windows
 {
 
@@ -206,7 +204,16 @@ namespace windows
 
          }
 
-         return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName));
+         ::file::exception::e_cause ecause = file_exception::OsErrorToException(dwLastError);
+
+         if (::file::should_ignore_file_exception_call_stack(ecause))
+         {
+
+            return failure;
+
+         }
+
+         return canew(::file::exception(get_app(), ecause, dwLastError, lpszFileName));
 
       }
 

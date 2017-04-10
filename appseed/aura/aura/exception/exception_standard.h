@@ -26,6 +26,16 @@
 #include <eh.h>
 
 
+#if OSBIT == 64
+
+#define DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP 3000
+
+#else
+
+#define DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP 0
+
+#endif
+
 
 #define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_AURA name : virtual public standard_exception \
    { \
@@ -33,7 +43,7 @@
    protected: \
    name (::aura::application * papp, EXCEPTION_POINTERS * ppointers) : \
       object(papp), \
-      ::call_stack(papp), \
+      ::call_stack(papp, DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP), \
       ::exception::base(papp), \
       ::standard_exception(papp, ppointers) \
       {debug_print(":" #name);} \
@@ -92,7 +102,7 @@ public:
 #ifdef WINDOWS
    standard_exception(::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
       object(papp),
-      ::call_stack(papp),
+      ::call_stack(papp, DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP),
       ::exception::base(papp),
       m_ppointers(ppointers)
    {
@@ -229,7 +239,7 @@ namespace exception
       
       standard_access_violation (::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
          object(papp),
-         ::call_stack(papp),
+         ::call_stack(papp, DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP),
          ::exception::base(papp),
          ::standard_exception(papp, ppointers)
       {
@@ -318,7 +328,7 @@ namespace exception
       
       standard_no_memory (::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
          object(papp),
-         ::call_stack(papp),
+         ::call_stack(papp, DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP),
          ::exception::base(papp),
          ::standard_exception(papp, ppointers)
       {

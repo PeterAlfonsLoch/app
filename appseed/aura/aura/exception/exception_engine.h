@@ -149,7 +149,7 @@ namespace exception
       //size_t get_module_basename(HMODULE hmodule, string & strName);
       size_t get_module_name(HMODULE hmodule, char * psz, int nCount);
 
-      char * get_frame(const char * pszFormat);
+      char * get_frame(const char * pszFormat, int & iLine);
 
       bool check();
 

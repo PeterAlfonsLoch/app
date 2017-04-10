@@ -35,10 +35,22 @@ static const char szUnknown[] = "unknown";
 namespace file
 {
 
-   bool should_ignore_file_exception_call_stack(exception::e_cause ecause)
+   CLASS_DECL_AURA bool should_ignore_file_exception_call_stack(exception::e_cause ecause)
    {
 
       if (ecause == exception::fileNotFound)
+      {
+
+         if (g_iCallStackLevel >= 3)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      if (ecause == exception::badPath)
       {
 
          if (g_iCallStackLevel >= 3)

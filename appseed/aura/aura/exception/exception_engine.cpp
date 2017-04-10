@@ -262,6 +262,27 @@ int_bool __stdcall My_ReadProcessMemory (
    return TRUE;
 
 }
+int_bool __stdcall My_ReadProcessMemory32(
+   HANDLE      hProcess,
+   DWORD     qwBaseAddress,
+   PVOID       lpBuffer,
+   DWORD       nSize,
+   LPDWORD     lpNumberOfBytesRead
+)
+{
+
+   SIZE_T size = 0;
+#if defined(METROWIN) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
+   throw todo(get_thread_app());
+#else
+   if (!ReadProcessMemory(hProcess, (LPCVOID)qwBaseAddress, (LPVOID)lpBuffer, nSize, &size))
+      return FALSE;
+#endif
+   *lpNumberOfBytesRead = (uint32_t)size;
+
+   return TRUE;
+
+}
 /*
 #else
 int_bool __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, uint32_t nSize, SIZE_T * lpNumberOfBytesRead)
@@ -416,7 +437,7 @@ namespace exception
       if(!check())
          return false;
 
-      memset(&m_stackframe, 0, sizeof(STACKFRAME64));
+      memset(&m_stackframe, 0, sizeof(m_stackframe));
 
       //  s_readMemoryFunction = readMemoryFunction;
       //s_readMemoryFunction_UserData = pUserData;
@@ -481,11 +502,11 @@ namespace exception
       m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&m_uia), &BackTraceHash);
 #else
       m_iAddressWrite = 0;
-   if (!m_bOk)
-   {
-      _ASSERTE(0);
-      return;
-   }
+   //if (!m_bOk)
+   //{
+     // _ASSERTE(0);
+      //return;
+   //}
 
 
    while (true)
@@ -504,6 +525,7 @@ namespace exception
       dwType = IMAGE_FILE_MACHINE_I386;
 #endif
 
+#if OSBIT == 64
       bool r = StackWalk64(
          dwType,   // __in      uint32_t MachineType,
          hprocess,        // __in      HANDLE hProcess,
@@ -516,6 +538,21 @@ namespace exception
          SymGetModuleBase64,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleBaseRoutine,
          NULL                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
          ) != FALSE;
+#else
+      bool r = StackWalk(
+         dwType,   // __in      uint32_t MachineType,
+         hprocess,        // __in      HANDLE hProcess,
+         get_current_thread(),         // __in      HANDLE hThread,
+         &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
+         &m_context,                  // __inout   PVOID ContextRecord,
+         My_ReadProcessMemory32,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
+                                                   //NULL,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
+         SymFunctionTableAccess,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
+         SymGetModuleBase,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleBaseRoutine,
+         NULL                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
+      ) != FALSE;
+
+#endif
       /*#else
       bool r = StackWalk64 (
       ,
@@ -1271,22 +1308,65 @@ namespace exception
 
    bool engine::stack_trace(CONTEXT * pcontext, uint_ptr uiSkip, bool bSkip, const char * pszFormat)
    {
+      
       *_strS = '\0';
+
       if (!stack_first(pcontext))
+      {
+
          return false;
+
+      }
+
+      uint_ptr uiSkipStart = uiSkip;
+
+      int iLine;
 
       do
       {
-         if (!uiSkip && !bSkip)
+         
+         if (!uiSkip && !bSkip || uiSkip == DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP)
          {
 
-            strcat(_strS, get_frame(pszFormat));
+            iLine = 0;
+
+            char * psz = get_frame(pszFormat, iLine);
+
+            if (uiSkip == DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP)
+            {
+
+               if (::str::find_ci("KiUserExceptionDispatcher", psz) >= 0)
+               {
+                  
+                  uiSkip = 0;
+
+               }
+
+               continue;
+
+            }
+            else if (uiSkipStart == DEFAULT_SE_EXCEPTION_CALL_STACK_SKIP)
+            {
+
+               if (iLine == 0)
+               {
+
+                  break;
+
+               }
+
+            }
+
+            strcat(_strS, psz);
 
          }
          else
          {
+            
             --uiSkip;
+
          }
+
       }
       while(stack_next());
 
@@ -1308,12 +1388,25 @@ namespace exception
       m_iAddressWrite = c;
       m_iAddressRead = 0;
       char * psz;
+
+      int iLine;
+
       do
       {
-         psz = get_frame(pszFormat);
+         
+         iLine = 0;
+
+         psz = get_frame(pszFormat, iLine);
+
          if (psz == NULL)
+         {
+          
             break;
+
+         }
+
          strcat(_strS, psz);
+
       } while (stack_next());
 
       return _strS;
@@ -1324,7 +1417,7 @@ namespace exception
 #if defined(WINDOWSEX) 
 
 
-   char * engine::get_frame(const char * pszFormat)
+   char * engine::get_frame(const char * pszFormat, int & iLine)
    {
 
 
@@ -1435,6 +1528,8 @@ namespace exception
          }
 
       }
+
+      iLine = uiLineNumber;
 
       return _str;
 

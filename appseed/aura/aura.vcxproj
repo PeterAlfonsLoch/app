@@ -215,8 +215,8 @@
     </Manifest>
     <CustomBuildStep>
       <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
-
-copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.pdb $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\zlib.dll</Outputs>
@@ -289,8 +289,8 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </Manifest>
     <CustomBuildStep>
       <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
-
-copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.pdb $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\zlib.dll</Outputs>
@@ -376,8 +376,8 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </Manifest>
     <CustomBuildStep>
       <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
-
-copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.pdb $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\zlib.dll</Outputs>
@@ -447,8 +447,8 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
-
-copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.pdb $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\zlib.dll</Outputs>
@@ -520,8 +520,8 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
-
-copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.pdb $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\zlib.dll</Outputs>
@@ -602,8 +602,8 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
-
-copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.pdb $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\zlib.dll</Outputs>

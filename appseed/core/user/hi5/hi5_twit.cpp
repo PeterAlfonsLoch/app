@@ -550,11 +550,13 @@ namespace hi5
    *--*/
    bool twit::statusUpdate( string & newStatus, stringa straMediaIds)
    {
-      char * psz = NULL;
-      int i = 5;
+      
+      //char * psz = NULL;
+      //int i = 5;
       //int v = i / 0;
-      //char ch = *psz;
-      *psz = 'a';
+      ////char ch = *psz;
+      //*psz = 'a';
+
       bool retVal = false;
       if( true && (newStatus.has_char() || straMediaIds.has_elements()))
       {
