@@ -1003,7 +1003,7 @@ namespace user
    bool combo_list::has_pending_graphical_update()
    {
 
-      return IsWindowVisible();
+      return IsWindowVisible() || m_pimpl->m_iShowFlags != 0;
 
    }
 

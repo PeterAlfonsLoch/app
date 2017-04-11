@@ -853,7 +853,7 @@ namespace user
 
    scroll_y::scroll_y()
    {
-
+      m_iVScrollOffset = 0;
       m_scrolldataVert.m_bScroll = false;
       m_scrolldataVert.m_iPage = 0;
       m_scrolldataVert.m_iLine = 0;
@@ -901,7 +901,7 @@ namespace user
 
             _001GetYScrollInfo(m_pscrollbarVert->m_scrollinfo);
 
-            m_pscrollbarVert->SetWindowPos(ZORDER_TOP, rectClient.right, rectClient.top, m_scrolldataVert.m_iWidth, rectClient.height() - rectClient.top, ifswp);
+            m_pscrollbarVert->SetWindowPos(ZORDER_TOP, rectClient.right, rectClient.top + m_iVScrollOffset, m_scrolldataVert.m_iWidth, rectClient.height() - rectClient.top - m_iVScrollOffset, ifswp);
 
             m_pscrollbarVert->on_layout();
 

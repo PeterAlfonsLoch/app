@@ -3059,3 +3059,24 @@ bool simple_frame_window::IsNotifyIconEnabled()
    return m_bDefaultNotifyIcon;
 
 }
+
+
+bool simple_frame_window::get_color(COLORREF & cr, ::user::e_color ecolor)
+{
+
+   if (m_workset.m_pframeschema != NULL)
+   {
+
+
+      if (m_workset.m_pframeschema->get_color(cr, ecolor))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return ::user::frame_window::get_color(cr, ecolor);
+
+}

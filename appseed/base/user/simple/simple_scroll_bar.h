@@ -20,9 +20,11 @@ public:
    e_element                  m_eelement;
 
    COLORREF                   m_cr;
+   COLORREF                   m_crStrong;
    COLORREF                   m_crBorder;
    COLORREF                   m_crLiteBorder;
    COLORREF                   m_crHover;
+   COLORREF                   m_crHoverStrong;
    COLORREF                   m_crHoverBorder;
    COLORREF                   m_crHoverLiteBorder;
 
@@ -37,6 +39,8 @@ public:
    virtual void install_message_handling(::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+   virtual void _001OnCoreDraw(::draw2d::graphics * pgraphics);
+   virtual void _001OnVerisimpleDraw(::draw2d::graphics * pgraphics);
 
    void update_drawing_objects();
 
@@ -83,6 +87,7 @@ public:
    virtual bool scrollbar_pageB(point pt);
    virtual bool scrollbar_pageA(point pt);
 
+   virtual COLORREF scrollbar_color_strong(e_element eelement);
    virtual COLORREF scrollbar_color(e_element eelement);
    virtual COLORREF scrollbar_border_color(e_element eelement);
    virtual COLORREF scrollbar_lite_border_color(e_element eelement);

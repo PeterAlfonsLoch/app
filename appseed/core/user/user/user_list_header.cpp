@@ -14,7 +14,7 @@ namespace user
       m_bTrack = false;
       m_bLButtonDown = false;
       m_bHover = false;
-      m_font->create_point_font("Arial", 20.0);
+      m_font->create_point_font("Verdana", 20.0);
    }
 
    list_header::~list_header()
@@ -41,14 +41,14 @@ namespace user
       string str;
 
       str = System.load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
-      m_font->create_point_font("Arial", 12.0);
+      m_font->create_point_font("Verdana", 10.0);
 
 
       pgraphics->SelectObject(m_font);
 
 //      pgraphics->SetBkMode(TRANSPARENT);
 
-      pgraphics->set_text_color(ARGB(255, 0, 0, 0));
+      pgraphics->set_text_color(ARGB(255, 80, 80, 80));
 
       pgraphics->_DrawText(str,str.get_length(),rectColumn,DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
 
@@ -547,6 +547,7 @@ namespace user
 
       rect rectUpdate(rectClient);
 
+      rectUpdate.bottom;
       rect rectClipBox;
 
       pgraphics->GetClipBox(rectClipBox);
@@ -558,9 +559,13 @@ namespace user
 
       rectUpdate.intersect(rectUpdate, rectClipBox);
 
-      class imaging & imaging = System.visual().imaging();
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      imaging.color_blend(pgraphics, rectUpdate, RGB(0, 0, 0), 80);
+      COLORREF crBack = ARGB(80, 0, 0, 0);
+
+      get_color(crBack, ::user::color_face_lite);
+
+      pgraphics->FillSolidRect(rectUpdate, crBack);
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;

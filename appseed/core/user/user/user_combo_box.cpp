@@ -739,25 +739,8 @@ namespace user
       else
       {
 
-         //m_plist->post_message(WM_CLOSE);
-
-         //m_plist.m_p = NULL;
-
-         //if(m_plist.is_set())
-         //{
-
-         //   m_plist->DestroyWindow();
-
-         //   m_plist.release();
-
-         //}
-
-//         keyboard_set_focus();
-
          if(m_plist.is_set())
          {
-
-            m_plist->ModifyStyle(WS_VISIBLE, 0, 0);
 
             m_plist->ShowWindow(SW_HIDE);
 

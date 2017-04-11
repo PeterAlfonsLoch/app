@@ -1299,6 +1299,8 @@ namespace user
 
       m_iItemHeight = _001CalcItemHeight((int)iItemHeight);
 
+      m_iVScrollOffset = m_iItemHeight;
+
       m_iItemWidth = (int32_t)iItemWidth;
 
       if (m_bSingleColumnMode)

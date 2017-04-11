@@ -1819,6 +1819,21 @@ namespace user
       if (pdrawitem->m_pcolumn->m_iControl >= 0)
       {
 
+         rect rScreen = pdrawitem->m_rectSubItem;
+
+         ClientToScreen(rScreen);
+
+         if (rScreen.contains(Session.m_ptCursor))
+         {
+
+            COLORREF crBackHover = ARGB(40, 0, 0, 0);
+
+            get_color(crBackHover, ::user::color_background_hover);
+
+            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectSubItem, crBackHover);
+
+         }
+
          sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset.sp_at(pdrawitem->m_pcolumn->m_iControl);
 
          if (pdescriptor.is_set())

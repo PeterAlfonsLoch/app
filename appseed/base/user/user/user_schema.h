@@ -31,6 +31,8 @@ namespace user
       color_text_hover,
       color_text_press,
       color_text_disabled,
+      color_face,
+      color_face_lite,
 
    };
 

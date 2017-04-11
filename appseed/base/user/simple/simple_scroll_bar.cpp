@@ -20,12 +20,14 @@ simple_scroll_bar::simple_scroll_bar(::aura::application * papp) :
    m_scrollinfo.nPos    = 0;
 
 
-   m_cr = ARGB(77 + 49,184,184,177);
-   m_crBorder = ARGB(184,84 - 49,84 - 49,77 - 49);
+   m_cr = ARGB(0,0,0,0);
+   m_crStrong = ARGB(150, 150, 150, 150);
+   m_crBorder = ARGB(184,180, 180, 180);
    m_crLiteBorder = ARGB(184,84 + 23,84 + 23,77 + 23);
 
-   m_crHover = ARGB(77 + 49 - 23,184,184,255);
-   m_crHoverBorder = ARGB(184,84 - 49 - 23,84 - 49,77 + 84);
+   m_crHover = ARGB(100,190,180,250);
+   m_crHoverStrong = ARGB(130, 190, 180, 250);
+   m_crHoverBorder = ARGB(184,160,150,180);
    m_crHoverLiteBorder = ARGB(184,84 + 23 - 23,84 + 23,77 + 23 + 84);
 
 }
@@ -235,7 +237,7 @@ bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
       iPos = m_scrollinfo.nPos;
    if(m_eorientation == orientation_horizontal)
    {
-      int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx - 1;
+      int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx - 2;
       lpRect->top = rectClient.top;
       lpRect->bottom = rectClient.top + sizeTrack.cy;
       if(m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage == 0)
@@ -246,11 +248,11 @@ bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
    }
    else if(m_eorientation == orientation_vertical)
    {
-      int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2 - sizeTrack.cy - 1;
+      int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2 - sizeTrack.cy - 2;
       if(m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage == 0)
-         lpRect->top = 0;
+         lpRect->top = 1;
       else
-         lpRect->top = GetSystemMetrics(SM_CYVSCROLL) + 1 + (iPos - m_scrollinfo.nMin) * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
+         lpRect->top = GetSystemMetrics(SM_CYVSCROLL) + 2 + (iPos - m_scrollinfo.nMin) * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
       lpRect->bottom = lpRect->top + sizeTrack.cy;
       lpRect->left = rectClient.left;
       lpRect->right = lpRect->left + sizeTrack.cx;
@@ -372,7 +374,7 @@ int32_t simple_scroll_bar::GetTrackSize(size &size)
       if(cx < 5)
          cx = 5;
       size.cx = cx;
-      size.cy = rectClient.height();
+      size.cy = rectClient.height() - 1;
    }
    else if(m_eorientation == orientation_vertical)
    {
@@ -389,7 +391,7 @@ int32_t simple_scroll_bar::GetTrackSize(size &size)
       if(cy < 5)
          cy = 5;
       size.cy = cy;
-      size.cx = rectClient.width();
+      size.cx = rectClient.width() - 1;
    }
 
    return true;
@@ -965,8 +967,25 @@ public:
    }
 };
 
-
 void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pgraphics)
+{
+
+   if (1)
+   {
+
+      _001OnVerisimpleDraw(pgraphics);
+
+   }
+   else
+   {
+
+      _001OnCoreDraw(pgraphics);
+
+   }
+
+}
+
+void simple_scroll_bar::_001OnCoreDraw(::draw2d::graphics * pgraphics)
 {
 
    COLORREF crBackground = 0;
@@ -1251,6 +1270,261 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pgraphics)
 
 }
 
+void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics * pgraphics)
+{
+
+   COLORREF crBackground = 0;
+
+   get_color(crBackground, ::user::color_background);
+
+   rect rectClient;
+
+   GetClientRect(rectClient);
+
+   if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+   {
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      if (Session.savings().is_trying_to_save(::aura::resource_processing))
+      {
+
+         pgraphics->FillSolidRect(rectClient, RGB(255, 255, 255));
+
+      }
+      else
+      {
+
+         pgraphics->FillSolidRect(rectClient, ARGB(255, 240, 240, 240));
+
+      }
+
+   }
+
+   rect rectTrack;
+
+   GetTrackRect(rectTrack);
+
+   class ::rect rectWindow;
+
+   GetWindowRect(rectWindow);
+
+   //m_penDraw->create_solid(1, scrollbar_border_color(element_scrollbar_rect));
+
+   m_brushDraw->create_solid(scrollbar_color_strong(element_scrollbar_rect));
+
+   //pgraphics->SelectObject(m_penDraw);
+
+
+   pgraphics->SelectObject(m_brushDraw);
+
+   pgraphics->FillRectangle(rectTrack);
+
+
+   if (m_bTracking || (bool)oprop("tracking_on"))
+   {
+
+      DWORD dwFadeIn = 490;
+
+      DWORD dwFadeOut = 490;
+
+      byte uchAlpha = MAX(0, MIN(255, oprop("tracking_alpha").uint32()));
+
+      if (m_bTracking)
+      {
+         if (!(bool)oprop("tracking_on"))
+         {
+            oprop("tracking_on") = true;
+            oprop("tracking_start") = (uint32_t)(get_tick_count() + uchAlpha * dwFadeIn / 255);
+            oprop("tracking_fade_in") = true;
+            oprop("tracking_fade_out") = false;
+            oprop("tracking_simple") = System.math().RandRange(1, 2) == 1;
+            //oprop("tracking_window") = canew(trw(get_app()));
+         }
+      }
+      else
+      {
+         if (!(bool)oprop("tracking_fade_out"))
+         {
+            oprop("tracking_fade_in") = false;
+            oprop("tracking_fade_out") = true;
+            oprop("tracking_start") = (uint32_t)(get_tick_count() + (255 - uchAlpha) * dwFadeOut / 255);
+         }
+
+      }
+
+      point pt1 = rectTrack.top_left() + m_ptTrackOffset;
+
+      ClientToScreen(pt1);
+
+      point pt2;
+
+      Session.get_cursor_pos(&pt2);
+
+      ClientToScreen(pt1);
+
+      //      oprop("tracking_window").cast < trw >()->pt1 = pt1;
+
+      //    oprop("tracking_window").cast < trw >()->pt2 = pt2;
+
+      if ((bool)oprop("tracking_fade_in"))
+      {
+         DWORD dwFade = get_tick_count() - oprop("tracking_start").uint32();
+         if (dwFade < dwFadeIn)
+         {
+            uchAlpha = (byte)MIN(255, MAX(0, (dwFade * 255 / dwFadeIn)));
+         }
+         else
+         {
+            uchAlpha = 255;
+            oprop("tracking_fade_in") = false;
+         }
+
+      }
+      else if ((bool)oprop("tracking_fade_out"))
+      {
+         DWORD dwFade = get_tick_count() - oprop("tracking_start").uint32();
+         if (dwFade < dwFadeOut)
+         {
+            uchAlpha = (byte)(255 - MIN(255, MAX(0, (dwFade * 255 / dwFadeOut))));
+         }
+         else
+         {
+            uchAlpha = 0;
+            oprop("tracking_on") = false;
+            oprop("tracking_fade_out") = false;
+         }
+
+      }
+      else
+      {
+         uchAlpha = 255;
+      }
+
+      ::rect rectMachineThumb;
+
+      bool bSimple = (bool)oprop("tracking_simple");
+
+      if (bSimple)
+      {
+
+         int iSize = rectTrack.size().get_normal(m_eorientation) * 6 / 8;
+
+         rectMachineThumb.top_left() = rectTrack.top_left() + m_ptTrackOffset - size(iSize / 2, iSize / 2);
+
+         rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
+
+         ::rect rectIntersect;
+
+         rectIntersect.intersect(rectMachineThumb, rectTrack);
+
+         int32_t iArea = (int32_t)(MAX(1, rectIntersect.area()));
+
+         rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
+
+         draw_mac_thumb_simple(pgraphics, rectMachineThumb, rectTrack, uchAlpha);
+
+      }
+      else
+      {
+
+         int iSize = rectTrack.size().get_normal(m_eorientation);
+
+         rectMachineThumb.top_left() = rectTrack.top_left() + m_ptTrackOffset - size(iSize / 2, iSize / 2);
+
+         rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
+
+         rectMachineThumb.assign_normal(rectTrack, m_eorientation);
+
+         rectMachineThumb.constraint_v7(rectTrack);
+
+         rectMachineThumb.deflate(1, 1);
+
+         draw_mac_thumb_dots(pgraphics, rectMachineThumb, rectTrack, uchAlpha);
+
+      }
+
+      oprop("tracking_alpha") = uchAlpha;
+
+   }
+
+
+
+
+
+   ::draw2d::pen_sp penArrow(allocer());
+
+   //penArrow->create_solid(1.0, scrollbar_lite_border_color(element_scrollbar_rectA));
+
+   //pgraphics->SelectObject(penArrow);
+
+   m_brushDraw->create_solid(scrollbar_color(element_scrollbar_rectA));
+
+   pgraphics->SelectObject(m_brushDraw);
+
+   pgraphics->FillRectangle(m_rectA);
+
+   //penArrow->create_solid(1.0, scrollbar_lite_border_color(element_scrollbar_rectB));
+
+   //pgraphics->SelectObject(penArrow);
+
+   m_brushDraw->create_solid(scrollbar_color(element_scrollbar_rectB));
+
+   pgraphics->SelectObject(m_brushDraw);
+
+   pgraphics->FillRectangle(m_rectB);
+
+   ::rect rect;
+
+   if (m_eelement == element_scrollbar_pageA || m_eelementHover == element_scrollbar_pageA)
+   {
+
+      GetPageARect(rectClient, rectTrack, rect);
+
+      m_brushDraw->create_solid(scrollbar_color(element_scrollbar_pageA));
+
+      pgraphics->SelectObject(m_brushDraw);
+
+      pgraphics->FillRectangle(rect);
+
+   }
+   else if (m_eelement == element_scrollbar_pageB || m_eelementHover == element_scrollbar_pageB)
+   {
+
+      GetPageBRect(rectClient, rectTrack, rect);
+
+      m_brushDraw->create_solid(scrollbar_color(element_scrollbar_pageB));
+
+      pgraphics->SelectObject(m_brushDraw);
+
+      pgraphics->FillRectangle(rect);
+
+
+   }
+
+
+   penArrow->m_elinecapBeg = ::draw2d::pen::line_cap_round;
+   penArrow->m_elinecapEnd = ::draw2d::pen::line_cap_round;
+   penArrow->m_elinejoin = ::draw2d::pen::line_join_round;
+
+   penArrow->create_solid(1.0, scrollbar_lite_border_color(element_scrollbar_rectA));
+
+   pgraphics->SelectObject(penArrow);
+
+   pgraphics->Polyline(m_ptaA, 3);
+
+   penArrow->create_solid(1.0, scrollbar_lite_border_color(element_scrollbar_rectB));
+
+   pgraphics->SelectObject(penArrow);
+
+   pgraphics->Polyline(m_ptaB, 3);
+
+
+
+
+}
+
+
 void simple_scroll_bar::_001OnShowWindow(signal_details * pobj)
 {
    SCAST_PTR(::message::show_window, pshowwindow, pobj);
@@ -1504,6 +1778,23 @@ index simple_scroll_bar::hit_test(point pt,e_element & eelement)
 
 }
 
+COLORREF simple_scroll_bar::scrollbar_color_strong(e_element eelement)
+{
+
+   if (m_eelement == eelement || m_eelementHover == eelement)
+   {
+
+      return m_crHoverStrong;
+
+   }
+   else
+   {
+
+      return m_crStrong;
+
+   }
+
+}
 
 COLORREF simple_scroll_bar::scrollbar_color(e_element eelement)
 {

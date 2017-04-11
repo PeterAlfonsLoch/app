@@ -290,6 +290,8 @@ public:
 
    virtual ::user::front_end_schema * get_user_front_end_schema() override;
 
+   virtual bool get_color(COLORREF & cr, ::user::e_color ecolor);
+
 };
 
 

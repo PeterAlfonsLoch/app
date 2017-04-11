@@ -84,7 +84,7 @@ namespace user
    {
    public:
 
-
+      int                  m_iVScrollOffset;
       sp(scroll_bar)       m_pscrollbarVert;
       scroll_data          m_scrolldataVert;
       int16_t              m_iWheelDelta;

@@ -173,6 +173,40 @@ namespace user
          }
 
       }
+      else if (ecolor == color_face)
+      {
+
+         if (_001IsTranslucent())
+         {
+
+            return ARGB(120, 0, 0, 0);
+
+         }
+         else
+         {
+
+            return ARGB(255,80, 80, 80);
+
+         }
+
+      }
+      else if (ecolor == color_face_lite)
+      {
+
+         if (_001IsTranslucent())
+         {
+
+            return ARGB(80, 0, 0, 0);
+
+         }
+         else
+         {
+
+            return ARGB(255, 120, 120, 120);
+
+         }
+
+      }
       else if (ecolor == color_background_selected)
       {
 
