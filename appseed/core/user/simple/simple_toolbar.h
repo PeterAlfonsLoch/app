@@ -19,8 +19,11 @@ class CLASS_DECL_CORE simple_toolbar :
 
 public:
 
-
-
+   size                       m_sizePress;
+   size                       m_sizeSpacing;
+   size                       m_sizeSeparator;
+   rect                       m_rectBorder;
+   rect                       m_rectItemPad;
    bool                       m_bTransparentBackground;
    bool                       m_bSimpleLayout;
    int32_t                    m_iHover;
@@ -48,6 +51,11 @@ public:
    simple_toolbar(::aura::application * papp);
    virtual ~simple_toolbar();
 
+   virtual size get_press_shift();
+   virtual size get_item_spacing();
+   virtual size get_separator_size();
+   virtual rect get_bar_border();
+   virtual rect get_item_pad();
 
    using ::user::control_bar::create;
    bool create(sp(::user::interaction) pParentWnd, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, id nID = "__IDW_TOOLBAR"); 

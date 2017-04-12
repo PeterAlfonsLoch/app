@@ -62,6 +62,8 @@ public:
 // Operations
 
    // set rectangle from left, top, right, and bottom
+   void set(int32_t i) throw();
+   void set(int32_t x, int32_t y) throw();
    void set(int32_t x1, int32_t y1, int32_t x2, int32_t y2) throw();
    void set(POINT topLeft, POINT bottomRight) throw();
    // is_empty the rectangle

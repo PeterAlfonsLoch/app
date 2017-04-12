@@ -801,35 +801,22 @@ namespace draw2d
       if (dia > width(r))	dia = (int32_t)width(r);
       if (dia > height(r))	dia = (int32_t)height(r);
 
-      // define a corner
       RECT Corner(rect_dim(r.left, r.top, dia, dia));
-
-      // begin path
-      //   path.m_ppath->Reset();
-
-      // top left
       add_arc(Corner, 180, 90);
-
-      // tweak needed for radius of 10 (dia of 20)
-      int32_t dia2 = dia;
-      if (dia % 2 == 0)
-      {
-         dia2++;
-      }
 
       // top right
       Corner.left += (width(r) - dia - 1);
-      Corner.right = Corner.left + dia2;
+      Corner.right = Corner.left + dia;
       add_arc(Corner, 270, 90);
 
       // bottom right
       Corner.top += (height(r) - dia - 1);
-      Corner.bottom = Corner.top + dia2;
+      Corner.bottom = Corner.top + dia;
       add_arc(Corner, 0, 90);
 
       // bottom left
       Corner.left -= (width(r) - dia - 1);
-      Corner.right = Corner.left + dia2;
+      Corner.right = Corner.left + dia;
       add_arc(Corner, 90, 90);
 
       return true;

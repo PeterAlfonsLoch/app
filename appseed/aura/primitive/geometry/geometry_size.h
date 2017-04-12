@@ -89,6 +89,9 @@ public:
    inline LONG set_normal_dimension(e_orientation eorientation,LONG l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
    inline LONG set_normal(e_orientation eorientation,LONG l) throw() { return set_orthogonal_dimension(eorientation,l); }
 
+   inline void set(LONG c) throw();
+   inline void set(LONG cx, LONG cy) throw();
+
    inline ::size max(const size & s)const throw();
 
    inline static size unit_size() { return ::size(1,1);  }
@@ -321,6 +324,22 @@ inline LONG size::get_orthogonal_dimension(e_orientation eorientation) const thr
    }
 }
 
+inline void size::set(LONG c) throw()
+{
+
+   cx = c;
+
+   cy = c;
+
+}
+inline void size::set(LONG cxParam, LONG cyParam) throw()
+{
+
+   cx = cxParam;
+
+   cy = cyParam;
+
+}
 
 inline LONG size::set_dimension(e_orientation eorientation, LONG l) throw()
 {

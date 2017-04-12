@@ -750,6 +750,14 @@ rect::operator LPCRECT() const throw()
    { return (LPCRECT) this; }
 bool rect::contains(POINT point) const throw()
    { return ::PtInRect((LPCRECT) this, point) != FALSE; }
+void rect::set(int32_t i) throw()
+{
+   ::SetRect(this, i, i, i, i);
+}
+void rect::set(int32_t x, int32_t y) throw()
+{
+   ::SetRect(this, x, y, x, y);
+}
 void rect::set(int32_t x1, int32_t y1, int32_t x2, int32_t y2) throw()
    { ::SetRect(this, x1, y1, x2, y2); }
 void rect::set(POINT topLeft, POINT bottomRight) throw()
