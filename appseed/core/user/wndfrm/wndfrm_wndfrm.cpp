@@ -56,6 +56,13 @@ namespace user
 
          strLibrary.replace("/", "_");
 
+         if (!strLibrary.begins_ci("wndfrm_"))
+         {
+
+            strLibrary = "wndfrm_" + strLibrary;
+
+         }
+
 #if defined(LINUX) || defined(APPLEOS)
 
          strLibrary = "lib" + strLibrary;

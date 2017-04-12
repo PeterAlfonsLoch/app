@@ -292,6 +292,7 @@ public:
 
    virtual bool get_color(COLORREF & cr, ::user::e_color ecolor);
 
+
 };
 
 

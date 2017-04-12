@@ -263,11 +263,43 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 {
 
-   sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema(NULL, "005");
+   string strWndFrm;
 
-   pschema->set_style("DarkWarmBlue");
+   string strFrameSchema;
 
-//   pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
+   string strFrameStyle;
+
+   if (m_pdocumenttemplate->m_strMatter.has_char())
+   {
+
+      strWndFrm = Application.file().as_string("matter://" + m_pdocumenttemplate->m_strMatter + "/wndfrm.txt");
+
+      strFrameSchema = Application.file().as_string("matter://" + m_pdocumenttemplate->m_strMatter + "/frame_schema.txt");
+
+      strFrameStyle = Application.file().as_string("matter://" + m_pdocumenttemplate->m_strMatter + "/frame_style.txt");
+
+   }
+
+   if (strFrameSchema.is_empty())
+   {
+
+      strFrameSchema = "005";
+
+   }
+
+   if (strFrameStyle.is_empty())
+   {
+
+      strFrameStyle = "DarkWarmBlue";
+
+   }
+
+   sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema(strWndFrm, strFrameSchema);
+
+
+   //sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema(NULL, "013");
+
+   pschema->set_style(strFrameStyle);
 
    return pschema;
 
@@ -3080,3 +3112,4 @@ bool simple_frame_window::get_color(COLORREF & cr, ::user::e_color ecolor)
    return ::user::frame_window::get_color(cr, ecolor);
 
 }
+

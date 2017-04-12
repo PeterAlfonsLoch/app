@@ -346,6 +346,32 @@ namespace user
             }
 
          }
+         else
+         {
+
+            if (m_rangeSelection.has_item(iItem))
+            {
+
+               m_rangeSelection.clear();
+
+            }
+            else
+            {
+
+               m_rangeSelection.clear();
+
+               ::user::mesh::item_range r;
+
+               r.m_iLowerBound = iItem;
+
+               r.m_iUpperBound = iItem;
+
+               m_rangeSelection.add_item(r);
+
+            }
+            // return ::user::list::_001OnClick(uiFlags, point, iItem, iSubItem);
+
+         }
 
 
       }
@@ -1873,7 +1899,12 @@ namespace user
 
                   }
 
-                  m_puserschemaSchema->_001DrawCheckBox(pdrawitem->m_pgraphics, r, echeck);
+                  if (m_puserschemaSchema != NULL)
+                  {
+
+                     m_puserschemaSchema->_001DrawCheckBox(pdrawitem->m_pgraphics, r, echeck);
+
+                  }
 
                }
 
