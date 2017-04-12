@@ -2777,6 +2777,9 @@
     <ClInclude Include="primitive\primitive_property.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\simple_log.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4764,6 +4767,9 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_property.cpp">
       <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\simple_log.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

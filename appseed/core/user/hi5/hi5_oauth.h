@@ -20,7 +20,7 @@ namespace hi5
    typedef property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_CORE oauth :
-      virtual public ::object
+      virtual public ::simple_log
    {
    public:
 
@@ -42,7 +42,7 @@ namespace hi5
       const string OAUTHLIB_TWITTER_ACCESS_TOKEN_URL;
 
 
-       oauth(::aura::application * papp);
+       oauth(::aura::application * papp, simple_log * psimplelog, int iLogTarget);
        virtual ~oauth();
 
        /* OAuth public methods used by twitCurl */
@@ -99,6 +99,7 @@ namespace hi5
                           string& oAuthSignature /* out */ );
 
        void generateNonceTimeStamp();
+
 
    };
 

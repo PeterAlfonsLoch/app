@@ -6,9 +6,11 @@ namespace hi5
 
    /* twitCurl class */
    class CLASS_DECL_CORE twit :
-      virtual public ::object
+      virtual public ::simple_log
    {
    public:
+
+
       /* Constants */
       const string TWIT_COLON;
       const char TWIT_EOS;
@@ -81,130 +83,137 @@ namespace hi5
       const string TWIT_TRENDSWEEKLY_URL;
       const string TWIT_TRENDSAVAILABLE_URL;
 
-         public:
-       /* cURL data */
-       string m_strError;
-       string m_strResponse;
-
-       /* cURL flags */
-       bool m_curlLoginParamsSet;
-       property_set m_setHttp;
+   public:
 
 
-       /* Twitter data */
-       string m_twitterUsername;
-       string m_twitterPassword;
+      string   m_strRequest;
+      string   m_strError;
+      string   m_strResponse;
 
-       /* OAuth data */
-       oauth m_oauth;
-
-       twit(::aura::application * papp);
-       virtual ~twit();
-
-       /* Twitter OAuth authorization methods */
-       oauth& get_oauth();
-       bool oAuthRequestToken( string & authorizeUrl /* out */ );
-       bool oAuthAccessToken();
-
-       /* Twitter login APIs, set once and forget */
-       string & getTwitterUsername();
-       string & getTwitterPassword();
-       void setTwitterUsername( string & userName /* in */ );
-       void setTwitterPassword( string & passWord /* in */ );
-
-       /* Twitter search APIs */
-       bool search( string & query /* in */ );
+      /* cURL flags */
+      bool m_curlLoginParamsSet;
+      property_set m_setHttp;
 
 
-       string mediaUpload(::file::file_sp pfile, string strMimeType, string strCategory);
-       string mediaUploadInit(int iTotalSize, string strMimeType, string strCategory);
-       bool mediaUploadAppend(string strMediaId, index iIndex, memory & mem);
-       var mediaUploadFinalize(string strMediaId);
-       var mediaUploadStatus(string strMediaId);
+      /* Twitter data */
+      string m_twitterUsername;
+      string m_twitterPassword;
 
-       /* Twitter status APIs */
-       bool statusUpdate(string & newStatus /* in */, stringa straMediaIds = {});
-       bool statusShowById( string & statusId /* in */ );
-       bool statusDestroyById( string & statusId /* in */ );
+      /* OAuth data */
+      oauth m_oauth;
 
-       /* Twitter timeline APIs */
-       bool timelinePublicGet();
-       bool timelineFriendsGet();
-       bool timelineUserGet( string userInfo = "" /* in */, bool isUserId = false /* in */ );
-       bool featuredUsersGet();
-       bool mentionsGet();
+      twit(::aura::application * papp, simple_log * psimplelog, int iLogTarget);
+      virtual ~twit();
 
-       /* Twitter user APIs */
-       bool userGet( string & userInfo /* in */, bool isUserId = false /* in */ );
-       bool friendsGet( string userInfo = "" /* in */, bool isUserId = false /* in */ );
-       bool followersGet( string userInfo = "" /* in */, bool isUserId = false /* in */ );
+      /* Twitter OAuth authorization methods */
+      oauth& get_oauth();
+      bool oAuthRequestToken(string & authorizeUrl /* out */);
+      bool oAuthAccessToken();
 
-       /* Twitter direct message APIs */
-       bool directMessageGet();
-       bool directMessageSend( string & userInfo /* in */, string & dMsg /* in */, bool isUserId = false /* in */ );
-       bool directMessageGetSent();
-       bool directMessageDestroyById( string & dMsgId /* in */ );
+      /* Twitter login APIs, set once and forget */
+      string & getTwitterUsername();
+      string & getTwitterPassword();
+      void setTwitterUsername(string & userName /* in */);
+      void setTwitterPassword(string & passWord /* in */);
 
-       /* Twitter friendships APIs */
-       bool friendshipCreate( string & userInfo /* in */, bool isUserId = false /* in */ );
-       bool friendshipDestroy( string & userInfo /* in */, bool isUserId = false /* in */ );
-       bool friendshipShow( string & userInfo /* in */, bool isUserId = false /* in */ );
-
-       /* Twitter social graphs APIs */
-       bool friendsIdsGet( string & userInfo /* in */, bool isUserId = false /* in */ );
-       bool followersIdsGet( string & userInfo /* in */, bool isUserId = false /* in */ );
-
-       /* Twitter ac::count APIs */
-       bool accountRateLimitGet();
+      /* Twitter search APIs */
+      bool search(string & query /* in */);
 
 
+      string mediaUpload(::file::file_sp pfile, string strMimeType, string strCategory);
+      string mediaUploadInit(int iTotalSize, string strMimeType, string strCategory);
+      bool mediaUploadAppend(string strMediaId, index iIndex, memory & mem);
+      var mediaUploadFinalize(string strMediaId);
+      var mediaUploadStatus(string strMediaId);
 
-       /* Twitter favorites APIs */
-       bool favoriteGet();
-       bool favoriteCreate( string & statusId /* in */ );
-       bool favoriteDestroy( string & statusId /* in */ );
+      /* Twitter status APIs */
+      bool statusUpdate(string & newStatus /* in */, stringa straMediaIds = {});
+      bool statusShowById(string & statusId /* in */);
+      bool statusDestroyById(string & statusId /* in */);
 
-       /* Twitter block APIs */
-       bool blockCreate( string & userInfo /* in */ );
-       bool blockDestroy( string & userInfo /* in */ );
+      /* Twitter timeline APIs */
+      bool timelinePublicGet();
+      bool timelineFriendsGet();
+      bool timelineUserGet(string userInfo = "" /* in */, bool isUserId = false /* in */);
+      bool featuredUsersGet();
+      bool mentionsGet();
 
-       /* Twitter search APIs */
-       bool savedSearchGet();
-       bool savedSearchCreate( string & query /* in */ );
-       bool savedSearchShow( string & searchId /* in */ );
-       bool savedSearchDestroy( string & searchId /* in */ );
+      /* Twitter user APIs */
+      bool userGet(string & userInfo /* in */, bool isUserId = false /* in */);
+      bool friendsGet(string userInfo = "" /* in */, bool isUserId = false /* in */);
+      bool followersGet(string userInfo = "" /* in */, bool isUserId = false /* in */);
 
-       /* Twitter trends APIs (JSON) */
-       bool trendsGet();
-       bool trendsDailyGet();
-       bool trendsWeeklyGet();
-       bool trendsCurrentGet();
-       bool trendsAvailableGet();
-    
-       string get_response();
+      /* Twitter direct message APIs */
+      bool directMessageGet();
+      bool directMessageSend(string & userInfo /* in */, string & dMsg /* in */, bool isUserId = false /* in */);
+      bool directMessageGetSent();
+      bool directMessageDestroyById(string & dMsgId /* in */);
 
-       /* Internal cURL related methods */
-       int32_t saveLastWebResponse( char*& data, size_t size );
+      /* Twitter friendships APIs */
+      bool friendshipCreate(string & userInfo /* in */, bool isUserId = false /* in */);
+      bool friendshipDestroy(string & userInfo /* in */, bool isUserId = false /* in */);
+      bool friendshipShow(string & userInfo /* in */, bool isUserId = false /* in */);
+
+      /* Twitter social graphs APIs */
+      bool friendsIdsGet(string & userInfo /* in */, bool isUserId = false /* in */);
+      bool followersIdsGet(string & userInfo /* in */, bool isUserId = false /* in */);
+
+      /* Twitter ac::count APIs */
+      bool accountRateLimitGet();
 
 
 
-       /* Private methods */
-       void prepareCurlUserPass();
-       void prepareStandardParams();
-       bool performGet( const string & getUrl );
-       bool performGet( const string & getUrl, property_set & headers );
-       bool performDelete( const string & deleteUrl );
-       bool performPost( const string & postUrl, property_set & post );
-       bool performMultiPartPost(const string & postUrl, property_set & post, bool bMultiPartPost);
-       //bool performPost( const string & postUrl, property_set & headers, property_set & post );
+      /* Twitter favorites APIs */
+      bool favoriteGet();
+      bool favoriteCreate(string & statusId /* in */);
+      bool favoriteDestroy(string & statusId /* in */);
 
-       string build_url(const char * baseUrl, const char * userInfo, bool isUserId );
+      /* Twitter block APIs */
+      bool blockCreate(string & userInfo /* in */);
+      bool blockDestroy(string & userInfo /* in */);
 
-       string prepare_basic_authentication(const char * inParam1, const char * inParam2);
+      /* Twitter search APIs */
+      bool savedSearchGet();
+      bool savedSearchCreate(string & query /* in */);
+      bool savedSearchShow(string & searchId /* in */);
+      bool savedSearchDestroy(string & searchId /* in */);
+
+      /* Twitter trends APIs (JSON) */
+      bool trendsGet();
+      bool trendsDailyGet();
+      bool trendsWeeklyGet();
+      bool trendsCurrentGet();
+      bool trendsAvailableGet();
+
+      string get_response();
+
+      /* Internal cURL related methods */
+      int32_t saveLastWebResponse(char*& data, size_t size);
+
+
+
+      /* Private methods */
+      void prepareCurlUserPass();
+      void prepareStandardParams();
+      bool performGet(const string & getUrl);
+      bool performGet(const string & getUrl, property_set & headers);
+      bool performDelete(const string & deleteUrl);
+      bool performPost(const string & postUrl, property_set & post);
+      bool performMultiPartPost(const string & postUrl, property_set & post, bool bMultiPartPost);
+      //bool performPost( const string & postUrl, property_set & headers, property_set & post );
+
+      string build_url(const char * baseUrl, const char * userInfo, bool isUserId);
+
+      string prepare_basic_authentication(const char * inParam1, const char * inParam2);
+
+
    };
 
 
-   
-
-
 } // namespace core
+
+
+
+
+
+

@@ -1065,7 +1065,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 
-
+#include "aura/aura/aura/simple_log.h"
 
 
 #include "aura/primitive/collection/collection_file_path_map.h"

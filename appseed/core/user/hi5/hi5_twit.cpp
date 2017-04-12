@@ -40,9 +40,9 @@ namespace hi5
    * @output: none
    *
    *--*/
-   twit::twit(::aura::application * papp) :
+   twit::twit(::aura::application * papp, simple_log * psimplelog, int iLogTarget) :
       object(papp),
-
+      simple_log(psimplelog, iLogTarget),
       /* Constants */
       TWIT_COLON(":"),
       TWIT_EOS('\0'),
@@ -114,7 +114,7 @@ namespace hi5
       TWIT_TRENDSCURRENT_URL("http://api.twitter.com/1/trends/current.json"),
       TWIT_TRENDSWEEKLY_URL("http://api.twitter.com/1/trends/weekly.json"),
       TWIT_TRENDSAVAILABLE_URL("http://api.twitter.com/1/trends/available.json"),
-      m_oauth(papp)
+      m_oauth(papp, psimplelog, iLogTarget)
    {
 
       m_setHttp["raw_http"] = true;
@@ -232,15 +232,27 @@ namespace hi5
       retVal = performGet( strUrl );
       return retVal;
    }
+
+
    string twit::mediaUpload(::file::file_sp pfile, string strMimeType, string strCategory)
    {
+
+      m_strError = "";
+
+      m_strRequest = "REQUEST: mediaUpload(pfile, \""+strMimeType+"\", \""+strCategory+"\")";
+
+      log_line(m_strRequest);
 
       int64_t iLen = pfile->get_length();
 
       if (iLen <= 0)
       {
 
-         return "error: cannot upload media, it is zero size";
+         m_strError = "ERROR: Cannot upload media, it is zero size.";
+
+         log_line(m_strError);
+
+         return m_strError;
 
       }
 
@@ -249,7 +261,21 @@ namespace hi5
       if (strMediaId.is_empty())
       {
 
-         return "error: media Upload Init failed";
+         m_strError = "ERROR: mediaUploadInit failure (1), " + m_strError;
+
+         log_line(m_strError);
+
+         return m_strError;
+
+      }
+      else if (strMediaId.begins_ci("ERROR: "))
+      {
+
+         m_strError = "ERROR: mediaUploadInit failure (2), " + strMediaId;
+
+         log_line(m_strError);
+
+         return m_strError;
 
       }
 
@@ -296,8 +322,6 @@ namespace hi5
 
       memory mem;
 
-      
-
       for (index i = 0; i < iChunkCount; i++)
       {
 
@@ -334,7 +358,11 @@ namespace hi5
             if (get_tick_count() - dwStart > 60 * 1000)
             {
 
-               return "error:timeout reading source file";
+               m_strError = "ERROR: timeout reading source file, " + m_strError;
+
+               log_line(m_strError);
+
+               return m_strError;
 
             }
 
@@ -343,7 +371,11 @@ namespace hi5
          if (!mediaUploadAppend(strMediaId, i, mem))
          {
 
-            return "error:mediaUploadAppend failed";
+            m_strError = "ERROR: mediaUploadAppend failed chunk=" + ::str::from(i) + ", " + m_strError;
+
+            log_line(m_strError);
+
+            return m_strError;
 
          }
 
@@ -354,7 +386,11 @@ namespace hi5
       if (v.is_new())
       {
 
-         return "error: media upload failed";
+         m_strError = "ERROR: mediaUploadFinalize general failure, " + m_strError;
+
+         log_line(m_strError);
+
+         return m_strError;
 
       }
 
@@ -371,11 +407,17 @@ namespace hi5
 
                string strCheckAfterSecs = v["processing_info"]["check_after_secs"];
 
+               log_line("PROCESSING: check after secs = " + strCheckAfterSecs);
+
                Sleep(atoi(strCheckAfterSecs) * 1000);
 
             }
             else if (strState == "succeeded")
             {
+
+               m_strError = "REPLY: " + strMediaId;
+
+               log_line(m_strError);
 
                return strMediaId;
 
@@ -385,13 +427,17 @@ namespace hi5
 
                string strErrorMessage;
 
-               strErrorMessage = "progress_percent:" + v["processing_info"]["progress_percent"];
+               strErrorMessage = "ERROR: progress_percent:" + v["processing_info"]["progress_percent"];
                strErrorMessage += "state:" + v["processing_info"]["state"];
                strErrorMessage += "error.code:" + v["processing_info"]["error"]["code"];
                strErrorMessage += "error.name:" + v["processing_info"]["error"]["name"];
                strErrorMessage += "error.message:" + v["processing_info"]["error"]["message"];
 
-               return "error:" + strErrorMessage;
+               m_strError = strErrorMessage + ", " + m_strError;
+
+               log_line(m_strError);
+
+               return m_strError;
 
             }
 
@@ -401,17 +447,28 @@ namespace hi5
 
       }
 
+      m_strError = "REPLY: " + strMediaId;
+
+      log_line(m_strError);
+
       return strMediaId;
+
    }
 
 
    string twit::mediaUploadInit(int iTotalSize, string strMimeType, string strCategory)
    {
 
+      m_strRequest = "REQUEST: mediaUploadInit(" + ::str::from(iTotalSize) + ", \"" + strMimeType + "\", \"" + strCategory + "\")";
+      
+      log_line(m_strRequest);
+
       property_set post(get_app());
 
       post["command"] = "INIT";
+
       post["total_bytes"] = iTotalSize;
+
       post["media_type"] = strMimeType;
 
       if (!strMimeType.begins_ci("image/") || strMimeType.CompareNoCase("image/gif") == 0)
@@ -425,28 +482,61 @@ namespace hi5
 
       string strUrl("https://upload.twitter.com/1.1/media/upload.json");
 
-      if (!performMultiPartPost(strUrl, post, false))
-      {
-
-         return "";
-
-      }
-
-      const char * psz = m_strResponse;
+      bool bOk = performMultiPartPost(strUrl, post, false);
 
       var v;
 
-      v.parse_json(psz);
+      const char * p = m_strResponse;
 
+      m_strError = m_strResponse;
+
+      try
+      {
+
+         v.parse_json(p);
+
+      }
+      catch (exception::exception & e)
+      {
+
+         m_strError = "EXCEPTION: \"" + string(e.what()) + "\" parsing\"" + m_strResponse + "\"";
+
+         bOk = false;
+
+      }
+      catch (...)
+      {
+
+         m_strError = "EXCEPTION: ... parsing\"" + m_strResponse + "\"";
+
+         bOk = false;
+
+      }
+
+      if (!bOk)
+      {
+
+         m_strError = "ERROR: REPLY: " + m_strError;
+
+         log_line(m_strError);
+
+         return m_strError;
+
+      }
+
+      m_strError = "REPLY: " + m_strError;
+
+      log_line(m_strError);
 
       return v["media_id_string"];
 
-
-
    }
+
 
    bool twit::mediaUploadAppend(string strMediaId, index iIndex, memory & mem)
    {
+
+      log_line("mediaUploadAppend(\"" + strMediaId + "\", " + ::str::from(iIndex) + ", memory(size=" + ::str::from(mem.get_size()) + "))");
       
       property_set post(get_app());
 
@@ -457,6 +547,7 @@ namespace hi5
       *file.get_primitive_memory() = mem;
 
       multipart.m_map["media"].m_spfile = &file;
+
       multipart.m_map["media"].m_uiContentLength = mem.get_size();
 
       post["multipart"] = &multipart;
@@ -470,50 +561,98 @@ namespace hi5
 
       //strUrl += "?command=APPEND&segment_index=" + str::from(iIndex);
 
-      if (!performMultiPartPost(strUrl, post, true))
+      bool bOk = performMultiPartPost(strUrl, post, true);
+      
+      if (!bOk)
+      {
+         
+         m_strError = "ERROR: REPLY: " + m_strResponse;
+
+      }
+      else
       {
 
-         string strMessage = m_strResponse;
-
-         return false;
+         m_strError = "REPLY: " + m_strResponse;
 
       }
 
-      return true;
+      log_line(m_strError);
+
+      return bOk;
 
    }
 
 
    var twit::mediaUploadFinalize(string strMediaId)
    {
+
+      log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
+
       property_set post(get_app());
 
       post["command"] = "FINALIZE";
+
       post["media_id"] = strMediaId;
 
       string strResp = m_strResponse;
 
       string strUrl("https://upload.twitter.com/1.1/media/upload.json");
 
-      if (!performMultiPartPost(strUrl, post, false))
+      bool bOk = performMultiPartPost(strUrl, post, false);
+
+      var v;
+
+      const char * p = m_strResponse;
+
+      m_strError = m_strResponse;
+
+      try
       {
+
+         v.parse_json(p);
+
+      }
+      catch (exception::exception & e)
+      {
+
+         m_strError = "EXCEPTION: \"" + string(e.what()) + "\" parsing\"" + m_strResponse + "\"";
+
+         bOk = false;
+
+      }
+      catch (...)
+      {
+
+         m_strError = "EXCEPTION: ... parsing\"" + m_strResponse + "\"";
+
+         bOk = false;
+
+      }
+
+      if(!bOk)
+      {
+
+         m_strError = "ERROR: REPLY: " + m_strError;
+
+         log_line(m_strError);
 
          return var::type_new;
 
       }
 
-      const char * psz = m_strResponse;
+      m_strError = "REPLY: " + m_strError;
 
-      var v;
-
-      v.parse_json(psz);
-
+      log_line(m_strError);
 
       return v;
+
    }
+
 
    var twit::mediaUploadStatus(string strMediaId)
    {
+
+      log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
 
       property_set post(get_app());
 
@@ -521,22 +660,57 @@ namespace hi5
 
       strUrl += "?command=STATUS&media_id=" + strMediaId;
 
-      if (!performGet(strUrl))
+      bool bOk = performGet(strUrl);
+
+      var v;
+
+      const char * p = m_strResponse;
+
+      m_strError = m_strResponse;
+
+      try
       {
+
+         v.parse_json(p);
+
+      }
+      catch (exception::exception & e)
+      {
+
+         m_strError = "EXCEPTION: \"" + string(e.what()) + "\" parsing\"" + m_strResponse + "\"";
+
+         bOk = false;
+
+      }
+      catch (...)
+      {
+
+         m_strError = "EXCEPTION: ... parsing\"" + m_strResponse + "\"";
+
+         bOk = false;
+
+      }
+
+      if (!bOk)
+      {
+
+         m_strError = "ERROR: REPLY: " + m_strError;
+
+         log_line(m_strError);
 
          return var::type_new;
 
       }
 
-      const char * psz = m_strResponse;
+      m_strError = "REPLY: " + m_strError;
 
-      var v;
-
-      v.parse_json(psz);
-
+      log_line(m_strError);
 
       return v;
+
    }
+
+
    /*++
    * @method: twit::statusUpdate
    *
@@ -550,31 +724,56 @@ namespace hi5
    *--*/
    bool twit::statusUpdate( string & newStatus, stringa straMediaIds)
    {
-      
-      //char * psz = NULL;
-      //int i = 5;
-      //int v = i / 0;
-      ////char ch = *psz;
-      //*psz = 'a';
 
-      bool retVal = false;
-      if( true && (newStatus.has_char() || straMediaIds.has_elements()))
+      m_strRequest = "hi5::twit::statusUpdate(\"" + newStatus + "\", {" + straMediaIds.implode(", ")+"})" ;
+
+      log_line(m_strRequest);
+
+      if (newStatus.is_empty() && straMediaIds.is_empty())
       {
-         /* Prepare new status message */
-         property_set post(get_app());
-         post["status"] = newStatus;
 
-         string strUrl("https://api.twitter.com/1.1/statuses/update.json");
+         m_strError = "ERROR: hi5:twit::statusUpdate : Won't tweet empty status!!";
 
-         if (straMediaIds.has_elements())
-         {
-            strUrl += "?media_ids=" + straMediaIds.implode(",");
-         }
+         log_line(m_strError);
 
-         /* Perform POST */
-         retVal = performPost( strUrl, post );
+         return false;
+
       }
-      return retVal;
+      
+      bool bOk;
+
+      property_set post(get_app());
+
+      post["status"] = newStatus;
+
+      string strUrl("https://api.twitter.com/1.1/statuses/update.json");
+
+      if (straMediaIds.has_elements())
+      {
+
+         strUrl += "?media_ids=" + straMediaIds.implode(",");
+
+      }
+
+      bOk = performPost( strUrl, post );
+
+      if (bOk)
+      {
+
+         m_strError = "REPLY: " + m_strResponse;
+
+      }
+      else
+      {
+
+         m_strError = "ERROR: REPLY: " + m_strResponse;
+
+      }
+      
+      log_line(m_strError);
+
+      return bOk;
+
    }
 
    /*++
