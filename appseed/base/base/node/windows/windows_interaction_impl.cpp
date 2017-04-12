@@ -2424,10 +2424,23 @@ namespace windows
 
                   DWORD dwOffset = dwTick - dwStart;
 
-                  if (dwOffset < MAX(1, m_dFps / 1000.0))
+                  double dFps = m_dFps;
+
+                  if (dFps == 0.0)
                   {
 
-                     Sleep(MAX(1, m_dFps / 1000.0) - dwOffset);
+                     dFps = 1.0;
+
+                  }
+
+                  int iWait = (int) (1000.0 / dFps);
+
+                  iWait = MIN(MAX(1, iWait), 1000);
+
+                  if (dwOffset < iWait)
+                  {
+
+                     Sleep(iWait - dwOffset);
 
                   }
 

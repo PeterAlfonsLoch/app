@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+CLASS_DECL_AURA void simple_log(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * psz);
 
 namespace aura
 {
@@ -87,6 +87,15 @@ namespace aura
          string_format format;
 
          format.format(pszFmt, value, args...);
+
+         if (m_pauraapp == NULL 
+         || m_pauraapp->m_paurasystem == NULL
+         || m_pauraapp->m_paurasystem->m_plog == NULL)
+         {
+            simple_log(m_pszFileName, m_nLineNo, trace::category_General, 0, format.to_string());
+            return;
+
+         }
 
          System.log().trace_str(m_pszFileName, m_nLineNo, trace::category_General, 0, format.to_string());
 

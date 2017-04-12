@@ -377,3 +377,11 @@ CLASS_DECL_AURA const char *  get_windows_message_name(UINT nMsg)
 
 
 #undef DEFINE_MESSAGE
+
+
+
+CLASS_DECL_AURA void simple_log(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * psz)
+{
+
+   output_debug_string(psz);
+}
