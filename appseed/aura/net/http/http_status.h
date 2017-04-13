@@ -22,6 +22,8 @@ namespace http
    bool CLASS_DECL_AURA failed(e_status estatus);
    bool CLASS_DECL_AURA status_failed(int64_t i);
 
+   CLASS_DECL_AURA string conn_status(property_set & set);
+
 
 } // namespace http
 

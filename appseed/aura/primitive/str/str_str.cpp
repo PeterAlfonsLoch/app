@@ -2739,7 +2739,7 @@ end:
       const char * pszValueStart = psz;
       //const char * pszValueEnd = psz;
       const char * pszNext = psz;
-      mini_str_buffer < > str;
+      string str;
       while(true)
       {
          pszNext = __utf8_inc(psz);
@@ -2769,15 +2769,15 @@ end:
             }
             if(*psz == 'n')
             {
-               str.append('\n');
+               str += '\n';
             }
             else if(*psz == 't')
             {
-               str.append('\t');
+               str+='\t';
             }
             else if(*psz == 'r')
             {
-               str.append('\r');
+               str+='\r';
             }
             else if(*psz == 'u')
             {
@@ -2809,7 +2809,7 @@ end:
 
                      unichar32 uni = (unichar32)decode_utf16_pair(ui);
                      string strUtf8 = utf32_to_utf8(&uni, 1);
-                     str.append(strUtf8, strUtf8.get_length());
+                     str+=strUtf8;
 
                   }
 
@@ -2817,14 +2817,16 @@ end:
                else
                {
 
-                  str.append_uni((unichar)ui[0]);
+                  unichar32 uni = ui[0];
+                  string strUtf8 = utf32_to_utf8(&uni, 1);
+                  str += strUtf8;
 
                }
                pszNext = psz;
             }
             else if(*psz == '\"')
             {
-               str.append('\"');;
+               str+='\"';
             }
             else
             {
@@ -2844,9 +2846,7 @@ end:
       
       pszXml = psz;
       
-      str.update();
-
-      return str.m_str;
+      return str;
 
    }
 

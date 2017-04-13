@@ -10,7 +10,7 @@ namespace hi5
    {
    public:
 
-
+      string      m_strConnectionStatus;
       /* Constants */
       const string TWIT_COLON;
       const char TWIT_EOS;

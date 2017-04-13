@@ -1002,6 +1002,7 @@ retry:
 
 
          set["get_headers"] = psession->outheaders();
+         set["get_attrs"] = psession->outattrs();
 
 //            string strSessId;
 
@@ -1043,7 +1044,7 @@ retry:
 
          e_status estatus = status_ok;
 
-         if(iStatusCode == 200 || (psession != NULL && psession->outattr("http_status_code").is_empty()))
+         if((iStatusCode >= 200 && iStatusCode <= 299) || (psession != NULL && psession->outattr("http_status_code").is_empty()))
          {
             estatus = status_ok;
          }
@@ -1657,6 +1658,7 @@ retry_session:
       keeplive.keep_alive();
 
       set["get_headers"] = psocket->outheaders();
+      set["get_attrs"] = psocket->outattrs();
 
 //#ifdef BSD_STYLE_SOCKETS
 //      if(psocket->IsSSL())
@@ -2243,7 +2245,45 @@ retry_session:
 
    }
 
+   CLASS_DECL_AURA string conn_status(property_set & set)
+   {
 
+      e_status estatus = (e_status) set["get_status"].int32();
+
+      string str;
+
+      if (estatus == status_ok)
+      {
+
+         str = "OK: ";
+
+      }
+      else if(estatus == status_connection_timed_out)
+      {
+
+         str = "ERROR: HTTP_CONNECTION_ERROR: Connection Time Out";
+
+      }
+      else if (estatus == status_unchanged)
+      {
+
+         str = "ERROR: HTTP_CONNECTION_ERROR: Unknown error, ";
+
+      }
+      else 
+      {
+
+         str = "ERROR: HTTP_CONNECTION_ERROR: ";
+
+      }
+
+      str += "HTTP_STATUS_CODE: " + set["get_attrs"]["http_status_code"].get_string();
+
+      str += ", HTTP_STATUS: \"" + set["get_attrs"]["http_status"].get_string() + "\"";
+
+      return str;
+      
+   }
 
 } // namespace http
 

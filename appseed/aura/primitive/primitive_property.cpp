@@ -326,8 +326,6 @@ void property::parse_json_id(id & id, const char * & pszJson, const char * pszEn
    
    ::str::consume_quoted_value_ex2(pszJson, pszEnd, &psz, iBuffer);
    
-   ::strlwr(psz);
-   
    id = psz;
 
    if (iBuffer > sizeof(sz))

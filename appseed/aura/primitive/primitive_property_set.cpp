@@ -709,7 +709,7 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 string & property_set::get_json(string & str, bool bNewLine) const
 {
 
-   str = "{";
+   str += "{";
 
    const_iterator it = begin();
 

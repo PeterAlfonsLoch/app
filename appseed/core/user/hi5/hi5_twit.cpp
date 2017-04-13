@@ -1767,7 +1767,13 @@ namespace hi5
       set.merge(m_setHttp);
 
       /* Send http request */
-      return Application.http().get(getUrl, m_strResponse, set);
+      bool bOk = Application.http().get(getUrl, m_strResponse, set);
+
+      string m_strConnectionStatus = ::http::conn_status(set);
+
+      log_line(m_strConnectionStatus);
+
+      return bOk;
 
    }
 
@@ -1795,7 +1801,13 @@ namespace hi5
       set["headers"] = headers;
 
       /* Send http request */
-      return Application.http().get(getUrl, m_strResponse, set);
+      bool bOk = Application.http().get(getUrl, m_strResponse, set);
+
+      string m_strConnectionStatus = ::http::conn_status(set);
+
+      log_line(m_strConnectionStatus);
+
+      return bOk;
 
    }
 
@@ -1852,7 +1864,13 @@ namespace hi5
       set["http_method"] = "DELETE";
 
       /* Send http request */
-      return Application.http().get(deleteUrl, m_strResponse, set);
+      bool bOk = Application.http().get(deleteUrl, m_strResponse, set);
+
+      string m_strConnectionStatus = ::http::conn_status(set);
+
+      log_line(m_strConnectionStatus);
+
+      return bOk;
 
    }
 
@@ -1873,6 +1891,8 @@ namespace hi5
    bool twit::performPost( const string & postUrl, property_set & set)
    {
 
+      bool bOk = false;
+
       if (set.has_property("headers"))
       {
 
@@ -1885,8 +1905,13 @@ namespace hi5
 
          }
 
-         return Application.http().get(postUrl, m_strResponse, set);
+         bOk = Application.http().get(postUrl, m_strResponse, set);
 
+         string m_strConnectionStatus = ::http::conn_status(set);
+
+         log_line(m_strConnectionStatus);
+
+         return bOk;
       }
       else
       {
@@ -1902,14 +1927,24 @@ namespace hi5
 
          setHttp["http_method"] = "POST";
 
-         return Application.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
+         bOk = Application.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
+
+         string m_strConnectionStatus = ::http::conn_status(setHttp);
+
+         log_line(m_strConnectionStatus);
+
+         return bOk;
 
       }
+
+
 
    }
 
    bool twit::performMultiPartPost(const string & postUrl, property_set & set, bool bMultiPartPost)
    {
+
+      bool bOk = false;
 
       if (set.has_property("headers"))
       {
@@ -1923,8 +1958,13 @@ namespace hi5
 
          }
 
-         return Application.http().get(postUrl, m_strResponse, set);
+         bOk = Application.http().get(postUrl, m_strResponse, set);
 
+         string m_strConnectionStatus = ::http::conn_status(set);
+
+         log_line(m_strConnectionStatus);
+
+         return bOk;
       }
       else
       {
@@ -1952,9 +1992,17 @@ namespace hi5
 
          }
 
-         return Application.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
+         bOk = Application.http().get(postUrl, m_strResponse, setHttp) && setHttp["get_status"].int32() == ::http::status_ok;
+
+         string m_strConnectionStatus = ::http::conn_status(setHttp);
+
+         log_line(m_strConnectionStatus);
+
+         return bOk;
 
       }
+
+
 
    }
 
