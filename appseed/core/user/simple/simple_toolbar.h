@@ -19,6 +19,7 @@ class CLASS_DECL_CORE simple_toolbar :
 
 public:
 
+   int                        m_iImageSpacing;
    size                       m_sizePress;
    size                       m_sizeSpacing;
    size                       m_sizeSeparator;
@@ -51,6 +52,7 @@ public:
    simple_toolbar(::aura::application * papp);
    virtual ~simple_toolbar();
 
+   virtual int  get_image_spacing();
    virtual size get_press_shift();
    virtual size get_item_spacing();
    virtual size get_separator_size();

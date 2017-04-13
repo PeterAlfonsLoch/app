@@ -14,10 +14,12 @@ public: // re-implementations only
    virtual void SetText(const char * lpszText, ::action::context actioncontext = ::action::source_system);
 };
 
+#define EXTRA_TEXT_CX 3
+#define EXTRA_TEXT_CY 1
 
-#define ITEM_SEP_CX 2
-#define ITEM_SEP_CY 2
-#define TOOL_SEP_CX 8
+//#define ITEM_SEP_CX 2
+//#define ITEM_SEP_CY 2
+//#define TOOL_SEP_CX 8
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -35,17 +37,20 @@ public: // re-implementations only
 #define ITEMPRESSPADTOP 2
 #define ITEMPRESSPADRIGHT 2
 #define ITEMPRESSPADBOTTOM 2*/
-#define IMAGE_SEP_CX 2
-#define PAD_CX 1
-#define PAD_CX 1
+//#define IMAGE_SEP_CX 2
+//#define PAD_CX 1
+//#define PAD_CX 1
 
 
 simple_toolbar::simple_toolbar(::aura::application * papp) :
    object(papp),
    ::user::control_bar(papp),
    ::user::toolbar(papp),
-   m_dibDraft(allocer())
+   m_dibDraft(allocer()),
+   m_font(allocer())
 {
+
+   m_iImageSpacing = -1;
 
    m_sizePress.set(-1);
 
@@ -70,6 +75,8 @@ simple_toolbar::simple_toolbar(::aura::application * papp) :
    m_sizeButton.cy = 22;
 
    m_bDelayedButtonLayout = true;
+
+   m_font->create_pixel_font("Verdana", 14.0);
 
 }
 
@@ -211,11 +218,15 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
    }
 
    if (m_bDelayedButtonLayout)
+   {
+
       on_layout();
+
+   }
 
    ::user::interaction::_001OnDraw(pgraphics);
 
-   select_font(pgraphics);
+   pgraphics->select_font(m_font);
 
    int iHover = _001GetHoverItem();
 
@@ -408,9 +419,17 @@ size simple_toolbar::CalcSize(int32_t nCount)
 
    ::draw2d::memory_graphics pgraphics(allocer());
 
-   select_font(pgraphics);
+   pgraphics->select_font(m_font);
+
+   int iImageSpacing = get_image_spacing();
 
    rect rBorder = get_bar_border();
+
+   size sPress = get_press_shift();
+
+   size sSpacing = get_item_spacing();
+
+   size sSeparator = get_separator_size();
 
    point cur(rBorder.left, rBorder.top);
 
@@ -436,7 +455,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
       if (!bFirstInRow)
       {
 
-         cur.x += ITEM_SEP_CX;
+         cur.x += sSpacing.cx;
 
       }
 
@@ -449,9 +468,9 @@ size simple_toolbar::CalcSize(int32_t nCount)
       if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
       {
 
-         buttonx = TOOL_SEP_CX;
+         buttonx = sSeparator.cx;
 
-         buttony = rItemPad.top + rItemPad.bottom + PRESS_CY;
+         buttony = rItemPad.top + rItemPad.bottom; //  +sPress.cy;
 
       }
       else
@@ -460,17 +479,17 @@ size simple_toolbar::CalcSize(int32_t nCount)
          if (item.m_spdib.is_set())
          {
 
-            buttonx = item.m_spdib->m_size.cx + IMAGE_SEP_CX + rItemPad.left + rItemPad.right + PRESS_CX;
+            buttonx = item.m_spdib->m_size.cx + iImageSpacing + rItemPad.left + rItemPad.right;
 
-            buttony = item.m_spdib->m_size.cy + rItemPad.top + rItemPad.bottom + PRESS_CY;
+            buttony = item.m_spdib->m_size.cy + rItemPad.top + rItemPad.bottom;
 
          }
          else
          {
 
-            buttonx = rItemPad.left + rItemPad.right + PRESS_CX;
+            buttonx = rItemPad.left + rItemPad.right;
 
-            buttony = rItemPad.top + rItemPad.bottom + PRESS_CY;
+            buttony = rItemPad.top + rItemPad.bottom;
 
          }
 
@@ -480,9 +499,9 @@ size simple_toolbar::CalcSize(int32_t nCount)
 
          size = pgraphics->GetTextExtent(str);
 
-         buttonx += size.cx;
+         buttonx += size.cx + EXTRA_TEXT_CX;
 
-         buttony += size.cy;
+         buttony += size.cy + EXTRA_TEXT_CY;
 
       }
 
@@ -497,7 +516,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
 
       m_itema[i]->m_rect.right = cur.x + buttonx;
 
-      cur.x += buttonx;
+      cur.x += buttonx; //  +sPress.cx;
 
       sizeResult.cx = MAX(cur.x, sizeResult.cx);
 
@@ -519,9 +538,11 @@ size simple_toolbar::CalcSize(int32_t nCount)
          if (sizeResult.cy > rBorder.top)
          {
 
-            cur.y += ITEM_SEP_CY;
+            cur.y += sSpacing.cy;
 
          }
+
+         // cur.y += sPress.cy;
 
          iRowStart = i + 1;
 
@@ -534,7 +555,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
          if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
          {
 
-            sizeResult.cy += TOOL_SEP_CX;
+            sizeResult.cy += sSeparator.cy;
 
          }
 
@@ -553,6 +574,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
 
    }
 
+   // sizeResult.cy += sPress.cy;
 
    sizeResult.cy += cur.y;
 
@@ -577,9 +599,10 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem)
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    rect rectItem;
+
    rect rectImage;
 
-   select_font(pgraphics);
+   pgraphics->select_font(m_font);
 
    ::user::toolbar_item & item = m_itema(iItem);
 
@@ -677,38 +700,39 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem)
                   rectItem.height(),
                   RGB(255, 255, 250), 208);
 
-               pgraphics->Draw3dRect(rectItem,
-                  ARGB(255, 127, 127, 127),
-                  ARGB(255, 255, 255, 255));
+               pgraphics->Draw3dRect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
             }
+            
             if (uiImage != 0xffffffffu)
             {
+               
                if ((nStyle & TBBS_DISABLED) == 0)
                {
+                  
                   // button is enabled
-                  pmenucentral->MenuV033GetImageListBlend()->draw(
-                     pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+
                }
                else
                {
+               
                   // button is disabled
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(
-                     pgraphics, uiImage, rectImage.top_left(), 0);
+                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+
                }
+
             }
+
          }
          else
          {
+
             rect rectShadow;
+
             _001GetElementRect(iItem, rectShadow, ElementItemHover);
+
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
-
-               //::draw2d::pen_sp penShadow(pgraphics, 1, ARGB(255, 127, 127, 227));
-               //::draw2d::brush_sp brushShadow(allocer(), ARGB(123, 127, 127, 127));
-               //::draw2d::pen * ppenOld = pgraphics->SelectObject(penShadow);
-               //::draw2d::brush * pbrushOld = pgraphics->SelectObject(brushShadow);
-               //pgraphics->Rectangle(rectShadow);
 
                ::draw2d::pen_sp pen(pgraphics, 1, ARGB(184, 92, 184, 92));
                ::draw2d::brush_sp brush(allocer(), ARGB(123, 177, 184, 255));
@@ -717,25 +741,33 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem)
                pgraphics->Rectangle(rectItem);
                pgraphics->SelectObject(ppenOld);
                pgraphics->SelectObject(pbrushOld);
+
             }
 
             if (item.m_spdib.is_set())
             {
+               
                rect rect;
+               
                _001GetElementRect(iItem, rect, ElementImageHover);
+               
                System.visual().imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
+
             }
             else if (uiImage != 0xffffffffu)
             {
+               
                rect rect;
+               
                _001GetElementRect(iItem, rect, ElementItemHover);
-               pmenucentral->MenuV033GetImageListHue()->draw(
-                  pgraphics, uiImage, rect.top_left(), 0);
 
-               pmenucentral->MenuV033GetImageList()->draw(
-                  pgraphics, uiImage, rectImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uiImage, rect.top_left(), 0);
+
+               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
             }
+
          }
+
       }
       else if (eelement == ElementItemPress)
       {
@@ -753,64 +785,89 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem)
 
          }
 
-         //      rect rect;
-         //    _001GetElementRect(iItem, rect, element_image);
-         //  m_pimagelistHue->draw(pgraphics, uiImage, rect.top_left(), 0);
          if (item.m_spdib.is_set())
          {
+            
             rect rect;
+            
             _001GetElementRect(iItem, rect, ElementImagePress);
+
             System.visual().imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
+
          }
          else if (uiImage != 0xffffffff)
          {
+            
             pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+
          }
 
       }
       else
       {
+
          if ((nStyle & TBBS_DISABLED) == 0)
          {
+            
             _001GetElementRect(iItem, rectItem, element_item);
 
             pgraphics->FillSolidRect(rectItem, ARGB(184, 255, 255, 255));
+
          }
 
          if ((nStyle & TBBS_CHECKED) != 0)
          {
+
             pgraphics->Draw3dRect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+
          }
 
          if (item.m_spdib.is_set())
          {
+            
             rect rect;
+            
             _001GetElementRect(iItem, rect, element_image);
+
             System.visual().imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
+
          }
          else if (uiImage != 0xffffffff)
          {
+
             if ((nStyle & TBBS_DISABLED) == 0)
             {
-               // button is enabled
+               
                pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+
             }
             else
             {
-               // button is disabled
+               
                pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
+
             }
+
          }
+
       }
+
    }
 
    if (item.m_str.has_char())
    {
+
+      pgraphics->select_font(m_font);
+
       rect rectText;
+
       ::draw2d::brush_sp brushText(allocer());
+
       if ((nStyle & TBBS_DISABLED) == 0)
       {
+
          brushText->create_solid(ARGB(255, 0, 0, 0));
+
       }
       else
       {
@@ -818,14 +875,17 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem)
          brushText->create_solid(ARGB(255, 123, 123, 118));
 
       }
+      
       pgraphics->SelectObject(brushText);
 
       if (_001GetElementRect(iItem, rectText, eelementText) && rectText.right > 0)
       {
-         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT | DT_NOPREFIX);
-      }
-   }
 
+         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT | DT_NOPREFIX);
+
+      }
+
+   }
 
 }
 
@@ -841,6 +901,10 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, e_element 
    }
 
    rect rItemPad = get_item_pad();
+
+   size sPress = get_press_shift();
+
+   int iImageSpacing = get_image_spacing();
 
    rect rect;
 
@@ -882,7 +946,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, e_element 
          rect = item.m_rect;
 
          rect.left += rItemPad.left;
-         rect.bottom -= (rItemPad.bottom + PRESS_CY);
+         rect.bottom -= rItemPad.bottom;
          rect.top = rect.bottom - item.m_spdib->m_size.cy;
          rect.right = rect.left += item.m_spdib->m_size.cx;
 
@@ -901,13 +965,13 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, e_element 
 
             rect.left += item.m_spdib->m_size.cx;
 
-            rect.left += IMAGE_SEP_CX;
+            rect.left += iImageSpacing;
 
          }
 
          rect.top += rItemPad.top;
-         rect.right -= (rItemPad.right + PRESS_CX);
-         rect.bottom -= (rItemPad.bottom + PRESS_CY);
+         rect.right -= (rItemPad.right);
+         rect.bottom -= (rItemPad.bottom);
          break;
 
       }
@@ -922,12 +986,15 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, e_element 
       case ElementItemHover:
       case ElementImageHover:
       case ElementTextHover:
-         rect.offset(HOVER_CX, HOVER_CY);
+//         rect.offset(HOVER_CX, HOVER_CY);
          break;
       case ElementItemPress:
       case ElementImagePress:
       case ElementTextPress:
-         rect.offset(PRESS_CX, PRESS_CY);
+      {
+         size sPress = get_press_shift();
+         rect.offset(sPress.cx, sPress.cy);
+      }
          break;
       default:
          break;
@@ -1387,11 +1454,21 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 
    ::draw2d::memory_graphics pgraphics(allocer());
 
-   select_font(pgraphics);
+   pgraphics->select_font(m_font);
+
+   int iImageSpacing = get_image_spacing();
+
+   size sSeparator = get_separator_size();
+
+   size sSpacing = get_item_spacing();
+
+   size sPress = get_press_shift();
 
    rect rItemPad = get_item_pad();
 
-   int32_t x = BAR_BORDER_CX;
+   rect rBorder = get_bar_border();
+
+   int32_t x = rBorder.left;
 
    string str;
 
@@ -1414,7 +1491,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
       if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
       {
 
-         dx = TOOL_SEP_CX;
+         dx = sSeparator.cx;
 
          dxNext = dx;
 
@@ -1434,7 +1511,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
          if (str.has_char() && m_itema[i]->m_spdib.is_set())
          {
 
-            dx += IMAGE_SEP_CX;
+            dx += iImageSpacing;
 
          }
 
@@ -1443,11 +1520,11 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 
             sized size = pgraphics->GetTextExtent(str);
 
-            dx += size.cx;
+            dx += size.cx + EXTRA_TEXT_CX;
 
          }
 
-         dx += rItemPad.right + PRESS_CX;
+         dx += rItemPad.right; // +sPress.cx;
 
          dxNext = dx - CX_OVERLAP;
 
@@ -1455,7 +1532,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 
       bool bFound = FALSE;
 
-      if (x + dx > nWidth - BAR_BORDER_CX)
+      if (x + dx > nWidth - rBorder.right)
       {
 
          for (int32_t j = i; j >= 0 && !(m_itema[j]->m_fsState & TBSTATE_WRAP); j--)
@@ -1469,7 +1546,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
             {
                bFound = TRUE;
                i = j;
-               x = BAR_BORDER_CX;
+               x = rBorder.left;
                bFirstInRow = true;
                m_itema[j]->m_fsState |= TBSTATE_WRAP;
                nResult++;
@@ -1490,7 +1567,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 
                bFound = TRUE;
                i = j;
-               x = BAR_BORDER_CX;
+               x = rBorder.left;
                bFirstInRow = true;
                m_itema[j]->m_fsState |= TBSTATE_WRAP;
                nResult++;
@@ -1507,7 +1584,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
          if (!bFirstInRow)
          {
 
-            x += ITEM_SEP_CX;
+            x += sSpacing.cx;
 
          }
 
@@ -1881,32 +1958,28 @@ rect simple_toolbar::get_item_pad()
 
    r = m_rectItemPad;
 
-   ::draw2d::font_sp f(allocer());
-
-   get_font(f);
-
    if (r.left < 0)
    {
 
-      r.left = f->m_dFontSize/ 3;
+      r.left = m_font->m_dFontSize/ 3;
 
    }
    if (r.right < 0)
    {
 
-      r.right = f->m_dFontSize / 3;
+      r.right = m_font->m_dFontSize / 3;
 
    }
    if (r.top < 0)
    {
 
-      r.top = f->m_dFontSize / 3;
+      r.top = m_font->m_dFontSize / 3;
 
    }
    if (r.bottom < 0)
    {
 
-      r.bottom = f->m_dFontSize / 3;
+      r.bottom = m_font->m_dFontSize / 3;
 
    }
 
@@ -1927,32 +2000,28 @@ rect simple_toolbar::get_bar_border()
 
    r = m_rectBorder;
 
-   ::draw2d::font_sp f(allocer());
-
-   get_font(f);
-
    if (r.left < 0)
    {
 
-      r.left = f->m_dFontSize / 3;
+      r.left = m_font->m_dFontSize / 3;
 
    }
    if (r.right < 0)
    {
 
-      r.right = f->m_dFontSize / 3;
+      r.right = m_font->m_dFontSize / 3;
 
    }
    if (r.top < 0)
    {
 
-      r.top = f->m_dFontSize / 3;
+      r.top = m_font->m_dFontSize / 3;
 
    }
    if (r.bottom < 0)
    {
 
-      r.bottom = f->m_dFontSize / 3;
+      r.bottom = m_font->m_dFontSize / 3;
 
    }
 
@@ -1969,20 +2038,16 @@ size simple_toolbar::get_press_shift()
 
    s = m_sizePress;
 
-   ::draw2d::font_sp f(allocer());
-
-   get_font(f);
-
    if (s.cx < 0)
    {
 
-      s.cx = f->m_dFontSize / 3;
+      s.cx = get_item_pad().right - 1 + get_item_spacing().cx;
 
    }
    if (s.cy < 0)
    {
 
-      s.cy = f->m_dFontSize / 3;
+      s.cy = get_item_pad().bottom - 1 + get_item_spacing().cy;
 
    }
 
@@ -1997,20 +2062,16 @@ size simple_toolbar::get_item_spacing()
 
    s = m_sizeSpacing;
 
-   ::draw2d::font_sp f(allocer());
-
-   get_font(f);
-
    if (s.cx < 0)
    {
 
-      s.cx = f->m_dFontSize / 3;
+      s.cx = 0;
 
    }
    if (s.cy < 0)
    {
 
-      s.cy = f->m_dFontSize / 3;
+      s.cy = 0;
 
    }
 
@@ -2026,24 +2087,42 @@ size simple_toolbar::get_separator_size()
 
    s = m_sizeSeparator;
 
-   ::draw2d::font_sp f(allocer());
-
-   get_font(f);
-
    if (s.cx < 0)
    {
 
-      s.cx = f->m_dFontSize * 2 / 3;
+      s.cx = m_font->m_dFontSize * 2 / 3;
 
    }
+
    if (s.cy < 0)
    {
 
-      s.cy = f->m_dFontSize * 2 / 3;
+      s.cy = m_font->m_dFontSize * 2 / 3;
 
    }
 
    return s;
 
 }
+
+
+
+int simple_toolbar::get_image_spacing()
+{
+
+   int i;
+
+   i = m_iImageSpacing;
+
+   if (i < 0)
+   {
+
+      i = m_font->m_dFontSize / 4;
+
+   }
+
+   return i;
+
+}
+
 
