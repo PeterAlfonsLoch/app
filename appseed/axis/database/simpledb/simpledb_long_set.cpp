@@ -12,7 +12,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS db_long_set_queue_item:
+class CLASS_DECL_AXIS db_long_set_queue_item :
    virtual public object
 {
 public:
@@ -22,13 +22,13 @@ public:
    int64_t        m_l;
 
    db_long_set_queue_item() {}
-   db_long_set_queue_item(const db_long_set_queue_item & item){ operator =(item); }
+   db_long_set_queue_item(const db_long_set_queue_item & item) { operator =(item); }
    virtual ~db_long_set_queue_item() {}
 
 
    db_long_set_queue_item & operator = (const db_long_set_queue_item & item)
    {
-      if(this != &item)
+      if (this != &item)
       {
          m_strKey = item.m_strKey;
          m_dwTimeout = item.m_dwTimeout;
@@ -41,7 +41,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS db_long_set_core:
+class CLASS_DECL_AXIS db_long_set_core :
    virtual public db_set
 {
 public:
@@ -57,18 +57,18 @@ public:
    ::simpledb::database *                       m_psimpledbUser;
    string                                    m_strUser;
 
-  sp(class db_long_sync_queue)                m_pqueue;
+   sp(class db_long_sync_queue)                m_pqueue;
 
-   db_long_set_core(db_server * pserver):
+   db_long_set_core(db_server * pserver) :
       ::object(pserver->get_app()),
-      db_set(pserver,"integertable"),
+      db_set(pserver, "integertable"),
       m_handler(get_app()),
       m_phttpsession(NULL),
       m_pqueue(NULL),
       m_psimpledbUser(pserver->m_psimpledbUser),
       m_strUser(pserver->m_strUser)
    {
-   
+
       m_ptopthis = this;
       m_pmutex = new mutex(pserver->get_app());
 
@@ -79,7 +79,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS db_long_sync_queue:
+class CLASS_DECL_AXIS db_long_sync_queue :
    public simple_thread
 {
 public:
@@ -92,7 +92,7 @@ public:
 
    smart_pointer_array < db_long_set_queue_item >           m_itema;
 
-   db_long_sync_queue(::aura::application * papp):
+   db_long_sync_queue(::aura::application * papp) :
       ::object(papp),
       thread(papp),
       simple_thread(papp),
@@ -108,7 +108,7 @@ public:
    virtual int32_t run();
 
 
-   void queue(const char * pszKey,int64_t l);
+   void queue(const char * pszKey, int64_t l);
 
 };
 
@@ -116,65 +116,116 @@ public:
 int32_t db_long_sync_queue::run()
 {
 
-   while(true)
+   single_lock sl(&m_mutex, false);
+
+   try
    {
 
-repeat:;
+      while (get_run_thread())
+      {
 
-       {
+         if (&ApplicationUser == NULL)
+         {
 
-          single_lock sl(&m_mutex);
+            Sleep(5000);
 
-          if(m_itema.get_size() <= 0)
-          {
-             Sleep(2000);
-             goto repeat;
-          }
+            continue;
 
-          for(int32_t i = 1; i < m_itema.get_size(); i++)
-          {
-             if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
-             {
-                m_itema.remove_at(0);
-                goto repeat;
-             }
-          }
+         }
 
+         sl.lock();
 
-          property_set set(get_app());
+         if (m_itema.is_empty())
+         {
 
-          string strUrl;
+            sl.unlock();
 
-          set["interactive_user"] = true;
+            Sleep(100);
 
-          strUrl = "https://" + System.dir().get_api_cc() + "/account/long_set_save?key=";
-          strUrl += System.url().url_encode(m_itema[0]->m_strKey);
-          strUrl += "&value=";
-          strUrl += ::str::from(m_itema[0]->m_l);
+            continue;
 
-          m_itema.remove_at(0);
+         }
 
-          sl.unlock();
+         for (int32_t i = 1; i < m_itema.get_size(); i++)
+         {
 
-          set["user"] = &ApplicationUser;
-          
-          Application.http().get(strUrl, set);
+            if (m_itema[i]->m_strKey == m_itema[0]->m_strKey)
+            {
 
-          if(::http::status_failed(set["get_status"]))
-          {
-             Sleep(2000);
-             goto repeat;
-          }
+               m_itema.remove_at(0);
 
+               sl.unlock();
 
-       }
+               continue;
 
+            }
+
+         }
+
+         sp(db_long_set_queue_item) pitem = m_itema[0];
+
+         m_itema.remove_at(0);
+
+         sl.unlock();
+
+         try
+         {
+
+            property_set set(get_app());
+
+            string strUrl;
+
+            set["interactive_user"] = true;
+
+            strUrl = "https://" + System.dir().get_api_cc() + "/account/str_set_save?key=";
+
+            strUrl += System.url().url_encode(pitem->m_strKey);
+
+            strUrl += "&value=";
+
+            strUrl += ::str::from(m_itema[0]->m_l);
+
+            set["user"] = &ApplicationUser;
+
+            {
+
+               single_lock slDatabase(m_pset->m_pcore->db()->get_database()->m_pmutex, true);
+
+               Application.http().get(strUrl, set);
+
+            }
+
+            if (::http::status_failed(set["get_status"]))
+            {
+
+               Sleep(500);
+
+               System.dir().m_strApiCc = "";
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
 
    }
 
+   ((db_long_set_core *)(m_pset->m_pcore->m_ptopthis))->m_pqueue = NULL;
+
+   return 0;
+
 }
 
-void db_long_sync_queue::queue(const char * pszKey,int64_t l)
+
+void db_long_sync_queue::queue(const char * pszKey, int64_t l)
 {
 
    single_lock sl(&m_mutex, true);
@@ -189,8 +240,8 @@ void db_long_sync_queue::queue(const char * pszKey,int64_t l)
 }
 
 
-db_long_set::db_long_set(db_server * pserver):
-::object(pserver->get_app())
+db_long_set::db_long_set(db_server * pserver) :
+   ::object(pserver->get_app())
 {
 
    m_pcore = canew(db_long_set_core(pserver));
@@ -209,14 +260,14 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
    db_long_set_core * pcore = (db_long_set_core *)m_pcore->m_ptopthis;
 
-   if(m_pcore->m_pdataserver->m_bRemote && string(lpKey).find_ci(".local://") < 0)
+   if (m_pcore->m_pdataserver->m_bRemote && string(lpKey).find_ci(".local://") < 0)
    {
 
       // Remote
 
       db_long_set_item longitem;
 
-      if(pcore->m_map.Lookup(lpKey,longitem) && longitem.m_dwTimeout > get_tick_count())
+      if (pcore->m_map.Lookup(lpKey, longitem) && longitem.m_dwTimeout > get_tick_count())
       {
 
          *plValue = longitem.m_l;
@@ -242,7 +293,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
       string strValue = Application.http().get(strUrl, set);
 
-      if(strValue.is_empty() || ::http::status_failed(set["get_status"]))
+      if (strValue.is_empty() || ::http::status_failed(set["get_status"]))
       {
          return false;
       }
@@ -252,12 +303,12 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = *plValue;
 
-      pcore->m_map.set_at(lpKey,longitem);
+      pcore->m_map.set_at(lpKey, longitem);
       return true;
 
    }
 #ifndef METROWIN
-   else if(pcore->m_psimpledbUser != NULL)
+   else if (pcore->m_psimpledbUser != NULL)
    {
 
       try
@@ -268,7 +319,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
          return true;
 
       }
-      catch(...)
+      catch (...)
       {
       }
 
@@ -302,7 +353,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
          // return false;
       }
 
-      if(m_pcore->m_pdataset->num_rows() <= 0)
+      if (m_pcore->m_pdataset->num_rows() <= 0)
          return false;
 
       *plValue = m_pcore->m_pdataset->fv("value");
@@ -319,10 +370,10 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
 
    db_long_set_core * pcore = (db_long_set_core *)m_pcore->m_ptopthis;
 
-   if(m_pcore->m_pdataserver->m_bRemote)
+   if (m_pcore->m_pdataserver->m_bRemote)
    {
 
-      if(pcore->m_pqueue == NULL)
+      if (pcore->m_pqueue == NULL)
       {
 
          pcore->m_pqueue = canew(db_long_sync_queue(get_app()));
@@ -331,20 +382,20 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
 
       }
 
-      pcore->m_pqueue->queue(lpKey,lValue);
+      pcore->m_pqueue->queue(lpKey, lValue);
 
       db_long_set_item longitem;
 
       longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = lValue;
 
-      pcore->m_map.set_at(lpKey,longitem);
+      pcore->m_map.set_at(lpKey, longitem);
 
       return true;
 
    }
 #ifndef METROWIN
-   else if(pcore->m_psimpledbUser != NULL)
+   else if (pcore->m_psimpledbUser != NULL)
    {
 
       string strSql = "REPLACE INTO fun_user_long_set VALUE('" + pcore->m_strUser + "', '" + pcore->m_psimpledbUser->real_escape_string(lpKey) + "', " + ::str::from(lValue) + ")";
@@ -363,11 +414,11 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       strKey.replace("'", "''");
 
 
-      sp(::sqlite::base) pdb   = m_pcore->db()->get_database();
+      sp(::sqlite::base) pdb = m_pcore->db()->get_database();
       string strSql;
       int64_t l;
       slDatabase.lock();
-      if(load(lpKey, &l))
+      if (load(lpKey, &l))
       {
          strSql.Format(
             "UPDATE integertable SET value = '%d' WHERE id = '%s';",
@@ -380,7 +431,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
             m_pcore->m_pdataset->exec(strSql);
             pdb->commit_transaction();
          }
-         catch(...)
+         catch (...)
          {
             pdb->rollback_transaction();
             return false;
@@ -402,7 +453,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
             m_pcore->m_pdataset->exec(strSql);
             pdb->commit_transaction();
          }
-         catch(...)
+         catch (...)
          {
             pdb->rollback_transaction();
             return false;
@@ -506,16 +557,16 @@ bool db_long_set::load(const char * lpKey, LPRECT lpRect)
 
    string strKey = lpKey;
 
-   if(!load(strKey + ".left", rect.left))
+   if (!load(strKey + ".left", rect.left))
       return false;
 
-   if(!load(strKey + ".top", rect.top))
+   if (!load(strKey + ".top", rect.top))
       return false;
 
-   if(!load(strKey + ".right", rect.right))
+   if (!load(strKey + ".right", rect.right))
       return false;
 
-   if(!load(strKey + ".bottom", rect.bottom))
+   if (!load(strKey + ".bottom", rect.bottom))
       return false;
 
    *lpRect = rect;
@@ -535,16 +586,16 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
 
    string strKey = lpKey;
 
-   if(!save(strKey + ".left", lpRect->left))
+   if (!save(strKey + ".left", lpRect->left))
       return false;
 
-   if(!save(strKey + ".top", lpRect->top))
+   if (!save(strKey + ".top", lpRect->top))
       return false;
 
-   if(!save(strKey + ".right", lpRect->right))
+   if (!save(strKey + ".right", lpRect->right))
       return false;
 
-   if(!save(strKey + ".bottom", lpRect->bottom))
+   if (!save(strKey + ".bottom", lpRect->bottom))
       return false;
 
    return true;
@@ -554,12 +605,12 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
 
 bool db_long_set::MoveWindow_(const char * lpKey, ::user::primitive * pwindow)
 {
-   
+
    rect rect;
-   
-   if(!load(lpKey, &rect))
+
+   if (!load(lpKey, &rect))
       return false;
-   
+
    pwindow->SetPlacement(rect);
 
    return true;
@@ -567,14 +618,14 @@ bool db_long_set::MoveWindow_(const char * lpKey, ::user::primitive * pwindow)
 }
 
 
-bool db_long_set::SaveWindowRect_(const char * lpKey,::user::primitive * pwindow)
+bool db_long_set::SaveWindowRect_(const char * lpKey, ::user::primitive * pwindow)
 {
 
 #ifdef WINDOWSEX
 
    WINDOWPLACEMENT wp;
    pwindow->GetWindowPlacement(&wp);
-   return save(lpKey , &wp.rcNormalPosition);
+   return save(lpKey, &wp.rcNormalPosition);
 
 #else
 
@@ -726,25 +777,25 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, ::user::primitive * pwi
 #ifdef WINDOWSEX
 
    WINDOWPLACEMENT wp;
-   if(!load(lpKey , &wp.rcNormalPosition))
+   if (!load(lpKey, &wp.rcNormalPosition))
       return false;
 
    string strKey;
    strKey = lpKey;
    strKey += ".ptMinPosition";
-   if(!load(strKey, &wp.ptMinPosition))
+   if (!load(strKey, &wp.ptMinPosition))
       return false;
    strKey = lpKey;
-   strKey += ".ptMaxPosition";                                                                                                                                                                                          
-   if(!load(strKey, &wp.ptMaxPosition))
+   strKey += ".ptMaxPosition";
+   if (!load(strKey, &wp.ptMaxPosition))
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!load(strKey, (int32_t &) wp.showCmd))
+   if (!load(strKey, (int32_t &)wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!load(strKey, (int32_t &) wp.flags))
+   if (!load(strKey, (int32_t &)wp.flags))
       return false;
    pwindow->SetWindowPlacement(&wp);
    return true;
@@ -764,24 +815,24 @@ bool db_long_set::SaveWindowPlacement(const char * lpKey, ::user::primitive * pw
 
    WINDOWPLACEMENT wp;
    pwindow->GetWindowPlacement(&wp);
-   if(!save(lpKey , &wp.rcNormalPosition))
+   if (!save(lpKey, &wp.rcNormalPosition))
       return false;
    string strKey;
    strKey = lpKey;
    strKey += ".ptMinPosition";
-   if(!save(strKey, &wp.ptMinPosition))
+   if (!save(strKey, &wp.ptMinPosition))
       return false;
    strKey = lpKey;
    strKey += ".ptMaxPosition";
-   if(!save(strKey, &wp.ptMaxPosition))
+   if (!save(strKey, &wp.ptMaxPosition))
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!save(strKey, (int32_t) wp.showCmd))
+   if (!save(strKey, (int32_t)wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!save(strKey, (int32_t) wp.flags))
+   if (!save(strKey, (int32_t)wp.flags))
       return false;
 
    return true;
@@ -801,24 +852,24 @@ bool db_long_set::SaveWindowPlacement(const char * lpKey, ::user::primitive * pw
 bool db_long_set::save(const char * lpKey, WINDOWPLACEMENT & wp)
 {
 
-   if(!save(lpKey , &wp.rcNormalPosition))
+   if (!save(lpKey, &wp.rcNormalPosition))
       return false;
    string strKey;
    strKey = lpKey;
    strKey += ".ptMinPosition";
-   if(!save(strKey, &wp.ptMinPosition))
+   if (!save(strKey, &wp.ptMinPosition))
       return false;
    strKey = lpKey;
    strKey += ".ptMaxPosition";
-   if(!save(strKey, &wp.ptMaxPosition))
+   if (!save(strKey, &wp.ptMaxPosition))
       return false;
    strKey = lpKey;
    strKey += ".showCmd";
-   if(!save(strKey, (int32_t) wp.showCmd))
+   if (!save(strKey, (int32_t)wp.showCmd))
       return false;
    strKey = lpKey;
    strKey += ".flags";
-   if(!save(strKey, (int32_t) wp.flags))
+   if (!save(strKey, (int32_t)wp.flags))
       return false;
 
    return true;
@@ -828,7 +879,7 @@ bool db_long_set::save(const char * lpKey, WINDOWPLACEMENT & wp)
 bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
 {
 
-   load(lpKey , &wp.rcNormalPosition);
+   load(lpKey, &wp.rcNormalPosition);
 
    string strKey;
    strKey = lpKey;
@@ -839,10 +890,10 @@ bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
    load(strKey, &wp.ptMaxPosition);
    strKey = lpKey;
    strKey += ".showCmd";
-   load(strKey, (int32_t &) wp.showCmd);
+   load(strKey, (int32_t &)wp.showCmd);
    strKey = lpKey;
    strKey += ".flags";
-   load(strKey, (int32_t &) wp.flags);
+   load(strKey, (int32_t &)wp.flags);
 
    return true;
 }
@@ -859,10 +910,10 @@ bool db_long_set::load(const char * lpKey, LPPOINT lpPoint)
 
    string strKey = lpKey;
 
-   if(!load(strKey + ".x", point.x))
+   if (!load(strKey + ".x", point.x))
       return false;
 
-   if(!load(strKey + ".y", point.y))
+   if (!load(strKey + ".y", point.y))
       return false;
 
    *lpPoint = point;
@@ -876,10 +927,10 @@ bool db_long_set::save(const char * lpKey, LPPOINT lpPoint)
 
    string strKey = lpKey;
 
-   if(!save(strKey + ".x", lpPoint->x))
+   if (!save(strKey + ".x", lpPoint->x))
       return false;
 
-   if(!save(strKey + ".y", lpPoint->y))
+   if (!save(strKey + ".y", lpPoint->y))
       return false;
 
    return true;

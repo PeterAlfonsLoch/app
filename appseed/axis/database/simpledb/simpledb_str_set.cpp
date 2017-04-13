@@ -15,7 +15,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS db_str_set_queue_item:
+class CLASS_DECL_AXIS db_str_set_queue_item :
    virtual public object
 {
 public:
@@ -26,13 +26,13 @@ public:
 
 
    db_str_set_queue_item() {}
-   db_str_set_queue_item(const db_str_set_queue_item & item){ operator =(item); }
+   db_str_set_queue_item(const db_str_set_queue_item & item) { operator =(item); }
    virtual ~db_str_set_queue_item() {  }
 
 
    db_str_set_queue_item & operator = (const db_str_set_queue_item & item)
    {
-      if(this != &item)
+      if (this != &item)
       {
          m_strKey = item.m_strKey;
          m_dwTimeout = item.m_dwTimeout;
@@ -46,7 +46,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS db_str_set_core:
+class CLASS_DECL_AXIS db_str_set_core :
    virtual public ::db_set
 {
 public:
@@ -67,9 +67,9 @@ public:
 
 
 
-   db_str_set_core(db_server * pserver):
+   db_str_set_core(db_server * pserver) :
       ::object(pserver->get_app()),
-      db_set(pserver,"stringtable"),
+      db_set(pserver, "stringtable"),
       m_handler(get_app()),
       m_phttpsession(NULL),
       m_pqueue(NULL),
@@ -80,7 +80,7 @@ public:
       m_pstmtUpdate = NULL;
       m_ptopthis = this;
       m_pmutex = new mutex(pserver->get_app());
-   
+
    }
 
    ~db_str_set_core()
@@ -103,7 +103,7 @@ public:
 };
 
 
-class CLASS_DECL_AXIS db_str_sync_queue:
+class CLASS_DECL_AXIS db_str_sync_queue :
    public simple_thread
 {
 public:
@@ -116,7 +116,7 @@ public:
    smart_pointer_array < db_str_set_queue_item >      m_itema;
 
 
-   db_str_sync_queue(::aura::application * papp):
+   db_str_sync_queue(::aura::application * papp) :
       ::object(papp),
       thread(papp),
       simple_thread(papp),
@@ -130,7 +130,7 @@ public:
 
    virtual int32_t run();
 
-   void queue(const char * pszKey,const char * psz);
+   void queue(const char * pszKey, const char * psz);
 
 };
 
@@ -147,95 +147,111 @@ int32_t db_str_sync_queue::run()
    try
    {
 
-      while(get_run_thread())
+      while (get_run_thread())
       {
 
-repeat:;
+         if (&ApplicationUser == NULL)
+         {
 
-      if(!get_run_thread())
-         break;
-       {
+            Sleep(5000);
 
-          sl.lock();
+            continue;
 
-          if(m_itema.get_size() <= 0)
-          {
-             sl.unlock();
-             Sleep(2000);
-             goto repeat;
-          }
+         }
 
-          if(Session.fontopus()->m_puser == NULL)
-          {
-             sl.unlock();
-             Sleep(5000);
-             goto repeat;
-          }
+         sl.lock();
 
-          for(int32_t i = 1; i < m_itema.get_size(); i++)
-          {
-             if(m_itema[i]->m_strKey == m_itema[0]->m_strKey)
-             {
-                m_itema.remove_at(0);
-                sl.unlock();
-                goto repeat;
-             }
-          }
+         if (m_itema.is_empty())
+         {
 
-          try
-          {
+            sl.unlock();
 
+            Sleep(100);
 
-             property_set set(get_app());
+            continue;
 
-             string strUrl;
+         }
 
-             set["interactive_user"] = true;
+         for (int32_t i = 1; i < m_itema.get_size(); i++)
+         {
 
+            if (m_itema[i]->m_strKey == m_itema[0]->m_strKey)
+            {
 
+               m_itema.remove_at(0);
 
+               sl.unlock();
 
-             strUrl = "https://" + System.dir().get_api_cc() + "/account/str_set_save?key=";
-             strUrl += System.url().url_encode(m_itema[0]->m_strKey);
-             strUrl += "&value=";
-             strUrl += System.url().url_encode(m_itema[0]->m_str);
+               continue;
 
-             m_itema.remove_at(0);
+            }
 
-             sl.unlock();
+         }
 
-             set["user"] = &ApplicationUser;
+         sp(db_str_set_queue_item) pitem = m_itema[0];
 
-             Application.http().get(strUrl, set);
-             
-             if(::http::status_failed(set["get_status"]))
-             {
-                Sleep(2000);
-                System.dir().m_strApiCc = "";
-                goto repeat;
-             }
+         m_itema.remove_at(0);
 
-          }
-          catch(...)
-          {
-          }
+         sl.unlock();
 
-          sl.unlock();
+         try
+         {
 
-       }
+            property_set set(get_app());
 
+            string strUrl;
+
+            set["interactive_user"] = true;
+
+            strUrl = "https://" + System.dir().get_api_cc() + "/account/str_set_save?key=";
+
+            strUrl += System.url().url_encode(pitem->m_strKey);
+
+            strUrl += "&value=";
+
+            strUrl += System.url().url_encode(pitem->m_str);
+
+            set["user"] = &ApplicationUser;
+
+            {
+
+               single_lock slDatabase(m_pset->m_pcore->db()->get_database()->m_pmutex, true);
+
+               Application.http().get(strUrl, set);
+
+            }
+
+            if (::http::status_failed(set["get_status"]))
+            {
+
+               Sleep(500);
+
+               System.dir().m_strApiCc = "";
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
+
    }
-   catch(...)
+   catch (...)
    {
+
    }
-   ((db_long_set_core *)(m_pset->m_pcore->m_ptopthis))->m_pqueue = NULL;
+   
+   ((db_str_set_core *)(m_pset->m_pcore->m_ptopthis))->m_pqueue = NULL;
+
    return 0;
+
 }
 
 
-void db_str_sync_queue::queue(const char * pszKey,const char * psz)
+void db_str_sync_queue::queue(const char * pszKey, const char * psz)
 {
 
    single_lock sl(&m_mutex, true);
@@ -250,8 +266,8 @@ void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 }
 
 
-db_str_set::db_str_set(db_server * pserver):
-::object(pserver->get_app())
+db_str_set::db_str_set(db_server * pserver) :
+   ::object(pserver->get_app())
 {
 
    m_pmutex = new mutex(pserver->get_app());
@@ -261,7 +277,7 @@ db_str_set::db_str_set(db_server * pserver):
 
 db_str_set::~db_str_set()
 {
-   
+
 }
 
 
@@ -270,7 +286,7 @@ db_str_set::~db_str_set()
 // true if deleted
 bool db_str_set::remove(const string & strKey)
 {
-   
+
    UNREFERENCED_PARAMETER(strKey);
 
    return false;
@@ -285,12 +301,16 @@ bool db_str_set::load(const string & strKey, string & strValue)
 
    db_str_set_core * pcore = (db_str_set_core *)m_pcore->m_ptopthis;
 
-   if(m_pcore->m_pdataserver == NULL)
+   if (m_pcore->m_pdataserver == NULL)
+   {
+
       return false;
 
-   if(m_pcore->m_pdataserver->m_bRemote && strKey.find(".local://") < 0)
+   }
+
+   if (m_pcore->m_pdataserver->m_bRemote && strKey.find(".local://") < 0)
    {
-      
+
       // Remote
 
       sl.unlock();
@@ -301,68 +321,86 @@ bool db_str_set::load(const string & strKey, string & strValue)
 
       auto ppair = pcore->m_map.PLookup(strKey);
 
-      if(ppair != NULL && ppair->m_element2.m_dwTimeout > get_tick_count())
+      if (ppair != NULL && ppair->m_element2.m_dwTimeout > get_tick_count())
       {
-         
+
          strValue = ppair->m_element2.m_str;
 
          return true;
 
       }
 
-      single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex,true);
+      sl.unlock();
 
-      string xxx;
-      
-      if (&Session != NULL)
+      //single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex,true);
+
+      //string xxx;
+      //
+      //if (&Session != NULL)
+      //{
+      //   
+      //   if (Session.fontopus())
+      //   {
+
+      //      if (Session.fontopus()->m_puser != NULL)
+      //      {
+
+      //         xxx = Session.fontopus()->m_puser->m_strFontopusServerSessId;
+
+      //      }
+
+      //   }
+
+      //}
+
       {
-         
-         if (Session.fontopus())
+
+         property_set set(get_app());
+
+         set["interactive_user"] = true;
+
+         string strUrl;
+
+         strUrl = "https://" + System.dir().get_api_cc() + "/account/str_set_load?key=";
+
+         strUrl += System.url().url_encode(strKey);
+
+         set["user"] = &ApplicationUser;
+
          {
 
-            if (Session.fontopus()->m_puser != NULL)
-            {
+            single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex, true);
 
-               xxx = Session.fontopus()->m_puser->m_strFontopusServerSessId;
+            strValue = Application.http().get(strUrl, set);
 
-            }
+         }
+
+         if (strValue.is_empty() || ::http::status_failed(set["get_status"]))
+         {
+
+            return false;
 
          }
 
       }
 
-      property_set set(get_app());
-
-      set["interactive_user"] = true;
-
-      string strUrl;
-
-      strUrl = "https://" + System.dir().get_api_cc() + "/account/str_set_load?key=";
-
-      strUrl += System.url().url_encode(strKey);
-
-      set["user"] = &ApplicationUser;
-
-      strValue = Application.http().get(strUrl, set);
-      
-      if(strValue.is_empty() || ::http::status_failed(set["get_status"]))
       {
 
-         return false;
+         db_str_set_item stritem;
+
+         stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
+         stritem.m_str = strValue;
+
+         sl.lock();
+
+         pcore->m_map.set_at(strKey, stritem);
 
       }
-
-      db_str_set_item stritem;
-
-      stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
-      stritem.m_str = strValue;
-
-      pcore->m_map.set_at(strKey,stritem);
 
 
    }
 #ifndef METROWIN
-   else if(pcore->m_psimpledbUser != NULL)
+   else if (pcore->m_psimpledbUser != NULL)
    {
 
       try
@@ -373,7 +411,7 @@ bool db_str_set::load(const string & strKey, string & strValue)
          return true;
 
       }
-      catch(...)
+      catch (...)
       {
       }
 
@@ -385,10 +423,10 @@ bool db_str_set::load(const string & strKey, string & strValue)
    {
 
       // LOCAL (sqlite)
-      
+
       sp(::sqlite::base) pdb = m_pcore->db()->get_database();
 
-//      ::sqlite::base * pdatabase = pdb->get_database();
+      //      ::sqlite::base * pdatabase = pdb->get_database();
 
       mutex * pmutex = pdb->m_pmutex;
 
@@ -399,7 +437,7 @@ bool db_str_set::load(const string & strKey, string & strValue)
       if (pcore->m_pstmtSelect == NULL)
       {
 
-         
+
          if (pdb->setErr(sqlite3_prepare_v2(
             (sqlite3 *)pdb->getHandle(),
             "select value FROM stringtable WHERE id = :id;",
@@ -438,10 +476,10 @@ bool db_str_set::load(const string & strKey, string & strValue)
 
       }
 
-      const char * psz = (const char *) sqlite3_column_text(pcore->m_pstmtSelect, 0);
+      const char * psz = (const char *)sqlite3_column_text(pcore->m_pstmtSelect, 0);
 
       strsize iLen = sqlite3_column_bytes(pcore->m_pstmtSelect, 0);
-         
+
       strValue = string(psz, iLen);
       //TRACE("value=%s\n", strValue);
       //slDatabase.lock();
@@ -464,74 +502,92 @@ bool db_str_set::load(const string & strKey, string & strValue)
    return true;
 }
 
+
 bool db_str_set::save(const string & strKey, const string & strValue)
 {
 
    db_str_set_core * pcore = (db_str_set_core *)m_pcore->m_ptopthis;
 
-   if(m_pcore->m_pdataserver == NULL)
+   if (m_pcore->m_pdataserver == NULL)
+   {
+
       return false;
 
-   if(!m_pcore->m_pdataserver->m_bRemote || strKey.find(".local://") >= 0)
+   }
+
+   if (!m_pcore->m_pdataserver->m_bRemote || strKey.find(".local://") >= 0)
    {
-      if(m_pcore->db() == NULL)
+
+      if (m_pcore->db() == NULL)
+      {
+
          return false;
-      single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
-      
-      //string strKey;
-      //strKey = lpKey;
-      //strKey.replace("'", "''");
 
-      //string strValue(lpcsz);
-      //strValue.replace("'", "''");
+      }
 
-      sp(::sqlite::base) pdb   = m_pcore->db()->get_database();
+      sp(::sqlite::base) pdb = m_pcore->db()->get_database();
+
       string strSql;
+
       string str;
-      slDatabase.lock();
 
-      //if (1)
-      //{
+      string_map < db_str_set_item >::pair * pitem = NULL;
 
+      {
 
-      //   string strSql;
-      //   strSql.Format(
-      //      "PRAGMA cache_size");
+         synch_lock sl(m_pmutex);
 
+         pcore->m_map.PLookup(strKey);
 
-      //   //slDatabase.lock();
-      //   try
-      //   {
-      //      m_pcore->m_pdataset->query(strSql);
-      //   }
-      //   catch (...)
-      //   {
-      //      return false;
-      //   }
-
-      //   //if (m_pcore->m_pdataset->num_rows() <= 0)
-      //     // return false;
-
-      //   strValue = m_pcore->m_pdataset->FieldValueAt(0);
-      //}
-
-      string_map < db_str_set_item >::pair * pitem = pcore->m_map.PLookup(strKey);
+      }
 
       string strLoad;
 
-      if(pitem != NULL || load(strKey, strLoad))
+      if (pitem != NULL || load(strKey, strLoad))
       {
-         
-         if (1)
+
+         synch_lock sl(m_pmutex);
+
+         if (pitem != NULL)
          {
 
-            if (pitem != NULL)
+            if (pitem->m_element2.m_str == strValue)
             {
 
-               if (pitem->m_element2.m_str == strValue)
+               return true;
+
+            }
+
+         }
+         else
+         {
+
+            if (strLoad == strValue)
+            {
+
+               return true;
+
+            }
+
+         }
+
+         {
+
+            single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
+
+            if (pcore->m_pstmtUpdate == NULL)
+            {
+
+               if (pdb->setErr(
+                  sqlite3_prepare_v2(
+                  (sqlite3 *)pdb->getHandle(),
+                     "UPDATE stringtable SET value = :val WHERE id = :id;",
+                     -1,
+                     &pcore->m_pstmtUpdate,
+                     NULL)) != SQLITE_OK)
                {
 
-                  return true;
+                  return false;
 
                }
 
@@ -539,25 +595,32 @@ bool db_str_set::save(const string & strKey, const string & strValue)
             else
             {
 
-               if (strLoad == strValue)
-               {
 
-                  return true;
 
-               }
+               sqlite3_reset(pcore->m_pstmtUpdate);
 
             }
 
-         }
+            int index = sqlite3_bind_parameter_index(pcore->m_pstmtUpdate, ":val");
 
-         if (pcore->m_pstmtUpdate == NULL)
-         {
+            if (index == 0)
+               return false;
 
-            if (pdb->setErr(sqlite3_prepare_v2(
-               (sqlite3 *)pdb->getHandle(),
-               "UPDATE stringtable SET value = :val WHERE id = :id;",
-               -1,
-               &pcore->m_pstmtUpdate, NULL)) != SQLITE_OK)
+            int res = sqlite3_bind_text(pcore->m_pstmtUpdate, index, strValue, strValue.get_length(), SQLITE_TRANSIENT);
+            if (res != SQLITE_OK)
+               return false;
+
+            index = sqlite3_bind_parameter_index(pcore->m_pstmtUpdate, ":id");
+            if (index == 0)
+               return false;
+
+            res = sqlite3_bind_text(pcore->m_pstmtUpdate, index, strKey, strKey.get_length(), SQLITE_TRANSIENT);
+            if (res != SQLITE_OK)
+               return false;
+
+            res = sqlite3_step(pcore->m_pstmtUpdate);
+
+            if (res != SQLITE_OK && res != SQLITE_DONE)
             {
 
                return false;
@@ -565,66 +628,23 @@ bool db_str_set::save(const string & strKey, const string & strValue)
             }
 
          }
-         else
-         {
-
-            sqlite3_reset(pcore->m_pstmtUpdate);
-
-         }
-
-         int index = sqlite3_bind_parameter_index(pcore->m_pstmtUpdate, ":val");
-
-         if (index == 0)
-            return false;
-
-         int res = sqlite3_bind_text(pcore->m_pstmtUpdate, index, strValue, strValue.get_length(), SQLITE_TRANSIENT);
-         if (res != SQLITE_OK)
-            return false;
-
-         index = sqlite3_bind_parameter_index(pcore->m_pstmtUpdate, ":id");
-         if (index == 0)
-            return false;
-
-         res = sqlite3_bind_text(pcore->m_pstmtUpdate, index, strKey, strKey.get_length(), SQLITE_TRANSIENT);
-         if (res != SQLITE_OK)
-            return false;
-
-         res = sqlite3_step(pcore->m_pstmtUpdate);
-
-         if (res != SQLITE_OK && res != SQLITE_DONE)
-         {
-
-            return false;
-
-         }
-
-         //strSql.Format(
-         //   "UPDATE stringtable SET value = '%s' WHERE id = '%s';",
-         //   strValue,
-         //   strKey);
-         //if (!m_pcore->m_pdataset->exec(strSql))
-         //{
-
-         //   //pdb->rollback_transaction();
-
-         //   return false;
-
-         //}
 
          if (pitem == NULL)
          {
-            
+
             db_str_set_item stritem;
 
             stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
             stritem.m_str = strValue;
+
+            synch_lock sl(m_pmutex);
 
             pcore->m_map.set_at(strKey, stritem);
 
          }
          else
          {
-            
+
             pitem->m_element2.m_dwTimeout = get_tick_count() + 23 * (5000);
 
          }
@@ -634,39 +654,27 @@ bool db_str_set::save(const string & strKey, const string & strValue)
       else
       {
 
+         single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
+
          strSql.Format(
             "INSERT INTO stringtable (id, value) values ('%s', '%s');",
             strKey,
             strValue);
 
-         //pdb->start_transaction();
-
          if (!m_pcore->m_pdataset->exec(strSql))
          {
-
-            //pdb->rollback_transaction();
 
             return false;
 
          }
 
-         //pdb->commit_transaction();
-
-
       }
-
-      //if (!bCachedLoadInfo)
-      //{
-
-      //   m_mapLoad[lpKey] = true;
-
-      //}
 
       return true;
 
    }
 #ifdef HAVE_MYSQL
-   else if(pcore->m_psimpledbUser != NULL)
+   else if (pcore->m_psimpledbUser != NULL)
    {
 
       string strSql = "REPLACE INTO fun_user_str_set VALUE('" + pcore->m_strUser + "', '" + pcore->m_psimpledbUser->real_escape_string(strKey) + "', '" + pcore->m_psimpledbUser->real_escape_string(strKey) + "')";
@@ -680,29 +688,32 @@ bool db_str_set::save(const string & strKey, const string & strValue)
    else
    {
 
-
-      if(pcore->m_pqueue == NULL)
+      if (pcore->m_pqueue == NULL)
       {
 
          pcore->m_pqueue = canew(db_str_sync_queue(get_app()));
+
          pcore->m_pqueue->m_pset = this;
+
          pcore->m_pqueue->begin();
 
       }
 
-
-      pcore->m_pqueue->queue(strKey,strValue);
+      pcore->m_pqueue->queue(strKey, strValue);
 
       db_str_set_item stritem;
 
       stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
+
       stritem.m_str = strValue;
 
-      pcore->m_map.set_at(strKey,stritem);
+      synch_lock sl(m_pmutex);
 
+      pcore->m_map.set_at(strKey, stritem);
 
       return true;
 
    }
 
 }
+
