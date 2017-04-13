@@ -530,7 +530,7 @@ namespace str
 
    CLASS_DECL_AURA string signed_int(int i);
 
-
+   CLASS_DECL_AURA bool is_true(string str);
 
 
 } // namespace str

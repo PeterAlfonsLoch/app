@@ -129,4 +129,14 @@ int_bool is_absolute_path(const char * psz)
 
 }
 
+CLASS_DECL_AURA int_bool file_is_true_dup(const char * path)
+{
+
+   return ::str::is_true(::file_as_string_dup(path));
+
+}
+
 END_EXTERN_C
+
+
+

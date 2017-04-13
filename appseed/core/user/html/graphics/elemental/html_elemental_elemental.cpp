@@ -353,12 +353,17 @@ namespace html
       if (m_pimpl != NULL)
       {
 
-         if (m_elementalptra.has_elements())
+         //if (m_elementalptra.has_elements())
          {
 
             if (m_strClass.has_char() || m_strInlineStyle.has_char())
             {
+               if (m_strClass == "field")
+               {
 
+                  output_debug_string("field");
+
+               }
                m_style.get_surround_box(__id(html_padding), "", pdata, this, m_pimpl->m_padding);
 
                m_style.get_border_box(__id(html_border), "", pdata, this, m_pimpl->m_border);

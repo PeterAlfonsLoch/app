@@ -31,11 +31,12 @@ namespace html
 
          
          virtual void layout_phase1_end(data * pdata);
+         virtual void layout_phase3_end(data * pdata);
 
 
          void on_change_layout(data * pdoc);
 
-         void set_pos(data * pdoc,float x,float y,float cx,float cy);
+         //void set_pos(data * pdoc,float x,float y,float cx,float cy);
 
       };
 

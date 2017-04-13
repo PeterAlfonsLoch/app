@@ -89,6 +89,8 @@ public:
    sp(::visual::icon)                  m_piconNotify;
    sp(::user::notify_icon)             m_pnotifyicon;
 
+   var                                 m_varFrame;
+
 
    simple_frame_window(::aura::application * papp);
    virtual ~simple_frame_window();

@@ -26,7 +26,7 @@ namespace html
       string               m_strName;
       string               m_strSubClass;
 
-      fifo_property_set    m_propertyset;
+      stable_property_set  m_propertyset;
 
       e_display            m_edisplay;
 

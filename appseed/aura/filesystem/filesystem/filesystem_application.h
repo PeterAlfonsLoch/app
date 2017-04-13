@@ -40,6 +40,7 @@ namespace file
       virtual ::file::file_sp get(const ::file::path & name);
 
 
+      virtual var as_json(var varFile);
       virtual string as_string(var varFile);
       virtual string as_string(var varFile, var & varQuery);
       virtual void as_memory(var varFile, memory & mem);

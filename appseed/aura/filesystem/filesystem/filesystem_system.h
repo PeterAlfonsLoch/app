@@ -70,6 +70,7 @@ namespace file
       virtual int32_t filterex_time_square(const char * pszPrefix,patha & stra);
       virtual bool mk_time(const char * lpcszCandidate);
 
+      virtual var as_json(var varFile, ::aura::application * papp);
       virtual string as_string(var varFile,::aura::application * papp);
       virtual string as_string(var varFile,var & varQuery,::aura::application * papp);
       virtual void as_memory(var varFile,primitive::memory_base & mem,::aura::application * papp);

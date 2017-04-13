@@ -1390,20 +1390,20 @@ CLASS_DECL_AURA::file::istream & operator >> (::file::istream & istream, propert
 
 
 
-fifo_property_set::fifo_property_set()
+stable_property_set::stable_property_set()
 {
 
 }
 
 
-fifo_property_set::~fifo_property_set()
+stable_property_set::~stable_property_set()
 {
 
 
 }
 
 
-bool fifo_property_set::is_new_or_null(id id)
+bool stable_property_set::is_new_or_null(id id)
 {
 
    index iFind = find(id);
@@ -1427,7 +1427,7 @@ bool fifo_property_set::is_new_or_null(id id)
 }
 
 
-bool fifo_property_set::has_property(id id)
+bool stable_property_set::has_property(id id)
 {
    
    index iFind = find(id);
@@ -1444,7 +1444,7 @@ bool fifo_property_set::has_property(id id)
 }
 
 
-index fifo_property_set::find(id id)
+index stable_property_set::find(id id)
 {
 
    for (index i = 0; i < m_propertya.get_size(); i++)
@@ -1463,7 +1463,7 @@ index fifo_property_set::find(id id)
 
 }
 
-void fifo_property_set::set_at(id id, var varValue)
+void stable_property_set::set_at(id id, var varValue)
 {
 
    index iFind = find(id);
@@ -1484,21 +1484,40 @@ void fifo_property_set::set_at(id id, var varValue)
 }
 
 
-property & fifo_property_set::operator [](id id)
+property & stable_property_set::operator [](id id)
 {
 
-   index iFind = find(id);
+   index iFind;
 
-   if (iFind < 0)
+   if (id.is_integer())
    {
 
-      iFind = m_propertya.add(property(id));
+      iFind = id.int64();
+
+      if (iFind < 0 || iFind >= m_propertya.get_count())
+      {
+
+         throw index_out_of_bounds(get_thread_app());
+
+      }
+
+   }
+   else
+   {
+
+      iFind = find(id);
+
+      if (iFind < 0)
+      {
+
+         iFind = m_propertya.add(property(id));
+
+      }
 
    }
 
    return m_propertya[iFind];
 
 }
-
 
 

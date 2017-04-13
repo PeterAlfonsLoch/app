@@ -263,47 +263,14 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
 sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 {
 
-   string strWndFrm;
+   sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema(m_varFrame["wndfrm"], m_varFrame["schema"]);
 
-   string strFrameSchema;
-
-   string strFrameStyle;
-
-   if (m_pdocumenttemplate->m_strMatter.has_char())
-   {
-
-      strWndFrm = Application.file().as_string("matter://" + m_pdocumenttemplate->m_strMatter + "/wndfrm.txt");
-
-      strFrameSchema = Application.file().as_string("matter://" + m_pdocumenttemplate->m_strMatter + "/frame_schema.txt");
-
-      strFrameStyle = Application.file().as_string("matter://" + m_pdocumenttemplate->m_strMatter + "/frame_style.txt");
-
-   }
-
-   if (strFrameSchema.is_empty())
-   {
-
-      strFrameSchema = "005";
-
-   }
-
-   if (strFrameStyle.is_empty())
-   {
-
-      strFrameStyle = "DarkWarmBlue";
-
-   }
-
-   sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema(strWndFrm, strFrameSchema);
-
-
-   //sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema(NULL, "013");
-
-   pschema->set_style(strFrameStyle);
+   pschema->set_style(m_varFrame["style"]);
 
    return pschema;
 
 }
+
 
 #ifdef WINDOWSEX
 
@@ -372,7 +339,45 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    SCAST_PTR(::message::create, pcreate, pobj);
 
    if (pobj->previous())
+   {
+
       return;
+
+   }
+
+   if (m_pdocumenttemplate->m_strMatter.has_char())
+   {
+
+      m_varFrame = Application.file().as_json("matter://" + m_pdocumenttemplate->m_strMatter + "/frame.json");
+
+   }
+
+   if (m_varFrame["schema"].is_empty())
+   {
+
+      m_varFrame["schema"] = "005";
+
+   }
+   
+   if (m_varFrame["style"].is_empty())
+   {
+
+      m_varFrame["style"] = "DarkWarmBlue";
+
+   }
+
+   if (m_varFrame["control_box"]["transparent_button"]["visible"].is_false())
+   {
+
+      m_workset.m_ebuttonaHide.add(::user::wndfrm::frame::button_transparent_frame);
+
+   }
+   if (m_varFrame["control_box"]["dock_button"]["visible"].is_false())
+   {
+
+      m_workset.m_ebuttonaHide.add(::user::wndfrm::frame::button_dock);
+
+   }
 
    m_puserschemaSchema = Application.userschema();
 
@@ -1134,6 +1139,22 @@ void simple_frame_window::_001OnAppExit(signal_details * pobj)
 
 void simple_frame_window::_001OnClose(signal_details * pobj)
 {
+
+   if ((bool)m_varFrame["hide_on_close"])
+   {
+
+      ShowWindow(SW_HIDE);
+
+      if (pobj != NULL)
+      {
+
+         pobj->m_bRet = true;
+
+      }
+
+      return;
+
+   }
 
    if(m_bDefaultNotifyIcon)
    {

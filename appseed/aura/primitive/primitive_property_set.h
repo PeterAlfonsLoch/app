@@ -628,7 +628,7 @@ inline string & operator += (string & str, const property & property)
 
 
 
-class CLASS_DECL_AURA fifo_property_set :
+class CLASS_DECL_AURA stable_property_set :
    virtual public ::object
 {
 protected:
@@ -638,8 +638,8 @@ protected:
 
 public:
 
-   fifo_property_set();
-   virtual ~fifo_property_set();
+   stable_property_set();
+   virtual ~stable_property_set();
 
    bool is_new_or_null(id id);
 

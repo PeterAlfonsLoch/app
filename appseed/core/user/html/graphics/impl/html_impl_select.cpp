@@ -53,6 +53,17 @@ namespace html
       }
 
 
+      //void select::set_pos(data * pdoc, float x, float y, float cx, float cy)
+      //{
+
+      //   m_box.set_pos_dim(x, y, m_box.get_cx(), m_box.get_cy());
+      //   on_change_layout(pdoc);
+
+      //}
+
+
+
+
       void select::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
 
@@ -95,23 +106,6 @@ namespace html
       }
 
 
-      void select::layout_phase1(data * pdata)
-      {
-
-         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
-            return;
-
-         string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size");
-
-         int iSize = 20;
-
-         if (strSize.has_char())
-            iSize = MAX(1, atoi(strSize));
-      
-         m_box.set_cxy(iSize * 10.f, 23.f);
-
-      }
-
 
       void select::layout_phase1_end(data * pdata)
       {
@@ -120,16 +114,43 @@ namespace html
 
       }
 
+      void select::layout_phase3_end(data * pdata)
+      {
+
+         UNREFERENCED_PARAMETER(pdata);
+
+      }
 
       
+
+
+      
+
+      void select::layout_phase1(data * pdata)
+      {
+
+         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+            return;
+
+         string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size");
+
+         int iSize = 20;
+
+         if (strSize.has_char())
+            iSize = MAX(1, atoi(strSize));
+
+         m_box.set_cxy(iSize * 10.f, 23.f);
+
+      }
+
+
       void select::layout_phase3(data * pdata)
       {
 
-         
-         elemental::layout_phase3(pdata);
-         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
             return;
 
+         elemental::layout_phase3(pdata);
 
          m_pcombo->SetWindowPos(0, (int32_t)m_box.left, (int32_t)m_box.top, (int32_t)m_box.get_cx(), (int32_t)m_box.get_cy(), SWP_NOREDRAW);
 
@@ -139,15 +160,23 @@ namespace html
       void select::_001OnDraw(data * pdata)
       {
 
+
+         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+            return;
+
          ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
          rect rectWindow;
+
          m_pcombo->GetWindowRect(rectWindow);
+
          m_pcombo->ScreenToClient(rectWindow);
-         ::point ptPreviousViewportOrg = pgraphics->GetViewportOrg();
+
+         ::draw2d::savedc savedc(pgraphics);
+
          pgraphics->SetViewportOrg(rectWindow.top_left());
+
          m_pcombo->_000OnDraw(pgraphics);
-         pgraphics->SetViewportOrg(ptPreviousViewportOrg);
 
       }
 
@@ -155,20 +184,15 @@ namespace html
       void select::on_change_layout(data * pdata)
       {
 
-         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
             return;
 
          UNREFERENCED_PARAMETER(pdata);
+
          m_pcombo->SetWindowPos(0, (int32_t)m_box.left, (int32_t)m_box.top, (int32_t)m_box.get_cx(), (int32_t)m_box.get_cy(), SWP_NOREDRAW);
-      }
-
-      void select::set_pos(data * pdoc,float x,float y,float cx,float cy)
-      {
-
-         m_box.set_pos_dim(x,y,m_box.get_cx(),m_box.get_cy());
-         on_change_layout(pdoc);
 
       }
+
 
    }
 

@@ -119,21 +119,29 @@ namespace html
          ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
          rect rectWindow;
-         m_pedit->GetWindowRect(rectWindow);
-         m_pedit->get_wnd()->ScreenToClient(rectWindow);
          
-         ::point ptPreviousViewportOrg = pgraphics->GetViewportOrg();
+         m_pedit->GetWindowRect(rectWindow);
+         
+         m_pedit->get_wnd()->ScreenToClient(rectWindow);
+
+         ::draw2d::savedc savedc(pgraphics);
+
          pgraphics->SetViewportOrg(rectWindow.top_left());
+         
          m_pedit->_000OnDraw(pgraphics);
-         pgraphics->SelectClipRgn(NULL);
-         pgraphics->SetViewportOrg(ptPreviousViewportOrg);
+
       }
+
 
       void input_text::on_change_layout(data * pdata)
       {
+         
          UNREFERENCED_PARAMETER(pdata);
+         
          m_pedit->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
+
       }
+
    }
 
 } // namespace html

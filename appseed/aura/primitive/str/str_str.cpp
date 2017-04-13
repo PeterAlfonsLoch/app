@@ -3892,6 +3892,94 @@ end:
    }
 
 
+   CLASS_DECL_AURA bool is_true(string str)
+   {
+
+      str.trim();
+
+      if (str.is_empty())
+      {
+
+         return false;
+
+      }
+
+      if (str.CompareNoCase("yes") == 0)
+      {
+
+         return true;
+
+      }
+
+      if (str.CompareNoCase("true") == 0)
+      {
+
+         return true;
+
+      }
+
+      if (str.CompareNoCase("on") == 0)
+      {
+
+         return true;
+
+      }
+
+      if (str.CompareNoCase("enable") == 0)
+      {
+
+         return true;
+
+      }
+
+      if (str.CompareNoCase("enabled") == 0)
+      {
+
+         return true;
+
+      }
+
+      if (str.CompareNoCase("check") == 0)
+      {
+
+         return true;
+
+      }
+
+      if (str.CompareNoCase("checked") == 0)
+      {
+
+         return true;
+
+      }
+
+      for (index i = 0; i < str.get_length(); i++)
+      {
+
+         if (i == 0 && (str[i] == '+' || str[i] == '-'))
+         {
+
+         }
+         else if (!isdigit_dup(str[i]))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      if (atoi_dup(str) == 0)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
 } // namespace str
 
 

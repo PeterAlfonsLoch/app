@@ -4564,7 +4564,7 @@ bool var::is_false() const
 
    }
 
-   return m_b;
+   return !m_b;
 
 }
 

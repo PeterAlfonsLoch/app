@@ -455,6 +455,51 @@ restart:
       return true;
    }
 
+
+   var system::as_json(var varFile, ::aura::application * papp)
+   {
+      
+      string str = as_string(varFile, papp);
+
+      if (str.is_empty())
+      {
+
+         return var::type_new;
+
+      }
+
+      const char * pszJson = str;
+
+      var v;
+
+      try
+      {
+
+         v.parse_json(pszJson);
+
+      }
+      catch (::exception::exception & e)
+      {
+
+         TRACE(e.what());
+
+         v = var::type_new;
+
+      }
+      catch (...)
+      {
+
+         TRACE("GENERAL Exception parsing json system::as_json : \"" + str + "\"");
+
+         v = var::type_new;
+
+      }
+
+      return v;
+
+   }
+
+
    string system::as_string(var varFile, ::aura::application * papp)
    {
       var varQuery;

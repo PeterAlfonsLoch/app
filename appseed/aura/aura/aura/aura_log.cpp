@@ -18,17 +18,16 @@ namespace aura
       m_mutexTrace(papp)
    {
 
-#if defined(WINDOWSEX)
-      m_bTrace          = ::file_exists_dup("C:\\core\\trace.txt") || ::is_debugger_attached();
-#elif defined(METROWIN)
-      m_bTrace          = ::file_exists_dup(::dir::appdata("system") / "trace.txt") || ::is_debugger_attached();
-#elif defined(LINUX)
-      m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
-#elif defined(ANDROID)
-      m_bTrace = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
-#else
-      m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
-#endif
+      ::file::path pathTrace = ::dir::appdata("system") / "trace.txt";
+
+      if (!file_exists_dup(pathTrace))
+      {
+
+         ::file_put_contents_dup(pathTrace, "no");
+
+      }
+
+      m_bTrace = ::is_debugger_attached() || ::file_is_true_dup(pathTrace);
 
       m_pmutex          = new mutex(papp);
       m_ptrace          = new ::aura::trace::trace(papp);

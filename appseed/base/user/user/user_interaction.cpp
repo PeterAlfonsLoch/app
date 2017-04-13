@@ -1784,8 +1784,8 @@ namespace user
    {
 
       return (::user::interaction_base::is_this_visible() || 
-         (m_pimpl->m_bShowFlags && (m_pimpl->m_iShowFlags & SWP_SHOWWINDOW)))
-         && !(m_pimpl->m_bShowFlags && (m_pimpl->m_iShowFlags & SWP_HIDEWINDOW));
+         (m_pimpl.is_set() && (m_pimpl->m_bShowFlags && (m_pimpl->m_iShowFlags & SWP_SHOWWINDOW)))
+         && !(m_pimpl->m_bShowFlags && (m_pimpl->m_iShowFlags & SWP_HIDEWINDOW)));
 
    }
 

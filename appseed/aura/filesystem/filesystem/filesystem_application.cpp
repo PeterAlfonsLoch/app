@@ -135,6 +135,11 @@ namespace file
       return m_pauraapp->m_paurasystem->m_spfile->get(name, m_pauraapp);
    }
 
+   var application::as_json(var varFile)
+   {
+      return m_pauraapp->m_paurasystem->m_spfile->as_json(varFile, m_pauraapp);
+   }
+
    string application::as_string(var varFile)
    {
       return m_pauraapp->m_paurasystem->m_spfile->as_string(varFile, m_pauraapp);
