@@ -259,7 +259,24 @@ namespace user
          return ARGB(255, 84, 184, 255);
 
       }
+      else if (ecolor == color_list_header)
+      {
 
+         return ARGB(255, 80, 80, 80);
+
+      }
+      else if (ecolor == color_list_header_background)
+      {
+
+         return ARGB(80, 0, 0, 0);
+
+      }
+      else if (ecolor == color_list_item_background)
+      {
+
+         return ARGB(127, 0, 0, 0);
+
+      }
 
       throw invalid_argument_exception(::get_thread_app());
 

@@ -550,10 +550,10 @@ namespace user
          }
          else
          {
-            COLORREF crTranslucid = RGB(0, 0, 0);
             ::rect r = pdrawitem->m_rectItem;
             r.inflate(8, 0, 8, -1);
-            System.visual().imaging().color_blend(pdrawitem->m_pgraphics, r, crTranslucid, 127);
+            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, _001GetColor(::user::color_list_item_background));
+            //System.visual().imaging().color_blend(pdrawitem->m_pgraphics, r, crTranslucid, 127);
          }
       }
 

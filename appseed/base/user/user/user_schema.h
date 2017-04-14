@@ -33,6 +33,9 @@ namespace user
       color_text_disabled,
       color_face,
       color_face_lite,
+      color_list_header,
+      color_list_header_background,
+      color_list_item_background
 
    };
 

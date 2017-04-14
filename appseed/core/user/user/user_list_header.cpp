@@ -41,16 +41,17 @@ namespace user
       string str;
 
       str = System.load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
-      m_font->create_point_font("Verdana", 10.0);
+      //m_font->create_point_font("Verdana", 10.0);
 
 
       pgraphics->SelectObject(m_font);
 
 //      pgraphics->SetBkMode(TRANSPARENT);
 
-      pgraphics->set_text_color(ARGB(255, 80, 80, 80));
+      pgraphics->set_text_color(_001GetColor(::user::color_list_header));
+      int i = plist->_001GetDrawTextFlags(plist->m_eview);
 
-      pgraphics->_DrawText(str,str.get_length(),rectColumn,DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
+      pgraphics->_DrawText(str,str.get_length(),rectColumn,i);
 
    }
 
@@ -561,23 +562,24 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      COLORREF crBack = ARGB(80, 0, 0, 0);
-
-      get_color(crBack, ::user::color_face_lite);
-
-      pgraphics->FillSolidRect(rectUpdate, crBack);
+      pgraphics->FillSolidRect(rectUpdate, _001GetColor(::user::color_list_header_background));
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
       list * plist = m_plistctrlinterface;
       rect rectDivider;
+      ::draw2d::pen_sp p(allocer());
+      p->create_solid(1.0, Session.get_default_color(COLOR_BTNSHADOW));
       for(int32_t iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          drawitem.itemID = iItem;
          GetItemRect(&drawitem.rcItem, ElementItemBox, iItem);
          DrawItem(&drawitem);
          GetItemRect(rectDivider, ElementDivider, iItem);
-         pgraphics->Draw3dRect(rectDivider, Session.get_default_color(COLOR_BTNSHADOW), Session.get_default_color(COLOR_BTNHIGHLIGHT));
+         pgraphics->SelectObject(p);
+         pgraphics->MoveTo(rectDivider.left, rectDivider.top);
+         pgraphics->LineTo(rectDivider.left, rectDivider.bottom);
+         //pgraphics->Draw3dRect(rectDivider, Session.get_default_color(COLOR_BTNSHADOW), Session.get_default_color(COLOR_BTNHIGHLIGHT));
       }
 
    }
