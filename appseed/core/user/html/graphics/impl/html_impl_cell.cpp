@@ -319,15 +319,13 @@ namespace html
       }
 
 
-      void cell::layout_phase1(data * pdata)
+      bool cell::layout_phase1(data * pdata)
       {
 
          if (m_pelemental->m_elementalptra.is_empty())
          {
 
-            text::layout_phase1(pdata);
-            
-            return;
+            return text::layout_phase1(pdata);
 
          }
 
@@ -404,6 +402,8 @@ namespace html
          m_bound.set_cx((float) iColumnWidth);
 
          pdata->m_layoutstate1.m_bHasChar = false;
+
+         return true;
 
       }
 

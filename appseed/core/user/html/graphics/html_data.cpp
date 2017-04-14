@@ -295,8 +295,13 @@ namespace html
       if(m_bLayout)
          return;
 
-      if(!m_bImplemented)
-         implement(pgraphics);
+      bool bImplemented = false;
+         if (!m_bImplemented)
+         {
+            bImplemented = true;
+            implement(pgraphics);
+
+         }
 
       keep < bool > keepLayout(&m_bLayout, true, false, true);
 
@@ -309,6 +314,15 @@ namespace html
       m_layoutstate3.reset();
 
       m_elemental.on_layout(this);
+
+      if (m_pcallback != NULL)
+      {
+         ::user::control_event ev;
+         ev.m_puie = m_pui;
+         ev.m_eevent = ::user::event_form_initialize;
+         m_pui->BaseOnControlEvent(&ev);
+
+      }
 
    }
 
@@ -392,6 +406,8 @@ namespace html
       m_cy = 0;
       m_x = 0;
       m_cx = 0;
+      m_bLastBlock = false;
+      m_bLastCell = false;
    }
 
 
@@ -413,6 +429,8 @@ namespace html
       //m_iy = 0;
       m_x = 0.f;
       m_cx = 0;
+      m_bLastBlock = false;
+      m_bLastCell = false;
 
    }
 

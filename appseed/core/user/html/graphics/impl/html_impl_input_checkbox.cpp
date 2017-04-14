@@ -103,10 +103,12 @@ namespace html
          }
       }
 
-      void input_checkbox::layout_phase1(data * pdata)
+      bool input_checkbox::layout_phase1(data * pdata)
       {
 
          m_box.set_cxy(23, 23);
+
+         return true;
 
       }
 

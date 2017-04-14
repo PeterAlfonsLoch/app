@@ -44,7 +44,7 @@ namespace html
       }
 
 
-      void image::layout_phase1(data * pdata)
+      bool image::layout_phase1(data * pdata)
       {
 
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
@@ -62,6 +62,8 @@ namespace html
             }
 
          }
+
+         return true;
 
       }
 

@@ -70,6 +70,13 @@ namespace html
          m_bHasChar = true;
 
          elemental::implement_phase1(pdata, pelemental);
+         if (pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         {
+
+            return;
+
+         }
+
 
          if(pelemental->m_pbase->get_type() == ::html::base::type_tag && !m_pcombo->IsWindow())
          {
@@ -110,14 +117,19 @@ namespace html
       void select::layout_phase1_end(data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+            return;
+
+         ::html::impl::elemental::layout_phase1_end(pdata);
 
       }
 
       void select::layout_phase3_end(data * pdata)
       {
+         if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+            return;
 
-         UNREFERENCED_PARAMETER(pdata);
+         ::html::impl::elemental::layout_phase3_end(pdata);
 
       }
 
@@ -126,11 +138,11 @@ namespace html
 
       
 
-      void select::layout_phase1(data * pdata)
+      bool select::layout_phase1(data * pdata)
       {
 
          if (m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
-            return;
+            return false;
 
          string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size");
 
@@ -140,6 +152,8 @@ namespace html
             iSize = MAX(1, atoi(strSize));
 
          m_box.set_cxy(iSize * 10.f, 23.f);
+
+         return true;
 
       }
 
@@ -152,7 +166,15 @@ namespace html
 
          elemental::layout_phase3(pdata);
 
-         m_pcombo->SetWindowPos(0, (int32_t)m_box.left, (int32_t)m_box.top, (int32_t)m_box.get_cx(), (int32_t)m_box.get_cy(), SWP_NOREDRAW);
+         LONG x = m_box.left;
+
+         LONG y = m_box.top;
+
+         LONG cx = m_box.get_cx();
+
+         LONG cy = m_box.get_cy();
+
+         m_pcombo->SetWindowPos(0, x, y, cx, cy, SWP_NOREDRAW);
 
       }
 
@@ -189,7 +211,15 @@ namespace html
 
          UNREFERENCED_PARAMETER(pdata);
 
-         m_pcombo->SetWindowPos(0, (int32_t)m_box.left, (int32_t)m_box.top, (int32_t)m_box.get_cx(), (int32_t)m_box.get_cy(), SWP_NOREDRAW);
+         LONG x = m_box.left;
+
+         LONG y = m_box.top;
+
+         LONG cx = m_box.get_cx();
+
+         LONG cy = m_box.get_cy();
+
+         m_pcombo->SetWindowPos(0, x, y, cx, cy, SWP_NOREDRAW);
 
       }
 

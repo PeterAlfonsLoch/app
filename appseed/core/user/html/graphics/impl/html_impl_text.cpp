@@ -260,7 +260,7 @@ namespace html
 
       }
 
-      void text::layout_phase1(data * pdata)
+      bool text::layout_phase1(data * pdata)
       {
 
           ::html::impl::elemental::layout_phase1(pdata);
@@ -275,7 +275,7 @@ namespace html
             ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
             if (pgraphics == NULL)
-               return;
+               return false;
 
             if (pdata->m_layoutstate1.m_cy <= 0)
             {
@@ -296,27 +296,31 @@ namespace html
 
             m_box.set_cy((float)pdata->m_layoutstate1.m_cy);
 
-            return;
+            return true;
 
          }
 
 
-         if (m_pelemental->m_elementalptra.get_size() > 0 || m_pelemental->m_strBody.is_empty())
-            return;
+         if (m_pelemental->m_elementalptra.get_size() > 0 || m_pelemental->m_strBody.trimmed().is_empty())
+            return false;
 
          if (etag == tag_table
           || etag == tag_tbody
           || etag == tag_tr)
-            return;
+            return false;
 
          ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
          if (pgraphics == NULL)
-            return;
+            return false;
 
          pgraphics->SelectObject(pdata->get_font(m_pelemental)->m_font);
 
          string str = m_pelemental->m_strBody;
+
+         str.trim();
+
+
 
          m_straLines.remove_all();
 
@@ -501,6 +505,8 @@ namespace html
             m_box.set_cy(cy);
 
          }
+
+         return true;
 
       }
 

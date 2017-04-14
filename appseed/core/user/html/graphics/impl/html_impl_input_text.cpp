@@ -88,7 +88,8 @@ namespace html
          m_cxMin = 200;
       }
 
-      void input_text::layout_phase1(data * pdata)
+      
+      bool input_text::layout_phase1(data * pdata)
       {
 
          string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size");
@@ -99,6 +100,8 @@ namespace html
             iSize = MAX(1, atoi(strSize));
 
          m_box.set_cxy(iSize * 10.f, 23.f);
+
+         return true;
 
       }
 

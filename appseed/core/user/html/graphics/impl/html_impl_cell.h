@@ -90,7 +90,7 @@ namespace html
 
 
          virtual void layout_phase0(data * pdoc);
-         virtual void layout_phase1(data * pdoc);
+         virtual bool layout_phase1(data * pdoc);
          virtual void layout_phase3(data * pdoc);
 
 

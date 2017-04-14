@@ -196,6 +196,14 @@ namespace html
       void elemental::layout_phase0(data * pdata)
       {
 
+         m_box.left = 0;
+         m_box.top = 0;
+         m_box.right = 0;
+         m_box.bottom = 0;
+         m_bound.left = 0;
+         m_bound.top = 0;
+         m_bound.right = 0;
+         m_bound.bottom = 0;
          UNREFERENCED_PARAMETER(pdata);
 
       }
@@ -389,14 +397,14 @@ namespace html
       }
 
 
-      void elemental::layout_phase1(data * pdata)
+      bool elemental::layout_phase1(data * pdata)
       {
 
          if (m_pelemental == NULL)
-            return;
+            return false;
 
          if (m_pelemental->m_pparent == NULL)
-            return;
+            return false;
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -408,7 +416,7 @@ namespace html
             || etag == tag_title
             || etag == tag_meta
             || etag == tag_body)
-            return;
+            return false;
 
          bool bBlock = m_pelemental->m_style.m_edisplay == display_block
             || m_pelemental->m_style.m_edisplay == display_table;
@@ -427,7 +435,7 @@ namespace html
 
                m_bound.set_cx(cx);
 
-               return;
+               return true;
 
             }
             else if (!m_bHasChar)
@@ -437,7 +445,7 @@ namespace html
 
                m_bound.set_cxy(0, 0);
 
-               return;
+               return false;
 
             }
 
@@ -509,8 +517,12 @@ namespace html
             || etag == tag_meta)
             return;
 
-         if (m_pelemental->m_elementalptra.is_empty())
+         if (m_pelemental->m_elementalptra.is_empty() || etag == tag_select)
+         {
+          
             return;
+
+         }
 
          if (etag == tag_tbody)
          {
@@ -530,6 +542,10 @@ namespace html
          pdata->m_layoutstate1.m_cxMax.last() = cxMax;
 
          m_box.set_cy(pdata->m_layoutstate1.m_cya.last());
+
+         pdata->m_layoutstate1.m_cy = pdata->m_layoutstate1.m_cya.last() + get_extra_content_cy();
+
+         pdata->m_layoutstate1.m_cya.last() = pdata->m_layoutstate1.m_cy;
 
          m_box.set_cx(pdata->m_layoutstate1.m_cxMax.last());
 
@@ -570,9 +586,9 @@ namespace html
          if (etag == tag_br)
          {
 
-            //pdata->m_layoutstate3.m_y += get_cy();
+            pdata->m_layoutstate3.m_y += get_cy();
 
-            pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last();
+            //pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last();
 
             pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last();
 
@@ -604,7 +620,7 @@ namespace html
 
          m_box.set_cy(cy);
 
-         pdata->m_layoutstate3.m_x = get_x() + get_cx();
+         pdata->m_layoutstate3.m_x = get_x() + get_cx() + m_margin.right;
 
          pdata->m_layoutstate3.m_y = get_y();
 
@@ -957,9 +973,10 @@ namespace html
       void elemental::layout_phase3_end(data * pdata)
       {
 
-//         e_tag etag = m_pelemental->m_etag;
+         e_tag etag = m_pelemental->m_etag;
 
-         if (m_pelemental->m_elementalptra.is_empty())
+         if (m_pelemental->m_elementalptra.is_empty() 
+            || etag == tag_select)
             return;
 
          float x = 3e33f;

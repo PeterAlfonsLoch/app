@@ -102,7 +102,9 @@ namespace html
 
 
          virtual void layout_phase0(data * pdata); // cx MIN/MAX calculation
-         virtual void layout_phase1(data * pdata); // cx calculation or cxy calculation at final nodes
+         // return true if function performed layout
+         // if it returns false, layout must be ignored
+         virtual bool layout_phase1(data * pdata); // cx calculation or cxy calculation at final nodes
          virtual void layout_phase2(data * pdata); // adjust
          virtual void layout_phase3(data * pdata); // final on_layout
 

@@ -490,9 +490,10 @@ namespace html
 
       float fLastY;
 
-      m_pimpl->layout_phase1(pdata);
+      bool bLayout = m_pimpl->layout_phase1(pdata);
 
-      if (m_elementalptra.has_elements())
+      if (m_elementalptra.has_elements() &&
+         m_etag != tag_select)
       {
 
          pdata->m_layoutstate1.m_cya.add(0.f);
@@ -546,12 +547,23 @@ namespace html
          }
 
       }
-      else if (m_elementalptra.is_empty())
+      else if (bLayout)
       {
 
          m_pimpl->layout_phase1_end(pdata);
 
          pdata->m_layoutstate1.m_cy = m_pimpl->m_box.get_cy();
+
+         int iExtraCy = m_pimpl->get_extra_content_cy();
+
+         if (iExtraCy > 0)
+         {
+
+            output_debug_string("extra_cy > 0");
+
+         }
+
+         pdata->m_layoutstate1.m_cy += iExtraCy;
 
          if (m_etag == tag_br) //style.m_edisplay == display_block)
          {
@@ -565,7 +577,7 @@ namespace html
 
             pdata->m_layoutstate1.m_cya.last() = MAX(pdata->m_layoutstate1.m_cya.last(), pdata->m_layoutstate1.m_cy);
 
-            pdata->m_layoutstate1.m_cxa.last() += m_pimpl->m_box.get_cx();
+            pdata->m_layoutstate1.m_cxa.last() += m_pimpl->m_box.get_cx() + m_pimpl->get_extra_content_cx();
 
          }
 

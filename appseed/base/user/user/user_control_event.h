@@ -30,6 +30,7 @@ namespace user
       event_kill_focus,
       event_on_create_view,
       event_on_create_tab,
+      event_form_initialize,
    };
 
 

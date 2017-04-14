@@ -160,7 +160,8 @@ namespace user
          rectItem.bottom = rectItem.top + _001GetItemHeight();
          if (rectItem.contains(ptCursor))
          {
-            br->create_solid(ARGB(123, 123, 149, 108));
+            //br->create_solid(ARGB(123, 123, 149, 108));
+            br->create_solid(_001GetColor(::user::color_background_selected));
          }
          else
          {
@@ -263,7 +264,8 @@ namespace user
          rectItem.bottom = rectItem.top + _001GetItemHeight();
          if (rectItem.contains(ptCursor))
          {
-            br->create_solid(ARGB(123, 123, 149, 108));
+            //br->create_solid(ARGB(123, 123, 149, 108));
+            br->create_solid(_001GetColor(::user::color_background_selected));
          }
          else
          {
@@ -358,7 +360,9 @@ namespace user
          rectItem.bottom = rectItem.top + _001GetItemHeight();
          if (iHover == i)
          {
-            br->create_solid(ARGB(184, 77, 184, 63));
+
+            //br->create_solid(ARGB(184, 77, 184, 63));
+            br->create_solid(_001GetColor(::user::color_background_selected));
             pgraphics->SelectObject(br);
             pgraphics->FillRectangle(rectItem);
             br->create_solid(ARGB(255, 255, 255, 240));
@@ -458,7 +462,8 @@ namespace user
          rectItem.bottom = rectItem.top + _001GetItemHeight();
          if (i == iHover)
          {
-            br->create_solid(ARGB(184, 77, 184, 63));
+            //br->create_solid(ARGB(184, 77, 184, 63));
+            br->create_solid(_001GetColor(::user::color_background_selected));
             pgraphics->SelectObject(br);
             pgraphics->FillRectangle(rectItem);
             br->create_solid(ARGB(255, 255, 255, 240));

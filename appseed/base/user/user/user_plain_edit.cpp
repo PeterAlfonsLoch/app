@@ -506,7 +506,7 @@ namespace user
             }
             if (iEnd > iStart)
             {
-               pgraphics->FillSolidRect((double)(left + x1), (double)y, (double)MIN(x2-x1, rectClient.right - (left + x1)), (double)MIN(m_iLineHeight, rectClient.bottom - y), ARGB(255, 120, 240, 180));
+               pgraphics->FillSolidRect((double)(left + x1), (double)y, (double)MIN(x2-x1, rectClient.right - (left + x1)), (double)MIN(m_iLineHeight, rectClient.bottom - y), crBkSel);
                brushText->create_solid(crSel);
                pgraphics->SelectObject(brushText);
             }
@@ -2553,6 +2553,14 @@ namespace user
 
       px -= (rectClient.left - ptOffset.x);
 
+
+      if (px <= 0)
+      {
+
+         px = 0;
+
+      }
+
       int32_t lim = 0;
 
       bool bFound = false;
@@ -3277,6 +3285,14 @@ namespace user
          {
             if (Session.is_key_pressed(::user::key_control))
             {
+               return;
+            }
+         }
+         else if (pkey->m_ekey == ::user::key_a)
+         {
+            if (Session.is_key_pressed(::user::key_control))
+            {
+               _001SetSel(0, _001GetTextLength());
                return;
             }
          }

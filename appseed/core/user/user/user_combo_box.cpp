@@ -179,7 +179,8 @@ namespace user
 
       }
 
-      br->create_solid(ARGB(210, 77, 184, 49));
+      //br->create_solid(ARGB(210, 77, 184, 49));
+      br->create_solid(_001GetColor(::user::color_background_selected));
 
       pgraphics->SelectObject(br);
 
@@ -342,7 +343,9 @@ namespace user
 
       }
 
-      br->create_solid(ARGB(210, 77, 184, 49));
+      //br->create_solid(ARGB(210, 77, 184, 49));
+
+      br->create_solid(_001GetColor(::user::color_background_selected));
 
       pgraphics->SelectObject(br);
 
