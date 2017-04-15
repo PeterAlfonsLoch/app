@@ -79,14 +79,21 @@ CLASS_DECL_AURA string defer_solve_relative_compresions(const string & strParam)
 
    while((iFind = strAbsolute.find("/../")) >= 0)
    {
-      iFind2 = strAbsolute.reverse_find("/",iFind - 1);
-      if(iFind2 <= 0)
+      if (iFind == 0)
       {
          strAbsolute = strAbsolute.substr(iFind + 3);
       }
       else
       {
-         strAbsolute = strAbsolute.substr(0,iFind2) + strAbsolute.substr(iFind + 3);
+         iFind2 = strAbsolute.reverse_find("/", iFind - 1);
+         if (iFind2 <= 0)
+         {
+            strAbsolute = strAbsolute.substr(iFind + 3);
+         }
+         else
+         {
+            strAbsolute = strAbsolute.substr(0, iFind2) + strAbsolute.substr(iFind + 3);
+         }
       }
    }
 
@@ -94,14 +101,21 @@ CLASS_DECL_AURA string defer_solve_relative_compresions(const string & strParam)
 
    while((iFind = strAbsolute.find("\\..\\")) >= 0)
    {
-      iFind2 = strAbsolute.reverse_find("\\",iFind - 1);
-      if(iFind2 <= 0)
+      if (iFind == 0)
       {
          strAbsolute = strAbsolute.substr(iFind + 3);
       }
       else
       {
-         strAbsolute = strAbsolute.substr(0,iFind2) + strAbsolute.substr(iFind + 3);
+         iFind2 = strAbsolute.reverse_find("\\", iFind - 1);
+         if (iFind2 <= 0)
+         {
+            strAbsolute = strAbsolute.substr(iFind + 3);
+         }
+         else
+         {
+            strAbsolute = strAbsolute.substr(0, iFind2) + strAbsolute.substr(iFind + 3);
+         }
       }
    }
 
