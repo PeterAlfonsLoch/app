@@ -3778,6 +3778,37 @@ var::operator bool() const
 
 }
 
+
+bool var::is_property_true(const char * pszName) const
+{
+
+   if (!has_property(pszName))
+   {
+
+      return false;
+
+   }
+
+   if (propset()[pszName].is_empty())
+   {
+
+      return true;
+
+   }
+
+   return propset()[pszName].is_true();
+
+}
+
+
+bool var::is_property_false(const char * pszName) const
+{
+   
+   return !is_property_true(pszName);
+
+}
+
+
 bool var::has_property(const char * pszName) const
 {
    if(get_type() == type_propset)

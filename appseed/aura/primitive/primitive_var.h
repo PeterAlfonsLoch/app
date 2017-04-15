@@ -242,6 +242,8 @@ public:
    bool has_char() const;
 
    bool has_property(const char * pszName) const;
+   bool is_property_true(const char * pszName) const;
+   bool is_property_false(const char * pszName) const;
 
    var & operator ++(int32_t);
 
