@@ -847,7 +847,7 @@ namespace windows
    /*!
    * Print a known folder.
    */
-   ::file::path get_known_folder(REFKNOWNFOLDERID kfid)
+   CLASS_DECL_AURA ::file::path get_known_folder(REFKNOWNFOLDERID kfid)
    {
       ::file::path str;
       PWSTR pszPath = NULL;
