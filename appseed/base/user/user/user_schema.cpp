@@ -265,6 +265,30 @@ namespace user
          return ARGB(255, 80, 80, 80);
 
       }
+      else if (ecolor == color_background_normal)
+      {
+
+         return ARGB(255, 255, 255, 255);
+
+      }
+      else if (ecolor == color_text_normal)
+      {
+
+         return ARGB(255, 0, 0, 0);
+
+      }
+      else if (ecolor == color_background_hover)
+      {
+
+         return ARGB(255, 255, 255, 255);
+
+      }
+      else if (ecolor == color_text_hover)
+      {
+
+         return ARGB(255, 0, 0, 0);
+
+      }
       else if (ecolor == color_list_header_background)
       {
 
@@ -275,6 +299,54 @@ namespace user
       {
 
          return ARGB(127, 0, 0, 0);
+
+      }
+      else if (ecolor == color_button_background_disabled)
+      {
+
+         return _001GetColor(color_background_disabled);
+
+      }
+      else if (ecolor == color_button_background_hover)
+      {
+
+         return _001GetColor(color_background_hover);
+
+      }
+      else if (ecolor == color_button_background_normal)
+      {
+
+         return _001GetColor(color_background_normal);
+
+      }
+      else if (ecolor == color_button_background_press)
+      {
+
+         return _001GetColor(color_background_press);
+
+      }
+      else if (ecolor == color_button_text_disabled)
+      {
+
+         return _001GetColor(color_text_disabled);
+
+      }
+      else if (ecolor == color_button_text_hover)
+      {
+
+         return _001GetColor(color_text_hover);
+
+      }
+      else if (ecolor == color_button_text_normal)
+      {
+
+         return _001GetColor(color_text_normal);
+
+      }
+      else if (ecolor == color_button_text_press)
+      {
+
+         return _001GetColor(color_text_press);
 
       }
 
@@ -746,6 +818,14 @@ namespace user
       }
 
       pgraphics->OffsetViewportOrg(-lpcrectClient->left, -lpcrectClient->top);
+
+   }
+
+
+   bool schema::_001DrawToolbarItem(::draw2d::graphics * pgraphics, int32_t iItem, ::user::toolbar * ptoolbar)
+   {
+
+      return false;
 
    }
 

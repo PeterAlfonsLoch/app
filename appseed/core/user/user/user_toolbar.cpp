@@ -47,7 +47,8 @@ namespace user
    toolbar::toolbar(::aura::application * papp) :
       object(papp),
       ::user::interaction(papp),
-      ::user::control_bar(papp)
+      ::user::control_bar(papp),
+      m_font(allocer())
    {
           m_bSimpleLayout = true;
 
@@ -1669,6 +1670,15 @@ throw todo(get_app());
 
 
    }
+
+   
+   int32_t toolbar::_001GetHoverItem()
+   {
+
+      return -1;
+
+   }
+
 
 } // namespace user
 

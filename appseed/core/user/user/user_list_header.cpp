@@ -15,6 +15,8 @@ namespace user
       m_bLButtonDown = false;
       m_bHover = false;
       m_font->create_point_font("Verdana", 20.0);
+      m_puserschemaSchema = Application.userschema();
+      m_iImageSpacing = 4;
    }
 
    list_header::~list_header()
@@ -37,6 +39,30 @@ namespace user
       int32_t iColumn = pdrawitem->itemID;
 
       list * plist = m_plistctrlinterface;
+
+      if (plist->m_columna._001GetVisible(iColumn)->m_dibHeader.is_set() && plist->m_columna._001GetVisible(iColumn)->m_dibHeader->area() > 0)
+      {
+
+         rect r;
+
+         r.left = 0;
+         r.top = 0;
+         r.right = plist->m_columna._001GetVisible(iColumn)->m_dibHeader->m_size.cx;
+         r.bottom = plist->m_columna._001GetVisible(iColumn)->m_dibHeader->m_size.cy;
+
+         rect rC;
+
+         rC = rectColumn;
+
+         rC.left += 2;
+
+         r.Align(::align_left_center, rC);
+
+         pgraphics->BitBlt(r, plist->m_columna._001GetVisible(iColumn)->m_dibHeader->get_graphics());
+
+         rectColumn.left = r.right + m_iImageSpacing;
+
+      }
 
       string str;
 
@@ -569,7 +595,7 @@ namespace user
       list * plist = m_plistctrlinterface;
       rect rectDivider;
       ::draw2d::pen_sp p(allocer());
-      p->create_solid(1.0, Session.get_default_color(COLOR_BTNSHADOW));
+      p->create_solid(1.0, _001GetColor(::user::color_list_header_separator));
       for(int32_t iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          drawitem.itemID = iItem;

@@ -55,6 +55,7 @@ namespace user
       bool                             m_bIcon;
       int32_t                              m_iWidth;
       bool                             m_bCustomDraw;
+      ::draw2d::dib_sp                 m_dibHeader;
 
       // form list attributes
       bool                             m_bEditOnSecondClick;
@@ -187,7 +188,7 @@ namespace user
    {
    public:
 
-
+      int                              m_iImageSpacing;
       bool                             m_bMorePlain;
       bool                             m_bAutoCreateListHeader;
       bool                             m_bHeaderCtrl;

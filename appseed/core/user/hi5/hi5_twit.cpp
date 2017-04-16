@@ -727,6 +727,10 @@ namespace hi5
 
       m_strRequest = "hi5::twit::statusUpdate(\"" + newStatus + "\", {" + straMediaIds.implode(", ")+"})" ;
 
+      m_strResponse = "";
+
+      m_strError = "";
+
       log_line(m_strRequest);
 
       if (newStatus.is_empty() && straMediaIds.is_empty())

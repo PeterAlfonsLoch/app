@@ -8,6 +8,8 @@ namespace user
 
    class tab_pane;
 
+   class toolbar;
+
    enum e_color
    {
 
@@ -31,11 +33,22 @@ namespace user
       color_text_hover,
       color_text_press,
       color_text_disabled,
+      color_button_background_normal,
+      color_button_background_hover,
+      color_button_background_press,
+      color_button_background_disabled,
+      color_button_text_normal,
+      color_button_text_hover,
+      color_button_text_press,
+      color_button_text_disabled,
       color_face,
       color_face_lite,
       color_list_header,
       color_list_header_background,
-      color_list_item_background
+      color_list_header_separator,
+      color_list_item_background,
+      color_toolbar_background,
+      color_toolbar_separator,
 
    };
 
@@ -85,6 +98,8 @@ namespace user
 
 
       virtual void _001DrawCheckBox(::draw2d::graphics * pgraphics, LPCRECT lpcrectClient, ::check::e_check echeck);
+
+      virtual bool _001DrawToolbarItem(::draw2d::graphics * pgraphics, int32_t iItem, ::user::toolbar * ptoolbar);
 
    };
 

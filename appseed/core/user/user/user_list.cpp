@@ -15,6 +15,7 @@ namespace user
       m_columna(get_app())
    {
 
+      m_iImageSpacing = 2;
       m_dIconSaturation = 1.0;
 
       m_iIconBlur = 0;
@@ -512,22 +513,19 @@ namespace user
          (m_eview != view_icon ||
          ((m_iconlayout.m_iaDisplayToStrict.get_b(m_iItemHover) >= 0 && m_iconlayout.m_iaDisplayToStrict.get_b(m_iItemHover) < m_nItemCount)));
 
-      ::draw2d::font * pfont;
       if (pdrawitem->m_bListItemHover)
       {
+
          if (!pdrawitem->m_plist->m_bMorePlain)
          {
+
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             pdrawitem->m_pgraphics->Draw3dRect(pdrawitem->m_rectItem, ARGB(77, 235, 235, 255), ARGB(77, 235, 235, 255));
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(40, 255, 255, 255));
+
          }
-         pfont = _001GetFontHover();
+
       }
-      else
-      {
-         pfont = _001GetFont();
-      }
-      pdrawitem->m_pgraphics->set_font(pfont);
 
       pdrawitem->m_bListItemSelected = (m_eview != view_icon || is_valid_display_item(pdrawitem->m_iItem)) && rangeSelection.has_item(pdrawitem->m_iItem);
 
@@ -543,6 +541,7 @@ namespace user
       {
          if (pdrawitem->m_plist->m_bMorePlain)
          {
+
          }
          else if (Session.savings().is_trying_to_save(::aura::resource_processing))
          {
@@ -550,9 +549,13 @@ namespace user
          }
          else
          {
+            rect rectClient;
+            GetClientRect(rectClient);
             ::rect r = pdrawitem->m_rectItem;
             r.inflate(8, 0, 8, -1);
-            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, _001GetColor(::user::color_list_item_background));
+            r.right = rectClient.right;
+
+            pdrawitem->m_pgraphics->FillSolidRect(r, _001GetColor(::user::color_list_item_background));
             //System.visual().imaging().color_blend(pdrawitem->m_pgraphics, r, crTranslucid, 127);
          }
       }
@@ -651,6 +654,18 @@ namespace user
          pdrawitem->m_bFocus = false;
          return;
       }
+
+      ::draw2d::font * pfont;
+      if (pdrawitem->m_bListItemHover)
+      {
+         pfont = _001GetFontHover();
+      }
+      else
+      {
+         pfont = _001GetFont();
+      }
+      pdrawitem->m_pgraphics->set_font(pfont);
+
 
       pdrawitem->m_iListItem = -1;
       _001GetElementRect(pdrawitem, ::user::list::element_image);
@@ -1170,6 +1185,7 @@ namespace user
       m_bCustomDraw = column.m_bCustomDraw;
       m_mapIcon = column.m_mapIcon;
       m_bEditOnSecondClick = column.m_bEditOnSecondClick;
+      m_dibHeader = column.m_dibHeader;
 
       return *this;
    }
@@ -2306,16 +2322,18 @@ namespace user
                {
                   if (eelement == ::user::list::element_image)
                   {
-                     pdrawitem->m_rectImage.left = x;
-                     pdrawitem->m_rectImage.right = x + pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cx;
-                     pdrawitem->m_rectImage.bottom = pdrawitem->m_rectSubItem.bottom;
-                     pdrawitem->m_rectImage.top = pdrawitem->m_rectImage.bottom - pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cx;
+                     rect rAlign(pdrawitem->m_rectSubItem);
+                     rAlign.left = x;
+                     rect rIcon;
+                     rIcon.set(0, 0, pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cx, pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cy);
+                     rIcon.Align(align_left_center, rAlign);
+                     pdrawitem->m_rectImage = rIcon;
                      return_(pdrawitem->m_bOk, true);
                   }
                   else
                   {
                      x += pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cx;
-                     x += 2;
+                     x += m_iImageSpacing;
                   }
                }
                else if (eelement == ::user::list::element_image)
@@ -2334,16 +2352,24 @@ namespace user
                   pdrawitem->m_pcolumnSubItemRect->m_pil->get_image_info((int32_t)pdrawitem->m_iImage, &ii);
                   if (eelement == ::user::list::element_image)
                   {
-                     pdrawitem->m_rectImage.left = x;
-                     pdrawitem->m_rectImage.right = x + width(&ii.m_rect);
+
+                     rect rAlign(pdrawitem->m_rectSubItem);
+                     rAlign.left = x;
+                     rect rIcon;
+                     rIcon.set(0, 0, width(&ii.m_rect), height(&ii.m_rect));
+                     rIcon.Align(align_left_center, rAlign);
+                     pdrawitem->m_rectImage = rIcon;
+
+                 /*    pdrawitem->m_rectImage.left = x;
+                     pdrawitem->m_rectImage.right = x + ;
                      pdrawitem->m_rectImage.bottom = pdrawitem->m_rectSubItem.bottom;
-                     pdrawitem->m_rectImage.top = pdrawitem->m_rectImage.bottom - height(&ii.m_rect);
+                     pdrawitem->m_rectImage.top = pdrawitem->m_rectImage.bottom - ;*/
                      return_(pdrawitem->m_bOk, true);
                   }
                   else
                   {
                      x += width(&ii.m_rect);
-                     x += 2;
+                     x += m_iImageSpacing;
                   }
                }
                else if (eelement == ::user::list::element_image)

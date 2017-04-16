@@ -93,7 +93,7 @@ namespace user
          GetClientRect(rectClient);
 
 
-         if(m_pschema == NULL)
+         if(m_puserschemaSchema == NULL)
          {
 
             if(m_iHover == 0 || Session.m_puiLastLButtonDown == this)
@@ -123,9 +123,9 @@ namespace user
 
                //rectClient.deflate(1,1);
 
-               pgraphics->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_hover));
+               pgraphics->FillSolidRect(rectClient, m_puserschemaSchema->_001GetColor(color_button_background_hover));
 
-               pgraphics->set_text_color(m_pschema->_001GetColor(color_text_hover));
+               pgraphics->set_text_color(m_puserschemaSchema->_001GetColor(color_button_text_hover));
 
             }
             else
@@ -135,9 +135,9 @@ namespace user
 
                //rectClient.deflate(1,1);
 
-               pgraphics->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_normal));
+               pgraphics->FillSolidRect(rectClient, m_puserschemaSchema->_001GetColor(color_button_background_normal));
 
-               pgraphics->set_text_color(m_pschema->_001GetColor(color_text_normal));
+               pgraphics->set_text_color(m_puserschemaSchema->_001GetColor(color_button_text_normal));
 
             }
 
@@ -501,6 +501,12 @@ namespace user
 
       ::user::front_end_schema * pschema = NULL;
 
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = Application.userschema();
+
+      }
       sp(::user::frame_window) pframewindow = GetTypedParent < ::user::frame_window > ();
 
       if (pframewindow != NULL)
@@ -587,19 +593,19 @@ namespace user
       COLORREF crBk;
       if(!is_window_enabled())
       {
-         crBk = m_pschema->_001GetColor(color_background_disabled);
+         crBk = m_puserschemaSchema->_001GetColor(color_button_background_disabled);
       }
       else if(is_pressed())
       {
-         crBk = m_pschema->_001GetColor(color_background_press);
+         crBk = m_puserschemaSchema->_001GetColor(color_button_background_press);
       }
       else if(m_iHover >= 0)
       {
-         crBk = m_pschema->_001GetColor(color_background_hover);
+         crBk = m_puserschemaSchema->_001GetColor(color_button_background_hover);
       }
       else
       {
-         crBk = m_pschema->_001GetColor(color_background_normal);
+         crBk = m_puserschemaSchema->_001GetColor(color_button_background_normal);
       }
 
 
@@ -668,22 +674,22 @@ namespace user
       if(!is_window_enabled())
       {
 //         pgraphics->set_text_color(m_pschema->m_crTextDisabled);
-         brushText->create_solid(m_pschema->_001GetColor(color_text_disabled));
+         brushText->create_solid(m_puserschemaSchema->_001GetColor(color_button_text_disabled));
       }
       else if(is_pressed())
       {
 //         pgraphics->set_text_color(m_pschema->m_crTextPress);
-         brushText->create_solid(m_pschema->_001GetColor(color_text_press));
+         brushText->create_solid(m_puserschemaSchema->_001GetColor(color_button_text_press));
       }
       else if(m_iHover >= 0)
       {
 //         pgraphics->set_text_color(m_pschema->m_crTextHover);
-         brushText->create_solid(m_pschema->_001GetColor(color_text_hover));
+         brushText->create_solid(m_puserschemaSchema->_001GetColor(color_button_text_hover));
       }
       else
       {
 //         pgraphics->set_text_color(m_pschema->m_crTextNormal);
-         brushText->create_solid(m_pschema->_001GetColor(color_text_normal));
+         brushText->create_solid(m_puserschemaSchema->_001GetColor(color_button_text_normal));
       }
 
       pgraphics->SelectObject(brushText);
@@ -782,7 +788,7 @@ namespace user
       else
       {
 
-         color.set_rgb(m_pschema->_001GetColor(::user::color_background_normal));
+         color.set_rgb(m_pschema->_001GetColor(::user::color_button_background_normal));
 
       }
 

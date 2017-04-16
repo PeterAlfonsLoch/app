@@ -349,7 +349,9 @@ bool simple_menu_bar::Initialize(
    m_font->operator=(*pfont);
 
    return true;
+
 }
+
 
 void simple_menu_bar::RemoveAllButtons()
 {

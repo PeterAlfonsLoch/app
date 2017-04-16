@@ -20,7 +20,7 @@ namespace user
       string                  m_str;
       rect                    m_rect;
       bool                    m_bEnableIfHasCommandHandler;
-
+      ::draw2d::font_sp       m_font;
 
       toolbar_item();
       virtual ~toolbar_item();
@@ -58,6 +58,9 @@ namespace user
       size                 m_sizeButton; // current button size
       bool                 m_bSimpleLayout;
       string_to_ptr *      m_pStringMap;  // used as CMapStringToUInt
+      ::draw2d::font_sp    m_font;
+      int32_t              m_iButtonPressItem;
+
 
 
       toolbar(::aura::application * papp);
@@ -114,26 +117,26 @@ namespace user
 
 
       virtual bool LoadXmlToolBar(const char * lpszFileName);
-      bool _001GetItemRect(int32_t iItem,LPRECT lprect);
-      bool _001GetElementRect(int32_t iItem,LPRECT lprect,e_element eelement);
-      bool _001SetItem(int32_t iItem, toolbar_item * pitem);
-      bool _001GetItem(int32_t iItem, toolbar_item * pitem);
-      int32_t _001GetItemCount();
+      virtual bool _001GetItemRect(int32_t iItem,LPRECT lprect);
+      virtual bool _001GetElementRect(int32_t iItem,LPRECT lprect,e_element eelement);
+      virtual bool _001SetItem(int32_t iItem, toolbar_item * pitem);
+      virtual bool _001GetItem(int32_t iItem, toolbar_item * pitem);
+      virtual int32_t _001GetItemCount();
 
 
-      size SimpleLayout();
+      virtual size SimpleLayout();
 
 
       // implementation helpers
 #ifdef WINDOWSEX
-      void _GetButton(::index nIndex, TBBUTTON* pButton) const;
-      void _SetButton(::index nIndex, TBBUTTON* pButton);
+      virtual void _GetButton(::index nIndex, TBBUTTON* pButton) const;
+      virtual void _SetButton(::index nIndex, TBBUTTON* pButton);
 #endif
-      size CalcLayout(uint32_t nMode, int32_t nLength = -1);
+      virtual size CalcLayout(uint32_t nMode, int32_t nLength = -1);
 #ifdef WINDOWSEX
-      size CalcSize(TBBUTTON* pData, int32_t nCount);
-      int32_t WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth);
-      void SizeToolBar(TBBUTTON* pData, int32_t nCount, int32_t nLength, bool bVert = FALSE);
+      virtual size CalcSize(TBBUTTON* pData, int32_t nCount);
+      virtual int32_t WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth);
+      virtual void SizeToolBar(TBBUTTON* pData, int32_t nCount, int32_t nLength, bool bVert = FALSE);
 #endif
       void on_layout(); // called for for delayed button on_layout
 
@@ -153,6 +156,9 @@ namespace user
       LRESULT OnSetSizeHelper(size& size, LPARAM lParam);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
+
+
+      virtual int32_t _001GetHoverItem();
 
 
    };

@@ -1510,7 +1510,11 @@ namespace html
       else
       {
 
-         return false;
+         if (m_pparent != NULL && m_pparent->get_color(cr, ecolor))
+            return true;
+
+         
+         return m_pdata->m_pform->get_color(cr, ecolor);
 
       }
 

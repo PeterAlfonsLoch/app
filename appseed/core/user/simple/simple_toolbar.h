@@ -41,11 +41,10 @@ public:
 //   sp(image_list)    m_pimagelistBlend;
 //   sp(image_list)    m_pimagelistHueLight;
    //bool           m_bInternalImageList;
-   int32_t              m_iButtonPressItem;
    bool             m_bDelayedButtonLayout;
    ::draw2d::dib_sp     m_dibDraft;
 
-   ::draw2d::font_sp    m_font;
+   
 
 
 
@@ -97,6 +96,7 @@ public:
 
 
    void _001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem);
+   void _001DrawSimpleToolbarItem(::draw2d::graphics * pgraphics, int32_t iItem);
 
 /*
    bool LoadToolBar(const char * lpszResourceName);

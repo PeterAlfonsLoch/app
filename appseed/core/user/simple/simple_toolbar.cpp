@@ -46,8 +46,7 @@ simple_toolbar::simple_toolbar(::aura::application * papp) :
    object(papp),
    ::user::control_bar(papp),
    ::user::toolbar(papp),
-   m_dibDraft(allocer()),
-   m_font(allocer())
+   m_dibDraft(allocer())
 {
 
    m_iImageSpacing = -1;
@@ -224,7 +223,13 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
 
    }
 
-   ::user::interaction::_001OnDraw(pgraphics);
+   rect rectClient;
+
+   GetClientRect(rectClient);
+
+   pgraphics->FillSolidRect(rectClient, _001GetColor(::user::color_toolbar_background));
+
+   //::user::interaction::_001OnDraw(pgraphics);
 
    pgraphics->select_font(m_font);
 
@@ -364,7 +369,7 @@ void simple_toolbar::_001OnCreate(signal_details * pobj)
 {
    if (pobj->previous())
       return;
-
+   m_puserschemaSchema = Session.m_puserschemaSchema;
    m_dibDraft->create(20, 20);
 }
 
@@ -433,7 +438,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
 
    point cur(rBorder.left, rBorder.top);
 
-   size sizeResult(0, 0);
+   size sizeResult(rBorder.left, rBorder.top);
 
    int32_t buttonx, buttony;
 
@@ -589,11 +594,28 @@ size simple_toolbar::CalcSize(int32_t nCount)
 
 
 
-
-
-
-
 void simple_toolbar::_001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem)
+{
+
+   if (m_puserschemaSchema != NULL)
+   {
+
+      if (m_puserschemaSchema->_001DrawToolbarItem(pgraphics, iItem, this))
+      {
+
+         return;
+
+      }
+
+   }
+
+   return _001DrawSimpleToolbarItem(pgraphics, iItem);
+
+
+}
+
+
+void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics * pgraphics, int32_t iItem)
 {
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
