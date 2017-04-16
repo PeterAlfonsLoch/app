@@ -5413,7 +5413,7 @@ namespace user
 
          }
 
-         set_viewport_offset_y(pt.y);
+         m_ptScrollPassword1.y = pt.y;
 
          m_iTopIndex = _001CalcDisplayTopIndex();
 

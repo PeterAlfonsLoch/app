@@ -31,6 +31,13 @@ call_stack::call_stack(::aura::application * papp, uint32_t uiSkip) :
 #endif
 {
 
+   if (m_pauraapp == NULL)
+   {
+
+      m_pauraapp = get_thread_app();
+
+   }
+
    if(s_bDoStackTrace && uiSkip != SKIP_CALL_STACK)
    {
 

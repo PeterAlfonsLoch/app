@@ -1860,55 +1860,60 @@ namespace user
 
          }
 
-         sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset.sp_at(pdrawitem->m_pcolumn->m_iControl);
-
-         if (pdescriptor.is_set())
+         if (pdrawitem->m_pcolumn->m_iControl >= 0 && pdrawitem->m_pcolumn->m_iControl < m_controldescriptorset.get_count())
          {
 
-            if (pdescriptor->has_function(::user::control::function_check_box))
+            sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset.sp_at(pdrawitem->m_pcolumn->m_iControl);
+
+            if (pdescriptor.is_set())
             {
 
-               _001GetElementRect(pdrawitem, ::user::mesh::element_text);
-
-               if (pdrawitem->m_bOk)
+               if (pdescriptor->has_function(::user::control::function_check_box))
                {
 
-                  rect r;
+                  _001GetElementRect(pdrawitem, ::user::mesh::element_text);
 
-                  r.left = 0;
-                  r.top = 0;
-                  r.right = 15;
-                  r.bottom = 15;
-
-                  r.Align(::align_center, pdrawitem->m_rectSubItem);
-
-                  _001GetItemText(pdrawitem);
-
-                  ::check::e_check echeck;
-
-                  if (pdrawitem->m_strText == pdescriptor->m_setValue[::check::checked])
+                  if (pdrawitem->m_bOk)
                   {
 
-                     echeck = ::check::checked;
+                     rect r;
+
+                     r.left = 0;
+                     r.top = 0;
+                     r.right = 15;
+                     r.bottom = 15;
+
+                     r.Align(::align_center, pdrawitem->m_rectSubItem);
+
+                     _001GetItemText(pdrawitem);
+
+                     ::check::e_check echeck;
+
+                     if (pdrawitem->m_strText == pdescriptor->m_setValue[::check::checked])
+                     {
+
+                        echeck = ::check::checked;
+
+                     }
+                     else
+                     {
+
+                        echeck = ::check::unchecked;
+
+                     }
+
+                     if (m_puserschemaSchema != NULL)
+                     {
+
+                        m_puserschemaSchema->_001DrawCheckBox(pdrawitem->m_pgraphics, r, echeck);
+
+                     }
 
                   }
-                  else
-                  {
 
-                     echeck = ::check::unchecked;
-
-                  }
-
-                  if (m_puserschemaSchema != NULL)
-                  {
-
-                     m_puserschemaSchema->_001DrawCheckBox(pdrawitem->m_pgraphics, r, echeck);
-
-                  }
+                  return;
 
                }
-
-               return;
 
             }
 

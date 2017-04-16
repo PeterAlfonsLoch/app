@@ -227,6 +227,8 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
 
    GetClientRect(rectClient);
 
+   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
    pgraphics->FillSolidRect(rectClient, _001GetColor(::user::color_toolbar_background));
 
    //::user::interaction::_001OnDraw(pgraphics);
@@ -970,7 +972,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, e_element 
          rect.left += rItemPad.left;
          rect.bottom -= rItemPad.bottom;
          rect.top = rect.bottom - item.m_spdib->m_size.cy;
-         rect.right = rect.left += item.m_spdib->m_size.cx;
+         rect.right = rect.left + item.m_spdib->m_size.cx;
 
          break;
       case element_text:
@@ -1128,6 +1130,50 @@ void simple_toolbar::on_layout()
       CalcDynamicLayout(0, LM_HORZ | LM_HORZDOCK | LM_COMMIT);
    else
       CalcDynamicLayout(0, LM_VERTDOCK | LM_COMMIT);
+
+
+   if (m_dwCtrlStyle &TBSTYLE_ALIGN_CENTER)
+   {
+
+      output_debug_string("please_center_align");
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      size s = CalcSize(m_itema.get_count());
+
+      for (index i = 0; i < m_itema.get_count(); i++)
+      {
+
+         if (m_itema[i]->m_fsStyle & TBSTATE_WRAP || i == m_itema.get_upper_bound())
+         {
+
+            int iTotalX = 0;
+            for (index j = 0; j <= i; j++)
+            {
+
+               iTotalX += m_itema[j]->m_rect.width() + get_item_spacing().cx;
+
+
+            }
+
+            int offsetx = (rectClient.width() - iTotalX) / 2;
+
+            for (index j = 0; j <= i; j++)
+            {
+
+               m_itema[j]->m_rect.offset(offsetx, 0);
+
+
+            }
+
+         }
+
+      }
+
+
+   }
 
 
 }

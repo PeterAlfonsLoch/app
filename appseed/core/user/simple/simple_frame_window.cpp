@@ -2012,6 +2012,8 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
 
    ptoolbar->oprop("matter_annotation") = strMatter;
 
+   set_need_layout();
+
    return true;
 
 }
