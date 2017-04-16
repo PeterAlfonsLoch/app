@@ -2810,6 +2810,8 @@ namespace user
       if (m_bDrag)
       {
 
+         m_bDrag = false;
+
          if (m_eview == view_icon)
          {
 
