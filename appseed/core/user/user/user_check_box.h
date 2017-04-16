@@ -39,6 +39,7 @@ namespace user
 
       void install_message_handling(::message::dispatch * pinterface);
 
+      DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnMouseMove);

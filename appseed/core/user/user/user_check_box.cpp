@@ -215,10 +215,24 @@ namespace user
 
    void check_box::install_message_handling(::message::dispatch * pinterface)
    {
+      
       ::user::interaction::install_message_handling(pinterface);
+      
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &check_box::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &check_box::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &check_box::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &check_box::_001OnCreate);
+
    }
+
+   void check_box::_001OnCreate(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::create, pcreate, pobj);
+
+      m_puserschemaSchema = Application.userschema();
+
+   }
+
 
 } // namespace user
