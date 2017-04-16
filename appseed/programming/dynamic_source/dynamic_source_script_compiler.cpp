@@ -2147,7 +2147,7 @@ string script_compiler::cppize2(const string & psz,bool bScript,stringa & straId
          }
          else if(ch == '=')
          {
-            strResult += ".propset().add(id(), ";
+            strResult += ".vara().add(";
             bInSpec2 = false;
             bInSpec2Close = true;
             i++;
