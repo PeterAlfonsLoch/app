@@ -1641,6 +1641,17 @@ uint32_t __thread_entry(void * pparam)
       return ::multithreading::__on_thread_finally(pthread);
 
    }
+   catch (const ::exception::exception & e)
+   {
+
+      if (e.m_strMessage == "rethrow")
+      {
+
+         throw e;
+
+      }
+
+   }
    catch(...)
    {
 
@@ -2043,6 +2054,13 @@ int32_t thread::main()
       }
       catch(const ::exception::exception & e)
       {
+
+         if (e.m_strMessage == "rethrow")
+         {
+
+            throw e;
+
+         }
 
          if(on_run_exception((::exception::exception &) e))
             goto run;

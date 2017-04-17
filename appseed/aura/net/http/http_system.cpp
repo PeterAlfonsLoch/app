@@ -1044,13 +1044,13 @@ retry:
 
          e_status estatus = status_ok;
 
-         if((iStatusCode >= 200 && iStatusCode <= 299) || (psession != NULL && psession->outattr("http_status_code").is_empty()))
-         {
-            estatus = status_ok;
-         }
-         else if(psession != NULL && psession->m_estatus == ::sockets::socket::status_connection_timed_out)
+         if (psession->m_estatus == ::sockets::socket::status_connection_timed_out)
          {
             estatus = status_connection_timed_out;
+         }
+         else if((iStatusCode >= 200 && iStatusCode <= 299) || (psession != NULL && psession->outattr("http_status_code").is_empty()))
+         {
+            estatus = status_ok;
          }
          else if(iStatusCode >= 300 && iStatusCode <= 399)
          {
@@ -1690,13 +1690,14 @@ retry_session:
          }
       }
 #endif
-      if((iStatusCode >= 200 && iStatusCode <= 299 ) || psocket->outattr("http_status_code").is_empty())
-      {
-         estatus = status_ok;
-      }
-      else if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
+      
+      if (psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
       {
          estatus = status_connection_timed_out;
+      }
+      else if((iStatusCode >= 200 && iStatusCode <= 299 ) || psocket->outattr("http_status_code").is_empty())
+      {
+         estatus = status_ok;
       }
       else if(iStatusCode >= 300 && iStatusCode <= 399)
       {
@@ -2274,6 +2275,13 @@ retry_session:
       {
 
          str = "ERROR: HTTP_CONNECTION_ERROR: ";
+
+      }
+
+      if (str.has_char())
+      {
+
+         str += ", ";
 
       }
 

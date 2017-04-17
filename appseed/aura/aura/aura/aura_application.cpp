@@ -3229,6 +3229,12 @@ namespace aura
          start_service();
 
       }
+      else
+      {
+
+         output_debug_string("test");
+
+      }
 
       return true;
 
