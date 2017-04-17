@@ -2021,6 +2021,8 @@ namespace sockets
    void base_socket::free_ssl_session()
    {
 
+      synch_lock sl(m_pmutex);
+
       if (m_ssl_session != NULL)
       {
 
@@ -2031,8 +2033,7 @@ namespace sockets
 
             synch_lock sl(&Session.sockets().m_mutexClientContextMap);
 
-            if (m_spsslclientcontext.is_set()
-               && m_spsslclientcontext->m_psession == m_ssl_session)
+            if (m_spsslclientcontext.is_set() && m_spsslclientcontext->m_psession == m_ssl_session)
             {
 
                m_spsslclientcontext->m_psession = NULL;
@@ -2042,7 +2043,6 @@ namespace sockets
          }
          catch (...)
          {
-
 
          }
 
@@ -2056,22 +2056,19 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
+      synch_lock sl(m_pmutex);
+
       if (m_ssl_session == NULL)
       {
 
-         m_ssl_session = SSL_get1_session(m_ssl);
+         synch_lock sl(&Session.sockets().m_mutexClientContextMap);
 
-
+         if (m_spsslclientcontext.is_set())
          {
 
-            synch_lock sl(&Session.sockets().m_mutexClientContextMap);
+            m_spsslclientcontext->m_psession = SSL_get1_session(m_ssl);
 
-            if (m_spsslclientcontext.is_set())
-            {
-
-               m_spsslclientcontext->m_psession = m_ssl_session;
-
-            }
+            m_ssl_session = m_spsslclientcontext->m_psession;
 
          }
 

@@ -1296,6 +1296,7 @@ namespace sockets
 
       if(!IsSSLServer()) // client
       {
+         
          TRACE("SSL_connect!!");
 
          if (!m_bClientSessionSet && m_ssl_session != NULL)
@@ -1307,19 +1308,28 @@ namespace sockets
 
          }
 
-
          int32_t r = SSL_connect(m_ssl);
+
          if(r > 0)
          {
+
             SetSSLNegotiate(false);
 
-            if (SSL_session_reused(m_ssl)) {
+            if (SSL_session_reused(m_ssl))
+            {
+
                output_debug_string("REUSED SESSION\n");
+
             }
-            else {
+            else
+            {
+
                output_debug_string("NEW SESSION\n");
+
             }
+
             long x509_err = cert_common_name_check(m_strHost);
+
             if(x509_err != X509_V_OK
                   && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
                   && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
@@ -1344,8 +1354,6 @@ namespace sockets
                get_ssl_session();
 
             }
-
-
 
             /// \todo: resurrect certificate check... client
             //         CheckCertificateChain( "");//ServerHOST);
@@ -1387,11 +1395,14 @@ namespace sockets
                iErrorSsl == SSL_ERROR_ZERO_RETURN
                && (m_ssl_method == TLS_client_method()))
             {
+               
                TRACE("ssl_error_zero_return");
+
             }
 
             else
             {
+
                if (m_ssl_session != NULL)
                {
 
@@ -1399,25 +1410,33 @@ namespace sockets
                   {
 
                      m_iSslCtxRetry = 1;
-                     SSL_clear(m_ssl);
 
                      free_ssl_session();
 
-                     goto skip;
+                     SSL_clear(m_ssl);
+
                   }
                   else
                   {
+
                      m_iSslCtxRetry = 0;
+
                   }
+
                }
-               log("SSLNegotiate/SSL_connect", 0, "Connection failed", ::aura::log::level_info);
-               SetSSLNegotiate(false);
-               SetCloseAndDelete();
-               OnSSLConnectFailed();
+
+               if (m_iSslCtxRetry == 0)
+               {
+
+                  log("SSLNegotiate/SSL_connect", 0, "Connection failed", ::aura::log::level_info);
+                  SetSSLNegotiate(false);
+                  SetCloseAndDelete();
+                  OnSSLConnectFailed();
+
+               }
 
             }
-skip:
-            ;
+
          }
          else
          {
@@ -1531,7 +1550,7 @@ skip:
 
             m_spsslclientcontext = p->m_element2;
 
-            if (m_spsslclientcontext->m_pcontext != NULL)
+            if (m_spsslclientcontext.is_set() && m_spsslclientcontext->m_pcontext != NULL)
             {
 
                m_ssl_ctx = m_spsslclientcontext->m_pcontext;
@@ -1548,16 +1567,6 @@ skip:
 
       }
 
-      //if (m_spsslclientcontext.is_set())
-      //{
-
-      //   m_ssl_ctx = m_spsslclientcontext->m_pcontext;
-
-      //   m_pmutexSslCtx = &m_spsslclientcontext->m_mutex;
-
-      //}
-
-      //ERR_load_ERR_strings();
       m_ssl_method = pmethod != NULL ? pmethod : TLS_client_method();
 
       m_ssl_ctx = SSL_CTX_new(m_ssl_method);
@@ -1566,44 +1575,21 @@ skip:
 
       unsigned long err = ERR_get_error();
 
-      //         UINT uiReason = ERR_GET_REASON(err);
       ERR_error_string(err, buf);
-
-      //         const char * pszReason = ERR_reason_error_string(err);
 
       SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
 
       if (m_spsslclientcontext.is_set())
       {
 
-         m_spsslclientcontext->m_pmethod = m_ssl_method;
+         m_spsslclientcontext->m_pcontext = m_ssl_ctx;
 
          m_spsslclientcontext->m_psession = m_ssl_session;
 
+         m_spsslclientcontext->m_pmethod = m_ssl_method;
+
       }
 
-      ///* create our context*/
-      //if(m_spsslclientcontext.is_null())
-      //{
-      //   string_map < sp(ssl_client_context) > & clientcontextmap = Session.sockets().m_clientcontextmap;
-      //   if(clientcontextmap.PLookup(context) == NULL)
-      //   {
-      //      m_spsslclientcontext = canew(ssl_client_context(get_app(),pmethod));
-      //      if(context.has_char())
-      //      {
-      //         clientcontextmap[context] = m_spsslclientcontext;
-      //      }
-      //   }
-      //   else
-      //   {
-      //      m_spsslclientcontext = clientcontextmap.PLookup(context)->m_element2;
-      //   }
-      //}
-      //if(m_spsslclientcontext.is_set())
-      //{
-      //   m_ssl_ctx = m_spsslclientcontext->m_pcontext;
-      //   m_pmutexSslCtx = &m_spsslclientcontext->m_mutex;
-      //}
    }
 
 
@@ -1756,25 +1742,6 @@ skip:
       int32_t n;
 
       SetNonblocking(true);
-
-      if (m_ssl)
-      {
-
-         //if (m_ssl_session != NULL)
-         //{
-
-         //   free_ssl_session();
-
-         //}
-
-         if (m_spsslclientcontext.is_set())
-         {
-
-            m_spsslclientcontext->m_psession = SSL_get1_session(m_ssl);
-
-         }
-
-      }
 
       if (!Lost() && IsConnected() && !(GetShutdown() & SHUT_WR))
       {

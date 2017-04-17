@@ -532,32 +532,48 @@ namespace http
       uint32_t dwTimeProfile1 = get_tick_count();
 
       UNREFERENCED_PARAMETER(pszVersion);
+
       string strServer = pszHost;
+
       string strProtocol = pszProtocol;
+
       sp(::aura::application) papp = set["app"].cast < application >();
+
       int32_t iPort;
+
       if(strProtocol == "https")
       {
+
          iPort = 443;
+
       }
       else
       {
+
          iPort = 80;
+
       }
 
       if(pszVersion == NULL || pszVersion[0] == '\0')
       {
+
          pszVersion = "HTTP/1.1";
+
       }
 
       string strUrl(strProtocol + "://" + strServer);
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
+
          string strScript = System.url().url_encode(System.url().url_decode(System.url().get_script(strUrl)));
+
          strScript.replace("+", "%20");
+
          strScript.replace("%2F", "/");
+
          strUrl = System.url().set_script(strUrl, strScript);
+
       }
 
       property_set setQuery(get_app());
@@ -587,17 +603,23 @@ namespace http
 
                if(domainFontopus.m_strRadix == "ca2")
                {
+                  
                   puser = &AppUser(papp);
+
                   if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                         if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                   {
+
                      System.url().string_set(strUrl, "sessid", strSessId);
+
                   }
+
                }
 
             }
 
          }
+
          if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
          {
@@ -615,31 +637,22 @@ namespace http
          }
          else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
          {
+
          }
          else
          {
-            System.url().string_set(strUrl, "authnone", 1);
-         }
-      }
 
+            System.url().string_set(strUrl, "authnone", 1);
+
+         }
+
+      }
 
       if(strProtocol == "https")
       {
-//#ifndef METROWIN
-//         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].cast < ::sockets::ssl_client_context > ();
-//         if(pcontext != NULL)
-//         {
-//            psession->m_spsslclientcontext = pcontext;
-//         }
-//         else
-//         {
-//            if(strSessId.has_char() && strSessId != "not_auth")
-//            {
-//               psession->m_strInitSSLClientContext = System.url().get_server(strUrl) + "?sessid=" + strSessId;
-//            }
-//         }
-//#endif
+
          psession->EnableSSL();
+
       }
 
       uint32_t dw1 = ::get_tick_count();
@@ -657,28 +670,22 @@ namespace http
 
       TRACE("just before open open http_session ::http::system::open %d, %d, %d",dwTimeProfile1,dwTimeProfileMid, dwTimeProfileMid - dwTimeProfile1);
 
-
       if(!psession->open(bConfigProxy))
       {
-         /*            if(pestatus != NULL)
-                  {
-                     *pestatus = status_failed;
-                  }*/
-         //delete psession;
+
          uint32_t dwTimeProfile2 = get_tick_count();
+
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+
          return NULL;
+
       }
 
-      //if(psession->IsSSL())
-      //{
-      //   psession->SetNonblocking(false);
-      //}
       uint32_t dw2 = ::get_tick_count();
+
       TRACE("system::get open time %d\n", dw2 - dw1);
 
       return true;
-
 
    }
 
@@ -1561,14 +1568,29 @@ retry_session:
          psocket->EnableSSL();
       }
       uint32_t dw1 = ::get_tick_count();
+      
       bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
+      
       int32_t iTimeout = set["timeout"];
-      if(iTimeout == 0)
+
+      if (iTimeout == 0)
+      {
+
          iTimeout = 23;
-      else if(iTimeout < 1000)
+
+      }
+      else if (iTimeout < 1000)
+      {
+
          iTimeout = 1;
+
+      }
       else
+      {
+
          iTimeout = iTimeout / 1000;
+
+      }
 
       if (strIp.has_char())
       {
@@ -1578,36 +1600,47 @@ retry_session:
       }
 
       stringa straProxy;
+
       if (set.has_property("proxy"))
       {
 
          straProxy.explode(":", set["proxy"].get_string());
-         if (straProxy.get_count() != 2 || !psocket->open(straProxy[0], atoi(straProxy[1])))
+         
+         if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {
+            
             set["get_status"] = (int64_t)status_failed;
-            //         delete psocket;
+            
             uint32_t dwTimeProfile2 = get_tick_count();
+            
             TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255, strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+            
             return NULL;
+
          }
+
       }
       else if(!psocket->open(bConfigProxy))
       {
+
          set["get_status"] = (int64_t) status_failed;
-//         delete psocket;
+
          uint32_t dwTimeProfile2 = get_tick_count();
+
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+
          return NULL;
+
       }
-      /*if(psocket->IsSSL())
-      {
-         psocket->SetNonblocking(false);
-      }*/
+      
       uint32_t dw2 = ::get_tick_count();
+
       TRACE("system::get open time %d\n", dw2 - dw1);
+
       handler.add(psocket);
 
       int32_t iIteration = 0;
+
       ::aura::live_signal keeplive;
 
       if((bool)set["noloop"])
@@ -2292,6 +2325,7 @@ retry_session:
       return str;
       
    }
+
 
 } // namespace http
 
