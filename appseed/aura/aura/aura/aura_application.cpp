@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/aura/node/windows/windows_registry.h"
 
 
 #if defined(LINUX)
@@ -3232,7 +3233,30 @@ namespace aura
       else
       {
 
-         output_debug_string("test");
+         //if (is_system())
+         {
+
+            ::windows::registry::Key k;
+
+            string m = System.file().module().name();
+
+            string strKey = "SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps\\" + m;
+
+            if (k.OpenKey(HKEY_LOCAL_MACHINE, strKey, true))
+            {
+               ::file::path str = dir::system() / "CrashDumps" / m;
+               wstring wstr = str;
+               RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (LPBYTE)wstr.c_str(), (wcslen(wstr) + 1) * sizeof(wchar_t));
+               DWORD dw = 10;
+               RegSetValueExW(k.m_hkey, L"DumpCount", 0, REG_DWORD, (LPBYTE)&dw, sizeof(dw));
+               dw = 2;
+               RegSetValueExW(k.m_hkey, L"DumpType", 0, REG_DWORD, (LPBYTE)&dw, sizeof(dw));
+
+            }
+
+            output_debug_string("test");
+
+         }
 
       }
 
