@@ -2031,9 +2031,7 @@ namespace sockets
          try
          {
 
-            synch_lock sl(&Session.sockets().m_mutexClientContextMap);
-
-            if (m_spsslclientcontext.is_set() && m_spsslclientcontext->m_psession == m_ssl_session)
+            if (m_spsslclientcontext.is_set())
             {
 
                m_spsslclientcontext->m_psession = NULL;
@@ -2060,8 +2058,6 @@ namespace sockets
 
       if (m_ssl_session == NULL)
       {
-
-         synch_lock sl(&Session.sockets().m_mutexClientContextMap);
 
          if (m_spsslclientcontext.is_set())
          {

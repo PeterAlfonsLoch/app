@@ -7,9 +7,10 @@ namespace sockets
 
 
    ssl_client_context_map::ssl_client_context_map(::aura::application * papp) :
-      ::object(papp),
-      m_mutex(papp)
+      ::object(papp)
    {
+
+      defer_create_mutex();
 
    }
 

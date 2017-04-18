@@ -1175,8 +1175,6 @@ namespace sockets
 
     //  }
 
-      synch_lock sl(&Session.sockets().m_mutexClientContextMap);
-
       //slMap.unlock();
 
       if(m_ssl_ctx)
@@ -1185,8 +1183,6 @@ namespace sockets
          /* Connect the SSL socket */
 
          m_ssl = SSL_new(m_ssl_ctx);
-
-         sl.unlock();
 
          if(!m_ssl)
          {
@@ -1545,27 +1541,32 @@ namespace sockets
    void tcp_socket::InitializeContext(const string & context,const SSL_METHOD * pmethod)
    {
 
-      synch_lock sl(&Session.sockets().m_mutexClientContextMap);
-
       if (m_bReuseSession && context.has_char() && m_spsslclientcontext.is_null())
       {
 
          ssl_client_context_map & clientcontextmap = Session.sockets().m_clientcontextmap;
 
-         auto * p = clientcontextmap.PLookup(context);
+         {
 
-         if(p == NULL)
+            synch_lock sl(clientcontextmap.m_pmutex);
+
+            if (clientcontextmap[context].has_elements())
+            {
+
+               m_spsslclientcontext = clientcontextmap[context].pop();
+
+            }
+
+         }
+
+         if(m_spsslclientcontext.is_null())
          {
 
             m_spsslclientcontext = canew(ssl_client_context(get_app(), pmethod));
 
-            clientcontextmap[context] = m_spsslclientcontext;
-
          }
          else
          {
-
-            m_spsslclientcontext = p->m_element2;
 
             if (m_spsslclientcontext.is_set() && m_spsslclientcontext->m_pcontext != NULL)
             {
@@ -1788,6 +1789,24 @@ namespace sockets
       }
 
 #ifdef HAVE_OPENSSL
+
+
+      if(m_bReuseSession
+        && m_spsslclientcontext.is_set()
+        && m_spsslclientcontext->m_pcontext != NULL
+        && m_spsslclientcontext->m_psession != NULL
+        && m_spsslclientcontext->m_pmethod != NULL)
+      {
+
+         ssl_client_context_map & clientcontextmap = Session.sockets().m_clientcontextmap;
+
+         synch_lock sl(clientcontextmap.m_pmutex);
+
+         m_spsslclientcontext = clientcontextmap[m_strInitSSLClientContext].push(m_spsslclientcontext);
+
+      }
+
+
       if(m_ssl)
       {
          //#ifdef LINUX
