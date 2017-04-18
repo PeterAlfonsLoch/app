@@ -65,7 +65,7 @@ namespace xml
       for(int32_t i = 0; i < this->get_size(); i++)
       {
          attr_array attra(this->get_app());
-         attra.add("array_index", i);
+         attra.set_at("array_index", i);
          xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex), attra, this->element_at(i));
       }
    }

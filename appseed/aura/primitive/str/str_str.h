@@ -217,40 +217,13 @@ namespace str
    inline CLASS_DECL_AURA int64_t to_with_fallback(const char * psz, int64_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
 
    template < typename T >
-   inline string  from(const T & t)
-   {
-
-      string str;
-
-      to_string(str, t);
-
-      return str;
-
-   }
+   inline string from(const T & t);
 
    template < typename T >
-   inline string  from_int(const T & t)
-   {
-
-      string str;
-
-      to_string(str, (int64_t) t);
-
-      return str;
-
-   }
+   inline string  from_int(const T & t);
 
    template < typename T >
-   inline string  from_uint(const T & t)
-   {
-
-      string str;
-
-      to_string(str, (uint64_t)t);
-
-      return str;
-
-   }
+   inline string  from_uint(const T & t);
 
 
    /*inline CLASS_DECL_AURA string  from(int32_t i);

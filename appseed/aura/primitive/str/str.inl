@@ -1,3 +1,43 @@
+
+
+
+template < typename T >
+inline string  from(const T & t)
+{
+   
+   string str;
+   
+   to_string(str, t);
+   
+   return str;
+   
+}
+
+template < typename T >
+inline string  from_int(const T & t)
+{
+   
+   string str;
+   
+   to_string(str, (int64_t) t);
+   
+   return str;
+   
+}
+
+template < typename T >
+inline string  from_uint(const T & t)
+{
+   
+   string str;
+   
+   to_string(str, (uint64_t)t);
+   
+   return str;
+   
+}
+
+
 inline void simple_string::construct(string_manager * pstringmanager)
    {
       ENSURE( pstringmanager != NULL );

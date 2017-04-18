@@ -1460,7 +1460,26 @@ uint32_t __thread_entry(void * pparam)
          if (pthread->m_dwThreadAffinityMask != 0)
          {
 
+#ifdef WINDOWS
             ::SetThreadAffinityMask(::GetCurrentThread(), pthread->m_dwThreadAffinityMask);
+            
+#elif defined(LINUX)
+            
+            cpu_set_t c;
+            
+            CPU_ZERO(&c);
+            
+            for(index i = 0; i < 32; i++)
+            {
+               
+               if((1 << i) & m_dwThreadAffinityMask )
+               {
+                  CPU_SET(i, c);
+               }
+            }
+            pthread_set_affinity_np(&c);
+            
+#endif
 
          }
 

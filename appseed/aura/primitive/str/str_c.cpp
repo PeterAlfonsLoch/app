@@ -1126,9 +1126,18 @@ CLASS_DECL_AURA void * memmem_dup(const void * src, strsize srclen, const void *
 //Refined chef.
 //
 
-int is_surrogate(unichar uc) { return (uc - 0xd800) < 2048; }
-int is_high_surrogate(unichar uc) { return (uc & 0xfffffc00) == 0xd800; }
-int is_low_surrogate(unichar uc) { return (uc & 0xfffffc00) == 0xdc00; }
+BEGIN_EXTERN_C
+
+CLASS_DECL_AURA int is_surrogated(uint32_t character)
+{
+   return 0x10000 <= character && character <= 0x10FFFF;
+}
+
+CLASS_DECL_AURA int is_surrogate(unichar uc) { return (uc - 0xd800) < 2048; }
+CLASS_DECL_AURA int is_high_surrogate(unichar uc) { return (uc & 0xfffffc00) == 0xd800; }
+CLASS_DECL_AURA int is_low_surrogate(unichar uc) { return (uc & 0xfffffc00) == 0xdc00; }
+
+END_EXTERN_C
 
 unichar32 surrogate_to_utf32(unichar high, unichar low)
 {
@@ -1564,15 +1573,21 @@ CLASS_DECL_AURA string w_to_8(const wchar_t * pcwsz, strsize input_size)
 extern "C" 
 {
 
-   char * c_utf8_str(wchar_t * str)
+   char * c_utf8_str(const wchar_t * str)
    {
       return strdup(::str::international::unicode_to_utf8(str));
    }
 
-   wchar_t * c_wide_str(char * str)
+   wchar_t * c_wide_str(const char * str)
    {
-
+#ifdef __APPLE__
+      wchar_t * p =utf8_to_utf32(str);
+      wchar_t * p2= wcsdup(p);
+      memory_free(p);
+      return p2;
+#else
       return wcsdup(::str::international::utf8_to_unicode(str));
+#endif
 
    }
 

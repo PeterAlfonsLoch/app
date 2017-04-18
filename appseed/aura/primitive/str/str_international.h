@@ -68,10 +68,12 @@ namespace str
        //bool CLASS_DECL_AURA OemToUtf8(string & str, const char * lpcsz, strsize nCount);
 
        bool CLASS_DECL_AURA unicode_to_utf8(string & str, const unichar * lpcsz);
+      bool CLASS_DECL_AURA unicode_to_utf8(string & str, const wchar_t * lpcsz);
        CLASS_DECL_AURA wstring utf8_to_unicode(const string & str);
        CLASS_DECL_AURA wstring utf8_to_unicode(const char * lpcsz, strsize iCount);
        bool CLASS_DECL_AURA unicode_to_utf8(string & str, const unichar * lpcsz, strsize iCount);
        string CLASS_DECL_AURA unicode_to_utf8(const unichar * lpcsz);
+      string CLASS_DECL_AURA unicode_to_utf8(const wchar_t * lpcsz);
 
 /*       bool CLASS_DECL_AURA AcpToUtf8(string & str, const char * lpcsz);
        bool CLASS_DECL_AURA AcpToUtf8(string & str, const char * lpcsz, strsize iSize);

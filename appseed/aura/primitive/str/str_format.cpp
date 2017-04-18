@@ -485,6 +485,8 @@ void string_format::format(const char * & s)
          // TODO: use specs
          #ifdef WINDOWSEX
          char sz[_CVTBUFSIZE];
+#elif defined(__APPLE__)
+         char sz[500];
          #else
          char sz[CVTBUFSIZE];
          #endif

@@ -67,7 +67,12 @@ CLASS_DECL_AURA strsize utf32_to_utf8_len(const unichar32 * pcwsz, strsize input
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA char * c_utf8_str(wchar_t * str);
-CLASS_DECL_AURA wchar_t * c_wide_str(char * str);
+CLASS_DECL_AURA char * c_utf8_str(const wchar_t * str);
+CLASS_DECL_AURA wchar_t * c_wide_str(const char * str);
+
+CLASS_DECL_AURA int is_surrogated(uint32_t ui);
+CLASS_DECL_AURA int is_surrogate(unichar uc);
+CLASS_DECL_AURA int is_high_surrogate(unichar uc);
+CLASS_DECL_AURA int is_low_surrogate(unichar uc);
 
 END_EXTERN_C

@@ -1141,6 +1141,8 @@ namespace aura
 
          bool bFound = false;
 
+#ifdef WINDOWSEX
+         
 
          open_browser_enum e;
          if (strId == "chrome" || strId == "commander")
@@ -1318,9 +1320,9 @@ namespace aura
 
             strParam += "--user-data-dir=\"" + pathProfile + "\"";
 
-#ifdef WINDOWSEX
-
             call_async(path, strParam, pathDir, SW_SHOWDEFAULT, false);
+
+         }
 
 #else
 
@@ -1358,7 +1360,6 @@ namespace aura
 
 #endif
 
-         }
 
 
          //      pathProfile = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfile;
@@ -6631,9 +6632,9 @@ namespace aura
 
 
 
-//#ifdef WINDOWSEX
-//
-bool is_good_active_w(HWND w)
+#ifdef WINDOWSEX
+
+bool is_good_active_w(oswindow w)
 {
    if (::GetForegroundWindow() == w || ::GetActiveWindow() == w || ::GetFocus() == w)
    {
@@ -6641,7 +6642,7 @@ bool is_good_active_w(HWND w)
    }
    return false;
 }
-int SendCtrlShiftQToChrome(HWND w, int iSleep, ::aura::application * papp)
+int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 {
    /*HWND h = ::GetWindow(chrome, GW_CHILD);
    SendMessage(chrome, 0x0272, 0, 0);
@@ -7521,5 +7522,5 @@ BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam)
    return TRUE;
 }
 
-
+#endif
 

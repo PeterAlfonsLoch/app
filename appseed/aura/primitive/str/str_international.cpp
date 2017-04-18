@@ -273,6 +273,14 @@ namespace str
          unicode_to_utf8(str, lpcsz);
          return str;
       }
+      
+      string unicode_to_utf8(const wchar_t * lpcsz)
+      {
+         string str;
+         unicode_to_utf8(str, lpcsz);
+         return str;
+      }
+
 
       bool MultiByteToMultiByte(UINT uiCodePageDst, memory & str, UINT uiCodePageSrc, const char * lpcsz)
       {
@@ -374,6 +382,13 @@ namespace str
          return UnicodeToMultiByte(CodePageUtf8, str, lpcsz);
       }
 
+      bool unicode_to_utf8(string & str, const wchar_t * lpcsz)
+      {
+         str = utf32_to_utf8(lpcsz, wcslen(lpcsz));
+         return true;
+      }
+
+      
       wstring utf8_to_unicode(const char * lpcsz)
       {
          return MultiByteToUnicode(CodePageUtf8, lpcsz).detach();

@@ -472,7 +472,7 @@ namespace draw2d
       virtual int32_t draw_text_ex(const string & str,const RECTD & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams);
 #endif
 
-      virtual ::count graphics::GetEachCharTextExtent(array < size > & sizea, const string & str, strsize iStart = 0, strsize iCount = -1);
+      virtual ::count GetEachCharTextExtent(array < size > & sizea, const string & str, strsize iStart = 0, strsize iCount = -1);
       virtual sized GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const;
       virtual sized GetTextBegin(const char * lpszString, strsize nCount, strsize iIndex) const;
       virtual sized GetTextExtent(const char * lpszString, strsize nCount) const;

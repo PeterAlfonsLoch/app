@@ -39,19 +39,19 @@ namespace hex
 #ifdef LINUX
    ////#include <ctype.h>
 #endif
-bool is_high_surrogate(uint16_t ui)
-{
-   return ui >= 0xD800 && ui <= 0xDBFF;
-      
-}
-bool is_low_surrogate(uint16_t ui)
-{
-   return ui >= 0xDC00 && ui <= 0xDFFF;
-}
-CLASS_DECL_AURA bool is_surrogated(uint32_t character)
-{
-   return 0x10000 <= character && character <= 0x10FFFF;
-}
+//bool is_high_surrogate(uint16_t ui)
+//{
+//   return ui >= 0xD800 && ui <= 0xDBFF;
+//      
+//}
+//bool is_low_surrogate(uint16_t ui)
+//{
+//   return ui >= 0xDC00 && ui <= 0xDFFF;
+//}
+//CLASS_DECL_AURA bool is_surrogated(uint32_t character)
+//{
+//   return 0x10000 <= character && character <= 0x10FFFF;
+//}
 CLASS_DECL_AURA void
 encode_utf16_pair(uint32_t character, uint16_t *units)
 {

@@ -92,7 +92,7 @@ uint32_t __run_system_command_line(const char * pszCommandLine)
    
    psystem->init_main_data(pinitmaindata);
    
-   psystem->m_bAutoDelete                    = false;
+   //psystem->m_bAutoDelete                    = false;
    
    //MessageBox(NULL, "box1", "box1", MB_ICONINFORMATION);
    

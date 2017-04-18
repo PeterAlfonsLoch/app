@@ -189,6 +189,7 @@ public:
 
 };
 
+int get_current_process_affinity_order();
 
 template < typename PRED >
 ::count fork_count(::aura::application * papp, ::count iCount, PRED pred, index iStart = 0)
@@ -260,7 +261,7 @@ public:
       try
       {
 
-         m_pred(m_iOrder, m_iIndex, m_iCount, m_iScan);
+         m_pred(this->m_iOrder, this->m_iIndex, this->m_iCount, this->m_iScan);
 
       }
       catch (...)
