@@ -17,6 +17,8 @@
 static int SSL_app_data2_idx = -1;
 static int SSL_app_data3_idx = -1;
 
+
+
 void SSL_init_app_data2_3_idx(void)
 {
    int i;
@@ -132,6 +134,9 @@ static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned
 namespace sockets
 {
 
+
+   bool tcp_socket::s_bReuseSession = true;
+
 #ifdef LINUX
    // ssl_sigpipe_handle ---------------------------------------------------------
    void ssl_sigpipe_handle(int x);
@@ -171,6 +176,7 @@ namespace sockets
       ,m_bReconnect(false)
       ,m_bTryingReconnect(false)
    {
+      m_bReuseSession = s_bReuseSession;
       SSL_init_app_data2_3_idx();
       m_bClientSessionSet = false;
       m_memRead.allocate(TCP_BUFSIZE_READ + 1);
@@ -202,6 +208,7 @@ namespace sockets
       ,m_bReconnect(false)
       ,m_bTryingReconnect(false)
    {
+      m_bReuseSession = s_bReuseSession;
       SSL_init_app_data2_3_idx();
       m_bClientSessionSet = false;
       m_memRead.allocate(TCP_BUFSIZE_READ + 1);
@@ -1299,7 +1306,7 @@ namespace sockets
          
          TRACE("SSL_connect!!");
 
-         if (!m_bClientSessionSet && m_ssl_session != NULL)
+         if (m_bReuseSession && !m_bClientSessionSet && m_ssl_session != NULL)
          {
 
             SSL_set_session(m_ssl, m_ssl_session);
@@ -1341,17 +1348,22 @@ namespace sockets
                return false;
             }
 
-            if (m_ssl_session != NULL)
+            if (m_bReuseSession)
             {
 
-               free_ssl_session();
+               if (m_ssl_session != NULL)
+               {
 
-            }
+                  free_ssl_session();
 
-            if (m_ssl_session == NULL)
-            {
+               }
 
-               get_ssl_session();
+               if (m_ssl_session == NULL)
+               {
+
+                  get_ssl_session();
+
+               }
 
             }
 
@@ -1400,26 +1412,31 @@ namespace sockets
 
             }
 
-            else
+            else 
             {
 
-               if (m_ssl_session != NULL)
+               if (m_bReuseSession)
                {
 
-                  if (m_iSslCtxRetry == 0)
+                  if (m_ssl_session != NULL)
                   {
 
-                     m_iSslCtxRetry = 1;
+                     if (m_iSslCtxRetry == 0)
+                     {
 
-                     free_ssl_session();
+                        m_iSslCtxRetry = 1;
 
-                     SSL_clear(m_ssl);
+                        free_ssl_session();
 
-                  }
-                  else
-                  {
+                        SSL_clear(m_ssl);
 
-                     m_iSslCtxRetry = 0;
+                     }
+                     else
+                     {
+
+                        m_iSslCtxRetry = 0;
+
+                     }
 
                   }
 
@@ -1530,7 +1547,7 @@ namespace sockets
 
       synch_lock sl(&Session.sockets().m_mutexClientContextMap);
 
-      if (context.has_char() && m_spsslclientcontext.is_null())
+      if (m_bReuseSession && context.has_char() && m_spsslclientcontext.is_null())
       {
 
          ssl_client_context_map & clientcontextmap = Session.sockets().m_clientcontextmap;
@@ -1579,7 +1596,7 @@ namespace sockets
 
       SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
 
-      if (m_spsslclientcontext.is_set())
+      if (m_bReuseSession && m_spsslclientcontext.is_set())
       {
 
          m_spsslclientcontext->m_pcontext = m_ssl_ctx;

@@ -47,6 +47,9 @@ namespace sockets
 
       array < ssl_ticket_key >   m_ticketkeya;
 
+
+      static bool s_bReuseSession; // Default System Wide Setting
+
       /** Output buffer struct.
       \ingroup internal */
       string m_strTlsHostName;
@@ -95,7 +98,7 @@ namespace sockets
       size_t m_transfer_limit;
       size_t m_output_length;
 
-
+      bool     m_bReuseSession;
       int32_t m_socks4_state; ///< socks4 support
       char m_socks4_vn; ///< socks4 support, temporary var
       char m_socks4_cd; ///< socks4 support, temporary var
