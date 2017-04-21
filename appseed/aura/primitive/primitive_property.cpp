@@ -239,7 +239,8 @@ property & property::operator = (const property & prop)
 property::property(const property & prop)
 {
 
-   property::operator = ((const property &) prop);
+   m_element1 = prop.m_element1;
+   m_element2 = prop.m_element2;
 
 }
 
