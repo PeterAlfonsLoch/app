@@ -527,7 +527,7 @@ namespace user
 
 
 
-   ::user::control::e_element combo_box::hit_test(point pt) const
+   e_element combo_box::hit_test(point pt) const
    {
 
       rect rectElement;

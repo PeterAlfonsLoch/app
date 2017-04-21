@@ -60,15 +60,15 @@ public:
 class CTimer
 {
 public:
-   CTimer() : m_dfStart(clock()) {}
+   CTimer() : m_dfStart(get_tick_count()) {}
 
    /// Restarts the timer.
-   void Restart() { m_dfStart = clock(); }
+   void Restart() { m_dfStart = get_tick_count(); }
 
    /// Get the elapsed time in seconds.
    double GetElapsedTime() const
    {
-      return (static_cast<double>(clock()) - m_dfStart)/CLOCKS_PER_SEC;
+      return (static_cast<double>(get_tick_count()) - m_dfStart)/1000;
    }
 
 private:

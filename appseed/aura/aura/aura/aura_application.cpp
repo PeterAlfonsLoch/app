@@ -1,8 +1,9 @@
 #include "framework.h"
 
-
 #ifdef WINDOWSEX
-#include "aura/aura/node/windows/windows_registry.h"
+
+CLASS_DECL_AURA void windows_install_crash_dump_reporting(::aura::application * papp);
+
 #endif
 
 
@@ -3239,40 +3240,12 @@ namespace aura
       {
 
 #ifdef WINDOWSEX
-         
-         create call to:
-         windows_install_crash_dump_reporting();
-         also move away the windows_registry.h include from the top from file
-         //if (is_system())
-         {
-
-            ::windows::registry::Key k;
-
-            string m = System.file().module().name();
-
-            string strKey = "SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps\\" + m;
-
-            if (k.OpenKey(HKEY_LOCAL_MACHINE, strKey, true))
-            {
-               ::file::path str = dir::system() / "CrashDumps" / m;
-               wstring wstr = str;
-               RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (LPBYTE)wstr.c_str(), (wcslen(wstr) + 1) * sizeof(wchar_t));
-               DWORD dw = 10;
-               RegSetValueExW(k.m_hkey, L"DumpCount", 0, REG_DWORD, (LPBYTE)&dw, sizeof(dw));
-               dw = 2;
-               RegSetValueExW(k.m_hkey, L"DumpType", 0, REG_DWORD, (LPBYTE)&dw, sizeof(dw));
-
-            }
-
-            output_debug_string("test");
-            
-         }
+       
+         windows_install_crash_dump_reporting(this);
 
 #endif
-         
 
       }
-
       return true;
 
    }

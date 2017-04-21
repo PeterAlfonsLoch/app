@@ -1,6 +1,6 @@
 #pragma once
 
-template < class TYPE, class ARG_TYPE  = const TYPE&, class LIST_TYPE = list < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE  = const TYPE&, class LIST_TYPE = ::list < TYPE, ARG_TYPE > >
 class comparable_eq_list :
    public LIST_TYPE
 {

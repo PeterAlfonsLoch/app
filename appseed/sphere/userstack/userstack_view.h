@@ -74,7 +74,7 @@ namespace userstack
 
       void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
 
-      index hit_test(point pt, e_element & eelement);
+      index hit_test(point pt, ::user::e_element & eelement);
 
       virtual void _001OnInitialUpdate();
 

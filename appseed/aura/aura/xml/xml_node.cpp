@@ -1100,7 +1100,7 @@ namespace xml
       if(m_attra.has_properties())
          ostring += ' ';
 
-      for(auto assoc : m_attra)
+      for(auto & assoc : m_attra)
       {
 
          ostring += assoc.get_xml(opt);

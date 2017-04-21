@@ -35,6 +35,7 @@ extern "C"
 #endif /* __cplusplus */
 
 #include "codec.h"
+#include <stdio.h>
 
 /* The function prototypes for the callbacks are basically the same as for
  * the stdio functions fread, fseek, fclose, ftell.

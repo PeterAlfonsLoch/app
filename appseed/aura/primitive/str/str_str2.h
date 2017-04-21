@@ -411,8 +411,8 @@ template < > inline void to_string(string & str, const int32_t & i);
 template < > inline void to_string(string & str, const uint32_t & ui);
 template < > inline void to_string(string & str, const int64_t & i);
 template < > inline void to_string(string & str, const uint64_t &  ui);
-template < > inline void to_string(string & str, const float & f);
-template < > inline void to_string(string & str, const double & d);
+template < > CLASS_DECL_AURA void to_string(string & str, const float & f);
+template < > CLASS_DECL_AURA void to_string(string & str, const double & d);
 //inline CLASS_DECL_AURA string & to_string(string & str, const id & id);
 //inline CLASS_DECL_AURA string & to_string(string & str, const var & var);
 

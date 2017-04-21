@@ -467,7 +467,7 @@ namespace sockets
          }
          msg += strLine + "\r\n";
       }
-      for(auto property : m_request.m_propertysetHeader)
+      for(auto & property : m_request.m_propertysetHeader)
       {
          string strValue = property.get_value().get_string();
          if (property.name() == __id(content_type))

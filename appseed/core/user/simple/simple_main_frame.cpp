@@ -1,4 +1,5 @@
-//#include "framework.h"
+#include "framework.h"
+
 
 
 simple_main_frame::simple_main_frame(::aura::application * papp) :

@@ -949,24 +949,11 @@ inline void to_string(string & str, const uint64_t & ui)
 
 
 template < >
-inline void to_string(string & str, const float & f)
-{
-   char sz[256];
-   sprintf(sz, "%f", f);
-   str = sz;
-
-}
+CLASS_DECL_AURA void to_string(string & str, const float & f);
 
 
 template < >
-inline void to_string(string & str, const double & d)
-{
-
-   char sz[256];
-   sprintf(sz, "%f", d);
-   str = sz;
-
-}
+CLASS_DECL_AURA void to_string(string & str, const double & d);
 
 
 #ifdef ANDROID

@@ -24,7 +24,7 @@
 
 //Pasta de Z:\nordroid\app\appseed\base\user\simple
 
-#include "simple/simple_scroll_bar.cpp"
+//#include "simple/simple_scroll_bar.cpp"
 //1 arquivo(s)         36.589 bytes
 
 //Pasta de Z:\nordroid\app\appseed\base\user\simple_ui

@@ -211,15 +211,15 @@ namespace sockets
 
       if (bind(s, ad.sa(), ad.sa_len()) == -1)
       {
-         log("bind() failed for port " + ::str::from(ad.get_service_number()), Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("bind() failed for port " + ::str::from(ad.get_service_number()), Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          close_socket(s);
          return -1;
       }
       if (listen(s, depth) == -1)
       {
-         log("listen", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("listen", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          close_socket(s);
-         throw simple_exception(get_app(), "listen() failed for port " + ::str::from(ad.get_service_number()) + ": " + StrError(Errno));
+         throw simple_exception(get_app(), "listen() failed for port " + ::str::from(ad.get_service_number()) + ": " + wsa_str_error(Errno));
          return -1;
       }
       m_depth = depth;
@@ -249,7 +249,7 @@ namespace sockets
 
       if (a_s == INVALID_SOCKET)
       {
-         log("accept", Errno, StrError(Errno), ::aura::log::level_error);
+         log("accept", Errno, wsa_str_error(Errno), ::aura::log::level_error);
          return;
       }
       if (!Handler().OkToAccept(this))

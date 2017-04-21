@@ -543,7 +543,7 @@ namespace sockets
          if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || dwNow - m_dwLastError > 5000))
          {
 
-            log(NULL, "select", m_iSelectErrno, StrError(m_iSelectErrno));
+            log(NULL, "select", m_iSelectErrno, wsa_str_error(m_iSelectErrno));
 
             int32_t iError = m_iSelectErrno;
 #ifdef LINUX
@@ -928,7 +928,7 @@ namespace sockets
                         {
                            if (socket != INVALID_SOCKET && shutdown(socket, SHUT_WR) == -1)
                            {
-                              log(p, "graceful shutdown", Errno, StrError(Errno), ::aura::log::level_error);
+                              log(p, "graceful shutdown", Errno, wsa_str_error(Errno), ::aura::log::level_error);
                            }
                            tcp->SetShutdown(SHUT_WR);
                         }

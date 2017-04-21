@@ -87,7 +87,7 @@ namespace sockets
          //if(!is_null(Handler()))
          //{
          //   // failed...
-         //   log("close", Errno, StrError(Errno), ::aura::log::level_error);
+         //   log("close", Errno, wsa_str_error(Errno), ::aura::log::level_error);
          //}
       }
       //if(!is_null(Handler()))
@@ -142,11 +142,11 @@ namespace sockets
             if (p == NULL)
             {
 
-               log("getprotobyname", Errno, StrError(Errno), ::aura::log::level_fatal);
+               log("getprotobyname", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
 
                SetCloseAndDelete();
 
-               throw simple_exception(get_app(), string("getprotobyname() failed: ") + StrError(Errno));
+               throw simple_exception(get_app(), string("getprotobyname() failed: ") + wsa_str_error(Errno));
 
                return INVALID_SOCKET;
 
@@ -169,9 +169,9 @@ namespace sockets
 
       if (s == INVALID_SOCKET)
       {
-         log("socket", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("socket", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          SetCloseAndDelete();
-         throw simple_exception(get_app(), string("socket() failed: ") + StrError(Errno));
+         throw simple_exception(get_app(), string("socket() failed: ") + wsa_str_error(Errno));
          return INVALID_SOCKET;
       }
       attach(s);
@@ -221,7 +221,7 @@ namespace sockets
       {
          if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
          {
-            log("fcntl(F_SETFL, O_NONBLOCK)", Errno, StrError(Errno), ::aura::log::level_error);
+            log("fcntl(F_SETFL, O_NONBLOCK)", Errno, wsa_str_error(Errno), ::aura::log::level_error);
             return false;
          }
       }
@@ -229,7 +229,7 @@ namespace sockets
       {
          if (fcntl(s, F_SETFL, 0) == -1)
          {
-            log("fcntl(F_SETFL, 0)", Errno, StrError(Errno), ::aura::log::level_error);
+            log("fcntl(F_SETFL, 0)", Errno, wsa_str_error(Errno), ::aura::log::level_error);
             return false;
          }
       }

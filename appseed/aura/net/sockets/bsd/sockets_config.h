@@ -102,7 +102,7 @@ in read operations - helps on ECOS */
 // because some System's will already have one or more of the type defined.
 typedef int32_t SOCKET;
 #define Errno errno
-#define StrError strerror
+#define wsa_str_error strerror
 
 #ifdef sockets
 namespace sockets {
@@ -215,7 +215,7 @@ namespace sockets {
 #define SHUT_WR 1
 
 #define Errno WSAGetLastError()
-CLASS_DECL_AURA const char *StrError(int32_t x);
+CLASS_DECL_AURA string wsa_str_error(int32_t x);
 
 //namespace sockets
 //{

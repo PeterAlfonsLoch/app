@@ -444,6 +444,17 @@ namespace aura
    }
 
 
+   bool os::set_default_browser(::aura::application * papp)
+   {
+
+      UNREFERENCED_PARAMETER(papp);
+
+      return false;
+
+   }
+
+
+
    bool os::register_user_auto_start(string strId, string strCommand)
    {
 

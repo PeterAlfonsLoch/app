@@ -1,6 +1,12 @@
 #pragma once
 
+
+#include "base/user/user/user_control_event.h"
+#include "base/user/user/user_box.h"
+
+
 class Ex1FormInterfaceComboBox;
+
 
 namespace user
 {

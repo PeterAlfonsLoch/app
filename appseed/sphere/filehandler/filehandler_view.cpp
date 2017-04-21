@@ -229,7 +229,7 @@ namespace filehandler
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      e_element eelement;
+      ::user::e_element eelement;
 
       index iItem = hit_test(pmouse->m_pt, eelement);
 
@@ -258,7 +258,7 @@ namespace filehandler
 
    }
 
-   index view::hit_test(point pt, e_element & eelement)
+   index view::hit_test(point pt, ::user::e_element & eelement)
    {
 
 
@@ -270,23 +270,23 @@ namespace filehandler
       {
          if(m_plist->element_at(i)->m_rectName.contains(pt))
          {
-            eelement = element_text;
+            eelement = ::user::element_text;
             return i;
          }
          if (m_plist->element_at(i)->m_rectStatusImage.contains(pt))
          {
-            eelement = element_status_image;
+            eelement = ::user::element_status_image;
             return i;
          }
          if (m_plist->element_at(i)->m_rectItem.contains(pt))
          {
-            eelement = element_area;
+            eelement = ::user::element_area;
             return i;
          }
 
       }
 
-      eelement = element_none;
+      eelement = ::user::element_none;
 
       return -1;
 

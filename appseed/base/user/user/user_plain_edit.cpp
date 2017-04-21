@@ -278,6 +278,12 @@ namespace user
       COLORREF crSel;
       COLORREF cr;
 
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      pgraphics->FillSolidRect(rectClient, _001GetColor(::user::color_edit_background));
+
 
       cr = _001GetColor(color_text);
       crBk = _001GetColor(color_background);
@@ -295,8 +301,9 @@ namespace user
          pprintjob = NULL;
 
 
-      rect rectClient;
-      GetFocusRect(rectClient);
+      //rect rectClient;
+
+      //GetFocusRect(rectClient);
 
       if (pprintjob != NULL)
       {

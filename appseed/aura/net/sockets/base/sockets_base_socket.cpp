@@ -126,7 +126,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      log("exception on select", err, StrError(err), ::aura::log::level_fatal);
+      log("exception on select", err, wsa_str_error(err), ::aura::log::level_fatal);
       SetCloseAndDelete();
    }
 
@@ -180,9 +180,9 @@ namespace sockets
    p = getprotobyname( strProtocol );
    if (!p)
    {
-   log("getprotobyname", Errno, StrError(Errno), ::aura::log::level_fatal);
+   log("getprotobyname", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
    SetCloseAndDelete();
-   throw simple_exception(get_app(), string("getprotobyname() failed: ") + StrError(Errno));
+   throw simple_exception(get_app(), string("getprotobyname() failed: ") + wsa_str_error(Errno));
    return INVALID_SOCKET;
    }
    }
@@ -191,9 +191,9 @@ namespace sockets
    s = ::base_socket(af, iType, protno);
    if (s == INVALID_SOCKET)
    {
-   log("base_socket", Errno, StrError(Errno), ::aura::log::level_fatal);
+   log("base_socket", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
    SetCloseAndDelete();
-   throw simple_exception(get_app(), string("base_socket() failed: ") + StrError(Errno));
+   throw simple_exception(get_app(), string("base_socket() failed: ") + wsa_str_error(Errno));
    return INVALID_SOCKET;
    }
    attach(s);
@@ -343,7 +343,7 @@ namespace sockets
       {
       if (fcntl(m_socket, F_SETFL, O_NONBLOCK) == -1)
       {
-      log("fcntl(F_SETFL, O_NONBLOCK)", Errno, StrError(Errno), ::aura::log::level_error);
+      log("fcntl(F_SETFL, O_NONBLOCK)", Errno, wsa_str_error(Errno), ::aura::log::level_error);
       return false;
       }
       }
@@ -351,7 +351,7 @@ namespace sockets
       {
       if (fcntl(m_socket, F_SETFL, 0) == -1)
       {
-      log("fcntl(F_SETFL, 0)", Errno, StrError(Errno), ::aura::log::level_error);
+      log("fcntl(F_SETFL, 0)", Errno, wsa_str_error(Errno), ::aura::log::level_error);
       return false;
       }
       }
@@ -386,7 +386,7 @@ namespace sockets
    {
    if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
    {
-   log("fcntl(F_SETFL, O_NONBLOCK)", Errno, StrError(Errno), ::aura::log::level_error);
+   log("fcntl(F_SETFL, O_NONBLOCK)", Errno, wsa_str_error(Errno), ::aura::log::level_error);
    return false;
    }
    }
@@ -394,7 +394,7 @@ namespace sockets
    {
    if (fcntl(s, F_SETFL, 0) == -1)
    {
-   log("fcntl(F_SETFL, 0)", Errno, StrError(Errno), ::aura::log::level_error);
+   log("fcntl(F_SETFL, 0)", Errno, wsa_str_error(Errno), ::aura::log::level_error);
    return false;
    }
    }
@@ -982,7 +982,7 @@ namespace sockets
 #if defined(IP_OPTIONS) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)p, len) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_OPTIONS)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_OPTIONS)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -999,7 +999,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_PKTINFO, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_PKTINFO)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_PKTINFO)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1013,7 +1013,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTOS, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_RECVTOS)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_RECVTOS)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1027,7 +1027,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTTL, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_RECVTTL)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_RECVTTL)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1041,7 +1041,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVOPTS, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_RECVOPTS)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_RECVOPTS)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1055,7 +1055,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RETOPTS, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_RETOPTS)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_RETOPTS)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1068,7 +1068,7 @@ namespace sockets
 #if defined(IP_TOS) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, sizeof(tos)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_TOS)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_TOS)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1086,7 +1086,7 @@ namespace sockets
       socklen_t len = sizeof(tos);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, &len) == -1)
       {
-         log("getsockopt(IPPROTO_IP, IP_TOS)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(IPPROTO_IP, IP_TOS)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
 #else
       log("ip option not available", 0, "IP_TOS", ::aura::log::level_info);
@@ -1100,7 +1100,7 @@ namespace sockets
 #if defined(IP_TTL) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, sizeof(ttl)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_TTL)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_TTL)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1118,7 +1118,7 @@ namespace sockets
       socklen_t len = sizeof(ttl);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, &len) == -1)
       {
-         log("getsockopt(IPPROTO_IP, IP_TTL)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(IPPROTO_IP, IP_TTL)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
 #else
       log("ip option not available", 0, "IP_TTL", ::aura::log::level_info);
@@ -1133,7 +1133,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_HDRINCL, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_HDRINCL)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_HDRINCL)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1150,7 +1150,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVERR, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_RECVERR)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_RECVERR)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1164,7 +1164,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MTU_DISCOVER, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_MTU_DISCOVER)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_MTU_DISCOVER)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1179,7 +1179,7 @@ namespace sockets
       socklen_t len = sizeof(mtu);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_MTU, (char *)&mtu, &len) == -1)
       {
-         log("getsockopt(IPPROTO_IP, IP_MTU)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(IPPROTO_IP, IP_MTU)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
       return mtu;
    }
@@ -1192,7 +1192,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ROUTER_ALERT, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_ROUTER_ALERT)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_ROUTER_ALERT)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1205,7 +1205,7 @@ namespace sockets
 #if defined(IP_MULTICAST_TTL) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1223,7 +1223,7 @@ namespace sockets
       socklen_t len = sizeof(ttl);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, &len) == -1)
       {
-         log("getsockopt(IPPROTO_IP, IP_MULTICAST_TTL)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(IPPROTO_IP, IP_MULTICAST_TTL)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
 #else
       log("ip option not available", 0, "IP_MULTICAST_TTL", ::aura::log::level_info);
@@ -1238,7 +1238,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1255,7 +1255,7 @@ namespace sockets
 #if defined(IP_ADD_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1272,7 +1272,7 @@ namespace sockets
 #if defined(IP_ADD_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1289,7 +1289,7 @@ namespace sockets
 #if defined(IP_DROP_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1306,7 +1306,7 @@ namespace sockets
 #if defined(IP_DROP_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
       {
-         log("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1326,7 +1326,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_REUSEADDR)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_REUSEADDR)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1343,7 +1343,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_KEEPALIVE)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_KEEPALIVE)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1360,7 +1360,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1375,7 +1375,7 @@ namespace sockets
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_ACCEPTCONN, (char *)&value, &len) == -1)
       {
-         log("getsockopt(SOL_SOCKET, SO_ACCEPTCONN)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(SOL_SOCKET, SO_ACCEPTCONN)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
 #else
       log("base_socket option not available", 0, "SO_ACCEPTCONN", ::aura::log::level_info);
@@ -1390,7 +1390,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BSDCOMPAT, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_BSDCOMPAT)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_BSDCOMPAT)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1403,7 +1403,7 @@ namespace sockets
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_BINDTODEVICE)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_BINDTODEVICE)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1417,7 +1417,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_BROADCAST)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_BROADCAST)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1434,7 +1434,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_DEBUG, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_DEBUG)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_DEBUG)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1452,7 +1452,7 @@ namespace sockets
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_ERROR, (char *)&value, &len) == -1)
       {
-         log("getsockopt(SOL_SOCKET, SO_ERROR)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(SOL_SOCKET, SO_ERROR)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
 #else
       log("base_socket option not available", 0, "SO_ERROR", ::aura::log::level_info);
@@ -1467,7 +1467,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_DONTROUTE, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_DONTROUTE)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_DONTROUTE)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1486,7 +1486,7 @@ namespace sockets
       stl.l_linger = (u_short) linger;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_LINGER, (char *)&stl, sizeof(stl)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_LINGER)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_LINGER)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1503,7 +1503,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_OOBINLINE, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_OOBINLINE)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_OOBINLINE)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1520,7 +1520,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PASSCRED, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_PASSCRED)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_PASSCRED)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1533,7 +1533,7 @@ namespace sockets
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PEERCRED, (char *)&ucr, sizeof(ucr)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_PEERCRED)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_PEERCRED)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1546,7 +1546,7 @@ namespace sockets
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PRIORITY, (char *)&x, sizeof(x)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_PRIORITY)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_PRIORITY)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1559,7 +1559,7 @@ namespace sockets
 #if defined(SO_RCVLOWAT) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVLOWAT, (char *)&x, sizeof(x)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_RCVLOWAT)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_RCVLOWAT)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1575,7 +1575,7 @@ namespace sockets
 #if defined(SO_SNDLOWAT) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDLOWAT, (char *)&x, sizeof(x)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_SNDLOWAT)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_SNDLOWAT)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1591,7 +1591,7 @@ namespace sockets
 #if defined(SO_RCVTIMEO) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(tv)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_RCVTIMEO)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_RCVTIMEO)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1607,7 +1607,7 @@ namespace sockets
 #if defined(SO_SNDTIMEO) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(tv)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_SNDTIMEO)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_SNDTIMEO)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1623,7 +1623,7 @@ namespace sockets
 #if defined(SO_RCVBUF) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&x, sizeof(x)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_RCVBUF)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_RCVBUF)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1641,7 +1641,7 @@ namespace sockets
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&value, &len) == -1)
       {
-         log("getsockopt(SOL_SOCKET, SO_RCVBUF)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(SOL_SOCKET, SO_RCVBUF)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
 #else
       log("base_socket option not available", 0, "SO_RCVBUF", ::aura::log::level_info);
@@ -1655,7 +1655,7 @@ namespace sockets
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUFFORCE, (char *)&x, sizeof(x)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_RCVBUFFORCE)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_RCVBUFFORCE)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1668,7 +1668,7 @@ namespace sockets
 #if defined(SO_SNDBUF) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&x, sizeof(x)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_SNDBUF)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_SNDBUF)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1686,7 +1686,7 @@ namespace sockets
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&value, &len) == -1)
       {
-         log("getsockopt(SOL_SOCKET, SO_SNDBUF)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(SOL_SOCKET, SO_SNDBUF)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
 #else
       log("base_socket option not available", 0, "SO_SNDBUF", ::aura::log::level_info);
@@ -1700,7 +1700,7 @@ namespace sockets
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUFFORCE, (char *)&x, sizeof(x)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_SNDBUFFORCE)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_SNDBUFFORCE)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1714,7 +1714,7 @@ namespace sockets
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_TIMESTAMP, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(SOL_SOCKET, SO_TIMESTAMP)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("setsockopt(SOL_SOCKET, SO_TIMESTAMP)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -1730,7 +1730,7 @@ namespace sockets
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_TYPE, (char *)&value, &len) == -1)
       {
-         log("getsockopt(SOL_SOCKET, SO_TYPE)", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("getsockopt(SOL_SOCKET, SO_TYPE)", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
       }
 #else
       log("base_socket option not available", 0, "SO_TYPE", ::aura::log::level_info);

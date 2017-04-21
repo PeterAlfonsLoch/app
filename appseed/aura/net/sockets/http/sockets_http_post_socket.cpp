@@ -101,7 +101,7 @@ namespace sockets
       }
       else
       {
-         log("AddFile", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("AddFile", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
          SetCloseAndDelete();
       }
    }

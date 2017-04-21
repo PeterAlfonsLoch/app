@@ -1,4 +1,7 @@
-//#include "framework.h"
+#include "framework.h"
+
+
+
 
 const int32_t simple_list_header_control::s_iDividerWidth = 4;
 

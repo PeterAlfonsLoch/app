@@ -233,7 +233,7 @@ namespace userex
       System.factory().creatable_small < form_child_frame >();
 
       System.factory().creatable_small < simple_toolbar >();
-      System.factory().creatable_small < OrtoButton >();
+      System.factory().creatable_small < ::user::orto_button >();
 
       if (!BaseMenuCentralContainer::initialize_central_container(get_app()))
       {

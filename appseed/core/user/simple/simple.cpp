@@ -1,8 +1,10 @@
+#include "framework.h"
 
 
 
 namespace core
 {
+
 
    sp(type) system::get_simple_child_frame_type_info()
    {

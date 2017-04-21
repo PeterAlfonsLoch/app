@@ -128,7 +128,7 @@ public:
    HTHREAD                                   m_hthread;
    IDTHREAD                                  m_uiThread;
 
-   list < ::user::frame * >           m_frameList;
+   ref_array < ::user::frame >               m_frameptra;
 
    LPVOID                                    m_pThreadParams;
    __THREADPROC                              m_pfnThreadProc;

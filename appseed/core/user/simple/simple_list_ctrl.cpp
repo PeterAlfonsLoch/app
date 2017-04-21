@@ -1,4 +1,6 @@
-//#include "framework.h"
+#include "framework.h"
+
+
 
 
 simple_list_control::simple_list_control(::aura::application * papp) :

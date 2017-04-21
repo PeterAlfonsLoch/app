@@ -313,28 +313,28 @@ namespace userstack
    }
 
 
-   index view::hit_test(point pt, e_element & eelement)
+   index view::hit_test(point pt, ::user::e_element & eelement)
    {
       rect rectArea;
       GetAreaThumbRect(rectArea, m_iV);
       if(rectArea.contains(pt))
       {
-         eelement = element_area;
+         eelement = ::user::element_area;
          return m_iV;
       }
       GetAreaThumbRect(rectArea, m_i_veriwell);
       if(rectArea.contains(pt))
       {
-         eelement = element_area;
+         eelement = ::user::element_area;
          return m_i_veriwell;
       }
       GetAreaThumbRect(rectArea, m_i_winactionarea);
       if(rectArea.contains(pt))
       {
-         eelement = element_area;
+         eelement = ::user::element_area;
          return m_i_winactionarea;
       }
-      eelement = element_none;
+      eelement = ::user::element_none;
       return -1;
    }
 

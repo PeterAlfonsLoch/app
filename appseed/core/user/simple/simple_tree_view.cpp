@@ -1,9 +1,9 @@
-//#include "framework.h"
+#include "framework.h"
 
 
 simple_tree_view::simple_tree_view(::aura::application * papp) :
    object(papp),
-   user::tree(papp)
+   tree(papp)
 {
 
 }

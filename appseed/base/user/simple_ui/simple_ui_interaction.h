@@ -1,8 +1,41 @@
 #pragma once
 
 
+#include "base/base/message/message_user.h"
 #include "simple_ui_style.h"
 
+
+namespace user
+{
+
+   enum e_element
+   {
+
+      element_none,
+      element_tab,
+      element_close_tab_button,
+      element_status_image,
+      element_text,
+      element_icon,
+      element_border,
+      element_client,
+      element_area,
+      element_drop_down,
+      element_item,
+      element_search_edit,
+      element_search_ok,
+      element_scrollbar_rect,
+      element_scrollbar_rectA,
+      element_scrollbar_rectB,
+      element_scrollbar_pageA,
+      element_scrollbar_pageB,
+
+      element_split = 10000,
+
+   };
+
+
+} // namespace user
 
 namespace simple_ui
 {
@@ -16,33 +49,6 @@ namespace simple_ui
       virtual public ::user::interaction
    {
    public:
-
-      enum e_element
-      {
-         element_none,
-         element_tab,
-         element_close_tab_button,
-         element_status_image,
-         element_text,
-         element_icon,
-         element_border,
-         element_client,
-         element_area,
-         element_drop_down,
-         element_item,
-         element_search_edit,
-         element_search_ok,
-         element_scrollbar_rect,
-         element_scrollbar_rectA,
-         element_scrollbar_rectB,
-         element_scrollbar_pageA,
-         element_scrollbar_pageB,
-
-
-         element_split = 10000,
-      };
-
-
 
       style *                             m_pstyle;
 
@@ -88,7 +94,7 @@ namespace simple_ui
       virtual style * get_style();
 
 
-      virtual index hit_test(point point,e_element & eelement);
+      virtual index hit_test(point point,::user::e_element & eelement);
 
    };
 

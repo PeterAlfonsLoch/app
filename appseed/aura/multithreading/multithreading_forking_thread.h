@@ -1,6 +1,8 @@
 #pragma once
 
 
+CLASS_DECL_AURA int get_current_process_affinity_order();
+
 #undef new
 
 #define new AURA_NEW
@@ -189,7 +191,7 @@ public:
 
 };
 
-int get_current_process_affinity_order();
+
 
 template < typename PRED >
 ::count fork_count(::aura::application * papp, ::count iCount, PRED pred, index iStart = 0)

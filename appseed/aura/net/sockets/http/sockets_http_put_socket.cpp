@@ -58,7 +58,7 @@ namespace sockets
       else
       {
 
-         log("SetFile", Errno, StrError(Errno), ::aura::log::level_fatal);
+         log("SetFile", Errno, wsa_str_error(Errno), ::aura::log::level_fatal);
 
          SetCloseAndDelete();
 

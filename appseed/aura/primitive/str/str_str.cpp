@@ -3986,4 +3986,26 @@ end:
 
 
 
+template < >
+CLASS_DECL_AURA void to_string(string & str, const float & f)
+{
+
+   char sz[256];
+   sprintf(sz, "%f", f);
+   str = sz;
+
+}
+
+
+template < >
+CLASS_DECL_AURA void to_string(string & str, const double & d)
+{
+
+   char sz[256];
+   sprintf(sz, "%f", d);
+   str = sz;
+
+}
+
+
 

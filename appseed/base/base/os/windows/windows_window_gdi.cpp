@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "base/user/core_user.h"
 #include "windows_window_gdi.h"
+#include <stdio.h>
+
 
 void window_gdi::on_create_window(::user::interaction_impl * pimpl)
 {

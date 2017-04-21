@@ -1,6 +1,9 @@
 #pragma once
 
 
+class simple_scroll_bar;
+
+
 namespace user
 {
 
@@ -9,6 +12,8 @@ namespace user
    class tab_pane;
 
    class toolbar;
+
+   class scroll_bar;
 
    enum e_color
    {
@@ -47,6 +52,11 @@ namespace user
       color_list_header_background,
       color_list_header_separator,
       color_list_item_background,
+      color_list_background,
+      color_edit_background,
+      color_tree_background,
+      color_view_background,
+      color_scrollbar_background,
       color_toolbar_background,
       color_toolbar_separator,
 
@@ -100,6 +110,10 @@ namespace user
       virtual void _001DrawCheckBox(::draw2d::graphics * pgraphics, LPCRECT lpcrectClient, ::check::e_check echeck);
 
       virtual bool _001DrawToolbarItem(::draw2d::graphics * pgraphics, int32_t iItem, ::user::toolbar * ptoolbar);
+
+      virtual bool _001DrawSimpleScrollBar(::draw2d::graphics * pgraphics, simple_scroll_bar * pbar);
+
+      virtual bool _001DrawScrollBar(::draw2d::graphics * pgraphics, ::user::scroll_bar * pbar);
 
    };
 

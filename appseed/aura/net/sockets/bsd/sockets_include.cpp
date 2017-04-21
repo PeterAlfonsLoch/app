@@ -30,12 +30,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 #include "aura/net/net_sockets.h"
 
-#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
+#ifdef WINDOWS
 
-// only to be included in win32 projects
-CLASS_DECL_AURA const char *StrError(int32_t x)
+
+CLASS_DECL_AURA string wsa_str_error(int32_t x)
 {
-static   char tmp[100];
+   
    switch (x)
    {
    case 10004: return "Interrupted function call.";
@@ -81,16 +81,28 @@ static   char tmp[100];
    case 11002: return "Nonauthoritative host not found.";
    case 11003: return "This is a nonrecoverable error.";
    case 11004: return "Valid name, no data record of requested type.";
-
    default:
       break;
    }
-   sprintf(tmp, "Winsock error code: %d", x);
-   return tmp;
+
+   {
+
+      string str;
+
+      str.Format("Winsock error code: %d", x);
+
+      return str;
+
+   }
+
 }
 
 
-
-
-
 #endif
+
+
+
+
+
+
+

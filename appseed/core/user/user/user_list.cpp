@@ -129,6 +129,8 @@ namespace user
 
       point ptOffset = get_viewport_offset();
 
+      pgraphics->FillSolidRect(rectClient, _001GetColor(color_list_background));
+
 
       //      pgraphics->SetBkMode(TRANSPARENT);
 

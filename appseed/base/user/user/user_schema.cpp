@@ -830,6 +830,22 @@ namespace user
    }
 
 
+   bool schema::_001DrawSimpleScrollBar(::draw2d::graphics * pgraphics, simple_scroll_bar * pbar)
+   {
+
+      return false;
+
+   }
+
+
+   bool schema::_001DrawScrollBar(::draw2d::graphics * pgraphics, ::user::scroll_bar * pbar)
+   {
+
+      return false;
+
+   }
+
+
 } // namespace user
 
 

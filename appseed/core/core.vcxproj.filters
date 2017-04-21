@@ -1882,9 +1882,6 @@
     <ClCompile Include="user\html\_html.cpp">
       <Filter>Source Files\user\html</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\_simple.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\simple.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>

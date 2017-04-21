@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "fiasco_finder.h"
-
+#include <stdio.h>
 
 //#include "database/sqlite/sqlite_base.h"
 //#include "database/sqlite/sqlite_set.h"

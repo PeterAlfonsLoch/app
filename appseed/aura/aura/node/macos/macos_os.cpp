@@ -874,6 +874,17 @@ namespace macos
    }
 
 
+   bool os::set_default_browser(::aura::application * papp)
+   {
+
+      ns_set_default_browser();
+
+      return false;
+
+   }
+
+
+
 } // namespace macos
 
 

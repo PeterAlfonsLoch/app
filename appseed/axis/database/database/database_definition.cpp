@@ -1,5 +1,6 @@
 //#include "framework.h"
 //#include <stdarg.h>
+#include <stdio.h>
 
 
 namespace database
@@ -13,6 +14,7 @@ namespace database
    {
 
       fprintf(stderr, "\nUnknown CDatabase Error\n");
+
    }
 
 
@@ -27,7 +29,9 @@ namespace database
       va_end(vl);
 
       fprintf(stderr, "\nDatabase Error: %s\n", buf);
+
    }
+
 
    parameter_list & parameter_list::operator = (const parameter_list & paramlist)
    {

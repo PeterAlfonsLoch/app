@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/user_scroll_bar.h"
+
+
 class CLASS_DECL_BASE simple_scroll_bar :
    virtual public ::user::scroll_bar
 {
@@ -17,7 +20,7 @@ public:
    ::draw2d::region_sp        m_rgnA; // região da primeira seta
    ::draw2d::region_sp        m_rgnB; // região da segunda seta
    UINT                       m_uiTimer;
-   e_element                  m_eelement;
+   ::user::e_element          m_eelement;
 
    COLORREF                   m_cr;
    COLORREF                   m_crStrong;
@@ -39,7 +42,6 @@ public:
    virtual void install_message_handling(::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::draw2d::graphics * pgraphics);
-   virtual void _001OnCoreDraw(::draw2d::graphics * pgraphics);
    virtual void _001OnVerisimpleDraw(::draw2d::graphics * pgraphics);
 
    void update_drawing_objects();
@@ -78,19 +80,19 @@ public:
 
    virtual void on_layout();
 
-   virtual index hit_test(point point,e_element & eelement);
+   virtual index hit_test(point point, ::user::e_element & eelement);
 
-   virtual bool scrollbar_action(e_element eelement, point pt);
+   virtual bool scrollbar_action(::user::e_element eelement, point pt);
 
    virtual bool scrollbar_lineA();
    virtual bool scrollbar_lineB();
    virtual bool scrollbar_pageB(point pt);
    virtual bool scrollbar_pageA(point pt);
 
-   virtual COLORREF scrollbar_color_strong(e_element eelement);
-   virtual COLORREF scrollbar_color(e_element eelement);
-   virtual COLORREF scrollbar_border_color(e_element eelement);
-   virtual COLORREF scrollbar_lite_border_color(e_element eelement);
+   virtual COLORREF scrollbar_color_strong(::user::e_element eelement);
+   virtual COLORREF scrollbar_color(::user::e_element eelement);
+   virtual COLORREF scrollbar_border_color(::user::e_element eelement);
+   virtual COLORREF scrollbar_lite_border_color(::user::e_element eelement);
 
 };
 

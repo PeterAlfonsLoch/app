@@ -359,15 +359,15 @@ namespace sockets
          }
          else if(Reconnect())
          {
-            string strError = StrError(iError);
-            log("connect: failed, reconnect pending",iError,StrError(iError),::aura::log::level_info);
+            string strError = wsa_str_error(iError);
+            log("connect: failed, reconnect pending",iError,wsa_str_error(iError),::aura::log::level_info);
             attach(s);
             SetConnecting(true); // this flag will control fd_set's
          }
          else
          {
-            string strError = StrError(iError);
-            log("connect: failed",iError,StrError(iError),::aura::log::level_fatal);
+            string strError = wsa_str_error(iError);
+            log("connect: failed",iError,wsa_str_error(iError),::aura::log::level_fatal);
             SetCloseAndDelete();
             ::closesocket(s);
             return false;
@@ -546,12 +546,12 @@ namespace sockets
 #endif
          if(n == -1)
          {
-            log("recv",Errno,StrError(Errno),::aura::log::level_fatal);
+            log("recv",Errno,wsa_str_error(Errno),::aura::log::level_fatal);
             OnDisconnect();
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            TRACE("tcp_socket::recv (B1) recv error(" + string(StrError(Errno)) + ")");
+            TRACE("tcp_socket::recv (B1) recv error(" + string(wsa_str_error(Errno)) + ")");
          }
          else if(!n)
          {
@@ -730,7 +730,7 @@ namespace sockets
             SetCallOnConnect();
             return;
          }
-         log("tcp: connect failed",err,StrError(err),::aura::log::level_fatal);
+         log("tcp: connect failed",err,wsa_str_error(err),::aura::log::level_fatal);
          set(false,false); // no more monitoring because connection failed
 
          // failed
@@ -879,12 +879,12 @@ namespace sockets
             if(iError != EWOULDBLOCK)
 #endif
             {
-               log("send",Errno,StrError(Errno),::aura::log::level_fatal);
+               log("send",Errno,wsa_str_error(Errno),::aura::log::level_fatal);
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
-               //throw io_exception(get_app(), StrError(Errno));
+               //throw io_exception(get_app(), wsa_str_error(Errno));
             }
             //else
             //{
@@ -1768,7 +1768,7 @@ namespace sockets
          {
 
             // failed...
-            log("shutdown", Errno, StrError(Errno), ::aura::log::level_error);
+            log("shutdown", Errno, wsa_str_error(Errno), ::aura::log::level_error);
 
          }
 
@@ -1979,7 +1979,7 @@ namespace sockets
       int32_t optval = x ? 1 : 0;
       if(setsockopt(GetSocket(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_TCP, TCP_NODELAY)",Errno,StrError(Errno),::aura::log::level_fatal);
+         log("setsockopt(IPPROTO_TCP, TCP_NODELAY)",Errno,wsa_str_error(Errno),::aura::log::level_fatal);
          return false;
       }
       return true;
@@ -2063,7 +2063,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int32_t err = SoError();
-      log("exception on select",err,StrError(err),::aura::log::level_fatal);
+      log("exception on select",err,wsa_str_error(err),::aura::log::level_fatal);
       SetCloseAndDelete();
    }
 #endif // _WIN32

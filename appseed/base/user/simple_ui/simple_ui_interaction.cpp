@@ -2,6 +2,7 @@
 //#include "base/user/user.h"
 
 
+
 namespace simple_ui
 {
 
@@ -619,7 +620,7 @@ namespace simple_ui
 
       // the value -1 indicates outside the control,
       // other values may be control specific and are client hits
-      index interaction::hit_test(point ptScreen,e_element & eelement)
+      index interaction::hit_test(point ptScreen,::user::e_element & eelement)
       {
 
          sp(::user::interaction) pwnd = this;
@@ -631,7 +632,7 @@ namespace simple_ui
          if(rectWindow.contains(ptScreen))
          {
 
-            eelement = element_client;
+            eelement = ::user::element_client;
 
             return 0;
 
@@ -639,7 +640,7 @@ namespace simple_ui
          else
          {
 
-            eelement = element_none;
+            eelement = ::user::element_none;
 
             return -1;
 

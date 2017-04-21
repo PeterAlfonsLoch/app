@@ -1,6 +1,6 @@
 //#include "framework.h"
 //#include "base/user/user.h"
-
+#include <stdio.h>
 
 
 
@@ -871,7 +871,7 @@ namespace install
 
                   LRESULT lresult;
 
-                  sp(message::base) paxis = canew(message::base(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+                  sp(::message::base) paxis = canew(::message::base(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -888,7 +888,7 @@ namespace install
 
                   LRESULT lresult;
 
-                  sp(message::base) paxis = canew(message::base(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+                  sp(::message::base) paxis = canew(::message::base(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -906,7 +906,7 @@ namespace install
 
                   LRESULT lresult;
 
-                  sp(message::base) paxis = canew(message::base(get_app(),this,WM_KILLFOCUS,0,0,lresult));
+                  sp(::message::base) paxis = canew(::message::base(get_app(),this,WM_KILLFOCUS,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -923,7 +923,7 @@ namespace install
 
                   LRESULT lresult;
 
-                  sp(message::base) paxis = canew(message::base(get_app(),this,WM_SETFOCUS,0,0,lresult));
+                  sp(::message::base) paxis = canew(::message::base(get_app(),this,WM_SETFOCUS,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 

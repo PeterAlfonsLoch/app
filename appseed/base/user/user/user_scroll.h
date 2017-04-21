@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/user_interaction.h"
+
+
 namespace user
 {
 

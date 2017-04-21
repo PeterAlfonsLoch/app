@@ -317,7 +317,7 @@ namespace windows
             //
             // Get token corresponding to default voice 
             //
-            hr = SpGetDefaultTokenFromCategoryIdAndLang(get_app(), SPCAT_VOICES,&m_token[strLang], strLang,FALSE);
+            hr = SpGetDefaultTokenFromCategoryIdAndLang(get_app(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices",&m_token[strLang], strLang,FALSE);
 
             if(FAILED(hr))
             {

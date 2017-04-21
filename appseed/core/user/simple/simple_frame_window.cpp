@@ -1,4 +1,8 @@
-//#include "framework.h"
+#include "framework.h"
+
+
+
+
 #ifdef WINDOWSEX
 #include <dde.h>
 #endif
@@ -2862,7 +2866,7 @@ bool simple_frame_window::calc_layered()
 
 void simple_frame_window::data_on_after_change(signal_details * pobj)
 {
-   user::box::data_on_after_change(pobj);
+   box::data_on_after_change(pobj);
    SCAST_PTR(database::change_event, phint, pobj);
    if (phint->m_key.m_id == "ca2.savings")
    {
@@ -2880,7 +2884,7 @@ bool simple_frame_window::on_simple_command(e_simple_command ecommand, lparam lp
 
 }
 
-class mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(uint32_t dwStyle)
+class ::mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(uint32_t dwStyle)
 {
    UNREFERENCED_PARAMETER(dwStyle);
    return NULL;

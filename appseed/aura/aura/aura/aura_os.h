@@ -91,6 +91,8 @@ namespace aura
 
         virtual bool get_default_browser(string & strId, ::file::path & path, string & strParam);
 
+        virtual bool set_default_browser(::aura::application * papp);
+
         virtual bool register_user_auto_start(string strId, string strCommand);
 
         virtual ::file::path get_app_path(const string & strApp);

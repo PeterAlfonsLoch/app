@@ -120,13 +120,13 @@ index XfplayerViewLines::FindLine(XfplayerViewLine * pline)
    for (index i = 0; i < this->get_size(); i++)
    {
       ::user::e_line_hit etest = this->element_at(i)->hit_test(ptCursor, iChar);
-      if (etest != user::line_hit_none)
+      if (etest != ::user::line_hit_none)
       {
          iLine = i;
          return  etest;
       }
    }
-   return user::line_hit_none;
+   return ::user::line_hit_none;
 
 }
 

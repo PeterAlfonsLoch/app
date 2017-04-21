@@ -34,26 +34,26 @@
 
  //Pasta de Z:\nordroid\app\appseed\core\user\simple
 
-#include "simple/simple_child_frame.cpp"
-#include "simple/simple_form_list_view.cpp"
-#include "simple/simple_frame_window.cpp"
-#include "simple/simple_list_ctrl.cpp"
-#include "simple/simple_list_header_ctrl.cpp"
-#include "simple/simple_list_view.cpp"
-#include "simple/simple_main_frame.cpp"
-#include "simple/simple_menu_bar.cpp"
-#include "simple/simple_printer_list_view.cpp"
-#include "simple/simple_static.cpp"
-#include "simple/simple_status_bar.cpp"
-#include "simple/simple_tab_ctrl.cpp"
-#include "simple/simple_tab_view.cpp"
-#include "simple/simple_toolbar.cpp"
-#include "simple/simple_tree_view.cpp"
-#include "simple/simple_form_view.cpp"
+//#include "simple/simple_child_frame.cpp"
+//#include "simple/simple_form_list_view.cpp"
+//#include "simple/simple_frame_window.cpp"
+//#include "simple/simple_list_ctrl.cpp"
+//#include "simple/simple_list_header_ctrl.cpp"
+//#include "simple/simple_list_view.cpp"
+//#include "simple/simple_main_frame.cpp"
+//#include "simple/simple_menu_bar.cpp"
+//#include "simple/simple_printer_list_view.cpp"
+//#include "simple/simple_static.cpp"
+//#include "simple/simple_status_bar.cpp"
+//#include "simple/simple_tab_ctrl.cpp"
+//#include "simple/simple_tab_view.cpp"
+//#include "simple/simple_toolbar.cpp"
+//#include "simple/simple_tree_view.cpp"
+//#include "simple/simple_form_view.cpp"
  //             15 arquivo(s)        148.378 bytes
 
 
-#include "simple/simple.cpp"
+//#include "simple/simple.cpp"
 
  //Pasta de Z:\nordroid\app\appseed\core\user\user
 
@@ -84,8 +84,8 @@
 #include "user/user_list_cache.cpp"
 #include "user/user_mesh_cache.cpp"
 #include "user/user_mesh_cache_interface.cpp"
-#include "simple/simple_mesh_data.cpp"
-#include "simple/simple_list_data.cpp"
+//#include "simple/simple_mesh_data.cpp"
+//#include "simple/simple_list_data.cpp"
 #include "user/user_list_data.cpp"
 #include "user/user_mesh_data.cpp"
 #include "user/user_list_header.cpp"

@@ -273,6 +273,8 @@ namespace str
          unicode_to_utf8(str, lpcsz);
          return str;
       }
+
+#ifndef WINDOWSEX
       
       string unicode_to_utf8(const wchar_t * lpcsz)
       {
@@ -281,6 +283,7 @@ namespace str
          return str;
       }
 
+#endif
 
       bool MultiByteToMultiByte(UINT uiCodePageDst, memory & str, UINT uiCodePageSrc, const char * lpcsz)
       {
@@ -382,11 +385,18 @@ namespace str
          return UnicodeToMultiByte(CodePageUtf8, str, lpcsz);
       }
 
+#ifndef WINDOWSEX
+
       bool unicode_to_utf8(string & str, const wchar_t * lpcsz)
       {
+
          str = utf32_to_utf8(lpcsz, wcslen(lpcsz));
+
          return true;
+
       }
+
+#endif
 
       
       wstring utf8_to_unicode(const char * lpcsz)

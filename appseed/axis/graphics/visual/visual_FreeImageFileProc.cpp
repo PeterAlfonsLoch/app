@@ -1,5 +1,8 @@
 //#include "framework.h"
 #define _WINDOWS_
+
+#include <stdio.h>
+
 //#include "freeimage/Source/FreeImage.h"
 //#include "visual_FreeImageFileProc.h"
 

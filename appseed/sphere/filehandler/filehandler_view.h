@@ -77,7 +77,7 @@ namespace filehandler
       virtual void on_layout();
 
 
-      index hit_test(point pt, e_element & eelement);
+      index hit_test(point pt, ::user::e_element & eelement);
 
 
       void layout_list(list * plist);

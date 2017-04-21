@@ -1728,13 +1728,13 @@ bool XfplayerViewLine::GetCharLink(string & str, strsize iChar)
    return true;
 }
 
-user::e_line_hit XfplayerViewLine::GetLink(string & strUrl, point ptCursor)
+::user::e_line_hit XfplayerViewLine::GetLink(string & strUrl, point ptCursor)
 {
 
    single_lock sl(m_pContainer->m_pmutex);
 
    strsize iChar;
-   user::e_line_hit etest = hit_test(ptCursor, iChar);
+   ::user::e_line_hit etest = hit_test(ptCursor, iChar);
    if (etest == ::user::line_hit_link)
    {
       GetCharLink(strUrl, iChar);
@@ -1771,7 +1771,7 @@ index XfplayerViewLine::GetCharLink(strsize iChar)
    if (!bInside)
    {
       iChar = -1;
-      return user::line_hit_none;
+      return ::user::line_hit_none;
    }
    else
    {
@@ -1779,17 +1779,17 @@ index XfplayerViewLine::GetCharLink(strsize iChar)
       {
          if (CharHasLink(iChar))
          {
-            return user::line_hit_link;
+            return ::user::line_hit_link;
          }
          else
          {
-            return user::line_hit_normal;
+            return ::user::line_hit_normal;
          }
       }
       else
       {
          iChar = -1;
-         return user::line_hit_none;
+         return ::user::line_hit_none;
       }
    }
 
@@ -2051,7 +2051,7 @@ void XfplayerViewLine::UpdateHover(point &ptCursor)
 
    strsize iChar;
 
-   user::e_line_hit etest = hit_test(ptCursor, iChar);
+   ::user::e_line_hit etest = hit_test(ptCursor, iChar);
 
    if (etest == ::user::line_hit_link)
    {
