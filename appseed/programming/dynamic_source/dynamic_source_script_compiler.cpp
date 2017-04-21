@@ -132,6 +132,9 @@ void script_compiler::prepare_compile_and_link_environment()
 
 #endif
 
+
+#ifdef WINDOWSEX
+   
    if (m_strVs == "2017")
    {
 
@@ -167,6 +170,9 @@ void script_compiler::prepare_compile_and_link_environment()
       //m_strEnv = ".\\vc_vars.bat";
 
    }
+   
+#endif
+   
 
    m_strTime = System.dir().element() / "time";
 

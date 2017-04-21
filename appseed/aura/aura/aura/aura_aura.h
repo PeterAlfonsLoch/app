@@ -1,8 +1,5 @@
 //
-//  base_a_rid_file.h
-//  aura
-//
-//  Created by Carlos Gustavo Cecyn Lundgren on 25/04/14.
+//  aura_aura.h
 //
 //
 
@@ -11,7 +8,7 @@
 
 // If saying OBJECTIVE that is an adjective, adjective is trash, so OBJECTIVE part of OBJC is trash!!
 
-
+#define __ISMER
 #define NON_CONVERGING_LANG_IS_TERMINAL_LANG
 
 
@@ -19,7 +16,6 @@
 
 
 // If saying OBJECTIVE that is an adjective, adjective is merdè (shit, sic., in portuguese-french), so OBJECTIVE part of C++ is double Merdè-Merdè what stills Merdè!!
-
 
 #define __MM
 

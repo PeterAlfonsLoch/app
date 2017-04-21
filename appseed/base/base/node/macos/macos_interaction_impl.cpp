@@ -1,5 +1,9 @@
 #include "framework.h"
 #include "macos.h"
+#include "base/user/core_user.h"
+#include "base/user/user/user.h"
+#include "base/user/user/user_user.h"
+
 
 
 struct __CTLCOLOR
@@ -1230,6 +1234,8 @@ namespace macos
          pbase->m_uiMessage == WM_MBUTTONUP ||
          pbase->m_uiMessage == WM_RBUTTONDOWN ||
          pbase->m_uiMessage == WM_RBUTTONUP ||
+          pbase->m_uiMessage == WM_RBUTTONDBLCLK ||
+          pbase->m_uiMessage == WM_LBUTTONDBLCLK ||
          pbase->m_uiMessage == WM_MOUSEMOVE ||
          pbase->m_uiMessage == WM_MOUSEMOVE)
          //         pbase->m_uiMessage == WM_MOUSEWHEEL)
@@ -4210,7 +4216,7 @@ namespace macos
    }
 
 
-   ::user::interaction * interaction_impl::get_parent() const
+   ::user::interaction * interaction_impl::GetParent() const
    {
       return NULL;
       //      if(!::IsWindow(get_handle()))
@@ -5980,7 +5986,9 @@ namespace macos
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
+      
       Session.user()->window_map().set((int_ptr)get_handle(), this);
+      
    }
 
 
@@ -6228,6 +6236,31 @@ namespace macos
 
    }
 
+   void interaction_impl::round_window_double_click(int iButton, double x, double y)
+   {
+      
+      sp(::message::base) spbase;
+      
+      ::message::mouse * pmouse = canew(::message::mouse(get_app()));
+      
+      if (iButton == 1)
+      {
+         pmouse->m_uiMessage = WM_RBUTTONDBLCLK;
+      }
+      else
+      {
+         pmouse->m_uiMessage = WM_LBUTTONDBLCLK;
+      }
+      pmouse->m_pt.x = (LONG)x;
+      pmouse->m_pt.y = (LONG)y;
+      pmouse->m_bTranslated = true;
+      //      pmouse->m_bTranslateMouseMessageCursor = true;
+      
+      spbase = pmouse;
+      
+      m_pui->send(spbase);
+      
+   }
 
    void interaction_impl::round_window_mouse_moved(double x, double y)
    {

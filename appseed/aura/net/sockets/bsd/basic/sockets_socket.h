@@ -1,8 +1,8 @@
 #pragma once
 
-#ifdef BSD_STYLE_SOCKETS
-#include <openssl/ssl.h>
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//#include <openssl/ssl.h>
+//#endif
 
 
 namespace sockets

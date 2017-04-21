@@ -1273,3 +1273,13 @@ bool on_term_thread()
 //{
 //   return ::GetCurrentThreadId();
 //}
+
+
+
+
+CLASS_DECL_AURA DWORD_PTR translate_processor_affinity(int iOrder)
+{
+   
+   return 1 << iOrder;
+   
+}

@@ -493,7 +493,9 @@ namespace html
          }
 
          m_bound.set_cx(m_box.get_cx());
-
+         
+         return true;
+         
       }
 
 

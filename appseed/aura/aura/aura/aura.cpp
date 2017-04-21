@@ -261,6 +261,8 @@ CLASS_DECL_AURA LPFN_CREATE_SYSTEM g_pfn_create_system;
 
 CLASS_DECL_AURA const char * g_pszCooperativeLevel;
 
+CLASS_DECL_AURA int g_iDerivedApplication = 0;
+
 ::aura::system * create_aura_system()
 {
 

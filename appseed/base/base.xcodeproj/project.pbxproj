@@ -151,10 +151,8 @@
 		07EDC59F1B4F435600AF8928 /* ios_interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */; };
 		07EDC5A11B4F611B00AF8928 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */; };
 		07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5B51B4FE64F00AF8928 /* main_mm.mm */; };
-		9A4B9CF71E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */; };
 		9A4B9CF81E149BC4000D0E92 /* wndfrm_frame_updowninterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4B9CF61E149BC4000D0E92 /* wndfrm_frame_updowninterface.h */; };
 		9A80879B1DE1270600F70A07 /* ios_interaction_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */; };
-		9A83702E1E46A7BA00803F9F /* wndfrm_frame_updowninterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */; };
 		9A986CF31D22666D001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CF21D22666D001F4C04 /* libios_aura.dylib */; };
 		9A986DA01D226E06001F4C04 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
@@ -176,6 +174,9 @@
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D471904CEFF001AEFFB /* UIKit.framework */; };
 		9AE24D4B1904CEFF001AEFFB /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libios_base.dylib */; };
+		9AE9BEE61EA7D05100E8A026 /* _cross_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9BEDF1EA7D05100E8A026 /* _cross_os.cpp */; };
+		9AE9BEE71EA7D05100E8A026 /* cross.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE9BEE01EA7D05100E8A026 /* cross.h */; };
+		9AE9BEEA1EA7D05100E8A026 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE9BEE51EA7D05100E8A026 /* windows.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -423,7 +424,6 @@
 		07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_interaction_impl.h; sourceTree = "<group>"; };
 		07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
 		07EDC5B51B4FE64F00AF8928 /* main_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main_mm.mm; sourceTree = "<group>"; };
-		9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wndfrm_frame_updowninterface.cpp; sourceTree = "<group>"; };
 		9A4B9CF61E149BC4000D0E92 /* wndfrm_frame_updowninterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wndfrm_frame_updowninterface.h; sourceTree = "<group>"; };
 		9A6716461D15495F0069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../macos/app/appseed/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
 		9A8087991DE126F500F70A07 /* ios_interaction_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_interaction_impl.cpp; sourceTree = "<group>"; };
@@ -449,6 +449,9 @@
 		9AE24D361904CEFE001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24D441904CEFF001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24D471904CEFF001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9AE9BEDF1EA7D05100E8A026 /* _cross_os.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _cross_os.cpp; sourceTree = "<group>"; };
+		9AE9BEE01EA7D05100E8A026 /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
+		9AE9BEE51EA7D05100E8A026 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = "<group>"; };
 		9AEEAAEF19C4BD0900866C9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9AEEAE5F19C5034400866C9E /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		9AEEAE6119C5034F00866C9E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
@@ -614,6 +617,7 @@
 		07A36DD11B25D18E00E4F888 /* os */ = {
 			isa = PBXGroup;
 			children = (
+				9AE9BEDE1EA7D05100E8A026 /* cross */,
 				07EDC5001B4F1BB300AF8928 /* ios */,
 				07A36DDA1B25D18E00E4F888 /* ansios */,
 				07A36E601B25D18E00E4F888 /* macos */,
@@ -875,7 +879,6 @@
 		9A4B9CF41E149BC4000D0E92 /* frame */ = {
 			isa = PBXGroup;
 			children = (
-				9A4B9CF51E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp */,
 				9A4B9CF61E149BC4000D0E92 /* wndfrm_frame_updowninterface.h */,
 			);
 			path = frame;
@@ -925,6 +928,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9AE9BEDE1EA7D05100E8A026 /* cross */ = {
+			isa = PBXGroup;
+			children = (
+				9AE9BEDF1EA7D05100E8A026 /* _cross_os.cpp */,
+				9AE9BEE01EA7D05100E8A026 /* cross.h */,
+				9AE9BEE21EA7D05100E8A026 /* windows */,
+			);
+			path = cross;
+			sourceTree = "<group>";
+		};
+		9AE9BEE21EA7D05100E8A026 /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				9AE9BEE51EA7D05100E8A026 /* windows.h */,
+			);
+			path = windows;
+			sourceTree = "<group>";
+		};
 		9AEEAAEB19C4BD0900866C9E /* axis_iosTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -972,6 +993,7 @@
 				07A36ECD1B25D18F00E4F888 /* base.h in Headers */,
 				07D967E91B4C63E3004A3D2A /* simple_ui_interaction.h in Headers */,
 				07D9681D1B4C63E3004A3D2A /* user_control.h in Headers */,
+				9AE9BEEA1EA7D05100E8A026 /* windows.h in Headers */,
 				07D967E11B4C63E3004A3D2A /* simple_ui.h in Headers */,
 				07D968571B4C63E4004A3D2A /* user_interaction_impl.h in Headers */,
 				9A4B9CF81E149BC4000D0E92 /* wndfrm_frame_updowninterface.h in Headers */,
@@ -1060,6 +1082,7 @@
 				07D967A41B4C63E3004A3D2A /* fontopus_login.h in Headers */,
 				07A36F881B25D18F00E4F888 /* RoundWindowFrameView.h in Headers */,
 				07D968A11B4C63E4004A3D2A /* user_view_creator_data.h in Headers */,
+				9AE9BEE71EA7D05100E8A026 /* cross.h in Headers */,
 				07D967CE1B4C63E3004A3D2A /* install_plugin.h in Headers */,
 				07D968191B4C63E3004A3D2A /* user_application_as_proxy_document.h in Headers */,
 				07D966EF1B4C621C004A3D2A /* macos_windowing.h in Headers */,
@@ -1238,11 +1261,11 @@
 				9ACBD1D51DDFC846004AF08F /* macos_factory_exchange.cpp in Sources */,
 				9ACE46CD1D1FE39800A1E0AD /* graphics_window_buffer.cpp in Sources */,
 				07703C631B6FE344009026EA /* _database.cpp in Sources */,
+				9AE9BEE61EA7D05100E8A026 /* _cross_os.cpp in Sources */,
 				9ACBD1D81DDFCB07004AF08F /* RoundWindowController.mm in Sources */,
 				9ACE46CF1D1FE39800A1E0AD /* graphics_window_dc.cpp in Sources */,
 				07D966E61B4C55BD004A3D2A /* RoundWindowApp.mm in Sources */,
 				07EDC5401B4F1CB700AF8928 /* graphics_window_graphics.cpp in Sources */,
-				9A4B9CF71E149BC4000D0E92 /* wndfrm_frame_updowninterface.cpp in Sources */,
 				07D968BE1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */,
 				07D966E71B4C55BD004A3D2A /* RoundWindowFrameView.mm in Sources */,
 				07D967991B4C63E3004A3D2A /* _user.cpp in Sources */,
@@ -1257,7 +1280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A83702E1E46A7BA00803F9F /* wndfrm_frame_updowninterface.cpp in Sources */,
 				9A80879B1DE1270600F70A07 /* ios_interaction_impl.cpp in Sources */,
 				9AC62E671D20BEFA00A4AC0A /* graphics_window_buffer.cpp in Sources */,
 				9AC62E681D20BEFA00A4AC0A /* graphics_window_dc.cpp in Sources */,
@@ -1470,10 +1492,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/base/include",
-					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-				);
+				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/include";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
@@ -1488,7 +1507,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app $(WorkspaceDir)/../..";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -1541,10 +1560,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/base/include",
-					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-				);
+				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/include";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
@@ -1558,7 +1574,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app $(WorkspaceDir)/../..";
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
 					"-Wno-comment",

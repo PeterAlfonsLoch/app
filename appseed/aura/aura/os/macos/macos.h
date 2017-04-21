@@ -19,3 +19,7 @@
 
 
 bool ns_open_file(const char * psz);
+void ns_set_this_default_browser();
+
+
+

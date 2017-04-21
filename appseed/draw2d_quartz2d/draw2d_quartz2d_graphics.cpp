@@ -1899,7 +1899,7 @@ namespace draw2d_quartz2d
          
          rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
          
-         rect rectText(point((int64_t)x, (int64_t)y), GetTextExtent(str));
+         rect rectText(point((int64_t)x, (int64_t)y), ::size(GetTextExtent(str)));
          
          if (rectIntersect.intersect(rectIntersect, rectText))
          {
@@ -1981,7 +1981,7 @@ namespace draw2d_quartz2d
          {
             //   return TRUE;
             rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
-            rect rectText(point((int64_t) x, (int64_t) y), GetTextExtent(str));
+            rect rectText(point((int64_t) x, (int64_t) y), ::size(GetTextExtent(str)));
             if(rectIntersect.intersect(rectIntersect, rectText))
             {
                ::draw2d::dib_sp dib0(allocer());
@@ -5108,7 +5108,7 @@ namespace draw2d_quartz2d
    }
 
    
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
+   sized graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
 
       sized sz;
@@ -5121,7 +5121,7 @@ namespace draw2d_quartz2d
    }
    
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
+   sized graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
 
       class sized sized;
@@ -5160,7 +5160,7 @@ namespace draw2d_quartz2d
    }
 
 
-   size graphics::GetTextExtent(const string & str) const
+   sized graphics::GetTextExtent(const string & str) const
    {
 
       class sized size;

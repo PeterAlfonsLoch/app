@@ -4,6 +4,10 @@
 class keyboard;
 class front_end_schema;
 
+#include "user_window_map.h"
+#include "user_front_end_schema.h"
+#include "user_front_end.h"
+
 
 namespace user
 {

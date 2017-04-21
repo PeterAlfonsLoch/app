@@ -113,35 +113,21 @@ namespace file
       }
 
 
-      bool system::exists(const ::file::path & strPath, var * pvarQuery, ::aura::application * papp)
+      bool system::exists(const ::file::path & path, var * pvarQuery, ::aura::application * papp)
       {
 
-         if (::str::begins(strPath, astr.strUifsProtocol))
+         if (::str::begins(path, astr.strUifsProtocol))
          {
-            return AppUser(papp).m_pifs->file_exists(strPath);
+            
+            return AppUser(papp).m_pifs->file_exists(path);
+            
          }
-
-         //if (!papp->m_paxissystem->dir().name_is(strPath, papp))
-         //   return false;
-
-         //#ifdef WINDOWS
-
-
-         return file_exists_dup(strPath) != FALSE;
-
-         //#else
-
-         //    struct stat st;
-
-         //  if (stat(strPath, &st) != 0)
-         //   return false;
-
-         //      return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
-
-         //#endif
+         
+         return ::file::system::exists(path, pvarQuery, papp);
 
       }
 
+      
       //var system::length(const char * pszPath, ::aura::application * papp)
       //{
 

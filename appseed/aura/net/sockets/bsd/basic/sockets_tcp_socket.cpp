@@ -1802,7 +1802,7 @@ namespace sockets
 
          synch_lock sl(clientcontextmap.m_pmutex);
 
-         m_spsslclientcontext = clientcontextmap[m_strInitSSLClientContext].push(m_spsslclientcontext);
+         clientcontextmap[m_strInitSSLClientContext].push(m_spsslclientcontext);
 
       }
 

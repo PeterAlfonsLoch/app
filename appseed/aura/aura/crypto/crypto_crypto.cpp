@@ -890,12 +890,12 @@ namespace crypto
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-#ifdef WINDOWSEX
+//#ifdef WINDOWSEX
       return Application.dir().userappdata() / ".ca2/databin.bin";
-#else
-      throw interface_only_exception(get_app());
-      return "";
-#endif
+//#else
+  //    throw interface_only_exception(get_app());
+    //  return "";
+//#endif
 
       
 

@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "base/user/user/user_interaction.h"
+#include "base/user/user/user_interaction_impl.h"
 #include "round_window.h"
 
 
@@ -221,6 +223,7 @@ namespace macos
         virtual void round_window_mouse_up(int iButton, double x, double y);
         virtual void round_window_mouse_moved(double x, double y);
         virtual void round_window_mouse_dragged(double x, double y);
+        virtual void round_window_double_click(int iButton, double x, double y);
         virtual bool round_window_key_down(unsigned int vk, unsigned int scan);
         virtual bool round_window_key_up(unsigned int vk, unsigned int scan);
         virtual bool round_window_key_down(unsigned int uiKeyCode);
@@ -372,7 +375,7 @@ namespace macos
       virtual ::user::interaction *  GetLastActivePopup();
 
       virtual bool IsChild(::user::interaction *    pWnd);
-      virtual ::user::interaction * get_parent() const;
+      virtual ::user::interaction * GetParent() const;
        using ::user::interaction_impl::SetParent;
       ::user::interaction * SetParent(::user::interaction * pWndNewParent);
       static_function ::user::interaction * PASCAL oswindowFromPoint(POINT point);

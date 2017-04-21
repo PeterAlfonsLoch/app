@@ -1,22 +1,10 @@
 #pragma once
 
-#ifdef __OBJC__
-#else
-
 
 #include "app/appseed/base/base/base/base.h"
 
-////#include "axis/html_lite/html_lite/html_lite.h"
-//
-//#if !defined(_MM) && !defined(_M)
-//
-//#include "nodeapp/operational_system/operational_system.h"
-//
-//#ifdef WINDOWS
-//
-//#pragma warning(disable: 4251)  // using non-exported as public in exported
-//
-//#endif
+
+#ifndef __ISMER
 
 
 #ifdef _CORE_LIBRARY
@@ -26,10 +14,8 @@
 #endif
 
 
-//extern CLASS_DECL_CORE string g_strNote;
-
-
 class image_list;
+
 
 #ifdef WINDOWS
 
@@ -993,10 +979,9 @@ namespace html
 #include "core.inl"
 
 
-
-
-
 #endif
+
+
 
 
 

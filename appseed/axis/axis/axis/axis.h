@@ -1,11 +1,7 @@
 #pragma once
 
 
-#ifndef CA2_APP_AXIS_AXIS_AXIS_AXIS_H
-#define CA2_APP_AXIS_AXIS_AXIS_AXIS_H
-
-
-#include "aura/aura/aura.h"
+#include "aura/aura/aura/aura.h"
 
 
 
@@ -97,10 +93,5 @@ END_EXTERN_C
 
 
 #define new AURA_NEW
-
-
-#endif // CA2_APP_AXIS_AXIS_AXIS_AXIS_H
-
-
 
 

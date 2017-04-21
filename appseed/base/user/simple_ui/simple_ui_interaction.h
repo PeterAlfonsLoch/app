@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "simple_ui_style.h"
+
+
 namespace simple_ui
 {
 

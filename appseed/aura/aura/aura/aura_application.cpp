@@ -1,5 +1,9 @@
 #include "framework.h"
+
+
+#ifdef WINDOWSEX
 #include "aura/aura/node/windows/windows_registry.h"
+#endif
 
 
 #if defined(LINUX)
@@ -3234,6 +3238,11 @@ namespace aura
       else
       {
 
+#ifdef WINDOWSEX
+         
+         create call to:
+         windows_install_crash_dump_reporting();
+         also move away the windows_registry.h include from the top from file
          //if (is_system())
          {
 
@@ -3256,8 +3265,11 @@ namespace aura
             }
 
             output_debug_string("test");
-
+            
          }
+
+#endif
+         
 
       }
 

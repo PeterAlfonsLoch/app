@@ -1,5 +1,6 @@
 
-
+namespace str
+{
 
 template < typename T >
 inline string  from(const T & t)
@@ -37,6 +38,7 @@ inline string  from_uint(const T & t)
    
 }
 
+} // namespace str
 
 inline void simple_string::construct(string_manager * pstringmanager)
    {

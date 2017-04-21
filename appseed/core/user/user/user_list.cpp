@@ -2940,6 +2940,31 @@ namespace user
             }
          }
       }
+      else if(m_bHoverSelect)
+      {
+         
+         index iItem = -1;
+         
+         if (_001DisplayHitTest(pt, iItem))
+         {
+            
+            if (iItem >= 0 && m_iItemMouseDown == iItem)
+            {
+               
+               iItem = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
+               
+               if (iItem >= 0)
+               {
+                  
+                  _001OnItemClick(iItem);
+                  
+               }
+               
+            }
+            
+         }
+         
+      }
       else if (!m_bSelect)
       {
 
@@ -3315,9 +3340,40 @@ namespace user
    {
       SCAST_PTR(::message::mouse, pmouse, pobj);
       m_iClick = 2;
+      
+      point pt = pmouse->m_pt;
+      
+      ScreenToClient(&pt);
+
 
       //   _001OnClick(nFlags, point);
-      Redraw();
+      //Redraw();
+      
+      index iItem = -1;
+      
+      if(!m_bHoverSelect)
+      {
+         
+         if (_001DisplayHitTest(pt, iItem))
+         {
+            
+            if (iItem >= 0 && m_iItemMouseDown == iItem)
+            {
+               
+               iItem = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
+               
+               if (iItem >= 0)
+               {
+                  
+                  _001OnItemClick(iItem);
+                  
+               }
+               
+            }
+            
+         }
+         
+      }
 
 
       /* trans window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();

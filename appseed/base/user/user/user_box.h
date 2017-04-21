@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "user_scroll.h"
+#include "base/user/simple_ui/simple_ui_interaction.h"
+
+
 namespace user
 {
 

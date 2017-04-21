@@ -274,7 +274,6 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #include "base/graphics/graphics.h"
 
-
 #if defined(LINUX)
 
 #include "base/os/ansios/ansios.h"

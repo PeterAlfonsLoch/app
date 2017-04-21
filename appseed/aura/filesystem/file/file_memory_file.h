@@ -81,6 +81,9 @@ public:
 
       if (nCount <= 0 || m_spmemory.is_null())
          return 0;
+      
+      if(m_dwPosition >= m_spmemory->get_size())
+         return 0;
 
       memory_offset_t iDiff = m_spmemory->get_size() - m_dwPosition;
 

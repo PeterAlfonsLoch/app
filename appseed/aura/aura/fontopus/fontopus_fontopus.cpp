@@ -340,6 +340,8 @@ namespace fontopus
             m_pthreadCreatingUser->m_strRequestUrl = pszRequestUrl;
 
          }
+         
+         m_pthreadCreatingUser->m_evReady.ResetEvent();
 
          m_pthreadCreatingUser->begin();
 

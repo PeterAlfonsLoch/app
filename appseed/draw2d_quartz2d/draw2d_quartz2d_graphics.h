@@ -385,9 +385,9 @@ namespace draw2d_quartz2d
       virtual int32_t draw_text_ex(LPTSTR lpszString, int32_t nCount, const RECT & lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int32_t draw_text_ex(const string & str, const RECT & lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       
-      size GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const;
-      size GetTextExtent(const char * lpszString, strsize nCount) const;
-      size GetTextExtent(const string & str) const;
+      sized GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const;
+      sized GetTextExtent(const char * lpszString, strsize nCount) const;
+      sized GetTextExtent(const string & str) const;
       bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const;
       bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
       bool GetTextExtent(sized & size, const string & str) const;

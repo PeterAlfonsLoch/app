@@ -1,5 +1,6 @@
 
 #import "framework.h"
+#include <CoreFoundation/CoreFoundation.h>
 
 void macos_desktop_image_changed();
 bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
@@ -240,4 +241,20 @@ bool mm1a_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ch
    
    return true;
       
+}
+
+
+void ns_set_this_default_browser()
+{
+   
+   CFBundleRef bundle = CFBundleGetMainBundle();
+   
+   CFURLRef url = CFBundleCopyBundleURL(bundle);
+   
+   LSRegisterURL(url, true);
+   
+   CFStringRef identifier = CFBundleGetIdentifier(bundle);
+   
+   LSSetDefaultHandlerForURLScheme(CFSTR("http"), identifier);
+   
 }

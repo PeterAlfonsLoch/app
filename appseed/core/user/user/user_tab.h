@@ -243,7 +243,7 @@ namespace user
       virtual ::user::tab_pane * create_pane_by_id(id id);
       virtual ::index create_tab_by_id(id id);
 
-      virtual void on_change_pane_count(array < ::user::tab_pane * > array = array < ::user::tab_pane * >());
+      virtual void on_change_pane_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >());
 
       virtual void get_text_id(stringa & stra);
 

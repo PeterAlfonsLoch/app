@@ -1712,7 +1712,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  m_daExtent[m_iLineStart + i][psz - pszStart + j] = size.cx;
+                  m_daExtent[m_iLineStart + i][(index) (psz - pszStart + j)] = size.cx;
 
                }
 
@@ -1728,7 +1728,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  m_daExtent[m_iLineStart + i][psz - pszStart] = size.cx;
+                  m_daExtent[m_iLineStart + i][(index) (psz - pszStart)] = size.cx;
 
                }
 
@@ -2075,7 +2075,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  m_daExtent[m_iLineStart + i][psz - pszStart + j] = size.cx;
+                  m_daExtent[m_iLineStart + i][(index) (psz - pszStart + j)] = size.cx;
 
                }
 
@@ -2091,7 +2091,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  m_daExtent[m_iLineStart + i][psz - pszStart] = size.cx;
+                  m_daExtent[m_iLineStart + i][(index) (psz - pszStart)] = size.cx;
 
                }
 

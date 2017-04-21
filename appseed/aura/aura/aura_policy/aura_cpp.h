@@ -540,6 +540,8 @@ typedef CREATE_SYSTEM * LPFN_CREATE_SYSTEM;
 
 CLASS_DECL_AURA extern LPFN_CREATE_SYSTEM g_pfn_create_system;
 CLASS_DECL_AURA extern const char * g_pszCooperativeLevel;
+CLASS_DECL_AURA extern int g_iDerivedApplication; // one-based-index of derived application, zero if main application
+
 
 namespace data
 {
@@ -1826,7 +1828,6 @@ namespace user
 #include "aura/filesystem/filesystem.inl"
 
 #include "aura/net/net.inl"
-
 
 
 

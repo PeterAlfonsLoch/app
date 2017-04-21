@@ -323,6 +323,15 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
    
    int iButton = 0;
    
+   NSInteger i = [event clickCount];
+   
+   if(i == 2)
+   {
+
+      p->round_window_double_click(iButton, x, y);
+      
+   }
+   
    p->round_window_mouse_up(iButton, x, y);
    
    return;

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "user_interaction_impl_base.h"
+
+
 #if defined METROWIN && defined(__cplusplus_winrt)
 
 

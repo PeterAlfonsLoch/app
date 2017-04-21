@@ -153,6 +153,9 @@ namespace introjection
       }
 
 #endif
+      
+      
+#ifdef WINDOWSEX
 
       if (m_strVs == "2017")
       {
@@ -206,6 +209,8 @@ namespace introjection
          m_strSdk1 = "vc141";
 
       }
+      
+#endif
 
 #ifdef OS64BIT
 #ifdef LINUX

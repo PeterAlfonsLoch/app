@@ -21,7 +21,7 @@ namespace visual
       virtual ~font_enumeration();
 
       template < typename PRED >
-      void font_enumeration::start_update(PRED predRunAfterEnumeration = []() {})
+      void start_update(PRED predRunAfterEnumeration = []() {})
       {
 
          ::fork(get_app(), [&]()
