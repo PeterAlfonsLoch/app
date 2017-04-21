@@ -210,6 +210,13 @@ thread_pointer < ::thread > t_pthread;
 
 bool get_thread_run()
 {
+   
+   if(t_pthread == NULL) // system threads don't have generally associated ca2 thread object
+   {
+      // and have short life, so it is safe to keep it running
+      return true;
+      
+   }
 
    return t_pthread->get_run_thread();
 
