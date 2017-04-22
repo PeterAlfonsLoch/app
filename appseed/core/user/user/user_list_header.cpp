@@ -561,6 +561,95 @@ namespace user
       pmouse->m_bRet = false;
    }
 
+
+   void list_header::_001OnClip(::draw2d::graphics * pgraphics)
+   {
+
+
+
+
+      try
+      {
+
+         rect rectClip;
+
+         ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
+
+         rect rectClient;
+
+         bool bFirst = true;
+
+         if (pdrawcontext != NULL)
+         {
+
+            rectClient = pdrawcontext->m_rectWindow;
+
+            ScreenToClient(rectClient);
+
+            rectClient.bottom++;
+            rectClient.right++;
+
+            rectClip = rectClient;
+
+            bFirst = false;
+
+         }
+
+         ::user::interaction * pui = this;
+
+         ::rect rectFocus;
+
+         ::rect rectIntersect;
+
+         index i = 0;
+
+         while (pui != NULL)
+         {
+
+            pui->GetWindowRect(rectClient);
+
+            pui->GetFocusRect(rectFocus);
+
+            rectFocus.offset(rectClient.top_left());
+
+            ScreenToClient(rectFocus);
+
+            rectFocus.bottom++;
+            rectFocus.right++;
+
+            if (i == 0)
+            {
+
+               rectIntersect = rectFocus;
+
+            }
+            else
+            {
+
+               rectIntersect.intersect(rectFocus);
+
+            }
+
+            i++;
+
+            pui = pui->GetParent();
+
+         }
+
+         pgraphics->IntersectClipRect(rectIntersect);
+
+      }
+      catch (...)
+      {
+
+         throw simple_exception(::get_thread_app(), "no more a window");
+
+      }
+
+
+   }
+
+
    void list_header::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 

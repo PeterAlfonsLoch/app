@@ -44,7 +44,7 @@ namespace user
 
 
 
-      virtual void GetScrollRect(LPRECT lprect);
+      //virtual void GetScrollRect(LPRECT lprect);
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
       virtual void create_x_scroll_bar(const RECT & rect);
@@ -87,7 +87,7 @@ namespace user
    {
    public:
 
-      int                  m_iVScrollOffset;
+      //int                  m_iVScrollOffset;
       sp(scroll_bar)       m_pscrollbarVert;
       scroll_data          m_scrolldataVert;
       int16_t              m_iWheelDelta;
@@ -100,7 +100,7 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pinterface);
 
 
-      virtual void GetScrollRect(LPRECT lprect);
+      //virtual void GetScrollRect(LPRECT lprect);
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
       virtual int32_t get_wheel_scroll_delta();
@@ -142,9 +142,16 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pinterface);
 
 
-      void GetScrollRect(LPRECT lprect);
+      //void GetScrollRect(LPRECT lprect);
+
+      virtual bool GetClientRect(LPRECT lprect);
+
+      virtual bool GetFocusRect(LPRECT lprect);
+
 
       virtual ::size get_total_size();
+
+      virtual void defer_draw_scroll_gap(::draw2d::graphics * pgraphics);
 
    };
 

@@ -22,18 +22,18 @@ namespace user
    }
 
 
-   void scroll_x::GetScrollRect(LPRECT lprect)
-   {
+   //void scroll_x::GetClientRect(LPRECT lprect)
+   //{
 
-      ::rect rectScroll;
+   //   ::rect rectScroll;
 
-      GetClientRect(rectScroll);
+   //   GetClientRect(rectScroll);
 
-      rectScroll.offset(get_viewport_offset());
+   //   rectScroll.offset(get_viewport_offset());
 
-      *lprect = rectScroll;
+   //   *lprect = rectScroll;
 
-   }
+   //}
 
 
 
@@ -44,7 +44,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS | SWP_NOZORDER;
+      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
       _001DeferCreateXScrollBar();
 
@@ -56,7 +56,12 @@ namespace user
 
             _001GetXScrollInfo(m_pscrollbarHorz->m_scrollinfo);
 
-            m_pscrollbarHorz->SetWindowPos(ZORDER_TOP, 0, rectClient.bottom, rectClient.width(), m_scrolldataHorz.m_iWidth, ifswp);
+            m_pscrollbarHorz->SetWindowPos(
+               ZORDER_TOP, 
+               rectClient.left, 
+               rectClient.bottom - GetSystemMetrics(SM_CYHSCROLL),
+               rectClient.width() - get_final_y_scroll_bar_width(), 
+               GetSystemMetrics(SM_CYHSCROLL), ifswp);
 
             m_pscrollbarHorz->on_layout();
 
@@ -241,7 +246,7 @@ namespace user
 
       rect rectScroll;
 
-      GetScrollRect(rectScroll);
+      GetClientRect(rectScroll);
 
       m_scrolldataHorz.m_iPage = rectScroll.width();
 
@@ -291,7 +296,7 @@ namespace user
    //   {
    //   }
    //
-   //   void scroll::GetScrollRect(LPRECT lprect)
+   //   void scroll::GetClientRect(LPRECT lprect)
    //   {
    //      
    //      ::rect rectScroll;
@@ -779,7 +784,7 @@ namespace user
    //
    //      rect rectScroll;
    //
-   //      GetScrollRect(rectScroll);
+   //      GetClientRect(rectScroll);
    //
    //      m_scrolldata.m_sizePage          = rectScroll.size();
    //
@@ -853,7 +858,7 @@ namespace user
 
    scroll_y::scroll_y()
    {
-      m_iVScrollOffset = 0;
+//      m_iVScrollOffset = 0;
       m_scrolldataVert.m_bScroll = false;
       m_scrolldataVert.m_iPage = 0;
       m_scrolldataVert.m_iLine = 0;
@@ -866,18 +871,18 @@ namespace user
    {
    }
 
-   void scroll_y::GetScrollRect(LPRECT lprect)
-   {
+   //void scroll_y::GetClientRect(LPRECT lprect)
+   //{
 
-      ::rect rectScroll;
+   //   ::rect rectScroll;
 
-      GetClientRect(rectScroll);
+   //   GetClientRect(rectScroll);
 
-      rectScroll.offset(get_viewport_offset());
+   //   rectScroll.offset(get_viewport_offset());
 
-      *lprect = rectScroll;
+   //   *lprect = rectScroll;
 
-   }
+   //}
 
 
 
@@ -889,7 +894,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS | SWP_NOZORDER;
+      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
       _001DeferCreateYScrollBar();
 
@@ -901,7 +906,12 @@ namespace user
 
             _001GetYScrollInfo(m_pscrollbarVert->m_scrollinfo);
 
-            m_pscrollbarVert->SetWindowPos(ZORDER_TOP, rectClient.right, rectClient.top + m_iVScrollOffset, m_scrolldataVert.m_iWidth, rectClient.height() - rectClient.top - m_iVScrollOffset, ifswp);
+            m_pscrollbarVert->SetWindowPos(
+               ZORDER_TOP,
+               rectClient.right - GetSystemMetrics(SM_CXVSCROLL),
+               rectClient.top,
+               GetSystemMetrics(SM_CXVSCROLL),
+               rectClient.height() - get_final_x_scroll_bar_width(), ifswp);
 
             m_pscrollbarVert->on_layout();
 
@@ -1151,7 +1161,7 @@ namespace user
 
       rect rectScroll;
 
-      GetScrollRect(rectScroll);
+      GetClientRect(rectScroll);
 
       m_scrolldataVert.m_iPage = rectScroll.height();
 
@@ -1290,7 +1300,7 @@ namespace user
 
       rect rectScroll;
 
-      GetScrollRect(rectScroll);
+      GetClientRect(rectScroll);
 
       m_scrolldataHorz.m_iPage = rectScroll.width();
 
@@ -1344,40 +1354,89 @@ namespace user
    }
 
 
-   void scroll::GetScrollRect(LPRECT lprect)
+   //void scroll::GetClientRect(LPRECT lprect)
+   //{
+   //   ::rect rectScroll;
+
+   //   GetClientRect(rectScroll);
+
+   //   //if (m_scrolldataHorz.m_bScroll)
+   //   //{
+
+   //   //   rectScroll.bottom -= GetSystemMetrics(SM_CYHSCROLL);
+
+   //   //}
+
+
+   //   //if (m_scrolldataVert.m_bScroll)
+   //   //{
+
+   //   //   rectScroll.right -= GetSystemMetrics(SM_CXVSCROLL);
+
+   //   //}
+
+
+
+   //   rectScroll.offset(get_viewport_offset());
+
+   //   *lprect = rectScroll;
+
+   //}
+
+   bool scroll::GetClientRect(LPRECT lprect)
    {
-      ::rect rectScroll;
 
-      GetClientRect(rectScroll);
+      ::user::interaction::GetClientRect(lprect);
 
-      if (m_scrolldataHorz.m_bScroll)
-      {
+      lprect->right -= get_final_y_scroll_bar_width();
+      lprect->bottom -= get_final_x_scroll_bar_width();
 
-         rectScroll.bottom -= GetSystemMetrics(SM_CYHSCROLL);
-
-      }
-
-
-      if (m_scrolldataVert.m_bScroll)
-      {
-
-         rectScroll.right -= GetSystemMetrics(SM_CXVSCROLL);
-
-      }
-
-
-
-      rectScroll.offset(get_viewport_offset());
-
-      *lprect = rectScroll;
+      return true;
 
    }
 
+
    
+   bool scroll::GetFocusRect(LPRECT lprect)
+   {
+
+      return ::user::interaction::GetClientRect(lprect);
+
+   }
+
+
+
    ::size scroll::get_total_size()
    {
 
       return m_sizeTotal;
+
+   }
+
+
+   void scroll::defer_draw_scroll_gap(::draw2d::graphics * pgraphics)
+   {
+
+      if (m_scrolldataHorz.m_bScrollEnable && m_scrolldataHorz.m_bScroll
+         && m_pscrollbarHorz.is_set() && m_pscrollbarHorz->m_pimpl.is_set()
+         && m_scrolldataVert.m_bScrollEnable && m_scrolldataVert.m_bScroll
+         && m_pscrollbarVert.is_set() && m_pscrollbarVert->m_pimpl.is_set())
+      {
+
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
+         rect r;
+
+         r.top = rectClient.bottom;
+         r.left = rectClient.right;
+         r.right = r.left + m_pscrollbarVert->m_pimpl->m_rectParentClientRequest.width();
+         r.bottom = r.top + m_pscrollbarHorz->m_pimpl->m_rectParentClientRequest.height();
+
+         pgraphics->FillSolidRect(r, _001GetColor(color_scrollbar_background));
+
+      }
 
    }
 

@@ -105,6 +105,7 @@ namespace user
       void install_message_handling(::message::dispatch * pinterface);
       void SetBaseListCtrlInterface(list * pinterface);
 
+      virtual void _001OnClip(::draw2d::graphics * pgraphics);
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void DrawItem(::draw2d::item * pdrawitem);
 

@@ -106,6 +106,16 @@ namespace user
       return false;
    }
 
+   void list::_001OnNcDraw(::draw2d::graphics * pgraphics)
+   {
+
+      ::user::mesh::_001OnNcDraw(pgraphics);
+
+      defer_draw_scroll_gap(pgraphics);
+
+
+   }
+
 
    void list::_001OnDraw(::draw2d::graphics * pgraphics)
    {
@@ -1317,7 +1327,7 @@ namespace user
 
       m_iItemHeight = _001CalcItemHeight((int)iItemHeight);
 
-      m_iVScrollOffset = m_iItemHeight;
+//      m_iVScrollOffset = m_iItemHeight;
 
       m_iItemWidth = (int32_t)iItemWidth;
 
@@ -2547,12 +2557,12 @@ namespace user
       if (m_bHeaderCtrl)
       {
 
-         rect rectClient;
+         rect rectFocus;
 
-         GetClientRect(&rectClient);
+         GetFocusRect(&rectFocus);
 
-         m_plistheader->SetWindowPos(ZORDER_TOP, 0, 0, (int)MAX(m_iItemWidth + 10, rectClient.width()), (int)m_iItemHeight,
-            SWP_SHOWWINDOW | SWP_NOZORDER);
+         m_plistheader->SetWindowPos(ZORDER_BOTTOM, 0, 0, (int)MAX(m_iItemWidth + 10, rectFocus.width()), (int)m_iItemHeight,
+            SWP_SHOWWINDOW);
 
       }
       else
@@ -6498,10 +6508,10 @@ namespace user
    }
 
 
-   void list::GetScrollRect(LPRECT lprect)
+   bool list::GetClientRect(LPRECT lprect)
    {
 
-      mesh::GetScrollRect(lprect);
+      mesh::GetClientRect(lprect);
 
       if (m_bHeaderCtrl && m_plistheader != NULL)
       {
@@ -6514,11 +6524,15 @@ namespace user
 
          ScreenToClient(rectClient);
 
-         lprect->top = rectClient.bottom;
+         lprect->top += rectClient.bottom;
 
       }
 
+      return true;
+
    }
+
+
 
 
    void list::update_icon_list_view_sort()

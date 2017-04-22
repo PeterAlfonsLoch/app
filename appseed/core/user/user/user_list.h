@@ -329,6 +329,8 @@ namespace user
 
       bool CreateHeaderCtrl();
 
+      virtual void _001OnNcDraw(::draw2d::graphics * pgraphics);
+
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
@@ -527,7 +529,7 @@ namespace user
 
       virtual void _001OnClip(::draw2d::graphics * pgraphics);
 
-      virtual void GetScrollRect(LPRECT lprect);
+      virtual bool GetClientRect(LPRECT lprect) override;
 
       virtual void update_icon_list_view_sort();
 
