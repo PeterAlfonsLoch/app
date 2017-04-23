@@ -17,7 +17,7 @@ namespace estamira
 
       m_ptOffset = null_point();
 
-      m_pmutex = new mutex(papp);
+      defer_create_mutex();
       m_iMult = 4;
       m_iCurChar = -1;
 

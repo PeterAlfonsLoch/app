@@ -6347,6 +6347,7 @@ namespace user
          else
          {
             ::draw2d::brush_sp brushText(allocer());
+
             brushText->create_solid(m_cr);
             m_pgraphics->SelectObject(brushText);
             m_pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);

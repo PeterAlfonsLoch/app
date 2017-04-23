@@ -100,7 +100,7 @@ namespace ftp
 
       m_econnectiontype = connection_type_plain;
 
-      m_pmutex = new mutex(get_app());
+      defer_create_mutex();
 
       m_estate = state_initial;
       

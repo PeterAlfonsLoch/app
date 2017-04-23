@@ -61,7 +61,7 @@ thread::file_info * thread::get_file_info()
    if(m_pfileinfo != NULL)
       return m_pfileinfo;
 
-   m_pfileinfo = new file_info();
+   m_pfileinfo = canew(file_info());
 
    return m_pfileinfo;
 
@@ -146,16 +146,7 @@ void thread::CommonConstruct()
 
    m_dwAlive = ::get_tick_count();
 
-   if (m_pmutex == NULL)
-   {
-      m_pmutex = new mutex();
-   }
-   else
-   {
-      output_debug_string("tst");
-   }
-
-   //m_peventEvent = NULL;
+   defer_create_mutex();
 
    m_bReady = false;
    m_bRunThisThread = true;
@@ -230,7 +221,7 @@ thread::~thread()
 
    //}
 
-   ::aura::del(m_pfileinfo);
+//   ::aura::del(m_pfileinfo);
 
 }
 

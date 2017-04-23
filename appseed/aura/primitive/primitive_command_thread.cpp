@@ -5,7 +5,7 @@ command_thread::command_thread(::thread * pthread) :
    object(pthread->get_app())
 {
 
-   m_pmutex = new mutex(pthread->get_app());
+   defer_create_mutex();
 
    m_pthread = pthread;
 

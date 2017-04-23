@@ -3486,6 +3486,18 @@ namespace core
 
    }
 
+
+   bool application::_001OnAgreeExit()
+   {
+
+      document_manager().close_all_documents(true);
+
+      return true;
+
+   }
+
+
+
 } // namespace core
 
 

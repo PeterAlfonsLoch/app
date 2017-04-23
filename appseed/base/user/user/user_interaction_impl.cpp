@@ -2357,10 +2357,16 @@ namespace user
             }
             
             //if(m_pui->IsWindowVisible())
+            try
             {
 
                _001Print(pgraphics);
                
+            }
+            catch (...)
+            {
+
+
             }
 
 #if HARD_DEBUG

@@ -48,7 +48,7 @@ namespace sockets
    {
       ASSERT(pchMessage != NULL);
 
-      m_pmutex = new mutex(papp);
+      defer_create_mutex();
 
    }
 
@@ -87,7 +87,7 @@ namespace sockets
       m_file(handler.get_app())
    {
 
-      m_pmutex = new mutex(get_app());
+      defer_create_mutex();
 
       //#ifdef WIN32
       //      // Initialize the Winsock dll version 2.0

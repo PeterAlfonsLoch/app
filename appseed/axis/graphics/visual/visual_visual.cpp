@@ -42,7 +42,7 @@ namespace visual
       m_pimaging = NULL;
       m_pfontdepartment = NULL;
       m_pvisualapi = new ::visual::api(papp);
-      m_pmutex = new mutex(papp);
+      defer_create_mutex();
 
    }
 

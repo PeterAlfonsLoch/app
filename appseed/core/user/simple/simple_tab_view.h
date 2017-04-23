@@ -25,6 +25,7 @@ public:
    void on_layout();
 
    void _001OnCreate(signal_details * pobj);
+   void _001OnDestroy(signal_details * pobj);
 
    virtual bool GetClientRect(LPRECT lprect);
 

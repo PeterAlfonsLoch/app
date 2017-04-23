@@ -7,7 +7,7 @@ window_graphics::window_graphics(::aura::application * papp) :
 
    m_cx = 0;
    m_cy = 0;
-   m_pmutex = new mutex(get_app());
+   defer_create_mutex();
 
 }
 

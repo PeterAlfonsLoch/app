@@ -12,7 +12,7 @@ image_list::image_list(::aura::application * papp) :
    m_spdibWork2(allocer()),
    m_spdibWork3(allocer())
 {
-   m_pmutex = new mutex(papp);
+   defer_create_mutex();
    m_iSize = 0;
    m_iGrow = 1;
    m_size.cx = 0;
@@ -28,7 +28,7 @@ image_list::image_list(const image_list & imagelist):
    m_spdibWork2(imagelist.allocer()),
    m_spdibWork3(imagelist.allocer())
 {
-   m_pmutex = new mutex(imagelist.get_app());
+   defer_create_mutex();
    m_iSize = 0;
    m_iGrow = 1;
    m_size.cx = 0;

@@ -217,8 +217,19 @@ bool get_thread_run()
       return true;
       
    }
+   
+   try
+   {
 
-   return t_pthread->get_run_thread();
+      return t_pthread->get_run_thread();
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return false;
 
 }
 

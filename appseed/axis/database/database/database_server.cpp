@@ -9,7 +9,7 @@ namespace database
       object(papp)
    {
 
-      m_pmutex = new mutex(papp);
+      defer_create_mutex();
 
    }
 
@@ -35,7 +35,7 @@ namespace database
 
 #if MEMDLEAK
 
-      file->get_memory()->m_strTag = "memory://member=database::server::data_server_load";
+      file.get_memory()->m_strTag = "memory://member=database::server::data_server_load";
 
 #endif
 
@@ -122,7 +122,7 @@ namespace database
 
 #if MEMDLEAK
 
-      file->get_memory()->m_strTag = "memory://member=database::server::data_server_save(1)";
+      file.get_memory()->m_strTag = "memory://member=database::server::data_server_save(1)";
 
 #endif
 

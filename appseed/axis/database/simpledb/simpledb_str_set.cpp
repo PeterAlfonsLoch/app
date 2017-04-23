@@ -79,7 +79,7 @@ public:
       m_pstmtSelect = NULL;
       m_pstmtUpdate = NULL;
       m_ptopthis = this;
-      m_pmutex = new mutex(pserver->get_app());
+      defer_create_mutex();
 
    }
 
@@ -270,7 +270,7 @@ db_str_set::db_str_set(db_server * pserver) :
    ::object(pserver->get_app())
 {
 
-   m_pmutex = new mutex(pserver->get_app());
+   defer_create_mutex();
    m_pcore = canew(db_str_set_core(pserver));
 
 }

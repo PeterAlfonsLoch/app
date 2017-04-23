@@ -16,7 +16,7 @@ bool is_safe_set(void * p);
 base_factory::base_factory(::aura::application * papp) :
    object(papp)
 {
-   m_pmutex = new mutex(papp);
+   defer_create_mutex();
    m_bSimpleFactoryRequest = false;
 }
 

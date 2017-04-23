@@ -6442,6 +6442,8 @@ namespace aura
 
    void application::_001OnFranceExit()
    {
+      
+      post_quit();
 
    }
 

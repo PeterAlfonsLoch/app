@@ -2229,7 +2229,7 @@ namespace axis
          if (m_paurasystem->m_phtml != NULL)
          {
 
-            delete m_paurasystem->m_phtml;
+            ::aura::del(m_paurasystem->m_phtml);
 
             m_paurasystem->m_phtml = NULL;
 

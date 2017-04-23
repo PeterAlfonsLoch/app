@@ -71,7 +71,8 @@ public:
 
    static mutex *                         s_pmutexDependencies;
    
-   class CLASS_DECL_AURA file_info
+   class CLASS_DECL_AURA file_info :
+      virtual public object
    {
    public:
 
@@ -111,7 +112,7 @@ public:
 
    //manual_reset_event *                   m_peventEvent;
 
-   file_info *                            m_pfileinfo;
+   sp(file_info) m_pfileinfo;
 
 
    #ifndef WINDOWSEX

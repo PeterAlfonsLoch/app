@@ -43,7 +43,7 @@ namespace sockets
       , m_next_trigger_id(0)
       , m_slave(false)
    {
-      m_pmutex = new mutex(papp);
+      defer_create_mutex();
       ZERO(m_socks4_host);
       //m_prfds = new fd_set;
       //m_pwfds = new fd_set;

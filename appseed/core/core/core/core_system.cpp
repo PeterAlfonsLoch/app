@@ -522,7 +522,7 @@ OutputDebugString("gtk_main exited");
    ::aura::session * system::on_create_session()
    {
 
-      return new ::core::session(this);
+      return canew(::core::session(this));
 
    }
 

@@ -1,1 +1,1 @@
-#define MEMDLEAK 0
+#define MEMDLEAK 1

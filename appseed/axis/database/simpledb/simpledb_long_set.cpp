@@ -70,7 +70,7 @@ public:
    {
 
       m_ptopthis = this;
-      m_pmutex = new mutex(pserver->get_app());
+      defer_create_mutex();
 
    }
 

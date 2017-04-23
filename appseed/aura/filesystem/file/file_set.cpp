@@ -11,7 +11,7 @@ namespace file
       ::object(papp)
    {
 
-      m_pmutex = new mutex(papp);
+      defer_create_mutex();
 
    }
 

@@ -356,7 +356,7 @@ void window_gdi::update_window(::draw2d::dib * pdib)
 
    synch_lock sl(m_pmutex);
 
-   if (pdib->area() <= 0)
+   if (pdib == NULL || pdib->area() <= 0)
    {
 
       return;

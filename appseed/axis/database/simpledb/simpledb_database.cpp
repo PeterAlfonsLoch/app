@@ -9,7 +9,7 @@ namespace simpledb
       ::object(papp)
    {
       
-      m_pmutex = new mutex(papp);
+      defer_create_mutex();
 
       m_protocol = 0;
 

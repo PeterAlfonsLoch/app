@@ -507,7 +507,7 @@ namespace aura
       if(m_pmachineeventcentral == NULL)
       {
 #ifndef APPLE_IOS
-         m_pmachineeventcentral = new ::machine_event_central(this);
+         m_pmachineeventcentral = canew(::machine_event_central(this));
          if(!m_pmachineeventcentral->initialize())
             return false;
          if(m_pmachineeventcentral->is_close_application())

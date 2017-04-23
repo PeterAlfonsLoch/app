@@ -536,6 +536,8 @@ namespace core
 
       virtual void remove_document_template(::user::impact_system * pimpactsystem);
 
+      virtual bool _001OnAgreeExit();
+
    };
 
 

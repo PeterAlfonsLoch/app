@@ -2403,7 +2403,16 @@ namespace windows
                         sl.unlock();
                         _001UpdateWindow();
 
-                        m_pui->on_after_graphical_update();
+                        try
+                        {
+
+                           m_pui->on_after_graphical_update();
+
+                        }
+                        catch (...)
+                        {
+
+                        }
 
                      }
                      else if (m_pui->check_need_translation()
