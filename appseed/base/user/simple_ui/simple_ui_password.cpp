@@ -220,7 +220,7 @@ namespace simple_ui
          strsize i3 = iCursor - lim;
          strsize iStart = MAX(0,i1);
          strsize iEnd = MIN(i2,strLine.get_length());
-         str_fill(strLine,'*');
+         ::str::fill(strLine,'*');
          str1 = strLine.Mid(0,iStart);
          str2 = strLine.Mid(iStart,iEnd - iStart);
          str3 = strLine.Mid(iEnd);
@@ -230,9 +230,9 @@ namespace simple_ui
          strExtent1.replace("\t","   ");
          strExtent2.replace("\t","   ");
          strExtent3.replace("\t","   ");
-            str_fill(strExtent1,'*');
-            str_fill(strExtent2,'*');
-            str_fill(strExtent3,'*');
+         ::str::fill(strExtent1,'*');
+         ::str::fill(strExtent2,'*');
+         ::str::fill(strExtent3,'*');
 
          brushText->create_solid(cr);
          pgraphics->SelectObject(brushText);

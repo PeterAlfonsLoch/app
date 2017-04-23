@@ -13,6 +13,8 @@ namespace user
 
       ::draw2d::pen_sp              m_penCaret;
       ::draw2d::brush_sp            m_brushText;
+      ::draw2d::brush_sp            m_brushTextCr;
+      ::draw2d::brush_sp            m_brushTextSel;
 
    };
 
@@ -303,6 +305,8 @@ namespace user
 
       ::draw2d::brush_sp & brushTextCr = m_pinternal->m_brushTextCr;
 
+      ::draw2d::brush_sp & brushTextSel = m_pinternal->m_brushTextSel;
+
       if (penCaret.is_null())
       {
 
@@ -316,6 +320,9 @@ namespace user
 
          brushTextCr->create_solid(cr);
 
+         brushTextSel.alloc(allocer());
+
+         brushTextSel->create_solid(crSel);
 
       }
 
@@ -420,12 +427,12 @@ namespace user
                if (pregion->styled()->bfore)
                {
                   brushText->create_solid(pregion->styled()->fore);
+                  pgraphics->SelectObject(brushText);
                }
                else
                {
-                  brushText->create_solid(cr);
+                  pgraphics->SelectObject(brushTextCr);
                }
-               pgraphics->SelectObject(brushText);
                pgraphics->TextOut(left + x1, y, strExtent2);
 
             }
@@ -491,25 +498,25 @@ namespace user
             double x2 = get_line_extent(iLine, iEnd1);
             if (m_bPassword)
             {
-               str_fill(strLineGraphics, '*');
+               strLineGraphics = ::str::block('*', strLineGraphics.get_length());
             }
+
             if (iEnd > iStart)
             {
                pgraphics->FillSolidRect((double)(left + x1), (double)y, (double)MIN(x2-x1, rectClient.right - (left + x1)), (double)MIN(m_iLineHeight, rectClient.bottom - y), crBkSel);
-               brushText->create_solid(crSel);
-               pgraphics->SelectObject(brushText);
+               pgraphics->SelectObject(brushTextSel);
             }
 
 
             if (bOverride)
             {
                brushText->create_solid(crOverride);
+               pgraphics->SelectObject(brushText);
             }
             else
             {
-               brushText->create_solid(cr);
+               pgraphics->SelectObject(brushTextCr);
             }
-            pgraphics->SelectObject(brushText);
             pgraphics->TextOut(left, y, strLineGraphics);
 
             if (0 <= iErrorBeg && iErrorBeg <= strExtent1.length())
@@ -1666,7 +1673,7 @@ namespace user
 
          strLineGraphics = strLine;
 
-         replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+         ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
          const char * pszStart = strLine;
 
@@ -2036,7 +2043,7 @@ namespace user
 
          strLineGraphics = strLine;
 
-         replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+         ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
          const char * pszStart = strLine;
 
@@ -2607,7 +2614,7 @@ namespace user
 
          strExtent = string(psz, pszEnd - psz);
 
-         replace_tab(0, strExtent, m_iTabWidth);
+         ::str::replace_tab(0, strExtent, m_iTabWidth);
 
          int x = get_line_extent(iLine, strExtent.length());
 
@@ -4697,7 +4704,7 @@ namespace user
 
       string strLine = get_line(iLine);
 
-      replace_tab(0, strLine, m_iTabWidth, intptra);
+      ::str::replace_tab(0, strLine, m_iTabWidth, intptra);
 
       return strLine;
 
