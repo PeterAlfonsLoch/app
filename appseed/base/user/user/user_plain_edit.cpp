@@ -108,7 +108,7 @@ namespace user
    plain_edit::~plain_edit()
    {
 
-      ::aura::del(m_peditor);
+      ::aura::del(m_pcolorereditor);
 
       ::aura::del(m_plines);
 
@@ -123,7 +123,8 @@ namespace user
 
       m_pinsert = NULL;
 
-      m_peditor = new colorertake5::base_editor(get_app());
+      m_bColorerTake5 = false;
+      m_pcolorereditor = NULL;
       m_plines = new colorertake5::text_lines;
 
       m_iTabWidth = 3;
@@ -135,7 +136,6 @@ namespace user
       m_bOwnData = false;
 
       m_bMultiLine = false;
-      m_bColorerTake5 = false;
       m_bReadOnly = false;
       m_bSendEnterKey = false;
 
@@ -156,6 +156,26 @@ namespace user
 
       set_cursor(::visual::cursor_text_select);
 
+
+   }
+
+
+   colorertake5::base_editor * plain_edit::colorertake5()
+   {
+
+      if(m_bColorerTake5)
+      { 
+
+         if (m_pcolorereditor == NULL)
+         {
+
+            m_pcolorereditor = new colorertake5::base_editor(get_app());
+
+         }
+      
+      }
+      
+      return m_pcolorereditor;
 
    }
 
@@ -398,6 +418,8 @@ namespace user
 
       string strLineGraphics;
 
+      ::colorertake5::base_editor * pcolorer = colorertake5();
+
       for (index iLine = m_iLineStart; iLine < m_iLineEnd; i++, iLine++)
       {
 
@@ -407,7 +429,7 @@ namespace user
 
          colorertake5::LineRegion * pregion = NULL;
          if (m_bColorerTake5)
-            pregion = m_peditor->getLineRegions(i);
+            pregion = pcolorer->getLineRegions(i);
          if (pregion != NULL)
          {
             for (; pregion != NULL; pregion = pregion->next)
@@ -598,8 +620,10 @@ namespace user
       m_ptree->m_pfile = canew(::memory_file(get_app()));
       if (m_bColorerTake5)
       {
-         m_peditor->colorertake5::base_editor::initialize(m_plines);
-         m_peditor->colorertake5::base_editor::setRegionMapper("rgb", "default");
+
+         ::colorertake5::base_editor * pcolorer = colorertake5();
+         pcolorer->colorertake5::base_editor::initialize(m_plines);
+         pcolorer->colorertake5::base_editor::setRegionMapper("rgb", "default");
       }
 
       //  m_peditfile = new ::file::edit_file(get_app());
@@ -1644,7 +1668,14 @@ namespace user
 
       m_y = ptOffset.y;
 
-      m_peditor->visibleTextEvent(m_iLineStart, m_iLineCount);
+      ::colorertake5::base_editor * pcolorer = colorertake5();
+
+      if (pcolorer != NULL)
+      {
+
+         pcolorer->visibleTextEvent(m_iLineStart, m_iLineCount);
+
+      }
 
       stringa & straLines = m_plines->lines;
 
@@ -2000,7 +2031,14 @@ namespace user
 
       m_y = ptOffset.y;
 
-      m_peditor->visibleTextEvent(m_iLineStart, m_iLineCount);
+      ::colorertake5::base_editor * pcolorer = colorertake5();
+
+      if (pcolorer != NULL)
+      {
+
+         pcolorer->visibleTextEvent(m_iLineStart, m_iLineCount);
+
+      }
 
       stringa & straLines = m_plines->lines;
 
@@ -3993,7 +4031,14 @@ namespace user
 
          _001OnCalcLayout();
 
-         m_peditor->lineCountEvent(m_plines->lines.get_count());
+         ::colorertake5::base_editor * pcolorer = colorertake5();
+
+         if (pcolorer != NULL)
+         {
+
+            pcolorer->lineCountEvent(m_plines->lines.get_count());
+
+         }
 
       }
 
@@ -4362,6 +4407,13 @@ namespace user
    colorertake5::file_type *plain_edit::colorer_select_type()
    {
 
+      if (!m_bColorerTake5)
+      {
+
+         return NULL;
+
+      }
+
       synch_lock sl(m_pmutex);
       colorertake5::file_type *type = NULL;
       /*if (typeDescription != NULL){
@@ -4400,13 +4452,20 @@ namespace user
             type = System.parser_factory().getHRCParser()->chooseFileType(pdoc->get_file_path(), textStart, 0);
          }
       }
+
       if (type != NULL)
       {
+
          type->getBaseScheme();
-         m_peditor->setFileType(type);
+
+         colorertake5()->setFileType(type);
+
       }
+
       return type;
+
    }
+
 
    void plain_edit::_009OnChar(signal_details * pobj)
    {

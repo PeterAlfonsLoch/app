@@ -364,7 +364,7 @@ namespace process
 
 
 
-int_array module_path_get_pid(const char * pszModulePath)
+int_array module_path_get_pid(const char * pszModulePath, bool bModuleNameIsPropertyFormatted)
 {
 
    ::file::path pathModule(pszModulePath);
@@ -395,13 +395,26 @@ int_array module_path_get_pid(const char * pszModulePath)
 
       strPath = module_path_from_pid(entry.th32ProcessID);
 
-      ::output_debug_string(strPath + "\n");
+      //::output_debug_string(strPath + "\n");
 
-      if(entry.th32ProcessID != 0 && ::file::path(strPath) == pathModule)
+
+      if (bModuleNameIsPropertyFormatted)
       {
+         if (entry.th32ProcessID != 0 && strPath.CompareNoCase(pathModule) == 0)
+         {
 
-         iaPid.add(entry.th32ProcessID);
+            iaPid.add(entry.th32ProcessID);
 
+         }
+      }
+      else
+      {
+         if(entry.th32ProcessID != 0 && ::file::path(strPath) == pathModule)
+         {
+
+            iaPid.add(entry.th32ProcessID);
+
+         }
       }
 
       if(Process32Next(process_snap,&entry) && ::GetLastError() != ERROR_NO_MORE_FILES)

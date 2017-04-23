@@ -64,7 +64,7 @@ namespace user
       uint32_t                      m_dwCaretTime;
       index                         m_iLineOffset;
       //stringa                       m_straSep;
-      colorertake5::base_editor *   m_peditor;
+      colorertake5::base_editor *   m_pcolorereditor;
       colorertake5::text_lines *    m_plines;
       int32_t                       m_y;
       bool                          m_bGetTextNeedUpdate;
@@ -108,6 +108,9 @@ namespace user
 
 
       void plain_edit_common_construct();
+
+
+      virtual colorertake5::base_editor * colorertake5();
 
 
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);

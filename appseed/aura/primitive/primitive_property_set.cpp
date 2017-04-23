@@ -1463,7 +1463,7 @@ index stable_property_set::find(id id)
 
 }
 
-void stable_property_set::set_at(id id, var varValue)
+property & stable_property_set::set_at(id id, var varValue)
 {
 
    index iFind = find(id);
@@ -1471,13 +1471,19 @@ void stable_property_set::set_at(id id, var varValue)
    if (iFind < 0)
    {
 
-      m_propertya.add(property(id, varValue));
+      property & p = m_propertya.add_new();
+
+      p.m_element1 = id;
+
+      return p;
 
    }
    else
    {
 
       m_propertya[iFind].m_element2 = varValue;
+
+      return m_propertya[iFind];
 
    }
 
@@ -1510,7 +1516,7 @@ property & stable_property_set::operator [](id id)
       if (iFind < 0)
       {
 
-         iFind = m_propertya.add(property(id));
+         return set_at(id, var::type_new);
 
       }
 

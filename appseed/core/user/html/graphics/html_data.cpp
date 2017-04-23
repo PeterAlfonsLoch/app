@@ -219,8 +219,11 @@ namespace html
       m_elemental.load(this, m_ptag);
    }
 
+
    void data::implement(::draw2d::graphics * pgraphics)
    {
+
+      synch_lock sl(m_pmutex);
 
       int32_t iCount = 24;
 
@@ -278,6 +281,8 @@ namespace html
 
    void data::on_layout(::draw2d::graphics * pgraphics)
    {
+      
+      return;
 
       synch_lock sl(m_pmutex);
 

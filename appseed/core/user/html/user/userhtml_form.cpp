@@ -11,10 +11,6 @@ html_form::html_form(::aura::application * papp) :
 
    m_phtmlform = canew(html::form());
 
-   //m_phtmlform->m_sphtmldata = canew(html::data(papp));
-
-   //m_phtmlform->m_sphtmldata->m_pui = this;
-
    m_phtmlform->m_pelementalHover = NULL;
 
 }
@@ -28,9 +24,6 @@ html_form::~html_form()
 
 void html_form::_001OnDraw(::draw2d::graphics * pgraphics)
 {
-
-//   ::user::interaction::_001OnDraw(pgraphics);
-
 
    ::html::data * sphtmldata = NULL;
 

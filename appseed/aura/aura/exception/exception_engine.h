@@ -52,8 +52,6 @@ namespace exception
    public:
 
 
-      mutex                m_mutex;
-
 #ifdef WINDOWSEX
       bool                 m_bSkip;
 #if OSBIT == 32
@@ -92,7 +90,7 @@ namespace exception
 
 
       engine(::aura::application * papp);
-      ~engine();
+      virtual ~engine();
 
 
 

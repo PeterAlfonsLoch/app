@@ -3781,7 +3781,12 @@ namespace aura
             try
             {
 
-               m_pipi->ecall(m_pipi->m_strApp, { System.os().get_pid() }, "application", "on_new_instance", System.file().module(), System.os().get_pid());
+               for (index i = 0; i < 1; i++)
+               {
+
+                  m_pipi->ecall(m_pipi->m_strApp, { System.os().get_pid() }, "application", "on_new_instance", System.file().module(), System.os().get_pid());
+
+               }
 
             }
             catch (...)

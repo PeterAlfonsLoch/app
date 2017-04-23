@@ -42,7 +42,7 @@ CLASS_DECL_AURA string process_version_dir_name();
 
 
 CLASS_DECL_AURA string module_path_from_pid(uint32_t pid);
-CLASS_DECL_AURA int_array module_path_get_pid(const char * pszModuleName);
+CLASS_DECL_AURA int_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
 
 
 #ifndef WINDOWS

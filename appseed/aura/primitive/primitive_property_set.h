@@ -647,7 +647,7 @@ public:
 
    index find(id id);
 
-   void set_at(id id, var varValue);
+   property & set_at(id id, var varValue);
 
    property & operator [](id id);
 

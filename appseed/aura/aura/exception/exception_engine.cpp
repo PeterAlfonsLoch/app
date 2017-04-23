@@ -323,6 +323,9 @@ namespace exception
       ,m_iRef(0)
 #endif
    {
+
+      defer_create_mutex();
+
 #ifdef WINDOWSEX
       m_iHa = 0;
       m_iMa = 0;
@@ -484,7 +487,7 @@ namespace exception
       void engine::backtrace(DWORD64 *pui, int &c)
 #endif
    {
-      synch_lock sl(&m_mutex);
+      synch_lock sl(m_pmutex);
 #if FAST_STACK_TRACE
 
       UINT32 maxframes = c;
@@ -923,7 +926,7 @@ namespace exception
       //}
 
 
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
 
       if (!m_iRef)
       {
@@ -990,7 +993,7 @@ namespace exception
    void engine::clear()
    {
 
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
 
       if (m_iRef ==  0) return;
       if (m_iRef == -1) return;
@@ -1013,7 +1016,7 @@ namespace exception
       //   return;
       //}
 
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
 
 #ifdef WINDOWSEX
       clear();
@@ -1175,7 +1178,7 @@ namespace exception
 
 
 
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
       *_strS = '\0';
 
 #ifdef WINDOWSEX
@@ -1380,7 +1383,7 @@ namespace exception
    char * engine::stack_trace(DWORD64 * pui, int c, const char * pszFormat)
 #endif
    {
-      synch_lock sl(&m_mutex);
+      synch_lock sl(m_pmutex);
       *_strS = '\0';
 
       memcpy(m_uia, pui, MIN(c*sizeof(*pui), sizeof(m_uia)));
