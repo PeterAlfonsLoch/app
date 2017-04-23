@@ -3980,6 +3980,97 @@ end:
 
    }
 
+   CLASS_DECL_AURA void replace_tab(strsize iOffset, string & strParam, int iWidth, array < strsize * > intptra, strsize_array * piaTab)
+   {
+
+      const char * psz = strParam;
+
+      string str;
+
+      string strTab;
+
+      while (*psz)
+      {
+
+         string strChar = ::str::get_utf8_char(psz);
+
+         if (strChar.is_empty())
+         {
+
+            break;
+
+         }
+         else if (strChar == "\t")
+         {
+
+            strTab = string(iWidth - (iOffset % iWidth), ' ');
+
+            for (auto pi : intptra)
+            {
+
+               if (*pi > iOffset)
+               {
+
+                  (*pi) += strTab.get_length() - 1;
+
+               }
+
+            }
+
+            str += strTab;
+
+            iOffset += strTab.get_length();
+
+            if (piaTab != NULL)
+            {
+
+               piaTab->add(strTab.get_length());
+
+            }
+
+         }
+         else
+         {
+
+            str += strChar;
+
+            iOffset++;
+
+         }
+
+         psz += strChar.get_length();
+
+      }
+
+      strParam = str;
+
+   }
+
+   CLASS_DECL_AURA void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array * piaTab)
+   {
+
+      return replace_tab(iOffset, strParam, iWidth, array < strsize * >(), piaTab);
+
+   }
+
+   CLASS_DECL_AURA string block(char ch, int32_t iSize)
+   {
+      string str;
+      for (int32_t i = 0; i < iSize; i++)
+      {
+         str += ch;
+      }
+      return str;
+   }
+
+
+   CLASS_DECL_AURA void fill(string & str, char ch)
+   {
+      str = str_block(ch, (int32_t)str.get_length());
+   }
+
+
+
 } // namespace str
 
 

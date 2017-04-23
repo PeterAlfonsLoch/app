@@ -16,6 +16,8 @@ namespace user
 {
 
 
+   class plain_edit_internal;
+
    class CLASS_DECL_BASE plain_edit :
       virtual public control,
       virtual public ::data::listener
@@ -38,11 +40,11 @@ namespace user
       ::message::key                m_keymessageLast;
       //size                          m_sizeTotal;
 
+      plain_edit_internal *         m_pinternal;
       bool                          m_bNeedCalcLayout;
       bool                          m_bCalcLayoutHintNoTextChange;
 
       int                           m_iTabWidth;
-
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
       index                         m_iLineStart;

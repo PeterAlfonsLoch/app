@@ -26,7 +26,6 @@ namespace html
             m_pedit = canew(::user::plain_edit(pdata->get_app()));
          }
 
-         m_pedit->m_ulFlags &= ~::object::flag_auto_delete;
          m_pedit->m_bMultiLine      = false;
 
       }
@@ -51,17 +50,6 @@ namespace html
 
          }
 
-         try
-         {
-
-            m_pedit.release();
-
-         }
-         catch(...)
-         {
-
-         }
-
       }
 
 
@@ -73,7 +61,7 @@ namespace html
          elemental::implement_phase1(pdata, pelemental);
          if(!m_pedit->IsWindow())
          {
-            m_pedit->create_window(null_rect(),pdata->m_pui,100);
+            m_pedit->create_window(null_rect(),pdata->m_pui,2000 + pdata->m_uiptra.get_count());
             pdata->on_create_interaction(m_pedit);
             m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_value_ci("password") == 0;
             m_pedit->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");

@@ -3362,6 +3362,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\str\str_str.h" />
     <ClInclude Include="primitive\str\str_str1.h" />
     <ClInclude Include="primitive\str\str_str2.h" />
+    <ClInclude Include="primitive\str\str_str3.h" />
     <ClInclude Include="primitive\str\str_string.h" />
     <ClInclude Include="primitive\str\str_stringtow.h" />
     <ClInclude Include="primitive\str\str_tokenizer.h" />

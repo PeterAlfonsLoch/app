@@ -282,8 +282,6 @@ namespace html
    void data::on_layout(::draw2d::graphics * pgraphics)
    {
       
-      return;
-
       synch_lock sl(m_pmutex);
 
       int32_t iCount = 24;

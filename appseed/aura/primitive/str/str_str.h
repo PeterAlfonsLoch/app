@@ -159,6 +159,10 @@ namespace str
    CLASS_DECL_AURA  const char *   utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc);
 
 
+   CLASS_DECL_AURA string block(char ch, int32_t iSize);
+   CLASS_DECL_AURA void fill(string & str, char ch);
+
+
    CLASS_DECL_AURA  const char *   utf8_dec(const char * pszBeg, const char * psz);
    CLASS_DECL_AURA  string         get_utf8_char(const char *psz);
    CLASS_DECL_AURA  int            get_utf8_char_length(const char *psz);

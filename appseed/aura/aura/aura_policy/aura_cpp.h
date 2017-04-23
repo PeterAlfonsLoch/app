@@ -1800,6 +1800,7 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/aura/compress/compress.h"
 
 
+#include "aura/primitive/str/str_str3.h"
 
 
 namespace user

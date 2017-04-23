@@ -2,87 +2,21 @@
 //#include "base/user/user.h"
 //#include "aura/user/colorertake5/colorertake5.h"
 
-CLASS_DECL_BASE void replace_tab(strsize iOffset, string & strParam, int iWidth, array < strsize * > intptra = array < strsize * >(), strsize_array * piaTab = NULL)
-{
-
-   const char * psz = strParam;
-
-   string str;
-
-   string strTab;
-
-   while (*psz)
-   {
-
-      string strChar = ::str::get_utf8_char(psz);
-
-      if (strChar.is_empty())
-      {
-
-         break;
-
-      }
-      else if (strChar == "\t")
-      {
-
-         strTab = string(iWidth - (iOffset % iWidth), ' ');
-
-         for (auto pi : intptra)
-         {
-
-            if (*pi > iOffset)
-            {
-
-               (*pi) += strTab.get_length() - 1;
-
-            }
-
-         }
-
-         str += strTab;
-
-         iOffset += strTab.get_length();
-
-         if (piaTab != NULL)
-         {
-
-            piaTab->add(strTab.get_length());
-
-         }
-
-      }
-      else
-      {
-
-         str += strChar;
-
-         iOffset++;
-
-      }
-
-      psz += strChar.get_length();
-
-   }
-
-   strParam = str;
-
-}
-
-CLASS_DECL_BASE void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array * piaTab)
-{
-
-   return replace_tab(iOffset, strParam, iWidth, array < strsize * >(), piaTab);
-
-}
-
-//#define SEARCH_SCROLLING_PROFILING
-//#define PROFILE_CALC_LAYOUT
-CLASS_DECL_BASE void str_fill(string & str, char ch);
-
 extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
 namespace user
 {
+
+   class plain_edit_internal
+   {
+   public:
+
+      ::draw2d::pen_sp              m_penCaret;
+      ::draw2d::brush_sp            m_brushText;
+
+   };
+
+   
 
    plain_edit::plain_edit() :
       m_keymessageLast(get_app()),
@@ -112,12 +46,17 @@ namespace user
 
       ::aura::del(m_plines);
 
+      ::aura::del(m_pinternal);
+
    }
 
    void plain_edit::plain_edit_common_construct()
    {
 
       ASSERT(get_app() != NULL);
+
+
+      m_pinternal = new plain_edit_internal();
 
       m_psetsel = NULL;
 
@@ -358,11 +297,30 @@ namespace user
       strsize iSelEnd;
       strsize lim = 0;
 
-      ::draw2d::pen_sp penCaret(allocer());
+      ::draw2d::pen_sp & penCaret = m_pinternal->m_penCaret;
 
-      ::draw2d::brush_sp brushText(allocer());
+      ::draw2d::brush_sp & brushText = m_pinternal->m_brushText;
 
-      penCaret->create_solid(1.0, ARGB(255, 0, 0, 0));
+      ::draw2d::brush_sp & brushTextCr = m_pinternal->m_brushTextCr;
+
+      if (penCaret.is_null())
+      {
+
+         penCaret.alloc(allocer());
+
+         penCaret->create_solid(1.0, ARGB(255, 0, 0, 0));
+
+         brushText.alloc(allocer());
+
+         brushTextCr.alloc(allocer());
+
+         brushTextCr->create_solid(cr);
+
+
+      }
+
+      
+
 
 
       /*   rectClient.top = m_pt.y;
@@ -520,11 +478,13 @@ namespace user
             strsize iStart1 = iStart;
             strsize iEnd = MAX(0, MIN(i2, strLine.get_length()));
             strsize iEnd1 = iEnd;
-            replace_tab(0, strLineGraphics, m_iTabWidth, { &iStart, &iEnd, &i1, &i2, &i3 });
+            ::str::replace_tab(0, strLineGraphics, m_iTabWidth, { &iStart, &iEnd, &i1, &i2, &i3 });
 
             if (m_bPassword)
             {
-               str_fill(strLine, '*');
+               
+               strLine = ::str::block('*', strLine.get_length());
+
             }
 
             double x1 = get_line_extent(iLine, iStart1);
@@ -604,11 +564,26 @@ namespace user
       Session.keyboard(); // trigger keyboard creationg
 #endif
 
+      if (m_bColorerTake5)
+      {
+
+         ::colorertake5::base_editor * pcolorer = colorertake5();
+         pcolorer->colorertake5::base_editor::initialize(m_plines);
+         pcolorer->colorertake5::base_editor::setRegionMapper("rgb", "default");
+
+      }
 
       if (m_ptree == NULL)
       {
 
          set_root(canew(::user::plain_text_tree(get_app())), true);
+         m_ptree->m_pfile = canew(::memory_file(get_app()));
+         m_ptree->m_editfile.SetFile(m_ptree->m_pfile);
+         m_ptree->m_iSelStart = 0;
+         m_ptree->m_iSelEnd = 0;
+         m_bGetTextNeedUpdate = true;
+         _001OnSetText(::action::source_system);
+         _001OnUpdate(::action::source_system);
 
       }
 
@@ -617,29 +592,10 @@ namespace user
       //m_pitem          = get_base_item();
 
       pcreate->previous();
-      m_ptree->m_pfile = canew(::memory_file(get_app()));
-      if (m_bColorerTake5)
-      {
 
-         ::colorertake5::base_editor * pcolorer = colorertake5();
-         pcolorer->colorertake5::base_editor::initialize(m_plines);
-         pcolorer->colorertake5::base_editor::setRegionMapper("rgb", "default");
-      }
-
-      //  m_peditfile = new ::file::edit_file(get_app());
-
-      m_ptree->m_editfile.SetFile(m_ptree->m_pfile);
-
-      //on_update_data(update_hint_set_file);
-
-      m_bGetTextNeedUpdate = true;
 
 
       SetTimer(100, 100, NULL);
-      m_ptree->m_iSelStart = 0;
-      m_ptree->m_iSelEnd = 0;
-      _001OnSetText(::action::source_system);
-      _001OnUpdate(::action::source_system);
 
 
    }
@@ -1817,6 +1773,13 @@ namespace user
       rect rectClient;
 
       GetFocusRect(rectClient);
+
+      if (rectClient.area() <= 0)
+      {
+
+         return;
+
+      }
 
       if (m_ptree == NULL)
       {
@@ -3885,7 +3848,7 @@ namespace user
       if (iTimer == 0)
       {
 
-         if (::get_tick_count() - m_dwLastDraw > m_dwCaretTime / 2)
+         if (IsWindowVisible() && ::get_tick_count() - m_dwLastDraw > m_dwCaretTime / 2)
          {
 
             RedrawWindow();
@@ -4925,6 +4888,9 @@ namespace user
 
 
 } // namespace core
+
+
+
 
 
 

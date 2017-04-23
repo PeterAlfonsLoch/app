@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#define PREFER_MALLOC 0
+#define PREFER_MALLOC 1
 
 
 // uint32_t aligned allocation

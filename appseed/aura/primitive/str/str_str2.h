@@ -5,6 +5,8 @@ namespace str
 {
 
 
+
+
    // operations.hpp -- string operations for use with strings and character arrays
    // author: Guenter Berner
    //

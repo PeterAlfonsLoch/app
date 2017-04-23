@@ -2780,6 +2780,9 @@
     <ClInclude Include="aura\aura\simple_log.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\str\str_str3.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
