@@ -99,6 +99,13 @@ namespace user
          bool WorkSetClientInterface::Wfi(EAppearance eappearance)
          {
 
+            if (!IsWindowVisible())
+            {
+
+               return true;
+
+            }
+
             if(eappearance == AppearanceCurrent)
             {
 

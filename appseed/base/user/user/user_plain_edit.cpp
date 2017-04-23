@@ -16,6 +16,8 @@ namespace user
       ::draw2d::brush_sp            m_brushTextCr;
       ::draw2d::brush_sp            m_brushTextSel;
 
+      void update(plain_edit * pedit);
+
    };
 
    
@@ -67,6 +69,10 @@ namespace user
       m_bColorerTake5 = false;
       m_pcolorereditor = NULL;
       m_plines = new colorertake5::text_lines;
+
+      m_plines->lines.set_size(10, 100);
+
+      m_daExtent.set_size(10, 100);
 
       m_iTabWidth = 3;
       m_bTabInsertSpaces = false;
@@ -306,25 +312,6 @@ namespace user
       ::draw2d::brush_sp & brushTextCr = m_pinternal->m_brushTextCr;
 
       ::draw2d::brush_sp & brushTextSel = m_pinternal->m_brushTextSel;
-
-      if (penCaret.is_null())
-      {
-
-         penCaret.alloc(allocer());
-
-         penCaret->create_solid(1.0, ARGB(255, 0, 0, 0));
-
-         brushText.alloc(allocer());
-
-         brushTextCr.alloc(allocer());
-
-         brushTextCr->create_solid(cr);
-
-         brushTextSel.alloc(allocer());
-
-         brushTextSel->create_solid(crSel);
-
-      }
 
       
 
@@ -593,7 +580,6 @@ namespace user
          _001OnUpdate(::action::source_system);
 
       }
-
 
 
       //m_pitem          = get_base_item();
@@ -1787,6 +1773,8 @@ namespace user
          return;
 
       }
+
+      m_pinternal->update(this);
 
       if (m_ptree == NULL)
       {
@@ -4890,6 +4878,34 @@ namespace user
       }
 
       RedrawWindow();
+
+   }
+
+
+   void plain_edit_internal::update(plain_edit * pedit)
+   {
+
+      m_penCaret.release();
+
+      m_brushText.release();
+
+      m_brushTextCr.release();
+
+      m_brushTextSel.release();
+
+      m_penCaret.alloc(pedit->allocer());
+
+      m_brushText.alloc(pedit->allocer());
+
+      m_brushTextCr.alloc(pedit->allocer());
+
+      m_brushTextSel.alloc(pedit->allocer());
+
+      m_penCaret->create_solid(1.0, ARGB(255, 0, 0, 0));
+
+      m_brushTextCr->create_solid(pedit->_001GetColor(color_text));
+
+      m_brushTextSel->create_solid(pedit->_001GetColor(color_text_selected));
 
    }
 

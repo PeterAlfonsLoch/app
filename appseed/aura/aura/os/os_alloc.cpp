@@ -127,13 +127,15 @@ void os_impl_free(void * p)
 
 #endif
 
+#ifndef BOUNDS_CHECK
+#define BOUNDS_CHECK 0
+#else
 
 
+#if BOUNDS_CHECK
 
 
-
-
-void check_bounds(byte * p)
+void os_alloc_check_bounds(byte * p)
 {
 
 
@@ -167,6 +169,7 @@ void * os_alloc(size_t size)
    byte * p = (byte *)os_impl_alloc(size + 512 + sizeof(uint_ptr));
 
    memset(&p[sizeof(uint_ptr)], 0, 256);
+
    memset(&p[sizeof(uint_ptr) + 256 + size], 0, 256);
 
    uint_ptr * pui = (uint_ptr *)p;
@@ -181,16 +184,17 @@ void * os_alloc(size_t size)
 
 void * os_realloc(void * pParam, size_t size)
 {
+   
    cslock sl(g_pmutexSystemHeap);
+
    byte * p = &((byte *)pParam)[-(int_ptr)((sizeof(uint_ptr) + 256))];
 
-   check_bounds(p);
+   os_alloc_check_bounds(p);
 
    p = (byte *)os_impl_realloc(p, size + 512 + sizeof(uint_ptr));
 
-
-
    memset(&p[sizeof(uint_ptr)], 0, 256);
+
    memset(&p[sizeof(uint_ptr) + 256 + size], 0, 256);
 
    uint_ptr * pui = (uint_ptr *)p;
@@ -206,11 +210,42 @@ void os_free(void * pParam)
 {
 
    cslock sl(g_pmutexSystemHeap);
+   
    byte * p = &((byte *)pParam)[-(int_ptr)((sizeof(uint_ptr) + 256))];
-   check_bounds(p);
+   
+   os_alloc_check_bounds(p);
+
    os_impl_free(p);
 
 }
+
+#else
+
+
+void * os_alloc(size_t size)
+{
+
+   return os_impl_alloc(size);
+
+
+}
+
+void * os_realloc(void * p, size_t size)
+{
+
+   return os_impl_realloc(p, size);
+
+}
+
+void os_free(void * p)
+{
+
+   return os_impl_free(p);
+
+}
+
+
+#endif
 
 
 

@@ -3,6 +3,7 @@
 #include "windows_window_gdi.h"
 #include <stdio.h>
 
+CLASS_DECL_BASE bool g_bCreateWindowScreen = true;
 
 void window_gdi::on_create_window(::user::interaction_impl * pimpl)
 {
@@ -104,90 +105,95 @@ void window_gdi::create_window_graphics_(int64_t cxParam, int64_t cyParam, int i
 
       m_hwnd = hwnd;
 
-      if (m_hmutex != NULL)
+      if (g_bCreateWindowScreen)
       {
 
-         if (WaitForSingleObject(m_hmutex, INFINITE) == WAIT_OBJECT_0)
+         if (m_hmutex != NULL)
          {
 
-            if (m_pBuf != NULL)
+            if (WaitForSingleObject(m_hmutex, INFINITE) == WAIT_OBJECT_0)
             {
 
-               UnmapViewOfFile(m_pBuf);
+               if (m_pBuf != NULL)
+               {
 
-               m_pBuf = NULL;
+                  UnmapViewOfFile(m_pBuf);
+
+                  m_pBuf = NULL;
+
+               }
+
+               if (m_hMapFile != NULL)
+               {
+
+                  CloseHandle(m_hMapFile);
+
+                  m_hMapFile = NULL;
+
+               }
+
+               ::ReleaseMutex(m_hmutex);
 
             }
-
-            if (m_hMapFile != NULL)
-            {
-
-               CloseHandle(m_hMapFile);
-
-               m_hMapFile = NULL;
-
-            }
-
-            ::ReleaseMutex(m_hmutex);
-
-         }
-
-         ::CloseHandle(m_hmutex);
-
-      }
-
-      char szNameMutex2[2048];
-
-      sprintf(szNameMutex2, szNameMutex, (INT_PTR)hwnd);
-
-      m_hmutex = ::CreateMutex(NULL, FALSE, szNameMutex2);
-
-      if (::WaitForSingleObject(m_hmutex, INFINITE) == WAIT_OBJECT_0)
-      {
-
-         char szName2[2048];
-
-         sprintf(szName2, szName, (INT_PTR)hwnd);
-
-         m_hMapFile = CreateFileMapping(
-            INVALID_HANDLE_VALUE,    // use paging file
-            NULL,                    // default security
-            PAGE_READWRITE,          // read/write access
-            0,                       // maximum object size (high-order DWORD)
-            8192 * 4096 * 4,                // maximum object size (low-order DWORD)
-            szName2);                 // name of mapping object
-
-         if (m_hMapFile == NULL)
-         {
-
-            ::ReleaseMutex(m_hmutex);
 
             ::CloseHandle(m_hmutex);
 
          }
-         else
+
+         char szNameMutex2[2048];
+
+         sprintf(szNameMutex2, szNameMutex, (INT_PTR)hwnd);
+
+         m_hmutex = ::CreateMutex(NULL, FALSE, szNameMutex2);
+
+         if (::WaitForSingleObject(m_hmutex, INFINITE) == WAIT_OBJECT_0)
          {
 
-            m_pBuf = (LPTSTR)MapViewOfFile(m_hMapFile,   // handle to map object
-               FILE_MAP_ALL_ACCESS, // read/write permission
-               0,
-               0,
-               8192 * 4096 * 4);
+            char szName2[2048];
 
-            if (m_pBuf == NULL)
+            sprintf(szName2, szName, (INT_PTR)hwnd);
+
+            m_hMapFile = CreateFileMapping(
+               INVALID_HANDLE_VALUE,    // use paging file
+               NULL,                    // default security
+               PAGE_READWRITE,          // read/write access
+               0,                       // maximum object size (high-order DWORD)
+               8192 * 4096 * 4,                // maximum object size (low-order DWORD)
+               szName2);                 // name of mapping object
+
+            if (m_hMapFile == NULL)
             {
-
-               CloseHandle(m_hMapFile);
 
                ::ReleaseMutex(m_hmutex);
 
                ::CloseHandle(m_hmutex);
 
             }
+            else
+            {
+
+               m_pBuf = (LPTSTR)MapViewOfFile(m_hMapFile,   // handle to map object
+                  FILE_MAP_ALL_ACCESS, // read/write permission
+                  0,
+                  0,
+                  8192 * 4096 * 4);
+
+               if (m_pBuf == NULL)
+               {
+
+                  CloseHandle(m_hMapFile);
+
+                  ::ReleaseMutex(m_hmutex);
+
+                  ::CloseHandle(m_hmutex);
+
+               }
+
+            }
+
+            ReleaseMutex(m_hmutex);
 
          }
-
-         ReleaseMutex(m_hmutex);
 
       }
 

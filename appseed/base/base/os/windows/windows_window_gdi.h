@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+
 class CLASS_DECL_BASE window_gdi :
    virtual public window_buffer
 {
@@ -35,3 +37,6 @@ public:
    virtual void ipc_copy(int cx, int cy);
 
 };
+
+
+extern CLASS_DECL_BASE bool g_bCreateWindowScreen;
