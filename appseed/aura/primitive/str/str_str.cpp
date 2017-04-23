@@ -4066,7 +4066,9 @@ end:
 
    CLASS_DECL_AURA void fill(string & str, char ch)
    {
-      str = str_block(ch, (int32_t)str.get_length());
+      
+      str = block(ch, (int32_t)str.get_length());
+
    }
 
 
