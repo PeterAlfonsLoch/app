@@ -139,6 +139,8 @@ namespace user
 
       point ptOffset = get_viewport_offset();
 
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
       pgraphics->FillSolidRect(rectClient, _001GetColor(color_list_background));
 
 
