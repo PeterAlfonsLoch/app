@@ -21,7 +21,7 @@ namespace aura
 
       ipi(::aura::application * papp,const string & strApp);
 
-      void defer_add_module(const string & strModule);
+      void defer_add_module(const string & strModule, int iPid);
 
 
       template<typename T,typename... Args>

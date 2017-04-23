@@ -15,9 +15,9 @@ namespace aura
 
       m_strApp          = strApp;
 
-      defer_add_module(System.file().module());
-
       int iPid = System.os().get_pid();
+
+      defer_add_module(System.file().module(), iPid);
 
       ::file::path p;
 
@@ -27,7 +27,7 @@ namespace aura
 
 #endif
 
-      defer_add_module(p);
+      defer_add_module(p, iPid);
 
       m_rx.m_preceiver  = this;
 
@@ -527,7 +527,7 @@ namespace aura
    void ipi::on_new_instance(const string & strModule, int iPid)
    {
 
-      defer_add_module(strModule);
+      defer_add_module(strModule, iPid);
 
       Application.on_new_instance(strModule, iPid);
 
@@ -567,30 +567,50 @@ namespace aura
 
       stringa stra2;
 
+      int_array iaPid2;
+
       for(auto & str : stra)
       {
 
          if(str.has_char())
          {
 
-            stra2.add_unique_ci(str);
+            stringa a;
+
+            a.explode(":", str);
+
+            if (a.get_size() >= 2)
+            {
+
+               stra2.add_unique_ci(a[0]);
+
+               string strPath = module_path_from_pid(atoi_dup(a[1]));
+
+               if (strPath.CompareNoCase(stra2.last()) == 0)
+               {
+
+                  iaPid.add(atoi_dup(a[1]));
+
+               }
+
+            }
 
          }
 
       }
 
 
-      for(auto & str : stra2)
-      {
+      //for(auto & str : stra2)
+      //{
 
-         if(str.has_char())
-         {
+      //   if(str.has_char())
+      //   {
 
-            iaPid.add_unique(module_path_get_pid(str));
+  //          iaPid.add_unique(module_path_get_pid(str));
+//
+      //   }
 
-         }
-
-      }
+      //}
 
 #endif
 #endif
@@ -599,7 +619,7 @@ namespace aura
    }
 
 
-   void ipi::defer_add_module(const string & strModule)
+   void ipi::defer_add_module(const string & strModule, int iPid)
    {
 
       ::file::path pathModule;
@@ -627,7 +647,11 @@ namespace aura
 
       ::file::path pathThisModule = System.file().module();
 
-      m_straModule.add_unique_ci(strModule);
+      string strItem;
+      
+      strItem = strModule + "|" + ::str::from(iPid);
+
+      m_straModule.add_unique_ci(strItem);
 
       strModuleList = m_straModule.implode("\n");
 
