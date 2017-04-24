@@ -174,7 +174,7 @@
 
       class memory memIn;
 
-      memIn.allocate(1024 * 8);
+      memIn.allocate(MIN(1024 * 4, istreamGzFileCompressed.m_spfile->get_length()));
 
       uint32_t uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
 
@@ -188,7 +188,7 @@
       zstream.zfree = Z_NULL;
 
       class memory memory;
-      memory.allocate(1024 * 256);
+      memory.allocate(MIN(1024 * 32, istreamGzFileCompressed.m_spfile->get_length()));
       ASSERT(memory.get_size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format

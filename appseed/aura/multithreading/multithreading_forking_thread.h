@@ -56,7 +56,7 @@ template < typename PRED >
 ::thread * fork(::aura::application * papp, sp(object) pholdref, PRED pred)
 {
 
-   auto pforkingthread = new forking_thread < PRED >(papp, pholdref, pred);
+   auto pforkingthread = canew(forking_thread < PRED >(papp, pholdref, pred));
 
    ::thread * pthread = dynamic_cast < ::thread * > (pforkingthread);
 
@@ -73,7 +73,7 @@ template < typename PRED >
 ::thread * fork(::aura::application * papp, PRED pred)
 {
 
-   auto pforkingthread = new forking_thread < PRED >(papp, pred);
+   auto pforkingthread = canew(forking_thread < PRED >(papp, pred));
 
    ::thread * pthread = dynamic_cast < ::thread * > (pforkingthread);
 
@@ -202,7 +202,7 @@ template < typename PRED >
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
 
-      auto pforkingthread = new forking_count_thread < PRED >(papp, iOrder, iOrder + iStart, iScan, iCount, pred);
+      auto pforkingthread = canew(forking_count_thread < PRED >(papp, iOrder, iOrder + iStart, iScan, iCount, pred));
 
       ::thread * pthread = dynamic_cast <::thread *> (pforkingthread);
 

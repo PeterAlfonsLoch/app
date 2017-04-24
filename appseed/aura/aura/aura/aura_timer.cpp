@@ -517,9 +517,7 @@ bool timer::call_on_timer()
       
    }
 
-   ::thread thread(get_app());
-
-   ::set_thread(&thread);
+   ::set_thread(this);
 
    try
    {

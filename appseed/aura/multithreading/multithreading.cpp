@@ -288,7 +288,7 @@ thread* __begin_thread(::aura::application * papp,__THREADPROC pfnThreadProc,LPV
 
    ASSERT(pfnThreadProc != NULL);
 
-   thread* pThread = new thread(papp,pfnThreadProc,pParam);
+   thread* pThread = canew(thread(papp,pfnThreadProc,pParam));
 
    ASSERT_VALID(pThread);
 
