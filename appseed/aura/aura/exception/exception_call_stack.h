@@ -51,7 +51,7 @@ class CLASS_DECL_AURA call_stack :
 {
 public:
 
-   string m_strCallStack;
+   const char *      m_pszCallStack;
 
    static bool s_bDoStackTrace;
 
@@ -71,6 +71,7 @@ public:
 #endif
 
    call_stack(const ::call_stack & cs);
+   virtual ~call_stack();
 
    string get(uint32_t uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER);
 

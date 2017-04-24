@@ -150,7 +150,7 @@ namespace calculator
             catch(const numeric_parser_exception & exp)
             {
 
-               e.m_strMessage = exp.m_strMessage;
+               e.m_strMessage = exp.what();
                e.m_iStart = 0;
                e.m_iEnd = strExp.length();
 

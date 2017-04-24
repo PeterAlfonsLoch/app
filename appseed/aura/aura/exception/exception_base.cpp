@@ -15,7 +15,7 @@ namespace exception
       m_ulFlags |= flag_auto_clean;
       m_ulFlags &= ~flag_ready_for_delete;
 
-      m_strMessage += m_strCallStack;
+      cat_message(m_pszCallStack);
 
    }
 
@@ -37,13 +37,14 @@ namespace exception
       }
       m_ulFlags &= ~flag_ready_for_delete;
 
-      m_strMessage += m_strCallStack;
+      cat_message(m_pszCallStack);
+
    }
 
    base::~base()
    {
 
-      debug_print(m_strException);
+      //debug_print(m_pszException);
 
       defer_dump_back_trace();
 
@@ -160,7 +161,7 @@ namespace exception
 
 #else
 
-      debug_print(m_strCallStack);
+      debug_print(m_pszCallStack);
 
 #endif
 

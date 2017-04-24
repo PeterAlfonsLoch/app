@@ -202,7 +202,29 @@ namespace base
    }
 
 
+   int32_t session::exit_application()
+   {
 
+      ::base::application::exit_application();
+
+      ::axis::session::exit_application();
+
+      try
+      {
+
+         m_puser->finalize();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      ::release(m_puser);
+
+      return m_iReturnCode;
+
+   }
 
 
    index session::get_ui_wkspace(::user::interaction * pui)
@@ -644,25 +666,29 @@ namespace base
       for (string strLibrary : straLibrary)
       {
 
-         ::aura::library library(get_app(), 0, NULL);
+         ::aura::library * plibrary = new ::aura::library(get_app(), 0, NULL);
 
          strLibrary.replace("-", "_");
 
          strLibrary.replace("/", "_");
 
-         if (!library.open(strLibrary, false))
+         if (!plibrary->open(strLibrary, false))
          {
 
             thisinfo << "Failed to load " << strLibrary;
+
+            ::aura::del(plibrary);
 
             continue;
 
          }
 
-         if (!library.open_ca2_library())
+         if (!plibrary->open_ca2_library())
          {
 
             thisinfo << "Failed to load (2) " << strLibrary;
+
+            ::aura::del(plibrary);
 
             continue;
 
@@ -670,13 +696,15 @@ namespace base
 
          stringa stra;
 
-         library.get_app_list(stra);
+         plibrary->get_app_list(stra);
 
          if (stra.get_size() != 1)
          {
 
             // a wndfrm OSLibrary should have one wndfrm
             thisinfo << "a wndfrm OSLibrary should have one wndfrm " << strLibrary;
+
+            ::aura::del(plibrary);
 
             continue;
 
@@ -690,20 +718,26 @@ namespace base
             // trivial validity check
             thisinfo << "app id should not be empty " << strLibrary;
 
+            ::aura::del(plibrary);
+
             continue;
 
          }
 
-         pschema = library.create_object(get_app(), "user_schema", NULL);
+         pschema = plibrary->create_object(get_app(), "user_schema", NULL);
 
          if (pschema.is_null())
          {
 
             thisinfo << "could not create user_schema from " << strLibrary;
 
+            ::aura::del(plibrary);
+
             continue;
 
          }
+
+         pschema->m_plibrary = plibrary;
 
          break;
 

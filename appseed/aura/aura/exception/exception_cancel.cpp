@@ -31,7 +31,7 @@ object(papp),
 
    }
 
-   m_strMessage = pszMessage;
+   cat_message(pszMessage);
 
 }
 

@@ -15,11 +15,11 @@ namespace aura
       object(papp)
    {
 
-      m_bAutoClose = true;
-
       m_plibrary = NULL;
 
       m_pca2library = NULL;
+
+      m_bAutoUnload = false;
 
    }
 
@@ -28,7 +28,7 @@ namespace aura
       object(papp)
    {
 
-      m_bAutoClose = true;
+      m_bAutoUnload = false;
 
       m_plibrary = NULL;
 
@@ -47,25 +47,7 @@ namespace aura
    library::~library()
    {
 
-      if (m_bAutoClose)
-      {
-
-         close();
-
-      }
-      //else
-      //{
-
-      //   if (m_pca2library != NULL)
-      //   {
-
-      //      m_pca2library->m_bAutoClose = false;
-
-      //      ::aura::del(m_pca2library);
-
-      //   }
-
-      //}
+      close();
 
    }
 
@@ -74,8 +56,6 @@ namespace aura
    {
 
       m_strMessage.Empty();
-
-      m_bAutoClose = bAutoClose;
 
 #if defined(CUBE)
 
@@ -135,7 +115,7 @@ namespace aura
       if(m_pca2library != NULL)
          return true;
 
-      System.eengine().reset();
+      ::exception::engine().reset();
 
       PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
 
@@ -280,7 +260,7 @@ void * library::get_os_data()
 
          }
 
-         //if (m_bAutoClose)
+         if (m_bAutoUnload)
          {
 
             try
@@ -289,24 +269,9 @@ void * library::get_os_data()
                if (m_plibrary != NULL)
                {
 
-                  //::__node_library_close(m_plibrary);
-                  //::__node_library_close(m_plibrary);
-                  //::__node_library_close(m_plibrary);
-                  //::__node_library_close(m_plibrary);
-                  //::__node_library_close(m_plibrary);
-                  //::__node_library_close(m_plibrary);
                   bOk = ::__node_library_close(m_plibrary);
-                  {
 
-                     m_plibrary = NULL;
-
-                  }
-                  //else
-                  //{
-
-                  //   bOk = false;
-
-                  //}
+                  m_plibrary = NULL;
 
                }
 

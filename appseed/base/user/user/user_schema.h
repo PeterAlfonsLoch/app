@@ -69,6 +69,7 @@ namespace user
 
       
       ::user::schema *        m_puserschemaSchema;
+      ::aura::library *       m_plibrary;
 
       schema();
       virtual ~schema();

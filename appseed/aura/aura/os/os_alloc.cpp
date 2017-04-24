@@ -1,8 +1,8 @@
 #include "framework.h"
 
-
+#ifndef PREFER_MALLOC
 #define PREFER_MALLOC 0
-
+#endif
 
 // uint32_t aligned allocation
 
@@ -101,7 +101,7 @@ void check_bounds(byte * p)
 
 }
 
-void * os_alloc(size_t size)
+void * os_impl_alloc(size_t size)
 {
 
    return malloc(size);

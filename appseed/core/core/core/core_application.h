@@ -417,7 +417,7 @@ namespace core
 
 
 
-      virtual ::aura::application * create_platform(::aura::session * psession) override;
+      virtual sp(::aura::application) create_platform(::aura::session * psession) override;
 
 
 

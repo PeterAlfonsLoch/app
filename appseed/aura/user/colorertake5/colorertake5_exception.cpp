@@ -12,7 +12,7 @@ namespace colorertake5
       ::exception::base(e.get_app())
    {
 
-      m_strMessage = e.m_strMessage;
+      cat_message(e.m_pszMessage);
 
    }
 
@@ -25,7 +25,7 @@ namespace colorertake5
 
       debug_print(":colorertake5");
 
-      m_strMessage = "colorertake5::exception";
+      cat_message("colorertake5::exception");
 
    }
 
@@ -38,9 +38,9 @@ namespace colorertake5
 
       debug_print(":colorertake5(%s)",msg.c_str());
 
-      m_strMessage = "colorertake5::exception: ";
+      cat_message("colorertake5::exception: ");
 
-      m_strMessage += msg;
+      cat_message(msg);
 
    }
 

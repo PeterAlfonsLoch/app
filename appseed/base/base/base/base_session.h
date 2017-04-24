@@ -35,11 +35,13 @@ namespace base
 
       virtual void frame_pre_translate_message(signal_details * pobj) override;
 
-      bool process_initialize() override;
+      virtual bool process_initialize() override;
 
-      bool initialize1() override;
+      virtual bool initialize1() override;
 
-      bool initialize() override;
+      virtual bool initialize() override;
+
+      virtual int32_t exit_application() override;
 
       virtual string fontopus_get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive, ::user::interactive * pinteractive = NULL) override;
 

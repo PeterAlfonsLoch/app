@@ -4,6 +4,9 @@
 ////#include "ca/x/x_charcategory_names.h"
 ////#include "ca/x/x_charcategory.h"
 
+CLASS_DECL_AURA const char * yoshi_strcat(const char * psz1, const char * psz2, bool bFree2 = false);
+
+
 void strcat_dup(char * dest, const char * cat)
 {
    if(dest == NULL)
@@ -1351,7 +1354,7 @@ strsize utf32_to_utf8(char * psz,const unichar32 * pwsz, strsize srclen)
    //unsigned short * pwsz = (unsigned short *)pwszParam;
    strsize c = 0;
    int32_t n;
-   while(srclen != 0 && *pwsz != L'\0')
+   while(srclen > 0 && *pwsz != L'\0')
    {
       n = uni_to_utf8(psz,*pwsz);
       if(n <= 0)
@@ -1366,22 +1369,24 @@ strsize utf32_to_utf8(char * psz,const unichar32 * pwsz, strsize srclen)
    return c;
 }
 
-string utf32_to_utf8(const unichar32 *input, strsize input_size)
+
+string utf32_to_utf8(const unichar32 * pwszUni32, strsize iUni32Len)
 {
 
-   strsize s = utf32_to_utf8_len(input, input_size);
+   strsize iUtf8Len = utf32_to_utf8_len(pwszUni32, iUni32Len);
 
    string str;
 
-   char * p = str.GetBufferSetLength(s);
+   char * psz = str.GetBufferSetLength(iUtf8Len);
 
-   utf32_to_utf8(p, input, s);
+   utf32_to_utf8(psz, pwszUni32, iUni32Len);
 
-   p[s] = 0;
+   str.ReleaseBuffer(iUtf8Len);
 
    return str;
 
 }
+
 
 strsize utf8_to_utf32_len(const char * psz, strsize srclen)
 {
@@ -1763,6 +1768,19 @@ extern "C"
 
 
 
+   CLASS_DECL_AURA const char * strcat_and_dup(const char * psz1, const char * psz2)
+   {
+
+      return yoshi_strcat(psz1, psz2, false);
+
+   }
+   
+   CLASS_DECL_AURA const char * strcat_and_dup2(const char * psz1, const char * psz2)
+   {
+
+      return yoshi_strcat(psz1, psz2, true);
+
+   }
 
 
 
@@ -1771,3 +1789,43 @@ extern "C"
 
 
 
+
+CLASS_DECL_AURA const char * yoshi_strcat(const char * psz1, const char * psz2, bool bFree2)
+{
+
+   strsize iLen1 = psz1 == NULL ? 0 : strlen(psz1);
+
+   strsize iLen2 = psz2 == NULL ? 0 : strlen(psz2);
+
+   strsize iLen = iLen1 + iLen2 + 1;
+
+   char * psz = (char *)malloc(iLen);
+
+   strcpy(psz, "");
+
+   if (psz1 != NULL)
+   {
+
+      strcat(psz, psz1);
+
+      free((void*)psz1);
+
+   }
+
+   if (psz2 != NULL)
+   {
+
+      strcat(psz, psz2);
+
+      if (bFree2)
+      {
+
+         free((void*)psz2);
+
+      }
+
+   }
+
+   return psz;
+
+}

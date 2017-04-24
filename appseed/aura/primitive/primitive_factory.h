@@ -343,7 +343,7 @@ public:
    inline bool is_set(::id id) {  return m_mapItem[id].is_set(); }
 
 
-   void discard(sp(object) pobject);
+   void discard(object * pobject);
 
    void enable_simple_factory_request(bool bEnable = true);
 

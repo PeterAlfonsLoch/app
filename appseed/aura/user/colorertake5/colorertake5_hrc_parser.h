@@ -29,7 +29,7 @@ namespace colorertake5
          ::exception::base(papp),
          ::colorertake5::exception(papp)
       {
-         m_strMessage += "colorertake5::HRCParserException: " + msg;
+         m_pszMessage = strcat_and_dup(strcat_and_dup(m_pszMessage, "colorertake5::HRCParserException: "), msg);
       }
 
 

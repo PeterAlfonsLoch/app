@@ -36,7 +36,7 @@ base_factory::~base_factory()
 
 
 
-void base_factory::discard(sp(object) pobject)
+void base_factory::discard(object * pobject)
 {
    single_lock sl(m_pmutex, TRUE);
    sp(factory_allocator) & pallocator = m_mapAllocator[typeid(*pobject).name()];

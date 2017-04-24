@@ -619,10 +619,6 @@ namespace install
             if (!bUnloadIfNotInstalled)
             {
 
-               libraryCa2.m_bAutoClose = false;
-
-               //    libraryOs.m_bAutoClose = false;
-
                return;
 
             }

@@ -194,6 +194,8 @@ namespace exception
 
    };
 
+   CLASS_DECL_AURA ::exception::engine & engine();
+
 
 } // namespace exception
 

@@ -55,7 +55,6 @@ namespace aura
       sp(geometry::geometry)                       m_pgeometry;
 
       sp(::aura::str)                              m_puserstr;
-      ::exception::engine *                        m_peengine;
 
 
       static class id                              idEmpty;
@@ -168,7 +167,7 @@ namespace aura
 
       class ::aura::os                             &  os();
       class base_factory                           &  factory();
-      ::exception::engine                          &  eengine();
+      
 
       ::aura::str                                  & str();
       ::process::department                       &  process();
@@ -244,7 +243,7 @@ namespace aura
       }
 
 
-      virtual void discard_to_factory(sp(object) pca);
+      virtual void discard_to_factory(::object * pca);
 
 
 

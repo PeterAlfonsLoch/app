@@ -3,6 +3,8 @@
 #include <stdio.h>
 
 
+
+
 namespace exception
 {
 
@@ -17,6 +19,10 @@ namespace exception
       m_bHandled = false;
 
       m_bContinue = true;
+
+      m_pszMessage = NULL;
+
+      m_pszException = NULL;
 
    }
 
@@ -35,6 +41,11 @@ namespace exception
 
       m_bContinue = true;
 
+      m_pszMessage = NULL;
+
+      m_pszException = NULL;
+
+
    }
 
 
@@ -45,25 +56,62 @@ namespace exception
 
          if(m_bContinue)
          {
-            m_strException += "-continue";
+            cat_exception("-continue");
          }
          else
          {
-            m_strException += "-should_not_continue(fatal_exception_instance_candidate)";
+            cat_exception("-should_not_continue(fatal_exception_instance_candidate)");
          }
 
          if(m_bHandled)
          {
-            m_strException += "-explicitly_handled";
+            cat_exception("-explicitly_handled");
          }
          else
          {
-            m_strException += "-not_handled_explicitly";
+            cat_exception("-not_handled_explicitly");
          }
+
+         debug_print(m_pszException);
 
          debug_print("\n");
 
       }
+
+
+      if (m_pszException != NULL)
+      {
+
+         free((void *)m_pszException);
+
+      }
+
+      if (m_pszMessage != NULL)
+      {
+
+         free((void *)m_pszMessage);
+
+      }
+
+   }
+
+
+   const char * exception::cat_message(const char * pszMessage)
+   {
+
+      m_pszMessage = strcat_and_dup(m_pszMessage, pszMessage);
+
+      return m_pszMessage;
+
+   }
+
+
+   const char * exception::cat_exception(const char * pszException)
+   {
+
+      m_pszException = strcat_and_dup(m_pszException, pszException);
+
+      return m_pszException;
 
    }
 
@@ -85,7 +133,7 @@ namespace exception
    const char * exception::what() const throw()
    {
 
-      return m_strMessage;
+      return m_pszMessage;
 
    }
 
@@ -193,7 +241,7 @@ namespace exception
       else if (c == 1)
       {
 
-         return element_at(0)->m_strMessage;
+         return element_at(0)->m_pszMessage;
 
       }
       else
@@ -212,7 +260,7 @@ namespace exception
 
                str += ". ";
 
-               str += pe->m_strMessage;
+               str += pe->m_pszMessage;
 
                str += ";";
 

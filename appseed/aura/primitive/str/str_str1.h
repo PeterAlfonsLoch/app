@@ -26,7 +26,8 @@ CLASS_DECL_AURA int32_t str_begins_dup(const char * sz1, const char * prefix);
 CLASS_DECL_AURA int32_t str_ends_dup(const char * sz1, const char * suffix);
 CLASS_DECL_AURA int32_t str_begins_ci_dup(const char * sz1, const char * prefix);
 CLASS_DECL_AURA char * strrchr_dup(char * sz, char ch);
-
+CLASS_DECL_AURA const char * strcat_and_dup(const char * psz1, const char * psz2);
+CLASS_DECL_AURA const char * strcat_and_dup2(const char * psz1, const char * psz2); // free psz2
 
 CLASS_DECL_AURA void uitoa_dup(char * sz, uint64_t i, int32_t iBase);
 CLASS_DECL_AURA void itoa_dup(char * sz, int64_t i, int32_t iBase);

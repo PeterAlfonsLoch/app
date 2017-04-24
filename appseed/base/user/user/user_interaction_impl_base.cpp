@@ -1291,6 +1291,13 @@ namespace user
    ::user::interaction * interaction_impl_base::get_wnd() const
    {
 
+      if (m_pui == NULL)
+      {
+
+         return NULL;
+
+      }
+
       return m_pui->get_wnd();
 
    }
@@ -1298,6 +1305,13 @@ namespace user
 
    ::user::interaction * interaction_impl_base::get_wnd(UINT nCmd) const
    {
+
+      if (m_pui == NULL)
+      {
+
+         return NULL;
+
+      }
 
       return m_pui->get_wnd(nCmd);
 

@@ -57,7 +57,7 @@ namespace core
 
 
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-      ::add_ref(this);
+      //::add_ref(this);
 
       srand(::get_tick_count());
 
@@ -3448,10 +3448,10 @@ namespace core
    }
 
 
-   ::aura::application * application::create_platform(::aura::session * psession)
+   sp(::aura::application) application::create_platform(::aura::session * psession)
    {
 
-      return new ::core::session(psession);
+      return canew(::core::session(psession));
 
    }
 

@@ -5869,12 +5869,12 @@ namespace aura
    }
 
 
-   ::aura::application * application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
+   sp(::aura::application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
    {
 
       thisstart;
 
-      ::aura::application * papp;
+      sp(::aura::application) papp;
 
       string strId(pszId);
 
@@ -5996,10 +5996,10 @@ namespace aura
    }
 
 
-   ::aura::application * application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
+   sp(::aura::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
    {
 
-      ::aura::application * pbaseapp = instantiate_application(pszType, pszId, pbias);
+      sp(::aura::application) pbaseapp = instantiate_application(pszType, pszId, pbias);
 
       if (pbaseapp == NULL)
          return NULL;
@@ -6021,7 +6021,8 @@ namespace aura
 
    }
 
-   ::aura::application * application::create_platform(::aura::session * psession)
+   
+   sp(::aura::application) application::create_platform(::aura::session * psession)
    {
 
       return NULL;

@@ -15,9 +15,11 @@
 
 int g_iGlobalMemdleakEnabled;
 
-thread_int_ptr < int_ptr > t_iMemdleak;
 
-extern CLASS_DECL_AURA exception::engine * g_ee;
+
+extern class exception::engine * g_pexceptionengine;
+
+thread_int_ptr < int_ptr > t_iMemdleak;
 
 mutex * g_pmutgen = NULL;
 
@@ -59,18 +61,18 @@ void * unaligned_memory_alloc(size_t size)
 
    pblock->m_iBlockUse = 0;
 
-   if (g_ee == NULL)
+   if (g_pexceptionengine == NULL)
    {
 //      pblock->m_puiStack = NULL;
       pblock->m_iStack = 0;
       pblock->m_pszFileName = NULL;
-}
+   }
    else
    {
       //string strCallStack;
-      //g_ee->stack_trace(1);
+      //::exception::engine().stack_trace(1);
       pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
-      g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
+      ::exception::engine().backtrace(pblock->m_puiStack, pblock->m_iStack);
       pblock->m_pszFileName = NULL;
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
    }
@@ -243,7 +245,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    pblock = (memdleak_block *) ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
 
    pblock->m_iBlockUse = nBlockUse;
-   if (g_ee == NULL)
+   if (g_pexceptionengine == NULL)
    {
       pblock->m_iStack = 0;
       pblock->m_pszFileName = NULL;
@@ -252,9 +254,9 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    else
    {
       //string strCallStack;
-      //g_ee->stack_trace(1);
+      //::exception::engine().stack_trace(1);
       pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
-      g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
+      ::exception::engine().backtrace(pblock->m_puiStack, pblock->m_iStack);
       pblock->m_pszFileName = NULL;
    }
 
@@ -636,7 +638,7 @@ void memdleak_dump()
          OutputDebugString("Size : ");
          OutputDebugString(sz);
          OutputDebugString("\n");
-         OutputDebugString(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
+         OutputDebugString(::exception::engine().stack_trace(pblock->m_puiStack, pblock->m_iStack));
       }
       pblock = pblock->m_pnext;
    }

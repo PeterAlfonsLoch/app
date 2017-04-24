@@ -101,7 +101,7 @@ namespace file
       strException.Format(":file(%s(%d),%d,%s)",lpsz, cause,lOsError,string(lpszArchiveName).c_str());
 #endif
 
-      m_strException = strException;
+      cat_exception(strException);
 
       Construct(cause, lOsError, lpszArchiveName);
    }

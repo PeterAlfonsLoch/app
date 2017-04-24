@@ -291,9 +291,18 @@ return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lp
 }
 #endif
 */
+
+class ::exception::engine * g_pexceptionengine = NULL;
+
 namespace exception
 {
 
+   CLASS_DECL_AURA class ::exception::engine & engine()
+   {
+
+      return *g_pexceptionengine;
+
+   }
 
    typedef int_bool (__stdcall *PReadProcessMemoryRoutine)(
       HANDLE      hProcess,

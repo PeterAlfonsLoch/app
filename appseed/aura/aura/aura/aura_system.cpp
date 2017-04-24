@@ -122,7 +122,7 @@ namespace aura
 
 
 
-      m_peengine = NULL;
+//      m_peengine = NULL;
 
 
       m_pmachineeventcentral = NULL;
@@ -404,12 +404,12 @@ namespace aura
    }
 
 
-   ::exception::engine & system::eengine()
-   {
+   //::exception::engine & system::eengine()
+   //{
 
-      return *m_peengine;
+   //   return *m_peengine;
 
-   }
+   //}
 
    ::datetime::department & system::datetime()
    {
@@ -430,7 +430,7 @@ namespace aura
    bool system::process_initialize()
    {
 
-      m_peengine = new ::exception::engine(this);
+      //m_peengine = new ::exception::engine(this);
 
       m_pfactory->cloneable_large < ::create >();
       m_pfactory->cloneable_large < application_bias >();
@@ -706,6 +706,8 @@ namespace aura
 
       m_serviceptra.remove_all();
 
+      multithreading::post_quit_and_wait(m_paurasession, seconds(60));
+
 //      m_basesessionptra.remove_all();
 
       m_spfile.release();
@@ -796,14 +798,14 @@ namespace aura
 
 
 
-      if(m_peengine != NULL)
-      {
+      //if(m_peengine != NULL)
+      //{
 
-         delete m_peengine;
+      //   delete m_peengine;
 
-         m_peengine = NULL;
+      //   m_peengine = NULL;
 
-      }
+      //}
 
 
       return iRet;
@@ -828,7 +830,7 @@ namespace aura
 
 
 
-   void system::discard_to_factory(sp(object) pca)
+   void system::discard_to_factory(object * pca)
    {
 
       if(m_pfactory == NULL)

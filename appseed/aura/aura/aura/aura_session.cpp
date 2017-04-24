@@ -296,6 +296,20 @@ namespace aura
          bOk = false;
       }
 
+
+      for (auto i : m_mapLibrary)
+      {
+
+         for (auto j : i.m_element2)
+         {
+
+            ::aura::del(j.m_element2);
+
+
+         }
+
+      }
+
       return bOk;
 
    }
@@ -758,7 +772,7 @@ namespace aura
    }
 
 
-   ::aura::application * session::get_new_app(::aura::application * pappNewApplicationParent,const char * pszType,const char * pszAppId)
+   sp(::aura::application) session::get_new_app(::aura::application * pappNewApplicationParent,const char * pszType,const char * pszAppId)
    {
 
 
@@ -821,56 +835,66 @@ namespace aura
 #endif
 
 
-      ::aura::library library(pappNewApplicationParent,0,NULL);
+      ::aura::library * & plibrary = m_mapLibrary[pappNewApplicationParent][pszAppId];
 
-      string strLibrary = pszAppId;
-
-      strLibrary.replace("/","_");
-
-      strLibrary.replace("-","_");
-
-      ::output_debug_string("\n\n::aura::session::get_new_app assembled library path " + strLibrary + "\n\n");
-
-      if(!library.open(strLibrary,false))
+      if (plibrary == NULL)
       {
+         
+         plibrary = new ::aura::library(pappNewApplicationParent, 0, NULL);
+
+         string strLibrary = pszAppId;
+
+         strLibrary.replace("/", "_");
+
+         strLibrary.replace("-", "_");
+
+         ::output_debug_string("\n\n::aura::session::get_new_app assembled library path " + strLibrary + "\n\n");
+
+         if (!plibrary->open(strLibrary, false))
+         {
 
 #ifndef METROWIN
 
-         ::MessageBox(NULL, "Application \"" + strApplicationId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + library.m_strMessage, "ca2", MB_ICONERROR);
+            ::MessageBox(NULL, "Application \"" + strApplicationId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 
 #endif
 
-         return NULL;
+            return NULL;
+
+         }
+
+         ::output_debug_string("\n\n::aura::session::get_new_app Found library : " + strLibrary + "\n\n");
+
+         if (!plibrary->is_opened())
+         {
+
+            ::output_debug_string("\n\n::aura::session::get_new_app Failed to load library : " + strLibrary + "\n\n");
+
+            return NULL;
+
+         }
+
+         ::output_debug_string("\n\n::aura::session::get_new_app Opened library : " + strLibrary + "\n\n");
+
+         if (!plibrary->open_ca2_library())
+         {
+
+            ::output_debug_string("\n\n::aura::session::get_new_app open_ca2_library failed(2) : " + strLibrary + "\n\n");
+
+            return NULL;
+
+         }
+
+         ::output_debug_string("\n\n\n|(5)----");
+         ::output_debug_string("| app : " + strApplicationId + "\n");
+         ::output_debug_string("|\n");
+         ::output_debug_string("|\n");
+         ::output_debug_string("|----");
 
       }
 
-      ::output_debug_string("\n\n::aura::session::get_new_app Found library : " + strLibrary + "\n\n");
+      ::aura::library & library = *plibrary;
 
-      if(!library.is_opened())
-      {
-
-         ::output_debug_string("\n\n::aura::session::get_new_app Failed to load library : " + strLibrary + "\n\n");
-
-         return NULL;
-
-      }
-
-      ::output_debug_string("\n\n::aura::session::get_new_app Opened library : " + strLibrary + "\n\n");
-
-      if(!library.open_ca2_library())
-      {
-
-         ::output_debug_string("\n\n::aura::session::get_new_app open_ca2_library failed(2) : " + strLibrary+ "\n\n");
-
-         return NULL;
-
-      }
-
-      ::output_debug_string("\n\n\n|(5)----");
-      ::output_debug_string("| app : " + strApplicationId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
 
       sp(::aura::application) papp = library.get_new_app(pszAppId);
 

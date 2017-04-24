@@ -8,6 +8,7 @@ namespace user
    schema::schema()
    {
 
+      m_plibrary = NULL;
       m_puserschemaSchema = NULL;
 
    }
@@ -15,6 +16,8 @@ namespace user
 
    schema::~schema()
    {
+      
+      ::aura::del(m_plibrary);
 
    }
 

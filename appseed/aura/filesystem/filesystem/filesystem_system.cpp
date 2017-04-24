@@ -658,7 +658,7 @@ restart:
          if (res.failed())
          {
 
-            thiswarn << res->element_at(0)->m_strMessage;
+            thiswarn << res->element_at(0)->what();
 
             return;
 

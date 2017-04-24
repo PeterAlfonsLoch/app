@@ -11,17 +11,21 @@ namespace exception
    public:
 
 
-      bool        m_bHandled;
-      bool        m_bContinue;
-      string      m_strMessage;
-      string      m_strException;
-      bool        m_bLog;
+      bool           m_bHandled;
+      bool           m_bContinue;
+      const char *   m_pszMessage;
+      const char *   m_pszException;
+      bool           m_bLog;
 
 
       exception();
       exception(e_context_switcher_failed efail);
       virtual ~exception();
       virtual void Delete();
+
+
+      const char * cat_message(const char * pszMessage);
+      const char * cat_exception(const char * pszException);
 
 
       virtual const char * what () const throw ();

@@ -55,7 +55,7 @@ namespace aura
       sp(::aura::str_context)                            m_puserstrcontext;
 
 
-
+      ptrmap < ::aura::application , string_map < ::aura::library * > > m_mapLibrary;
 
 
       session(::aura::application * papp);
@@ -107,7 +107,7 @@ namespace aura
       virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::create * pcc);
 
-      ::aura::application * get_new_app(::aura::application * pappNewApplicationParent,const char * pszType,const char * pszAppId);
+      sp(::aura::application) get_new_app(::aura::application * pappNewApplicationParent,const char * pszType,const char * pszAppId);
 
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 

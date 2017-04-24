@@ -625,6 +625,10 @@ OutputDebugString("gtk_main exited");
    bool system::finalize()
    {
 
+      ::aura::del(m_phistory);
+
+      ::aura::del(m_pfilehandler);
+
       bool bOk = true;
 
       try

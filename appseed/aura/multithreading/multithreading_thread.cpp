@@ -1654,7 +1654,7 @@ uint32_t __thread_entry(void * pparam)
    catch (const ::exception::exception & e)
    {
 
-      if (e.m_strMessage == "rethrow")
+      if (stricmp(e.what(),"rethrow")==0)
       {
 
          throw e;
@@ -2065,7 +2065,7 @@ int32_t thread::main()
       catch(const ::exception::exception & e)
       {
 
-         if (e.m_strMessage == "rethrow")
+         if (stricmp(e.what(), "rethrow") ==0)
          {
 
             throw e;

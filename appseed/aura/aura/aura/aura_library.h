@@ -13,11 +13,11 @@ namespace aura
 
       void *            m_plibrary;
       library *         m_pca2library;
-      bool              m_bAutoClose;
       string            m_strCa2Name;
       string            m_strRoot;
       ::file::path      m_strPath;
       string            m_strMessage;
+      bool              m_bAutoUnload;
 
 
 

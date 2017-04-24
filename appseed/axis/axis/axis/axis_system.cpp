@@ -169,12 +169,12 @@ namespace axis
 
       enum_display_monitors();
 
-      if (m_peengine != NULL)
-      {
+      //if (m_peengine != NULL)
+      //{
 
-         m_peengine = new ::exception::engine(this);
+      //   m_peengine = new ::exception::engine(this);
 
-      }
+      //}
 
 
       if(!::axis::application::process_initialize())
@@ -483,7 +483,7 @@ namespace axis
 
 #endif
 
-      ::aura::del(m_peengine);
+      //::aura::del(m_peengine);
 
       try
       {

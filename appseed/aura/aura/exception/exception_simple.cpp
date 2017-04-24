@@ -7,7 +7,7 @@ object(papp),
 ::exception::base(papp)
 {
 
-   m_strException = ":simple";
+   cat_exception(":simple");
 
 }
 
@@ -21,19 +21,19 @@ object(papp),
    if(pszMessage == NULL)
    {
 
-      m_strException = ":simple(NULL)";
+      cat_exception(":simple(NULL)");
 
    }
    else
    {
 
-      m_strException = ":simple(\"";
-      m_strException += pszMessage;
-      m_strException += "\")";
+      cat_exception(":simple(\"");
+      cat_exception(pszMessage);
+      cat_exception("\")");
 
    }
 
-   m_strMessage = pszMessage;
+   cat_message(pszMessage);
 
 }
 

@@ -11,7 +11,6 @@
 
 extern mutex * g_pmutgen;
 memdleak_block * s_pmemdleakList;
-extern CLASS_DECL_AURA::exception::engine * g_ee;
 extern thread_pointer < memdleak_block > t_plastblock;
 
 
@@ -349,7 +348,7 @@ void system_heap_free(void * p)
    {
       piUse[i] = pblock->m_iBlockUse;
       pszFile[i] = pblock->m_pszFileName== NULL ? NULL : _strdup(pblock->m_pszFileName);
-      pszCallStack[i] = pblock->m_iStack <= 0 ? NULL :_strdup(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
+      pszCallStack[i] = pblock->m_iStack <= 0 ? NULL :_strdup(::exception::engine().stack_trace(pblock->m_puiStack, pblock->m_iStack));
       puiLine[i] = pblock->m_uiLine;
       psize[i] = pblock->m_size;
 

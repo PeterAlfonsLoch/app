@@ -8,8 +8,7 @@
 #include "framework.h"
 
 extern mutex * g_pmutexSignal;
-CLASS_DECL_AURA exception::engine * g_ee = NULL;
-
+extern class ::exception::engine * g_pexceptionengine;
 void init_draw2d_direct2_mutex();
 void term_draw2d_direct2_mutex();
 void aura_auto_debug_teste();
@@ -167,9 +166,9 @@ namespace aura
 
          xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
 
-         g_ee = (::exception::engine *) malloc(sizeof(exception::engine(NULL)));
+         g_pexceptionengine = (class ::exception::engine *) malloc(sizeof(class exception::engine));
 
-         new(g_ee) ::exception::engine(NULL);
+         new(g_pexceptionengine) class ::exception::engine(NULL);
 
 //#if !defined(_ACID_LIBRARY)
 
