@@ -1753,6 +1753,8 @@ retry_session:
 
             set["redirect_location"] = strLocation;
 
+            estatus = status_ok;
+
          }
          else if(strLocation.has_char())
          {
