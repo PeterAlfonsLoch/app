@@ -1776,6 +1776,9 @@ namespace sockets
 
    void base_socket::OnTimeout()
    {
+
+      m_estatus = status_timed_out;
+
    }
 
 

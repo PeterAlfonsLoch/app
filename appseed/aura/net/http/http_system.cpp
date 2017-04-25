@@ -979,9 +979,12 @@ retry:
             dw1 = ::get_tick_count();
             handler.select(240, 0);
             keeplive.keep_alive();
-            if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
+            if(psession->m_estatus == ::sockets::socket::status_connection_timed_out
+               || psession->m_estatus == ::sockets::socket::status_timed_out)
             {
+
                break;
+
             }
 //            if(set["file_out"].cast < ::file::timeout_file >() != NULL)
 //            {
@@ -1056,6 +1059,10 @@ retry:
          if (psession->m_estatus == ::sockets::socket::status_connection_timed_out)
          {
             estatus = status_connection_timed_out;
+         }
+         else if (psession->m_estatus == ::sockets::socket::status_timed_out)
+         {
+            estatus = status_timed_out;
          }
          else if((iStatusCode >= 200 && iStatusCode <= 299) || (psession != NULL && psession->outattr("http_status_code").is_empty()))
          {
@@ -1669,9 +1676,12 @@ retry_session:
          dw1 = ::get_tick_count();
          handler.select(iTimeout, 0);
          keeplive.keep_alive();
-         if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
+         if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out
+            || psocket->m_estatus == ::sockets::socket::status_timed_out)
          {
+
             break;
+
          }
          if (psocket->m_b_complete)
          {
@@ -1729,6 +1739,10 @@ retry_session:
       if (psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
       {
          estatus = status_connection_timed_out;
+      }
+      else if (psocket->m_estatus == ::sockets::socket::status_timed_out)
+      {
+         estatus = status_timed_out;
       }
       else if((iStatusCode >= 200 && iStatusCode <= 299 ) || psocket->outattr("http_status_code").is_empty())
       {
@@ -2289,54 +2303,6 @@ retry_session:
       return System.http().get(pszUrl, set);
 
    }
-
-   CLASS_DECL_AURA string conn_status(property_set & set)
-   {
-
-      e_status estatus = (e_status) set["get_status"].int32();
-
-      string str;
-
-      if (estatus == status_ok)
-      {
-
-         str = "OK: ";
-
-      }
-      else if(estatus == status_connection_timed_out)
-      {
-
-         str = "ERROR: HTTP_CONNECTION_ERROR: Connection Time Out";
-
-      }
-      else if (estatus == status_unchanged)
-      {
-
-         str = "ERROR: HTTP_CONNECTION_ERROR: Unknown error, ";
-
-      }
-      else 
-      {
-
-         str = "ERROR: HTTP_CONNECTION_ERROR: ";
-
-      }
-
-      if (str.has_char())
-      {
-
-         str += ", ";
-
-      }
-
-      str += "HTTP_STATUS_CODE: " + set["get_attrs"]["http_status_code"].get_string();
-
-      str += ", HTTP_STATUS: \"" + set["get_attrs"]["http_status"].get_string() + "\"";
-
-      return str;
-      
-   }
-
 
 } // namespace http
 

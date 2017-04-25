@@ -1445,7 +1445,9 @@ namespace sockets
    void tcp_socket::OnConnectTimeout()
    {
       log("connect", -1, "connect timeout", ::aura::log::level_fatal);
+      
       m_estatus = status_connection_timed_out;
+
       if (Socks4())
       {
          OnSocks4ConnectFailed();
@@ -1486,7 +1488,9 @@ namespace sockets
          int iError = this->Handler().m_iSelectErrno;
          if(iError == ETIMEDOUT)
          {
+            
             m_estatus = status_connection_timed_out;
+
          }
          else
          {

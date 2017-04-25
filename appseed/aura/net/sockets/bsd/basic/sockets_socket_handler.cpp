@@ -329,6 +329,7 @@ namespace sockets
             if (!m_sockets.Lookup(socket, psocket)) // not found
             {
                log(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
+               AddList(psocket->GetSocket(), LIST_CALLONCONNECT, false);
             }
             if (psocket != NULL)
             {
@@ -825,25 +826,26 @@ namespace sockets
             POSITION pos = tmp.get_head_position();
             for (; pos != NULL;)
             {
-               sp(base_socket) p;;
+               sp(base_socket) psocket;
                SOCKET socket = tmp.get_next(pos);
-               if (!m_sockets.Lookup(socket, p)) // not found
+               if (!m_sockets.Lookup(socket, psocket)) // not found
                {
-                  if (!m_add.Lookup(socket, p))
+                  if (!m_add.Lookup(socket, psocket))
                   {
                      log(NULL, "GetSocket/handler/6", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
+                     AddList(socket, LIST_TIMEOUT, false);
                   }
                }
-               if (p)
+               if (psocket)
                {
-                  if (p->Timeout(tnow))
+                  if (psocket->Timeout(tnow))
                   {
-                     sp(stream_socket)scp = (p);
-                     if (scp && scp->Connecting())
-                        p->OnConnectTimeout();
+                     sp(stream_socket) pstreamsocket = psocket;
+                     if (pstreamsocket && pstreamsocket->Connecting())
+                        psocket->OnConnectTimeout();
                      else
-                        p->OnTimeout();
-                     p->SetTimeout(0);
+                        psocket->OnTimeout();
+                     psocket->SetTimeout(0);
                   }
                }
             }
