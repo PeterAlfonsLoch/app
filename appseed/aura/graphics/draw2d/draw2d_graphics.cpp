@@ -2456,15 +2456,22 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
+
    void graphics::FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr)
    {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(cx);
-      UNREFERENCED_PARAMETER(cy);
-      UNREFERENCED_PARAMETER(clr);
-      throw interface_only_exception(get_app());
+
+      return FillSolidRect((double)x, (double)y, (double)cx, (double)cy, clr);
+
    }
+
+
+   void graphics::FillSolidRect(double x, double y, double cx, double cy, COLORREF clr)
+   {
+
+      return FillSolidRect((int32_t)x, (int32_t)y, (int32_t)cx, (int32_t)cy, clr);
+
+   }
+
 
    void graphics::Draw3dRect(const RECT &  lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight)
    {

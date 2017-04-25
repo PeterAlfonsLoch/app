@@ -352,6 +352,12 @@ namespace user
          return _001GetColor(color_text_press);
 
       }
+      else if (ecolor == color_edit_background)
+      {
+
+         return ARGB(128, 255, 255, 255);
+
+      }
 
       throw invalid_argument_exception(::get_thread_app());
 

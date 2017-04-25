@@ -337,7 +337,7 @@ sized::sized() throw()
 }
 sized::sized(double initCX,double initCY) throw()
 {
-   cx = (int32_t)initCX; cy = (int32_t)initCY;
+   cx = initCX; cy = initCY;
 }
 sized::sized(SIZED initSize) throw()
 {

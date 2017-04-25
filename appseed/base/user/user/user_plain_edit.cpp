@@ -100,7 +100,6 @@ namespace user
       m_bRMouseDown = false;
       m_dwCaretTime = 500;
 
-
       set_cursor(::visual::cursor_text_select);
 
 
@@ -490,7 +489,12 @@ namespace user
 
             if (iEnd > iStart)
             {
-               pgraphics->FillSolidRect((double)(left + x1), (double)y, (double)MIN(x2-x1, rectClient.right - (left + x1)), (double)MIN(m_iLineHeight, rectClient.bottom - y), crBkSel);
+               pgraphics->FillSolidRect(
+                  (double)((double)left + x1), 
+                  (double)y, 
+                  (double)MIN(x2-x1, (double)rectClient.right - ((double)left + x1)), 
+                  (double)MIN((double)m_iLineHeight, (double)rectClient.bottom - y),
+                  crBkSel);
                pgraphics->SelectObject(brushTextSel);
             }
 
@@ -504,7 +508,16 @@ namespace user
             {
                pgraphics->SelectObject(brushTextCr);
             }
-            pgraphics->TextOut(left, y, strLineGraphics);
+            pgraphics->TextOut(left, y, strLineGraphics.Left(i1));
+            pgraphics->TextOut(left+x2, y, strLineGraphics.Mid(i2));
+            if (bOverride)
+            {
+            }
+            else
+            {
+               pgraphics->SelectObject(brushTextSel);
+            }
+            pgraphics->TextOut(left+x1, y, strLineGraphics.Mid(i1, i2 - i1));
 
             if (0 <= iErrorBeg && iErrorBeg <= strExtent1.length())
             {
@@ -1774,6 +1787,17 @@ namespace user
 
       }
 
+      if (m_spfont.is_null() || m_spfont->get_os_data() == NULL)
+      {
+
+         m_spfont.alloc(allocer());
+         
+         m_spfont->create_pixel_font("Arial Unicode", rectClient.height() * 0.8);
+
+      }
+
+
+
       m_pinternal->update(this);
 
       if (m_ptree == NULL)
@@ -2227,10 +2251,10 @@ namespace user
             return 0;
 
          }
-         else if (iChar - 1 < m_daExtent[iLine].get_size())
+         else if (iChar -1< m_daExtent[iLine].get_size())
          {
 
-            return m_daExtent[iLine][iChar - 1];
+            return m_daExtent[iLine][iChar-1];
 
          }
 

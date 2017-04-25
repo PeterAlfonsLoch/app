@@ -616,6 +616,7 @@ namespace draw2d
                                 ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
       virtual void FillSolidRect(const RECT64 * lpRect, COLORREF clr);
       virtual void FillSolidRect(const RECT &  lpRect, COLORREF clr);
+      virtual void FillSolidRect(double x, double y, double cx, double cy, COLORREF clr);
       virtual void FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
       virtual void Draw3dRect(const RECT &  lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);
       virtual void Draw3dRect(int32_t x, int32_t y, int32_t cx, int32_t cy,
