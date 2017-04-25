@@ -978,7 +978,18 @@ error:;
 
       }
 
-      return pimpl->m_pui;
+      try
+      {
+
+         return pimpl->m_pui;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return NULL;
 
    }
    

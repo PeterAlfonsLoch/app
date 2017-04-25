@@ -48,7 +48,7 @@ call_stack::call_stack(::aura::application * papp, uint32_t uiSkip) :
 
       }
 
-      m_pszCallStack = strdup(call_stack::get(uiSkip));
+      m_pszCallStack = call_stack::get_dup(uiSkip);
 
    }
 
@@ -75,26 +75,26 @@ call_stack::~call_stack()
 
 }
 
-string call_stack::get(uint32_t uiSkip)
+const char * call_stack::get_dup(uint32_t uiSkip)
 {
 
-   string str;
+   const char * psz;
 
    synch_lock sl(::exception::engine().m_pmutex);
 
 #if defined(LINUX)
 
-   System.eengine().stack_trace(str, uiSkip, m_caller_address);
+   psz = System.eengine().stack_trace_dup(uiSkip, m_caller_address);
 
 #else
 
    ::exception::engine().stack_trace(uiSkip);
 
-   str = ::exception::engine()._strS;
+   psz = strdup(::exception::engine()._strS);
 
 #endif
 
-   return str;
+   return psz;
 
 }
 

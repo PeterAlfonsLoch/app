@@ -73,7 +73,7 @@ public:
    call_stack(const ::call_stack & cs);
    virtual ~call_stack();
 
-   string get(uint32_t uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER);
+   const char * get_dup(uint32_t uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER);
 
    const char * stack_trace() const;
 

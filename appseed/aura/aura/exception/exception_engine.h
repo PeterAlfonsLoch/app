@@ -88,7 +88,7 @@ namespace exception
       char                _strBuf[4096];
       char                _strFile[4096];
       char                _strSymbol[4096];
-      char                _strS[1024 * 1024];
+      char                _strS[4 * 1024 * 1024];
 
 
 
