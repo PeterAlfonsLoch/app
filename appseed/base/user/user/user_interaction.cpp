@@ -2026,12 +2026,7 @@ namespace user
 
       }
 
-      if (m_pmutex == NULL)
-      {
-
-         m_pmutex = new ::mutex(get_app());
-
-      }
+      defer_create_mutex();
 
       m_uiptraChild.m_pmutex = m_pmutex;
 
