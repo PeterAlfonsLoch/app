@@ -51,7 +51,10 @@ namespace exception
    {
    public:
 
-
+      /// m_pmutex from ::object cannot be used for allocation, because new operator
+      /// is tricky during system initialization and exception::engine is ofter 
+      /// instantiated at system initialization
+      mutex                m_mutex;
 #ifdef WINDOWSEX
       bool                 m_bSkip;
 #if OSBIT == 32

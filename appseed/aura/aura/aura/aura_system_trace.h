@@ -55,6 +55,15 @@ namespace aura
       inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt) const
       {
 
+         if (m_pauraapp == NULL || m_pauraapp->m_paurasystem == NULL || m_pauraapp->m_paurasystem->m_plog == NULL)
+         {
+
+            simple_log_line(m_pszFileName, m_nLineNo, dwCategory, nLevel, pszFmt);
+
+            return;
+
+         }
+
          System.log().trace_str(m_pszFileName, m_nLineNo, dwCategory, nLevel, pszFmt);
 
       }
@@ -67,6 +76,15 @@ namespace aura
 
          format.format(pszFmt, value, args...);
 
+         if (m_pauraapp == NULL || m_pauraapp->m_paurasystem == NULL || m_pauraapp->m_paurasystem->m_plog == NULL)
+         {
+
+            simple_log_line(m_pszFileName, m_nLineNo, dwCategory, nLevel, format.to_string());
+
+            return;
+
+         }
+
          System.log().trace_str(m_pszFileName, m_nLineNo, dwCategory, nLevel, format.to_string());
 
 
@@ -75,8 +93,16 @@ namespace aura
       inline void __cdecl operator()(const char *psz) const
       {
 
-         System.log().trace_str(m_pszFileName, m_nLineNo, trace::category_General, 0, psz);
+         if (m_pauraapp == NULL || m_pauraapp->m_paurasystem == NULL || m_pauraapp->m_paurasystem->m_plog == NULL)
+         {
 
+            simple_log_line(m_pszFileName, m_nLineNo, trace::category_General, 0, psz);
+
+            return;
+
+         }
+
+         System.log().trace_str(m_pszFileName, m_nLineNo, trace::category_General, 0, psz);
 
       }
 
@@ -107,6 +133,16 @@ namespace aura
       inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt, ...) const
       {
          va_list ptr; va_start(ptr, pszFmt);
+         
+         if (m_pauraapp == NULL || m_pauraapp->m_paurasystem == NULL || m_pauraapp->m_paurasystem->m_plog == NULL)
+         {
+
+            simple_log_line(m_pszFileName, m_nLineNo, dwCategory, nLevel, pszFmt, ptr);
+
+            return;
+
+         }
+
          System.log().trace_v(m_pszFileName, m_nLineNo, dwCategory, nLevel, pszFmt, ptr);
          va_end(ptr);
       }
@@ -114,6 +150,16 @@ namespace aura
       inline void __cdecl operator()(const char *pszFmt, ...) const
       {
          va_list ptr; va_start(ptr, pszFmt);
+
+         if (m_pauraapp == NULL || m_pauraapp->m_paurasystem == NULL || m_pauraapp->m_paurasystem->m_plog == NULL)
+         {
+
+            simple_log_line(m_pszFileName, m_nLineNo, trace::category_General, 0, pszFmt, ptr);
+
+            return;
+
+         }
+
          System.log().trace_v(m_pszFileName, m_nLineNo, trace::category_General, 0, pszFmt, ptr);
          va_end(ptr);
       }

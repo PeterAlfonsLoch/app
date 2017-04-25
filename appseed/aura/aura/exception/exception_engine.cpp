@@ -326,14 +326,15 @@ namespace exception
 #endif
 
    engine::engine(::aura::application * papp) :
-      object(papp)
+      object(papp),
+      m_mutex(papp)
 #ifdef WINDOWSEX
       ,m_bOk(false)
       ,m_iRef(0)
 #endif
    {
 
-      defer_create_mutex();
+      m_pmutex = &m_mutex;
 
 #ifdef WINDOWSEX
       m_iHa = 0;
@@ -348,6 +349,14 @@ namespace exception
 #ifdef WINDOWSEX
       clear();
 #endif
+
+      if (m_pmutex == &m_mutex)
+      {
+
+         m_pmutex = NULL;
+
+      }
+
       //   if (m_bOk) guard::instance().clear();
       //::aura::del(&m_mutex);
 
