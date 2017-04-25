@@ -202,7 +202,7 @@ namespace axis
       if (m_pifs == NULL)
       {
 
-         m_pifs = canew(ifs(this, ""));
+         m_pifs = new ifs(this, ""); 
 
       }
 
@@ -516,7 +516,7 @@ namespace axis
       try
       {
 
-         ::release(m_pifs);
+         ::aura::del(m_pifs);
 
       }
       catch (...)
