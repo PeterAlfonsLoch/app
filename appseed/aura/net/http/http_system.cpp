@@ -1747,7 +1747,14 @@ retry_session:
             return NULL;
          }
          string strLocation = psocket->outheader("location");
-         if(strLocation.has_char())
+
+         if (set.has_property("redirect_location"))
+         {
+
+            set["redirect_location"] = strLocation;
+
+         }
+         else if(strLocation.has_char())
          {
             if(strLocation.find_ci("http://") == 0
                   || strLocation.find_ci("https://") == 0)
