@@ -1546,11 +1546,11 @@ namespace user
          {
             if (m_bTopText)
             {
-               return (rectView.height() - m_rectTopText.height()) / m_iItemHeight;
+               return (rectView.height() - m_rectTopText.height()) / m_iItemHeight + 1;
             }
             else
             {
-               return rectView.height() / m_iItemHeight;
+               return rectView.height() / m_iItemHeight + 1;
             }
          }
       }
