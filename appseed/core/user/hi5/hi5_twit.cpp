@@ -342,7 +342,7 @@ namespace hi5
 
          mem.allocate(iSize);
 
-         pfile->seek_begin();
+         pfile->seek(iChunkSize * i, ::file::seek_begin);
 
          memory_size_t uiRead;
 
