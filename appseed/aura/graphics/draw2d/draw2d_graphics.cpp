@@ -4108,7 +4108,7 @@ namespace draw2d
             while (i > 0)
             {
                sz = pgraphics->GetTextExtent(str, (int32_t)i);
-               if (sz.cx > rectClip.width())
+               if ((int) sz.cx > rectClip.width())
                {
                   i = ::str::utf8_dec(str, &((const char *)str)[i]) - ((const char *)str);
                   if (i <= 0)
