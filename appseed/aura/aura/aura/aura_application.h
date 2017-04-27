@@ -1,5 +1,18 @@
 #pragma once
 
+namespace multimedia
+{
+
+   namespace audio_plugin
+   {
+
+   class plugin;
+
+   } // namespace audio_plugin
+
+
+} // namespace multimedia
+
 
 namespace aura
 {

@@ -577,7 +577,7 @@ namespace aura
 
             stringa a;
 
-            a.explode(":", str);
+            a.explode("|", str);
 
             if (a.get_size() >= 2)
             {
@@ -586,10 +586,15 @@ namespace aura
 
                string strPath = module_path_from_pid(atoi_dup(a[1]));
 
-               if (strPath.CompareNoCase(stra2.last()) == 0)
+               if (strPath.has_char())
                {
 
-                  iaPid.add(atoi_dup(a[1]));
+                  if (strPath.CompareNoCase(a[0]) == 0)
+                  {
+
+                     iaPid.add(atoi_dup(a[1]));
+
+                  }
 
                }
 
@@ -630,6 +635,8 @@ namespace aura
 
       pathModule /= m_strApp + ".module_list";
 
+      ::file::path pathPid = module_path_from_pid(iPid);
+
       string strModuleList = file_as_string_dup(pathModule);
 
       m_straModule.add_lines(strModuleList);
@@ -649,7 +656,17 @@ namespace aura
 
       string strItem;
       
-      strItem = strModule + "|" + ::str::from(iPid);
+      if (pathPid.has_char())
+      {
+         strItem = pathPid + "|" + ::str::from(iPid);
+
+      }
+      else
+      {
+
+         strItem = strModule + "|" + ::str::from(iPid);
+      }
+
 
       m_straModule.add_unique_ci(strItem);
 

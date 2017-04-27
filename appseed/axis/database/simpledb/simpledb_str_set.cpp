@@ -369,7 +369,7 @@ bool db_str_set::load(const string & strKey, string & strValue)
 
          {
 
-            single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex, true);
+            //single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex, true);
 
             strValue = Application.http().get(strUrl, set);
 

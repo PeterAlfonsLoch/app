@@ -2316,6 +2316,8 @@ namespace user
 
             ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
 
+            ::draw2d::savedc savedc(pgraphics);
+
             if (pgraphics == NULL || pgraphics->get_os_data() == NULL)
             {
 
