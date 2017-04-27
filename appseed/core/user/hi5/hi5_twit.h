@@ -122,7 +122,7 @@ namespace hi5
 
       string mediaUpload(::file::file_sp pfile, string strMimeType, string strCategory);
       string mediaUploadInit(int iTotalSize, string strMimeType, string strCategory);
-      bool mediaUploadAppend(string strMediaId, index iIndex, memory & mem);
+      bool mediaUploadAppend(string strMediaId, index iIndex, ::file::file_sp pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends);
       var mediaUploadFinalize(string strMediaId);
       var mediaUploadStatus(string strMediaId);
 

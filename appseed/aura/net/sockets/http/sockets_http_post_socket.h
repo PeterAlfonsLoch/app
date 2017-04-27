@@ -48,7 +48,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          };
 
-         string_map < item > m_map;
+         string                  m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
+         string_map < item >     m_map;
 
          multipart(::aura::application * papp):object(papp) {}
          virtual ~multipart() {}

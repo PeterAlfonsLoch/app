@@ -214,6 +214,25 @@ namespace sockets
       
       string tmp;
 
+      if (m_pmultipart->m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends.has_char())
+      {
+
+         m_boundary = m_pmultipart->m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
+
+      }
+      else
+      {
+
+         // Thanks Mummi for letting me program till dawn...
+         // Thanks Alfredo Plays and mates from Twitch for keeping the vibe up...
+         // And Denis for sticking on details and being so patient with so stuborn person like me and a software like ca2...
+
+         m_pmultipart->m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends = m_boundary;
+
+      }
+
+      string strFields;
+
       {
 
          for(auto & property : m_fields)
@@ -223,15 +242,17 @@ namespace sockets
 
             var & var = property.m_element2;
 
-            tmp = "--" + m_boundary + "\r\ncontent-disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
+            strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
 
             string value = var.get_string();
 
-            tmp += value + "\r\n";
+            strFields += value + "\r\n";
 
-            length += (long)tmp.get_length();
+            
 
          }
+
+         length += (long)strFields.get_length();
 
       }
 
@@ -248,7 +269,7 @@ namespace sockets
             if (pair.m_element2.m_spfile->GetFilePath().has_char())
             {
 
-               filename = "; filename=\"" + pair.m_element2.m_spfile->GetFilePath() + "\"";
+               filename = "; filename=\"" + ::file::path(pair.m_element2.m_spfile->GetFilePath()).name() + "\"";
 
             }
 
@@ -257,13 +278,16 @@ namespace sockets
             if (pair.m_element2.m_strContentType.has_char())
             {
 
-               content_type = "content-type: " + pair.m_element2.m_strContentType + "\r\n";
+               content_type = "Content-Type: " + pair.m_element2.m_strContentType + "\r\n";
 
             }
 
-            tmp = "--" + m_boundary + "\r\ncontent-disposition: form-data; name=\"" + name + "\""+ filename + "\r\n"
-               +content_type+ 
-               "\r\n";
+            string strContentLength;
+
+            strContentLength = "Content-Length: " + ::str::from(content_length) + "\r\n";
+
+            tmp = "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + name + "\""+ filename + "\r\n"
+               + content_type + strContentLength + "\r\n";
 
             length += (long)tmp.get_length();
 
@@ -309,7 +333,8 @@ namespace sockets
       // build header, send body
       m_request.attr(__id(http_method)) = "POST";
       m_request.attr(__id(http_version)) = "HTTP/1.1";
-      inheader(__id(host)) = GetUrlHost(); // oops - this is actually a request header that we're adding..
+      string strHost = GetUrlHost();
+      inheader(__id(host)) = strHost; // oops - this is actually a request header that we're adding..
       inheader(__id(user_agent)) = MyUseragent();
       inheader(__id(accept)) = "text/html, text/plain, */*;q=0.01";
       //inheader(__id(connection)) = "close";
@@ -323,28 +348,32 @@ namespace sockets
 
       // send fields
       {
-         for(auto & property : m_fields)
+         //tmp = "";
+         //for(auto & property : m_fields)
+         //{
+         //   id & id = property.m_element1;
+         //   var & var = property.m_element2;
+         //   tmp += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
+         //   string value = var.get_string();
+         //   tmp += value + "\r\n";
+         //   //for(int j = 0; j < var.get_count(); j++)
+         //   //{
+         //     // string value = var[j].get_string();
+         //      //tmp += value + "\r\n";
+         //   //}
+         //}
+         if (strFields.has_char())
          {
-            id & id = property.m_element1;
-            var & var = property.m_element2;
-            tmp = "--" + m_boundary + "\r\n"
-               "content-disposition: form-data; name=\"" + id.to_string() + "\"\r\n"
-               "\r\n";
-            string value = var.get_string();
-            tmp += value + "\r\n";
-            //for(int j = 0; j < var.get_count(); j++)
-            //{
-              // string value = var[j].get_string();
-               //tmp += value + "\r\n";
-            //}
-            write( tmp );
+            write(strFields);
          }
       }
 
       // send files
       {
+
          for (auto & pair : m_pmultipart->m_map)
          {
+
             string & name = pair.m_element1;
 
             uint64_t content_length = pair.m_element2.m_uiContentLength;
@@ -354,7 +383,7 @@ namespace sockets
             if (pair.m_element2.m_spfile->GetFilePath().has_char())
             {
 
-               filename = "; filename=\"" + pair.m_element2.m_spfile->GetFilePath() + "\"";
+               filename = "; filename=\"" + ::file::path(pair.m_element2.m_spfile->GetFilePath()).name() + "\"";
 
             }
 
@@ -363,22 +392,34 @@ namespace sockets
             if (pair.m_element2.m_strContentType.has_char())
             {
 
-               content_type = "content-type: " + pair.m_element2.m_strContentType + "\r\n";
+               content_type = "Content-Type: " + pair.m_element2.m_strContentType + "\r\n";
 
             }
 
-            tmp = "--" + m_boundary + "\r\ncontent-disposition: form-data; name=\"" + name + "\"" + filename + "\r\n"
-               + content_type +
-               "\r\n";
+            string strContentLength;
+
+            strContentLength = "Content-Length: " + ::str::from(content_length) + "\r\n";
+
+            tmp = "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + name + "\"" + filename + "\r\n"
+               + content_type + strContentLength + "\r\n";
 
             write( tmp );
-            {
+            //{
                //::file::file_sp spfile(allocer());
                //if(spfile->open(filename, ::file::type_binary | ::file::mode_read).succeeded())
-               {
-                  transfer_from(*pair.m_element2.m_spfile);
-               }
-            }
+               //{
+            
+            memory m;
+            
+            m.allocate(content_length);
+            
+            pair.m_element2.m_spfile->read(m.get_data(), m.get_size());
+            
+            write(m.get_data(), m.get_size());
+
+                  //transfer_from(*pair.m_element2.m_spfile, content_length);
+               //}
+            //}
             write("\r\n");
          }
          //POSITION pos = m_mapFiles.get_start_position();

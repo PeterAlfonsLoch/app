@@ -322,6 +322,10 @@ namespace hi5
 
       memory mem;
 
+      string boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
+
+      pfile->seek_to_begin();
+
       for (index i = 0; i < iChunkCount; i++)
       {
 
@@ -340,35 +344,54 @@ namespace hi5
 
          }
 
-         mem.allocate(iSize);
+         //mem.allocate(iSize);
 
-         pfile->seek(iChunkSize * i, ::file::seek_begin);
+         //memory_size_t uiRead;
 
-         memory_size_t uiRead;
+         //int64_t iPos = 0;
 
-         int64_t iPos = 0;
+         //DWORD dwStart = get_tick_count();
 
-         DWORD dwStart = get_tick_count();
+         //while ((uiRead = pfile->read(&mem.get_data()[iPos], mem.get_size() - iPos)) > 0)
+         //{
+         //   
+         //   iPos += uiRead;
 
-         while ((uiRead = pfile->read(&mem.get_data()[iPos], mem.get_size() - iPos)) > 0)
-         {
-            
-            Sleep(5);
+         //   if (iPos == mem.get_size())
+         //   {
 
-            if (get_tick_count() - dwStart > 60 * 1000)
-            {
+         //      break;
 
-               m_strError = "ERROR: timeout reading source file, " + m_strError;
+         //   }
 
-               log_line(m_strError);
+         //   Sleep(5);
 
-               return m_strError;
+         //   if (get_tick_count() - dwStart > 60 * 1000)
+         //   {
 
-            }
+         //      m_strError = "ERROR: timeout reading source file, " + m_strError;
 
-         }
+         //      log_line(m_strError);
 
-         if (!mediaUploadAppend(strMediaId, i, mem))
+         //      return m_strError;
+
+         //   }
+
+         //}
+
+         //if (iPos < mem.get_size())
+         //{
+
+         //   m_strError = "ERROR: timeout reading Entire source file, " + m_strError;
+
+         //   log_line(m_strError);
+
+         //   return m_strError;
+
+         //}
+
+
+         if (!mediaUploadAppend(strMediaId, i, pfile, iSize, strMimeType, boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends))
          {
 
             m_strError = "ERROR: mediaUploadAppend failed chunk=" + ::str::from(i) + ", " + m_strError;
@@ -533,22 +556,22 @@ namespace hi5
    }
 
 
-   bool twit::mediaUploadAppend(string strMediaId, index iIndex, memory & mem)
+   bool twit::mediaUploadAppend(string strMediaId, index iIndex, ::file::file_sp pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends)
    {
 
-      log_line("mediaUploadAppend(\"" + strMediaId + "\", " + ::str::from(iIndex) + ", memory(size=" + ::str::from(mem.get_size()) + "))");
+      log_line("mediaUploadAppend(\"" + strMediaId + "\", " + ::str::from(iIndex) + ", memory(size=" + ::str::from(iSize) + "))");
       
       property_set post(get_app());
 
       ::sockets::multipart multipart(get_app());
 
-      memory_file file(get_app());
+      multipart.m_map["media"].m_spfile = pfile;
 
-      *file.get_primitive_memory() = mem;
+      multipart.m_map["media"].m_uiContentLength = iSize;
 
-      multipart.m_map["media"].m_spfile = &file;
+      multipart.m_map["media"].m_strContentType = strMimeType;
 
-      multipart.m_map["media"].m_uiContentLength = mem.get_size();
+      multipart.m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends = boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
 
       post["multipart"] = &multipart;
       post["post"]["command"] = "APPEND";
@@ -575,6 +598,8 @@ namespace hi5
          m_strError = "REPLY: " + m_strResponse;
 
       }
+
+      boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends = multipart.m_strOverrideBoundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends;
 
       log_line(m_strError);
 
