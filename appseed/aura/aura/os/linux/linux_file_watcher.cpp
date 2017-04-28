@@ -193,7 +193,7 @@ namespace file_watcher
 	}
 
 	//--------
-	void os_file_watcher::update()
+	bool os_file_watcher::update()
 	{
 
 	   FD_ZERO(&mDescriptorSet);
@@ -244,6 +244,9 @@ namespace file_watcher
 			}
 
 		}
+
+
+		return true;
 
 	}
 

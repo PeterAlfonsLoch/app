@@ -1575,7 +1575,7 @@ CLASS_DECL_AURA string w_to_8(const wchar_t * pcwsz, strsize input_size)
 
 
 
-extern "C" 
+extern "C"
 {
 
    char * c_utf8_str(const wchar_t * str)
@@ -1585,7 +1585,7 @@ extern "C"
 
    wchar_t * c_wide_str(const char * str)
    {
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(LINUX)
       wchar_t * p =utf8_to_utf32(str);
       wchar_t * p2= wcsdup(p);
       memory_free(p);
@@ -1596,7 +1596,7 @@ extern "C"
 
    }
 
-   
+
    CLASS_DECL_AURA int_bool matches_wildcard_criteria_dup(const char * pszCriteriaParam, const char * pszValue)
    {
 
@@ -1774,7 +1774,7 @@ extern "C"
       return yoshi_strcat(psz1, psz2, false);
 
    }
-   
+
    CLASS_DECL_AURA const char * strcat_and_dup2(const char * psz1, const char * psz2)
    {
 

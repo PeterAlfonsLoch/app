@@ -430,6 +430,7 @@
 		<Unit filename="user/install/install_plugin.h" />
 		<Unit filename="user/install/install_starter_start.h" />
 		<Unit filename="user/simple/simple.h" />
+		<Unit filename="user/simple/simple_scroll_bar.cpp" />
 		<Unit filename="user/simple/simple_scroll_bar.h" />
 		<Unit filename="user/simple_ui/simple_ui.h" />
 		<Unit filename="user/simple_ui/simple_ui_edit_box.cpp">
@@ -548,7 +549,6 @@
 		<Unit filename="user/user/user_window_util.h" />
 		<Unit filename="user/user/user_windowing.h" />
 		<Unit filename="user/userex/userex_scroll.h" />
-		<Unit filename="user/wndfrm/frame/wndfrm_frame_updowninterface.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

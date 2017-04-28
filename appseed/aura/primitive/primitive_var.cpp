@@ -3618,7 +3618,7 @@ var::operator bool() const
     || m_etype == type_filetime
     || m_etype == type_time)
    {
-      
+
       return true;
 
    }
@@ -3660,7 +3660,7 @@ var::operator bool() const
    }
    else if(m_etype == type_string)
    {
-      
+
       return m_str.CompareNoCase("true") == 0;
 
    }
@@ -3803,7 +3803,7 @@ bool var::is_property_true(const char * pszName) const
 
 bool var::is_property_false(const char * pszName) const
 {
-   
+
    return !is_property_true(pszName);
 
 }
@@ -4008,7 +4008,7 @@ end:
    }
    else
    {
-      operator = (atoll(string(pszStart, pszParse - pszStart)));
+      operator = ((int64_t)atoll(string(pszStart, pszParse - pszStart)));
    }
    psz = pszParse;
 }
@@ -4184,7 +4184,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
    {
 
       ::str::consume_spaces(pszJson, 0, pszEnd);
-      
+
       if (*pszJson == '\0')
       {
 
@@ -4214,7 +4214,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
 
          if (varChild.get_string().CompareNoCase(id) == 0)
          {
-            
+
             ::str::consume_spaces(pszJson, 0, pszEnd);
             ::str::consume(pszJson, ":", 1, pszEnd);
 
@@ -4239,11 +4239,11 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
          }
          else
          {
-            
+
             string str = "not expected character : ";
-         
+
             str += pszJson;
-            
+
             throw_json_parsing_exception(str);
 
          }
@@ -4292,7 +4292,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
       if (*pszJson == ']')
       {
          pszJson++;
-         
+
          return etype;
 
       }
@@ -4363,7 +4363,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
    }
    else if (*pszJson == '[')
    {
-      
+
       return var::type_new;
 
    }
@@ -4590,7 +4590,7 @@ bool var::is_false() const
 
    if (get_type() != type_bool)
    {
-      
+
       return false;
 
    }

@@ -485,7 +485,7 @@ void string_format::format(const char * & s)
          // TODO: use specs
          #ifdef WINDOWSEX
          char sz[_CVTBUFSIZE];
-#elif defined(__APPLE__)
+#elif defined(__APPLE__) || defined(LINUX)
          char sz[500];
          #else
          char sz[CVTBUFSIZE];
@@ -623,14 +623,14 @@ void string_format::format(const char * & s)
          {
             str = ::hex::upper_from((uint_ptr)p);
          }
-         else 
+         else
          {
             str = ::str::from((uint_ptr)p);
          }
 
          if (pformat->m_bZeroPadding)
          {
-          
+
             ::zero_pad(str, pformat->m_iWidth);
 
          }

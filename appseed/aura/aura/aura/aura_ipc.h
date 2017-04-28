@@ -116,7 +116,7 @@ namespace aura
 
          };
 
-         receiver *        m_preceiver;
+         receiver *           m_preceiver;
          rx_private *         m_pp;
 
 #ifndef WINDOWS
@@ -149,11 +149,11 @@ namespace aura
          //static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow,UINT message,WPARAM wParam,LPARAM lParam);
          LRESULT message_queue_proc(UINT message,WPARAM wParam,LPARAM lParam);
 #else
-         
+
          bool start_receiving();
 
          void * receive();
-         
+
 #endif
 
          bool is_rx_ok();

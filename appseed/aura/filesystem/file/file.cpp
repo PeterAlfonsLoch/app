@@ -321,19 +321,19 @@ CLASS_DECL_AURA bool file_append_wait_dup(const string & strFile, const char * p
       return false;
 
    }
-   
+
    wstring wstr(strFile);
 
    FILE * pfile = NULL;
 
    DWORD dwStart = get_tick_count();
 
-   
+
 
    while (true)
    {
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(LINUX)
       pfile = fopen(strFile, "ab");
 #else
       pfile = _wfopen(wstr, L"ab");

@@ -20,7 +20,7 @@ namespace user
 
    };
 
-   
+
 
    plain_edit::plain_edit() :
       m_keymessageLast(get_app()),
@@ -110,7 +110,7 @@ namespace user
    {
 
       if(m_bColorerTake5)
-      { 
+      {
 
          if (m_pcolorereditor == NULL)
          {
@@ -118,9 +118,9 @@ namespace user
             m_pcolorereditor = new colorertake5::base_editor(get_app());
 
          }
-      
+
       }
-      
+
       return m_pcolorereditor;
 
    }
@@ -312,7 +312,7 @@ namespace user
 
       ::draw2d::brush_sp & brushTextSel = m_pinternal->m_brushTextSel;
 
-      
+
 
 
 
@@ -475,7 +475,7 @@ namespace user
 
             if (m_bPassword)
             {
-               
+
                strLine = ::str::block('*', strLine.get_length());
 
             }
@@ -490,9 +490,9 @@ namespace user
             if (iEnd > iStart)
             {
                pgraphics->FillSolidRect(
-                  (double)((double)left + x1), 
-                  (double)y, 
-                  (double)MIN(x2-x1, (double)rectClient.right - ((double)left + x1)), 
+                  (double)((double)left + x1),
+                  (double)y,
+                  (double)MIN(x2-x1, (double)rectClient.right - ((double)left + x1)),
                   (double)MIN((double)m_iLineHeight, (double)rectClient.bottom - y),
                   crBkSel);
                pgraphics->SelectObject(brushTextSel);
@@ -1599,7 +1599,7 @@ namespace user
 
          if (strLine != m_plines->lines[i])
          {
-            
+
             m_plines->lines[i] = strLine;
 
             m_daExtent[i + iLineStart].set_size(0);
@@ -1787,11 +1787,11 @@ namespace user
 
       }
 
-      if (m_spfont.is_null() || m_spfont->get_os_data() == NULL)
+      if (m_spfont.is_null())
       {
 
          m_spfont.alloc(allocer());
-         
+
          m_spfont->create_pixel_font("Arial Unicode", rectClient.height() * 0.8);
 
       }
@@ -1982,9 +1982,9 @@ namespace user
 
          if (strLine != m_plines->lines[i])
          {
-            
+
             m_plines->lines[i] = strLine;
-            
+
             m_daExtent[i + iLineStart].set_size(0);
 
          }

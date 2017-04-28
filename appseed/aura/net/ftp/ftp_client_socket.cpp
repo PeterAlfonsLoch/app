@@ -50,6 +50,7 @@
 
 #include "framework.h"
 
+#include <openssl/x509.h>
 
 namespace ftp
 {
@@ -79,7 +80,7 @@ namespace ftp
    /// @param[in] uiResponseWait Sleep time between receive calls to socket when getting
    ///                           the response. Sometimes the socket hangs if no wait time
    ///                           is set. Normally not wait time is necessary.
-   client_socket::client_socket(::sockets::base_socket_handler & handler, 
+   client_socket::client_socket(::sockets::base_socket_handler & handler,
       unsigned int uiTimeout/*=10*/,
       unsigned int uiBufferSize/*=2048*/, unsigned int uiResponseWait/*=0*/,
       const string& strRemoteDirectorySeparator/*=_T("/")*/) :
@@ -103,7 +104,7 @@ namespace ftp
       defer_create_mutex();
 
       m_estate = state_initial;
-      
+
       m_vBuffer.allocate(uiBufferSize);
 
    }
@@ -167,7 +168,7 @@ namespace ftp
    /// @param[in] iServerPort Port for channel. Usually this is port 21.
    bool client_socket::OpenControlChannel(const string& strServerHost, WINUSHORT ushServerPort/*=DEFAULT_FTP_PORT*/)
    {
-      
+
       if (IsConnected() || _is_connected())
       {
 
@@ -179,10 +180,10 @@ namespace ftp
 
       try
       {
-         
+
          if (!open(strServerHost, ushServerPort))
          {
-            
+
             return false;
 
          }
@@ -372,7 +373,7 @@ namespace ftp
 
          if (!Reply.Code().IsPositiveCompletionReply() && !Reply.Code().IsPositiveIntermediateReply())
          {
-            
+
             if (atoi(Reply.Code().Value()) == 530)
             {
 
@@ -820,9 +821,9 @@ namespace ftp
       }
       else
       {
-         
+
          sp(::sockets::listen_socket_base) apSckDataConnection;
-         
+
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
@@ -957,7 +958,7 @@ namespace ftp
       }
 
 
-      ::sockets::listen_socket_base & sckDataConnection 
+      ::sockets::listen_socket_base & sckDataConnection
          = *(dynamic_cast < ::sockets::listen_socket_base * >(&sckDataConnectionParam));
 
       //ll.m_strCat = m_strCat;
@@ -1002,7 +1003,7 @@ namespace ftp
          sckDataConnection.SetCloseAndDelete();
          return false;
       }
-      
+
       ::net::address csaAddressTemp(INADDR_ANY, 0);
       csaAddressTemp = sckDataConnection.get_socket_address();
       ushLocalSock = csaAddressTemp.get_service_number();
@@ -1047,7 +1048,7 @@ namespace ftp
    /// @param[in] dwByteOffset Server marker at which file transfer is to be restarted.
    bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
    {
-      
+
       if (m_econnectiontype == connection_type_tls_implicit)
       {
          reply Reply;
@@ -1073,7 +1074,7 @@ namespace ftp
 
       if (m_econnectiontype == connection_type_tls_implicit)
       {
-         
+
          sckDataConnection.EnableSSL();
 
       }
@@ -1092,7 +1093,7 @@ namespace ftp
          {
             return false;
          }
-         
+
       }
       catch (::sockets::transfer_socket_exception& blockingException)
       {
@@ -1126,7 +1127,7 @@ namespace ftp
    {
       try
       {
-         
+
          ((client_socket *) this)->m_fTransferInProgress = true;
 
          int iNumWrite = 0;
@@ -1214,7 +1215,7 @@ namespace ftp
 
       try
       {
-      
+
          ((client_socket *) this)->m_fTransferInProgress = true;
 
          for (auto * p : (observer_array &)m_setObserver)
@@ -1246,7 +1247,7 @@ namespace ftp
                break;
 
             }
-            
+
             {
 
                synch_lock sl(m_pmutex);
@@ -1329,7 +1330,7 @@ namespace ftp
    /// @param[in] Command Command to send.
    bool client_socket::SendCommand(const command& Command, const stringa & Arguments)
    {
-      
+
       if (!_is_connected())
       {
 
@@ -1416,7 +1417,7 @@ namespace ftp
    /// @param[out] strResponse Response of the server as string.
    bool client_socket::GetSingleResponseLine(string& strResponse)
    {
-      
+
       if (!_is_connected())
          return false;
 

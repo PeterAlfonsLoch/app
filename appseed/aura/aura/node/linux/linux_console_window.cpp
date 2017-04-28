@@ -9,7 +9,8 @@ namespace linux
       object(papp)
    {
 
-      cout.m_spbuffer = canew(std_out_buffer());
+      cout.m_spfile = canew(std_out_buffer());
+
       initscr();
       raw();
       noecho();

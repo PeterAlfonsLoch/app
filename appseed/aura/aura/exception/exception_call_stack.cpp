@@ -17,7 +17,7 @@ bool call_stack::s_bDoStackTrace = true;
 
 // 0 - most deep call stack logging
 // 4 - most lite call stack logging
-int g_iCallStackLevel = 4; 
+int g_iCallStackLevel = 4;
 
 
 
@@ -84,7 +84,7 @@ const char * call_stack::get_dup(uint32_t uiSkip)
 
 #if defined(LINUX)
 
-   psz = System.eengine().stack_trace_dup(uiSkip, m_caller_address);
+   psz = strdup(::exception::engine().stack_trace(uiSkip, m_caller_address));
 
 #else
 

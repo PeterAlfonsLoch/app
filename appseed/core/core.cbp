@@ -455,18 +455,20 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
-		<Unit filename="user/html/graphics/_graphics.cpp" />
+		<Unit filename="user/html/graphics/_html_graphics.cpp" />
 		<Unit filename="user/html/graphics/elemental/_html_elemental.cpp" />
 		<Unit filename="user/html/graphics/html_data.h" />
 		<Unit filename="user/html/graphics/impl/_html_impl.cpp" />
 		<Unit filename="user/html/hi5/hi5_twitter_authorization.cpp" />
 		<Unit filename="user/html/html_application.h" />
+		<Unit filename="user/html/user/_userhtml.cpp" />
 		<Unit filename="user/menu/user_menu.h" />
 		<Unit filename="user/menu/user_menu_button.h" />
 		<Unit filename="user/menu/user_menu_central.h" />
 		<Unit filename="user/menu/user_menu_item.h" />
 		<Unit filename="user/menu/user_menu_list_view.h" />
 		<Unit filename="user/menu/user_menu_list_window.h" />
+		<Unit filename="user/simple/_simple.cpp" />
 		<Unit filename="user/simple/simple.h" />
 		<Unit filename="user/simple/simple_button.h" />
 		<Unit filename="user/simple/simple_child_frame.h" />
@@ -590,6 +592,7 @@
 		<Unit filename="user/user/user_xfplayer_view_line.h" />
 		<Unit filename="user/user/user_xfplayer_view_line_selection.h" />
 		<Unit filename="user/user/user_xfplayer_view_lines.h" />
+		<Unit filename="user/userex/_userex.cpp" />
 		<Unit filename="user/userex/userex.h" />
 		<Unit filename="user/userex/userex_dialog.h" />
 		<Unit filename="user/userex/userex_form_child_frame.h" />
@@ -611,7 +614,7 @@
 		<Unit filename="user/userex/userex_split_view.h" />
 		<Unit filename="user/userex/userex_userex.h" />
 		<Unit filename="user/userex/userex_wait_message_dialog.h" />
-		<Unit filename="user/userhtml/_userhtml.cpp" />
+		<Unit filename="user/wndfrm/_wndfrm.cpp" />
 		<Unit filename="user/wndfrm/frame/wndfrm_frame.h" />
 		<Unit filename="user/wndfrm/frame/wndfrm_frame_appearance.h" />
 		<Unit filename="user/wndfrm/frame/wndfrm_frame_constants.h" />

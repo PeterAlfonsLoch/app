@@ -301,31 +301,47 @@ namespace aura
 
          m_bRun = true;
 
-         if(pthread_create(&m_thread,NULL,&rx::receive_proc,this) != 0)
+         m_pthread = ::fork(get_app(), [&]()
          {
 
-            m_bRunning = false;
 
-            m_bRun = false;
+            receive();
 
-            return false;
 
-         }
+         });
 
          return true;
 
       }
 
-      void * rx::receive_proc(void * param)
-      {
-
-         rx * pchannel = (rx *)param;
-
-         return pchannel->receive();
-
-      }
 
 
+
+//         m_pthread->m_hthread, NULL, &rx::receive_proc, this) != 0)
+//         {
+//
+//            m_bRunning = false;
+//
+//            m_bRun = false;
+//
+//            return false;
+//
+//         }
+
+//         return true;
+
+//      }
+
+//      void * rx::receive_proc(void * param)
+//      {
+//
+//         rx * pchannel = (rx *)param;
+//
+//         return pchannel->receive();
+//
+//      }
+//
+//
 
       void rx::receiver::on_receive(rx * prx,const char * pszMessage)
       {

@@ -1,6 +1,13 @@
 #include "framework.h"
 
 
+#ifdef LINUX
+
+int SetThreadAffinityMask(HTHREAD h, unsigned int dwThreadAffinityMask);
+
+#endif
+
+
 mutex * thread::s_pmutexDependencies = NULL;
 
 
@@ -1282,13 +1289,13 @@ bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority
 
    if(m_hthread == (HTHREAD) NULL)
    {
-      
+
       try
       {
 
          if (piStartupError != NULL)
          {
-            
+
             *piStartupError = pstartup->m_iError;
 
          }
@@ -1296,9 +1303,9 @@ bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority
       }
       catch(...)
       {
-      
+
       }
-      
+
       release();
 
       return false;
@@ -1451,25 +1458,10 @@ uint32_t __thread_entry(void * pparam)
          if (pthread->m_dwThreadAffinityMask != 0)
          {
 
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
+
             ::SetThreadAffinityMask(::GetCurrentThread(), pthread->m_dwThreadAffinityMask);
-            
-#elif defined(LINUX)
-            
-            cpu_set_t c;
-            
-            CPU_ZERO(&c);
-            
-            for(index i = 0; i < 32; i++)
-            {
-               
-               if((1 << i) & m_dwThreadAffinityMask )
-               {
-                  CPU_SET(i, c);
-               }
-            }
-            pthread_set_affinity_np(&c);
-            
+
 #endif
 
          }

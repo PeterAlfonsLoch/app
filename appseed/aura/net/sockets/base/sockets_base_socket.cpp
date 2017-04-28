@@ -39,6 +39,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 ////#include <ctype.h>
 
+#ifdef LINUX
+#include <openssl/ssl.h>
+#endif
 
 namespace sockets
 {
@@ -659,7 +662,7 @@ namespace sockets
       m_password = psocket->m_password; ///< ssl password
 
       attach(psocket -> GetSocket());
-      
+
       SetIpv6(psocket -> IsIpv6());
       SetSocketType(psocket -> GetSocketType());
       SetSocketProtocol(psocket -> GetSocketProtocol());
@@ -884,7 +887,7 @@ namespace sockets
 
       if (!::thread::initialize_thread())
          return false;
-      
+
       socket_handler & h = *m_sphandler;
 
       h.SetSlave();
