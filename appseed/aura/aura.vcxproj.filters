@@ -2690,6 +2690,9 @@
     <ClInclude Include="primitive\str\str_str3.h">
       <Filter>Header Files\primitive\str</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\str\str_x.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
     <ClInclude Include="aura\aura\aura_os_alloc.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -4635,6 +4638,9 @@
     </ClCompile>
     <ClCompile Include="aura\aura\simple_log.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_x.cpp">
+      <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

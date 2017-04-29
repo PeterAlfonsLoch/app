@@ -31,6 +31,7 @@ CLASS_DECL_AURA void zero_pad(string & str, count iPad);
 
 #include "str_tokenizer.h"
 
+#include "str_x.h"
 #include "str_hex.h"
 
 #include "str_istring.h"

@@ -180,6 +180,7 @@
 #include "str/str_strx.cpp"
 #include "str/str_tokenizer.cpp"
 #include "str/str_to_integer.cpp"
+#include "str/str_x.cpp"
 #include "str/str_verisimple_wstring.cpp"
 #include "str/str_wtostring.cpp"
      //         24 arquivo(s)        304.278 bytes
