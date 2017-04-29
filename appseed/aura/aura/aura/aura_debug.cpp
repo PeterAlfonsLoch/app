@@ -94,3 +94,55 @@ CLASS_DECL_AURA void trace(e_level elevel, const char * pszTag, const char * psz
    os_trace(elevel, pszTag, psz);
 
 }
+
+
+
+int g_iMemoryCounters = -1;
+
+CLASS_DECL_AURA mutex * g_pmutexMemoryCounters = NULL;
+
+int g_iMemoryCountersStartable = 0;
+
+int memcnts()
+{
+
+   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
+   {
+
+      g_iMemoryCounters = file_exists_dup(::dir::system() / "memory_counters.txt") ? 1 : 0;
+
+      if (g_iMemoryCounters)
+      {
+
+         g_pmutexMemoryCounter =  new mutex m(NULL, "Global\\ca2_memory_counters");
+
+      }
+
+   }
+
+   return g_iMemoryCounters;
+
+}
+
+::file::path * g_pMemoryCounters = NULL;
+
+CLASS_DECL_AURA ::file::path memcnts_base_path()
+{
+
+   if (g_pMemoryCounters == NULL)
+   {
+
+      g_pMemoryCounters = new ::file::path();
+
+      string strModule = ca2_module_dup();
+
+      string strBasePath = ::dir::system() / "memory_counters" / strModule / ::str::from(getpid());
+
+      *g_pMemoryCounters = strBasePath;
+
+   }
+
+   return *g_pMemoryCounters;
+
+}
+

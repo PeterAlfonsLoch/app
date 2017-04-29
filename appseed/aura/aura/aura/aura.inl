@@ -371,3 +371,54 @@ inline bool IsDirSep(WCHAR ch)
 
 
 
+
+
+template < typename T >
+::file::path memcnts_path(T * pthis)
+{
+
+   string str = typeid(*pthis).name();
+
+   str.replace("::", "/");
+
+   return memcnts_base_path() / (str + ".txt");
+
+}
+
+template < typename T >
+bool memcnts_inc(T * pthis)
+{
+   if (memcnts())
+   {
+
+      synch_lock sl(g_pmutexMemoryCounters);
+
+      ::file::path path = memcnts_path(pthis);
+
+      int i = atoi(file_as_string_dup(path));
+
+      file_put_contents_dup(path, ::str::from(i + 1));
+
+   }
+
+
+}
+
+template < typename T >
+bool memcnts_dec(T * pthis)
+{
+
+   if (memcnts())
+   {
+
+      synch_lock sl(g_pmutexMemoryCounters);
+
+      ::file::path path = memcnts_path(pthis);
+
+      int i = atoi(file_as_string_dup(path));
+
+      file_put_contents_dup(path, ::str::from(i + 1));
+
+   }
+
+}

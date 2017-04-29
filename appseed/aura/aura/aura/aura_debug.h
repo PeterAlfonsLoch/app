@@ -302,3 +302,18 @@ CLASS_DECL_AURA void trace(e_level elevel, const char * pszTag, const char * psz
 #define thisend thisinfo << "end "
 
 
+
+extern CLASS_DECL_AURA mutex * g_pmutexMemoryCounters;
+
+CLASS_DECL_AURA bool memcnts();
+
+CLASS_DECL_AURA ::file::path memcnts_base_path();
+
+template < typename T >
+::file::path memcnts_path(T * pthis);
+
+template < typename T >
+bool memcnts_inc(T * pthis);
+
+template < typename T >
+bool memcnts_dec(T * pthis);

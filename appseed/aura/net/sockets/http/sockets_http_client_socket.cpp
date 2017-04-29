@@ -30,6 +30,8 @@ string op_sys()
 
 }
 
+
+
 namespace sockets
 {
 
@@ -55,6 +57,8 @@ namespace sockets
 
       m_pfile           = NULL;
       m_iFinalSize      = -1;
+
+      memcnts_inc(this);
 
    }
 
@@ -105,11 +109,16 @@ namespace sockets
       m_pfile                                   = NULL;
       m_iFinalSize                              = -1;
 
+      memcnts_inc(this);
+
    }
 
 
    http_client_socket::~http_client_socket()
    {
+
+      memcnts_dec(this);
+
    }
 
 
