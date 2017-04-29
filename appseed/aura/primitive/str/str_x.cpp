@@ -13,10 +13,10 @@ namespace str
       {
 
          bool bLowerBound1 = iFind == 0;
-         bool bLowerBound = bLowerBound1 || !isalpha_dup(strFind[iFind - 1]);
+         bool bLowerBound = bLowerBound1 || !isalpha_dup(str[iFind - 1]);
          strsize iUpperBound = iFind + strFind.get_length();
          bool bUpperBound1 = iUpperBound == str.get_length();
-         bool bUpperBound = bUpperBound1 || !isalpha_dup(strFind[iUpperBound]);
+         bool bUpperBound = bUpperBound1 || !isalpha_dup(str[iUpperBound]);
 
          if (bLowerBound && bUpperBound)
          {
