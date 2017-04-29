@@ -2690,6 +2690,9 @@
     <ClInclude Include="primitive\str\str_str3.h">
       <Filter>Header Files\primitive\str</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_os_alloc.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
