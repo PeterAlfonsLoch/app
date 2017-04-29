@@ -6,8 +6,7 @@
 //O volume na unidade Z ‚ eco
  //O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
- //Pasta de Z:\nordroid\app\appseed\base\base\os\android
-
+ 
 #include "android.cpp"
 //#include "android_message_loop.cpp"
 #include "android_multithreading.cpp"

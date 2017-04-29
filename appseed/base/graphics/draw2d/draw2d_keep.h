@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AURA keep
+   class CLASS_DECL_BASE keep
    {
    public:
 

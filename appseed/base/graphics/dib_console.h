@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS dib_console:
+class CLASS_DECL_BASE dib_console:
    virtual public ::console::window,
    virtual public ::file::file
 {

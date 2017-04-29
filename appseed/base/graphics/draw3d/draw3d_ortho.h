@@ -5,7 +5,7 @@ namespace draw3d
 {
 
 
-   class CLASS_DECL_AURA ortho:
+   class CLASS_DECL_BASE ortho:
       virtual public ::object
    {
    public:

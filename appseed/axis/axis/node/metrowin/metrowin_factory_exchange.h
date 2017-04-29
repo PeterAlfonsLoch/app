@@ -22,7 +22,7 @@ namespace metrowin
       };
 
 
-   } // namespace base
+   } // namespace axis
 
 
 } // namespace metrowin

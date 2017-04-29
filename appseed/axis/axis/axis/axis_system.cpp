@@ -16,7 +16,6 @@ namespace axis
    system::system(::aura::application * papp):
       aura::system(this, NULL),
 //      m_httpsystem(this),
-      m_visual(this),
       m_emaildepartment(this)
    {
 
@@ -31,6 +30,7 @@ namespace axis
       m_purldepartment = new url::department(this);
 
       m_paxissystem = this;
+
 
       m_spinstall = canew(::install::install(this));
 
@@ -69,10 +69,6 @@ namespace axis
       m_bSystemSynchronizedCursor = true;
 
       m_bSystemSynchronizedScreen = true;
-
-      ::draw2d::dib::static_initialize();
-
-      //      draw2d_factory_exchange();
 
 
 
@@ -134,10 +130,10 @@ namespace axis
    }
 
 
-   int32_t system::install_start(const char * pszCommandLine,const char * pszBuild)
+   int32_t system::install_start(const char * pszCommandLine, const char * pszBuild)
    {
 
-      return install().start(pszCommandLine,pszBuild);
+      return install().start(pszCommandLine, pszBuild);
 
    }
 
@@ -147,10 +143,33 @@ namespace axis
 
       UNREFERENCED_PARAMETER(iAddUp);
 
-      return (int32_t) ( install().m_progressApp()++);
+      return (int32_t)(install().m_progressApp()++);
 
    }
 
+   //::install::canvas * system::install_create_canvas()
+   //{
+
+
+   //   return NULL;
+
+
+   //}
+
+
+   //void system::install_canvas_on_paint(::draw2d::graphics * pgraphics, const RECT & rect)
+   //{
+
+
+   //}
+
+
+   //int system::install_canvas_increment_mode()
+   //{
+
+   //   return 0;
+
+   //}
 
 
    bool system::process_initialize()
@@ -167,7 +186,7 @@ namespace axis
 
 #endif
 
-      enum_display_monitors();
+      //enum_display_monitors();
 
       //if (m_peengine != NULL)
       //{
@@ -182,30 +201,6 @@ namespace axis
 
       if(!::aura::system::process_initialize())
          return false;
-
-      bool bOk = true;
-
-      try
-      {
-
-         draw2d_factory_exchange();
-
-      }
-      catch (...)
-      {
-
-         bOk = false;
-
-      }
-
-      if (!bOk)
-      {
-
-         simple_message_box("Unable to find draw2d plugin. Quitting...", MB_OK);
-
-         return false;
-
-      }
 
 
       m_spos.alloc(allocer());
@@ -613,7 +608,6 @@ namespace axis
 
 
 //#include "framework.h" // from "axis/user/user.h"
-//#include "base/user/user.h"
 
 //void dappy(const char * psz);
 
@@ -926,13 +920,7 @@ namespace axis
 #endif
 
 
-   //::aura::session * system::on_create_session()
-   //{
-
-   //   return new ::base::session(this);
-
-   //}
-
+   
    void system::hist_hist(const char * psz)
    {
    }
@@ -1028,7 +1016,7 @@ namespace axis
 
 #endif
 
-} // namespace base
+} // namespace axis
 
 
 

@@ -181,8 +181,6 @@ namespace aura
       factory().default_cloneable_large < memory >();
       factory().default_cloneable_large < int_array >();
 
-      factory().creatable_small < ::visual::icon >();
-
       factory().creatable_small < ::file::application >();
       factory().creatable_small < ::file::dir::application >();
 

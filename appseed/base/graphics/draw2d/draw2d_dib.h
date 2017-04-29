@@ -15,7 +15,7 @@ namespace draw2d
    //////////////////////////////////////////////////////////////////////
 
 
-   class CLASS_DECL_AURA dib :
+   class CLASS_DECL_BASE dib :
       virtual public ::object,
       virtual public ::file::serializable
    {
@@ -352,11 +352,11 @@ inline UINT HashKey<const ::draw2d::dib::descriptor &>(const ::draw2d::dib::desc
 namespace draw2d
 {
 
-   CLASS_DECL_AURA void dib_copy(dib * pdibthis, dib *pdib);
-   CLASS_DECL_AURA void dib_alloc(::aura::application * papp, dib * & pdib);
-   CLASS_DECL_AURA void dib_create(dib * pdib, int w, int h);
-   CLASS_DECL_AURA unsigned int * dib_get_data(dib * pdib);
-   CLASS_DECL_AURA graphics * dib_get_graphics(dib * pdib);
+   CLASS_DECL_BASE void dib_copy(dib * pdibthis, dib *pdib);
+   CLASS_DECL_BASE void dib_alloc(::aura::application * papp, dib * & pdib);
+   CLASS_DECL_BASE void dib_create(dib * pdib, int w, int h);
+   CLASS_DECL_BASE unsigned int * dib_get_data(dib * pdib);
+   CLASS_DECL_BASE graphics * dib_get_graphics(dib * pdib);
 
 
 } // namespace draw2d

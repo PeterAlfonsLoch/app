@@ -97,6 +97,18 @@ namespace base
 
       virtual ::user::schema * userschema();
 
+      virtual ::visual::icon * set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon) override;
+
+      virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const override;
+
+      virtual void SetCurrentHandles() override;
+
+      //virtual bool get_temp_file_name_template(string & strRet, const char * pszName, const char * pszExtension, const char * pszTemplate) override;
+
+//      virtual bool check_install() override;
+
+  //    virtual bool system_add_app_install(const char * pszId) override;
+
    };
 
 

@@ -20,7 +20,7 @@ namespace visual
 
    } // namespace image
 
-   class CLASS_DECL_AXIS save_image
+   class CLASS_DECL_BASE save_image
    {
    public:
 
@@ -33,7 +33,7 @@ namespace visual
    };
 
 
-   class CLASS_DECL_AXIS dib_sp :
+   class CLASS_DECL_BASE dib_sp :
       public ::draw2d::dib_sp
    {
    public:
@@ -140,8 +140,8 @@ namespace visual
 } // namespace visual
 
 
-CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int x,int y);
-CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int x,int y,byte a,byte r,byte g,byte b);
+CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int x,int y);
+CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int x,int y,byte a,byte r,byte g,byte b);
 
 
 

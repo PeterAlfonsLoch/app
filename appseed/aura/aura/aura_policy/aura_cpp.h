@@ -169,7 +169,9 @@ namespace user
 namespace install
 {
 
+   
    class install;
+   class canvas;
 
 
 } // namespace install
@@ -1736,9 +1738,6 @@ CLASS_DECL_AURA void dappy(const char * psz);
 
 
 #include "aura/primitive/primitive_color.h"
-
-
-#include "aura/graphics/graphics.h"
 
 
 #include "aura/aura/aura/aura_str_context.h"

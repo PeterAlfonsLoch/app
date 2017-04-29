@@ -5,12 +5,12 @@ namespace visual
 {
 
 
-   class CLASS_DECL_AXIS font_list_data :
+   class CLASS_DECL_BASE font_list_data :
       virtual public ::object
    {
    public:
 
-      class CLASS_DECL_AXIS text_box
+      class CLASS_DECL_BASE text_box
       {
       public:
          
@@ -24,7 +24,7 @@ namespace visual
          void update(font_list_data * pdata, int iBox, string strText);
       };
 
-      class CLASS_DECL_AXIS item
+      class CLASS_DECL_BASE item
       {
       public:
 

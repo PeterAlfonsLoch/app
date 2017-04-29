@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_AXIS api :
+   class CLASS_DECL_BASE api :
       virtual public ::object
    {
    public:

@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AURA region :
+   class CLASS_DECL_BASE region :
       virtual public object
    {
    public:

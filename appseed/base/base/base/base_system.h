@@ -65,6 +65,13 @@ namespace base
 
 
       os_system_window *                           m_possystemwindow;
+      ::visual::visual                             m_visual;
+
+
+
+
+
+
 
 
       system(::aura::application * papp);
@@ -72,6 +79,7 @@ namespace base
 
       virtual bool defer_create_system_frame_window();
 
+      virtual bool process_initialize() override;
       virtual int32_t exit_application() override;
 
       virtual ::aura::session * on_create_session() override;
@@ -80,6 +88,14 @@ namespace base
 
       virtual void set_active_guie(::user::interaction * pui);
       virtual void set_focus_guie(::user::interaction * pui);
+
+      inline class ::visual::visual                & visual() { return m_visual; }
+
+
+      //virtual ::install::canvas * install_create_canvas() override;
+      //virtual void install_canvas_on_paint(::draw2d::graphics * pgraphics, const RECT & rect);
+      //virtual int install_canvas_increment_mode() override;
+
 
 
       virtual DWORD get_monitor_color_temperature(index iMonitor);
@@ -93,7 +109,7 @@ namespace base
       virtual ::user::interaction * ui_from_handle(void * pdata) override;
       
       virtual void on_setting_changed(::aura::e_setting) override;
-
+      
    };
 
 

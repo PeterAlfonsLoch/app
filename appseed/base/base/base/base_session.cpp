@@ -37,6 +37,15 @@ namespace base
 
 #endif
 
+
+      m_ecursorDefault = ::visual::cursor_arrow;
+
+      m_ecursor = ::visual::cursor_default;
+
+      m_ecursorDefault = ::visual::cursor_arrow;
+
+      m_ecursor = ::visual::cursor_default;
+
       m_bDrawCursor                 = false;
 
 
@@ -111,6 +120,148 @@ namespace base
          m_puserschemaSchema = m_puserschemasimple;
 
       }
+
+   }
+
+
+   void session::set_cursor(::visual::cursor * pcursor)
+   {
+
+      m_ecursor = ::visual::cursor_visual;
+
+#ifdef WINDOWSEX
+
+      m_pcursor = pcursor;
+
+      if (pcursor != NULL)
+      {
+
+         ::SetCursor(pcursor->get_HCURSOR());
+
+      }
+
+#endif
+
+   }
+
+   void session::set_cursor(::visual::e_cursor ecursor)
+   {
+
+      m_ecursor = ecursor;
+
+#ifdef WINDOWSEX
+
+      ::visual::cursor * pcursor = get_cursor();
+
+      if (pcursor != NULL)
+      {
+
+         ::SetCursor(pcursor->get_HCURSOR());
+
+      }
+      else
+      {
+
+         ::SetCursor(NULL);
+
+      }
+
+#endif
+
+   }
+
+
+   void session::set_default_cursor(::visual::e_cursor ecursor)
+   {
+
+      if (ecursor == ::visual::cursor_default)
+      {
+
+         m_ecursorDefault = ::visual::cursor_arrow;
+
+      }
+      else
+      {
+
+         m_ecursorDefault = ecursor;
+
+      }
+
+   }
+
+
+
+
+
+   bool session::on_ui_mouse_message(::user::mouse * pmouse)
+   {
+
+
+      //::axis::session::on_ui_mouse_message(pmouse);
+
+      if (pmouse->m_pt == pmouse->m_ptDesired)
+      {
+
+         m_ptCursor = pmouse->m_pt;
+
+      }
+
+
+
+      // user presence status activity reporting
+      if (pmouse->get_message() == WM_LBUTTONDOWN
+         || pmouse->get_message() == WM_RBUTTONDOWN
+         || pmouse->get_message() == WM_MBUTTONDOWN
+         || pmouse->get_message() == WM_MOUSEMOVE)
+      {
+
+         if (fontopus() != NULL && fontopus()->m_puser != NULL)
+         {
+
+            if (ApplicationUser.m_ppresence != NULL)
+            {
+
+               try
+               {
+
+                  ApplicationUser.m_ppresence->report_activity();
+
+               }
+               catch (...)
+               {
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   ::visual::cursor * session::get_cursor()
+   {
+
+      if (m_ecursor == ::visual::cursor_visual)
+      {
+
+         return m_pcursor;
+
+      }
+
+      return NULL;
+
+   }
+
+
+   ::visual::cursor * session::get_default_cursor()
+   {
+
+      return NULL;
 
    }
 

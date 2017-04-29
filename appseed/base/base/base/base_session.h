@@ -1,6 +1,30 @@
 #pragma once
 
 
+namespace user
+{
+
+   class CLASS_DECL_BASE mouse
+   {
+   public:
+      uint_ptr                m_nFlags;
+      point                   m_pt;
+      point                   m_ptDesired;
+      bool                    m_bTranslated;
+      ::visual::e_cursor      m_ecursor;
+      ::visual::cursor *      m_pcursor;
+
+
+      virtual unsigned int get_message()
+      {
+         return 0;
+      }
+
+   };
+
+
+} // namespace user
+
 
 
 namespace base
@@ -15,6 +39,11 @@ namespace base
    public:
 
 
+      ::visual::e_cursor                                       m_ecursor;
+      ::visual::cursor *                                       m_pcursor;
+      ::visual::e_cursor                                       m_ecursorDefault;
+
+
       ::user::user *                m_puser;
       sp(::user::schema)            m_puserschemasimple;
 
@@ -25,6 +54,15 @@ namespace base
       virtual ~session_parent;
 
       inline ::user::user *                        user() { return m_puser; }
+
+      virtual void set_cursor(::visual::cursor * pcursor);
+      virtual void set_cursor(::visual::e_cursor ecursor);
+      virtual void set_default_cursor(::visual::e_cursor ecursor);
+      virtual ::visual::cursor * get_cursor();
+      virtual ::visual::cursor * get_default_cursor();
+
+      virtual bool on_ui_mouse_message(::user::mouse * pmouse);
+
 
 
       virtual index get_good_restore(LPRECT lprect,const RECT & rect,::user::interaction * pui);

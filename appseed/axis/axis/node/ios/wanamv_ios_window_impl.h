@@ -1,6 +1,5 @@
 //
 //  ios_window_impl.h
-//  base
 //
 //  Created by Camilo Sasuke Tsumanuma on 2013-09-18.
 //

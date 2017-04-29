@@ -125,8 +125,11 @@ namespace base
 
    system::system(::aura::application * papp) :
       ::aura::system(this, NULL),
+      m_visual(this),
       ::axis::system(this)
    {
+
+      factory().creatable_small < ::visual::icon >();
 
       g_pszCooperativeLevel = "base";
 
@@ -168,6 +171,10 @@ namespace base
       m_bSystemSynchronizedCursor = true;
 
       m_bSystemSynchronizedScreen = true;
+//      ::draw2d::dib::static_initialize();
+
+      //      draw2d_factory_exchange();
+
 
       ::draw2d::dib::static_initialize();
 
@@ -1006,6 +1013,76 @@ error:;
       }
       
    }
+
+
+
+
+   bool system::process_initialize()
+   {
+
+#ifndef WINDOWS
+
+      int32_t error = FT_Init_FreeType((FT_Library *)&m_ftlibrary);
+      if (error)
+      {
+         TRACE("an error occurred during Free Type library initialization");
+         return false;
+      }
+
+#endif
+
+      enum_display_monitors();
+
+      //if (m_peengine != NULL)
+      //{
+
+      //   m_peengine = new ::exception::engine(this);
+
+      //}
+
+
+      if (!::base::application::process_initialize())
+         return false;
+
+      if (!::axis::system::process_initialize())
+         return false;
+
+      bool bOk = true;
+
+      try
+      {
+
+         draw2d_factory_exchange();
+
+      }
+      catch (...)
+      {
+
+         bOk = false;
+
+      }
+
+      if (!bOk)
+      {
+
+         simple_message_box("Unable to find draw2d plugin. Quitting...", MB_OK);
+
+         return false;
+
+      }
+
+
+      m_spos.alloc(allocer());
+
+
+
+
+
+      return true;
+
+   }
+
+
 
 } // namespace base
 

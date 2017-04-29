@@ -7,7 +7,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AURA graphics :
+   class CLASS_DECL_BASE graphics :
       virtual public ::core::simple_chain < ::aura::draw_context >
    {
    public:
@@ -731,7 +731,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_AURA graphics_sp :
+   class CLASS_DECL_BASE graphics_sp :
       public smart_pointer < graphics >
    {
    public:
@@ -759,7 +759,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_AURA memory_graphics :
+   class CLASS_DECL_BASE memory_graphics :
       public graphics_sp
    {
    public:
@@ -769,7 +769,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_AURA savedc
+   class CLASS_DECL_BASE savedc
    {
    public:
 
@@ -786,9 +786,9 @@ namespace draw2d
 } // namespace draw2d
 
 
-CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, SIZE size);
-CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, POINT point);
-CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, SIZE size);
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, POINT point);
+CLASS_DECL_BASE dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
 
 
 

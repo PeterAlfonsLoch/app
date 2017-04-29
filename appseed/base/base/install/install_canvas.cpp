@@ -1,9 +1,6 @@
-//#include "framework.h"
-
-
-
-
-//#include <math.h>
+#include "framework.h"
+#include "install_canvas.h"
+#include <stdio.h>
 
 
 namespace install
@@ -611,3 +608,38 @@ void canvas_zero::zero(HDC hdc, POINT pt, int32_t iSize, int32_t iStep)
 
 
 } // namespace install
+
+
+
+//namespace base
+//{ 
+//
+//
+//   ::install::canvas * system::install_create_canvas()
+//   {
+//
+//
+//      return new ::install::canvas(this);
+//
+//
+//   }
+//
+//
+//   void system::install_canvas_on_paint(::draw2d::graphics * pgraphics, const RECT & rect)
+//   {
+//
+//      install().m_pcanvas->on_paint(pgraphics, rect);
+//
+//   }
+//
+//
+//   int system::install_canvas_increment_mode()
+//   {
+//
+//      return install().m_pcanvas->increment_mode();
+//
+//   }
+//
+//
+//
+//} // namespace base

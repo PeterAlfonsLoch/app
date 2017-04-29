@@ -11,7 +11,8 @@
 
 #include "windows_implementation.h"
 
-
+#include "windows_print_job.h"
+#include "windows_copydesk.h"
 
 
 

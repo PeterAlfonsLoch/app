@@ -15,7 +15,7 @@ namespace visual
 typedef spa(visual::font) CVmsGdiFontPtrArray;
 
 
-class CLASS_DECL_AXIS font_department :
+class CLASS_DECL_BASE font_department :
    virtual public ::aura::department
 {
 public:

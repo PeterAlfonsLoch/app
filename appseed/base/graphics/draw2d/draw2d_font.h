@@ -6,7 +6,7 @@ namespace draw2d
 
 
 
-   class CLASS_DECL_AURA text_metric
+   class CLASS_DECL_BASE text_metric
    {
    public:
 
@@ -34,7 +34,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_AURA font :
+   class CLASS_DECL_BASE font :
       virtual public ::draw2d::object
    {
    public:
@@ -136,9 +136,9 @@ namespace draw2d
 
 #ifdef WINDOWS
 
-   CLASS_DECL_AURA void wingdi_enum_fonts(stringa & stra, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
-//   CLASS_DECL_AURA void wingdi_enum_cs(string str, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
-   CLASS_DECL_AURA font::e_cs wingdi_get_cs(int iCs);
+   CLASS_DECL_BASE void wingdi_enum_fonts(stringa & stra, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
+//   CLASS_DECL_BASE void wingdi_enum_cs(string str, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
+   CLASS_DECL_BASE font::e_cs wingdi_get_cs(int iCs);
 
 #endif
 

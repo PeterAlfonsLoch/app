@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_AXIS glyph
+   class CLASS_DECL_BASE glyph
    {
    public:
 

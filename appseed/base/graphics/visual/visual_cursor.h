@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_AURA cursor :
+   class CLASS_DECL_BASE cursor :
       virtual public ::object
    {
    public:
@@ -45,8 +45,8 @@ namespace visual
    typedef sp(cursor) cursor_sp;
 
 
-   CLASS_DECL_AURA void cursor_alloc(::aura::application * papp,cursor * & pdib,int xHotspot,int yHotspot);
-   CLASS_DECL_AURA ::draw2d::dib * cursor_get_dib(cursor * pcursor);
+   CLASS_DECL_BASE void cursor_alloc(::aura::application * papp,cursor * & pdib,int xHotspot,int yHotspot);
+   CLASS_DECL_BASE ::draw2d::dib * cursor_get_dib(cursor * pcursor);
 
 
 } // namespace visual
@@ -64,8 +64,8 @@ namespace visual
 // Obrigado Carlos!! Você poderia colaborar, não é!!
 // Meu Deus me ajude!!
 
-CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib);
-CLASS_DECL_AURA HICON CreateAlphaIcon(::draw2d::dib * pdib,bool bIcon = true,int xHotSpot = 0,int yHotSpot = 0);
-CLASS_DECL_AURA HCURSOR CreateAlphaCursor(::draw2d::dib * pdib,int xHotSpot,int yHotSpot);
+CLASS_DECL_BASE HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib);
+CLASS_DECL_BASE HICON CreateAlphaIcon(::draw2d::dib * pdib,bool bIcon = true,int xHotSpot = 0,int yHotSpot = 0);
+CLASS_DECL_BASE HCURSOR CreateAlphaCursor(::draw2d::dib * pdib,int xHotSpot,int yHotSpot);
 
 #endif

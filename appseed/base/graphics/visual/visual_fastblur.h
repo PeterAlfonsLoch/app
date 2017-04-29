@@ -226,7 +226,7 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
 namespace visual
 {
 
-   class CLASS_DECL_AXIS fastblur :
+   class CLASS_DECL_BASE fastblur :
       public ::visual::dib_sp
    {
    public:

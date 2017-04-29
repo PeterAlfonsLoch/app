@@ -5,13 +5,13 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AURA path :
+   class CLASS_DECL_BASE path :
       virtual public ::draw2d::object
    {
    public:
 
 
-      class CLASS_DECL_AURA arc
+      class CLASS_DECL_BASE arc
       {
       public:
 
@@ -28,7 +28,7 @@ namespace draw2d
 
 
       };
-      class CLASS_DECL_AURA rect
+      class CLASS_DECL_BASE rect
       {
       public:
 
@@ -41,7 +41,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_AURA move
+      class CLASS_DECL_BASE move
       {
       public:
 
@@ -51,7 +51,7 @@ namespace draw2d
       };
 
 
-      class CLASS_DECL_AURA line
+      class CLASS_DECL_BASE line
       {
       public:
 
@@ -60,7 +60,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_AURA end
+      class CLASS_DECL_BASE end
       {
       public:
 
@@ -68,7 +68,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_AURA string_path
+      class CLASS_DECL_BASE string_path
       {
       public:
 
@@ -85,7 +85,7 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_AURA element :
+      class CLASS_DECL_BASE element :
          virtual public ::object
       {
       public:
@@ -220,7 +220,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_AURA path_sp :
+   class CLASS_DECL_BASE path_sp :
       public smart_pointer < path >
    {
    public:

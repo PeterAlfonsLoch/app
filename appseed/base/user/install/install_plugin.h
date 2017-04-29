@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "base/install/install_canvas.h"
 
 
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
@@ -17,6 +17,7 @@ namespace install
 
    };
 
+   class canvas;
 
    class CLASS_DECL_BASE plugin :
       virtual public ::hotplugin::plugin,

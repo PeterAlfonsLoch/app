@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_AXIS font_enumeration :
+   class CLASS_DECL_BASE font_enumeration :
       virtual public object
    {
    public:

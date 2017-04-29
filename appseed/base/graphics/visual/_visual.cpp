@@ -9,7 +9,8 @@
 #include "graphics/visual/visual_FreeImageFileProc.h"
 //#endif
 
-
+#include "visual_icon.cpp"
+#include "visual_cursor.cpp"
 
 #ifdef WINDOWSEX
 

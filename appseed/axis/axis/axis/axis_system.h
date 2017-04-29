@@ -14,17 +14,10 @@ namespace axis
 
       //::url::department                           m_urldepartment;
 
-      sp(::install::install)                       m_spinstall;
-
-
-
-      ::visual::visual                             m_visual;
-
-
-
       ::net::email_department                     m_emaildepartment;
 
 
+      sp(::install::install)                       m_spinstall;
 
 
 
@@ -64,20 +57,30 @@ namespace axis
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      ::install::install                           & install() { return *m_spinstall; }
-
-      inline class ::visual::visual                & visual()     { return m_visual       ; }
 
       ::net::email_department               & email();
 
+      ::install::install                           & install() { return *m_spinstall; }
 
       virtual string install_get_platform() override;
       virtual void install_set_platform(const char * pszPlatform) override;
       virtual string install_get_version() override;
       virtual void install_set_version(const char * pszVersion) override;
       virtual string install_get_latest_build_number(const char * pszVersion) override;
-      virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild) override;
+      virtual int32_t install_start(const char * pszCommandLine, const char * pszBuild) override;
       virtual int32_t install_progress_app_add_up(int iAddUp = 1) override;
+
+      //virtual ::install::canvas * install_create_canvas();
+      //virtual void install_canvas_on_paint(::draw2d::graphics * pgraphics, const RECT & rect);
+      //virtual int install_canvas_increment_mode();
+
+      //virtual string install_get_platform() override;
+      //virtual void install_set_platform(const char * pszPlatform) override;
+      //virtual string install_get_version() override;
+      //virtual void install_set_version(const char * pszVersion) override;
+      //virtual string install_get_latest_build_number(const char * pszVersion) override;
+      //virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild) override;
+      //virtual int32_t install_progress_app_add_up(int iAddUp = 1) override;
 
       virtual bool process_initialize() override;
 

@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS image_list :
+class CLASS_DECL_BASE image_list :
    virtual public ::object
 {
 public:
 
 
-   class CLASS_DECL_AXIS info
+   class CLASS_DECL_BASE info
    {
    public:
 

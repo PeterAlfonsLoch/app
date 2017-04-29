@@ -65,8 +65,8 @@ CLASS_DECL_AXIS bool __get_prop_sheet_font(string & strFace,WORD& wSize,bool bWi
 
 #define NODE_WINDOW(pwnd) ((sp(::windows::interaction_impl))(pwnd))
 
-#include "windows_print_job.h"
-#include "windows_copydesk.h"
+//#include "windows_print_job.h"
+//#include "windows_copydesk.h"
 
 
 

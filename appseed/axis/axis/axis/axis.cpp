@@ -5,11 +5,6 @@
 #endif
 
 
-//#ifndef METROWIN
-
-#include "freeimage/Source/FreeImage.h"
-
-//#endif
 
 
 void axis_on_init_thread();
@@ -121,20 +116,20 @@ bool axis_init()
 
    // todo (casey tips) : do real/explicit dynamic linking
    //throw todo(get_thread_app());
-   try
-   {
+   //try
+   //{
 
-      FreeImage_Initialise(FALSE);
+   //   FreeImage_Initialise(FALSE);
 
-   }
-   catch(...)
-   {
+   //}
+   //catch(...)
+   //{
 
-      ::simple_message_box(NULL,"Failure to initialize FreeImage (::core::init_core)","FreeImage_Initialise failure",MB_ICONEXCLAMATION);
+   //   ::simple_message_box(NULL,"Failure to initialize FreeImage (::core::init_core)","FreeImage_Initialise failure",MB_ICONEXCLAMATION);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 //#endif
 
@@ -157,16 +152,16 @@ bool axis_term()
 
    // todo (casey tips) : do real/explicit dynamic linking
    //throw todo(get_thread_app());
-   try
-   {
+   //try
+   //{
 
-      FreeImage_DeInitialise();
+   //   FreeImage_DeInitialise();
 
-   }
-   catch(...)
-   {
+   //}
+   //catch(...)
+   //{
 
-   }
+   //}
 //#endif
    /*__wait_threading_count(::millis((5000) * 8));
 

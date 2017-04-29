@@ -7,7 +7,7 @@
 //O volume na unidade Z ‚ eco
 // O N£mero de S‚rie do Volume ‚ 4A91-94E4
 //
-// Pasta de Z:\ca2\app\appseed\base\base\message
+// Pasta de Z:\ca2\app\appseed\axis\axis\message
 
 #include "message.cpp"
 #include "message_user.cpp"

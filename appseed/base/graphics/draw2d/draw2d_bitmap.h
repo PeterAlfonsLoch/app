@@ -6,7 +6,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AURA bitmap :
+   class CLASS_DECL_BASE bitmap :
       virtual public ::draw2d::object
    {
    public:
@@ -73,6 +73,6 @@ namespace draw2d
 
 #ifdef WINDOWSEX
 
-CLASS_DECL_AURA HBITMAP CreateHBITMAP(COLORREF * pdata,int stride,int cx,int cy);
+CLASS_DECL_BASE HBITMAP CreateHBITMAP(COLORREF * pdata,int stride,int cx,int cy);
 
 #endif

@@ -271,8 +271,8 @@ CLASS_DECL_BASE bool __node_base_pos_init();
 CLASS_DECL_BASE bool __node_base_pre_term();
 CLASS_DECL_BASE bool __node_base_pos_term();
 
-
 #include "base/graphics/graphics.h"
+
 
 #if defined(LINUX)
 
@@ -374,4 +374,6 @@ CLASS_DECL_BASE ::user::interaction_impl * window_from_handle(oswindow oswindow)
 
 
 
+
+#include "base/graphics/visual/visual.inl"
 

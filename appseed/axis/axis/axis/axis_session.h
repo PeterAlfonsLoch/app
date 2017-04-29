@@ -10,28 +10,6 @@ namespace userpresence
 
 } // namespace userpresence
 
-namespace user
-{
-
-   class CLASS_DECL_AXIS mouse
-   {
-   public:
-      uint_ptr                m_nFlags;
-      point                   m_pt;
-      point                   m_ptDesired;
-      bool                    m_bTranslated;
-      ::visual::e_cursor      m_ecursor;
-      ::visual::cursor *      m_pcursor;
-
-
-      virtual unsigned int get_message()
-      {
-         return 0;
-      }
-
-   };
-
-} // namespace user
 
 namespace axis
 {
@@ -88,9 +66,6 @@ namespace axis
       bool                                                     m_bDrawCursor;
 
 
-      ::visual::e_cursor                                       m_ecursor;
-      ::visual::cursor *                                       m_pcursor;
-      ::visual::e_cursor                                       m_ecursorDefault;
       ::user::copydesk *                                       m_pcopydesk;
 
 
@@ -178,17 +153,12 @@ namespace axis
 
       virtual bool on_create_frame_window();
 
-      virtual void set_cursor(::visual::cursor * pcursor);
-      virtual void set_cursor(::visual::e_cursor ecursor);
-      virtual void set_default_cursor(::visual::e_cursor ecursor);
 
 
       virtual COLORREF get_default_color(uint64_t ui);
 
 
 
-      virtual ::visual::cursor * get_cursor();
-      virtual ::visual::cursor * get_default_cursor();
 
 
 
@@ -229,9 +199,6 @@ namespace axis
 
 
 
-
-
-      virtual bool on_ui_mouse_message(::user::mouse * pmouse);
 
 
 

@@ -265,7 +265,6 @@ using user_interaction = ::user::interaction;
 //#include "user/user/user_mouse_focus.h"
 //#include "base/user/user/user_elemental.h"
 //#include "user/user/user_check_interface.h"
-#include "axis/graphics/visual/visual_const.h"
 #include "base/user/user/user_schema_simple_impl.h"
 #include "base/user/user/user_schema_layered_frame.h"
 //#include "user/user/user_text_interface.h"

@@ -553,7 +553,7 @@ namespace visual
 #if 0
 
 
-CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p, int32_t dx, int32_t dy, void * pftbitmap, int xParam, int yParam)
+CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p, int32_t dx, int32_t dy, void * pftbitmap, int xParam, int yParam)
 {
 
    FT_Bitmap * bitmap = (FT_Bitmap *)pftbitmap;
@@ -583,7 +583,7 @@ CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p, int32_t dx, int32
 }
 
 
-CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p, int32_t dx, int32_t dy, void * pftbitmap, int xParam, int yParam, byte aParam, byte r, byte g, byte b)
+CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p, int32_t dx, int32_t dy, void * pftbitmap, int xParam, int yParam, byte aParam, byte r, byte g, byte b)
 {
 
    FT_Bitmap * bitmap = (FT_Bitmap *)pftbitmap;

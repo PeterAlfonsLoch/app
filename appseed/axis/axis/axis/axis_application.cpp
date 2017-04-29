@@ -680,28 +680,27 @@ namespace axis
 
       ::aura::application::SetCurrentHandles();
 
-
-      if(is_installing() || is_uninstalling())
+      if (is_installing() || is_uninstalling())
       {
 
-         if(is_system())
+         if (is_system())
          {
 
             System.install().trace().initialize();
 
-            System.install().m_progressApp.m_scalar                           = int_scalar(&System.install(),scalar_app_install_progress);
+            System.install().m_progressApp.m_scalar = int_scalar(&System.install(), scalar_app_install_progress);
 
-            System.install().::int_scalar_source::m_plistener                 = &System.install().m_progressApp;
+            System.install().::int_scalar_source::m_plistener = &System.install().m_progressApp;
 
-            System.install().m_progressApp.m_plistener                        = &System.install().trace();
+            System.install().m_progressApp.m_plistener = &System.install().trace();
 
-            System.install().m_progressApp.m_dProgressStart                   = 0.84;
+            System.install().m_progressApp.m_dProgressStart = 0.84;
 
-            System.install().m_progressApp.m_dProgressEnd                     = 0.998;
+            System.install().m_progressApp.m_dProgressEnd = 0.998;
 
-            System.install().m_iProgressAppInstallStart                       = 0;
+            System.install().m_iProgressAppInstallStart = 0;
 
-            if(directrix()->m_varTopicQuery["session_start"] == "session")
+            if (directrix()->m_varTopicQuery["session_start"] == "session")
             {
 
                System.install().m_iProgressAppInstallEnd = 2 * 5;
@@ -717,6 +716,108 @@ namespace axis
          }
 
       }
+
+
+   }
+
+
+   bool application::get_temp_file_name_template(string & strRet, const char * pszName, const char * pszExtension, const char * pszTemplate)
+   {
+
+#ifdef METROWIN
+
+      string str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path);
+
+#else
+
+      char lpPathBuffer[MAX_PATH * 4];
+
+      uint32_t dwRetVal = GetTempPath(sizeof(lpPathBuffer), lpPathBuffer);
+
+      if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
+      {
+
+         return FALSE;
+
+      }
+
+      string str(lpPathBuffer);
+
+#endif
+
+      char bufItem[64];
+
+      string strRelative;
+
+      SYSTEMTIME st;
+
+      memset_dup(&st, 0, sizeof(st));
+
+      GetSystemTime(&st);
+
+      itoa_dup(bufItem, st.wYear, 10);
+      zero_pad(bufItem, 4);
+      strRelative += bufItem;
+
+      itoa_dup(bufItem, st.wMonth, 10);
+      zero_pad(bufItem, 2);
+      strRelative += "-";
+      strRelative += bufItem;
+
+      itoa_dup(bufItem, st.wDay, 10);
+      zero_pad(bufItem, 2);
+      strRelative += "-";
+      strRelative += bufItem;
+
+      itoa_dup(bufItem, st.wHour, 10);
+      zero_pad(bufItem, 2);
+      strRelative += " ";
+      strRelative += bufItem;
+
+      itoa_dup(bufItem, st.wMinute, 10);
+      zero_pad(bufItem, 2);
+      strRelative += "-";
+      strRelative += bufItem;
+
+      itoa_dup(bufItem, st.wSecond, 10);
+      zero_pad(bufItem, 2);
+      strRelative += "-";
+      strRelative += bufItem;
+
+      for (int32_t i = 0; i < (1024 * 1024); i++)
+      {
+         strRet = ::file::path(str) / (strRelative + "-" + hex::lower_from(i + 1)) / (string(pszName) + string(".") + pszExtension);
+         if (pszTemplate != NULL)
+         {
+            if (System.install().is_file_ok(strRet, pszTemplate, ""))
+               return true;
+         }
+
+         if (file_exists_dup(strRet))
+         {
+
+            try
+            {
+
+               Application.file().del(strRet);
+
+            }
+            catch (...)
+            {
+
+               continue;
+
+            }
+
+            return true;
+
+         }
+         else
+         {
+            return true;
+         }
+      }
+      return false;
 
    }
 
@@ -948,105 +1049,7 @@ namespace axis
 
 
 
-   bool application::get_temp_file_name_template(string & strRet,const char * pszName,const char * pszExtension,const char * pszTemplate)
-   {
 
-#ifdef METROWIN
-
-      string str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path);
-
-#else
-
-      char lpPathBuffer[MAX_PATH * 4];
-
-      uint32_t dwRetVal = GetTempPath(sizeof(lpPathBuffer),lpPathBuffer);
-
-      if(dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
-      {
-
-         return FALSE;
-
-      }
-
-      string str(lpPathBuffer);
-
-#endif
-
-      char bufItem[64];
-
-      string strRelative;
-
-      SYSTEMTIME st;
-
-      memset_dup(&st,0,sizeof(st));
-
-      GetSystemTime(&st);
-
-      itoa_dup(bufItem,st.wYear,10);
-      zero_pad(bufItem,4);
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wMonth,10);
-      zero_pad(bufItem,2);
-      strRelative += "-";
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wDay,10);
-      zero_pad(bufItem,2);
-      strRelative += "-";
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wHour,10);
-      zero_pad(bufItem,2);
-      strRelative += " ";
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wMinute,10);
-      zero_pad(bufItem,2);
-      strRelative += "-";
-      strRelative += bufItem;
-
-      itoa_dup(bufItem,st.wSecond,10);
-      zero_pad(bufItem,2);
-      strRelative += "-";
-      strRelative += bufItem;
-
-      for(int32_t i = 0; i < (1024 * 1024); i++)
-      {
-         strRet = ::file::path(str) / (strRelative + "-" + hex::lower_from(i + 1)) / (string(pszName) + string(".") + pszExtension);
-         if(pszTemplate != NULL)
-         {
-            if(System.install().is_file_ok(strRet,pszTemplate,""))
-               return true;
-         }
-
-         if(file_exists_dup(strRet))
-         {
-
-            try
-            {
-
-               Application.file().del(strRet);
-
-            }
-            catch(...)
-            {
-
-               continue;
-
-            }
-
-            return true;
-
-         }
-         else
-         {
-            return true;
-         }
-      }
-      return false;
-
-   }
 
 
    bool application::get_temp_file_name(string & strRet,const char * pszName,const char * pszExtension)
@@ -1516,9 +1519,14 @@ namespace axis
       {
 
          if (!on_uninstall())
+         {
+
             return false;
 
+         }
+
          System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
+
 
       }
 
@@ -1606,70 +1614,7 @@ namespace axis
    bool application::system_add_app_install(const char * pszId)
    {
 
-      synch_lock sl(System.m_spmutexSystemAppData);
-
-      string strId(pszId);
-      string strSystemLocale = System.m_strLocale;
-      string strSystemSchema = System.m_strSchema;
-      stringa straLocale = command()->m_varTopicQuery["locale"].stra();
-      stringa straSchema = command()->m_varTopicQuery["schema"].stra();
-
-      System.install().remove_spa_start(m_strInstallType,strId);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,strSystemLocale,m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,strSystemLocale,strSystemSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,m_strLocale,m_strSchema);
-
-      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,straLocale[iLocale],m_strSchema);
-
-      }
-
-      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,m_strLocale,straSchema[iSchema]);
-
-      }
-
-      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-         {
-
-            System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,straLocale[iLocale],straSchema[iSchema]);
-
-         }
-
-      }
-
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,strSystemLocale,"");
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,m_strLocale,"");
-
-      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,straLocale[iLocale],"");
-
-      }
-
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,"",m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,"",strSystemSchema);
-
-      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,"",straSchema[iSchema]);
-
-      }
-
-
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"],m_strInstallType,strId,"","");
-
-
-      return true;
+      return System.system_add_app_install(pszId);
 
    }
 
@@ -2362,7 +2307,7 @@ namespace axis
 
          update_appmatter(handler, psession,pszRoot,pszRelative,strLocale,strSchema);
 
-         System.install().m_progressApp()++;
+         System.install_progress_add_up();
 
       }
 
@@ -2915,7 +2860,6 @@ namespace axis
 
 
 //#include "framework.h" // from "axis/user/user.h"
-//#include "base/user/user.h"
 
 namespace axis
 {
@@ -3126,22 +3070,7 @@ namespace axis
    ::visual::icon * application::set_icon(object * pobject,::visual::icon * picon,bool bBigIcon)
    {
 
-      ::visual::icon * piconOld = get_icon(pobject,bBigIcon);
-
-      if(bBigIcon)
-      {
-
-         pobject->oprop("big_icon").operator =((sp(object)) picon);
-
-      }
-      else
-      {
-
-         pobject->oprop("small_icon").operator =((sp(object)) picon);
-
-      }
-
-      return piconOld;
+      return NULL;
 
    }
 
@@ -3149,18 +3078,7 @@ namespace axis
    ::visual::icon * application::get_icon(object * pobject,bool bBigIcon) const
    {
 
-      if(bBigIcon)
-      {
-
-         return const_cast <object *> (pobject)->oprop("big_icon").cast < ::visual::icon >();
-
-      }
-      else
-      {
-
-         return const_cast <object *> (pobject)->oprop("small_icon").cast < ::visual::icon >();
-
-      }
+      return NULL;
 
    }
 

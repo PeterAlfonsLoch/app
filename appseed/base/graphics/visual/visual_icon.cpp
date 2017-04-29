@@ -1,5 +1,4 @@
-#include "framework.h"
-#include "visual_icon.h"
+
 
 #ifdef WINDOWSEX
 

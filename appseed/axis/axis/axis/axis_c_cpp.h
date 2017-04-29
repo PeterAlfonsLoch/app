@@ -198,8 +198,6 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 
-#include "axis/graphics/graphics.h"
-
 #include "axis/user/user/user_enum.h"
 
 #include "axis/user/user/user_key_enum.h"
@@ -248,6 +246,8 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "axis_system.h"
 
 #include "axis/axis/install/install.h"
+
+
 
 
 
@@ -302,6 +302,5 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "axis.inl"
 
 
-#include "axis/graphics/visual/visual.inl"
 
 

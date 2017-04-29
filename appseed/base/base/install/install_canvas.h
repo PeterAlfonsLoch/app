@@ -4,7 +4,7 @@
 namespace install
 {
 
-   class CLASS_DECL_AXIS canvas :
+   class CLASS_DECL_BASE canvas :
       virtual public ::object
    {
    public:
