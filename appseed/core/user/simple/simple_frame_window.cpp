@@ -611,7 +611,7 @@ void simple_frame_window::defer_set_icon()
          if (hicon != NULL)
          {
 
-            ::visual::icon * picon = canew(::visual::icon(hicon));
+            ::visual::icon * picon = canew(::visual::icon(get_app(), hicon));
 
             if (picon != NULL)
             {

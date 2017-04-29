@@ -30,11 +30,9 @@ namespace visual
 
    }
 
-   icon::icon(void * picon) :
-      m_dibmap(NULL)
+   icon::icon(::aura::application * papp, void * picon) :
+      m_dibmap(papp)
    {
-
-      set_app(::get_thread_app());
 
       m_picon = picon;
       m_bAutoDelete = true;
@@ -45,11 +43,9 @@ namespace visual
 
 #ifdef WINDOWS
 
-   icon::icon(HICON hicon) :
-      m_dibmap(NULL)
+   icon::icon(::aura::application * papp, HICON hicon) :
+      m_dibmap(papp)
    {
-
-      set_app(::get_thread_app());
 
       m_picon = hicon;
       m_bAutoDelete = true;
@@ -220,22 +216,16 @@ namespace visual
    ::draw2d::dib * icon::get_dib(int cx, int cy)
    {
 
-      ::draw2d::dib_sp & dib = m_dibmap[size(cx, cy)];
+      bool bExists;
 
-      if (dib.is_set() && dib->area() == size(cx, cy).area())
+      ::draw2d::dib_sp & dib = m_dibmap.get(size(cx, cy), bExists);
+
+      if (bExists)
       {
 
          return dib;
 
       }
-
-      dib.alloc(allocer());
-
-      if (dib.is_null())
-         return NULL;
-
-      if (!dib->create(cx, cy))
-         return NULL;
 
 #ifdef WINDOWSEX
 

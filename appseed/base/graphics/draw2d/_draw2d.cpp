@@ -29,3 +29,6 @@
 
 
 
+#include "draw2d_dibmap.cpp"
+
+

@@ -556,8 +556,8 @@ namespace windows
       if(wstrClassName.get_length() > 0 && GetClassInfoW(System.m_hinstance, wstrClassName,&wndcls) &&
             wndcls.hIcon != NULL)
       {
-         Application.set_icon(m_pui,canew(::visual::icon(wndcls.hIcon)),false);
-         Application.set_icon(m_pui,canew(::visual::icon(wndcls.hIcon)),true);
+         Application.set_icon(m_pui,canew(::visual::icon(get_app(), wndcls.hIcon)),false);
+         Application.set_icon(m_pui,canew(::visual::icon(get_app(), wndcls.hIcon)),true);
       }
       //::simple_message_box(NULL,"h4","h4",MB_OK);
       //      oswindow oswindowHandle = get_handle();

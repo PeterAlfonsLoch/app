@@ -1108,6 +1108,9 @@
     <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_dibmap.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">

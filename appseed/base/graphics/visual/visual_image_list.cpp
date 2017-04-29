@@ -179,11 +179,16 @@ bool image_list::draw(::draw2d::graphics * pgraphics, int32_t iImage, point pt, 
 
 }
 
+
 int32_t image_list::add_icon_os_data(void * pvoid)
 {
-   ::visual::icon icon(pvoid);
+   
+   ::visual::icon icon(get_app(), pvoid);
+
    return add(&icon);
+
 }
+
 
 int32_t image_list::add(::visual::icon * picon)
 {

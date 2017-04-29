@@ -30,7 +30,7 @@ namespace fontopus
          if(hicon95 != NULL)
          {
 
-            m_picon95 = new ::visual::icon(hicon95);
+            m_picon95 = new ::visual::icon(get_app(), hicon95);
 
          }
 
