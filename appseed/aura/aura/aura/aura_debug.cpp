@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include <process.h>
 
 
 CLASS_DECL_AURA int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags)
@@ -103,7 +104,7 @@ CLASS_DECL_AURA mutex * g_pmutexMemoryCounters = NULL;
 
 int g_iMemoryCountersStartable = 0;
 
-int memcnts()
+CLASS_DECL_AURA bool memcnts()
 {
 
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
@@ -114,7 +115,7 @@ int memcnts()
       if (g_iMemoryCounters)
       {
 
-         g_pmutexMemoryCounter =  new mutex m(NULL, "Global\\ca2_memory_counters");
+         g_pmutexMemoryCounters =  new mutex(NULL, "Global\\ca2_memory_counters");
 
       }
 

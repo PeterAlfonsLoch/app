@@ -98,6 +98,8 @@ thread::thread() :
 
    m_puiptra = NULL;
 
+   memcnts_inc(this);
+
 
 }
 
@@ -119,6 +121,8 @@ thread::thread(::aura::application * papp) :
 
    }
 
+   memcnts_inc(this);
+
 }
 
 
@@ -127,6 +131,7 @@ thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pP
    m_mutexUiPtra(papp)
 {
 
+   memcnts_inc(this);
    //CommonConstruct();
 
 //   m_pthreadimpl.alloc(allocer());
@@ -202,7 +207,7 @@ void thread::CommonConstruct()
 
 thread::~thread()
 {
-
+   memcnts_dec(this);
    //try
    //{
 

@@ -313,7 +313,7 @@ template < typename T >
 ::file::path memcnts_path(T * pthis);
 
 template < typename T >
-bool memcnts_inc(T * pthis);
+void memcnts_inc(T * pthis);
 
 template < typename T >
-bool memcnts_dec(T * pthis);
+void memcnts_dec(T * pthis);

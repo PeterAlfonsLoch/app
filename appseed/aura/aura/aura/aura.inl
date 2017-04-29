@@ -386,8 +386,9 @@ template < typename T >
 }
 
 template < typename T >
-bool memcnts_inc(T * pthis)
+void memcnts_inc(T * pthis)
 {
+
    if (memcnts())
    {
 
@@ -405,7 +406,7 @@ bool memcnts_inc(T * pthis)
 }
 
 template < typename T >
-bool memcnts_dec(T * pthis)
+void memcnts_dec(T * pthis)
 {
 
    if (memcnts())

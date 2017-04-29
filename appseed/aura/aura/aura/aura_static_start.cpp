@@ -59,7 +59,7 @@ extern uint64_t g_firstNano;
 
 plex_heap_alloc_array * g_pplexheapallocarray = NULL;
 
-extern g_iMemoryCountersStartable;
+extern int g_iMemoryCountersStartable;
 //id_space * create_id_space();
 
 //void destroy_id_space();
