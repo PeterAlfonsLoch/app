@@ -1912,6 +1912,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="graphics\draw2d\draw2d_common.h" />
     <ClInclude Include="graphics\draw2d\draw2d_const.h" />
     <ClInclude Include="graphics\draw2d\draw2d_dib.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_dibmap.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_dibmap_ex1.h" />
     <ClInclude Include="graphics\draw2d\draw2d_font.h" />
     <ClInclude Include="graphics\draw2d\draw2d_fwd.h" />
     <ClInclude Include="graphics\draw2d\draw2d_graphics.h" />

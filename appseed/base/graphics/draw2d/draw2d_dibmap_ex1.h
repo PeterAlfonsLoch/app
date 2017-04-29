@@ -5,8 +5,8 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AURA dibmap_ex1 :
-      virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >
+   class CLASS_DECL_BASE dibmap_ex1 :
+      virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp >
    {
    public:
 
@@ -29,7 +29,7 @@ namespace draw2d
          {
             remove_bigger();
          }
-         ::draw2d::dib_sp & dib = map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >::operator [](key);
+         ::draw2d::dib_sp & dib = map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp>::operator [](key);
          if (dib.is_null())
          {
             dib.alloc(allocer());

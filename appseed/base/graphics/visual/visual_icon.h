@@ -5,12 +5,6 @@ namespace visual
 {
 
 
-   class CLASS_DECL_BASE dib_size_map :
-      virtual public map < size, size, ::draw2d::dib_sp>
-   {
-   public:
-
-   };
 
    class CLASS_DECL_BASE icon :
       virtual public ::object
@@ -18,11 +12,11 @@ namespace visual
    public:
 
 
-      void *         m_picon;
-      bool           m_bAutoDelete;
-      string         m_strAppTrayIcon;
-      size           m_size;
-      dib_size_map   m_dibmap;
+      void *            m_picon;
+      bool              m_bAutoDelete;
+      string            m_strAppTrayIcon;
+      size              m_size;
+      ::draw2d::dibmap  m_dibmap;
 
       icon(::aura::application * papp);
       icon(void * picon);

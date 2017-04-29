@@ -21,7 +21,8 @@ namespace visual
 
 
    icon::icon(::aura::application * papp) :
-      ::object(papp)
+      ::object(papp),
+      m_dibmap(papp)
    {
 
       m_picon = NULL;
@@ -29,7 +30,8 @@ namespace visual
 
    }
 
-   icon::icon(void * picon)
+   icon::icon(void * picon) :
+      m_dibmap(NULL)
    {
 
       set_app(::get_thread_app());
@@ -43,7 +45,8 @@ namespace visual
 
 #ifdef WINDOWS
 
-   icon::icon(HICON hicon)
+   icon::icon(HICON hicon) :
+      m_dibmap(NULL)
    {
 
       set_app(::get_thread_app());

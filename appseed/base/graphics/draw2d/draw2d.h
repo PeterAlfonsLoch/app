@@ -48,6 +48,10 @@ void draw2d_factory_exchange(::aura::application * papp);
 #include "draw2d_path.h"
 
 
+#include "draw2d_dibmap.h"
+#include "draw2d_dibmap_ex1.h"
+
+
 namespace aura
 {
 

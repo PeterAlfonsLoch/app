@@ -644,6 +644,12 @@
     <ClInclude Include="base\install\install_canvas.h">
       <Filter>Header Files\base\install</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_dibmap_ex1.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_dibmap.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">

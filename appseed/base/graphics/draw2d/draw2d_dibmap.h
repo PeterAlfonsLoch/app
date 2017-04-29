@@ -5,8 +5,8 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AURA dibmap :
-      virtual public map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >
+   class CLASS_DECL_BASE dibmap :
+      virtual public map < class size, class size, ::draw2d::dib_sp >
    {
    public:
 
@@ -19,7 +19,7 @@ namespace draw2d
 
       inline ::draw2d::dib_sp & operator[](class size key)
       {
-         ::draw2d::dib_sp & dib = map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >::operator [](key);
+         ::draw2d::dib_sp & dib = map < class size, class size, ::draw2d::dib_sp >::operator [](key);
          if (dib.is_null())
          {
             dib.alloc(allocer());
