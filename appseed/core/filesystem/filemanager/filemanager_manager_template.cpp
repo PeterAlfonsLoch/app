@@ -435,7 +435,7 @@ namespace filemanager
 
       ::file::path pathFolder;
 
-      if (pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
+      if (pcreatecontext != NULL && pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
       {
 
          pathFolder = pcreatecontext->m_spCommandLine->m_varFile;

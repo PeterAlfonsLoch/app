@@ -82,6 +82,8 @@ namespace user
 
       ::user::interaction_ptra      m_guieptraMouseHover;
 
+      sp(::thread)                  m_pthreadUpdateWindow;
+
 
       interaction_impl();
 

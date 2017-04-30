@@ -272,7 +272,7 @@ namespace windows
    {
 
       m_pfnSuper           = NULL;
-      m_pthreadDraw        = NULL;
+      //m_pthreadDraw        = NULL;
       m_bUseDnDHelper      = false;
       m_bUpdateGraphics    = false;
       m_bIgnoreSizeEvent   = false;
@@ -300,7 +300,7 @@ namespace windows
    interaction_impl::~interaction_impl()
    {
 
-      ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
+      ::multithreading::post_quit_and_wait(m_pthreadUpdateWindow, seconds(10));
 
    }
 
@@ -790,7 +790,7 @@ namespace windows
 
       UNREFERENCED_PARAMETER(pobj);
 
-      ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
+      ::multithreading::post_quit_and_wait(m_pthreadUpdateWindow, seconds(10));
 
       Default();
 
@@ -2374,10 +2374,10 @@ namespace windows
       else
       {
 
-         if (m_pthreadDraw == NULL)
+         if (m_pthreadUpdateWindow.is_null())
          {
 
-            m_pthreadDraw = ::fork(get_app(), [&]()
+            m_pthreadUpdateWindow = ::fork(get_app(), [&]()
             {
 
                DWORD dwStart;
@@ -2455,7 +2455,7 @@ namespace windows
 
                }
 
-               m_pthreadDraw = NULL;
+               m_pthreadUpdateWindow.release();
 
             });
 

@@ -570,6 +570,8 @@ namespace user
          if(puiParent != NULL)
          {
 
+            ::multithreading::post_quit_and_wait(m_pimpl.cast < ::user::interaction_impl>()->m_pthreadUpdateWindow, seconds(30));
+
             sp(::user::interaction_child) pimplNew = canew(::user::interaction_child(get_app()));
 
             pimplNew->m_pui = this;
