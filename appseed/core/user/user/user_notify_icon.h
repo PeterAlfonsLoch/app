@@ -46,6 +46,7 @@ namespace user
 #endif
       notify_icon_listener *     m_plistener;
       spa(::user::interaction)   m_wndptraHidden;
+      sp(visual::icon)           m_piconCurrent;
 
 
       notify_icon(::aura::application * papp);
@@ -76,7 +77,7 @@ namespace user
 
 
 
-      bool ModifyIcon(sp(::visual::icon)  picon);
+      bool ModifyIcon(sp(::visual::icon) picon, bool bForce = false);
 
       #ifdef WINDOWSEX
       using ::user::interaction::create;

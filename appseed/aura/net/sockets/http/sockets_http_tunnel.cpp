@@ -13,14 +13,16 @@ namespace sockets
       stream_socket(h),
       tcp_socket(h),
       http_socket(h),
-      m_fileBody(h.get_app(), &m_memoryBody)
+      m_fileBody(h.get_app())
+      //,
+//      m_fileBody(h.get_app(), &m_memoryBody)
    {
 
       SetLineProtocol();
       m_bOk = false;
       m_bDirect = false;
       m_estate = state_initial;
-      m_memoryBuf.allocate(1024 * 16);
+      ///m_memoryBuf.allocate(1024 * 16);
       m_iProxyPort = -1;
 
    }

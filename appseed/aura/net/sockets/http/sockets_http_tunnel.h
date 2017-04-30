@@ -28,8 +28,8 @@ namespace sockets
       stringa   m_straProxy;
       estate      m_estate;
       string      m_strRequest;
-      memory      m_memoryBody;
-      memory      m_memoryBuf;
+      //memory      m_memoryBody;
+      //memory      m_memoryBuf;
       ::memory_file m_fileBody;
       int32_t         m_iContentLength;
       bool        m_bHeaders;

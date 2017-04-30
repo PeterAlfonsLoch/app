@@ -354,11 +354,11 @@ plex_heap_alloc_array::plex_heap_alloc_array()
 //
 //   m_aa[1] = 2;
 //   m_bb[2] = get_size();
-   add(new plex_heap_alloc(384, 64));
+   add(new plex_heap_alloc(384, 2 * 1024));
    add(new plex_heap_alloc(512, 64));
    add(new plex_heap_alloc(768, 48));
    add(new plex_heap_alloc(1024, 48));
-   add(new plex_heap_alloc(1024 * 2, 32));
+   add(new plex_heap_alloc(1024 * 2, 2 * 1024));
 //   m_bbSize[2] = last()->GetAllocSize();
 //
 //

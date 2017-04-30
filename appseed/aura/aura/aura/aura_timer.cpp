@@ -601,6 +601,8 @@ bool timer::call_on_timer()
       if (m_bPeriodic)
       {
 
+         DeleteTimerQueueTimer(m_ptimer->m_hTimerQueue, m_ptimer->m_hTimer, NULL);
+
          if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
          {
 

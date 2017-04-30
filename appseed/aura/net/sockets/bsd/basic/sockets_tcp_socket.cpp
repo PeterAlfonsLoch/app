@@ -1846,6 +1846,18 @@ namespace sockets
 
       }
 
+      if (!m_bReuseSession)
+      {
+
+         if (m_ssl_ctx)
+         {
+
+            SSL_CTX_free(m_ssl_ctx);
+
+         }
+
+      }
+
 #endif
 
       socket::close();

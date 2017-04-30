@@ -261,13 +261,20 @@ namespace user
    }
 
 
-   bool notify_icon::ModifyIcon(sp(::visual::icon) hicon)
+   bool notify_icon::ModifyIcon(sp(::visual::icon) hicon, bool bForce)
    {
 
       if(!m_bCreated)
       {
 
          return false;
+
+      }
+
+      if (!bForce && hicon == m_piconCurrent)
+      {
+
+         return true;
 
       }
 
@@ -290,6 +297,8 @@ namespace user
       throw todo(get_app());
 
 #endif
+
+      m_piconCurrent = hicon;
 
       return true;
 

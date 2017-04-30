@@ -418,7 +418,7 @@ void memcnts_dec(T * pthis)
 
       int i = atoi(file_as_string_dup(path));
 
-      file_put_contents_dup(path, ::str::from(i + 1));
+      file_put_contents_dup(path, ::str::from(i - 1));
 
    }
 

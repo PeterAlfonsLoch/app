@@ -1075,8 +1075,11 @@ namespace exception
       SetLastError(ERROR_SUCCESS);
       if (!SymLoadModule(hProcess, hFile, filename, 0, (uint_ptr)hMod, 0) && ERROR_SUCCESS != GetLastError())
       {
+         ::CloseHandle(hFile);
          return false;
       }
+
+      ::CloseHandle(hFile);
 
       return true;
    }

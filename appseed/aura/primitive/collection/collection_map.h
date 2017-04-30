@@ -7,6 +7,7 @@ public:
 
    typedef map_association < PAIR >  assoc;
 
+   assoc *           m_assocHash17[17];
    assoc **          m_ppassocHash;
    UINT              m_nHashTableSize;
 
@@ -24,7 +25,7 @@ public:
    void InitHashTable(UINT nHashSize,bool bAllocNow = TRUE)
    {
 
-      if(m_ppassocHash != NULL)
+      if(m_ppassocHash != NULL && m_ppassocHash != m_assocHash17)
       {
          // free hash table
          delete[] m_ppassocHash;
@@ -33,9 +34,24 @@ public:
 
       if(bAllocNow)
       {
-         m_ppassocHash = new assoc *[nHashSize];
-         ENSURE(m_ppassocHash != NULL);
+
+         if (nHashSize == 17)
+         {
+
+            m_ppassocHash = m_assocHash17;
+
+         }
+         else
+         {
+         
+            m_ppassocHash = new assoc *[nHashSize];
+            
+            ENSURE(m_ppassocHash != NULL);
+
+         }
+
          memset(m_ppassocHash,0,sizeof(assoc*) * nHashSize);
+
       }
 
       m_nHashTableSize = nHashSize;
@@ -44,7 +60,7 @@ public:
 
    void remove_all()
    {
-      if(m_ppassocHash != NULL)
+      if(m_ppassocHash != NULL && m_ppassocHash != m_assocHash17)
       {
 
          // free hash table

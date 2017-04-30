@@ -115,7 +115,7 @@ CLASS_DECL_AURA bool memcnts()
       if (g_iMemoryCounters)
       {
 
-         g_pmutexMemoryCounters =  new mutex(NULL, "Global\\ca2_memory_counters");
+         g_pmutexMemoryCounters =  new mutex(NULL, FALSE, "Global\\ca2_memory_counters");
 
       }
 
@@ -135,9 +135,9 @@ CLASS_DECL_AURA ::file::path memcnts_base_path()
 
       g_pMemoryCounters = new ::file::path();
 
-      string strModule = ca2_module_dup();
+      ::file::path strModule = module_path_from_pid(getpid());
 
-      string strBasePath = ::dir::system() / "memory_counters" / strModule / ::str::from(getpid());
+      string strBasePath = ::dir::system() / "memory_counters" / strModule.title() / ::str::from(getpid());
 
       *g_pMemoryCounters = strBasePath;
 
