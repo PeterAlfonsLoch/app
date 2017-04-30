@@ -633,10 +633,24 @@ inline bool EqualElements< id >(id element1, id element2)
 }
 
 
+
+template < >
+inline UINT HashKey< const id & >(const id & key)
+{
+
+   if (key.m_etype == id::type_text)
+   {
+
+      return HashKey(key.m_psz);
+
+   }
+
+   return ((((UINT)(uint_ptr)key.m_iType) << 24) & 0xffffffffu) | ((((UINT)(uint_ptr)key.m_iBody) >> 8) & 0xffffffffu);
+
+}
+
 template < >
 inline UINT HashKey< id>(id key)
 {
-   return ((((UINT)(uint_ptr)key.m_iType) << 24) & 0xffffffffu) | ((((UINT)(uint_ptr)key.m_iBody) >> 8) & 0xffffffffu);
+   return HashKey<const id & > ((const id &)key);
 }
-
-

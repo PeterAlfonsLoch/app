@@ -110,7 +110,7 @@ CLASS_DECL_AURA bool memcnts()
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = file_exists_dup(::dir::system() / "memory_counters.txt") ? 1 : 0;
+      g_iMemoryCounters = file_exists_dup(::dir::system() / "config/system/memory_counters.txt") ? 1 : 0;
 
       if (g_iMemoryCounters)
       {

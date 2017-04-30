@@ -65,9 +65,10 @@ public:
 
          // free hash table
          delete[] m_ppassocHash;
-         m_ppassocHash = NULL;
 
       }
+
+      m_ppassocHash = NULL;
 
    }
 
