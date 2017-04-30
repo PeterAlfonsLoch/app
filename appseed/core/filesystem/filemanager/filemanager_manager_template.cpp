@@ -336,6 +336,13 @@ namespace filemanager
 
       ::file::path pathFolder;
 
+      if (pcreatecontext == NULL)
+      {
+
+         pcreatecontext = canew(::create(Application.creation()));
+
+      }
+
       if (pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
       {
 
@@ -435,7 +442,14 @@ namespace filemanager
 
       ::file::path pathFolder;
 
-      if (pcreatecontext != NULL && pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
+      if (pcreatecontext == NULL)
+      {
+
+         pcreatecontext = canew(::create(Application.creation()));
+
+      }
+
+      if (pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
       {
 
          pathFolder = pcreatecontext->m_spCommandLine->m_varFile;

@@ -139,7 +139,7 @@ namespace user
 
                pui->GetWindowRect(rectClient);
 
-               pui->GetFocusRect(rectFocus);
+               pui->GetClientRect(rectFocus);
 
                rectFocus.offset(rectClient.top_left());
 

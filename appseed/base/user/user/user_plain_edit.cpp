@@ -251,10 +251,13 @@ namespace user
       pgraphics->FillSolidRect(rectClient, _001GetColor(::user::color_edit_background));
 
 
-      cr = _001GetColor(color_text);
-      crBk = _001GetColor(color_background);
-      crSel = _001GetColor(color_text_selected);
-      crBkSel = _001GetColor(color_background_selected);
+      cr = _001GetColor(color_edit_text);
+      crBk = _001GetColor(color_edit_background);
+      crSel = _001GetColor(color_edit_text_selected);
+      crBkSel = _001GetColor(color_edit_background_selected);
+
+
+      m_pinternal->update(this);
 
 
       ::job * pjob = pgraphics->m_pjob;
@@ -558,7 +561,7 @@ namespace user
          //ASSERT(FALSE);
       }
 
-
+      
    }
 
    void plain_edit::_001OnCreate(signal_details * pobj)
@@ -4925,11 +4928,11 @@ namespace user
 
       m_brushTextSel.alloc(pedit->allocer());
 
-      m_penCaret->create_solid(1.0, ARGB(255, 0, 0, 0));
+      m_penCaret->create_solid(1.0, pedit->_001GetColor(color_edit_text));
 
-      m_brushTextCr->create_solid(pedit->_001GetColor(color_text));
+      m_brushTextCr->create_solid(pedit->_001GetColor(color_edit_text));
 
-      m_brushTextSel->create_solid(pedit->_001GetColor(color_text_selected));
+      m_brushTextSel->create_solid(pedit->_001GetColor(color_edit_text_selected));
 
    }
 

@@ -358,6 +358,24 @@ namespace user
          return ARGB(128, 255, 255, 255);
 
       }
+      else if (ecolor == color_edit_text)
+      {
+
+         return ARGB(128, 0, 0, 0);
+
+      }
+      else if (ecolor == color_edit_text_selected)
+      {
+
+         return ARGB(128, 255, 255, 255);
+
+      }
+      else if (ecolor == color_edit_background_selected)
+      {
+
+         return ARGB(128, 0, 0, 128);
+
+      }
 
       throw invalid_argument_exception(::get_thread_app());
 
@@ -502,7 +520,7 @@ namespace user
 
       rect rectClient;
 
-      pui->GetFocusRect(rectClient);
+      pui->GetClientRect(rectClient);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

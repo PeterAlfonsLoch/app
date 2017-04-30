@@ -570,7 +570,7 @@ namespace user
          if(puiParent != NULL)
          {
 
-            ::multithreading::post_quit_and_wait(m_pimpl.cast < ::user::interaction_impl>()->m_pthreadUpdateWindow, seconds(30));
+            ::multithreading::post_quit(m_pimpl.cast < ::user::interaction_impl>()->m_pthreadUpdateWindow);
 
             sp(::user::interaction_child) pimplNew = canew(::user::interaction_child(get_app()));
 
@@ -1518,7 +1518,7 @@ namespace user
 
             pui->GetWindowRect(rectClient);
 
-            pui->GetFocusRect(rectFocus);
+            pui->GetClientRect(rectFocus);
 
             rectFocus.offset(rectClient.top_left());
 
@@ -1890,7 +1890,7 @@ namespace user
       else
       {
 
-         GetFocusRect(rectClient);
+         GetClientRect(rectClient);
 
       }
 
@@ -4795,6 +4795,13 @@ ExitModal:
 
    void interaction::on_set_parent(::user::interaction * puiParent)
    {
+
+      if (m_pparent == puiParent)
+      {
+
+         return;
+
+      }
 
       try
       {
