@@ -648,6 +648,13 @@ namespace macos
 
       ::multithreading::post_quit_and_wait(m_pthreadDraw, seconds(10));
       
+      if(GetActiveWindow() == m_pui)
+      {
+         
+         ::SetActiveWindow(NULL);
+         
+      }
+      
       round_window_close();
 
       UNREFERENCED_PARAMETER(pobj);
@@ -4907,8 +4914,19 @@ namespace macos
          return NULL;
          
       }
+      
+      try
+      {
 
-      return pimpl->m_pui;
+         return pimpl->m_pui;
+         
+      }
+      catch(...)
+      {
+         
+      }
+      
+      return NULL;
 
    }
 

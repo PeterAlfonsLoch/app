@@ -81,9 +81,18 @@ namespace macos
        
        virtual bool initialize();
        
-
+      virtual ::file::path get_home_folder();
+      virtual ::file::path get_desktop_folder();
+      virtual ::file::path get_document_folder();
+      virtual ::file::path get_download_folder();
+      
+      virtual ::file::path get_music_folder();
+      virtual ::file::path get_video_folder();
+      virtual ::file::path get_image_folder();
+      
+      
    };
-    
+   
    
 } // namespace macos
 

@@ -180,7 +180,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
          path = getenv("HOME");
 
-         path /= "Library/Application Support/ca2/lock/mutex/named";
+         path /= "Library/ca2/lock/mutex/named";
 
 #endif
 
@@ -1447,7 +1447,7 @@ mutex * mutex::open_mutex(::aura::application * papp,  const char * pstrName)
 
       path = getenv("HOME");
 
-      path /= "Library/Application Support/ca2/lock/mutex/named";
+      path /= "Library/ca2/lock/mutex/named";
 
    }
 

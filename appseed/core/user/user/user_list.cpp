@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 namespace user
 {
@@ -6236,10 +6236,14 @@ namespace user
                get_image_list()->draw(m_plist->m_dibTime->get_graphics(), (int32_t)m_iImage,
                   r2.top_left(),
                   r.size(), r.top_left(), 0);
+               
+               //m_plist->m_dibTime->div_alpha(r2.top_left(), r2.size());
 
                m_plist->m_dibTime->channel_multiply(visual::rgba::channel_alpha, m_plist->m_dibSpot, r2);
 
-               m_plist->m_dibTime->mult_alpha(r2.top_left(), r2.size());
+               //m_plist->m_dibTime->mult_alpha(r2.top_left(), r2.size());
+               
+               m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
                m_pgraphics->BitBlt(rI, m_plist->m_dibTime->get_graphics(), r2.top_left());
 

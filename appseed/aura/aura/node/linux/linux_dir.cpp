@@ -1403,7 +1403,7 @@ namespace linux
          CSIDL_COMMON_APPDATA,
          FALSE);*/
 
-      str = ::file::path(getenv("HOME")) / ".ca2/appdata";
+      str = ::file::path(getenv("HOME")) / ".config/ca2/appdata";
       string strRelative;
       strRelative = element();
       //index iFind = strRelative.find(':');
@@ -1430,7 +1430,7 @@ namespace linux
          CSIDL_COMMON_APPDATA,
          FALSE);*/
 
-      str = ::file::path(getenv("HOME")) / ".ca2/commonappdata";
+      str = ::file::path(getenv("HOME")) / ".config/ca2/commonappdata";
       string strRelative;
       strRelative = element();
       //index iFind = strRelative.find(':');

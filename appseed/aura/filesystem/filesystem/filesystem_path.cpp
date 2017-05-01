@@ -90,9 +90,6 @@ namespace file
 
    }
 
-   //path(const var & var,e_path epath = path_file);
-   //path(const property & property,e_path epath = path_none);
-
    path::~path() throw()
    {
 
@@ -356,14 +353,16 @@ namespace file
 
       }
 
-      if (strPath.Right(3) != "://")
+      string str = path;
+      
+      if (strPath.Right(3) == "://")
       {
 
-         strPath += sep();
+         return ::file::path(strPath + str, m_epath, path.m_iDir);
 
       }
 
-      string str = path;
+      strPath += sep();
 
       str.trim_left("\\/");
 
@@ -386,23 +385,23 @@ namespace file
 
    }
 
-   //path path::operator / (const property & property) const;
-
    path & path::operator /= (const path & path)
    {
 
       string strPath;
 
       strPath = string(*this);
-
-      if (strPath.Right(3) != "://")
+      
+      string str = path;
+      
+      if (strPath.Right(3) == "://")
       {
 
-         strPath += sep();
+         return operator = (::file::path(strPath + str, m_epath));
 
       }
-
-      string str = path;
+      
+      strPath += sep();
 
       str.trim_left("\\/");
 
@@ -496,8 +495,6 @@ namespace file
    }
 
 
-   //bool path::operator == (const var & var) const;
-
    bool path::operator != (const path & path) const
    {
 
@@ -520,9 +517,6 @@ namespace file
       return operator != (string(psz));
 
    }
-
-
-   //bool operator != (const var & var) const;
 
 
    path path::operator + (const path & path) const
@@ -549,30 +543,6 @@ namespace file
    }
 
 
-   //path operator + (const var & var) const;
-   //path operator + (const property & property) const;
-   //path operator + (const id & id) const;
-
-   //path & operator += (const path & path);
-   //path & operator += (const string & str);
-   //path operator / (const path & path) const;
-   //path operator / (const string & str) const;
-   //path operator / (const char * psz) const;
-   //path operator / (const property & property) const;
-
-   //path & operator /= (const path & path);
-   //path & operator /= (const string & str);
-   //path & operator /= (const char * psz);
-
-
-
-   //::file::path & file_cat(const string & str) { return *this + str; }
-
-   //::file::path & operator | (const string & str) { return file_cat(str); } // what is good here is the operator precedence
-
-   //string arg(const string & str) const { return ((const string &)*this) + str; }
-
-   //string operator << (const string & str) const { return arg(str); }
 
    path & path::operator = (const char * psz)
    {
@@ -589,9 +559,6 @@ namespace file
 
    }
 
-   //path & operator = (const var & var);
-   //path & operator += (const var & var);
-
    path & path::operator = (const wstring & wstr)
    {
 
@@ -604,20 +571,10 @@ namespace file
    path & path::operator = (const unichar * psz) { return operator = (wstring(psz)); }
    path & path::operator += (const unichar * psz) { return operator += (wstring(psz)); }
 
-   //path operator * () const;
-
-   //path operator -- () const;
-   //path operator -- (int) const { return operator --(); }
-
-
    string & path::to_string(string & str) const
    {
       return str = (const string &)*this;
    }
-
-//   path sibling(const path & path) const;
-//   path sibling(const string & str) const;
-//   path sibling(const char * psz) const;
 
    path path::operator * (const path & path) const
    {
@@ -628,7 +585,6 @@ namespace file
 
    path path::operator * (const string & str) const { return operator * (::file::path(str)); }
    path path::operator * (const char * psz) const { return operator * (::file::path(psz)); }
-   //path path::operator * (const property & property) const;
 
    path & path::operator *= (const path & path)
    {
@@ -646,7 +602,6 @@ namespace file
 
    path & path::operator *= (const string & str) { return operator *= (::file::path(str)); }
    path & path::operator *= (const char * psz) { return operator *= (::file::path(psz)); }
-   //path & operator *= (const property & property);
 
    ::file::path path::title() const
    {
@@ -665,44 +620,15 @@ namespace file
       return MAX(0, reverse_find(sep()) + 1);
    }
 
-   //bool is_equal(const ::file::path & path2) const;
-
-   //string extension() const;
-
    string path::ext() const
    {
       return extension();
    }
 
-   //string final_extension() const;
-
-   //class CLASS_DECL_AURA path:
-   //   virtual public ::object
-   //{
-   //public:
-
-   //   ::file::system * m_pfile;
-
-
-   //   bool is_equal(const char * lpszFilPathA,const char * lpszFilPathB); << is_equal
-   //   bool eat_end_level(string & str,int32_t iLevelCount,const char * lpSeparator); << operator *
-   //   void split(::file::patha & stra,const char * lpcszPath);
-   //   bool is_relative(const char * psz);
-
-   //   bool rename(const char * pszNew,const char * psz,::aura::application * papp); TODO should go to something like file::system
-
-   //};
-
-   //void split(patha & patha) const;
    bool path::is_relative()
    {
       return file_path_is_relative_dup(*this) != FALSE;
    }
-
-//   patha & ascendants_path(patha & patha) const;
-//   patha & ascendants_name(patha & namea) const;
-//   patha ascendants_path() const;
-//   patha ascendants_name() const;
 
    path path::relative() const
    {
@@ -712,8 +638,6 @@ namespace file
    }
 
 
-//   path folder() const;
-//   path folder(int i) const;
    path path::up() const
    {
 
@@ -730,8 +654,6 @@ namespace file
    }
 
 
-//   inline path & go_up();
-//   path & go_up(int i);
    path & path::operator -= (int i)
    {
 

@@ -1041,8 +1041,17 @@ error:;
    {
 
       sp(::user::interaction) pui;
+      
+      ::base::session * psession = m_pbasesession;
+      
+      if(psession == NULL)
+      {
+         
+         return;
+         
+      }
 
-      while(Session.get_frame(pui))
+      while(psession->get_frame(pui))
       {
 
          pui->on_setting_changed(esetting);

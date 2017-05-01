@@ -238,6 +238,7 @@
 		9AE1FA031E43D3500076C5C0 /* install_installer_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1FA021E43D3500076C5C0 /* install_installer_launcher.cpp */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D4B1904CEFF001AEFFB /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libios_axis.dylib */; };
+		9AEE31261EB7DDEB00BF9A29 /* fs_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEE31251EB7DDEB00BF9A29 /* fs_native_fs.h */; };
 		9AFED6931EB6C5D00072567A /* RoundWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFED6911EB6C5D00072567A /* RoundWindowApp.h */; };
 		9AFED6941EB6C5D00072567A /* RoundWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AFED6921EB6C5D00072567A /* RoundWindowApp.mm */; };
 /* End PBXBuildFile section */
@@ -593,6 +594,7 @@
 		9AE1FA021E43D3500076C5C0 /* install_installer_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_installer_launcher.cpp; sourceTree = "<group>"; };
 		9AE24D341904CEFE001AEFFB /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D361904CEFE001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9AEE31251EB7DDEB00BF9A29 /* fs_native_fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_native_fs.h; sourceTree = "<group>"; };
 		9AFED6911EB6C5D00072567A /* RoundWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowApp.h; sourceTree = "<group>"; };
 		9AFED6921EB6C5D00072567A /* RoundWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowApp.mm; sourceTree = "<group>"; };
 		CE931714155F1599005F90F6 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -1114,6 +1116,7 @@
 		07F5B189184A3B430092C3E1 /* fs */ = {
 			isa = PBXGroup;
 			children = (
+				9AEE31251EB7DDEB00BF9A29 /* fs_native_fs.h */,
 				9A9367B81D26C87900ED7535 /* fs_remote_native_file.h */,
 				9A9367B41D26C84200ED7535 /* fs_ifs_file.h */,
 				9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */,
@@ -1315,6 +1318,7 @@
 				0747A6D51B2637BB00E85AC7 /* im_post.h in Headers */,
 				07A3749D1B26054100E4F888 /* boot_number.h in Headers */,
 				07A374A11B26054100E4F888 /* compress.h in Headers */,
+				9AEE31261EB7DDEB00BF9A29 /* fs_native_fs.h in Headers */,
 				0747A6CF1B2637BB00E85AC7 /* db_long_set.h in Headers */,
 				07A374A31B26054100E4F888 /* compress_compress.h in Headers */,
 				07A374DD1B26054100E4F888 /* geoip_update.h in Headers */,

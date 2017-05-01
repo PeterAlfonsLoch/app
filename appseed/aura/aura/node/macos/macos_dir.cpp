@@ -1,6 +1,12 @@
 #include "framework.h"
 #include "macos.h"
 
+const char * ns_user_local_desktop_folder();
+const char * ns_user_local_documents_folder();
+const char * ns_user_local_downloads_folder();
+const char * ns_user_local_music_folder();
+const char * ns_user_local_image_folder();
+const char * ns_user_local_video_folder();
 
 
 namespace macos
@@ -168,471 +174,6 @@ namespace macos
     }
 
     
-//    void dir::ls_pattern(::aura::application *   papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
-//   {
-//
-//      if(::file::dir::system::is(lpcsz, papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
-//      {
-//
-//         return ::file::dir::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
-//
-//      }
-//
-//      string strDir(lpcsz);
-//
-//      if(!::str::ends(strDir, "/"))
-//      {
-//
-//         strDir += "/";
-//
-//      }
-//
-//      stringa stra;
-//
-//      ::dir::ls(stra, lpcsz);
-//
-//      for(int32_t i = 0; i < stra.get_count(); i++)
-//      {
-//
-//         string strPath = stra[i];
-//
-//         string strName = strPath;
-//
-//         if(!::str::begins_eat(strName, strDir))
-//            continue;
-//
-//         if(!matches_wildcard_criteria(pszPattern, strName))
-//            continue;
-//
-//         if(pstraPath != NULL)
-//         {
-//
-//            pstraPath->add(strPath);
-//
-//         }
-//
-//         if(pstraTitle != NULL)
-//         {
-//
-//            pstraTitle->add(strName);
-//
-//         }
-//
-//         bool bIsDir = false;
-//
-//         if(pbaIsDir != NULL || piaSize != NULL)
-//         {
-//
-//            bIsDir = ::dir::is(strPath);
-//
-//         }
-//
-//         if(pbaIsDir != NULL)
-//         {
-//
-//            pbaIsDir->add(bIsDir);
-//
-//         }
-//
-//         if(piaSize != NULL)
-//         {
-//
-//            if(bIsDir)
-//            {
-//
-//               piaSize->add(0);
-//
-//            }
-//            else
-//            {
-//
-//               piaSize->add(file_length_dup(strPath));
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//   void dir::rls(::aura::application *   papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
-//   {
-//      rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
-//   }
-//
-//   void dir::rls_pattern(::aura::application *   papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
-//   {
-//
-//      stringa straDir;
-//
-//      ::dir::ls_dir(straDir, lpcsz);
-//
-//      for(int32_t i = 0; i < straDir.get_count(); i++)
-//      {
-//
-//         string strDir = straDir[i];
-//
-//         if(strDir == lpcsz)
-//            continue;
-//
-//         index iStart = 0;
-//
-//         if(pstraRelative != NULL)
-//         {
-//            iStart = pstraRelative->get_size();
-//         }
-//
-//         rls_pattern(papp, strDir, pszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
-//
-//         if(pstraRelative != NULL)
-//         {
-//
-//            for(index i = iStart; i < pstraRelative->get_size(); i++)
-//            {
-//
-//               pstraRelative->element_at(i) = System.dir().path(System.file().name_(strDir), pstraRelative->element_at(i));
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//      string strDir(lpcsz);
-//
-//      if(!::str::ends(strDir, "/"))
-//      {
-//
-//         strDir += "/";
-//
-//      }
-//
-//      stringa stra;
-//
-//      ::dir::ls(stra, lpcsz);
-//
-//      for(int32_t i = 0; i < stra.get_count(); i++)
-//      {
-//
-//         string strPath = stra[i];
-//
-//         string strName = strPath;
-//
-//         if(!::str::begins_eat(strName, strDir))
-//            continue;
-//
-//         if(!matches_wildcard_criteria(pszPattern, strName))
-//            continue;
-//
-//         if(pstraPath != NULL)
-//         {
-//
-//            pstraPath->add(strPath);
-//
-//         }
-//
-//         if(pstraTitle != NULL)
-//         {
-//
-//            pstraTitle->add(strName);
-//
-//         }
-//
-//         bool bIsDir = false;
-//
-//         if(pbaIsDir != NULL || piaSize != NULL)
-//         {
-//
-//            bIsDir = ::dir::is(strPath);
-//
-//         }
-//
-//         if(pbaIsDir != NULL)
-//         {
-//
-//            pbaIsDir->add(bIsDir);
-//
-//         }
-//
-//         if(piaSize != NULL)
-//         {
-//
-//            if(bIsDir)
-//            {
-//
-//               piaSize->add(0);
-//
-//            }
-//            else
-//            {
-//
-//               piaSize->add(file_length_dup(strPath));
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//   void dir::rls_dir(::aura::application *   papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
-//   {
-//
-//      stringa stra;
-//
-//      ::dir::ls(stra, lpcsz);
-//
-//      string strDir(lpcsz);
-//
-//      if(!::str::ends(strDir, "/"))
-//      {
-//
-//         strDir += "/";
-//
-//      }
-//
-//
-//      for(int32_t i = 0; i < stra.get_count(); i++)
-//      {
-//
-//         string strPath = stra[i];
-//
-//         string strName = strPath;
-//
-//         if(!::str::begins_eat(strName, strDir))
-//            continue;
-//
-//         if(!System.dir().is(strPath, papp))
-//            continue;
-//
-//         if(pstraPath != NULL)
-//         {
-//
-//            pstraPath->add((const char *) stra[i]);
-//
-//         }
-//
-//         if(pstraTitle != NULL)
-//         {
-//
-//            pstraTitle->add(strName);
-//
-//         }
-//
-//         if(pstraRelative != NULL)
-//         {
-//
-//            pstraRelative->add(strName);
-//
-//         }
-//
-//         index iStart = 0;
-//
-//         if(pstraRelative != NULL)
-//         {
-//
-//            iStart = pstraRelative->get_size();
-//
-//         }
-//
-//         rls_dir(papp, strPath, pstraPath, pstraTitle, pstraRelative);
-//
-//         if(pstraRelative != NULL)
-//         {
-//
-//            for(index i = iStart; i < pstraRelative->get_size(); i++)
-//            {
-//
-//               pstraRelative->element_at(i) = System.dir().path(strPath, pstraRelative->element_at(i));
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//
-//   void dir::ls_dir(::aura::application *   papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
-//   {
-//
-//      stringa stra;
-//
-//      ::dir::ls(stra, lpcsz);
-//
-//      string strDir(lpcsz);
-//
-//      if(!::str::ends(strDir, "/"))
-//      {
-//
-//         strDir += "/";
-//
-//      }
-//
-//
-//      for(int32_t i = 0; i < stra.get_count(); i++)
-//      {
-//
-//         string strPath = stra[i];
-//
-//         string strName = strPath;
-//
-//         if(!::str::begins_eat(strName, strDir))
-//            continue;
-//
-//         if(!System.dir().is(strPath, papp))
-//            continue;
-//
-//         if(pstraPath != NULL)
-//         {
-//
-//            pstraPath->add((const char *) stra[i]);
-//
-//         }
-//
-//         if(pstraTitle != NULL)
-//         {
-//
-//            pstraTitle->add(strName);
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//   void dir::ls_file(::aura::application *   papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
-//   {
-//
-//      stringa stra;
-//
-//      ::dir::ls(stra, lpcsz);
-//
-//      string strDir(lpcsz);
-//
-//      if(!::str::ends(strDir, "/"))
-//      {
-//
-//         strDir += "/";
-//
-//      }
-//
-//
-//      for(int32_t i = 0; i < stra.get_count(); i++)
-//      {
-//
-//         string strPath = stra[i];
-//
-//         string strName = strPath;
-//
-//         if(!::str::begins_eat(strName, strDir))
-//            continue;
-//
-//         if(System.dir().is(strPath, papp))
-//            continue;
-//
-//
-//         if(pstraPath != NULL)
-//         {
-//
-//            pstraPath->add((const char *) stra[i]);
-//
-//         }
-//
-//         if(pstraTitle != NULL)
-//         {
-//
-//            pstraTitle->add(strName);
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//   void dir::ls(::aura::application *   papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
-//   {
-//
-//      stringa stra;
-//
-//      ::dir::ls(stra, lpcsz);
-//
-//      string strDir(lpcsz);
-//
-//      if(!::str::ends(strDir, "/"))
-//      {
-//
-//         strDir += "/";
-//
-//      }
-//
-//
-//      for(int32_t i = 0; i < stra.get_count(); i++)
-//      {
-//
-//         string strPath = stra[i];
-//
-//         string strName = strPath;
-//
-//         if(!::str::begins_eat(strName, strDir))
-//            continue;
-//
-//         if(pstraPath != NULL)
-//         {
-//
-//            pstraPath->add((const char *) stra[i]);
-//
-//         }
-//
-//         if(pstraTitle != NULL)
-//         {
-//
-//            pstraTitle->add(strName);
-//
-//         }
-//
-//
-//         bool bIsDir = false;
-//
-//         if(pbaIsDir != NULL || piaSize != NULL)
-//         {
-//
-//            bIsDir = System.dir().is(strPath, papp);
-//
-//         }
-//
-//         if(pbaIsDir != NULL)
-//         {
-//
-//            pbaIsDir->add(bIsDir);
-//
-//         }
-//
-//         if(piaSize != NULL)
-//         {
-//
-//            if(bIsDir)
-//            {
-//
-//               piaSize->add(0);
-//
-//            }
-//            else
-//            {
-//
-//               piaSize->add(file_length_dup(strPath));
-//
-//            }
-//
-//         }
-//
-//
-//      }
-//
-//   }
 
    bool dir::is(const ::file::path & lpcszPath, ::aura::application * papp)
    {
@@ -1607,7 +1148,7 @@ namespace macos
       if(pathHome.is_empty())
       {
          
-         pathHome = "~/Library/Application Support";
+         pathHome = "~/Library";
          
          pathHome /= ".default_user";
          
@@ -1617,7 +1158,7 @@ namespace macos
       else
       {
       
-         str =  pathHome / "Library/Application Support" / "ca2";
+         str =  pathHome / "Library" / "ca2";
          
       }
  
@@ -1910,7 +1451,93 @@ namespace macos
     //}
     
     
-    
+   ::file::path dir::get_home_folder()
+   {
+      
+      return ::dir::home();
+      
+   }
+   
+   
+   ::file::path dir::get_desktop_folder()
+   {
+      
+      const char * psz = ns_user_local_desktop_folder();
+      
+      ::file::path path = psz;
+      
+      free((void *) psz);
+      
+      return path;
+      
+   }
+   
+   
+   ::file::path dir::get_document_folder()
+   {
+      
+      const char * psz = ns_user_local_documents_folder();
+      
+      ::file::path path = psz;
+      
+      free((void *) psz);
+      
+      return path;
+      
+   }
+   
+   ::file::path dir::get_download_folder()
+   {
+      
+      const char * psz = ns_user_local_downloads_folder();
+      
+      ::file::path path = psz;
+      
+      free((void *) psz);
+      
+      return path;
+      
+   }
+   
 
+   ::file::path dir::get_music_folder()
+   {
+   
+      const char * psz = ns_user_local_music_folder();
+      
+      ::file::path path = psz;
+      
+      free((void *) psz);
+      
+      return path;
+   
+   }
+   
+   ::file::path dir::get_video_folder()
+   {
+      
+      const char * psz = ns_user_local_video_folder();
+      
+      ::file::path path = psz;
+      
+      free((void *) psz);
+      
+      return path;
+      
+   }
+   
+   ::file::path dir::get_image_folder()
+   {
+      
+      const char * psz = ns_user_local_music_folder();
+      
+      ::file::path path = psz;
+      
+      free((void *) psz);
+      
+      return path;
+      
+   }
+   
 
 } // namespace macos

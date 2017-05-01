@@ -1619,18 +1619,43 @@ namespace file
 
       }
 
+      
+      ::file::path system::get_home_folder()
+      {
+         
+         return ::dir::home();
+         
+      }
+
+      ::file::path system::get_desktop_folder()
+      {
+         
+         return get_home_folder() / "Desktop";
+         
+      }
+
+      
       ::file::path system::get_document_folder()
       {
 
-         return "document";
+         return get_home_folder() / "Document";
 
+      }
+
+      
+      
+      ::file::path system::get_download_folder()
+      {
+         
+         return get_home_folder() / "Download";
+         
       }
 
 
       ::file::path system::get_music_folder()
       {
 
-         return "music";
+         return get_home_folder() / "Music";
 
       }
 
@@ -1638,7 +1663,7 @@ namespace file
       ::file::path system::get_video_folder()
       {
 
-         return "video";
+         return get_home_folder() / "Video";
 
       }
 
@@ -1646,7 +1671,7 @@ namespace file
       ::file::path system::get_image_folder()
       {
 
-         return "image";
+         return get_home_folder() / "Image";
 
       }
 

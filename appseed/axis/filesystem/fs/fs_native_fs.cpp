@@ -80,6 +80,30 @@ namespace fs
 
       }
 
+      {
+         
+         ::file::path & path = listing.insert_at(0, System.dir().get_download_folder());
+         path.m_iDir = 1;
+         listing.m_straTitle.insert_at(0, unitext("Download"));
+         
+      }
+      
+      {
+         
+         ::file::path & path = listing.insert_at(0, System.dir().get_document_folder());
+         path.m_iDir = 1;
+         listing.m_straTitle.insert_at(0, unitext("Document"));
+         
+      }
+      
+      {
+         
+         ::file::path & path = listing.insert_at(0, System.dir().get_desktop_folder());
+         path.m_iDir = 1;
+         listing.m_straTitle.insert_at(0, unitext("Desktop"));
+         
+      }
+      
 #ifdef WINDOWSEX
 
       ::file::path strDesktopFolder;

@@ -21,7 +21,7 @@ namespace macos
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return Application.dir().userappdata() / ".ca2/cryptkey";
+      return Application.dir().userappdata() / "user/databin.bin";
 
    }
 

@@ -241,16 +241,16 @@ namespace filemanager
       else
       {
 
-         strPath = Application.dir().userdata();
+         strPath = System.dir().get_desktop_folder();
 
       }
 
-      if(data_set(strId + ".local://InitialBrowsePath", strPath))
-      {
-
-         return strPath;
-
-      }
+//      if(data_set(strId + ".local://InitialBrowsePath", strPath))
+//      {
+//
+//         return strPath;
+//
+//      }
 
       return "";
 

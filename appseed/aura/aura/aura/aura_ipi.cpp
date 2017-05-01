@@ -349,7 +349,7 @@ namespace aura
 
    #ifdef LINUX
 
-      strKey = ::file::path(getenv("HOME")) / ".ca2/Application Support/ca2/ipi" / strApp / ::str::from(iPid);
+      strKey = ::file::path(getenv("HOME")) / ".config/ca2/ipi" / strApp / ::str::from(iPid);
 
    #else
       
@@ -368,7 +368,7 @@ namespace aura
 #else
 
 
-      strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/ipi" / strApp / ::str::from(iPid);
+      strKey = ::file::path(getenv("HOME")) / "Library/ca2/ipi" / strApp / ::str::from(iPid);
       
 #endif
 

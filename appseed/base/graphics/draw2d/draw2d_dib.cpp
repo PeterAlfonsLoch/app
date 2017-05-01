@@ -1476,12 +1476,12 @@ namespace draw2d
       }
    }
 
-   void dib::channel_multiply(visual::rgba::echannel echannel, double dRate)
+   void dib::channel_multiply(visual::rgba::echannel echannel, double dRate, bool bIfAlphaIgnorePreDivPosMult)
    {
       if(dRate < 0)
          return;
 //#ifdef __APPLE__
-      if(echannel == visual::rgba::channel_alpha)
+      if(!bIfAlphaIgnorePreDivPosMult && echannel == visual::rgba::channel_alpha)
       {
          div_alpha();
       }
@@ -1499,21 +1499,25 @@ namespace draw2d
          lpb += 4;
       }
 //#ifdef __APPLE__
-      if(echannel == visual::rgba::channel_alpha)
+      if(!bIfAlphaIgnorePreDivPosMult && echannel == visual::rgba::channel_alpha)
       {
          mult_alpha();
       }
 //#endif
    }
 
-   void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
+   void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib, bool bIfAlphaIgnorePreDivPosMult)
    {
 
 //      int64_t size = area();
-      
+
       map();
       
       pdib->map();
+      if(!bIfAlphaIgnorePreDivPosMult && echannel == visual::rgba::channel_alpha)
+      {
+         div_alpha();
+      }
 
       LPBYTE lpb1 = (LPBYTE) get_data();
 
@@ -1533,7 +1537,8 @@ namespace draw2d
          for ( int32_t x = 0; x < m_size.cx; x++)
          {
 
-            *lpb2 = (BYTE)(((uint32_t)*lpb1_2 * (uint32_t)*lpb2_2) / 255);
+            int i =(BYTE)(((uint32_t)*lpb1_2 * (uint32_t)*lpb2_2) / 255);
+            *lpb2 =i;
 
             lpb1_2 += 4;
 
@@ -1541,6 +1546,10 @@ namespace draw2d
 
          }
 
+      }
+      if(!bIfAlphaIgnorePreDivPosMult && echannel == visual::rgba::channel_alpha)
+      {
+         mult_alpha();
       }
 
    }
@@ -1735,12 +1744,14 @@ namespace draw2d
 
 
 
-   void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib, LPCRECT lpcrect)
+   void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib, LPCRECT lpcrect, bool bIfAlphaIgnorePreDivPosMult)
    {
 
       map();
 
       pdib->map();
+      
+
 
       rect r1(null_point(), m_size);
 
@@ -1761,10 +1772,24 @@ namespace draw2d
          return;
 
       }
+      if(!bIfAlphaIgnorePreDivPosMult && echannel == visual::rgba::channel_alpha)
+      {
+         div_alpha(r.top_left(), r.size());
+      }
 
+#ifdef APPLEOS
+      
+      LPBYTE lpb1 = ((LPBYTE)get_data()) + (r.left * sizeof(COLORREF) + (m_size.cy - r.top -1) * m_iScan);
+      
+      LPBYTE lpb2 = ((LPBYTE)pdib->get_data()) + (r.left * sizeof(COLORREF) + (pdib->m_size.cy - r.top - 1) * pdib->m_iScan);
+      
+#else
+      
       LPBYTE lpb1 = ((LPBYTE)get_data()) + (r.left * sizeof(COLORREF) + r.top * m_iScan);
 
       LPBYTE lpb2 = ((LPBYTE)pdib->get_data()) + (r.left * sizeof(COLORREF) + r.top * pdib->m_iScan);
+      
+#endif
 
       lpb1 += ((int32_t)echannel) % 4;
 
@@ -1792,11 +1817,27 @@ namespace draw2d
 
          }
 
-         lpb1 += m_iScan;
+#ifdef APPLEOS
+         
+         lpb1 -= m_iScan;
 
+         lpb2 -= pdib->m_iScan;
+         
+#else
+
+         lpb1 += m_iScan;
+         
          lpb2 += pdib->m_iScan;
 
+#endif
+
       }
+      
+      if(!bIfAlphaIgnorePreDivPosMult && echannel == visual::rgba::channel_alpha)
+      {
+         mult_alpha(r.top_left(), r.size());
+      }
+
 
    }
 

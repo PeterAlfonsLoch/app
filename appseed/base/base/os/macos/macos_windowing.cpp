@@ -405,9 +405,22 @@ oswindow SetActiveWindow(oswindow window)
 {
 
    oswindow windowOld(g_oswindowActive);
+   
+   if(window == NULL)
+   {
+      
+      g_oswindowActive = NULL;
+      
+   }
 
    if(window->window() == NULL)
+   {
+      
+      g_oswindowActive = NULL;
+      
       return NULL;
+      
+   }
 
    g_oswindowActive = window;
 

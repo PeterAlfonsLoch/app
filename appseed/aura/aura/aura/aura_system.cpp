@@ -521,12 +521,24 @@ namespace aura
       m_spfile.alloc(allocer());
 
       if(!m_spfile->initialize())
-         throw simple_exception(this,"failed to construct system m_spfile->initialize");
+      {
+         
+         thiserr << "failed to initialize file-system";
+         
+         return false;
+         
+      }
 
       m_spdir.alloc(allocer());
 
       if(!m_spdir->initialize())
-         throw simple_exception(this,"failed to construct system m_spdir->initialize");
+      {
+         
+         thiserr << "failed to initialize dir-system";
+         
+         return false;
+         
+      }
 
 
       output_debug_string("CommonAppData (matter) : " + System.dir().commonappdata()  + "\n");
@@ -2267,9 +2279,9 @@ namespace aura
             
             ::file::path p;
             
-            p = getenv("HOME");
+            p = ::dir::ca2_user();
             
-            p /= ".ca2/mypath" / command()->m_spcommandline->m_varQuery.propset()["app"].get_string() + ".txt";
+            p /= "mypath" / command()->m_spcommandline->m_varQuery.propset()["app"].get_string() + ".txt";
             
             file_put_contents_dup(p, command()->m_spcommandline->m_strExe);
             
@@ -2280,15 +2292,15 @@ namespace aura
             if(iFind > 0)
             {
                
-               p = getenv("HOME");
+               p = ::dir::ca2_user;
             
-               p /= ".ca2/mypath" / command()->m_spcommandline->m_varQuery.propset()["app"].get_string() + "-app";
+               p /= "mypath" / command()->m_spcommandline->m_varQuery.propset()["app"].get_string() + "-app";
                
                ::file::path p2;
                
-               p2 = getenv("HOME");
+               p2 = ::dir::ca2_user();
             
-               p2 /= ".ca2/mypath" / ::file::path(command()->m_spcommandline->m_varQuery.propset()["app"].get_string()).folder()/ ::file::path(strApp.Left(iFind + strlen(".app"))).name();
+               p2 /= "mypath" / ::file::path(command()->m_spcommandline->m_varQuery.propset()["app"].get_string()).folder()/ ::file::path(strApp.Left(iFind + strlen(".app"))).name();
 
                ns_create_alias(p2, strApp.Left(iFind + strlen(".app")));
                
@@ -2296,12 +2308,12 @@ namespace aura
                if(::dir::is(::dir::local()/"localconfig/desk/2desk"))
                {
                   
-                  
                   ::file::path p3;
                   
                   p3 = ::dir::local()/"localconfig/desk/2desk"/::file::path(strApp.Left(iFind + strlen(".app"))).name();
                   
                   ns_create_alias(p3, strApp.Left(iFind + strlen(".app")));
+
                }
             
                file_put_contents_dup(p, "open -a \""+strApp.Left(iFind + strlen(".app")) + "\"");
