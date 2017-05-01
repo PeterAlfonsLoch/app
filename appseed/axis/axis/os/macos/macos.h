@@ -13,6 +13,9 @@
 //#include "macos_multithreading.h"
 
 
+
+int32_t axis_main_command_line(const char * pszParams, int argc, char *argv[]);
+
 #ifdef cplusplus
 
 

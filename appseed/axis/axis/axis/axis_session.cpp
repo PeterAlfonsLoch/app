@@ -613,6 +613,36 @@ namespace axis
 
       try
       {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_paxissession == this)
+               {
+                  
+                  pair.m_element2->m_paxissession = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }
+
+      try
+      {
 
          m_mapApplication.remove_all();
 

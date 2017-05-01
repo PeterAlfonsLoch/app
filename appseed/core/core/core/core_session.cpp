@@ -525,6 +525,8 @@ namespace core
    }
    }
    */
+
+
    bool session::is_session()
    {
       return true;

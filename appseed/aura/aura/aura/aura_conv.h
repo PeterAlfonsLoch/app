@@ -3,6 +3,6 @@
 
 
 
-CLASS_DECL_AURA char to_upper(int32_t ch);
+CLASS_DECL_AURA char char_to_upper(int32_t ch);
 CLASS_DECL_AURA char * to_upper(char * pchParam);
 

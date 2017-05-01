@@ -356,6 +356,36 @@ namespace base
    int32_t session::exit_application()
    {
 
+      try
+      {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_pbasesession == this)
+               {
+                  
+                  pair.m_element2->m_pbasesession = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }         
+
       ::base::application::exit_application();
 
       ::axis::session::exit_application();

@@ -104,6 +104,8 @@ namespace base
 
       virtual void defer_create_user_schema(const char * pszUiInteractionLibrary = NULL);
 
+      
+
 
    };
 

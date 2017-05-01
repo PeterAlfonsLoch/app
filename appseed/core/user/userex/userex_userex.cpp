@@ -1339,6 +1339,36 @@ namespace core
 
    int32_t session::exit_application()
    {
+      
+      try
+      {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_pcoresession == this)
+               {
+                  
+                  pair.m_element2->m_pcoresession = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+         
+      }       
 
       try
       {

@@ -59,7 +59,7 @@ namespace aura
       bool                                            m_bAuraInitialize;
       bool                                            m_bAuraInitializeResult;
 
-      string_to_ptr                                   m_appmap;
+      string_map < ::aura::application * >            m_appmap;
       string                                          m_strAppName;
       ::aura::allocatorsp                             m_allocer;
       sp(class signal)                                m_psignal;
@@ -256,8 +256,8 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
 
 
-      virtual bool app_map_lookup(const char * psz,void * &);
-      virtual void app_map_set(const char * psz,void *);
+      virtual bool app_map_lookup(const char * psz,::aura::application * &);
+      virtual void app_map_set(const char * psz,::aura::application *);
 
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();

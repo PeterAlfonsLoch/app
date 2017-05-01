@@ -213,6 +213,7 @@ namespace core
 
       virtual void on_user_login(::fontopus::user * puser);
 
+      //virtual int32_t exit_application();
 
 
    };

@@ -318,6 +318,37 @@ namespace aura
    int32_t session::exit_application()
    {
 
+      try
+      {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_paurasession == this)
+               {
+                  
+                  pair.m_element2->m_paurasession = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }
+         
+
       ::aura::application::exit_application();
 
       return 0;
@@ -734,7 +765,7 @@ namespace aura
          {
 
             // aura::session, axis::session and ::base::session, could get more specialized handling in core::application (core::system)
-            // Thank you Mummi (em São Paulo, cuidando do Lucinho e ajudando um monte a Carô 2015-02-03) !! Thank you God!!
+            // Thank you Mummi (em Sï¿½o Paulo, cuidando do Lucinho e ajudando um monte a Carï¿½ 2015-02-03) !! Thank you God!!
             if(!Sys(this).on_run_exception(e))
             {
                if(!App(this).on_run_exception(e))
@@ -811,7 +842,7 @@ namespace aura
 
 #ifdef CUBE
 
-      // Criar novo meio de instalação
+      // Criar novo meio de instalaï¿½ï¿½o
 
 #elif !defined(METROWIN)
 

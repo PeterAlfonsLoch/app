@@ -28,7 +28,10 @@ string get_user_name()
    return string(wsz);
 }
 #endif
-
+#ifdef MACOS
+void ns_app_terminate();
+void ns_create_alias(const char * pszTarget, const char * pszSource);
+#endif
 namespace aura
 {
 
@@ -267,6 +270,8 @@ namespace aura
 #endif
       
       ::aura::del(m_pdumpcontext);
+
+
       
 
    }
@@ -641,6 +646,38 @@ namespace aura
    int32_t system::exit_application()
    {
 
+
+      try
+      {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_paurasystem == this)
+               {
+                  
+                  pair.m_element2->m_paurasystem = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }
+         
+
       __wait_threading_count(::millis((5000) * 8));
 
       try
@@ -805,7 +842,9 @@ namespace aura
 
       //}
 
-
+#ifdef MACOS
+      ns_app_terminate();
+#endif
       return iRet;
 
    }
@@ -2244,9 +2283,30 @@ namespace aura
                p = getenv("HOME");
             
                p /= ".ca2/mypath" / command()->m_spcommandline->m_varQuery.propset()["app"].get_string() + "-app";
+               
+               ::file::path p2;
+               
+               p2 = getenv("HOME");
             
+               p2 /= ".ca2/mypath" / ::file::path(command()->m_spcommandline->m_varQuery.propset()["app"].get_string()).folder()/ ::file::path(strApp.Left(iFind + strlen(".app"))).name();
+
+               ns_create_alias(p2, strApp.Left(iFind + strlen(".app")));
+               
+               
+               if(::dir::is(::dir::local()/"localconfig/desk/2desk"))
+               {
+                  
+                  
+                  ::file::path p3;
+                  
+                  p3 = ::dir::local()/"localconfig/desk/2desk"/::file::path(strApp.Left(iFind + strlen(".app"))).name();
+                  
+                  ns_create_alias(p3, strApp.Left(iFind + strlen(".app")));
+               }
             
                file_put_contents_dup(p, "open -a \""+strApp.Left(iFind + strlen(".app")) + "\"");
+
+               chmod(p, 0777);
                
             }
             

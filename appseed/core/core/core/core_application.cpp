@@ -519,6 +519,36 @@ namespace core
 
       try
       {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_pcoreapp == this)
+               {
+                  
+                  pair.m_element2->m_pcoreapp = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }         
+
+      try
+      {
 
          close(end_app);
 

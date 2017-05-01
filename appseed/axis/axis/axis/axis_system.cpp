@@ -340,6 +340,36 @@ namespace axis
    int32_t system::exit_application()
    {
 
+      try
+      {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_paxissystem == this)
+               {
+                  
+                  pair.m_element2->m_paxissystem = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }         
+
       __wait_threading_count(::millis((5000) * 8));
 
       try

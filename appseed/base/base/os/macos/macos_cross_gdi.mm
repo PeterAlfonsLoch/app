@@ -10,6 +10,9 @@
 #import "macos_windowing.h"
 
 
+
+
+
 oswindow SetActiveWindow(oswindow window);
 
 
@@ -59,7 +62,3 @@ WINBOOL BringWindowToTop(oswindow window)
    return TRUE;
    
 }
-
-
-
-

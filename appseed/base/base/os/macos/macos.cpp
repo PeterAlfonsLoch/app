@@ -97,15 +97,8 @@ CLASS_DECL_AURA bool __node_base_pos_term()
 }
 
 
-const char * g_pszCommandLine = NULL;
 
 
-int32_t run_system()
-{
-
-   return   __run_system_command_line(g_pszCommandLine);
-   
-}
 
 int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
 {
@@ -228,18 +221,18 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
          if(!bColon)
          {
             
-            if(strstr(argv[i], " ") != 0)
+            //if(strstr(argv[i], " ") != 0)
             {
                
                strA += " \"" + string(argv[i]) + "\"";
                
             }
-            else
-            {
-            
-               strA += string(" ") + argv[i];
-               
-            }
+//            else
+//            {
+//            
+//               strA += string(" ") + argv[i];
+//               
+//            }
             
          }
          else
@@ -272,28 +265,5 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    return raw_main_command_line(strCommandLine, argc, argv);
 
 }
-
-int32_t raw_main_command_line(const char * pszCommandLine, int argc, char *argv[])
-{
-
-   
-   setlocale(LC_ALL,"");
-   
-   g_pszCommandLine = strdup_dup(pszCommandLine);
-   
-   ns_shared_application(argc, argv);
-   
-   ns_app_run();
-   
-   
-   delete ::aura::system::g_p;
-   
-   return 0;
-   
-}
-
-
-
-
 
 

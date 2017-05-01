@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage)
-;
 
 
 //
@@ -89,6 +87,35 @@ bool ns_open_file(const char * psz)
 
 
 
+
+
+
+char * mm_ca2_command_line()
+{
+   
+   NSString *ca2_command_line = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ca2_command_line"];
+   
+   if(ca2_command_line == NULL)
+   {
+      
+      return strdup("");
+      
+   }
+   
+   return strdup([ca2_command_line UTF8String]);
+   
+}
+
+
+
+
+
+bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage)
+;
+
+
+
+
 bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
 {
    
@@ -140,18 +167,20 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 
-char * mm_ca2_command_line()
+
+void ns_app_terminate()
+{
+   [NSApp terminate:nil];
+   
+}
+
+
+
+void ns_get_bundle_identifier(char * psz, int iSize)
 {
    
-   NSString *ca2_command_line = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ca2_command_line"];
+   NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
    
-   if(ca2_command_line == NULL)
-   {
-      
-      return strdup("");
-      
-   }
-   
-   return strdup([ca2_command_line UTF8String]);
+   strncpy(psz, [bundleIdentifier UTF8String], iSize);
    
 }

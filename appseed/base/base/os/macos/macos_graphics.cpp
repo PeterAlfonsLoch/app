@@ -1,5 +1,10 @@
 #include "framework.h"
 
+
+
+bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+
+
 HDC GetDC(oswindow hwnd);
 
 #ifdef DEBUG
@@ -576,5 +581,39 @@ HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
 
 
 
+bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+{
+   
+   static mutex * pmutex = NULL;
+   
+   if(pmutex == NULL)
+   {
+      
+      pmutex = new mutex(NULL);
+      
+   }
+   
+   synch_lock sl(pmutex);
+   
+   
+   return mm1_get_file_image(pcr, cx, cy, iScan, psz);
+   
+   
+}
 
 
+
+
+bool macos_get_file_image(::draw2d::dib * pdib, const char * psz)
+{
+   
+   if(!macos1_get_file_image(pdib->m_pcolorref, pdib->m_size.cx, pdib->m_size.cy, pdib->m_iScan, psz))
+   {
+      
+      return false;
+      
+   }
+   
+   return true;
+   
+}

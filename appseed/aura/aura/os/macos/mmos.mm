@@ -244,7 +244,7 @@ bool mm1a_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ch
 }
 
 
-void ns_set_this_default_browser()
+void ns_set_this_process_binary_default_browser()
 {
    
    CFBundleRef bundle = CFBundleGetMainBundle();
@@ -257,4 +257,15 @@ void ns_set_this_default_browser()
    
    LSSetDefaultHandlerForURLScheme(CFSTR("http"), identifier);
    
+}
+
+
+
+
+void ns_create_alias(const char * pszTarget, const char * pszSource)
+{
+   NSString * strTarget = [[NSString alloc]initWithUTF8String:pszTarget];
+   NSString * strSource = [[NSString alloc]initWithUTF8String:pszSource];
+   
+   [[NSFileManager defaultManager ] createSymbolicLinkAtPath: strTarget withDestinationPath: strSource error:nil];
 }

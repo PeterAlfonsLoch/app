@@ -69,7 +69,8 @@ namespace macos
 
       virtual bool set_default_browser(::aura::application * papp) override;
 
-
+      virtual ::file::path get_app_path(const string & strApp);
+      
    };
 
 

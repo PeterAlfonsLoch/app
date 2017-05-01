@@ -437,6 +437,37 @@ OutputDebugString("gtk_main exited");
    int32_t system::exit_application()
    {
 
+
+      try
+      {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_pcoresystem == this)
+               {
+                  
+                  pair.m_element2->m_pcoresystem = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }     
+
       __wait_threading_count(::millis((5000) * 8));
 
 #ifdef LINUX

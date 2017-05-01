@@ -82,10 +82,6 @@
 		074DA7691C8E5B7A00748EB7 /* html_lite_html_entity_resolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7371C8E5B7A00748EB7 /* html_lite_html_entity_resolver.h */; };
 		074DA76C1C8E5B7A00748EB7 /* html_lite_html_reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7391C8E5B7A00748EB7 /* html_lite_html_reader.h */; };
 		074DA76F1C8E5B7A00748EB7 /* html_lite_html_tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA73B1C8E5B7A00748EB7 /* html_lite_html_tag.h */; };
-		07502CE51B25CADC008D207C /* dib_console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CE31B25CADC008D207C /* dib_console.cpp */; };
-		07502CE61B25CADC008D207C /* dib_console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CE31B25CADC008D207C /* dib_console.cpp */; };
-		07502CEA1B25CAE9008D207C /* _visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CE91B25CAE9008D207C /* _visual.cpp */; };
-		07502CEB1B25CAE9008D207C /* _visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CE91B25CAE9008D207C /* _visual.cpp */; };
 		07502CF31B25CC61008D207C /* _filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CF21B25CC61008D207C /* _filesystem.cpp */; };
 		07502CF41B25CC61008D207C /* _filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CF21B25CC61008D207C /* _filesystem.cpp */; };
 		07703C3F1B6FE06B009026EA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076A1FE81B6E65F800BF6C7D /* libios_aura.dylib */; };
@@ -209,27 +205,7 @@
 		07EDC4FC1B4F0C3E00AF8928 /* sqlitedb_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6A41B2637BB00E85AC7 /* sqlitedb_base.cpp */; };
 		07EDC4FD1B4F0C4100AF8928 /* sqlitedb_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6A61B2637BB00E85AC7 /* sqlitedb_set.cpp */; };
 		07F5B1F8184A3B430092C3E1 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B188184A3B430092C3E1 /* filesystem.h */; };
-		07F5B27F184A3B6A0092C3E1 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B243184A3B6A0092C3E1 /* graphics.h */; };
-		07F5B282184A3B6A0092C3E1 /* visual.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B247184A3B6A0092C3E1 /* visual.h */; };
-		07F5B283184A3B6A0092C3E1 /* visual_const.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B248184A3B6A0092C3E1 /* visual_const.h */; };
-		9A18AC5F1DDFABED00C57231 /* libaxisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A18AC5A1DDFABCE00C57231 /* libaxisfreetype.dylib */; };
 		9A19A0DC19C68DEE0018DF7D /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0D519C68DDA0018DF7D /* libaura.dylib */; };
-		9A19A10919C692650018DF7D /* visual_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0EA19C692650018DF7D /* visual_api.h */; };
-		9A19A10B19C692650018DF7D /* visual_buffered_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0EC19C692650018DF7D /* visual_buffered_graphics.h */; };
-		9A19A10C19C692650018DF7D /* visual_dib_pal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0ED19C692650018DF7D /* visual_dib_pal.h */; };
-		9A19A10E19C692650018DF7D /* visual_dib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0EF19C692650018DF7D /* visual_dib.h */; };
-		9A19A11019C692650018DF7D /* visual_fastblur.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0F119C692650018DF7D /* visual_fastblur.h */; };
-		9A19A11219C692650018DF7D /* visual_font_central.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0F319C692650018DF7D /* visual_font_central.h */; };
-		9A19A11419C692650018DF7D /* visual_font.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0F519C692650018DF7D /* visual_font.h */; };
-		9A19A11619C692650018DF7D /* visual_FreeImageFileProc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0F719C692650018DF7D /* visual_FreeImageFileProc.h */; };
-		9A19A11819C692650018DF7D /* visual_glyph_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0F919C692650018DF7D /* visual_glyph_set.h */; };
-		9A19A11A19C692650018DF7D /* visual_glyph.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0FB19C692650018DF7D /* visual_glyph.h */; };
-		9A19A11C19C692650018DF7D /* visual_graphics_extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0FD19C692650018DF7D /* visual_graphics_extension.h */; };
-		9A19A11E19C692650018DF7D /* visual_image_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0FF19C692650018DF7D /* visual_image_list.h */; };
-		9A19A12019C692650018DF7D /* visual_imaging.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A10119C692650018DF7D /* visual_imaging.h */; };
-		9A19A12219C692650018DF7D /* visual_rgb_quad_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A10319C692650018DF7D /* visual_rgb_quad_array.h */; };
-		9A19A12419C692650018DF7D /* visual_visual.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A10519C692650018DF7D /* visual_visual.h */; };
-		9A19A12619C692650018DF7D /* visual_water_routine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A10719C692650018DF7D /* visual_water_routine.h */; };
 		9A2116E71D832A54000C4336 /* libios_axisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2116E61D832A54000C4336 /* libios_axisfreerdp.dylib */; };
 		9A2116E81D832A64000C4336 /* libios_axisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A331D7F341700ED6D8A /* libios_axisidn.dylib */; };
 		9A2116EB1D832A8C000C4336 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2116EA1D832A8C000C4336 /* libios_ace.dylib */; };
@@ -240,7 +216,6 @@
 		9A331C851D4BD0C600255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C841D4BD0C600255105 /* libz.tbd */; };
 		9A331C871D4BD0DB00255105 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C861D4BD0DB00255105 /* libsqlite3.tbd */; };
 		9A3322B71D4BF72C00255105 /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3322B61D4BF72C00255105 /* libace.a */; };
-		9A80875F1DE10FF400F70A07 /* libios_axisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9809911DDF9AEF00BB294E /* libios_axisfreeimage.dylib */; };
 		9A8087601DE10FFF00F70A07 /* libios_aurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98082C1DDF955B00BB294E /* libios_aurapcre.dylib */; };
 		9A8087631DE1101F00F70A07 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087611DE1101F00F70A07 /* libcrypto.a */; };
 		9A8087641DE1101F00F70A07 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087621DE1101F00F70A07 /* libssl.a */; };
@@ -251,7 +226,6 @@
 		9A9367B71D26C84200ED7535 /* fs_remote_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */; };
 		9A9367B91D26C87900ED7535 /* fs_remote_native_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B81D26C87900ED7535 /* fs_remote_native_file.h */; };
 		9A9809961DDF9B5300BB294E /* libaurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98082A1DDF955B00BB294E /* libaurapcre.dylib */; };
-		9A9809971DDF9B5300BB294E /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A98098F1DDF9AEF00BB294E /* libaxisfreeimage.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -264,6 +238,8 @@
 		9AE1FA031E43D3500076C5C0 /* install_installer_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1FA021E43D3500076C5C0 /* install_installer_launcher.cpp */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D4B1904CEFF001AEFFB /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libios_axis.dylib */; };
+		9AFED6931EB6C5D00072567A /* RoundWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFED6911EB6C5D00072567A /* RoundWindowApp.h */; };
+		9AFED6941EB6C5D00072567A /* RoundWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AFED6921EB6C5D00072567A /* RoundWindowApp.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,27 +256,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
 			remoteInfo = ios_aura;
-		};
-		9A18AC591DDFABCE00C57231 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AEEB49119C5088600866C9E;
-			remoteInfo = axisfreetype;
-		};
-		9A18AC5B1DDFABCE00C57231 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07108CDC1B4C97E300A28F80;
-			remoteInfo = ios_axisfreetype;
-		};
-		9A18AC5D1DDFABE500C57231 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = axisfreetype;
 		};
 		9A19A0D419C68DDA0018DF7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -337,20 +292,6 @@
 			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
 			remoteInfo = ios_aurapcre;
 		};
-		9A80875B1DE10FDF00F70A07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07108B6F1B4C97D500A28F80;
-			remoteInfo = ios_axisfreeimage;
-		};
-		9A80875D1DE10FDF00F70A07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07108BDA1B4C97E300A28F80;
-			remoteInfo = ios_axisfreetype;
-		};
 		9A9808291DDF955B00BB294E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */;
@@ -365,33 +306,12 @@
 			remoteGlobalIDString = 07D6A8471B4CBB45004FEBC2;
 			remoteInfo = ios_aurapcre;
 		};
-		9A98098E1DDF9AEF00BB294E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AEEB48E19C5084900866C9E;
-			remoteInfo = axisfreeimage;
-		};
-		9A9809901DDF9AEF00BB294E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07108BD71B4C97D500A28F80;
-			remoteInfo = ios_axisfreeimage;
-		};
 		9A9809921DDF9AFC00BB294E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = aurapcre;
-		};
-		9A9809941DDF9AFC00BB294E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = axisfreeimage;
 		};
 		9A9F0A301D7F341700ED6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -513,8 +433,6 @@
 		074DA7371C8E5B7A00748EB7 /* html_lite_html_entity_resolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_entity_resolver.h; sourceTree = "<group>"; };
 		074DA7391C8E5B7A00748EB7 /* html_lite_html_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_reader.h; sourceTree = "<group>"; };
 		074DA73B1C8E5B7A00748EB7 /* html_lite_html_tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_tag.h; sourceTree = "<group>"; };
-		07502CE31B25CADC008D207C /* dib_console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib_console.cpp; sourceTree = "<group>"; };
-		07502CE91B25CAE9008D207C /* _visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _visual.cpp; sourceTree = "<group>"; };
 		07502CF21B25CC61008D207C /* _filesystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _filesystem.cpp; sourceTree = "<group>"; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = framework.cpp; path = ../framework.cpp; sourceTree = "<group>"; };
 		077C2A1A190F144000A1F6B0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = framework.h; path = ../framework.h; sourceTree = "<group>"; };
@@ -645,29 +563,9 @@
 		07EDC2A31B4ECB3C00AF8928 /* ios_win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_win_base.cpp; sourceTree = "<group>"; };
 		07EDC2A41B4ECB3C00AF8928 /* ios_window_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_boot.h; sourceTree = "<group>"; };
 		07F5B188184A3B430092C3E1 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
-		07F5B243184A3B6A0092C3E1 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
-		07F5B247184A3B6A0092C3E1 /* visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual.h; sourceTree = "<group>"; };
-		07F5B248184A3B6A0092C3E1 /* visual_const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_const.h; sourceTree = "<group>"; };
 		9A18AAF11DDFAB4D00C57231 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../nodeapp/thirdparty/library/libcrypto.a; sourceTree = "<group>"; };
 		9A18AAF21DDFAB4D00C57231 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../nodeapp/thirdparty/library/libssl.a; sourceTree = "<group>"; };
-		9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreetype.xcodeproj; path = ../../../third/appseed/freetype/axisfreetype.xcodeproj; sourceTree = "<group>"; };
 		9A19A0CE19C68DDA0018DF7D /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9A19A0EA19C692650018DF7D /* visual_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_api.h; sourceTree = "<group>"; };
-		9A19A0EC19C692650018DF7D /* visual_buffered_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_buffered_graphics.h; sourceTree = "<group>"; };
-		9A19A0ED19C692650018DF7D /* visual_dib_pal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_dib_pal.h; sourceTree = "<group>"; };
-		9A19A0EF19C692650018DF7D /* visual_dib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_dib.h; sourceTree = "<group>"; };
-		9A19A0F119C692650018DF7D /* visual_fastblur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_fastblur.h; sourceTree = "<group>"; };
-		9A19A0F319C692650018DF7D /* visual_font_central.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_font_central.h; sourceTree = "<group>"; };
-		9A19A0F519C692650018DF7D /* visual_font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_font.h; sourceTree = "<group>"; };
-		9A19A0F719C692650018DF7D /* visual_FreeImageFileProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_FreeImageFileProc.h; sourceTree = "<group>"; };
-		9A19A0F919C692650018DF7D /* visual_glyph_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_glyph_set.h; sourceTree = "<group>"; };
-		9A19A0FB19C692650018DF7D /* visual_glyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_glyph.h; sourceTree = "<group>"; };
-		9A19A0FD19C692650018DF7D /* visual_graphics_extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_graphics_extension.h; sourceTree = "<group>"; };
-		9A19A0FF19C692650018DF7D /* visual_image_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_image_list.h; sourceTree = "<group>"; };
-		9A19A10119C692650018DF7D /* visual_imaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_imaging.h; sourceTree = "<group>"; };
-		9A19A10319C692650018DF7D /* visual_rgb_quad_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_rgb_quad_array.h; sourceTree = "<group>"; };
-		9A19A10519C692650018DF7D /* visual_visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_visual.h; sourceTree = "<group>"; };
-		9A19A10719C692650018DF7D /* visual_water_routine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_water_routine.h; sourceTree = "<group>"; };
 		9A2116E61D832A54000C4336 /* libios_axisfreerdp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisfreerdp.dylib; path = "../../../third/appseed/freerdp/build/Debug-iphoneos/libios_axisfreerdp.dylib"; sourceTree = "<group>"; };
 		9A2116EA1D832A8C000C4336 /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/ios-basic-apgdmhfgxzjpfmdhucodqlzuwxoe/Build/Products/Debug-iphonesimulator/libios_ace.dylib"; sourceTree = "<group>"; };
 		9A331C621D4BCB3C00255105 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
@@ -688,7 +586,6 @@
 		9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_fs.h; sourceTree = "<group>"; };
 		9A9367B81D26C87900ED7535 /* fs_remote_native_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_file.h; sourceTree = "<group>"; };
 		9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurapcre.xcodeproj; path = ../../../third/appseed/pcre/aurapcre.xcodeproj; sourceTree = "<group>"; };
-		9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisidn.xcodeproj; path = ../../../third/appseed/idn/axisidn.xcodeproj; sourceTree = "<group>"; };
 		9AC18A441D4EA0C900977347 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
@@ -696,6 +593,8 @@
 		9AE1FA021E43D3500076C5C0 /* install_installer_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_installer_launcher.cpp; sourceTree = "<group>"; };
 		9AE24D341904CEFE001AEFFB /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D361904CEFE001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9AFED6911EB6C5D00072567A /* RoundWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowApp.h; sourceTree = "<group>"; };
+		9AFED6921EB6C5D00072567A /* RoundWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowApp.mm; sourceTree = "<group>"; };
 		CE931714155F1599005F90F6 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -704,9 +603,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A18AC5F1DDFABED00C57231 /* libaxisfreetype.dylib in Frameworks */,
 				9A9809961DDF9B5300BB294E /* libaurapcre.dylib in Frameworks */,
-				9A9809971DDF9B5300BB294E /* libaxisfreeimage.dylib in Frameworks */,
 				9A9F0A8A1D7F35D600ED6D8A /* libaxisidn.dylib in Frameworks */,
 				9A3322B71D4BF72C00255105 /* libace.a in Frameworks */,
 				9ACBD0C01DDFAEB5004AF08F /* libssl.a in Frameworks */,
@@ -729,7 +626,6 @@
 				9A8087631DE1101F00F70A07 /* libcrypto.a in Frameworks */,
 				9A8087641DE1101F00F70A07 /* libssl.a in Frameworks */,
 				9A8087601DE10FFF00F70A07 /* libios_aurapcre.dylib in Frameworks */,
-				9A80875F1DE10FF400F70A07 /* libios_axisfreeimage.dylib in Frameworks */,
 				9A2116EB1D832A8C000C4336 /* libios_ace.dylib in Frameworks */,
 				9A2116E81D832A64000C4336 /* libios_axisidn.dylib in Frameworks */,
 				9A2116E71D832A54000C4336 /* libios_axisfreerdp.dylib in Frameworks */,
@@ -1072,6 +968,8 @@
 		07A372E61B26054100E4F888 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9AFED6911EB6C5D00072567A /* RoundWindowApp.h */,
+				9AFED6921EB6C5D00072567A /* RoundWindowApp.mm */,
 				07A372ED1B26054100E4F888 /* macos_crypto.h */,
 				07A376F21B260DB800E4F888 /* macos_axis_dir.h */,
 				07A376F31B260DB800E4F888 /* macos_axis_file_system.h */,
@@ -1224,51 +1122,6 @@
 			path = fs;
 			sourceTree = "<group>";
 		};
-		07F5B20E184A3B690092C3E1 /* graphics */ = {
-			isa = PBXGroup;
-			children = (
-				07502CE31B25CADC008D207C /* dib_console.cpp */,
-				07F5B246184A3B6A0092C3E1 /* visual */,
-				07F5B243184A3B6A0092C3E1 /* graphics.h */,
-			);
-			path = graphics;
-			sourceTree = "<group>";
-		};
-		07F5B246184A3B6A0092C3E1 /* visual */ = {
-			isa = PBXGroup;
-			children = (
-				07502CE91B25CAE9008D207C /* _visual.cpp */,
-				9A19A0EA19C692650018DF7D /* visual_api.h */,
-				9A19A0EC19C692650018DF7D /* visual_buffered_graphics.h */,
-				9A19A0ED19C692650018DF7D /* visual_dib_pal.h */,
-				9A19A0EF19C692650018DF7D /* visual_dib.h */,
-				9A19A0F119C692650018DF7D /* visual_fastblur.h */,
-				9A19A0F319C692650018DF7D /* visual_font_central.h */,
-				9A19A0F519C692650018DF7D /* visual_font.h */,
-				9A19A0F719C692650018DF7D /* visual_FreeImageFileProc.h */,
-				9A19A0F919C692650018DF7D /* visual_glyph_set.h */,
-				9A19A0FB19C692650018DF7D /* visual_glyph.h */,
-				9A19A0FD19C692650018DF7D /* visual_graphics_extension.h */,
-				9A19A0FF19C692650018DF7D /* visual_image_list.h */,
-				9A19A10119C692650018DF7D /* visual_imaging.h */,
-				9A19A10319C692650018DF7D /* visual_rgb_quad_array.h */,
-				9A19A10519C692650018DF7D /* visual_visual.h */,
-				9A19A10719C692650018DF7D /* visual_water_routine.h */,
-				07F5B247184A3B6A0092C3E1 /* visual.h */,
-				07F5B248184A3B6A0092C3E1 /* visual_const.h */,
-			);
-			path = visual;
-			sourceTree = "<group>";
-		};
-		9A18AC521DDFABCE00C57231 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A18AC5A1DDFABCE00C57231 /* libaxisfreetype.dylib */,
-				9A18AC5C1DDFABCE00C57231 /* libios_axisfreetype.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A19A0CF19C68DDA0018DF7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1293,15 +1146,6 @@
 			children = (
 				9A98082A1DDF955B00BB294E /* libaurapcre.dylib */,
 				9A98082C1DDF955B00BB294E /* libios_aurapcre.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A98098A1DDF9AEF00BB294E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A98098F1DDF9AEF00BB294E /* libaxisfreeimage.dylib */,
-				9A9809911DDF9AEF00BB294E /* libios_axisfreeimage.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1349,13 +1193,10 @@
 			children = (
 				9A19A0CE19C68DDA0018DF7D /* aura.xcodeproj */,
 				9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */,
-				9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */,
-				9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */,
 				9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */,
 				07A371F51B26054000E4F888 /* axis */,
 				0747A6491B2637BB00E85AC7 /* database */,
 				07F5B12D184A3B420092C3E1 /* filesystem */,
-				07F5B20E184A3B690092C3E1 /* graphics */,
 				074DA71F1C8E5B7900748EB7 /* html_lite */,
 				0747A4E01B26226300E85AC7 /* user */,
 				9AE24D351904CEFE001AEFFB /* Frameworks */,
@@ -1383,17 +1224,15 @@
 				0747A6BA1B2637BB00E85AC7 /* database_field_definition.h in Headers */,
 				0747A6261B26226300E85AC7 /* user.h in Headers */,
 				07A3768C1B26054200E4F888 /* macos.h in Headers */,
+				9AFED6931EB6C5D00072567A /* RoundWindowApp.h in Headers */,
 				0747A6FB1B2637BC00E85AC7 /* veiev_post.h in Headers */,
 				0747A6C81B2637BB00E85AC7 /* database_stringhelper.h in Headers */,
 				0747A6C21B2637BB00E85AC7 /* database_selection_item.h in Headers */,
-				9A19A11619C692650018DF7D /* visual_FreeImageFileProc.h in Headers */,
 				07A374AE1B26054100E4F888 /* Util.h in Headers */,
 				0747A6F51B2637BC00E85AC7 /* simpledb_socket_thread.h in Headers */,
-				9A19A12419C692650018DF7D /* visual_visual.h in Headers */,
 				0747A6B51B2637BB00E85AC7 /* database_database.h in Headers */,
 				0747A62B1B26226300E85AC7 /* userpresence_userpresence.h in Headers */,
 				07A3748F1B26054100E4F888 /* axis_c_cpp.h in Headers */,
-				9A19A12219C692650018DF7D /* visual_rgb_quad_array.h in Headers */,
 				07A374C91B26054100E4F888 /* fontopus_licensing.h in Headers */,
 				07A374C11B26054100E4F888 /* fontopus.h in Headers */,
 				07A374AA1B26054100E4F888 /* ioapi.h in Headers */,
@@ -1401,15 +1240,10 @@
 				07A3748B1B26054100E4F888 /* axis.h in Headers */,
 				07A374E11B26054100E4F888 /* install.h in Headers */,
 				07A375671B26054200E4F888 /* macos.h in Headers */,
-				9A19A12619C692650018DF7D /* visual_water_routine.h in Headers */,
-				9A19A11019C692650018DF7D /* visual_fastblur.h in Headers */,
 				07A374E51B26054100E4F888 /* install_canvas.h in Headers */,
 				0747A6EF1B2637BB00E85AC7 /* simpledb_set.h in Headers */,
 				9A9367AD1D26C7F400ED7535 /* fs.h in Headers */,
-				07F5B282184A3B6A0092C3E1 /* visual.h in Headers */,
-				9A19A11A19C692650018DF7D /* visual_glyph.h in Headers */,
 				07A374BE1B26054100E4F888 /* crypto_crypto.h in Headers */,
-				9A19A11819C692650018DF7D /* visual_glyph_set.h in Headers */,
 				07A375731B26054200E4F888 /* macos_file_set.h in Headers */,
 				07A374AD1B26054100E4F888 /* unzip.h in Headers */,
 				07A375711B26054200E4F888 /* macos_factory_exchange.h in Headers */,
@@ -1422,20 +1256,15 @@
 				07A3757A1B26054200E4F888 /* macos_ip_enum.h in Headers */,
 				0747A5D81B26226300E85AC7 /* user_enum.h in Headers */,
 				07A376A01B26054200E4F888 /* macos_oswindow.h in Headers */,
-				9A19A10C19C692650018DF7D /* visual_dib_pal.h in Headers */,
-				07F5B283184A3B6A0092C3E1 /* visual_const.h in Headers */,
 				0747A6E71B2637BB00E85AC7 /* simpledb_result.h in Headers */,
-				9A19A11C19C692650018DF7D /* visual_graphics_extension.h in Headers */,
 				07A375DD1B26054200E4F888 /* ansios_multithreading.h in Headers */,
 				0747A6FC1B2637BC00E85AC7 /* sqlitedb.h in Headers */,
-				9A19A11219C692650018DF7D /* visual_font_central.h in Headers */,
 				0747A6321B262C6000E85AC7 /* filesystem_dir_axis_application.h in Headers */,
 				07A374B91B26054100E4F888 /* zipImpl.h in Headers */,
 				074DA7661C8E5B7A00748EB7 /* html_lite_html_common.h in Headers */,
 				07A374C51B26054100E4F888 /* fontopus_contact_list.h in Headers */,
 				0747A6D41B2637BB00E85AC7 /* file_set.h in Headers */,
 				07A374D31B26054100E4F888 /* fontopus_validate.h in Headers */,
-				9A19A11419C692650018DF7D /* visual_font.h in Headers */,
 				0747A6D31B2637BB00E85AC7 /* db_stra_set.h in Headers */,
 				9A9367B91D26C87900ED7535 /* fs_remote_native_file.h in Headers */,
 				07A374AC1B26054100E4F888 /* memory_buffer.h in Headers */,
@@ -1474,7 +1303,6 @@
 				07A374C71B26054100E4F888 /* fontopus_fontopus.h in Headers */,
 				0747A5F31B26226300E85AC7 /* user_job.h in Headers */,
 				0747A7001B2637BC00E85AC7 /* sqlitedb_set.h in Headers */,
-				9A19A10919C692650018DF7D /* visual_api.h in Headers */,
 				07A376A81B26054200E4F888 /* macos_window_impl.h in Headers */,
 				9A9367B71D26C84200ED7535 /* fs_remote_native_fs.h in Headers */,
 				07A375691B26054200E4F888 /* macos_copydesk.h in Headers */,
@@ -1482,7 +1310,6 @@
 				07A374A71B26054100E4F888 /* crypt.h in Headers */,
 				07A374AF1B26054100E4F888 /* zip.h in Headers */,
 				0747A6311B262C6000E85AC7 /* filesystem_axis_system.h in Headers */,
-				9A19A10E19C692650018DF7D /* visual_dib.h in Headers */,
 				07A376041B26054200E4F888 /* cross.h in Headers */,
 				07A376BA1B26054200E4F888 /* os.h in Headers */,
 				0747A6D51B2637BB00E85AC7 /* im_post.h in Headers */,
@@ -1509,13 +1336,11 @@
 				0747A6BE1B2637BB00E85AC7 /* database_key.h in Headers */,
 				07A374B31B26054100E4F888 /* zip_internal.h in Headers */,
 				07A374C31B26054100E4F888 /* fontopus_authentication_map.h in Headers */,
-				9A19A10B19C692650018DF7D /* visual_buffered_graphics.h in Headers */,
 				07A374D91B26054100E4F888 /* geoip_internal.h in Headers */,
 				0747A6ED1B2637BB00E85AC7 /* simpledb_session.h in Headers */,
 				07A374CB1B26054100E4F888 /* fontopus_user.h in Headers */,
 				0747A6301B262C6000E85AC7 /* filesystem_axis_application.h in Headers */,
 				0747A5D01B26226300E85AC7 /* user_copydesk.h in Headers */,
-				9A19A11E19C692650018DF7D /* visual_image_list.h in Headers */,
 				07A374A01B26054100E4F888 /* bzip_stream.h in Headers */,
 				07A376F51B260DB800E4F888 /* macos_axis_file_system.h in Headers */,
 				0747A6EB1B2637BB00E85AC7 /* simpledb_service.h in Headers */,
@@ -1534,8 +1359,6 @@
 				0747A6E41B2637BB00E85AC7 /* simpledb_record.h in Headers */,
 				0747A6F91B2637BC00E85AC7 /* simpledb_table.h in Headers */,
 				07A376081B26054200E4F888 /* windows_user.h in Headers */,
-				9A19A12019C692650018DF7D /* visual_imaging.h in Headers */,
-				07F5B27F184A3B6A0092C3E1 /* graphics.h in Headers */,
 				07A375801B26054200E4F888 /* macos_port_forward.h in Headers */,
 				0747A6F11B2637BB00E85AC7 /* simpledb_simpledb.h in Headers */,
 				07A374EA1B26054100E4F888 /* install_install.h in Headers */,
@@ -1569,9 +1392,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A18AC5E1DDFABE500C57231 /* PBXTargetDependency */,
 				9A9809931DDF9AFC00BB294E /* PBXTargetDependency */,
-				9A9809951DDF9AFC00BB294E /* PBXTargetDependency */,
 				9A9F0A841D7F35B000ED6D8A /* PBXTargetDependency */,
 				9A19A0DB19C68DE00018DF7D /* PBXTargetDependency */,
 			);
@@ -1592,8 +1413,6 @@
 			);
 			dependencies = (
 				9A80875A1DE10FDF00F70A07 /* PBXTargetDependency */,
-				9A80875C1DE10FDF00F70A07 /* PBXTargetDependency */,
-				9A80875E1DE10FDF00F70A07 /* PBXTargetDependency */,
 				9A2116E21D832A41000C4336 /* PBXTargetDependency */,
 				07108A9F1B4C958000A28F80 /* PBXTargetDependency */,
 			);
@@ -1654,14 +1473,6 @@
 					ProjectRef = 9A9808241DDF955B00BB294E /* aurapcre.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A98098A1DDF9AEF00BB294E /* Products */;
-					ProjectRef = 9A9809891DDF9AEF00BB294E /* axisfreeimage.xcodeproj */;
-				},
-				{
-					ProductGroup = 9A18AC521DDFABCE00C57231 /* Products */;
-					ProjectRef = 9A18AC511DDFABCE00C57231 /* axisfreetype.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A9F0A2C1D7F341700ED6D8A /* Products */;
 					ProjectRef = 9A9F0A2B1D7F341700ED6D8A /* axisidn.xcodeproj */;
 				},
@@ -1681,20 +1492,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_aura.dylib;
 			remoteRef = 076A1FE71B6E65F800BF6C7D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A18AC5A1DDFABCE00C57231 /* libaxisfreetype.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxisfreetype.dylib;
-			remoteRef = 9A18AC591DDFABCE00C57231 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A18AC5C1DDFABCE00C57231 /* libios_axisfreetype.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_axisfreetype.dylib;
-			remoteRef = 9A18AC5B1DDFABCE00C57231 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A19A0D519C68DDA0018DF7D /* libaura.dylib */ = {
@@ -1723,20 +1520,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_aurapcre.dylib;
 			remoteRef = 9A98082B1DDF955B00BB294E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A98098F1DDF9AEF00BB294E /* libaxisfreeimage.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxisfreeimage.dylib;
-			remoteRef = 9A98098E1DDF9AEF00BB294E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A9809911DDF9AEF00BB294E /* libios_axisfreeimage.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_axisfreeimage.dylib;
-			remoteRef = 9A9809901DDF9AEF00BB294E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A9F0A311D7F341700ED6D8A /* libaxisidn.dylib */ = {
@@ -1777,11 +1560,10 @@
 				0747A6CE1B2637BB00E85AC7 /* _simpledb.cpp in Sources */,
 				0747A6FF1B2637BC00E85AC7 /* sqlitedb_set.cpp in Sources */,
 				0747A6AD1B2637BB00E85AC7 /* _database.cpp in Sources */,
-				07502CEA1B25CAE9008D207C /* _visual.cpp in Sources */,
 				07A374F51B26054100E4F888 /* install_windows_service.cpp in Sources */,
 				0747A58B1B26226300E85AC7 /* _user.cpp in Sources */,
 				0747A6FD1B2637BC00E85AC7 /* sqlitedb_base.cpp in Sources */,
-				07502CE51B25CADC008D207C /* dib_console.cpp in Sources */,
+				9AFED6941EB6C5D00072567A /* RoundWindowApp.mm in Sources */,
 				07A374F61B26054100E4F888 /* install_windows_win.cpp in Sources */,
 				07A374F41B26054100E4F888 /* install_windows_boot.cpp in Sources */,
 				9AE1FA031E43D3500076C5C0 /* install_installer_launcher.cpp in Sources */,
@@ -1796,7 +1578,6 @@
 			files = (
 				9A8370281E46A38200803F9F /* install_installer_launcher.cpp in Sources */,
 				07EDC2C41B4ECB3C00AF8928 /* ios_win_base.cpp in Sources */,
-				07502CE61B25CADC008D207C /* dib_console.cpp in Sources */,
 				07EDC2AD1B4ECB3C00AF8928 /* ios.cpp in Sources */,
 				07EDC4F81B4F0A7500AF8928 /* _user.cpp in Sources */,
 				07502CF41B25CC61008D207C /* _filesystem.cpp in Sources */,
@@ -1804,7 +1585,6 @@
 				07EDC4FB1B4F0C3700AF8928 /* _simpledb.cpp in Sources */,
 				07EDC4FD1B4F0C4100AF8928 /* sqlitedb_set.cpp in Sources */,
 				07EDC2B61B4ECB3C00AF8928 /* ios_fontopus.cpp in Sources */,
-				07502CEB1B25CAE9008D207C /* _visual.cpp in Sources */,
 				074DA7501C8E5B7A00748EB7 /* _html_lite_html_lite.cpp in Sources */,
 				07EDC2B11B4ECB3C00AF8928 /* ios_cross_win_file.cpp in Sources */,
 				07EDC2B51B4ECB3C00AF8928 /* ios_file_watcher.cpp in Sources */,
@@ -1841,11 +1621,6 @@
 			name = aura_ios;
 			targetProxy = 07108A9E1B4C958000A28F80 /* PBXContainerItemProxy */;
 		};
-		9A18AC5E1DDFABE500C57231 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axisfreetype;
-			targetProxy = 9A18AC5D1DDFABE500C57231 /* PBXContainerItemProxy */;
-		};
 		9A19A0DB19C68DE00018DF7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
@@ -1861,25 +1636,10 @@
 			name = ios_aurapcre;
 			targetProxy = 9A8087591DE10FDF00F70A07 /* PBXContainerItemProxy */;
 		};
-		9A80875C1DE10FDF00F70A07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_axisfreeimage;
-			targetProxy = 9A80875B1DE10FDF00F70A07 /* PBXContainerItemProxy */;
-		};
-		9A80875E1DE10FDF00F70A07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_axisfreetype;
-			targetProxy = 9A80875D1DE10FDF00F70A07 /* PBXContainerItemProxy */;
-		};
 		9A9809931DDF9AFC00BB294E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aurapcre;
 			targetProxy = 9A9809921DDF9AFC00BB294E /* PBXContainerItemProxy */;
-		};
-		9A9809951DDF9AFC00BB294E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axisfreeimage;
-			targetProxy = 9A9809941DDF9AFC00BB294E /* PBXContainerItemProxy */;
 		};
 		9A9F0A841D7F35B000ED6D8A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

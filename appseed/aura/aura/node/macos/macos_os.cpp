@@ -5,7 +5,7 @@
 #undef USERNAME_LENGTH // mysql one
 
 char * ns_get_default_browser_path();
-
+void ns_set_this_process_binary_default_browser();
 
 namespace macos
 {
@@ -862,6 +862,12 @@ namespace macos
          strId = "firefox";
          
       }
+      else if(path.find_ci("commander") >= 0)
+      {
+         
+         strId = "commander";
+         
+      }
       else
       {
          
@@ -877,13 +883,76 @@ namespace macos
    bool os::set_default_browser(::aura::application * papp)
    {
 
-      ns_set_default_browser();
+      ns_set_this_process_binary_default_browser();
 
       return false;
 
    }
 
-
+   ::file::path os::get_app_path(const string & strApp)
+   {
+      
+      if(strApp.is_empty())
+      {
+         
+         return "";
+         
+      }
+      
+      if(strApp.begins_ci("/Applications/"))
+      {
+         
+         return strApp;
+         
+      }
+      
+      string strAppReturn;
+      
+      if(strApp.CompareNoCase("chrome") == 0)
+      {
+         
+         strAppReturn = "Google Chrome";
+         
+      }
+      else
+      {
+         
+         strAppReturn = strApp;
+         
+      }
+      
+      strAppReturn.set_at(0, char_to_upper(strAppReturn[0]));
+      
+      strAppReturn = "/Applications/" + strAppReturn;
+      
+      if(!strAppReturn.ends_ci(".app"))
+      {
+         
+         strAppReturn += ".app";
+         
+      }
+      
+      if(Application.dir().is(strAppReturn))
+      {
+         
+         return strAppReturn;
+         
+      }
+      
+      strAppReturn = strApp;
+      
+      strAppReturn = "/Applications/" + strAppReturn;
+      
+      if(!strAppReturn.ends_ci(".app"))
+      {
+         
+         strAppReturn += ".app";
+         
+      }
+      
+      return strAppReturn;
+      
+   }
 
 } // namespace macos
 

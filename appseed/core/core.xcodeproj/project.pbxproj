@@ -116,6 +116,7 @@
 		9A19A3B719C6F5950018DF7D /* wndfrm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A39219C6F5940018DF7D /* wndfrm.h */; };
 		9A19A3B919C6F5960018DF7D /* wndfrm_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A39419C6F5940018DF7D /* wndfrm_interaction.h */; };
 		9A19A3BB19C6F5960018DF7D /* wndfrm_wndfrm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A39619C6F5940018DF7D /* wndfrm_wndfrm.h */; };
+		9A1F3D961EB326270054F0F1 /* _simple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F3D951EB326270054F0F1 /* _simple.cpp */; };
 		9A5CD9101D20D0C70093150A /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5CD90F1D20D0C70093150A /* libios_axis.dylib */; };
 		9A7E85C01E169A9F00B4534B /* user_shell_macos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E85BF1E169A9F00B4534B /* user_shell_macos.cpp */; };
 		9A7E85C31E169ABB00B4534B /* user_shell_macos_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E85C21E169ABB00B4534B /* user_shell_macos_mm.mm */; };
@@ -491,6 +492,7 @@
 		9A19A39219C6F5940018DF7D /* wndfrm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wndfrm.h; sourceTree = "<group>"; };
 		9A19A39419C6F5940018DF7D /* wndfrm_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wndfrm_interaction.h; sourceTree = "<group>"; };
 		9A19A39619C6F5940018DF7D /* wndfrm_wndfrm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wndfrm_wndfrm.h; sourceTree = "<group>"; };
+		9A1F3D951EB326270054F0F1 /* _simple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _simple.cpp; sourceTree = "<group>"; };
 		9A58847716A20D230061C610 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A58847916A20D360061C610 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A58847B16A20D480061C610 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -932,6 +934,7 @@
 		07A6D700173C27E9009E6FB8 /* simple */ = {
 			isa = PBXGroup;
 			children = (
+				9A1F3D951EB326270054F0F1 /* _simple.cpp */,
 				07A6D701173C27E9009E6FB8 /* simple.h */,
 				07A6D705173C27E9009E6FB8 /* simple_child_frame.h */,
 				07A6D713173C27E9009E6FB8 /* simple_form_list_view.h */,
@@ -1448,6 +1451,7 @@
 			files = (
 				078451631B264DF400C91416 /* _core.cpp in Sources */,
 				9AE9BF0E1EA7D54000E8A026 /* _wndfrm.cpp in Sources */,
+				9A1F3D961EB326270054F0F1 /* _simple.cpp in Sources */,
 				9AE9BEFD1EA7D4A900E8A026 /* _userhtml.cpp in Sources */,
 				074DA88C1C8E61A500748EB7 /* _html_impl.cpp in Sources */,
 				07184B561C9AA804009E07F2 /* user_notify_icon_mm_bridge.mm in Sources */,

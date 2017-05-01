@@ -8,6 +8,46 @@
 #import "framework.h"
 //#import "macos_windowing.h"
 
+#include "macos_mm.h"
+
+
+void ns_shared_application(int argc, char *argv[])
+{
+   
+   NSApplication * application = [NSApplication sharedApplication];
+   
+   RoundWindowApp * appDelegate = [[RoundWindowApp alloc] init];
+   
+   [application setDelegate:appDelegate];
+   [NSApplication sharedApplication];
+   [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+   id menubar = [NSMenu alloc];
+   id appMenuItem = [NSMenuItem alloc];
+   [menubar addItem:appMenuItem];
+   [NSApp setMainMenu:menubar];
+   id appMenu = [NSMenu alloc];
+   id appName = [[NSProcessInfo processInfo] processName];
+   id quitTitle = [@"Quit " stringByAppendingString:appName];
+   id quitMenuItem = [[NSMenuItem alloc] initWithTitle:quitTitle
+                                                action:@selector(terminate:) keyEquivalent:@"q"];
+   [appMenu addItem:quitMenuItem];
+   [appMenuItem setSubmenu:appMenu];
+   /*   id window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 200, 200)
+    styleMask:NSTitledWindowMask backing:NSBackingStoreBuffered defer:NO]
+    ;
+    [window cascadeTopLeftFromPoint:NSMakePoint(20,20)];
+    [window setTitle:appName];
+    [window makeKeyAndOrderFront:nil];*/
+   [NSApp activateIgnoringOtherApps:YES];
+   [NSApp run];
+   //   return 0;
+   //   NSApplicationMain(argc, (const char **) argv);
+   
+   //   [RoundWindowApp sharedApplication];
+   
+}
+
+
 
 void copy(LPRECT lprectDst, const CGRect & rectSrc);
 
@@ -146,6 +186,16 @@ int GetWkspaceCount()
 {
    
    return [[NSScreen screens] count];
+   
+}
+
+
+
+
+void ns_app_run()
+{
+   
+   [NSApp run];
    
 }
 

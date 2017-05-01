@@ -212,6 +212,36 @@ namespace base
    int32_t system::exit_application()
    {
 
+      try
+      {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_pbasesystem == this)
+               {
+                  
+                  pair.m_element2->m_pbasesystem = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }         
+
       m_pschemaLayeredFrame.release();
 
 #ifdef WINDOWSEX
