@@ -100,6 +100,15 @@ namespace base
       //virtual int32_t exit_instance();
       
       virtual int32_t exit_application() override;
+      
+      
+      virtual void SetCurrentHandles() override;
+      
+      virtual ::visual::icon * set_icon(object * pobject, ::visual::icon * picon, bool bBigIcon);
+      
+      
+      virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const;
+      
 
    };
 
