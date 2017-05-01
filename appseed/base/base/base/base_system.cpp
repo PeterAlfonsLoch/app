@@ -1,8 +1,15 @@
 #include "framework.h" // from "axis/user/user.h"
 #include "base/user/user/user_windowing.h"
 #include "base/user/core_user.h"
-
 #include "base/node/node.h"
+
+
+#ifndef WINDOWS
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
+#endif
 
 CLASS_DECL_BASE void black_body(float * r, float * g, float * b, DWORD dwTemp);
 
@@ -467,13 +474,13 @@ namespace base
       return 0;
 
 #elif defined(MACOS)
-      
+
       return 0;
-      
+
 #elif defined(APPLE_IOS)
-      
+
       return 0;
-      
+
 #else
 
       if (iMonitor < 0)
@@ -518,13 +525,13 @@ namespace base
       return true;
 
 #elif defined(MACOS)
-      
+
       return true;
-      
+
 #elif defined(APPLE_IOS)
-      
+
       return true;
-      
+
 #else
 
       synch_lock sl(&g_monitor_adjust);
@@ -999,19 +1006,19 @@ error:;
       return NULL;
 
    }
-   
+
    void system::on_setting_changed(::aura::e_setting esetting)
    {
-      
+
       sp(::user::interaction) pui;
-      
+
       while(Session.get_frame(pui))
       {
-         
+
          pui->on_setting_changed(esetting);
-         
+
       }
-      
+
    }
 
 

@@ -2,10 +2,10 @@
 #include "framework.h" // from "axis/net/net_sockets.h"
 #include "fiasco_finder.h"
 
-#ifndef WINDOWS
-#include "ft2build.h"
-#include FT_FREETYPE_H
-#endif
+//#ifndef WINDOWS
+//#include "ft2build.h"
+//#include FT_FREETYPE_H
+//#endif
 
 
 namespace axis
@@ -175,16 +175,16 @@ namespace axis
    bool system::process_initialize()
    {
 
-#ifndef WINDOWS
-
-      int32_t error = FT_Init_FreeType((FT_Library *)&m_ftlibrary);
-      if(error)
-      {
-         TRACE("an error occurred during Free Type library initialization");
-         return false;
-      }
-
-#endif
+//#ifndef WINDOWS
+//
+//      int32_t error = FT_Init_FreeType((FT_Library *)&m_ftlibrary);
+//      if(error)
+//      {
+//         TRACE("an error occurred during Free Type library initialization");
+//         return false;
+//      }
+//
+//#endif
 
       //enum_display_monitors();
 
@@ -205,7 +205,7 @@ namespace axis
 
       m_spos.alloc(allocer());
 
- 
+
 
 
 
@@ -920,7 +920,7 @@ namespace axis
 #endif
 
 
-   
+
    void system::hist_hist(const char * psz)
    {
    }

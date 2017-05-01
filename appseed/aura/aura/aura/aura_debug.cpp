@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
+#ifdef WINDOWS
 #include <process.h>
+#endif
 
 
 CLASS_DECL_AURA int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags)

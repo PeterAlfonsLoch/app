@@ -679,34 +679,6 @@
 		<Unit filename="framework_c.h">
 			<Option compilerVar="C" />
 		</Unit>
-		<Unit filename="graphics/draw2d/_draw2d.cpp" />
-		<Unit filename="graphics/draw2d/draw2d.h" />
-		<Unit filename="graphics/draw2d/draw2d_bitmap.h" />
-		<Unit filename="graphics/draw2d/draw2d_brush.h" />
-		<Unit filename="graphics/draw2d/draw2d_const.h" />
-		<Unit filename="graphics/draw2d/draw2d_dib.h" />
-		<Unit filename="graphics/draw2d/draw2d_font.h" />
-		<Unit filename="graphics/draw2d/draw2d_fwd.h" />
-		<Unit filename="graphics/draw2d/draw2d_graphics.h" />
-		<Unit filename="graphics/draw2d/draw2d_igui.h" />
-		<Unit filename="graphics/draw2d/draw2d_keep.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="graphics/draw2d/draw2d_keep.h" />
-		<Unit filename="graphics/draw2d/draw2d_nanosvg.cpp" />
-		<Unit filename="graphics/draw2d/draw2d_object.h" />
-		<Unit filename="graphics/draw2d/draw2d_palette.h" />
-		<Unit filename="graphics/draw2d/draw2d_path.h" />
-		<Unit filename="graphics/draw2d/draw2d_pen.h" />
-		<Unit filename="graphics/draw2d/draw2d_region.h" />
-		<Unit filename="graphics/graphics.h" />
-		<Unit filename="graphics/visual/visual.h" />
-		<Unit filename="graphics/visual/visual_const.h" />
-		<Unit filename="graphics/visual/visual_cursor.cpp" />
-		<Unit filename="graphics/visual/visual_cursor.h" />
-		<Unit filename="graphics/visual/visual_icon.cpp" />
-		<Unit filename="graphics/visual/visual_icon.h" />
 		<Unit filename="multithreading/_multithreading.cpp" />
 		<Unit filename="multithreading/multithreading.cpp">
 			<Option compile="0" />

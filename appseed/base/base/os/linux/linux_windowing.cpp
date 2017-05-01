@@ -2082,6 +2082,9 @@ bool wm_set_icon(oswindow w, ::draw2d::dib * p)
    int status = XChangeProperty(display, w->window(), net_wm_icon, cardinal, 32, PropModeReplace, (const unsigned char*) pcr, length);
 
 
+   if(status == BadAlloc)
+   {
+   }
    if(status != 0)
    {
 
