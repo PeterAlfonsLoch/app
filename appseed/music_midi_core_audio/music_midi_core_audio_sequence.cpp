@@ -743,7 +743,7 @@ namespace music
          
          m_flags.unsignalize(FlagEOF);
          
-         file()->GetFlags().unsignalize(::music::midi::file::EndOfFile);
+         file()->m_ulFlags &= ~::music::midi::file::EndOfFile;
          
          
          /*
