@@ -828,6 +828,57 @@ run:
 
    }
 
+   int32_t application::exit_application()
+   {
+
+      try
+      {
+         
+         for(auto & pair : System.m_appmap)
+         {
+            
+            try
+            {
+               
+               if(pair.m_element2->m_pbaseapp == this)
+               {
+                  
+                  pair.m_element2->m_pbaseapp = NULL;
+                  
+               }
+               
+            }
+            catch(...)
+            {
+               
+            }
+            
+         }
+         
+      }
+      catch(...)
+      {
+   
+      }
+
+      try
+      {
+
+            axis::application::exit_application();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return m_iReturnCode;
+
+   }
+
+
+
+
 
 
 
@@ -872,7 +923,6 @@ run:
       }
 
    }
-
 
 } // namespace base
 
