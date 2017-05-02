@@ -539,7 +539,8 @@ namespace filemanager
 
 #ifdef LINUX
 
-      string strIcon;
+      string strIcon48;
+
       string strIcon16;
 
       if (::str::ends_ci(string(strPath), ".desktop"))
@@ -560,7 +561,11 @@ namespace filemanager
 
          }
 
-         strIcon = stra[0];
+         string strIcon = stra[0];
+
+         ::str::begins_eat_ci(strIcon, "icon=");
+
+         strIcon48 = strIcon;
 
          strIcon16 = strIcon;
 
@@ -568,14 +573,14 @@ namespace filemanager
       else
       {
 
-         strIcon = linux_get_file_icon_path(strPath, 48);
+         strIcon48 = linux_get_file_icon_path(strPath, 48);
+
          strIcon16 = linux_get_file_icon_path(strPath, 16);
+
       }
 
-      if(strIcon.has_char())
+      if(strIcon48.has_char())
       {
-
-         ::str::begins_eat_ci(strIcon, "icon=");
 
          ::visual::dib_sp dib1(allocer());
 
@@ -588,7 +593,7 @@ namespace filemanager
 
          ::visual::dib_sp dib(allocer());
 
-         if(!dib.load_from_file(strIcon))
+         if(!dib.load_from_file(strIcon48))
          {
 
             return -1;
@@ -625,22 +630,21 @@ namespace filemanager
 
          synch_lock sl2(m_pil48->m_pmutex);
 
-
          iImage = m_pil16->add_dib(dib16, 0, 0);
 
          m_pil48Hover->add_dib(dib48, 0, 0);
 
          if(crBk == 0)
          {
-            System.visual().imaging().Createcolor_blend_ImageList(
-               m_pil48,
-               m_pil48Hover,
-               RGB(255,255,240),
-               64);
+
+            System.visual().imaging().Createcolor_blend_ImageList(m_pil48, m_pil48Hover, RGB(255,255,240), 64);
+
          }
          else
          {
+
             *m_pil48 = *m_pil48Hover;
+
          }
 
          return iImage;
