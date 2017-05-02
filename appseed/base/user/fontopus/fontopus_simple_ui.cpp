@@ -22,7 +22,6 @@ namespace fontopus
 #endif
       m_eschema = schema_normal;
       m_login.m_pstyle = this;
-      m_bLButtonDown = false;
       m_bFontopusSimpleUiLayout = false;
 
 
@@ -38,13 +37,13 @@ namespace fontopus
    void simple_ui::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      ::simple_ui::interaction::install_message_handling(pdispatch);
+      ::simple_ui::top::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(WM_CREATE,pdispatch,this,&simple_ui::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_CHAR,pdispatch,this,&simple_ui::_001OnChar);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&simple_ui::_001OnLButtonDown);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&simple_ui::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&simple_ui::_001OnMouseMove);
+//      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&simple_ui::_001OnLButtonDown);
+//      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&simple_ui::_001OnLButtonUp);
+//      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&simple_ui::_001OnMouseMove);
 
    }
 
@@ -512,12 +511,12 @@ namespace fontopus
 
    }
 
-   
+
    bool simple_ui::has_pending_graphical_update()
    {
-      
+
       return IsWindowVisible();
-      
+
    }
 
 

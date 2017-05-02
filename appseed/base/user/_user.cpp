@@ -38,6 +38,8 @@
 #include "simple_ui/simple_ui_tap.cpp"
 //7 arquivo(s)         52.047 bytes
 
+#include "simple_ui/simple_ui_top.cpp"
+
 //Pasta de Z:\nordroid\app\appseed\base\user\user
 
 #include "user/aaa_want_to_remove_user_buffer.cpp"

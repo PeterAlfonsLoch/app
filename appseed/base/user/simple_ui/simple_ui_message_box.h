@@ -6,7 +6,7 @@ namespace simple_ui
 
 
    class CLASS_DECL_BASE message_box :
-      virtual public ::simple_ui::interaction
+      virtual public ::simple_ui::top
    {
    public:
 
@@ -41,7 +41,7 @@ namespace simple_ui
       virtual void pre_translate_message(signal_details * pobj) override;
 
       //virtual void EndModalLoop(id nResult);
-      
+
       virtual bool has_pending_graphical_update() override;
 
 

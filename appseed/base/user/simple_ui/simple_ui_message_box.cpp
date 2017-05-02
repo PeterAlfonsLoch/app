@@ -12,6 +12,8 @@ namespace simple_ui
 
    message_box::message_box(::aura::application * papp,const char * pszMessage,const char * pszCaption, uint32_t uiFlags):
       ::object(papp),
+      ::simple_ui::top(papp),
+      ::simple_ui::style(papp),
       m_evReady(papp)
    {
 
@@ -21,7 +23,7 @@ namespace simple_ui
       m_strTitle        = pszCaption;
       m_uiFlags         = uiFlags;
       m_iResult         = 0;
-      
+
 
    }
 
@@ -420,14 +422,14 @@ namespace simple_ui
 
    }
 
-   
+
    bool message_box::has_pending_graphical_update()
    {
-      
+
       return true;
-      
+
    }
-   
+
 
 //   void message::EndModalLoop(id nResult)
 //   {
