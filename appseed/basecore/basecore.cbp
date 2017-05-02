@@ -62,8 +62,8 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$ORIGIN" />
-			<Add option="-Wl,-z,origin" />
-			<Add option="-Wl,-E" />
+			
+			
 			<Add option="-lappindicator" />
 			<Add option="`pkg-config --libs gtk+-2.0`" />
 			<Add option="-lgthread-2.0" />

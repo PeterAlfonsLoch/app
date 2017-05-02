@@ -82,8 +82,8 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$ORIGIN" />
-			<Add option="-Wl,-z,origin" />
-			<Add option="-Wl,-E" />
+			
+			
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
@@ -532,6 +532,10 @@
 		<Unit filename="user/user/user_inline.h" />
 		<Unit filename="user/user/user_interaction.inl" />
 		<Unit filename="user/user/user_keyboard_layout_cfg.h" />
+		<Unit filename="user/user/user_list.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_list.h" />
 		<Unit filename="user/user/user_list_cache.h" />
 		<Unit filename="user/user/user_list_cache_interface.h" />
@@ -539,6 +543,10 @@
 		<Unit filename="user/user/user_list_data_interface.h" />
 		<Unit filename="user/user/user_list_header.h" />
 		<Unit filename="user/user/user_main_frame.h" />
+		<Unit filename="user/user/user_mesh.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_meta_button.h" />
 		<Unit filename="user/user/user_meta_control_box.h" />
 		<Unit filename="user/user/user_multiple_document_template.h" />

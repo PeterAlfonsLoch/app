@@ -24,8 +24,12 @@ namespace filemanager
       m_bShow = false;
       m_dwLastFileSize = ::get_tick_count();
 
-      m_bHoverSelect = false;
 
+      #ifdef LINUX
+      m_bHoverSelect = true;
+      #else
+      m_bHoverSelect = false;
+#endif
 
 
       connect_update_cmd_ui("edit_copy", &file_list::_001OnUpdateEditCopy);
@@ -151,7 +155,7 @@ namespace filemanager
             }
             else if(!m_bStatic && puh->is_type_of(update_hint::TypeSynchronizePath))
             {
-               
+
                if(puh->m_filepath != get_filemanager_item().m_filepath)
                   return;
 
@@ -220,9 +224,9 @@ namespace filemanager
                   }
                }
             }
-            
+
             form_update_hint * pmanageruh = dynamic_cast<form_update_hint * > (phint);
-            
+
             if(pmanageruh != NULL)
             {
 
@@ -275,13 +279,13 @@ namespace filemanager
          }
          return true;
       }
-      
+
       return ::user::list::_001OnClick(nFlags, point);
 
 
    }
 
-   
+
    bool file_list::_001OnRightClick(uint_ptr nFlags, point point)
    {
 
@@ -302,7 +306,7 @@ namespace filemanager
 
    void file_list::RenameFile(int32_t iLine, string &wstrNameNew, ::action::context actioncontext)
    {
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       ::file::path filepath = get_fs_mesh_data()->m_itema.get_item(iLine).m_filepath;
@@ -318,11 +322,11 @@ namespace filemanager
 
    void file_list::_001OnContextMenu(signal_details * pobj)
    {
-      
+
 
       //SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
       SCAST_PTR(::message::mouse, pcontextmenu, pobj);
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       index iItem;
@@ -423,7 +427,7 @@ namespace filemanager
             if(i >= get_fs_mesh_data()->m_itema.get_count())
                i = 0;
             bPendingSize = false;
-            
+
             try
             {
 
@@ -526,7 +530,7 @@ namespace filemanager
    {
 
       SCAST_PTR(::message::update_cmd_ui, pupdatecmdui, pobj);
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       ::fs::item_array itema;
@@ -668,7 +672,7 @@ namespace filemanager
 
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         
+
          stra.add(itema[i]->m_filepath);
 
       }
@@ -931,9 +935,9 @@ namespace filemanager
 
    void file_list::_001OnSpafy2(signal_details * pobj)
    {
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
-      
+
       sp(::userfs::list_data) pdata = get_fs_mesh_data();
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
@@ -1002,12 +1006,12 @@ namespace filemanager
       data_set_DisplayToStrict();
    }
 
-   
+
    void file_list::schedule_file_size(const char * psz)
    {
-      
+
       UNREFERENCED_PARAMETER(psz);
-      
+
       if(!IsWindowVisible())
          return;
 
@@ -1415,7 +1419,7 @@ namespace filemanager
          column.m_sizeIcon.cx = get_filemanager_data()->m_iIconSize;
          column.m_sizeIcon.cy = get_filemanager_data()->m_iIconSize;
          column.m_iControl = -1;
-         column.m_uiText = "Name"; 
+         column.m_uiText = "Name";
          column.m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          column.m_bEditOnSecondClick = false;
          if (get_filemanager_data()->m_iIconSize >= 48)
@@ -1647,7 +1651,7 @@ namespace filemanager
       else
       {
 
-         
+
 
          // Animation Drawing
          rect rectClipBox;
@@ -1727,10 +1731,10 @@ namespace filemanager
 
    void file_list::_017OpenContextMenuSelected(::action::context actioncontext)
    {
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
-      
+
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;
@@ -1822,9 +1826,9 @@ namespace filemanager
 
    void file_list::GetSelected(::fs::item_array &itema)
    {
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
-      
+
       index iItemRange, iItem;
       range range;
       _001GetSelection(range);
@@ -1896,7 +1900,7 @@ namespace filemanager
 
    bool file_list::add_item(const char * pszPath, const char * pszTitle)
    {
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       ::userfs::list_item item(get_app());
@@ -1959,7 +1963,7 @@ namespace filemanager
 
    bool file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       if (iDisplayDrag < 0)
@@ -1989,7 +1993,7 @@ namespace filemanager
 
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
-      
+
       synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       index strict;

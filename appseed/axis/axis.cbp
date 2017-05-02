@@ -70,8 +70,8 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$ORIGIN" />
-			<Add option="-Wl,-z,origin" />
-			<Add option="-Wl,-E" />
+			
+			
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
 			<Add option="-lX11" />

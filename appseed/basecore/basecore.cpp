@@ -747,7 +747,7 @@ namespace user
 
 int g_iInit = 0;
 
-const char * basecore_get_file_icon_path(const char * pszPath)
+const char * basecore_get_file_icon_path(const char * pszPath, int iSize)
 {
 
    if(g_iInit)
@@ -919,7 +919,7 @@ if(pGtkIconTheme == NULL)
    return NULL;
 }
 
-pGtkIconInfo=gtk_icon_theme_lookup_by_gicon(pGtkIconTheme,picon,256,GTK_ICON_LOOKUP_USE_BUILTIN);
+pGtkIconInfo=gtk_icon_theme_lookup_by_gicon(pGtkIconTheme,picon,(gint)iSize,GTK_ICON_LOOKUP_USE_BUILTIN);
 if(pGtkIconInfo == NULL)
 {
 

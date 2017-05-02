@@ -64,8 +64,8 @@
 			<Add directory="../../axis" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-R\\$$$ORIGIN" />
-			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			
 			<Add option="-laura" />
 			<Add option="-laxis" />
 			<Add option="-laxismysql" />

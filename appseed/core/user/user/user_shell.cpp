@@ -10,11 +10,11 @@
 bool macos_get_file_image(::draw2d::dib * pdib, const char * psz);
 #elif defined(LINUX)
 
-const char * basecore_get_file_icon_path(const char * pszPath);
-string linux_get_file_icon_path(string strPath)
+const char * basecore_get_file_icon_path(const char * pszPath, int iSize);
+string linux_get_file_icon_path(string strPath, int iSize)
 {
 
-const char* psz = basecore_get_file_icon_path(strPath);
+const char* psz = basecore_get_file_icon_path(strPath, iSize);
 
 if(psz == NULL)
 {
@@ -539,7 +539,8 @@ namespace filemanager
 
 #ifdef LINUX
 
-string strIcon;
+      string strIcon;
+      string strIcon16;
 
       if (::str::ends_ci(string(strPath), ".desktop"))
       {
@@ -561,11 +562,14 @@ string strIcon;
 
          strIcon = stra[0];
 
+         strIcon16 = strIcon;
+
       }
       else
       {
 
-         strIcon = linux_get_file_icon_path(strPath);
+         strIcon = linux_get_file_icon_path(strPath, 48);
+         strIcon16 = linux_get_file_icon_path(strPath, 16);
       }
 
       if(strIcon.has_char())
@@ -573,9 +577,27 @@ string strIcon;
 
          ::str::begins_eat_ci(strIcon, "icon=");
 
+         ::visual::dib_sp dib1(allocer());
+
+         if(!dib1.load_from_file(strIcon16))
+         {
+
+            return -1;
+
+         }
+
          ::visual::dib_sp dib(allocer());
 
          if(!dib.load_from_file(strIcon))
+         {
+
+            return -1;
+
+         }
+
+         ::draw2d::dib_sp dib16(allocer());
+
+         if(!dib16->create(16, 16))
          {
 
             return -1;
@@ -591,13 +613,21 @@ string strIcon;
 
          }
 
+         dib16->get_graphics()->SetStretchBltMode(HALFTONE);
+
+         dib16->get_graphics()->StretchBlt(0, 0, 16, 16, dib1->get_graphics(), 0, 0, dib1->m_size.cx, dib1->m_size.cy);
+
          dib48->get_graphics()->SetStretchBltMode(HALFTONE);
 
          dib48->get_graphics()->StretchBlt(0, 0, 48, 48, dib->get_graphics(), 0, 0, dib->m_size.cx, dib->m_size.cy);
 
          synch_lock sl1(m_pil48Hover->m_pmutex);
+
          synch_lock sl2(m_pil48->m_pmutex);
-         iImage = m_pil16->add_dib(dib48, 0, 0);
+
+
+         iImage = m_pil16->add_dib(dib16, 0, 0);
+
          m_pil48Hover->add_dib(dib48, 0, 0);
 
          if(crBk == 0)
