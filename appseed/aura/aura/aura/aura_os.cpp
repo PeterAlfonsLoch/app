@@ -366,6 +366,30 @@ namespace aura
          return true;
 
       }
+      else
+      {
+
+
+
+         char * psz = strTarget.GetBufferSetLength(4096);
+         int count = readlink(pszSource, psz, 4096);
+         if (count < 0)
+         {
+
+            strTarget.ReleaseBuffer(0);
+
+            strTarget = pszSource;
+
+            strDirectory = ::file::path(strTarget).folder();
+
+            return true;
+
+         }
+         strTarget.ReleaseBuffer(count);
+
+         strDirectory = ::file::path(strTarget).folder();
+         return true;
+      }
 
       return false;
 

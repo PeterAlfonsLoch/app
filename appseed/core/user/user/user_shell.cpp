@@ -29,6 +29,24 @@ return str;
 
 }
 
+const char * basecore_get_file_content_type(const char * pszFile);
+string linux_get_file_content_type(string strPath)
+{
+
+const char* psz = basecore_get_file_content_type(strPath);
+
+if(psz == NULL)
+{
+return "";
+}
+
+string str = psz;
+
+free((void*)psz);
+
+return str;
+
+}
 #endif
 
 namespace filemanager

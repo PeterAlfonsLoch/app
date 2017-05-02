@@ -101,6 +101,11 @@ static const gchar *ui_info =
 void basecore_init()
 {
 
+// deprecated
+   //g_thread_init (NULL);
+
+   //g_type_init ();
+
    gtk_init_check(0, 0);
 
    gtk_main();
@@ -743,23 +748,9 @@ namespace user
 
 
 
-#include <gio/gio.h>
-
-int g_iInit = 0;
-
 const char * basecore_get_file_icon_path(const char * pszPath, int iSize)
 {
 
-   if(g_iInit)
-   {
-
-      g_thread_init (NULL);
-
-      g_type_init ();
-
-      g_iInit = 1;
-
-   }
 
    GFile * pfile = g_file_new_for_path (pszPath);
 
@@ -968,5 +959,51 @@ if(pGtkIconInfo == NULL)
    }
 
    return "";
+
+}
+
+
+const char * basecore_get_file_content_type(const char * pszPath)
+{
+
+   GFile * pfile = g_file_new_for_path (pszPath);
+
+   if(pfile == NULL)
+   {
+
+      return NULL;
+
+   }
+
+   GError * perror = NULL;
+
+   GFileInfo * pfileinfo = g_file_query_info (pfile, "standard::*", G_FILE_QUERY_INFO_NONE, NULL, &perror);
+
+   if(pfileinfo == NULL)
+   {
+
+      //g_free(pfile);
+
+      return NULL;
+
+   }
+
+   const char * pszContentType = g_file_info_get_content_type (pfileinfo);
+
+   const char * p = NULL;
+
+   if(pszContentType != NULL)
+   {
+
+      p = strdup(pszContentType);
+
+   }
+
+
+
+   //char * pszDescription = g_content_type_get_description (pszContentType);
+   //GAppInfo * pappinfo = g_app_info_get_default_for_type (pszContentType, FALSE);
+
+   return p;
 
 }
