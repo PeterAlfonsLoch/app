@@ -58,12 +58,6 @@
 			<Add directory="../base" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-rpath=\$ORIGIN" />
-			
-			
-			<Add option="-lbase" />
-			<Add option="-lcore" />
-			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../time/x64/basis" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>

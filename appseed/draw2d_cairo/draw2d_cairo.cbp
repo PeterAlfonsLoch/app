@@ -77,7 +77,7 @@
 			<Add directory="../aura" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-rpath=\\$$ORIGIN" />
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			
 			
 			<Add option="-lpthread" />

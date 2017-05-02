@@ -81,9 +81,7 @@
 			<Add directory="/usr/include/atk-1.0" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-rpath=\\$$ORIGIN" />
-			
-			
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
 			<Add option="-lX11" />

@@ -85,9 +85,7 @@
 			<Add directory="../../../nodeapp/include" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-rpath=\\$$ORIGIN" />
-			
-			
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			<Add option="-lace" />
 			<Add option="-lz" />
 			<Add option="-lbz2" />

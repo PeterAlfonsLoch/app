@@ -63,7 +63,7 @@
 			<Add directory="../../appseed/aura" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-rpath=\\$$ORIGIN" />
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
 			
 			
 			<Add option="-laura" />
