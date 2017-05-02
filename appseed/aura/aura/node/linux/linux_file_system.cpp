@@ -1,4 +1,6 @@
-
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 
 struct PROCESS_INFO_t
@@ -77,25 +79,52 @@ namespace linux
 		return true;
 
    }
-   
-   
+
+
    ::file::file_sp file_system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
    {
-      
+
       ::file::file_sp spfile;
-      
+
       spfile = ::file::system::get_file(varFile,nOpenFlags,pfesp,papp);
-      
+
       if(spfile.is_set())
       {
-         
+
          return spfile;
-         
+
       }
-      
+
       return NULL;
-      
-   }   
+
+   }
+
+
+   bool file_system::is_link(string strPath)
+   {
+
+      struct stat stat;
+
+      ZERO(stat);
+
+      if(lstat(strPath, &stat) != 0)
+      {
+
+         return false;
+
+      }
+
+      if(S_ISLNK(stat.st_mode))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
 
 
 } // namespace linux

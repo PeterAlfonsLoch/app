@@ -431,6 +431,10 @@
 		</Unit>
 		<Unit filename="aura/node/linux/linux_factory_exchange.h" />
 		<Unit filename="aura/node/linux/linux_file.h" />
+		<Unit filename="aura/node/linux/linux_file_system.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/node/linux/linux_file_system.h" />
 		<Unit filename="aura/node/linux/linux_internal.h" />
 		<Unit filename="aura/node/linux/linux_os.cpp">
@@ -655,6 +659,10 @@
 		</Unit>
 		<Unit filename="filesystem/filesystem/filesystem_listing.h" />
 		<Unit filename="filesystem/filesystem/filesystem_path.h" />
+		<Unit filename="filesystem/filesystem/filesystem_system.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="filesystem/filesystem/filesystem_system.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h">

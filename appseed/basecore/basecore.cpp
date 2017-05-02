@@ -739,3 +739,234 @@ namespace user
 
 
 
+
+
+
+
+#include <gio/gio.h>
+
+int g_iInit = 0;
+
+const char * basecore_get_file_icon_path(const char * pszPath)
+{
+
+   if(g_iInit)
+   {
+
+      g_thread_init (NULL);
+
+      g_type_init ();
+
+      g_iInit = 1;
+
+   }
+
+   GFile * pfile = g_file_new_for_path (pszPath);
+
+   if(pfile == NULL)
+   {
+
+      return NULL;
+
+   }
+
+   GError * perror = NULL;
+
+   GFileInfo * pfileinfo = g_file_query_info (pfile, "standard::*", G_FILE_QUERY_INFO_NONE, NULL, &perror);
+
+   if(pfileinfo == NULL)
+   {
+
+      //g_free(pfile);
+
+      return NULL;
+
+   }
+
+   //const char * pszContentType = g_file_info_get_content_type (pfileinfo);
+   //char * pszDescription = g_content_type_get_description (pszContentType);
+   //GAppInfo * pappinfo = g_app_info_get_default_for_type (pszContentType, FALSE);
+
+   /* you'd have to use g_loadable_icon_load to get the actual icon */
+   GIcon * picon = g_file_info_get_icon (pfileinfo);
+
+   if(picon == NULL)
+   {
+
+      //g_free(pfileinfo);
+
+      //g_free(pfile);
+
+      return NULL;
+
+   }
+
+   if(G_IS_FILE_ICON(G_OBJECT(picon)))
+   {
+
+   GFileIcon * pfileicon = G_FILE_ICON(G_OBJECT(picon));
+
+   if(pfileicon == NULL)
+   {
+
+      //g_free(picon);
+
+      //g_free(pfileinfo);
+
+      //g_free(pfile);
+
+      return NULL;
+
+   }
+
+
+   GFile * pfileIcon = g_file_icon_get_file(pfileicon);
+
+   if(pfileIcon == NULL)
+   {
+
+     // g_free(pfileicon);
+
+      //g_free(picon);
+
+      //g_free(pfileinfo);
+
+      //g_free(pfile);
+
+      return NULL;
+
+   }
+//    printf ("File: %s\nDescription: %s\nDefault Application: %s\n",
+//            argv[1],
+//            desc,
+//            g_app_info_get_executable (app_info));
+
+    //return 0;
+
+   char * psz = strdup(g_file_get_path(pfileIcon));
+
+   //g_free(pfileIcon);
+
+   //g_free(pfileicon);
+
+   //g_free(picon);
+
+   //g_free(pfileinfo);
+
+   //g_free(pfile);
+
+
+
+   return psz;
+
+
+   }
+   else if(G_IS_THEMED_ICON(G_OBJECT(picon)))
+   {
+
+//   GThemedIcon * pthemedicon = G_THEMED_ICON(G_OBJECT(picon));
+//
+//
+//
+//   if(pthemedicon == NULL)
+//   {
+//      g_free(picon);
+//
+//      g_free(pfileinfo);
+//
+//      g_free(pfile);
+//
+//      return "";
+//
+//   }
+//
+//     const gchar * const * pgchar = g_themed_icon_get_names(pthemedicon);
+//
+//
+//   if(pgchar == NULL)
+//   {
+//
+//      g_free(pthemedicon);
+//
+//      g_free(picon);
+//
+//      g_free(pfileinfo);
+//
+//      g_free(pfile);
+//
+//      return "";
+//
+//   }
+////    printf ("File: %s\nDescription: %s\nDefault Application: %s\n",
+////            argv[1],
+////            desc,
+////            g_app_info_get_executable (app_info));
+//
+//    //return 0;
+//
+GtkIconInfo *pGtkIconInfo;
+//Gicon *pgIcon=gtk_app_info_get_icon (G_APP_INFO(appinfo));
+
+GtkIconTheme *pGtkIconTheme= gtk_icon_theme_get_default();
+if(pGtkIconTheme == NULL)
+{
+   //g_free(picon);
+
+   //g_free(pfileinfo);
+
+   //g_free(pfile);
+
+   return NULL;
+}
+
+pGtkIconInfo=gtk_icon_theme_lookup_by_gicon(pGtkIconTheme,picon,256,GTK_ICON_LOOKUP_USE_BUILTIN);
+if(pGtkIconInfo == NULL)
+{
+
+   //g_object_unref(pGtkIconTheme);
+
+   //g_free(picon);
+
+   //g_free(pfileinfo);
+
+   //g_free(pfile);
+
+   return NULL;
+}
+//get icon filename if icone 256*256 exist.
+
+   const char * p = gtk_icon_info_get_filename(pGtkIconInfo);
+
+   char * psz = NULL;
+
+   if(p != NULL)
+   {
+
+
+      psz = strdup(p);
+
+   }
+
+
+//
+//   g_free(pthemedicon);
+
+   //g_object_unref(pGtkIconInfo);
+
+   //g_object_unref(pGtkIconTheme);
+
+   //g_free(picon);
+
+   //g_free(pfileinfo);
+
+   //g_free(pfile);
+
+
+   return psz;
+
+
+   }
+
+   return "";
+
+}

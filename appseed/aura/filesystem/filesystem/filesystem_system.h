@@ -109,6 +109,8 @@ namespace file
 
       virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const string & strSource, ::user::primitive * puiMessageParentOptional = NULL);
 
+      virtual bool is_link(string strPath);
+
       virtual bool get_last_write_time(FILETIME * pfiletime,const string & strFilename);
 
       virtual void dtf(const path & pszFile,const path & pszDir,::aura::application * papp);
@@ -116,7 +118,7 @@ namespace file
       virtual void dtf(const path & pszFile,patha & stra,::aura::application * papp);
 
       virtual void ftd(const path & pszDir,const path & pszFile,::aura::application * papp);
-      
+
       virtual bool initialize();
 
 

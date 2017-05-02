@@ -458,7 +458,7 @@ restart:
 
    var system::as_json(var varFile, ::aura::application * papp)
    {
-      
+
       string str = as_string(varFile, papp);
 
       if (str.is_empty())
@@ -998,7 +998,7 @@ restart:
 #ifdef WINDOWSEX
 
       if(!::MoveFileExW(
-         ::str::international::utf8_to_unicode(psz), 
+         ::str::international::utf8_to_unicode(psz),
          ::str::international::utf8_to_unicode(pszNew),
          MOVEFILE_REPLACE_EXISTING |
          MOVEFILE_WRITE_THROUGH))
@@ -1517,9 +1517,9 @@ restart:
 
    bool system::initialize()
    {
-      
+
       return true;
-      
+
    }
 
    bool system::prepare_output(::aura::application * papp, path & pathDownloading, const path & pathOut, ostream & os)
@@ -2149,6 +2149,14 @@ restart:
          ostream.write(memory, uiRead);
       }
       return true;
+   }
+
+
+   bool system::is_link(string strPath)
+   {
+
+      return false;
+
    }
 
 

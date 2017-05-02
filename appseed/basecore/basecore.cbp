@@ -66,6 +66,7 @@
 			<Add option="-Wl,-E" />
 			<Add option="-lappindicator" />
 			<Add option="`pkg-config --libs gtk+-2.0`" />
+			<Add option="-lgthread-2.0" />
 			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../time/x64/basis" />
