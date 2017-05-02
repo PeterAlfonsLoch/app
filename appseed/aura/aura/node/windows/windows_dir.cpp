@@ -1275,4 +1275,14 @@ namespace windows
 } // namespace windows
 
 
+::file::path dir::home()
+{
+   
+   return ::windows::get_known_folder(FOLDERID_Profile);
+
+}
+
+
+
+
 

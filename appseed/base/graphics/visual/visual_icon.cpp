@@ -67,7 +67,14 @@ namespace visual
 
 #ifdef WINDOWSEX
 
-            ::DestroyIcon((HICON)m_picon);
+            for (auto p : m_iconmap)
+            {
+
+               ::DestroyIcon((HICON)p.m_element2);
+
+            }
+
+            //::DestroyIcon((HICON)m_picon);
 
 #else
 
@@ -106,14 +113,34 @@ namespace visual
 
 #ifdef WINDOWSEX
 
-      int cx = GetSystemMetrics(SM_CXSMICON);
-      int cy = GetSystemMetrics(SM_CYSMICON);
+      int_array ia;
 
-      HICON hIcon = (HICON) ::LoadImageW(NULL, wstring(strPath), IMAGE_ICON, cx, cy, LR_LOADFROMFILE);
+      ia.add(16);
+      ia.add(24);
+      ia.add(32);
+      ia.add(48);
+      ia.add(256);
 
-      m_picon = hIcon;
+      HICON hIcon = NULL;
+      
+      for (auto i : ia)
+      {
 
-      on_update_icon();
+         hIcon = (HICON) ::LoadImageW(NULL, wstring(strPath), IMAGE_ICON, i, i, LR_LOADFROMFILE);
+
+         if (hIcon != NULL)
+         {
+
+            m_iconmap[size(i, i)] = hIcon;
+
+            m_picon = hIcon;
+
+            on_update_icon();
+
+         }
+
+      }
+
 
       return m_picon != NULL;
 
@@ -188,6 +215,8 @@ namespace visual
 
       m_size.cx = info.nWidth;
       m_size.cy = info.nHeight;
+
+      get_dib(m_size.cx, m_size.cy);
 
 #else
 

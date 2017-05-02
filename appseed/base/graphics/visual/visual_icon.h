@@ -11,12 +11,12 @@ namespace visual
    {
    public:
 
-
-      void *            m_picon;
-      bool              m_bAutoDelete;
-      string            m_strAppTrayIcon;
-      size              m_size;
-      ::draw2d::dibmap  m_dibmap;
+      void *                        m_picon;
+      map < size, size, void * >    m_iconmap;
+      bool                          m_bAutoDelete;
+      string                        m_strAppTrayIcon;
+      size                          m_size;
+      ::draw2d::dibmap              m_dibmap;
 
       icon(::aura::application * papp);
       icon(::aura::application * papp, void * picon);

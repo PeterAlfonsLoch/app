@@ -1571,9 +1571,7 @@ retry:
 }
 
 
-
-
-#ifdef LINUX
+#if LINUX
 
 ::file::path dir::home()
 {
