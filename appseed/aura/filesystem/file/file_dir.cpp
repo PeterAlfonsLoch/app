@@ -1569,3 +1569,25 @@ retry:
    return program_files_x86() / "ca2/install/stage" / strPlatform;
 
 }
+
+
+
+
+#ifdef LINUX
+
+::file::path dir::home()
+{
+
+   return getenv("HOME");
+
+}
+
+::file::path dir::ca2_user()
+{
+
+   return home() / ".config/ca2";
+
+}
+
+
+#endif

@@ -63,8 +63,9 @@
 			<Add directory="../aura" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-rpath=\\$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-E" />
 			<Add option="-ldl" />
 			<Add option="-laura" />
 			<Add option="-laxis" />

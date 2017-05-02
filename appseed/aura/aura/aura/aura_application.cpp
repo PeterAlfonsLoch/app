@@ -86,7 +86,7 @@ block_input::block_input(::aura::application * papp, int iSleep) :
 
    //}
 
-   
+
 }
 
 
@@ -807,19 +807,19 @@ namespace aura
 
    };
 
-   
+
    WINBOOL CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam;
-      
+
       string str = ::str::get_window_text_timeout(hwnd, 1000);
-      
+
       if (::str::ends_ci(str, penum->m_strWindowEnd))
       {
-         
+
          penum->m_hwnd = hwnd;
-         
+
          return FALSE;
 
       }
@@ -838,7 +838,7 @@ namespace aura
 
       if (::str::ends_ci(str, penum->m_strTopic))
       {
-         
+
          penum->m_hwndaTopic.add(hwnd);
 
       }
@@ -974,6 +974,10 @@ namespace aura
 #ifdef MACOS
 
       pathAppDataDir /= "Library";
+
+#elif defined(LINUX)
+
+      pathAppDataDir /= ".config";
 
 #endif
 
@@ -1145,11 +1149,11 @@ namespace aura
       //   }
 
          bool bFound = false;
-         
+
          pathProfile = pathAppDataDir / "ca2" / strBrowserProfile / "Profile" / strProfile;
-         
+
 #ifdef WINDOWSEX
-         
+
 
          open_browser_enum e;
          if (strId == "chrome" || strId == "commander")
@@ -1239,7 +1243,7 @@ namespace aura
             }
 
          }
-         
+
 #endif
 
          if (!bFound)
@@ -1326,7 +1330,7 @@ namespace aura
             }
 
          }
-            
+
 #ifdef WINDOWS
          {
             strParam += "--user-data-dir=\"" + pathProfile + "\"";
@@ -1336,8 +1340,8 @@ namespace aura
          }
 
 #else
-         
-         
+
+
 
 
             ::file::path shell;
@@ -1347,7 +1351,7 @@ namespace aura
 #ifdef MACOS
 
             path = System.url().url_decode(path);
-         
+
             strParam += "--user-data-dir=\"" + pathProfile + "\"";
 
             string strCmd = "open -n -a \"" + path + "\" --args " + strParam;
@@ -1357,6 +1361,8 @@ namespace aura
             strParam = " -c '" + strCmd + "'";
 
 #else
+
+            strParam += "--user-data-dir=\"" + pathProfile + "\"";
 
             string strCmd = path + " " + strParam;
 
@@ -1473,45 +1479,45 @@ namespace aura
       }
 
       strParam += " : " + strWeather + "=" + strUser;
-      
-      
+
+
 #ifdef WINDOWS
-      
+
       call_async(path, strParam, pathDir, SW_SHOWDEFAULT, false);
-      
+
 #else
-      
+
       ::file::path shell;
-      
+
       shell = "/bin/bash";
-      
+
 #ifdef MACOS
-      
+
       path = System.url().url_decode(path);
-      
+
       string strCmd = "open -n -a \"" + path + "\" --args " + strParam;
-      
+
       //strCmd.replace("\"", "\\\"");
-      
+
       strParam = " -c '" + strCmd + "'";
-      
+
 #else
-      
+
       string strCmd = path + " " + strParam;
-      
+
       strCmd.replace("\"", "\\\"");
-      
+
       strParam = " -c \"" + strCmd + "\"";
-      
-      
+
+
 #endif
-      
+
       //MessageBox(NULL, strParam, path, MB_OK);
-      
+
       output_debug_string(strParam);
-      
+
       call_async(shell, strParam, pathDir, SW_SHOWDEFAULT, false);
-      
+
 #endif
 
 
@@ -3243,7 +3249,7 @@ namespace aura
       {
 
 #ifdef WINDOWSEX
-       
+
          windows_install_crash_dump_reporting(this);
 
 #endif
@@ -4125,36 +4131,36 @@ namespace aura
 
    int32_t application::exit_application()
    {
-      
-   
+
+
       try
       {
-         
+
          for(auto & pair : System.m_appmap)
          {
-            
+
             try
             {
-               
+
                if(pair.m_element2->m_pauraapp == this)
                {
-                  
+
                   pair.m_element2->m_pauraapp = NULL;
-                  
+
                }
-               
+
             }
             catch(...)
             {
-               
+
             }
-            
+
          }
-         
+
       }
       catch(...)
       {
-   
+
       }
 
 
@@ -6055,7 +6061,7 @@ namespace aura
 
    }
 
-   
+
    sp(::aura::application) application::create_platform(::aura::session * psession)
    {
 
@@ -6482,7 +6488,7 @@ namespace aura
 
    void application::_001OnFranceExit()
    {
-      
+
       post_quit();
 
    }
@@ -6810,7 +6816,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
    //delete[] keystroke;
 
    Sleep(iSleep);
-   
+
    //return keystrokes_sent == keystrokes_to_send;
    return 1;
 
@@ -7339,7 +7345,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 ////   INPUT Event = { 0 };
 ////
 ////
-////   
+////
 ////   const SHORT Vk = VkKeyScanExW(ch, hkl);
 ////   //const UINT VKey = ::MapVirtualKey(LOBYTE(Vk), 0);
 ////
@@ -7451,7 +7457,7 @@ int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::aura::application * papp)
 //   {
 //
 //      int iIndex = ::str::ch::uni_index(psz);
-//      
+//
 //      send_input_unicode(iIndex, iSleep);
 //
 //      psz = ::str::utf8_inc(psz);

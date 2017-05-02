@@ -85,8 +85,9 @@
 			<Add directory="../../../nodeapp/include" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-rpath=\\$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-E" />
 			<Add option="-lace" />
 			<Add option="-lz" />
 			<Add option="-lbz2" />
@@ -508,6 +509,10 @@
 		<Unit filename="aura/os/linux/linux_cross_win_gdi.h" />
 		<Unit filename="aura/os/linux/linux_cross_win_gdi_internal.h" />
 		<Unit filename="aura/os/linux/linux_debug.h" />
+		<Unit filename="aura/os/linux/linux_file.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/linux/linux_file.h" />
 		<Unit filename="aura/os/linux/linux_file_watcher.cpp">
 			<Option compile="0" />
@@ -600,17 +605,11 @@
 		<Unit filename="aura/xml/xml_xmlite.h" />
 		<Unit filename="filesystem/_filesystem.cpp" />
 		<Unit filename="filesystem/file/file.h" />
-		<Unit filename="filesystem/file/file_binary_buffer.h" />
 		<Unit filename="filesystem/file/file_buffer.h" />
-		<Unit filename="filesystem/file/file_buffered_buffer.h" />
 		<Unit filename="filesystem/file/file_byte_istream.h" />
-		<Unit filename="filesystem/file/file_byte_istream_binary_buffer.h" />
 		<Unit filename="filesystem/file/file_byte_ostream.h" />
-		<Unit filename="filesystem/file/file_byte_ostream_binary_buffer.h" />
 		<Unit filename="filesystem/file/file_byte_stream.h" />
-		<Unit filename="filesystem/file/file_byte_stream_memory_buffer.h" />
 		<Unit filename="filesystem/file/file_c.h" />
-		<Unit filename="filesystem/file/file_circular_buffer.h" />
 		<Unit filename="filesystem/file/file_composite.h" />
 		<Unit filename="filesystem/file/file_dir.cpp">
 			<Option compile="0" />
@@ -621,42 +620,28 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
-		<Unit filename="filesystem/file/file_edit_buffer.h" />
 		<Unit filename="filesystem/file/file_exception.h" />
 		<Unit filename="filesystem/file/file_file_istream.h" />
 		<Unit filename="filesystem/file/file_file_ostream.h" />
 		<Unit filename="filesystem/file/file_file_stream.h" />
 		<Unit filename="filesystem/file/file_file_stream_base.h" />
 		<Unit filename="filesystem/file/file_folder_watch.h" />
-		<Unit filename="filesystem/file/file_html_buffer.h" />
 		<Unit filename="filesystem/file/file_istream.h" />
-		<Unit filename="filesystem/file/file_memory_buffer.h" />
 		<Unit filename="filesystem/file/file_opened.h" />
 		<Unit filename="filesystem/file/file_ostream.h" />
 		<Unit filename="filesystem/file/file_ostream_flush.h" />
 		<Unit filename="filesystem/file/file_plain_text_istream.h" />
 		<Unit filename="filesystem/file/file_plain_text_ostream.h" />
-		<Unit filename="filesystem/file/file_plain_text_ostream_string_buffer.h" />
 		<Unit filename="filesystem/file/file_plain_text_stream.h" />
 		<Unit filename="filesystem/file/file_plain_text_stream_base.h" />
-		<Unit filename="filesystem/file/file_plain_text_stream_memory_buffer.h" />
-		<Unit filename="filesystem/file/file_plain_text_stream_string_buffer.h" />
 		<Unit filename="filesystem/file/file_reader.h" />
 		<Unit filename="filesystem/file/file_seekable.h" />
 		<Unit filename="filesystem/file/file_serializable.h" />
 		<Unit filename="filesystem/file/file_set.h" />
-		<Unit filename="filesystem/file/file_simple_binary_buffer.h" />
 		<Unit filename="filesystem/file/file_status.h" />
 		<Unit filename="filesystem/file/file_stream.h" />
 		<Unit filename="filesystem/file/file_stream2.h" />
 		<Unit filename="filesystem/file/file_stream_base.h" />
-		<Unit filename="filesystem/file/file_stream_buffer.h" />
-		<Unit filename="filesystem/file/file_stream_buffer_base.h" />
-		<Unit filename="filesystem/file/file_streambuf.h" />
-		<Unit filename="filesystem/file/file_string_buffer.h" />
-		<Unit filename="filesystem/file/file_text_buffer.h" />
-		<Unit filename="filesystem/file/file_timeout_buffer.h" />
-		<Unit filename="filesystem/file/file_transfer_buffer.h" />
 		<Unit filename="filesystem/file/file_writer.h" />
 		<Unit filename="filesystem/file/file_writer_flush.h" />
 		<Unit filename="filesystem/filesystem.h" />

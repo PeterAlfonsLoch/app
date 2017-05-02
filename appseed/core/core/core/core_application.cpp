@@ -192,7 +192,7 @@ namespace core
 
    bool application::os_native_bergedge_start()
    {
-      
+
       return true;
 
    }
@@ -260,6 +260,8 @@ namespace core
 
       if (!is_system() && !is_session())
       {
+
+         ::aura::session * paurasession = m_paurasession;
 
          Session.register_bergedge_application(this);
 
@@ -519,33 +521,33 @@ namespace core
 
       try
       {
-         
+
          for(auto & pair : System.m_appmap)
          {
-            
+
             try
             {
-               
+
                if(pair.m_element2->m_pcoreapp == this)
                {
-                  
+
                   pair.m_element2->m_pcoreapp = NULL;
-                  
+
                }
-               
+
             }
             catch(...)
             {
-               
+
             }
-            
+
          }
-         
+
       }
       catch(...)
       {
-   
-      }         
+
+      }
 
       try
       {
@@ -2786,7 +2788,7 @@ namespace core
 
       if (!initialize_userex())
       {
-         
+
          return false;
 
       }

@@ -77,8 +77,9 @@
 			<Add directory="../aura" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-rpath=\\$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-E" />
 			<Add option="-lpthread" />
 			<Add option="-ldl" />
 			<Add option="-lX11" />
@@ -90,7 +91,6 @@
 			<Add option="-lfreetype" />
 			<Add option="-lcairo" />
 			<Add option="-lbase" />
-			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../time/x64/basis" />
 		</Linker>
