@@ -2,6 +2,7 @@
 
 
 #include "round_window.h"
+#include "base/user/user/user_interaction_impl.h"
 
 
 namespace ios
@@ -354,7 +355,7 @@ namespace ios
       virtual ::user::interaction *  GetLastActivePopup() override;
       
       virtual bool IsChild(::user::interaction *    pWnd);
-      virtual ::user::interaction * get_parent() const override;
+      virtual ::user::interaction * GetParent() const override;
       using ::user::interaction_impl::SetParent;
       ::user::interaction * SetParent(::user::interaction * pWndNewParent) override;
       static_function ::user::interaction * PASCAL oswindowFromPoint(POINT point);

@@ -151,6 +151,13 @@
 		9AE9BF0E1EA7D54000E8A026 /* _wndfrm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9BF0D1EA7D54000E8A026 /* _wndfrm.cpp */; };
 		9AE9BF101EA7D56300E8A026 /* _userex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9BF0F1EA7D56300E8A026 /* _userex.cpp */; };
 		9AE9BF141EA7D7EB00E8A026 /* _html_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9BF131EA7D7EB00E8A026 /* _html_graphics.cpp */; };
+		9AFEDB401EB9B4D9008F0D19 /* os_cross_windows_crt_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D5D7173C27E9009E6FB8 /* os_cross_windows_crt_debug.cpp */; };
+		9AFEDB411EB9B4D9008F0D19 /* _html_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9BF131EA7D7EB00E8A026 /* _html_graphics.cpp */; };
+		9AFEDB421EB9B4D9008F0D19 /* _userhtml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9BEED1EA7D4A900E8A026 /* _userhtml.cpp */; };
+		9AFEDB431EB9B4D9008F0D19 /* _simple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F3D951EB326270054F0F1 /* _simple.cpp */; };
+		9AFEDB441EB9B4D9008F0D19 /* user_shell_macos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7E85BF1E169A9F00B4534B /* user_shell_macos.cpp */; };
+		9AFEDB451EB9B4D9008F0D19 /* _userex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9BF0F1EA7D56300E8A026 /* _userex.cpp */; };
+		9AFEDB461EB9B4D9008F0D19 /* _wndfrm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9BF0D1EA7D54000E8A026 /* _wndfrm.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1473,6 +1480,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFEDB401EB9B4D9008F0D19 /* os_cross_windows_crt_debug.cpp in Sources */,
+				9AFEDB411EB9B4D9008F0D19 /* _html_graphics.cpp in Sources */,
+				9AFEDB421EB9B4D9008F0D19 /* _userhtml.cpp in Sources */,
+				9AFEDB431EB9B4D9008F0D19 /* _simple.cpp in Sources */,
+				9AFEDB441EB9B4D9008F0D19 /* user_shell_macos.cpp in Sources */,
+				9AFEDB451EB9B4D9008F0D19 /* _userex.cpp in Sources */,
+				9AFEDB461EB9B4D9008F0D19 /* _wndfrm.cpp in Sources */,
 				9AC13CCC1D20CF7B0026B367 /* _core.cpp in Sources */,
 				9AC13CCD1D20CF7B0026B367 /* _plugin.cpp in Sources */,
 				9AC13CCE1D20CF7B0026B367 /* _file.cpp in Sources */,

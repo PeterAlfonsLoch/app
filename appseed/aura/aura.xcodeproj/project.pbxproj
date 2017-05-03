@@ -1174,6 +1174,16 @@
 		9A26A6DC1D7F0019001F47A8 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A26A69C1D7F0019001F47A8 /* pcre.h */; };
 		9A26A6DD1D7F0019001F47A8 /* pcre_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A26A6A41D7F0019001F47A8 /* pcre_util.h */; };
 		9A26A6FC1D7F01A5001F47A8 /* libaurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A26A6F91D7F0166001F47A8 /* libaurapcre.dylib */; };
+		9A2736BE1EB9A4470085D2AD /* _datetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0254EF1EA59304003C82CF /* _datetime.cpp */; };
+		9A2736C51EB9A4630085D2AD /* _net.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0254F71EA593AB003C82CF /* _net.cpp */; };
+		9A2736C61EB9A52A0085D2AD /* _sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0255551EA593AB003C82CF /* _sockets.cpp */; };
+		9A2736C71EB9A58D0085D2AD /* _compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A02548A1EA59238003C82CF /* _compress.cpp */; };
+		9A2736C81EB9A58D0085D2AD /* _crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A640E641EA6BC5800866C2C /* _crypto.cpp */; };
+		9A2736C91EB9A58D0085D2AD /* _fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A640DFF1EA6BABB00866C2C /* _fontopus.cpp */; };
+		9A2736CA1EB9A58D0085D2AD /* _bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A02555C1EA593AB003C82CF /* _bsd.cpp */; };
+		9A2736CB1EB9A58D0085D2AD /* _math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0254F51EA5938A003C82CF /* _math.cpp */; };
+		9A2736D11EB9A5E30085D2AD /* libios_axiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A640E471EA6BBC400866C2C /* libios_axiscrypto.dylib */; };
+		9A2736D21EB9A5E30085D2AD /* libios_axisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A640E3B1EA6BBB900866C2C /* libios_axisopenssl.dylib */; };
 		9A33276B1D4C50EB00255105 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A33276A1D4C50EB00255105 /* file_path.h */; };
 		9A33A7551EA902C3000EC109 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A33A74D1EA901F5000EC109 /* CoreServices.framework */; };
 		9A34F5D21E15763000AE2607 /* mmos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A34F5D01E15763000AE2607 /* mmos.h */; };
@@ -1272,6 +1282,15 @@
 		9AC315F3198E4CB8008FB109 /* colorertake5_xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */; };
 		9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62DE91D20B82D00A4AC0A /* UIKit.framework */; };
 		9ACE46FF1D1FE56000A1E0AD /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716741D1553BF0069A961 /* libace.dylib */; };
+		9AD005271EB9A97500B9FB48 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD005261EB9A97500B9FB48 /* libbz2.tbd */; };
+		9AD0052D1EB9A98200B9FB48 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD0052C1EB9A98200B9FB48 /* libz.tbd */; };
+		9AD005311EB9A9FC00B9FB48 /* libios_axisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD005301EB9A9FC00B9FB48 /* libios_axisidn.dylib */; };
+		9AD005321EB9AA2200B9FB48 /* compress_bz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0254EB1EA5927C003C82CF /* compress_bz.cpp */; };
+		9AD005331EB9AA2200B9FB48 /* compress_gz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0254EC1EA5927C003C82CF /* compress_gz.cpp */; };
+		9AD005341EB9AA5B00B9FB48 /* user_interactive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A640E791EA6C2B900866C2C /* user_interactive.cpp */; };
+		9AD005351EB9AC9B00B9FB48 /* javascript_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A640E551EA6BC4E00866C2C /* javascript_functions.cpp */; };
+		9AD005361EB9AC9B00B9FB48 /* javascript_tinyjs_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A640E591EA6BC4E00866C2C /* javascript_tinyjs_functions.cpp */; };
+		9AD005371EB9AD1F00B9FB48 /* javascript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A640E531EA6BC4E00866C2C /* javascript.cpp */; };
 		9AE4C7F21996D29C00E50F88 /* data_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E41996D29C00E50F88 /* data_data.h */; };
 		9AE4C7F41996D29C00E50F88 /* data_data_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E61996D29C00E50F88 /* data_data_container.h */; };
 		9AE4C7F61996D29C00E50F88 /* data_data_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E81996D29C00E50F88 /* data_data_listener.h */; };
@@ -1382,6 +1401,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = aurapcre;
+		};
+		9A2736CD1EB9A5D20085D2AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A640E3E1EA6BBC400866C2C /* axiscrypto.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
+			remoteInfo = ios_axiscrypto;
+		};
+		9A2736CF1EB9A5D20085D2AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A640E321EA6BBB900866C2C /* axisopenssl.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
+			remoteInfo = ios_axisopenssl;
 		};
 		9A640E381EA6BBB900866C2C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2260,6 +2293,10 @@
 		9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5_xmldom.h; sourceTree = "<group>"; };
 		9AC62DE91D20B82D00A4AC0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AC945281829225F00AA7325 /* primitive_factory_impl.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primitive_factory_impl.inl; sourceTree = "<group>"; };
+		9AD005261EB9A97500B9FB48 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
+		9AD0052C1EB9A98200B9FB48 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		9AD0052E1EB9A98D00B9FB48 /* libaxisidn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxisidn.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libaxisidn.dylib; sourceTree = "<group>"; };
+		9AD005301EB9A9FC00B9FB48 /* libios_axisidn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisidn.dylib; path = "../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug-iphonesimulator/libios_axisidn.dylib"; sourceTree = "<group>"; };
 		9AD480B81D5A78B200354801 /* lib_ace.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib_ace.a; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/lib_ace.a"; sourceTree = "<group>"; };
 		9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aura_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE4C7E41996D29C00E50F88 /* data_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_data.h; sourceTree = "<group>"; };
@@ -2330,6 +2367,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD005311EB9A9FC00B9FB48 /* libios_axisidn.dylib in Frameworks */,
+				9AD0052D1EB9A98200B9FB48 /* libz.tbd in Frameworks */,
+				9AD005271EB9A97500B9FB48 /* libbz2.tbd in Frameworks */,
+				9A2736D11EB9A5E30085D2AD /* libios_axiscrypto.dylib in Frameworks */,
+				9A2736D21EB9A5E30085D2AD /* libios_axisopenssl.dylib in Frameworks */,
 				9A2116F01D832B72000C4336 /* libios_aurapcre.dylib in Frameworks */,
 				9A2116CE1D8329C4000C4336 /* libios_atomiconv.dylib in Frameworks */,
 				9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */,
@@ -3603,6 +3645,10 @@
 		9A9799131DAC3C2B001CD6D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AD005301EB9A9FC00B9FB48 /* libios_axisidn.dylib */,
+				9AD0052E1EB9A98D00B9FB48 /* libaxisidn.dylib */,
+				9AD0052C1EB9A98200B9FB48 /* libz.tbd */,
+				9AD005261EB9A97500B9FB48 /* libbz2.tbd */,
 				9A33A74D1EA901F5000EC109 /* CoreServices.framework */,
 				9A640E7B1EA6C3D800866C2C /* libaxisidn.dylib */,
 				9A0254F31EA59363003C82CF /* libbz2.tbd */,
@@ -5066,6 +5112,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A2736CE1EB9A5D20085D2AD /* PBXTargetDependency */,
+				9A2736D01EB9A5D20085D2AD /* PBXTargetDependency */,
 				9A2116D41D8329D2000C4336 /* PBXTargetDependency */,
 				9A2116D21D8329CA000C4336 /* PBXTargetDependency */,
 				9A6716CE1D159CAF0069A961 /* PBXTargetDependency */,
@@ -5277,6 +5325,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD005371EB9AD1F00B9FB48 /* javascript.cpp in Sources */,
+				9AD005351EB9AC9B00B9FB48 /* javascript_functions.cpp in Sources */,
+				9AD005361EB9AC9B00B9FB48 /* javascript_tinyjs_functions.cpp in Sources */,
+				9AD005341EB9AA5B00B9FB48 /* user_interactive.cpp in Sources */,
+				9AD005321EB9AA2200B9FB48 /* compress_bz.cpp in Sources */,
+				9AD005331EB9AA2200B9FB48 /* compress_gz.cpp in Sources */,
+				9A2736C71EB9A58D0085D2AD /* _compress.cpp in Sources */,
+				9A2736C81EB9A58D0085D2AD /* _crypto.cpp in Sources */,
+				9A2736C91EB9A58D0085D2AD /* _fontopus.cpp in Sources */,
+				9A2736CA1EB9A58D0085D2AD /* _bsd.cpp in Sources */,
+				9A2736CB1EB9A58D0085D2AD /* _math.cpp in Sources */,
+				9A2736C61EB9A52A0085D2AD /* _sockets.cpp in Sources */,
+				9A2736C51EB9A4630085D2AD /* _net.cpp in Sources */,
+				9A2736BE1EB9A4470085D2AD /* _datetime.cpp in Sources */,
 				9A8370261E46931200803F9F /* ios_file_watcher.cpp in Sources */,
 				9A8EC8551E453771009694BC /* os_debug.cpp in Sources */,
 				9A8087471DE1021A00F70A07 /* ios_library.cpp in Sources */,
@@ -5399,6 +5461,16 @@
 			isa = PBXTargetDependency;
 			name = aurapcre;
 			targetProxy = 9A26A6FD1D7F01B6001F47A8 /* PBXContainerItemProxy */;
+		};
+		9A2736CE1EB9A5D20085D2AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axiscrypto;
+			targetProxy = 9A2736CD1EB9A5D20085D2AD /* PBXContainerItemProxy */;
+		};
+		9A2736D01EB9A5D20085D2AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axisopenssl;
+			targetProxy = 9A2736CF1EB9A5D20085D2AD /* PBXContainerItemProxy */;
 		};
 		9A640E4B1EA6BBEC00866C2C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

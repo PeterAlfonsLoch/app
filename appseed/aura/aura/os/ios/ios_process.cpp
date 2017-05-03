@@ -178,3 +178,11 @@ CLASS_DECL_AURA DWORD call_sync(
 
 
 
+
+int get_current_process_affinity_order()
+{
+   
+   int numCPU = sysconf(_SC_NPROCESSORS_ONLN);
+   
+   return numCPU;
+}

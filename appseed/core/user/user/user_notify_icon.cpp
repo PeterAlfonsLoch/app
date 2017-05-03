@@ -111,6 +111,8 @@ namespace user
 
 #elif defined(VSNORD)
 
+#elif defined(APPLE_IOS)
+
 #else
       throw todo(get_app());
 

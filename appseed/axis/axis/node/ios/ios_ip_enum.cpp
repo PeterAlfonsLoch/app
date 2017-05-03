@@ -76,7 +76,7 @@ namespace ios
          
          memcpy(&addr.s_addr, phostent->h_addr_list[nAdapter], phostent->h_length);
          
-         str = to_string(addr);
+         to_string(str, addr);
          
          if(str.has_char())
          {

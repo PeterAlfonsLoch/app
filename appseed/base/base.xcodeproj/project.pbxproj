@@ -222,6 +222,11 @@
 		9AF67CA51EB6C0EF00919B4D /* libaxisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF67CA01EB6C0D900919B4D /* libaxisfreetype.dylib */; };
 		9AF67CA91EB6C11300919B4D /* install_canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF67CA71EB6C11300919B4D /* install_canvas.cpp */; };
 		9AF67CAA1EB6C11300919B4D /* install_canvas.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF67CA81EB6C11300919B4D /* install_canvas.h */; };
+		9AFEDB361EB9B3AF008F0D19 /* _graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF67BC81EB6BFA400919B4D /* _graphics.cpp */; };
+		9AFEDB3C1EB9B3B7008F0D19 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF67C8C1EB6C05600919B4D /* draw2d_nanosvg.cpp */; };
+		9AFEDB3D1EB9B3D0008F0D19 /* libios_axisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF67C961EB6C08600919B4D /* libios_axisfreeimage.dylib */; };
+		9AFEDB3E1EB9B3D0008F0D19 /* libios_axisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF67CA21EB6C0D900919B4D /* libios_axisfreetype.dylib */; };
+		9AFEDB3F1EB9B3E6008F0D19 /* install_canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF67CA71EB6C11300919B4D /* install_canvas.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -619,6 +624,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFEDB3D1EB9B3D0008F0D19 /* libios_axisfreeimage.dylib in Frameworks */,
+				9AFEDB3E1EB9B3D0008F0D19 /* libios_axisfreetype.dylib in Frameworks */,
 				077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */,
 				077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */,
 				077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */,
@@ -1604,6 +1611,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFEDB3F1EB9B3E6008F0D19 /* install_canvas.cpp in Sources */,
+				9AFEDB3C1EB9B3B7008F0D19 /* draw2d_nanosvg.cpp in Sources */,
+				9AFEDB361EB9B3AF008F0D19 /* _graphics.cpp in Sources */,
 				9A80879B1DE1270600F70A07 /* ios_interaction_impl.cpp in Sources */,
 				07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */,
 				07703C671B6FE3B5009026EA /* _database.cpp in Sources */,

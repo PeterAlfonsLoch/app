@@ -101,7 +101,7 @@ namespace ios
             if((listing.m_bDir && bDir) || (listing.m_bFile && !bDir))
             {
                
-               if(!bDir && !matches_wildcard_criteria(listing.os_pattern(), strPath.name()))
+               if(!bDir && !matches_wildcard_criteria(listing.m_straPattern, strPath.name()))
                   continue;
                
                listing.add(strPath);
@@ -146,7 +146,7 @@ namespace ios
             if((listing.m_bDir && bDir) || (listing.m_bFile && !bDir))
             {
                
-               if(!bDir && !matches_wildcard_criteria(listing.os_pattern(), strPath.name()))
+               if(!bDir && !matches_wildcard_criteria(listing.m_straPattern, strPath.name()))
                   continue;
                
                listing.add(strPath);

@@ -17,9 +17,26 @@ CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, co
    
 }
 
+
+::file::path dir::home()
+{
+
+return getenv("HOME");
+
+}
+
+::file::path dir::ca2_user()
+{
+
+    return ::file::path(getenv("HOME")) / "Library/ca2";
+
+}
+
 ::file::path dir::sys_temp()
 {
    
-   return ::file::path(getenv("HOME")) / ".ca2" / "time";
+   return ca2_user() / "time";
    
 }
+
+

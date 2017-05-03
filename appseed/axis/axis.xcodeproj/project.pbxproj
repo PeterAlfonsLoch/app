@@ -206,12 +206,10 @@
 		07EDC4FD1B4F0C4100AF8928 /* sqlitedb_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6A61B2637BB00E85AC7 /* sqlitedb_set.cpp */; };
 		07F5B1F8184A3B430092C3E1 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B188184A3B430092C3E1 /* filesystem.h */; };
 		9A19A0DC19C68DEE0018DF7D /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0D519C68DDA0018DF7D /* libaura.dylib */; };
-		9A2116E71D832A54000C4336 /* libios_axisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2116E61D832A54000C4336 /* libios_axisfreerdp.dylib */; };
 		9A2116E81D832A64000C4336 /* libios_axisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A331D7F341700ED6D8A /* libios_axisidn.dylib */; };
 		9A2116EB1D832A8C000C4336 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2116EA1D832A8C000C4336 /* libios_ace.dylib */; };
 		9A331C631D4BCB3C00255105 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C621D4BCB3C00255105 /* libsqlite3.tbd */; };
 		9A331C7C1D4BCFC800255105 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C7B1D4BCFC800255105 /* libbz2.tbd */; };
-		9A331C7F1D4BD06000255105 /* libios_axisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C7E1D4BD06000255105 /* libios_axisfreetype.dylib */; };
 		9A331C831D4BD0BE00255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C821D4BD0BE00255105 /* libz.tbd */; };
 		9A331C851D4BD0C600255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C841D4BD0C600255105 /* libz.tbd */; };
 		9A331C871D4BD0DB00255105 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C861D4BD0DB00255105 /* libsqlite3.tbd */; };
@@ -630,11 +628,9 @@
 				9A8087601DE10FFF00F70A07 /* libios_aurapcre.dylib in Frameworks */,
 				9A2116EB1D832A8C000C4336 /* libios_ace.dylib in Frameworks */,
 				9A2116E81D832A64000C4336 /* libios_axisidn.dylib in Frameworks */,
-				9A2116E71D832A54000C4336 /* libios_axisfreerdp.dylib in Frameworks */,
 				9AC18A451D4EA0C900977347 /* libbz2.tbd in Frameworks */,
 				9A331C631D4BCB3C00255105 /* libsqlite3.tbd in Frameworks */,
 				9A331C851D4BD0C600255105 /* libz.tbd in Frameworks */,
-				9A331C7F1D4BD06000255105 /* libios_axisfreetype.dylib in Frameworks */,
 				9AC62E661D20BE4F00A4AC0A /* UIKit.framework in Frameworks */,
 				07703C3F1B6FE06B009026EA /* libios_aura.dylib in Frameworks */,
 			);

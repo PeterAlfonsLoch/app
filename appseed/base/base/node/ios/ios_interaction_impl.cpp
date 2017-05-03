@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "ios.h"
+#include "base/user/user/user_interaction.h"
+#include "base/user/core_user.h"
+#include "base/user/user/user_user.h"
 
 
 WINBOOL PeekMessage(
@@ -4241,7 +4244,7 @@ namespace ios
    }
 
 
-   ::user::interaction * interaction_impl::get_parent() const
+   ::user::interaction * interaction_impl::GetParent() const
    {
       return NULL;
       //      if(!::IsWindow(get_handle()))
@@ -5866,7 +5869,9 @@ namespace ios
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
+      
       Session.user()->window_map().set((int_ptr)get_handle(), this);
+      
    }
 
 
