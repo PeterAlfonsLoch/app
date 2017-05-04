@@ -370,6 +370,15 @@ namespace aura
       {
 
 
+#ifdef WINDOWS
+
+         strTarget = pszSource;
+
+         strDirectory = ::file::path(strTarget).folder();
+
+         return false;
+
+#else
 
          char * psz = strTarget.GetBufferSetLength(4096);
          int count = readlink(pszSource, psz, 4096);
@@ -389,6 +398,7 @@ namespace aura
 
          strDirectory = ::file::path(strTarget).folder();
          return true;
+#endif
       }
 
       return false;
