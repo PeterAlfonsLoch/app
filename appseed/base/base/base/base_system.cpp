@@ -511,6 +511,10 @@ namespace base
 
       return 0;
 
+#elif defined(ANDROID)
+
+      return 0;
+
 #else
 
       if (iMonitor < 0)
@@ -559,6 +563,10 @@ namespace base
       return true;
 
 #elif defined(APPLE_IOS)
+
+      return true;
+
+#elif defined(ANDROID)
 
       return true;
 

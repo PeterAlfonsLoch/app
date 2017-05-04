@@ -1450,32 +1450,32 @@ namespace android
 
       }
 
-      if(pbase->m_uiMessage == MESSAGE_OLE_DRAGENTER ||
-         pbase->m_uiMessage == MESSAGE_OLE_DRAGOVER ||
-         pbase->m_uiMessage == MESSAGE_OLE_DRAGLEAVE ||
-         pbase->m_uiMessage == MESSAGE_OLE_DRAGDROP)
-      {
+      //if(pbase->m_uiMessage == MESSAGE_OLE_DRAGENTER ||
+      //   pbase->m_uiMessage == MESSAGE_OLE_DRAGOVER ||
+      //   pbase->m_uiMessage == MESSAGE_OLE_DRAGLEAVE ||
+      //   pbase->m_uiMessage == MESSAGE_OLE_DRAGDROP)
+      //{
 
-         message::drag_and_drop * pdrag = (::message::drag_and_drop *) pbase;
+      //   message::drag_and_drop * pdrag = (::message::drag_and_drop *) pbase;
 
 
-         user::oswindow_array oswindowa;
-         user::interaction_ptra wnda;
-         wnda = System.m_uiptraFrame;
-         oswindowa = wnda.get_hwnda();
-         user::window_util::SortByZOrder(oswindowa);
-         for(int32_t i = 0; i < oswindowa.get_size(); i++)
-         {
-            sp(::user::interaction) pui = wnda.find_first(oswindowa[i]);
-            if(pui != NULL)
-            {
-               pui->_000OnDrag(pdrag);
-               if(pdrag->m_bRet)
-                  return;
-            }
-         }
-         return;
-      }
+      //   user::oswindow_array oswindowa;
+      //   user::interaction_ptra wnda;
+      //   wnda = System.m_uiptraFrame;
+      //   oswindowa = wnda.get_hwnda();
+      //   user::window_util::SortByZOrder(oswindowa);
+      //   for(int32_t i = 0; i < oswindowa.get_size(); i++)
+      //   {
+      //      sp(::user::interaction) pui = wnda.find_first(oswindowa[i]);
+      //      if(pui != NULL)
+      //      {
+      //         pui->_000OnDrag(pdrag);
+      //         if(pdrag->m_bRet)
+      //            return;
+      //      }
+      //   }
+      //   return;
+      //}
       if(pbase->m_uiMessage == WM_KEYDOWN ||
          pbase->m_uiMessage == WM_KEYUP ||
          pbase->m_uiMessage == WM_CHAR ||

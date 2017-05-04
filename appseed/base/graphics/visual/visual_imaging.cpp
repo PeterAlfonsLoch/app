@@ -20,6 +20,12 @@
 
 #endif
 
+#ifdef ANDROID
+
+#define _stricmp strcasecmp
+
+#endif
+
 bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::file_sp, ::aura::application * papp);
 
 bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::file_sp, ::aura::application * papp);

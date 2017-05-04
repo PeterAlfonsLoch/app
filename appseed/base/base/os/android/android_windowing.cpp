@@ -1326,3 +1326,11 @@ CLASS_DECL_BASE void defer_dock_application(bool bDock)
 
 
 }
+
+CLASS_DECL_BASE ::user::interaction * oswindow_interaction(oswindow oswindow)
+{
+
+   return oswindow->m_pimpl->m_pui;
+
+}
+

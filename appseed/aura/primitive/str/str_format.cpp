@@ -485,7 +485,7 @@ void string_format::format(const char * & s)
          // TODO: use specs
          #ifdef WINDOWSEX
          char sz[_CVTBUFSIZE];
-#elif defined(__APPLE__) || defined(LINUX)
+#elif defined(__APPLE__) || defined(LINUX) || defined(VSNORD)
          char sz[500];
          #else
          char sz[CVTBUFSIZE];
@@ -550,7 +550,7 @@ void string_format::format(const char * & s)
                pformat->append(::str::from(d));
                return;
             }
-#elif defined(LINUX) || defined(MACOS)
+#elif defined(LINUX) || defined(MACOS) 
             if(gcvt(fabs(d),digits, sz))
             {
                pformat->append(::str::from(d));

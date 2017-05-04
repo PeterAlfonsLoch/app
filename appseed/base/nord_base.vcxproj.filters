@@ -235,9 +235,6 @@
     <ClCompile Include="user\hotplugin\hotplugin_windows.cpp">
       <Filter>Source Files\user\hotplugin</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_vsnord_native_app_glue.c">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
@@ -454,11 +451,17 @@
     <ClCompile Include="base\os\cross\windows\base_cross_windows_threading.cpp">
       <Filter>Source Files\base\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\graphics_window_buffer.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_updowninterface.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_canvas.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\_graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -941,9 +944,6 @@
     <Filter Include="Header Files\base\node\linux">
       <UniqueIdentifier>{5b0a040f-93a1-418b-bfbb-d55c674541cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\NewFilter1">
-      <UniqueIdentifier>{0bfa70ce-e4ff-4689-9aab-7bfd3e4857f9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\wndfrm">
       <UniqueIdentifier>{aedd0780-8452-469a-9c2b-c2af541849d8}</UniqueIdentifier>
     </Filter>
@@ -955,6 +955,12 @@
     </Filter>
     <Filter Include="Header Files\user\wndfrm\frame">
       <UniqueIdentifier>{77c6f5dd-bc94-4f57-b74b-0e971af59d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\install">
+      <UniqueIdentifier>{a4e327c2-1699-4c2b-bbfc-2ee74f6bfd77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d">
+      <UniqueIdentifier>{f0ed1f88-4f89-4fd0-945b-b1c239ce43a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

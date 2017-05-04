@@ -1854,19 +1854,21 @@ namespace aura
 
             strOpenUrl = System.m_pandroidinitdata->m_pszOpenUrl;
 
-            free((void *)System.m_pandroidinitdata->m_pszOpenUrl);
+            ::free((void *)System.m_pandroidinitdata->m_pszOpenUrl);
 
             System.m_pandroidinitdata->m_pszOpenUrl = NULL;
 
          }
 
 
-         strOpenUrl = m_strLink + str::has_char(strOpenUrl, ";");
+         //strOpenUrl = strUrl + str::has_char(strOpenUrl, ";");
 
-         if (strOpenUrl.has_char())
+         //if (strOpenUrl.has_char())
          {
 
-            System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
+           // System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
+
+            System.m_pandroidinitdata->m_pszOpenUrl = strdup(strUrl);
 
          }
 

@@ -6,6 +6,23 @@
 
 CLASS_DECL_AURA const char * yoshi_strcat(const char * psz1, const char * psz2, bool bFree2 = false);
 
+wchar_t * wcs_dup(const wchar_t * s)
+{
+   strsize l = wcslen(s);
+   wchar_t * p = (wchar_t *) malloc((l + 1) * sizeof(wchar_t));
+   wchar_t * c = p;
+   while (*s != L'\0')
+   {
+      *c = *s;
+      c++;
+      s++;
+   }
+   *c = L'\0';
+   return c;
+}
+#ifdef VSNORD
+#define wcsdup wcs_dup
+#endif
 
 void strcat_dup(char * dest, const char * cat)
 {
@@ -1585,7 +1602,7 @@ extern "C"
 
    wchar_t * c_wide_str(const char * str)
    {
-#if defined(__APPLE__) || defined(LINUX)
+#if defined(__APPLE__) || defined(LINUX) || defined(VSNORD)
       wchar_t * p =utf8_to_utf32(str);
       wchar_t * p2= wcsdup(p);
       memory_free(p);

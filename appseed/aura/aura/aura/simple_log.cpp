@@ -1,3 +1,4 @@
+#include "framework.h"
 
 
 simple_log::simple_log()

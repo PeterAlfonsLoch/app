@@ -35,7 +35,7 @@ namespace file_watcher
 	{
 	public:
 		/// type for a map from id to watch_struct pointer
-		typedef map<id, id, watch_struct *, watch_struct*> WatchMap;
+		typedef map<file_watch_id, file_watch_id, watch_struct *, watch_struct*> WatchMap;
 
 	public:
 		///
@@ -48,18 +48,18 @@ namespace file_watcher
 
 		/// Add a directory watch
 		/// @exception file_not_found_exception Thrown when the requested directory does not exist
-		id add_watch(const string & directory, file_watch_listener* watcher, bool bRecursive, bool bOwn);
+		file_watch_id add_watch(const string & directory, file_watch_listener* watcher, bool bRecursive, bool bOwn);
 
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
 		void remove_watch(const string & directory);
 
 		/// Remove a directory watch. This is a map lookup O(logn).
-		void remove_watch(id watchid);
+		void remove_watch(file_watch_id watchid);
 
-		string watch_path(id watchid);
+		string watch_path(file_watch_id watchid);
 
 		/// Updates the watcher. Must be called often.
-		void update();
+		bool update();
 
 		/// Handles the action
 		virtual void handle_action(action * paction);
@@ -68,7 +68,7 @@ namespace file_watcher
 		/// Map of id to watch_struct pointers
 		WatchMap m_watchmap;
 		/// The last watchid
-		id mLastWatchID;
+      file_watch_id mLastWatchID;
 		/// inotify file descriptor
 		int32_t mFD;
 		/// time out data

@@ -871,3 +871,6 @@ inline ::user::interaction * timer_ui(::timer * ptimer)
 }
 
 
+CLASS_DECL_BASE ::user::interaction * oswindow_interaction(oswindow oswindow);
+
+

@@ -500,3 +500,12 @@ bool __os_term_thread()
    return true;
 
 }
+
+
+int get_current_process_affinity_order()
+{
+
+   return get_processor_count();
+
+}
+

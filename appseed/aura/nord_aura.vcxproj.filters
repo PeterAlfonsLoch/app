@@ -16,12 +16,6 @@
     <ClCompile Include="user\simple\simple_message_box.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\visual\visual_cursor.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_icon.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\_primitive.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -36,9 +30,6 @@
     </ClCompile>
     <ClCompile Include="aura\_aura_aura.cpp">
       <Filter>Source Files\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\_draw2d.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -940,39 +931,6 @@
     <ClCompile Include="filesystem\filesystem\filesystem_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_debug.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_font.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_path.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\collection\collection_2d_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
@@ -1411,9 +1369,6 @@
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="aura\charguess\charDistribution.cpp">
       <Filter>Source Files\aura\auracharguess</Filter>
     </ClCompile>
@@ -1430,6 +1385,54 @@
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_md5.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="net\_net.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\_sockets.cpp">
+      <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\_bsd.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\_datetime.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\_math.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interactive.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\scripting\javascript\javascript.cpp">
+      <Filter>Source Files\aura\scripting\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\scripting\javascript\javascript_tinyjs_functions.cpp">
+      <Filter>Source Files\aura\scripting\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\crypto\_crypto.cpp">
+      <Filter>Source Files\aura\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\_compress.cpp">
+      <Filter>Source Files\aura\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_bz.cpp">
+      <Filter>Source Files\aura\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\compress\compress_gz.cpp">
+      <Filter>Source Files\aura\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\fontopus\_fontopus.cpp">
+      <Filter>Source Files\aura\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\scripting\javascript\javascript_functions.cpp">
+      <Filter>Source Files\aura\scripting\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\simple_log.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
@@ -2318,63 +2321,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_writer_flush.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_brush.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_const.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_dib.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_font.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_fwd.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_graphics.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_igui.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_object.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_palette.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_path.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_pen.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_region.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_const.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_cursor.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_icon.h">
-      <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
     <ClInclude Include="aura\xml\xml.h">
       <Filter>Header Files\aura\xml</Filter>
@@ -3272,15 +3218,6 @@
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{002a8c79-6f9e-46d0-9f6f-9cdfbb3cf692}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics">
-      <UniqueIdentifier>{bc7f90c7-fe94-4275-b0d0-6cdd34ef8dfd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\draw2d">
-      <UniqueIdentifier>{585f9b76-c12d-4116-b8be-ca62fb0ec8aa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\visual">
-      <UniqueIdentifier>{fa44b661-e391-482f-b03f-11a1d0958a33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\aura">
       <UniqueIdentifier>{86406752-2a1d-4fa9-b11a-3c053bb10965}</UniqueIdentifier>
     </Filter>
@@ -3371,15 +3308,6 @@
     <Filter Include="Source Files\user\colorertake5">
       <UniqueIdentifier>{08b823fa-81de-49dc-8eeb-c2fd4314c2a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{4477968f-c895-4afd-8c3e-3835b0054db4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\draw2d">
-      <UniqueIdentifier>{49481339-b19e-4d43-b4fb-1e5f348452be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\visual">
-      <UniqueIdentifier>{814e0be7-1e85-4f69-8513-3c2cd60a69d9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{4e86ef45-2683-49ea-bcf5-a1f98ee1ba2c}</UniqueIdentifier>
     </Filter>
@@ -3460,6 +3388,30 @@
     </Filter>
     <Filter Include="Source Files\aura\pcre">
       <UniqueIdentifier>{6aacc9e4-f716-4ec1-beb6-cd669b3dfac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets">
+      <UniqueIdentifier>{8ea2cf0a-90fe-439a-8a43-886a195aff14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd">
+      <UniqueIdentifier>{9cb3efd2-c726-4bd3-a4e2-cc91c32a2447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\bsd\basic">
+      <UniqueIdentifier>{8def55f2-561f-49cf-9f8f-653f25d5790d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\fontopus">
+      <UniqueIdentifier>{a43d3c04-3a37-4f15-a58a-1976dcf08ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\compress">
+      <UniqueIdentifier>{1dfdd8fe-b230-4289-b399-cc05cebfe5df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\crypto">
+      <UniqueIdentifier>{a87fd771-5b05-4ac3-a785-e9e294c0f094}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\scripting">
+      <UniqueIdentifier>{6ee97f5d-3201-457a-a449-9f3dc3275f33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\scripting\javascript">
+      <UniqueIdentifier>{4baff055-a3f9-4242-8eb8-9e51cee18d68}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

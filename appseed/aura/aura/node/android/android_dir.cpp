@@ -133,7 +133,7 @@ namespace android
 
 			   bIsDir = ::dir::is(strPath);
 
-			   if (!bIsDir && listing.m_strPattern.has_char() && listing.m_strPattern != "*.*" && !matches_wildcard_criteria(listing.m_strPattern, strPath.name()))
+			   if (!bIsDir && !matches_wildcard_criteria(listing.m_straPattern, strPath.name()))
 				   continue;
 
 			   if ((bIsDir && !listing.m_bDir) || (!bIsDir && !listing.m_bFile))

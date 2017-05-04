@@ -117,7 +117,7 @@ namespace sockets
 
 #ifdef ANDROID
 
-      protno = 6
+      protno = 6;
 
       if (strProtocol.CompareNoCase("tcp") == 0)
       {

@@ -333,7 +333,7 @@ CLASS_DECL_AURA bool file_append_wait_dup(const string & strFile, const char * p
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX)
+#if defined(__APPLE__) || defined(LINUX) || defined(VSNORD)
       pfile = fopen(strFile, "ab");
 #else
       pfile = _wfopen(wstr, L"ab");

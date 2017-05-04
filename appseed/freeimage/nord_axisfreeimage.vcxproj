@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="basis|ARM">
       <Configuration>basis</Configuration>
@@ -22,10 +22,10 @@
     <ProjectGuid>{3F63B8BA-14B8-4147-A78A-0894B7207E37}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
     <ProjectName>axisfreeimage</ProjectName>
     <RootNamespace>axisfreeimage</RootNamespace>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
@@ -172,7 +172,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\DeprecationManager\DeprecationMgr.cpp">
@@ -183,7 +182,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\Background.cpp">
@@ -330,7 +328,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\CacheFile.cpp">
@@ -341,7 +338,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ColorLookup.cpp">
@@ -355,7 +351,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion.cpp">
@@ -366,7 +361,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion16_555.cpp">
@@ -377,7 +371,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion16_565.cpp">
@@ -388,7 +381,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion24.cpp">
@@ -399,7 +391,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion32.cpp">
@@ -410,7 +401,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion4.cpp">
@@ -421,7 +411,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion8.cpp">
@@ -432,7 +421,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionFloat.cpp">
@@ -443,7 +431,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionRGB16.cpp">
@@ -454,7 +441,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionRGBF.cpp">
@@ -465,7 +451,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionType.cpp">
@@ -476,7 +461,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionUINT16.cpp">
@@ -487,7 +471,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\FreeImage.cpp">
@@ -501,7 +484,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\FreeImageFramework.cpp">
@@ -515,7 +497,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\FreeImageIO.cpp">
@@ -529,7 +510,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\GetType.cpp">
@@ -543,7 +523,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Halftoning.cpp">
@@ -554,7 +533,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\MemoryIO.cpp">
@@ -568,7 +546,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\MNGHelper.cpp">
@@ -580,7 +557,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\MultiPage.cpp">
@@ -591,7 +567,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\NNQuantizer.cpp">
@@ -603,7 +578,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PixelAccess.cpp">
@@ -617,7 +591,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Plugin.cpp">
@@ -629,7 +602,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginBMP.cpp">
@@ -641,7 +613,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginCUT.cpp">
@@ -653,7 +624,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginDDS.cpp">
@@ -665,7 +635,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginGIF.cpp">
@@ -677,7 +646,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginHDR.cpp">
@@ -689,7 +657,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginICO.cpp">
@@ -701,7 +668,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginIFF.cpp">
@@ -713,7 +679,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginJNG.cpp">
@@ -725,7 +690,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginKOALA.cpp">
@@ -737,7 +701,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginMNG.cpp">
@@ -749,7 +712,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPCD.cpp">
@@ -761,7 +723,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPCX.cpp">
@@ -773,7 +734,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPFM.cpp">
@@ -785,7 +745,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPICT.cpp">
@@ -797,7 +756,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPNM.cpp">
@@ -809,7 +767,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPSD.cpp">
@@ -821,7 +778,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginRAS.cpp">
@@ -833,7 +789,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginSGI.cpp">
@@ -845,7 +800,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginTARGA.cpp">
@@ -857,7 +811,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginWBMP.cpp">
@@ -869,7 +822,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginXBM.cpp">
@@ -881,7 +833,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginXPM.cpp">
@@ -893,7 +844,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PSDParser.cpp">
@@ -905,7 +855,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\TIFFLogLuv.cpp">
@@ -917,7 +866,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\tmoColorConvert.cpp">
@@ -928,7 +876,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\tmoDrago03.cpp">
@@ -939,7 +886,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\tmoFattal02.cpp">
@@ -950,7 +896,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\tmoReinhard05.cpp">
@@ -961,7 +906,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ToneMapping.cpp">
@@ -972,7 +916,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\WuQuantizer.cpp">
@@ -984,7 +927,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ZLibInterface.cpp">
@@ -995,10 +937,11 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\_FreeImage.cpp" />
+    <ClCompile Include="Source\FreeImage\_FreeImage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Source\Metadata\Exif.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">FreeImageFramework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
@@ -1007,7 +950,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\FIRational.cpp">
@@ -1018,7 +960,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\FreeImageTag.cpp">
@@ -1029,7 +970,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\IPTC.cpp">
@@ -1040,7 +980,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\TagConversion.cpp">
@@ -1051,7 +990,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\TagLib.cpp">
@@ -1062,7 +1000,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\OpenEXR\Half\half.cpp" />

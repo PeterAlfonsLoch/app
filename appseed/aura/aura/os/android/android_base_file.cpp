@@ -54,3 +54,12 @@ CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, co
    return ::file::path(getenv("HOME")) /  ".core" / "time";
 
 }
+
+
+
+::file::path dir::home()
+{
+
+   return getenv("HOME");
+
+}

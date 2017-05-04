@@ -5,16 +5,19 @@
 // 2015-08-11 16:00:00
 
 #include "framework.h"
+#include "base/user/user/user_interaction.h"
+
 
 #if defined(LINUX) || defined(VSNORD) || defined(METROWIN)
 
 DWORD dwDebugPostMessageTime;
 
+CLASS_DECL_BASE::user::interaction * oswindow_interaction(oswindow);
 
 CLASS_DECL_BASE int_bool PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   ::user::elemental * pui = oswindow_get(oswindow);
+   ::user::interaction * pui = oswindow_interaction(oswindow);
 
    if(pui == NULL)
       return FALSE;
@@ -71,12 +74,8 @@ CLASS_DECL_BASE int_bool PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,L
 
 CLASS_DECL_BASE int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 {
-   ::user::interaction_impl * pimpl = oswindow_get(oswindow);
-
-   if (pimpl == NULL)
-      return FALSE;
-
-   ::user::interaction * pui = pimpl->m_pui;
+   
+   ::user::interaction * pui = oswindow_interaction(oswindow);
 
    if(pui == NULL)
       return FALSE;

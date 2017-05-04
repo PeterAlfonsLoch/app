@@ -225,29 +225,27 @@ namespace aura
 
          m_bRun = true;
 
-         if(pthread_create(&m_thread,NULL,&rx::receive_proc,this) != 0)
+         m_pthread = ::fork(get_app(), [&]()
          {
 
-            m_bRunning = false;
 
-            m_bRun = false;
+            receive();
 
-            return false;
 
-         }
+         });
 
          return true;
 
       }
 
-      void * rx::receive_proc(void * param)
-      {
+      //void * rx::receive_proc(void * param)
+      //{
 
-         rx * pchannel = (rx *)param;
+      //   rx * pchannel = (rx *)param;
 
-         return pchannel->receive();
+      //   return pchannel->receive();
 
-      }
+      //}
 
 
 

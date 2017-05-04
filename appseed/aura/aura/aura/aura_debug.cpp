@@ -123,7 +123,7 @@ CLASS_DECL_AURA bool memcnts()
 
    }
 
-   return g_iMemoryCounters;
+   return g_iMemoryCountersStartable && g_iMemoryCounters;
 
 }
 
@@ -132,7 +132,7 @@ CLASS_DECL_AURA bool memcnts()
 CLASS_DECL_AURA ::file::path memcnts_base_path()
 {
 
-   if (g_pMemoryCounters == NULL)
+   if (g_iMemoryCountersStartable && g_pMemoryCounters == NULL)
    {
 
       g_pMemoryCounters = new ::file::path();

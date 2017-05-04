@@ -150,7 +150,7 @@ namespace exception
 
       stringa stra;
 
-      stra.add_lines(m_strCallStack);
+      stra.add_lines(m_pszCallStack);
 
       for (auto & str : stra)
       {

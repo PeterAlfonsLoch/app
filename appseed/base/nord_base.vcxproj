@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="basis|ARM">
       <Configuration>basis</Configuration>
@@ -22,10 +22,10 @@
     <ProjectGuid>{04207bc4-c08b-4a2d-b754-f3bd46ad3098}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
     <ProjectName>base</ProjectName>
     <RootNamespace>base</RootNamespace>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
@@ -97,7 +97,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axis;aura;ace;$(StlLibraryName);log;android;m</LibraryDependencies>
+      <LibraryDependencies>axisfreetype;axisfreeimage;axis;aura;ace;$(StlLibraryName);log;android;m</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -191,6 +191,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="base\install\install_canvas.cpp" />
     <ClCompile Include="base\node\android\android1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
@@ -681,8 +682,8 @@
     <ClCompile Include="base\_base_base.cpp" />
     <ClCompile Include="database\_database.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="graphics\graphics_window_buffer.cpp" />
-    <ClCompile Include="graphics\graphics_window_graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp" />
+    <ClCompile Include="graphics\_graphics.cpp" />
     <ClCompile Include="user\fontopus\fontopus.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
@@ -1031,7 +1032,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_updowninterface.cpp" />
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_updowninterface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="user\_user.cpp" />
   </ItemGroup>
   <ItemGroup>
