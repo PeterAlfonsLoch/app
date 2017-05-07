@@ -4,6 +4,7 @@
 #include <shlobj.h>
 #endif
 
+
 namespace filemanager
 {
 
@@ -49,24 +50,50 @@ namespace filemanager
       class ImageKey
       {
       public:
+
+         char *                        m_pszPath;
+         char *                        m_pszShellThemePrefix;
+         cflag < EFileAttribute >      m_eattribute;
+         cflag < EIcon >               m_eicon;
+         int32_t                       m_iIcon;
+         char *                        m_pszExtension;
+
+
+
          ImageKey();
-         ImageKey(const ImageKey & key);
-         string      m_strPath;
-         int32_t         m_iIcon;
-         string      m_strExtension;
 
          operator uint32_t () const
          {
             return m_iIcon;
          }
+
          bool operator == (const ImageKey & key) const;
+
+         void set_path(const string & strPath, bool bSetExtension = true);
+         void set_extension(const string & strPath);
+
+      };
+
+      class ImageKeyStore :
+         public ImageKey
+      {
+      public:
+
+         ImageKeyStore();
+         ImageKeyStore(const ImageKey & key);
+         ~ImageKeyStore();
+
       };
 
 
-      inline UINT HashKey(ImageKey & key)
+      inline bool ImageKey::operator == (const ImageKey & key) const
       {
-         // default identity hash - works for most primitive values
-         return (UINT) ::HashKey((const char *) key.m_strPath) | key.m_iIcon;
+         return m_eattribute == key.m_eattribute
+            && m_eicon == key.m_eicon
+            && m_iIcon == key.m_iIcon
+            && strcmp(m_pszExtension, key.m_pszExtension) == 0
+            && strcmp(m_pszShellThemePrefix, key.m_pszShellThemePrefix) == 0
+            && strcmp(m_pszPath, key.m_pszPath) == 0;
       }
 
 
@@ -81,7 +108,7 @@ namespace filemanager
          sp(image_list)                                           m_pil16;
          sp(image_list)                                           m_pil48;
          sp(image_list)                                           m_pil48Hover;
-         map < ImageKey, const ImageKey &, int32_t, int32_t >     m_imagemap;
+         map < ImageKeyStore, const ImageKey &, int32_t, int32_t >     m_imagemap;
 
          string                                                   m_strShellThemePrefix;
          stringa                                                  m_straThemeableIconName;
@@ -109,13 +136,15 @@ namespace filemanager
 #ifdef WINDOWSEX
          int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, EIcon eicon);
 #endif
-         int32_t GetImage(oswindow oswindow, const char * lpcsz,EFileAttribute eattribute,EIcon eicon, COLORREF crBk = 0) ;
-         int32_t GetImage(oswindow oswindow, const char * lpcsz, const unichar * lpcszExtra, EIcon eicon, bool bFolder, COLORREF crBk);
-         int32_t GetImageByExtension(oswindow oswindow,const ::file::path & lpcsz,EIcon eicon,bool bFolder, COLORREF crBk);
+         int32_t GetImageFoo(oswindow oswindow, const string & strExtension, EFileAttribute eattribute, EIcon eicon, COLORREF crBk = 0);
+         int32_t GetImage(oswindow oswindow, const string & strPath,EFileAttribute eattribute,EIcon eicon, COLORREF crBk = 0) ;
+         int32_t GetImage(oswindow oswindow, ImageKey key, const unichar * lpcszExtra, COLORREF crBk);
+         int32_t GetImageByExtension(oswindow oswindow, ImageKey & key, COLORREF crBk);
 #ifdef WINDOWSEX
-         int32_t GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, EIcon eicon, COLORREF crBk);
-         int32_t GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, EIcon eicon, COLORREF crBk);
-         int32_t GetFooImage(oswindow oswindow,EIcon eicon, bool bFolder, const string & strExtension, COLORREF crBk);
+         int32_t GetImage(oswindow oswindow, ImageKey key, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, COLORREF crBk);
+         int32_t GetImage(oswindow oswindow, ImageKey key, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, COLORREF crBk);
+         int32_t GetFooImage(oswindow oswindow, ImageKey key, COLORREF crBk);
+         void _017ItemIDListParsePath(oswindow oswindow, LPITEMIDLIST * lpiidl, const char * lpcsz);
 #endif
 
          
@@ -155,10 +184,21 @@ namespace filemanager
       LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl);
       LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl);
       bool CLASS_DECL_CORE _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2);
-      void CLASS_DECL_CORE _017ItemIDListParsePath(oswindow oswindow, LPITEMIDLIST * lpiidl, const char * lpcsz);
+      
 
       void CLASS_DECL_CORE _017ItemIDListFree(LPITEMIDLIST lpiidl);
 #endif
    } // namespace _shell
 
 } // namespace filemanager
+
+
+template <>
+inline UINT HashKey<const filemanager::_shell::ImageKey &> (const filemanager::_shell::ImageKey & key)
+{
+   // default identity hash - works for most primitive values
+   return (UINT)harmannieves_camwhite_hash(key.m_pszPath, 
+                harmannieves_camwhite_hash(key.m_pszShellThemePrefix,
+                harmannieves_camwhite_hash(key.m_pszExtension,
+                key.m_iIcon | (((int) key.m_eicon) << 8) | (((int)key.m_eattribute) << 16))));
+}

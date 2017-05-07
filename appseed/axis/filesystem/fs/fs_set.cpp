@@ -171,8 +171,16 @@ namespace fs
 
    }
 
-   bool set::is_dir(const ::file::path & path)
+
+   int set::is_dir(const ::file::path & path)
    {
+
+      if (path.m_iDir >= 0)
+      {
+
+         return path.m_iDir;
+
+      }
 
       ::fs::data * pdata = path_data(path);
 
@@ -183,7 +191,7 @@ namespace fs
 
       }
 
-      return false;
+      return -1;
 
    }
 

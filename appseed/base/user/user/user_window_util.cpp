@@ -337,9 +337,12 @@ namespace user
       return (index)((byte *)(void *)ptree1->m_oswindow - (byte *)(void *)ptree2->m_oswindow);
    }
 
+   
    int_ptr oswindow_tree::Array::find(oswindow oswindow)
    {
-      return find_first(oswindow_tree(oswindow), &::user::oswindow_tree::compare_oswindow);
+      
+      return comp_find_first(oswindow_tree(oswindow), &::user::oswindow_tree::compare_oswindow);
+
    }
 
 

@@ -12,26 +12,18 @@ inline UINT HashKey(ARG_KEY key)
    return (uint32_t)(((uint_ptr)key)>>4);
 }
 
+inline uint64_t harmannieves_camwhite_hash(const char * key, uint64_t nHash = 0)
+{
+   while (*key)
+      nHash = (nHash << 5) + nHash + *key++;
+   return nHash;
+}
 
 
 template<>
 inline UINT HashKey<const char *> (const char * key)
 {
-   uint64_t * puiKey = (uint64_t *) key;
-   size_t counter = strlen(key);
-   uint64_t nHash = 0;
-   while(counter > sizeof(*puiKey))
-   {
-      nHash = (nHash<<5) + nHash + *puiKey++;
-      counter -= sizeof(*puiKey);
-   }
-   const char * pszKey = (const char *) puiKey;
-   while (counter > 0)
-   {
-      nHash = (nHash << 5) + nHash + *pszKey++;
-      counter--;
-   }
-   return (UINT) nHash;
+   return (UINT) harmannieves_camwhite_hash(key);
 }
 
 
@@ -76,21 +68,7 @@ inline UINT HashKey<const wstring &>(const wstring & key)
 template<>
 inline UINT HashKey<const string &>(const string &  key)
 {
-   uint64_t * puiKey = (uint64_t *)key.m_pszData;
-   size_t counter = key.get_length();
-   uint64_t nHash = 0;
-   while (counter > sizeof(*puiKey))
-   {
-      nHash = (nHash << 5) + nHash + *puiKey++;
-      counter -= sizeof(*puiKey);
-   }
-   const char * pszKey = (const char *)puiKey;
-   while (counter > 0)
-   {
-      nHash = (nHash << 5) + nHash + *pszKey++;
-      counter--;
-   }
-   return (UINT)nHash;
+   return (UINT) harmannieves_camwhite_hash(key.m_pszData);
 }
 
 

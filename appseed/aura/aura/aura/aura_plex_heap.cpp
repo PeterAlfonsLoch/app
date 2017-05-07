@@ -211,13 +211,13 @@ void plex_heap_alloc_sync::Free(void * p)
       return;
 
 #ifdef DEBUG
-   Free_check_pointer_in_cpp(p);
+   //Free_check_pointer_in_cpp(p);
 #endif
 
    cslock sl(&m_protect);
 
 #ifdef DEBUG
-   memset(p, 0xCD, m_nAllocSize); // attempt to invalidate memory so it get unusable (as it should be after freed).
+   //memset(p, 0xCD, m_nAllocSize); // attempt to invalidate memory so it get unusable (as it should be after freed).
 #endif
 
                                   // simply return the node to the free list

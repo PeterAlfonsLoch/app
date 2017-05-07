@@ -308,8 +308,13 @@ namespace user
       index_biunique *                 m_piaFilterIcon;
       index_array *                    m_piaFilterMesh;
 
+      /// Are items selectable?
       bool                             m_bSelect;
+
+      /// Hovering items select them? Imply single-click open.
       bool                             m_bHoverSelect;
+
+      /// Is multiple selection of items enabled?
       bool                             m_bMultiSelect;
 
 
@@ -331,6 +336,10 @@ namespace user
       visual::graphics_extension       m_dcextension;
 
       index                            m_iClick;
+      bool                             m_bLButtonDown;
+      point                            m_ptLButtonDown;
+      DWORD                            m_dwLButtonDownStart;
+      index                            m_iDisplayItemLButtonDown;
 
       index                            m_iItemFocus;
 
@@ -359,7 +368,6 @@ namespace user
 
       index                            m_iShiftFirstSelection;
       uint_ptr                         m_uiLButtonDownFlags;
-      point                            m_ptLButtonDown;
       uint_ptr                         m_uiLButtonUpFlags;
       point                            m_ptLButtonUp;
       UINT                             m_uiRButtonUpFlags;
@@ -447,6 +455,8 @@ namespace user
       int32_t _001CalcMeshWidth();
       virtual void _001OnSort();
 
+
+      virtual bool does_drag_reorder();
 
       virtual void _001OnBeforeDeleteRange(range & range);
       virtual void _001OnDeleteRange(range & range);

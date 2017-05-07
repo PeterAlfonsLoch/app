@@ -181,7 +181,7 @@ namespace fs
    }
 
 
-   bool remote_native::is_dir(const ::file::path & path)
+   int remote_native::is_dir(const ::file::path & path)
    {
 
 
@@ -189,18 +189,18 @@ namespace fs
 
       if(path.is_empty())
       {
-         return true;
+         return 1;
       }
 
       if(stricmp_dup(path, "fs://") == 0)
       {
-         return true;
+         return 1;
       }
 
       if(System.url().get_script(path).is_empty() ||
             System.url().get_script(path) == "/")
       {
-         return true;
+         return 1;
       }
 
 
@@ -219,7 +219,7 @@ namespace fs
          }
          else
          {
-            return false;
+            return 0;
          }
       }
 
@@ -233,7 +233,7 @@ namespace fs
          }
          else
          {
-            return true;
+            return 1;
          }
       }
 
@@ -241,16 +241,16 @@ namespace fs
       {
          if(::get_tick_count() > dwTimeout)
          {
-            return false;
+            return 0;
          }
          else
          {
-            return true;
+            return 1;
          }
       }
       else
       {
-         return false;
+         return 0;
       }
 
 

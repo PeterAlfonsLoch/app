@@ -24,11 +24,22 @@ namespace filemanager
       m_bShow = false;
       m_dwLastFileSize = ::get_tick_count();
 
+      bool bDoubleClickInWebView = true;
 
-      #ifdef LINUX
+#ifdef WINDOWS
+      
+      SHELLSTATE shellstate;
+
+      SHGetSetSettings(&shellstate, SSF_DOUBLECLICKINWEBVIEW, false);
+
+      bDoubleClickInWebView = shellstate.fDoubleClickInWebView != FALSE;
+
+#endif
+
+#ifdef LINUX
       m_bHoverSelect = true;
-      #else
-      m_bHoverSelect = false;
+#else
+      m_bHoverSelect = !bDoubleClickInWebView;
 #endif
 
 
@@ -265,6 +276,7 @@ namespace filemanager
 
       }
    }
+
 
   bool file_list::_001OnClick(uint_ptr nFlags, point point)
    {
@@ -1092,9 +1104,13 @@ namespace filemanager
 
             string strName = strPath.name();
 
-            item.m_iImage = -1;
-
             item.m_filepath = strPath;
+
+            item.m_iImage = Session.userex()->shellimageset().GetImage(
+               get_handle(),
+               "foo",
+               get_document()->get_fs_data()->is_dir(item.m_filepath) ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
+               _shell::IconNormal);
 
             item.m_strName = strName;
 
@@ -1133,13 +1149,13 @@ namespace filemanager
       int32_t iSize;
       iSize = 0;
 
-      {
+      //{
 
-         synch_lock lock(get_fs_mesh_data()->m_pmutex);
+      //   synch_lock lock(get_fs_mesh_data()->m_pmutex);
 
-         get_fs_mesh_data()->m_itema.m_itema.remove_all();
+      //   get_fs_mesh_data()->m_itema.m_itema.remove_all();
 
-      }
+      //}
 
       m_pathaStrictOrder.remove_all();
 
@@ -1147,14 +1163,30 @@ namespace filemanager
 
       {
 
-         synch_lock lock(get_fs_mesh_data()->m_pmutex);
+         mutex *pm = get_fs_mesh_data()->m_pmutex;
+
+         synch_lock lock(pm);
 
          ::file::listing & listing = get_document()->m_listing;
+
+         get_fs_mesh_data()->m_itema.m_itema.set_size(listing.get_size());
+
+         m_pathaStrictOrder = listing;
 
          for (int32_t i = 0; i < listing.get_size(); i++)
          {
 
-            item.m_flags.unsignalize_all();
+            auto & spitem = get_fs_mesh_data()->m_itema.m_itema[i];
+
+            if (spitem.is_null())
+            {
+               spitem.alloc(allocer());
+            }
+            else
+            {
+               spitem->m_flags.unsignalize_all();
+
+            }
 
             ::file::path & path = listing[i];
 
@@ -1168,25 +1200,20 @@ namespace filemanager
             if (path.m_iDir == 1)
             {
 
-               item.m_flags.signalize(::fs::FlagFolder);
+               spitem->m_flags.signalize(::fs::FlagFolder);
 
             }
 
-            item.m_iImage = -1;
+            spitem->m_filepath = path;
 
-            item.m_filepath = path;
+            spitem->m_iImage = Session.userex()->shellimageset().GetImageFoo(
+               get_handle(),
+               path.extension(),
+               path.m_iDir == 1 ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
+               _shell::IconNormal);
 
-            item.m_strName = path.name();
+            spitem->m_strName = path.name();
 
-            m_pathaStrictOrder.add(path);
-
-            get_fs_mesh_data()->m_itema.add_item(item);
-
-            iSize++;
-            if (iSize >= iMaxSize)
-            {
-               iMaxSize += 1000;
-            }
 
          }
 
@@ -1321,10 +1348,11 @@ namespace filemanager
 
    }
 
+
    bool file_list::_001CreateImageListStep()
    {
 
-      single_lock sl(m_pmutex, true);
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       if (m_iCreateImageListStep < 0 || m_iCreateImageListStep >= get_fs_mesh_data()->m_itema.get_count())
       {
@@ -1344,29 +1372,80 @@ namespace filemanager
          return false;
       }
 
-      ::user::list_column * pcolumn = m_columna._001GetBySubItem(m_iNameSubItem);
+      ::file::path path;
 
-      if (pcolumn != NULL && pcolumn->m_iSubItem == m_iNameSubItem)
       {
+
+         if (m_iCreateImageListStep < 0 || m_iCreateImageListStep >= get_fs_mesh_data()->m_itema.get_count())
+         {
+            return true;
+         }
+ 
+
+         ::userfs::list_item & item = get_fs_mesh_data()->m_itema.get_item((int32_t)m_iCreateImageListStep);
+         if (&item == NULL)
+         {
+
+            return true;
+
+         }
+         ::file::path & p = item.m_filepath;
+         if (p.m_iDir < 0)
+         {
+
+            p.m_iDir = get_document()->get_fs_data()->is_dir(p) ? 1 : 0;
+
+         }
+
+         if (p.m_iDir == 1)
+         {
+
+            item.m_flags.signalize(::fs::FlagFolder);
+
+         }
+         path = p;
+      }
+      sl.unlock();
+      ///IShellFolder * lpsf = m_pshellfolder;
+      int iImage = Session.userex()->shellimageset().GetImage(
+         get_handle(),
+         path,
+         path.m_iDir == 1 ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
+         _shell::IconNormal);
+      sl.lock();
+      {
+
+         //single_lock sl(m_pmutex, true);
+
+         if (m_iCreateImageListStep < 0 || m_iCreateImageListStep >= get_fs_mesh_data()->m_itema.get_count())
+         {
+            return true;
+         }
          ::userfs::list_item & item = get_fs_mesh_data()->m_itema.get_item((int32_t)m_iCreateImageListStep);
 
-         ///IShellFolder * lpsf = m_pshellfolder;
-         item.m_iImage = Session.userex()->shellimageset().GetImage(
-            get_handle(),
-            item.m_filepath,
-            get_document()->get_fs_data()->is_dir(item.m_filepath) ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
-            _shell::IconNormal);
+         if (&item == NULL)
+         {
 
-         m_iCreateImageListStep++;
+            return true;
+
+         }
+
+         if (path == item.m_filepath)
+         {
+
+            item.m_iImage = iImage;
+
+         }
 
       }
-      else
-      {
-         ::user::list::_001CreateImageList(pcolumn);
-      }
+
+
+      m_iCreateImageListStep++;
 
       return true;
+
    }
+
 
    void file_list::_001InsertColumns()
    {

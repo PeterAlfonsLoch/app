@@ -68,92 +68,373 @@ string url_dir_name_for_relative(const char * pszPath)
 
 }
 
-CLASS_DECL_AURA string defer_solve_relative_compresions(const string & strParam)
+CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
 {
-   string strAbsolute(strParam);
 
-   strAbsolute.replace("/./","/");
+   bool bDup = false;
 
-   strsize iFind;
-   strsize iFind2;
+   char * psz = (char *) strParam.c_str();
 
-   while((iFind = strAbsolute.find("/../")) >= 0)
+   strsize iLen = strParam.get_length();
+   
+   //string strAbsolute(strParam);
+
+   strsize iNewPos;
+
+   strsize iaSlash[512];
+   int iSlashCount = 0;
+
+   iaSlash[0] = 0;
+
+   strsize iPos = 0;
+
+   if (iLen >= 2)
    {
-      if (iFind == 0)
+
+      if (psz[0] == '\\' && psz[1] == '\\')
       {
-         strAbsolute = strAbsolute.substr(iFind + 3);
+         
+         iaSlash[0] = 1;
+
+         iPos = 2;
+
+         iSlashCount = 1;
+
       }
-      else
+
+   }
+
+   while (psz[iPos])
+   {
+
+      if (psz[iPos] == '/' || psz[iPos] == '\\')
       {
-         iFind2 = strAbsolute.reverse_find("/", iFind - 1);
-         if (iFind2 <= 0)
+         
+         iaSlash[iSlashCount] = iPos;
+
+         iSlashCount++;
+
+         iPos++;
+
+         if (iPos >= iLen)
          {
-            strAbsolute = strAbsolute.substr(iFind + 3);
+
+            // the end of string has been reached
+
+            if (iPos > 2)
+            {
+
+               iPos--; // remove trailing slash
+
+            }
+
+            goto ret;
+
+         }
+
+         if (psz[iPos] == '.')
+         {
+
+            iPos++;
+
+            if (iPos >= iLen)
+            {
+
+               // the end of string has been reached
+
+               if (iSlashCount >= 2)
+               {
+
+                  iPos -= 2; // remove the dot and and trailing slash
+
+               }
+               else
+               {
+
+                  iPos--;// remove the dot 
+
+               }
+
+               goto ret;
+
+            }
+            else if (psz[iPos] == '.')
+            {
+
+               iPos++;
+
+               if (iPos >= iLen)
+               {
+
+                  // the end of string has been reached
+
+                  iPos = iaSlash[MAX(0, iSlashCount - 2)]; // go back to position of previous slash
+
+                  if (iPos > 2)
+                  {
+
+                     iPos--; 
+
+                  }
+
+                  goto ret;
+
+               }
+               else if (psz[iPos] == '/' || psz[iPos] == '\\')
+               {
+
+                  psz = strdup(strParam);
+
+                  bDup = true;
+
+                  iSlashCount-=2;
+
+                  if (iSlashCount <= 0)
+                  {
+
+                     iNewPos = iaSlash[0];
+
+                     iSlashCount = 1;
+
+                  }
+                  else
+                  {
+
+                     iNewPos = iaSlash[iSlashCount];
+
+                  }
+
+                  strcpy(&psz[iNewPos], &psz[iPos]);
+
+                  iLen -= iPos - iNewPos;
+
+                  iPos = iNewPos;
+
+               }
+               else
+               {
+
+                  iPos += ::str::get_utf8_char_length(psz);
+
+                  if (iPos >= iLen)
+                  {
+
+                     iPos = iLen - 1;
+
+                     goto ret;
+
+                  }
+
+               }
+
+            }
+            else if (psz[iPos] == '/' || psz[iPos] == '\\')
+            {
+
+               psz = strdup(strParam);
+
+               bDup = true;
+
+               iSlashCount--;
+
+               if (iSlashCount <= 0)
+               {
+
+                  iNewPos = iaSlash[0];
+
+                  iSlashCount = 1;
+
+               }
+               else
+               {
+
+                  iNewPos = iaSlash[iSlashCount];
+
+               }
+
+               strcpy(&psz[iNewPos], &psz[iPos]);
+
+               iLen -= iPos - iNewPos;
+
+               iPos = iNewPos;
+
+            }
+            else
+            {
+
+               iPos += ::str::get_utf8_char_length(psz);
+
+               if (iPos >= iLen)
+               {
+
+                  goto ret;
+
+               }
+
+            }
+
+         }
+         else if (psz[iPos] == '/' || psz[iPos] == '\\')
+         {
+
+            iaSlash[iSlashCount] = iPos;
+
+            iSlashCount++;
+
+            iPos++;
+
+            if (iPos >= iLen)
+            {
+
+               // the end of string has been reached
+
+               goto ret;
+
+            }
+
          }
          else
          {
-            strAbsolute = strAbsolute.substr(0, iFind2) + strAbsolute.substr(iFind + 3);
+
+            iPos += ::str::get_utf8_char_length(psz);
+
+            if (iPos >= iLen)
+            {
+
+               goto ret;
+
+            }
+
          }
-      }
-   }
 
-   strAbsolute.replace("\\.\\","\\");
-
-   while((iFind = strAbsolute.find("\\..\\")) >= 0)
-   {
-      if (iFind == 0)
-      {
-         strAbsolute = strAbsolute.substr(iFind + 3);
       }
       else
       {
-         iFind2 = strAbsolute.reverse_find("\\", iFind - 1);
-         if (iFind2 <= 0)
+
+         iPos += ::str::get_utf8_char_length(psz);
+
+         if (iPos >= iLen)
          {
-            strAbsolute = strAbsolute.substr(iFind + 3);
+
+            goto ret;
+
          }
-         else
-         {
-            strAbsolute = strAbsolute.substr(0, iFind2) + strAbsolute.substr(iFind + 3);
-         }
+
       }
+
    }
 
-   if(::str::ends_eat(strAbsolute, "\\.."))
+ret:
+
+   if (bDup)
    {
-      iFind2 = strAbsolute.reverse_find("\\");
-      if(iFind2>= 0)
-      {
-         strAbsolute = strAbsolute.substr(0,iFind2);
-      }
+
+      string str(psz, iPos + 1);
+
+      free(psz);
+
+      return str;
+
+   }
+   else if (iPos < iLen)
+   {
+
+      string str(psz, iPos);
+
+      return str;
+
+   }
+   else
+   {
+
+      return strParam;
+
    }
 
-   ::str::ends_eat(strAbsolute,"\\.");
+   //retu
+
+   //strAbsolute.replace("/./","/");
+
+   //strsize iFind;
+   //strsize iFind2;
+
+   //while((iFind = strAbsolute.find("/../")) >= 0)
+   //{
+   //   if (iFind == 0)
+   //   {
+   //      strAbsolute = strAbsolute.substr(iFind + 3);
+   //   }
+   //   else
+   //   {
+   //      iFind2 = strAbsolute.reverse_find("/", iFind - 1);
+   //      if (iFind2 <= 0)
+   //      {
+   //         strAbsolute = strAbsolute.substr(iFind + 3);
+   //      }
+   //      else
+   //      {
+   //         strAbsolute = strAbsolute.substr(0, iFind2) + strAbsolute.substr(iFind + 3);
+   //      }
+   //   }
+   //}
+
+   //strAbsolute.replace("\\.\\","\\");
+
+   //while((iFind = strAbsolute.find("\\..\\")) >= 0)
+   //{
+   //   if (iFind == 0)
+   //   {
+   //      strAbsolute = strAbsolute.substr(iFind + 3);
+   //   }
+   //   else
+   //   {
+   //      iFind2 = strAbsolute.reverse_find("\\", iFind - 1);
+   //      if (iFind2 <= 0)
+   //      {
+   //         strAbsolute = strAbsolute.substr(iFind + 3);
+   //      }
+   //      else
+   //      {
+   //         strAbsolute = strAbsolute.substr(0, iFind2) + strAbsolute.substr(iFind + 3);
+   //      }
+   //   }
+   //}
+
+   //if(::str::ends_eat(strAbsolute, "\\.."))
+   //{
+   //   iFind2 = strAbsolute.reverse_find("\\");
+   //   if(iFind2>= 0)
+   //   {
+   //      strAbsolute = strAbsolute.substr(0,iFind2);
+   //   }
+   //}
+
+   //::str::ends_eat(strAbsolute,"\\.");
 
 
-   return strAbsolute;
+   //return strAbsolute;
 }
 
-string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute)
+CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute)
 {
    string strRelative(pszRelative);
    string strAbsolute(pszAbsolute);
    if(strRelative.is_empty())
       return "";
    if(strAbsolute.is_empty())
-      return defer_solve_relative_compresions(strRelative);
+      return solve_relative_compressions(strRelative);
    if(str::begins_ci(strRelative,"http://"))
-      return defer_solve_relative_compresions(strRelative);
+      return solve_relative_compressions(strRelative);
    if(str::begins_ci(strRelative,"https://"))
-      return defer_solve_relative_compresions(strRelative);
+      return solve_relative_compressions(strRelative);
    if(str::begins_ci(strRelative,"ftp://"))
-      return defer_solve_relative_compresions(strRelative);
+      return solve_relative_compressions(strRelative);
    if(str::begins_ci(strRelative,"ext://"))
-      return defer_solve_relative_compresions(strRelative);
+      return solve_relative_compressions(strRelative);
    if(str::begins(strRelative,"/"))
-      return defer_solve_relative_compresions(strRelative);
+      return solve_relative_compressions(strRelative);
    if(str::begins(strRelative,"\\\\"))
-      return defer_solve_relative_compresions(strRelative);
+      return solve_relative_compressions(strRelative);
 
    index iFind = strRelative.find(":\\");
 
@@ -167,7 +448,7 @@ string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolu
       }
 
       if(i == iFind)
-         return defer_solve_relative_compresions(strRelative);
+         return solve_relative_compressions(strRelative);
 
    }
 
@@ -178,7 +459,7 @@ string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolu
    strRelative = strAbsolute + strRelative;
 
 
-   return defer_solve_relative_compresions(strRelative);
+   return solve_relative_compressions(strRelative);
 
 }
 

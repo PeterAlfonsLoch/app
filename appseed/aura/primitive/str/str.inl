@@ -49,15 +49,15 @@ inline void simple_string::construct(string_manager * pstringmanager)
 
    inline simple_string::simple_string(const simple_string & strSrc, string_manager * pstringmanager  )
    {
-      if(is_null(&strSrc))
-      {
-         ENSURE( pstringmanager != NULL );
+      //if(is_null(&strSrc))
+      //{
+      //   ENSURE( pstringmanager != NULL );
 
-         string_data* pData = pstringmanager->allocate( 0 );
-         attach( pData );
-         set_length( 0 );
-         return;
-      }
+      //   string_data* pData = pstringmanager->allocate( 0 );
+      //   attach( pData );
+      //   set_length( 0 );
+      //   return;
+      //}
       string_data* pSrcData = strSrc.get_data();
       string_data* pNewData = CloneData( pSrcData );
       attach( pNewData );

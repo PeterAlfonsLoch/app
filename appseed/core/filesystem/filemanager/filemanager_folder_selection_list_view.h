@@ -39,7 +39,8 @@ namespace filemanager
 
       void FolderAdd();
       void FolderRemove();
-
+      void on_update(user::impact *p, LPARAM l, object * o);
+      
    };
 
 

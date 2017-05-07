@@ -8,9 +8,9 @@
 string expand_env(string str)
 {
 
-   hwstring hwstr( 16384);
+   hwstring hwstr(16384);
 
-   ExpandEnvironmentStringsW(wstring(str),  hwstr, (DWORD) hwstr.count());
+   ExpandEnvironmentStringsW(wstring(str), hwstr, (DWORD)hwstr.count());
 
    return hwstr;
 
@@ -36,14 +36,14 @@ typedef struct
    WORD        wBitCount;       // Bits per pixel
    DWORD       dwBytesInRes;    // How many bytes in this resource?
    DWORD       dwImageOffset;   // Where in the file is this image?
-} ICONDIRENTRY,*LPICONDIRENTRY;
+} ICONDIRENTRY, *LPICONDIRENTRY;
 typedef struct
 {
    WORD           idReserved;   // Reserved (must be 0)
    WORD           idType;       // Resource Type (1 for icons)
    WORD           idCount;      // How many images?
    ICONDIRENTRY   idEntries[1]; // An entry for each image (idCount of 'em)
-} ICONDIR,*LPICONDIR;
+} ICONDIR, *LPICONDIR;
 
 typedef struct
 {
@@ -51,7 +51,7 @@ typedef struct
    RGBQUAD         icColors[1];   // Color table
    BYTE            icXOR[1];      // DIB bits for XOR mask
    BYTE            icAND[1];      // DIB bits for AND mask
-} ICONIMAGE,*LPICONIMAGE;
+} ICONIMAGE, *LPICONIMAGE;
 
 #pragma pack( push )
 #pragma pack( 2 )
@@ -65,7 +65,7 @@ typedef struct
    WORD   wBitCount;            // Bits per pixel
    DWORD   dwBytesInRes;         // how many bytes in this resource?
    WORD   nID;                  // the ID
-} GRPICONDIRENTRY,*LPGRPICONDIRENTRY;
+} GRPICONDIRENTRY, *LPGRPICONDIRENTRY;
 #pragma pack( pop )
 // #pragmas are used here to insure that the structure's
 // packing in memory matches the packing of the EXE or DLL.
@@ -77,9 +77,9 @@ typedef struct
    WORD            idType;       // Resource type (1 for icons)
    WORD            idCount;      // How many images?
    GRPICONDIRENTRY   idEntries[1]; // The entries for each image
-} GRPICONDIR,*LPGRPICONDIR;
+} GRPICONDIR, *LPGRPICONDIR;
 #pragma pack( pop )
-BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule,LPCWSTR lpType,LPWSTR lpName,LONG_PTR lParam);
+BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR lpName, LONG_PTR lParam);
 
 HICON ExtractResourceIcon(string strPath, int cx, int cy, int iIcon)
 {
@@ -89,17 +89,17 @@ HICON ExtractResourceIcon(string strPath, int cx, int cy, int iIcon)
    try
    {
 
-      hLib = LoadLibraryExW(wstring(strPath),NULL,LOAD_LIBRARY_AS_DATAFILE);
+      hLib = LoadLibraryExW(wstring(strPath), NULL, LOAD_LIBRARY_AS_DATAFILE);
 
    }
-   catch(...)
+   catch (...)
    {
-      
+
       return NULL;
 
    }
 
-   if(hLib == NULL)
+   if (hLib == NULL)
    {
 
       return NULL;
@@ -115,14 +115,14 @@ HICON ExtractResourceIcon(string strPath, int cx, int cy, int iIcon)
    i.cy = cy;
 
    i.iIcon = iIcon;
-   
+
    try
    {
 
-      EnumResourceNamesW(hLib,MAKEINTRESOURCEW((ULONG_PTR)(RT_ICON)+ 11),(ENUMRESNAMEPROCW)ExtractResourceIcon_EnumNamesFunc,(LONG_PTR)& i);
+      EnumResourceNamesW(hLib, MAKEINTRESOURCEW((ULONG_PTR)(RT_ICON)+11), (ENUMRESNAMEPROCW)ExtractResourceIcon_EnumNamesFunc, (LONG_PTR)& i);
 
    }
-   catch(...)
+   catch (...)
    {
 
 
@@ -134,7 +134,7 @@ HICON ExtractResourceIcon(string strPath, int cx, int cy, int iIcon)
       FreeLibrary(hLib);
 
    }
-   catch(...)
+   catch (...)
    {
 
 
@@ -145,11 +145,11 @@ HICON ExtractResourceIcon(string strPath, int cx, int cy, int iIcon)
 
 BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR lpName, LONG_PTR lParam)
 {
-   extract_resource_icon * pi = (extract_resource_icon *) lParam;
+   extract_resource_icon * pi = (extract_resource_icon *)lParam;
 
-   if(pi->iIcon > 0)
+   if (pi->iIcon > 0)
    {
-      
+
       pi->iIcon--;
 
 
@@ -160,26 +160,26 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
 
 
 
-   HRSRC hRsrc = FindResourceW(hModule,lpName,lpType);
+   HRSRC hRsrc = FindResourceW(hModule, lpName, lpType);
 
-   HGLOBAL hGroup = LoadResource(hModule,hRsrc);
+   HGLOBAL hGroup = LoadResource(hModule, hRsrc);
 
    GRPICONDIR * lpGrpIconDir = (LPGRPICONDIR)LockResource(hGroup);
-//   if(pi->iIcon >= lpGrpIconDir->idCount)
-  //    return FALSE;
+   //   if(pi->iIcon >= lpGrpIconDir->idCount)
+     //    return FALSE;
 
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
-      
-      if(e->bWidth == pi->cx && e->bHeight == pi->cy && e->wBitCount == 32)
+
+      if (e->bWidth == pi->cx && e->bHeight == pi->cy && e->wBitCount == 32)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -192,25 +192,25 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
 
    }
 
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
 
-      if(e->bWidth > pi->cx && e->bHeight > pi->cy && e->wBitCount == 32)
+      if (e->bWidth > pi->cx && e->bHeight > pi->cy && e->wBitCount == 32)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -223,7 +223,7 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
@@ -231,18 +231,18 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
    }
 
 
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
 
-      if(e->bWidth == pi->cx && e->bHeight == pi->cy && e->wBitCount == 24)
+      if (e->bWidth == pi->cx && e->bHeight == pi->cy && e->wBitCount == 24)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -255,24 +255,24 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
 
    }
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
 
-      if(e->bWidth > pi->cx && e->bHeight > pi->cy && e->wBitCount == 24)
+      if (e->bWidth > pi->cx && e->bHeight > pi->cy && e->wBitCount == 24)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -285,56 +285,25 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
-            return FALSE;
-
-      }
-
-   }
-
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
-   {
-
-      GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
-
-
-      if(e->bWidth == pi->cx && e->bHeight == pi->cy && e->wBitCount == 16)
-      {
-
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
-
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
-
-         ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
-
-         pi->hicon = CreateIconFromResourceEx(
-            (PBYTE)lpIconImage,
-            e->dwBytesInRes,
-            TRUE,
-            0x00030000,//DWORD dwVersion,
-            e->bWidth,
-            e->bHeight,
-            0);
-
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
 
    }
 
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
 
-      if(e->bWidth > pi->cx && e->bHeight > pi->cy && e->wBitCount == 16)
+      if (e->bWidth == pi->cx && e->bHeight == pi->cy && e->wBitCount == 16)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -347,25 +316,25 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
 
    }
 
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
 
-      if(e->bWidth == pi->cx && e->bHeight == pi->cy && e->wBitCount == 8)
+      if (e->bWidth > pi->cx && e->bHeight > pi->cy && e->wBitCount == 16)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -378,25 +347,25 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
 
    }
 
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
 
-      if(e->bWidth > pi->cx && e->bHeight > pi->cy && e->wBitCount == 8)
+      if (e->bWidth == pi->cx && e->bHeight == pi->cy && e->wBitCount == 8)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -409,25 +378,25 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
 
    }
 
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
 
-      if(e->bWidth == pi->cx && e->bHeight == pi->cy)
+      if (e->bWidth > pi->cx && e->bHeight > pi->cy && e->wBitCount == 8)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -440,25 +409,25 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
 
    }
 
-   for(int i=0; i < lpGrpIconDir->idCount; ++i)
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
    {
 
       GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
 
 
-      if(e->bWidth > pi->cx && e->bHeight > pi->cy)
+      if (e->bWidth == pi->cx && e->bHeight == pi->cy)
       {
 
-         hRsrc = FindResource(hModule,MAKEINTRESOURCE(e->nID),RT_ICON);
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
 
-         HGLOBAL hGlobal = LoadResource(hModule,hRsrc);
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
 
          ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
 
@@ -471,7 +440,38 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR l
             e->bHeight,
             0);
 
-         if(pi->hicon != NULL)
+         if (pi->hicon != NULL)
+            return FALSE;
+
+      }
+
+   }
+
+   for (int i = 0; i < lpGrpIconDir->idCount; ++i)
+   {
+
+      GRPICONDIRENTRY * e = &lpGrpIconDir->idEntries[i];
+
+
+      if (e->bWidth > pi->cx && e->bHeight > pi->cy)
+      {
+
+         hRsrc = FindResource(hModule, MAKEINTRESOURCE(e->nID), RT_ICON);
+
+         HGLOBAL hGlobal = LoadResource(hModule, hRsrc);
+
+         ICONIMAGE *lpIconImage = (LPICONIMAGE)LockResource(hGlobal);
+
+         pi->hicon = CreateIconFromResourceEx(
+            (PBYTE)lpIconImage,
+            e->dwBytesInRes,
+            TRUE,
+            0x00030000,//DWORD dwVersion,
+            e->bWidth,
+            e->bHeight,
+            0);
+
+         if (pi->hicon != NULL)
             return FALSE;
 
       }
@@ -494,17 +494,17 @@ namespace filemanager
 
       int32_t _017ItemIDListGetLen(LPITEMIDLIST lpiidl)
       {
-         if(lpiidl == NULL)
+         if (lpiidl == NULL)
             return 0;
          LPSHITEMID  lpshiid = (LPSHITEMID)lpiidl;
          LPSHITEMID  lpshiidLast = NULL;
          USHORT cb;
          int32_t iLen = 0;
-         while(true)
+         while (true)
          {
             cb = lpshiid->cb;
             iLen += cb;
-            if(cb == 0)
+            if (cb == 0)
                break;
             lpshiidLast = lpshiid;
             lpshiid = (LPSHITEMID)(((LPBYTE)lpshiid) + cb);
@@ -519,19 +519,19 @@ namespace filemanager
 
          hr = SHGetDesktopFolder(&lpsfDesktop);
 
-         if(hr != S_OK)
+         if (hr != S_OK)
          {
             return NULL;
             //         System.simple_message_box(NULL, "Failed to open desktop folder!");
          }
 
-         if(SUCCEEDED(hr))
+         if (SUCCEEDED(hr))
          {
             IShellFolder * lpsfParent = NULL;
 
             LPITEMIDLIST lpiidlParent = _017ItemIDListGetFolderParent(lpiidlChild);
 
-            if(lpiidlParent == NULL)
+            if (lpiidlParent == NULL)
             {
                return lpsfDesktop;
             }
@@ -545,7 +545,7 @@ namespace filemanager
 
             lpsfDesktop->Release();
 
-            if(SUCCEEDED(hr))
+            if (SUCCEEDED(hr))
             {
                return lpsfParent;
             }
@@ -562,7 +562,7 @@ namespace filemanager
 
       LPITEMIDLIST _017ItemIDListDup(LPITEMIDLIST lpiidl)
       {
-         if(lpiidl == NULL)
+         if (lpiidl == NULL)
             return NULL;
 
          LPMALLOC lpmalloc = NULL;
@@ -575,7 +575,7 @@ namespace filemanager
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iLen + 2);
 
-         memcpy(lpiidlRet,lpiidl,iLen);
+         memcpy(lpiidlRet, lpiidl, iLen);
          ((LPBYTE)lpiidlRet)[iLen] = 0;
          ((LPBYTE)lpiidlRet)[iLen + 1] = 0;
 
@@ -586,7 +586,7 @@ namespace filemanager
 
       int32_t _017ItemIDListIHash(LPITEMIDLIST lpiidl)
       {
-         if(lpiidl == NULL)
+         if (lpiidl == NULL)
             return 0;
 
          int32_t iLen = _017ItemIDListGetLen(lpiidl);
@@ -595,14 +595,14 @@ namespace filemanager
          int32_t iHash = 0;
          int32_t iRemain = iLen;
          uint32_t * lpdw = (uint32_t *)lpiidl;
-         while(iRemain >= 4)
+         while (iRemain >= 4)
          {
             iHash += *lpdw;
             lpdw++;
             iRemain -= 4;
          }
          LPBYTE lpb = (LPBYTE)lpdw;
-         while(iRemain > 0)
+         while (iRemain > 0)
          {
             iHash += *lpb;
             lpb++;
@@ -611,7 +611,7 @@ namespace filemanager
          return iHash;
       }
 
-      LPITEMIDLIST _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent,LPITEMIDLIST lpiidl)
+      LPITEMIDLIST _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl)
       {
 
          LPMALLOC lpmalloc = NULL;
@@ -625,8 +625,8 @@ namespace filemanager
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iLenParent + iLen + 2);
 
-         memcpy(lpiidlRet,lpiidlParent,iLenParent);
-         memcpy(&(((LPBYTE)lpiidlRet)[iLenParent]),lpiidl,iLen);
+         memcpy(lpiidlRet, lpiidlParent, iLenParent);
+         memcpy(&(((LPBYTE)lpiidlRet)[iLenParent]), lpiidl, iLen);
          ((LPBYTE)lpiidlRet)[iLenParent + iLen] = 0;
          ((LPBYTE)lpiidlRet)[iLenParent + iLen + 1] = 0;
 
@@ -638,7 +638,7 @@ namespace filemanager
       LPITEMIDLIST _017ItemIDListGetLast(LPITEMIDLIST lpiidl)
       {
 
-         if(lpiidl == NULL)
+         if (lpiidl == NULL)
             return NULL;
 
          LPMALLOC lpmalloc = NULL;
@@ -649,23 +649,23 @@ namespace filemanager
          LPSHITEMID  lpshiidLast = lpshiid;
          USHORT cb;
 
-         while(true)
+         while (true)
          {
             cb = *((USHORT *)lpshiid);
-            if(cb == 0)
+            if (cb == 0)
                break;
             lpshiidLast = lpshiid;
             lpshiid = (LPSHITEMID)(((LPBYTE)lpshiid) + cb);
          }
          int32_t iCount = *((USHORT *)lpshiidLast);
 
-         if(iCount == 0)
+         if (iCount == 0)
             return NULL;
 
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iCount + 2);
 
-         memcpy(lpiidlRet,lpshiidLast,iCount);
+         memcpy(lpiidlRet, lpshiidLast, iCount);
 
          *((USHORT *)&(((LPBYTE)lpiidlRet)[iCount])) = 0;
 
@@ -676,7 +676,7 @@ namespace filemanager
 
       LPITEMIDLIST _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl)
       {
-         if(lpiidl == NULL)
+         if (lpiidl == NULL)
             return NULL;
 
          LPMALLOC lpmalloc = NULL;
@@ -687,23 +687,23 @@ namespace filemanager
          LPSHITEMID  lpshiidLast = lpshiid;
          USHORT cb;
 
-         while(true)
+         while (true)
          {
             cb = *((USHORT *)lpshiid);
-            if(cb == 0)
+            if (cb == 0)
                break;
             lpshiidLast = lpshiid;
             lpshiid = (LPSHITEMID)(((LPBYTE)lpshiid) + cb);
          }
          ::count iCount = ((LPBYTE)lpshiidLast) - ((LPBYTE)lpiidl);
 
-         if(iCount == 0)
+         if (iCount == 0)
             return NULL;
 
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iCount + 2);
 
-         memcpy(lpiidlRet,lpiidl,iCount);
+         memcpy(lpiidlRet, lpiidl, iCount);
 
          *((USHORT *)&(((LPBYTE)lpiidlRet)[iCount])) = 0;
 
@@ -712,13 +712,13 @@ namespace filemanager
          return lpiidlRet;
       }
 
-      bool _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1,LPITEMIDLIST lpiidl2)
+      bool _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2)
       {
-         if(lpiidl1 == NULL && lpiidl2 == NULL)
+         if (lpiidl1 == NULL && lpiidl2 == NULL)
          {
             return true;
          }
-         if(lpiidl1 == NULL || lpiidl2 == NULL)
+         if (lpiidl1 == NULL || lpiidl2 == NULL)
          {
             return false;
          }
@@ -729,64 +729,69 @@ namespace filemanager
          USHORT cb1;
          USHORT cb2;
 
-         while(true)
+         while (true)
          {
             cb1 = *((USHORT *)lpshiid1);
             cb2 = *((USHORT *)lpshiid2);
-            if(cb1 == 0 && cb2 == 0)
+            if (cb1 == 0 && cb2 == 0)
             {
                return true;
             }
-            if(cb1 == 0 || cb2 == 0)
+            if (cb1 == 0 || cb2 == 0)
             {
                return false;
             }
-            if(cb1 != cb2)
+            if (cb1 != cb2)
                return false;
-            if(memcmp(lpshiid1,lpshiid2,cb1) != 0)
+            if (memcmp(lpshiid1, lpshiid2, cb1) != 0)
                return false;
             lpshiid1 = (LPSHITEMID)(((LPBYTE)lpshiid1) + cb1);
             lpshiid2 = (LPSHITEMID)(((LPBYTE)lpshiid2) + cb2);
          }
       }
 
-      void _017ItemIDListParsePath(oswindow window,LPITEMIDLIST * lpiidl,const char * lpcsz)
+      void ImageSet::_017ItemIDListParsePath(oswindow window, LPITEMIDLIST * lpiidl, const char * lpcsz)
       {
          HRESULT hr;
          LPMALLOC lpmalloc = NULL;
-         IShellFolder * lpsfDesktop;
-         hr = SHGetMalloc(&lpmalloc);
+         //static IShellFolder * lpsfDesktop = NULL;
+
+         if (m_pshellfolder == NULL)
+         {
+            hr = SHGetDesktopFolder(&m_pshellfolder);
+         }
+         //hr = SHGetMalloc(&lpmalloc);
 
 
-         hr = SHGetDesktopFolder(&lpsfDesktop);
+
 
          //ULONG ulEaten;
          //ULONG dwAttrib = SFGAO_FOLDER;
 
-         hwstring w(MAX_PATH * 8);
+         //hwstring w(MAX_PATH * 8);
 
-         wstring wstr = ::str::international::utf8_to_unicode(lpcsz);
+         //wstring wstr = ;
 
-         wcscpy(w,wstr);
+         //wcscpy(w,wstr);
 
          try
          {
-            hr = lpsfDesktop->ParseDisplayName(
+            hr = m_pshellfolder->ParseDisplayName(
                window,
                NULL,
-               w,
+               ::str::international::utf8_to_unicode(lpcsz),
                //&ulEaten,
                NULL,
                lpiidl,
                //&dwAttrib);
                NULL);
          }
-         catch(...)
+         catch (...)
          {
          }
 
-         lpsfDesktop->Release();
-         lpmalloc->Release();
+         //lpsfDesktop->Release();
+         //lpmalloc->Release();
 
       }
 
@@ -801,36 +806,36 @@ namespace filemanager
          lpmalloc->Release();
       }
 
-      bool _017HasSubFolder(::aura::application * papp,LPITEMIDLIST lpiidl,const char * lpcszExtra)
+      bool _017HasSubFolder(::aura::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
       {
 
          WCHAR szPath[_MAX_PATH * 10];
 
-         SHGetPathFromIDListW(lpiidl,szPath);
+         SHGetPathFromIDListW(lpiidl, szPath);
 
-         EFolder efolder = GetFolderType(papp,szPath);
+         EFolder efolder = GetFolderType(papp, szPath);
 
-         if(efolder == FolderNone)
+         if (efolder == FolderNone)
          {
 
             return false;
 
          }
-         else if(efolder == FolderZip)
+         else if (efolder == FolderZip)
          {
 
             string wstrPath;
 
-            ::str::international::unicode_to_utf8(wstrPath,szPath);
+            ::str::international::unicode_to_utf8(wstrPath, szPath);
 
             string wstrExtra(lpcszExtra);
 
-            if(wstrExtra.get_length() > 0)
+            if (wstrExtra.get_length() > 0)
             {
                wstrPath += ":" + wstrExtra;
             }
 
-            return zip::Util().HasSubFolder(papp,wstrPath);
+            return zip::Util().HasSubFolder(papp, wstrPath);
 
          }
          else
@@ -840,12 +845,12 @@ namespace filemanager
 
             listing.ls(::str::international::unicode_to_utf8(szPath));
 
-            for(int32_t i = 0; i < listing.get_size(); i++)
+            for (int32_t i = 0; i < listing.get_size(); i++)
             {
 
-               efolder = GetFolderType(papp,listing[i]);
+               efolder = GetFolderType(papp, listing[i]);
 
-               if(efolder != FolderNone)
+               if (efolder != FolderNone)
                   return true;
 
             }
@@ -861,20 +866,20 @@ namespace filemanager
 
       int32_t ImageSet::GetImage(
          oswindow oswindow,
+         ImageKey imagekey,
          LPITEMIDLIST lpiidlAbsolute,
          LPITEMIDLIST lpiidlChild,
-         const unichar * lpcszExtra,
-         EIcon eicon, COLORREF crBk)
+         const unichar * lpcszExtra, COLORREF crBk)
       {
 
          ::windows::comptr < IShellFolder> lpsf;
-         
+
          lpsf.m_p = _017GetShellFolder(lpiidlAbsolute);
 
-         if(lpsf == NULL)
+         if (lpsf == NULL)
             return 0x80000000;
          int32_t iType;
-         switch(eicon)
+         switch (imagekey.m_eicon)
          {
          case IconNormal:
             iType = 0;
@@ -900,36 +905,42 @@ namespace filemanager
             lpiidlAbsolute,
             szFilePath);
 
-         CHAR szPath[_MAX_PATH * 10];
-         WCHAR wszPath[_MAX_PATH * 10];
+         CHAR szPath[_MAX_PATH * 6];
+         WCHAR wszPath[_MAX_PATH * 6];
          string strPath;
          int32_t iImage = 0x80000000;
+
+         const char * pszPathParam = imagekey.m_pszPath;
 
          HICON hicon16 = NULL;
          HICON hicon48 = NULL;
          HRESULT hrIconLocation;
          HRESULT hrExtract;
-         ImageKey imagekey;
+         //         ImageKey imagekey;
+         string strExpandEnv;
 
+         //imagekey.m_pszShellThemePrefix = (char *) m_strShellThemePrefix.c_str();
+         //imagekey.m_pszPath = strPath;
+         //imagekey.m_pszExtension = &strPath[];
 
          string strPathEx(strFilePath);
          string strExtra;
 
-         ::str::international::unicode_to_utf8(strExtra,lpcszExtra);
+         ::str::international::unicode_to_utf8(strExtra, lpcszExtra);
 
-         if(strExtra.get_length() > 0)
+         if (strExtra.get_length() > 0)
          {
             strPathEx += ":" + strExtra;
          }
 
-
+         wstring wstrPath;
          int32_t iIcon = 0x80000000;
          UINT uiFlags = 0;
 
          SHFILEINFOW shfi16;
          SHFILEINFOW shfi48;
 
-         IExtractIcon * lpiextracticon = NULL;
+         IExtractIconW * lpiextracticon = NULL;
          IShellIconOverlayIdentifier * lpioverlay = NULL;
          IExtractImage * lpiextractimage = NULL;
 
@@ -954,37 +965,41 @@ namespace filemanager
 
          }
          }*/
-         if(SUCCEEDED(lpsf->GetUIObjectOf(
+         if (SUCCEEDED(lpsf->GetUIObjectOf(
             oswindow,
             1,
             (LPCITEMIDLIST *)&lpiidlChild,
-            IID_IExtractIcon,
+            IID_IExtractIconW,
             NULL,
             (void **)&lpiextracticon)))
          {
-            if(SUCCEEDED(hrIconLocation = lpiextracticon->GetIconLocation(
+            if (SUCCEEDED(hrIconLocation = lpiextracticon->GetIconLocation(
                iType,
-               szPath,
-               sizeof(szPath),
+               wszPath,
+               sizeof(wszPath) / sizeof(wszPath[0]),
                &iIcon,
                &uiFlags)))
             {
-               if(strcmp(szPath,"*") == 0)
+               if (wcscmp(wszPath, L"*") == 0)
                {
                   strsize iFind = strFilePath.reverse_find('.');
 
-                  imagekey.m_iIcon         = 0x80000000;
-                  imagekey.m_strExtension  = strFilePath.Mid(iFind);
-                  imagekey.m_strPath.Empty();
+                  imagekey.m_iIcon = 0x80000000;
+                  imagekey.m_pszExtension = (char*)&strFilePath[iFind];
+                  imagekey.m_pszPath = "";
                }
                else
                {
-                  
-                  imagekey.m_strPath    = expand_env(szPath);
 
+                  string strFilePath = wszPath;
 
-                  if (::str::ends_ci(string(szFilePath), ".lnk"))
+                  strFilePath = expand_env(strFilePath);
+
+                  imagekey.set_path(strFilePath);
+
+                  if (::str::ends_ci(strFilePath, ".lnk"))
                   {
+
                      string strTarget;
 
                      string strFolder;
@@ -1001,33 +1016,35 @@ namespace filemanager
                            index i = m_straThemeableIconName.pred_find_first(
                               [=](auto & str)
                            {
-                              return imagekey.m_strPath.ends_ci(str);
+                              return ::str::ends_ci(imagekey.m_pszPath, str);
                            }
                            );
 
                            if (i >= 0)
                            {
-                            
+
                               string str = m_straThemeableIconName[i];
 
-                              if (imagekey.m_strPath.ends_ci(str))
+                              if (::str::ends_ci(imagekey.m_pszPath, str))
                               {
 
-                                 imagekey.m_strPath.replace_ci(str, m_strShellThemePrefix + str);
+                                 strExpandEnv = imagekey.m_pszPath;
+                                 strExpandEnv.replace_ci(str, m_strShellThemePrefix + str);
+                                 imagekey.m_pszPath = (char*)strExpandEnv.c_str();
 
                               }
 
                            }
-         
+
                         }
 
                      }
 
                   }
 
-                  imagekey.m_iIcon      = iIcon;
+                  imagekey.m_iIcon = iIcon;
 
-                  imagekey.m_strExtension.Empty();
+                  imagekey.m_pszExtension = "";
 
                }
             }
@@ -1053,14 +1070,15 @@ namespace filemanager
                   strsize iFind = strFilePath.reverse_find('.');
 
                   imagekey.m_iIcon = 0x80000000;
-                  imagekey.m_strExtension = strFilePath.Mid(iFind);
-                  imagekey.m_strPath.Empty();
+                  imagekey.m_pszExtension = (char *)&strFilePath.Mid(iFind);
+                  imagekey.m_pszPath = "";
                }
                else
                {
-                  imagekey.m_strPath = expand_env(szPath);
+                  strFilePath = expand_env(szPath);
+                  imagekey.m_pszPath = (char *)strFilePath.c_str();
                   imagekey.m_iIcon = iIcon;
-                  imagekey.m_strExtension.Empty();
+                  imagekey.m_pszExtension = "";
                }
             }
          }
@@ -1091,28 +1109,30 @@ namespace filemanager
                   strsize iFind = strFilePath.reverse_find('.');
 
                   imagekey.m_iIcon = 0x80000000;
-                  imagekey.m_strExtension = strFilePath.Mid(iFind);
-                  imagekey.m_strPath.Empty();
+                  imagekey.m_pszExtension = (char *)&strFilePath.Mid(iFind);
+                  imagekey.m_pszPath = "";
                }
                else
                {
-                  imagekey.m_strPath = expand_env(strP);
+                  //imagekey.m_strPath = expand_env(strP);
+                  strFilePath = expand_env(strP);
+                  imagekey.m_pszPath = (char *)strFilePath.c_str();
                   imagekey.m_iIcon = iIcon;
-                  imagekey.m_strExtension.Empty();
+                  imagekey.m_pszExtension = "";
                }
             }
          }
          else
          {
 
-            imagekey.m_strPath = szFilePath;
+            imagekey.m_pszPath = (char *)szFilePath;
             imagekey.m_iIcon = iIcon;
-            imagekey.m_strExtension.Empty();
+            imagekey.m_pszExtension = "";
 
          }
-         if(imagekey.m_iIcon == 0x80000000)
+         if (imagekey.m_iIcon == 0x80000000)
          {
-            
+
             string strTarget;
 
             string strFolder;
@@ -1120,12 +1140,14 @@ namespace filemanager
             string strParams;
 
             //if(System.file().resolve_link(strTarget, strFilePath, System.ui_from_handle))
-            if(System.file().resolve_link(strTarget, strFolder, strParams, strFilePath,NULL))
+            if (System.file().resolve_link(strTarget, strFolder, strParams, strFilePath, NULL))
             {
 
                wstring wstr = ::str::international::utf8_to_unicode(strTarget);
 
-               return GetImage(oswindow, strTarget, NULL, eicon, Application.dir().is(strTarget), crBk);
+               imagekey.set_path(strTarget);
+
+               return GetImage(oswindow, imagekey, NULL, crBk);
 
                LPITEMIDLIST lpiidl2 = NULL;
 
@@ -1144,20 +1166,20 @@ namespace filemanager
                      0,
                      NULL);
                }
-               catch(...)
+               catch (...)
                {
                }
 
-               LPITEMIDLIST lpiidlChild2     = _017ItemIDListGetLast(lpiidl2);
+               LPITEMIDLIST lpiidlChild2 = _017ItemIDListGetLast(lpiidl2);
 
-               LPITEMIDLIST lpiidlParent2    = _017ItemIDListGetFolderParent(lpiidl2);
+               LPITEMIDLIST lpiidlParent2 = _017ItemIDListGetFolderParent(lpiidl2);
 
                int32_t iImage = GetImage(
                   oswindow,
+                  imagekey,
                   lpiidl2,
                   lpiidlChild2,
                   NULL,
-                  eicon,
                   crBk);
 
                _017ItemIDListFree(lpiidlParent2);
@@ -1168,16 +1190,16 @@ namespace filemanager
 
             }
          }
-         if(!m_imagemap.Lookup(imagekey,iImage))
+         if (!m_imagemap.Lookup(imagekey, iImage))
          {
 
-            if(imagekey.m_iIcon == 0x80000000)
+            if (imagekey.m_iIcon == 0x80000000)
             {
 
-               if (imagekey.m_strPath.has_char())
+               if (wcslen(wszPath) > 0)
                {
 
-                  ::file::path p = imagekey.m_strPath;
+                  ::file::path p = wszPath;
 
                   string strExtension = p.extension();
 
@@ -1188,9 +1210,9 @@ namespace filemanager
 
                      string strFooPath = m_strShellThemePrefix + "foo." + strExtension;
 
-                     imagekey.m_strPath = strFooPath;
+                     imagekey.m_pszPath = (char *)strFooPath.c_str();
                      imagekey.m_iIcon = 0;
-                     imagekey.m_strExtension.Empty();
+                     imagekey.m_pszExtension = "";
 
                      if (m_imagemap.Lookup(imagekey, iImage))
                         return iImage;
@@ -1229,12 +1251,12 @@ namespace filemanager
 
                      strPath.free_extra();
 
-                     strPath = imagekey.m_strPath;
+                     strPath = imagekey.m_pszPath;
 
                      HICON hicon32 = NULL;
 
                      SHGetFileInfoW(
-                        wstring(imagekey.m_strPath),
+                        wszPath,
                         FILE_ATTRIBUTE_NORMAL,
                         &shfi16,
                         sizeof(shfi16),
@@ -1244,7 +1266,7 @@ namespace filemanager
                         | SHGFI_SMALLICON);
                      hicon16 = shfi16.hIcon;
                      SHGetFileInfoW(
-                        wstring(imagekey.m_strPath),
+                        wszPath,
                         FILE_ATTRIBUTE_NORMAL,
                         &shfi48,
                         sizeof(shfi48),
@@ -1315,7 +1337,7 @@ namespace filemanager
                if (iImage < 0)
                {
 
-                  iImage = GetFooImage(oswindow, eicon, imagekey.m_strPath == "folder", imagekey.m_strExtension, crBk);
+                  iImage = GetFooImage(oswindow, imagekey, crBk);
 
                }
 
@@ -1325,20 +1347,20 @@ namespace filemanager
                try
                {
                   hicon16 = NULL;
-                  strPath.Truncate(0);
-                  strPath.free_extra();
-                  strPath = imagekey.m_strPath;
-                  iIcon = imagekey.m_iIcon;
+                  //strPath.Truncate(0);
+                  //strPath.free_extra();
+                  //strPath = imagekey.m_pszPath;
+                  //iIcon = imagekey.m_iIcon;
                   bool bExtract = false;
                   //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.get_length() + 1);
                   //LPTSTR lpsz = (LPTSTR) ::GlobalLock(hglobal);
                   //strcpy(lpsz, strPath);
                   try
                   {
-                     if((hrIconLocation == S_FALSE || uiFlags & GIL_NOTFILENAME)
+                     if ((hrIconLocation == S_OK && !(uiFlags & GIL_NOTFILENAME))
                         && lpiextracticon != NULL
                         && (NOERROR == (hrExtract = lpiextracticon->Extract(
-                           strPath,
+                           wszPath,
                            iIcon,
                            &hicon48,
                            &hicon16,
@@ -1365,14 +1387,14 @@ namespace filemanager
                            m_pil48Hover->add_icon_os_data(hicon48);
                         }
 
-                        if(crBk == 0)
+                        if (crBk == 0)
                         {
 
 
                            System.visual().imaging().Createcolor_blend_ImageList(
                               m_pil48,
                               m_pil48Hover,
-                              RGB(255,255,240),
+                              RGB(255, 255, 240),
                               64);
 
                         }
@@ -1381,21 +1403,21 @@ namespace filemanager
                            *m_pil48 = *m_pil48Hover;
 
                         }
-                        m_imagemap.set_at(imagekey,iImage);
+                        m_imagemap.set_at(imagekey, iImage);
                      }
                   }
-                  catch(...)
+                  catch (...)
                   {
                   }
                   //::GlobalUnlock(hglobal);
                   //::GlobalFree(hglobal);
-                  if(!bExtract)
+                  if (!bExtract)
                   {
                      HICON hicon32 = NULL;
-                     if(imagekey.m_strPath.is_empty())
+                     if (strlen(pszPathParam) > 0)
                      {
                         SHGetFileInfoW(
-                           wstring(imagekey.m_strPath),
+                           wstring(pszPathParam),
                            FILE_ATTRIBUTE_NORMAL,
                            &shfi16,
                            sizeof(shfi16),
@@ -1404,7 +1426,7 @@ namespace filemanager
                            | SHGFI_SMALLICON);
                         hicon16 = shfi16.hIcon;
                         SHGetFileInfoW(
-                           wstring(imagekey.m_strPath),
+                           wstring(pszPathParam),
                            FILE_ATTRIBUTE_NORMAL,
                            &shfi48,
                            sizeof(shfi48),
@@ -1414,15 +1436,15 @@ namespace filemanager
                         hicon48 = shfi48.hIcon;
                         iImage = m_pil16->add_icon_os_data(hicon16);
                         IImageList * pil = NULL;
-                        SHGetImageList(SHIL_EXTRALARGE,IID_IImageList,(void **)&pil);
+                        SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **)&pil);
                         synch_lock sl1(m_pil48Hover->m_pmutex);
                         synch_lock sl2(m_pil48->m_pmutex);
 
-                        if(pil != NULL)
+                        if (pil != NULL)
                         {
                            HICON hicon48;
-                           pil->GetIcon(shfi48.iIcon,ILD_TRANSPARENT,&hicon48);
-                           if(hicon48 == NULL)
+                           pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
+                           if (hicon48 == NULL)
                            {
                               m_pil48Hover->add_icon_os_data(shfi48.hIcon);
                            }
@@ -1436,12 +1458,12 @@ namespace filemanager
                         {
                            m_pil48Hover->add_icon_os_data(shfi48.hIcon);
                         }
-                        if(crBk == 0)
+                        if (crBk == 0)
                         {
                            System.visual().imaging().Createcolor_blend_ImageList(
                               m_pil48,
                               m_pil48Hover,
-                              RGB(255,255,240),
+                              RGB(255, 255, 240),
                               64);
 
                         }
@@ -1454,7 +1476,7 @@ namespace filemanager
                      else
                      {
                         ExtractIconEx(
-                           imagekey.m_strPath,
+                           imagekey.m_pszPath,
                            imagekey.m_iIcon,
                            &hicon32,
                            &hicon16,
@@ -1463,23 +1485,23 @@ namespace filemanager
 
                      }
 
-                     if(hicon48 == NULL && ::str::ends_ci(imagekey.m_strPath,".ico"))
+                     if (hicon48 == NULL && ::str::ends_ci(imagekey.m_pszPath, ".ico"))
                      {
 
-                        hicon48 = (HICON)LoadImage(NULL,imagekey.m_strPath,IMAGE_ICON,48,48,LR_LOADFROMFILE);
+                        hicon48 = (HICON)LoadImage(NULL, imagekey.m_pszPath, IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
 
                      }
-                     if(hicon48 == NULL)
+                     if (hicon48 == NULL)
                      {
 
-                        hicon48 = ExtractResourceIcon(imagekey.m_strPath,48,48,imagekey.m_iIcon);
+                        hicon48 = ExtractResourceIcon(imagekey.m_pszPath, 48, 48, imagekey.m_iIcon);
 
                      }
 
-                     if(hicon48 == NULL)
+                     if (hicon48 == NULL)
                      {
 
-                        if(hicon32 != NULL)
+                        if (hicon32 != NULL)
                         {
 
                            hicon48 = hicon32;
@@ -1493,7 +1515,7 @@ namespace filemanager
 
                      }
 
-                     if(hicon16 == NULL)
+                     if (hicon16 == NULL)
                      {
                         SHGetFileInfoW(
                            L"foo",
@@ -1505,7 +1527,7 @@ namespace filemanager
                            | SHGFI_SMALLICON);
                         hicon16 = shfi16.hIcon;
                      }
-                     if(hicon48 == NULL)
+                     if (hicon48 == NULL)
                      {
                         SHGetFileInfoW(
                            L"foo",
@@ -1517,14 +1539,14 @@ namespace filemanager
                            | SHGFI_LARGEICON);
                         hicon48 = shfi48.hIcon;
                      }
-                     if(hicon48 == NULL)
+                     if (hicon48 == NULL)
                      {
 
                         IImageList * pil = NULL;
-                        SHGetImageList(SHIL_EXTRALARGE,IID_IImageList,(void **)&pil);
-                        if(pil != NULL)
+                        SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **)&pil);
+                        if (pil != NULL)
                         {
-                           pil->GetIcon(shfi48.iIcon,ILD_TRANSPARENT,&hicon48);
+                           pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
                            pil->Release();
                         }
 
@@ -1533,13 +1555,13 @@ namespace filemanager
 
                      m_pil48Hover->add_icon_os_data(hicon48);
 
-                     if(crBk == 0)
+                     if (crBk == 0)
                      {
 
                         System.visual().imaging().Createcolor_blend_ImageList(
                            m_pil48,
                            m_pil48Hover,
-                           RGB(255,255,240),
+                           RGB(255, 255, 240),
                            64);
 
                      }
@@ -1547,16 +1569,16 @@ namespace filemanager
                      {
                         *m_pil48 = *m_pil48Hover;
                      }
-                     m_imagemap.set_at(imagekey,iImage);
+                     m_imagemap.set_at(imagekey, iImage);
                   }
                }
-               catch(...)
+               catch (...)
                {
                }
             }
          }
 
-         if(lpiextracticon != NULL)
+         if (lpiextracticon != NULL)
          {
             lpiextracticon->Release();
          }
@@ -1566,7 +1588,7 @@ namespace filemanager
       }
 
 
-      int32_t ImageSet::GetFooImage(oswindow oswindow,EIcon eicon,bool bFolder,const string & strExtension, COLORREF crBk)
+      int32_t ImageSet::GetFooImage(oswindow oswindow, ImageKey imagekey, COLORREF crBk)
       {
 
          int32_t iImage;
@@ -1575,30 +1597,48 @@ namespace filemanager
 
          SHFILEINFO shfi48;
 
-         ImageKey imagekey;
+         //ImageKey imagekey;
 
-         imagekey.m_iIcon         = 0x80000000;
+         //imagekey.m_iIcon           = 0;
 
-         imagekey.m_strPath = "*foo";
+         //imagekey.set_path(m_pszPath         = "foo";
 
-         if(bFolder && !strExtension.has_char())
-         {
-            imagekey.m_strExtension  = "folder";
-         }
-         else
-         {
-            imagekey.m_strExtension  = strExtension;
-         }
+         //if(strExtension.has_char())
+         //{
+         //   imagekey.m_pszExtension = (char *)strExtension.c_str();
+         //   
+         //}
+         //else
+         //{
+         //   imagekey.m_pszExtension = "";
+         //}
 
+         //if (bFolder)
+         //{
 
+         //   imagekey.m_eattribute = FileAttributeDirectory;
 
-         imagekey.m_strPath.Empty();
+         //}
+         //else
+         //{
 
-         if(m_imagemap.Lookup(imagekey,iImage))
+         //   imagekey.m_eattribute = FileAttributeNormal;
+
+         //}
+
+         string strFilePath;
+
+         //imagekey.m_iIcon = 0;
+         //imagekey.m_pszPath= "foo";
+
+         imagekey.m_pszShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+
+         if (m_imagemap.Lookup(imagekey, iImage))
             return iImage;
 
-         if(imagekey.m_strExtension == "folder")
+         if (imagekey.m_eattribute.is_signalized(FileAttributeDirectory))
          {
+            //imagekey.m_eattribute = FileAttributeDirectory;
             SHGetFileInfo(
                "foo",
                FILE_ATTRIBUTE_DIRECTORY,
@@ -1618,9 +1658,10 @@ namespace filemanager
          }
          else
          {
-            string strPath = "foo." + imagekey.m_strExtension;
+            //imagekey.m_eattribute = FileAttributeNormal;
+            strFilePath = "foo." + string(imagekey.m_pszExtension);
             SHGetFileInfo(
-               strPath,
+               strFilePath,
                FILE_ATTRIBUTE_NORMAL,
                &shfi16,
                sizeof(shfi16),
@@ -1628,7 +1669,7 @@ namespace filemanager
                | SHGFI_ICON
                | SHGFI_SMALLICON);
             SHGetFileInfo(
-               strPath,
+               strFilePath,
                FILE_ATTRIBUTE_NORMAL,
                &shfi48,
                sizeof(shfi48),
@@ -1638,12 +1679,12 @@ namespace filemanager
          }
          iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
          IImageList * pil = NULL;
-         SHGetImageList(SHIL_EXTRALARGE,IID_IImageList,(void **)&pil);
-         if(pil != NULL)
+         SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **)&pil);
+         if (pil != NULL)
          {
             HICON hicon48;
-            pil->GetIcon(shfi48.iIcon,ILD_TRANSPARENT,&hicon48);
-            if(hicon48 == NULL)
+            pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
+            if (hicon48 == NULL)
             {
                m_pil48Hover->add_icon_os_data(shfi48.hIcon);
             }
@@ -1660,21 +1701,21 @@ namespace filemanager
          synch_lock sl1(m_pil48Hover->m_pmutex);
          synch_lock sl2(m_pil48->m_pmutex);
 
-         if(crBk == 0)
+         if (crBk == 0)
          {
-         System.visual().imaging().Createcolor_blend_ImageList(
-            m_pil48,
-            m_pil48Hover,
-            RGB(255,255,240),
-            64);
+            System.visual().imaging().Createcolor_blend_ImageList(
+               m_pil48,
+               m_pil48Hover,
+               RGB(255, 255, 240),
+               64);
 
-      }
-                     else
-                     {
-                        *m_pil48 = *m_pil48Hover;
-                     }
+         }
+         else
+         {
+            *m_pil48 = *m_pil48Hover;
+         }
 
-         m_imagemap.set_at(imagekey,iImage);
+         m_imagemap.set_at(imagekey, iImage);
 
          return iImage;
 
@@ -1695,12 +1736,12 @@ namespace filemanager
          HICON * phicon48)
       {
 
-         single_lock sl(&m_mutex,true);
+         single_lock sl(&m_mutex, true);
 
-         if(lpsf == NULL)
+         if (lpsf == NULL)
             return false;
          int32_t iType;
-         switch(eicon)
+         switch (eicon)
          {
          case IconNormal:
             iType = 0;
@@ -1740,9 +1781,9 @@ namespace filemanager
          string strPathEx(strFilePath);
          string strExtra;
 
-         ::str::international::unicode_to_utf8(strExtra,lpcszExtra);
+         ::str::international::unicode_to_utf8(strExtra, lpcszExtra);
 
-         if(strExtra.get_length() > 0)
+         if (strExtra.get_length() > 0)
          {
             strPathEx += ":" + strExtra;
          }
@@ -1778,7 +1819,7 @@ namespace filemanager
 
          }
          }*/
-         if(SUCCEEDED(lpsf->GetUIObjectOf(
+         if (SUCCEEDED(lpsf->GetUIObjectOf(
             oswindow,
             1,
             (LPCITEMIDLIST *)&lpiidlChild,
@@ -1786,7 +1827,7 @@ namespace filemanager
             NULL,
             (void **)&lpiextracticon)))
          {
-            if(SUCCEEDED(hrIconLocation = lpiextracticon->GetIconLocation(
+            if (SUCCEEDED(hrIconLocation = lpiextracticon->GetIconLocation(
                iType,
                szPath,
                sizeof(szPath),
@@ -1794,25 +1835,25 @@ namespace filemanager
                &uiFlags)))
             {
                strPath = szPath;
-               if(strPath == "*")
+               if (strPath == "*")
                {
                   strsize iFind = strFilePath.reverse_find('.');
 
-                  imagekey.m_iIcon         = 0x80000000;
-                  imagekey.m_strExtension  = strFilePath.Mid(iFind);
-                  imagekey.m_strPath.Empty();
+                  imagekey.m_iIcon = 0x80000000;
+                  imagekey.m_pszExtension = (char*)&strFilePath[iFind];
+                  imagekey.m_pszPath = "";
                }
                else
                {
-                  imagekey.m_strPath    = szPath;
-                  imagekey.m_iIcon      = iIcon;
-                  imagekey.m_strExtension.Empty();
+                  imagekey.m_pszPath = (char *)strPath.c_str();
+                  imagekey.m_iIcon = iIcon;
+                  imagekey.m_pszExtension == NULL;
                }
             }
          }
-         if(Application.dir().is(::str::international::unicode_to_utf8(szFilePath)))
+         if (Application.dir().is(::str::international::unicode_to_utf8(szFilePath)))
          {
-            if(imagekey.m_iIcon == 0x80000000)
+            if (imagekey.m_iIcon == 0x80000000)
             {
                SHGetFileInfo(
                   "foo",
@@ -1833,7 +1874,7 @@ namespace filemanager
             }
             else
             {
-               strPath = "foo" + imagekey.m_strExtension;
+               strPath = "foo" + string(imagekey.m_pszExtension);
                SHGetFileInfo(
                   strPath,
                   FILE_ATTRIBUTE_NORMAL,
@@ -1861,7 +1902,7 @@ namespace filemanager
                hicon16 = NULL;
                strPath.Truncate(0);
                strPath.free_extra();
-               strPath = imagekey.m_strPath;
+               strPath = imagekey.m_pszPath;
                iIcon = imagekey.m_iIcon;
                bool bExtract = false;
                //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.get_length() + 1);
@@ -1869,7 +1910,7 @@ namespace filemanager
                //strcpy(lpsz, strPath);
                try
                {
-                  if((hrIconLocation == S_FALSE || uiFlags & GIL_NOTFILENAME)
+                  if ((hrIconLocation == S_FALSE || uiFlags & GIL_NOTFILENAME)
                      && lpiextracticon != NULL
                      && (NOERROR == (hrExtract = lpiextracticon->Extract(
                         strPath,
@@ -1884,14 +1925,14 @@ namespace filemanager
                      *phicon48 = hicon48;
                   }
                }
-               catch(...)
+               catch (...)
                {
                }
                //::GlobalUnlock(hglobal);
                //::GlobalFree(hglobal);
-               if(!bExtract)
+               if (!bExtract)
                {
-                  if(imagekey.m_strPath.is_empty())
+                  if (strlen(imagekey.m_pszPath) <= 0)
                   {
                      SHGetFileInfo(
                         (const char *)lpiidlAbsolute,
@@ -1918,13 +1959,13 @@ namespace filemanager
                   else
                   {
                      ExtractIconEx(
-                        imagekey.m_strPath,
+                        imagekey.m_pszPath,
                         imagekey.m_iIcon,
                         &hicon48,
                         &hicon16,
                         1);
                   }
-                  if(hicon16 == NULL)
+                  if (hicon16 == NULL)
                   {
                      SHGetFileInfo(
                         "foo",
@@ -1936,7 +1977,7 @@ namespace filemanager
                         | SHGFI_SMALLICON);
                      hicon16 = shfi16.hIcon;
                   }
-                  if(hicon48 == NULL)
+                  if (hicon48 == NULL)
                   {
                      SHGetFileInfo(
                         "foo",
@@ -1952,12 +1993,12 @@ namespace filemanager
                   *phicon48 = hicon48;
                }
             }
-            catch(...)
+            catch (...)
             {
             }
          }
 
-         if(lpiextracticon != NULL)
+         if (lpiextracticon != NULL)
          {
             lpiextracticon->Release();
          }
@@ -1969,21 +2010,13 @@ namespace filemanager
 
 
 
-      int32_t ImageSet::GetImage(
-         oswindow oswindow,
-         LPITEMIDLIST lpiidlAbsolute,
-         const unichar * lpcszExtra,
-         EIcon eicon, COLORREF crBk)
+      int32_t ImageSet::GetImage(oswindow oswindow, ImageKey imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, COLORREF crBk)
       {
 
 
          LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
-         int32_t iImage = GetImage(
-            oswindow,
-            lpiidlAbsolute,
-            lpiidlChild,
-            lpcszExtra,
-            eicon, crBk);
+         int32_t iImage = GetImage(oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra,
+            crBk);
 
 
          _017ItemIDListFree(lpiidlChild);
@@ -2004,12 +2037,12 @@ namespace filemanager
          HICON * phicon48)
       {
 
-         single_lock sl(&m_mutex,true);
+         single_lock sl(&m_mutex, true);
 
 
          LPITEMIDLIST lpiidlAbsolute;
-         _017ItemIDListParsePath(oswindow,&lpiidlAbsolute,psz);
-         bool bGet = GetIcon(oswindow,lpiidlAbsolute,lpcszExtra,eicon,phicon16,phicon48);
+         _017ItemIDListParsePath(oswindow, &lpiidlAbsolute, psz);
+         bool bGet = GetIcon(oswindow, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);
          _017ItemIDListFree(lpiidlAbsolute);
          return bGet;
 
@@ -2024,7 +2057,7 @@ namespace filemanager
          HICON * phicon48)
       {
 
-         single_lock sl(&m_mutex,true);
+         single_lock sl(&m_mutex, true);
 
          IShellFolder  * lpsf = _017GetShellFolder(lpiidlAbsolute);
 
@@ -2072,14 +2105,14 @@ namespace filemanager
 
       int32_t * pcsidl = csidla;
 
-      while(*pcsidl != -1)
+      while (*pcsidl != -1)
       {
-         if(SUCCEEDED(SHGetSpecialFolderLocation(
+         if (SUCCEEDED(SHGetSpecialFolderLocation(
             NULL,
             *pcsidl,
             &ppidl)))
          {
-            if(_shell::_017ItemIDListIsEqual(ppidl,lpiidl))
+            if (_shell::_017ItemIDListIsEqual(ppidl, lpiidl))
             {
                lpmalloc->Free(ppidl);
                break;
@@ -2094,9 +2127,10 @@ namespace filemanager
 
    }
 
+
    index Shell::GetCSIDLSort(index iCsidl)
    {
-      switch(iCsidl)
+      switch (iCsidl)
       {
       case CSIDL_DESKTOP:
          return 100;
@@ -2112,38 +2146,48 @@ namespace filemanager
 
    }
 
-   void Shell::GetAscendants(
-      LPITEMIDLIST lpiidl,
-      array < LPITEMIDLIST,LPITEMIDLIST > & lpiidla)
+
+   void Shell::GetAscendants(LPITEMIDLIST lpiidl, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
    {
-      if(lpiidl == NULL)
+      
+      if (lpiidl == NULL)
          return;
-      for(;;)
+
+      for (;;)
       {
          lpiidl = _shell::_017ItemIDListGetFolderParent(lpiidl);
-         if(lpiidl == NULL)
+         if (lpiidl == NULL)
             break;
          lpiidla.add(lpiidl);
       }
+
    }
 
-   void Shell::Free(array < LPITEMIDLIST,LPITEMIDLIST > & lpiidla)
+
+   void Shell::Free(array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
    {
+
       LPMALLOC lpmalloc = NULL;
 
       SHGetMalloc(&lpmalloc);
 
-      for(int32_t i = 0; i < lpiidla.get_size(); i++)
+      for (int32_t i = 0; i < lpiidla.get_size(); i++)
       {
+
          lpmalloc->Free(lpiidla[i]);
+
       }
+      
       lpiidla.remove_all();
 
       lpmalloc->Release();
+
    }
 
 
-
-
-
 } // namespace filemanager
+
+
+
+
+

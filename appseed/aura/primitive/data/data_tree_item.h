@@ -45,7 +45,20 @@ namespace data
    {
    public:
 
+      enum e_flag
+      {
 
+         flag_previous_or_parent = 1,
+         flag_previous = 2,
+         flag_next = 4,
+         flag_next_or_parent = 8,
+         flag_child_or_next = 16,
+         flag_child_next_or_parent = 32,
+         flag_previoub = flag_previous_or_parent | flag_previous,
+         flag_nexts = flag_next | flag_next_or_parent | flag_child_or_next| flag_child_next_or_parent,
+      };
+
+      index                         m_iIndexHint;
       tree *                        m_ptree;
       tree_item *                   m_pparent;
       index                         m_iLevel;
@@ -54,6 +67,23 @@ namespace data
       uint_ptr                      m_dwUser;
       uint32_t                      m_dwState;
       uint_ptr                      m_dwMetaData;
+
+      uint_ptr                      m_uiTreeItemFlag;
+
+      tree_item *                   m_pitemPreviousOrParent;
+      tree_item *                   m_pitemPrevious;
+
+      tree_item *                   m_pitemNext;
+      tree_item *                   m_pitemNextOrParent;
+      tree_item *                   m_pitemChildOrNext;
+      tree_item *                   m_pitemChildNextOrParent;
+
+      index                         m_iLevelPreviousOrParentOffset;
+
+      index                         m_iLevelNextOrParentOffset;
+      index                         m_iLevelChildOrNextOffset;
+      index                         m_iLevelChildNextOrParentOffset;
+      
 
 
       tree_item();
@@ -76,6 +106,29 @@ namespace data
       ::count get_expandable_children_count();
       ::count get_proper_descendant_count();
       tree_item * get_expandable_child(index iIndex);
+
+
+      index calc_level();
+      index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
+      index get_index();
+      
+      // index calc_index(index iHint);
+
+      //tree_item * get_previous_or_parent(index * iLevelOffset = NULL);
+      //tree_item * get_previous();
+
+      //tree_item * get_next();
+      //tree_item * get_next_or_parent(index * iLevelOffset = NULL);
+      //tree_item * get_child_or_next(index * iLevelOffset = NULL);
+      //tree_item * get_child_next_or_parent(index * iLevelOffset = NULL);
+
+      //tree_item * calc_previous_or_parent(index * iLevelOffset = NULL);
+      //tree_item * calc_previous();
+
+      //tree_item * calc_next();
+      //tree_item * calc_next_or_parent(index * iLevelOffset = NULL);
+      //tree_item * calc_child_or_next(index * iLevelOffset = NULL);
+      //tree_item * calc_child_next_or_parent(index * iLevelOffset = NULL);
 
       tree_item * get_previous_or_parent(index * iLevelOffset = NULL);
       tree_item * get_previous();
@@ -101,7 +154,7 @@ namespace data
       //   return bChild ?bParent ? m_ppreviousParent : m_pprevious;
       //}
       tree_item * calc_previous(bool bParent = true);
-      tree_item * calc_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
+      tree_item * calc_next(bool bChild, bool bParent = true, index * pindexLevel = NULL);
       
 
       tree_item * first_child();

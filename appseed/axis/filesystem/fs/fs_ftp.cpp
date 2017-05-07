@@ -250,7 +250,7 @@ retry:
 }
 
 
-bool ftpfs::is_dir(const ::file::path & path)
+int ftpfs::is_dir(const ::file::path & path)
 {
    
    //xml::node node(get_app());
@@ -258,28 +258,28 @@ bool ftpfs::is_dir(const ::file::path & path)
    if (path.is_empty())
    {
 
-      return true;
+      return 1;
 
    }
 
    if (stricmp_dup(path, "ftp://") == 0)
    {
 
-      return true;
+      return 1;
 
    }
 
    if (stricmp_dup(path, "ftp:/") == 0)
    {
 
-      return true;
+      return 1;
 
    }
 
    if (stricmp_dup(path, "ftp:") == 0)
    {
 
-      return true;
+      return 1;
 
    }
    
@@ -293,7 +293,7 @@ bool ftpfs::is_dir(const ::file::path & path)
       if(m_straFtpServer.contains_ci(strPath))
       {
 
-         return true;
+         return 1;
 
       }
 
@@ -321,11 +321,11 @@ bool ftpfs::is_dir(const ::file::path & path)
    if (iFind < 0)
    {
 
-      return false;
+      return 0;
 
    }
 
-   return dir[iFind].m_iDir == 1;
+   return dir[iFind].m_iDir;
 
 
 }

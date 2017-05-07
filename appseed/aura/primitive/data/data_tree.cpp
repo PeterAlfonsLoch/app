@@ -99,6 +99,58 @@ namespace data
       return remove(pitem);
    }
 
+
+   bool tree::remove_item_from_parent(tree_item * pitem)
+   {
+
+      if (pitem->m_pparent == NULL)
+      {
+
+         return true;
+
+      }
+
+      index iFind = pitem->m_pparent->m_children.find_first(pitem);
+
+      if (iFind < 0)
+      {
+         
+         // self healing?
+         pitem->m_pparent = NULL;
+
+         return false;
+
+      }
+
+      pitem->m_pparent->m_children.remove_at(iFind);
+
+      if (pitem->m_pparent->m_children.has_elements())
+      {
+         if (iFind > 0)
+         {
+            pitem->m_pparent->m_children[iFind - 1]->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+         }
+
+         if (iFind + 1 <pitem->m_pparent->m_children.get_count())
+         {
+            pitem->m_pparent->m_children[iFind + 1]->m_uiTreeItemFlag &= ~tree_item::flag_previoub;
+         }
+
+      }
+
+      if (iFind == 0)
+      {
+
+         pitem->m_pparent->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+      }
+
+      pitem->m_pparent = NULL;
+
+      return true;
+
+   }
+
    ::count tree::remove(tree_item_ptr_array & itemptra)
    {
 
@@ -189,9 +241,14 @@ namespace data
 
    }
 
+
    ::count tree::get_proper_item_count()
    {
+      
+      synch_lock sl(m_pmutex);
+
       return get_base_item()->get_proper_item_count();
+
    }
 
 
@@ -200,8 +257,10 @@ namespace data
       return m_proot;
    }
 
-   ::data::tree_item * tree::insert_item(::data::item * pitemdataNew, ERelative erelativeNewItem, ::data::tree_item *pitemRelative)
+   
+   ::data::tree_item * tree::insert_item(::data::item * pitemdataNew, ERelative erelativeNewItem, ::data::tree_item *pitemRelative, bool bVoidTreeDataChangeEvent)
    {
+
       if(erelativeNewItem == RelativeReplace)
       {
 
@@ -213,19 +272,27 @@ namespace data
          return pitemRelative;
 
       }
+      
       sp(::data::tree_item) pitemNew = canew(tree_item);
+
       if(pitemNew == NULL)
          return NULL;
-      if(!insert_item(pitemNew, erelativeNewItem, pitemRelative))
+
+      if(!insert_item(pitemNew, erelativeNewItem, pitemRelative, bVoidTreeDataChangeEvent))
       {
+
          return NULL;
+
       }
+      
       pitemNew->m_pitem = pitemdataNew;
+      
       return pitemNew;
+
    }
 
 
-   bool tree::insert_item(::data::tree_item *pitemNew, ERelative erelativeNewItem, ::data::tree_item *pitemRelative)
+   bool tree::insert_item(::data::tree_item *pitemNew, ERelative erelativeNewItem, ::data::tree_item *pitemRelative, bool bVoidTreeDataChangeEvent)
    {
       if(pitemNew == NULL)
          return false;
@@ -246,88 +313,295 @@ namespace data
       {
       case RelativeFirstChild:
          {
+            
+            remove_item_from_parent(pitemNew);
+
+            pitemNew->m_uiTreeItemFlag = 0;
+
+            if (pitemRelative->m_children.has_elements())
+            {
+               
+               pitemRelative->m_children[0]->m_uiTreeItemFlag &= ~tree_item::flag_previoub;
+
+            }
+
+            pitemRelative->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
             pitemRelative->m_children.insert_at(0, pitemNew);
+
+            pitemNew->m_iLevel = pitemRelative->m_iLevel + 1;
+
             pitemNew->m_pparent = pitemRelative;
+
          }
          break;
       case RelativeLastChild:
          {
+
+            remove_item_from_parent(pitemNew);
+
+            pitemNew->m_uiTreeItemFlag = 0;
+
+            if (pitemRelative->m_children.has_elements())
+            {
+
+               pitemRelative->m_children.last().m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+               ::data::tree_item * p = pitemRelative;
+               ::data::tree_item * pLast = pitemRelative;
+               while (p != NULL && p->m_children.has_elements())
+               {
+                  pLast = p;
+                  p = &p->m_children.last();
+
+               }
+               pLast->m_children.last().m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+            }
+            else
+            {
+
+               pitemRelative->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+            }
+
             pitemRelative->m_children.add(pitemNew);
+
+            pitemNew->m_iLevel = pitemRelative->m_iLevel + 1;
+
             pitemNew->m_pparent = pitemRelative;
+
          }
          break;
       case RelativePreviousSibling:
          {
-            // all tree items that have siblings have a parent (at least the aura item)
+
+            pitemNew->m_uiTreeItemFlag = 0;
+
+            // all tree items that have siblings have a parent (at least the base item)
             ASSERT(pitemRelative->m_pparent != NULL);
+
             // Is pitemRelative a first child ?
             index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
-            if(iFind > 0)
+
+            if (iFind > 0)
+            {
+
                iFind--;
-            pitemRelative->m_pparent->m_children.insert_at(0, pitemNew);
+
+            }
+
+            if (iFind == 0)
+            {
+
+               if (pitemRelative->m_pparent->m_children.has_elements())
+               {
+
+                  pitemRelative->m_children[0]->m_uiTreeItemFlag &= ~tree_item::flag_previoub;
+
+               }
+
+               pitemRelative->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+            }
+            else if (iFind - 1 >= 0)
+            {
+
+               pitemRelative->m_pparent->m_children[iFind-1]->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+            }
+
+            if (iFind + 1 < pitemRelative->m_pparent->m_children.get_count())
+            {
+
+               pitemRelative->m_pparent->m_children[iFind + 1]->m_uiTreeItemFlag &= ~tree_item::flag_previoub;
+
+            }
+
+            pitemRelative->m_pparent->m_children.insert_at(iFind, pitemNew);
+
+            pitemNew->m_iLevel = pitemRelative->m_iLevel;
+
             pitemNew->m_pparent = pitemRelative->m_pparent;
+
+
          }
          break;
       case RelativeNextSibling:
          {
+
+            pitemNew->m_uiTreeItemFlag = 0;
+
             // all tree items that have siblings have a parent (at least the aura item)
             ASSERT(pitemRelative->m_pparent != NULL);
+
             // Is pitemRelative a first child ?
             index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
+
             if (iFind < 0)
+            {
+
                iFind = 0;
+
+            }
             else
+            {
+
                iFind++;
-            pitemRelative->m_pparent->m_children.insert_at(0, pitemNew);
+
+            }
+
+            if (iFind == 0)
+            {
+
+               if (pitemRelative->m_pparent->m_children.has_elements())
+               {
+
+                  pitemRelative->m_children[0]->m_uiTreeItemFlag &= ~tree_item::flag_previoub;
+
+               }
+
+               pitemRelative->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+            }
+            else if (iFind - 1 >= 0)
+            {
+
+               pitemRelative->m_pparent->m_children[iFind - 1]->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+            }
+
+            if (iFind + 1 < pitemRelative->m_pparent->m_children.get_count())
+            {
+
+               pitemRelative->m_pparent->m_children[iFind + 1]->m_uiTreeItemFlag &= ~tree_item::flag_previoub;
+
+            }
+
+            pitemRelative->m_pparent->m_children.insert_at(iFind, pitemNew);
+
+            pitemNew->m_iLevel = pitemRelative->m_iLevel;
+
             pitemNew->m_pparent = pitemRelative->m_pparent;
+
          }
          break;
       case RelativeLastSibling:
          {
+
+            pitemNew->m_uiTreeItemFlag = 0;
+
             // all tree items that have siblings have a parent (at least the aura item)
             ASSERT(pitemRelative->m_pparent != NULL);
+
+            if (pitemRelative->m_pparent->m_children.has_elements())
+            {
+
+               pitemRelative->m_pparent->m_children.last().m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+            }
+            else
+            {
+
+               pitemRelative->m_pparent->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+            }
+
             pitemRelative->m_pparent->m_children.add(pitemNew);
+
+            pitemNew->m_iLevel = pitemRelative->m_iLevel;
+
             pitemNew->m_pparent = pitemRelative->m_pparent;
+
          }
          break;
       case RelativeReplace:
          {
+
+            pitemNew->m_uiTreeItemFlag = 0;
+
             pitemNew->m_dwUser      = pitemRelative->m_dwUser;
             pitemNew->m_dwMetaData  = pitemRelative->m_dwMetaData;
             pitemNew->m_pparent     = pitemRelative->m_pparent;
             pitemNew->m_children    = pitemRelative->m_children;
             pitemNew->m_dwState     = pitemRelative->m_dwState;
             pitemNew->m_pitem       = pitemRelative->m_pitem;
+
+            pitemNew->m_iLevel = pitemRelative->m_iLevel;
+
             index iFind = pitemRelative->m_pparent->m_children.find_first(pitemRelative);
+
             if (iFind >= 0)
             {
+
+               if (iFind == 0)
+               {
+
+                  if (pitemRelative->m_pparent->m_children.has_elements())
+                  {
+
+                     pitemRelative->m_children[0]->m_uiTreeItemFlag &= ~tree_item::flag_previoub;
+
+                  }
+
+                  pitemRelative->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+               }
+               else if (iFind - 1 >= 0)
+               {
+
+                  pitemRelative->m_pparent->m_children[iFind - 1]->m_uiTreeItemFlag &= ~tree_item::flag_nexts;
+
+               }
+
+               if (iFind + 1 < pitemRelative->m_pparent->m_children.get_count())
+               {
+
+                  pitemRelative->m_pparent->m_children[iFind + 1]->m_uiTreeItemFlag &= ~tree_item::flag_previoub;
+
+               }
+
                pitemRelative->m_pparent->m_children.element_at(iFind) = pitemNew;
+
             }
-        }
+
+         }
          break;
+
       case RelativeMacroRecord:
       {
+
          if (pitemRelative->get_next() != NULL)
          {
+
             insert_item(pitemNew, ::data::RelativeFirstChild, pitemRelative);
+
          }
          else
          {
+
             insert_item(pitemNew, ::data::RelativeLastSibling, pitemRelative);
+
          }
 
       }
          break;
-         default:
-            throw not_supported_exception(get_app());
+      default:
+         throw not_supported_exception(get_app());
       }
+
       pitemNew->m_ptree = this;
-//      pitemNew->update_pointers();
 
+      if (!bVoidTreeDataChangeEvent)
+      {
 
-      _001OnTreeDataChange();
+         _001OnTreeDataChange();
+
+      }
+
       return true;
+
    }
+
 
    void tree::remove_all()
    {

@@ -97,54 +97,59 @@ namespace file
    }
 
 
-   bool path::is_equal(const path & path) const
-   {
-
-      if(((const string &)*this).operator == ((const string &)path)) // undoubtely eaqual...
-         return true;
-
-#ifdef WINDOWS
-
-      if (((const string &)*this).CompareNoCase((const string &)path) == 0) // undoubtely eaqual...
-         return true;
-
-#endif
-
-      // find extend equalitys..
-
-      ::file::patha patha1;
-
-      split(patha1);
-
-      ::file::patha patha2;
-
-      path.split(patha2);
-
-      if(patha1.get_size() == patha2.get_size())
-      {
-
-         for(index i = 0; i < patha1.get_size(); i++)
-         {
-
-            if(patha1[i].::string::operator!=(patha2[i]))
-            {
-
-               goto there_s_difference_in_this_step_1;
-
-            }
-
-         }
-
-         return true;
-
-      }
-
-      there_s_difference_in_this_step_1:
-
-
-      return false;
-
-   }
+//   bool path::is_equal(const path & path) const
+//   {
+//
+//
+//#ifdef WINDOWS
+//
+//      if (((const string &)*this).CompareNoCase((const string &)path) == 0) // undoubtely eaqual...
+//         return true;
+//
+//#else
+//
+//      if (((const string &)*this).operator == ((const string &)path)) // undoubtely eaqual...
+//         return true;
+//
+//#endif
+//
+//      return false;
+//
+//      // find extend equalitys..
+//
+//      ::file::patha patha1;
+//
+//      split(patha1);
+//
+//      ::file::patha patha2;
+//
+//      path.split(patha2);
+//
+//      if(patha1.get_size() == patha2.get_size())
+//      {
+//
+//         for(index i = 0; i < patha1.get_size(); i++)
+//         {
+//
+//            if(patha1[i].::string::operator!=(patha2[i]))
+//            {
+//
+//               goto there_s_difference_in_this_step_1;
+//
+//            }
+//
+//         }
+//
+//         return true;
+//
+//      }
+//
+//      there_s_difference_in_this_step_1:
+//
+//
+//      return false;
+//
+//   }
 
 
    void path::split(patha & patha) const
@@ -181,7 +186,7 @@ namespace file
    }
 
    
-   path path::name(index i) const
+   string path::name(index i) const
    {
 
       patha patha;
@@ -472,53 +477,6 @@ namespace file
    }
 
 
-   bool path::operator == (const path & path) const
-   {
-
-      return is_equal(path);
-
-   }
-
-   bool path::operator == (const string & str) const
-   {
-
-      return operator == (path(str));
-
-   }
-
-
-   bool path::operator == (const char * psz) const
-   {
-
-      return operator == (string(psz));
-
-   }
-
-
-   bool path::operator != (const path & path) const
-   {
-
-      return !is_equal(path);
-
-   }
-
-
-   bool path::operator != (const string & str) const
-   {
-
-      return operator != (path(str));
-
-   }
-
-
-   bool path::operator != (const char * psz) const
-   {
-
-      return operator != (string(psz));
-
-   }
-
-
    path path::operator + (const path & path) const
    {
 
@@ -608,12 +566,15 @@ namespace file
       return ::file_title_dup(operator const char*());
    }
 
-   ::file::path path::name() const
-   {
-      if(m_iName < 0)
-         ((path *) this)->m_iName = find_file_name();
-      return Mid(m_iName);
-   }
+   //void path::calc_name() const
+   //{
+   //   m_iName = find_file_name();
+   //   m_strName = Mid(m_iName);
+   //}
+
+
+
+
 
    index path::find_file_name() const
    {
@@ -693,7 +654,7 @@ namespace file
    string normalize_path(string strPath, e_path epath)
    {
 
-      strPath = defer_solve_relative_compresions(strPath);
+      strPath = solve_relative_compressions(strPath);
 
 #ifdef WINDOWS
       if(epath == path_file && (strPath == "\\\\" || strPath == "\\"))
@@ -715,7 +676,22 @@ namespace file
          else if (strPath.has_char())
          {
 
-            strPath.trim_right("\\/");
+            int i = strPath.get_length() - 1;
+
+            while (i >= 0 && strPath[i] == '\\' || strPath[i] == '/')
+            {
+
+               i--;
+
+            }
+
+            if (i >= 0 && i < strPath.get_length() - 1)
+            {
+
+               strPath.Truncate(i + 1);
+
+            }
+
 
             if (strPath.has_char())
             {

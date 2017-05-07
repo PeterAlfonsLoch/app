@@ -9,12 +9,27 @@ namespace data
 
    tree_item::tree_item()
    {
-      
+      m_iIndexHint = -1;
       m_dwUser          = 0;
       m_dwState         = 0;
       m_ptree           = NULL;
       m_pparent         = NULL;
       m_iLevel          = -1;
+
+      m_uiTreeItemFlag           = 0;
+      m_pitemPreviousOrParent    = NULL;
+      m_pitemPrevious             = NULL;
+      
+      m_pitemNext = NULL;
+      m_pitemNextOrParent = NULL;
+      m_pitemChildOrNext = NULL;
+      m_pitemChildNextOrParent = NULL;
+      
+      m_iLevelPreviousOrParentOffset = 0;
+      
+      m_iLevelNextOrParentOffset = 0;
+      m_iLevelChildOrNextOffset = 0;
+      m_iLevelChildNextOrParentOffset = 0;
 
    }
 
@@ -198,7 +213,144 @@ namespace data
       return iCount;
    }
 
+   //tree_item * tree_item::get_previous_or_parent(index * iLevelOffset)
+   //{
 
+   //   if (!(m_uiTreeItemFlag & flag_previous_or_parent))
+   //   {
+
+   //      m_iLevelPreviousOrParentOffset = 0;
+
+   //      m_pitemPreviousOrParent = calc_previous_or_parent(&m_iLevelPreviousOrParentOffset);
+
+   //      //m_uiTreeItemFlag |= flag_previous_or_parent;
+
+   //   }
+
+   //   if (iLevelOffset != NULL)
+   //   {
+
+   //      *iLevelOffset += m_iLevelPreviousOrParentOffset;
+
+   //   }
+
+   //   return m_pitemPreviousOrParent;
+
+   //}
+
+
+   //tree_item * tree_item::get_previous()
+   //{
+
+   //   if (!(m_uiTreeItemFlag & flag_previous))
+   //   {
+
+   //      m_pitemPrevious = calc_previous(false);
+
+   //      //m_uiTreeItemFlag |= flag_previous;
+
+   //   }
+
+   //   return m_pitemPrevious;
+
+   //}
+
+
+   //tree_item * tree_item::get_next()
+   //{
+
+   //   if (!(m_uiTreeItemFlag & flag_next))
+   //   {
+
+   //      m_pitemNext = calc_next();
+
+   //      //m_uiTreeItemFlag |= flag_next;
+
+   //   }
+
+   //   return m_pitemNext;
+
+   //}
+
+
+   //tree_item * tree_item::get_next_or_parent(index * iLevelOffset)
+   //{
+
+   //   if (!(m_uiTreeItemFlag & flag_next_or_parent))
+   //   {
+
+   //      m_iLevelNextOrParentOffset = 0;
+
+   //      m_pitemNextOrParent = calc_next_or_parent(&m_iLevelNextOrParentOffset);
+
+   //      //m_uiTreeItemFlag |= flag_next_or_parent;
+
+   //   }
+
+   //   if (iLevelOffset != NULL)
+   //   {
+
+   //      *iLevelOffset += m_iLevelNextOrParentOffset;
+
+   //   }
+
+   //   return m_pitemNextOrParent;
+
+   //}
+
+
+   //tree_item * tree_item::get_child_or_next(index * iLevelOffset)
+   //{
+   //   
+   //   if (!(m_uiTreeItemFlag & flag_child_or_next))
+   //   {
+
+   //      m_iLevelChildOrNextOffset = 0;
+
+   //      m_pitemChildOrNext = calc_child_or_next(&m_iLevelChildOrNextOffset);
+
+   //      //m_uiTreeItemFlag |= flag_child_or_next;
+
+   //   }
+
+   //   if (iLevelOffset != NULL)
+   //   {
+
+   //      *iLevelOffset += m_iLevelChildOrNextOffset;
+
+   //   }
+
+   //   return m_pitemChildOrNext;
+   //}
+
+
+   //tree_item * tree_item::get_child_next_or_parent(index * iLevelOffset)
+   //{
+
+   //   if (!(m_uiTreeItemFlag & flag_child_next_or_parent))
+   //   {
+
+   //      m_iLevelChildNextOrParentOffset = 0;
+
+   //      m_pitemChildNextOrParent = calc_child_next_or_parent(&m_iLevelChildNextOrParentOffset);
+
+   //      //m_uiTreeItemFlag |= flag_child_next_or_parent;
+
+   //   }
+
+   //   if (iLevelOffset != NULL)
+   //   {
+
+   //      *iLevelOffset += m_iLevelChildNextOrParentOffset;
+
+   //   }
+
+   //   return m_pitemChildNextOrParent;
+   //}
+
+
+
+   //tree_item * tree_item::calc_previous_or_parent(index * iLevelOffset)
    tree_item * tree_item::get_previous_or_parent(index * iLevelOffset)
    {
 
@@ -209,7 +361,24 @@ namespace data
 
       }
 
-      index iFind = m_pparent->m_children.find_first(this);
+      int iFastLevel = -1;
+
+      {
+
+         tree_item * p = this;
+
+         while (p != NULL)
+         {
+
+            iFastLevel++;
+
+            p = p->m_pparent;
+
+         }
+
+      }
+
+      index iFind = get_index();
 
       if (iFind <= 0)
       {
@@ -229,6 +398,7 @@ namespace data
 
    }
 
+   //tree_item * tree_item::calc_previous()
    tree_item * tree_item::get_previous()
    {
       
@@ -239,7 +409,7 @@ namespace data
 
       }
 
-      index iFind = m_pparent->m_children.find_first(this);
+      index iFind = get_index();
 
       if (iFind <= 0)
       {
@@ -252,6 +422,7 @@ namespace data
 
    }
 
+   //tree_item * tree_item::calc_next()
    tree_item * tree_item::get_next()
    {
       
@@ -262,7 +433,7 @@ namespace data
 
       }
 
-      index iFind = m_pparent->m_children.find_first(this);
+      index iFind = get_index();
 
       if (iFind < 0 || iFind >= m_pparent->m_children.get_upper_bound())
       {
@@ -275,6 +446,97 @@ namespace data
 
    }
 
+
+   index tree_item::calc_level()
+   {
+
+      if (m_iLevel < 0)
+      {
+
+
+         m_iLevel = -1;
+
+         tree_item * p = this;
+
+         while (p != NULL)
+         {
+
+            m_iLevel++;
+
+            p = p->m_pparent;
+
+         }
+
+      }
+
+      return m_iLevel;
+
+   }
+
+   
+
+
+
+   index tree_item::get_index()
+   {
+
+      if (m_pparent == NULL)
+      {
+
+         return 0;
+
+      }
+
+
+      index iHint = -1;
+
+      if (m_iIndexHint >= 0 && m_iIndexHint < m_pparent->m_children.get_size())
+      {
+
+         if (m_pparent->m_children.ptr_at(m_iIndexHint) == this)
+         {
+
+            return m_iIndexHint;
+
+         }
+
+         iHint = MAX(0, m_iIndexHint - 10);
+
+      }
+
+      index iLevel = get_level();
+
+      if (iHint < 0)
+      {
+
+         iHint = m_ptree->m_iaLevelNext.element_at_grow(iLevel);
+
+      }
+
+      //index iLevel = get_level();
+
+      //index iHint = m_ptree->m_iaLevelNext.get_at_grow(iLevel);
+
+      index iFind = m_pparent->m_children.find_first(this, iHint);
+
+      if (iFind < 0 && iHint > 0)
+      {
+
+         iFind = m_pparent->m_children.find_first(this, 0, iHint);
+
+      }
+
+      m_iIndexHint = iFind;
+      // safe hint for many cases, 
+      // specially for ca2, hint is any hint,
+      // or maybe not
+      m_ptree->m_iaLevelNext[iLevel] = MAX(0, iFind - 6);
+
+      return iFind;
+
+   }
+
+   //tree_item * tree_item::calc_next_or_parent(index * iLevelOffset)
    tree_item * tree_item::get_next_or_parent(index * iLevelOffset)
    {
       
@@ -285,7 +547,7 @@ namespace data
 
       }
 
-      index iFind = m_pparent->m_children.find_first(this);
+      index iFind = get_index();
 
       if (iFind < 0 || iFind >= m_pparent->m_children.get_upper_bound())
       {
@@ -303,9 +565,10 @@ namespace data
 
       return m_pparent->m_children[iFind + 1];
 
-
    }
 
+
+   //tree_item * tree_item::calc_child_or_next(index * iLevelOffset)
    tree_item * tree_item::get_child_or_next(index * iLevelOffset)
    {
       
@@ -346,7 +609,7 @@ namespace data
 
    }
 
-
+   //tree_item * tree_item::calc_child_next_or_parent(index * iLevelOffset)
    tree_item * tree_item::get_child_next_or_parent(index * iLevelOffset)
    {
 
@@ -455,7 +718,7 @@ namespace data
       case RelativePreviousSibling:
          {
             ASSERT(m_pparent != NULL);
-            index iFind = m_pparent->m_children.find_first(this);
+            index iFind = get_index();
             if (iFind <= 0)
                return NULL;
             return m_pparent->m_children[iFind - 1];
@@ -464,7 +727,7 @@ namespace data
       case RelativeNextSibling:
          {
             ASSERT(m_pparent != NULL);
-            index iFind = m_pparent->m_children.find_first(this);
+            index iFind = get_index();
             if (iFind < 0 || iFind >= m_pparent->m_children.get_upper_bound())
                return NULL;
             return m_pparent->m_children[iFind + 1];
@@ -489,7 +752,7 @@ namespace data
       if (m_pparent == NULL)
          return NULL;
       
-      index iFind = m_pparent->m_children.find_first(this);
+      index iFind = get_index();
       
       if (iFind <= 0)
       {
@@ -533,7 +796,7 @@ namespace data
          return m_children[0];
 
       }
-      else if (m_pparent != NULL && (iFind = m_pparent->m_children.find_first(this)) >= 0 && iFind < m_pparent->m_children.get_upper_bound())
+      else if (m_pparent != NULL && (iFind = get_index()) >= 0 && iFind < m_pparent->m_children.get_upper_bound())
          return m_pparent->m_children[iFind + 1];
       else if(bParent && m_pparent != NULL)
       {

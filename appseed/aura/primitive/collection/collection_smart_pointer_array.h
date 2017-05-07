@@ -380,15 +380,15 @@ public:
    }
 
 
-   ::index find_first(const T & t, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1) const
+   ::index comp_find_first(const T & t, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1) const
    {
 
-      return this->find_first(&t, lpfnCompare, iStart, nCount);
+      return this->comp_find_first(&t, lpfnCompare, iStart, nCount);
 
    }
 
 
-   ::index find_first(const T * p, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1) const
+   ::index comp_find_first(const T * p, index (* lpfnCompare)(const T *, const T *), index iStart = 0, ::count nCount = -1) const
    {
 
       index iEnd;
@@ -462,6 +462,82 @@ public:
       }
 
       return c;
+
+   }
+
+
+
+   template < typename PRED >
+   sp(T) pred_remove_first(PRED pred, index iStart = 0)
+   {
+      
+      for (index i = iStart; i < get_count(); i++)
+      {
+
+         if (pred(m_pData[i]))
+         {
+            
+            sp(TYPE) sp = m_pData[i];
+
+            remove_at(i);
+
+            return sp;
+
+         }
+
+      }
+
+      return NULL;
+
+   }
+
+   template < typename PRED >
+   sp(T) pred_remove_all_get_first(PRED pred, index iStart = 0, index iEnd = -1)
+   {
+
+      sp(T) sp;
+
+      if (iEnd < 0)
+      {
+
+         iEnd += get_count();
+
+      }
+
+      if (iEnd >= get_count())
+      {
+
+         iEnd = get_count() - 1;
+
+      }
+
+
+      for (index i = iStart; i <= iEnd;)
+      {
+
+         if (pred(m_pData[i]))
+         {
+
+            if (sp.is_null())
+            {
+
+               sp = m_pData[i];
+
+            }
+
+            remove_at(i);
+
+         }
+         else
+         {
+
+            i++;
+
+         }
+
+      }
+
+      return sp;
 
    }
 

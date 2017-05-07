@@ -46,6 +46,7 @@ namespace base
 
       ::user::user *                m_puser;
       sp(::user::schema)            m_puserschemasimple;
+      string_map < sp(::user::schema) >   m_mapSchema;
 
       ::user::interaction *         m_puiCapture;
 
@@ -93,7 +94,9 @@ namespace base
       virtual sp(::user::interaction) GetCapture();
 
 
-      sp(::user::schema) get_new_user_schema(const char * pszUinteractionLibrary);
+      sp(::user::schema) create_new_user_schema(const char * pszUinteractionLibrary);
+
+      sp(::user::schema) get_user_schema(const char * pszUinteractionLibrary);
 
 
       virtual void on_finally_focus_set(::user::elemental * pelementalFocus) override;

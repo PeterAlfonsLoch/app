@@ -11,7 +11,7 @@ namespace userfs
    public:
 
       class CLASS_DECL_CORE base_list_item_array :
-         public spsa(list_item)
+         public spa(list_item)
       {
       public:
          list_item & get_item(index i, index (* fCompare)(const sp(list_item) &, const sp(list_item) &));
@@ -29,7 +29,10 @@ namespace userfs
       virtual ~list_item_array();
 
 
-      void add_item(list_item & item);
+      void list_item_array::add_item(list_item & item)
+      {
+         m_itema.add(canew(list_item(item, this->get_size())));
+      }
       ::count get_count();
       ::count get_size();
       index get_upper_bound(::count i = -1);

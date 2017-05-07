@@ -315,7 +315,7 @@ namespace aura
 
          strPath.replace("\\", "/");
 
-         strPath = defer_solve_relative_compresions(strPath);
+         strPath = solve_relative_compressions(strPath);
 
          strPath.replace(":","_");
 

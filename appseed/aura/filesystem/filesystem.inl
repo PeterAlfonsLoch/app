@@ -18,7 +18,7 @@ namespace file
    inline path path::sibling(const path & path) const   { return ::file::path(::dir::name((const string &)*this) + sep() + ::sz::trim_left_path_sep(path)); }
    inline path path::sibling(const string & str) const   { return ::file::path(::dir::name((const string &)*this) + sep() + ::sz::trim_left_path_sep(str)); }
    inline path path::sibling(const char * psz) const   { return ::file::path(::dir::name((const string &)*this) + sep() + ::sz::trim_left_path_sep(psz)); }
-   inline string path::extension() const { return file_extension_dup(operator const char *()); }
+   inline string path::extension() const { return &m_pszData[find_skip_or_length('.', rfind(sep()) + 1)]; }
    inline string path::final_extension() const { return file_final_extension_dup(operator const char *()); }
    inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
    inline patha path::ascendants_name() const { patha patha; return ascendants_name(patha); }

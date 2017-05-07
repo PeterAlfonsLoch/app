@@ -106,7 +106,7 @@ namespace base
       if (m_puserschemasimple == NULL)
       {
 
-         m_puserschemasimple = get_new_user_schema(pszUiInteractionLibrary);
+         m_puserschemasimple = get_user_schema(pszUiInteractionLibrary);
 
          if (m_puserschemasimple == NULL)
          {
@@ -800,8 +800,23 @@ namespace base
 
    }
 
+   sp(::user::schema) session::get_user_schema(const char * pszUinteractionLibrary)
+   {
 
-   sp(::user::schema) session::get_new_user_schema(const char * pszUinteractionLibrary)
+      sp(::user::schema) & p = m_mapSchema[pszUinteractionLibrary];
+
+      if (p.is_null())
+      {
+
+         p = create_new_user_schema(pszUinteractionLibrary);
+
+      }
+
+      return p;
+
+   }
+
+   sp(::user::schema) session::create_new_user_schema(const char * pszUinteractionLibrary)
    {
 
       thisstart;
@@ -852,6 +867,13 @@ namespace base
          strLibrary.replace("-", "_");
 
          strLibrary.replace("/", "_");
+
+         if (!str::begins_ci(strLibrary, "wndfrm_"))
+         {
+
+            strLibrary = "wndfrm_" + strLibrary;
+
+         }
 
          if (!plibrary->open(strLibrary, false))
          {

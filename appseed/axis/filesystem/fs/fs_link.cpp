@@ -57,13 +57,13 @@ namespace fs
    }
 
 
-   bool link::is_dir(const ::file::path & path)
+   int link::is_dir(const ::file::path & path)
    {
 
       if(path == m_path)
       {
 
-         return true;
+         return 1;
 
       }
       else

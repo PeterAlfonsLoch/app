@@ -461,7 +461,7 @@ string module_path_from_pid(uint32_t pid)
 
    //}
 
-   //string strName  = defer_solve_relative_compresions(me32.szExePath);
+   //string strName  = solve_relative_compressions(me32.szExePath);
    // 
    //CloseHandle(hModuleSnap);
 
@@ -480,7 +480,7 @@ string module_path_from_pid(uint32_t pid)
 
    if(GetModuleFileNameExW(hProcess,0,path, sizeof(path) / sizeof(path[0])))
    {
-      strPath = defer_solve_relative_compresions(string(path));
+      strPath = solve_relative_compressions(string(path));
 
    }
 

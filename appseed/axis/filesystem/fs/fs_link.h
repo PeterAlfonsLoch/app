@@ -28,7 +28,7 @@ namespace fs
 
       // optional if ls_dir is implemented
       virtual bool has_subdir(const ::file::path & pszPath) override;
-      virtual bool is_dir(const ::file::path & pszPath) override;
+      virtual int is_dir(const ::file::path & pszPath) override;
       virtual ::file::listing & root_ones(::file::listing & listing) override;
       //virtual void get_ascendants_path(const char * pszPath,stringa & stra);
       //virtual void get_ascendants_name(const char * lpcsz,stringa & straParam);

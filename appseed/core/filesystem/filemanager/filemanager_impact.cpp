@@ -198,7 +198,12 @@ namespace filemanager
             {
                if(puh->m_filepath == get_filemanager_item().m_filepath)
                {
-                  browse_sync(puh->m_actioncontext + ::action::source_sync);
+#define DBG_LOOP  1
+                  for (index i = 0; i < DBG_LOOP; i++)
+                  {
+                     browse_sync(puh->m_actioncontext + ::action::source_sync);
+
+                  }
                }
                else
                {

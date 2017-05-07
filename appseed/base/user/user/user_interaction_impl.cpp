@@ -356,7 +356,21 @@ namespace user
    void interaction_impl::_008OnMouse(::message::mouse * pmouse)
    {
 
-      bool bPointInside = m_pui->_001IsPointInside(pmouse->m_pt);
+      bool bPointInside;
+      
+      bPointInside = m_pui->_001IsPointInside(pmouse->m_pt);
+
+      if (!bPointInside)
+      {
+
+         if (pmouse->m_pwnd == m_pui)
+         {
+
+            bPointInside = true;
+
+         }
+
+      }
 
       
       {

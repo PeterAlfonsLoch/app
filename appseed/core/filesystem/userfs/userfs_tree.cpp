@@ -303,16 +303,16 @@ namespace userfs
    }
 
 
-   void tree::_017EnsureVisible(const char * lpcsz, ::action::context actioncontext)
+   void tree::_017EnsureVisible(const ::file::path & path, ::action::context actioncontext)
    {
 
    }
 
 
-   ::data::tree_item * tree::find_item(const char * lpcsz, ::data::tree_item * pitemStart)
+   ::data::tree_item * tree::find_item(const::file::path & path, bool bPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
    {
 
-      return find_absolute(lpcsz, pitemStart);
+      return find_absolute(path, bPathFromItemFromOwnTree, pitemStart);
 
    }
 
@@ -468,7 +468,7 @@ namespace userfs
       }
    }
 
-   ::data::tree_item * tree::find_absolute(const char * lpcszPath, ::data::tree_item * pitemStart)
+   ::data::tree_item * tree::find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
    {
 
       ::data::tree_item * pitem;
@@ -478,23 +478,44 @@ namespace userfs
       else
          pitem = pitemStart;
 
-      if (lpcszPath == NULL || strlen(lpcszPath) == 0)
+      if (path.get_length() <= 0)
          return pitem;
-
-      ::file::path strPath(lpcszPath);
 
       while (pitem != NULL)
       {
 
-         if (pitem->m_pitem != NULL && typeid(*pitem->m_pitem) == System.type_info < ::userfs::item >())
+         if (pitem->m_pitem != NULL)
          {
 
-            ::file::path & strTreeItem = pitem->m_pitem.cast < ::userfs::item >()->m_filepath;
+            ::userfs::item * p = pitem->m_pitem.cast < ::userfs::item >();
 
-            if(strTreeItem == strPath)
+            if (p != NULL)
             {
 
-               return pitem;
+               ::file::path & pathTreeItem = p->m_filepath;
+
+               if (bPointerFromPathFromItemFromOwnTree)
+               {
+
+                  if (&pathTreeItem == &path)
+                  {
+
+                     return pitem;
+
+                  }
+
+               }
+               else
+               {
+
+                  if (pathTreeItem == path)
+                  {
+
+                     return pitem;
+
+                  }
+
+               }
 
             }
 
@@ -514,9 +535,9 @@ namespace userfs
    void tree::arrange(::fs::e_arrange earrange)
    {
 
-      if (earrange == ::fs::arrange_by_name)
+      //if (earrange == ::fs::arrange_by_name)
       {
-         sort(item::CompareArrangeByName);
+         //sort(item::CompareArrangeByName);
       }
 
    }

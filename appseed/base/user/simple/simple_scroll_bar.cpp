@@ -825,6 +825,13 @@ void simple_scroll_bar::_001OnCreate(signal_details * pobj)
    if (m_puserschemaSchema == NULL)
    {
 
+      m_puserschemaSchema = GetTopLevelFrame()->m_puserschemaSchema;
+
+   }
+
+   if (m_puserschemaSchema == NULL)
+   {
+
       m_puserschemaSchema = Application.userschema();
 
    }

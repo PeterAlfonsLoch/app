@@ -92,10 +92,10 @@ namespace filemanager
       
       virtual void browse_sync(::action::context actioncontext);
       virtual void knowledge(const ::file::path & strPath,::action::context actioncontext,bool bOnlyParent = false);
-      virtual void filemanager_tree_insert(const ::file::path & strPath,::file::listing & listing, ::action::context actioncontext,bool bOnlyParent = false);
-      void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
+      virtual void filemanager_tree_insert(const ::file::path & strPath,::file::listing & listing, ::action::context actioncontext,bool bOnlyParent = false, bool bVoidTreeDataChangeEvent = true);
+      void _017EnsureVisible(const ::file::path & path, ::action::context actioncontext);
 
-      ::data::tree_item * find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
+      ::data::tree_item * find_item(const ::file::path & path, bool bPathFromItemFromOwnTree = false, ::data::tree_item * pitemStart = NULL);
 
 
 

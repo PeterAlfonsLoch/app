@@ -389,6 +389,36 @@ namespace windows
       }
 
 
+      bool speaker::is_lang_ok(string strLang)
+      {
+
+         bool bTts = false;
+
+         //if((!m_tts.Lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
+         if (!m_tts.Lookup(strLang, bTts))
+         {
+
+            if (initialize(strLang))
+            {
+
+               bTts = true;
+
+            }
+            else
+            {
+
+               bTts = false;
+
+            }
+
+            m_tts[strLang] = bTts;
+
+         }
+
+         return bTts;
+
+      }
+
       //--------------------------------------------------------------------
       // Speaks some text.
       // (The input text must not be empty.)
@@ -407,31 +437,10 @@ namespace windows
 
          }
 
-         bool bTts = false;
-
-         //if((!m_tts.Lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
-         if (!m_tts.Lookup(strLang, bTts))
+         if (!is_lang_ok(strLang))
          {
 
-            if (initialize(strLang))
-            {
-               
-               m_tts[strLang] = true;
-
-            }
-            else
-            {
-
-               m_tts[strLang] = false;
-
-               if (!initialize_translator(strLang))
-               {
-
-                  return false;
-
-               }
-
-            }
+            return ::tts::speaker::speak(strLang, text, bSync);
 
          }
 
@@ -518,6 +527,14 @@ namespace windows
       bool speaker::is_speaking(string strLang)
       {
 
+         if (!is_lang_ok(strLang))
+         {
+
+            return ::tts::speaker::is_speaking(strLang);
+
+         }
+
+
          if(m_voice[strLang].is_null())
          {
 
@@ -543,6 +560,13 @@ namespace windows
 
       bool speaker::stop(string strLang)
       {
+
+         if (!is_lang_ok(strLang))
+         {
+
+            return ::tts::speaker::stop(strLang);
+
+         }
 
          if (m_tts[strLang])
          {

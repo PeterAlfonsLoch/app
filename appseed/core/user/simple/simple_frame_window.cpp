@@ -271,6 +271,9 @@ sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 
    pschema->set_style(m_varFrame["style"]);
 
+
+
+
    return pschema;
 
 }
@@ -383,8 +386,6 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    }
 
-   m_puserschemaSchema = Application.userschema();
-
    if (m_workset.m_ebuttonaHide.contains(::user::wndfrm::frame::button_transparent_frame))
    {
 
@@ -465,6 +466,24 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
          pcreate->m_bRet = true;
 
          return;
+
+      }
+      if (m_puserschemaSchema == NULL)
+      {
+
+         string strSchema = m_varFrame["wndfrm"];
+         
+         m_puserschemaSchema = Session.get_user_schema(strSchema);
+
+      }
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = Application.userschema();
+
+
+
 
       }
 
@@ -568,7 +587,7 @@ void simple_frame_window::defer_set_icon()
 
       stringa straMatter;
 
-      if (strMatter.name(0).is_equal("system"))
+      if (strMatter.name(0) == "system")
       {
 
          straMatter.add("main");

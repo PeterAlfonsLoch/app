@@ -1790,6 +1790,20 @@ namespace user
 
       }
 
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = GetTopLevelFrame()->m_puserschemaSchema;
+
+      }
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = Application.userschema();
+
+      }
       if (m_spfont.is_null())
       {
 

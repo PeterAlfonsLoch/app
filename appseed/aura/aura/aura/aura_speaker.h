@@ -11,6 +11,9 @@ namespace tts
    public:
 
 
+      sp(speaker)          m_pspeakerFallback;
+
+
       speaker(::aura::application * papp);
 
       virtual ~speaker();

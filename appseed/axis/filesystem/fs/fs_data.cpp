@@ -106,10 +106,10 @@ namespace fs
    }
 
 
-   bool data::is_dir(const ::file::path & pszPath)
+   int data::is_dir(const ::file::path & pszPath)
    {
       UNREFERENCED_PARAMETER(pszPath);
-      return false;
+      return -1;
    }
 
    ::file::listing & data::root_ones(::file::listing & listing)

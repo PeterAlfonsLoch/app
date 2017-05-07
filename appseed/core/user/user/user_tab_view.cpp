@@ -750,9 +750,22 @@ namespace user
       if(!is_this_visible())
          return;
 
-      _001DrawChildren(pgraphics);
+      if (m_bDrawTabAtBackground)
+      {
 
-      _001DrawThis(pgraphics);
+         _001DrawThis(pgraphics);
+
+         _001DrawChildren(pgraphics);
+
+      }
+      else
+      {
+
+         _001DrawChildren(pgraphics);
+
+         _001DrawThis(pgraphics);
+
+      }
 
    }
 

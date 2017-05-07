@@ -154,23 +154,56 @@ namespace filemanager
    {
       m_iIcon = 0x80000000;
    }
-
-   ImageKey::ImageKey(const ImageKey & key)
+   ImageKeyStore::ImageKeyStore()
    {
-      m_strPath         = key.m_strPath;
+   }
+
+   ImageKeyStore::ImageKeyStore(const ImageKey & key)
+   {
+      m_pszPath =strdup(key.m_pszPath);
       m_iIcon           = key.m_iIcon;
-      m_strExtension    = key.m_strExtension;
+      m_eattribute = key.m_eattribute;
+      m_eicon = key.m_eicon;
+      m_pszExtension    = strdup(key.m_pszExtension);
+      m_pszShellThemePrefix = strdup(key.m_pszShellThemePrefix);
    }
-
-
-   bool ImageKey::operator == (const ImageKey & key) const
+   ImageKeyStore::~ImageKeyStore()
    {
-      return m_iIcon == key.m_iIcon
-         && m_strExtension == key.m_strExtension
-         && m_strPath == key.m_strPath;
+      if (m_pszPath != NULL)
+      {
+         free(m_pszPath);
+      }
+      if (m_pszPath != NULL)
+      {
+         free(m_pszExtension);
+      }
+      if (m_pszPath != NULL)
+      {
+         free(m_pszShellThemePrefix);
+      }
    }
 
+   void ImageKey::set_path(const string & strPath, bool bSetExtension)
+   {
 
+      m_pszPath = (char *) strPath.c_str();
+
+      set_extension(strPath);
+
+   }
+
+   void ImageKey::set_extension(const string & strPath)
+   {
+
+      index iFind1 = strPath.rfind('/');
+      index iFind2 = strPath.rfind('\\');
+      index iFind = MAX(iFind1, iFind2) + 1;
+
+      m_pszExtension = (char *) &strPath[strPath.find('.', iFind)];
+
+
+
+   }
 
 
 
@@ -184,6 +217,7 @@ namespace filemanager
       m_pil48->create(48, 48, 0, 10, 10);
       m_pil48Hover = canew(image_list(papp));
       m_pil48Hover->create(48, 48, 0, 10, 10);
+      m_imagemap.InitHashTable(16384);
    }
 
    ImageSet::~ImageSet()
@@ -205,7 +239,7 @@ namespace filemanager
 
    }
 
-   int32_t ImageSet::GetImage(oswindow oswindow, const char * lpcsz, EFileAttribute eattribute, EIcon eicon, COLORREF crBk)
+   int32_t ImageSet::GetImage(oswindow oswindow, const string & strPath, EFileAttribute eattribute, EIcon eicon, COLORREF crBk)
    {
 
       if(argb_get_a_value(crBk) != 255)
@@ -220,20 +254,24 @@ namespace filemanager
 
       ImageKey imagekey;
 
-      string str(lpcsz);
+      imagekey.set_path(strPath);
 
-      imagekey.m_strPath.Format(":%s:%d:%d:%s", lpcsz, eattribute, eicon, m_strShellThemePrefix);
+      imagekey.m_pszShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
 
-      imagekey.m_strExtension = str.Mid(str.reverse_find('.'));
+      imagekey.m_eattribute = eattribute;
+
+      imagekey.m_eicon = eicon;
 
       imagekey.m_iIcon = 0;
 
-      if(m_imagemap.Lookup(imagekey,iImage))
+      if (m_imagemap.Lookup(imagekey, iImage))
+      {
+
          return iImage;
 
+      }
 
-
-      iImage = GetImage(oswindow,lpcsz,NULL,eicon,eattribute == FileAttributeDirectory, crBk);
+      iImage = GetImage(oswindow,imagekey,NULL, crBk);
 
       m_imagemap.set_at(imagekey,iImage);
 
@@ -241,9 +279,11 @@ namespace filemanager
       {
 
          synch_lock sl1(m_pil48Hover->m_pmutex);
+
          synch_lock sl2(m_pil48->m_pmutex);
 
          {
+
             ::draw2d::dib_sp dib(allocer());
             dib->create(48,48);
             dib->Fill(255,argb_get_r_value(crBk),argb_get_g_value(crBk),argb_get_b_value(crBk));
@@ -255,6 +295,7 @@ namespace filemanager
             m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          }
+
          {
             ::draw2d::dib & d = *m_pil48Hover->m_spdib;
             size s = m_pil48->m_spdib->m_size;
@@ -277,14 +318,94 @@ namespace filemanager
 
    }
 
+   int32_t ImageSet::GetImageFoo(oswindow oswindow, const string & strExtension, EFileAttribute eattribute, EIcon eicon, COLORREF crBk)
+   {
+
+      if (argb_get_a_value(crBk) != 255)
+      {
+
+         crBk = 0;
+
+      }
 
 
-   int32_t ImageSet::GetImageByExtension(oswindow oswindow,const ::file::path & pszPath,EIcon eicon,bool bFolder, COLORREF crBk)
+      int32_t iImage = 0x80000000;
+
+      ImageKey imagekey;
+
+      imagekey.m_pszPath = "foo";
+
+      imagekey.m_pszShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
+
+      imagekey.m_pszExtension = (char *) strExtension.c_str();
+
+      imagekey.m_eattribute = eattribute;
+
+      imagekey.m_eicon = eicon;
+
+      imagekey.m_iIcon = 0;
+
+      if (m_imagemap.Lookup(imagekey, iImage))
+      {
+
+         return iImage;
+
+      }
+
+      iImage = GetImage(oswindow, imagekey, NULL, crBk);
+
+      m_imagemap.set_at(imagekey, iImage);
+
+      if (crBk != 0)
+      {
+
+         synch_lock sl1(m_pil48Hover->m_pmutex);
+
+         synch_lock sl2(m_pil48->m_pmutex);
+
+         {
+
+            ::draw2d::dib_sp dib(allocer());
+            dib->create(48, 48);
+            dib->Fill(255, argb_get_r_value(crBk), argb_get_g_value(crBk), argb_get_b_value(crBk));
+            dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+            m_pil48Hover->draw(dib->get_graphics(), iImage, null_point(), 0);
+            m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+            m_pil48Hover->m_spdib->get_graphics()->BitBlt(iImage * 48, 0, 48, 48, dib->get_graphics());
+            m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+         }
+
+         {
+            ::draw2d::dib & d = *m_pil48Hover->m_spdib;
+            size s = m_pil48->m_spdib->m_size;
+            ::draw2d::dib_sp dib(allocer());
+            dib->create(d.size());
+            dib->Fill(255, argb_get_r_value(crBk), argb_get_g_value(crBk), argb_get_b_value(crBk));
+            dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+            dib->get_graphics()->BitBlt(null_point(), d.size(), d.get_graphics());
+            dib->get_graphics()->FillSolidRect(0, 0, d.size().cx, d.size().cy, ARGB(123, argb_get_r_value(crBk), argb_get_g_value(crBk), argb_get_b_value(crBk)));
+            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+            m_pil48->m_spdib->get_graphics()->BitBlt(null_point(), d.size(), dib->get_graphics());
+            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+         }
+
+      }
+
+      return iImage;
+
+
+   }
+
+
+   int32_t ImageSet::GetImageByExtension(oswindow oswindow, ImageKey & key, COLORREF crBk)
    {
 
 #ifdef WINDOWSEX
 
-      return GetFooImage(oswindow,eicon,bFolder,pszPath.ext(), crBk);
+      return GetFooImage(oswindow,key, crBk);
 
 #else
 
@@ -423,24 +544,16 @@ namespace filemanager
    }
 
 
-   int32_t ImageSet::GetImage(
-      oswindow oswindow,
-      const char * psz,
-      const unichar * lpcszExtra,
-      EIcon eicon,
-      bool bFolder,
-      COLORREF crBk)
+   int32_t ImageSet::GetImage(oswindow oswindow, ImageKey imagekey, const unichar * lpcszExtra, COLORREF crBk)
    {
 
       single_lock sl(&m_mutex, true);
 
-      string strPath(psz);
-
       int32_t iImage = 0x80000000;
 
-      if(::str::ends_ci(strPath, ".core"))
+      if(::str::ends_ci(imagekey.m_pszPath, ".core"))
       {
-         string str = Application.file().as_string(strPath);
+         string str = Application.file().as_string(imagekey.m_pszPath);
          if(::str::begins_eat_ci(str,"ca2prompt\r\n"))
          {
             str.trim();
@@ -471,11 +584,11 @@ namespace filemanager
       }
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      strsize iFind = ::str::find_ci("://", strPath);
-      strsize iFind2 = ::str::find_ci(":",strPath);
+      strsize iFind = ::str::find_ci("://", imagekey.m_pszPath);
+      strsize iFind2 = ::str::find_ci(":", imagekey.m_pszPath);
       if(iFind >= 0 || iFind2 >= 2)
       {
-         string strProtocol = strPath.Left(MAX(iFind, iFind2));
+         string strProtocol = string(imagekey.m_pszPath).Left(MAX(iFind, iFind2));
          int32_t i = 0;
          while(i < strProtocol.get_length() && isalnum_dup(strProtocol[i]))
          {
@@ -484,11 +597,11 @@ namespace filemanager
          if(i > 0 && i == strProtocol.get_length())
          {
             // heuristically valid protocol
-            return GetImageByExtension(oswindow, strPath, eicon, bFolder, crBk);
+            return GetImageByExtension(oswindow, imagekey, crBk);
          }
-         if(bFolder)
+         if(imagekey.m_eattribute.is_signalized(FileAttributeDirectory))
          {
-            return GetImageByExtension(oswindow, strPath, eicon, bFolder,crBk);
+            return GetImageByExtension(oswindow, imagekey,crBk);
          }
       }
 
@@ -496,7 +609,7 @@ namespace filemanager
 
       string strExtension;
 
-      if (::str::ends_ci(string(strPath), ".sln"))
+      if (::str::ends_ci(imagekey.m_pszPath, ".sln"))
       {
          output_debug_string("test");
       }
@@ -671,29 +784,29 @@ namespace filemanager
 
 #endif
 
-      string str(psz);
+      string str(imagekey.m_pszPath);
 
 #ifdef WINDOWSEX
 
       if(str == "foo")
       {
 
-         return GetFooImage(oswindow,eicon,bFolder,"", crBk);
+         return GetFooImage(oswindow,imagekey, crBk);
 
       }
 
       if(::str::begins_eat(str,"foo."))
       {
 
-         return GetFooImage(oswindow,eicon,bFolder,str,crBk);
+         return GetFooImage(oswindow,imagekey,crBk);
 
       }
 
       LPITEMIDLIST lpiidlAbsolute;
 
-      _017ItemIDListParsePath(oswindow, &lpiidlAbsolute,psz);
+      _017ItemIDListParsePath(oswindow, &lpiidlAbsolute,imagekey.m_pszPath);
 
-      iImage = GetImage(oswindow,lpiidlAbsolute,lpcszExtra,eicon, crBk);
+      iImage = GetImage(oswindow,imagekey, lpiidlAbsolute,lpcszExtra, crBk);
 
       _017ItemIDListFree(lpiidlAbsolute);
 

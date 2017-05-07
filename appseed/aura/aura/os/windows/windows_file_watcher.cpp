@@ -235,8 +235,13 @@ namespace file_watcher
          | FILE_NOTIFY_CHANGE_LAST_WRITE
          ,bRecursive);
 
-      if(pwatch == NULL)
-         throw file_not_found_exception(directory);
+      if (pwatch == NULL)
+      {
+         
+         return -1;
+
+      }
+
 
       pwatch->m_id = id;
       pwatch->m_pwatcher = this;

@@ -79,6 +79,8 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
+      
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -150,6 +152,8 @@ namespace user
       GetClientRect(drawitemdata.m_rectClient);
 
       sp(::data::tree_item) pitem = m_pitemFirstVisible;
+
+      synch_lock sl(pitem.is_null()? NULL :pitem->m_ptree->m_pmutex);
 
       index iItem = m_iFirstVisibleItemProperIndex;
 
@@ -629,11 +633,16 @@ namespace user
 
       //   if(iItem >= _001StaticGetItemCount())
       //      return false;
+
+      synch_lock sl(m_treeptra.has_elements() ? m_treeptra[0]->m_pmutex : NULL);
       
       sp(::data::tree_item) pitem = get_proper_item(iItem);
 
       if(pitem == NULL)
          return NULL;
+
+      
+
 
       index iLevel = pitem->m_iLevel;
 
@@ -948,6 +957,21 @@ namespace user
       if(rectClient.area() <= 0)
          return;
 
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = GetTopLevelFrame()->m_puserschemaSchema;
+
+      }
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = Application.userschema();
+
+      }
+
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
       m_iCurrentViewWidth = _001CalcTotalViewWidth();
@@ -1079,6 +1103,8 @@ namespace user
    sp(::data::tree_item) tree::CalcFirstVisibleItem(index & iProperIndex)
    {
       
+      synch_lock sl(m_treeptra.has_elements() ? m_treeptra[0]->m_pmutex : NULL);
+
       index nOffset;
       
       if(_001GetItemHeight() == 0)
@@ -1523,7 +1549,7 @@ namespace user
 
    index tree::get_proper_item_count()
    {
-
+      synch_lock sl(m_pmutex);
       index iCount = 0;
 
       for (index i = 0; i < m_treeptra.get_count(); i++)
@@ -1561,8 +1587,8 @@ namespace user
 
       point ptOffset = get_viewport_offset();
 
-      index iMinVisibleIndex = (index)(ptOffset.y / m_iItemHeight + 2);
-      index iMaxVisibleIndex = (index)(iMinVisibleIndex + _001GetVisibleItemCount() - 2);
+      index iMinVisibleIndex = (index)(ptOffset.y / m_iItemHeight);
+      index iMaxVisibleIndex = (index)(iMinVisibleIndex + _001GetVisibleItemCount());
 
 
       if (iIndex < iMinVisibleIndex || iIndex > iMaxVisibleIndex)
@@ -1572,11 +1598,12 @@ namespace user
 
          set_viewport_offset_y((int) MAX(iNewScrollIndex,0) * m_iItemHeight);
 
+         on_layout();
+
+         RedrawWindow();
+
       }
 
-      on_layout();
-
-      RedrawWindow();
 
    }
 

@@ -449,6 +449,34 @@ public:
    strsize find(char ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
    strsize find_ci(char ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
+   strsize find_skip_or_length(char ch, strsize start = 0) const RELEASENOTHROW
+   {
+
+      while (true)
+      {
+
+         if (m_pszData[start] == '\0')
+         {
+
+            return start;
+
+         }
+
+         if (m_pszData[start] == ch)
+         {
+
+            start++;
+
+            return start;
+
+         }
+
+         start++;
+
+      }
+
+   }
+
    strsize find_whitespace_or_length(strsize start = 0) const RELEASENOTHROW;
 
    // look for a specific sub-string
@@ -1202,7 +1230,7 @@ inline int32_t __cdecl crt_char_traits::StringCompare(const char * pszA,const ch
 inline int32_t __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
 {
 
-   return stricmp_dup(reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+   return stricmp(reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 
 }
 

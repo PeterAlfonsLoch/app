@@ -2182,6 +2182,10 @@ namespace user
          {
             try
             {
+               if (pui.is_null())
+               {
+                  continue;
+               }
                if(pui->IsWindowVisible() && pui->_001IsPointInside(pmouse->m_pt))
                {
                   try

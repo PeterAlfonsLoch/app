@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE impact :
-      virtual public ::signalizable
+      virtual public ::user::interaction
    {
    public:
 

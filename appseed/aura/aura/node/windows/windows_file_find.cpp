@@ -395,7 +395,25 @@ namespace windows
       if (m_pFoundInfo != NULL)
       {
 
-         ::str::international::unicode_to_utf8(ret, m_pFoundInfo->cFileName);
+         strsize iLen = wcslen(m_pFoundInfo->cFileName);
+
+         strsize i = iLen - 1;
+
+         while (i >= 0 && m_pFoundInfo->cFileName[i] == '\\')
+         {
+
+            i--;
+
+         }
+
+         if (i < 0)
+         {
+
+            i = 0;
+
+         }
+
+         ::str::international::unicode_to_utf8(ret, m_pFoundInfo->cFileName, i + 1);
 
       }
 

@@ -2558,13 +2558,162 @@ namespace user
       pobj->m_bRet = false;
    }
 
+   void mesh::_001OnMouseMove(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      pmouse->set_lresult(1);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      pmouse->previous(); // give chance to child control
+
+      synch_lock sl(m_pmutex);
+
+      if (m_bDrag)
+      {
+
+         if (!m_bLButtonDown)
+         {
+
+            m_bDrag = false;
+
+         }
+         else if (pmouse->m_nFlags == 0)
+         {
+
+            m_bLButtonDown = false;
+            m_bDrag = false;
+
+         }
+
+      }
+
+      if (m_bDrag)
+      {
+
+         if (m_iItemMouseDown >= 0)
+         {
+            //index iItemOld = m_iItemDrop;
+            m_ptLButtonUp = pt;
+            //if (!_001DisplayHitTest(pt, m_iItemDrop))
+            {
+            }
+            //            if (iItemOld != m_iItemDrop)
+            {
+               //             if (m_eview == view_icon)
+               {
+                  //if (iItemOld != m_iItemDrag)
+                  {
+                     //                  m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
+                  }
+                  //             m_iconlayout.m_iaDisplayToStrict.array_insert(m_iItemDrop, m_iStrictItemDrag);
+                  //array_translate_a(m_iconlayout.m_iaDisplayToStrict, m_iItemDrop, iItemOld);
+
+               }
+               RedrawWindow();
+            }
+         }
+      }
+      else if(m_bHoverSelect)
+      {
+
+         if (m_bLButtonDown)
+         {
+
+            bool bShouldStartDrag = d_distance(pt, m_ptLButtonDown) > m_iItemHeight;
+
+            if (!bShouldStartDrag)
+            {
+
+               index iItem = -1;
+
+               if (_001DisplayHitTest(pt, iItem))
+               {
+
+                  if (iItem != m_iDisplayItemLButtonDown)
+                  {
+
+                     bShouldStartDrag = true;
+
+                  }
+
+               }
+
+            }
+
+            if (bShouldStartDrag)
+            {
+
+               m_bDrag = true;
+
+            }
+
+
+         }
+
+      }
+
+      track_mouse_leave();
+
+      //if(m_spmenuPopup.is_null())
+      {
+
+         UpdateHover();
+         pobj->m_bRet = true;
+
+
+         index iItemEnter;
+         index iSubItemEnter;
+         point point;
+         //Session.get_cursor_pos(&point);
+         //ScreenToClient(&point);
+
+         if (_001DisplayHitTest(pt, iItemEnter, iSubItemEnter))
+         {
+            if (m_bSelect && m_bHoverSelect &&
+               (m_iSubItemEnter != iSubItemEnter ||
+                  m_iItemEnter != iItemEnter)
+               && !m_rangeSelection.has_item(iItemEnter))
+            {
+               m_iMouseFlagEnter = pmouse->m_nFlags;
+               m_iItemEnter = iItemEnter;
+               m_iSubItemEnter = iSubItemEnter;
+               //SetTimer(12321, 840, NULL);
+               SetTimer(12321, 184 + 177 + 151, NULL);
+               //track_mouse_hover();
+            }
+         }
+
+      }
+
+
+   }
+
+
    void mesh::_001OnLButtonDown(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::mouse,pmouse,pobj);
-         pmouse->previous(); // give chance to child control and to base views
+      
+      pmouse->previous(); // give chance to child control and to base views
+
+      m_bLButtonDown = true;
+
+      SetCapture();
+
       int_ptr iItem;
+      
       point pt = pmouse->m_pt;
+      
       ScreenToClient(&pt);
+
+      m_ptLButtonDown = pt;
+
+      m_dwLButtonDownStart = get_tick_count();
 
       if (!has_focus())
       {
@@ -2577,6 +2726,13 @@ namespace user
 
       Session.user()->set_mouse_focus_LButtonDown(this);
 
+      if (!_001DisplayHitTest(pt, m_iDisplayItemLButtonDown))
+      {
+
+         m_iDisplayItemLButtonDown = -1;
+
+      }
+
       if(m_bSelect)
       {
 
@@ -2586,17 +2742,33 @@ namespace user
             if(_001DisplayHitTest(pt,iItem))
             {
 
-               uint_ptr nFlags = m_uiLButtonUpFlags;
+               // In "Hover Select"/"Single Click to Open" mode
+               // the "Last Button UP flag" from a double-click
+               // doesn't exist! So cannot "magically" take a
+               // possibly quite old or inexisting "Last Button UP flag" (filled
+               // with garbage in this later inexisting case),
+               // and use as parameter for _001OnClick.
+               // And if it is actually from a double-click,
+               // because "Hover Select"/"Single Click to Open"
+               // mode is active, the "Last Button UP flag"
+               // shouldn't be regarded, as it is not directly
+               // related with further click other than the
+               // current click, i.e., there is no interpretation
+               // for double-click in "Hover Select"/"Single Click to Open" 
+               // mode, and every click must be regarded as single
+               // independent click.
+               // Action. Remove.
+               // uint_ptr nFlags = m_uiLButtonUpFlags;
 
-               point point = pt;
+               // uint_ptr nFlags = 0;
 
-               _001OnClick(nFlags, point);
+               // point point = pt;
 
-               Redraw();
+               // _001OnClick(nFlags, point);
 
+               // Redraw();
 
-               m_iClick = 0;
-
+               // m_iClick = 0;
 
             }
             else
@@ -2657,11 +2829,17 @@ namespace user
       pmouse->set_lresult(1);
    }
 
+
    void mesh::_001OnLButtonUp(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse,pmouse,pobj);
-         point pt = pmouse->m_pt;
+      
+      point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
+
+      ReleaseCapture();
 
       if (m_bDrag)
       {
@@ -2686,6 +2864,43 @@ namespace user
          }
 
       }
+      else if (m_bHoverSelect)
+      {
+
+         if (m_bLButtonDown)
+         {
+
+            index iDisplayItemLButtonUp = -1;
+
+            if (_001DisplayHitTest(pt, iDisplayItemLButtonUp) && iDisplayItemLButtonUp >= 0)
+            {
+
+               if (iDisplayItemLButtonUp == m_iDisplayItemLButtonDown)
+               {
+
+                  if (!m_rangeSelection.has_item(iDisplayItemLButtonUp))
+                  {
+
+                     m_rangeSelection.clear();
+
+                     item_range itemrange;
+
+                     itemrange.set(iDisplayItemLButtonUp, iDisplayItemLButtonUp, 0, m_nColumnCount - 1, -1, -1);
+
+                     _001AddSelection(itemrange);
+
+                  }
+
+                  _001OnClick(pmouse->m_nFlags, pt);
+
+               }
+
+
+            }
+
+         }
+
+      }
       //else
       //{
       // commented on 2017-03-28
@@ -2697,6 +2912,10 @@ namespace user
       //}
       pobj->m_bRet = true;
       pmouse->set_lresult(1);
+
+      m_bLButtonDown = false;
+
+
    }
 
    void mesh::_001OnRButtonDown(signal_details * pobj)
@@ -4209,58 +4428,6 @@ namespace user
 
 
 
-   /*void mesh::InstallMessageHandling(MessageDispatch *pinterface)
-   {
-   m_lpfnOnSize = (_001_ON_SIZE) _001OnSize;
-   m_lpfnOnVScroll = (_001_ON_VSCROLL) _001OnVScroll;
-   m_lpfnOnHScroll = (_001_ON_HSCROLL) _001OnHScroll;
-   m_lpfnOnPaint = (_001_ON_PAINT) _001OnPaint;
-   m_lpfnOnLButtonDown = (_001_ON_LBUTTONDOWN) _001OnLButtonDown;
-   m_lpfnOnLButtonUp =(_001_ON_LBUTTONUP) _001OnLButtonUp;
-   m_lpfnOnLButtonDblClk =(_001_ON_LBUTTONDBLCLK)_001OnLButtonDblClk;
-   m_lpfnOnCreate = (_001_ON_CREATE) _001OnCreate;
-   m_lpfnOnTimer = (_001_ON_TIMER) _001OnTimer;*/
-
-   /*   VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnSize);
-
-   VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnVScroll);
-
-   VMSGEN_WINDOW_ON_HSCROLL_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnHScroll);
-
-   VMSGEN_WINDOW_ON_LBUTTONDOWN_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonDown);
-
-   VMSGEN_WINDOW_ON_LBUTTONUP_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonUp);
-
-   VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonDblClk);
-
-   VMSGEN_WINDOW_ON_CREATE_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonCreate);
-
-   VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonTimer);
-   }*/
 
    void mesh::SetCacheInterface(mesh_cache_interface * pinterface)
    {
@@ -4938,6 +5105,14 @@ namespace user
    }
 
 
+   bool mesh::does_drag_reorder()
+   {
+
+      return false;
+
+   }
+
+
    void mesh::_001OnSort()
    {
       if(!m_bSortEnable)
@@ -5190,83 +5365,6 @@ namespace user
    }
 
 
-   void mesh::_001OnMouseMove(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::mouse,pmouse,pobj);
-
-      pmouse->set_lresult(1);
-
-      point pt = pmouse->m_pt;
-
-      ScreenToClient(&pt);
-
-      pmouse->previous(); // give chance to child control
-
-      synch_lock sl(m_pmutex);
-
-      if(m_bDrag)
-      {
-         
-         if(m_iItemMouseDown >= 0)
-         {
-            //index iItemOld = m_iItemDrop;
-            m_ptLButtonUp = pt;
-            //if (!_001DisplayHitTest(pt, m_iItemDrop))
-            {
-            }
-//            if (iItemOld != m_iItemDrop)
-            {
-  //             if (m_eview == view_icon)
-               {
-                  //if (iItemOld != m_iItemDrag)
-                  {
-                     //                  m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
-                  }
-                  //             m_iconlayout.m_iaDisplayToStrict.array_insert(m_iItemDrop, m_iStrictItemDrag);
-                  //array_translate_a(m_iconlayout.m_iaDisplayToStrict, m_iItemDrop, iItemOld);
-
-               }
-               RedrawWindow();
-            }
-         }
-      }
-
-      track_mouse_leave();
-
-      //if(m_spmenuPopup.is_null())
-      {
-
-         UpdateHover();
-         pobj->m_bRet = true;
-
-
-         index iItemEnter;
-         index iSubItemEnter;
-         point point;
-         //Session.get_cursor_pos(&point);
-         //ScreenToClient(&point);
-
-         if(_001DisplayHitTest(pt,iItemEnter,iSubItemEnter))
-         {
-            if(m_bSelect && m_bHoverSelect &&
-               (m_iSubItemEnter != iSubItemEnter ||
-               m_iItemEnter != iItemEnter)
-               && !m_rangeSelection.has_item(iItemEnter))
-            {
-               m_iMouseFlagEnter = pmouse->m_nFlags;
-               m_iItemEnter = iItemEnter;
-               m_iSubItemEnter = iSubItemEnter;
-               //SetTimer(12321, 840, NULL);
-               SetTimer(12321,184 + 177 + 151,NULL);
-               //track_mouse_hover();
-            }
-         }
-
-      }
-
-
-   }
 
    void mesh::UpdateHover()
    {

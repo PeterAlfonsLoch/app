@@ -4,7 +4,7 @@ namespace file { class path; }
 
 inline bool is_url_dup(const string & strCandidate);
 
-CLASS_DECL_AURA string defer_solve_relative_compresions(const string & str);
+CLASS_DECL_AURA string solve_relative_compressions(const string & str);
 
 namespace file
 {
@@ -61,6 +61,7 @@ namespace file
    {
    public:
 
+      //string m_strNameUser;
       //typedef ::string_array < ::file::path,string > patha;
 
       path(e_context_switcher_null);
@@ -81,6 +82,7 @@ namespace file
 
       void set_type(e_path epath);
       
+
       
       inline char sep() const
       {
@@ -100,16 +102,81 @@ namespace file
 
       path & operator = (const string & str);
 
-      bool operator == (const path & path) const;
 
-      bool operator == (const string & str) const;
-      bool operator == (const char * psz) const;
+      bool path::is_equal(const path & path) const
+      {
+
+
+#ifdef WINDOWS
+
+         if (_stricmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
+            return true;
+
+#else
+
+         if (strcmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
+            return true;
+
+#endif
+
+      }
+
+
+      bool path::operator == (const path & path) const
+      {
+
+         return is_equal(path);
+
+      }
+
+      bool path::operator == (const string & str) const
+      {
+
+         return operator == (path(str));
+
+      }
+
+
+      bool path::operator == (const char * psz) const
+      {
+
+         return operator == (string(psz));
+
+      }
+
+
+      bool path::operator != (const path & path) const
+      {
+
+         return !is_equal(path);
+
+      }
+
+
+      bool path::operator != (const string & str) const
+      {
+
+         return operator != (path(str));
+
+      }
+
+
+      bool path::operator != (const char * psz) const
+      {
+
+         return operator != (string(psz));
+
+      }
+//      bool operator == (const path & path) const;
+
+//      bool operator == (const string & str) const;
+//      bool operator == (const char * psz) const;
       bool operator == (const var & var) const;
 
-      bool operator != (const path & path) const;
+//      bool operator != (const path & path) const;
 
-      bool operator != (const string & str) const;
-      bool operator != (const char * psz) const;
+//      bool operator != (const string & str) const;
+//      bool operator != (const char * psz) const;
       bool operator != (const var & var) const;
 
       path operator + (const path & path) const;
@@ -181,13 +248,21 @@ namespace file
 
       ::file::path title() const;
 
-      ::file::path name() const;
+      const char * name() const
+      {
+         return &m_pszData[rfind(sep()) +1];
+      }
 
-      ::file::path name(index i /* = -1 */) const;
+      string sname() const
+      {
+         return name();
+      }
+
+      string name(index i /* = -1 */) const;
 
       index find_file_name() const;
 
-      bool is_equal(const ::file::path & path2) const;
+//      bool is_equal(const ::file::path & path2) const;
 
       string extension() const;
 

@@ -36,6 +36,7 @@ namespace filemanager
       save_as_button(::aura::application * papp);
 
       virtual bool _001OnClick(uint_ptr nFlag, point point) override;
+      void on_update(user::impact *, LPARAM, object *);
 
    };
 

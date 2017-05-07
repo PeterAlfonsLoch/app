@@ -11,12 +11,12 @@ namespace fs
    }
 
 
-   item::item(const item & item)
+   item::item(const item & item) :
+      object(item),
+      m_filepath(item.m_filepath),
+      m_flags(item.m_flags)
    {
 
-      m_filepath        = item.m_filepath;
-
-      m_flags           = item.m_flags;
 
    }
 

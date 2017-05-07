@@ -685,9 +685,24 @@ public:
    }
 
    template < typename PRED >
-   index pred_find_first(PRED pred, index iStart = 0)
+   index pred_find_first(PRED pred, index iStart = 0, index iEnd = -1)
    {
-      for(index i = iStart; i < get_count(); i++)
+
+      if (iEnd < 0)
+      {
+
+         iEnd += get_count();
+
+      }
+
+      if (iEnd >= get_count())
+      {
+
+         iEnd = get_count() - 1;
+
+      }
+
+      for(index i = iStart; i < iEnd; i++)
       {
 
          if(pred(m_pData[i]))

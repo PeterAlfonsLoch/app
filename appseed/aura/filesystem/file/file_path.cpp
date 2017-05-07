@@ -74,7 +74,7 @@ namespace path
 
       GetModuleFileNameW(hmodule,wstr,(DWORD) wstr.count());
 
-      return defer_solve_relative_compresions(string(wstr));
+      return solve_relative_compressions(string(wstr));
 
 
 #elif defined(METROWIN)

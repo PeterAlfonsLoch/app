@@ -53,11 +53,11 @@ namespace userfs
       virtual bool _001IsTranslucent();
 
       virtual void browse_sync(::action::context actioncontext);
-      void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
+      void _017EnsureVisible(const ::file::path & path, ::action::context actioncontext);
 
-      ::data::tree_item * find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
+      ::data::tree_item * find_item(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item * pitemStart = NULL);
 
-      ::data::tree_item * find_absolute(const char * lpcsz,::data::tree_item * pitemStart = NULL);
+      ::data::tree_item * find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item * pitemStart = NULL);
       void clear(const char * lpcszPreserve1, const char * lpcszPreserve2);
       void arrange(::fs::e_arrange earrange);
 

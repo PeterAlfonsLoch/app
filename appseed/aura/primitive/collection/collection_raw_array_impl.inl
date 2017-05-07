@@ -543,21 +543,15 @@ void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::set_at_grow(index nIndex, ARG_TYPE
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at_grow(index nIndex)
+inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at_grow(index nIndex)
 {
    return element_at_grow(nIndex);
 }
 
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::element_at_grow(index nIndex)
+inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::element_at_grow(index nIndex)
 {
-   ASSERT_VALID(this);
-   ASSERT(nIndex >= 0);
-
-   if(nIndex < 0)
-      throw invalid_argument_exception(this->get_app());
-
    if (nIndex >= this->m_nSize)
       this->allocate(nIndex+1, -1);
    return get_data()[nIndex];

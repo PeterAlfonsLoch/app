@@ -43,10 +43,10 @@ namespace fs
    }
 
 
-   bool native::is_dir(const ::file::path & pszPath)
+   int native::is_dir(const ::file::path & pszPath)
    {
 
-      return System.dir().is(pszPath, get_app());
+      return System.dir().is(pszPath, get_app()) ? 1 : 0;
 
    }
 

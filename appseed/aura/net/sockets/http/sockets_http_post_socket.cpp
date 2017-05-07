@@ -269,7 +269,7 @@ namespace sockets
             if (pair.m_element2.m_spfile->GetFilePath().has_char())
             {
 
-               filename = "; filename=\"" + ::file::path(pair.m_element2.m_spfile->GetFilePath()).name() + "\"";
+               filename = "; filename=\"" + string(::file::path(pair.m_element2.m_spfile->GetFilePath()).name()) + "\"";
 
             }
 
@@ -383,7 +383,7 @@ namespace sockets
             if (pair.m_element2.m_spfile->GetFilePath().has_char())
             {
 
-               filename = "; filename=\"" + ::file::path(pair.m_element2.m_spfile->GetFilePath()).name() + "\"";
+               filename = "; filename=\"" + string(::file::path(pair.m_element2.m_spfile->GetFilePath()).name()) + "\"";
 
             }
 

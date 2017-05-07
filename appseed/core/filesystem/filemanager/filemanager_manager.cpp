@@ -542,7 +542,13 @@ namespace filemanager
 
       keep <bool> keepFullBrowse(&m_bFullBrowse, true, false, true);
 
-      browse(strPath, actioncontext);
+#define DBG_BROWSE_LOOP 10000
+      for (index i = 0; i < DBG_BROWSE_LOOP; i++)
+      {
+
+         browse(strPath, actioncontext);
+
+      }
 
       update_hint uh;
       uh.set_type(update_hint::TypeSynchronizePath);

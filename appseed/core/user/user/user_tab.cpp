@@ -53,7 +53,6 @@ namespace user
       m_bEnableCloseAll = false;
       m_rectTabClient.set(0,0,0,0);
 
-
    }
 
    tab::data::~data()
@@ -100,6 +99,9 @@ namespace user
       m_bShowTabs                = true;
 
       m_bHidingTabs              = false;
+
+      m_bDrawTabAtBackground = false;
+
 
 
       m_bNoTabs = System.directrix()->m_varTopicQuery.has_property("no_tabs");
@@ -691,36 +693,36 @@ namespace user
             else
             {
 
-               ::draw2d::pen_sp pen(allocer());
+::draw2d::pen_sp pen(allocer());
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
-               pgraphics->SelectObject(pen);
+pgraphics->SelectObject(pen);
 
-               //pgraphics->MoveTo(rect.left, rectBorder.bottom);
-               //pgraphics->LineTo(rect.right, rectBorder.bottom);
-               pgraphics->MoveTo(rectBorder.left, rectClient.bottom);
-               pgraphics->LineTo(rectBorder.left, rectBorder.top);
-               pgraphics->LineTo(rectClient.right, rectBorder.top);
-               pgraphics->LineTo(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-               pgraphics->LineTo(rectBorder.right - 1, rectClient.bottom);
-               pgraphics->LineTo(rectBorder.left, rectClient.bottom);
+//pgraphics->MoveTo(rect.left, rectBorder.bottom);
+//pgraphics->LineTo(rect.right, rectBorder.bottom);
+pgraphics->MoveTo(rectBorder.left, rectClient.bottom);
+pgraphics->LineTo(rectBorder.left, rectBorder.top);
+pgraphics->LineTo(rectClient.right, rectBorder.top);
+pgraphics->LineTo(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+pgraphics->LineTo(rectBorder.right - 1, rectClient.bottom);
+pgraphics->LineTo(rectBorder.left, rectClient.bottom);
 
-               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
-               {
-                  pgraphics->set_font(get_data()->m_fontUnderline);
-                  brushText->create_solid(ARGB(255, 0, 127, 255));
-               }
-               else
-               {
-                  pgraphics->set_font(get_data()->m_font);
-                  brushText = get_data()->m_brushText;
-               }
+if (iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
+{
+   pgraphics->set_font(get_data()->m_fontUnderline);
+   brushText->create_solid(ARGB(255, 0, 127, 255));
+}
+else
+{
+   pgraphics->set_font(get_data()->m_font);
+   brushText = get_data()->m_brushText;
+}
             }
 
          }
 
-         if(get_element_rect(iVisiblePane, rectText, element_text))
+         if (get_element_rect(iVisiblePane, rectText, element_text))
          {
 
             pgraphics->SelectObject(brushText);
@@ -729,10 +731,10 @@ namespace user
 
          }
 
-         if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
+         if (get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
          {
             pgraphics->set_font(get_data()->m_fontBold);
-            if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
+            if (iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
                brushText = get_data()->m_brushCloseSel;
                brushText->create_solid(ARGB(0xff, 255, 127, 0));
@@ -754,7 +756,7 @@ namespace user
    }
 
 
-   void tab::get_title(int iPane,stringa & stra)
+   void tab::get_title(int iPane, stringa & stra)
    {
 
       ::user::tab_pane & tab_pane = get_data()->m_panea(iPane);
@@ -774,7 +776,7 @@ namespace user
 
    void tab::GetTabClientRect(RECT64 * lprect)
    {
-      
+
       rect rectClient;
       GetClientRect(rectClient);
       rect64 rect64(rectClient);
@@ -786,6 +788,34 @@ namespace user
    void tab::on_layout()
    {
 
+      rect r1;
+
+      GetClientRect(r1);
+
+      if (r1.is_empty())
+      {
+
+
+         return;
+
+      }
+
+
+
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = GetTopLevelFrame()->m_puserschemaSchema;
+
+      }
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = Application.userschema();
+
+      }
 
       if(m_puserschemaSchema != NULL)
       {
@@ -1452,7 +1482,7 @@ namespace user
       if(pobj->previous())
          return;
 
-      m_puserschemaSchema = Application.userschema();
+      //m_puserschemaSchema = Application.userschema();
    //  m_pimagelist = new image_list(get_app());
 
       get_data()->m_bCreated = true;

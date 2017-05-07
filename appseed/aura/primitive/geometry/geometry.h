@@ -263,3 +263,7 @@ CLASS_DECL_AURA bool deflate(LPRECT prect, const RECT & rect);
 
 
 
+
+
+
+CLASS_DECL_AURA double d_distance(POINT p1, POINT p2);

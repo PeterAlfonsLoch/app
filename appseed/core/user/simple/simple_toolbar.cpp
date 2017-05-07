@@ -61,6 +61,14 @@ simple_toolbar::simple_toolbar(::aura::application * papp) :
 
    m_rectItemPad.set(-1);
 
+   // lakic
+   m_sizeSpacing.cx = 8;
+
+   m_rectItemPad.set(9, 9);
+
+   m_rectBorder.set(9, 9);
+   // end lakic
+
    m_iHover = 0x80000000;
 
    m_iButtonPressItem = -1;
@@ -371,7 +379,9 @@ void simple_toolbar::_001OnCreate(signal_details * pobj)
 {
    if (pobj->previous())
       return;
-   m_puserschemaSchema = Session.m_puserschemaSchema;
+
+
+   //m_puserschemaSchema = Session.m_puserschemaSchema;
    m_dibDraft->create(20, 20);
 }
 
@@ -1119,6 +1129,20 @@ void simple_toolbar::on_layout()
    //ASSERT(m_bDelayedButtonLayout);
 
    synch_lock ml(m_pmutex);
+
+   if (m_puserschemaSchema == NULL)
+   {
+
+      m_puserschemaSchema = GetTopLevelFrame()->m_puserschemaSchema;
+
+   }
+
+   if (m_puserschemaSchema == NULL)
+   {
+
+      m_puserschemaSchema = Application.userschema();
+
+   }
 
    m_bDelayedButtonLayout = false;
 

@@ -139,6 +139,13 @@ namespace filemanager
 
    }
 
+   void save_as_button::on_update(user::impact *p, LPARAM l , object * o)
+   {
+
+      ::filemanager::impact::on_update(p, l, o);
+
+   }
+
    bool save_as_button::_001OnClick(uint_ptr nFlag, point point)
    {
 

@@ -19,21 +19,42 @@ namespace tts
    bool speaker::speak(const string & strText)
    {
 
-      return false;
+      if (m_pspeakerFallback.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pspeakerFallback->speak(strText);
 
    }
 
    bool speaker::speak(const string & strLang, const string & strText, bool bSynch)
    {
 
-      return false;
+      if (m_pspeakerFallback.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pspeakerFallback->speak(strLang, strText, bSynch);
 
    }
 
    bool speaker::stop(string strLang)
    {
    
-      return false;
+      if (m_pspeakerFallback.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pspeakerFallback->stop(strLang);
 
    }
 
@@ -41,7 +62,14 @@ namespace tts
    bool speaker::is_speaking(string strLang)
    {
 
-      return false;
+      if (m_pspeakerFallback.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pspeakerFallback->speak(strLang);
 
    }
 

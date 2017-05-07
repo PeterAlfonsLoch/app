@@ -151,7 +151,7 @@ namespace user
       e_element                        m_eelement;
       sp(::create)                     m_spcreatecontext;
       ::count                          m_iRestoredTabCount;
-
+      bool                             m_bDrawTabAtBackground;
 
       tab(::aura::application * papp);
             virtual ~tab();

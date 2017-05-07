@@ -13,7 +13,8 @@ namespace userfs
 
    list_item & list_item_array::base_list_item_array::get_item(index i, index (* fCompare)(const sp(list_item) &, const sp(list_item) &))
    {
-      return *this->element_at(i, fCompare);
+      //return *this->element_at(i, fCompare);
+      return *this->element_at(i);
    }
 
    list_item_array::list_item_array(::aura::application * papp) :
@@ -50,16 +51,6 @@ namespace userfs
       return m_itema.get_size() + count;
    }
 
-   void list_item_array::add_item(list_item & item)
-   {
-
-      sp(list_item) spitem(canew(list_item(item)));
-
-      m_itema.add(spitem);
-
-      spitem->m_iArrange = this->get_size() - 1;
-
-   }
 
    index list_item_array::find_item_by_path(const ::file::path & pszPath)
    {

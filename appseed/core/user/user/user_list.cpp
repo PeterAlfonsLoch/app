@@ -133,6 +133,8 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
+      synch_lock sl(m_pmeshdata->m_pmutex);
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -790,6 +792,32 @@ namespace user
 
       synch_lock sl(m_pmutex);
 
+      rect r1;
+
+      GetClientRect(r1);
+
+      if (r1.is_empty())
+      {
+
+         return;
+
+      }
+
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = GetTopLevelFrame()->m_puserschemaSchema;
+
+      }
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = Application.userschema();
+
+      }
+
       if (m_bTopText)
       {
 
@@ -845,19 +873,42 @@ namespace user
    bool list::_001OnUpdateItemCount(uint32_t dwFlags)
    {
 
+
+
       UNREFERENCED_PARAMETER(dwFlags);
 
       point ptOffset = get_viewport_offset();
 
-      m_nItemCount = _001GetItemCount();
-      if (m_nItemCount < 0)
+      ::count nCount = _001GetItemCount();
+      
+      if (nCount < 0)
+      {
+
+         m_nItemCount = nCount;
+
          return false;
+
+      }
+
+      ::count nGroupCount = 1;
 
       if (m_bGroup)
       {
-         m_nGroupCount = _001GetGroupCount();
-         if (m_nGroupCount < 0)
+         nGroupCount = _001GetGroupCount();
+         if (nGroupCount < 0)
+         {
+            m_nGroupCount = nGroupCount;
             return false;
+         }
+      }
+
+      synch_lock sl(m_pmutex);
+
+      m_nItemCount = nCount;
+
+      if (m_bGroup)
+      {
+         m_nGroupCount = nGroupCount;
       }
 
       if (m_eview == view_icon)
@@ -868,8 +919,6 @@ namespace user
       }
       else
       {
-
-         synch_lock sl(m_pmutex);
 
          index iStart = m_meshlayout.m_iaDisplayToStrict.get_count();
 
@@ -2679,13 +2728,127 @@ namespace user
    }
 
 
+   void list::_001OnMouseMove(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      pmouse->set_lresult(1);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      pmouse->previous(); // give chance to child control
+
+      synch_lock sl(m_pmutex);
+
+      if (m_bDrag)
+      {
+         if (m_iItemMouseDown < 0)
+         {
+
+            if (m_eview == view_icon)
+            {
+               class rect rectClient;
+               GetClientRect(&rectClient);
+               index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
+               index iItemSize = iIconSize * 2;
+               ::count iItemColumnCount = MAX(1, rectClient.width() / iItemSize);
+               m_ptLButtonUp = pt;
+               index iItemStart;
+               index iItemEnd;
+               if (_001DisplayHitTest(m_ptLButtonDown, iItemStart))
+               {
+                  if (_001DisplayHitTest(pt, iItemEnd))
+                  {
+
+                     index iCol1 = iItemStart % iItemColumnCount;
+                     index iCol2 = iItemEnd % iItemColumnCount;
+
+                     ::sort::sort(iCol1, iCol2);
+
+                     index iRow1 = iItemStart / iItemColumnCount;
+                     index iRow2 = iItemEnd / iItemColumnCount;
+
+                     ::sort::sort(iRow1, iRow2);
+
+                     m_rangeSelection.clear();
+
+                     for (index i = iRow1; i <= iRow2; i++)
+                     {
+                        for (index j = iCol1; j <= iCol2; j++)
+                        {
+                           item_range itemrange;
+                           itemrange.set_lower_bound(m_iconlayout.m_iaDisplayToStrict.get_b(i * iItemColumnCount + j));
+                           itemrange.set_upper_bound(m_iconlayout.m_iaDisplayToStrict.get_b(i * iItemColumnCount + j));
+                           m_rangeSelection.add_item(itemrange);
+                        }
+                     }
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
+      //   index iItemOld = m_iItemDrop;
+      //   if(!_001DisplayHitTest(pt, m_iItemDrop))
+      //   {
+      //      m_iItemDrop = m_iItemDrag;
+      //   }
+      //   if(iItemOld != m_iItemDrop)
+      //   {
+      //      RedrawWindow();
+      //   }
+      //}
+
+      track_mouse_leave();
+
+      //if (m_spmenuPopup.is_null())
+      //{
+
+      //   UpdateHover();
+      //   pobj->m_bRet = true;
+
+
+      //   index iItemEnter;
+      //   index iSubItemEnter;
+      //   point point;
+      //   //Session.get_cursor_pos(&point);
+      //   //ScreenToClient(&point);
+
+      //   if (_001DisplayHitTest(pt, iItemEnter, iSubItemEnter))
+      //   {
+      //      if (m_bHoverSelect &&
+      //         (m_iSubItemEnter != iSubItemEnter ||
+      //         m_iItemEnter != iItemEnter)
+      //         && !m_rangeSelection.has_item(iItemEnter))
+      //      {
+      //         m_iMouseFlagEnter = pmouse->m_nFlags;
+      //         m_iItemEnter = iItemEnter;
+      //         m_iSubItemEnter = iSubItemEnter;
+      //         //SetTimer(12321, 840, NULL);
+      //         SetTimer(12321, 184 + 177 + 151, NULL);
+      //      }
+      //   }
+
+      //}
+
+
+   }
+
+
    void list::_001OnLButtonDown(signal_details * pobj)
    {
 
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      pmouse->previous(); // give chance to child control and to base views
+      pmouse->previous(); // give chance to base views
 
       int_ptr iItem;
 
@@ -2697,15 +2860,10 @@ namespace user
 
       if (m_bSelect)
       {
+
          if (m_bHoverSelect)
          {
-            if (_001DisplayHitTest(pt, iItem))
-            {
-            }
-            else
-            {
-               m_rangeSelection.clear();
-            }
+
          }
          else
          {
@@ -2815,6 +2973,8 @@ namespace user
       point pt = pmouse->m_pt;
 
       ScreenToClient(&pt);
+
+      ReleaseCapture();
 
       KillTimer(12345678);
       KillTimer(224455);
@@ -2956,26 +3116,37 @@ namespace user
       }
       else if(m_bHoverSelect)
       {
-         
-         index iItem = -1;
-         
-         if (_001DisplayHitTest(pt, iItem))
+
+         if (m_eview == view_report)
          {
-            
-            if (iItem >= 0 && m_iItemMouseDown == iItem)
+
+            pmouse->previous();
+
+         }
+         else
+         {
+
+            index iItem = -1;
+
+            if (_001DisplayHitTest(pt, iItem))
             {
-               
-               iItem = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
-               
-               if (iItem >= 0)
+
+               if (iItem >= 0 && m_iItemMouseDown == iItem)
                {
-                  
-                  _001OnItemClick(iItem);
-                  
+
+                  iItem = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
+
+                  if (iItem >= 0)
+                  {
+
+                     _001OnItemClick(iItem);
+
+                  }
+
                }
-               
+
             }
-            
+
          }
          
       }
@@ -3077,6 +3248,9 @@ namespace user
       pobj->m_bRet = true;
 
       pmouse->set_lresult(1);
+
+      m_bLButtonDown = false;
+
    }
 
 
@@ -4155,12 +4329,6 @@ namespace user
 
       pobj->previous();
 
-      if (m_puserschemaSchema == NULL)
-      {
-
-         m_puserschemaSchema = Application.userschema();
-
-      }
 
       m_font->operator=(*System.visual().fonts().GetListCtrlFont());
 
@@ -4553,63 +4721,6 @@ namespace user
 
 
 
-   /*void list::InstallMessageHandling(MessageDispatch *pinterface)
-   {
-      m_lpfnOnSize = (_001_ON_SIZE) _001OnSize;
-   m_lpfnOnVScroll = (_001_ON_VSCROLL) _001OnVScroll;
-   m_lpfnOnHScroll = (_001_ON_HSCROLL) _001OnHScroll;
-   m_lpfnOnPaint = (_001_ON_PAINT) _001OnPaint;
-   m_lpfnOnLButtonDown = (_001_ON_LBUTTONDOWN) _001OnLButtonDown;
-   m_lpfnOnLButtonUp =(_001_ON_LBUTTONUP) _001OnLButtonUp;
-   m_lpfnOnLButtonDblClk =(_001_ON_LBUTTONDBLCLK)_001OnLButtonDblClk;
-   m_lpfnOnCreate = (_001_ON_CREATE) _001OnCreate;
-   m_lpfnOnTimer = (_001_ON_TIMER) _001OnTimer;*/
-
-   /*   VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnSize);
-
-   VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnVScroll);
-
-   VMSGEN_WINDOW_ON_HSCROLL_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnHScroll);
-
-   VMSGEN_WINDOW_ON_LBUTTONDOWN_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonDown);
-
-   VMSGEN_WINDOW_ON_LBUTTONUP_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonUp);
-
-   VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonDblClk);
-
-   VMSGEN_WINDOW_ON_CREATE_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonCreate);
-
-   VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(
-   pinterface,
-   this,
-   _001OnLButtonTimer);
-   }*/
-
-   //void list::SetCacheInterface(list_cache_interface * pinterface)
-   //{
-   //   m_pcache = pinterface;
-   //}
 
    void list::CacheHint()
    {
@@ -4951,7 +5062,7 @@ namespace user
    {
       if (iDisplay < 0)
          return -1;
-      if (m_bDrag)
+      if (m_bDrag && does_drag_reorder())
       {
          if (m_eview == view_icon)
          {
@@ -5531,118 +5642,6 @@ namespace user
    }
 
 
-   void list::_001OnMouseMove(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::mouse, pmouse, pobj);
-
-      pmouse->set_lresult(1);
-
-      point pt = pmouse->m_pt;
-
-      ScreenToClient(&pt);
-
-      pmouse->previous(); // give chance to child control
-
-      synch_lock sl(m_pmutex);
-
-      if (m_bDrag)
-      {
-         if (m_iItemMouseDown < 0)
-         {
-
-            if (m_eview == view_icon)
-            {
-               class rect rectClient;
-               GetClientRect(&rectClient);
-               index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
-               index iItemSize = iIconSize * 2;
-               ::count iItemColumnCount = MAX(1, rectClient.width() / iItemSize);
-               m_ptLButtonUp = pt;
-               index iItemStart;
-               index iItemEnd;
-               if (_001DisplayHitTest(m_ptLButtonDown, iItemStart))
-               {
-                  if (_001DisplayHitTest(pt, iItemEnd))
-                  {
-
-                     index iCol1 = iItemStart % iItemColumnCount;
-                     index iCol2 = iItemEnd % iItemColumnCount;
-
-                     ::sort::sort(iCol1, iCol2);
-
-                     index iRow1 = iItemStart / iItemColumnCount;
-                     index iRow2 = iItemEnd / iItemColumnCount;
-
-                     ::sort::sort(iRow1, iRow2);
-
-                     m_rangeSelection.clear();
-
-                     for (index i = iRow1; i <= iRow2; i++)
-                     {
-                        for (index j = iCol1; j <= iCol2; j++)
-                        {
-                           item_range itemrange;
-                           itemrange.set_lower_bound(m_iconlayout.m_iaDisplayToStrict.get_b(i * iItemColumnCount + j));
-                           itemrange.set_upper_bound(m_iconlayout.m_iaDisplayToStrict.get_b(i * iItemColumnCount + j));
-                           m_rangeSelection.add_item(itemrange);
-                        }
-                     }
-
-                  }
-
-               }
-
-            }
-
-         }
-
-      }
-      //   index iItemOld = m_iItemDrop;
-      //   if(!_001DisplayHitTest(pt, m_iItemDrop))
-      //   {
-      //      m_iItemDrop = m_iItemDrag;
-      //   }
-      //   if(iItemOld != m_iItemDrop)
-      //   {
-      //      RedrawWindow();
-      //   }
-      //}
-
-      track_mouse_leave();
-
-      //if (m_spmenuPopup.is_null())
-      //{
-
-      //   UpdateHover();
-      //   pobj->m_bRet = true;
-
-
-      //   index iItemEnter;
-      //   index iSubItemEnter;
-      //   point point;
-      //   //Session.get_cursor_pos(&point);
-      //   //ScreenToClient(&point);
-
-      //   if (_001DisplayHitTest(pt, iItemEnter, iSubItemEnter))
-      //   {
-      //      if (m_bHoverSelect &&
-      //         (m_iSubItemEnter != iSubItemEnter ||
-      //         m_iItemEnter != iItemEnter)
-      //         && !m_rangeSelection.has_item(iItemEnter))
-      //      {
-      //         m_iMouseFlagEnter = pmouse->m_nFlags;
-      //         m_iItemEnter = iItemEnter;
-      //         m_iSubItemEnter = iSubItemEnter;
-      //         //SetTimer(12321, 840, NULL);
-      //         SetTimer(12321, 184 + 177 + 151, NULL);
-      //      }
-      //   }
-
-      //}
-
-
-   }
 
    void list::UpdateHover()
    {

@@ -103,7 +103,7 @@ public:
 };
 
 
-template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE = const VALUE &, class PAIR = pair < KEY, VALUE > >
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE = const VALUE &, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
 class map :
    virtual public ::object
 {
@@ -1144,7 +1144,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc *
 
    ENSURE(m_passocFree != NULL);  // we must have something
 
-   map::assoc* passoc = m_passocFree;
+   typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc * passoc = m_passocFree;
 
    m_passocFree  = m_passocFree->m_pnext;
 
@@ -1167,7 +1167,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc *
 
    ASSERT(m_nCount > 0);  // make sure we don't overflow
 
-   ::new(passoc) assoc(key);
+   ::new(passoc) typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc(key);
 
    return passoc;
 

@@ -153,7 +153,7 @@ namespace file
    void exception::OnFileFound(OF_INFO_t OpenedFileInfo )
    {
 
-      if(::file::path(OpenedFileInfo.lpFile).name().CompareNoCase(m_strFileName.name()) == 0)
+      if(::file::path(OpenedFileInfo.lpFile).sname().CompareNoCase(m_strFileName.name()) == 0)
       {
 
          PROCESS_INFO_t stInfo;

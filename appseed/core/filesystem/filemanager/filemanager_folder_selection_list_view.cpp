@@ -139,7 +139,12 @@ namespace filemanager
       m_plistview->remove(wstraSel);
    }
 
+   void folder_selection_list_view::on_update(user::impact *p, LPARAM l, object * o)
+   {
 
+      ::filemanager::impact::on_update(p, l, o);
+
+   }
    void folder_selection_list_view::_001OnAdd(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);

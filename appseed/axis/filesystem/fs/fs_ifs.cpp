@@ -271,26 +271,26 @@ bool ifs::has_subdir(const ::file::path & path)
 }
 
 
-bool ifs::is_dir(const ::file::path & path)
+int ifs::is_dir(const ::file::path & path)
 {
    //xml::node node(get_app());
 
    if(path.is_empty())
    {
-      return true;
+      return 1;
    }
 
    if(stricmp_dup(path, "uifs://") == 0)
    {
-      return true;
+      return 1;
    }
    if(stricmp_dup(path,"uifs:/") == 0)
    {
-      return true;
+      return 1;
    }
    if(stricmp_dup(path,"uifs:") == 0)
    {
-      return true;
+      return 1;
    }
 
 
@@ -315,11 +315,11 @@ bool ifs::is_dir(const ::file::path & path)
    if(iFind < 0)
    {
 
-      return false;
+      return 0;
 
    }
 
-   return dir[iFind].m_iDir == 1;
+   return dir[iFind].m_iDir;
 
 
 }

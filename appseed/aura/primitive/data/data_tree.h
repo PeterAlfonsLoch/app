@@ -15,7 +15,7 @@ namespace data
       sp(tree_item)                       m_proot;
       mutex                               m_mutex;
       bool                                m_bFill;
-
+      index_array                         m_iaLevelNext;
 
       tree(::aura::application * papp);
       virtual ~tree();
@@ -51,6 +51,8 @@ namespace data
       virtual ::count   remove(tree_item * pitem);
       virtual ::count   remove(item * pitem, index i = 0);
 
+      virtual bool      remove_item_from_parent(tree_item * pitem);
+
 
       void sort(index ( * lpfnCompare )(const sp(tree_item) & pitem, const sp(tree_item) & pitem2));
 
@@ -62,8 +64,8 @@ namespace data
 
       virtual tree_item * get_base_item();
 
-      virtual tree_item * insert_item(item * pitemdataNew, ERelative erelativeNewItem, tree_item * pitemRelative);
-      virtual bool insert_item(tree_item * pitemNew, ERelative erelativeNewItem, tree_item * pitemRelative);
+      virtual tree_item * insert_item(item * pitemdataNew, ERelative erelativeNewItem, tree_item * pitemRelative, bool bVoidTreeDataChangeEvent = false);
+      virtual bool insert_item(tree_item * pitemNew, ERelative erelativeNewItem, tree_item * pitemRelative, bool bVoidTreeDataChangeEvent = false);
 
       image_list * get_image_list() const;
 

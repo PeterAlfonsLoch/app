@@ -48,6 +48,8 @@ namespace windows
          virtual bool finalize(string strLang);
          virtual bool finalize_translator(string strLang);
 
+         virtual bool is_lang_ok(string strLang);
+
          //--------------------------------------------------------------------
          // Speaks some text.
          // (The input text must not be empty.)

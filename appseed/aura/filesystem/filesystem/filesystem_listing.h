@@ -234,7 +234,7 @@ namespace file
             last += this->get_count();
          for(; find <= last; find++)
          {
-            if(this->element_at(find).name().CompareNoCase(lpcsz) == 0)
+            if(_stricmp(this->element_at(find).name(), lpcsz) == 0)
                return find;
          }
          return -1;

@@ -44,7 +44,7 @@ public:
    virtual bool has_subdir(const ::file::path & pszPath);
    virtual bool fast_has_subdir(const ::file::path  & pszPath);
    virtual ::file::listing & ls(::file::listing & listing);
-   virtual bool is_dir(const ::file::path & pszPath);
+   virtual int is_dir(const ::file::path & pszPath);
    virtual ::file::listing & root_ones(::file::listing & listing);
 
    //virtual string file_name(const char * pszPath);

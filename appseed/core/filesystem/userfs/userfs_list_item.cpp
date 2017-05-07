@@ -13,9 +13,26 @@ namespace userfs
       m_iImage = -1;
    }
 
-   list_item::list_item(const list_item & listitem)
+   list_item::list_item(const list_item & listitem) :
+      ::object(listitem.m_pauraapp),
+      ::fs::item(listitem),
+      m_strName(listitem.m_strName),
+      m_iImage(listitem.m_iImage),
+      m_iIndex(listitem.m_iIndex),
+      m_iArrange(listitem.m_iArrange)
    {
-      operator = (listitem);
+      
+   }
+
+   list_item::list_item(const list_item & listitem, index iArrange) :
+      ::object(listitem.m_pauraapp),
+      ::fs::item(listitem),
+      m_strName(listitem.m_strName),
+      m_iImage(listitem.m_iImage),
+      m_iIndex(listitem.m_iIndex),
+      m_iArrange(iArrange)
+   {
+
    }
 
    index list_item::CompareArrangeByName(const list_item & item) const

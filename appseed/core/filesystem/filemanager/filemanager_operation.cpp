@@ -152,7 +152,7 @@ namespace filemanager
          if(Application.file().exists(strDst) || Application.dir().is(strDst))
          {
 
-            int iResult = Application.simple_message_box(m_oswindowCallback,"Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name(),MB_ICONQUESTION | MB_YESNOCANCEL);
+            int iResult = Application.simple_message_box(m_oswindowCallback,"Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.sname(),MB_ICONQUESTION | MB_YESNOCANCEL);
 
             if(iResult == IDYES)
             {
