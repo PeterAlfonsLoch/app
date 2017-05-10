@@ -25,7 +25,7 @@ CLASS_DECL_AURA int32_t get_current_process_affinity_order();
 #endif
 
 
-
+CLASS_DECL_AURA string expand_env(string str);
 
 CLASS_DECL_AURA string consume_param(const char * pszCommandLine, const char ** pszEndPtr);
 CLASS_DECL_AURA string get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam);

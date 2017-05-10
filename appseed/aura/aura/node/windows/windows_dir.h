@@ -46,6 +46,7 @@ namespace windows
 
       // rls fetchs should set a meaningful m_iRelative value at each returned path
       virtual ::file::listing & ls(::aura::application * papp, ::file::listing & path);
+      virtual ::file::listing & ls_relative_name(::aura::application * papp, ::file::listing & path);
 
 
       virtual bool  is(const ::file::path & path, ::aura::application * papp);

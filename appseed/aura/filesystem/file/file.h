@@ -8,7 +8,8 @@ CLASS_DECL_AURA string file_extension_dup(const char * path);
 CLASS_DECL_AURA string get_temp_file_name_dup(const char * pszName,const char * pszExtension);
 CLASS_DECL_AURA string file_final_extension_dup(const char * path);
 CLASS_DECL_AURA string url_dir_name_for_relative(const char * pszPath);
-CLASS_DECL_AURA string solve_relative_compressions(const string & str);
+CLASS_DECL_AURA string solve_relative_compressions(const string & str, bool * pbUrl = NULL);
+CLASS_DECL_AURA bool solve_relative_compressions_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
 CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute);
 CLASS_DECL_AURA string ca2_module_dup();
 CLASS_DECL_AURA bool file_append_dup(const string & strFile, const string & str);

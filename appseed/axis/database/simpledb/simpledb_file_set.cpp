@@ -46,7 +46,7 @@ namespace simpledb
 
       bool_array baRecursive;
 
-      if(!data_get(::aura::system::idEmpty, patha))
+      if(!data_load(::aura::system::idEmpty, patha))
          return;
 
       data_load("recursive", baRecursive);
@@ -71,7 +71,7 @@ namespace simpledb
 
       bool_array baRecursive;
 
-      data_get(::aura::system::idEmpty, pathaFolder);
+      data_load(::aura::system::idEmpty, pathaFolder);
 
       data_load("recursive",baRecursive);
 

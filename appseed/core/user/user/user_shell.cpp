@@ -14,18 +14,18 @@ const char * basecore_get_file_icon_path(const char * pszPath, int iSize);
 string linux_get_file_icon_path(string strPath, int iSize)
 {
 
-const char* psz = basecore_get_file_icon_path(strPath, iSize);
+   const char* psz = basecore_get_file_icon_path(strPath, iSize);
 
-if(psz == NULL)
-{
-return "";
-}
+   if (psz == NULL)
+   {
+      return "";
+   }
 
-string str = psz;
+   string str = psz;
 
-free((void*)psz);
+   free((void*)psz);
 
-return str;
+   return str;
 
 }
 
@@ -33,814 +33,159 @@ const char * basecore_get_file_content_type(const char * pszFile);
 string linux_get_file_content_type(string strPath)
 {
 
-const char* psz = basecore_get_file_content_type(strPath);
+   const char* psz = basecore_get_file_content_type(strPath);
 
-if(psz == NULL)
-{
-return "";
+   if (psz == NULL)
+   {
+      return "";
+   }
+
+   string str = psz;
+
+   free((void*)psz);
+
+   return str;
+
 }
-
-string str = psz;
-
-free((void*)psz);
-
-return str;
-
-}
 #endif
 
-namespace filemanager
+
+namespace user
 {
 
-   namespace _shell
+
+   namespace shell
    {
 
-      string _017FilePathGetParent(const char * lpcsz)
+
+      image_key::image_key()
       {
-         stringa stra;
-         stra.add("/");
-         stra.add("\\");
-         stringa stra2;
-         stra2.add_smallest_tokens(lpcsz, stra, FALSE);
-         string str;
-         for(int32_t i = 0; i < stra2.get_size() - 1; i++)
-         {
-            str += stra2[i];
-            str += "\\";
-         }
-         return str;
+
+         m_iIcon = 0x80000000;
+
       }
 
-   EFolder GetFolderType(::aura::application * papp, const char * lpcsz)
-   {
-      return GetFolderType(papp, ::str::international::utf8_to_unicode(lpcsz));
-   }
-
-   EFolder GetFolderType(::aura::application * papp, const unichar * lpcszPath)
-   {
-
-      string strPath;
-
-      ::str::international::unicode_to_utf8(strPath, lpcszPath);
-
-      if(dir::is(strPath))
+      image_key_store::image_key_store()
       {
-         return FolderFileSystem;
-      }
-      else if(zip::Util().IsUnzipable(papp, strPath))
-      {
-         return FolderZip;
-      }
-      else
-      {
-         return FolderNone;
+
       }
 
-   }
-/*
-   void GetChildren(stringa & stra, const char * lpcszPath)
-   {
-      string wstrBase(lpcszPath);
-      WIN32_FIND_DATAW fd;
-      if(wstrBase.get_length() == 0)
-      {
-         wstrBase = "\\";
-      }
-      else
-      {
-         if(wstrBase.find('\\') >= 0)
-         {
-            if(wstrBase.Right(1) != "\\")
-               wstrBase += "\\";
-         }
-         else if(wstrBase.find('/') >= 0)
-         {
-            if(wstrBase.Right(1) != "/")
-               wstrBase += "/";
-         }
-         else
-         {
-            wstrBase += "\\";
-         }
-      }
-      string wstrMask(wstrBase);
-      wstrMask += "*.*";
-      wstring wstr = ::str::international::utf8_to_unicode(lpcszPath);
-      HANDLE h = ::FindFirstFileExW(wstr, FindExInfoStandard, &fd, FindExSearchNameMatch, NULL, 0);
-
-      if(h == NULL)
-         return;
-
-      while(true)
-      {
-         stra.add(::str::international::unicode_to_utf8(fd.cFileName));
-         if(!FindNextFileW(h, &fd))
-            break;
-      }
-
-      stra.remove(".");
-      stra.remove("..");
-      for(int32_t i = 0; i < stra.get_size(); i++)
-      {
-         stra[i] = wstrBase + stra[i];
-      }
-
-      FindClose(h);
-
-   }
-*/
-
-   ImageKey::ImageKey()
-   {
-      m_iIcon = 0x80000000;
-   }
-   ImageKeyStore::ImageKeyStore()
-   {
-   }
-
-   ImageKeyStore::ImageKeyStore(const ImageKey & key)
-   {
-      m_pszPath =strdup(key.m_pszPath);
-      m_iIcon           = key.m_iIcon;
-      m_eattribute = key.m_eattribute;
-      m_eicon = key.m_eicon;
-      m_pszExtension    = strdup(key.m_pszExtension);
-      m_pszShellThemePrefix = strdup(key.m_pszShellThemePrefix);
-   }
-   ImageKeyStore::~ImageKeyStore()
-   {
-      if (m_pszPath != NULL)
-      {
-         free(m_pszPath);
-      }
-      if (m_pszPath != NULL)
-      {
-         free(m_pszExtension);
-      }
-      if (m_pszPath != NULL)
-      {
-         free(m_pszShellThemePrefix);
-      }
-   }
-
-   void ImageKey::set_path(const string & strPath, bool bSetExtension)
-   {
-
-      m_pszPath = (char *) strPath.c_str();
-
-      set_extension(strPath);
-
-   }
-
-   void ImageKey::set_extension(const string & strPath)
-   {
-
-      index iFind1 = strPath.rfind('/');
-      index iFind2 = strPath.rfind('\\');
-      index iFind = MAX(iFind1, iFind2) + 1;
-
-      m_pszExtension = (char *) &strPath[strPath.find('.', iFind)];
-
-
-
-   }
-
-
-
-   ImageSet::ImageSet(::aura::application * papp) :
-      object(papp),
-      m_mutex(papp)
-   {
-      m_pil16 = canew(image_list(papp));
-      m_pil16->create(16, 16, 0, 10, 10);
-      m_pil48 = canew(image_list(papp));
-      m_pil48->create(48, 48, 0, 10, 10);
-      m_pil48Hover = canew(image_list(papp));
-      m_pil48Hover->create(48, 48, 0, 10, 10);
-      m_imagemap.InitHashTable(16384);
-   }
-
-   ImageSet::~ImageSet()
-   {
-
-   }
-
-   void ImageSet::initialize()
-   {
-
-      single_lock sl(&m_mutex, true);
-
-      m_pil16->add_matter("filemanager\\check_off_16.png");
-      m_pil16->add_matter("filemanager\\check_on_16.png");
-      m_pil48->add_matter("filemanager\\check_off_16.png");
-      m_pil48->add_matter("filemanager\\check_on_16.png");
-      m_pil48Hover->add_matter("filemanager\\check_off_16.png");
-      m_pil48Hover->add_matter("filemanager\\check_on_16.png");
-
-   }
-
-   int32_t ImageSet::GetImage(oswindow oswindow, const string & strPath, EFileAttribute eattribute, EIcon eicon, COLORREF crBk)
-   {
-
-      if(argb_get_a_value(crBk) != 255)
+      image_key_store::image_key_store(const image_key & key)
       {
 
-         crBk = 0;
+         m_pszPath = strdup(key.m_pszPath);
+         m_iIcon = key.m_iIcon;
+         m_eattribute = key.m_eattribute;
+         m_eicon = key.m_eicon;
+         m_pszExtension = strdup(key.m_pszExtension);
+         m_pszShellThemePrefix = strdup(key.m_pszShellThemePrefix);
 
       }
 
 
-      int32_t iImage = 0x80000000;
-
-      ImageKey imagekey;
-
-      imagekey.set_path(strPath);
-
-      imagekey.m_pszShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
-
-      imagekey.m_eattribute = eattribute;
-
-      imagekey.m_eicon = eicon;
-
-      imagekey.m_iIcon = 0;
-
-      if (m_imagemap.Lookup(imagekey, iImage))
+      image_key_store::~image_key_store()
       {
 
-         return iImage;
-
-      }
-
-      iImage = GetImage(oswindow,imagekey,NULL, crBk);
-
-      m_imagemap.set_at(imagekey,iImage);
-
-      if(crBk != 0)
-      {
-
-         synch_lock sl1(m_pil48Hover->m_pmutex);
-
-         synch_lock sl2(m_pil48->m_pmutex);
-
+         if (m_pszPath != NULL)
          {
 
-            ::draw2d::dib_sp dib(allocer());
-            dib->create(48,48);
-            dib->Fill(255,argb_get_r_value(crBk),argb_get_g_value(crBk),argb_get_b_value(crBk));
-            dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-            m_pil48Hover->draw(dib->get_graphics(),iImage,null_point(),0);
-            m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-            m_pil48Hover->m_spdib->get_graphics()->BitBlt(iImage * 48,0,48,48,dib->get_graphics());
-            m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+            free(m_pszPath);
 
          }
 
+         if (m_pszPath != NULL)
          {
-            ::draw2d::dib & d = *m_pil48Hover->m_spdib;
-            size s = m_pil48->m_spdib->m_size;
-            ::draw2d::dib_sp dib(allocer());
-            dib->create(d.size());
-            dib->Fill(255,argb_get_r_value(crBk),argb_get_g_value(crBk),argb_get_b_value(crBk));
-            dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-            dib->get_graphics()->BitBlt(null_point(),d.size(),d.get_graphics());
-            dib->get_graphics()->FillSolidRect(0,0,d.size().cx,d.size().cy,ARGB(123,argb_get_r_value(crBk),argb_get_g_value(crBk),argb_get_b_value(crBk)));
-            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-            m_pil48->m_spdib->get_graphics()->BitBlt(null_point(),d.size(),dib->get_graphics());
-            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+            free(m_pszExtension);
+
+         }
+
+         if (m_pszPath != NULL)
+         {
+
+            free(m_pszShellThemePrefix);
 
          }
 
       }
 
-      return iImage;
-
-
-   }
-
-   int32_t ImageSet::GetImageFoo(oswindow oswindow, const string & strExtension, EFileAttribute eattribute, EIcon eicon, COLORREF crBk)
-   {
-
-      if (argb_get_a_value(crBk) != 255)
+      void image_key::set_path(const string & strPath, bool bSetExtension)
       {
 
-         crBk = 0;
+         m_pszPath = (char *)strPath.c_str();
+
+         set_extension(strPath);
 
       }
 
 
-      int32_t iImage = 0x80000000;
-
-      ImageKey imagekey;
-
-      imagekey.m_pszPath = "foo";
-
-      imagekey.m_pszShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
-
-      imagekey.m_pszExtension = (char *) strExtension.c_str();
-
-      imagekey.m_eattribute = eattribute;
-
-      imagekey.m_eicon = eicon;
-
-      imagekey.m_iIcon = 0;
-
-      if (m_imagemap.Lookup(imagekey, iImage))
+      void image_key::set_extension(const string & strPath)
       {
 
-         return iImage;
+         index iFind1 = strPath.rfind('/');
+         index iFind2 = strPath.rfind('\\');
+         index iFind = MAX(iFind1, iFind2) + 1;
 
-      }
-
-      iImage = GetImage(oswindow, imagekey, NULL, crBk);
-
-      m_imagemap.set_at(imagekey, iImage);
-
-      if (crBk != 0)
-      {
-
-         synch_lock sl1(m_pil48Hover->m_pmutex);
-
-         synch_lock sl2(m_pil48->m_pmutex);
-
-         {
-
-            ::draw2d::dib_sp dib(allocer());
-            dib->create(48, 48);
-            dib->Fill(255, argb_get_r_value(crBk), argb_get_g_value(crBk), argb_get_b_value(crBk));
-            dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-            m_pil48Hover->draw(dib->get_graphics(), iImage, null_point(), 0);
-            m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-            m_pil48Hover->m_spdib->get_graphics()->BitBlt(iImage * 48, 0, 48, 48, dib->get_graphics());
-            m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-         }
-
-         {
-            ::draw2d::dib & d = *m_pil48Hover->m_spdib;
-            size s = m_pil48->m_spdib->m_size;
-            ::draw2d::dib_sp dib(allocer());
-            dib->create(d.size());
-            dib->Fill(255, argb_get_r_value(crBk), argb_get_g_value(crBk), argb_get_b_value(crBk));
-            dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-            dib->get_graphics()->BitBlt(null_point(), d.size(), d.get_graphics());
-            dib->get_graphics()->FillSolidRect(0, 0, d.size().cx, d.size().cy, ARGB(123, argb_get_r_value(crBk), argb_get_g_value(crBk), argb_get_b_value(crBk)));
-            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-            m_pil48->m_spdib->get_graphics()->BitBlt(null_point(), d.size(), dib->get_graphics());
-            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-         }
-
-      }
-
-      return iImage;
-
-
-   }
-
-
-   int32_t ImageSet::GetImageByExtension(oswindow oswindow, ImageKey & key, COLORREF crBk)
-   {
-
-#ifdef WINDOWSEX
-
-      return GetFooImage(oswindow,key, crBk);
-
-#else
-
-      return 0x80000000;
-
-#endif // WINDOWSEX
-
-
-      /*
-
-      single_lock sl(&m_mutex, true);
-
-      int32_t iImage = 0x80000000;
-
-#ifdef WINDOWSEX
-
-      if(pszPath == NULL)
-         return 0x80000000;
-
-      string strPath(pszPath);
-
-      string strExtension = file_extension_dup(strPath);
-
-      int32_t iType;
-      switch(eicon)
-      {
-      case IconNormal:
-         iType = 0;
-         break;
-      case IconOpen:
-         iType = GIL_OPENICON;
-         break;
-      default:
-         // unexpected icon type
-         ASSERT(FALSE);
-         return 0x80000000;
-      }
-
-
-
-      HICON hicon16 = NULL;
-      HICON hicon48 = NULL;
-//      HRESULT hrIconLocation;
-//      HRESULT hrExtract;
-      ImageKey imagekey;
-
-
-      string strExtra;
-
-
-      int32_t iIcon = 0x80000000;
-      UINT uiFlags = 0;
-
-      SHFILEINFO shfi16;
-      SHFILEINFO shfi48;
-
-
-      imagekey.m_iIcon         = 0x80000000;
-      if(bFolder && !strExtension.has_char())
-      {
-         imagekey.m_strExtension  = "folder";
-      }
-      else
-      {
-         imagekey.m_strExtension  = strExtension;
-      }
-      imagekey.m_strPath.Empty();
-
-      if(!m_imagemap.Lookup(imagekey, iImage))
-      {
-
-         try
-         {
-            if(imagekey.m_strExtension == "folder")
-            {
-               SHGetFileInfo(
-                  "foo",
-                  FILE_ATTRIBUTE_DIRECTORY,
-                  &shfi16,
-                  sizeof(shfi16),
-                  SHGFI_USEFILEATTRIBUTES
-                  | SHGFI_ICON
-                  | SHGFI_SMALLICON);
-               SHGetFileInfo(
-                  "foo",
-                  FILE_ATTRIBUTE_DIRECTORY,
-                  &shfi48,
-                  sizeof(shfi48),
-                  SHGFI_USEFILEATTRIBUTES
-                  | SHGFI_ICON
-                  | SHGFI_LARGEICON);
-            }
-            else
-            {
-               strPath = "foo." +imagekey.m_strExtension;
-               SHGetFileInfo(
-                  strPath,
-                  FILE_ATTRIBUTE_NORMAL,
-                  &shfi16,
-                  sizeof(shfi16),
-                  SHGFI_USEFILEATTRIBUTES
-                  | SHGFI_ICON
-                  | SHGFI_SMALLICON);
-               SHGetFileInfo(
-                  strPath,
-                  FILE_ATTRIBUTE_NORMAL,
-                  &shfi48,
-                  sizeof(shfi48),
-                  SHGFI_USEFILEATTRIBUTES
-                  | SHGFI_ICON
-                  | SHGFI_LARGEICON);
-            }
-            iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
-            m_pil48Hover->add_icon_os_data(shfi48.hIcon);
-            System.visual().imaging().Createcolor_blend_ImageList(
-               m_pil48,
-               m_pil48Hover,
-               RGB(255, 255, 240),
-               64);
-
-            m_imagemap.set_at(imagekey, iImage);
-         }
-         catch(...)
-         {
-         }
+         m_pszExtension = (char *)&strPath[strPath.find('.', iFind) + 1];
 
       }
 
 
-#endif
-
-      */
-
-      //return iImage;
-
-   }
-
-
-   int32_t ImageSet::GetImage(oswindow oswindow, ImageKey imagekey, const unichar * lpcszExtra, COLORREF crBk)
-   {
-
-      single_lock sl(&m_mutex, true);
-
-      int32_t iImage = 0x80000000;
-
-      if(::str::ends_ci(imagekey.m_pszPath, ".core"))
-      {
-         string str = Application.file().as_string(imagekey.m_pszPath);
-         if(::str::begins_eat_ci(str,"ca2prompt\r\n"))
-         {
-            str.trim();
-#ifdef WINDOWSEX
-            HICON hicon16 = (HICON) ::LoadImage(NULL,Application.dir().matter(str + "/mainframe/icon.ico"),IMAGE_ICON,16,16,LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(NULL,Application.dir().matter(str + "/mainframe/icon.ico"),IMAGE_ICON,48,48,LR_LOADFROMFILE);
-            synch_lock sl1(m_pil48Hover->m_pmutex);
-            synch_lock sl2(m_pil48->m_pmutex);
-            iImage = m_pil16->add_icon_os_data(hicon16);
-            m_pil48Hover->add_icon_os_data(hicon48);
-
-            if(crBk == 0)
-            {
-               System.visual().imaging().Createcolor_blend_ImageList(
-                  m_pil48,
-                  m_pil48Hover,
-                  RGB(255,255,240),
-                  64);
-            }
-            else
-            {
-               *m_pil48 = *m_pil48Hover;
-            }
-
-#endif
-         }
-         return iImage;
-      }
-      // try to find "uifs:// http:// ftp:// like addresses"
-      // then should show icon by extension or if is folder
-      strsize iFind = ::str::find_ci("://", imagekey.m_pszPath);
-      strsize iFind2 = ::str::find_ci(":", imagekey.m_pszPath);
-      if(iFind >= 0 || iFind2 >= 2)
-      {
-         string strProtocol = string(imagekey.m_pszPath).Left(MAX(iFind, iFind2));
-         int32_t i = 0;
-         while(i < strProtocol.get_length() && isalnum_dup(strProtocol[i]))
-         {
-            i++;
-         }
-         if(i > 0 && i == strProtocol.get_length())
-         {
-            // heuristically valid protocol
-            return GetImageByExtension(oswindow, imagekey, crBk);
-         }
-         if(imagekey.m_eattribute.is_signalized(FileAttributeDirectory))
-         {
-            return GetImageByExtension(oswindow, imagekey,crBk);
-         }
-      }
-
-//#ifdef WINDOWSEX
-
-      string strExtension;
-
-      if (::str::ends_ci(imagekey.m_pszPath, ".sln"))
-      {
-         output_debug_string("test");
-      }
-#ifdef MACOS
-
-      ::draw2d::dib_sp dib48(allocer());
-
-      dib48->create(48, 48);
-
-      dib48->Fill(0);
-
-      if(macos_get_file_image(dib48, strPath))
-      {
-         ::draw2d::dib_sp dib16(allocer());
-
-         dib16->create(16, 16);
-
-         dib16->Fill(0);
-
-         synch_lock sl1(m_pil48Hover->m_pmutex);
-         synch_lock sl2(m_pil48->m_pmutex);
-         if(macos_get_file_image(dib16, strPath))
-         {
-            iImage = m_pil16->add_dib(dib16, 0, 0);
-            m_pil48Hover->add_dib(dib48, 0, 0);
-
-
-         }
-         else
-         {
-            dib16->get_graphics()->SetStretchBltMode(HALFTONE);
-
-            dib16->get_graphics()->StretchBlt(0, 0, 48, 48, dib48->get_graphics(), 0, 0, dib48->m_size.cx, dib48->m_size.cy);
-
-            iImage = m_pil16->add_dib(dib16, 0, 0);
-            m_pil48Hover->add_dib(dib48, 0, 0);
-
-         }
-
-
-         if(crBk == 0)
-         {
-            System.visual().imaging().Createcolor_blend_ImageList(
-                                                                  m_pil48,
-                                                                  m_pil48Hover,
-                                                                  RGB(255,255,240),
-                                                                  64);
-         }
-         else
-         {
-            *m_pil48 = *m_pil48Hover;
-         }
-
-         return iImage;
-
-      }
-#endif
-
-#ifdef LINUX
-
-      string strIcon48;
-
-      string strIcon16;
-
-      if (::str::ends_ci(string(strPath), ".desktop"))
+      shell::shell(::aura::application * papp) :
+         object(papp)
       {
 
-         string str = Application.file().as_string(strPath);
-
-         stringa stra;
-
-         stra.add_lines(str);
-
-         stra.filter_begins_ci("icon=");
-
-         if(stra.get_size() <= 0)
-         {
-
-            return -1;
-
-         }
-
-         string strIcon = stra[0];
-
-         ::str::begins_eat_ci(strIcon, "icon=");
-
-         strIcon48 = strIcon;
-
-         strIcon16 = strIcon;
-
-      }
-      else
-      {
-
-         strIcon48 = linux_get_file_icon_path(strPath, 48);
-
-         strIcon16 = linux_get_file_icon_path(strPath, 16);
+         m_pil16 = canew(image_list(papp));
+         m_pil16->create(16, 16, 0, 10, 10);
+         m_pil48 = canew(image_list(papp));
+         m_pil48->create(48, 48, 0, 10, 10);
+         m_pil48Hover = canew(image_list(papp));
+         m_pil48Hover->create(48, 48, 0, 10, 10);
+         m_imagemap.InitHashTable(16384);
 
       }
 
-      if(strIcon48.has_char())
+      shell::~shell()
       {
-
-         ::visual::dib_sp dib1(allocer());
-
-         if(!dib1.load_from_file(strIcon16))
-         {
-
-            return -1;
-
-         }
-
-         ::visual::dib_sp dib(allocer());
-
-         if(!dib.load_from_file(strIcon48))
-         {
-
-            return -1;
-
-         }
-
-         ::draw2d::dib_sp dib16(allocer());
-
-         if(!dib16->create(16, 16))
-         {
-
-            return -1;
-
-         }
-
-         ::draw2d::dib_sp dib48(allocer());
-
-         if(!dib48->create(48, 48))
-         {
-
-            return -1;
-
-         }
-
-         dib16->get_graphics()->SetStretchBltMode(HALFTONE);
-
-         dib16->get_graphics()->StretchBlt(0, 0, 16, 16, dib1->get_graphics(), 0, 0, dib1->m_size.cx, dib1->m_size.cy);
-
-         dib48->get_graphics()->SetStretchBltMode(HALFTONE);
-
-         dib48->get_graphics()->StretchBlt(0, 0, 48, 48, dib->get_graphics(), 0, 0, dib->m_size.cx, dib->m_size.cy);
-
-         synch_lock sl1(m_pil48Hover->m_pmutex);
-
-         synch_lock sl2(m_pil48->m_pmutex);
-
-         iImage = m_pil16->add_dib(dib16, 0, 0);
-
-         m_pil48Hover->add_dib(dib48, 0, 0);
-
-         if(crBk == 0)
-         {
-
-            System.visual().imaging().Createcolor_blend_ImageList(m_pil48, m_pil48Hover, RGB(255,255,240), 64);
-
-         }
-         else
-         {
-
-            *m_pil48 = *m_pil48Hover;
-
-         }
-
-         return iImage;
 
       }
 
-#endif
-
-      string str(imagekey.m_pszPath);
-
-#ifdef WINDOWSEX
-
-      if(str == "foo")
+      void shell::initialize()
       {
 
-         return GetFooImage(oswindow,imagekey, crBk);
+         single_lock sl(m_pmutex, true);
+
+         m_pil16->add_matter("filemanager\\check_off_16.png");
+         m_pil16->add_matter("filemanager\\check_on_16.png");
+         m_pil48->add_matter("filemanager\\check_off_16.png");
+         m_pil48->add_matter("filemanager\\check_on_16.png");
+         m_pil48Hover->add_matter("filemanager\\check_off_16.png");
+         m_pil48Hover->add_matter("filemanager\\check_on_16.png");
 
       }
 
-      if(::str::begins_eat(str,"foo."))
+
+      void shell::open_folder(oswindow oswindow, const string & strFolder)
       {
 
-         return GetFooImage(oswindow,imagekey,crBk);
+
+
 
       }
 
-      LPITEMIDLIST lpiidlAbsolute;
 
-      _017ItemIDListParsePath(oswindow, &lpiidlAbsolute,imagekey.m_pszPath);
-
-      iImage = GetImage(oswindow,imagekey, lpiidlAbsolute,lpcszExtra, crBk);
-
-      _017ItemIDListFree(lpiidlAbsolute);
-
-#elif defined(LINUX)
+      void shell::close_folder(const string & strFolder)
+      {
 
 
-      iImage = GetImageByExtension(oswindow, strPath, eicon, bFolder,crBk);
-
-#elif defined(MACOS)
-
-      iImage = -1;
-
-#else
-
-      iImage = GetImageByExtension(oswindow, strPath, eicon, bFolder,crBk);
-
-#endif
-
-//#endif
-
-      return iImage;
-
-   }
+      }
 
 
 
-
-} // namespace _shell
-
+   } // namespace shell
 
 
-
-
-} // namespace filemanager
+} // namespace user
 
 
 

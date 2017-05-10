@@ -55,7 +55,6 @@ namespace user
       ::visual::graphics_extension  m_dcextension;
       index                         m_dwFirstVisibleItem;
       index                         m_iItemCount;
-      index                         m_iClick;
       UINT                          m_uiLButtonUpFlags;
       point                         m_ptLButtonUp;
       ::data::tree_item *           m_pitemFirstVisible;
@@ -119,6 +118,7 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pdispatch);
       int32_t _001GetItemHeight();
       virtual index _001GetIndentation();
+
 
       sp(::data::tree_item) _001HitTest(POINT pt, ::user::e_tree_element & eelement);
       

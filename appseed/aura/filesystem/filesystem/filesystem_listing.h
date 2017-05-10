@@ -14,6 +14,7 @@ namespace file
 
 
       virtual listing & perform_file_listing(listing & listing) = 0;
+      virtual listing & perform_file_relative_name_listing(listing & listing) = 0;
 
 
    };
@@ -28,7 +29,6 @@ namespace file
       bool                 m_bRecursive = false;
       e_extract            m_eextract = extract_first;
    };
-
 
 
    class CLASS_DECL_AURA listing:
@@ -55,7 +55,7 @@ namespace file
 
 
       listing(listing_provider * pprovider = NULL);
-      listing(const listing & listing) { operator = (listing); }
+      listing(const listing & listing):patha(listing) { m_nGrowBy = 128; }
       virtual ~listing();
 
 
@@ -176,7 +176,8 @@ namespace file
          return ls();
       }
 
-      listing & ls();
+      virtual listing & ls();
+      virtual listing & ls_relative_name();
 
       void clear_results() { m_straTitle.remove_all(); m_cres.release(); remove_all(); }
 
@@ -192,6 +193,20 @@ namespace file
          }
 
          return operator[](i).title();
+
+      }
+
+      string name(index i)
+      {
+
+         if (i >= 0 && i < m_straTitle.get_count())
+         {
+
+            return m_straTitle[i];
+
+         }
+
+         return operator[](i).name();
 
       }
 
@@ -271,6 +286,22 @@ namespace file
       }
 
 
+
+   };
+
+   class CLASS_DECL_AURA relative_name_listing :
+      virtual public listing
+   {
+   public:
+
+
+      relative_name_listing(listing_provider * pprovider = NULL);
+      relative_name_listing(const relative_name_listing & listing) { operator = (listing); }
+      virtual ~relative_name_listing();
+
+
+      using listing::ls;
+      virtual listing & ls() override;
 
    };
 

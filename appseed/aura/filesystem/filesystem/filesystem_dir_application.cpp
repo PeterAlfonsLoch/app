@@ -146,6 +146,12 @@ namespace file
 
       }
 
+      ::file::listing & application::ls_relative_name(listing & listing)
+      {
+
+         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_relative_name(m_pauraapp, listing);
+
+      }
 
       bool application::has_subdir(const ::file::path & lpcsz)
       {

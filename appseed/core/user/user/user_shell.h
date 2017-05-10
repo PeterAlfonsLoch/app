@@ -1,92 +1,81 @@
 #pragma once
 
-#ifdef WINDOWSEX
-#include <shlobj.h>
-#endif
 
-
-namespace filemanager
+namespace user
 {
 
-#ifdef WINDOWSEX
-   class CLASS_DECL_CORE Shell
+
+   namespace shell
    {
-   public:
 
 
-      static index  GetCSIDLSort(index iCsidl);
-      static index  GetCSIDL(LPITEMIDLIST lpiidl);
-      static void GetAscendants(LPITEMIDLIST lpiidl, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
-      static void Free(array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
-
-
-   };
-#endif
-
-
-   namespace _shell
-   {
-      enum EFileAttribute
+      enum e_file_attribute
       {
-         FileAttributeNormal,
-         FileAttributeDirectory,
-      };
 
-      enum EFolder
-      {
-         FolderNone,
-         FolderFileSystem,
-         FolderZip,
-      };
-
-      enum EIcon
-      {
-         IconNormal,
-         IconOpen,
-
+         file_attribute_normal,
+         file_attribute_directory,
 
       };
 
-      class ImageKey
+      enum e_folder
+      {
+
+         folder_none,
+         folder_file_system,
+         folder_zip,
+
+      };
+
+
+      enum e_icon
+      {
+         
+         icon_normal,
+         icon_open,
+
+      };
+
+
+      class image_key
       {
       public:
 
          char *                        m_pszPath;
          char *                        m_pszShellThemePrefix;
-         cflag < EFileAttribute >      m_eattribute;
-         cflag < EIcon >               m_eicon;
+         cflag < e_file_attribute >    m_eattribute;
+         cflag < e_icon >              m_eicon;
          int32_t                       m_iIcon;
          char *                        m_pszExtension;
 
 
 
-         ImageKey();
+         image_key();
 
          operator uint32_t () const
          {
             return m_iIcon;
          }
 
-         bool operator == (const ImageKey & key) const;
+         bool operator == (const image_key & key) const;
 
          void set_path(const string & strPath, bool bSetExtension = true);
          void set_extension(const string & strPath);
 
       };
 
-      class ImageKeyStore :
-         public ImageKey
+      class image_key_store :
+         public image_key
       {
       public:
 
-         ImageKeyStore();
-         ImageKeyStore(const ImageKey & key);
-         ~ImageKeyStore();
+         image_key_store();
+         image_key_store(const image_key & key);
+         ~image_key_store();
 
       };
 
 
-      inline bool ImageKey::operator == (const ImageKey & key) const
+      inline bool image_key::operator == (const image_key & key) const
       {
          return m_eattribute == key.m_eattribute
             && m_eicon == key.m_eicon
@@ -99,56 +88,31 @@ namespace filemanager
 
 
 
-      class CLASS_DECL_CORE ImageSet :
+      class CLASS_DECL_CORE shell :
          virtual public ::object
+         //,         virtual public ::thread
+
       {
       public:
 
-         mutex                                                    m_mutex;
-         sp(image_list)                                           m_pil16;
-         sp(image_list)                                           m_pil48;
-         sp(image_list)                                           m_pil48Hover;
-         map < ImageKeyStore, const ImageKey &, int32_t, int32_t >     m_imagemap;
+         sp(image_list)                                                 m_pil16;
+         sp(image_list)                                                 m_pil48;
+         sp(image_list)                                                 m_pil48Hover;
+         map < image_key_store, const image_key &, int32_t, int32_t >   m_imagemap;
 
-         string                                                   m_strShellThemePrefix;
-         stringa                                                  m_straThemeableIconName;
+         string                                                         m_strShellThemePrefix;
+         stringa                                                        m_straThemeableIconName;
 
+         shell(::aura::application * papp);
+         virtual ~shell();
 
-      
+         virtual void open_folder(oswindow oswindow, const string & strFolder);
+         virtual void close_folder(const string & strFolder);
 
-#ifdef WINDOWSEX
-
-
-         IShellFolder *   m_pshellfolder;
-
-
-#endif
-
-         ImageSet(::aura::application * papp);
-         virtual ~ImageSet();
-
-#ifdef WINDOWSEX
-         bool GetIcon(oswindow oswindow, const char * lpcsz, const unichar * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
-         bool GetIcon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
-         bool GetIcon(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
-#endif
-
-#ifdef WINDOWSEX
-         int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, EIcon eicon);
-#endif
-         int32_t GetImageFoo(oswindow oswindow, const string & strExtension, EFileAttribute eattribute, EIcon eicon, COLORREF crBk = 0);
-         int32_t GetImage(oswindow oswindow, const string & strPath,EFileAttribute eattribute,EIcon eicon, COLORREF crBk = 0) ;
-         int32_t GetImage(oswindow oswindow, ImageKey key, const unichar * lpcszExtra, COLORREF crBk);
-         int32_t GetImageByExtension(oswindow oswindow, ImageKey & key, COLORREF crBk);
-#ifdef WINDOWSEX
-         int32_t GetImage(oswindow oswindow, ImageKey key, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, COLORREF crBk);
-         int32_t GetImage(oswindow oswindow, ImageKey key, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, COLORREF crBk);
-         int32_t GetFooImage(oswindow oswindow, ImageKey key, COLORREF crBk);
-         void _017ItemIDListParsePath(oswindow oswindow, LPITEMIDLIST * lpiidl, const char * lpcsz);
-#endif
-
-         
-
+         virtual int32_t get_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0) = 0;
+         virtual int32_t get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0) = 0;
+         //virtual int32_t get_image(oswindow oswindow, image_key key, const unichar * lpcszExtra, COLORREF crBk) = 0;
+         //virtual int32_t get_image_by_extension(oswindow oswindow, image_key & key, COLORREF crBk) = 0;
 
          inline image_list * GetImageList16()
          {
@@ -165,40 +129,25 @@ namespace filemanager
 
          void initialize();
 
+         virtual e_folder get_folder_type(::aura::application * papp, const unichar * lpcszPath) = 0;
+         virtual e_folder get_folder_type(::aura::application * papp, const char * lpcszPath) = 0;
+
+
       };
 
 
-//      string CLASS_DECL_CORE _017FilePathGetParent(const char * lpcsz);
-
-#ifdef WINDOWSEX
-      HICON CLASS_DECL_CORE CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int32_t cx, int32_t cy);
-      bool CLASS_DECL_CORE _017HasSubFolder(::aura::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
-#endif
-      EFolder CLASS_DECL_CORE GetFolderType(::aura::application * papp, const unichar * lpcszPath);
-      EFolder CLASS_DECL_CORE GetFolderType(::aura::application * papp, const char * lpcszPath);
-//      void CLASS_DECL_CORE GetChildren(stringa & stra, const char * lpcszPath);
-#ifdef WINDOWSEX
-      LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListGetLast(LPITEMIDLIST lpiidl);
-      int32_t CLASS_DECL_CORE _017ItemIDListGetLen(LPITEMIDLIST lpiidl);
-      LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListDup(LPITEMIDLIST lpiidl);
-      LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl);
-      LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl);
-      bool CLASS_DECL_CORE _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2);
-      
-
-      void CLASS_DECL_CORE _017ItemIDListFree(LPITEMIDLIST lpiidl);
-#endif
-   } // namespace _shell
-
-} // namespace filemanager
+   } // namespace shell
 
 
-template <>
-inline UINT HashKey<const filemanager::_shell::ImageKey &> (const filemanager::_shell::ImageKey & key)
+} // namespace user
+
+
+template < >
+inline UINT HashKey<const ::user::shell::image_key &>(const ::user::shell::image_key & key)
 {
    // default identity hash - works for most primitive values
-   return (UINT)harmannieves_camwhite_hash(key.m_pszPath, 
-                harmannieves_camwhite_hash(key.m_pszShellThemePrefix,
-                harmannieves_camwhite_hash(key.m_pszExtension,
-                key.m_iIcon | (((int) key.m_eicon) << 8) | (((int)key.m_eattribute) << 16))));
+   return (UINT)harmannieves_camwhite_hash(key.m_pszPath,
+      harmannieves_camwhite_hash(key.m_pszShellThemePrefix,
+         harmannieves_camwhite_hash(key.m_pszExtension,
+            key.m_iIcon | (((int)key.m_eicon) << 8) | (((int)key.m_eattribute) << 16))));
 }

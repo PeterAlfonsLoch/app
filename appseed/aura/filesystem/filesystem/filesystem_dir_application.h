@@ -51,6 +51,7 @@ namespace file
 
          
          virtual listing & ls(listing & listing);
+         virtual listing & ls_relative_name(listing & listing);
          
 
          virtual bool  has_subdir(const ::file::path & lpcsz);

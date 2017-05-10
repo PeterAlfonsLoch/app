@@ -13,8 +13,6 @@ namespace userfs
 
       m_fsset = canew(::fs::set(papp));
 
-      //m_fsset.m_p->m_pcontainerbase = this;
-
    }
 
    document::~document()
@@ -78,7 +76,7 @@ namespace userfs
 
             synch_lock sl(get_fs_data()->m_pmutex);
 
-            m_listing = listing;
+            m_listing = (const ::file::listing &) listing;
 
          }
 

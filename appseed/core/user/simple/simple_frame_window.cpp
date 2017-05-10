@@ -566,7 +566,11 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    defer_set_icon();
 
-   post_message(WM_USER + 184, 2);
+   defer_create_notification_icon();
+
+   m_pimpl->show_task(m_bShowTask);
+
+   //post_message(WM_USER + 184, 2);
 
    pcreate->m_bRet = false;
 
@@ -2101,9 +2105,7 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
    else if(pbase->m_wparam == 2)
    {
 
-      defer_create_notification_icon();
-
-      m_pimpl->show_task(m_bShowTask);
+      throw simple_exception(get_app());
 
    }
    else if(pbase->m_wparam == 123)

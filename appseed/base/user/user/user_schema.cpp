@@ -765,8 +765,11 @@ namespace user
 
    }
 
-   void schema::_001TabOnDrawSchema01(::draw2d::graphics * pgraphics, tab * ptab)
+
+   bool schema::_001TabOnDrawSchema01(::draw2d::graphics * pgraphics, tab * ptab)
    {
+
+      return false;
 
    }
 
@@ -777,8 +780,10 @@ namespace user
    }
 
 
-   void schema::_001OnTabLayout(::user::tab * ptab)
+   bool schema::_001OnTabLayout(::user::tab * ptab)
    {
+
+      return false;
 
    }
 

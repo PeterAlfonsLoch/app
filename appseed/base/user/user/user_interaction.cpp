@@ -2358,10 +2358,15 @@ namespace user
    bool interaction::_001IsPointInside(point64 pt)
    {
 
-      if (get_wnd()->WfiIsIconic() || !IsWindowVisible())
+      if (m_pimpl != get_wnd())
       {
+       
+         if (get_wnd()->WfiIsIconic() || !IsWindowVisible())
+         {
 
-         return false;
+            return false;
+
+         }
 
       }
 

@@ -84,9 +84,18 @@ namespace str
          }
       }
 
+      
       bool unicode_to_utf8(string & str, const unichar * lpcsz, strsize iCount)
       {
-         return UnicodeToMultiByte(CodePageUtf8, str, lpcsz, iCount);
+         
+         LPSTR psz = str.GetBufferSetLength(iCount * 4); // worst guess?!?
+
+         strsize iLen = utf16_to_utf8(psz, lpcsz);
+
+         str.ReleaseBuffer(iLen);
+
+         return true;
+
       }
 
       strsize UnicodeToMultiByteCount(UINT uiCodePage, const unichar * lpcsz)

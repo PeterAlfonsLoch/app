@@ -71,6 +71,7 @@ namespace file
 
 
          virtual ::file::listing & ls(::aura::application * papp,listing & listing);
+         virtual ::file::listing & ls_relative_name(::aura::application * papp, listing & listing);
 
 
          virtual bool  is(const ::file::path & lpcsz,::aura::application * papp);

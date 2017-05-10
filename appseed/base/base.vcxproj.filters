@@ -650,6 +650,9 @@
     <ClInclude Include="graphics\draw2d\draw2d_dibmap.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="base\os\windows\windows_extract_icon.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
@@ -1110,6 +1113,9 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_dibmap.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_extract_icon.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

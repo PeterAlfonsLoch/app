@@ -313,7 +313,8 @@ CLASS_DECL_AURA void utf8_to_utf16(unichar * pwsz, const char * psz);
 CLASS_DECL_AURA void utf8_to_utf16_len(unichar * pwsz,const char * psz,strsize srclen);
 CLASS_DECL_AURA int32_t utf8_len(const unichar * pwsz);
 CLASS_DECL_AURA int32_t utf8_len_len(const unichar * pwsz, strsize srclen);
-CLASS_DECL_AURA void utf16_to_utf8(char * psz, const unichar * pwsz);
+CLASS_DECL_AURA strsize utf16_to_utf8(char * psz, const unichar * pwsz);
+CLASS_DECL_AURA strsize utf16_to_utf8(char * psz, const unichar * pwsz, strsize srclen);
 CLASS_DECL_AURA void utf16_to_utf8_len(char * psz,const unichar * pwsz,strsize srclen);
 
 #ifdef __cplusplus

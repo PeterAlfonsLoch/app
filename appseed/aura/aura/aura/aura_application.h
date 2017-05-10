@@ -535,6 +535,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual bool is_application() override;
 
       virtual ::file::listing & perform_file_listing(::file::listing & listing) override;
+      virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;
 
       virtual bool _001OnAgreeExit();
       virtual void _001OnFranceExit();

@@ -73,6 +73,7 @@ namespace userfs
          m_pfnCompare = &BaseNullCompare < const sp(list_item) & >;
          break;
       }
+      ::sort::array::quick_sort(m_itema, m_pfnCompare);
    }
 
 

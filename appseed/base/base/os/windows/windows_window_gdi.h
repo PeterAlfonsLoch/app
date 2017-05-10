@@ -40,3 +40,9 @@ public:
 
 
 extern CLASS_DECL_BASE bool g_bCreateWindowScreen;
+
+
+
+
+
+CLASS_DECL_BASE string expand_env(string str);

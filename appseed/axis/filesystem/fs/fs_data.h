@@ -21,6 +21,7 @@ namespace fs
       // optional if ls_dir is implemented
       virtual bool has_subdir(const ::file::path & pszPath);
       virtual ::file::listing & ls(::file::listing & listing);
+      virtual ::file::listing & ls_relative_name(::file::listing & listing);
       virtual int is_dir(const ::file::path & pszPath);
       virtual ::file::listing & root_ones(::file::listing & listing);
       //virtual void get_ascendants_path(const ::file::path & pszPath,::file::patha & stra);
@@ -55,6 +56,7 @@ namespace fs
 
 
       virtual ::file::listing & perform_file_listing(::file::listing & listing) override;
+      virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;
 
 
    };

@@ -60,13 +60,13 @@ namespace filemanager
             if(m_strPath == "filemanager_add_location_lfs.xhtml")
             {
                stringa stra;
-               get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic,stra);
+               get_filemanager_manager()->data_load(get_filemanager_template()->m_dataidStatic,stra);
                sp(::user::interaction) pui = get_child_by_name("lfs");
                sp(::user::elemental) ptext =  (pui.m_p);
                string str;
                ptext->_001GetText(str);
                stra.add_unique(str);
-               get_filemanager_manager()->data_set(get_filemanager_template()->m_dataidStatic,stra);
+               get_filemanager_manager()->data_save(get_filemanager_template()->m_dataidStatic,stra);
 
             }
             else if(m_strPath == "filemanager_add_location_ftp.xhtml")

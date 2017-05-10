@@ -2696,6 +2696,9 @@
     <ClInclude Include="aura\aura\aura_os_alloc.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\multithreading_delay_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

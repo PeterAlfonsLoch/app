@@ -22,6 +22,7 @@ namespace windows
 
          //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = NULL);
          virtual ::file::listing & ls(::aura::application * papp, ::file::listing & ls);
+         virtual ::file::listing & ls_relative_name(::aura::application * papp, ::file::listing & ls);
 
          //virtual bool  is(const char * lpcsz,::aura::application * papp);
          virtual bool  is(const ::file::path & str,::aura::application * papp);

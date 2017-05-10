@@ -19,6 +19,7 @@ namespace fs
 
 
       virtual ::file::listing & ls(::file::listing & listing);
+      virtual ::file::listing & ls_relative_name(::file::listing & listing);
 
 
       // optional if ls_dir is implemented

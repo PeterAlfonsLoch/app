@@ -1,6 +1,12 @@
 #pragma once
 
 
+#ifdef WINDOWSEX
+
+#include <ShlObj.h>
+
+#endif
+
 namespace filemanager
 {
 
@@ -12,8 +18,10 @@ namespace filemanager
 
 
 #ifdef WINDOWSEX
-      IContextMenu *    m_pcontextmenu;
-      IContextMenu2 *   m_pcontextmenu2;
+
+      ::windows::comptr < IContextMenu >    m_pcontextmenu;
+      ::windows::comptr < IContextMenu2 >   m_pcontextmenu2;
+
 #endif
       UINT              m_uiMinId;
 

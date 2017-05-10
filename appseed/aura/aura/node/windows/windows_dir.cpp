@@ -419,6 +419,178 @@ namespace windows
    }
 
 
+   ::file::listing & dir::ls_relative_name(::aura::application * papp, ::file::listing & listing)
+   {
+
+
+      if (listing.m_bRecursive)
+      {
+
+         // to finish;
+
+         index iStart = listing.get_size();
+
+         {
+
+            RESTORE(listing.m_path);
+
+            RESTORE(listing.m_eextract);
+
+            if (::file::dir::system::ls(papp, listing).succeeded())
+            {
+
+               listing.m_cres = cres(failure);
+
+               return listing;
+
+            }
+
+
+            ::file::listing dira(papp);
+
+            dira.ls_dir(listing.m_path);
+
+            for (int32_t i = 0; i < dira.get_count(); i++)
+            {
+
+               ::file::path dir = dira[i];
+
+               if (dir == listing.m_path)
+                  continue;
+
+               listing.m_path = dir;
+
+               if (listing.m_eextract != extract_all)
+               {
+
+                  listing.m_eextract = extract_none;
+
+               }
+
+               listing.ls();
+
+            }
+
+         }
+
+         file_find file_find;
+
+         bool bWorking = file_find.FindFile(listing.m_path / "*") != FALSE;
+
+         if (bWorking)
+         {
+
+            while (bWorking)
+            {
+
+               bWorking = file_find.FindNextFileA() != FALSE;
+
+               if (!file_find.IsDots() && file_find.GetFilePath() != listing.m_path)
+               {
+
+                  if ((listing.m_bDir && file_find.IsDirectory()) || (listing.m_bFile && !file_find.IsDirectory()))
+                  {
+
+                     if (matches_wildcard_criteria_ci(listing.m_straPattern, file_find.GetFileName()))
+                     {
+
+                        listing.add(file_find.GetFilePath());
+
+                        listing.last().m_iSize = file_find.get_length();
+
+                        listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            listing.m_cres = cres(failure);
+
+         }
+
+         for (index i = iStart; i < listing.get_size(); i++)
+         {
+
+            listing[i].m_iRelative = listing.m_path.get_length() + 1;
+
+         }
+
+      }
+      else
+      {
+
+         if (::file::dir::system::ls(papp, listing).succeeded())
+         {
+
+            return listing;
+
+         }
+
+         file_find file_find;
+
+         bool bWorking;
+
+         bWorking = file_find.FindFile(listing.m_path / "*");
+
+         if (!bWorking)
+         {
+
+            return listing;
+
+         }
+
+         while (bWorking)
+         {
+
+            bWorking = file_find.FindNextFileA();
+
+            if (!file_find.IsDots())
+            {
+
+               if ((listing.m_bDir && file_find.IsDirectory()) || (listing.m_bFile && !file_find.IsDirectory()))
+               {
+
+                  ::file::path pathName = file_find.GetFileName();
+
+                  //if (strFile.begins_ci("resident_"))
+                  //{
+
+                  //   TRACE("resident_*");
+                  //}
+
+                  if (matches_wildcard_criteria_ci(listing.m_straPattern, pathName))
+                  {
+
+                     listing.add(pathName);
+
+                     //listing.last().m_iSize = file_find.get_length();
+
+                     //listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return listing;
+
+   }
+
+
+
    bool dir::is(const ::file::path & lpcszPath, ::aura::application * papp)
    {
       

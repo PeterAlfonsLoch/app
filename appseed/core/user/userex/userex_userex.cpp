@@ -1,5 +1,8 @@
 //#include "framework.h"
 
+#ifdef WINDOWSEX
+#include "core/user/user/user_shell_windows.h"
+#endif
 
 #include "base/database/simpledb/simpledb.h"
 
@@ -13,7 +16,7 @@ namespace userex
       ::aura::department(papp)
    {
 
-      m_pshellimageset  = NULL;
+      m_pshell  = NULL;
 
    }
 
@@ -29,10 +32,18 @@ namespace userex
 
       System.factory().creatable_small < keyboard_layout >();
 
-      if (m_pshellimageset.is_null())
+      if (m_pshell.is_null())
       {
 
-         m_pshellimageset = canew(filemanager::_shell::ImageSet(m_pauraapp));
+#ifdef WINDOWSEX
+
+         m_pshell = canew(::user::shell::windows(get_app()));
+
+#else
+
+         #error "Implement for your platform."
+
+#endif
 
       }
 
@@ -304,10 +315,10 @@ namespace userex
    }
 
 
-   filemanager::_shell::ImageSet & userex::shellimageset()
+   ::user::shell::shell & userex::shell()
    {
 
-      return *m_pshellimageset;
+      return *m_pshell;
 
    }
 

@@ -479,7 +479,7 @@ namespace userfs
          pitem = pitemStart;
 
       if (path.get_length() <= 0)
-         return pitem;
+         return NULL;
 
       while (pitem != NULL)
       {

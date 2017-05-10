@@ -16,21 +16,6 @@ namespace data
       m_pparent         = NULL;
       m_iLevel          = -1;
 
-      m_uiTreeItemFlag           = 0;
-      m_pitemPreviousOrParent    = NULL;
-      m_pitemPrevious             = NULL;
-      
-      m_pitemNext = NULL;
-      m_pitemNextOrParent = NULL;
-      m_pitemChildOrNext = NULL;
-      m_pitemChildNextOrParent = NULL;
-      
-      m_iLevelPreviousOrParentOffset = 0;
-      
-      m_iLevelNextOrParentOffset = 0;
-      m_iLevelChildOrNextOffset = 0;
-      m_iLevelChildNextOrParentOffset = 0;
-
    }
 
 
@@ -147,6 +132,191 @@ namespace data
       }
    }
 
+   bool tree_item::remove_item_from_parent()
+   {
+
+      tree_item * pitem = this;
+
+      if (pitem->m_pparent == NULL)
+      {
+
+         return true;
+
+      }
+
+      index iFind = pitem->m_pparent->m_children.find_first(pitem);
+
+      if (iFind < 0)
+      {
+
+         // self healing?
+         pitem->m_pparent = NULL;
+
+         return false;
+
+      }
+
+      pitem->m_pparent->m_children.remove_at(iFind);
+
+      pitem->m_pparent = NULL;
+
+      return true;
+
+   }
+
+
+   bool tree_item::insert(ERelative erelative, tree_item * pitemNew)
+   {
+
+      if (erelative == RelativeFirstChild)
+      {
+
+         //if (contains(pitemNew))
+         //{
+
+         //   return true;
+
+         //}
+
+         pitemNew->remove_item_from_parent();
+
+         m_children.insert_at(0, pitemNew);
+
+         pitemNew->m_iLevel = m_iLevel + 1;
+
+         pitemNew->m_pparent = this;
+
+         return true;
+
+      }
+      else if (erelative == RelativeLastChild)
+      {
+
+         pitemNew->remove_item_from_parent();
+
+         m_children.add(pitemNew);
+
+         pitemNew->m_iLevel = m_iLevel + 1;
+
+         pitemNew->m_pparent = this;
+
+         return true;
+
+      }
+      else if (erelative == RelativePreviousSibling)
+      {
+
+         ASSERT(m_pparent != NULL);
+
+         if (m_pparent == NULL)
+         {
+
+            return false;
+
+         }
+
+         index iFind = m_pparent->m_children.find_first(this);
+
+         if (iFind < 0)
+         {
+
+            // self-healinng
+            m_pparent = NULL;
+
+            return false;
+
+         }
+
+         if (iFind > 0)
+         {
+
+            iFind--;
+
+         }
+
+         m_pparent->m_children.insert_at(iFind, pitemNew);
+
+         pitemNew->m_iLevel = m_iLevel;
+
+         pitemNew->m_pparent = m_pparent;
+
+
+      }
+      else if(erelative == RelativeNextSibling)
+      {
+
+         if (m_pparent == NULL)
+         {
+
+            return false;
+
+         }
+
+         index iFind = m_pparent->m_children.find_first(this);
+
+         if (iFind < 0)
+         {
+
+            // self-healing
+            m_pparent = NULL;
+
+            return false;
+
+         }
+         else
+         {
+
+            iFind++;
+
+         }
+
+         m_pparent->m_children.insert_at(iFind, pitemNew);
+
+         pitemNew->m_iLevel = m_iLevel;
+
+         pitemNew->m_pparent = m_pparent;
+
+      }
+      else if(erelative == RelativeLastSibling)
+      {
+
+         m_pparent->m_children.add(pitemNew);
+
+         pitemNew->m_iLevel = m_iLevel;
+
+         pitemNew->m_pparent = m_pparent;
+
+      }
+      else if(erelative == RelativeReplace)
+      {
+
+         index iFind = m_pparent->m_children.find_first(this);
+
+         if(iFind < 0)
+         {
+
+            m_pparent = NULL;
+
+            return false;
+
+         }
+
+         m_pparent->m_children.element_at(iFind) = pitemNew;
+
+         m_pparent = NULL;
+
+         remove_tree_item();
+
+      }
+
+
+   
+
+      return false;
+
+
+   }
+
    tree_item * tree_item::get_child_by_user_data(uint_ptr iUserData)
    {
       for (index i = 0; i < m_children.get_count(); i++)
@@ -167,6 +337,13 @@ namespace data
    {
 
       return m_children.get_count();
+
+   }
+
+   tree_item * tree_item::get_parent()
+   {
+
+      return m_pparent;
 
    }
 
@@ -873,6 +1050,11 @@ namespace data
       {
          pitem = pitem->get_item(TreeNavigationProperForward, &iLevel);
          iCount++;
+         if (iCount >= 65536)
+         {
+            break;
+
+         }
          if(iLevel <= 0)
             break;
       }

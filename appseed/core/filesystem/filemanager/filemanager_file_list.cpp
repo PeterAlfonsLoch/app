@@ -105,7 +105,7 @@ namespace filemanager
 
          ::file::patha filepatha;
 
-         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic, filepatha);
+         get_filemanager_manager()->data_load(get_filemanager_template()->m_dataidStatic, filepatha);
 
          ::file::path filepath = get_filemanager_item().m_filepath;
 
@@ -1081,7 +1081,7 @@ namespace filemanager
 
          stringa stra;
 
-         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic,stra);
+         get_filemanager_manager()->data_load(get_filemanager_template()->m_dataidStatic,stra);
 
          synch_lock lock(get_fs_mesh_data()->m_pmutex);
 
@@ -1106,11 +1106,12 @@ namespace filemanager
 
             item.m_filepath = strPath;
 
-            item.m_iImage = Session.userex()->shellimageset().GetImage(
+            item.m_iImage = Session.userex()->shell().get_image(
                get_handle(),
                "foo",
-               get_document()->get_fs_data()->is_dir(item.m_filepath) ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
-               _shell::IconNormal);
+               get_document()->get_fs_data()->is_dir(item.m_filepath) ?
+                  ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
+                  ::user::shell::icon_normal);
 
             item.m_strName = strName;
 
@@ -1132,7 +1133,7 @@ namespace filemanager
 
       stringa straStrictOrder;
 
-      data_get(     data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder",      straStrictOrder);
+      data_load(     data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder",      straStrictOrder);
       index_biunique iaDisplayToStrict;
       icon_layout iconlayout;
       data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(),     iconlayout);
@@ -1190,10 +1191,12 @@ namespace filemanager
 
             ::file::path & path = listing[i];
 
+            ::file::path fullpath = path;
+
             if (path.m_iDir < 0)
             {
 
-               path.m_iDir = get_document()->get_fs_data()->is_dir(path) ? 1 : 0;
+               path.m_iDir = get_document()->get_fs_data()->is_dir(fullpath) ? 1 : 0;
 
             }
 
@@ -1204,15 +1207,16 @@ namespace filemanager
 
             }
 
-            spitem->m_filepath = path;
+            spitem->m_filepath = fullpath;
 
-            spitem->m_iImage = Session.userex()->shellimageset().GetImageFoo(
+            spitem->m_iImage = Session.userex()->shell().get_image_foo(
                get_handle(),
                path.extension(),
-               path.m_iDir == 1 ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
-               _shell::IconNormal);
+               path.m_iDir == 1 ? 
+               ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
+               ::user::shell::icon_normal);
 
-            spitem->m_strName = path.name();
+            spitem->m_strName = listing.name(i);
 
 
          }
@@ -1274,8 +1278,6 @@ namespace filemanager
 
       _001CreateImageList();
 
-      RedrawWindow();
-
       //file_size_add_request(true);
       /*   for(int32_t i = 0; i < m_itema.get_item_count(); i++)
       {
@@ -1291,6 +1293,9 @@ namespace filemanager
       _001ClearSelection();
 
       set_viewport_offset(0,0);
+
+      RedrawWindow();
+
 
    }
 
@@ -1326,25 +1331,43 @@ namespace filemanager
 
    int32_t file_list::create_image_list_thread::run()
    {
+
       int32_t iStepSetCount = 84;
-//      int32_t iStepSetSleep = 23;
-      while (get_run_thread())
+
+      ::file::path path = m_plist->get_filemanager_path();
+
+      Sess(get_app()).userex()->shell().open_folder(m_plist->get_handle(), path);
+
+      try
       {
-         int32_t i = iStepSetCount;
-         while (i > 0 && get_run_thread())
+
+         //      int32_t iStepSetSleep = 23;
+         while (get_run_thread())
          {
-            if (!m_plist->_001CreateImageListStep())
-               goto endloop;
-            i--;
+            int32_t i = iStepSetCount;
+            while (i > 0 && get_run_thread())
+            {
+               if (!m_plist->_001CreateImageListStep())
+                  goto endloop;
+               i--;
+            }
+            m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemStepSetRedraw);
+            //Sleep(iStepSetSleep);
          }
-         m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemStepSetRedraw);
-         //Sleep(iStepSetSleep);
+      endloop:
+         m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
+         //synch_lock lock(m_plist->m_pauraapp);
+         m_plist->m_pcreateimagelistthread = NULL;
+         return 0;
+
       }
-   endloop:
-      m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
-      //synch_lock lock(m_plist->m_pauraapp);
-      m_plist->m_pcreateimagelistthread = NULL;
-      return 0;
+      catch (...)
+      {
+
+
+      }
+
+      Sess(get_app()).userex()->shell().close_folder(path);
 
    }
 
@@ -1407,11 +1430,12 @@ namespace filemanager
       }
       sl.unlock();
       ///IShellFolder * lpsf = m_pshellfolder;
-      int iImage = Session.userex()->shellimageset().GetImage(
+      int iImage = Session.userex()->shell().get_image(
          get_handle(),
          path,
-         path.m_iDir == 1 ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
-         _shell::IconNormal);
+         path.m_iDir == 1 ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
+         ::user::shell::icon_normal);
+
       sl.lock();
       {
 
@@ -1503,11 +1527,11 @@ namespace filemanager
          column.m_bEditOnSecondClick = false;
          if (get_filemanager_data()->m_iIconSize >= 48)
          {
-            column.m_pil = Session.userex()->shellimageset().GetImageList48();
+            column.m_pil = Session.userex()->shell().GetImageList48();
          }
          else
          {
-            column.m_pil = Session.userex()->shellimageset().GetImageList16();
+            column.m_pil = Session.userex()->shell().GetImageList16();
          }
          _001AddColumn(column);
          m_iSelectionSubItem = i;
@@ -1553,12 +1577,12 @@ namespace filemanager
       column.m_bEditOnSecondClick = true;
       if (get_filemanager_data()->m_iIconSize >= 48)
       {
-         column.m_pilHover = Session.userex()->shellimageset().GetImageList48Hover();
-         column.m_pil = Session.userex()->shellimageset().GetImageList48();
+         column.m_pilHover = Session.userex()->shell().GetImageList48Hover();
+         column.m_pil = Session.userex()->shell().GetImageList48();
       }
       else
       {
-         column.m_pil = Session.userex()->shellimageset().GetImageList16();
+         column.m_pil = Session.userex()->shell().GetImageList16();
       }
       _001AddColumn(column);
 
@@ -2008,7 +2032,7 @@ namespace filemanager
    {
       if (i == 0)
       {
-         return Session.userex()->shellimageset().GetImageList16();
+         return Session.userex()->shell().GetImageList16();
       }
       return NULL;
    }
@@ -2103,7 +2127,7 @@ namespace filemanager
 
          string strName = strPath.name();
 
-         Application.file().move(get_fs_mesh_data()->m_itema.get_item(strict).m_filepath / strName, strPath);
+         Application.file().move(get_fs_mesh_data()->m_itema.get_item(strict).m_filepath, strPath);
 
       }
       else

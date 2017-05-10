@@ -78,6 +78,30 @@ int32_t uni_to_utf8(char * dest, int32_t ch)
 
 }
 
+int32_t uni_to_utf8_2_or_more(char * dest, int32_t ch)
+{
+   if (ch < 0x800) {
+      dest[0] = (ch >> 6) | 0xC0;
+      dest[1] = (ch & 0x3F) | 0x80;
+      return 2;
+   }
+   if (ch < 0x10000) {
+      dest[0] = (ch >> 12) | 0xE0;
+      dest[1] = ((ch >> 6) & 0x3F) | 0x80;
+      dest[2] = (ch & 0x3F) | 0x80;
+      return 3;
+   }
+   if (ch < 0x110000) {
+      dest[0] = (ch >> 18) | 0xF0;
+      dest[1] = ((ch >> 12) & 0x3F) | 0x80;
+      dest[2] = ((ch >> 6) & 0x3F) | 0x80;
+      dest[3] = (ch & 0x3F) | 0x80;
+      return 4;
+   }
+   return 0;
+
+}
+
 
 ::count utf16_len(const char * psz)
 {
@@ -180,7 +204,7 @@ int32_t utf8_len(const unichar * pwsz)
    char sz[16];
    while(*pwsz != L'\0')
    {
-      n = uni_to_utf8(sz, *pwsz);
+      n = *pwsz < 0x80 ? 1: uni_to_utf8_2_or_more(sz, *pwsz);
       if(n <= 0)
          break;
       count += n;
@@ -198,7 +222,7 @@ int32_t utf8_len_len(const unichar * pwsz, strsize srclen)
    char sz[16];
    while(srclen > 0 && *pwsz != L'\0')
    {
-      n = uni_to_utf8(sz,*pwsz);
+      n = *pwsz < 0x80 ? 1: uni_to_utf8_2_or_more(sz,*pwsz);
       if(n <= 0)
          break;
       count += n;
@@ -216,20 +240,20 @@ CLASS_DECL_AURA string utf16_to_utf8(const unichar * pwsz,strsize srcLen)
 
    strsize len;
 
-   if(srcLen < 0)
-   {
+   //if(srcLen < 0)
+   //{
 
-      len = utf8_len(pwsz);
+   //   len = utf8_len(pwsz);
 
-   }
-   else
-   {
+   //}
+   //else
+   //{
 
-      len = utf8_len_len(pwsz,srcLen);
+   //   len = utf8_len_len(pwsz,srcLen);
 
-   }
+   //}
 
-   LPSTR psz = str.GetBufferSetLength(len);
+   LPSTR psz = str.GetBufferSetLength(srcLen * 4); // worst guess?!?
 
    utf16_to_utf8(psz, pwsz);
 
@@ -240,21 +264,60 @@ CLASS_DECL_AURA string utf16_to_utf8(const unichar * pwsz,strsize srcLen)
 
 
 
-void utf16_to_utf8(char * psz, const unichar * pwsz)
+strsize utf16_to_utf8(char * pszParam, const unichar * pwsz)
 {
    //unsigned short * pwsz = (unsigned short *)pwszParam;
-   if(pwsz == NULL || psz == NULL)
-      return;
+   if(pwsz == NULL || pszParam == NULL)
+      return 0 ;
+   char * psz = pszParam;
    int32_t n;
    while(*pwsz != L'\0')
    {
-      n = uni_to_utf8(psz, *pwsz);
+      if (*pwsz < 0x80)
+      {
+         *psz = (char)*pwsz;
+         n = 1;
+      }
+      else
+      {
+         n = uni_to_utf8_2_or_more(psz, *pwsz);
+      }
       if(n <= 0)
          break;
       pwsz++;
       psz += n;
    }
    *psz = L'\0';
+   return psz - pszParam;
+}
+
+strsize utf16_to_utf8(char * pszParam, const unichar * pwsz, strsize srclen)
+{
+   //unsigned short * pwsz = (unsigned short *)pwszParam;
+   if (pwsz == NULL || pszParam == NULL)
+      return 0;
+   const unichar * pwszEnd = pwsz + srclen;
+   char * psz = pszParam;
+   int32_t n;
+   while (pwsz < pwszEnd)
+   {
+      if (*pwsz < 0x80)
+      {
+         *psz = (char)*pwsz;
+         pwsz++;
+         psz++;
+      }
+      else
+      {
+         n = uni_to_utf8_2_or_more(psz, *pwsz);
+         if (n <= 0)
+            break;
+         pwsz++;
+         psz += n;
+      }
+   }
+   *psz = L'\0';
+   return psz - pszParam;
 }
 
 void utf16_to_utf8_len(char * psz,const unichar * pwsz, strsize srclen)

@@ -68,21 +68,84 @@ string url_dir_name_for_relative(const char * pszPath)
 
 }
 
-CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
+
+CLASS_DECL_AURA string solve_relative_compressions(const string & strParam, bool * pbUrl)
 {
+   
+   string str(strParam);
+
+   bool bUrl;
+
+   bool bOnlyNativeFileSep;
+
+   strsize iaSlash[512];
+
+   int iSlashCount = 512;
+
+   solve_relative_compressions_inline(str, bUrl, bOnlyNativeFileSep, iaSlash, &iSlashCount);
+
+   if (pbUrl)
+   {
+
+      *pbUrl = bUrl;
+
+   }
+
+   return str;
+
+}
+
+#ifdef WINDOWS
+
+#define CHECK_NATIVE_FILE_SEP(ch) \
+\
+if (bOnlyNativeFileSep && psz[iPos] == '/') \
+{ \
+\
+   bOnlyNativeFileSep = false; \
+\
+} 
+
+#else
+
+#define CHECK_NATIVE_FILE_SEP(ch) \
+\
+if (bOnlyNativeFileSep && psz[iPos] == '/') \
+{ \
+\
+   bOnlyNativeFileSep = false; \
+\
+} 
+
+#endif
+
+
+CLASS_DECL_AURA bool solve_relative_compressions_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount)
+{
+
+   bOnlyNativeFileSep = true;
+
+   bool bCertainlySyntathicallyDir = false;
+
+   bUrl = false;
 
    bool bDup = false;
 
-   char * psz = (char *) strParam.c_str();
+   char * psz = (char *) str.c_str();
 
-   strsize iLen = strParam.get_length();
+   strsize iLen = str.get_length();
    
    //string strAbsolute(strParam);
 
    strsize iNewPos;
 
-   strsize iaSlash[512];
-   int iSlashCount = 0;
+   bool bDynIa = false;
+
+   //strsize * iaSlash = *iaSlash;
+   
+   int & iSlashCount = *piSlashCount;
+
+   iSlashCount = 0;
 
    iaSlash[0] = 0;
 
@@ -93,6 +156,12 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
 
       if (psz[0] == '\\' && psz[1] == '\\')
       {
+
+#ifndef WINDOWS
+
+         bOnlyNativeFileSep = false;
+
+#endif
          
          iaSlash[0] = 1;
 
@@ -109,6 +178,8 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
 
       if (psz[iPos] == '/' || psz[iPos] == '\\')
       {
+
+         CHECK_NATIVE_FILE_SEP(psz[iPos]);
          
          iaSlash[iSlashCount] = iPos;
 
@@ -124,15 +195,18 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
             if (iPos > 2)
             {
 
+               iSlashCount--;
+
                iPos--; // remove trailing slash
 
             }
 
+            bCertainlySyntathicallyDir = true;
+
             goto ret;
 
          }
-
-         if (psz[iPos] == '.')
+         else if (psz[iPos] == '.')
          {
 
             iPos++;
@@ -155,6 +229,8 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
 
                }
 
+               bCertainlySyntathicallyDir = true;
+
                goto ret;
 
             }
@@ -170,6 +246,15 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
 
                   iPos = iaSlash[MAX(0, iSlashCount - 2)]; // go back to position of previous slash
 
+                  iSlashCount -= 2;
+
+                  if (iSlashCount <= 0)
+                  {
+
+                     iSlashCount = 1;
+
+                  }
+
                   if (iPos > 2)
                   {
 
@@ -177,15 +262,24 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
 
                   }
 
+                  bCertainlySyntathicallyDir = true;
+
                   goto ret;
 
                }
                else if (psz[iPos] == '/' || psz[iPos] == '\\')
                {
 
-                  psz = strdup(strParam);
+                  CHECK_NATIVE_FILE_SEP(psz[iPos]);
 
-                  bDup = true;
+                  if (!bDup)
+                  {
+
+                     psz = str.GetBuffer();
+
+                     bDup = true;
+
+                  }
 
                   iSlashCount-=2;
 
@@ -214,7 +308,7 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
                else
                {
 
-                  iPos += ::str::get_utf8_char_length(psz);
+                  iPos += ch_uni_len(psz[iPos]);
 
                   if (iPos >= iLen)
                   {
@@ -231,9 +325,16 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
             else if (psz[iPos] == '/' || psz[iPos] == '\\')
             {
 
-               psz = strdup(strParam);
+               CHECK_NATIVE_FILE_SEP(psz[iPos]);
 
-               bDup = true;
+               if (!bDup)
+               {
+
+                  psz = str.GetBuffer();
+
+                  bDup = true;
+
+               }
 
                iSlashCount--;
 
@@ -262,7 +363,7 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
             else
             {
 
-               iPos += ::str::get_utf8_char_length(psz);
+               iPos += ch_uni_len(psz[iPos]);
 
                if (iPos >= iLen)
                {
@@ -277,16 +378,28 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
          else if (psz[iPos] == '/' || psz[iPos] == '\\')
          {
 
+            CHECK_NATIVE_FILE_SEP(psz[iPos]);
+
             iaSlash[iSlashCount] = iPos;
 
             iSlashCount++;
 
             iPos++;
 
+            if (iPos > 3 && psz[iPos - 3] == ':')
+            {
+
+               bUrl = true;
+
+            }
+
             if (iPos >= iLen)
             {
 
                // the end of string has been reached
+
+
+               bCertainlySyntathicallyDir = true;
 
                goto ret;
 
@@ -296,7 +409,7 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
          else
          {
 
-            iPos += ::str::get_utf8_char_length(psz);
+            iPos += ch_uni_len(psz[iPos]);
 
             if (iPos >= iLen)
             {
@@ -311,7 +424,7 @@ CLASS_DECL_AURA string solve_relative_compressions(const string & strParam)
       else
       {
 
-         iPos += ::str::get_utf8_char_length(psz);
+         iPos += ch_uni_len(psz[iPos]);
 
          if (iPos >= iLen)
          {
@@ -329,90 +442,18 @@ ret:
    if (bDup)
    {
 
-      string str(psz, iPos + 1);
-
-      free(psz);
-
-      return str;
+      str.ReleaseBuffer(iPos);
 
    }
    else if (iPos < iLen)
    {
 
-      string str(psz, iPos);
-
-      return str;
-
-   }
-   else
-   {
-
-      return strParam;
+      str.Truncate(iPos);
 
    }
 
-   //retu
+   return bCertainlySyntathicallyDir;
 
-   //strAbsolute.replace("/./","/");
-
-   //strsize iFind;
-   //strsize iFind2;
-
-   //while((iFind = strAbsolute.find("/../")) >= 0)
-   //{
-   //   if (iFind == 0)
-   //   {
-   //      strAbsolute = strAbsolute.substr(iFind + 3);
-   //   }
-   //   else
-   //   {
-   //      iFind2 = strAbsolute.reverse_find("/", iFind - 1);
-   //      if (iFind2 <= 0)
-   //      {
-   //         strAbsolute = strAbsolute.substr(iFind + 3);
-   //      }
-   //      else
-   //      {
-   //         strAbsolute = strAbsolute.substr(0, iFind2) + strAbsolute.substr(iFind + 3);
-   //      }
-   //   }
-   //}
-
-   //strAbsolute.replace("\\.\\","\\");
-
-   //while((iFind = strAbsolute.find("\\..\\")) >= 0)
-   //{
-   //   if (iFind == 0)
-   //   {
-   //      strAbsolute = strAbsolute.substr(iFind + 3);
-   //   }
-   //   else
-   //   {
-   //      iFind2 = strAbsolute.reverse_find("\\", iFind - 1);
-   //      if (iFind2 <= 0)
-   //      {
-   //         strAbsolute = strAbsolute.substr(iFind + 3);
-   //      }
-   //      else
-   //      {
-   //         strAbsolute = strAbsolute.substr(0, iFind2) + strAbsolute.substr(iFind + 3);
-   //      }
-   //   }
-   //}
-
-   //if(::str::ends_eat(strAbsolute, "\\.."))
-   //{
-   //   iFind2 = strAbsolute.reverse_find("\\");
-   //   if(iFind2>= 0)
-   //   {
-   //      strAbsolute = strAbsolute.substr(0,iFind2);
-   //   }
-   //}
-
-   //::str::ends_eat(strAbsolute,"\\.");
-
-
-   //return strAbsolute;
 }
 
 CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute)

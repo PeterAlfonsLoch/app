@@ -171,6 +171,29 @@ namespace fs
 
    }
 
+   ::file::listing & set::ls_relative_name(::file::listing & listing)
+   {
+
+      if (listing.m_path.is_empty())
+      {
+
+         return root_ones(listing);
+
+      }
+
+      ::fs::data * pdata = path_data(listing.m_path);
+
+      if (pdata != NULL)
+      {
+
+         return pdata->ls_relative_name(listing);
+
+      }
+
+      return listing = failure;
+
+   }
+
 
    int set::is_dir(const ::file::path & path)
    {

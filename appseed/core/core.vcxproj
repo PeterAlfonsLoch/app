@@ -1626,6 +1626,7 @@
     <ClInclude Include="user\user\user_tool_tip_window.h" />
     <ClInclude Include="user\user\user_tree.h" />
     <ClInclude Include="user\user\user_tree_data.h" />
+    <ClInclude Include="user\user\user_shell_windows.h" />
     <ClInclude Include="user\user\user_xfplayer_view_line.h" />
     <ClInclude Include="user\user\user_xfplayer_view_lines.h" />
     <ClInclude Include="user\user\user_xfplayer_view_line_selection.h" />

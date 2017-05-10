@@ -3,8 +3,7 @@
 
 template < typename Type, typename RawType >
 class string_array :
-   virtual public array < Type >,
-   virtual public ::file::serializable
+   public array < Type >
 {
 public:
 
@@ -264,8 +263,8 @@ public:
 
    void replace(const char * lpszSearch,const char * lpszReplace);
 
-   void write(::file::ostream & ostream) const;
-   void read(::file::istream & istream);
+   //void write(::file::ostream & ostream) const;
+   //void read(::file::istream & istream);
 
 
    void get_format_string(Type & str,const char * lpcszSeparator) const;
@@ -1550,9 +1549,10 @@ object(papp)
 //
 
 template < class Type, class RawType >
-string_array < Type, RawType > ::string_array(const string_array < Type, RawType >  &array)
+string_array < Type, RawType > ::string_array(const string_array < Type, RawType > & array) :
+   ::object((const ::object &) array),
+   ::array < Type >((const ::array < Type > &) array)
 {
-   operator =(array);
 }
 
 
@@ -2331,24 +2331,25 @@ return -1;
 
 
 template < class Type, class RawType >
-void string_array < Type, RawType > ::write(::file::ostream & ostream) const
+::file::ostream & operator << (::file::ostream & ostream, const string_array < Type, RawType > & a)
 {
-   ostream.write_arbitrary(this->m_nSize);
-   for(int32_t i = 0; i < this->get_size(); i++)
+   ostream.write_arbitrary(a.m_nSize);
+   for(int32_t i = 0; i < a.get_size(); i++)
    {
-      ostream << this->element_at(i);
+      ostream << a.element_at(i);
    }
+   return ostream;
 }
 
 
 template < class Type, class RawType >
-void string_array < Type, RawType > ::read(::file::istream & istream)
+::file::istream & operator >> (::file::istream & istream, string_array < Type, RawType > & a)
 {
 
    if(istream.fail())
    {
 
-      return;
+      return istream;
 
    }
 
@@ -2359,34 +2360,31 @@ void string_array < Type, RawType > ::read(::file::istream & istream)
    if(istream.fail())
    {
 
-      return;
+      return istream;
 
    }
 
-   this->remove_all();
+   ::count cOldSize = a.get_size();
 
-   this->set_size(iSize);
+   a.set_size(cOldSize + iSize);
 
-   for(int32_t i = 0; i < iSize; i++)
+   ::count cNewSize = a.get_size();
+
+   for(int32_t i = cOldSize; i < cNewSize; i++)
    {
 
-      istream >> this->element_at(i);
+      istream >> a.element_at(i);
 
       if(istream.fail())
       {
 
-         return;
+         return istream;
 
       }
 
    }
 
-   if(this->get_size() != iSize)
-   {
-
-      istream.setstate(::file::failbit);
-
-   }
+   return istream;
 
 }
 

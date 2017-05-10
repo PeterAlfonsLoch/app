@@ -15,7 +15,7 @@ db_stra_set::db_stra_set(db_server * pserver, ::database::id & id) :
 void db_stra_set::get_data(stringa & stra)
 {
 
-   data_get(m_id, stra);
+   data_load(m_id, stra);
 
 }
 

@@ -172,6 +172,7 @@ namespace str
    CLASS_DECL_AURA  string         utf8_next_char(const char * pszBeg, const char *psz, strsize i = 0);
    CLASS_DECL_AURA  string         utf8_previous_char(const char * pszBeg, const char *psz, strsize i = 0);
    CLASS_DECL_AURA  string         uni_to_utf8(int64_t ch);
+   CLASS_DECL_AURA  int32_t uni_to_utf8_2_or_more(char * dest, int32_t ch);
 
    CLASS_DECL_AURA  const char *   utf8_dec(::str::utf8_char * pchar, const char * pszBeg, const char * psz);
 

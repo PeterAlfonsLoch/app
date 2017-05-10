@@ -836,6 +836,20 @@ namespace base
 
       }
 
+
+      {
+
+         string strId(Application.preferred_userschema());
+
+         if (strId.has_char())
+         {
+
+            straLibrary.add(strId);
+
+         }
+
+      }
+
       {
 
          string strWndFrm = Application.file().as_string(::dir::system() / "config/system/wndfrm.txt");

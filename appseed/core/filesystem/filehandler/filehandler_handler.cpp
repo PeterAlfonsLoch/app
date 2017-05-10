@@ -241,7 +241,7 @@ namespace filehandler
          {
             while(iLevel < iPreviousLevel)
             {
-               pitem = pitem->m_pparent;
+               pitem = pitem->get_parent();
                iPreviousLevel--;
             }
             pitem = m_sptree->insert_item(canew(item), ::data::RelativeLastSibling, pitem);

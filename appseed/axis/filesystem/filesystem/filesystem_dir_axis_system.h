@@ -57,6 +57,7 @@ namespace file
             //virtual string simple_path(const string & str1,const string & str2,const string & str3);
 
             virtual ::file::listing & ls(::aura::application * papp,listing & listing);
+            virtual ::file::listing & ls_relative_name(::aura::application * papp, listing & listing);
 
 
 

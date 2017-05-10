@@ -4,8 +4,6 @@ namespace file { class path; }
 
 inline bool is_url_dup(const string & strCandidate);
 
-CLASS_DECL_AURA string solve_relative_compressions(const string & str);
-
 namespace file
 {
 
@@ -28,19 +26,19 @@ namespace file
 
       e_path            m_epath;
 
-      int64_t           m_iSize = -1; // if negative, not set/calculated/retrieved the file size(for directories would be all contained elements total sum size)
-      int               m_iDir = -1; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
-      strsize           m_iName = -1; // if negative, not set/calculated/retrieved where name starts
-      strsize           m_iRelative = -1; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
+      int64_t           m_iSize; // if negative, not set/calculated/retrieved the file size(for directories would be all contained elements total sum size)
+      int               m_iDir; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
+      strsize           m_iName; // if negative, not set/calculated/retrieved where name starts
+      strsize           m_iRelative; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
       
-      path_meta()
+      path_meta(e_path epath = path_none, int64_t iSize = -1, int64_t iDir = -1, int64_t iName = -1, strsize iRelative = -1)
       {
          
-         m_epath     = path_none;
-         m_iSize     = -1;
-         m_iDir      = -1;
-         m_iName     = -1;
-         m_iRelative = -1;
+         m_epath     = epath;
+         m_iSize     = iSize;
+         m_iDir      = iDir;
+         m_iName     = iName;
+         m_iRelative = iRelative;
          
       }
       
@@ -49,6 +47,8 @@ namespace file
    
 
    CLASS_DECL_AURA string normalize_path(string strPath, e_path epath = path_none);
+
+   CLASS_DECL_AURA bool normalize_path_inline(string & strPath, e_path & epath);
    
    inline char path_sep(e_path epath);
    
@@ -66,7 +66,8 @@ namespace file
 
       path(e_context_switcher_null);
       path(e_path epath = path_file);
-      path(const string & str,e_path epath = path_none, int iDir = -1);
+      path(const unichar * pwsz, strsize iCount, e_path epath = path_none, int iDir = -1, bool bNormalize = true, int64_t iSize = -1);
+      path(const string & str,e_path epath = path_none, int iDir = -1, bool bNormalize=true, int64_t iSize = - 1);
       path(const id & id,e_path epath = path_none, int iDir = -1);
       path(const var & var, e_path epath = path_none, int iDir = -1);
       path(const path & path);
@@ -106,7 +107,6 @@ namespace file
       bool path::is_equal(const path & path) const
       {
 
-
 #ifdef WINDOWS
 
          if (_stricmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
@@ -118,6 +118,8 @@ namespace file
             return true;
 
 #endif
+
+         return false;
 
       }
 

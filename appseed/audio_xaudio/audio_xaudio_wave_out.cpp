@@ -88,13 +88,13 @@ namespace multimedia
          single_lock sLock(m_pmutex, TRUE);
 
 
-         if(m_pxaudio != NULL && m_pvoice != NULL && m_psourcevoice != NULL && m_estate != state_initial)
+         if(m_pxaudio.is_set() && m_pvoice != NULL && m_psourcevoice != NULL && m_estate != state_initial)
             return ::multimedia::result_success;
 
 
          m_pthreadCallback = pthreadCallback;
 //         ::multimedia::e_result mmr;
-         ASSERT(m_pxaudio == NULL);
+         ASSERT(m_pxaudio.is_null());
          ASSERT(m_pvoice == NULL);
          ASSERT(m_psourcevoice == NULL);
          ASSERT(m_estate == state_initial);
@@ -233,14 +233,14 @@ namespace multimedia
 
          single_lock sLock(m_pmutex, TRUE);
 
-         if(m_pxaudio != NULL && m_pvoice != NULL && m_psourcevoice != NULL && m_estate != state_initial)
+         if(m_pxaudio.is_set() && m_pvoice != NULL && m_psourcevoice != NULL && m_estate != state_initial)
             return ::multimedia::result_success;
 
          m_iBuffer = 0;
 
          m_pthreadCallback = pthreadCallback;
          ::multimedia::e_result mmr;
-         ASSERT(m_pxaudio == NULL);
+         ASSERT(m_pxaudio.is_null());
          ASSERT(m_pvoice == NULL);
          ASSERT(m_psourcevoice == NULL);
          ASSERT(m_estate == state_initial);
@@ -400,7 +400,7 @@ namespace multimedia
 
          //m_bufferptra.remove_all();
 
-         m_psourcevoice.m_p = NULL;
+         m_psourcevoice = NULL;
 
 
          try
@@ -419,13 +419,13 @@ namespace multimedia
 
          }
 
-         m_pvoice.m_p = NULL;
+         m_pvoice = NULL;
 
          try
          {
 
 
-            if(m_pxaudio != nullptr)
+            if(m_pxaudio.is_set())
             {
 
                m_pxaudio->StopEngine();

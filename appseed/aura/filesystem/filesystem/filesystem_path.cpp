@@ -19,17 +19,77 @@ namespace file
 
    }
 
-   path::path(const string & str, e_path epath, int iDir)
+
+   path::path(const unichar * pwsz, strsize iCount, e_path epath, int iDir, bool bNormalizePath, int64_t iSize) :
+      string(pwsz, iCount),
+      path_meta(epath, iSize, iDir)
    {
 
-      m_epath = get_path_type(str, epath);
-
-      ::stdstring < simple_string >::operator = (normalize_path(str, m_epath));
-
-      if (str.ends_ci("\\") || str.ends_ci("/"))
+      if (m_epath == path_none)
       {
 
-         m_iDir = 1;
+         m_epath = get_path_type(*this, epath);
+
+      }
+
+      if (bNormalizePath)
+      {
+
+         bool bCertainlySyntathicallyDir = normalize_path_inline(*this, m_epath);
+
+         if (bCertainlySyntathicallyDir)
+         {
+
+            m_iDir = 1;
+
+         }
+         else
+         {
+
+            m_iDir = iDir;
+
+         }
+
+      }
+
+   }
+
+   path::path(const string & str, e_path epath, int iDir, bool bNormalizePath, int64_t iSize) :
+      string(str)
+   {
+
+      m_iSize = iSize;
+
+      if (epath == path_none)
+      {
+
+         m_epath = get_path_type(str, epath);
+
+      }
+      else
+      {
+
+         m_epath = epath;
+
+      }
+
+      if (bNormalizePath)
+      {
+
+         bool bCertainlySyntathicallyDir = normalize_path_inline(*this, m_epath);
+
+         if (bCertainlySyntathicallyDir)
+         {
+
+            m_iDir = 1;
+
+         }
+         else
+         {
+
+            m_iDir = iDir;
+
+         }
 
       }
       else
@@ -650,67 +710,72 @@ namespace file
 
    }
 
-
    string normalize_path(string strPath, e_path epath)
    {
 
-      strPath = solve_relative_compressions(strPath);
+      normalize_path_inline(strPath, epath);
 
-#ifdef WINDOWS
-      if(epath == path_file && (strPath == "\\\\" || strPath == "\\"))
+      return strPath;
+
+   }
+
+   bool normalize_path_inline(string & strPath, e_path & epath)
+   {
+
+      bool bUrl;
+
+      bool bOnlyNativeFileSep;
+
+      strsize iaSlash[512];
+
+      int iSlashCount;
+
+      bool bCertainlySyntathicallyDir = solve_relative_compressions_inline(strPath, bUrl, bOnlyNativeFileSep, iaSlash, &iSlashCount);
+
+      if(bUrl)
       {
+
+         epath = path_url;
 
       }
       else
-#endif
       {
 
-         strsize iFirstColon = strPath.find(':');
-         strsize iFirstSlash = strPath.find('/');
-         strsize iSecondSlash = strPath.find('/', iFirstSlash + 1);
+         epath = path_file;
 
-         if (iFirstColon > 0 && iFirstSlash == iFirstColon + 1 && iSecondSlash == iFirstSlash + 1 && strPath.get_length() == iSecondSlash + 1)
+      }
+
+      if(!bOnlyNativeFileSep && epath == path_file)
+      {
+
+#ifdef WINDOWS
+         if(strPath == "\\\\" || strPath == "\\")
          {
-
+         
          }
-         else if (strPath.has_char())
+         else 
+#endif
+         if (strPath.has_char())
          {
 
-            int i = strPath.get_length() - 1;
+            char * psz = strPath.GetBuffer();
 
-            while (i >= 0 && strPath[i] == '\\' || strPath[i] == '/')
+            char chSep = path_sep(epath);
+            
+            for(int i = 0; i < iSlashCount; i++)
             {
 
-               i--;
+               psz[iaSlash[i]] = chSep;
 
             }
 
-            if (i >= 0 && i < strPath.get_length() - 1)
-            {
-
-               strPath.Truncate(i + 1);
-
-            }
-
-
-            if (strPath.has_char())
-            {
-
-               strPath.replace(path_osep(epath), path_sep(epath));
-
-            }
-            else
-            {
-
-               strPath = path_sep(epath);
-
-            }
+            strPath.ReleaseBuffer();
 
          }
 
       }
 
-      return strPath;
+      return bCertainlySyntathicallyDir;
 
    }
 

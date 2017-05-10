@@ -22,7 +22,7 @@ namespace userex
       map < ::type *, type *, ::user::impact_system *, ::user::impact_system * > m_mapTemplate;
 
 
-      sp(filemanager::_shell::ImageSet)         m_pshellimageset;
+      sp(::user::shell::shell)                  m_pshell;
 
 
       stringa                                   m_straEscape;
@@ -38,7 +38,7 @@ namespace userex
       virtual ~userex();
 
 
-      filemanager::_shell::ImageSet & shellimageset();
+      ::user::shell::shell & shell();
 
       virtual bool initialize1();
       virtual bool initialize2();

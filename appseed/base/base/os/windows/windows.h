@@ -76,3 +76,8 @@ namespace base
 
 
 #include "windows_window_gdi.h"
+
+#include "windows_extract_icon.h"
+
+
+

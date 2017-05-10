@@ -5,8 +5,7 @@
 object::object()
 {
 
-   common_construct();
-
+   m_psetObject         = NULL;
    m_pmutex             = NULL;
    m_ulFlags            = (uint32_t)flag_auto_clean;
    m_pfactoryitembase   = NULL;
@@ -19,21 +18,37 @@ object::object()
 object::object(const object& objectSrc)
 {
 
-	m_psetObject         = NULL;
-   m_pmutex             = NULL;
+   if (objectSrc.m_psetObject != NULL)
+   {
+
+      m_psetObject = new property_set(*objectSrc.m_psetObject);
+
+   }
+   else
+   {
+
+      m_psetObject = NULL;
+
+   }
+   
+   if (objectSrc.m_pmutex != NULL)
+   {
+   
+      m_pmutex = new mutex(objectSrc.m_pauraapp);
+
+   }
+   else
+   {
+
+      m_pmutex = NULL;
+
+   }
+
    m_ulFlags            = (uint32_t)flag_auto_clean;
+   m_pfactoryitembase   = NULL;
    m_countReference     = 1;
+   m_pauraapp           = objectSrc.m_pauraapp;
 
-   operator =(objectSrc);
-
-}
-
-
-void object::common_construct()
-{
-
-   m_pmutex             = NULL;
-   m_psetObject         = NULL;
 
 }
 
@@ -41,12 +56,12 @@ void object::common_construct()
 object::object(::aura::application * papp)
 {
 
-   common_construct();
-
-   m_pauraapp           = papp;
+   m_psetObject         = NULL;
+   m_pmutex             = NULL;
    m_ulFlags            = (uint32_t)flag_auto_clean;
    m_pfactoryitembase   = NULL;
    m_countReference     = 1;
+   m_pauraapp           = papp;
 
 }
 

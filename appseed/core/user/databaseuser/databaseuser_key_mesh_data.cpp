@@ -19,7 +19,7 @@ namespace databaseuser
    void data_key_mesh_data::_001GetItemText(::user::mesh_item * pitem)
    {
       stringa stra;
-      if(!data_get(::aura::system::idEmpty, stra))
+      if(!data_load(::aura::system::idEmpty, stra))
          return_(pitem->m_bOk, false)
       pitem->m_strText = stra[pitem->m_iItem];
       pitem->m_bOk = true;
@@ -28,7 +28,7 @@ namespace databaseuser
    void data_key_mesh_data::GetSel(::user::list * plist , stringa & stra)
    {
       stringa wstraTotal;
-      if(!data_get(::aura::system::idEmpty, wstraTotal))
+      if(!data_load(::aura::system::idEmpty, wstraTotal))
          return;
       ::user::list::range range;
       plist->_001GetSelection(range);
@@ -45,7 +45,7 @@ namespace databaseuser
    ::count data_key_mesh_data::_001GetItemCount()
    {
       stringa straTotal;
-      if(!data_get(::aura::system::idEmpty, straTotal))
+      if(!data_load(::aura::system::idEmpty, straTotal))
          return -1;
       return straTotal.get_size();
    }
@@ -54,9 +54,9 @@ namespace databaseuser
    bool data_key_mesh_data::add_unique(const stringa & stra)
    {
       stringa straData;
-      data_get(::aura::system::idEmpty, straData);
+      data_load(::aura::system::idEmpty, straData);
       straData.add_unique(stra);
-      if(!data_set(::aura::system::idEmpty, straData))
+      if(!data_save(::aura::system::idEmpty, straData))
          return false;
       return true;
    }
@@ -64,10 +64,10 @@ namespace databaseuser
    bool data_key_mesh_data::remove(const stringa & stra)
    {
       stringa straData;
-      if(!data_get(::aura::system::idEmpty, straData))
+      if(!data_load(::aura::system::idEmpty, straData))
          return true;
       straData.remove(stra);
-      if(!data_set(::aura::system::idEmpty, straData))
+      if(!data_save(::aura::system::idEmpty, straData))
          return false;
       return true;
    }

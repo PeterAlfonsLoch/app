@@ -100,11 +100,11 @@ namespace user
       virtual bool simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics);
 
 
-      virtual void _001TabOnDrawSchema01(::draw2d::graphics * pgraphics,tab * ptab);
+      virtual bool _001TabOnDrawSchema01(::draw2d::graphics * pgraphics,tab * ptab);
       
       virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics * pgraphics,LPCRECT lpcrect,::draw2d::brush_sp & brushText);
 
-      virtual void _001OnTabLayout(::user::tab * ptab);
+      virtual bool _001OnTabLayout(::user::tab * ptab);
 
       virtual bool _001GetMainFrameTranslucency(::user::ETranslucency & etranslucency);
 

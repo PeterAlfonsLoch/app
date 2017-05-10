@@ -479,6 +479,64 @@ namespace file
 
       }
 
+      ::file::listing & system::ls_relative_name(::aura::application * papp, listing & l)
+      {
+
+         if (l.m_bRecursive)
+         {
+
+            if (l.m_eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (icmp(l.m_path.ext(), ".zip") == 0 || l.m_path.find_ci("zip:") >= 0))
+            {
+
+               //throw "should implement recursive zip";
+
+               //m_pziputil->ls(papp,l);
+
+               l.m_cres = failure_no_log;
+
+            }
+            else
+            {
+
+               l.m_cres = failure_no_log;
+
+
+            }
+
+
+         }
+         else
+         {
+
+            if (::str::begins_ci(l.m_path, "http://") || ::str::begins_ci(l.m_path, "https://"))
+            {
+
+               property_set set(get_app());
+
+               string str = Sess(papp).http().get(l.m_path, set);
+
+               l.add_tokens(str, "\n", false);
+
+            }
+            else if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(l.m_path, ".zip") || ::str::find_file_extension("zip:", l.m_path) >= 0))
+            {
+
+               m_pziputil->ls(papp, l);
+
+            }
+            else
+            {
+
+               l.m_cres = failure_no_log;
+
+
+            }
+
+         }
+
+         return l;
+
+      }
 
       bool system::has_subdir(::aura::application * papp,const ::file::path & psz)
       {

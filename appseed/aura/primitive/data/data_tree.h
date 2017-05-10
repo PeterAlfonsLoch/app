@@ -51,7 +51,7 @@ namespace data
       virtual ::count   remove(tree_item * pitem);
       virtual ::count   remove(item * pitem, index i = 0);
 
-      virtual bool      remove_item_from_parent(tree_item * pitem);
+      
 
 
       void sort(index ( * lpfnCompare )(const sp(tree_item) & pitem, const sp(tree_item) & pitem2));

@@ -60,8 +60,11 @@ namespace filemanager
       case ::filemanager::state_finish:
       {
                                        m_fileoperationa[m_iOperation]->finish();
+                                       single_lock sl(&m_mutexFileOperationA, TRUE);
                                        m_estate = ::filemanager::state_start;
-                                       m_iOperation++;
+                                       m_fileoperationa.remove_at(m_iOperation);
+
+                                       // m_iOperation++;
       }
          break;
       case ::filemanager::state_initial:
@@ -167,6 +170,7 @@ namespace filemanager
          operation_view::MessageMainPost,
          operation_view::MessageMainPostFileOperationFinal);
    exit:
+
       return 1;
    }
 

@@ -36,7 +36,6 @@ create::create(::command_thread * pthreadParent) :
    m_puiAlloc                          = NULL;
    m_puiParent                         = NULL;
    m_pthreadParent                     = pthreadParent;
-   common_construct();
 
 }
 

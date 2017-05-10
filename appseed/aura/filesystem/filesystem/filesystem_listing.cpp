@@ -9,6 +9,7 @@ namespace file
    {
 
       m_pprovider = pprovider;
+      m_nGrowBy = 128;
 
    }
 
@@ -27,6 +28,34 @@ namespace file
    }
 
 
+   listing & listing::ls_relative_name()
+   {
+
+      return m_pprovider->perform_file_relative_name_listing(*this);
+
+   }
+
+
+   listing & relative_name_listing::ls()
+   {
+
+      return m_pprovider->perform_file_relative_name_listing(*this);
+
+   }
+
+
+   relative_name_listing::relative_name_listing(listing_provider * pprovider)
+   {
+
+      m_pprovider = pprovider;
+
+   }
+
+
+   relative_name_listing::~relative_name_listing()
+   {
+
+   }
 
 
 } // namespace file

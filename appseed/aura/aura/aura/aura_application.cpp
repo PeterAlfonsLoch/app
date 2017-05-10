@@ -6481,6 +6481,13 @@ namespace aura
 
    }
 
+   ::file::listing & application::perform_file_relative_name_listing(::file::listing & listing)
+   {
+
+      return dir().ls_relative_name(listing);
+
+   }
+
    bool application::_001OnAgreeExit()
    {
 

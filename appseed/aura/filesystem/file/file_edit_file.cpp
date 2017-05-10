@@ -932,7 +932,7 @@ namespace file
       else
          return   m_ptreeitem->get_expandable_children_count()
          + (m_ptreeitem->get_next() != NULL ? 1 : 0)
-         + (m_ptreeitem->m_children.has_elements() ? 1 : 0);
+         + (m_ptreeitem->get_children_count() > 0 ? 1 : 0);
    }
 
 

@@ -600,6 +600,15 @@ namespace filemanager
       string strResult = strName;
       string strMask = get_number_mask(strName);
       strsize j = strValue.get_length() - 1;
+
+      if (strMask.get_length() < strValue.get_length())
+      {
+
+         return strValue;
+
+      }
+
+
       index i;
       for(i= strMask.get_length()-1; i >= 0 ; i--)
       {

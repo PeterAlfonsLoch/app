@@ -58,32 +58,15 @@ namespace data
          flag_nexts = flag_next | flag_next_or_parent | flag_child_or_next| flag_child_next_or_parent,
       };
 
+      spa(tree_item)                m_children;
+      tree_item *                   m_pparent;
       index                         m_iIndexHint;
       tree *                        m_ptree;
-      tree_item *                   m_pparent;
       index                         m_iLevel;
-      spa(tree_item)                m_children;
       sp(::data::item)              m_pitem;
       uint_ptr                      m_dwUser;
       uint32_t                      m_dwState;
       uint_ptr                      m_dwMetaData;
-
-      uint_ptr                      m_uiTreeItemFlag;
-
-      tree_item *                   m_pitemPreviousOrParent;
-      tree_item *                   m_pitemPrevious;
-
-      tree_item *                   m_pitemNext;
-      tree_item *                   m_pitemNextOrParent;
-      tree_item *                   m_pitemChildOrNext;
-      tree_item *                   m_pitemChildNextOrParent;
-
-      index                         m_iLevelPreviousOrParentOffset;
-
-      index                         m_iLevelNextOrParentOffset;
-      index                         m_iLevelChildOrNextOffset;
-      index                         m_iLevelChildNextOrParentOffset;
-      
 
 
       tree_item();
@@ -99,14 +82,18 @@ namespace data
          return ::object::dec_ref();
       }
 
+      virtual bool      remove_item_from_parent();
+
       tree_item * get_child_by_user_data(uint_ptr iUserData);
       tree_item * find_next_by_user_data(uint_ptr iUserData);
       void get_children(::data::tree_item_ptr_array &ptra);
       ::count get_children_count();
+      tree_item * get_parent();
       ::count get_expandable_children_count();
       ::count get_proper_descendant_count();
       tree_item * get_expandable_child(index iIndex);
 
+      bool insert(ERelative erelative, ::data::tree_item * pitemNew);
 
       index calc_level();
       index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }

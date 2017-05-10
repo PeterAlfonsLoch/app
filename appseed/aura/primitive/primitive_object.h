@@ -220,7 +220,7 @@ public:
 
    virtual string lstr(id id, const string & strDefault = (const string &) *((const string *) NULL ));
 
-   void common_construct();
+   //void common_construct();
 
    bool IsSerializable() const;
 

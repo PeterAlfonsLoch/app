@@ -291,13 +291,12 @@ array_base < TYPE, ALLOCATOR >(papp,sizeof(TYPE),false)
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a) :
-object(a.get_app()),
-array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),false)
+object(a),
+array_base < TYPE, ALLOCATOR >(a.get_app(), sizeof(TYPE), false)
 {
-//   m_nGrowBy = 32;
-//   m_pData = NULL;
-//   m_nSize = m_nMaxSize = 0;
+   
    operator = (a);
+
 }
 
 

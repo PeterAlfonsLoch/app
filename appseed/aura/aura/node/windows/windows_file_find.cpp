@@ -28,9 +28,9 @@ namespace windows
    void file_find::close()
    {
 
-      ::aura::del(m_pFoundInfo);
+      //::aura::del(m_pFoundInfo);
       
-      ::aura::del(m_pNextInfo);
+      //::aura::del(m_pNextInfo);
 
       CloseContext();
 
@@ -61,7 +61,12 @@ namespace windows
 
       close();
 
-      m_pNextInfo = new WIN32_FIND_DATAW;
+      if (m_pNextInfo == NULL)
+      {
+       
+         m_pNextInfo = &m_dataNext;
+
+      }
 
       m_bGotLast = false;
 
@@ -145,19 +150,6 @@ namespace windows
 
    }
 
-
-   bool file_find::MatchesMask(DWORD dwMask) const
-   {
-   
-      ASSERT(m_hContext != NULL);
-      ASSERT_VALID(this);
-
-      if (m_pFoundInfo != NULL)
-         return (m_pFoundInfo->dwFileAttributes & dwMask) != FALSE;
-      else
-         return false;
-
-   }
 
    bool file_find::GetLastAccessTime(FILETIME* pTimeStamp) const
    {
@@ -299,15 +291,19 @@ namespace windows
    bool file_find::FindNextFile()
    {
    
-      ASSERT(m_hContext != NULL);
+      //ASSERT(m_hContext != NULL);
 
       if (m_hContext == NULL)
          return false;
 
       if (m_pFoundInfo == NULL)
-         m_pFoundInfo = new WIN32_FIND_DATAW;
+      {
+       
+         m_pFoundInfo = &m_dataFound;
 
-      ASSERT_VALID(this);
+      }
+
+      //ASSERT_VALID(this);
 
       WIN32_FIND_DATAW * pTemp = m_pFoundInfo;
 
@@ -315,7 +311,7 @@ namespace windows
 
       m_pNextInfo = pTemp;
 
-      return ::windows::shell::FindNextFile(m_hContext, m_pNextInfo);
+      return ::FindNextFileW(m_hContext, m_pNextInfo);
 
    }
 
@@ -387,53 +383,38 @@ namespace windows
    ::file::path file_find::GetFileName() const
    {
       
-      ASSERT(m_hContext != NULL);
-      ASSERT_VALID(this);
+      //ASSERT(m_hContext != NULL);
+      //ASSERT_VALID(this);
 
-      string ret;
-
-      if (m_pFoundInfo != NULL)
+      if (m_pFoundInfo == NULL)
       {
 
-         strsize iLen = wcslen(m_pFoundInfo->cFileName);
-
-         strsize i = iLen - 1;
-
-         while (i >= 0 && m_pFoundInfo->cFileName[i] == '\\')
-         {
-
-            i--;
-
-         }
-
-         if (i < 0)
-         {
-
-            i = 0;
-
-         }
-
-         ::str::international::unicode_to_utf8(ret, m_pFoundInfo->cFileName, i + 1);
+         return ::file::path();
 
       }
 
-      return ret;
+      strsize iLen = wcslen(m_pFoundInfo->cFileName);
+
+      strsize i = iLen - 1;
+
+      while (i >= 0 && m_pFoundInfo->cFileName[i] == '\\')
+      {
+
+         i--;
+
+      }
+
+      if (i < 0)
+      {
+
+         i = 0;
+
+      }
+
+      return ::file::path(m_pFoundInfo->cFileName, i + 1, ::file::path_file, IsDirectory() ? 1 : 0, false, get_length());
 
    }
 
-
-   int64_t file_find::get_length() const
-   {
-      
-      ASSERT(m_hContext != NULL);
-      ASSERT_VALID(this);
-
-      if (m_pFoundInfo != NULL)
-         return m_pFoundInfo->nFileSizeLow + (((int64_t) m_pFoundInfo->nFileSizeHigh) << 32);
-      else
-         return 0;
-
-   }
 
 
    void file_find::dump(dump_context & dumpcontext) const

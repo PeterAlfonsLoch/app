@@ -725,6 +725,75 @@ namespace zip
 
    }
 
+   ::file::listing & InFile::ls_relative_name(::file::listing & listing)
+   {
+
+      InFile infile = *this;
+
+      unzFile pf = infile.get_zip_file()->m_pfUnzip;
+      string str;
+      string wstrFolder;
+      stringa wstraFolder;
+
+      //strRemain.replace("\\","/");
+      //::str::begins_eat(strRemain,"/");
+      //if(strRemain.has_char())
+      //{
+      //   if(!::str::ends(strRemain,"/"))
+      //      strRemain += "/";
+      //}
+
+      unz_file_info fi;
+      if (pf != NULL)
+      {
+         while (true)
+         {
+            //string strPathBuffer;
+            //System.file().time_square(strPathBuffer);      // buffer for path
+
+
+            CHAR szTitle[_MAX_PATH];
+
+            unzGetCurrentFileInfo(
+               pf,
+               &fi,
+               szTitle,
+               _MAX_PATH,
+               NULL, // extra Field
+               0,
+               NULL, // comment
+               0);
+            string strTitle(szTitle);
+            if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+            {
+               //if(ppatha != NULL)
+               //{
+               //   ppatha->add(strLastZip + ":" + strRemain + strTitle);
+               //}
+               listing.add(::file::path(strTitle));
+               //if(ppathaRelative != NULL)
+               //{
+               //   ppathaRelative->add(strRemain + strTitle);
+               //}
+               listing.last().m_iDir = ::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\") || ::str::ends(szTitle, ".zip");
+
+               listing.last().m_iSize = fi.uncompressed_size;
+
+            }
+
+            if (unzGoToNextFile(pf) != UNZ_OK)
+            {
+
+               break;
+
+            }
+
+         }
+      }
+
+      return listing;
+
+   }
 
    ::file::listing & InFile::perform_file_listing(::file::listing & listing)
    {
@@ -732,5 +801,13 @@ namespace zip
       return ls(listing);
 
    }
+
+   ::file::listing & InFile::perform_file_relative_name_listing(::file::listing & listing)
+   {
+
+      return ls_relative_name(listing);
+
+   }
+
 
 } // namespace zip

@@ -43,6 +43,18 @@ namespace fs
    }
 
 
+
+   ::file::listing & native::ls_relative_name(::file::listing & listing)
+   {
+
+      System.dir().ls_relative_name(get_app(), listing);
+
+      return listing;
+
+   }
+
+
+
    int native::is_dir(const ::file::path & pszPath)
    {
 

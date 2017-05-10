@@ -866,3 +866,17 @@ CLASS_DECL_AURA WSADATA get_wsadata()
    return g_wsadata;
 
 }
+
+
+
+CLASS_DECL_AURA string expand_env(string str)
+{
+
+   hwstring hwstr(16384);
+
+   ExpandEnvironmentStringsW(wstring(str), hwstr, (DWORD)hwstr.count());
+
+   return hwstr;
+
+}
+

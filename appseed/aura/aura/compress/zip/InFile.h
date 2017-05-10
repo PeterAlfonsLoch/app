@@ -99,6 +99,7 @@ namespace zip
       virtual void close();
 
       virtual ::file::listing & ls(::file::listing & listing);
+      virtual ::file::listing & ls_relative_name(::file::listing & listing);
 
       virtual bool IsOpened();
       virtual void assert_valid() const;
@@ -107,6 +108,7 @@ namespace zip
       virtual uint64_t GetBufferPtr(UINT nCommand,uint64_t nCount = 0,void ** ppBufStart = NULL,void ** ppBufMax = NULL);
 
       virtual ::file::listing & perform_file_listing(::file::listing & listing);
+      virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing);
 
    private:
 

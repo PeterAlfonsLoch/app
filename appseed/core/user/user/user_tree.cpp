@@ -40,7 +40,6 @@ namespace user
 
       m_pitemFirstVisible        = NULL;
       m_pitemHover               = NULL;
-      m_iClick                   = 0;
       m_iItemCount               = 0;
       m_iItemHeight              = 18;
       m_iImageExpand             = -1;
@@ -49,6 +48,7 @@ namespace user
       m_uchHoverAlphaInit        = 0;
 
    }
+
 
    void tree::_001OnCreate(signal_details * pobj)
    {
@@ -359,44 +359,29 @@ namespace user
 
    void tree::_001OnLButtonDblClk(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::mouse, pmouse, pobj);
-         m_iClick = 2;
-
+      
       _001OnClick((UINT) pmouse->m_nFlags, pmouse->m_pt);
+
       sp(::data::tree_item) pitem;
+
       ::user::e_tree_element eelement;
+
       pitem = _001HitTest(pmouse->m_pt, eelement);
+
       if(pitem != NULL)
       {
-         if(eelement == tree_element_expand_box ||
-            eelement == tree_element_image ||
-            eelement == tree_element_text)
+      
+         if(eelement == tree_element_expand_box || eelement == tree_element_image || eelement == tree_element_text)
          {
+
             _001ExpandItem(pitem, ::action::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+
          }
+
       }
 
-
-      /* trans   window_id wndidNotify = _001GetNotifyWnd();
-
-      LRESULT lresult = 0;
-
-      if(wndidNotify)
-      {
-      NMLISTVIEW nm;
-      nm.hdr.idFrom = pwnd->GetDlgCtrlId();
-      nm.hdr.code =   NM_DBLCLK;
-      nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
-      lresult = ::SendMessage(
-      wndidNotify,
-      WM_NOTIFY,
-      nm.hdr.idFrom,
-      (LPARAM) &nm);
-
-
-      }*/
-
-      // trans   pobj->m_bRet = lresult != 0;
    }
 
 
@@ -416,60 +401,55 @@ namespace user
 
    void tree::_001OnLButtonUp(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::mouse, pmouse, pobj);
-         m_iClick++;
+
       m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
+
       m_ptLButtonUp = pmouse->m_pt;
+
       perform_click();
-      //SetTimer(TimerClick, 500, NULL);
+      
       pobj->m_bRet = true;
+
       pmouse->set_lresult(1);
+
    }
 
    void tree::perform_click()
    {
+      
       UINT nFlags = m_uiLButtonUpFlags;
+
       point point = m_ptLButtonUp;
 
-
       _001OnClick(nFlags, point);
-      //xxx         TwiRedraw();
+
       sp(::data::tree_item) pitem;
+      
       ::user::e_tree_element eelement;
+      
       ScreenToClient(&point);
+
       pitem = _001HitTest(point, eelement);
+
       if(pitem != NULL)
       {
+         
          if(eelement == tree_element_expand_box)
          {
+
             _001ExpandItem(pitem, ::action::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+
          }
          else if(eelement == tree_element_image || eelement == tree_element_text)
          {
+
             _001OnOpenItem(pitem, ::action::source_user);
+
          }
+
       }
-
-
-      /* trans         window_id  wndidNotify = _001GetNotifyWnd();
-
-
-      LRESULT lresult = 0;
-
-      if(wndidNotify)
-      {
-      NMLISTVIEW nm;
-      nm.hdr.idFrom = pwnd->GetDlgCtrlId();
-      nm.hdr.code =   NM_CLICK;
-      nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
-      lresult = ::SendMessage(
-      wndidNotify,
-      WM_NOTIFY,
-      nm.hdr.idFrom,
-      (LPARAM) &nm);
-
-
-      }*/
 
    }
 
@@ -543,45 +523,15 @@ namespace user
             UpdateHover();
          }
          else
-            if(ptimer->m_nIDEvent == TimerClick)
-            {
-               KillTimer(TimerClick);
-               if(m_iClick == 1)
-               {
-                  m_iClick = 0;
+         {
 
 
-                  perform_click();
-
-               }
-               else
-               {
-                  m_iClick = 0;
-               }
-
-
-            }
+         }
    }
 
 
    bool tree::_001OnClick(uint_ptr uiFlags, point point)
    {
-      UNREFERENCED_PARAMETER(point);
-      //      if(uiFlags & MK_SHIFT)
-      //    {
-      //     if(uiFlags & MK_CONTROL)
-      //   {
-      // }
-      //}
-      //else
-      {
-
-         //      Ex1TreeItemMetaData * pdata = _001HitTest(point);
-         //      if(pdata != NULL)
-         //      {
-         //       m_pmetadataSelected = pdata;
-         //   }
-      }
 
       return false;
 
@@ -590,26 +540,11 @@ namespace user
 
    bool tree::_001OnRightClick(uint_ptr uiFlags, point point)
    {
-      UNREFERENCED_PARAMETER(point);
-      //      if(uiFlags & MK_SHIFT)
-      //    {
-      //     if(uiFlags & MK_CONTROL)
-      //   {
-      // }
-      //}
-      //else
-      {
-
-         //      Ex1TreeItemMetaData * pdata = _001HitTest(point);
-         //      if(pdata != NULL)
-         //      {
-         //       m_pmetadataSelected = pdata;
-         //   }
-      }
 
       return false;
 
    }
+   
 
 
    sp(::data::tree_item) tree::_001HitTest(POINT pt, ::user::e_tree_element & eelement)
@@ -802,7 +737,7 @@ namespace user
          }
       }
 
-      on_layout();
+      set_need_layout();
       if(bRedraw)
       {
          RedrawWindow();
@@ -1171,7 +1106,7 @@ namespace user
 
       nOffset = ptOffset.y / _001GetItemHeight();
 
-      nOffset++;
+      nOffset = INT_MAX;
 
       ::data::tree_item * pitem = NULL;
 
@@ -1180,16 +1115,23 @@ namespace user
       index iLevel = 0;
       int iIndent = _001GetIndentation();
 
+      ::draw2d::graphics_sp g(allocer());
+
+      g->CreateCompatibleDC(NULL);
+
+      ::draw2d::font_sp font(allocer());
+
+
+      font->operator=(*System.visual().fonts().GetListCtrlFont());
+      //font->set_bold();
+      g->set_font(font);
+
+      spa(::data::tree_item) spitema;
+      
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
          pitem = m_treeptra[i]->get_base_item();
-         iWidth = (int32_t)(200 + iIndent * iLevel);
-         if (iWidth > iMaxWidth)
-         {
-            iMaxWidth = iWidth;
-         }
-
          iLevel = 0;
 
          for (;;)
@@ -1197,12 +1139,29 @@ namespace user
             pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
             if (pitem == NULL)
                break;
+            if (spitema.find_first(pitem)>= 0)
+            {
+
+               output_debug_string("what!?!");
+
+               break;
+
+            }
+            spitema.add(pitem);
             if (nOffset <= 0)
             {
                break;
             }
             nOffset--;
+            string strText = pitem->get_text();
+            sized s = g->GetTextExtent(strText);
+            iWidth = (int32_t)(48 + s.cx + iIndent * (iLevel + 1));
+            if (iWidth > iMaxWidth)
+            {
+               iMaxWidth = iWidth;
+            }
          }
+
 
       }
 
@@ -1227,7 +1186,7 @@ namespace user
       index iLevel;
 
       ::data::tree_item * pitem = NULL;
-
+      spa(::data::tree_item) spitema;
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
@@ -1238,6 +1197,15 @@ namespace user
             pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
             if (pitem == NULL)
                break;
+            if (pitem == m_treeptra[i]->get_base_item())
+               break;
+            if (spitema.find_first(pitem) >= 0)
+            {
+               output_debug_string("what!!?");
+               break;
+
+            }
+            spitema.add(pitem);
             iProperCount++;
          }
 

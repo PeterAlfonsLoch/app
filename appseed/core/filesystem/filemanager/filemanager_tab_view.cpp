@@ -279,6 +279,8 @@ namespace filemanager
 
             }
 
+            pview->set_need_layout(true);
+
          }
 
          if (pmanager == NULL)
@@ -290,12 +292,14 @@ namespace filemanager
 
          pcreatordata->m_pdoc = pmanager;
 
-         if (pwndTopLevel != NULL)
-         {
+         //if (pwndTopLevel != NULL)
+         //{
 
-            pwndTopLevel->on_layout();
+         //   pwndTopLevel->on_layout();
 
-         }
+         //}
+
+         set_need_layout();
 
       }
 

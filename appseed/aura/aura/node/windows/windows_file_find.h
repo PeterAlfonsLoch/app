@@ -12,12 +12,14 @@ namespace windows
    protected:
    
       
-      WIN32_FIND_DATAW * m_pFoundInfo;
-      WIN32_FIND_DATAW * m_pNextInfo;
-      HANDLE m_hContext;
-      bool m_bGotLast;
-      string m_strRoot;
-      char m_chDirSeparator;     // not '\\' for Internet classes
+      WIN32_FIND_DATAW     m_dataFound;
+      WIN32_FIND_DATAW     m_dataNext;
+      WIN32_FIND_DATAW *   m_pFoundInfo;
+      WIN32_FIND_DATAW *   m_pNextInfo;
+      HANDLE               m_hContext;
+      bool                 m_bGotLast;
+      string               m_strRoot;
+      char                 m_chDirSeparator;     // not '\\' for Internet classes
 
 
    public:
@@ -42,7 +44,7 @@ namespace windows
       virtual bool GetLastAccessTime(::datetime::time& refTime) const;
       virtual bool GetCreationTime(::datetime::time& refTime) const;
 
-      virtual bool MatchesMask(DWORD dwMask) const;
+      bool MatchesMask(DWORD dwMask) const;
 
       virtual bool IsDots() const;
       // these aren't virtual because they all use MatchesMask(), which is
@@ -126,6 +128,27 @@ namespace windows
       
       return MatchesMask(FILE_ATTRIBUTE_ARCHIVE);
    
+   }
+
+   inline bool file_find::MatchesMask(DWORD dwMask) const
+   {
+
+
+      if (m_pFoundInfo != NULL)
+         return (m_pFoundInfo->dwFileAttributes & dwMask) != FALSE;
+      else
+         return false;
+
+   }
+
+   inline int64_t file_find::get_length() const
+   {
+
+      if (m_pFoundInfo != NULL)
+         return m_pFoundInfo->nFileSizeLow + (((int64_t)m_pFoundInfo->nFileSizeHigh) << 32);
+      else
+         return 0;
+
    }
 
 

@@ -134,9 +134,11 @@ stdstring < simple_string >(string_trait::GetDefaultManager())
       if(pch == NULL)
          throw invalid_argument_exception(get_thread_app());
 
-      strsize nDestLength = string_trait::GetcharLength(pch,nLength);
+      //strsize nDestLength = string_trait::GetcharLength(pch,nLength);
+      strsize nDestLength = nLength * 4;
       char * pszBuffer = GetBuffer(nDestLength);
-      string_trait::ConvertTochar(pszBuffer,nDestLength,pch,nLength);
+      //string_trait::ConvertTochar(pszBuffer,nDestLength,pch,nLength);
+      nDestLength = utf16_to_utf8(pszBuffer, pch, nLength);
       ReleaseBufferSetLength(nDestLength);
    }
 }

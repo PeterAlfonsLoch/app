@@ -283,6 +283,21 @@ namespace windows
    }
 
 
+   ::file::listing & dir::ls_relative_name(::aura::application * papp, ::file::listing & listing)
+   {
+
+      if (::file::dir::axis::system::ls_relative_name(papp, listing).succeeded())
+      {
+
+         return listing;
+
+      }
+
+      return ::windows::dir::ls_relative_name(papp, listing);
+
+   }
+
+
 
 
    //bool dir::is(const char * lpcszPath, ::aura::application * papp)

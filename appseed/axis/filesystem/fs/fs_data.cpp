@@ -106,6 +106,16 @@ namespace fs
    }
 
 
+   ::file::listing & data::ls_relative_name(::file::listing & listing)
+   {
+
+      UNREFERENCED_PARAMETER(listing);
+
+      return listing;
+
+   }
+
+
    int data::is_dir(const ::file::path & pszPath)
    {
       UNREFERENCED_PARAMETER(pszPath);
@@ -245,6 +255,12 @@ namespace fs
 
    }
 
+   ::file::listing & data::perform_file_relative_name_listing(::file::listing & listing)
+   {
+
+      return ls_relative_name(listing);
+
+   }
 
 } // namespace fs
 

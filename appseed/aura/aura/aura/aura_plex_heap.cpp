@@ -346,9 +346,9 @@ plex_heap_alloc_array::plex_heap_alloc_array()
 //   m_bb[1] = get_size();
    add(new plex_heap_alloc(64, 128));
    add(new plex_heap_alloc(96, 128));
-   add(new plex_heap_alloc(128, 128));
-   add(new plex_heap_alloc(192, 128));
-   add(new plex_heap_alloc(256, 128));
+   add(new plex_heap_alloc(128, 1024 * 8));
+   add(new plex_heap_alloc(192, 1024 *4));
+   add(new plex_heap_alloc(256, 1024));
 //   m_bbSize[1] = last()->GetAllocSize();
 //   m_aaSize[0] = last()->GetAllocSize();
 //

@@ -2513,8 +2513,8 @@ namespace aura
       try
       {
 
-         file_as(m_straCity, dir::system() / "weather-cit.bin");
-         file_as(m_straCityLo, dir::system() / "weather-cil.bin");
+         file_as_array(m_straCity, dir::system() / "weather-cit.bin");
+         file_as_array(m_straCityLo, dir::system() / "weather-cil.bin");
          file_as_array(m_iaIds, dir::system() / "weather-ids.bin");
          file_as_array(m_daLon, dir::system() / "weather-lon.bin");
          file_as_array(m_daLat, dir::system() / "weather-lat.bin");
@@ -2612,8 +2612,8 @@ namespace aura
 
             }
 
-            file_put(dir::system() / "weather-cit.bin", m_straCity);
-            file_put(dir::system() / "weather-cil.bin", m_straCityLo);
+            file_put_array(dir::system() / "weather-cit.bin", m_straCity);
+            file_put_array(dir::system() / "weather-cil.bin", m_straCityLo);
             file_put_array(dir::system() / "weather-ids.bin", m_iaIds);
             file_put_array(dir::system() / "weather-lon.bin", m_daLon);
             file_put_array(dir::system() / "weather-lat.bin", m_daLat);

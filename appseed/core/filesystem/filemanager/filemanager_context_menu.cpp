@@ -9,9 +9,7 @@ namespace filemanager
 
    context_menu::context_menu()
    {
-#ifdef WINDOWSEX
-      m_pcontextmenu = NULL;
-#endif
+
    }
 
    context_menu::~context_menu()
@@ -22,7 +20,7 @@ namespace filemanager
    void context_menu::GetMessageString(UINT nID, string &rstrMessage)
    {
 #ifdef WINDOWSEX
-      if(m_pcontextmenu == NULL)
+      if(m_pcontextmenu.is_null())
          return;
       string & str = rstrMessage;
       LPTSTR lpsz = str.GetBuffer(1024);
@@ -39,7 +37,7 @@ namespace filemanager
    void context_menu::GetVerb(UINT nID, string & rwstrMessage)
    {
 #ifdef WINDOWSEX
-      if(m_pcontextmenu == NULL)
+      if(m_pcontextmenu.is_null())
          return;
       string & str = rwstrMessage;
       char * lpsz = str.GetBuffer(1024);
@@ -57,7 +55,7 @@ namespace filemanager
    void context_menu::OnCommand(UINT uiId)
    {
 #ifdef WINDOWSEX
-      if(m_pcontextmenu == NULL)
+      if(m_pcontextmenu.is_null())
          return;
 
       CMINVOKECOMMANDINFO info;

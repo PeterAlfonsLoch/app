@@ -702,7 +702,7 @@ public:
 
       }
 
-      for(index i = iStart; i < iEnd; i++)
+      for(index i = iStart; i <= iEnd; i++)
       {
 
          if(pred(m_pData[i]))

@@ -396,6 +396,13 @@ namespace file
 
          }
 
+         ::file::listing & system::ls_relative_name(::aura::application * papp, ::file::listing & l)
+         {
+
+
+            return ::file::dir::system::ls_relative_name(papp, l);
+
+         }
 
          //bool system::rls(::aura::application * papp,const ::file::path & lpcsz,::file::patha & patha,e_extract eextract)
          //{

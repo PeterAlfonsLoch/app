@@ -16,7 +16,7 @@ namespace filemanager
       defer_create_mutex();
       m_iAnimate = 0;
 
-      m_pimagelist = Session.userex()->shellimageset().GetImageList16();
+      m_pimagelist = Session.userex()->shell().GetImageList16();
 
 
    }
@@ -131,31 +131,54 @@ namespace filemanager
 
       ::data::tree_item_ptr_array ptraRemove;
 
-
       ::file::listing listing;
+
       {
 
          listing.set_size(listingParam.get_size());
+         listing.m_straTitle.set_size(listingParam.get_size());
+         listing.m_path = listingParam.m_path;
+         listing.m_straPattern = listingParam.m_straPattern;
+         listing.m_straIgnoreName = listingParam.m_straIgnoreName;
 
          index j = 0;
 
          for (index i = 0; i < listingParam.get_size(); i++)
          {
-
+            
             if (!listingParam[i].m_iDir)
             {
 
                continue;
 
             }
+            
             listing[j] = listingParam[i];
+            listing.m_straTitle[j] = listingParam.name(i);
+
             j++;
+
          }
+
          listing.set_size(j);
+         listing.m_straTitle.set_size(j);
 
       }
 
-      sp(::data::tree_item) pitem = find_item(strPath);
+      sp(::data::tree_item) pitem;
+      
+      if (strPath.is_empty())
+      {
+
+         pitem = get_base_item();
+
+      }
+      else
+      {
+
+         pitem = find_item(strPath);
+
+      }
 
       if(pitem.is_null())
          return;
@@ -216,9 +239,14 @@ namespace filemanager
 
       int32_t i;
 
-      ::file::path pathParent = pitemParent->m_pitem.cast < ::fs::item >()->m_filepath;
-
+      ::file::path pathParent;
       
+      if (pitemParent->m_pitem.cast < ::fs::item >() != NULL)
+      {
+
+         pathParent = pitemParent->m_pitem.cast < ::fs::item >()->m_filepath;
+
+      }
 
       string strCheck;
 
@@ -229,6 +257,7 @@ namespace filemanager
       a.remove(pitemParent);
 
       spa(::data::tree_item) b;
+
       spa(::fs::item) bb;
 
       b = pitemParent->m_children;
@@ -243,7 +272,7 @@ namespace filemanager
          if (b[i]->m_pparent != pitemParent)
          {
 
-            remove_item_from_parent(b[i]);
+            b[i]->remove_item_from_parent();
 
          }
 
@@ -260,7 +289,9 @@ namespace filemanager
 
          auto & spitem = pitemParent->m_children[i];
 
-         ::file::path & path = listing[i];
+         ::file::path path = listing[i];
+
+         ::file::path name = listing.title(i);
 
          if (i < bb.get_size() && bb[i].is_set())
          {
@@ -277,36 +308,40 @@ namespace filemanager
          pitem = a.pred_remove_all_get_first([&](sp(::data::tree_item) & pitem)
          {
 
-            return pitem->m_pitem.cast < ::fs::item >()->m_filepath == path;
+            return pitem.is_set() && pitem->m_pitem.cast < ::fs::item >()->m_filepath == path;
 
          });
 
          if(pitem != NULL)
          {
 
-            spitem = pitem;
-
-            if (pitem->m_pparent != NULL && pitem->m_pparent != pitemParent)
+            if (pitem == pitemParent)
             {
 
-               pitem->m_pparent->m_children.remove(pitem);
+               output_debug_string("!");
 
             }
-
-            if (pitem->m_pparent != pitemParent)
+            else
             {
+               spitem = pitem;
 
-               pitem->m_pparent = pitemParent;
+               if (pitem->m_pparent != pitemParent)
+               {
+
+                  if (pitem->m_pparent != NULL)
+                  {
+
+                     pitem->m_pparent->m_children.remove(pitem);
+
+                  }
+
+                  pitem->m_pparent = pitemParent;
+
+               }
+
+               continue;
 
             }
-            //if (pitem->m_flags.is_signalized(::fs::FlagHasSubFolder))
-            //{
-
-            //   pitem->m_dwState |= ::data::tree_item_state_expandable;
-
-            //}
-
-            continue;
 
          }
 
@@ -317,22 +352,12 @@ namespace filemanager
 
             ::fs::item * p = bb[i];
 
-            if (p->m_filepath.get_length() == path.get_length())
+            if (stricmp(p->m_filepath, path) == 0)
             {
 
-               if (p->m_filepath.get_length() >= pathParent.get_length())
-               {
+               iFind = i;
 
-                  if (stricmp(&p->m_filepath[pathParent.get_length()], &path[pathParent.get_length()]) == 0)
-                  {
-
-                     iFind = i;
-
-                     break;
-
-                  }
-
-               }
+               break;
 
             }
 
@@ -346,24 +371,14 @@ namespace filemanager
 
                ::fs::item * p = bb[i];
 
-               if (p->m_filepath.get_length() == path.get_length())
-               {
+            if (stricmp(p->m_filepath, path) == 0)
+            {
 
-                  if (p->m_filepath.get_length() >= pathParent.get_length())
-                  {
+               iFind = i;
 
-                     if (stricmp(&p->m_filepath[pathParent.get_length()], &path[pathParent.get_length()]) == 0)
-                     {
+               break;
 
-                        iFind = i;
-
-                        break;
-
-                     }
-
-                  }
-
-               }
+            }
 
             }
 
@@ -376,29 +391,34 @@ namespace filemanager
 
             pitem = b[iFind];
 
-            spitem = pitem;
-
-            if (pitem->m_pparent != NULL && pitem->m_pparent != pitemParent)
+            if (pitem == pitemParent)
             {
 
-               pitem->m_pparent->m_children.remove(pitem);
+               output_debug_string("!");
 
             }
-
-            if (pitem->m_pparent != pitemParent)
+            else
             {
 
-               pitem->m_pparent = pitemParent;
+               spitem = pitem;
+
+               if (pitem->m_pparent != pitemParent)
+               {
+
+                  if (pitem->m_pparent != NULL)
+                  {
+
+                     pitem->m_pparent->m_children.remove(pitem);
+
+                  }
+
+                  pitem->m_pparent = pitemParent;
+
+               }
+
+               continue;
 
             }
-            //if (pitem->m_flags.is_signalized(::fs::FlagHasSubFolder))
-            //{
-
-            //   pitem->m_dwState |= ::data::tree_item_state_expandable;
-
-            //}
-
-            continue;
 
          }
 
@@ -434,14 +454,15 @@ namespace filemanager
          else
          {
 
-            if (spitem->m_pparent != NULL && spitem->m_pparent != pitemParent)
+            if (spitem->m_pparent != pitemParent)
             {
 
-               spitem->m_pparent->m_children.remove(spitem);
+               if (spitem->m_pparent != NULL)
+               {
 
-            }
-            else if(spitem->m_pparent == NULL)
-            {
+                  spitem->m_pparent->m_children.remove(spitem);
+
+               }
 
                spitem->m_pparent = pitemParent;
 
@@ -449,13 +470,21 @@ namespace filemanager
 
          }
 
+         pitemChild->m_iImage = -1;
+
+         pitemChild->m_iImageSelected = -1;
+
          pitemChild->m_filepath = path;
 
-         pitemChild->m_strName = file_title_dup(path);
+         pitemChild->m_strName = name;
          
          pitemChild->m_flags.signalize(::fs::FlagFolder);
 
+         pitemChild->m_flags.signalize(::fs::FlagHasSubFolder);
+
          iChildCount++;
+
+         spitem->m_dwState |= ::data::tree_item_state_expandable;
 
       }
 
@@ -483,10 +512,6 @@ namespace filemanager
       synch_lock sl(pm);
 
       point ptOffset = get_viewport_offset();
-
-      //
-
-      //synch_lock sl(pm);
 
       ::file::path filepath = get_filemanager_path();
 
@@ -519,8 +544,6 @@ namespace filemanager
 
          }
 
-
-
          ::userfs::item * pitemChild;
 
          ::file::path pathParent = get_filemanager_path().folder();
@@ -534,43 +557,52 @@ namespace filemanager
 
          }
 
-         ::data::tree_item * pitem = find_item(filepath);
+         ::file::patha patha = filepath.ascendants_path();
 
-         if (filepath.has_char())
+         ::data::tree_item * pitem = NULL;
+
+         for (auto & path : patha)
          {
 
-            if (pitem == NULL)
+            pitem = find_item(path);
+
+            ::file::path pathName = path.name();
+
+            if (path.has_char() && pathName.has_char())
             {
 
-               pitemParent = get_base_item();
-
-               pitemChild = canew(::userfs::item(this));
-
-               pitemChild->m_filepath = filepath;
-
-               pitemChild->m_strName = filepath.name();
-
-               pitemChild->m_flags.signalize(::fs::FlagFolder);
-
-               pitemChild->m_iImageSelected = m_iDefaultImageSelected;
-
-               pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemParent);
-
-               if (pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
+               if (pitem == NULL)
                {
 
-                  pitem->m_dwState |= ::data::tree_item_state_expandable;
+                  pitemChild = canew(::userfs::item(this));
+
+                  pitemChild->m_filepath = path;
+
+                  pitemChild->m_strName = pathName;
+
+                  pitemChild->m_flags.signalize(::fs::FlagFolder);
+
+                  pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+
+                  pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemParent);
+
+                  if (pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
+                  {
+
+                     pitem->m_dwState |= ::data::tree_item_state_expandable;
+
+                  }
 
                }
-
-            }
-            else
-            {
-
-               if (pitem->m_pparent != pitemParent && !listing.contains_ci(pitem->m_pitem.cast < ::fs::item >()->m_filepath))
+               else
                {
 
-                  pitem->SetParent(pitemParent);
+                  if (pitem->m_pparent != pitemParent && !listing.contains_ci(pitem->m_pitem.cast < ::fs::item >()->m_filepath.name()))
+                  {
+
+                     pitem->SetParent(pitemParent);
+
+                  }
 
                }
 
@@ -605,38 +637,34 @@ namespace filemanager
 
             _017EnsureVisible(filepath, actioncontext);
 
-            _001SelectItem(find_item(filepath));
+            sp(::data::tree_item) pitem = find_item(filepath);
+
+            _001SelectItem(pitem);
+
+            int iMaxLevel = pitem != NULL ? pitem->m_iLevel + 2 : -1;
 
             // remove level 3 with more than 80 children.
             restart:
-            sp(::data::tree_item) pitem = get_base_item();
 
             while (pitem != NULL)
             {
 
-               if (pitem->m_iLevel >= 2 && pitem->m_children.get_count() > 80)
+               if (pitem->m_iLevel >= iMaxLevel && pitem->m_children.get_count() > 80)
                {
 
                   auto copy = pitem->m_children;
 
                   pitem->m_children.remove_all();
 
-                  //for(auto & x:copy)
-                  //{
-                  //   x->remove_tree_item();
-                  //}
-
                   goto restart;
 
                }
-
 
                pitem = pitem->get_child_next_or_parent();
 
             }
 
             _001OnTreeDataChange();
-
 
          }
 
@@ -659,28 +687,8 @@ namespace filemanager
    void tree::_001InsertColumns()
    {
 
-      /*::user::form_control control;
-
-      control.set_type(::user::form_control_type_edit);
-      control.m_iKey = FILE_MANAGER_ID_FILE_NAME;
-      pcontrol->descriptor().m_id = FILE_MANAGER_ID_FILE_NAME;
-      control.set_data_type(::user::form_control::DataTypeString);
-
-      int32_t iControl =  _001AddControl(control);
-
-      CColumn column;
-
-      column.m_iWidth               = 500;
-      column.m_iSubItem             = 1;
-      column.m_bIcon                = true;
-      column.m_sizeIcon.cx          = 16;
-      column.m_sizeIcon.cy          = 16;
-      column.m_iControl             = iControl;
-      column.m_iConfigId            = FILE_MANAGER_ID_FILE_NAME;
-      column.m_bEditOnSecondClick   = true;
-      _001AddColumn(column);*/
-
    }
+
 
    void tree::GetSelectedFilePath(stringa & stra)
    {
@@ -944,13 +952,6 @@ namespace filemanager
          while (pitem != NULL)
          {
 
-            if (pitem->m_pparent == pitemStart->m_pparent)
-            {
-
-               break;
-
-            }
-
             _polishing_step(pitem, bLowLatency, estep);
 
             pitem = pitem->get_item(::data::TreeNavigationExpandedForward);
@@ -1024,39 +1025,35 @@ namespace filemanager
       }
       else if(estep == step_image_visible || estep == step_image_hidden)
       {
+         
+         synch_lock sl(m_pmutex);
 
-         if((item->m_iImage < 0 ||
-               item->m_iImageSelected < 0) && pitem->m_pparent != NULL && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
-                     || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
+         if ((item->m_iImage < 0 ||
+            item->m_iImageSelected < 0) && pitem->m_pparent != NULL && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
+               || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
          {
 
-#ifdef WINDOWSEX
-            m_pimagelist = Session.userex()->shellimageset().GetImageList16();
+            m_pimagelist = Session.userex()->shell().GetImageList16();
             try
             {
-               item->m_iImage = Session.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_filepath,_shell::FileAttributeDirectory,_shell::IconNormal);
-               item->m_iImageSelected = Session.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_filepath,_shell::FileAttributeDirectory,_shell::IconOpen);
+               item->m_iImage = Session.userex()->shell().get_image(m_treeptra[0]->get_handle(), item->m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_normal);
+               item->m_iImageSelected = Session.userex()->shell().get_image(m_treeptra[0]->get_handle(), item->m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_open);
             }
-            catch(...)
+            catch (...)
             {
                item->m_iImage = m_iDefaultImage;
                item->m_iImageSelected = m_iDefaultImageSelected;
             }
 
-            if(item->m_iImage < 0)
+            if (item->m_iImage < 0)
             {
-               item->m_iImage = MAX(0,m_iDefaultImage);
+               item->m_iImage = MAX(0, m_iDefaultImage);
             }
-            if(item->m_iImageSelected < 0)
+            if (item->m_iImageSelected < 0)
             {
                item->m_iImageSelected = MAX(0, m_iDefaultImageSelected);
             }
-#else
 
-            item->m_iImage = m_iDefaultImage;
-            item->m_iImageSelected = m_iDefaultImageSelected;
-
-#endif
          }
 
       }
@@ -1171,17 +1168,17 @@ namespace filemanager
    void tree::on_merge_user_tree(::user::tree * pusertree)
    {
 
-      m_iDefaultImage = Session.userex()->shellimageset().GetImage(
+      m_iDefaultImage = Session.userex()->shell().get_image(
                            pusertree->get_handle(),
                            "foo",
-                           _shell::FileAttributeDirectory,
-                           _shell::IconNormal);
+                           ::user::shell::file_attribute_directory,
+                           ::user::shell::icon_normal);
 
-      m_iDefaultImageSelected = Session.userex()->shellimageset().GetImage(
+      m_iDefaultImageSelected = Session.userex()->shell().get_image(
                                    pusertree->get_handle(),
                                    "foo",
-                                   _shell::FileAttributeDirectory,
-                                   _shell::IconOpen);
+                                   ::user::shell::file_attribute_directory,
+                                   ::user::shell::icon_open);
 
    }
 

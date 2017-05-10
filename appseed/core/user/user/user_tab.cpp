@@ -550,8 +550,301 @@ namespace user
       }
 
 
-      m_puserschemaSchema->_001TabOnDrawSchema01(pgraphics,this);
-//      _001OnDrawSchema01(pgraphics);
+      if (!m_puserschemaSchema->_001TabOnDrawSchema01(pgraphics, this))
+      {
+
+         _001OnDrawSchema01(pgraphics);
+
+      }
+
+   }
+
+
+   void tab::_001OnDrawSchema01(::draw2d::graphics * pgraphics)
+   {
+
+      class rect rect;
+      class rect rectBorder;
+      class rect rectText;
+      class rect rectClient;
+      class rect rectIcon;
+      class rect rectClose;
+
+      get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
+
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      int32_t iTab = -1;
+
+      ::draw2d::brush_sp brushText;
+
+      for (int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      {
+
+         ::user::tab_pane & pane = get_data()->m_panea(iPane);
+
+         if (!pane.m_bTabPaneVisible)
+            continue;
+
+         iTab++;
+
+         if (!get_element_rect(iTab, rect, ::user::element_tab))
+            continue;
+
+         if (!get_element_rect(iTab, rectBorder, ::user::element_border))
+            continue;
+
+         if (!get_element_rect(iTab, rectClient, ::user::element_client))
+            continue;
+
+         if (get_data()->m_bVertical)
+         {
+
+            if (get_element_rect(iTab, rectIcon, ::user::element_icon))
+            {
+
+               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pane.m_dib->bitmap_blend(pgraphics, rectIcon);
+
+            }
+
+            ::draw2d::path_sp path(allocer());
+
+            if (true)
+            {
+
+               if (get_data()->m_idaSel.contains(pane.m_id))
+               {
+
+                  //path->start_figure();
+
+                  path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
+                  //path->add_line(rectClient.right, rectBorder.top);
+                  path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+                  path->add_line(rectClient.left, rectBorder.top);
+                  path->add_line(rectBorder.right, rectBorder.top);
+
+                  path->end_figure(false);
+
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+
+                  pgraphics->SelectObject(pane.m_brushFillSel);
+
+                  pgraphics->fill_path(path);
+
+                  pgraphics->SelectObject(get_data()->m_penBorderSel);
+
+                  pgraphics->draw_path(path);
+
+                  pgraphics->set_font(get_data()->m_font);
+
+                  brushText = get_data()->m_brushTextSel;
+
+               }
+               else
+               {
+
+                  //path->start_figure();
+
+                  path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
+                  path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+                  path->add_line(rectText.left, rectBorder.top);
+                  path->add_line(rectBorder.right, rectBorder.top);
+                  path->add_line(rectBorder.right, rectBorder.bottom);
+
+                  path->end_figure(true);
+
+                  if (iTab == m_iHover && m_eelementHover != ::user::element_close_tab_button && m_eelementHover < ::user::element_split && m_eelementHover >(::user::element_split + 100))
+                  {
+
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+
+                     pgraphics->SelectObject(pane.m_brushFillHover);
+
+                     pgraphics->fill_path(path);
+
+                     pgraphics->SelectObject(get_data()->m_penBorderHover);
+
+                     pgraphics->draw_path(path);
+
+                     pgraphics->set_font(get_data()->m_fontUnderline);
+
+                     brushText = get_data()->m_brushTextHover;
+
+                  }
+                  else
+                  {
+
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+
+                     pgraphics->SelectObject(pane.m_brushFill);
+
+                     pgraphics->fill_path(path);
+
+                     pgraphics->SelectObject(get_data()->m_penBorder);
+
+                     pgraphics->draw_path(path);
+
+                     pgraphics->set_font(get_data()->m_font);
+
+                     brushText = get_data()->m_brushText;
+
+                  }
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            if (get_element_rect(iTab, rectIcon, ::user::element_icon))
+            {
+
+               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+               pane.m_dib->bitmap_blend(pgraphics, rectIcon);
+
+            }
+
+            if (true)
+            {
+
+               ::draw2d::path_sp path(allocer());
+
+               if (get_data()->m_idaSel.contains(pane.m_id))
+               {
+
+                  path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
+
+                  path->add_line(rectClient.right, rectBorder.top);
+
+                  path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+
+                  path->add_line(rectBorder.right - 1, rectClient.bottom);
+
+                  path->end_figure(false);
+
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+
+                  pgraphics->SelectObject(pane.m_brushFillSel);
+
+                  pgraphics->fill_path(path);
+
+                  get_data()->m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
+
+                  pgraphics->SelectObject(get_data()->m_penBorderSel);
+
+                  pgraphics->draw_path(path);
+
+                  pgraphics->set_font(get_data()->m_font);
+
+                  brushText = get_data()->m_brushTextSel;
+
+               }
+               else
+               {
+
+                  //path->begin_figure(true, ::draw2d::fill_mode_winding);
+
+                  path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
+
+                  path->add_line(rectClient.right, rectBorder.top);
+
+                  path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+
+                  path->add_line(rectBorder.right - 1, rectClient.bottom);
+
+                  path->end_figure(true);
+
+                  if (iTab == m_iHover && m_eelementHover != ::user::element_close_tab_button && (m_eelementHover < ::user::element_split || m_eelementHover >(::user::element_split + 100)))
+                  {
+
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+
+                     pgraphics->SelectObject(pane.m_brushFillHover);
+
+                     pgraphics->fill_path(path);
+
+                     pgraphics->SelectObject(get_data()->m_penBorderHover);
+
+                     pgraphics->draw_path(path);
+
+                     pgraphics->set_font(get_data()->m_fontUnderline);
+
+                     brushText = get_data()->m_brushTextHover;
+
+                  }
+                  else
+                  {
+
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+
+                     pgraphics->SelectObject(pane.m_brushFill);
+
+                     pgraphics->fill_path(path);
+
+                     pgraphics->SelectObject(get_data()->m_penBorder);
+
+                     pgraphics->draw_path(path);
+
+                     pgraphics->set_font(get_data()->m_font);
+
+                     brushText = get_data()->m_brushTextSel;
+
+                  }
+
+               }
+
+            }
+
+         }
+
+         if (true)
+         {
+
+            if (get_element_rect(iTab, rectText, ::user::element_text))
+            {
+
+               _001OnTabPaneDrawTitle(pane, this, pgraphics, rectText, brushText);
+
+            }
+
+         }
+
+         if (true)
+         {
+
+            if (get_element_rect(iTab, rectClose, ::user::element_close_tab_button))
+            {
+
+               pgraphics->set_font(get_data()->m_fontBold);
+
+               if (iTab == m_iHover && m_eelementHover == ::user::element_close_tab_button)
+               {
+
+                  brushText = get_data()->m_brushCloseHover;
+
+               }
+               else
+               {
+
+                  brushText = get_data()->m_brushClose;
+
+               }
+
+               pgraphics->SelectObject(brushText);
+
+               pgraphics->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
+
+            }
+
+         }
+
+      }
 
    }
 
