@@ -473,7 +473,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
          string strSchema = m_varFrame["wndfrm"];
          
-         m_puserschemaSchema = Session.get_user_schema(strSchema);
+         m_puserschemaSchema = Session.get_user_schema(strSchema, get_app());
 
       }
 

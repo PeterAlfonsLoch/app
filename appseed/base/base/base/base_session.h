@@ -94,9 +94,9 @@ namespace base
       virtual sp(::user::interaction) GetCapture();
 
 
-      sp(::user::schema) create_new_user_schema(const char * pszUinteractionLibrary);
+      sp(::user::schema) create_new_user_schema(const char * pszUinteractionLibrary, ::aura::application * papp = NULL);
 
-      sp(::user::schema) get_user_schema(const char * pszUinteractionLibrary);
+      sp(::user::schema) get_user_schema(const char * pszUinteractionLibrary, ::aura::application * papp = NULL);
 
 
       virtual void on_finally_focus_set(::user::elemental * pelementalFocus) override;

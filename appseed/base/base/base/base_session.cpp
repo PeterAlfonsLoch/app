@@ -800,7 +800,7 @@ namespace base
 
    }
 
-   sp(::user::schema) session::get_user_schema(const char * pszUinteractionLibrary)
+   sp(::user::schema) session::get_user_schema(const char * pszUinteractionLibrary, ::aura::application * papp)
    {
 
       sp(::user::schema) & p = m_mapSchema[pszUinteractionLibrary];
@@ -808,7 +808,7 @@ namespace base
       if (p.is_null())
       {
 
-         p = create_new_user_schema(pszUinteractionLibrary);
+         p = create_new_user_schema(pszUinteractionLibrary, papp);
 
       }
 
@@ -816,10 +816,17 @@ namespace base
 
    }
 
-   sp(::user::schema) session::create_new_user_schema(const char * pszUinteractionLibrary)
+   sp(::user::schema) session::create_new_user_schema(const char * pszUinteractionLibrary, ::aura::application * papp)
    {
 
       thisstart;
+
+      if (papp == NULL)
+      {
+
+         papp = get_app();
+
+      }
 
       stringa straLibrary;
 
@@ -839,7 +846,7 @@ namespace base
 
       {
 
-         string strId(Application.preferred_userschema());
+         string strId(App(papp).preferred_userschema());
 
          if (strId.has_char())
          {
@@ -852,7 +859,7 @@ namespace base
 
       {
 
-         string strWndFrm = Application.file().as_string(::dir::system() / "config/system/wndfrm.txt");
+         string strWndFrm = App(papp).file().as_string(::dir::system() / "config/system/wndfrm.txt");
 
          if (strWndFrm.has_char())
          {
@@ -876,7 +883,7 @@ namespace base
       for (string strLibrary : straLibrary)
       {
 
-         ::aura::library * plibrary = new ::aura::library(get_app(), 0, NULL);
+         ::aura::library * plibrary = new ::aura::library(papp, 0, NULL);
 
          strLibrary.replace("-", "_");
 
@@ -941,7 +948,7 @@ namespace base
 
          }
 
-         pschema = plibrary->create_object(get_app(), "user_schema", NULL);
+         pschema = plibrary->create_object(papp, "user_schema", NULL);
 
          if (pschema.is_null())
          {
@@ -963,7 +970,7 @@ namespace base
       if (pschema.is_null())
       {
          
-         pschema = canew(::user::schema_simple_impl(get_app()));
+         pschema = canew(::user::schema_simple_impl(papp));
 
       }
 
