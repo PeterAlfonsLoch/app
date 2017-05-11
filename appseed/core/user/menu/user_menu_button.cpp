@@ -90,13 +90,18 @@ namespace user
       if (m_puserschemaSchema == NULL)
       {
 
-         sp(::user::menu) pui = m_pitem->m_pbase;
-
-         if (pui.is_set() && pui->m_oswindowParent != NULL)
+         if (m_pitem != NULL)
          {
 
-            m_puserschemaSchema = pui->m_oswindowParent;
+            sp(::user::menu) pui = m_pitem->m_pbase;
 
+            if (pui.is_set() && pui->m_oswindowParent != NULL)
+            {
+
+               m_puserschemaSchema = pui->m_oswindowParent;
+
+
+            }
 
          }
 

@@ -13,15 +13,16 @@ namespace user
    menu::menu():
       menu(get_app())
    {
-      
+
    }
 
    menu::menu(::aura::application * papp) :
       object(papp),
       menu_base(papp),
-      m_buttonClose(papp)
+      m_itemClose(papp)
    {
 
+      m_itemClose.m_pbase = this;
       m_bAutoDelete        = true;
       m_pschema            = NULL;
       //m_pitem              = new ::user::menu_item(papp);
@@ -37,7 +38,7 @@ namespace user
    menu::menu(::aura::application * papp,sp(::user::menu_item) pitem):
       object(papp),
       menu_base(papp),
-      m_buttonClose(papp)
+      m_itemClose(papp)
    {
 
       m_iHoverSubMenu      = -1;
@@ -102,14 +103,14 @@ namespace user
 
       SetOwner(oswindowParent);
 
-      if(!m_buttonClose.create_window(null_rect(), this, ChildIdClose))
+      if(!m_itemClose.m_button.create_window(null_rect(), this, ChildIdClose))
          return false;
 
 
-      m_buttonClose.SetWindowText("r");
-      m_buttonClose.set_stock_icon(stock_icon_close);
-      m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuCloseButton;
-      //m_buttonClose.SetFont(m_buttonClose.m_pschema->m_font);
+      m_itemClose.m_button.SetWindowText("r");
+      m_itemClose.m_button.set_stock_icon(stock_icon_close);
+      m_itemClose.m_button.m_pschema = m_pschema->m_pschemaSysMenuCloseButton;
+      //m_itemClose.m_button.SetFont(m_itemClose.m_button.m_pschema->m_font);
 
       //System.add_frame(this);
 
@@ -292,9 +293,9 @@ namespace user
       m_size.cy = y;
 
 
-      m_buttonClose.ResizeToFit();
+      m_itemClose.m_button.ResizeToFit();
 
-      m_buttonClose.SetWindowPos(0, 0, 0, 0, 0, SWP_NOSIZE);
+      m_itemClose.m_button.SetWindowPos(0, 0, 0, 0, 0, SWP_NOSIZE);
 
       rect rectWindow;
 
@@ -510,8 +511,10 @@ namespace user
       }
       else if(pevent->m_eevent == ::user::event_button_clicked)
       {
-         if(pevent->m_puie == &m_buttonClose)
+
+         if(pevent->m_puie == &m_itemClose.m_button)
          {
+
             ::user::control_event ev;
 
             ev.m_eevent = ::user::event_context_menu_close;
@@ -579,8 +582,10 @@ namespace user
       }
       else if(pevent->m_eevent == ::user::event_mouse_enter)
       {
-         if(pevent->m_puie == &m_buttonClose)
+         
+         if(pevent->m_puie == &m_itemClose.m_button)
          {
+
          }
          else
          {

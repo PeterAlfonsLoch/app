@@ -13,6 +13,7 @@ namespace user
       m_spitema      = canew(menu_item_ptra(this));
       m_iLevel       = 0;
       m_bPopup       = false;
+      m_button.m_pitem = this;
    }
 
    menu_item::~menu_item()

@@ -19,9 +19,10 @@ namespace user
       object(papp),
       menu_base(papp),
       menu(papp),
-      m_buttonClose(papp)
+      m_itemClose(papp)
    {
 
+      m_itemClose.m_pbase = this;
       m_bAutoDelete        = true;
       m_bOwnItem           = false;
       m_puiNotify         = NULL;
@@ -35,9 +36,10 @@ namespace user
       object(papp),
       menu_base(papp, pitem),
       menu(papp),
-      m_buttonClose(papp)
+      m_itemClose(papp)
    {
 
+      m_itemClose.m_pbase = this;
       m_puiNotify         = NULL;
       m_bAutoClose         = true;
       m_bAutoDelete        = true;
@@ -114,13 +116,13 @@ namespace user
          if(!create_window(NULL, NULL, WS_VISIBLE | WS_CHILD, null_rect(), pwndParent, 0))
             return false;
 
-         if(!m_buttonClose.create_window(null_rect(), this, ChildIdClose))
+         if(!m_itemClose.m_button.create_window(null_rect(), this, ChildIdClose))
             return false;
 
-         m_buttonClose.install_message_handling(this);
+         m_itemClose.m_button.install_message_handling(this);
 
-         m_buttonClose.SetWindowText("r");
-         m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
+         m_itemClose.m_button.SetWindowText("r");
+         m_itemClose.m_button.m_pschema = m_pschema->m_pschemaSysMenuButton;
       }
 
       _UpdateCmdUi(m_pitem);
@@ -164,15 +166,15 @@ namespace user
          }
       }
 
-      if(!m_buttonClose.IsWindow())
+      if(!m_itemClose.m_button.IsWindow())
       {
-         if(!m_buttonClose.create_window(null_rect(), this, ChildIdClose))
+         if(!m_itemClose.m_button.create_window(null_rect(), this, ChildIdClose))
             return false;
 
-         m_buttonClose.install_message_handling(this);
+         m_itemClose.m_button.install_message_handling(this);
 
-         m_buttonClose.SetWindowText("r");
-         m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
+         m_itemClose.m_button.SetWindowText("r");
+         m_itemClose.m_button.m_pschema = m_pschema->m_pschemaSysMenuButton;
       }
 
       _UpdateCmdUi(m_pitem);
@@ -330,12 +332,12 @@ namespace user
       string str;
       _LayoutButtons(m_pitem, iMaxWidth + 4, rect, rectClient);
 
-      if(m_buttonClose.IsWindow())
+      if(m_itemClose.m_button.IsWindow())
       {
-         m_buttonClose.ResizeToFit();
-         m_buttonClose.GetWindowRect(rect);
-         m_buttonClose.SetWindowPos(0, m_size.cx - rect.width() - 2, 2, 0, 0, SWP_NOSIZE);
-         //m_buttonClose.ShowWindow(SW_NORMAL);
+         m_itemClose.m_button.ResizeToFit();
+         m_itemClose.m_button.GetWindowRect(rect);
+         m_itemClose.m_button.SetWindowPos(0, m_size.cx - rect.width() - 2, 2, 0, 0, SWP_NOSIZE);
+         //m_itemClose.m_button.ShowWindow(SW_NORMAL);
       }
 
 
@@ -494,7 +496,7 @@ namespace user
       if(pevent->m_eevent == ::user::event_button_clicked)
       {
          
-         if(pevent->m_puie == &m_buttonClose)
+         if(pevent->m_puie == &m_itemClose.m_button)
          {
             
             if(m_bAutoClose)

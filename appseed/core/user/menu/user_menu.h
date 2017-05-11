@@ -35,7 +35,7 @@ namespace user
       int32_t                                m_iCheckBoxSize;
       bool                                   m_bAutoDelete;
       int32_t                                m_iHeaderHeight;
-      ::user::menu_button                    m_buttonClose;
+      ::user::menu_item                      m_itemClose;
       id                                     m_idSubMenu;
       int32_t                                m_iHoverSubMenu;
       uint32_t                               m_dwOut;
