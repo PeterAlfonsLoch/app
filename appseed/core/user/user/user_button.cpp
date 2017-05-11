@@ -499,36 +499,6 @@ namespace user
 
       }
 
-      ::user::front_end_schema * pschema = NULL;
-
-      if (m_puserschemaSchema == NULL)
-      {
-
-         m_puserschemaSchema = Application.userschema();
-
-      }
-      sp(::user::frame_window) pframewindow = GetTypedParent < ::user::frame_window > ();
-
-      if (pframewindow != NULL)
-      {
-
-         pschema = pframewindow->get_user_front_end_schema();
-
-      }
-
-      if (pschema == NULL)
-      {
-
-         pschema = Session.user()->GetUfeSchema();
-
-      }
-
-      if(pschema != NULL)
-      {
-
-         m_pschema = &pschema->m_button;
-
-      }
 
    }
 
@@ -539,6 +509,40 @@ namespace user
       rect rectClient;
 
       GetClientRect(rectClient);
+
+
+      ::user::front_end_schema * pschema = NULL;
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = GetTopLevel()->m_puserschemaSchema;
+
+      }
+
+      sp(::user::frame_window) pframewindow = GetTypedParent < ::user::frame_window >();
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         m_puserschemaSchema = Application.userschema();
+
+      }
+
+      if (pschema == NULL)
+      {
+
+         pschema = Session.user()->GetUfeSchema();
+
+      }
+
+      if (pschema != NULL)
+      {
+
+         m_pschema = &pschema->m_button;
+
+      }
+
 
       ::size sizeText = calc_text_size();
 

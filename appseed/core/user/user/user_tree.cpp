@@ -85,6 +85,11 @@ namespace user
 
       GetClientRect(rectClient);
 
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      pgraphics->FillSolidRect(rectClient, _001GetColor(color_list_background));
+
+
       point ptCursor;
 
       Session.get_cursor_pos(&ptCursor);

@@ -22,7 +22,7 @@ namespace user
 
       ::user::button::install_message_handling(pinterface);
 
-
+      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_button::_001OnCreate);
 
    }
 
@@ -86,6 +86,22 @@ namespace user
 
    void menu_button::on_layout()
    {
+
+      if (m_puserschemaSchema == NULL)
+      {
+
+         sp(::user::menu) pui = m_pitem->m_pbase;
+
+         if (pui.is_set() && pui->m_oswindowParent != NULL)
+         {
+
+            m_puserschemaSchema = pui->m_oswindowParent;
+
+
+         }
+
+      }
+
       //rect rect;
       //class rect rectClient;
       //
@@ -171,6 +187,14 @@ namespace user
          ::user::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pgraphics);
 
       }
+
+   }
+   void menu_button::_001OnCreate(::signal_details * pobj)
+   {
+
+
+
+      pobj->previous();
 
    }
 

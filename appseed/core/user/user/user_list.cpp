@@ -143,7 +143,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->FillSolidRect(rectClient, _001GetColor(color_list_background));
+     pgraphics->FillSolidRect(rectClient, _001GetColor(color_list_background));
 
 
       //      pgraphics->SetBkMode(TRANSPARENT);
@@ -902,34 +902,38 @@ namespace user
          }
       }
 
-      synch_lock sl(m_pmutex);
-
-      m_nItemCount = nCount;
-
-      if (m_bGroup)
-      {
-         m_nGroupCount = nGroupCount;
-      }
-
-      if (m_eview == view_icon)
       {
 
-         update_icon_list_view_sort();
+         synch_lock sl(m_pmutex);
 
-      }
-      else
-      {
+         m_nItemCount = nCount;
 
-         index iStart = m_meshlayout.m_iaDisplayToStrict.get_count();
+         if (m_bGroup)
+         {
+            m_nGroupCount = nGroupCount;
+         }
 
-         index iEnd = m_nItemCount - 1;
-
-         m_meshlayout.m_iaDisplayToStrict.allocate(m_nItemCount);
-
-         for (index iStrict = iStart; iStrict <= iEnd; iStrict++)
+         if (m_eview == view_icon)
          {
 
-            m_meshlayout.m_iaDisplayToStrict.set_at(iStrict, iStrict);
+            update_icon_list_view_sort();
+
+         }
+         else
+         {
+
+            index iStart = m_meshlayout.m_iaDisplayToStrict.get_count();
+
+            index iEnd = m_nItemCount - 1;
+
+            m_meshlayout.m_iaDisplayToStrict.allocate(m_nItemCount);
+
+            for (index iStrict = iStart; iStrict <= iEnd; iStrict++)
+            {
+
+               m_meshlayout.m_iaDisplayToStrict.set_at(iStrict, iStrict);
+
+            }
 
          }
 

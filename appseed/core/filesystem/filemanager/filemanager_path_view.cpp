@@ -151,22 +151,22 @@ namespace filemanager
    void path_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      COLORREF crBackground = 0;
+      //COLORREF crBackground = 0;
 
-      get_color(crBackground, ::user::color_background);
+      //get_color(crBackground, ::user::color_background);
 
-      if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
-      {
+      //if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      //{
 
-         rect rectClient;
+      //   rect rectClient;
 
-         GetClientRect(rectClient);
+      //   GetClientRect(rectClient);
 
-         pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
+      //   pgraphics->FillSolidRect(rectClient, ARGB(255, 255, 255, 255));
 
          ::user::plain_edit::_001OnDraw(pgraphics);
 
-      }
+      //}
 
    }
 

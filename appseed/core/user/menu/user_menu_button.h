@@ -50,6 +50,7 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
+      DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnMouseMove);
 
 

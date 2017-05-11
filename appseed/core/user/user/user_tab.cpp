@@ -548,7 +548,7 @@ namespace user
          return;
 
       }
-
+      
 
       if (!m_puserschemaSchema->_001TabOnDrawSchema01(pgraphics, this))
       {
@@ -1113,9 +1113,12 @@ else
       if(m_puserschemaSchema != NULL)
       {
 
-         m_puserschemaSchema->_001OnTabLayout(this);
+         if (m_puserschemaSchema->_001OnTabLayout(this))
+         {
 
-         return;
+            return;
+
+         }
 
       }
 

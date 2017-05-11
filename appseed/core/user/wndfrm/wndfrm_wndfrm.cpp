@@ -163,6 +163,7 @@ namespace user
 
          }
 
+
          {
 
             string strConfig = Application.directrix()->m_varTopicQuery["wndfrm"];
@@ -177,8 +178,62 @@ namespace user
             }
 
          }
+
             
-            
+         {
+
+            string strWndFrm = Application.file().as_string(::dir::system() / "config" / Application.m_strAppName / "wndfrm.txt");
+
+            if (strWndFrm.has_char())
+            {
+
+               straLibrary.add(strWndFrm);
+
+            }
+
+         }
+
+         {
+
+            string strWndFrm = Application.file().as_string(::dir::system() / "config" / ::file::path(Application.m_strAppName).folder() / "wndfrm.txt");
+
+            if (strWndFrm.has_char())
+            {
+
+               straLibrary.add(strWndFrm);
+
+            }
+
+         }
+
+         {
+
+            string strWndFrm = Application.file().as_string(::dir::system() / "config" / ::file::path(Application.m_strAppName).name() / "wndfrm.txt");
+
+            if (strWndFrm.has_char())
+            {
+
+               straLibrary.add(strWndFrm);
+
+            }
+
+         }
+
+
+         {
+
+            string strWndFrm = Application.file().as_string(::dir::system() / "config/system/wndfrm.txt");
+
+            if (strWndFrm.has_char())
+            {
+
+               straLibrary.add(strWndFrm);
+
+            }
+
+         }
+
+
          {
 
             string strConfig = Application.file().as_string(::dir::system() / "config\\system\\wndfrm.txt");

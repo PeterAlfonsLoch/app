@@ -769,7 +769,7 @@ run:
    string application::preferred_userschema()
    {
 
-      return "wndfrm_core";
+      return "";
 
    }
 

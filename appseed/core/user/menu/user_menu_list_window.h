@@ -20,7 +20,7 @@ namespace user
       bool                                m_bAutoDelete;
       ::user::front_end_schema::menu *    m_pschema;
       bool                                m_bOwnItem;
-      button                              m_buttonClose;
+      menu_button                         m_buttonClose;
       int32_t                             m_iHeaderHeight;
       int32_t                             m_iItemHeight;
       size                                m_size;

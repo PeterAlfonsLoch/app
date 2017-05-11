@@ -62,6 +62,7 @@ namespace user
       color_scrollbar_background,
       color_toolbar_background,
       color_toolbar_separator,
+      color_split_layout_background,
 
    };
 

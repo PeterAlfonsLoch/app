@@ -859,6 +859,63 @@ namespace base
 
       {
 
+         string strConfig = Application.directrix()->m_varTopicQuery["wndfrm"];
+
+         if (strConfig.has_char())
+         {
+
+            string strLibrary = string("wndfrm_") + strConfig;
+
+            straLibrary.add(strConfig);
+
+         }
+
+      }
+
+
+
+      {
+
+         string strWndFrm = App(papp).file().as_string(::dir::system() / "config"/App(papp).m_strAppName/"wndfrm.txt");
+
+         if (strWndFrm.has_char())
+         {
+
+            straLibrary.add(strWndFrm);
+
+         }
+
+      }
+
+      {
+
+         string strWndFrm = App(papp).file().as_string(::dir::system() / "config" / ::file::path(App(papp).m_strAppName).folder() / "wndfrm.txt");
+
+         if (strWndFrm.has_char())
+         {
+
+            straLibrary.add(strWndFrm);
+
+         }
+
+      }
+
+      {
+
+         string strWndFrm = App(papp).file().as_string(::dir::system() / "config" / ::file::path(App(papp).m_strAppName).name() / "wndfrm.txt");
+
+         if (strWndFrm.has_char())
+         {
+
+            straLibrary.add(strWndFrm);
+
+         }
+
+      }
+
+
+      {
+
          string strWndFrm = App(papp).file().as_string(::dir::system() / "config/system/wndfrm.txt");
 
          if (strWndFrm.has_char())
