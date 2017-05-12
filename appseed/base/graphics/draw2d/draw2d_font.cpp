@@ -19,7 +19,7 @@ namespace draw2d
       m_bUnderline         = false;
       m_bStrikeout         = false;
       m_ecs                = cs_none;
-
+      m_etextrendering = text_rendering_undefined;
    }
 
    font::font(const font & font)

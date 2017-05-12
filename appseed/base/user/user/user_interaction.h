@@ -86,6 +86,7 @@ namespace user
 
       alpha_source *                      m_palphasource;
 
+      int32_t                             m_iItemHeight;
 
       point                               m_ptMoveCursor;
 

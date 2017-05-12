@@ -14,8 +14,8 @@ namespace userfs
 
       m_iAnimate = 0;
 
-      m_iDefaultImage = -1;
-      m_iDefaultImageSelected = -1;
+      //m_iDefaultImage = -1;
+      //m_iDefaultImageSelected = -1;
 
    }
 

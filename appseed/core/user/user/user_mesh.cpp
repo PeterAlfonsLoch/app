@@ -438,7 +438,7 @@ namespace user
       }
       else
       {
-         m_pdrawmeshitem->m_iDrawTextFlags = DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE;
+         m_pdrawmeshitem->m_iDrawTextFlags = DT_VCENTER | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE;
       }
 
       bool bHoverFont = false;
@@ -3980,6 +3980,20 @@ namespace user
       on_create_draw_item();
 
 
+      if (m_eview == ::user::mesh::view_icon)
+      {
+
+         m_pdrawmeshitem->m_iDrawTextFlags = DT_TOP | DT_CENTER | DT_END_ELLIPSIS | DT_WORDBREAK | DT_NOPREFIX;
+
+      }
+      else
+      {
+
+         m_pdrawmeshitem->m_iDrawTextFlags = DT_VCENTER | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE | DT_NOPREFIX;
+
+      }
+
+
       //m_font->operator=(*System.visual().fonts().GetMeshCtrlFont());
 
       //m_fontHover->operator=(*System.visual().fonts().GetMeshCtrlFont());
@@ -5421,7 +5435,7 @@ namespace user
       else
       {
 
-         m_pdrawmeshitem->m_iDrawTextFlags = DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE | DT_NOPREFIX;
+         m_pdrawmeshitem->m_iDrawTextFlags = DT_VCENTER | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE | DT_NOPREFIX;
 
       }
 
@@ -6331,6 +6345,7 @@ namespace user
    {
 
       m_pdrawmeshitem            = new draw_mesh_item(this);
+
 
    }
 

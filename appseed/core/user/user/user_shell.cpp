@@ -73,6 +73,8 @@ namespace user
       image_key_store::image_key_store(const image_key & key)
       {
 
+         m_oswindow = key.m_oswindow;
+         m_cr = key.m_cr;
          m_pszPath = strdup(key.m_pszPath);
          m_iIcon = key.m_iIcon;
          m_eattribute = key.m_eattribute;

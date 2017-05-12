@@ -8,8 +8,8 @@ namespace userfs
       ::object(ptree->get_app()),
       m_ptree(ptree)
    {
-      m_iImage = -1;
-      m_iImageSelected = -1;
+      //m_iImage = -1;
+      //m_iImageSelected = -1;
    }
 
    item::~item()
@@ -59,19 +59,20 @@ namespace userfs
    {
       if(m_ptree->is_selected(this))
       {
-         if(m_iImageSelected < 0)
-         {
-            return m_ptree->m_iDefaultImageSelected;
-         }
-         return m_iImageSelected;
+         //if(m_iImageSelected < 0)
+         //{
+         //   return m_ptree->m_iDefaultImageSelected;
+         //}
+         return Session.userex()->shell().get_image(m_ptree->m_treeptra[0]->get_handle(), m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_open);
       }
       else
       {
-         if(m_iImage < 0)
-         {
-            return m_ptree->m_iDefaultImage;
-         }
-         return m_iImage;
+         //if(m_iImage < 0)
+         //{
+         //   return m_ptree->m_iDefaultImage;
+         //}
+         return Session.userex()->shell().get_image(m_ptree->m_treeptra[0]->get_handle(), m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_normal);
+         //return m_iImage;
       }
 
    }

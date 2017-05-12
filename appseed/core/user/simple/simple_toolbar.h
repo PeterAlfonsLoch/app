@@ -28,6 +28,7 @@ public:
    bool                       m_bTransparentBackground;
    bool                       m_bSimpleLayout;
    int32_t                    m_iHover;
+   double                     m_dFontSize;
 
    size                       m_sizeButton;
    size                       m_sizeImage;

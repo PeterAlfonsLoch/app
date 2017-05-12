@@ -34,7 +34,7 @@ namespace user
 
    void interaction::user_interaction_common_construct()
    {
-
+      m_iItemHeight = -1;
       m_flagNonClient.signalize(non_client_background);
       m_flagNonClient.signalize(non_client_focus_rect);
 

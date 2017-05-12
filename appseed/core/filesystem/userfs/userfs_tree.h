@@ -18,8 +18,8 @@ namespace userfs
       int32_t                       m_iAnimate;
       bool                          m_bTimer123;
       stringa                       m_straUpdatePtrFilter;
-      int32_t                       m_iDefaultImage;
-      int32_t                       m_iDefaultImageSelected;
+      //int32_t                       m_iDefaultImage;
+      //int32_t                       m_iDefaultImageSelected;
 
 
       tree(::aura::application * papp);

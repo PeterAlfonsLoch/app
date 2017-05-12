@@ -13,7 +13,8 @@ namespace user
       windows::windows(::aura::application * papp) :
          ::object(papp),
          //::thread(papp),
-         ::user::shell::shell(papp)
+         ::user::shell::shell(papp),
+         m_mutexQueue(papp)
       {
 
          defer_create_mutex();
@@ -26,6 +27,7 @@ namespace user
          SHGetDesktopFolder(&m_pfolderDesktop);
          SHGetMalloc(&m_pmalloc);
 
+         begin();
 
       }
 
@@ -1808,6 +1810,53 @@ namespace user
       }
 
 
+      int windows::run()
+      {
+
+         synch_lock sl(&m_mutexQueue);
+
+         while (get_thread_run())
+         {
+
+            if(m_keyptra.is_empty())
+            { 
+
+               sl.unlock();
+
+               Sleep(100);
+
+            }
+            else
+            {
+
+              image_key * pkey = m_keyptra.first();
+
+              m_keyptra.remove_at(0);
+
+              sl.unlock();
+
+              int iImage = get_image(pkey->m_oswindow, *pkey, NULL, pkey->m_cr);
+
+              {
+
+                 synch_lock s(m_pmutex);
+
+                 m_imagemap.set_at(*pkey, iImage);
+
+              }
+
+              delete pkey;
+
+            }
+
+            sl.lock();
+
+         }
+
+         return 0;
+
+      }
+
       int32_t windows::get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
       {
 
@@ -1837,12 +1886,25 @@ namespace user
 
             imagekey.m_iIcon = 0;
 
+            imagekey.m_oswindow = oswindow;
+
+            imagekey.m_cr = crBk;
+
             if (m_imagemap.Lookup(imagekey, iImage))
             {
 
                return iImage;
 
             }
+
+            synch_lock sl(&m_mutexQueue);
+
+            m_keyptra.add(new image_key_store(imagekey));
+
+            imagekey.set_path("foo");
+
+            iImage = get_foo_image(oswindow, imagekey, imagekey.m_cr);
+
 
             ////synch_lock sl(&m_mutexCall);
 
@@ -1857,9 +1919,9 @@ namespace user
 
    //         iImage = m_callCurrent.m_iImage;
 
-            iImage = get_image(oswindow, imagekey, NULL, crBk);
+            //iImage = get_image(oswindow, imagekey, NULL, crBk);
 
-            m_imagemap.set_at(imagekey, iImage);
+            //m_imagemap.set_at(imagekey, iImage);
 
          }
 

@@ -110,12 +110,12 @@ namespace filemanager
 
          arrange(::fs::arrange_by_name);
 
-         if(m_treeptra.has_elements())
-         {
+         //if(m_treeptra.has_elements())
+         //{
 
-            _polishing_start(m_treeptra[0]);
+         //   _polishing_start(m_treeptra[0]);
 
-         }
+         //}
 
       }
 
@@ -470,9 +470,9 @@ namespace filemanager
 
          }
 
-         pitemChild->m_iImage = -1;
+         //pitemChild->m_iImage = -1;
 
-         pitemChild->m_iImageSelected = -1;
+         //pitemChild->m_iImageSelected = -1;
 
          pitemChild->m_filepath = path;
 
@@ -582,7 +582,9 @@ namespace filemanager
 
                   pitemChild->m_flags.signalize(::fs::FlagFolder);
 
-                  pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+                  //pitemChild->m_iImage = -1;
+
+                  //pitemChild->m_iImageSelected = -1;
 
                   pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemParent);
 
@@ -608,9 +610,11 @@ namespace filemanager
 
             }
 
+            pitemParent = pitem;
+
+
          }
 
-         pitemParent = pitem;
 
          if (get_filemanager_template() != NULL && get_filemanager_data()->m_ptreeFileTreeMerge != NULL
             && !(dynamic_cast <::user::tree *> (get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
@@ -670,12 +674,12 @@ namespace filemanager
 
          arrange(::fs::arrange_by_name);
 
-         if (m_treeptra.has_elements())
-         {
+         //if (m_treeptra.has_elements())
+         //{
 
-            _polishing_start(m_treeptra[0]);
+         //   _polishing_start(m_treeptra[0]);
 
-         }
+         //}
 
       }
 
@@ -915,152 +919,152 @@ namespace filemanager
 
 
 
-   void tree::_polishing_start(::user::tree * pusertree)
-   {
+   //void tree::_polishing_start(::user::tree * pusertree)
+   //{
 
-      ::data::tree_item * pitem = get_base_item()->first_child();
+   //   ::data::tree_item * pitem = get_base_item()->first_child();
 
-      ::fork(get_app(), [=]()
-      {
-
-
-         _polishing_run(pitem, pusertree, false);
+   //   ::fork(get_app(), [=]()
+   //   {
 
 
-      });
-
-      ::fork(get_app(), [=]()
-      {
+   //      _polishing_run(pitem, pusertree, false);
 
 
-         _polishing_run(pitem, pusertree, true);
+   //   });
+
+   //   ::fork(get_app(), [=]()
+   //   {
 
 
-      });
-
-   }
+   //      _polishing_run(pitem, pusertree, true);
 
 
-   void tree::_polishing_run(::data::tree_item * pitemStart, ::user::tree * pusertree, bool bLowLatency)
-   {
+   //   });
 
-      e_step estep = (e_step)(((int)step_start) + 1);
-
-      while(estep < step_end)
-      {
-
-         ::data::tree_item * pitem = pitemStart;
-
-         while (pitem != NULL)
-         {
-
-            _polishing_step(pitem, bLowLatency, estep);
-
-            pitem = pitem->get_item(::data::TreeNavigationExpandedForward);
-
-         }
-
-         estep = (e_step)(((int)estep) + 1);
-
-      }
-
-      pusertree->on_change_viewport_offset();
-
-   }
+   //}
 
 
-   void tree::_polishing_step(::data::tree_item * pitem, bool bLowLatency, e_step estep)
-   {
+//   void tree::_polishing_run(::data::tree_item * pitemStart, ::user::tree * pusertree, bool bLowLatency)
+//   {
+//
+//      e_step estep = (e_step)(((int)step_start) + 1);
+//
+//      while(estep < step_end)
+//      {
+//
+//         ::data::tree_item * pitem = pitemStart;
+//
+//         while (pitem != NULL)
+//         {
+//
+////            _polishing_step(pitem, bLowLatency, estep);
+//
+//            pitem = pitem->get_item(::data::TreeNavigationExpandedForward);
+//
+//         }
+//
+//         estep = (e_step)(((int)estep) + 1);
+//
+//      }
+//
+//      pusertree->on_change_viewport_offset();
+//
+//   }
 
-      if(pitem == NULL)
-         return;
+
+   //void tree::_polishing_step(::data::tree_item * pitem, bool bLowLatency, e_step estep)
+   //{
+
+   //   if(pitem == NULL)
+   //      return;
 
 
-      sp(::userfs::item) item = pitem->m_pitem.cast < ::userfs::item >();
+   //   sp(::userfs::item) item = pitem->m_pitem.cast < ::userfs::item >();
 
-      if(bLowLatency)
-      {
-         if(get_document()->get_fs_data()->is_zero_latency(item->m_filepath))
-            return;
-      }
-      else
-      {
-         if(!get_document()->get_fs_data()->is_zero_latency(item->m_filepath))
-            return;
-      }
+   //   if(bLowLatency)
+   //   {
+   //      if(get_document()->get_fs_data()->is_zero_latency(item->m_filepath))
+   //         return;
+   //   }
+   //   else
+   //   {
+   //      if(!get_document()->get_fs_data()->is_zero_latency(item->m_filepath))
+   //         return;
+   //   }
 
-      if(estep == step_has_subdir_visible)
-      {
-         if(pitem->m_pparent != NULL && ((estep == step_has_subdir_visible && pitem->m_pparent->is_expanded())
-                                         || (estep == step_has_subdir_hidden && !pitem->m_pparent->is_expanded())))
-         {
-            if(!(pitem->m_dwState & ::data::tree_item_state_expandable))
-            {
-               string strPath = item->m_filepath;
-               if(bLowLatency)
-               {
-                  //sl.unlock();
-                  //if(get_document()->get_fs_data()->tree_show_subdir(strPath)
-                  // && get_document()->get_fs_data()->has_subdir(strPath))
-                  {
-                     // sl.lock();
-                     //item->m_flags.signalize(::fs::FlagHasSubFolder);
-                     pitem->m_dwState |= ::data::tree_item_state_expandable;
-                     item->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
-                  }
-                  //else
-                  //{
-                  // sl.lock();
-                  //}
-               }
-               else
-               {
-                  if(get_document()->get_fs_data()->tree_show_subdir(strPath)
-                        && get_document()->get_fs_data()->has_subdir(strPath))
-                  {
-                     item->m_flags.signalize(::fs::FlagHasSubFolder);
-                     pitem->m_dwState |= ::data::tree_item_state_expandable;
-                  }
-               }
-            }
-         }
-      }
-      else if(estep == step_image_visible || estep == step_image_hidden)
-      {
-         
-         synch_lock sl(m_pmutex);
+   //   if(estep == step_has_subdir_visible)
+   //   {
+   //      if(pitem->m_pparent != NULL && ((estep == step_has_subdir_visible && pitem->m_pparent->is_expanded())
+   //                                      || (estep == step_has_subdir_hidden && !pitem->m_pparent->is_expanded())))
+   //      {
+   //         if(!(pitem->m_dwState & ::data::tree_item_state_expandable))
+   //         {
+   //            string strPath = item->m_filepath;
+   //            if(bLowLatency)
+   //            {
+   //               //sl.unlock();
+   //               //if(get_document()->get_fs_data()->tree_show_subdir(strPath)
+   //               // && get_document()->get_fs_data()->has_subdir(strPath))
+   //               {
+   //                  // sl.lock();
+   //                  //item->m_flags.signalize(::fs::FlagHasSubFolder);
+   //                  pitem->m_dwState |= ::data::tree_item_state_expandable;
+   //                  item->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
+   //               }
+   //               //else
+   //               //{
+   //               // sl.lock();
+   //               //}
+   //            }
+   //            else
+   //            {
+   //               if(get_document()->get_fs_data()->tree_show_subdir(strPath)
+   //                     && get_document()->get_fs_data()->has_subdir(strPath))
+   //               {
+   //                  item->m_flags.signalize(::fs::FlagHasSubFolder);
+   //                  pitem->m_dwState |= ::data::tree_item_state_expandable;
+   //               }
+   //            }
+   //         }
+   //      }
+   //   }
+   //   else if(estep == step_image_visible || estep == step_image_hidden)
+   //   {
+   //      
+   //      synch_lock sl(m_pmutex);
 
-         if ((item->m_iImage < 0 ||
-            item->m_iImageSelected < 0) && pitem->m_pparent != NULL && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
-               || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
-         {
+   //      if ((item->m_iImage < 0 ||
+   //         item->m_iImageSelected < 0) && pitem->m_pparent != NULL && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
+   //            || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
+   //      {
 
-            m_pimagelist = Session.userex()->shell().GetImageList(get_filemanager_data()->m_iIconSize);
-            try
-            {
-               item->m_iImage = Session.userex()->shell().get_image(m_treeptra[0]->get_handle(), item->m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_normal);
-               item->m_iImageSelected = Session.userex()->shell().get_image(m_treeptra[0]->get_handle(), item->m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_open);
-            }
-            catch (...)
-            {
-               item->m_iImage = m_iDefaultImage;
-               item->m_iImageSelected = m_iDefaultImageSelected;
-            }
+   //         m_pimagelist = Session.userex()->shell().GetImageList(get_filemanager_data()->m_iIconSize);
+   //         try
+   //         {
+   //            item->m_iImage = Session.userex()->shell().get_image(m_treeptra[0]->get_handle(), item->m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_normal);
+   //            item->m_iImageSelected = Session.userex()->shell().get_image(m_treeptra[0]->get_handle(), item->m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_open);
+   //         }
+   //         catch (...)
+   //         {
+   //            item->m_iImage = m_iDefaultImage;
+   //            item->m_iImageSelected = m_iDefaultImageSelected;
+   //         }
 
-            if (item->m_iImage < 0)
-            {
-               item->m_iImage = MAX(0, m_iDefaultImage);
-            }
-            if (item->m_iImageSelected < 0)
-            {
-               item->m_iImageSelected = MAX(0, m_iDefaultImageSelected);
-            }
+   //         if (item->m_iImage < 0)
+   //         {
+   //            item->m_iImage = MAX(0, m_iDefaultImage);
+   //         }
+   //         if (item->m_iImageSelected < 0)
+   //         {
+   //            item->m_iImageSelected = MAX(0, m_iDefaultImageSelected);
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void tree::_001OnTimer(::timer * ptimer)
@@ -1170,17 +1174,17 @@ namespace filemanager
    void tree::on_merge_user_tree(::user::tree * pusertree)
    {
 
-      m_iDefaultImage = Session.userex()->shell().get_image(
-                           pusertree->get_handle(),
-                           "foo",
-                           ::user::shell::file_attribute_directory,
-                           ::user::shell::icon_normal);
+      //m_iDefaultImage = Session.userex()->shell().get_image(
+      //                     pusertree->get_handle(),
+      //                     "foo",
+      //                     ::user::shell::file_attribute_directory,
+      //                     ::user::shell::icon_normal);
 
-      m_iDefaultImageSelected = Session.userex()->shell().get_image(
-                                   pusertree->get_handle(),
-                                   "foo",
-                                   ::user::shell::file_attribute_directory,
-                                   ::user::shell::icon_open);
+      //m_iDefaultImageSelected = Session.userex()->shell().get_image(
+      //                             pusertree->get_handle(),
+      //                             "foo",
+      //                             ::user::shell::file_attribute_directory,
+      //                             ::user::shell::icon_open);
 
       
 

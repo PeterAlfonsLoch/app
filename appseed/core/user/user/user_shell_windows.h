@@ -16,7 +16,8 @@ namespace user
       CLASS_DECL_CORE int32_t _017ItemIDListGetLen(LPITEMIDLIST lpiidl);
 
       class CLASS_DECL_CORE windows :
-         virtual public ::user::shell::shell
+         virtual public ::user::shell::shell,
+         virtual public ::thread
       {
       public:
 
@@ -40,7 +41,8 @@ namespace user
          string_map < folder, const folder  & >                      m_mapFolder;
 
          delay_thread *                                              m_pdelayRelease;
-
+         ref_array < image_key >                                     m_keyptra;
+         mutex                                                       m_mutexQueue;
 
 
          windows(::aura::application * papp);
@@ -91,7 +93,7 @@ namespace user
          ::windows::comptr < IShellFolder> _017GetShellFolder(const string & str, LPITEMIDLIST lpiidlChild);
          void _017ItemIDListParsePath(oswindow oswindow, LPITEMIDLIST * lpiidl, const char * lpcsz);
 
-
+         int run();
 
 
 

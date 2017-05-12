@@ -1377,9 +1377,10 @@ namespace user
       select_font(pgraphics, font_list_item, this);
       size size;
       size = pgraphics->GetTextExtent(unitext("Ág"));
-      if (size.cy + 2 > iItemHeight)
+      iItemHeight = 1;
+      if (size.cy > iItemHeight)
       {
-         iItemHeight = MAX(size.cy + 2, iItemHeight);
+         iItemHeight = MAX(size.cy, iItemHeight);
       }
 
       m_iItemHeight = _001CalcItemHeight((int)iItemHeight);

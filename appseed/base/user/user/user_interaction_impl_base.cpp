@@ -201,21 +201,11 @@ namespace user
 
       }
        
-      if (rectOld.size() != rectNew.size())
-      {
+      m_pui->message_call(WM_SIZE);
 
-         m_pui->message_call(WM_SIZE);
+      m_pui->m_dwLastSizeMove = ::get_tick_count();
 
-      }
-
-      if (rectNew != rectOld)
-      {
-
-         m_pui->m_dwLastSizeMove = ::get_tick_count();
-
-         m_pui->m_bSizeMove = true;
-
-      }
+      m_pui->m_bSizeMove = true;
 
       if (m_bShowFlags && (m_iShowFlags & SWP_SHOWWINDOW))
       { 
@@ -242,28 +232,11 @@ namespace user
 
       m_rectParentClient = m_rectParentClientRequest;
 
-      if (rectOld.top_left() != rectNew.top_left())
-      {
+      m_pui->message_call(WM_MOVE);
 
-         m_pui->message_call(WM_MOVE);
+      m_pui->m_dwLastSizeMove = ::get_tick_count();
 
-      }
-
-      if (rectOld.size() != rectNew.size())
-      {
-
-         m_pui->message_call(WM_SIZE);
-
-      }
-
-      if (rectNew != rectOld)
-      {
-
-         m_pui->m_dwLastSizeMove = ::get_tick_count();
-
-         m_pui->m_bSizeMove = true;
-
-      }
+      m_pui->m_bSizeMove = true;
 
       if (m_bShowFlags && (m_iShowFlags & SWP_SHOWWINDOW))
       {

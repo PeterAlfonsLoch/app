@@ -127,7 +127,12 @@ namespace userfs
          try
          {
 
-            pitem->m_iImage = m_itema.get_item(pitem->m_iItem).m_iImage;
+            //pitem->m_iImage = m_itema.get_item(pitem->m_iItem).m_iImage;
+            pitem->m_iImage = Session.userex()->shell().get_image(
+               pitem->m_pmesh->get_handle(),
+               m_itema.get_item(pitem->m_iItem).m_filepath,
+               m_itema.get_item(pitem->m_iItem).m_filepath.m_iDir == 1 ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
+               ::user::shell::icon_normal);
 
          }
          catch (...)

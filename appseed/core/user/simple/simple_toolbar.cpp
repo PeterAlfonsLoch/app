@@ -61,6 +61,8 @@ simple_toolbar::simple_toolbar(::aura::application * papp) :
 
    m_rectItemPad.set(-1);
 
+   m_dFontSize = 1.0;
+
    // lakic
    m_sizeSpacing.cx = 8;
 
@@ -83,7 +85,7 @@ simple_toolbar::simple_toolbar(::aura::application * papp) :
 
    m_bDelayedButtonLayout = true;
 
-   m_font->create_pixel_font("Verdana", 14.0);
+   
 
 }
 
@@ -241,7 +243,9 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
 
    //::user::interaction::_001OnDraw(pgraphics);
 
-   pgraphics->select_font(m_font);
+   select_font(pgraphics, ::user::font_toolbar, this);
+
+   m_dFontSize = pgraphics->m_spfont->m_dFontSize;
 
    int iHover = _001GetHoverItem();
 
@@ -436,7 +440,9 @@ size simple_toolbar::CalcSize(int32_t nCount)
 
    ::draw2d::memory_graphics pgraphics(allocer());
 
-   pgraphics->select_font(m_font);
+   select_font(pgraphics, ::user::font_toolbar, this);
+
+   m_dFontSize = pgraphics->m_spfont->m_dFontSize;
 
    int iImageSpacing = get_image_spacing();
 
@@ -636,7 +642,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics * pgraphics, i
 
    rect rectImage;
 
-   pgraphics->select_font(m_font);
+   select_font(pgraphics, ::user::font_toolbar, this);
+
+   m_dFontSize = pgraphics->m_spfont->m_dFontSize;
 
    ::user::toolbar_item & item = m_itema(iItem);
 
@@ -891,7 +899,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics * pgraphics, i
    if (item.m_str.has_char())
    {
 
-      pgraphics->select_font(m_font);
+      select_font(pgraphics, ::user::font_toolbar, this);
+
+      m_dFontSize = pgraphics->m_spfont->m_dFontSize;
 
       rect rectText;
 
@@ -1546,7 +1556,9 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 
    ::draw2d::memory_graphics pgraphics(allocer());
 
-   pgraphics->select_font(m_font);
+   select_font(pgraphics, ::user::font_toolbar, this);
+
+   m_dFontSize = pgraphics->m_spfont->m_dFontSize;
 
    int iImageSpacing = get_image_spacing();
 
@@ -2053,25 +2065,25 @@ rect simple_toolbar::get_item_pad()
    if (r.left < 0)
    {
 
-      r.left = m_font->m_dFontSize/ 3;
+      r.left = m_dFontSize/ 3;
 
    }
    if (r.right < 0)
    {
 
-      r.right = m_font->m_dFontSize / 3;
+      r.right = m_dFontSize / 3;
 
    }
    if (r.top < 0)
    {
 
-      r.top = m_font->m_dFontSize / 3;
+      r.top = m_dFontSize / 3;
 
    }
    if (r.bottom < 0)
    {
 
-      r.bottom = m_font->m_dFontSize / 3;
+      r.bottom = m_dFontSize / 3;
 
    }
 
@@ -2095,25 +2107,25 @@ rect simple_toolbar::get_bar_border()
    if (r.left < 0)
    {
 
-      r.left = m_font->m_dFontSize / 3;
+      r.left = m_dFontSize / 3;
 
    }
    if (r.right < 0)
    {
 
-      r.right = m_font->m_dFontSize / 3;
+      r.right = m_dFontSize / 3;
 
    }
    if (r.top < 0)
    {
 
-      r.top = m_font->m_dFontSize / 3;
+      r.top = m_dFontSize / 3;
 
    }
    if (r.bottom < 0)
    {
 
-      r.bottom = m_font->m_dFontSize / 3;
+      r.bottom = m_dFontSize / 3;
 
    }
 
@@ -2182,14 +2194,14 @@ size simple_toolbar::get_separator_size()
    if (s.cx < 0)
    {
 
-      s.cx = m_font->m_dFontSize * 2 / 3;
+      s.cx = m_dFontSize * 2 / 3;
 
    }
 
    if (s.cy < 0)
    {
 
-      s.cy = m_font->m_dFontSize * 2 / 3;
+      s.cy = m_dFontSize * 2 / 3;
 
    }
 
@@ -2209,7 +2221,7 @@ int simple_toolbar::get_image_spacing()
    if (i < 0)
    {
 
-      i = m_font->m_dFontSize / 4;
+      i = m_dFontSize / 4;
 
    }
 

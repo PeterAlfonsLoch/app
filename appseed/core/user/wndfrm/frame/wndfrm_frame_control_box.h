@@ -62,6 +62,7 @@ namespace user
 
             virtual void install_message_handling(::message::dispatch *pinterface);
 
+            virtual void _001OnClip(::draw2d::graphics * pgraphics);
 
             void drag(point pt);
 

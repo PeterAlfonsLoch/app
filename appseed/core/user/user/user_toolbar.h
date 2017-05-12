@@ -58,7 +58,7 @@ namespace user
       size                 m_sizeButton; // current button size
       bool                 m_bSimpleLayout;
       string_to_ptr *      m_pStringMap;  // used as CMapStringToUInt
-      ::draw2d::font_sp    m_font;
+      //::draw2d::font_sp    m_font;
       int32_t              m_iButtonPressItem;
 
 

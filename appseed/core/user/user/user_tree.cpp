@@ -46,6 +46,7 @@ namespace user
       m_iImageCollapse           = -1;
       m_pimagelist               = NULL;
       m_uchHoverAlphaInit        = 0;
+      m_iDrawTextFlags = DT_LEFT | DT_VCENTER;
 
    }
 
@@ -333,7 +334,7 @@ namespace user
          //font->set_bold();
          //data.m_pdc->set_font(font);
          select_font(data.m_pdc, font_tree, this);
-         data.m_pdc->_DrawText(strItem, strItem.get_length(), rect, DT_LEFT | DT_BOTTOM);
+         data.m_pdc->_DrawText(strItem, strItem.get_length(), rect, m_iDrawTextFlags);
 
       }
 
@@ -656,8 +657,17 @@ namespace user
          {
             lprect->left   = drawitem.m_rect.left + 18;
             lprect->right  = MIN(lprect->left + 16, drawitem.m_rect.right);
-            lprect->top    = drawitem.m_rect.top;
-            lprect->bottom = drawitem.m_rect.bottom;
+
+            int iHDiff = 0;
+            if (m_pimagelist != NULL)
+            {
+
+               iHDiff = drawitem.m_rect.height() - m_pimagelist->m_size.cy;
+
+            }
+
+            lprect->top    = drawitem.m_rect.top +iHDiff/2;
+            lprect->bottom = drawitem.m_rect.bottom - iHDiff / 2;
          }
          break;
       case tree_element_text:
@@ -1138,10 +1148,11 @@ namespace user
       size size;
       size = g->GetTextExtent(unitext("Ág"));
 
-      int iItemHeight = 18;
-      if (size.cy + 2 > iItemHeight)
+      int iItemHeight = 1;
+
+      if (size.cy > iItemHeight)
       {
-         iItemHeight = MAX(size.cy + 2, iItemHeight);
+         iItemHeight = MAX(size.cy, iItemHeight);
       }
 
       m_iItemHeight = iItemHeight;

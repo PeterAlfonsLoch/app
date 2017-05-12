@@ -567,13 +567,7 @@ namespace ios
    void interaction_impl::_001OnMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      /*      if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
-       {
-       class rect rectWindow;
-       ::GetWindowRect(get_handle(), rectWindow);
-       m_pui->m_rectParentClient = rectWindow;
-       m_rectParentClient = rectWindow;
-       }*/
+
    }
 
    void interaction_impl::_001OnSize(signal_details * pobj)
@@ -589,56 +583,10 @@ namespace ios
          
       }
 
-      /*      if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
-       {
-       class rect rectWindow;
-       ::GetWindowRect(get_handle(), rectWindow);
-       m_pui->m_rectParentClient = rectWindow;
-       m_rectParentClient = rectWindow;
-       }*/
-
-      /*      if(m_spdibMultAlphaWork.is_null())
-       {
-       m_spdibMultAlphaWork.create(get_app());
-       }
-
-       if(m_spdib.is_null())
-       {
-       m_spdib.create(get_app());
-       }
-
-       if(m_spdib.is_set() && m_rectParentClient.area() > 0)
-       {
-       m_spdib->create(m_rectParentClient.size());
-       }*/
-
-      //m_pui->on_layout();
-
 
 
    }
 
-//   void interaction_impl::_001OnShowWindow(signal_details * pobj)
-//   {
-//
-//      SCAST_PTR(::message::show_window, pshowwindow, pobj);
-//
-//
-//
-//      if(m_pui->)
-//      {
-//
-//         //round_window_show();
-//
-//      }
-//      else
-//      {
-//
-//         //round_window_hide();
-//
-//      }
-//
-//   }
 
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
@@ -3731,157 +3679,6 @@ namespace ios
 
    }
 
-   /*
-
-   bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
-   {
-
-      if(!::IsWindow(get_handle()))
-         return false;
-*/
-      /*
-       return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
-       x, y, cx, cy, nFlags) != FALSE;
-       */
-/*
-      ::rect rectBefore;
-
-      ::GetWindowRect(m_oswindow, rectBefore);
-
-      ::rect rectNew = rectBefore;
-
-      if(nFlags & SWP_NOSIZE)
-      {
-         if(nFlags & SWP_NOMOVE)
-         {
-         }
-         else
-         {
-            rectNew.right = rectNew.width() + x;
-            rectNew.bottom = rectNew.height() + y;
-            rectNew.left = x;
-            rectNew.top = y;
-         }
-      }
-      else
-      {
-         if(nFlags & SWP_NOMOVE)
-         {
-            rectNew.right = rectNew.left + cx;
-            rectNew.bottom = rectNew.right + cy;
-         }
-         else
-         {
-            rectNew.left = x;
-            rectNew.top = y;
-            rectNew.right = x + cx;
-            rectNew.bottom = y + cy;
-         }
-      }
-
-
-      if(rectNew != rectBefore)
-      {
-
-         ::SetWindowPos(m_oswindow,
-                        (oswindow) (int_ptr) z,
-                        (int) x,
-                        (int) y,
-                        (int) cx,
-                        (int)cy,
-                        nFlags);
-
-      }
-
-      if(rectBefore.top_left() != rectNew.top_left())
-      {
-
-         send_message(WM_MOVE);
-
-      }
-
-      if(rectBefore.size() != rectNew.size())
-      {
-
-         send_message(WM_SIZE);
-
-      }
-
-
-      if(nFlags & SWP_SHOWWINDOW)
-      {
-
-         if(!IsWindowVisible())
-         {
-
-            round_window_show();
-
-         }
-
-      }
-
-
-            throw not_implemented(get_app());
-*/
-      /*
-       if(GetExStyle() & WS_EX_LAYERED)
-       {
-       if(rectWindowOld.top_left() != m_rectParentClient.top_left())
-       {
-       send_message(WM_MOVE, 0, 0);
-       }
-       if(rectWindowOld.size() != m_rectParentClient.size())
-       {
-       send_message(WM_SIZE, 0, 0);
-       }
-
-       }
-       if(GetExStyle() & WS_EX_LAYERED)
-       {
-       nFlags |= SWP_NOCOPYBITS;
-       nFlags |= SWP_NOREDRAW;
-       nFlags |= SWP_NOMOVE;
-       nFlags |= SWP_NOSIZE;
-       nFlags |= SWP_NOZORDER;
-       nFlags |= SWP_FRAMECHANGED;
-       if(nFlags & SWP_SHOWWINDOW)
-       {
-       ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
-       ShowWindow(SW_SHOW);
-       }
-       else
-       {
-       ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
-       }
-       if(m_pui != NULL)
-       {
-       m_pui->oprop("pending_layout") = true;
-       m_pui->oprop("pending_zorder") = z;
-       }*/
-      /*    }
-       else
-       {
-       if(z == -3)
-       {
-       ::SetWindowPos(get_handle(), (oswindow) 0, x, y, cx, cy, nFlags);
-       }
-       else
-       {
-       ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
-       }
-       }*/
-/*
-            if(nFlags & SWP_REDRAWWINDOW)
-      {
-
-       RedrawWindow();
-
-      }
-
-      return true;
-
-   }
-*/
 
    void interaction_impl::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint)
    {

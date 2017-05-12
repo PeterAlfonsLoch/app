@@ -161,6 +161,8 @@ namespace user
 
             virtual bool is_control_box_moveable();
 
+            virtual void GetFrameRect(rect * lprect);
+
          };
 
 

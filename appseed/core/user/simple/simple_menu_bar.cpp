@@ -346,7 +346,7 @@ bool simple_menu_bar::Initialize(
    m_pimagelistDisabled    = pimagelistDisabled;
    m_prel                  = prel;
 
-   m_font->operator=(*pfont);
+   //m_font->operator=(*pfont);
 
    return true;
 

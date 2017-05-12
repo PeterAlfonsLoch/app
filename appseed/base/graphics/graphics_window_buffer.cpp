@@ -65,8 +65,6 @@ void window_buffer::update_window(::draw2d::dib * pdib)
    if(!m_spdibBuffer->create(m_pimpl->m_rectParentClientRequest.size()))
    {
 
-      //output_debug_string("window_buffer create (width=" + ::str::from(width(m_pimpl->m_rectParentClient)) + ",height=" + ::str::from(height(m_pimpl->m_rectParentClient)) + ")");
-
       return NULL;
 
    }

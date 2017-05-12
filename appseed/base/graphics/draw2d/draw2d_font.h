@@ -75,7 +75,7 @@ namespace draw2d
       bool        m_bUnderline;
       bool        m_bStrikeout;
       e_cs        m_ecs;
-
+      e_text_rendering m_etextrendering;
 
       font();
       font(const font & font);

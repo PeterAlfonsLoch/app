@@ -417,16 +417,21 @@ namespace user
    ETranslucency schema::_001GetTranslucency(ETranslucency etranslucencyDefault)
    {
 
-      //ETranslucency etranslucency;
+      ETranslucency etranslucency = TranslucencyUndefined;
 
-      //if(get_translucency(etranslucency))
-      //{ }
-      //   return etranslucency;
+      if (get_translucency(etranslucency))
+      {
 
-//      return etranslucencyDefault;
+         if (etranslucency != TranslucencyUndefined)
+         {
 
-      return TranslucencyPresent;
+            return etranslucency;
 
+         }
+
+      }
+
+      return etranslucencyDefault;
 
    }
 

@@ -1142,6 +1142,13 @@ namespace user
 
          }
 
+         void frame::GetFrameRect(rect * prect)
+         {
+
+            m_pworkset->GetWndDraw()->GetClientRect(prect);
+
+         }
+
 
       } // namespace frame
 

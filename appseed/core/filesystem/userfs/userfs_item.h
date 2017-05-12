@@ -18,9 +18,9 @@ namespace userfs
       string                                 m_strName;
       int32_t                                m_iIdentation;
       string                                 m_strFolder;
-      int32_t                                m_iImage;
+      //int32_t                                m_iImage;
       int32_t                                m_iIndex;
-      int32_t                                m_iImageSelected;
+      //int32_t                                m_iImageSelected;
 
 
       item(::userfs::tree * ptree);

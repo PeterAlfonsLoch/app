@@ -96,7 +96,8 @@ simple_frame_window::simple_frame_window(::aura::application * papp) :
    m_fastblur(allocer())
 {
 
-   m_etranslucency = ::user::TranslucencyNone; 
+   m_etranslucency = ::user::TranslucencyUndefined;
+
    m_bShowTask = true;
 
    m_bDefaultNotifyIcon = false;
@@ -2886,12 +2887,22 @@ bool simple_frame_window::calc_layered()
 }
 
 
-::user::ETranslucency simple_frame_window::_001GetTranslucency(::user::ETranslucency etranslucency)
+bool simple_frame_window::get_translucency(::user::ETranslucency & etranslucency)
 {
 
-   return m_etranslucency;
+   if (m_etranslucency != ::user::TranslucencyUndefined)
+   {
+
+      etranslucency = m_etranslucency;
+
+      return true;
+
+   }
+
+   return ::user::frame_window::get_translucency(etranslucency);
 
 }
+
 
 void simple_frame_window::data_on_after_change(signal_details * pobj)
 {

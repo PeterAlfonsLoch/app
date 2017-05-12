@@ -47,6 +47,7 @@ namespace user
       };
 
       //size                          m_sizeTotal;
+      int                           m_iDrawTextFlags;
       spa(::data::tree)             m_treeptra;
       spa(::data::tree)             m_treeptraBound;
       ::data::tree_item_ptr_array   m_itemptraSelected;
@@ -67,7 +68,7 @@ namespace user
       sp(image_list)                m_pimagelist;
       index                         m_iImageCollapse;
       index                         m_iImageExpand;
-      int32_t                       m_iItemHeight;
+      //int32_t                       m_iItemHeight;
 
 
 

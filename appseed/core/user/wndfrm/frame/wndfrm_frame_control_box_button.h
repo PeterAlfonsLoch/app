@@ -29,6 +29,7 @@ namespace user
             virtual void UpdateWndRgn();
             
             
+            void _001OnClip(::draw2d::graphics * pgraphics);
 
 
          };

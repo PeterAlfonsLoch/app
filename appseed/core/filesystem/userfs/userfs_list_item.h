@@ -12,7 +12,7 @@ namespace userfs
 
 
       string                           m_strName;
-      index                            m_iImage;
+      //index                            m_iImage;
       index                            m_iIndex;
       index                            m_iArrange;
 

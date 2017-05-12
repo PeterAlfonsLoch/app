@@ -54,7 +54,7 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual void _001InsertColumns();
-      virtual void _polishing_step(::data::tree_item * pitem, bool bLowLatency, e_step estep);
+      //virtual void _polishing_step(::data::tree_item * pitem, bool bLowLatency, e_step estep);
 
       void _001OnTimer(::timer * ptimer);
 
@@ -62,9 +62,9 @@ namespace filemanager
       void install_message_handling(::message::dispatch * pinterface);
 
       // tree_polishing
-      void _polishing_start(::user::tree * pusertree);
-      void _polishing_run(::data::tree_item * pitem, ::user::tree * pusertree, bool bLowLatency);
-      bool _polishing_step(::data::tree_item * pitem, bool bLowLatency);
+      //void _polishing_start(::user::tree * pusertree);
+      //void _polishing_run(::data::tree_item * pitem, ::user::tree * pusertree, bool bLowLatency);
+      //bool _polishing_step(::data::tree_item * pitem, bool bLowLatency);
 
       // user::tree
       virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);

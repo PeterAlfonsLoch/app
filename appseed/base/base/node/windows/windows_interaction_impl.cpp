@@ -771,23 +771,6 @@ namespace windows
 
 
 
-      //else if(!(GetExStyle() & WS_EX_LAYERED))
-      //{
-
-      //   ::rect r;
-
-      //   ::GetWindowRect(get_handle(),r);
-
-      //   ::copy(m_rectParentClient,r);
-
-      //   if(GetParent() != NULL)
-      //   {
-
-      //      GetParent()->ScreenToClient(m_rectParentClient);
-
-      //   }
-
-      //}
 
 
    }
@@ -3784,33 +3767,6 @@ namespace windows
 
       }
 
-      //if(!(GetExStyle() & WS_EX_LAYERED))
-      //{
-
-      //   rect rect32;
-
-      //   if(!::GetWindowRect(get_handle(),rect32))
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   if(GetParent() != NULL)
-      //   {
-
-      //      if(!GetParent()->ScreenToClient(rect32))
-      //      {
-
-      //         return false;
-
-      //      }
-
-      //   }
-
-      //   ::copy(m_rectParentClient,rect32);
-
-      //}
 
       *lprect = m_rectParentClientRequest;
 
@@ -5309,138 +5265,6 @@ while (pui != NULL)
 
       return;
 
-//      SCAST_PTR(::message::window_pos,pwindowpos,pobj);
-
-      //TRACE("::windows::interaction_impl::_001OnWindowPosChanging");
-
-//      if(GetExStyle() & WS_EX_LAYERED)
-//      {
-//
-//         if(pwindowpos->m_pwindowpos->flags & 0x8000) // SWP_STATECHANGED
-//         {
-//
-//            pwindowpos->m_pwindowpos->flags |= SWP_NOSIZE;
-//            pwindowpos->m_pwindowpos->flags |= SWP_NOMOVE;
-//            pwindowpos->m_pwindowpos->flags |= 0x0800; // SWP_NOCLIENTSIZE
-//            pwindowpos->m_pwindowpos->flags |= 0x1000; // SWP_NOCLIENTMOVE
-//
-//            pobj->m_bRet = true;
-//
-//         }
-//         else
-//         {
-//
-//            ::rect rectBefore = m_rectParentClient;
-//
-//            //::GetWindowRect(get_handle(),rectBefore);
-//
-//            //m_rectParentClient = rectBefore;
-//
-//            ::rect rect = m_rectParentClient;
-//
-//            if(pwindowpos->m_pwindowpos->flags & SWP_NOMOVE)
-//            {
-//
-//               //TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOMOVE");
-//
-//            }
-//            else
-//            {
-//
-//               rect.move_to(pwindowpos->m_pwindowpos->x,pwindowpos->m_pwindowpos->y);
-//
-//            }
-//
-//            if(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE)
-//            {
-//
-//               //TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOSIZE");
-//
-//            }
-//            else
-//            {
-//
-//               rect.size(pwindowpos->m_pwindowpos->cx,pwindowpos->m_pwindowpos->cy);
-//
-//            }
-//
-//            m_rectParentClient = rect;
-//
-//            //keep < bool > keepRectParentClient(&m_bRectParentClient,true,false,true);
-//
-//            keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
-//
-//
-//            bool bUpdate = false;
-//
-//            if(rectBefore.top_left() != rect.top_left())
-//            {
-//
-//               send_message(WM_MOVE);
-//
-//               bUpdate = true;
-//
-//            }
-//
-//            if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
-//            {
-//
-//               m_eapperanceLayout = m_pui->get_appearance();
-//
-//               send_message(WM_SIZE,0,MAKELONG(MAX(0,rect.width()),MAX(0,rect.height())));
-//
-//               bUpdate = true;
-//
-//            }
-//
-//            if(bUpdate)
-//            {
-//
-//               keepLockWindowUpdate.KeepAway();
-//
-//               if(!(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE))
-//               {
-//
-//                  {
-//
-//                     DWORD dwTime2 = ::get_tick_count();
-//
-//                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//                     //TRACE("OnSize::WndImpl call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//
-//                  }
-//
-//
-//
-////                  _001UpdateBuffer();
-//                  {
-//
-//                     DWORD dwTime2 = ::get_tick_count();
-//
-//                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//                     //TRACE("OnSize::WndImpl call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//
-//                  }
-//
-//
-//                  //_001UpdateWindow();
-//
-//                  {
-//
-//                     DWORD dwTime2 = ::get_tick_count();
-//
-//                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//                     //TRACE("OnSize::WndImpl call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//
-//                  }
-//
-//               }
-//
-//            }
-//
-//         }
-//
-//      }
 
    }
 

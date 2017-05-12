@@ -10,14 +10,14 @@ namespace userfs
    {
       m_iIndex = -1;
       m_iArrange = -1;
-      m_iImage = -1;
+//      m_iImage = -1;
    }
 
    list_item::list_item(const list_item & listitem) :
       ::object(listitem.m_pauraapp),
       ::fs::item(listitem),
       m_strName(listitem.m_strName),
-      m_iImage(listitem.m_iImage),
+  //    m_iImage(listitem.m_iImage),
       m_iIndex(listitem.m_iIndex),
       m_iArrange(listitem.m_iArrange)
    {
@@ -28,7 +28,7 @@ namespace userfs
       ::object(listitem.m_pauraapp),
       ::fs::item(listitem),
       m_strName(listitem.m_strName),
-      m_iImage(listitem.m_iImage),
+//      m_iImage(listitem.m_iImage),
       m_iIndex(listitem.m_iIndex),
       m_iArrange(iArrange)
    {
@@ -111,7 +111,7 @@ namespace userfs
       m_pauraapp  = item.m_pauraapp;
       m_filepath = item.m_filepath;
       m_strName   = item.m_strName;
-      m_iImage    = item.m_iImage;
+//      m_iImage    = item.m_iImage;
       m_iIndex    = item.m_iIndex;
       m_iArrange  = item.m_iArrange;
       m_flags     = item.m_flags;

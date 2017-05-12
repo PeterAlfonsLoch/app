@@ -345,7 +345,6 @@ namespace user
       index                            m_iItemFocus;
 
       bool                             m_bLockViewUpdate;
-      int32_t                          m_iItemHeight;
       int64_t                          m_iItemWidth;
 
       index                            m_iItemHover;

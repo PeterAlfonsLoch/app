@@ -47,9 +47,11 @@ namespace user
          int32_t                       m_iIcon;
          char *                        m_pszExtension;
 
-
+         oswindow                      m_oswindow;
+         COLORREF                      m_cr;
 
          image_key();
+         virtual ~image_key() {}
 
          operator uint32_t () const
          {
@@ -70,7 +72,7 @@ namespace user
 
          image_key_store();
          image_key_store(const image_key & key);
-         ~image_key_store();
+         virtual ~image_key_store();
 
       };
 

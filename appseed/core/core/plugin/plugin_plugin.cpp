@@ -209,19 +209,9 @@ namespace plugin
 
       if(m_puiHost != NULL)
       {
-//         System.oprop("top_parent") = m_puiHost;
 
          System.oprop("top_parent") = m_puiHost;
 
-/*         m_puiHost->m_bRectOk = true;
-         m_puiHost->m_pimpl->m_bRectOk = true;
-         m_puiHost->m_rectParentClient = m_rect;
-         m_puiHost->m_rectParentClient.offset(-point64(m_puiHost->m_rectParentClient.top_left()));
-         m_puiHost->m_pimpl->m_rectParentClient = m_puiHost->m_rectParentClient;
-         m_puiHost->SendMessageA(WM_SIZE);
-         m_puiHost->SendMessageA(WM_MOVE);*/
-//         class rect rect = m_phost->m_rect;
-  //       set_window_rect(rect);
       }
 
 ///      System.m_puiInitialPlaceHolderContainer = m_puiHost;

@@ -29,21 +29,21 @@ namespace filemanager
       };
 
 
-      class create_image_list_thread:
-         public thread
-      {
-      public:
+      //class create_image_list_thread:
+      //   public thread
+      //{
+      //public:
 
 
-         file_list * m_plist;
+      //   file_list * m_plist;
 
 
-         create_image_list_thread(::aura::application * papp);
+      //   create_image_list_thread(::aura::application * papp);
 
-         virtual int32_t run();
+      //   virtual int32_t run();
 
 
-      };
+      //};
 
 
       class file_size
@@ -76,7 +76,7 @@ namespace filemanager
       bool                             m_bCreateImageList;
       bool                             m_bCreateImageListRedraw;
       index                            m_iAnimate;
-      create_image_list_thread *       m_pcreateimagelistthread;
+      //create_image_list_thread *       m_pcreateimagelistthread;
 
       int64_t                          m_iCreateImageListStep;
       uint32_t                         m_dwLastRedraw;
@@ -178,8 +178,8 @@ namespace filemanager
       void _017UpdateList(::action::context actioncontext);
       void GetSelectedFilePath(stringa & array);
       //virtual bool TwiHasTranslucency();
-      void _001CreateImageList();
-      bool _001CreateImageListStep();
+      //void _001CreateImageList();
+      //bool _001CreateImageListStep();
       virtual void _001GetItemImage(::user::mesh_item * pitem);
       virtual void _001GetItemText(::user::mesh_item * pitem);
       virtual count _001GetItemCount();
