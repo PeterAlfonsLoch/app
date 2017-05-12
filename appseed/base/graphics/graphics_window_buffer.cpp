@@ -54,7 +54,15 @@ void window_buffer::update_window(::draw2d::dib * pdib)
 
    }
 
-   if(!m_spdibBuffer->create(m_pimpl->m_rectParentClient.size()))
+   if (!(m_pimpl->GetExStyle() & WS_EX_LAYERED))
+   {
+      rect r;
+      ::GetWindowRect(m_pimpl->get_handle(), &r);
+      m_pimpl->m_rectParentClientRequest = r;
+
+   }
+
+   if(!m_spdibBuffer->create(m_pimpl->m_rectParentClientRequest.size()))
    {
 
       //output_debug_string("window_buffer create (width=" + ::str::from(width(m_pimpl->m_rectParentClient)) + ",height=" + ::str::from(height(m_pimpl->m_rectParentClient)) + ")");
@@ -63,10 +71,10 @@ void window_buffer::update_window(::draw2d::dib * pdib)
 
    }
 
-   if (m_cx != m_pimpl->m_rectParentClient.size().cx || m_cy != m_pimpl->m_rectParentClient.size().cy)
+   if (m_cx != m_pimpl->m_rectParentClientRequest.size().cx || m_cy != m_pimpl->m_rectParentClientRequest.size().cy)
    {
 
-      create_buffer(m_pimpl->m_rectParentClient.size().cx, m_pimpl->m_rectParentClient.size().cy, m_spdibBuffer->m_iScan);
+      create_buffer(m_pimpl->m_rectParentClientRequest.size().cx, m_pimpl->m_rectParentClientRequest.size().cy, m_spdibBuffer->m_iScan);
 
    }
 

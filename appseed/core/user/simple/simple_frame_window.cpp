@@ -96,6 +96,7 @@ simple_frame_window::simple_frame_window(::aura::application * papp) :
    m_fastblur(allocer())
 {
 
+   m_etranslucency = ::user::TranslucencyNone; 
    m_bShowTask = true;
 
    m_bDefaultNotifyIcon = false;
@@ -2884,6 +2885,13 @@ bool simple_frame_window::calc_layered()
 
 }
 
+
+::user::ETranslucency simple_frame_window::_001GetTranslucency(::user::ETranslucency etranslucency)
+{
+
+   return m_etranslucency;
+
+}
 
 void simple_frame_window::data_on_after_change(signal_details * pobj)
 {

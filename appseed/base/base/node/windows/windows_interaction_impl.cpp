@@ -2380,52 +2380,62 @@ namespace windows
             m_pthreadUpdateWindow = ::fork(get_app(), [&]()
             {
 
+
                DWORD dwStart;
 
                while (::get_thread_run())
                {
-
                   dwStart = ::get_tick_count();
 
-                  if (m_pui == NULL)
+                  if (GetExStyle() & WS_EX_LAYERED)
                   {
 
-                     break;
-
-                  }
-
-                  if (!m_pui->m_bLockWindowUpdate)
-                  {
-                     synch_lock sl(m_pui->m_pmutex);
-                     if (m_pui->has_pending_graphical_update()
-                        || m_pui->check_need_layout())
+                     if (m_pui == NULL)
                      {
-                        sl.unlock();
-                        _001UpdateWindow();
 
-                        try
+                        break;
+
+                     }
+
+                     if (!m_pui->m_bLockWindowUpdate)
+                     {
+                        synch_lock sl(m_pui->m_pmutex);
+                        if (m_pui->has_pending_graphical_update()
+                           || m_pui->check_need_layout())
                         {
+                           sl.unlock();
+                           _001UpdateWindow();
+
+                           try
+                           {
+
+                              m_pui->on_after_graphical_update();
+
+                           }
+                           catch (...)
+                           {
+
+                           }
+
+                        }
+                        else if (m_pui->check_need_translation()
+                           || m_pui->check_show_flags()
+                           || m_pui->check_need_zorder())
+                        {
+
+                           sl.unlock();
+                           _001UpdateWindow(false);
 
                            m_pui->on_after_graphical_update();
 
                         }
-                        catch (...)
-                        {
-
-                        }
 
                      }
-                     else if (m_pui->check_need_translation()
-                        || m_pui->check_show_flags()
-                        || m_pui->check_need_zorder())
-                     {
+                  }
+                  else
+                  {
 
-                        sl.unlock();
-                        _001UpdateWindow(false);
-
-                        m_pui->on_after_graphical_update();
-
-                     }
+                     ::RedrawWindow(get_handle(), NULL,NULL, RDW_UPDATENOW | RDW_INVALIDATE);
 
                   }
 
@@ -2820,7 +2830,7 @@ namespace windows
    void interaction_impl::_001OnPaint(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       rect64 rectWindow;
 
@@ -2828,11 +2838,11 @@ namespace windows
 
       PAINTSTRUCT paint;
 
-      memset(&paint,0,sizeof(paint));
+      memset(&paint, 0, sizeof(paint));
 
-      HDC hdc = ::BeginPaint(get_handle(),&paint);
+      HDC hdc = ::BeginPaint(get_handle(), &paint);
 
-      ::SelectClipRgn(hdc,NULL);
+      ::SelectClipRgn(hdc, NULL);
 
       rect rectPaint;
 
@@ -6113,7 +6123,23 @@ lCallNextHook:
       }
 
    }
+   bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
+   {
 
+      if (GetExStyle() & WS_EX_LAYERED)
+      {
+
+         return ::user::interaction_impl::SetWindowPos(z, x, y, cx, cy, nFlags);
+
+      }
+      else
+      {
+
+         return ::SetWindowPos(get_handle(), (HWND)z, x, y, cx, cy, nFlags) != 0;
+
+      }
+
+   }
 
 } // namespace windows
 

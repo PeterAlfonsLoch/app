@@ -45,7 +45,7 @@ namespace windows
 
       void user_common_construct();
 
-
+      bool SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid,void **ppvObject);
 
       virtual ULONG STDMETHODCALLTYPE AddRef(void);

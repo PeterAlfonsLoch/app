@@ -72,6 +72,8 @@ public:
    bool                                m_bCustomFrameBefore;
    rect                                m_FullScreenWindowRect;
    visual::fastblur                    m_fastblur;
+   ::user::ETranslucency      m_etranslucency;
+
 
    map < ::id, const ::id &, ::user::toolbar * > m_toolbarmap;
 
@@ -110,6 +112,8 @@ public:
    virtual bool GetClientRect(LPRECT lprect);
 
    virtual bool is_application_main_window();
+   
+   virtual ::user::ETranslucency _001GetTranslucency(::user::ETranslucency etranslucencyDefault = ::user::TranslucencyNone) override;
 
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);

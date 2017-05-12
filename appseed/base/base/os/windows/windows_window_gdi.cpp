@@ -412,7 +412,14 @@ void window_gdi::update_window(::draw2d::dib * pdib)
       else
       {
 
-         uiFlags = SWP_FRAMECHANGED;
+//         uiFlags = SWP_FRAMECHANGED | SWP_NOREDRAW;
+
+         uiFlags = SWP_NOREDRAW
+            | SWP_NOCOPYBITS
+            | SWP_NOACTIVATE
+            | SWP_NOOWNERZORDER
+            | SWP_DEFERERASE;
+
 
       }
 
