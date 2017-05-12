@@ -1279,20 +1279,20 @@ namespace user
    void split_layout::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      COLORREF crBackground = 0;
+      COLORREF crBackground = get_color(crBackground, ::user::color_split_layout_background);
 
-      
-
-      //if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
-      //{
+      if (argb_get_a_value(crBackground) > 0)
+      {
 
          rect rectClient;
 
          GetClientRect(rectClient);
 
-         pgraphics->FillSolidRect(rectClient, get_color(crBackground, ::user::color_split_layout_background));
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      //}
+         pgraphics->FillSolidRect(rectClient, crBackground);
+
+      }
 
    }
 

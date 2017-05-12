@@ -15,6 +15,9 @@ namespace user
 {
 
 
+
+
+
    class interaction;
    class create_struct;
    class control_event;
@@ -31,6 +34,8 @@ namespace user
    class tooltip;
 
 
+
+   
 
 } // namespace user
 

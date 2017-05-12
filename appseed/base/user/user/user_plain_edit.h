@@ -84,7 +84,7 @@ namespace user
       bool                          m_bReadOnly;
       point                         m_ptLastCursor;
       ::draw2d::memory_graphics     m_pmemorygraphics;
-      ::draw2d::font_sp             m_spfont;
+      //::draw2d::font_sp             m_spfont;
 
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line size
@@ -123,7 +123,7 @@ namespace user
       
       //void on_change_view_size();
 
-      virtual bool get_font(::draw2d::font_sp & spfont) override;
+      // virtual bool get_font(::draw2d::font_sp & spfont, e_font efont, ::user::interaction * pui) override;
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);

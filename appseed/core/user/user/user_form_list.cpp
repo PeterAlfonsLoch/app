@@ -598,12 +598,12 @@ namespace user
 
       sp(::user::plain_edit) pedit = pcontrol;
 
-      if (pedit.is_set())
-      {
+      //if (pedit.is_set())
+      //{
 
-         pedit->m_spfont = m_font;
+      //   pedit->m_spfont = m_font;
 
-      }
+      //}
 
       if (pcontrol->descriptor().has_function(control::function_vms_data_edit))
       {
@@ -685,12 +685,12 @@ namespace user
 
       sp(::user::combo_box) pcombo = pcontrol;
 
-      if (pcombo.is_set())
-      {
+      //if (pcombo.is_set())
+      //{
 
-         pcombo->m_spfont = m_font;
+      //   pcombo->m_spfont = m_font;
 
-      }
+      //}
 
       if (pcontrol->descriptor().has_function(control::function_data_selection))
       {

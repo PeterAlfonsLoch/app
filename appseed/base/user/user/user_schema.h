@@ -63,6 +63,30 @@ namespace user
       color_toolbar_background,
       color_toolbar_separator,
       color_split_layout_background,
+      color_tab_client_background,
+      color_tab_layout_background,
+
+   };
+
+   enum e_font
+   {
+
+      font_none,
+      font_button,
+      font_plain_edit,
+      font_tree,
+      font_list_item,
+      font_list_hover,
+      font_static,
+
+   };
+
+
+   enum e_object
+   {
+
+      object_list,
+      object_tree
 
    };
 
@@ -82,7 +106,7 @@ namespace user
       virtual ::user::schema * get_parent_user_schema();
 
       virtual bool get_color(COLORREF & cr,e_color ecolor);
-      virtual bool get_font(::draw2d::font_sp & sp);
+      virtual bool get_font(::draw2d::font_sp & sp, e_font efont, ::user::interaction * pui);
       virtual bool get_translucency(ETranslucency & etranslucency);
 
       virtual COLORREF        _001GetColor(e_color ecolor, COLORREF crDefault);
@@ -96,10 +120,11 @@ namespace user
 
       virtual bool select_layered_frame();
       virtual bool select_text_color(::draw2d::graphics * pgraphics, e_color ecolor = color_text);
-      virtual bool select_font(::draw2d::graphics * pgraphics);
+      virtual bool select_font(::draw2d::graphics * pgraphics, e_font efont, ::user::interaction * pui);
 
       virtual bool simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics);
 
+      virtual bool on_ui_event(e_event eevent, e_object eobject, ::user::interaction * pui);
 
       virtual bool _001TabOnDrawSchema01(::draw2d::graphics * pgraphics,tab * ptab);
       

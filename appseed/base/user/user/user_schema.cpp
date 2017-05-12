@@ -53,13 +53,13 @@ namespace user
 
    }
 
-   bool schema::get_font(::draw2d::font_sp & spfont)
+   bool schema::get_font(::draw2d::font_sp & spfont, e_font efont, ::user::interaction * pui)
    {
 
       if (m_puserschemaSchema != NULL && m_puserschemaSchema != this)
       {
 
-         if (m_puserschemaSchema->get_font(spfont))
+         if (m_puserschemaSchema->get_font(spfont, efont, pui))
             return true;
 
       }
@@ -67,7 +67,7 @@ namespace user
       if (get_parent_user_schema() != NULL)
       {
 
-         if (get_parent_user_schema()->get_font(spfont))
+         if (get_parent_user_schema()->get_font(spfont, efont, pui))
             return true;
 
       }
@@ -75,7 +75,7 @@ namespace user
       if (m_pauraapp != NULL && this != m_pauraapp->m_pbasesession && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschemaSchema && m_pauraapp->m_pbasesession->m_puserschemasimple != m_puserschemaSchema)
       {
 
-         if (m_pauraapp->m_pbasesession->get_font(spfont))
+         if (m_pauraapp->m_pbasesession->get_font(spfont, efont, pui))
             return true;
 
       }
@@ -83,6 +83,7 @@ namespace user
       return false;
 
    }
+
 
    bool schema::get_translucency(ETranslucency & etranslucency)
    {
@@ -113,6 +114,37 @@ namespace user
 
       return false;
 
+   }
+
+
+   bool schema::on_ui_event(e_event eevent, e_object eobject, ::user::interaction * pui)
+   {
+
+      if (m_puserschemaSchema != NULL && m_puserschemaSchema != this)
+      {
+
+         if (m_puserschemaSchema->on_ui_event(eevent, eobject, pui))
+            return true;
+
+      }
+
+      if (get_parent_user_schema() != NULL)
+      {
+
+         if (get_parent_user_schema()->on_ui_event(eevent, eobject, pui))
+            return true;
+
+      }
+
+      if (m_pauraapp != NULL && this != m_pauraapp->m_pbasesession && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschemaSchema && m_pauraapp->m_pbasesession->m_puserschemasimple != m_puserschemaSchema)
+      {
+
+         if (m_pauraapp->m_pbasesession->on_ui_event(eevent, eobject, pui))
+            return true;
+
+      }
+
+      return false;
    }
 
    COLORREF schema::_001GetColor(e_color ecolor, COLORREF crDefault)
@@ -485,12 +517,12 @@ namespace user
    }
 
 
-   bool schema::select_font(::draw2d::graphics * pgraphics)
+   bool schema::select_font(::draw2d::graphics * pgraphics, e_font efont, ::user::interaction * pui)
    {
 
       ::draw2d::font_sp spfont;
 
-      if (!get_font(spfont))
+      if (!get_font(spfont, efont, pui))
          return false;
 
       if (spfont.is_null())
@@ -520,7 +552,7 @@ namespace user
 
       rect rectClient;
 
-      pui->GetClientRect(rectClient);
+      pui->::user::interaction::GetClientRect(rectClient);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

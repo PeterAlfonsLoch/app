@@ -109,7 +109,7 @@ namespace user
 
       //rectText.deflate(iMargin, iMargin);
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -724,7 +724,9 @@ namespace user
 
          defer_create_combo_list();
 
-         get_font(m_plist->m_spfont);
+         ::draw2d::font_sp spfont;
+
+         get_font(spfont, font_plain_edit, this);
 
          m_plist->query_full_size(m_sizeFull);
 

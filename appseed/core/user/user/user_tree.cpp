@@ -326,12 +326,13 @@ namespace user
          data.m_pdc->SelectObject(brushText);
 
 
-         ::draw2d::font_sp font(allocer());
+         //::draw2d::font_sp font(allocer());
 
 
-         font->operator=(*System.visual().fonts().GetListCtrlFont());
+         //font->operator=(*System.visual().fonts().GetListCtrlFont());
          //font->set_bold();
-         data.m_pdc->set_font(font);
+         //data.m_pdc->set_font(font);
+         select_font(data.m_pdc, font_tree, this);
          data.m_pdc->_DrawText(strItem, strItem.get_length(), rect, DT_LEFT | DT_BOTTOM);
 
       }
@@ -901,7 +902,7 @@ namespace user
       if (m_puserschemaSchema == NULL)
       {
 
-         m_puserschemaSchema = GetTopLevelFrame()->m_puserschemaSchema;
+         m_puserschemaSchema = GetTopLevel()->m_puserschemaSchema;
 
       }
 
@@ -1124,12 +1125,28 @@ namespace user
 
       g->CreateCompatibleDC(NULL);
 
-      ::draw2d::font_sp font(allocer());
+      //::draw2d::font_sp font(allocer());
 
 
-      font->operator=(*System.visual().fonts().GetListCtrlFont());
+      //font->operator=(*System.visual().fonts().GetListCtrlFont());
       //font->set_bold();
-      g->set_font(font);
+      //g->set_font(font);
+
+      select_font(g, font_tree, this);
+
+
+      size size;
+      size = g->GetTextExtent(unitext("Ág"));
+
+      int iItemHeight = 18;
+      if (size.cy + 2 > iItemHeight)
+      {
+         iItemHeight = MAX(size.cy + 2, iItemHeight);
+      }
+
+      m_iItemHeight = iItemHeight;
+
+      on_ui_event(event_calc_item_height, object_tree, this);
 
       spa(::data::tree_item) spitema;
       

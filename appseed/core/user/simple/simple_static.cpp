@@ -48,9 +48,7 @@ void simple_static::_001OnDraw(::draw2d::graphics * pgraphics)
    else if (get_type() == type_text)
    {
 
-
-
-      select_font(pgraphics);
+      select_font(pgraphics, ::user::font_static, this);
 
       ::draw2d::brush_sp brush(allocer(), Session.user()->GetUfeSchema()->m_crTextNormal);
 

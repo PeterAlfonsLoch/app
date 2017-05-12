@@ -26,7 +26,7 @@ namespace user
       int32_t                             m_iItemHeight;
       index                               m_iHover;
       int                                 m_iBorder;
-      ::draw2d::font_sp                   m_spfont;
+      //::draw2d::font_sp                   m_spfont;
 
       ::user::interaction *               m_puiDeactivateTogether;
       ::user::wndfrm::frame::WorkSet *    m_puiDeactivateTogetherSet;
@@ -87,7 +87,9 @@ namespace user
       void on_drop_down(rect rectWindow, size sizeFull);
 
 
-      virtual bool get_font(::draw2d::font_sp & spfont) override;
+      //virtual bool get_font(::draw2d::font_sp & spfont, e_font efont, ::user::interaction * pui) override;
+
+
    };
 
 

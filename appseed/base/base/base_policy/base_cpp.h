@@ -7,10 +7,12 @@
 #define DRAWDD() virtual void _001OnDraw(::draw2d::graphics * pgraphics)
 
 
-
+#include "base/user/user/user_const.h"
 
 namespace user
 {
+
+
 
    class message_queue_listener;
 

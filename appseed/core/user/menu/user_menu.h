@@ -98,7 +98,7 @@ namespace user
       //virtual void PostNcDestroy();
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      virtual bool get_font(::draw2d::font_sp & spfont) override;
+      //virtual bool get_font(::draw2d::font_sp & spfont, e_font efont, ::user::interaction * pui) override;
 
       sp(::user::menu_item) get_item();
 

@@ -800,6 +800,11 @@ bool rect::intersect_y(LPCRECT lpRect1,LPCRECT lpRect2) throw()
 }
 bool rect::intersect(LPCRECT lpRect1,LPCRECT lpRect2) throw()
    { return ::IntersectRect(this, lpRect1, lpRect2) != FALSE;}
+rect & rect::intersect(LPCRECT lpcrect) throw()
+{
+   ::IntersectRect(this, this, lpcrect);
+   return *this;
+}
 rect rect::intersect(LPCRECT lpcrect) const throw()
 {
    ::rect rect;

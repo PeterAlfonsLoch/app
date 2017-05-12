@@ -7,15 +7,12 @@ namespace user
 
    list_header::list_header(::aura::application * papp) :
       object(papp),
-      m_font(allocer()),
       m_dcextension(papp)
    {
       m_plistctrlinterface = NULL;
       m_bTrack = false;
       m_bLButtonDown = false;
       m_bHover = false;
-      m_font->create_point_font("Verdana", 20.0);
-      m_puserschemaSchema = Application.userschema();
       m_iImageSpacing = 4;
    }
 
@@ -69,15 +66,18 @@ namespace user
       str = System.load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
       //m_font->create_point_font("Verdana", 10.0);
 
+      if (str.has_char())
+      {
 
-      pgraphics->SelectObject(m_font);
+         select_font(pdrawitem->m_pgraphics, font_list_item, this);
+         //      pgraphics->SetBkMode(TRANSPARENT);
 
-//      pgraphics->SetBkMode(TRANSPARENT);
+         pgraphics->set_text_color(_001GetColor(::user::color_list_header));
+         int i = plist->_001GetDrawTextFlags(plist->m_eview);
 
-      pgraphics->set_text_color(_001GetColor(::user::color_list_header));
-      int i = plist->_001GetDrawTextFlags(plist->m_eview);
+         pgraphics->_DrawText(str, str.get_length(), rectColumn, i);
 
-      pgraphics->_DrawText(str,str.get_length(),rectColumn,i);
+      }
 
    }
 
@@ -608,7 +608,18 @@ namespace user
 
             pui->GetWindowRect(rectClient);
 
-            pui->GetClientRect(rectFocus);
+            if (i == 1)
+            {
+               // guess list client rect doesn't include header?
+               pui->::user::interaction::GetClientRect(rectFocus);
+
+            }
+            else
+            {
+
+               pui->GetClientRect(rectFocus);
+
+            }
 
             rectFocus.offset(rectClient.top_left());
 

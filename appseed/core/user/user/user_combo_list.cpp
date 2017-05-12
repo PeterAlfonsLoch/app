@@ -6,8 +6,7 @@ namespace user
 
 
    combo_list::combo_list(::aura::application * papp) :
-      object(papp),
-      m_spfont(allocer())
+      object(papp)
    {
 
 
@@ -25,7 +24,7 @@ namespace user
 
       m_iBorder = 6;
 
-      m_spfont->create_point_font("Arial", 10.0);
+//      m_spfont->create_point_font("Arial", 10.0);
 
    }
 
@@ -129,7 +128,7 @@ namespace user
 
       br->create_solid(ARGB(255, 84, 84, 77));
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -234,7 +233,7 @@ namespace user
       //GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
       //GetFont()->m_bUpdated = false;
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -341,7 +340,7 @@ namespace user
 
       ScreenToClient(&ptCursor);
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -443,7 +442,7 @@ namespace user
       //GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
       //GetFont()->m_bUpdated = false;
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       //pgraphics->SelectObject(br);
 
@@ -507,7 +506,7 @@ namespace user
 
       pgraphics->CreateCompatibleDC(NULL);
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -1087,21 +1086,21 @@ namespace user
    }
 
 
-   bool combo_list::get_font(::draw2d::font_sp & spfont)
-   {
+   //bool combo_list::get_font(::draw2d::font_sp & spfont, e_font efont, ::user::interaction * pui)
+   //{
 
-      if (m_spfont.is_set())
-      {
+   //   if (m_spfont.is_set())
+   //   {
 
-         spfont = m_spfont;
+   //      spfont = m_spfont;
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      return ::user::schema::get_font(spfont);
+   //   return ::user::schema::get_font(spfont);
 
-   }
+   //}
 
 } // namespace user
 

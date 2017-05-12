@@ -146,7 +146,7 @@ namespace user
          if(m_estockicon == stock_icon_none)
          {
 
-            select_font(pgraphics);
+            select_font(pgraphics, font_button, this);
 
             pgraphics->TextOut(m_rectText.left,m_rectText.top,strText);
 
@@ -396,7 +396,7 @@ namespace user
       if(pgraphics.is_null())
          return size(0, 0);
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_button, this);
 
       string strText(m_strWindowText);
 
@@ -425,7 +425,7 @@ namespace user
 
             ::draw2d::memory_graphics pgraphics(allocer());
 
-            select_font(pgraphics);
+            select_font(pgraphics, font_button, this);
 
             string str;
             GetWindowText(str);
@@ -700,7 +700,7 @@ namespace user
 
       string strText(GetWindowText());
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_button, this);
 
       pgraphics->draw_text(strText, rectText, DT_LEFT | DT_TOP);
 

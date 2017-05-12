@@ -253,6 +253,7 @@ public:
 
    bool CreateHueImageList(::draw2d::graphics * pgraphics, image_list * pilGray, image_list * pilParam, COLORREF crHue, double dCompress);
    bool Createcolor_blend_ImageList(image_list * pilGray, image_list * pilParam, COLORREF cr, BYTE bAlpha);
+   bool Createcolor_blend_dib(::draw2d::dib * pdib, COLORREF cr, BYTE bAlpha);
 
 
 

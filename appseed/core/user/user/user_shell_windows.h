@@ -31,7 +31,10 @@ namespace user
 
          };
 
+         ::windows::comptr < IImageList >                            m_pilSmall;
+         ::windows::comptr < IImageList >                            m_pilLarge;
          ::windows::comptr < IImageList >                            m_pilExtraLarge;
+         ::windows::comptr < IImageList >                            m_pilJumbo;
          ::windows::comptr < IMalloc >                               m_pmalloc;
          ::windows::comptr < IShellFolder >                          m_pfolderDesktop;
          string_map < folder, const folder  & >                      m_mapFolder;
@@ -56,7 +59,13 @@ namespace user
          virtual ::user::shell::e_folder get_folder_type(::aura::application * papp, const unichar * lpcszPath) override;
          virtual ::user::shell::e_folder get_folder_type(::aura::application * papp, const char * lpcszPath) override;
 
-         virtual void get_image_prologue(COLORREF crBk, int iImage);
+         int add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, COLORREF crBk);
+
+         int add_icon(int iSize, HICON hicon, COLORREF crBk);
+
+         int add_icon_info(int iSize, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, COLORREF crBk);
+
+         int add_system_icon(int iSize, IImageList * plist, SHFILEINFOW * pinfo, COLORREF crBck);
 
 
          //virtual bool do_call();

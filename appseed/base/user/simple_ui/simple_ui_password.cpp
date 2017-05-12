@@ -186,7 +186,7 @@ namespace simple_ui
       _001GetViewSel(iSelStart,iSelEnd);
       strsize iCursor = iSelEnd;
       sort::sort(iSelStart,iSelEnd);
-      select_font(pgraphics);
+      select_font(pgraphics, ::user::font_plain_edit, this);
       size size3;
       size3 = pgraphics->GetTextExtent(unitext("gGYIﾍ"));
       int32_t iLineHeight = size3.cy;

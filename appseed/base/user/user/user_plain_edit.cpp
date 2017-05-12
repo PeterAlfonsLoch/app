@@ -216,21 +216,21 @@ namespace user
    {
    }
 
-   bool plain_edit::get_font(::draw2d::font_sp & spfont)
-   {
+   //bool plain_edit::get_font(::draw2d::font_sp & spfont, e_font efont, ::user::interaction * pui)
+   //{
 
-      if (m_spfont.is_set())
-      {
+   //   if (m_spfont.is_set() && pui == this)
+   //   {
 
-         spfont = m_spfont;
+   //      spfont = m_spfont;
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      return ::user::schema::get_font(spfont);
+   //   return ::user::schema::get_font(spfont, efont, pui);
 
-   }
+   //}
 
    void plain_edit::_001OnDraw(::draw2d::graphics * pgraphics)
    {
@@ -348,7 +348,7 @@ namespace user
       _001GetViewSel(iSelStart, iSelEnd);
       strsize iCursor = iSelEnd;
       sort::sort(iSelStart, iSelEnd);
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
       //size size3;
@@ -1451,7 +1451,7 @@ namespace user
 
       ::draw2d::graphics_sp pgraphics = m_pmemorygraphics;
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       const int iLenUniText = 14;
 
@@ -1806,14 +1806,6 @@ namespace user
       }
 
 
-      if (m_spfont.is_null())
-      {
-
-         m_spfont.alloc(allocer());
-
-         m_spfont->create_pixel_font("Arial Unicode", rectClient.height() * 0.8);
-
-      }
 
 
 
@@ -1850,7 +1842,7 @@ namespace user
 
       ::draw2d::graphics_sp pgraphics = m_pmemorygraphics;
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       const int iLenUniText = 14;
 
@@ -2281,7 +2273,7 @@ namespace user
 
       ::draw2d::graphics_sp pgraphics = m_pmemorygraphics;
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -2423,7 +2415,7 @@ namespace user
 
       ::draw2d::graphics_sp pgraphics = m_pmemorygraphics;
 
-      select_font(pgraphics);
+      select_font(pgraphics, font_plain_edit, this);
 
       rect rectClient;
 

@@ -20,9 +20,10 @@ namespace user
       virtual ~schema_simple_impl();
 
 
-      virtual bool get_color(COLORREF & cr, e_color ecolor);
-      virtual bool get_font(::draw2d::font_sp & font);
-      virtual bool get_translucency(ETranslucency & etranslucency);
+      virtual bool get_color(COLORREF & cr, e_color ecolor) override;
+      virtual bool get_font(::draw2d::font_sp & font, e_font efont, ::user::interaction * pui) override;
+      virtual bool get_translucency(ETranslucency & etranslucency) override;
+      virtual bool on_ui_event(e_event eevent, e_object eobject, ::user::interaction * pui) override;
 
 
       virtual bool set_color(e_color ecolor, COLORREF cr);

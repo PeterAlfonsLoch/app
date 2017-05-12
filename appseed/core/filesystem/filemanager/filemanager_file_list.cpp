@@ -1522,17 +1522,11 @@ namespace filemanager
          column.m_sizeIcon.cx = get_filemanager_data()->m_iIconSize;
          column.m_sizeIcon.cy = get_filemanager_data()->m_iIconSize;
          column.m_iControl = -1;
-         column.m_uiText = "Name";
+         column.m_uiText = "";
          column.m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          column.m_bEditOnSecondClick = false;
-         if (get_filemanager_data()->m_iIconSize >= 48)
-         {
-            column.m_pil = Session.userex()->shell().GetImageList48();
-         }
-         else
-         {
-            column.m_pil = Session.userex()->shell().GetImageList16();
-         }
+         column.m_pil = Session.userex()->shell().GetImageList(get_filemanager_data()->m_iIconSize);
+         column.m_pilHover = Session.userex()->shell().GetImageListHover(get_filemanager_data()->m_iIconSize);
          _001AddColumn(column);
          m_iSelectionSubItem = i;
 
@@ -1573,17 +1567,11 @@ namespace filemanager
       column.m_sizeIcon.cx = get_filemanager_data()->m_iIconSize;
       column.m_sizeIcon.cy = get_filemanager_data()->m_iIconSize;
       column.m_iControl = iControl;
+      column.m_uiText = "Name";
       column.m_datakey = "FILE_MANAGER_ID_FILE_NAME";
       column.m_bEditOnSecondClick = true;
-      if (get_filemanager_data()->m_iIconSize >= 48)
-      {
-         column.m_pilHover = Session.userex()->shell().GetImageList48Hover();
-         column.m_pil = Session.userex()->shell().GetImageList48();
-      }
-      else
-      {
-         column.m_pil = Session.userex()->shell().GetImageList16();
-      }
+      column.m_pil = Session.userex()->shell().GetImageList(get_filemanager_data()->m_iIconSize);
+      column.m_pilHover = Session.userex()->shell().GetImageListHover(get_filemanager_data()->m_iIconSize);
       _001AddColumn(column);
 
       i++;
@@ -2032,7 +2020,8 @@ namespace filemanager
    {
       if (i == 0)
       {
-         return Session.userex()->shell().GetImageList16();
+         return   Session.userex()->shell().GetImageList(get_filemanager_data()->m_iIconSize);
+
       }
       return NULL;
    }

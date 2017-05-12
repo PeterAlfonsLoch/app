@@ -87,7 +87,8 @@ namespace user
       index                m_iListItemRectListItem;
 
       ::draw2d::font *         m_pfont;
-      int32_t                  m_iDrawTextFlags;
+      int                              m_iDrawTextFlags;
+
 
       draw_mesh_item(mesh * pmesh);
 
@@ -380,8 +381,8 @@ namespace user
       string                           m_strTopText;
       rect                             m_rectTopText;
       sp(mesh_data)                    m_pmeshdata;
-      ::draw2d::font_sp                m_font;
-      ::draw2d::font_sp                m_fontHover;
+//      ::draw2d::font_sp                m_font;
+  //    ::draw2d::font_sp                m_fontHover;
       ::draw2d::pen_sp                 m_penFocused;
       ::draw2d::pen_sp                 m_penHighlight;
       EView                            m_eview;
@@ -427,13 +428,15 @@ namespace user
       int                              m_iLeftMargin;
       int                              m_iTopMargin;
 
+
+
       mesh();
       virtual ~mesh();
 
 
 
       int32_t _001CalcItemWidth(::draw2d::graphics * pgraphics,index iItem,index iSubItem);
-      int32_t _001CalcItemWidth(::draw2d::graphics * pgraphics,::draw2d::font * pfont,index iItem,index iSubItem);
+      //int32_t _001CalcItemWidth(::draw2d::graphics * pgraphics,::draw2d::font * pfont,index iItem,index iSubItem);
 
 
 
@@ -443,8 +446,8 @@ namespace user
 
       mesh_data * GetDataInterface();
       void UpdateHover();
-      ::draw2d::font * _001GetFont();
-      ::draw2d::font * _001GetFontHover();
+      //::draw2d::font * _001GetFont();
+      //::draw2d::font * _001GetFontHover();
       ::draw2d::pen * _001GetPenFocused();
       ::draw2d::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow();

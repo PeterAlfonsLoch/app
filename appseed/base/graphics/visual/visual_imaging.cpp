@@ -1320,6 +1320,33 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::file * pfile)
 
    }
 
+   bool imaging::Createcolor_blend_dib(::draw2d::dib * pdib, COLORREF cr, BYTE bAlpha)
+   {
+
+      try
+      {
+
+         pdib->unmap();
+
+         if (pdib->get_graphics() == NULL)
+            return false;
+
+         if (pdib->get_graphics()->get_os_data() == NULL)
+            return false;
+
+         color_blend(pdib->get_graphics(), null_point(), pdib->size(), cr, bAlpha);
+
+         return true;
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+   }
 
 
    /*

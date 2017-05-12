@@ -93,11 +93,15 @@ namespace user
          //,         virtual public ::thread
 
       {
+      protected:
+
+         int_map < sp(image_list) >                                     m_pil; // int is the size
+         int_map < sp(image_list) >                                     m_pilHover; // int is the size;
+
       public:
 
-         sp(image_list)                                                 m_pil16;
-         sp(image_list)                                                 m_pil48;
-         sp(image_list)                                                 m_pil48Hover;
+         int_array                                                      m_iaSize;
+         //sp(image_list)                                                 m_pil48Hover;
          map < image_key_store, const image_key &, int32_t, int32_t >   m_imagemap;
 
          string                                                         m_strShellThemePrefix;
@@ -114,23 +118,14 @@ namespace user
          //virtual int32_t get_image(oswindow oswindow, image_key key, const unichar * lpcszExtra, COLORREF crBk) = 0;
          //virtual int32_t get_image_by_extension(oswindow oswindow, image_key & key, COLORREF crBk) = 0;
 
-         inline image_list * GetImageList16()
-         {
-            return m_pil16;
-         }
-         inline image_list * GetImageList48()
-         {
-            return m_pil48;
-         }
-         inline image_list * GetImageList48Hover()
-         {
-            return m_pil48Hover;
-         }
+         image_list * GetImageList(int iSize);
+         image_list * GetImageListHover(int iSize);
 
          void initialize();
 
          virtual e_folder get_folder_type(::aura::application * papp, const unichar * lpcszPath) = 0;
          virtual e_folder get_folder_type(::aura::application * papp, const char * lpcszPath) = 0;
+         int add_hover_image(int iSize, int iIndex, COLORREF crBk);
 
 
       };

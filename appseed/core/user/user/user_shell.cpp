@@ -135,12 +135,24 @@ namespace user
          object(papp)
       {
 
-         m_pil16 = canew(image_list(papp));
-         m_pil16->create(16, 16, 0, 10, 10);
-         m_pil48 = canew(image_list(papp));
-         m_pil48->create(48, 48, 0, 10, 10);
-         m_pil48Hover = canew(image_list(papp));
-         m_pil48Hover->create(48, 48, 0, 10, 10);
+         m_iaSize.add(16);
+         m_iaSize.add(24);
+         m_iaSize.add(32);
+         m_iaSize.add(48);
+         m_iaSize.add(256);
+
+
+         for (auto iSize : m_iaSize)
+         {
+
+            m_pil[iSize] = canew(image_list(papp));
+            m_pil[iSize]->create(iSize, iSize, 0, 10, 10);
+
+            m_pilHover[iSize] = canew(image_list(papp));
+            m_pilHover[iSize]->create(iSize, iSize, 0, 10, 10);
+
+         }
+
          m_imagemap.InitHashTable(16384);
 
       }
@@ -155,12 +167,76 @@ namespace user
 
          single_lock sl(m_pmutex, true);
 
-         m_pil16->add_matter("filemanager\\check_off_16.png");
-         m_pil16->add_matter("filemanager\\check_on_16.png");
-         m_pil48->add_matter("filemanager\\check_off_16.png");
-         m_pil48->add_matter("filemanager\\check_on_16.png");
-         m_pil48Hover->add_matter("filemanager\\check_off_16.png");
-         m_pil48Hover->add_matter("filemanager\\check_on_16.png");
+         int iImage;
+         for (auto iSize : m_iaSize)
+         {
+            
+            iImage = GetImageList(iSize)->add_matter("filemanager\\check_off_16.png");
+
+            add_hover_image(iSize, iImage, 0);
+
+
+            iImage = GetImageList(iSize)->add_matter("filemanager\\check_on_16.png");
+
+            add_hover_image(iSize, iImage, 0);
+            
+         }
+
+      }
+
+      image_list * shell::GetImageList(int iSize)
+      {
+         
+         index i = 0;
+
+         for (; i < m_iaSize.get_size(); i++)
+         {
+
+            if (iSize <= m_iaSize[i])
+            {
+
+               break;
+
+            }
+
+         }
+
+         if (i >= m_iaSize.get_size())
+         {
+
+            i = m_iaSize.get_upper_bound();
+
+         }
+         
+         return m_pil[m_iaSize[i]];
+
+      }
+
+      
+      image_list * shell::GetImageListHover(int iSize)
+      {
+         index i = 0;
+
+         for (; i < m_iaSize.get_size(); i++)
+         {
+
+            if (iSize <= m_iaSize[i])
+            {
+
+               break;
+
+            }
+
+         }
+
+         if (i >= m_iaSize.get_size())
+         {
+
+            i = m_iaSize.get_upper_bound();
+
+         }
+
+         return m_pilHover[m_iaSize[i]];
 
       }
 

@@ -353,6 +353,37 @@ int32_t image_list::add_matter(const char * lpcsz, ::aura::application * papp)
 
 }
 
+int32_t image_list::add_image(image_list * pil, int iImage)
+{
+
+   return add_dib(pil->m_spdib, iImage * pil->m_size.cx, 0);
+
+}
+
+::draw2d::dib_sp image_list::get_dib(int iImage)
+{
+
+   ::draw2d::dib_sp d(allocer());
+
+   if (d.is_null())
+   {
+
+      return NULL;
+
+   }
+
+   if (!d->create(m_size))
+   {
+
+      return NULL;
+
+   }
+
+   draw(d->get_graphics(), iImage, null_point(), 0);
+
+   return d;
+   
+}
 
 int32_t image_list::add_std_matter(const char * lpcsz)
 {

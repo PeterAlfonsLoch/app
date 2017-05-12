@@ -127,21 +127,21 @@ namespace user
    }
 
 
-   bool menu::get_font(::draw2d::font_sp & spfont)
-   {
+   //bool menu::get_font(::draw2d::font_sp & spfont)
+   //{
 
-      if (m_pschema == NULL)
-      {
+   //   if (m_pschema == NULL)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      spfont = m_pschema->m_font;
+   //   spfont = m_pschema->m_font;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void menu::layout_menu(point pt)

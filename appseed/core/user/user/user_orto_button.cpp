@@ -80,7 +80,7 @@ namespace user
 
          GetWindowText(str);
 
-         select_font(pgraphics);
+         select_font(pgraphics, font_button, this);
 
          pgraphics->set_text_color(crText);
 

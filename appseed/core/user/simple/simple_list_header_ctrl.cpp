@@ -112,7 +112,7 @@ void simple_list_header_control::_001OnCreate(signal_details * pobj)
 
    SCAST_PTR(::message::create, pcreate, pobj);
 
-   ::user::list_header::m_font->operator = (*System.visual().fonts().GetListCtrlFont());
+//   ::user::list_header::m_font->operator = (*System.visual().fonts().GetListCtrlFont());
    
    pcreate->m_bRet = false;
 

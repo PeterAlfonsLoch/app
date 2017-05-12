@@ -12,14 +12,6 @@ namespace user
 
       m_etranslucency      = TranslucencyUndefined;
 
-      m_pfont.alloc(allocer());
-
-      m_pfont->create_pixel_font(FONT_SANS,16);
-
-      m_pfont.alloc(allocer());
-
-      m_pfont->create_pixel_font(FONT_SANS,16);
-
    }
 
 
@@ -46,7 +38,7 @@ namespace user
 
    }
 
-   bool schema_simple_impl::get_font(::draw2d::font_sp & font)
+   bool schema_simple_impl::get_font(::draw2d::font_sp & font, e_font efont, ::user::interaction * pui)
    {
 
       if(m_pfont.is_null())
@@ -58,6 +50,13 @@ namespace user
 
    }
 
+
+   bool schema_simple_impl::on_ui_event(e_event eevent, e_object eobject, ::user::interaction * pui)
+   {
+
+      return false;
+
+   }
 
    bool schema_simple_impl::get_translucency(ETranslucency & etranslucency)
    {

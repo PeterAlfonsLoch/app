@@ -17,8 +17,6 @@ namespace user
    const UINT mesh::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
 
    mesh::mesh():
-      m_font(allocer()),
-      m_fontHover(allocer()),
       m_penFocused(allocer()),
       m_penHighlight(allocer()),
       m_dcextension(get_app())
@@ -315,10 +313,10 @@ namespace user
       GetClientRect(rectClient);
 
       bool bHoverFont = false;
-      ::draw2d::font  * pfont = _001GetFont();
-      pdrawitem->m_pgraphics->SelectObject(pfont);
+      
+      select_font(pdrawitem->m_pgraphics, font_list_item, this);
 
-      m_pdrawmeshitem->m_pfont = pfont;
+      m_pdrawmeshitem->m_pfont = pdrawitem->m_pgraphics->m_spfont;
 
       for(iGroup = iGroupFirst; iGroup <= iGroupLast; iGroup++)
       {
@@ -337,16 +335,14 @@ namespace user
          {
             if(!bHoverFont)
             {
-               m_pdrawmeshitem->m_pfont = _001GetFontHover();
-               pdrawitem->m_pgraphics->SelectObject(m_pdrawmeshitem->m_pfont);
+               select_font(pdrawitem->m_pgraphics, font_list_hover, this);
             }
          }
          else
          {
             if(bHoverFont)
             {
-               m_pdrawmeshitem->m_pfont = pfont;
-               pdrawitem->m_pgraphics->SelectObject(pfont);
+               select_font(pdrawitem->m_pgraphics, font_list_item, this);
             }
          }
 
@@ -446,10 +442,10 @@ namespace user
       }
 
       bool bHoverFont = false;
-      ::draw2d::font  * pfont = _001GetFont();
-      pdrawitem->m_pgraphics->SelectObject(pfont);
+      
+      select_font(pdrawitem->m_pgraphics, font_list_item, this);
 
-      pdrawitem->m_pfont = pfont;
+      pdrawitem->m_pfont = pdrawitem->m_pgraphics->m_spfont;
 
       for(iItem = iItemFirst; iItem <= iItemLast; iItem++)
       {
@@ -486,8 +482,7 @@ namespace user
             if(!bHoverFont)
             {
                bHoverFont = true;
-               m_pdrawmeshitem->m_pfont = _001GetFontHover();
-               pdrawitem->m_pgraphics->SelectObject(m_pdrawmeshitem->m_pfont);
+               select_font(pdrawitem->m_pgraphics, font_list_hover, this);
             }
          }
          else
@@ -495,8 +490,7 @@ namespace user
             if(bHoverFont)
             {
                bHoverFont = false;
-               m_pdrawmeshitem->m_pfont = pfont;
-               pdrawitem->m_pgraphics->SelectObject(pfont);
+               select_font(pdrawitem->m_pgraphics, font_list_item, this);
             }
          }
 
@@ -530,13 +524,13 @@ namespace user
       if(pdrawitem->m_bListItemHover)
       {
          pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem,ARGB(128,255,255,255));
-         pfont = _001GetFontHover();
+         select_font(pdrawitem->m_pgraphics, font_list_hover, this);
       }
       else
       {
-         pfont = _001GetFont();
+         select_font(pdrawitem->m_pgraphics, font_list_item, this);
       }
-      pdrawitem->m_pgraphics->set_font(pfont);
+//      pdrawitem->m_pgraphics->set_font(pfont);
 
       pdrawitem->m_bListItemSelected = (m_eview != view_icon || is_valid_display_item(pdrawitem->m_iItem)) && rangeSelection.has_item(pdrawitem->m_iDisplayItem);
 
@@ -3986,12 +3980,12 @@ namespace user
       on_create_draw_item();
 
 
-      m_font->operator=(*System.visual().fonts().GetMeshCtrlFont());
+      //m_font->operator=(*System.visual().fonts().GetMeshCtrlFont());
 
-      m_fontHover->operator=(*System.visual().fonts().GetMeshCtrlFont());
+      //m_fontHover->operator=(*System.visual().fonts().GetMeshCtrlFont());
 
-      m_fontHover->set_underline();
-      //m_fontHover->set_bold();
+      //m_fontHover->set_underline();
+      ////m_fontHover->set_bold();
 
       if(pcreate->get_lresult() == -1)
       {
@@ -4385,9 +4379,8 @@ namespace user
 
    void mesh::_001LayoutTopText()
    {
-      ::draw2d::font * pfont = _001GetFont();
       ::draw2d::memory_graphics pgraphics(allocer());
-      pgraphics->SelectObject(pfont);
+      select_font(pgraphics, font_list_item, this);
       array < size > sizea;
       m_dcextension.GetTextExtent(pgraphics,m_strTopText,sizea);
       rect rectClient;
@@ -4493,22 +4486,23 @@ namespace user
    int32_t mesh::_001CalcItemWidth(index iItem,index iSubItem)
    {
       ::draw2d::memory_graphics pgraphics(allocer());
-      ::draw2d::font * pfont = _001GetFont();
-      index cx = _001CalcItemWidth(pgraphics,pfont,iItem,iSubItem);
+      select_font(pgraphics, font_list_item, this);
+      index cx = _001CalcItemWidth(pgraphics,iItem,iSubItem);
 
       return (int32_t)cx;
 
    }
 
-   int32_t mesh::_001CalcItemWidth(::draw2d::graphics * pgraphics,::draw2d::font * pfont,index iItem,index iSubItem)
-   {
-      pgraphics->SelectObject(pfont);
-      return _001CalcItemWidth(pgraphics,iItem,iSubItem);
-   }
+   //int32_t mesh::_001CalcItemWidth(::draw2d::graphics * pgraphics,::draw2d::font * pfont,index iItem,index iSubItem)
+   //{
+   //   pgraphics->SelectObject(pfont);
+   //   return _001CalcItemWidth(pgraphics,iItem,iSubItem);
+   //}
 
    int32_t mesh::_001CalcItemWidth(::draw2d::graphics * pgraphics,index iItem,index iSubItem)
    {
 #ifdef WINDOWSEX
+      select_font(pgraphics, font_list_item, this);
       ::image_list::info ii;
       rect rect;
       size size;
@@ -5229,8 +5223,8 @@ namespace user
    {
       UNREFERENCED_PARAMETER(iColumn);
       ::draw2d::memory_graphics pgraphics(allocer());
-      ::draw2d::font * pfont = _001GetFont();
-      pgraphics->SelectObject(pfont);
+      select_font(pgraphics, font_list_item, this);
+      //pgraphics->SelectObject(pfont);
       int32_t iMaxWidth = 0;
       ::count iCount = m_nItemCount;
       int32_t iWidth;
@@ -5346,15 +5340,15 @@ namespace user
 
    }
 
-   ::draw2d::font * mesh::_001GetFont()
-   {
-      return m_font;
-   }
+   //::draw2d::font * mesh::_001GetFont()
+   //{
+   //   return m_font;
+   //}
 
-   ::draw2d::font * mesh::_001GetFontHover()
-   {
-      return m_fontHover;
-   }
+   //::draw2d::font * mesh::_001GetFontHover()
+   //{
+   //   return m_fontHover;
+   //}
 
    void mesh::_001OnMouseLeave(signal_details * pobj)
    {
@@ -5417,6 +5411,22 @@ namespace user
    {
 
       m_eview = eview;
+
+      if (m_eview == ::user::mesh::view_icon)
+      {
+
+         m_pdrawmeshitem->m_iDrawTextFlags = DT_TOP | DT_CENTER | DT_END_ELLIPSIS | DT_WORDBREAK | DT_NOPREFIX;
+
+      }
+      else
+      {
+
+         m_pdrawmeshitem->m_iDrawTextFlags = DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE | DT_NOPREFIX;
+
+      }
+
+
+      on_ui_event(event_change_view_style, object_list, this);
 
       data_get_DisplayToStrict();
 

@@ -240,10 +240,10 @@ namespace user
 
       //mesh_data * GetDataInterface();
       void UpdateHover();
-      ::draw2d::font * _001GetFont();
-      ::draw2d::font * _001GetFontHover();
-      ::draw2d::pen * _001GetPenFocused();
-      ::draw2d::pen * _001GetPenHighlight();
+      //::draw2d::font * _001GetFont();
+      //::draw2d::font * _001GetFontHover();
+      //::draw2d::pen * _001GetPenFocused();
+      //::draw2d::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow();
       virtual void _OnDraw(::draw2d::graphics * pgraphics);
       void _001MaximizeColumnWidth(index iColumn);

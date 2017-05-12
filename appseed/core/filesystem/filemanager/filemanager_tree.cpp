@@ -16,7 +16,7 @@ namespace filemanager
       defer_create_mutex();
       m_iAnimate = 0;
 
-      m_pimagelist = Session.userex()->shell().GetImageList16();
+      m_pimagelist = Session.userex()->shell().GetImageList(16);
 
 
    }
@@ -681,6 +681,8 @@ namespace filemanager
 
       set_viewport_offset(ptOffset.x, ptOffset.y);
 
+      m_pimagelist = Session.userex()->shell().GetImageList(get_filemanager_data()->m_iIconSize);
+
    }
 
 
@@ -1033,7 +1035,7 @@ namespace filemanager
                || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
          {
 
-            m_pimagelist = Session.userex()->shell().GetImageList16();
+            m_pimagelist = Session.userex()->shell().GetImageList(get_filemanager_data()->m_iIconSize);
             try
             {
                item->m_iImage = Session.userex()->shell().get_image(m_treeptra[0]->get_handle(), item->m_filepath, ::user::shell::file_attribute_directory, ::user::shell::icon_normal);
@@ -1179,6 +1181,9 @@ namespace filemanager
                                    "foo",
                                    ::user::shell::file_attribute_directory,
                                    ::user::shell::icon_open);
+
+      
+
 
    }
 

@@ -87,7 +87,7 @@ namespace user
       {
          if (!m_plistheader->IsWindow())
          {
-            return m_plistheader->create_window(
+            bool bOk = m_plistheader->create_window(
                NULL,
                "",
                WS_CHILD
@@ -98,6 +98,11 @@ namespace user
                null_rect(),
                this,
                1023) != 0;
+            //if (bOk)
+            //{
+            //   m_plistheader->m_font = m_font;
+            //}
+            return bOk;
          }
          else
             return true;
@@ -331,10 +336,10 @@ namespace user
       GetClientRect(rectClient);
 
       bool bHoverFont = false;
-      ::draw2d::font  * pfont = _001GetFont();
-      pdrawitem->m_pgraphics->SelectObject(pfont);
+      select_font(pdrawitem->m_pgraphics, font_list_item, this);
+      //pdrawitem->m_pgraphics->SelectObject(pfont);
 
-      m_pdrawlistitem->m_pfont = pfont;
+      m_pdrawlistitem->m_pfont = pdrawitem->m_pgraphics->m_spfont;
 
       for (iGroup = iGroupFirst; iGroup <= iGroupLast; iGroup++)
       {
@@ -353,16 +358,17 @@ namespace user
          {
             if (!bHoverFont)
             {
-               m_pdrawlistitem->m_pfont = _001GetFontHover();
-               pdrawitem->m_pgraphics->SelectObject(m_pdrawlistitem->m_pfont);
+               select_font(pdrawitem->m_pgraphics, font_list_hover, this);
+               //pdrawitem->m_pgraphics->SelectObject(m_pdrawlistitem->m_pfont);
             }
          }
          else
          {
             if (bHoverFont)
             {
-               m_pdrawlistitem->m_pfont = pfont;
-               pdrawitem->m_pgraphics->SelectObject(pfont);
+               //m_pdrawlistitem->m_pfont = pfont;
+               //pdrawitem->m_pgraphics->SelectObject(pfont);
+               select_font(pdrawitem->m_pgraphics, font_list_item, this);
             }
          }
 
@@ -451,10 +457,9 @@ namespace user
       m_pdrawlistitem->m_iDrawTextFlags = _001GetDrawTextFlags(m_eview);
 
       bool bHoverFont = false;
-      ::draw2d::font  * pfont = _001GetFont();
-      pdrawitem->m_pgraphics->SelectObject(pfont);
+      select_font(pdrawitem->m_pgraphics, font_list_item, this);
 
-      pdrawitem->m_pfont = pfont;
+      pdrawitem->m_pfont = pdrawitem->m_pgraphics->m_spfont;
 
       for (iItem = iItemFirst; iItem <= iItemLast; iItem++)
       {
@@ -491,8 +496,7 @@ namespace user
             if (!bHoverFont)
             {
                bHoverFont = true;
-               m_pdrawlistitem->m_pfont = _001GetFontHover();
-               pdrawitem->m_pgraphics->SelectObject(m_pdrawlistitem->m_pfont);
+               select_font(pdrawitem->m_pgraphics, font_list_hover, this);
             }
          }
          else
@@ -500,8 +504,7 @@ namespace user
             if (bHoverFont)
             {
                bHoverFont = false;
-               m_pdrawlistitem->m_pfont = pfont;
-               pdrawitem->m_pgraphics->SelectObject(pfont);
+               select_font(pdrawitem->m_pgraphics, font_list_item, this);
             }
          }
 
@@ -671,16 +674,16 @@ namespace user
          return;
       }
 
-      ::draw2d::font * pfont;
+      //::draw2d::font * pfont;
       if (pdrawitem->m_bListItemHover)
       {
-         pfont = _001GetFontHover();
+         select_font(pdrawitem->m_pgraphics, font_list_hover, this);
       }
       else
       {
-         pfont = _001GetFont();
+         select_font(pdrawitem->m_pgraphics, font_list_item, this);
       }
-      pdrawitem->m_pgraphics->set_font(pfont);
+//      pdrawitem->m_pgraphics->set_font(pfont);
 
 
       pdrawitem->m_iListItem = -1;
@@ -1370,9 +1373,8 @@ namespace user
          }
       }
 
-      ::draw2d::font * pfont = _001GetFont();
       ::draw2d::memory_graphics pgraphics(allocer());
-      pgraphics->SelectObject(pfont);
+      select_font(pgraphics, font_list_item, this);
       size size;
       size = pgraphics->GetTextExtent(unitext("Ág"));
       if (size.cy + 2 > iItemHeight)
@@ -1381,6 +1383,8 @@ namespace user
       }
 
       m_iItemHeight = _001CalcItemHeight((int)iItemHeight);
+
+      on_ui_event(event_calc_item_height, object_list, this);
 
 //      m_iVScrollOffset = m_iItemHeight;
 
@@ -4334,11 +4338,15 @@ namespace user
       pobj->previous();
 
 
-      m_font->operator=(*System.visual().fonts().GetListCtrlFont());
+      //m_font->operator=(*System.visual().fonts().GetListCtrlFont());
 
-      m_fontHover->operator=(*System.visual().fonts().GetListCtrlFont());
+      //m_fontHover->operator=(*System.visual().fonts().GetListCtrlFont());
 
-      m_fontHover->set_underline();
+      //m_fontHover->set_underline();
+
+      //get_font(m_font, font_list_item, this);
+
+      //get_font(m_fontHover, font_list_hover, this);
 
       if (pcreate->get_lresult() == -1)
       {
@@ -4389,6 +4397,8 @@ namespace user
       rect.null();
 
       pcreate->set_lresult(0);
+
+      on_ui_event(event_create, object_list, this);
 
       RedrawWindow();
 
@@ -4682,9 +4692,11 @@ namespace user
 
    void list::_001LayoutTopText()
    {
-      ::draw2d::font * pfont = _001GetFont();
+
       ::draw2d::memory_graphics pgraphics(allocer());
-      pgraphics->SelectObject(pfont);
+
+      select_font(pgraphics, font_list_item, this);
+
       array < size > sizea;
       m_dcextension.GetTextExtent(pgraphics, m_strTopText, sizea);
       rect rectClient;
@@ -4791,9 +4803,9 @@ namespace user
 
       ::draw2d::memory_graphics pgraphics(allocer());
 
-      ::draw2d::font * pfont = _001GetFont();
+      select_font(pgraphics, font_list_item, this);
 
-      index cx = _001CalcItemWidth(pgraphics, pfont, iItem, iSubItem);
+      index cx = _001CalcItemWidth(pgraphics, iItem, iSubItem);
 
       return (int32_t)cx;
 
@@ -5512,8 +5524,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(iColumn);
       ::draw2d::memory_graphics pgraphics(allocer());
-      ::draw2d::font * pfont = _001GetFont();
-      pgraphics->SelectObject(pfont);
+      select_font(pgraphics, font_list_item, this);
       int32_t iMaxWidth = 0;
       ::count iCount = m_nItemCount;
       int32_t iWidth;
@@ -5616,26 +5627,26 @@ namespace user
 
 
 
-   ::draw2d::pen * list::_001GetPenHighlight()
-   {
-      return m_penHighlight;
-   }
+   //::draw2d::pen * list::_001GetPenHighlight()
+   //{
+   //   return m_penHighlight;
+   //}
 
-   ::draw2d::pen * list::_001GetPenFocused()
-   {
-      return m_penFocused;
+   //::draw2d::pen * list::_001GetPenFocused()
+   //{
+   //   return m_penFocused;
 
-   }
+   //}
 
-   ::draw2d::font * list::_001GetFont()
-   {
-      return m_font;
-   }
+   //::draw2d::font * list::_001GetFont()
+   //{
+   //   return m_font;
+   //}
 
-   ::draw2d::font * list::_001GetFontHover()
-   {
-      return m_fontHover;
-   }
+   //::draw2d::font * list::_001GetFontHover()
+   //{
+   //   return m_fontHover;
+   //}
 
    void list::_001OnMouseLeave(signal_details * pobj)
    {
@@ -6335,7 +6346,7 @@ namespace user
                   m_rectText,
                   m_strText,
                   dib2,
-                  m_plist->m_font,
+                  m_pgraphics->m_spfont,
                   m_iDrawTextFlags,
                   m_cr,
                   m_crBack,
@@ -6502,18 +6513,7 @@ namespace user
    int32_t list::_001GetDrawTextFlags(EView eview)
    {
 
-      if (m_eview == view_icon)
-      {
-
-         return DT_TOP | DT_CENTER | DT_END_ELLIPSIS | DT_WORDBREAK | DT_NOPREFIX;
-
-      }
-      else
-      {
-
-         return DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE | DT_NOPREFIX;
-
-      }
+      return m_pdrawmeshitem->m_iDrawTextFlags;
 
    }
 
