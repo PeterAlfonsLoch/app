@@ -84,7 +84,6 @@ namespace base
       virtual ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
       virtual bool post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
-      virtual void draw2d_factory_exchange();
 
 
       using ::axis::application::BaseOnControlEvent;

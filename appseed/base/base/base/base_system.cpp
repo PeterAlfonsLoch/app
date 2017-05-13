@@ -177,28 +177,12 @@ namespace base
       m_bSystemSynchronizedCursor = true;
 
       m_bSystemSynchronizedScreen = true;
-//      ::draw2d::dib::static_initialize();
-
-      //      draw2d_factory_exchange();
-
-
-      
-
-      //      draw2d_factory_exchange();
-
 
       m_pschemaLayeredFrame = canew(::user::schema_layered_frame(this));
 
 
    }
 
-
-   //void system::construct(const char * pszAppId)
-   //{
-
-   //   ::base::application::construct(pszAppId);
-
-   //}
 
 
    system::~system()
@@ -1099,30 +1083,6 @@ error:;
 
       if (!::axis::system::process_initialize())
          return false;
-
-      bool bOk = true;
-
-      try
-      {
-
-         draw2d_factory_exchange();
-
-      }
-      catch (...)
-      {
-
-         bOk = false;
-
-      }
-
-      if (!bOk)
-      {
-
-         simple_message_box("Unable to find draw2d plugin. Quitting...", MB_OK);
-
-         return false;
-
-      }
 
 
       m_spos.alloc(allocer());

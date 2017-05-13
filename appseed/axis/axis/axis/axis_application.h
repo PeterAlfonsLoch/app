@@ -236,7 +236,7 @@ namespace axis
 
       virtual string get_mutex_name_gen() override;
 
-      virtual void draw2d_factory_exchange();
+      //virtual void draw2d_factory_exchange();
 
       virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg) override;
       virtual ::user::primitive * window_from_os_data(void * pdata);
@@ -273,6 +273,7 @@ namespace axis
       virtual bool compress_ungz(::primitive::memory_base & mem);
       virtual bool compress_gz(::file::file * pfileOut, const ::file::path & lpcszUncompressed, int iLevel = 6);
       virtual bool compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel = 6);
+      
 
 
    };

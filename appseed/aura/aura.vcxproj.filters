@@ -3805,9 +3805,6 @@
     <ClCompile Include="aura\os\windows\windows_gdi.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_base.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="aura\node\windows\windows.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
@@ -4803,6 +4800,12 @@
     </ClCompile>
     <ClCompile Include="graphics\_graphics.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_application.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
