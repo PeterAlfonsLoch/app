@@ -2,10 +2,10 @@
 
 
 #include "axis/graphics/visual/visual.h"
-#include "axis/graphics/graphics_window_graphics.h"
+#include "base/graphics/graphics_window_graphics.h"
 
 
-class CLASS_DECL_AXIS window_buffer :
+class CLASS_DECL_BASE window_buffer :
    virtual public window_graphics
 {
 protected:
@@ -35,7 +35,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS window_double_buffer :
+class CLASS_DECL_BASE window_double_buffer :
    virtual public window_buffer
 {
 public:

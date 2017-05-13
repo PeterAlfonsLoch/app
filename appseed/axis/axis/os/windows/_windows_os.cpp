@@ -1,4 +1,16 @@
 #include "framework.h"
+
+#undef new
+#define min MIN
+#define max MAX
+#include <gdiplus.h>
+#undef min
+#undef max
+#define new AURA_NEW
+
+
+
+
 //O volume na unidade Z ‚ eco
  //O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
@@ -16,3 +28,7 @@
 
 //#include "windows_window_gdi.cpp"
 #include "windows_trace_message.cpp"
+
+
+
+#include "windows_hotplugin.cpp"

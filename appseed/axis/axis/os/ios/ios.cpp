@@ -126,7 +126,7 @@
 
 
 
-CLASS_DECL_AURA bool __node_axis_pre_init()
+CLASS_DECL_AXIS bool __node_axis_pre_init()
 {
    
    
@@ -136,7 +136,7 @@ CLASS_DECL_AURA bool __node_axis_pre_init()
 
 
 
-CLASS_DECL_AURA bool __node_axis_pos_init()
+CLASS_DECL_AXIS bool __node_axis_pos_init()
 {
    
    
@@ -148,7 +148,7 @@ CLASS_DECL_AURA bool __node_axis_pos_init()
 
 
 
-CLASS_DECL_AURA bool __node_axis_pre_term()
+CLASS_DECL_AXIS bool __node_axis_pre_term()
 {
    
    //   if(t_posthread != NULL)
@@ -175,7 +175,7 @@ CLASS_DECL_AURA bool __node_axis_pre_term()
 
 
 
-CLASS_DECL_AURA bool __node_axis_pos_term()
+CLASS_DECL_AXIS bool __node_axis_pos_term()
 {
    
    

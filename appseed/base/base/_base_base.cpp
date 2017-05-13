@@ -7,15 +7,15 @@
 #endif
 
 
-#ifdef WINDOWSEX
-#define min MIN
-#define max MAX
-#undef new
-#include <gdiplus.h>
-#define new AURA_NEW
-#undef min
-#undef max
-#endif
+//#ifdef WINDOWSEX
+//#define min MIN
+//#define max MAX
+//#undef new
+//#include <gdiplus.h>
+//#define new AURA_NEW
+//#undef min
+//#undef max
+//#endif
 
 #include <math.h>
 

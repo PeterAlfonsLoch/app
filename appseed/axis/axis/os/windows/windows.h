@@ -79,3 +79,18 @@ CLASS_DECL_AXIS HMONITOR GetUiMonitorHandle(HWND hwnd);
 CLASS_DECL_AXIS HMONITOR GetPrimaryMonitorHandle();
 CLASS_DECL_AXIS bool GetPrimaryMonitorRect(LPRECT lprect);
 CLASS_DECL_AXIS WSADATA get_wsadata();
+
+
+#ifdef cplusplus
+
+namespace hotplugin
+{
+
+   CLASS_DECL_AXIS void entry_hall_windows_on_paint(HDC hdc, const RECT & rect, const string & strEntryHallText);
+
+
+} // namespace hotplugin
+
+
+
+#endif

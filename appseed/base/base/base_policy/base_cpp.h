@@ -377,5 +377,5 @@ CLASS_DECL_BASE ::user::interaction_impl * window_from_handle(oswindow oswindow)
 
 
 
-#include "base/graphics/visual/visual.inl"
+
 

@@ -1,8 +1,10 @@
 #pragma once
 
-#include "axis/graphics/graphics_window_buffer.h"
 
-class CLASS_DECL_AXIS window_gdi :
+#include "base/graphics/graphics_window_buffer.h"
+
+
+class CLASS_DECL_BASE window_gdi :
    virtual public window_buffer
 {
    COLORREF *                    m_pcolorref;
@@ -38,10 +40,10 @@ public:
 };
 
 
-extern CLASS_DECL_AXIS bool g_bCreateWindowScreen;
+extern CLASS_DECL_BASE bool g_bCreateWindowScreen;
 
 
 
 
 
-CLASS_DECL_AXIS string expand_env(string str);
+//CLASS_DECL_BASE string expand_env(string str);
