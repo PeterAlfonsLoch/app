@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "base/user/core_user.h"
+#include "axis/user/user.h"
 #include "windows_window_gdi.h"
 #include <stdio.h>
 
-CLASS_DECL_BASE bool g_bCreateWindowScreen = true;
+CLASS_DECL_AXIS bool g_bCreateWindowScreen = true;
 
 void window_gdi::on_create_window(::user::interaction_impl * pimpl)
 {

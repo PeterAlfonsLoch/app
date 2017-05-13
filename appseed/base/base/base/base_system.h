@@ -65,7 +65,6 @@ namespace base
 
 
       os_system_window *                           m_possystemwindow;
-      ::visual::visual                             m_visual;
 
 
 
@@ -89,7 +88,6 @@ namespace base
       virtual void set_active_guie(::user::interaction * pui);
       virtual void set_focus_guie(::user::interaction * pui);
 
-      inline class ::visual::visual                & visual() { return m_visual; }
 
 
       //virtual ::install::canvas * install_create_canvas() override;

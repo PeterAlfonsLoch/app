@@ -16,7 +16,7 @@ namespace linux
       public:
 
 
-         file_system(::aura::application *  papp);//         class CLASS_DECL_BASE path :
+         file_system(::aura::application *  papp);//         class CLASS_DECL_AXIS path :
 //         public ::file::system::path
 //         {
 //         public:

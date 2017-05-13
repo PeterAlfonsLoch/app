@@ -249,7 +249,7 @@
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
@@ -332,7 +332,7 @@
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
@@ -493,7 +493,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -569,7 +569,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -840,6 +840,9 @@
     <ClCompile Include="aura\scripting\javascript\javascript.cpp" />
     <ClCompile Include="aura\scripting\javascript\javascript_functions.cpp" />
     <ClCompile Include="aura\scripting\javascript\javascript_tinyjs_functions.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp" />
+    <ClCompile Include="graphics\_graphics.cpp" />
+    <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="net\ftp\ftp_client_socket.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -1938,6 +1941,8 @@
     <ClInclude Include="filesystem\file\file_writer_flush.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
+    <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="graphics\visual\visual.h" />
     <ClInclude Include="multithreading\multithreading_data.h" />
     <ClInclude Include="multithreading\multithreading_go_thread.h" />
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h" />

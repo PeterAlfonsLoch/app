@@ -293,7 +293,9 @@ TagLib::instance();
 			*/
 			s_plugins->AddNode(InitBMP);
 			s_plugins->AddNode(InitICO);
-			//s_plugins->AddNode(InitJPEG);
+#ifdef FREEIMAGE_LIB
+			s_plugins->AddNode(InitJPEG);
+#endif
 			s_plugins->AddNode(InitJNG);
 			s_plugins->AddNode(InitKOALA);
 			s_plugins->AddNode(InitIFF);
@@ -304,7 +306,9 @@ TagLib::instance();
 			s_plugins->AddNode(InitPCX);
 			s_plugins->AddNode(InitPNM, NULL, "PGM", "Portable Greymap (ASCII)", "pgm", "^P2");
 			s_plugins->AddNode(InitPNM, NULL, "PGMRAW", "Portable Greymap (RAW)", "pgm", "^P5");
-			//s_plugins->AddNode(InitPNG);
+#ifdef FREEIMAGE_LIB
+			s_plugins->AddNode(InitPNG);
+#endif
 			s_plugins->AddNode(InitPNM, NULL, "PPM", "Portable Pixelmap (ASCII)", "ppm", "^P3");
 			s_plugins->AddNode(InitPNM, NULL, "PPMRAW", "Portable Pixelmap (RAW)", "ppm", "^P6");
 			s_plugins->AddNode(InitRAS);

@@ -238,3 +238,43 @@ int_bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
 }
 
 
+
+
+CLASS_DECL_AURA int_bool read_resource_as_memory_dup(memory & m, HINSTANCE hinstance, UINT nID, LPCTSTR lpcszType)
+{
+
+   HRSRC hrsrc = FindResource(hinstance, MAKEINTRESOURCE(nID), lpcszType);
+   HGLOBAL hglobalResource;
+   uint32_t dwResourceSize;
+   int_bool bOk;
+   UINT FAR* pResource;
+   HANDLE hfile;
+
+   if (hrsrc == NULL)
+      return FALSE;
+
+   hglobalResource = LoadResource(hinstance, hrsrc);
+
+   if (hglobalResource == NULL)
+      return FALSE;
+
+   dwResourceSize = SizeofResource(hinstance, hrsrc);
+
+   if (hglobalResource != NULL)
+   {
+
+      bOk = FALSE;
+
+      pResource = (UINT FAR*) LockResource(hglobalResource);
+
+      m.assign(pResource, dwResourceSize);
+
+      FreeResource(hglobalResource);
+
+      return bOk;
+   }
+
+   return FALSE;
+
+}
+

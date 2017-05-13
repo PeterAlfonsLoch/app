@@ -1024,3 +1024,9 @@ void DLL_CALLCONV FreeImage_InitPlugin_image_decode_png(Plugin *plugin,int forma
 
 
 }
+
+
+void DLL_CALLCONV InitPNG(Plugin *plugin, int format_id)
+{
+   FreeImage_InitPlugin_image_decode_png(plugin, format_id);
+}

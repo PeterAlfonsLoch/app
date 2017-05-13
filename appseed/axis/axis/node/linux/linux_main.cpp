@@ -5,9 +5,9 @@
 
 CLASS_DECL_AXIS int32_t ca2_main();
 
-//CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;
+//CLASS_DECL_AXIS extern fixed_alloc_array * g_pfixedallocaWstring;
 
-//CLASS_DECL_BASE fixed_alloc_array * new_wstring_manager();
+//CLASS_DECL_AXIS fixed_alloc_array * new_wstring_manager();
 
 void CLASS_DECL_AXIS __cdecl _ca2_purecall()
 {

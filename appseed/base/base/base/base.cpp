@@ -1,11 +1,6 @@
 #include "framework.h"
 #include "base/user/core_user.h"
 
-//#ifndef METROWIN
-
-#include "freeimage/Source/FreeImage.h"
-
-//#endif
 
 namespace user
 {
@@ -109,21 +104,6 @@ bool base_init()
       return false;
 
 
-   try
-   {
-
-      FreeImage_Initialise(FALSE);
-
-   }
-   catch (...)
-   {
-
-      ::simple_message_box(NULL, "Failure to initialize FreeImage (::core::init_core)", "FreeImage_Initialise failure", MB_ICONEXCLAMATION);
-
-      return false;
-
-   }
-
 
 
    ::base::static_start::init();
@@ -159,17 +139,6 @@ bool base_term()
 
    ::base::static_start::term();
 
-
-   try
-   {
-
-      FreeImage_DeInitialise();
-
-   }
-   catch (...)
-   {
-
-   }
 
 
 

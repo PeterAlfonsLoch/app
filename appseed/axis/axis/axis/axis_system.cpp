@@ -16,9 +16,12 @@ namespace axis
    system::system(::aura::application * papp):
       aura::system(this, NULL),
 //      m_httpsystem(this),
+m_visual(this),
+
       m_emaildepartment(this)
    {
 
+      factory().creatable_small < ::visual::icon >();
       m_mapLibrary["draw2d"] = canew(::aura::library(this));
 
       g_pszCooperativeLevel = "axis";
@@ -31,7 +34,7 @@ namespace axis
 
       m_paxissystem = this;
 
-
+      ::draw2d::dib::static_initialize();
       m_spinstall = canew(::install::install(this));
 
       __node_axis_factory_exchange(this);
@@ -223,6 +226,12 @@ namespace axis
       if(!::axis::application::initialize1())
          return false;
 
+
+      m_visual.construct(this);
+
+      if (!m_visual.initialize1())
+         return false;
+
       Session.m_puserstrcontext->defer_ok(m_puserstr);
 
 
@@ -335,7 +344,23 @@ namespace axis
       return bOk;
 
    }
+   bool system::initialize()
+   {
 
+      if (!::axis::application::initialize())
+         return false;
+      if (!::aura::system::initialize())
+         return false;
+
+      if (!m_visual.initialize())
+         return false;
+
+
+
+
+
+      return true;
+   }
 
    int32_t system::exit_application()
    {

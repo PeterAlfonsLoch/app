@@ -420,6 +420,9 @@ FI_ENUM(FREE_IMAGE_FORMAT) {
    FIF_UNKNOWN = -1,
    FIF_BMP = 0,
    FIF_ICO,
+#ifdef FREEIMAGE_LIB
+   FIF_JPEG,
+#endif
    FIF_JNG,
    FIF_KOALA,
    FIF_LBM,
@@ -431,6 +434,9 @@ FI_ENUM(FREE_IMAGE_FORMAT) {
    FIF_PCX,
    FIF_PGM,
    FIF_PGMRAW,
+#ifdef FREEIMAGE_LIB
+      FIF_PNG,
+#endif
    FIF_PPM,
    FIF_PPMRAW,
    FIF_RAS,

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE window_cairo_egl :
+class CLASS_DECL_AXIS window_cairo_egl :
    public window_graphics
 {
 public:

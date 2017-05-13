@@ -255,9 +255,6 @@ OutputDebugString("gtk_main exited");
    bool system::initialize()
    {
 
-      if(!m_visual.initialize())
-         return false;
-
 
 
 #ifndef APPLEOS
@@ -286,10 +283,6 @@ OutputDebugString("gtk_main exited");
    {
 
 
-      m_visual.construct(this);
-
-      if(!m_visual.initialize1())
-         return false;
 
 
 

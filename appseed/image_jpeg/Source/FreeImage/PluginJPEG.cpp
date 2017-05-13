@@ -1713,3 +1713,10 @@ void DLL_CALLCONV FreeImage_InitPlugin_image_decode_jpeg(Plugin *plugin,int form
 
 
 }
+
+
+
+void DLL_CALLCONV InitJPEG(Plugin *plugin, int format_id)
+{
+   FreeImage_InitPlugin_image_decode_jpeg(plugin, format_id);
+}

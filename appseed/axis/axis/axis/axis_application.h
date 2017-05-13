@@ -11,7 +11,7 @@ namespace axis
    {
    public:
 
-
+      bool m_bInitializeDataCentral;
       bool                                            m_bAxisProcessInitialize;
       bool                                            m_bAxisProcessInitializeResult;
 

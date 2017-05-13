@@ -53,16 +53,16 @@ namespace simpledb
 //#endif
       }
 
-      m_pserver = new db_server(m_pauraapp);
+         m_pserver = new db_server(m_pauraapp);
 
 
-      m_pserver->add_client(this);
+         m_pserver->add_client(this);
 
-      if(!m_pserver->initialize())
-      {
-         Application.simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
-         return false;
-      }
+         if (!m_pserver->initialize())
+         {
+            Application.simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
+            return false;
+         }
 
       m_bInitialized = true;
 

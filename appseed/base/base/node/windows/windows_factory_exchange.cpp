@@ -18,6 +18,7 @@ namespace base
          System.factory().creatable_large    < ::windows::print_job          >(System.type_info < ::user::print_job           >());
          System.factory().creatable_small    < ::windows::copydesk           >(System.type_info < ::user::copydesk            >(), 1);
 
+      System.factory().cloneable_large < window_gdi            >  (System.type_info < window_graphics                > ());
 
          System.factory().creatable_large    < ::windows::interaction_impl   >(System.type_info < ::user::interaction_impl    >());
 

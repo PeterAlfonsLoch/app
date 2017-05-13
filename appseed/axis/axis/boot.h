@@ -136,7 +136,7 @@ extern "C"
 
 CLASS_DECL_BOOT string _ca_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
 
-CLASS_DECL_BASE string get_system_error_message(uint32_t dwError);
+CLASS_DECL_AXIS string get_system_error_message(uint32_t dwError);
 
 
 #include "boot_simple_app.h"

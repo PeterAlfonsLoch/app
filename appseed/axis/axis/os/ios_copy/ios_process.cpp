@@ -64,7 +64,7 @@ int create_process(const char * _cmd_line, int * pprocessId)
    return 1;
 }
 
-CLASS_DECL_BASE int call_async(
+CLASS_DECL_AXIS int call_async(
                             const char * pszPath, 
                             const char * pszParam, 
                             const char * pszDir,
@@ -88,7 +88,7 @@ CLASS_DECL_BASE int call_async(
     
 }
 
-CLASS_DECL_BASE DWORD call_sync(
+CLASS_DECL_AXIS DWORD call_sync(
                              const char * pszPath, 
                              const char * pszParam, 
                              const char * pszDir,
@@ -137,7 +137,7 @@ CLASS_DECL_BASE DWORD call_sync(
 
 
 
-CLASS_DECL_BASE bool main_initialize()
+CLASS_DECL_AXIS bool main_initialize()
 {
    
 //   initialize_primitive_heap();
@@ -156,7 +156,7 @@ CLASS_DECL_BASE bool main_initialize()
 }
 
 
-CLASS_DECL_BASE bool main_finalize()
+CLASS_DECL_AXIS bool main_finalize()
 {
    
    bool bOk = true;

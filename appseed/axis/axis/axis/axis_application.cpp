@@ -10,7 +10,11 @@ namespace axis
    application::application() :
       m_simpledb(this)
    {
+      if (m_paxissystem != NULL)
+      {
+         m_bInitializeDataCentral = m_paxissystem->m_bInitializeDataCentral;
 
+      }
       m_peventReady = NULL;
 
 
@@ -1960,16 +1964,24 @@ namespace axis
       if(m_bAxisInitialize1)
          return m_bAxisInitialize1Result;
 
-      m_simpledb.construct(this);
-
-      if (!m_simpledb.initialize())
-         return false;
-
-      if (!m_simpledb.initialize2())
-         return false;
+      if (m_bInitializeDataCentral)
+      {
 
 
-      set_data_server(&Application.dataserver());
+
+         m_simpledb.construct(this);
+
+         if (!m_simpledb.initialize())
+            return false;
+
+         if (!m_simpledb.initialize2())
+            return false;
+
+
+         set_data_server(&Application.dataserver());
+
+
+      }
 
       m_bAxisInitialize1 = true;
 

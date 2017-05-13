@@ -132,7 +132,6 @@ namespace base
 
    system::system(::aura::application * papp) :
       ::aura::system(this, NULL),
-      m_visual(this),
       ::axis::system(this)
    {
 
@@ -183,7 +182,7 @@ namespace base
       //      draw2d_factory_exchange();
 
 
-      ::draw2d::dib::static_initialize();
+      
 
       //      draw2d_factory_exchange();
 

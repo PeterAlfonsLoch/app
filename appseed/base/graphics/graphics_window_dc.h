@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_BASE window_dc :
+class CLASS_DECL_AXIS window_dc :
    virtual public window_graphics
 {
 public:

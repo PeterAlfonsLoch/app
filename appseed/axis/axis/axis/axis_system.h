@@ -16,11 +16,13 @@ namespace axis
 
       ::net::email_department                     m_emaildepartment;
 
+      ::visual::visual                             m_visual;
 
       sp(::install::install)                       m_spinstall;
 
 
 
+      inline class ::visual::visual                & visual() { return m_visual; }
 
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
@@ -43,6 +45,7 @@ namespace axis
       system(::aura::application * papp);
       virtual ~system();
 
+      bool initialize();
 
 
 

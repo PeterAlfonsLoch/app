@@ -168,7 +168,7 @@ namespace user
    class frame_window;
 
 
-   CLASS_DECL_BASE bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
+   CLASS_DECL_AXIS bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
 
 
 } // namespace user

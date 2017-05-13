@@ -210,6 +210,18 @@
     <Filter Include="Source Files\net\netserver">
       <UniqueIdentifier>{a39bbe8a-dd54-4867-895b-d51d50eb83ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{1ebb2c6d-f4e2-47e4-942f-d51ae796ccb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d">
+      <UniqueIdentifier>{b2303041-a38c-4f49-800d-77ad07ac425e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\visual">
+      <UniqueIdentifier>{0e2a8569-25fa-42b6-8ff2-eaccd6c46cd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{c5e5061a-cabf-4933-9679-38d0c8fe3fc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -1787,6 +1799,12 @@
     <ClInclude Include="primitive\math\math_binary_operation.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\visual\visual.h">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -2289,6 +2307,15 @@
     </ClCompile>
     <ClCompile Include="net\netserver\netserver_socket_thread.cpp">
       <Filter>Source Files\net\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\_graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\service\service_plain_service.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

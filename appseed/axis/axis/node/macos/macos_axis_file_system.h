@@ -16,7 +16,7 @@ namespace macos
       public:
          
          
-//         class CLASS_DECL_BASE path :
+//         class CLASS_DECL_AXIS path :
 //         public ::file::system::path
 //         {
 //         public:

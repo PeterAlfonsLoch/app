@@ -15,7 +15,7 @@
 
 
 
-CLASS_DECL_BASE bool main_initialize()
+CLASS_DECL_AXIS bool main_initialize()
 {
 
    initialize_primitive_heap();
@@ -28,7 +28,7 @@ CLASS_DECL_BASE bool main_initialize()
 }
 
 
-CLASS_DECL_BASE bool main_finalize()
+CLASS_DECL_AXIS bool main_finalize()
 {
 
    bool bOk = true;

@@ -243,6 +243,8 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 //#include "axis/axis/crypto/crypto.h"
 
+#include "axis/graphics/graphics.h"
+
 #include "axis_system.h"
 
 #include "axis/axis/install/install.h"
@@ -292,6 +294,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "axis/html_lite/html_lite/html_lite.h"
 
 
+
 //#include "axis/database/database/database.h"
 //
 //#include "axis/database/sqlitedb/sqlitedb.h"
@@ -300,6 +303,9 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 #include "axis.inl"
+
+
+#include "axis/graphics/visual/visual.inl"
 
 
 

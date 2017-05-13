@@ -8,7 +8,7 @@
 #include "app/appseed/aura/aura/node/ios/ios.h"
 
 
-////#define CLASS_DECL_BASE
+////#define CLASS_DECL_AXIS
 
 //struct plane_system
 //{
@@ -31,37 +31,37 @@ sp(::aura::application)     ios_instantiate_application(sp(::aura::application) 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
 
-//CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
-//CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
+//CLASS_DECL_AXIS WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+//CLASS_DECL_AXIS WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
 //
 ///////////////////////////////////////////////////////////////////////////////
 //// stop on a specific memory request
 //
 //// Debugger hook on specified allocation request - Obsolete
-//CLASS_DECL_BASE void AfxSetAllocStop(LONG lRequestNumber);
+//CLASS_DECL_AXIS void AfxSetAllocStop(LONG lRequestNumber);
 //
 //// Return TRUE if memory is sane or print out what is wrong
-//CLASS_DECL_BASE bool __check_memory();
+//CLASS_DECL_AXIS bool __check_memory();
 //
 //// Return TRUE if valid memory block of nBytes
-//CLASS_DECL_BASE WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
+//CLASS_DECL_AXIS WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
 //                                        LONG* plRequestNumber = NULL);
 
 // helper routines for non-C++ EH implementations
 // for THROW_LAST auto-delete backward compatiblity
-//CLASS_DECL_BASE void AfxThrowLastCleanup();
+//CLASS_DECL_AXIS void AfxThrowLastCleanup();
 //
 //// other out-of-line helper functions
-//CLASS_DECL_BASE void AfxTryCleanup();
+//CLASS_DECL_AXIS void AfxTryCleanup();
 //
 //
 ///////////////////////////////////////////////////////////////////////////////
 //// Global implementation helpers
 //
 //// window creation hooking
-//CLASS_DECL_BASE void AfxHookWindowCreate(::user::interaction * pWnd);
-//CLASS_DECL_BASE WINBOOL AfxUnhookWindowCreate();
-//CLASS_DECL_BASE void AfxResetMsgCache();
+//CLASS_DECL_AXIS void AfxHookWindowCreate(::user::interaction * pWnd);
+//CLASS_DECL_AXIS WINBOOL AfxUnhookWindowCreate();
+//CLASS_DECL_AXIS void AfxResetMsgCache();
 //
 //// for backward compatibility to previous versions
 //#define _AfxHookWindowCreate    AfxHookWindowCreate
@@ -82,7 +82,7 @@ sp(::aura::application)     ios_instantiate_application(sp(::aura::application) 
 #include "ios_file_set.h"
 
 //#define NULL_REF(class) (*((class *) NULL))
-//// xxx CLASS_DECL_BASE WNDPROC AfxGetAfxWndProc();
+//// xxx CLASS_DECL_AXIS WNDPROC AfxGetAfxWndProc();
 //#define AfxWndProc (*AfxGetAfxWndProc())
 //
 //#define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
@@ -90,11 +90,11 @@ sp(::aura::application)     ios_instantiate_application(sp(::aura::application) 
 
 //#include "ios_shell.h"
 
-//CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
-//CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, signal_details * pobj);
+//CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 //
-//CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
-//CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
+//CLASS_DECL_AXIS void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
+//CLASS_DECL_AXIS void __cdecl __pre_translate_message(signal_details * pobj);
 
 //#include "ios_printer.h"
 
@@ -143,7 +143,7 @@ CLASS_DECL_AXIS void vfxThrowFileException(sp(::aura::application) papp, int32_t
 
 
 // Placed on frame for EXCEPTION linkage, or ::exception::base cleanup
-//struct CLASS_DECL_BASE __exception_link
+//struct CLASS_DECL_AXIS __exception_link
 //{
 //   __exception_link* m_pLinkPrev;    // previous top, next in handler chain
 //   ::exception::base * m_pException;   // current exception (NULL in try block)
@@ -156,7 +156,7 @@ CLASS_DECL_AXIS void vfxThrowFileException(sp(::aura::application) papp, int32_t
 //};
 //
 //// Exception global state - never access directly
-//struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
+//struct CLASS_DECL_AXIS __EXCEPTION_CONTEXT
 //{
 //   __exception_link* m_pLinkTop;
 //

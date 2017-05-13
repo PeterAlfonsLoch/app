@@ -1803,6 +1803,9 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/primitive/str/str_str3.h"
 
 
+#include "aura/graphics/graphics.h"
+
+
 namespace user
 {
 
