@@ -56,18 +56,18 @@ namespace user
    bool schema::get_font(::draw2d::font_sp & spfont, e_font efont, ::user::interaction * pui)
    {
 
-      if (m_puserschemaSchema != NULL && m_puserschemaSchema != this)
-      {
-
-         if (m_puserschemaSchema->get_font(spfont, efont, pui))
-            return true;
-
-      }
-
       if (get_parent_user_schema() != NULL)
       {
 
          if (get_parent_user_schema()->get_font(spfont, efont, pui))
+            return true;
+
+      }
+
+      if (m_puserschemaSchema != NULL && m_puserschemaSchema != this)
+      {
+
+         if (m_puserschemaSchema->get_font(spfont, efont, pui))
             return true;
 
       }
