@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/user/user_control.h"
+#include "base/user/user/user_plain_text_data.h"
+
+
 class elemental;
 class element_2d;
 

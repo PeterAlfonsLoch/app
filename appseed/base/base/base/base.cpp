@@ -139,6 +139,8 @@ bool base_init()
    if(!__node_base_pos_init())
       return false;
 
+   g_pfn_create_system = base_create_aura_system;
+
    return true;
 
 }
