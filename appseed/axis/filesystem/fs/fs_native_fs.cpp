@@ -116,21 +116,21 @@ namespace fs
          
       }
       
-#ifdef WINDOWSEX
-
-      ::file::path strDesktopFolder;
-
-      ::windows::SHGetSpecialFolderPath(
-         NULL,
-         strDesktopFolder,
-         CSIDL_DESKTOP,
-         FALSE);
-
-      ::file::path & path = listing.insert_at(0,strDesktopFolder);
-      path.m_iDir = 1;
-      listing.m_straTitle.insert_at(0,unitext("Desktop"));
-      
-#endif
+//#ifdef WINDOWSEX
+//
+//      ::file::path strDesktopFolder;
+//
+//      ::windows::SHGetSpecialFolderPath(
+//         NULL,
+//         strDesktopFolder,
+//         CSIDL_DESKTOP,
+//         FALSE);
+//
+//      ::file::path & path = listing.insert_at(0,strDesktopFolder);
+//      path.m_iDir = 1;
+//      listing.m_straTitle.insert_at(0,unitext("Desktop"));
+//      
+//#endif
       
       return listing;
 

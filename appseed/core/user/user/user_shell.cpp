@@ -62,6 +62,8 @@ namespace user
       {
 
          m_iIcon = 0x80000000;
+         m_pszPath = "";
+         m_pszShellThemePrefix = "";
 
       }
 
@@ -243,20 +245,20 @@ namespace user
       }
 
 
-      void shell::open_folder(oswindow oswindow, const string & strFolder)
-      {
+      //void shell::open_folder(oswindow oswindow, const string & strFolder)
+      //{
 
 
 
 
-      }
+      //}
 
 
-      void shell::close_folder(const string & strFolder)
-      {
+      //void shell::close_folder(const string & strFolder)
+      //{
 
 
-      }
+      //}
 
 
 

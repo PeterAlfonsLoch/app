@@ -5916,6 +5916,10 @@ lCallNextHook:
 
       }
 
+
+      defer_co_initialize_ex(false);
+
+
       HRESULT Result = S_OK;
 
       comptr < ITaskbarList>                     tasklist;

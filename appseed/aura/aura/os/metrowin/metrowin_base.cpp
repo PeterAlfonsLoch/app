@@ -776,7 +776,7 @@ CLASS_DECL_AURA thread_int_ptr < HRESULT > t_hresultCoInitialize;
 
 
 
-bool defer_co_initialize_ex()
+bool defer_co_initialize_ex(bool bMultiThread)
 {
 
    if(t_iCoInitialize != FALSE)

@@ -203,11 +203,11 @@ namespace visual
       save_image saveimageDefault;
       if (psaveimage == NULL)
          psaveimage = &saveimageDefault;
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
-      return windows_write_dib_to_file(pfile, m_p, psaveimage, m_p->get_app());
+  //    return windows_write_dib_to_file(pfile, m_p, psaveimage, m_p->get_app());
 
-#else
+//#else
 
 
       bool bOk = false;
@@ -314,7 +314,7 @@ namespace visual
 
       return bOk != FALSE;
 
-#endif
+//#endif
 
    }
 
@@ -2291,7 +2291,7 @@ HRESULT windows_GetRawFrame(
 bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::file_sp pfile, ::aura::application * papp)
 {
 
-   if (!defer_co_initialize_ex())
+   if (!defer_co_initialize_ex(false))
       return false;
 
    file_size_t iSize = pfile->get_length();
@@ -2528,7 +2528,7 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::file_s
 bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::file_sp pfile, ::aura::application * papp)
 {
 
-   if (!defer_co_initialize_ex())
+   if (!defer_co_initialize_ex(false))
       return false;
 
    file_size_t iSize = pfile->get_length();

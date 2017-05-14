@@ -1,5 +1,13 @@
 #include "framework.h"
 
+extern "C"
+{
+   typedef void FN_ca2_factory_exchange(::aura::application * papp);
+
+   typedef FN_ca2_factory_exchange * PFN_ca2_factory_exchange;
+
+}
+
 #ifdef WINDOWSEX
 
 CLASS_DECL_AURA void windows_install_crash_dump_reporting(::aura::application * papp);
@@ -3495,7 +3503,7 @@ namespace aura
 
 
 
-   typedef  void(*PFN_ca2_factory_exchange)(sp(application) papp);
+   
 
 
 

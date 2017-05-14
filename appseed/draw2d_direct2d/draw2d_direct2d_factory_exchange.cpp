@@ -26,11 +26,6 @@ namespace draw2d_direct2d
       System.factory().cloneable_large < font                  >  (System.type_info < ::draw2d::font              > ());
       System.factory().cloneable_large < printer               >  (System.type_info < ::aura::printer             > ());
       
-#ifdef WINDOWSEX
-
-      System.factory().cloneable_large < window_gdi            >  (System.type_info < window_graphics                >());
-
-#endif
 
       //draw2d_direct2d_initialize();
 

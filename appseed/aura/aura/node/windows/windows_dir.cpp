@@ -1392,7 +1392,31 @@ namespace windows
 
    }
 
+   ::file::path dir::get_desktop_folder()
+   {
 
+      ::file::path path;
+
+      SHGetSpecialFolderPath(
+         NULL,
+         path,
+         CSIDL_DESKTOP,
+         FALSE);
+
+      return path;
+
+   }
+
+   ::file::path dir::get_download_folder()
+   {
+
+      ::file::path path;
+
+      path = ::windows::get_known_folder(FOLDERID_Downloads);
+
+      return path;
+
+   }
 
    ::file::path dir::get_music_folder()
    {

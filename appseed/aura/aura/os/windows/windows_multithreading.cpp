@@ -315,8 +315,6 @@ extern CLASS_DECL_AURA thread_int_ptr < HRESULT > t_hresultCoInitialize;
 bool __os_init_thread()
 {
 
-   if(!defer_co_initialize_ex())
-      return false;
 
    //t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
 

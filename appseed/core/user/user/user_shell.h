@@ -112,8 +112,8 @@ namespace user
          shell(::aura::application * papp);
          virtual ~shell();
 
-         virtual void open_folder(oswindow oswindow, const string & strFolder);
-         virtual void close_folder(const string & strFolder);
+         //virtual void open_folder(oswindow oswindow, const string & strFolder);
+         //virtual void close_folder(const string & strFolder);
 
          virtual int32_t get_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0) = 0;
          virtual int32_t get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk = 0) = 0;

@@ -53,13 +53,24 @@ CLASS_DECL_AURA thread_int_ptr < HRESULT > t_hresultCoInitialize;
 
 
 
-bool defer_co_initialize_ex()
+bool defer_co_initialize_ex(bool bMultiThread)
 {
 
    if(t_iCoInitialize != FALSE)
       return true;
 
-   t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+   if (bMultiThread)
+   {
+
+      t_hresultCoInitialize = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
+
+   }
+   else
+   {
+
+      t_hresultCoInitialize = ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
+
+   }
 
    if(FAILED(t_hresultCoInitialize))
    {

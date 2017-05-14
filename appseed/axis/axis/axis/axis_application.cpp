@@ -10,6 +10,7 @@ namespace axis
    application::application() :
       m_simpledb(this)
    {
+      m_bInitializeDataCentral = true;
       if (m_paxissystem != NULL)
       {
          m_bInitializeDataCentral = m_paxissystem->m_bInitializeDataCentral;

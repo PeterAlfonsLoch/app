@@ -817,7 +817,7 @@ typedef void * HDWP;
 typedef  void(*PFN_ca2_factory_exchange)(::aura::application * papp);
 
 #ifdef WINDOWS
-CLASS_DECL_AURA bool defer_co_initialize_ex();
+CLASS_DECL_AURA bool defer_co_initialize_ex(bool bMultiThread);
 #endif
 
 CLASS_DECL_AURA bool aura_init();

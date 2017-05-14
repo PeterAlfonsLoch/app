@@ -98,6 +98,8 @@ namespace windows
 
 
       virtual ::file::path get_document_folder() override;
+      virtual ::file::path get_desktop_folder() override;
+      virtual ::file::path get_download_folder() override;
 
 
       virtual ::file::path get_music_folder() override;

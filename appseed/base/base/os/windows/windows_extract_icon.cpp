@@ -128,6 +128,18 @@ CLASS_DECL_BASE HICON ExtractResourceIcon(string strPath, int cx, int cy, int iI
 
    }
 
+   //try
+   //{
+
+   //   EnumResourceNamesW(hLib, MAKEINTRESOURCEW((ULONG_PTR)(RT_ICON)), (ENUMRESNAMEPROCW)ExtractResourceIcon_EnumNamesFunc, (LONG_PTR)& i);
+
+   //}
+   //catch (...)
+   //{
+
+
+   //}
+
    try
    {
 
@@ -146,6 +158,7 @@ CLASS_DECL_BASE HICON ExtractResourceIcon(string strPath, int cx, int cy, int iI
 BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, LPCWSTR lpType, LPWSTR lpName, LONG_PTR lParam)
 {
    extract_resource_icon * pi = (extract_resource_icon *)lParam;
+   ULONG_PTR u = ULONG_PTR(lpName);
 
    if (pi->iIcon > 0)
    {
