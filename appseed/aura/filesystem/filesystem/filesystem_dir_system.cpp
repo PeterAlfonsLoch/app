@@ -667,6 +667,13 @@ namespace file
 
          bool bIs;
 
+         if (strPath.ends_ci("://") || strPath.ends_ci(":/") || strPath.ends_ci(":"))
+         {
+
+            return true;
+
+         }
+
          if (!is_or_definitively_not(bIs, strPath, papp) || !bIs)
             return false;
 
