@@ -23,6 +23,7 @@ namespace draw2d
 
 
 
+
       enum e_type
       {
 
@@ -78,7 +79,6 @@ namespace draw2d
       point             m_pt;
       double            m_dFontFactor;
       e_alpha_mode      m_ealphamode;
-      
 
 
 
@@ -124,6 +124,7 @@ namespace draw2d
       virtual bool Blend(dib *pdib, dib * pdibA);
       virtual bool blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, ::draw2d::dib * pdibAlf, point ptDstAlf, class size size);
       virtual bool blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size);
+      virtual bool fork_blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size);
       virtual bool bitmap_blend(::draw2d::graphics * pgraphics, LPCRECT lprect);
       virtual bool color_blend(COLORREF cr, BYTE bAlpha);
       virtual void BitBlt(dib * pdib, int32_t op);
@@ -166,7 +167,7 @@ namespace draw2d
 
       virtual void set_rgb(COLORREF cr);
       virtual void set_rgb(int32_t R, int32_t G, int32_t B);
-      virtual void set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B);
+      virtual void tint(::draw2d::dib * pdib, int32_t R, int32_t G, int32_t B);
       virtual void set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B, int32_t A);
       virtual bool rgb_from(::draw2d::dib * pdib);
 
@@ -217,6 +218,7 @@ namespace draw2d
       virtual bool from(::draw2d::graphics * pgraphics);
       virtual bool from(point ptDst, ::draw2d::graphics * pgraphics, point ptSrc, class size size);
       virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
+      //virtual bool blend(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
       virtual bool from_ignore_alpha(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
 
       virtual bool to(::draw2d::graphics * pgraphics);
@@ -332,6 +334,47 @@ namespace draw2d
    using dib_sp = sp(dib);
 
 
+   class thread_tools :
+      virtual public ::object
+   {
+   public:
+
+      class thread :
+         virtual public ::thread
+      {
+      public:
+
+         enum e_op
+         {
+
+            op_blend,
+
+         };
+
+         manual_reset_event m_evStart;
+         manual_reset_event m_evReady;
+         int m_ySkip;
+         int m_y;
+         int m_yEnd;
+         int m_x;
+         int m_xEnd;
+         byte * m_pdst2;
+         byte * m_psrc2;
+         e_op m_eop;
+         int m_scanSrc;
+         int m_scanDst;
+
+
+         thread(::aura::application * papp);
+         int run();
+
+
+      };
+
+      spa(thread)       m_threada;
+      sync_object_ptra  m_synca;
+
+   };
 
 } // namespace draw2d
 

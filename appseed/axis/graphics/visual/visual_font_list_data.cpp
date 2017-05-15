@@ -76,6 +76,12 @@ namespace visual
       for (int i = 0; i < m_itemptra.get_count(); i++)
       {
 
+         if (m_itemptra[i] == NULL)
+         {
+
+            continue;
+
+         }
          
          int iBox;
 
@@ -95,6 +101,8 @@ namespace visual
          }
          
          text_box * pbox = &m_itemptra[i]->m_box[iBox];
+
+
 
          if (!pbox->m_bOk)
          {
@@ -399,6 +407,13 @@ namespace visual
 
                item * pitem = m_itemptra[i];
 
+               if (pitem == NULL)
+               {
+
+                  continue;
+
+               }
+
                size & s = pitem->m_box[0].m_size;
 
                rect & r = pitem->m_box[0].m_rect;
@@ -454,6 +469,13 @@ namespace visual
 
             for (index i = 0; i < m_itemptra.get_size(); i++)
             {
+
+               if (m_itemptra[i] == NULL)
+               {
+
+                  continue;
+
+               }
 
                if (i == m_iSel)
                {

@@ -55,6 +55,7 @@ namespace user
    public:
 
       double                        m_dFps;
+      double                        m_dUpdateScreenFps;
       bool                          m_bIpcCopy;
       bool                          m_bLockWindowUpdate;
 
@@ -728,10 +729,10 @@ namespace user
 
       virtual interaction_impl * get_impl() const;
 
-      //virtual void _001UpdateScreen(bool bUpdateBuffer = true);
-      //virtual void _001UpdateBuffer();
+      virtual void _001UpdateScreen();
+      virtual void _001UpdateBuffer();
 
-      virtual void _001UpdateWindow(bool bUpdateBuffer = true);
+      //virtual void _001UpdateWindow(bool bUpdateBuffer = true);
 
 
       virtual void update_graphics_resources();

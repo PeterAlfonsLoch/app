@@ -409,6 +409,397 @@ namespace draw2d
 
    }
 
+   bool dib::blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
+   {
+
+      dib * pdibDst = this;
+
+
+      pdibDst->map();
+
+      pdibSrc->map();
+
+      ptDst += m_pt;
+
+      if (ptSrc.x < 0)
+      {
+         ptDst.x -= ptSrc.x;
+         ptSrc.x = 0;
+      }
+
+      if (ptSrc.y < 0)
+      {
+         ptDst.y -= ptSrc.y;
+         ptSrc.y = 0;
+      }
+
+      if (ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if (size.cx < 0)
+         return true;
+
+      if (ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if (size.cy < 0)
+         return true;
+
+      int xEnd = MIN(size.cx, MIN(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+
+      int yEnd = MIN(size.cy, MIN(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+
+      if (xEnd < 0)
+         return false;
+
+      if (yEnd < 0)
+         return false;
+
+      int32_t scanDst = pdibDst->m_iScan;
+
+      int32_t scanSrc = pdibSrc->m_iScan;
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+
+      byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)];
+
+      byte * pdst2;
+
+      byte * psrc2;
+
+      for (int y = 0; y < yEnd; y++)
+      {
+
+         pdst2 = &pdst[scanDst * y];
+
+         psrc2 = &psrc[scanSrc * y];
+
+         //memcpy(pdst2, psrc2, xEnd * 4);
+         for(int x = 0; x < xEnd; x++)
+         {
+
+            //*pdst2 = *psrc2;
+
+            //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+            //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+            //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+            //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+            int acomplement = 255 - psrc2[3];
+            pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+            pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+            pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+            pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+
+
+
+            pdst2+=4;
+
+            psrc2+=4;
+
+         }
+         //pdst2 += xEnd;
+         //psrc2 += xEnd;
+
+      }
+
+      return true;
+
+   }
+
+   thread_tools::thread::thread(::aura::application * papp) :
+      object(papp),
+      ::thread(papp),
+      m_evStart(papp),
+      m_evReady(papp)
+   {
+      m_evStart.ResetEvent();
+      m_evReady.ResetEvent();
+   }
+
+
+   int thread_tools::thread::run()
+   {
+      ::multithreading::set_priority(::multithreading::priority_time_critical);
+      while (true)
+      {
+         m_evStart.wait();
+         m_evStart.ResetEvent();
+
+         if (m_eop == op_blend)
+         {
+
+            int y = m_y;
+            int yEnd = m_yEnd;
+            int x = m_x;
+            int xEnd = m_xEnd;
+            int xEnd1 = m_xEnd - 7;
+            int ySkip = m_ySkip;
+
+            byte * pdst = m_pdst2;
+            byte * psrc = m_psrc2;
+            byte * pdst2;
+            byte * psrc2;
+
+            int scanDst = m_scanDst;
+            int scanSrc = m_scanSrc;
+
+            for (; y < yEnd; y+=ySkip)
+            {
+
+               pdst2 = &pdst[scanDst * y];
+
+               psrc2 = &psrc[scanSrc * y];
+
+               int x = 0;
+               //memcpy(pdst2, psrc2, xEnd * 4);
+               for (; x < xEnd1; x+=8)
+               {
+
+               //   //*pdst2 = *psrc2;
+                  byte acomplement1 = ~psrc2[3];
+                  byte acomplement2 = ~psrc2[7];
+                  byte acomplement3 = ~psrc2[11];
+                  byte acomplement4 = ~psrc2[15];
+                  byte acomplement5 = ~psrc2[19];
+                  byte acomplement6 = ~psrc2[23];
+                  byte acomplement7 = ~psrc2[27];
+                  byte acomplement8 = ~psrc2[31];
+
+                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement1)) >> 8);
+                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement1)) >> 8);
+                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement1)) >> 8);
+                  pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement1)) >> 8);
+
+                  pdst2[4] = psrc2[4] + ((pdst2[4] * (acomplement2)) >> 8);
+                  pdst2[5] = psrc2[5] + ((pdst2[5] * (acomplement2)) >> 8);
+                  pdst2[6] = psrc2[6] + ((pdst2[6] * (acomplement2)) >> 8);
+                  pdst2[7] = psrc2[7] + ((pdst2[7] * (acomplement2)) >> 8);
+
+                  pdst2[8] = psrc2[8] + ((pdst2[8] * (acomplement3)) >> 8);
+                  pdst2[9] = psrc2[9] + ((pdst2[9] * (acomplement3)) >> 8);
+                  pdst2[10] = psrc2[10] + ((pdst2[10] * (acomplement3)) >> 8);
+                  pdst2[11] = psrc2[11] + ((pdst2[11] * (acomplement3)) >> 8);
+
+
+                  pdst2[12] = psrc2[12] + ((pdst2[12] * (acomplement4)) >> 8);
+                  pdst2[13] = psrc2[13] + ((pdst2[13] * (acomplement4)) >> 8);
+                  pdst2[14] = psrc2[14] + ((pdst2[14] * (acomplement4)) >> 8);
+                  pdst2[15] = psrc2[15] + ((pdst2[15] * (acomplement4)) >> 8);
+
+                  pdst2[16] = psrc2[16] + ((pdst2[16] * (acomplement5)) >> 8);
+                  pdst2[17] = psrc2[17] + ((pdst2[17] * (acomplement5)) >> 8);
+                  pdst2[18] = psrc2[18] + ((pdst2[18] * (acomplement5)) >> 8);
+                  pdst2[19] = psrc2[19] + ((pdst2[19] * (acomplement5)) >> 8);
+
+                  pdst2[20] = psrc2[20] + ((pdst2[20] * (acomplement6)) >> 8);
+                  pdst2[21] = psrc2[21] + ((pdst2[21] * (acomplement6)) >> 8);
+                  pdst2[22] = psrc2[22] + ((pdst2[22] * (acomplement6)) >> 8);
+                  pdst2[23] = psrc2[23] + ((pdst2[23] * (acomplement6)) >> 8);
+
+                  pdst2[24] = psrc2[24] + ((pdst2[24] * (acomplement7)) >> 8);
+                  pdst2[25] = psrc2[25] + ((pdst2[25] * (acomplement7)) >> 8);
+                  pdst2[26] = psrc2[26] + ((pdst2[26] * (acomplement7)) >> 8);
+                  pdst2[27] = psrc2[27] + ((pdst2[27] * (acomplement7)) >> 8);
+
+
+                  pdst2[28] = psrc2[28] + ((pdst2[28] * (acomplement8)) >> 8);
+                  pdst2[29] = psrc2[29] + ((pdst2[29] * (acomplement8)) >> 8);
+                  pdst2[30] = psrc2[30] + ((pdst2[30] * (acomplement8)) >> 8);
+                  pdst2[31] = psrc2[31] + ((pdst2[31] * (acomplement8)) >> 8);
+
+
+                  pdst2 += 32;
+
+                  psrc2 += 32;
+
+               }
+               for (;x < xEnd; x++)
+               {
+
+                  //*pdst2 = *psrc2;
+                  byte acomplement = 255 - psrc2[3];
+                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+                  pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+
+
+
+                  pdst2 += 4;
+
+                  psrc2 += 4;
+
+               }
+               //pdst2 += xEnd;
+               //psrc2 += xEnd;
+
+            }
+
+
+         }
+
+         m_evReady.SetEvent();
+
+      }
+
+      return 0;
+
+   }
+
+   bool dib::fork_blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
+   {
+
+      dib * pdibDst = this;
+
+
+      pdibDst->map();
+
+      pdibSrc->map();
+
+      ptDst += m_pt;
+
+      if (ptSrc.x < 0)
+      {
+         ptDst.x -= ptSrc.x;
+         ptSrc.x = 0;
+      }
+
+      if (ptSrc.y < 0)
+      {
+         ptDst.y -= ptSrc.y;
+         ptSrc.y = 0;
+      }
+
+      if (ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if (size.cx < 0)
+         return true;
+
+      if (ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if (size.cy < 0)
+         return true;
+
+      int xEnd = MIN(size.cx, MIN(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+
+      int yEnd = MIN(size.cy, MIN(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+
+      if (xEnd < 0)
+         return false;
+
+      if (yEnd < 0)
+         return false;
+
+      int32_t scanDst = pdibDst->m_iScan;
+
+      int32_t scanSrc = pdibSrc->m_iScan;
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+
+      byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)];
+
+      //byte * pdst2;
+
+      //byte * psrc2;
+
+      if (::get_thread() == NULL)
+      {
+
+         return blend(ptDst, pdibSrc, ptSrc, size);
+
+      }
+
+      sp(thread_tools) & ptools = ::get_thread()->m_pdraw2dtools;
+
+      if (ptools.is_null())
+      {
+
+         ptools = new thread_tools;
+
+         while (ptools->m_threada.get_size() < get_processor_count())
+         {
+
+            thread_tools::thread * p = new thread_tools::thread(get_app());
+
+            ptools->m_synca.add(&p->m_evReady);
+
+            ptools->m_threada.add(p);
+
+            p->begin();
+
+         }
+
+      }
+
+      if (ptools->m_threada.is_empty())
+      {
+
+         return blend(ptDst, pdibSrc, ptSrc, size);
+
+      }
+
+      for (auto & p : ptools->m_threada)
+      {
+
+         p->m_evStart.ResetEvent();
+         p->m_evReady.ResetEvent();
+         p->m_eop = thread_tools::thread::op_blend;
+      }
+      int y = 0;
+      int iSpan = yEnd / ptools->m_threada.get_size();
+      for (auto & p : ptools->m_threada)
+      {
+
+         if (false)
+         {
+            p->m_ySkip = 1;
+            p->m_y = y;
+            y += iSpan;
+            p->m_yEnd = MIN(yEnd, y);
+         }
+         else
+         {
+            p->m_ySkip = ptools->m_threada.get_size();
+            p->m_y = y;
+            p->m_yEnd = yEnd;
+            y++;
+         }
+         p->m_x = 0;
+         p->m_xEnd = xEnd;
+         p->m_pdst2 = pdst;
+         p->m_psrc2 = psrc;
+         p->m_scanSrc = scanSrc;
+         p->m_scanDst = scanDst;
+
+      }
+
+      for (auto & p : ptools->m_threada)
+      {
+         p->m_evStart.SetEvent();
+      }
+
+      multi_lock ml(ptools->m_synca);
+
+      ml.lock();
+
+      return true;
+
+   }
+
    bool dib::from_ignore_alpha(point ptDst, ::draw2d::dib * pdib, point ptSrc, class size size)
    {
 
@@ -639,6 +1030,7 @@ namespace draw2d
 
    }
 
+   /*
    bool dib::blend(point ptDst,::draw2d::dib * pdibSrc, point ptSrc, class size size)
    {
 
@@ -751,6 +1143,7 @@ namespace draw2d
       return true;
 
    }
+   */
 
    void dib::set( int32_t R, int32_t G, int32_t B )
    {
@@ -4361,11 +4754,14 @@ namespace draw2d
          ::draw2d::copy_colorref(width,height,get_data(),m_iScan,(COLORREF *)mem.get_data(),wc);
       }
    }
-   void dib::set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B)
+   void dib::tint(::draw2d::dib * pdib, int32_t R, int32_t G, int32_t B)
    {
+
+      from(pdib);
 
       map();
 
+      BYTE *src = (BYTE*)pdib->m_pcolorref;
       BYTE *dst = (BYTE*)m_pcolorref;
       int64_t size = scan_area();
 
@@ -4379,80 +4775,98 @@ namespace draw2d
       while (size > 16)
       {
          //dst[3] = dst[i];
-         dst[0] = (uchB * dst[3]) >> 8;
-         dst[1] = (uchG * dst[3]) >> 8;
-         dst[2] = (uchR * dst[3]) >> 8;
+         dst[0] = (uchB * src[3]) >> 8;
+         dst[1] = (uchG * src[3]) >> 8;
+         dst[2] = (uchR * src[3]) >> 8;
+         dst[3] = src[3];
 
-         dst[4] = (uchB * dst[7]) >> 8;
-         dst[5] = (uchG * dst[7]) >> 8;
-         dst[6] = (uchR * dst[7]) >> 8;
+         dst[4] = (uchB * src[7]) >> 8;
+         dst[5] = (uchG * src[7]) >> 8;
+         dst[6] = (uchR * src[7]) >> 8;
+         dst[7] = src[7];
 
-         dst[8] = (uchB * dst[11]) >> 8;
-         dst[9] = (uchG * dst[11]) >> 8;
-         dst[10] = (uchR * dst[11]) >> 8;
+         dst[8] = (uchB * src[11]) >> 8;
+         dst[9] = (uchG * src[11]) >> 8;
+         dst[10] = (uchR * src[11]) >> 8;
+         dst[11] = src[11];
 
-         dst[12] = (uchB * dst[15]) >> 8;
-         dst[13] = (uchG * dst[15]) >> 8;
-         dst[14] = (uchR * dst[15]) >> 8;
+         dst[12] = (uchB * src[15]) >> 8;
+         dst[13] = (uchG * src[15]) >> 8;
+         dst[14] = (uchR * src[15]) >> 8;
+         dst[15] = src[15];
 
-         dst[16] = (uchB * dst[19]) >> 8;
-         dst[17] = (uchG * dst[19]) >> 8;
-         dst[18] = (uchR * dst[19]) >> 8;
+         dst[16] = (uchB * src[19]) >> 8;
+         dst[17] = (uchG * src[19]) >> 8;
+         dst[18] = (uchR * src[19]) >> 8;
+         dst[19] = src[19];
 
-         dst[20] = (uchB * dst[23]) >> 8;
-         dst[21] = (uchG * dst[23]) >> 8;
-         dst[22] = (uchR * dst[23]) >> 8;
+         dst[20] = (uchB * src[23]) >> 8;
+         dst[21] = (uchG * src[23]) >> 8;
+         dst[22] = (uchR * src[23]) >> 8;
+         dst[23] = src[23];
 
-         dst[24] = (uchB * dst[27]) >> 8;
-         dst[25] = (uchG * dst[27]) >> 8;
-         dst[26] = (uchR * dst[27]) >> 8;
+         dst[24] = (uchB * src[27]) >> 8;
+         dst[25] = (uchG * src[27]) >> 8;
+         dst[26] = (uchR * src[27]) >> 8;
+         dst[27] = src[27];
 
-         dst[28] = (uchB * dst[31]) >> 8;
-         dst[29] = (uchG * dst[31]) >> 8;
-         dst[30] = (uchR * dst[31]) >> 8;
+         dst[28] = (uchB * src[31]) >> 8;
+         dst[29] = (uchG * src[31]) >> 8;
+         dst[30] = (uchR * src[31]) >> 8;
+         dst[31] = src[31];
 
-         dst[32] = (uchB * dst[35]) >> 8;
-         dst[33] = (uchG * dst[35]) >> 8;
-         dst[34] = (uchR * dst[35]) >> 8;
+         dst[32] = (uchB * src[35]) >> 8;
+         dst[33] = (uchG * src[35]) >> 8;
+         dst[34] = (uchR * src[35]) >> 8;
+         dst[35] = src[35];
 
-         dst[36] = (uchB * dst[39]) >> 8;
-         dst[37] = (uchG * dst[39]) >> 8;
-         dst[38] = (uchR * dst[39]) >> 8;
+         dst[36] = (uchB * src[39]) >> 8;
+         dst[37] = (uchG * src[39]) >> 8;
+         dst[38] = (uchR * src[39]) >> 8;
+         dst[39] = src[39];
 
-         dst[40] = (uchB * dst[43]) >> 8;
-         dst[41] = (uchG * dst[43]) >> 8;
-         dst[42] = (uchR * dst[43]) >> 8;
+         dst[40] = (uchB * src[43]) >> 8;
+         dst[41] = (uchG * src[43]) >> 8;
+         dst[42] = (uchR * src[43]) >> 8;
+         dst[43] = src[43];
 
-         dst[44] = (uchB * dst[47]) >> 8;
-         dst[45] = (uchG * dst[47]) >> 8;
-         dst[46] = (uchR * dst[47]) >> 8;
+         dst[44] = (uchB * src[47]) >> 8;
+         dst[45] = (uchG * src[47]) >> 8;
+         dst[46] = (uchR * src[47]) >> 8;
+         dst[47] = src[47];
 
-         dst[48] = (uchB * dst[51]) >> 8;
-         dst[49] = (uchG * dst[51]) >> 8;
-         dst[50] = (uchR * dst[51]) >> 8;
+         dst[48] = (uchB * src[51]) >> 8;
+         dst[49] = (uchG * src[51]) >> 8;
+         dst[50] = (uchR * src[51]) >> 8;
+         dst[51] = src[51];
 
-         dst[52] = (uchB * dst[55]) >> 8;
-         dst[53] = (uchG * dst[55]) >> 8;
-         dst[54] = (uchR * dst[55]) >> 8;
+         dst[52] = (uchB * src[55]) >> 8;
+         dst[53] = (uchG * src[55]) >> 8;
+         dst[54] = (uchR * src[55]) >> 8;
+         dst[55] = src[55];
 
-         dst[56] = (uchB * dst[59]) >> 8;
-         dst[57] = (uchG * dst[59]) >> 8;
-         dst[58] = (uchR * dst[59]) >> 8;
+         dst[56] = (uchB * src[59]) >> 8;
+         dst[57] = (uchG * src[59]) >> 8;
+         dst[58] = (uchR * src[59]) >> 8;
+         dst[59] = src[59];
 
-         dst[60] = (uchB * dst[63]) >> 8;
-         dst[61] = (uchG * dst[63]) >> 8;
-         dst[62] = (uchR * dst[63]) >> 8;
+         dst[60] = (uchB * src[63]) >> 8;
+         dst[61] = (uchG * src[63]) >> 8;
+         dst[62] = (uchR * src[63]) >> 8;
+         dst[63] = src[63];
 
          dst += 4 * 16;
+         src += 4 * 16;
          size -= 16;
       }
       while (size > 0)
       {
          //dst[3] = dst[i];
-         dst[0] = (uchB * dst[3]) >> 8;
-         dst[1] = (uchG * dst[3]) >> 8;
-         dst[2] = (uchR * dst[3]) >> 8;
+         dst[0] = (uchB * src[3]) >> 8;
+         dst[1] = (uchG * src[3]) >> 8;
+         dst[2] = (uchR * src[3]) >> 8;
          dst += 4;
+         src += 4;
          size --;
       }
 

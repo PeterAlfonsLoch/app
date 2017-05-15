@@ -1145,7 +1145,7 @@ namespace user
          void frame::GetFrameRect(rect * prect)
          {
 
-            m_pworkset->GetWndDraw()->GetClientRect(prect);
+            m_pworkset->GetWndDraw()->::user::interaction::GetClientRect(prect);
 
          }
 

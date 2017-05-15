@@ -1,5 +1,16 @@
 #pragma once
 
+
+namespace draw2d
+{
+
+
+   class thread_tools;
+
+
+} // namespace draw2d
+
+
 class pred_holder_base :
    virtual public object
 {
@@ -85,7 +96,7 @@ public:
    };
 
    //::duration                             m_durationRunLock;
-
+   sp(::draw2d::thread_tools)             m_pdraw2dtools;
    user_interaction_ptr_array *           m_puiptra;
 
    single_lock *                          m_pslUser;

@@ -26,7 +26,7 @@ namespace user
    void interaction_impl::user_common_construct()
    {
 
-      m_dFps = 50.0;
+      m_dFps = 60.0;
       m_bIpcCopy = true;
       m_pmutex                               = new mutex(get_app());
       m_guieptraMouseHover.m_pmutex          = m_pmutex;
@@ -2305,7 +2305,7 @@ namespace user
 #define HARD_DEBUG 0
 
 
-   void interaction_impl::_001UpdateWindow(bool bUpdateBuffer)
+   void interaction_impl::_001UpdateBuffer()
    {
 
       m_pui->defer_check_layout();
@@ -2316,6 +2316,8 @@ namespace user
 
       if (m_spgraphics.is_null())
          return;
+
+      bool bUpdateBuffer = true;
 
       if (bUpdateBuffer)
       {
@@ -2401,11 +2403,114 @@ namespace user
 
       }
 
-      m_spgraphics->update_window();
+      //m_spgraphics->update_window();
 
    }
 
 
+   void interaction_impl::_001UpdateScreen()
+   {
+
+//      m_pui->defer_check_layout();
+//
+//      m_pui->defer_check_zorder();
+//
+//      update_graphics_resources();
+//
+//      if (m_spgraphics.is_null())
+//         return;
+//
+//      if (bUpdateBuffer)
+//      {
+//
+//         synch_lock sl(m_spgraphics->m_pmutex);
+//
+//         {
+//
+//            rect64 rectWindow;
+//
+//            m_pui->GetWindowRect(rectWindow);
+//
+//            ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
+//
+//            ::draw2d::savedc savedc(pgraphics);
+//
+//            if (pgraphics == NULL || pgraphics->get_os_data() == NULL)
+//            {
+//
+//               return;
+//
+//            }
+//
+//            if (m_pui->m_bMayProDevian)
+//            {
+//
+//               if (!pgraphics->is_valid_update_window_thread())
+//               {
+//
+//                  return;
+//
+//               }
+//
+//            }
+//
+//            rect r;
+//
+//            r = rectWindow;
+//
+//            r.offset(-r.top_left());
+//
+//            pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+//
+//            if (m_bComposite)
+//            {
+//
+//               pgraphics->FillSolidRect(r, ARGB(0, 0, 0, 0));
+//
+//            }
+//            else
+//            {
+//
+//               pgraphics->FillSolidRect(r, ARGB(255, 184, 184, 177));
+//
+//            }
+//
+//            //if(m_pui->IsWindowVisible())
+//            try
+//            {
+//
+//               _001Print(pgraphics);
+//
+//            }
+//            catch (...)
+//            {
+//
+//
+//            }
+//
+//#if HARD_DEBUG
+//
+//            ::draw2d::graphics_sp g(allocer());
+//
+//            g->debug();
+//
+//            m_size.cx = 0;
+//
+//            m_size.cy = 0;
+//
+//#endif
+//
+//         }
+//
+//      }
+//
+      if (m_spgraphics.is_set())
+      {
+         m_spgraphics->update_window();
+
+      }
+
+   }
 
 
 //   void interaction_impl::_001UpdateScreen(bool bUpdateBuffer)

@@ -2355,7 +2355,18 @@ namespace windows
 
       SCAST_PTR(::message::create, pcreate, pobj);
 
+      {
+         DEVMODE dm;
+         if (EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dm))
+         {
+            m_dFps = dm.dmDisplayFrequency;
+         }
+       
+      }
+
       Default();
+
+      int iFrame = 0;
 
       if(m_pui->is_message_only_window()
          || dynamic_cast < ::base::system_interaction_impl * >(m_pui) != NULL)
@@ -2372,9 +2383,27 @@ namespace windows
 
             m_pthreadUpdateWindow = ::fork(get_app(), [&]()
             {
+               ::multithreading::set_priority(::multithreading::priority_time_critical);
+               /* Declarations */
+               HANDLE timer;   /* Timer handle */
+               LARGE_INTEGER li = {};   /* Time defintion */
+                                   /* Create timer */
+               timer = CreateWaitableTimer(NULL, TRUE, NULL);
+               /* Set timer properties */
 
-
+               
                DWORD dwStart;
+
+               double dFps = m_dFps;
+
+               double dPeriod = (1000.0 / dFps);
+
+               dPeriod = MIN(MAX(1.0, dPeriod), 1000.0);
+
+               index iLastFrameId = ((double)get_tick_count() / dPeriod);
+               index iFrameId = -1;
+
+               uint32_array uiaFrame;
 
                while (::get_thread_run())
                {
@@ -2397,7 +2426,7 @@ namespace windows
                            || m_pui->check_need_layout())
                         {
                            sl.unlock();
-                           _001UpdateWindow();
+                           _001UpdateBuffer();
 
                            try
                            {
@@ -2417,7 +2446,7 @@ namespace windows
                         {
 
                            sl.unlock();
-                           _001UpdateWindow(false);
+                           _001UpdateBuffer();
 
                            m_pui->on_after_graphical_update();
 
@@ -2436,27 +2465,91 @@ namespace windows
 
                   DWORD dwOffset = dwTick - dwStart;
 
-                  double dFps = m_dFps;
+         
+                  double dPeriod = (1000.0 / dFps);
 
-                  if (dFps == 0.0)
+                  dPeriod = MIN(MAX(1.0, dPeriod), 1000.0);
+
+
+                  double dWait= dPeriod - fmod(get_tick_count(), dPeriod);
+                  iFrameId = ((double)get_tick_count() / dPeriod);
+                  ::count cLost = iFrameId - iLastFrameId - 1;
+                  if (cLost > 0)
                   {
+                     //output_debug_string("\nlost frames on update screen " + ::str::from(cLost));
+                  }
+                  else if (cLost < 0)
+                  {
+                     dWait = dPeriod;
+                  }
 
-                     dFps = 1.0;
+                  iLastFrameId = iFrameId;
+
+                  if (dWait > 1.0)
+                  {
+                     li.QuadPart = -(dWait * 1000.0 * 10.0);
+                     if (!SetWaitableTimer(timer, &li, 0, NULL, NULL, FALSE)) {
+                        Sleep(dWait);
+                     }
+                     else
+                     {
+                        /* Start & wait for timer */
+                        WaitForSingleObject(timer, INFINITE);
+
+                     }
+                     /* Clean resources */
+
 
                   }
 
-                  int iWait = (int) (1000.0 / dFps);
+                  //if (dwOffset < iWait)
+                  //{
 
-                  iWait = MIN(MAX(1, iWait), 1000);
+                     
 
-                  if (dwOffset < iWait)
+                  //}
+
+                  _001UpdateScreen();
+
                   {
 
-                     Sleep(iWait - dwOffset);
+                     DWORD dwNow = get_tick_count();
+
+                     uiaFrame.add(dwNow);
+                     iFrame++;
+
+                     //if (iFrame > 20)
+                     {
+
+                        iFrame = 0;
+
+                        for (index i = 0; i < uiaFrame.get_size(); i++)
+                        {
+
+                           if (dwNow - uiaFrame[i] >= 1000)
+                           {
+
+                              uiaFrame.remove_at(i);
+
+                           }
+                           else
+                           {
+
+                              i++;
+
+                           }
+
+                        }
+
+                     }
+                     m_dUpdateScreenFps = uiaFrame.get_size();
+                     //output_debug_string("\nactual current average ouput FPS = " + ::str::from(uiaFrame.get_size()));
+
 
                   }
 
                }
+               CloseHandle(timer);
 
                m_pthreadUpdateWindow.release();
 
