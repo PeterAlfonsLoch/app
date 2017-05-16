@@ -567,6 +567,20 @@ namespace datetime
 
 uint64_t g_firstNano;
 
+CLASS_DECL_AURA double millis_now()
+{
+
+   return (double)get_nanos() / (1000.0 * 1000.0);
+
+}
+
+CLASS_DECL_AURA double first_milli()
+{
+
+   return (double)get_first_nano() / (1000.0 * 1000.0);
+
+}
+
 
 CLASS_DECL_AURA DWORD get_tick_count()
 {

@@ -62,17 +62,29 @@ void window_buffer::update_window(::draw2d::dib * pdib)
 
    }
 
-   if(!m_spdibBuffer->create(m_pimpl->m_rectParentClientRequest.size()))
-   {
-
-      return NULL;
-
-   }
-
    if (m_cx != m_pimpl->m_rectParentClientRequest.size().cx || m_cy != m_pimpl->m_rectParentClientRequest.size().cy)
    {
 
       create_buffer(m_pimpl->m_rectParentClientRequest.size().cx, m_pimpl->m_rectParentClientRequest.size().cy, m_spdibBuffer->m_iScan);
+
+   }
+
+   if (m_spdibBuffer->host(m_pcolorref, m_iScan, abs(m_bitmapinfo.bmiHeader.biWidth), abs(m_bitmapinfo.bmiHeader.biHeight)))
+   {
+
+      m_bDibIsHostingBuffer = true;
+
+   }
+   else if(m_spdibBuffer->create(m_pimpl->m_rectParentClientRequest.size()))
+   {
+
+      m_bDibIsHostingBuffer = false;
+
+   }
+   else
+   {
+
+      return NULL;
 
    }
 

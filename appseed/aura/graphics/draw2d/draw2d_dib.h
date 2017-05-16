@@ -79,6 +79,7 @@ namespace draw2d
       point             m_pt;
       double            m_dFontFactor;
       e_alpha_mode      m_ealphamode;
+      bool              m_bOwn;
 
 
 
@@ -123,8 +124,12 @@ namespace draw2d
       virtual bool Blend(dib *pdib, dib * pdibA, int32_t A);
       virtual bool Blend(dib *pdib, dib * pdibA);
       virtual bool blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, ::draw2d::dib * pdibAlf, point ptDstAlf, class size size);
+      virtual bool precision_blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size);
+      virtual bool precision_blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size, byte bA);
       virtual bool blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size);
+      virtual bool blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size, byte bA);
       virtual bool fork_blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size);
+      virtual bool fork_blend(point ptDst, ::draw2d::dib * pdibAlf, point ptAlf, class size size, byte bA);
       virtual bool bitmap_blend(::draw2d::graphics * pgraphics, LPCRECT lprect);
       virtual bool color_blend(COLORREF cr, BYTE bAlpha);
       virtual void BitBlt(dib * pdib, int32_t op);
@@ -197,6 +202,7 @@ namespace draw2d
       using ::object::create;
       virtual bool create(class size);
       virtual bool create(int32_t iWidth, int32_t iHeight);
+      virtual bool host(COLORREF * pcolorref, int iScan, int32_t iWidth, int32_t iHeight);
       virtual bool create(::draw2d::graphics * pgraphics);
       virtual bool destroy();
 
@@ -218,6 +224,7 @@ namespace draw2d
       virtual bool from(::draw2d::graphics * pgraphics);
       virtual bool from(point ptDst, ::draw2d::graphics * pgraphics, point ptSrc, class size size);
       virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
+      virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size, byte bA);
       //virtual bool blend(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
       virtual bool from_ignore_alpha(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
 
@@ -363,6 +370,7 @@ namespace draw2d
          e_op m_eop;
          int m_scanSrc;
          int m_scanDst;
+         byte m_bA;
 
 
          thread(::aura::application * papp);

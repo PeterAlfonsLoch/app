@@ -8,7 +8,33 @@
 #include <stdio.h>
 #include "nanosvg.h"
 #include "nanosvgrast.h"
+inline byte clip_byte(int i)
+{
 
+   if (i > 255)
+   {
+      return 255;
+   }
+   else
+   {
+      return i;
+   }
+
+}
+
+inline byte clip_zero(int i)
+{
+
+   if (i < 0)
+   {
+      return 0;
+   }
+   else
+   {
+      return i;
+   }
+
+}
 
 
 /*
@@ -59,6 +85,7 @@ namespace draw2d
       m_iScan        = 0;
 //      m_iHeight      = -1;
       m_bMapped      = false;
+      m_bOwn         = true;
 
    }
 
@@ -170,6 +197,12 @@ namespace draw2d
 
    }
 
+   bool dib::host(COLORREF * pcolorref, int iScan, int32_t width, int32_t height)
+   {
+      // callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
+      return false;
+
+   }
 
    bool dib::dc_select(bool bSelect)
    {
@@ -409,7 +442,7 @@ namespace draw2d
 
    }
 
-   bool dib::blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
+   bool dib::from(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size, byte bA)
    {
 
       dib * pdibDst = this;
@@ -484,19 +517,10 @@ namespace draw2d
          for(int x = 0; x < xEnd; x++)
          {
 
-            //*pdst2 = *psrc2;
-
-            //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
-            //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
-            //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
-            //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-            int acomplement = 255 - psrc2[3];
-            pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
-            pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
-            pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
-            pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-
-
+            pdst2[0] = (psrc2[0] * bA) >> 8;
+            pdst2[1] = (psrc2[1] * bA) >> 8;
+            pdst2[2] = (psrc2[2] * bA) >> 8;
+            pdst2[3] = (psrc2[3] * bA) >> 8;
 
             pdst2+=4;
 
@@ -511,6 +535,334 @@ namespace draw2d
       return true;
 
    }
+
+
+   bool dib::blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
+   {
+
+      return blend(ptDst, pdibSrc, ptSrc, size, 255);
+
+   }
+
+
+   bool dib::blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size, byte bA)
+   {
+
+      dib * pdibDst = this;
+
+
+      pdibDst->map();
+
+      pdibSrc->map();
+
+      ptDst += m_pt;
+
+      if (ptSrc.x < 0)
+      {
+         ptDst.x -= ptSrc.x;
+         ptSrc.x = 0;
+      }
+
+      if (ptSrc.y < 0)
+      {
+         ptDst.y -= ptSrc.y;
+         ptSrc.y = 0;
+      }
+
+      if (ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if (size.cx < 0)
+         return true;
+
+      if (ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if (size.cy < 0)
+         return true;
+
+      int xEnd = MIN(size.cx, MIN(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+
+      int yEnd = MIN(size.cy, MIN(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+
+      if (xEnd < 0)
+         return false;
+
+      if (yEnd < 0)
+         return false;
+
+      int32_t scanDst = pdibDst->m_iScan;
+
+      int32_t scanSrc = pdibSrc->m_iScan;
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+
+      byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)];
+
+      byte * pdst2;
+
+      byte * psrc2;
+
+      if (bA == 0)
+      {
+
+      }
+      else if (bA == 255)
+      {
+
+         for (int y = 0; y < yEnd; y++)
+         {
+
+            pdst2 = &pdst[scanDst * y];
+
+            psrc2 = &psrc[scanSrc * y];
+
+            //memcpy(pdst2, psrc2, xEnd * 4);
+            for (int x = 0; x < xEnd; x++)
+            {
+
+               //*pdst2 = *psrc2;
+
+               //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+               byte acomplement = ~psrc2[3];
+               pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+               pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+               pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+               pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+
+
+
+               pdst2 += 4;
+
+               psrc2 += 4;
+
+            }
+            //pdst2 += xEnd;
+            //psrc2 += xEnd;
+
+         }
+      }
+      else
+      {
+         for (int y = 0; y < yEnd; y++)
+         {
+
+            pdst2 = &pdst[scanDst * y];
+
+            psrc2 = &psrc[scanSrc * y];
+
+            //memcpy(pdst2, psrc2, xEnd * 4);
+            for (int x = 0; x < xEnd; x++)
+            {
+
+               //*pdst2 = *psrc2;
+
+               //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+               //byte acomplement = (~psrc2[3] * bA) >> 8;
+               //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+               //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+               //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+               //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+               byte acomplement = (~psrc2[3] * bA) >> 8;
+               pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+               pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+               pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+               pdst2[3] = clip_byte(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+
+
+
+               pdst2 += 4;
+
+               psrc2 += 4;
+
+            }
+            //pdst2 += xEnd;
+            //psrc2 += xEnd;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   bool dib::precision_blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
+   {
+
+      return precision_blend(ptDst, pdibSrc, ptSrc, size, 255);
+
+   }
+
+
+   bool dib::precision_blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size, byte bA)
+   {
+
+      dib * pdibDst = this;
+
+
+      pdibDst->map();
+
+      pdibSrc->map();
+
+      ptDst += m_pt;
+
+      if (ptSrc.x < 0)
+      {
+         ptDst.x -= ptSrc.x;
+         ptSrc.x = 0;
+      }
+
+      if (ptSrc.y < 0)
+      {
+         ptDst.y -= ptSrc.y;
+         ptSrc.y = 0;
+      }
+
+      if (ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if (size.cx < 0)
+         return true;
+
+      if (ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if (size.cy < 0)
+         return true;
+
+      int xEnd = MIN(size.cx, MIN(pdibSrc->m_size.cx - ptSrc.x, pdibDst->m_size.cx - ptDst.x));
+
+      int yEnd = MIN(size.cy, MIN(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
+
+      if (xEnd < 0)
+         return false;
+
+      if (yEnd < 0)
+         return false;
+
+      int32_t scanDst = pdibDst->m_iScan;
+
+      int32_t scanSrc = pdibSrc->m_iScan;
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+
+      byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)];
+
+      byte * pdst2;
+
+      byte * psrc2;
+
+      if (bA == 0)
+      {
+
+      }
+      else if (bA == 255)
+      {
+
+         for (int y = 0; y < yEnd; y++)
+         {
+
+            pdst2 = &pdst[scanDst * y];
+
+            psrc2 = &psrc[scanSrc * y];
+
+            //memcpy(pdst2, psrc2, xEnd * 4);
+            for (int x = 0; x < xEnd; x++)
+            {
+
+               //*pdst2 = *psrc2;
+
+               //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+               byte acomplement = ~psrc2[3];
+               pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) / 255);
+               pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) / 255);
+               pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) / 255);
+               pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) / 255);
+
+
+
+               pdst2 += 4;
+
+               psrc2 += 4;
+
+            }
+            //pdst2 += xEnd;
+            //psrc2 += xEnd;
+
+         }
+      }
+      else
+      {
+         for (int y = 0; y < yEnd; y++)
+         {
+
+            pdst2 = &pdst[scanDst * y];
+
+            psrc2 = &psrc[scanSrc * y];
+
+            //memcpy(pdst2, psrc2, xEnd * 4);
+            for (int x = 0; x < xEnd; x++)
+            {
+
+               //*pdst2 = *psrc2;
+
+               //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+               //byte acomplement = (~psrc2[3] * bA) >> 8;
+               //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+               //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+               //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+               //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+               byte acomplement = (~psrc2[3] * bA) /255;
+               pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) / 255);
+               pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) / 255);
+               pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) / 255);
+               pdst2[3] = clip_byte(((psrc2[3] * bA) + (pdst2[3] * acomplement)) / 255);
+
+
+
+               pdst2 += 4;
+
+               psrc2 += 4;
+
+            }
+            //pdst2 += xEnd;
+            //psrc2 += xEnd;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
 
    thread_tools::thread::thread(::aura::application * papp) :
       object(papp),
@@ -534,110 +886,167 @@ namespace draw2d
          if (m_eop == op_blend)
          {
 
-            int y = m_y;
-            int yEnd = m_yEnd;
-            int x = m_x;
-            int xEnd = m_xEnd;
-            int xEnd1 = m_xEnd - 7;
-            int ySkip = m_ySkip;
-
-            byte * pdst = m_pdst2;
-            byte * psrc = m_psrc2;
-            byte * pdst2;
-            byte * psrc2;
-
-            int scanDst = m_scanDst;
-            int scanSrc = m_scanSrc;
-
-            for (; y < yEnd; y+=ySkip)
+            if (m_bA == 0)
             {
+            }
+            else if (m_bA == 255)
+            {
+               int y = m_y;
+               int yEnd = m_yEnd;
+               int x = m_x;
+               int xEnd = m_xEnd;
+               int xEnd1 = m_xEnd - 7;
+               int ySkip = m_ySkip;
 
-               pdst2 = &pdst[scanDst * y];
+               byte * pdst = m_pdst2;
+               byte * psrc = m_psrc2;
+               byte * pdst2;
+               byte * psrc2;
+               byte * pdst3;
+               byte * psrc3;
 
-               psrc2 = &psrc[scanSrc * y];
+               int scanDst = m_scanDst;
+               int scanSrc = m_scanSrc;
 
-               int x = 0;
-               //memcpy(pdst2, psrc2, xEnd * 4);
-               for (; x < xEnd1; x+=8)
+               for (; y < yEnd; y += ySkip)
                {
 
-               //   //*pdst2 = *psrc2;
-                  byte acomplement1 = ~psrc2[3];
-                  byte acomplement2 = ~psrc2[7];
-                  byte acomplement3 = ~psrc2[11];
-                  byte acomplement4 = ~psrc2[15];
-                  byte acomplement5 = ~psrc2[19];
-                  byte acomplement6 = ~psrc2[23];
-                  byte acomplement7 = ~psrc2[27];
-                  byte acomplement8 = ~psrc2[31];
+                  pdst2 = &pdst[scanDst * y];
 
-                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement1)) >> 8);
-                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement1)) >> 8);
-                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement1)) >> 8);
-                  pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement1)) >> 8);
+                  psrc2 = &psrc[scanSrc * y];
 
-                  pdst2[4] = psrc2[4] + ((pdst2[4] * (acomplement2)) >> 8);
-                  pdst2[5] = psrc2[5] + ((pdst2[5] * (acomplement2)) >> 8);
-                  pdst2[6] = psrc2[6] + ((pdst2[6] * (acomplement2)) >> 8);
-                  pdst2[7] = psrc2[7] + ((pdst2[7] * (acomplement2)) >> 8);
+                  pdst3 = pdst2;
 
-                  pdst2[8] = psrc2[8] + ((pdst2[8] * (acomplement3)) >> 8);
-                  pdst2[9] = psrc2[9] + ((pdst2[9] * (acomplement3)) >> 8);
-                  pdst2[10] = psrc2[10] + ((pdst2[10] * (acomplement3)) >> 8);
-                  pdst2[11] = psrc2[11] + ((pdst2[11] * (acomplement3)) >> 8);
+                  psrc3 = psrc2;
 
+                  int x = 0;
+                  int x1 = -1;
+                  for (; x < xEnd; x++)
+                  {
 
-                  pdst2[12] = psrc2[12] + ((pdst2[12] * (acomplement4)) >> 8);
-                  pdst2[13] = psrc2[13] + ((pdst2[13] * (acomplement4)) >> 8);
-                  pdst2[14] = psrc2[14] + ((pdst2[14] * (acomplement4)) >> 8);
-                  pdst2[15] = psrc2[15] + ((pdst2[15] * (acomplement4)) >> 8);
+                     byte bA2 = psrc2[3];
+                     if (bA2 == 0)
+                     {
+                        if (x1 >= 0)
+                        {
+                           memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x-x1) *sizeof(COLORREF));
+                           x1 = -1;
+                        }
+                     }
+                     else if (bA2 == 255)
+                     {
+                        if (x1 < 0)
+                        {
+                           x1 = x;
+                        }
+                        // dst <= src
+                     }
+                     else
+                     {
+                        if (pdst2[3] == 0)
+                        {
+                           if (x1 < 0)
+                           {
+                              x1 = x;
+                           }
+                           // dst <= src
+                        }
+                        else
+                        {
+                           if (x1 >= 0)
+                           {
+                              memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
+                              x1 = -1;
+                           }
+                           bA2 = (byte)~bA2;
+                           pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
+                           pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
+                           pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
+                           pdst2[3] = psrc2[3] + ((pdst2[3] * bA2) >> 8);
 
-                  pdst2[16] = psrc2[16] + ((pdst2[16] * (acomplement5)) >> 8);
-                  pdst2[17] = psrc2[17] + ((pdst2[17] * (acomplement5)) >> 8);
-                  pdst2[18] = psrc2[18] + ((pdst2[18] * (acomplement5)) >> 8);
-                  pdst2[19] = psrc2[19] + ((pdst2[19] * (acomplement5)) >> 8);
+                        }
 
-                  pdst2[20] = psrc2[20] + ((pdst2[20] * (acomplement6)) >> 8);
-                  pdst2[21] = psrc2[21] + ((pdst2[21] * (acomplement6)) >> 8);
-                  pdst2[22] = psrc2[22] + ((pdst2[22] * (acomplement6)) >> 8);
-                  pdst2[23] = psrc2[23] + ((pdst2[23] * (acomplement6)) >> 8);
+                     }
 
-                  pdst2[24] = psrc2[24] + ((pdst2[24] * (acomplement7)) >> 8);
-                  pdst2[25] = psrc2[25] + ((pdst2[25] * (acomplement7)) >> 8);
-                  pdst2[26] = psrc2[26] + ((pdst2[26] * (acomplement7)) >> 8);
-                  pdst2[27] = psrc2[27] + ((pdst2[27] * (acomplement7)) >> 8);
+                     pdst2 += 4;
 
+                     psrc2 += 4;
 
-                  pdst2[28] = psrc2[28] + ((pdst2[28] * (acomplement8)) >> 8);
-                  pdst2[29] = psrc2[29] + ((pdst2[29] * (acomplement8)) >> 8);
-                  pdst2[30] = psrc2[30] + ((pdst2[30] * (acomplement8)) >> 8);
-                  pdst2[31] = psrc2[31] + ((pdst2[31] * (acomplement8)) >> 8);
-
-
-                  pdst2 += 32;
-
-                  psrc2 += 32;
+                  }
+                  if (x1 >= 0)
+                  {
+                     memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
+                     x1 = -1;
+                  }
+                  //pdst2 += xEnd;
+                  //psrc2 += xEnd;
 
                }
-               for (;x < xEnd; x++)
+            }
+            else
+            {
+               byte bA = m_bA;
+               int y = m_y;
+               int yEnd = m_yEnd;
+               int x = m_x;
+               int xEnd = m_xEnd;
+               int xEnd1 = m_xEnd - 7;
+               int ySkip = m_ySkip;
+
+               byte * pdst = m_pdst2;
+               byte * psrc = m_psrc2;
+               byte * pdst2;
+               byte * psrc2;
+               byte * pdst3;
+               byte * psrc3;
+
+               int scanDst = m_scanDst;
+               int scanSrc = m_scanSrc;
+
+               for (; y < yEnd; y += ySkip)
                {
 
-                  //*pdst2 = *psrc2;
-                  byte acomplement = 255 - psrc2[3];
-                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
-                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
-                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
-                  pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+                  pdst2 = &pdst[scanDst * y];
 
+                  psrc2 = &psrc[scanSrc * y];
 
+                  pdst3 = pdst2;
 
-                  pdst2 += 4;
+                  psrc3 = psrc2;
 
-                  psrc2 += 4;
+                  int x = 0;
+                  for (; x < xEnd; x++)
+                  {
+
+                     byte bA2 = psrc2[3];
+                     if (bA2 == 0)
+                     {
+                     }
+                     else if (pdst2[3] == 0)
+                     {
+                        pdst2[0] = (psrc2[0] * bA) >> 8;
+                        pdst2[1] = (psrc2[1] * bA) >> 8;
+                        pdst2[2] = (psrc2[2] * bA) >> 8;
+                        pdst2[3] = (psrc2[3] * bA) >> 8;
+                     }
+                     else
+                     {
+                        
+                        byte bA3 = ((uint16_t)~((uint16_t)bA2 * (uint16_t)bA)) >> 8;
+                        pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
+                        pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
+                        pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;
+                        pdst2[3] = (psrc2[3] * bA + pdst2[3] * bA3) >> 8;
+
+                     }
+
+                     pdst2 += 4;
+
+                     psrc2 += 4;
+
+                  }
 
                }
-               //pdst2 += xEnd;
-               //psrc2 += xEnd;
 
             }
 
@@ -652,8 +1061,25 @@ namespace draw2d
 
    }
 
+   
    bool dib::fork_blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
    {
+      
+      return fork_blend(ptDst, pdibSrc, ptSrc, size, 255);
+
+   }
+
+
+   bool dib::fork_blend(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size, byte bA)
+   {
+
+      if (bA == 0)
+      {
+
+
+         return true;
+
+      }
 
       dib * pdibDst = this;
 
@@ -719,7 +1145,7 @@ namespace draw2d
       if (::get_thread() == NULL)
       {
 
-         return blend(ptDst, pdibSrc, ptSrc, size);
+         return blend(ptDst, pdibSrc, ptSrc, size, bA);
 
       }
 
@@ -748,7 +1174,7 @@ namespace draw2d
       if (ptools->m_threada.is_empty())
       {
 
-         return blend(ptDst, pdibSrc, ptSrc, size);
+         return blend(ptDst, pdibSrc, ptSrc, size, bA);
 
       }
 
@@ -778,6 +1204,7 @@ namespace draw2d
             p->m_yEnd = yEnd;
             y++;
          }
+         p->m_bA = bA;
          p->m_x = 0;
          p->m_xEnd = xEnd;
          p->m_pdst2 = pdst;

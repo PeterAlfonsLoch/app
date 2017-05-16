@@ -2364,7 +2364,18 @@ namespace user
             if (m_bComposite)
             {
 
-               pgraphics->FillSolidRect(r, ARGB(0, 0, 0, 0));
+               if (pgraphics->m_pdib != NULL)
+               {
+
+                  pgraphics->m_pdib->Fill(0);
+
+               }
+               else
+               {
+
+                  pgraphics->FillSolidRect(r, ARGB(0, 0, 0, 0));
+
+               }
 
             }
             else

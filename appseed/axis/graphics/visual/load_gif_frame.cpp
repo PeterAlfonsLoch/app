@@ -26,7 +26,7 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
    COLORREF crBack = 0;
 
-   if (uFrameIndex <= 0)
+   if (uFrameIndex <= 0 && transparentIndex >= 0)
    {
 
       detect_8bit_borders(pdibCompose, pdiba, pointer, uFrameIndex, ba, iScan, cra, transparentIndex);
@@ -234,7 +234,7 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
       }
 
-      pdibCompose->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+      //pdibCompose->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       ::point pt = pointer->m_rect.top_left();
 
@@ -247,7 +247,7 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
       }
 
-      pdibCompose->get_graphics()->BitBlt(pt, sz, pointer->m_dib->get_graphics());
+      pdibCompose->precision_blend(pt, pointer->m_dib, ::null_point(), sz);
 
       pointer->m_dib->from(pdibCompose);
 
@@ -333,17 +333,24 @@ bool gif_draw_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 // ANDROID -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
 #if defined(__APPLE__) || defined(ANDROID)
          
-         //byte bR = argb_get_r_value(cr);
-         //byte bG = argb_get_g_value(cr);
-         //byte bB = argb_get_b_value(cr);
+         byte bR = argb_get_r_value(cr);
+         byte bG = argb_get_g_value(cr);
+         byte bB = argb_get_b_value(cr);
 
          //pointer->m_dib->m_pcolorref[y*w + x] = ARGB(bA, bB, bG, bR);
 
          pointer->m_dib->m_pcolorref[y*w + x] = ((cr << 16) & 0xff0000) | ((cr >> 16) & 0xff) | (cr & 0xff00ff00);
          
 #else
-         
-         pointer->m_dib->m_pcolorref[y*w + x] = cr;
+         byte bR = argb_get_r_value(cr);
+         byte bG = argb_get_g_value(cr);
+         byte bB = argb_get_b_value(cr);
+         if (bA != 255)
+         {
+
+            output_debug_string("test255");
+         }
+         pointer->m_dib->m_pcolorref[y*w + x] = ARGB(bA, bA * bR / 255, bA * bG / 255, bA * bB / 255);
          
 #endif
 

@@ -7,14 +7,12 @@
 class CLASS_DECL_BASE window_gdi :
    virtual public window_buffer
 {
-   COLORREF *                    m_pcolorref;
    HBITMAP                       m_hbitmap;
    HDC                           m_hdc;
 public:
 
 
    HBITMAP                       m_hbitmapOld;
-   BITMAPINFO                    m_bitmapinfo;
    HDC                           m_hdcScreen;
    bool                          m_bOwnDC;
    HANDLE                        m_hmutex;

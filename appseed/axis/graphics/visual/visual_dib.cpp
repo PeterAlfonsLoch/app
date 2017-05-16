@@ -71,7 +71,15 @@ namespace visual
 
    dib_sp::~dib_sp()
    {
+      if (m_sparray.is_set())
+      {
 
+         if (m_sparray->pred_find_first([&](auto & i) { return i->m_dib.m_p == m_p; }) >= 0)
+         {
+            m_p = NULL;
+         }
+
+      }
    }
 
 
@@ -437,7 +445,7 @@ namespace visual
 
             m_sparray->m_iLastFrame = iCurrentFrame;
 
-            m_p->from(m_sparray->element_at(iCurrentFrame)->m_dib);
+            m_p = m_sparray->element_at(iCurrentFrame)->m_dib.m_p;
 
          }
 

@@ -268,6 +268,8 @@ void window_gdi::create_buffer(int64_t cxParam, int64_t cyParam, int iStridePara
 
    int iStride = (int) (cxParam * 4);
 
+   m_iScan = iStride;
+
    m_bitmapinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
    m_bitmapinfo.bmiHeader.biWidth = (LONG)cxParam;
    m_bitmapinfo.bmiHeader.biHeight = (LONG)-cyParam;
@@ -381,15 +383,18 @@ void window_gdi::update_window(::draw2d::dib * pdib)
 
    bool bLayered = (::GetWindowLong(m_pimpl->m_oswindow,GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
-   try
+   if (!m_bDibIsHostingBuffer)
    {
+      try
+      {
 
-      ::draw2d::copy_colorref(cx,cy,m_pcolorref,m_iScan,pdib->get_data(),pdib->m_iScan);
+         ::draw2d::copy_colorref(cx, cy, m_pcolorref, m_iScan, pdib->get_data(), pdib->m_iScan);
 
-   }
-   catch(...)
-   {
+      }
+      catch (...)
+      {
 
+      }
    }
 
    bool bSetWindowPos = false;

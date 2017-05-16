@@ -9,10 +9,13 @@ class CLASS_DECL_BASE window_buffer :
    virtual public window_graphics
 {
 protected:
+   int                           m_iScan;
+   COLORREF *                    m_pcolorref;
+   BITMAPINFO                    m_bitmapinfo;
    ::visual::dib_sp              m_spdibBuffer;
 public:
 
-
+   bool                          m_bDibIsHostingBuffer;
    HANDLE                        m_hMapFile;
    LPCTSTR                       m_pBuf;
    oswindow                      m_hwnd;
