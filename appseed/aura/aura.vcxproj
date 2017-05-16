@@ -988,6 +988,10 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Default</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Default</BasicRuntimeChecks>
     </ClCompile>
+    <ClCompile Include="multithreading\multithreading_tools.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="net\ftp\ftp_client_socket.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
@@ -3250,6 +3254,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h" />
     <ClInclude Include="multithreading\multithreading_synch_ptr_array.h" />
     <ClInclude Include="multithreading\multithreading_thread_impl.h" />
+    <ClInclude Include="multithreading\multithreading_tools.h" />
     <ClInclude Include="multithreading\service\service_plain_service.h" />
     <ClInclude Include="multithreading\service\service_thread_pool.h" />
     <ClInclude Include="net\ftp\ftp.h" />

@@ -1,14 +1,9 @@
 #pragma once
 
 
-namespace draw2d
-{
-
-
-   class thread_tools;
-
-
-} // namespace draw2d
+class tool_thread;
+class thread_tool;
+class thread_tools;
 
 
 class pred_holder_base :
@@ -16,12 +11,15 @@ class pred_holder_base :
 {
 public:
 
-   sp(object) m_pholdref;
+   ::tool_thread *      m_ptoolthread;
+   sp(object)           m_pholdref;
 
    pred_holder_base(::aura::application * papp, sp(object) pholdref = NULL) :
       object(papp),
       m_pholdref(pholdref)
    {
+      
+      m_ptoolthread = NULL;
 
    }
 
@@ -81,6 +79,17 @@ private:
 public:
 
    static mutex *                         s_pmutexDependencies;
+
+   enum e_op
+   {
+
+      op_none,
+      op_tool,
+      op_pred,
+      op_fork_count,
+
+   };
+
    
    class CLASS_DECL_AURA file_info :
       virtual public object
@@ -96,7 +105,7 @@ public:
    };
 
    //::duration                             m_durationRunLock;
-   sp(::draw2d::thread_tools)             m_pdraw2dtools;
+   sp(::thread_tools)                     m_ptools;
    user_interaction_ptr_array *           m_puiptra;
 
    single_lock *                          m_pslUser;

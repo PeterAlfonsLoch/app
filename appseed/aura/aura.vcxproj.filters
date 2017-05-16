@@ -2798,6 +2798,9 @@
     <ClInclude Include="graphics\graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\multithreading_tools.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4806,6 +4809,9 @@
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_tools.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

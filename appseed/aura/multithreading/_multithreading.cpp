@@ -40,3 +40,9 @@
 //2015-01-03  18:38                 0 _multithreading.cpp"
 //              27 arquivo(s)        135.554 bytes
 //               0 pasta(s)   36.897.304.576 bytes dispon¡veis
+
+
+
+#include "multithreading_tools.cpp"
+
+

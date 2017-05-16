@@ -340,49 +340,37 @@ namespace draw2d
 
    using dib_sp = sp(dib);
 
-
-   class thread_tools :
-      virtual public ::object
+   class thread_tool :
+      virtual public ::thread_tool
    {
    public:
 
-      class thread :
-         virtual public ::thread
+      enum e_op
       {
-      public:
 
-         enum e_op
-         {
-
-            op_blend,
-
-         };
-
-         manual_reset_event m_evStart;
-         manual_reset_event m_evReady;
-         int m_ySkip;
-         int m_y;
-         int m_yEnd;
-         int m_x;
-         int m_xEnd;
-         byte * m_pdst2;
-         byte * m_psrc2;
-         e_op m_eop;
-         int m_scanSrc;
-         int m_scanDst;
-         byte m_bA;
-
-
-         thread(::aura::application * papp);
-         int run();
-
+         op_blend,
 
       };
 
-      spa(thread)       m_threada;
-      sync_object_ptra  m_synca;
+      int m_ySkip;
+      int m_y;
+      int m_yEnd;
+      int m_x;
+      int m_xEnd;
+      byte * m_pdst2;
+      byte * m_psrc2;
+      e_op m_eop;
+      int m_scanSrc;
+      int m_scanDst;
+      byte m_bA;
+
+
+      thread_tool(::aura::application * papp);
+
+      virtual void run() override;
 
    };
+
 
 } // namespace draw2d
 

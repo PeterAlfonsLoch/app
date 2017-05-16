@@ -69,6 +69,9 @@ template < typename PRED >
 
 
 
+
+
+
 template < typename PRED >
 ::thread * fork(::aura::application * papp, PRED pred)
 {
@@ -125,6 +128,40 @@ inline void fork_release(::aura::application * papp, sp(T) & t)
 }
 
 CLASS_DECL_AURA DWORD_PTR translate_processor_affinity(int i);
+
+
+
+template < typename PRED >
+class forking_count_pred :
+   virtual public pred_holder_base
+{
+
+   PRED m_pred;
+   index m_iOrder;
+   index m_iIndex;
+   index m_iScan;
+   ::count m_cCount;
+
+   
+   forking_count_pred(::aura::application * papp, index iOrder, index iIndex, ::count iScan, ::count cCount) :
+      ::object(papp)
+   {
+      m_iOrder = iOrder;
+      m_iIndex = iIndex;
+      m_iScan = iScan;
+      m_cCount = cCount;
+
+   }
+
+   virtual void run()
+   {
+   
+      m_pred(m_iOrder, m_iIndex, m_cCount, m_iScan);
+   
+   }
+
+};
+
 
 template < typename PRED >
 class forking_count_thread :
@@ -217,101 +254,71 @@ template < typename PRED >
 
 
 
-template < typename PRED >
-class forking_count_thread_end :
-   virtual public forking_count_thread < PRED >
-{
-public:
+//template < typename PRED >
+//class forking_count_thread_end :
+//   virtual public forking_count_thread < PRED >
+//{
+//public:
+//
+//   manual_reset_event m_evEnd;
+//
+//   forking_count_thread_end(::aura::application * papp, sp(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+//      object(papp),
+//      thread(papp),
+//      forking_count_thread<PRED>(papp, pholdref, iOrder, iIndex, iScan, iCount, pred),
+//      m_evEnd(papp)
+//   {
+//      construct();
+//   }
+//
+//   forking_count_thread_end(::aura::application * papp, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+//      object(papp),
+//      thread(papp),
+//      forking_count_thread<PRED>(papp, iOrder, iIndex, iScan, iCount, pred),
+//      m_evEnd(papp)
+//   {
+//      construct();
+//   }
+//
+//   void construct()
+//   {
+//
+//      m_evEnd.ResetEvent();
+//
+//      forking_count_thread<PRED>::construct();
+//
+//   }
+//
+//   virtual ~forking_count_thread_end()
+//   {
+//
+//   }
+//
+//   int32_t run()
+//   {
+//
+//      try
+//      {
+//
+//         m_pred(this->m_iOrder, this->m_iIndex, this->m_iCount, this->m_iScan);
+//
+//      }
+//      catch (...)
+//      {
+//
+//
+//      }
+//
+//      m_evEnd.SetEvent();
+//
+//      return 0;
+//
+//   }
+//
+//};
 
-   manual_reset_event m_evEnd;
-
-   forking_count_thread_end(::aura::application * papp, sp(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
-      object(papp),
-      thread(papp),
-      forking_count_thread<PRED>(papp, pholdref, iOrder, iIndex, iScan, iCount, pred),
-      m_evEnd(papp)
-   {
-      construct();
-   }
-
-   forking_count_thread_end(::aura::application * papp, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
-      object(papp),
-      thread(papp),
-      forking_count_thread<PRED>(papp, iOrder, iIndex, iScan, iCount, pred),
-      m_evEnd(papp)
-   {
-      construct();
-   }
-
-   void construct()
-   {
-
-      m_evEnd.ResetEvent();
-
-      forking_count_thread<PRED>::construct();
-
-   }
-
-   virtual ~forking_count_thread_end()
-   {
-
-   }
-
-   int32_t run()
-   {
-
-      try
-      {
-
-         m_pred(this->m_iOrder, this->m_iIndex, this->m_iCount, this->m_iScan);
-
-      }
-      catch (...)
-      {
 
 
-      }
-
-      m_evEnd.SetEvent();
-
-      return 0;
-
-   }
-
-};
-
-template < typename PRED, typename PRED_END >
-::count fork_count_end(::aura::application * papp, ::count iCount, PRED pred, PRED_END predEnd, index iStart = 0)
-{
-
-   ::count iScan = MAX(1, MIN(iCount - iStart, get_current_process_affinity_order()));
-
-   spa(forking_count_thread_end < PRED >) threadptra;
-
-   sync_object_ptra ptra;
-
-   for (index iOrder = 0; iOrder < iScan; iOrder++)
-   {
-
-      sp(forking_count_thread_end < PRED >) pthread = new forking_count_thread_end < PRED >(papp, iOrder, iOrder + iStart, iScan, iCount, pred);
-
-      threadptra.add(pthread);
-
-      ptra.add(&pthread->m_evEnd);
-
-      pthread->begin();
-
-   }
-
-   multi_lock ml(ptra);
-
-   ml.lock();
-
-   predEnd();
-
-   return iScan;
-
-}
 
 
 

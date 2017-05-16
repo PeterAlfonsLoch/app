@@ -74,6 +74,65 @@ multi_lock::multi_lock(const sync_object_ptra & syncobjectptra,bool bInitialLock
 }
 
 
+multi_lock::multi_lock(int iCount, const sync_object_ptra & syncobjectptra, bool bInitialLock)
+{
+
+   ASSERT(syncobjectptra.get_count() > 0 && iCount > 0 && iCount <= syncobjectptra.get_count() && iCount <= MAXIMUM_WAIT_OBJECTS);
+
+   if (syncobjectptra.get_count() <= 0 || iCount <= 0 || iCount > syncobjectptra.get_count())
+   {
+
+      throw invalid_argument_exception(::get_thread_app());
+
+   }
+
+   m_syncobjectptra.set_size(iCount);
+
+   for (index i = 0; i < iCount; i++)
+   {
+
+      m_syncobjectptra[i] = syncobjectptra[i];
+
+   }
+
+   M_OBJECTA.allocate(m_syncobjectptra.get_count());
+
+   m_baLocked.allocate(m_syncobjectptra.get_count());
+
+   for (index i = 0; i < m_syncobjectptra.get_count(); i++)
+   {
+
+      if (m_syncobjectptra[i] == NULL)
+      {
+
+         throw invalid_argument_exception(::get_thread_app());
+
+      }
+
+#ifdef WINDOWS
+
+      m_handlea[i] = (HANDLE)m_syncobjectptra[i]->get_os_data();
+
+#else
+
+      M_OBJECTA[i] = m_syncobjectptra[i];
+
+#endif
+
+      m_baLocked[i] = FALSE;
+
+   }
+
+   if (bInitialLock)
+   {
+
+      lock();
+
+   }
+
+}
+
+
 multi_lock::~multi_lock()
 {
 

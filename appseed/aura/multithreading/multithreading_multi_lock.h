@@ -24,6 +24,7 @@ public:
 
    multi_lock(std::initializer_list < sync_object * > list,bool bInitialLock = FALSE);
    multi_lock(const sync_object_ptra & syncobjectptra,bool bInitialLock = FALSE);
+   multi_lock(int iCount, const sync_object_ptra & syncobjectptra, bool bInitialLock = FALSE);
    ~multi_lock();
 
    void construct(const sync_object_ptra & syncobjectptra,bool bInitialLock = FALSE);
