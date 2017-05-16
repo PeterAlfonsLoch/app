@@ -697,9 +697,8 @@ Restart:
    bool interaction_base::_001IsPointInside(point64 pt)
    {
 
-      ::exception::throw_interface_only(get_app());
-
-      return false;
+      
+      return _001IsPointInside(point(pt));
 
    }
 
