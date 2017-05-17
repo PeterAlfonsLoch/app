@@ -27,7 +27,7 @@ namespace user
    {
 
       m_dFps = 60.0;
-      m_bIpcCopy = true;
+      m_bIpcCopy = false;
       m_pmutex                               = new mutex(get_app());
       m_guieptraMouseHover.m_pmutex          = m_pmutex;
       m_bScreenRelativeMouseMessagePosition  = true;
