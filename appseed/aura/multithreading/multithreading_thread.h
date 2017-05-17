@@ -4,9 +4,11 @@
 class tool_thread;
 class thread_tool;
 class thread_tools;
+class thread_toolset;
+//class pred_set;
 
 
-class pred_holder_base :
+class CLASS_DECL_AURA pred_holder_base :
    virtual public object
 {
 public:
@@ -90,6 +92,13 @@ public:
 
    };
 
+   enum e_tool
+   {
+
+      tool_draw2d,
+
+   };
+
    
    class CLASS_DECL_AURA file_info :
       virtual public object
@@ -166,7 +175,7 @@ public:
 
    sp(::command_thread)                      m_pcommandthread;
    DWORD_PTR                                 m_dwThreadAffinityMask;
-   
+   spa(::thread_toolset)                     m_toolset;
 
 
 
@@ -176,6 +185,9 @@ public:
    thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam);
    virtual ~thread();
 
+
+   thread_tools & tools();
+   thread_toolset & toolset(e_tool etool);
 
    // file related stuff
    file_info * get_file_info();

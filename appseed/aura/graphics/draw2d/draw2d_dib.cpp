@@ -735,6 +735,7 @@ namespace draw2d
       if (ptDst.x < 0)
       {
          size.cx += ptDst.x;
+         ptSrc.x += ptDst.x;
          ptDst.x = 0;
       }
 
@@ -744,6 +745,7 @@ namespace draw2d
       if (ptDst.y < 0)
       {
          size.cy += ptDst.y;
+         ptSrc.y += ptDst.y;
          ptDst.y = 0;
       }
 
@@ -865,11 +867,6 @@ namespace draw2d
 
 
 
-   thread_tool::thread_tool(::aura::application * papp) :
-      object(papp)
-   {
-
-   }
    void thread_tool::run()
    {
 
@@ -1126,17 +1123,10 @@ namespace draw2d
 
       //byte * psrc2;
 
-      if (::get_thread() == NULL)
-      {
 
-         return blend(ptDst, pdibSrc, ptSrc, size, bA);
+      auto set = ::get_thread_toolset(::thread::tool_draw2d);
 
-      }
-
-
-      sp(::thread_tools) & ptools = ::thread_tools::get();
-
-      if (ptools.is_null() || ptools->m_threada.is_empty())
+      if (set.nok())
       {
 
          return blend(ptDst, pdibSrc, ptSrc, size, bA);
@@ -1145,12 +1135,10 @@ namespace draw2d
 
       int y = 0;
       
-      ptools->prepare(::thread_tools::op_pred, yEnd);
+      set.prepare(yEnd);
 
-      for (index i = 0; i < ptools->m_threada.get_size(); i++)
+      for(sp(::draw2d::thread_tool) ptool : set)
       {
-
-         sp(thread_tool) ptool = canew(thread_tool(get_app()));
 
          ptool->m_eop = thread_tool::op_blend;
 
@@ -1161,7 +1149,7 @@ namespace draw2d
 
             ptool->m_y = y;
 
-            y += iSpan;
+            y += set.get_span();
 
             ptool->m_yEnd = MIN(yEnd, y);
 
@@ -1169,7 +1157,7 @@ namespace draw2d
          else
          {
             
-            ptool->m_ySkip = ptools->m_threada.get_size();
+            ptool->m_ySkip = set.get_count();
 
             ptool->m_y = y;
 
@@ -1193,11 +1181,9 @@ namespace draw2d
 
          ptool->m_scanDst = scanDst;
 
-         ptools->add_tool(ptool);
-
       }
 
-      ptools->execute();
+      set();
 
       return true;
 

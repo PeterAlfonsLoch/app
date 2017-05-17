@@ -365,7 +365,6 @@ namespace draw2d
       byte m_bA;
 
 
-      thread_tool(::aura::application * papp);
 
       virtual void run() override;
 

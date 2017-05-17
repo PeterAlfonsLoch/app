@@ -1,75 +1,54 @@
 
-
-thread_tools::thread::thread(::aura::application * papp) :
-   object(papp),
-   ::thread(papp),
-   m_evStart(papp),
-   m_evReady(papp)
+thread_tools::thread_tools(::aura::application * papp) :
+   ::object(papp)
 {
-   m_iIndex = 0;
-   m_evStart.ResetEvent();
-   m_evReady.ResetEvent();
-}
+   
+   m_cCount                         = 0;
+   m_cIteration                     = 0;
+   m_cSpan                          = 0;
 
+   int cOrder = get_current_process_affinity_order();
 
-
-sp(thread_tools) & thread_tools::get()
-{
-
-   sp(thread_tools) & ptools = ::get_thread()->m_ptools;
-
-   if (ptools.is_null())
+   while (m_threada.get_size() < cOrder)
    {
 
-      ptools = new thread_tools;
+      ::tool_thread * ptoolthread = canew(::tool_thread(this));
 
-      while (ptools->m_threada.get_size() < get_processor_count())
-      {
+      m_synca.add(&ptoolthread->m_evReady);
 
-         thread_tools::thread * p = new thread_tools::thread(::get_thread_app());
+      ptoolthread->m_iThread = m_threada.get_count();
 
-         ptools->m_synca.add(&p->m_evReady);
+      ptoolthread->m_dwThreadAffinityMask = translate_processor_affinity(ptoolthread->m_iThread);
 
-         ptools->m_threada.add(p);
+      m_threada.add(ptoolthread);
 
-         p->begin();
-
-      }
+      ptoolthread->begin(::multithreading::priority_time_critical);
 
    }
 
-   return ptools;
 
 }
 
 
-::count thread_tools::get_count()
+thread_tools::~thread_tools()
 {
 
-   return m_threada.get_count();
 
 }
 
-bool thread_tools::is_full()
-{
 
-   return m_cCount >= m_thread_get_count();
 
-}
-
-void thread_tools::prepare(e_op eop, ::count cIteration)
+bool thread_tools::prepare(::thread::e_op eop, ::count cIteration)
 {
 
    for (auto & pthread : m_threada)
    {
 
-      p->m_evStart.ResetEvent();
-
-      p->m_evReady.ResetEvent();
+      pthread->reset();
 
    }
 
-   m_cCount = 0;
+   m_cCount = MIN(m_threada.get_count(), cIteration);
 
    m_eop = eop;
 
@@ -77,13 +56,27 @@ void thread_tools::prepare(e_op eop, ::count cIteration)
 
    m_cSpan = MAX(1, cIteration / get_count());
 
+   return true;
+
 }
 
 
-bool thread_tools::add_tool(::thread_tool * ptool)
+//bool thread_toolset::add_tool(::thread_tool * ptool)
+//{
+//
+//   add(ptool);
+//
+//   ptool->m_ptoolset = this;
+//
+//   return true;
+//
+//}
+
+
+bool thread_tools::add_pred(::pred_holder_base * ppred)
 {
 
-   ASSERT(m_eop == op_tool && !is_full());
+   ASSERT((m_eop == ::thread::op_pred || m_eop == ::thread::op_fork_count) && !is_full());
 
    if (is_full())
    {
@@ -92,7 +85,7 @@ bool thread_tools::add_tool(::thread_tool * ptool)
 
    }
 
-   m_threada[m_cCount]->m_ptool = ptool;
+   m_threada[m_cCount]->set_pred(ppred);
 
    m_cCount++;
 
@@ -101,28 +94,7 @@ bool thread_tools::add_tool(::thread_tool * ptool)
 }
 
 
-bool thread_tools::add_pred(::pred_holder_base * pbase)
-{
-
-   ASSERT((m_eop == op_pred || m_eop == op_fork_count) && !is_full());
-
-   if (is_full())
-   {
-
-      return false;
-
-   }
-
-   m_threada[m_cCount]->m_ppred = pbase;
-
-   m_cCount++;
-
-   return true;
-
-}
-
-
-void thread_tools::execute()
+bool thread_tools::start()
 {
 
    ASSERT(m_cCount > 0);
@@ -130,20 +102,50 @@ void thread_tools::execute()
    if (m_cCount <= 0)
    {
 
-      return;
+      return false;
 
    }
 
-   m_cSpan = cIteration / m_cCount;
+   m_cSpan = m_cIteration / m_cCount;
 
    for (index i = 0; i < m_cCount; i++)
    {
 
-      m_threada[i]->m_evStart.SetEvent();
+      m_threada[i]->start();
 
    }
 
-   multi_lock ml(m_cCount, m_synca, true);
+   return true;
+
+}
+
+
+bool thread_tools::wait()
+{
+
+   multi_lock ml(m_cCount, m_synca);
+
+   return ml.lock().succeeded();
+
+}
+
+
+bool thread_tools::operator()()
+{
+
+   start();
+   wait();
+
+   return true;
+
+}
+
+bool thread_tools::select_toolset(thread_toolset * pset)
+{
+
+   m_ptoolset = pset;
+
+   return true;
 
 }
 
@@ -152,26 +154,97 @@ void thread_tools::execute()
 
 
 
-int thread_tools::thread::run()
+
+
+
+
+
+tool_thread::tool_thread(::thread_tools * ptools) :
+   object(ptools->get_app()),
+   ::thread(ptools->get_app()),
+   m_evStart(ptools->get_app()),
+   m_evReady(ptools->get_app()),
+   m_ptools(ptools)
 {
-   
-   ::multithreading::set_priority(::multithreading::priority_time_critical);
+
+   m_iIndex = 0;
+   m_evStart.ResetEvent();
+   m_evReady.ResetEvent();
+
+}
+
+
+//bool tool_thread::set_tool(::thread_tool * ptool)
+//{
+//
+//   try
+//   {
+//      
+//      ptool->m_pthreadtool = this;
+//      
+//      m_ptool = ptool;
+//
+//      return true;
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   return false;
+//
+//
+//}
+
+
+bool tool_thread::set_pred(::pred_holder_base * ppred)
+{
+
+   try
+   {
+
+      ppred->m_ptoolthread = this;
+
+      m_ppred = ppred;
+
+      return true;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return false;
+
+}
+
+
+
+
+
+
+int tool_thread::run()
+{
 
    while (true)
    {
+
       m_evStart.wait();
+
       m_evStart.ResetEvent();
 
-      if (m_eop == op_pred || m_eop == op_fork_count)
+      if (m_ptools->m_eop == ::thread::op_pred || m_ptools->m_eop == ::thread::op_fork_count)
       {
 
-         m_ppredholder->run();
+         m_ppred->run();
 
       }
-      else if (m_eop == op_tool)
+      else if (m_ptools->m_eop == ::thread::op_tool)
       {
 
-         m_ptool->run();
+         m_ptools->m_ptoolset->element_at(m_iThread)->run();
 
       }
 
@@ -184,6 +257,95 @@ int thread_tools::thread::run()
 }
 
 
+void tool_thread::reset()
+{
+
+   m_evStart.ResetEvent();
+
+   m_evReady.ResetEvent();
+
+}
+
+
+void tool_thread::start()
+{
+
+   m_evStart.SetEvent();
+
+}
 
 
 
+CLASS_DECL_AURA ::thread_tools & get_thread_tools()
+{
+
+   return  ::get_thread()->tools();
+
+}
+
+
+CLASS_DECL_AURA ::thread_toolset & get_thread_toolset(::thread::e_tool etool)
+{
+
+   return ::get_thread()->toolset(etool);
+
+}
+
+
+
+thread_toolset::thread_toolset(::thread_tools * ptools) :
+   object(ptools->get_app()),
+   m_pthreadtools(ptools)
+{
+
+
+}
+
+bool thread_toolset::add_tool(::thread_tool * ptool)
+{
+
+   ptool->m_ptoolset = this;
+
+   add(ptool);
+
+   return true;
+
+}
+
+bool thread_toolset::prepare(::count cIteration)
+{
+
+   if (!m_pthreadtools->prepare(::thread::op_tool, cIteration))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+//pred_set::pred_set(::thread_tools * ptools) :
+//   object(ptools->get_app()),
+//   m_pthreadtools(ptools)
+//{
+//
+//
+//}
+//
+//bool pred_set::add_pred(::pred_holder_base * ppred)
+//{
+//
+//   ppred->m_pset = this;
+//
+//   add(ppred);
+//
+//   return true;
+//
+//}
+//
+//
+//
+//

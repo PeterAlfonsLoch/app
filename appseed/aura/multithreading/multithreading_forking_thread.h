@@ -135,6 +135,7 @@ template < typename PRED >
 class forking_count_pred :
    virtual public pred_holder_base
 {
+public:
 
    PRED m_pred;
    index m_iOrder;
@@ -143,8 +144,10 @@ class forking_count_pred :
    ::count m_cCount;
 
    
-   forking_count_pred(::aura::application * papp, index iOrder, index iIndex, ::count iScan, ::count cCount) :
-      ::object(papp)
+   forking_count_pred(::aura::application * papp, index iOrder, index iIndex, ::count iScan, ::count cCount, PRED pred) :
+      ::object(papp),
+      ::pred_holder_base(papp),
+      m_pred(pred)
    {
       m_iOrder = iOrder;
       m_iIndex = iIndex;

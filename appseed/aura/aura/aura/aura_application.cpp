@@ -443,6 +443,22 @@ namespace aura
    //}
 
 
+
+   ::thread_toolset * application::create_thread_toolset(::thread::e_tool etool)
+   {
+
+      if (etool == ::thread::tool_draw2d)
+      {
+
+         return get_thread_tools().create_thread_toolset < ::draw2d::thread_tool >();
+
+      }
+
+      return NULL;
+
+   }
+
+
    int32_t application::simple_message_box(::user::primitive * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 

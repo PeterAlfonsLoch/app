@@ -2967,3 +2967,47 @@ CLASS_DECL_AURA void forking_count_thread_null_end(int iOrder)
 
 
 }
+
+
+
+
+::thread_tools & thread::tools()
+{
+
+   if (m_ptools.is_null())
+   {
+
+      m_ptools = new thread_tools(::get_thread_app());
+
+   }
+
+   return *m_ptools;
+
+}
+
+
+
+
+::thread_toolset & thread::toolset(e_tool etool)
+{
+
+   sp(thread_toolset) & pset = m_toolset.element_at_grow((index)etool);
+      
+   if (pset.is_null())
+   {
+
+      pset = Application.create_thread_toolset(etool);
+
+   }
+
+   if (!tools().select_toolset(pset))
+   {
+
+      return *((thread_toolset *)NULL);
+
+   }
+
+   return *pset;
+
+}
+

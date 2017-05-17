@@ -167,7 +167,7 @@ namespace aura
 
 
       //virtual void tellme_destroyed(::user::primitive * pui, bool * pDestroyed, bool bTell = true);
-
+      virtual ::thread_toolset * create_thread_toolset(::thread::e_tool etool);
 
       virtual int32_t simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box_timeout(::user::primitive * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
