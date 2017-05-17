@@ -1120,6 +1120,7 @@ namespace draw2d
       if (ptDst.x < 0)
       {
          size.cx += ptDst.x;
+         ptSrc.x -= ptDst.x;
          ptDst.x = 0;
       }
 
@@ -1129,6 +1130,7 @@ namespace draw2d
       if (ptDst.y < 0)
       {
          size.cy += ptDst.y;
+         ptSrc.y -= ptDst.y;
          ptDst.y = 0;
       }
 
