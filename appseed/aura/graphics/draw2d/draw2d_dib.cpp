@@ -735,7 +735,6 @@ namespace draw2d
       if (ptDst.x < 0)
       {
          size.cx += ptDst.x;
-         ptSrc.x += ptDst.x;
          ptDst.x = 0;
       }
 
@@ -745,7 +744,6 @@ namespace draw2d
       if (ptDst.y < 0)
       {
          size.cy += ptDst.y;
-         ptSrc.y += ptDst.y;
          ptDst.y = 0;
       }
 
@@ -891,9 +889,15 @@ namespace draw2d
             byte * psrc2;
             byte * pdst3;
             byte * psrc3;
+#define DIB_BLEND_ZERO_BLOCK_SIZE 64
+            COLORREF craZero[DIB_BLEND_ZERO_BLOCK_SIZE];
+
+            ZERO(craZero);
 
             int scanDst = m_scanDst;
             int scanSrc = m_scanSrc;
+
+            int xBoundary;
 
             for (; y < yEnd; y += ySkip)
             {
@@ -905,7 +909,7 @@ namespace draw2d
                pdst3 = pdst2;
 
                psrc3 = psrc2;
-
+               int x2;
                int x = 0;
                int x1 = -1;
                for (; x < xEnd; x++)
@@ -919,9 +923,39 @@ namespace draw2d
                         memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
                         x1 = -1;
                      }
+                     
+                     xBoundary = (((int_ptr)psrc2 + sizeof(craZero)) % sizeof(craZero)) / 4;
+
+                     if (xBoundary > 0)
+                     {
+                        xBoundary = MIN(xEnd, x + sizeof(craZero) - xBoundary);
+                        while (x + 1 <= xBoundary
+                           && ((COLORREF *)psrc3)[x] == 0)
+                        {
+                           x++;
+                        }
+                     }
+
+                     while (x + DIB_BLEND_ZERO_BLOCK_SIZE <= xEnd
+                        && memcmp(&(((COLORREF *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
+                     {
+                        x += DIB_BLEND_ZERO_BLOCK_SIZE;
+                     }
+                     if (x >= xEnd)
+                     {
+                        break;
+                     }
+                     while (x + 1<= xEnd
+                        && ((COLORREF *)psrc3)[x] == 0)
+                     {
+                        x++;
+                     }
+                     pdst2 = &pdst3[x << 2];
+                     psrc2 = &psrc3[x << 2];
                   }
                   else if (bA2 == 255)
                   {
+
                      if (x1 < 0)
                      {
                         x1 = x;
@@ -1142,30 +1176,11 @@ namespace draw2d
 
          ptool->m_eop = thread_tool::op_blend;
 
-         if (false)
-         {
+         ptool->m_ySkip = set.get_count();
 
-            ptool->m_ySkip = 1;
+         ptool->m_y = y;
 
-            ptool->m_y = y;
-
-            y += set.get_span();
-
-            ptool->m_yEnd = MIN(yEnd, y);
-
-         }
-         else
-         {
-            
-            ptool->m_ySkip = set.get_count();
-
-            ptool->m_y = y;
-
-            ptool->m_yEnd = yEnd;
-
-            y++;
-
-         }
+         ptool->m_yEnd = yEnd;
 
          ptool->m_bA = bA;
 
@@ -1180,6 +1195,8 @@ namespace draw2d
          ptool->m_scanSrc = scanSrc;
 
          ptool->m_scanDst = scanDst;
+
+         y++;
 
       }
 
