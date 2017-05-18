@@ -24,6 +24,8 @@ thread_tools::thread_tools(::aura::application * papp) :
 
       m_threada.add(ptoolthread);
 
+//      ptoolthread->begin(::multithreading::priority_highest);
+      //ptoolthread->begin();
       ptoolthread->begin(::multithreading::priority_time_critical);
 //      ptoolthread->begin();
 

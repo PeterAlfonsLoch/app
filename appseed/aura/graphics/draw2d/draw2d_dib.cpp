@@ -1031,9 +1031,9 @@ namespace draw2d
                            if (xDistanceToBoundary > 0)
                            {
 
-                              xBoundary = MIN(xEnd, x + sizeof(craZero) - xDistanceToBoundary);
+                              xBoundary = MIN(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE - xDistanceToBoundary);
 
-                              while (x < xBoundary && ((COLORREF *)psrc3)[x] == 0)
+                              while (x < xBoundary && !(((COLORREF *)psrc3)[x] & 0xff000000))
                               {
 
                                  x++;
@@ -1045,7 +1045,7 @@ namespace draw2d
                                  break;
                               }
 
-                              if (((COLORREF *)psrc3)[x] != 0)
+                              if (((COLORREF *)psrc3)[x] & 0xff000000)
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -1062,7 +1062,7 @@ namespace draw2d
                            else
                            {
 
-                              //x = xBoundary;
+                              xBoundary = x;
 
                               // boundary is zero
 
@@ -1086,7 +1086,7 @@ namespace draw2d
 
                               }
 
-                              if (((COLORREF *)psrc3)[x] != 0)
+                              if (((COLORREF *)psrc3)[x] & 0xff000000)
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -1101,7 +1101,7 @@ namespace draw2d
 
                            }
 
-                           while (x < xEnd && ((COLORREF *)psrc3)[x] == 0)
+                           while (x < xEnd && !(((COLORREF *)psrc3)[x] & 0xff000000))
                            {
 
                               x++;
@@ -1117,7 +1117,7 @@ namespace draw2d
 
                            psrc2 = &psrc3[x << 2];
 
-                           if (((COLORREF *)psrc3)[x] != 0)
+                           if (((COLORREF *)psrc3)[x] & 0xff000000)
                            {
 
                               goto restart;
@@ -1317,10 +1317,10 @@ namespace draw2d
 
       int yEnd = MIN(size.cy, MIN(pdibSrc->m_size.cy - ptSrc.y, pdibDst->m_size.cy - ptDst.y));
 
-      if (xEnd < 0)
+      if (xEnd <= 0)
          return false;
 
-      if (yEnd < 0)
+      if (yEnd <= 0)
          return false;
 
       int32_t scanDst = pdibDst->m_iScan;

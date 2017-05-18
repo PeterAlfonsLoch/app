@@ -76,6 +76,19 @@ namespace aura
       m_mutexStr(this)
    {
 
+      if (get_app() != NULL)
+      {
+
+         if (get_app()->m_paurasystem != NULL)
+         {
+
+            m_bDrawModeRelaxedForThroughput = get_app()->m_paurasystem->m_bDrawModeRelaxedForThroughput;
+
+         }
+
+      }
+
+
       m_http.set_app(this);
 
       m_eexclusiveinstance = ExclusiveInstanceNone;

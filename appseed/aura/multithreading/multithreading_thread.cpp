@@ -151,6 +151,13 @@ thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pP
 void thread::CommonConstruct()
 {
 
+   if (get_app() != NULL)
+   {
+
+      m_bDrawModeRelaxedForThroughput = get_app()->m_bDrawModeRelaxedForThroughput;
+
+   }
+
    m_dwThreadAffinityMask = 0;
    //m_durationRunLock = ::duration::infinite();
 

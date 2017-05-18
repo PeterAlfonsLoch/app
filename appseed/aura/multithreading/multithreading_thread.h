@@ -113,6 +113,7 @@ public:
 
    };
 
+   bool                                   m_bDrawModeRelaxedForThroughput;
    //::duration                             m_durationRunLock;
    sp(::thread_tools)                     m_ptools;
    user_interaction_ptr_array *           m_puiptra;
