@@ -88,6 +88,8 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
       pointer->m_dib->from(pdibCompose);
 
+      pointer->m_dib->create_helper_map();
+
    }
 
    return true;

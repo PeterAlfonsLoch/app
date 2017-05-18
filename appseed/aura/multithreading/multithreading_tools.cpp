@@ -9,6 +9,8 @@ thread_tools::thread_tools(::aura::application * papp) :
 
    int cOrder = get_current_process_affinity_order();
 
+   //cOrder = 1;
+
    while (m_threada.get_size() < cOrder)
    {
 
@@ -23,6 +25,7 @@ thread_tools::thread_tools(::aura::application * papp) :
       m_threada.add(ptoolthread);
 
       ptoolthread->begin(::multithreading::priority_time_critical);
+//      ptoolthread->begin();
 
    }
 

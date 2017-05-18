@@ -80,6 +80,7 @@ namespace draw2d
       double            m_dFontFactor;
       e_alpha_mode      m_ealphamode;
       bool              m_bOwn;
+      memory            m_memoryMap;
 
 
 
@@ -107,6 +108,9 @@ namespace draw2d
       virtual void SetViewportOrg(point pt);
       virtual void set_font_factor(double dFactor);
       virtual void set_alpha_mode(e_alpha_mode e_alpha_mode);
+
+
+      virtual void create_helper_map();
 
 
       virtual void construct(int32_t cx, int32_t cy);
@@ -359,6 +363,12 @@ namespace draw2d
       int m_xEnd;
       byte * m_pdst2;
       byte * m_psrc2;
+      byte * m_pdstOpacity; // opacity map if available
+      byte * m_psrcOpacity; // opacity map if available
+      byte * m_pdstTransparency; // transparency map if available
+      byte * m_psrcTransparency; // transparency map if available
+      int m_w;
+      int m_h;
       e_op m_eop;
       int m_scanSrc;
       int m_scanDst;

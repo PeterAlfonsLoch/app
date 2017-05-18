@@ -889,6 +889,11 @@ namespace draw2d
             byte * psrc2;
             byte * pdst3;
             byte * psrc3;
+            byte * src_opacity; // xmetrix, xmxstudio contribution
+            byte * src_transparency; // unicorn, zjrosen contribution
+            int w = m_w;
+            byte * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
+            byte * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
 #define DIB_BLEND_ZERO_BLOCK_SIZE 64
             COLORREF craZero[DIB_BLEND_ZERO_BLOCK_SIZE];
 
@@ -897,75 +902,232 @@ namespace draw2d
             int scanDst = m_scanDst;
             int scanSrc = m_scanSrc;
 
-            int xBoundary;
-
-            for (; y < yEnd; y += ySkip)
+            if (psrcOpacity != NULL && psrcTransparency != NULL)
             {
 
-               pdst2 = &pdst[scanDst * y];
-
-               psrc2 = &psrc[scanSrc * y];
-
-               pdst3 = pdst2;
-
-               psrc3 = psrc2;
-               int x2;
-               int x = 0;
-               int x1 = -1;
-               for (; x < xEnd; x++)
+               int xBoundary;
+               for (; y < yEnd; y += ySkip)
                {
 
-                  byte bA2 = psrc2[3];
-                  if (bA2 == 0)
-                  {
-                     if (x1 >= 0)
-                     {
-                        memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
-                        x1 = -1;
-                     }
-                     
-                     xBoundary = (((int_ptr)psrc2 + sizeof(craZero)) % sizeof(craZero)) / 4;
+                  pdst2 = &pdst[scanDst * y];
 
-                     if (xBoundary > 0)
+                  psrc2 = &psrc[scanSrc * y];
+
+                  src_opacity = &psrcOpacity[w * y];
+
+                  src_transparency = &psrcTransparency[w * y];
+
+                  pdst3 = pdst2;
+
+                  psrc3 = psrc2;
+                  int x2;
+                  int x = 0;
+                  int x1 = -1;
+                  int xDistanceToBoundary;
+                  for (; x < xEnd; x++)
+                  {
+
+                     if (src_transparency[x])
                      {
-                        xBoundary = MIN(xEnd, x + sizeof(craZero) - xBoundary);
-                        while (x + 1 <= xBoundary
-                           && ((COLORREF *)psrc3)[x] == 0)
+                        if (x1 >= 0)
                         {
-                           x++;
+                           memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
+                           x1 = -1;
                         }
+
+                        x += src_transparency[x]-1;
+                        pdst2 = &pdst3[x << 2];
+                        psrc2 = &psrc3[x << 2];
+
+                     }
+                     else if (src_opacity[x])
+                     {
+
+                        if (x1 < 0)
+                        {
+                           x1 = x;
+                        }
+                        x += src_opacity[x]-1;
+                        pdst2 = &pdst3[x << 2];
+                        psrc2 = &psrc3[x << 2];
+                        // dst <= src
+                     }
+                     else
+                     {
+                        if (pdst2[3] == 0)
+                        {
+                           if (x1 < 0)
+                           {
+                              x1 = x;
+                           }
+                           // dst <= src
+                        }
+                        else
+                        {
+                           if (x1 >= 0)
+                           {
+                              memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
+                              x1 = -1;
+                           }
+                           byte bA2 = (byte)~(byte)psrc2[3];
+                           pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
+                           pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
+                           pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
+                           pdst2[3] = psrc2[3] + ((pdst2[3] * bA2) >> 8);
+
+                        }
+
                      }
 
-                     while (x + DIB_BLEND_ZERO_BLOCK_SIZE <= xEnd
-                        && memcmp(&(((COLORREF *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
-                     {
-                        x += DIB_BLEND_ZERO_BLOCK_SIZE;
-                     }
-                     if (x >= xEnd)
-                     {
-                        break;
-                     }
-                     while (x + 1<= xEnd
-                        && ((COLORREF *)psrc3)[x] == 0)
-                     {
-                        x++;
-                     }
-                     pdst2 = &pdst3[x << 2];
-                     psrc2 = &psrc3[x << 2];
+                     pdst2 += 4;
+
+                     psrc2 += 4;
+
                   }
-                  else if (bA2 == 255)
+                  if (x1 >= 0)
+                  {
+                     memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
+                     x1 = -1;
+                  }
+                  //pdst2 += xEnd;
+                  //psrc2 += xEnd;
+
+               }
+            }
+            else
+            {
+
+               int xBoundary;
+               for (; y < yEnd; y += ySkip)
+               {
+
+                  pdst2 = &pdst[scanDst * y];
+
+                  psrc2 = &psrc[scanSrc * y];
+
+                  pdst3 = pdst2;
+
+                  psrc3 = psrc2;
+                  int x2;
+                  int x = 0;
+                  int x1 = -1;
+                  int xDistanceToBoundary;
+                  for (; x < xEnd; x++)
                   {
 
-                     if (x1 < 0)
+                  restart:;
+
+                     byte bA2 = psrc2[3];
+                     if (bA2 == 0)
                      {
-                        x1 = x;
+                        if (x1 >= 0)
+                        {
+                           memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
+                           x1 = -1;
+                        }
+
+                           xDistanceToBoundary = (((int_ptr)psrc2) % sizeof(craZero)) / 4;
+
+                           if (xDistanceToBoundary > 0)
+                           {
+
+                              xBoundary = MIN(xEnd, x + sizeof(craZero) - xDistanceToBoundary);
+
+                              while (x < xBoundary && ((COLORREF *)psrc3)[x] == 0)
+                              {
+
+                                 x++;
+
+                              }
+
+                              if (x >= xEnd)
+                              {
+                                 break;
+                              }
+
+                              if (((COLORREF *)psrc3)[x] != 0)
+                              {
+
+                                 pdst2 = &pdst3[x << 2];
+
+                                 psrc2 = &psrc3[x << 2];
+
+                                 goto restart;
+
+                              }
+
+                              // boundary is zero
+
+                           }
+                           else
+                           {
+
+                              //x = xBoundary;
+
+                              // boundary is zero
+
+                           }
+
+                           if (x == xBoundary)
+                           {
+
+                              while (x + DIB_BLEND_ZERO_BLOCK_SIZE <= xEnd
+                                 && memcmp(&(((COLORREF *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
+                              {
+
+                                 x += DIB_BLEND_ZERO_BLOCK_SIZE;
+
+                              }
+
+                              if (x >= xEnd)
+                              {
+
+                                 break;
+
+                              }
+
+                              if (((COLORREF *)psrc3)[x] != 0)
+                              {
+
+                                 pdst2 = &pdst3[x << 2];
+
+                                 psrc2 = &psrc3[x << 2];
+
+                                 goto restart;
+
+                              }
+
+                              // boundary is zero
+
+                           }
+
+                           while (x < xEnd && ((COLORREF *)psrc3)[x] == 0)
+                           {
+
+                              x++;
+
+                           }
+
+                           if (x >= xEnd)
+                           {
+                              break;
+                           }
+
+                           pdst2 = &pdst3[x << 2];
+
+                           psrc2 = &psrc3[x << 2];
+
+                           if (((COLORREF *)psrc3)[x] != 0)
+                           {
+
+                              goto restart;
+
+                           }
+
                      }
-                     // dst <= src
-                  }
-                  else
-                  {
-                     if (pdst2[3] == 0)
+                     else if (bA2 == 255)
                      {
+
                         if (x1 < 0)
                         {
                            x1 = x;
@@ -974,38 +1136,52 @@ namespace draw2d
                      }
                      else
                      {
-                        if (x1 >= 0)
+                        if (pdst2[3] == 0)
                         {
-                           memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
-                           x1 = -1;
+                           if (x1 < 0)
+                           {
+                              x1 = x;
+                           }
+                           // dst <= src
                         }
-                        bA2 = (byte)~bA2;
-                        pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
-                        pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
-                        pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
-                        pdst2[3] = psrc2[3] + ((pdst2[3] * bA2) >> 8);
+                        else
+                        {
+                           if (x1 >= 0)
+                           {
+                              memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
+                              x1 = -1;
+                           }
+                           bA2 = (byte)~bA2;
+                           pdst2[0] = psrc2[0] + ((pdst2[0] * bA2) >> 8);
+                           pdst2[1] = psrc2[1] + ((pdst2[1] * bA2) >> 8);
+                           pdst2[2] = psrc2[2] + ((pdst2[2] * bA2) >> 8);
+                           pdst2[3] = psrc2[3] + ((pdst2[3] * bA2) >> 8);
+
+                        }
 
                      }
 
+                     pdst2 += 4;
+
+                     psrc2 += 4;
+
                   }
-
-                  pdst2 += 4;
-
-                  psrc2 += 4;
+                  if (x1 >= 0)
+                  {
+                     memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
+                     x1 = -1;
+                  }
+                  //pdst2 += xEnd;
+                  //psrc2 += xEnd;
 
                }
-               if (x1 >= 0)
-               {
-                  memcpy(&((COLORREF *)pdst3)[x1], &((COLORREF *)psrc3)[x1], (x - x1) * sizeof(COLORREF));
-                  x1 = -1;
-               }
-               //pdst2 += xEnd;
-               //psrc2 += xEnd;
 
             }
          }
+
          else
          {
+            //return;
             byte bA = m_bA;
             int y = m_y;
             int yEnd = m_yEnd;
@@ -1155,10 +1331,54 @@ namespace draw2d
 
       byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)];
 
+      //byte * pdst5; // dst opacity map if available // opacity map does not make sense for dibs that change
+
+      byte * psrcOpacity; // src opacity map if available
+
+      byte * psrcTransparency; // src transparency map if available
+
+      //if (pdibDst->m_memoryOpacity.size() == pdibDst->area())
+      //{
+
+      //   pdst5 = pdibDst->m_memoryOpacity.get_data();
+
+      //}
+      //else
+      //{
+
+      //   pdst5 = NULL;
+
+      //}
+
+      if (pdibSrc->m_memoryMap.size() == pdibSrc->area() * 2)
+      {
+
+         psrcOpacity = &pdibSrc->m_memoryMap.get_data()[pdibSrc->m_size.cx * ptSrc.y + ptSrc.x];
+
+      }
+      else
+      {
+
+         psrcOpacity = NULL;
+
+      }
+
+      if (pdibSrc->m_memoryMap.size() == pdibSrc->area() * 2)
+      {
+
+         psrcTransparency = &pdibSrc->m_memoryMap.get_data()[pdibSrc->area() + pdibSrc->m_size.cx * ptSrc.y + ptSrc.x];
+
+      }
+      else
+      {
+
+         psrcTransparency = NULL;
+
+      }
+
       //byte * pdst2;
 
       //byte * psrc2;
-
 
       auto set = ::get_thread_toolset(::thread::tool_draw2d);
 
@@ -1178,6 +1398,10 @@ namespace draw2d
 
          ptool->m_eop = thread_tool::op_blend;
 
+         ptool->m_w = pdibSrc->m_size.cx;
+
+         ptool->m_h = pdibSrc->m_size.cy;
+
          ptool->m_ySkip = set.get_count();
 
          ptool->m_y = y;
@@ -1193,6 +1417,10 @@ namespace draw2d
          ptool->m_pdst2 = pdst;
 
          ptool->m_psrc2 = psrc;
+
+         ptool->m_psrcOpacity = psrcOpacity;
+
+         ptool->m_psrcTransparency = psrcTransparency;
 
          ptool->m_scanSrc = scanSrc;
 
@@ -4804,6 +5032,129 @@ namespace draw2d
       {
 
          get_graphics()->SetViewportOrg(pt);
+
+      }
+
+   }
+
+   void dib::create_helper_map()
+   {
+
+      int a = area();
+      int jNextBoundary;
+      int jStart;
+      byte * pdata = (byte *)m_pcolorref;
+      int w = m_size.cx;
+      int sw = w * sizeof(COLORREF);
+
+      {
+
+         m_memoryMap.allocate(a * 2);
+         m_memoryMap.set(0);
+         byte * opacity = m_memoryMap.get_data();
+
+         for (index i = 0; i < m_size.cy; i++)
+         {
+
+            for (index j = 0; j < sw; j += 4)
+            {
+
+               if (pdata[i*m_iScan + j + 3] == 255)
+               {
+                  jStart = j;
+                  jNextBoundary = MIN(j + 960, sw);
+                  for (j += 4; j < jNextBoundary; j += 4)
+                  {
+                     if (pdata[i*m_iScan + j + 3] != 255)
+                     {
+                        break;
+                     }
+                  }
+
+                  j-=4;
+                  
+                  int c = (j - jStart) >> 2;
+
+                  int m = j >> 2;
+                  
+                  byte n = 1;
+
+                  while (c >= 0)
+                  {
+
+                     opacity[(int)(i * w + m)] = n;
+
+                     m--;
+
+                     n++;
+
+                     c--;
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
+
+      {
+
+         byte * transparency = m_memoryMap.get_data() + a;
+         
+         for (index i = 0; i < m_size.cy; i++)
+         {
+
+            for (index j = 0; j < sw; j += 4)
+            {
+
+               if (pdata[i * m_iScan + j + 3] == 0)
+               {
+
+                  jStart = j;
+
+                  jNextBoundary = MIN(j + 960, sw);
+
+                  for (j += 4; j < jNextBoundary; j += 4)
+                  {
+
+                     if (pdata[i * m_iScan + j + 3] != 0)
+                     {
+
+                        break;
+
+                     }
+
+                  }
+
+                  j -= 4;
+
+                  int c = (j - jStart) >> 2;
+
+                  int m = j >> 2;
+
+                  byte n = 1;
+
+                  while (c >= 0)
+                  {
+
+                     transparency[(int)(i * w + m)] = n;
+
+                     m--;
+
+                     n++;
+
+                     c--;
+
+                  }
+
+               }
+
+            }
+
+         }
 
       }
 
