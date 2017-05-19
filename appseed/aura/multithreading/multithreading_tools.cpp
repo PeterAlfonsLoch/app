@@ -53,7 +53,18 @@ bool thread_tools::prepare(::thread::e_op eop, ::count cIteration)
 
    }
 
-   m_cCount = MIN(m_threada.get_count(), cIteration);
+   if (eop == ::thread::op_pred || eop == ::thread::op_fork_count)
+   {
+
+      m_cCount = 0;
+
+   }
+   else
+   {
+
+      m_cCount = MIN(m_threada.get_count(), cIteration);
+
+   }
 
    m_eop = eop;
 

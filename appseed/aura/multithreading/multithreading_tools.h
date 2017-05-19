@@ -182,6 +182,8 @@ template < typename PRED >
 
    ::count iScan = MAX(1, MIN(iCount - iStart, tools.get_count()));
 
+   tools.prepare(::thread::op_fork_count, iCount);
+
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
 
