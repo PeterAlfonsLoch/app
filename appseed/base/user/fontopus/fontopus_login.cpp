@@ -5,7 +5,8 @@ namespace fontopus
 
 
    login::login(::aura::application * papp, int left, int top, const string & strRequestUrl) :
-      ::object(papp)
+      ::object(papp),
+      m_dib(allocer())
    {
 
       m_strRequestUrl      = strRequestUrl;
@@ -296,7 +297,19 @@ namespace fontopus
 
       double ry = m_dRateY;
 
-      if (m_bCred && m_strCred.has_char())
+      if (m_dib.is_set() && m_dib->m_size.cy > 21)
+      {
+
+         double r = (double)(64) / (double)m_dib->m_size.cy;
+
+         pgraphics->StretchBlt(
+            (int)(49 * rx), (int)(49 * ry) + 2 - 11,
+            m_dib->m_size.cx * r, m_dib->m_size.cy * r,
+            m_dib->get_graphics(),
+            0, 0, m_dib->m_size.cx, m_dib->m_size.cy, 0);
+
+      }
+      else if (m_bCred && m_strCred.has_char())
       {
          float fHeight = 18.0;
 
@@ -314,6 +327,7 @@ namespace fontopus
          pgraphics->set_text_color(crBorderOut);
          pgraphics->TextOut((int)(49 * rx), (int)(49 * ry), m_strCred);
       }
+
       else if (m_picon95)
       {
 

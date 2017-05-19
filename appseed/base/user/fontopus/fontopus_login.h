@@ -33,6 +33,7 @@ namespace fontopus
       string                        m_strCred;
 
       visual::icon *                m_picon95; // the best size to fit current ca2 icon (as of 2014)
+      ::visual::dib_sp              m_dib;
 
 
       login(::aura::application * papp, int left, int top, const string & strRequestUrl);

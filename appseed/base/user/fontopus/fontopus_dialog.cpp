@@ -275,7 +275,17 @@ namespace fontopus
 
          m_login.m_bCred = true;
 
-         m_login.m_strCred = strTitle;
+         stringa stra;
+         stra.explode("|", strTitle);
+         if (stra.get_size() >= 2)
+         {
+            m_login.m_dib.load_from_matter(stra[0]);
+            m_login.m_strCred = stra.implode("|", 1);
+         }
+         else
+         {
+            m_login.m_strCred = strTitle;
+         }
 
       }
 
