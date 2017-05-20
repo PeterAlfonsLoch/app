@@ -13,7 +13,8 @@ namespace user
       windows::windows(::aura::application * papp) :
          ::object(papp),
          ::user::shell::shell(papp),
-         m_mutexQueue(papp)
+         m_mutexQueue(papp),
+         m_evKey(papp)
       {
 
          defer_create_mutex();
@@ -1933,7 +1934,7 @@ namespace user
 
                sl.unlock();
 
-               Sleep(100);
+               m_evKey.wait();
 
             }
             else
@@ -1942,6 +1943,13 @@ namespace user
                image_key * pkey = m_keyptra.first();
 
                m_keyptra.remove_at(0);
+
+               if (m_keyptra.is_empty())
+               {
+
+                  m_evKey.ResetEvent();
+
+               }
 
                sl.unlock();
 
@@ -2030,6 +2038,8 @@ namespace user
                   synch_lock sl(&m_mutexQueue);
 
                   m_keyptra.add(pstore);
+
+                  m_evKey.SetEvent();
 
                }
 

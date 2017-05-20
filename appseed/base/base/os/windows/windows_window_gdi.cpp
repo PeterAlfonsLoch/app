@@ -503,7 +503,12 @@ void window_gdi::update_window(::draw2d::dib * pdib)
    if (bSetWindowPos)
    {
 
-      m_pimpl->m_pui->on_set_window_pos();
+      if (m_pimpl->m_pui != NULL)
+      {
+
+         m_pimpl->m_pui->on_set_window_pos();
+
+      }
 
    }
 

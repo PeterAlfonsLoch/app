@@ -83,7 +83,7 @@ namespace visual
    }
 
 
-   bool dib_sp::load_from_file(var varFile, bool bCache)
+   bool dib_sp::load_from_file(var varFile, bool bCache, bool bCreateHelperMaps)
    {
 
       if (varFile.is_empty())
@@ -102,6 +102,13 @@ namespace visual
          m_p->create_nanosvg(App(m_p->m_pauraapp).file().as_string(varFile));
 
          m_eload = load_ok;
+
+         if (bCreateHelperMaps)
+         {
+
+            m_p->create_helper_map();
+
+         }
 
          return true;
 
@@ -135,6 +142,19 @@ namespace visual
 
          }
 
+         if (bCreateHelperMaps)
+         {
+
+            for (auto & p : *m_sparray)
+            {
+
+               p->m_dib->create_helper_map();
+
+            }
+
+         }
+
+
          m_eload = load_ok;
 
          return true;
@@ -150,6 +170,13 @@ namespace visual
 
       }
 
+      if (bCreateHelperMaps)
+      {
+
+         m_p->create_helper_map();
+
+      }
+
       m_eload = load_ok;
 
       return true;
@@ -157,7 +184,7 @@ namespace visual
    }
 
 
-   bool dib_sp::load_from_matter(const char * pszMatter, bool bCache)
+   bool dib_sp::load_from_matter(const char * pszMatter, bool bCache, bool bCreateHelperMaps)
    {
 
       ::file::path path = m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter);
@@ -168,6 +195,13 @@ namespace visual
          m_eload = load_fail;
 
          return false;
+
+      }
+
+      if (bCreateHelperMaps)
+      {
+
+         m_p->create_helper_map();
 
       }
 

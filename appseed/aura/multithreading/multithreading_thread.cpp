@@ -1472,7 +1472,20 @@ uint32_t __thread_entry(void * pparam)
 
 #if defined(WINDOWS) || defined(LINUX)
 
-            ::SetThreadAffinityMask(::GetCurrentThread(), pthread->m_dwThreadAffinityMask);
+            BOOL bOk = ::SetThreadAffinityMask(::GetCurrentThread(), pthread->m_dwThreadAffinityMask);
+
+            if (bOk)
+            {
+
+               output_debug_string("successfully set thread affinity mask");
+
+            }
+            else
+            {
+
+               output_debug_string("failed to set thread affinity mask");
+
+            }
 
 #endif
 
@@ -2980,6 +2993,10 @@ CLASS_DECL_AURA void forking_count_thread_null_end(int iOrder)
 
 ::thread_tools & thread::tools()
 {
+
+   synch_lock sl(m_pmutex);
+
+   ASSERT(::get_thread() == this);
 
    if (m_ptools.is_null())
    {

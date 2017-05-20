@@ -894,7 +894,8 @@ namespace draw2d
             int w = m_w;
             byte * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
             byte * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
-#define DIB_BLEND_ZERO_BLOCK_SIZE 64
+#define DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH 64
+#define DIB_BLEND_ZERO_BLOCK_SIZE 256
             COLORREF craZero[DIB_BLEND_ZERO_BLOCK_SIZE];
 
             ZERO(craZero);
@@ -905,7 +906,6 @@ namespace draw2d
             if (psrcOpacity != NULL && psrcTransparency != NULL)
             {
 
-               int xBoundary;
                for (; y < yEnd; y += ySkip)
                {
 
@@ -923,7 +923,6 @@ namespace draw2d
                   int x2;
                   int x = 0;
                   int x1 = -1;
-                  int xDistanceToBoundary;
                   for (; x < xEnd; x++)
                   {
 
@@ -997,7 +996,10 @@ namespace draw2d
             else
             {
 
-               int xBoundary;
+               byte * pBound1;
+               byte * pBound8;
+               byte * pBound;
+               byte * pEnd8;
                for (; y < yEnd; y += ySkip)
                {
 
@@ -1011,7 +1013,9 @@ namespace draw2d
                   int x2;
                   int x = 0;
                   int x1 = -1;
-                  int xDistanceToBoundary;
+                  int xDistanceToBoundary1;
+                  int xDistanceToBoundary8;
+                  int xEnd8;
                   for (; x < xEnd; x++)
                   {
 
@@ -1026,31 +1030,37 @@ namespace draw2d
                            x1 = -1;
                         }
 
-                           xDistanceToBoundary = (((int_ptr)psrc2) % sizeof(craZero)) / 4;
+#if 0
+                        //if (0)
+                        {
 
-                           if (xDistanceToBoundary > 0)
+                           pBound = psrc3 + (xEnd << 2);
+                           xDistanceToBoundary8 = (((int_ptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4));
+                           xDistanceToBoundary1 = (((int_ptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE * 4));
+                           pBound8 = MIN(pBound, psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4 - xDistanceToBoundary8);
+                           pBound1 = MIN(pBound, psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE * 4 - xDistanceToBoundary1);
+
+                           if (xDistanceToBoundary8 > 0)
                            {
 
-                              xBoundary = MIN(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE - xDistanceToBoundary);
-
-                              while (x < xBoundary && !(((COLORREF *)psrc3)[x] & 0xff000000))
+                              while (psrc2 < pBound && psrc2[3] == 0)
                               {
 
-                                 x++;
+                                 psrc2+=4;
 
                               }
 
-                              if (x >= xEnd)
+                              if (psrc2 >= pBound)
                               {
                                  break;
                               }
 
-                              if (((COLORREF *)psrc3)[x] & 0xff000000)
+                              if (psrc2[3] != 0)
                               {
 
-                                 pdst2 = &pdst3[x << 2];
+                                 x = (psrc2 - psrc3) >> 2;
 
-                                 psrc2 = &psrc3[x << 2];
+                                 pdst2 = &pdst3[x << 2];
 
                                  goto restart;
 
@@ -1062,36 +1072,75 @@ namespace draw2d
                            else
                            {
 
-                              xBoundary = x;
+                              pBound8 = psrc2;
 
                               // boundary is zero
 
                            }
 
-                           if (x == xBoundary)
+
+                           if (psrc2 == pBound8 && psrc2 != pBound1)
                            {
 
-                              while (x + DIB_BLEND_ZERO_BLOCK_SIZE <= xEnd
-                                 && memcmp(&(((COLORREF *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
+                              pEnd8 = MIN(pBound, pBound1);
+                              while (psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4 <= pEnd8
+                                 && memcmp(psrc2, craZero, DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4) == 0)
                               {
 
-                                 x += DIB_BLEND_ZERO_BLOCK_SIZE;
+                                 psrc2 += DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4;
 
                               }
 
-                              if (x >= xEnd)
+                              if (psrc2 >= pBound)
                               {
 
                                  break;
 
                               }
 
-                              if (((COLORREF *)psrc3)[x] & 0xff000000)
+                              if (psrc2[3] != 0)
                               {
+
+                                 x = (psrc2 - psrc3) >> 2;
 
                                  pdst2 = &pdst3[x << 2];
 
-                                 psrc2 = &psrc3[x << 2];
+                                 goto restart;
+
+                              }
+
+                              // boundary is zero
+
+                           }
+                           else
+                           {
+
+                              pBound1 = psrc2;
+
+                           }
+
+                           if (psrc2 == pBound1)
+                           {
+
+                              while (psrc2 + DIB_BLEND_ZERO_BLOCK_SIZE * 4 <= pBound
+                                 && memcmp(psrc2, craZero, DIB_BLEND_ZERO_BLOCK_SIZE *4) == 0)
+                              {
+
+                                 psrc2 += DIB_BLEND_ZERO_BLOCK_SIZE * 4;
+
+                              }
+
+                              if (psrc2 >= pBound)
+                              {
+                                 break;
+                              }
+
+                              if (psrc2[3] != 0)
+                              {
+
+                                 x = (psrc2 - psrc3) >> 2;
+
+                                 pdst2 = &pdst3[x << 2];
 
                                  goto restart;
 
@@ -1101,7 +1150,45 @@ namespace draw2d
 
                            }
 
-                           while (x < xEnd && !(((COLORREF *)psrc3)[x] & 0xff000000))
+                           while (psrc2 < pBound && psrc2[3] == 0)
+                           {
+
+                              psrc2+=4;
+
+                           }
+
+
+                           if (psrc2 >= pBound)
+                           {
+                              break;
+                           }
+
+                           x = (psrc2 - psrc3) >> 2;
+
+                           pdst2 = &pdst3[x << 2];
+
+                           if (psrc2[3] != 0)
+                           {
+
+                              goto restart;
+
+                           }
+
+                        }
+#else
+
+//if (0)
+                        {
+
+                        int xDistanceToBoundary8 = (((int_ptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4)) / 4;
+                        int xDistanceToBoundary1 = (((int_ptr)psrc2) % (DIB_BLEND_ZERO_BLOCK_SIZE * 4)) / 4;
+                        int xBoundary8 = MIN(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH - xDistanceToBoundary8);
+                        int xBoundary1 = MIN(xEnd, x + DIB_BLEND_ZERO_BLOCK_SIZE - xDistanceToBoundary1);
+
+                        if (xDistanceToBoundary8 > 0)
+                        {
+
+                           while (x < xBoundary8 && !(((COLORREF *)psrc3)[x] & 0xff000000))
                            {
 
                               x++;
@@ -1113,16 +1200,129 @@ namespace draw2d
                               break;
                            }
 
-                           pdst2 = &pdst3[x << 2];
-
-                           psrc2 = &psrc3[x << 2];
-
                            if (((COLORREF *)psrc3)[x] & 0xff000000)
                            {
+
+                              pdst2 = &pdst3[x << 2];
+
+                              psrc2 = &psrc3[x << 2];
 
                               goto restart;
 
                            }
+
+                           // boundary is zero
+
+                        }
+                        else
+                        {
+
+                           xBoundary8 = x;
+
+                           // boundary is zero
+
+                        }
+
+
+                        if (x == xBoundary8 && x != xBoundary1)
+                        {
+
+                           xEnd8 = MIN(xEnd, xBoundary1);
+                           while (x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH <= xEnd8
+                              && memcmp(&(((COLORREF *)psrc3)[x]), craZero, DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4) == 0)
+                           {
+
+                              x += DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH;
+
+                           }
+
+                           if (x >= xEnd)
+                           {
+
+                              break;
+
+                           }
+
+                           if (((COLORREF *)psrc3)[x] & 0xff000000)
+                           {
+
+                              pdst2 = &pdst3[x << 2];
+
+                              psrc2 = &psrc3[x << 2];
+
+                              goto restart;
+
+                           }
+
+                           // boundary is zero
+
+                        }
+                        else
+                        {
+
+                           xBoundary1 = x;
+
+                        }
+
+                        if (x == xBoundary1)
+                        {
+
+                           while (x + DIB_BLEND_ZERO_BLOCK_SIZE <= xEnd
+                              && memcmp(&(((COLORREF *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
+                           {
+
+                              x += DIB_BLEND_ZERO_BLOCK_SIZE;
+
+                           }
+
+                           if (x >= xEnd)
+                           {
+
+                              break;
+
+                           }
+
+                           if (((COLORREF *)psrc3)[x] & 0xff000000)
+                           {
+
+                              pdst2 = &pdst3[x << 2];
+
+                              psrc2 = &psrc3[x << 2];
+
+                              goto restart;
+
+                           }
+
+                           // boundary is zero
+
+                        }
+
+                        while (x < xEnd && !(((COLORREF *)psrc3)[x] & 0xff000000))
+                        {
+
+                           x++;
+
+                        }
+
+                        if (x >= xEnd)
+                        {
+                           break;
+                        }
+
+                        pdst2 = &pdst3[x << 2];
+
+                        psrc2 = &psrc3[x << 2];
+
+                        if (((COLORREF *)psrc3)[x] & 0xff000000)
+                        {
+
+                           goto restart;
+
+                        }
+
+                        }
+
+#endif
 
                      }
                      else if (bA2 == 255)
@@ -1189,6 +1389,11 @@ namespace draw2d
             int xEnd = m_xEnd;
             int xEnd1 = m_xEnd - 7;
             int ySkip = m_ySkip;
+            byte * src_opacity; // xmetrix, xmxstudio contribution
+            byte * src_transparency; // unicorn, zjrosen contribution
+            int w = m_w;
+            byte * psrcOpacity = m_psrcOpacity; // Currently living in Milky Way, but minding of a place I don't remember
+            byte * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
 
             byte * pdst = m_pdst2;
             byte * psrc = m_psrc2;
@@ -1200,51 +1405,111 @@ namespace draw2d
             int scanDst = m_scanDst;
             int scanSrc = m_scanSrc;
 
-            for (; y < yEnd; y += ySkip)
+            if (psrcTransparency != NULL)
             {
 
-               pdst2 = &pdst[scanDst * y];
-
-               psrc2 = &psrc[scanSrc * y];
-
-               pdst3 = pdst2;
-
-               psrc3 = psrc2;
-
-               int x = 0;
-               for (; x < xEnd; x++)
+               for (; y < yEnd; y += ySkip)
                {
 
-                  byte bA2 = psrc2[3];
-                  if (bA2 == 0)
+                  pdst2 = &pdst[scanDst * y];
+
+                  psrc2 = &psrc[scanSrc * y];
+//                  src_opacity = &psrcOpacity[w * y];
+
+                  src_transparency = &psrcTransparency[w * y];
+
+                  pdst3 = pdst2;
+
+                  psrc3 = psrc2;
+
+                  int x = 0;
+                  for (; x < xEnd; x++)
                   {
+
+                     byte bA2 = psrc2[3];
+                     if (src_transparency[x])
+                     {
+                        x += src_transparency[x] - 1;
+                        pdst2 = &pdst3[x << 2];
+                        psrc2 = &psrc3[x << 2];
+                     }
+                     else if (pdst2[3] == 0)
+                     {
+                        pdst2[0] = (psrc2[0] * bA) >> 8;
+                        pdst2[1] = (psrc2[1] * bA) >> 8;
+                        pdst2[2] = (psrc2[2] * bA) >> 8;
+                        pdst2[3] = (psrc2[3] * bA) >> 8;
+                     }
+                     else
+                     {
+
+                        byte bA3 = ((uint16_t)~((uint16_t)bA2 * (uint16_t)bA)) >> 8;
+                        pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
+                        pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
+                        pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;
+                        pdst2[3] = (psrc2[3] * bA + pdst2[3] * bA3) >> 8;
+
+                     }
+
+                     pdst2 += 4;
+
+                     psrc2 += 4;
+
                   }
-                  else if (pdst2[3] == 0)
-                  {
-                     pdst2[0] = (psrc2[0] * bA) >> 8;
-                     pdst2[1] = (psrc2[1] * bA) >> 8;
-                     pdst2[2] = (psrc2[2] * bA) >> 8;
-                     pdst2[3] = (psrc2[3] * bA) >> 8;
-                  }
-                  else
-                  {
-
-                     byte bA3 = ((uint16_t)~((uint16_t)bA2 * (uint16_t)bA)) >> 8;
-                     pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
-                     pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
-                     pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;
-                     pdst2[3] = (psrc2[3] * bA + pdst2[3] * bA3) >> 8;
-
-                  }
-
-                  pdst2 += 4;
-
-                  psrc2 += 4;
 
                }
 
             }
+            else
+            {
 
+               for (; y < yEnd; y += ySkip)
+               {
+
+                  pdst2 = &pdst[scanDst * y];
+
+                  psrc2 = &psrc[scanSrc * y];
+
+                  pdst3 = pdst2;
+
+                  psrc3 = psrc2;
+
+                  int x = 0;
+                  for (; x < xEnd; x++)
+                  {
+
+                     byte bA2 = psrc2[3];
+                     if (bA2 == 0)
+                     {
+                     }
+                     else if (pdst2[3] == 0)
+                     {
+                        pdst2[0] = (psrc2[0] * bA) >> 8;
+                        pdst2[1] = (psrc2[1] * bA) >> 8;
+                        pdst2[2] = (psrc2[2] * bA) >> 8;
+                        pdst2[3] = (psrc2[3] * bA) >> 8;
+                     }
+                     else
+                     {
+
+                        byte bA3 = ((uint16_t)~((uint16_t)bA2 * (uint16_t)bA)) >> 8;
+                        pdst2[0] = (psrc2[0] * bA + pdst2[0] * bA3) >> 8;
+                        pdst2[1] = (psrc2[1] * bA + pdst2[1] * bA3) >> 8;
+                        pdst2[2] = (psrc2[2] * bA + pdst2[2] * bA3) >> 8;
+                        pdst2[3] = (psrc2[3] * bA + pdst2[3] * bA3) >> 8;
+
+                     }
+
+                     pdst2 += 4;
+
+                     psrc2 += 4;
+
+                  }
+
+               }
+
+
+            }
          }
 
 
@@ -1380,7 +1645,7 @@ namespace draw2d
 
       //byte * psrc2;
 
-      auto set = ::get_thread_toolset(::thread::tool_draw2d);
+      auto & set = ::get_thread_toolset(::thread::tool_draw2d);
 
       if (set.nok())
       {
@@ -5529,7 +5794,12 @@ namespace draw2d
    void dib::tint(::draw2d::dib * pdib, int32_t R, int32_t G, int32_t B)
    {
 
-      from(pdib);
+      if (!create(pdib->m_size))
+      {
+
+         return;
+
+      }
 
       map();
 
@@ -5544,99 +5814,139 @@ namespace draw2d
       //      int32_t i = 0;;
 
 
-      while (size > 16)
-      {
-         //dst[3] = dst[i];
-         dst[0] = (uchB * src[3]) >> 8;
-         dst[1] = (uchG * src[3]) >> 8;
-         dst[2] = (uchR * src[3]) >> 8;
-         dst[3] = src[3];
+      //while (size > 16)
+      //{
+      //   //dst[3] = dst[i];
+      //   dst[0] = (uchB * src[3]) >> 8;
+      //   dst[1] = (uchG * src[3]) >> 8;
+      //   dst[2] = (uchR * src[3]) >> 8;
+      //   dst[3] = src[3];
 
-         dst[4] = (uchB * src[7]) >> 8;
-         dst[5] = (uchG * src[7]) >> 8;
-         dst[6] = (uchR * src[7]) >> 8;
-         dst[7] = src[7];
+      //   dst[4] = (uchB * src[7]) >> 8;
+      //   dst[5] = (uchG * src[7]) >> 8;
+      //   dst[6] = (uchR * src[7]) >> 8;
+      //   dst[7] = src[7];
 
-         dst[8] = (uchB * src[11]) >> 8;
-         dst[9] = (uchG * src[11]) >> 8;
-         dst[10] = (uchR * src[11]) >> 8;
-         dst[11] = src[11];
+      //   dst[8] = (uchB * src[11]) >> 8;
+      //   dst[9] = (uchG * src[11]) >> 8;
+      //   dst[10] = (uchR * src[11]) >> 8;
+      //   dst[11] = src[11];
 
-         dst[12] = (uchB * src[15]) >> 8;
-         dst[13] = (uchG * src[15]) >> 8;
-         dst[14] = (uchR * src[15]) >> 8;
-         dst[15] = src[15];
+      //   dst[12] = (uchB * src[15]) >> 8;
+      //   dst[13] = (uchG * src[15]) >> 8;
+      //   dst[14] = (uchR * src[15]) >> 8;
+      //   dst[15] = src[15];
 
-         dst[16] = (uchB * src[19]) >> 8;
-         dst[17] = (uchG * src[19]) >> 8;
-         dst[18] = (uchR * src[19]) >> 8;
-         dst[19] = src[19];
+      //   dst[16] = (uchB * src[19]) >> 8;
+      //   dst[17] = (uchG * src[19]) >> 8;
+      //   dst[18] = (uchR * src[19]) >> 8;
+      //   dst[19] = src[19];
 
-         dst[20] = (uchB * src[23]) >> 8;
-         dst[21] = (uchG * src[23]) >> 8;
-         dst[22] = (uchR * src[23]) >> 8;
-         dst[23] = src[23];
+      //   dst[20] = (uchB * src[23]) >> 8;
+      //   dst[21] = (uchG * src[23]) >> 8;
+      //   dst[22] = (uchR * src[23]) >> 8;
+      //   dst[23] = src[23];
 
-         dst[24] = (uchB * src[27]) >> 8;
-         dst[25] = (uchG * src[27]) >> 8;
-         dst[26] = (uchR * src[27]) >> 8;
-         dst[27] = src[27];
+      //   dst[24] = (uchB * src[27]) >> 8;
+      //   dst[25] = (uchG * src[27]) >> 8;
+      //   dst[26] = (uchR * src[27]) >> 8;
+      //   dst[27] = src[27];
 
-         dst[28] = (uchB * src[31]) >> 8;
-         dst[29] = (uchG * src[31]) >> 8;
-         dst[30] = (uchR * src[31]) >> 8;
-         dst[31] = src[31];
+      //   dst[28] = (uchB * src[31]) >> 8;
+      //   dst[29] = (uchG * src[31]) >> 8;
+      //   dst[30] = (uchR * src[31]) >> 8;
+      //   dst[31] = src[31];
 
-         dst[32] = (uchB * src[35]) >> 8;
-         dst[33] = (uchG * src[35]) >> 8;
-         dst[34] = (uchR * src[35]) >> 8;
-         dst[35] = src[35];
+      //   dst[32] = (uchB * src[35]) >> 8;
+      //   dst[33] = (uchG * src[35]) >> 8;
+      //   dst[34] = (uchR * src[35]) >> 8;
+      //   dst[35] = src[35];
 
-         dst[36] = (uchB * src[39]) >> 8;
-         dst[37] = (uchG * src[39]) >> 8;
-         dst[38] = (uchR * src[39]) >> 8;
-         dst[39] = src[39];
+      //   dst[36] = (uchB * src[39]) >> 8;
+      //   dst[37] = (uchG * src[39]) >> 8;
+      //   dst[38] = (uchR * src[39]) >> 8;
+      //   dst[39] = src[39];
 
-         dst[40] = (uchB * src[43]) >> 8;
-         dst[41] = (uchG * src[43]) >> 8;
-         dst[42] = (uchR * src[43]) >> 8;
-         dst[43] = src[43];
+      //   dst[40] = (uchB * src[43]) >> 8;
+      //   dst[41] = (uchG * src[43]) >> 8;
+      //   dst[42] = (uchR * src[43]) >> 8;
+      //   dst[43] = src[43];
 
-         dst[44] = (uchB * src[47]) >> 8;
-         dst[45] = (uchG * src[47]) >> 8;
-         dst[46] = (uchR * src[47]) >> 8;
-         dst[47] = src[47];
+      //   dst[44] = (uchB * src[47]) >> 8;
+      //   dst[45] = (uchG * src[47]) >> 8;
+      //   dst[46] = (uchR * src[47]) >> 8;
+      //   dst[47] = src[47];
 
-         dst[48] = (uchB * src[51]) >> 8;
-         dst[49] = (uchG * src[51]) >> 8;
-         dst[50] = (uchR * src[51]) >> 8;
-         dst[51] = src[51];
+      //   dst[48] = (uchB * src[51]) >> 8;
+      //   dst[49] = (uchG * src[51]) >> 8;
+      //   dst[50] = (uchR * src[51]) >> 8;
+      //   dst[51] = src[51];
 
-         dst[52] = (uchB * src[55]) >> 8;
-         dst[53] = (uchG * src[55]) >> 8;
-         dst[54] = (uchR * src[55]) >> 8;
-         dst[55] = src[55];
+      //   dst[52] = (uchB * src[55]) >> 8;
+      //   dst[53] = (uchG * src[55]) >> 8;
+      //   dst[54] = (uchR * src[55]) >> 8;
+      //   dst[55] = src[55];
 
-         dst[56] = (uchB * src[59]) >> 8;
-         dst[57] = (uchG * src[59]) >> 8;
-         dst[58] = (uchR * src[59]) >> 8;
-         dst[59] = src[59];
+      //   dst[56] = (uchB * src[59]) >> 8;
+      //   dst[57] = (uchG * src[59]) >> 8;
+      //   dst[58] = (uchR * src[59]) >> 8;
+      //   dst[59] = src[59];
 
-         dst[60] = (uchB * src[63]) >> 8;
-         dst[61] = (uchG * src[63]) >> 8;
-         dst[62] = (uchR * src[63]) >> 8;
-         dst[63] = src[63];
+      //   dst[60] = (uchB * src[63]) >> 8;
+      //   dst[61] = (uchG * src[63]) >> 8;
+      //   dst[62] = (uchR * src[63]) >> 8;
+      //   dst[63] = src[63];
 
-         dst += 4 * 16;
-         src += 4 * 16;
-         size -= 16;
-      }
+      //   dst += 4 * 16;
+      //   src += 4 * 16;
+      //   size -= 16;
+      //}
+      //byte tableR[256];
+      //byte tableG[256];
+      //byte tableB[256];
+      //for (index i = 0; i < 255; i++)
+      //{
+      //   tableR[i] = (uchR * i) >> 8;
+      //   tableG[i] = (uchG * i) >> 8;
+      //   tableB[i] = (uchB * i) >> 8;
+      //}
+      //while (size > 0)
+      //{
+      //   dst[0] = tableR[src[3]];
+      //   dst[1] = tableG[src[3]];
+      //   dst[2] = tableB[src[3]];
+      //   dst += 4;
+      //   src += 4;
+      //   size--;
+      //}
+      
+COLORREF o = ARGB(255, uchR, uchG, uchB);
+
       while (size > 0)
       {
-         //dst[3] = dst[i];
-         dst[0] = (uchB * src[3]) >> 8;
-         dst[1] = (uchG * src[3]) >> 8;
-         dst[2] = (uchR * src[3]) >> 8;
+
+         byte bA = src[3];
+
+         if (bA == 0)
+         {
+
+            *((COLORREF *)dst) = 0;
+
+         }
+         else if (bA == 255)
+         {
+
+            *((COLORREF *)dst) = o;
+
+         }
+         else
+         {
+            dst[0] = (uchB * bA) >> 8;
+            dst[1] = (uchG * bA) >> 8;
+            dst[2] = (uchR * bA) >> 8;
+            dst[3] = bA;
+         }
+         
          dst += 4;
          src += 4;
          size--;

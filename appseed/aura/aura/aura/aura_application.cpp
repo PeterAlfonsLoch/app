@@ -165,14 +165,6 @@ namespace aura
       }
 
 
-      if (m_paurasystem != NULL)
-      {
-
-         m_bDrawModeRelaxedForThroughput = m_paurasystem->m_bDrawModeRelaxedForThroughput;
-
-      }
-
-
 
 
       //      m_pcoreapp                 = NULL;
@@ -3671,6 +3663,18 @@ namespace aura
       m_bAuraProcessInitialize = true;
 
       m_bAuraProcessInitializeResult = false;
+
+      if (!is_system())
+      {
+
+         if (m_paurasystem != NULL)
+         {
+
+            m_bDrawModeRelaxedForThroughput = m_paurasystem->m_bDrawModeRelaxedForThroughput;
+
+         }
+
+      }
 
       m_spdir.alloc(allocer());
 

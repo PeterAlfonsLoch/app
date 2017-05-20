@@ -2463,7 +2463,7 @@ namespace windows
                      }
 
                   }
-                  else
+                  else if(::IsWindowVisible(get_handle()))
                   {
 
                      ::RedrawWindow(get_handle(), NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);

@@ -8,6 +8,9 @@ namespace database
    client::client()
    {
       m_pdataserver = NULL;
+
+
+
    }
 
 

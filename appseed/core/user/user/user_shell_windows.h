@@ -44,6 +44,7 @@ namespace user
 
          delay_thread *                                              m_pdelayRelease;
          ref_array < image_key >                                     m_keyptra;
+         manual_reset_event                                          m_evKey;
          mutex                                                       m_mutexQueue;
          spa(::thread)                                               m_threadaGetImage;
 

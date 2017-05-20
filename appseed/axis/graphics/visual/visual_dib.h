@@ -42,6 +42,7 @@ namespace visual
       {
 
          load_none,
+         load_going_to_load,
          load_fail,
          load_ok,
 
@@ -122,8 +123,8 @@ namespace visual
 
 
 
-      virtual bool load_from_file(var varFile, bool bCache = true);
-      virtual bool load_from_matter(const char * pszMatter,bool bCache = true);
+      virtual bool load_from_file(var varFile, bool bCache = true, bool bCreateHelperMaps = false);
+      virtual bool load_from_matter(const char * pszMatter,bool bCache = true, bool bCreateHelperMaps = false);
       virtual bool read_from_file(::file::file_sp  pfile);
 
 

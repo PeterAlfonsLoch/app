@@ -167,7 +167,7 @@ template < typename PRED >
 
    }
 
-   auto tools = ::get_thread_tools();
+   auto & tools = ::get_thread_tools();
 
    if (!tools.prepare(::thread::op_fork_count, iCount - iStart))
    {
@@ -181,8 +181,6 @@ template < typename PRED >
    sync_object_ptra ptra;
 
    ::count iScan = MAX(1, MIN(iCount - iStart, tools.get_count()));
-
-   tools.prepare(::thread::op_fork_count, iCount);
 
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
