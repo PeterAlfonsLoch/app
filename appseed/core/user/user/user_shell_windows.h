@@ -42,6 +42,7 @@ namespace user
 
          };
 
+         bool                                                        m_bStarted;
          delay_thread *                                              m_pdelayRelease;
          ref_array < image_key >                                     m_keyptra;
          manual_reset_event                                          m_evKey;
@@ -52,9 +53,9 @@ namespace user
          virtual ~windows();
 
 
-         void initialize();
+         virtual void initialize() override;
 
-
+         virtual void defer_start();
          //virtual void open_folder(oswindow oswindow, const string & strFolder);
          //virtual void close_folder(const string & strFolder);
 
@@ -121,7 +122,6 @@ namespace user
          bool _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2);
 
 
-         
 
          //int run();
 

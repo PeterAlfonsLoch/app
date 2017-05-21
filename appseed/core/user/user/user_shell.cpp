@@ -169,6 +169,14 @@ namespace user
       void shell::initialize()
       {
 
+         do_initialize();
+
+      }
+
+      void shell::do_initialize()
+      {
+
+
          single_lock sl(m_pmutex, true);
 
          int iImage;

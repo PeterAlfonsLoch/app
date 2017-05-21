@@ -113,7 +113,8 @@ public:
 
    };
 
-   bool                                   m_bDrawModeRelaxedForThroughput;
+   bool                                   m_bAvoidProcFork;
+   bool                                   m_bThreadToolsForIncreasedFps;
    //::duration                             m_durationRunLock;
    sp(::thread_tools)                     m_ptools;
    user_interaction_ptr_array *           m_puiptra;
@@ -187,8 +188,8 @@ public:
    virtual ~thread();
 
 
-   thread_tools & tools();
-   thread_toolset & toolset(e_tool etool);
+   thread_tools * tools();
+   thread_toolset * toolset(e_tool etool);
 
    // file related stuff
    file_info * get_file_info();

@@ -450,10 +450,19 @@ namespace aura
    ::thread_toolset * application::create_thread_toolset(::thread::e_tool etool)
    {
 
+      auto ptools = get_thread_tools();
+
+      if (ptools == NULL)
+      {
+
+         return NULL;
+
+      }
+
       if (etool == ::thread::tool_draw2d)
       {
 
-         return get_thread_tools().create_thread_toolset < ::draw2d::thread_tool >();
+         return ptools->create_thread_toolset < ::draw2d::thread_tool >();
 
       }
 
@@ -3670,7 +3679,7 @@ namespace aura
          if (m_paurasystem != NULL)
          {
 
-            m_bDrawModeRelaxedForThroughput = m_paurasystem->m_bDrawModeRelaxedForThroughput;
+            m_bThreadToolsForIncreasedFps = m_paurasystem->m_bThreadToolsForIncreasedFps;
 
          }
 

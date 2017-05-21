@@ -1645,9 +1645,9 @@ namespace draw2d
 
       //byte * psrc2;
 
-      auto & set = ::get_thread_toolset(::thread::tool_draw2d);
+      auto  pset = ::get_thread_toolset(::thread::tool_draw2d);
 
-      if (set.nok())
+      if (pset->nok())
       {
 
          return blend(ptDst, pdibSrc, ptSrc, size, bA);
@@ -1656,9 +1656,9 @@ namespace draw2d
 
       int y = 0;
       
-      set.prepare(yEnd);
+      pset->prepare(yEnd);
 
-      for(sp(::draw2d::thread_tool) ptool : set)
+      for(sp(::draw2d::thread_tool) ptool : *pset)
       {
 
          ptool->m_eop = thread_tool::op_blend;
@@ -1667,7 +1667,7 @@ namespace draw2d
 
          ptool->m_h = pdibSrc->m_size.cy;
 
-         ptool->m_ySkip = set.get_count();
+         ptool->m_ySkip = pset->get_count();
 
          ptool->m_y = y;
 
@@ -1695,7 +1695,7 @@ namespace draw2d
 
       }
 
-      set();
+      (*pset)();
 
       return true;
 

@@ -339,6 +339,9 @@ namespace multithreading
 
 
 
+CLASS_DECL_AURA uint32_t random_processor_index_generator();
+
+
 
 
 

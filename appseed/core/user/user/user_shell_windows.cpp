@@ -17,21 +17,11 @@ namespace user
          m_evKey(papp)
       {
 
+
          defer_create_mutex();
 
-         for (index i = 0; i < get_processor_count() * 2; i++)
-         {
+         m_bStarted = false;
 
-            m_threadaGetImage.add(::fork(get_app(),
-               [&]()
-            {
-
-               ::multithreading::set_priority(::multithreading::priority_highest);
-               run();
-
-            }));
-
-         }
 
       }
 
@@ -1903,6 +1893,37 @@ namespace user
 
       }
 
+      void windows::initialize()
+      {
+
+
+      }
+
+
+      void windows::defer_start()
+      {
+
+         synch_lock sl(m_pmutex);
+
+         if (!m_bStarted)
+         {
+
+            m_bStarted = true;
+
+            m_threadaGetImage = ::fork_proc(get_app(), [&]()
+            {
+
+               ::multithreading::set_priority(::multithreading::priority_highest);
+
+               run();
+
+            });
+
+
+         }
+
+
+      }
 
       void windows::per_fork::init()
       {
@@ -1918,6 +1939,8 @@ namespace user
 
       int windows::run()
       {
+
+         do_initialize();
 
          per_fork fork;
 
@@ -1979,6 +2002,13 @@ namespace user
 
       int32_t windows::get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
       {
+
+         if (!m_bStarted)
+         {
+
+            defer_start();
+
+         }
 
          if (::str::find_ci("1484 ", strPath) > 0)
          {
@@ -2232,6 +2262,13 @@ namespace user
 
       int32_t windows::get_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, COLORREF crBk)
       {
+
+         if (!m_bStarted)
+         {
+
+            defer_start();
+
+         }
 
          int32_t iImage = 0x80000000;
 

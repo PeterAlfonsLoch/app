@@ -151,8 +151,8 @@ public:
 };
 
 
-CLASS_DECL_AURA ::thread_tools & get_thread_tools();
-CLASS_DECL_AURA ::thread_toolset & get_thread_toolset(::thread::e_tool etool);
+CLASS_DECL_AURA ::thread_tools * get_thread_tools();
+CLASS_DECL_AURA ::thread_toolset * get_thread_toolset(::thread::e_tool etool);
 
 
 
@@ -167,9 +167,18 @@ template < typename PRED >
 
    }
 
-   auto & tools = ::get_thread_tools();
+   auto  ptools = ::get_thread_tools();
 
-   if (!tools.prepare(::thread::op_fork_count, iCount - iStart))
+   if (ptools == NULL)
+   {
+
+      pred(0, iStart, iCount, 1);
+
+      return 1;
+
+   }
+
+   if (!ptools->prepare(::thread::op_fork_count, iCount - iStart))
    {
 
       return -1;
@@ -180,18 +189,18 @@ template < typename PRED >
 
    sync_object_ptra ptra;
 
-   ::count iScan = MAX(1, MIN(iCount - iStart, tools.get_count()));
+   ::count iScan = MAX(1, MIN(iCount - iStart, ptools->get_count()));
 
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
 
       sp(pred_holder_base) pbase = canew(forking_count_pred < PRED >(papp, iOrder, iOrder + iStart, iScan, iCount, pred));
 
-      tools.add_pred(pbase);
+      ptools->add_pred(pbase);
 
    }
 
-   if (!tools())
+   if (!(*ptools)())
    {
 
       return -1;

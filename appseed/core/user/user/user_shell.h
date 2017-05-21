@@ -123,7 +123,8 @@ namespace user
          image_list * GetImageList(int iSize);
          image_list * GetImageListHover(int iSize);
 
-         void initialize();
+         virtual void initialize();
+         virtual void do_initialize();
 
          virtual e_folder get_folder_type(::aura::application * papp, const unichar * lpcszPath) = 0;
          virtual e_folder get_folder_type(::aura::application * papp, const char * lpcszPath) = 0;

@@ -47,7 +47,7 @@ namespace aura
       m_httpsystem(this)
    {
 
-      m_bDrawModeRelaxedForThroughput = true;
+      m_bThreadToolsForIncreasedFps = false;
 
       m_typemap.InitHashTable(2048);
 

@@ -151,10 +151,23 @@ thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pP
 void thread::CommonConstruct()
 {
 
+   if (::get_thread() != NULL)
+   {
+
+      m_bAvoidProcFork = ::get_thread()->m_bAvoidProcFork;
+
+   }
+   else
+   {
+
+      m_bAvoidProcFork = false;
+
+   }
+
    if (get_app() != NULL)
    {
 
-      m_bDrawModeRelaxedForThroughput = get_app()->m_bDrawModeRelaxedForThroughput;
+      m_bThreadToolsForIncreasedFps = get_app()->m_bThreadToolsForIncreasedFps;
 
    }
 
@@ -2991,10 +3004,18 @@ CLASS_DECL_AURA void forking_count_thread_null_end(int iOrder)
 
 
 
-::thread_tools & thread::tools()
+::thread_tools * thread::tools()
 {
 
+   if (m_bAvoidProcFork)
+   {
+
+      return NULL;
+
+   }
+
    synch_lock sl(m_pmutex);
+
 
    ASSERT(::get_thread() == this);
 
@@ -3005,15 +3026,22 @@ CLASS_DECL_AURA void forking_count_thread_null_end(int iOrder)
 
    }
 
-   return *m_ptools;
+   return m_ptools;
 
 }
 
 
 
 
-::thread_toolset & thread::toolset(e_tool etool)
+::thread_toolset * thread::toolset(e_tool etool)
 {
+
+   if (m_bAvoidProcFork)
+   {
+
+      return NULL;
+
+   }
 
    sp(thread_toolset) & pset = m_toolset.element_at_grow((index)etool);
       
@@ -3024,14 +3052,27 @@ CLASS_DECL_AURA void forking_count_thread_null_end(int iOrder)
 
    }
 
-   if (!tools().select_toolset(pset))
+   if (!m_ptools->select_toolset(pset))
    {
 
-      return *((thread_toolset *)NULL);
+      return NULL;
 
    }
 
-   return *pset;
+   return pset;
 
 }
 
+
+
+
+uint32_t g_uiRandomProcessorIndexGenerator = -1;
+
+CLASS_DECL_AURA uint32_t random_processor_index_generator()
+{
+
+   g_uiRandomProcessorIndexGenerator++;
+
+   return g_uiRandomProcessorIndexGenerator;
+
+}

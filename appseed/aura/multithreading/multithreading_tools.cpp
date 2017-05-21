@@ -24,9 +24,9 @@ thread_tools::thread_tools(::aura::application * papp) :
 
       m_threada.add(ptoolthread);
 
-//      ptoolthread->begin(::multithreading::priority_highest);
+      ptoolthread->begin(::multithreading::priority_highest);
       //ptoolthread->begin();
-      ptoolthread->begin(::multithreading::priority_time_critical);
+      //ptoolthread->begin(::multithreading::priority_time_critical);
 //      ptoolthread->begin();
 
    }
@@ -292,7 +292,7 @@ void tool_thread::start()
 
 
 
-CLASS_DECL_AURA ::thread_tools & get_thread_tools()
+CLASS_DECL_AURA ::thread_tools * get_thread_tools()
 {
 
    return  ::get_thread()->tools();
@@ -300,7 +300,7 @@ CLASS_DECL_AURA ::thread_tools & get_thread_tools()
 }
 
 
-CLASS_DECL_AURA ::thread_toolset & get_thread_toolset(::thread::e_tool etool)
+CLASS_DECL_AURA ::thread_toolset * get_thread_toolset(::thread::e_tool etool)
 {
 
    return ::get_thread()->toolset(etool);

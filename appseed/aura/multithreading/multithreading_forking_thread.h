@@ -237,7 +237,16 @@ template < typename PRED >
 ::count fork_count(::aura::application * papp, ::count iCount, PRED pred, index iStart = 0)
 {
 
-   ::count iScan = MAX(1, MIN(iCount - iStart, get_current_process_affinity_order()));
+   int iAffinityOrder = get_current_process_affinity_order();
+
+   if (::get_thread() == NULL || ::get_thread()->m_bAvoidProcFork)
+   {
+
+      iAffinityOrder = 1;
+
+   }
+
+   ::count iScan = MAX(1, MIN(iCount - iStart, iAffinityOrder));
      
    for (index iOrder = 0; iOrder < iScan; iOrder++)
    {
@@ -254,6 +263,54 @@ template < typename PRED >
 
 }
 
+CLASS_DECL_AURA uint32_t random_processor_index_generator();
+
+template < typename PRED >
+spa(::thread) fork_proc(::aura::application * papp, PRED pred, index iCount = -1)
+{
+
+   spa(::thread) threadptra;
+
+   int iProcCount = get_current_process_affinity_order();
+
+   if (iCount < 0 || iCount > iProcCount)
+   {
+
+      iCount = iProcCount;
+
+   }
+
+   iCount = MAX(1, iCount);
+
+   if (::get_thread() == NULL || ::get_thread()->m_bAvoidProcFork)
+   {
+
+      iCount = 1;
+
+   }
+
+   for (index iProcessor = 0; iProcessor < iCount; iProcessor++)
+   {
+
+      auto pforkingthread = canew(forking_thread < PRED >(papp, pred));
+
+      ::thread * pthread = dynamic_cast < ::thread * > (pforkingthread);
+
+      pthread->m_dwThreadAffinityMask = translate_processor_affinity(random_processor_index_generator() % iProcCount);
+
+      pthread->m_bThreadToolsForIncreasedFps = false;
+
+      pthread->m_bAvoidProcFork = true;
+
+      threadptra.add(pthread);
+
+      pthread->begin();
+
+   }
+
+   return threadptra;
+
+}
 
 
 
