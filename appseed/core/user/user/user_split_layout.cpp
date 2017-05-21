@@ -1279,7 +1279,7 @@ namespace user
    void split_layout::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      COLORREF crBackground = get_color(crBackground, ::user::color_split_layout_background);
+      COLORREF crBackground = _001GetColor(::user::color_split_layout_background);
 
       if (argb_get_a_value(crBackground) > 0)
       {

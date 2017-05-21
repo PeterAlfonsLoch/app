@@ -103,7 +103,7 @@ namespace user
             }
 
          }
-         else if (m_columna._001GetBySubItem(iSubItem)->m_bEditOnSecondClick)
+         else if (m_columna.get_by_subitem(iSubItem)->m_bEditOnSecondClick)
          {
 
             if (m_iOnClickClickItem == iItem && m_iOnClickClickSubItem == iSubItem)
@@ -217,7 +217,7 @@ namespace user
             }
 
          }
-         else if(m_columna._001GetBySubItem(iSubItem)->m_bEditOnSecondClick)
+         else if(m_columna.get_by_subitem(iSubItem)->m_bEditOnSecondClick)
          {
             
             if(m_iOnClickClickItem == iItem && m_iOnClickClickSubItem == iSubItem)
@@ -262,7 +262,7 @@ namespace user
 
          _001HideEditingControls();
 
-         sp(::user::list_column) pcolumn = m_columna._001GetBySubItem(iSubItem);
+         sp(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
 
          if (pcolumn.is_set() && pcolumn->m_iControl >= 0)
          {
@@ -386,7 +386,7 @@ namespace user
 
       synch_lock sl(m_pmutex);
 
-      ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
+      ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
       if(pcolumn == NULL || pcolumn->m_iControl < 0)
       {
@@ -879,7 +879,7 @@ namespace user
 
                   _001SetItemText(&itemTarget);
 
-                  //sp(::list::column) pcolumn = m_columna._001GetBySubItem(iSubItemTarget);
+                  //sp(::list::column) pcolumn = m_columna.get_by_subitem(iSubItemTarget);
                   //
                   //if (pcolumn.is_set() && m_controldescriptorset.bounds(pcolumn->m_iControl))
                   //{
@@ -1351,20 +1351,19 @@ namespace user
 
       int iColumnCount = _001GetColumnCount();
 
-      ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
+      index iSubItemColumn = _001MapSubItemToColumn(iSubItem);
 
-      ::user::list_column * pcolumnPrevious = NULL;
+      index iColumnPrevious = -1;
 
-      for (index i = pcolumn->m_iKeyVisible -1; i >= 0; i--)
+      for (index iColumn = iSubItemColumn - 1; iColumn >= 0; iColumn--)
       {
 
-         if (m_columna._001GetVisible(i)->m_iControl >= 0
-            && _001GetControl(iItem, m_columna._001GetVisible(i)->m_iSubItem) != NULL
-            && _001IsSubItemEnabled(iItem, m_columna._001GetVisible(i)->m_iSubItem))
+         if (m_columna.get_visible(iColumn)->m_iControl >= 0
+            && _001GetControl(iItem, m_columna.get_visible(iColumn)->m_iSubItem) != NULL
+            && _001IsSubItemEnabled(iItem, m_columna.get_visible(iColumn)->m_iSubItem))
          {
 
-
-            pcolumnPrevious = m_columna._001GetVisible(i);
+            iColumnPrevious = iColumn;
 
             break;
 
@@ -1372,20 +1371,20 @@ namespace user
 
       }
 
-      if (pcolumnPrevious == NULL)
+      if (iColumnPrevious < 0)
       {
 
          iPreviousItem--;
 
-         for (index i = iColumnCount - 1; i >= pcolumn->m_iKeyVisible; i--)
+         for (index iColumn = iColumnCount - 1; iColumn >= iSubItemColumn; iColumn--)
          {
 
-            if (m_columna._001GetVisible(i)->m_iControl >= 0
-               && _001GetControl(iItem, m_columna._001GetVisible(i)->m_iSubItem) != NULL
-               && _001IsSubItemEnabled(iItem, m_columna._001GetVisible(i)->m_iSubItem))
+            if (m_columna.get_visible(iColumn)->m_iControl >= 0
+               && _001GetControl(iItem, m_columna.get_visible(iColumn)->m_iSubItem) != NULL
+               && _001IsSubItemEnabled(iItem, m_columna.get_visible(iColumn)->m_iSubItem))
             {
 
-               pcolumnPrevious = m_columna._001GetVisible(i);
+               iColumnPrevious = iColumn;
 
                break;
 
@@ -1395,7 +1394,7 @@ namespace user
 
       }
 
-      if (pcolumnPrevious != NULL)
+      if (iColumnPrevious >= 0)
       {
 
          if (iPreviousItem < 0)
@@ -1414,7 +1413,7 @@ namespace user
 
          iItem = iPreviousItem;
 
-         iSubItem = pcolumnPrevious->m_iSubItem;
+         iSubItem = _001MapColumnToSubItem(iColumnPrevious);
 
          return true;
 
@@ -1432,20 +1431,19 @@ namespace user
 
       int iColumnCount = _001GetColumnCount();
 
-      ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
+      index iSubItemColumn = _001MapSubItemToColumn(iSubItem);
 
-      ::user::list_column * pcolumnNext = NULL;
+      index iColumnNext = -1;
 
-      for (index i = pcolumn->m_iKeyVisible + 1; i < iColumnCount; i++)
+      for (index iColumn = iSubItemColumn + 1; iColumn < iColumnCount; iColumn++)
       {
 
-         if (m_columna._001GetVisible(i)->m_iControl >= 0
-            && _001GetControl(iItem, m_columna._001GetVisible(i)->m_iSubItem) != NULL
-            && _001IsSubItemEnabled(iItem, m_columna._001GetVisible(i)->m_iSubItem))
+         if (m_columna.get_visible(iColumn)->m_iControl >= 0
+            && _001GetControl(iItem, m_columna.get_visible(iColumn)->m_iSubItem) != NULL
+            && _001IsSubItemEnabled(iItem, m_columna.get_visible(iColumn)->m_iSubItem))
          {
 
-
-            pcolumnNext = m_columna._001GetVisible(i);
+            iColumnNext = iColumn;
 
             break;
 
@@ -1453,20 +1451,20 @@ namespace user
 
       }
 
-      if (pcolumnNext == NULL)
+      if (iColumnNext < 0)
       {
 
          iNextItem++;
 
-         for (index i = 0; i <= pcolumn->m_iKeyVisible; i++)
+         for (index iColumn = 0; iColumn <= iSubItemColumn; iColumn++)
          {
 
-            if (m_columna._001GetVisible(i)->m_iControl >= 0
-               && _001GetControl(iItem, m_columna._001GetVisible(i)->m_iSubItem) != NULL
-               && _001IsSubItemEnabled(iItem, m_columna._001GetVisible(i)->m_iSubItem))
+            if (m_columna.get_visible(iColumn)->m_iControl >= 0
+               && _001GetControl(iItem, m_columna.get_visible(iColumn)->m_iSubItem) != NULL
+               && _001IsSubItemEnabled(iItem, m_columna.get_visible(iColumn)->m_iSubItem))
             {
 
-               pcolumnNext = m_columna._001GetVisible(i);
+               iColumnNext = iColumn;
 
                break;
 
@@ -1476,7 +1474,7 @@ namespace user
 
       }
 
-      if (pcolumnNext != NULL)
+      if (iColumnNext >= 0)
       {
 
          if (iNextItem >= _001GetItemCount())
@@ -1495,7 +1493,7 @@ namespace user
 
          iItem = iNextItem;
 
-         iSubItem = pcolumnNext->m_iSubItem;
+         iSubItem = _001MapColumnToOrder(iColumnNext);
 
          return true;
 
@@ -1996,7 +1994,7 @@ namespace user
    ::check::e_check form_list::_001GetSubItemCheck(index iItem, index iSubItem)
    {
 
-      sp(::user::list_column) pcolumn = m_columna._001GetBySubItem(iSubItem);
+      sp(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_iControl >= 0)
       {
@@ -2053,7 +2051,7 @@ namespace user
    bool form_list::_001SetSubItemCheck(index iItem, index iSubItem, ::check::e_check echeck)
    {
 
-      sp(::user::list_column) pcolumn = m_columna._001GetBySubItem(iSubItem);
+      sp(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_iControl >= 0)
       {
@@ -2097,7 +2095,7 @@ namespace user
    bool form_list::_001IsSubItemEnabled(index iItem, index iSubItem)
    {
 
-      sp(::user::list_column) pcolumn = m_columna._001GetBySubItem(iSubItem);
+      sp(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_iControl >= 0)
       {

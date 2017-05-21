@@ -36,7 +36,6 @@ namespace user
       index          m_iItem;
       index          m_iDisplayItem;
       index          m_iColumn;
-      index          m_iColumnKey;
       index          m_iOrder;
       index          m_iSubItem;
       index          m_iListItem;
@@ -73,7 +72,7 @@ namespace user
 
       index                m_iItemRectItem;
 
-      index                m_iWidthColumn;
+      //index                m_iWidthColumn;
       int32_t                  m_iColumnWidth;
 
       index                m_iSubItemRectItem;

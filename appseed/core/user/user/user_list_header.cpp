@@ -37,15 +37,15 @@ namespace user
 
       list * plist = m_plistctrlinterface;
 
-      if (plist->m_columna._001GetVisible(iColumn)->m_dibHeader.is_set() && plist->m_columna._001GetVisible(iColumn)->m_dibHeader->area() > 0)
+      if (plist->m_columna.get_visible(iColumn)->m_dibHeader.is_set() && plist->m_columna.get_visible(iColumn)->m_dibHeader->area() > 0)
       {
 
          rect r;
 
          r.left = 0;
          r.top = 0;
-         r.right = plist->m_columna._001GetVisible(iColumn)->m_dibHeader->m_size.cx;
-         r.bottom = plist->m_columna._001GetVisible(iColumn)->m_dibHeader->m_size.cy;
+         r.right = plist->m_columna.get_visible(iColumn)->m_dibHeader->m_size.cx;
+         r.bottom = plist->m_columna.get_visible(iColumn)->m_dibHeader->m_size.cy;
 
          rect rC;
 
@@ -55,7 +55,7 @@ namespace user
 
          r.Align(::align_left_center, rC);
 
-         pgraphics->BitBlt(r, plist->m_columna._001GetVisible(iColumn)->m_dibHeader->get_graphics());
+         pgraphics->BitBlt(r, plist->m_columna.get_visible(iColumn)->m_dibHeader->get_graphics());
 
          rectColumn.left = r.right + m_iImageSpacing;
 
@@ -136,7 +136,7 @@ namespace user
       for(int32_t i = 0; i <= iItem; i++)
       {
          xLast = x;
-         item.m_iWidthColumn = ItemToColumnKey(i);
+         item.m_iColumn = ItemToColumnKey(i);
          plist->_001GetColumnWidth(&item);
          if(item.m_bOk)
          {
@@ -353,7 +353,7 @@ namespace user
          for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
          {
 
-            item.m_iWidthColumn = iColumn;
+            item.m_iColumn = iColumn;
 
             m_plistctrlinterface->_001GetColumnWidth(&item);
 
@@ -447,12 +447,12 @@ namespace user
                {
                   // The header item has been dragged
 
-                  int_ptr iKeyA = plist->m_columna.OrderToKey(iItem);
-                  int_ptr iKeyB = plist->m_columna.OrderToKey(iItem);
-                  int_ptr iOrderA = plist->m_columna._001GetByKey(iKeyA)->m_iOrder;
-                  int_ptr iOrderB = plist->m_columna._001GetByKey(iKeyB)->m_iOrder;
-                  plist->m_columna._001GetByKey(iKeyA)->m_iOrder = iOrderB;
-                  plist->m_columna._001GetByKey(iKeyB)->m_iOrder = iOrderA;
+                  int_ptr iKeyA = plist->m_columna.order_index(iItem);
+                  int_ptr iKeyB = plist->m_columna.order_index(iItem);
+                  int_ptr iOrderA = plist->m_columna.get_by_index(iKeyA)->m_iOrder;
+                  int_ptr iOrderB = plist->m_columna.get_by_index(iKeyB)->m_iOrder;
+                  plist->m_columna.get_by_index(iKeyA)->m_iOrder = iOrderB;
+                  plist->m_columna.get_by_index(iKeyB)->m_iOrder = iOrderA;
                   plist->_001OnColumnChange();
                   plist->DISaveOrder();
                   plist->Redraw();
@@ -664,9 +664,6 @@ namespace user
    void list_header::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-
-      //pgraphics->OffsetViewportOrg(0, 0);
-      
 
       rect rectClient;
 

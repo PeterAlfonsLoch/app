@@ -175,7 +175,7 @@ namespace filemanager
 
       _001OnUpdateItemCount();
 
-      ::user::list_column * pcolumn = m_columna._001GetBySubItem(1);
+      ::user::list_column * pcolumn = m_columna.get_by_subitem(1);
 
 
       _001CreateImageList(pcolumn);

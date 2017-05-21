@@ -54,7 +54,7 @@ namespace user
 
             item.m_iItem = iColumn;
 
-            item.m_iSubItem = plist->m_columna._001GetByKey(iColumn)->m_iSubItem;
+            item.m_iSubItem = plist->m_columna.get_by_index(iColumn)->m_iSubItem;
 
             item.m_iListItem = -1;
 

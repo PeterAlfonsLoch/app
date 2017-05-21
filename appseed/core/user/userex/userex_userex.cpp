@@ -934,7 +934,7 @@ namespace userex
 
       sp(::create) createcontext(papp->allocer());
 
-      createcontext->m_bMakeVisible                   = false;
+      createcontext->m_bMakeVisible                   = true;
 
       createcontext->m_puiParent                      = pwndParent;
 

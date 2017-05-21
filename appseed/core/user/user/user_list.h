@@ -33,10 +33,13 @@ namespace user
    {
    public:
 
+      // Always indicate what maybe "superfluous" information
+      // in this case
+      //
+      // Cache:
+      //      
+      // int                           m_iKey;
 
-      index                            m_iKey;
-      index                            m_iKeyVisible;
-      index                            m_iKeyNonVisible;
 
 
       bool                             m_bVisible;
@@ -46,14 +49,14 @@ namespace user
       id                               m_uiText;
       UINT                             m_uiSmallBitmap;
       COLORREF                         m_crSmallMask;
-      int32_t                              m_iSmallImageWidth;
+      int32_t                          m_iSmallImageWidth;
       index                            m_iSubItem;
-      sp(image_list)                     m_pil;
-      sp(image_list)                     m_pilHover;
+      sp(image_list)                   m_pil;
+      sp(image_list)                   m_pilHover;
       ::visual::icon_int_map           m_mapIcon;
       size                             m_sizeIcon;
       bool                             m_bIcon;
-      int32_t                              m_iWidth;
+      int32_t                          m_iWidth;
       bool                             m_bCustomDraw;
       ::draw2d::dib_sp                 m_dibHeader;
 
@@ -76,6 +79,10 @@ namespace user
       bool operator ==(const ::user::list_column & pcolumn) const;
       list_column & operator = (const list_column & column);
 
+
+      ::index        get_index();
+      ::index        get_visible_index();
+
    };
 
    class CLASS_DECL_CORE list_column_array :
@@ -92,7 +99,7 @@ namespace user
 
 
       void Initialize(list * plist);
-      index MapConfigIdToKey(const ::database::id & key);
+      //index MapConfigIdToKey(const ::database::id & key);
 
 
 
@@ -105,41 +112,48 @@ namespace user
       void remove(index iColumn);
 
 
-      ::count NonVisibleGetCount();
-      index NonVisibleMapSubItemToColumn(index iSubItem);
+      //::count NonVisibleGetCount();
+      //index NonVisibleMapSubItemToColumn(index iSubItem);
       void ShowSubItem(index iSubItem, bool bShow);
 
-      index _001GetSubItemKey(index iSubItem);
+      index subitem_index(index iSubItem);
+      index subitem_visible_index(index iSubItem);
 
-      list_column * _001GetBySubItem(index iSubItem);
-      list_column * _001GetByKey(index iKey);
-      list_column * _001GetByConfigId(const ::database::id & key);
-      list_column * _001GetVisible(index iKeyVisible);
-      list_column * _001GetNonVisible(index iKeyNonVisible);
 
-      list_column * GlobalOrderGetPrevious(index iKey);
-      list_column * GlobalOrderGetNext(index iKey);
 
-      index VisibleMapSubItemToColumn(index iSubItem);
+
+      //list_column * GlobalOrderGetPrevious(index iKey);
+      //list_column * GlobalOrderGetNext(index iKey);
+
+      //index VisibleMapSubItemToColumn(index iSubItem);
       ::count VisibleGetCount();
 
       ::count get_count();
 
 
       void remove_all();
-      void GlobalToVisibleOrder();
-
-      void VisibleToGlobalOrder(index iKeyA, index iKeyB);
-
-      void VisibleToGlobalOrder();
 
       void DISaveOrder();
 
       void DILoadOrder();
 
-      index VisibleGetOrderFromKey(index iKey);
+      index visible_index_order(index iIndex);
 
-      index OrderToKey(index iOrder);
+      index order_index(index iOrder);
+
+//      index subitem_index(index iSubItem);
+      index config_id_index(const ::database::id & key);
+
+//      index subitem_visible_index(index iSubItem);
+      index config_id_visible_index(const ::database::id & key);
+      index visible_index(index iKeyVisible);
+
+      ::index        get_index(list_column * pcolumn);
+      ::index        get_visible_index(list_column * pcolumn);
+      list_column *  get_visible(index iIndex);
+      list_column *  get_by_index(index iIndex);
+      list_column *  get_by_subitem(index iSubItem);
+      list_column *  get_by_config_id(const ::database::id & key);
 
    };
 
@@ -165,9 +179,9 @@ namespace user
 
 
 
-      list_column *        m_pcolumnWidth;
+      //list_column *        m_pcolumnWidth;
 
-      list_column *        m_pcolumnSubItemRect;
+      //list_column *        m_pcolumnSubItemRect;
 
 
       draw_list_item(list * plist);
@@ -297,7 +311,7 @@ namespace user
       void _001EnsureVisible(index iItem, bool bRedraw = true);
       void _001EnsureVisible(index iItem, range & rangeRedraw);
       void _001ItemScroll(index iItem, bool bRedraw = true);
-      index _001ConfigIdToColumnKey(const ::database::id & key);
+      index config_id_index(const ::database::id & key);
       index _001ConfigIdToSubItem(const ::database::id & key);
       virtual bool _001HasConfigId(const ::database::id & key);
       void _001GetSelection(::database::id & key, ::database::selection & selection);

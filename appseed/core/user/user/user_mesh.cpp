@@ -234,7 +234,7 @@ namespace user
       m_pdrawmeshitem->m_iSubItemRectSubItem    = -1;
       m_pdrawmeshitem->m_iSubItemRectItem       = -1;
       m_pdrawmeshitem->m_iSubItemRectColumn     = -1;
-      m_pdrawmeshitem->m_iWidthColumn           = -1;
+//      m_pdrawmeshitem->m_iWidthColumn           = -1;
       m_pdrawmeshitem->m_iColumnWidth           = 0;
 
       rect rectItem;
@@ -1503,7 +1503,7 @@ namespace user
       draw_mesh_item item(this);
       if(point.x < iLeft)
          return false;
-      for(item.m_iWidthColumn = 0; item.m_iWidthColumn < iColumnCount; item.m_iWidthColumn++)
+      for(item.m_iColumn = 0; item.m_iColumn < iColumnCount; item.m_iColumn++)
       {
          _001GetColumnWidth(&item);
          if(!item.m_bOk)
@@ -1512,7 +1512,7 @@ namespace user
          if(iLeft <= point.x && point.x < iRight)
          {
             iItemParam = iItem;
-            iSubItemParam = _001MapColumnToSubItem(item.m_iWidthColumn);
+            iSubItemParam = _001MapColumnToSubItem(item.m_iColumn);
             return true;
          }
          iLeft = iRight;
@@ -2069,7 +2069,7 @@ namespace user
 
          pdrawitem->m_rectSubItem.left          = pdrawitem->m_rectItem.left;
          pdrawitem->m_iSubItemRectColumn        = _001MapOrderToColumn(0);
-         pdrawitem->m_iWidthColumn              = pdrawitem->m_iSubItemRectColumn;
+         pdrawitem->m_iColumn                    = pdrawitem->m_iSubItemRectColumn;
          _001GetColumnWidth(pdrawitem);
          pdrawitem->m_rectSubItem.right         = pdrawitem->m_rectItem.left + pdrawitem->m_iColumnWidth;
          pdrawitem->m_iSubItemRectItem          = pdrawitem->m_iItemRectItem;
@@ -2085,13 +2085,13 @@ namespace user
       {
          while(pdrawitem->m_iSubItemRectOrder < pdrawitem->m_iOrder)
          {
-            pdrawitem->m_iWidthColumn           = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
+            pdrawitem->m_iColumn           = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
             _001GetColumnWidth(pdrawitem);
             pdrawitem->m_rectSubItem.left       += pdrawitem->m_iColumnWidth;
             pdrawitem->m_iSubItemRectOrder++;
          }
-         pdrawitem->m_iWidthColumn              = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
-         pdrawitem->m_iSubItemRectColumn        = pdrawitem->m_iWidthColumn;
+         pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
+         pdrawitem->m_iSubItemRectColumn        = pdrawitem->m_iColumn;
          _001GetColumnWidth(pdrawitem);
          pdrawitem->m_rectSubItem.right         = pdrawitem->m_rectSubItem.left + pdrawitem->m_iColumnWidth;
          pdrawitem->m_iSubItemRectOrder         = pdrawitem->m_iOrder;
@@ -5920,7 +5920,6 @@ namespace user
       m_iItem           = -1;
       m_iDisplayItem    = -1;
       m_iColumn         = -1;
-      m_iColumnKey      = -1;
       m_iOrder          = -1;
       m_iSubItem        = -1;
       m_iListItem       = -1;
@@ -5942,7 +5941,7 @@ namespace user
 
       m_prectClient              = NULL;
 
-      m_iWidthColumn             = -1;
+      m_iColumn = -1;
       m_iColumnWidth             = 0;
 
       m_iItemRectItem            = -1;

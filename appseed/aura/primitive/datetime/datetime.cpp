@@ -269,13 +269,14 @@ namespace datetime
       int32_t iStart = 0;
 
       // if is international date time 2009-04-31 21:45:59
-      if(str.get_length() >= 19)
+      // or
+      // if is international date time 2009-04-31 21:45
+      if(str.get_length() >= 16)
       {
-         if(str.Mid(4,1) == "-"
-               && str.Mid(7,1) == "-"
+         if(((str.Mid(4,1) == "-") || (str.Mid(4, 1) == ":"))
+               && ((str.Mid(7,1) == "-") || ( str.Mid(7, 1) == ":"))
                && str.Mid(10,1) == " "
-               && str.Mid(13,1) == ":"
-               && str.Mid(16,1) == ":")
+               && str.Mid(13,1) == ":")
          {
             bBaseTime = true;
             Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str,set);
@@ -433,6 +434,12 @@ namespace datetime
       }
       if(bBaseTime)
       {
+         if (str.Mid(iStart).trimmed().get_length() == 0)
+         {
+
+            return value(time);
+
+         }
          return value(time) + span_strtotime(pbaseapp,pcontext,str.Mid(iStart));
       }
       else

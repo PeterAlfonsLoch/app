@@ -232,9 +232,9 @@ namespace user
       m_pdrawlistitem->m_iSubItemRectSubItem = -1;
       m_pdrawlistitem->m_iSubItemRectItem = -1;
       m_pdrawlistitem->m_iSubItemRectColumn = -1;
-      m_pdrawlistitem->m_pcolumnSubItemRect = NULL;
-      m_pdrawlistitem->m_pcolumnWidth = NULL;
-      m_pdrawlistitem->m_iWidthColumn = -1;
+      //m_pdrawlistitem->m_pcolumnSubItemRect = NULL;
+      //m_pdrawlistitem->m_pcolumnWidth = NULL;
+      m_pdrawlistitem->m_iColumn = -1;
       m_pdrawlistitem->m_iColumnWidth = 0;
 
       rect rectItem;
@@ -554,6 +554,9 @@ namespace user
          pdrawitem->m_iState |= ItemStateSelected;
 
 
+      pdrawitem->m_crBack = 0;
+      pdrawitem->update_item_color();
+      pdrawitem->set_text_color();
 
 
       if (pdrawitem->m_bListItemSelected)
@@ -578,9 +581,11 @@ namespace user
             //System.visual().imaging().color_blend(pdrawitem->m_pgraphics, r, crTranslucid, 127);
          }
       }
+      else if (pdrawitem->m_crBack != 0)
+      {
+         pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, pdrawitem->m_crBack);
+      }
 
-      pdrawitem->update_item_color();
-      pdrawitem->set_text_color();
 
       string str;
 
@@ -592,39 +597,35 @@ namespace user
       }
       else
       {
-         iColumnCount = _001GetColumnCount();
+         iColumnCount = m_columna.VisibleGetCount();
       }
 
       pdrawitem->m_iSubItemRectOrder = -1;
       pdrawitem->m_iSubItemRectSubItem = -1;
       pdrawitem->m_iSubItemRectColumn = -1;
-      pdrawitem->m_pcolumnSubItemRect = NULL;
+//      pdrawitem->m_pcolumnSubItemRect = NULL;
 
-      for (pdrawitem->m_iOrder = 0; pdrawitem->m_iOrder < iColumnCount; pdrawitem->m_iOrder++)
+      for (index iVisible = 0; iVisible < iColumnCount; iVisible++)
       {
 
+         pdrawitem->m_iColumn = iVisible;
 
-         pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iOrder);
+         pdrawitem->m_iOrder = _001MapColumnToOrder(iVisible);
 
-
-         if (pdrawitem->m_iColumn < 0)
+         if (pdrawitem->m_iOrder < 0)
             continue;
 
 
-         pdrawitem->m_pcolumn = m_columna._001GetVisible(pdrawitem->m_iColumn);
+         pdrawitem->m_pcolumn = m_columna.get_visible(pdrawitem->m_iColumn);
 
          if (pdrawitem->m_pcolumn != NULL)
          {
 
             pdrawitem->m_iSubItem = pdrawitem->m_pcolumn->m_iSubItem;
 
-            pdrawitem->m_iColumnKey = pdrawitem->m_pcolumn->m_iKey;
-
          }
 
-
          _001GetSubItemRect(pdrawitem);
-
 
          if (!pdrawitem->m_bOk)
             continue;
@@ -861,7 +862,7 @@ namespace user
             }
          }
          m_iItemWidth = iMaxWidth;
-         m_columna._001GetByKey(0)->m_iWidth = iMaxWidth;
+         m_columna.get_visible(0)->m_iWidth = iMaxWidth;
       }
 
       on_change_view_size();
@@ -1177,9 +1178,6 @@ namespace user
 
    list_column::list_column()
    {
-      m_iKey = -1;
-      m_iKeyVisible = -1;
-      m_iKeyNonVisible = -1;
       m_uiSmallBitmap = (UINT)-1;
       m_iOrder = -1;
       m_bVisible = true;
@@ -1201,11 +1199,24 @@ namespace user
    {
    }
 
+   ::index list_column::get_index()
+   {
+
+      return m_pcontainer->get_index(this);
+
+   }
+
+   ::index list_column::get_visible_index()
+   {
+
+      return m_pcontainer->get_visible_index(this);
+
+   }
+
    bool list_column::operator ==(const list_column & column) const
    {
-      return (m_iKey == column.m_iKey)
-         && (m_iKeyVisible == column.m_iKeyVisible)
-         && (m_iKeyNonVisible == column.m_iKeyNonVisible);
+
+      return m_iSubItem == column.m_iSubItem;
 
    }
 
@@ -1213,31 +1224,53 @@ namespace user
 
    int_ptr list_column::CompareOrderSectEndNonVisible(const sp(list_column) & pcolumna, const sp(list_column) & pcolumnb)
    {
+
       if (pcolumna->m_bVisible && pcolumnb->m_bVisible)
+      {
+
          return pcolumna->m_iOrder - pcolumnb->m_iOrder;
+
+      }
       else if (pcolumna->m_bVisible)
+      {
+
          return -1;
+
+      }
       else if (pcolumnb->m_bVisible)
+      {
+
          return 1;
+
+      }
       else
+      {
+
          return 0;
+
+      }
+
    }
+
 
    int_ptr list_column::CompareOrder(const sp(list_column) & pcolumna, const sp(list_column) & pcolumnb)
    {
+
       return pcolumna->m_iOrder - pcolumnb->m_iOrder;
+
    }
+
 
    int_ptr list_column::CompareKey(const sp(list_column) & pcolumna, const sp(list_column) & pcolumnb)
    {
-      return pcolumna->m_iKey - pcolumnb->m_iKey;
+   
+      return pcolumna->get_index() - pcolumnb->get_index();
+
    }
+
 
    list_column & list_column::operator = (const list_column & column)
    {
-      m_iKey = column.m_iKey;
-      m_iKeyVisible = column.m_iKeyVisible;
-      m_iKeyNonVisible = column.m_iKeyNonVisible;
       m_iOrder = column.m_iOrder;
       m_iSubItem = column.m_iSubItem;
       m_uiText = column.m_uiText;
@@ -1256,7 +1289,6 @@ namespace user
       m_mapIcon = column.m_mapIcon;
       m_bEditOnSecondClick = column.m_bEditOnSecondClick;
       m_dibHeader = column.m_dibHeader;
-
       return *this;
    }
 
@@ -1272,36 +1304,17 @@ namespace user
 
       index_array iaVisible;
 
-      if (m_columna.VisibleGetCount() > 0 || m_columna.NonVisibleGetCount() > 0)
+      data_load("VisibleSubItem", iaVisible);
+
+      for(index iColumn = 0; iColumn < m_columna.get_count(); iColumn++)
       {
 
-         data_load("VisibleSubItem", iaVisible);
+         list_column * pcolumn = m_columna[iColumn];
 
-      }
-
-      for (iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
-      {
-
-         list_column * pcolumn = m_columna._001GetVisible(iColumn);
-
-         if (!iaVisible.contains(pcolumn->m_iSubItem))
+         if (pcolumn != NULL)
          {
 
-            m_columna.ShowSubItem(pcolumn->m_iSubItem, false);
-
-         }
-
-      }
-
-      for (iColumn = 0; iColumn < m_columna.NonVisibleGetCount(); iColumn++)
-      {
-
-         list_column * pcolumn = m_columna._001GetNonVisible(iColumn);
-
-         if (iaVisible.contains(pcolumn->m_iSubItem))
-         {
-
-            m_columna.ShowSubItem(pcolumn->m_iSubItem, true);
+            pcolumn->m_bVisible = iaVisible.contains(iColumn);
 
          }
 
@@ -1350,7 +1363,7 @@ namespace user
 
       for (iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
       {
-         list_column * pcolumn = m_columna._001GetVisible(iColumn);
+         list_column * pcolumn = m_columna.get_visible(iColumn);
          iColumnWidth = pcolumn->m_iWidth;
          _001CreateImageList(pcolumn);
          if (iColumnWidth >= 0)
@@ -1407,7 +1420,7 @@ namespace user
             iColumn = _001MapOrderToColumn(iOrder);
             if (iColumn < 0)
                continue;
-            list_column * pcolumn = m_columna._001GetVisible(iColumn);
+            list_column * pcolumn = m_columna.get_visible(iColumn);
             //hditem.mask = HDI_WIDTH | HDI_TEXT | HDI_LPARAM | HDI_ORDER;
             //str.load_string(_001GetColumnTextId(iColumn));
             //hditem.pszText = (LPTSTR) (const char *) str;
@@ -1417,16 +1430,13 @@ namespace user
             hditem.cxy = pcolumn->m_iWidth;;
             hditem.lParam = iColumn;
             hditem.iOrder = (int32_t)iOrder;
-            //         m_plistheader->InsertItem(iColumn, &hditem);
+
          }
+
       }
 
-
-      m_columna.VisibleToGlobalOrder();
-
-
-
    }
+
 
    bool list::_001SetColumnWidth(index iColumn, int32_t iWidth)
    {
@@ -1445,7 +1455,7 @@ namespace user
 
       }
 
-      m_columna._001GetVisible(iColumn)->m_iWidth = iWidth;
+      m_columna.get_visible(iColumn)->m_iWidth = iWidth;
 
       m_plistheader->DIDDXColumn(true);
 
@@ -1457,8 +1467,8 @@ namespace user
 
    void list::_001GetColumnWidth(draw_list_item * pitem)
    {
-      pitem->m_pcolumnWidth = m_columna._001GetVisible(pitem->m_iWidthColumn);
-      if (pitem->m_pcolumnWidth == NULL)
+      auto  * pcolumn = m_columna.get_visible(pitem->m_iColumn);
+      if (pcolumn == NULL)
       {
          pitem->m_iColumnWidth = 0;
          pitem->m_bOk = false;
@@ -1466,7 +1476,7 @@ namespace user
       else
       {
 
-         pitem->m_iColumnWidth = pitem->m_pcolumnWidth->m_iWidth;
+         pitem->m_iColumnWidth = pcolumn->m_iWidth;
          pitem->m_bOk = true;
       }
    }
@@ -1484,11 +1494,18 @@ namespace user
 
    index list::_001MapOrderToColumn(index iOrder)
    {
+      
       for (index iColumn = 0; iColumn < m_columna.get_size(); iColumn++)
       {
          list_column * pcolumn = m_columna.element_at(iColumn);
-         if (pcolumn->m_bVisible && pcolumn->m_iOrder == iOrder)
-            return iColumn;
+         if (pcolumn->m_bVisible)
+         {
+            if (pcolumn->m_iOrder == iOrder)
+            {
+               return iColumn;
+            }
+
+         }
       }
       return -1;
    }
@@ -1499,23 +1516,27 @@ namespace user
          return -1;
       if (iColumn >= m_columna.VisibleGetCount())
          return -1;
-      auto p = m_columna._001GetVisible(iColumn);
+      auto p = m_columna.get_visible(iColumn);
       if (p == NULL)
          return -1;
       return p->m_iOrder;
    }
 
+   
    index list::_001MapSubItemToColumn(index iSubItem)
    {
-      return m_columna.VisibleMapSubItemToColumn(iSubItem);
+      
+      return m_columna.subitem_visible_index(iSubItem);
+
    }
+
 
    index list::_001MapColumnToSubItem(index iColumn)
    {
       ASSERT(iColumn >= 0);
       ASSERT(iColumn < m_columna.VisibleGetCount());
 
-      return m_columna._001GetVisible(iColumn)->m_iSubItem;
+      return m_columna.get_visible(iColumn)->m_iSubItem;
    }
 
    void list::_001DeleteColumn(index iColumn)
@@ -1748,7 +1769,7 @@ namespace user
       draw_list_item item(this);
       if (point.x < 0)
          return false;
-      for (item.m_iWidthColumn = 0; item.m_iWidthColumn < iColumnCount; item.m_iWidthColumn++)
+      for (item.m_iColumn = 0; item.m_iColumn < iColumnCount; item.m_iColumn++)
       {
          _001GetColumnWidth(&item);
          if (!item.m_bOk)
@@ -1757,7 +1778,7 @@ namespace user
          if (iLeft <= point.x && point.x < iRight)
          {
             iItemParam = iItem;
-            iSubItemParam = item.m_pcolumnWidth->m_iSubItem;
+            iSubItemParam = item.m_iSubItem;
             return true;
          }
          iLeft = iRight;
@@ -2239,15 +2260,14 @@ namespace user
 
       if (pdrawitem->m_iSubItemRectOrder < 0 || pdrawitem->m_iOrder == 0 || pdrawitem->m_iSubItemRectOrder > pdrawitem->m_iOrder)
       {
-         pdrawitem->m_iSubItemRectOrder = 0;
+         pdrawitem->m_iSubItemRectOrder = pdrawitem->m_iOrder;
          pdrawitem->m_rectSubItem.left = pdrawitem->m_rectItem.left;
-         pdrawitem->m_iSubItemRectColumn = _001MapOrderToColumn(0);
-         pdrawitem->m_iWidthColumn = pdrawitem->m_iSubItemRectColumn;
+         pdrawitem->m_iSubItemRectColumn = _001MapOrderToColumn(pdrawitem->m_iOrder);
+         pdrawitem->m_iColumn = pdrawitem->m_iSubItemRectColumn;
          _001GetColumnWidth(pdrawitem);
          pdrawitem->m_rectSubItem.right = pdrawitem->m_rectItem.left + pdrawitem->m_iColumnWidth;
          pdrawitem->m_iSubItemRectItem = pdrawitem->m_iItemRectItem;
-         pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_pcolumnWidth->m_iSubItem;
-         pdrawitem->m_pcolumnSubItemRect = pdrawitem->m_pcolumnWidth;
+         pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_iSubItem;
          if (pdrawitem->m_iOrder == 0)
          {
             pdrawitem->m_bOk = true;
@@ -2259,19 +2279,18 @@ namespace user
       {
          while (pdrawitem->m_iSubItemRectOrder < pdrawitem->m_iOrder)
          {
-            pdrawitem->m_iWidthColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
+            pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
             _001GetColumnWidth(pdrawitem);
             pdrawitem->m_rectSubItem.left += pdrawitem->m_iColumnWidth;
             pdrawitem->m_iSubItemRectOrder++;
          }
-         pdrawitem->m_iWidthColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
-         pdrawitem->m_iSubItemRectColumn = pdrawitem->m_iWidthColumn;
+         pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
+         pdrawitem->m_iSubItemRectColumn = pdrawitem->m_iColumn;
          _001GetColumnWidth(pdrawitem);
          pdrawitem->m_rectSubItem.right = pdrawitem->m_rectSubItem.left + pdrawitem->m_iColumnWidth;
          pdrawitem->m_iSubItemRectOrder = pdrawitem->m_iOrder;
          pdrawitem->m_iSubItemRectItem = pdrawitem->m_iItemRectItem;
-         pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_pcolumnWidth->m_iSubItem;
-         pdrawitem->m_pcolumnSubItemRect = pdrawitem->m_pcolumnWidth;
+         pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_iSubItem;
          pdrawitem->m_bOk = true;
       }
 
@@ -2387,7 +2406,7 @@ namespace user
             {
                return_(pdrawitem->m_bOk, true);
             }
-            if (pdrawitem->m_pcolumnSubItemRect->m_bIcon)
+            if (pdrawitem->m_pcolumn->m_bIcon)
             {
                _001GetItemImage(pdrawitem);
                if (pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
@@ -2397,14 +2416,14 @@ namespace user
                      rect rAlign(pdrawitem->m_rectSubItem);
                      rAlign.left = x;
                      rect rIcon;
-                     rIcon.set(0, 0, pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cx, pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cy);
+                     rIcon.set(0, 0, pdrawitem->m_pcolumn->m_sizeIcon.cx, pdrawitem->m_pcolumn->m_sizeIcon.cy);
                      rIcon.Align(align_left_center, rAlign);
                      pdrawitem->m_rectImage = rIcon;
                      return_(pdrawitem->m_bOk, true);
                   }
                   else
                   {
-                     x += pdrawitem->m_pcolumnSubItemRect->m_sizeIcon.cx;
+                     x += pdrawitem->m_pcolumn->m_sizeIcon.cx;
                      x += m_iImageSpacing;
                   }
                }
@@ -2413,7 +2432,7 @@ namespace user
                   return_(pdrawitem->m_bOk, false);
                }
             }
-            else if (pdrawitem->m_pcolumnSubItemRect->m_pil != NULL)
+            else if (pdrawitem->m_pcolumn->m_pil != NULL)
             {
 
                ::image_list::info ii;
@@ -2421,7 +2440,7 @@ namespace user
                _001GetItemImage(pdrawitem);
                if (pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
                {
-                  pdrawitem->m_pcolumnSubItemRect->m_pil->get_image_info((int32_t)pdrawitem->m_iImage, &ii);
+                  pdrawitem->m_pcolumn->m_pil->get_image_info((int32_t)pdrawitem->m_iImage, &ii);
                   if (eelement == ::user::list::element_image)
                   {
 
@@ -3524,7 +3543,7 @@ namespace user
    id list::_001GetColumnTextId(index iColumn)
    {
 
-      list_column * pcolumn = m_columna._001GetVisible(iColumn);
+      list_column * pcolumn = m_columna.get_visible(iColumn);
 
       if (pcolumn == NULL)
          return id();
@@ -3635,7 +3654,7 @@ namespace user
       UNREFERENCED_PARAMETER(lparam);
       for (index iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
       {
-         list_column * pcolumn = m_columna._001GetVisible(iColumn);
+         list_column * pcolumn = m_columna.get_visible(iColumn);
          pcolumn->m_iOrder = HeaderCtrlMapColumnToOrder(iColumn);
       }
 
@@ -3693,7 +3712,7 @@ namespace user
       UNREFERENCED_PARAMETER(lparam);
       //    for(index iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
         //  {
-    //         list_column & column = m_columna._001GetVisible(iColumn);
+    //         list_column & column = m_columna.get_visible(iColumn);
              //column.m_iWidth = m_plistheader->GetItemWidth(iColumn);
           //}
 
@@ -3715,100 +3734,264 @@ namespace user
 
    }
 
-   list_column * list_column_array::_001GetByKey(index iKey)
+   //list_column * list_column_array::_001GetByKey(index iKey)
+   //{
+
+   //   for (index i = 0; i < this->get_size(); i++)
+   //   {
+   //      list_column * pcolumn = element_at(i);
+   //      if (pcolumn->m_iKey == iKey)
+   //      {
+   //         return pcolumn;
+   //      }
+   //   }
+
+   //   return NULL;
+
+   //}
+
+   ::index list_column_array::get_index(list_column * pcolumn)
    {
 
-      for (index i = 0; i < this->get_size(); i++)
-      {
-         list_column * pcolumn = element_at(i);
-         if (pcolumn->m_iKey == iKey)
-         {
-            return pcolumn;
-         }
-      }
-
-      return NULL;
+      return find_first(pcolumn);
 
    }
 
-   list_column * list_column_array::_001GetBySubItem(index iSubItem)
+   ::index list_column_array::get_visible_index(list_column * pcolumn)
    {
+
+      ::count cVisible = 0;
+
       for (index i = 0; i < this->get_size(); i++)
       {
+
          list_column * pcolumn = element_at(i);
-         if (pcolumn == NULL)
-            continue;
-         if (pcolumn->m_iSubItem == iSubItem)
+
+         if (pcolumn->m_bVisible)
          {
-            if (pcolumn->m_bVisible)
+
+            if (pcolumn == element_at(i))
             {
+
+               return cVisible;
+
+            }
+
+            cVisible++;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+
+   list_column * list_column_array::get_visible(index iIndex)
+   {
+
+      ::count cVisible = 0;
+
+      for (index i = 0; i < this->get_size(); i++)
+      {
+
+         list_column * pcolumn = element_at(i);
+
+         if (pcolumn->m_bVisible)
+         {
+
+            if (iIndex == cVisible)
+            {
+
                return pcolumn;
+
             }
-            else
+
+            cVisible++;
+
+         }
+
+      }
+
+      return NULL;
+
+   }
+
+   list_column * list_column_array::get_by_index(index iIndex)
+   {
+
+      if (iIndex < 0)
+      {
+
+         return NULL;
+
+      }
+
+      if (iIndex >= get_count())
+      {
+
+         return NULL;
+
+      }
+
+      return element_at(iIndex);
+
+   }
+
+
+   index list_column_array::subitem_index(index iSubItem)
+   {
+
+      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      {
+
+         list_column * pcolumn = element_at(iIndex);
+
+         if (pcolumn != NULL && pcolumn->m_iSubItem == iSubItem)
+         {
+
+            return iIndex;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+   index list_column_array::subitem_visible_index(index iSubItem)
+   {
+
+      ::count cVisible = 0;
+
+      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      {
+
+         list_column * pcolumn = element_at(iIndex);
+
+         if (pcolumn == NULL)
+         {
+
+            continue;
+
+         }
+
+         if (pcolumn->m_bVisible)
+         {
+
+            if (pcolumn->m_iSubItem == iSubItem)
             {
-               return NULL;
+
+               return cVisible;
+
             }
+
+            cVisible++;
+
          }
+
       }
-      return NULL;
+
+      return -1;
 
    }
 
-   list_column * list_column_array::GlobalOrderGetPrevious(index iKey)
+
+   list_column * list_column_array::get_by_subitem(index iSubItem)
    {
-      for (index i = 0; i < this->get_size(); i++)
-      {
-         list_column * pcolumn = element_at(i);
-         if (pcolumn->m_iNextGlobalOrderKey == iKey)
-         {
-            return pcolumn;
-         }
-      }
-      return NULL;
-   }
 
-   list_column * list_column_array::GlobalOrderGetNext(index iKey)
-   {
-      list_column * pcolumn = _001GetByKey(iKey);
-      return _001GetByKey(pcolumn->m_iNextGlobalOrderKey);
-   }
+      index iIndex = subitem_index(iSubItem);
 
-   list_column * list_column_array::_001GetVisible(index iKeyVisible)
-   {
-      for (index i = 0; i < this->get_size(); i++)
-      {
-         list_column * pcolumn = element_at(i);
-         if (pcolumn->m_iKeyVisible == iKeyVisible)
-         {
-            return pcolumn;
-         }
-      }
-      return NULL;
+      return get_by_index(iIndex);
+
 
    }
-   list_column * list_column_array::_001GetNonVisible(index iKeyNonVisible)
-   {
-      for (index i = 0; i < this->get_size(); i++)
-      {
-         list_column * pcolumn = element_at(i);
-         if (pcolumn->m_iKeyNonVisible == iKeyNonVisible)
-         {
-            return pcolumn;
-         }
-      }
-      return NULL;
 
-   }
+   //list_column * list_column_array::GlobalOrderGetPrevious(index iKey)
+   //{
+   //   for (index i = 0; i < this->get_size(); i++)
+   //   {
+   //      list_column * pcolumn = element_at(i);
+   //      if (pcolumn->m_iNextGlobalOrderKey == iKey)
+   //      {
+   //         return pcolumn;
+   //      }
+   //   }
+   //   return NULL;
+   //}
+
+   //list_column * list_column_array::GlobalOrderGetNext(index iIndex)
+   //{
+   //   list_column * pcolumn = element_at(iKey);
+   //   return _001GetByKey(pcolumn->m_iNextGlobalOrderKey);
+   //}
+
+
+   //list_column * list_column_array::get_visible(index iKeyVisible)
+   //{
+
+   //   ::count cVisible = 0;
+
+   //   for (index i = 0; i < this->get_size(); i++)
+   //   {
+   //      
+   //      list_column * pcolumn = element_at(i);
+   //      
+   //      if(pcolumn->m_bVisible)
+   //      {
+
+   //         if (cVisible == iKeyVisible)
+   //         {
+
+   //            return pcolumn;
+
+   //         }
+
+   //         cVisible++;
+   //      
+   //      }
+
+   //   }
+
+   //   return NULL;
+
+   //}
+
+
+   //list_column * list_column_array::_001GetNonVisible(index iKeyNonVisible)
+   //{
+
+   //   if (iKeyNonVisible < 0)
+   //   {
+
+   //      return NULL;
+
+   //   }
+
+   //   if (iKeyNonVisible >= get_size())
+   //   {
+
+   //      return NULL;
+
+   //   }
+
+   //   return element_at(iKeyNonVisible);
+
+   //}
 
 
    index list_column_array::add(list_column &column)
    {
 
-      column.m_iKey = this->get_size();
-      column.m_iOrder = this->get_size();
-      column.m_pcontainer = this;
+      list_column * pcolumn = canew(list_column(column));
 
-      smart_pointer_array < list_column >::add(canew(list_column(column)));
+      ::smart_pointer_array < list_column >::add(pcolumn);
+
+      pcolumn->m_iOrder = this->get_size();
+
+      pcolumn->m_pcontainer = this;
 
       OnChange();
 
@@ -3847,25 +4030,25 @@ namespace user
    {
       sort::array::quick_sort(*this, list_column::CompareKey);
 
-      index iKeyVisible = 0;
-      index iKeyNonVisible = 0;
+      //index iKeyVisible = 0;
+      //index iKeyNonVisible = 0;
 
-      for (index i = 0; i < this->get_size(); i++)
-      {
-         list_column * pcolumn = element_at(i);
-         if (pcolumn->m_bVisible)
-         {
-            pcolumn->m_iKeyVisible = iKeyVisible;
-            pcolumn->m_iKeyNonVisible = -1;
-            iKeyVisible++;
-         }
-         else
-         {
-            pcolumn->m_iKeyNonVisible = iKeyNonVisible;
-            pcolumn->m_iKeyVisible = -1;
-            iKeyNonVisible++;
-         }
-      }
+      //for (index i = 0; i < this->get_size(); i++)
+      //{
+      //   list_column * pcolumn = element_at(i);
+      //   if (pcolumn->m_bVisible)
+      //   {
+      //      pcolumn->m_iKeyVisible = iKeyVisible;
+      //      pcolumn->m_iKeyNonVisible = -1;
+      //      iKeyVisible++;
+      //   }
+      //   else
+      //   {
+      //      pcolumn->m_iKeyNonVisible = iKeyNonVisible;
+      //      pcolumn->m_iKeyVisible = -1;
+      //      iKeyNonVisible++;
+      //   }
+      //}
 
       sort::array::quick_sort(*this, list_column::CompareOrderSectEndNonVisible);
 
@@ -3901,360 +4084,350 @@ namespace user
       return iCount;
    }
 
-   ::count list_column_array::NonVisibleGetCount()
-   {
-      index iCount = 0;
-      for (index i = 0; i < this->get_size(); i++)
-      {
-         list_column * pcolumn = element_at(i);
-         if (!pcolumn->m_bVisible)
-            iCount++;
-      }
-      return iCount;
-   }
+   //::count list_column_array::NonVisibleGetCount()
+   //{
+   //   index iCount = 0;
+   //   for (index i = 0; i < this->get_size(); i++)
+   //   {
+   //      list_column * pcolumn = element_at(i);
+   //      if (!pcolumn->m_bVisible)
+   //         iCount++;
+   //   }
+   //   return iCount;
+   //}
 
    void list_column_array::ShowSubItem(index iSubItem, bool bShow)
    {
-      if (bShow)
-      {
-         index iColumn = NonVisibleMapSubItemToColumn(iSubItem);
-         if (iColumn >= 0)
-         {
-            list_column * pcolumn = _001GetNonVisible(iColumn);
-            pcolumn->m_bVisible = true;
-            OnChange();
-         }
-      }
-      else
-      {
-         index iColumn = VisibleMapSubItemToColumn(iSubItem);
-         if (iColumn >= 0)
-         {
-            list_column * pcolumn = _001GetVisible(iColumn);
-            pcolumn->m_bVisible = false;
-            OnChange();
-         }
-      }
-   }
 
-   index list_column_array::_001GetSubItemKey(index iSubItem)
-   {
-      list_column * pcolumn = _001GetBySubItem(iSubItem);
-      if (pcolumn == NULL)
-         return -1;
-      return pcolumn->m_iKey;
-   }
+      index iColumn = subitem_index(iSubItem);
 
-   index list_column_array::VisibleMapSubItemToColumn(index iSubItem)
-   {
-      int32_t iVisible = 0;
-      for (index iColumn = 0; iColumn < this->get_count(); iColumn++)
+      if (iColumn >= 0)
       {
-         list_column * pcolumn = element_at(iColumn);
-         if (pcolumn != NULL && pcolumn->m_bVisible)
-         {
-            if (pcolumn->m_iSubItem == iSubItem)
-            {
-               return iVisible;
-            }
-            else
-            {
-               iVisible++;
-            }
-         }
-      }
-      return -1;
-   }
 
-   index list_column_array::NonVisibleMapSubItemToColumn(index iSubItem)
-   {
-      int32_t iNonVisible = 0;
-      for (index iColumn = 0; iColumn < this->get_count(); iColumn++)
-      {
-         list_column * pcolumn = element_at(iColumn);
-         if (!pcolumn->m_bVisible)
-         {
-            if (pcolumn->m_iSubItem == iSubItem)
-            {
-               return iNonVisible;
-            }
-            else
-            {
-               iNonVisible++;
-            }
-         }
+         list_column * pcolumn = get_by_index(iColumn);
+
+         pcolumn->m_bVisible = bShow;
+
+         OnChange();
+
       }
-      return -1;
 
    }
 
 
+   //index list_column_array::subitem_index(index iSubItem)
+   //{
 
-   void list_column_array::GlobalToVisibleOrder()
-   {
-      int_ptr iVisibleCount = VisibleGetCount();
-      for (index iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
-      {
-         list_column * pcolumn = _001GetVisible(iVisibleKey);
-         pcolumn->m_iOrder = VisibleGetOrderFromKey(pcolumn->m_iKey);
-      }
+   //   for (index iIndex = 0; iIndex < get_count(); iIndex++)
+   //   {
 
+   //      list_column * pcolumn = element_at(iIndex);
 
-   }
+   //      if (pcolumn != NULL && pcolumn->m_iSubItem == iSubItem)
+   //      {
 
-   void list_column_array::VisibleToGlobalOrder(index iKeyA, index iKeyB)
-   {
-      if (iKeyA == iKeyB)
-         return;
-      list_column * columnA = _001GetByKey(iKeyA);
-      list_column * columnAPrevious = GlobalOrderGetPrevious(iKeyA);
-      list_column * columnANext = GlobalOrderGetNext(iKeyA);
-      list_column * columnB = _001GetByKey(iKeyB);
-      list_column * columnBPrevious = GlobalOrderGetPrevious(iKeyB);
-      list_column * columnBNext = GlobalOrderGetNext(iKeyB);
+   //         return iIndex;
 
-      if (columnA == NULL)
-         return;
+   //      }
 
-      if (columnB == NULL)
-         return;
+   //   }
 
-      if (columnAPrevious == NULL)
-      {
-         m_iFirstGlobalOrderKey = iKeyB;
-      }
-      else
-      {
-         if (columnAPrevious->m_iKey != iKeyB)
-         {
-            columnAPrevious->m_iNextGlobalOrderKey = iKeyB;
-         }
-      }
+   //   
+   //}
 
 
-      if (columnBPrevious == NULL)
-      {
-         m_iFirstGlobalOrderKey = iKeyA;
-      }
-      else
-      {
-         if (columnBPrevious->m_iKey != iKeyA)
-         {
-            columnBPrevious->m_iNextGlobalOrderKey = iKeyA;
-         }
-      }
+   //index list_column_array::subitem_visible_index(index iSubItem)
+   //{
+   //   list_column * pcolumn = get_by_subitem(iSubItem);
+   //   if (pcolumn == NULL)
+   //      return -1;
+   //   return pcolumn->get_visible_index();
+   //}
 
-      if (columnANext == NULL)
-      {
-         columnB->m_iNextGlobalOrderKey = -1;
-      }
-      else
-      {
-         if (columnANext->m_iKey == columnB->m_iKey)
-         {
-            columnB->m_iNextGlobalOrderKey = iKeyA;
-         }
-         else
-         {
-            columnB->m_iNextGlobalOrderKey = columnANext->m_iKey;
-         }
-      }
 
-      if (columnBNext == NULL)
-      {
-         columnA->m_iNextGlobalOrderKey = -1;
-      }
-      else
-      {
-         if (columnBNext->m_iKey == columnA->m_iKey)
-         {
-            columnB->m_iNextGlobalOrderKey = iKeyB;
-         }
-         else
-         {
-            columnA->m_iNextGlobalOrderKey = columnBNext->m_iKey;
-         }
-      }
+   //index list_column_array::subitem_visible_index(index iSubItem)
+   //{
+   //   int32_t iVisible = 0;
+   //   for (index iColumn = 0; iColumn < this->get_count(); iColumn++)
+   //   {
+   //      list_column * pcolumn = element_at(iColumn);
+   //      if (pcolumn != NULL && pcolumn->m_bVisible)
+   //      {
+   //         if (pcolumn->m_iSubItem == iSubItem)
+   //         {
+   //            return iVisible;
+   //         }
+   //         else
+   //         {
+   //            iVisible++;
+   //         }
+   //      }
+   //   }
+   //   return -1;
+   //}
+
+   //index list_column_array::NonVisibleMapSubItemToColumn(index iSubItem)
+   //{
+   //   int32_t iNonVisible = 0;
+   //   for (index iColumn = 0; iColumn < this->get_count(); iColumn++)
+   //   {
+   //      list_column * pcolumn = element_at(iColumn);
+   //      if (!pcolumn->m_bVisible)
+   //      {
+   //         if (pcolumn->m_iSubItem == iSubItem)
+   //         {
+   //            return iNonVisible;
+   //         }
+   //         else
+   //         {
+   //            iNonVisible++;
+   //         }
+   //      }
+   //   }
+   //   return -1;
+
+   //}
 
 
 
-   }
+   //void list_column_array::GlobalToVisibleOrder()
+   //{
+   //   int_ptr iVisibleCount = VisibleGetCount();
+   //   for (index iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
+   //   {
+   //      list_column * pcolumn = get_visible(iVisibleKey);
+   //      pcolumn->m_iOrder = VisibleGetOrderFromKey(pcolumn->m_iKey);
+   //   }
 
-   void list_column_array::VisibleToGlobalOrder()
-   {
-      list * plist = m_plist;
-      //detects change
-      int_ptr iVisibleCount = VisibleGetCount();
-      int_ptr iChangeCount = 0;
-      int_ptr iNew = 0;
-      int_ptr iOld = 0;
-      for (int_ptr iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
-      {
-         list_column * column = _001GetVisible(iVisibleKey);
-         if (VisibleGetOrderFromKey(column->m_iKey) != plist->HeaderCtrlMapColumnToOrder(iVisibleKey))
-         {
-            iChangeCount++;
-            if (iChangeCount == 1)
-            {
-               iNew = iVisibleKey;
-            }
-            else if (iChangeCount == 2)
-            {
-               iOld = iVisibleKey;
-            }
-         }
-      }
-      if (iChangeCount == 2)
-      {
-         VisibleToGlobalOrder(iNew, iOld);
-      }
-      else
-      {
-         if (this->get_size() == VisibleGetCount())
-         {
-            for (index iColumn = 0; iColumn < VisibleGetCount(); iColumn++)
-            {
-               list_column * column = _001GetVisible(iColumn);
-               column->m_iOrder = plist->HeaderCtrlMapColumnToOrder(iColumn);
-            }
 
-            m_iFirstGlobalOrderKey = OrderToKey(0);
-            if (m_iFirstGlobalOrderKey >= 0)
-            {
-               index iKey = m_iFirstGlobalOrderKey;
-               index iNextKey;
-               index iOrder = 1;
+   //}
 
-               while (true)
-               {
-                  iNextKey = OrderToKey(iOrder);
-                  _001GetByKey(iKey)->m_iNextGlobalOrderKey = iNextKey;
-                  if (iNextKey < 0)
-                  {
-                     break;
-                  }
-                  iOrder++;
-                  iKey = iNextKey;
-               }
-            }
-         }
+   //void list_column_array::VisibleToGlobalOrder(index iKeyA, index iKeyB)
+   //{
+   //   if (iKeyA == iKeyB)
+   //      return;
+   //   list_column * columnA = _001GetByKey(iKeyA);
+   //   list_column * columnAPrevious = GlobalOrderGetPrevious(iKeyA);
+   //   list_column * columnANext = GlobalOrderGetNext(iKeyA);
+   //   list_column * columnB = _001GetByKey(iKeyB);
+   //   list_column * columnBPrevious = GlobalOrderGetPrevious(iKeyB);
+   //   list_column * columnBNext = GlobalOrderGetNext(iKeyB);
 
-      }
-   }
+   //   if (columnA == NULL)
+   //      return;
+
+   //   if (columnB == NULL)
+   //      return;
+
+   //   if (columnAPrevious == NULL)
+   //   {
+   //      m_iFirstGlobalOrderKey = iKeyB;
+   //   }
+   //   else
+   //   {
+   //      if (columnAPrevious->m_iKey != iKeyB)
+   //      {
+   //         columnAPrevious->m_iNextGlobalOrderKey = iKeyB;
+   //      }
+   //   }
+
+
+   //   if (columnBPrevious == NULL)
+   //   {
+   //      m_iFirstGlobalOrderKey = iKeyA;
+   //   }
+   //   else
+   //   {
+   //      if (columnBPrevious->m_iKey != iKeyA)
+   //      {
+   //         columnBPrevious->m_iNextGlobalOrderKey = iKeyA;
+   //      }
+   //   }
+
+   //   if (columnANext == NULL)
+   //   {
+   //      columnB->m_iNextGlobalOrderKey = -1;
+   //   }
+   //   else
+   //   {
+   //      if (columnANext->m_iKey == columnB->m_iKey)
+   //      {
+   //         columnB->m_iNextGlobalOrderKey = iKeyA;
+   //      }
+   //      else
+   //      {
+   //         columnB->m_iNextGlobalOrderKey = columnANext->m_iKey;
+   //      }
+   //   }
+
+   //   if (columnBNext == NULL)
+   //   {
+   //      columnA->m_iNextGlobalOrderKey = -1;
+   //   }
+   //   else
+   //   {
+   //      if (columnBNext->m_iKey == columnA->m_iKey)
+   //      {
+   //         columnB->m_iNextGlobalOrderKey = iKeyB;
+   //      }
+   //      else
+   //      {
+   //         columnA->m_iNextGlobalOrderKey = columnBNext->m_iKey;
+   //      }
+   //   }
+
+
+
+   //}
+
+   //void list_column_array::VisibleToGlobalOrder()
+   //{
+   //   list * plist = m_plist;
+   //   //detects change
+   //   int_ptr iVisibleCount = VisibleGetCount();
+   //   int_ptr iChangeCount = 0;
+   //   int_ptr iNew = 0;
+   //   int_ptr iOld = 0;
+   //   for (int_ptr iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
+   //   {
+   //      list_column * column = get_visible(iVisibleKey);
+   //      if (VisibleGetOrderFromKey(column->m_iKey) != plist->HeaderCtrlMapColumnToOrder(iVisibleKey))
+   //      {
+   //         iChangeCount++;
+   //         if (iChangeCount == 1)
+   //         {
+   //            iNew = iVisibleKey;
+   //         }
+   //         else if (iChangeCount == 2)
+   //         {
+   //            iOld = iVisibleKey;
+   //         }
+   //      }
+   //   }
+   //   if (iChangeCount == 2)
+   //   {
+   //      VisibleToGlobalOrder(iNew, iOld);
+   //   }
+   //   else
+   //   {
+   //      if (this->get_size() == VisibleGetCount())
+   //      {
+   //         for (index iColumn = 0; iColumn < VisibleGetCount(); iColumn++)
+   //         {
+   //            list_column * column = get_visible(iColumn);
+   //            column->m_iOrder = plist->HeaderCtrlMapColumnToOrder(iColumn);
+   //         }
+
+   //         m_iFirstGlobalOrderKey = OrderToKey(0);
+   //         if (m_iFirstGlobalOrderKey >= 0)
+   //         {
+   //            index iKey = m_iFirstGlobalOrderKey;
+   //            index iNextKey;
+   //            index iOrder = 1;
+
+   //            while (true)
+   //            {
+   //               iNextKey = OrderToKey(iOrder);
+   //               _001GetByKey(iKey)->m_iNextGlobalOrderKey = iNextKey;
+   //               if (iNextKey < 0)
+   //               {
+   //                  break;
+   //               }
+   //               iOrder++;
+   //               iKey = iNextKey;
+   //            }
+   //         }
+   //      }
+
+   //   }
+   //}
 
    void list_column_array::DISaveOrder()
    {
+      
       int_ptr iCount = this->get_size();
-      string str;
-      for (index iKey = 0; iKey < iCount; iKey++)
-      {
-         list_column * column = _001GetByKey(iKey);
-         str.Format("list_column[%d].Next", iKey);
-         m_plist->data_set(
-            str,
-            column->m_iNextGlobalOrderKey);
-      }
-      str.Format("list_column[-1].Next");
-      m_plist->data_set(
-         str,
-         m_iFirstGlobalOrderKey);
 
+      string str;
+
+      for (index i = 0; i < iCount; i++)
+      {
+
+         list_column * pcolumn = element_at(i);
+
+         str.Format("list_column[%d].Next", i);
+
+         m_plist->data_set(str, pcolumn->m_iOrder);
+
+      }
 
    }
 
+
    void list_column_array::DILoadOrder()
    {
-      int_ptr iCount = this->get_size();
-      string str;
-      for (index iKey = 0; iKey < iCount; iKey++)
-      {
-         list_column * column = _001GetByKey(iKey);
-         str.Format("list_column[%d].Next", iKey);
-         m_plist->data_get(
-            str,
-            column->m_iNextGlobalOrderKey);
-      }
-      str.Format("list_column[-1].Next");
-      m_plist->data_get(
-         str,
-         m_iFirstGlobalOrderKey);
 
-      GlobalToVisibleOrder();
+      int_ptr iCount = this->get_size();
+
+      string str;
+
+      for (index i = 0; i < iCount; i++)
+      {
+
+         list_column * pcolumn = element_at(i);
+
+         str.Format("list_column[%d].Next", i);
+
+         m_plist->data_get(str, pcolumn->m_iOrder);
+
+      }
+
       OnChange();
 
    }
 
-   index list_column_array::VisibleGetOrderFromKey(index iKey)
-   {
-      index iNextKey = m_iFirstGlobalOrderKey;
-      index iOrder = 0;
-      while (true)
-      {
-         list_column * column = _001GetByKey(iNextKey);
-         if (column == NULL)
-            return -1;
-         if (column->m_bVisible)
-         {
-            if (iKey == iNextKey)
-               return iOrder;
-            iOrder++;
-         }
-         else
-         {
-            if (iKey == iNextKey)
-               return -1;
-         }
-         if (iOrder > VisibleGetCount())
-            return -1;
-         iNextKey = column->m_iNextGlobalOrderKey;
-      }
-      ASSERT(FALSE);
-      return -1;
-   }
 
-   index list_column_array::OrderToKey(index iOrder)
+   //index list_column_array::VisibleIndexOrder(index iIndex)
+   //{
+
+   //   list_column * pcolumn = get_visible(iIndex);
+
+   //   if (pcolumn == NULL)
+   //   {
+
+   //      return -1;
+
+   //   }
+
+   //   return pcolumn->m_iOrder;
+
+   //}
+
+
+   index list_column_array::order_index(index iOrder)
    {
-      for (index iKey = 0; iKey < this->get_count(); iKey++)
+
+      for (index iIndex = 0; iIndex < this->get_count(); iIndex++)
       {
-         list_column * column = _001GetByKey(iKey);
+         
+         list_column * column = element_at(iIndex);
+         
          if (column->m_iOrder == iOrder)
-            return iKey;
+         {
+
+            return iIndex;
+
+         }
+
       }
+
       return -1;
 
-      /*   index iNextKey = m_iFirstGlobalOrderKey;
-      index iOrder = 0;
-      while(true)
-      {
-      list_column & column = get(iNextKey);
-      if(column.IsNull())
-      return -1;
-      if(column.IsVisible())
-      {
-      if(iOrderParam == iOrder)
-      {
-      return iNextKey;
-      }
-      iOrder++;
-      }
-      else
-      {
-      if(iOrderParam == iOrder)
-      {
-      return -1;
-      }
-      }
-      if(iOrder > VisibleGetCount())
-      return -1;
-      iNextKey = column.m_iNextGlobalOrderKey;
-      }
-      ASSERT(FALSE);
-      return -1;*/
    }
+
 
    void list::DISaveOrder()
    {
-      m_columna.VisibleToGlobalOrder();
+
       m_columna.DISaveOrder();
 
    }
@@ -4826,7 +4999,7 @@ namespace user
       rect rect;
       size size;
       index cx = 0;
-      list_column * pcolumn = m_columna._001GetByKey(iSubItem);
+      list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
       draw_list_item item(this);
       item.m_iItem = iItem;
       item.m_iSubItem = iSubItem;
@@ -4865,23 +5038,24 @@ namespace user
 
    index list::_001ConfigIdToSubItem(const ::database::id & key)
    {
-      list_column * column = m_columna._001GetByConfigId(key);
+      list_column * column = m_columna.get_by_config_id(key);
       if (column == NULL)
          return -1;
       return column->m_iSubItem;
    }
 
-   index list::_001ConfigIdToColumnKey(const ::database::id & key)
+   
+   index list::config_id_index(const ::database::id & key)
    {
-      list_column * column = m_columna._001GetByConfigId(key);
-      if (column == NULL)
-         return -1;
-      return column->m_iKey;
+      
+      return m_columna.config_id_index(key);
+
    }
 
-   list_column * list_column_array::_001GetByConfigId(const ::database::id & key)
+
+   list_column * list_column_array::get_by_config_id(const ::database::id & key)
    {
-      index iKey = MapConfigIdToKey(key);
+      index iKey = config_id_index(key);
       if (iKey >= 0)
          return element_at(iKey);
       else
@@ -4889,17 +5063,54 @@ namespace user
 
    }
 
-   index list_column_array::MapConfigIdToKey(const ::database::id & key)
+
+   index list_column_array::config_id_index(const ::database::id & key)
    {
-      for (index iKey = 0; iKey < this->get_size(); iKey++)
+
+      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
-         if (this->element_at(iKey)->m_datakey == key)
-            return iKey;
+
+         if (this->element_at(iIndex)->m_datakey == key)
+         {
+
+            return iIndex;
+
+         }
+
       }
+
       return -1;
+
    }
 
 
+   index list_column_array::config_id_visible_index(const ::database::id & key)
+   {
+
+      ::count cVisible = 0;
+
+      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      {
+         
+         if (this->element_at(iIndex)->m_bVisible)
+         {
+
+            if (this->element_at(iIndex)->m_datakey == key)
+            {
+
+               return cVisible;
+
+            }
+
+            cVisible++;
+
+         }
+
+      }
+
+      return -1;
+
+   }
 
 
 
@@ -5310,7 +5521,7 @@ namespace user
       {
          for (index j = 0; j < m_columna.get_count(); j++)
          {
-            list_column * pcolumn = m_columna._001GetByKey(j);
+            list_column * pcolumn = m_columna.get_by_index(j);
             item.m_strText.Empty();
             item.m_iItem = iFilter1Step;
             item.m_iSubItem = pcolumn->m_iSubItem;
@@ -6085,7 +6296,7 @@ namespace user
       m_iItem = -1;
       m_iDisplayItem = -1;
       m_iColumn = -1;
-      m_iColumnKey = -1;
+      //m_iColumnKey = -1;
       m_iOrder = -1;
       m_iSubItem = -1;
       m_iListItem = -1;
@@ -6108,9 +6319,9 @@ namespace user
 
       m_prectClient = NULL;
 
-      m_iWidthColumn = -1;
+      m_iColumn = -1;
       m_iColumnWidth = 0;
-      m_pcolumnWidth = NULL;
+      m_pcolumn = NULL;
 
       m_iItemRectItem = -1;
 
@@ -6118,7 +6329,7 @@ namespace user
       m_iSubItemRectSubItem = -1;
       m_iSubItemRectOrder = -1;
       m_iSubItemRectColumn = -1;
-      m_pcolumnSubItemRect = NULL;
+      m_pcolumn = NULL;
 
       m_iListItemRectItem = -1;
       m_iListItemRectSubItem = -1;
