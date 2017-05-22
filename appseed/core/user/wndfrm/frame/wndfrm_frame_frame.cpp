@@ -760,9 +760,9 @@ namespace user
                if(get_control_box()->m_eappearance != pappearance->GetAppearance())
                {
 
-                  get_control_box()->on_layout();
-
                   get_control_box()->m_eappearance = pappearance->GetAppearance();
+
+                  get_control_box()->on_layout();
 
                }
 

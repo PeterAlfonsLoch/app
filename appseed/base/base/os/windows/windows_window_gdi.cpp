@@ -437,7 +437,7 @@ void window_gdi::update_window(::draw2d::dib * pdib)
          | m_pimpl->m_iShowFlags
          | uiFlags);
 
-      if (bLayered)
+      if (bLayered && !m_pimpl->m_bShowWindow)
       {
          if (m_pimpl->m_iShowFlags & SWP_SHOWWINDOW)
          {
@@ -454,6 +454,17 @@ void window_gdi::update_window(::draw2d::dib * pdib)
       m_pimpl->m_bShowFlags = false;
 
       bSetWindowPos = true;
+
+   }
+
+   if (m_pimpl->m_bShowWindow)
+   {
+
+      ::ShowWindow(m_pimpl->m_oswindow, m_pimpl->m_iShowWindow);
+
+      m_pimpl->m_bShowWindow = false;
+
+      m_pimpl->m_iShowWindow = -1;
 
    }
 

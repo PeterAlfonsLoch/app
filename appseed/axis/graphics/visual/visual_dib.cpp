@@ -82,6 +82,34 @@ namespace visual
       }
    }
 
+   bool dib_sp::load_thumbnail(var varFile, int w, int h)
+   {
+
+#ifdef WINDOWS
+
+      if (!m_p->create(w, h))
+      {
+         return false;
+      }
+
+      if (!m_p->load_thumbnail(varFile))
+      {
+
+         return false;
+
+      }
+
+
+      return true;
+
+#else
+
+      todo(----;
+
+#endif;
+
+
+   }
 
    bool dib_sp::load_from_file(var varFile, bool bCache, bool bCreateHelperMaps)
    {

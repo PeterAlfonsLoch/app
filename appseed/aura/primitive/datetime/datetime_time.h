@@ -141,7 +141,70 @@ namespace datetime
       return str;
    }
 
+   inline bool time::operator==(time time) const throw()
+   {
+      return(m_time == time.m_time);
+   }
 
+   inline bool time::operator!=(time time) const throw()
+   {
+      return(m_time != time.m_time);
+   }
+
+   inline bool time::operator<(time time) const throw()
+   {
+      return(m_time < time.m_time);
+   }
+
+   inline bool time::operator>(time time) const throw()
+   {
+      return(m_time > time.m_time);
+   }
+
+   inline bool time::operator<=(time time) const throw()
+   {
+      return(m_time <= time.m_time);
+   }
+
+   inline bool time::operator>=(time time) const throw()
+   {
+      return(m_time >= time.m_time);
+   }
+
+   inline time_span time::operator-(time time) const throw()
+   {
+      return(time_span(m_time - time.m_time));
+   }
+
+   inline ::datetime::time time::operator-(time_span span) const throw()
+   {
+      return(time(m_time - span.GetTimeSpan()));
+   }
+
+   inline ::datetime::time time::operator+(time_span span) const throw()
+   {
+      return m_time + span.m_timeSpan;
+   }
+
+   inline ::datetime::time time::operator-(const duration & duration) const
+   {
+      return time(m_time - duration.GetTimeSpan());
+   }
+
+   inline ::datetime::time time::operator+(const duration & duration) const
+   {
+      return time(m_time + duration.GetTimeSpan());
+   }
+
+   inline time::time() throw() :
+      m_time(0)
+   {
+   }
+
+   inline time::time(__time64_t time)  throw() :
+      m_time(time)
+   {
+   }
 
 
 } // namespace datetime

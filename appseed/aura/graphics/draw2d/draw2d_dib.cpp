@@ -2426,6 +2426,13 @@ namespace draw2d
 
    }
 
+   bool dib::load_thumbnail(const char * psz)
+   {
+
+      return false;
+
+   }
+
    void dib::div_alpha()
    {
       map();

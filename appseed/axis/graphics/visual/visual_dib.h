@@ -127,6 +127,8 @@ namespace visual
       virtual bool load_from_matter(const char * pszMatter,bool bCache = true, bool bCreateHelperMaps = false);
       virtual bool read_from_file(::file::file_sp  pfile);
 
+      virtual bool load_thumbnail(var varFile, int w, int h);
+
 
       virtual bool save_to_file(var varFile, save_image * psaveimage = NULL);
       virtual bool write_to_file(::file::file_sp  pfile, save_image * psaveimage = NULL);

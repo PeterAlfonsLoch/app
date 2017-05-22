@@ -285,6 +285,19 @@ void string_format::format(const char * & s)
             pformat->append(str);
 
          }
+         else if (pformat->m_chLength == 'x')
+         {
+
+            string str = ::hex::upper_from((void *)&ch, 1);
+
+            while (pformat->m_iWidth > str.get_length())
+            {
+               str = "0" + str;
+            }
+
+            pformat->append(str);
+
+         }
          else
          {
 
@@ -363,7 +376,25 @@ void string_format::format(const char * & s)
       void format(string_format * pformat, int32_t const & i)
       {
          // TODO: use specs
-         string str = ::str::from(i);
+         string str;
+         if (pformat->m_chLength == 'X')
+         {
+
+            str = ::hex::upper_from(i);
+
+         }
+         else if (pformat->m_chLength == 'x')
+         {
+
+            str = ::hex::upper_from(i);
+
+         }
+         else
+         {
+
+            str = ::str::from(i);
+
+         }
          if(pformat->m_bZeroPadding)
          {
             while(str.get_length() < pformat->m_iWidth)

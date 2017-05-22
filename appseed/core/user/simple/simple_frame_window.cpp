@@ -180,6 +180,8 @@ void simple_frame_window::install_message_handling(::message::dispatch * pinterf
    connect_command("app_exit", &simple_frame_window::_001OnAppExit);
 
    IGUI_WIN_MSG_LINK(WM_APPEXIT, pinterface, this, &simple_frame_window::_001OnAppExit);
+   IGUI_WIN_MSG_LINK(WM_ACTIVATEAPP, pinterface, this, &simple_frame_window::_001OnActivateApp);
+   IGUI_WIN_MSG_LINK(WM_ACTIVATE, pinterface, this, &simple_frame_window::_001OnActivate);
 
 #ifdef WINDOWSEX
 
@@ -790,6 +792,7 @@ bool simple_frame_window::pre_create_window(::user::create_struct& cs)
    //cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
    cs.style = WS_POPUP;
    cs.style &= ~WS_VISIBLE;
+   cs.style |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
 
    return TRUE;
 }
@@ -1309,6 +1312,124 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
 }
 
 #endif
+
+void simple_frame_window::_001OnActivateApp(signal_details * pobj)
+{
+   
+   SCAST_PTR(::message::base, pbase, pobj);
+
+   pbase->previous();
+   bool bActive = pbase->m_wparam != FALSE;
+   if (GetParent() == NULL && GetExStyle() & WS_EX_LAYERED)
+   {
+
+      //if (bActive)
+      //{
+
+      //   if (WfiIsIconic())
+      //   {
+
+      //      WfiRestore();
+
+      //   }
+      //   ::SetActiveWindow(get_handle());
+      //}
+
+      pbase->m_bRet = true;
+
+      pbase->m_lresult = 0;
+
+   }
+}
+
+void simple_frame_window::_001OnActivate(signal_details * pobj)
+{
+
+   SCAST_PTR(::message::activate, pactivate, pobj);
+
+   pactivate->previous();
+
+   bool bMinimized = HIWORD(pactivate->m_lparam);
+
+   int iActive = LOWORD(pactivate->m_wparam);
+   if (iActive)
+   {
+
+      if (GetExStyle() & WS_EX_LAYERED)
+      {
+
+         if (iActive == WA_CLICKACTIVE)
+         {
+
+         //   if (bMinimized || WfiIsIconic())
+         //   {
+
+         //      WfiRestore();
+
+         //   }
+         //   else
+         //   {
+
+         //      WfiMinimize();
+
+         //   }
+
+         //}
+         //else if (bMinimized)
+         //{
+
+
+
+         //   WfiRestore();
+
+
+         }
+
+         pactivate->m_bRet = true;
+
+         pactivate->m_lresult = 0;
+
+      }
+
+   }
+   else
+   {
+
+      //if (GetExStyle() & WS_EX_LAYERED)
+      //{
+
+      //   if (pactivate->m_lparam == 0)
+      //   {
+
+      //      if (!WfiIsIconic())
+      //      {
+
+      //         WfiMinimize(true);
+
+      //      }
+
+      //   }
+
+         pactivate->m_bRet = true;
+
+         pactivate->m_lresult = 0;
+
+
+      //
+
+//         if (!bMinimized && !WfiIsIconic())
+//         { 
+//         
+////            WfiMinimize();
+//
+//         }
+
+
+      //}
+
+   }
+
+}
 
 void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 {
@@ -2779,10 +2900,10 @@ void simple_frame_window::WfiOnMaximize()
 }
 
 
-void simple_frame_window::WfiOnMinimize()
+void simple_frame_window::WfiOnMinimize(bool bNoActivate)
 {
 
-   _001WindowMinimize();
+   _001WindowMinimize(bNoActivate);
 
 }
 

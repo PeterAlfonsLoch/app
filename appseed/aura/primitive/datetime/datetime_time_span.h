@@ -47,6 +47,114 @@ namespace datetime
 
    };
 
+   inline time_span::time_span() throw() :
+      m_timeSpan(0)
+   {
+   }
+
+   inline time_span::time_span(__time64_t time) throw() :
+      m_timeSpan(time)
+   {
+   }
+
+   inline time_span::time_span(int64_t lDays, int32_t nHours, int32_t nMins, int32_t nSecs) throw()
+   {
+      m_timeSpan = nSecs + 60 * (nMins + 60 * (nHours + int64_t(24) * lDays));
+   }
+
+   inline int64_t time_span::GetDays() const throw()
+   {
+      return(m_timeSpan / (24 * 3600));
+   }
+
+   inline int64_t time_span::GetTotalHours() const throw()
+   {
+      return(m_timeSpan / 3600);
+   }
+
+   inline int32_t time_span::GetHours() const throw()
+   {
+      return(LONG(GetTotalHours() - (GetDays() * 24)));
+   }
+
+   inline int64_t time_span::GetTotalMinutes() const throw()
+   {
+      return(m_timeSpan / 60);
+   }
+
+   inline int32_t time_span::GetMinutes() const throw()
+   {
+      return(LONG(GetTotalMinutes() - (GetTotalHours() * 60)));
+   }
+
+   inline int64_t time_span::GetTotalSeconds() const throw()
+   {
+      return(m_timeSpan);
+   }
+
+   inline int32_t time_span::GetSeconds() const throw()
+   {
+      return(LONG(GetTotalSeconds() - (GetTotalMinutes() * 60)));
+   }
+
+   inline __time64_t time_span::GetTimeSpan() const throw()
+   {
+      return(m_timeSpan);
+   }
+
+   inline time_span time_span::operator+(time_span span) const throw()
+   {
+      return(time_span(m_timeSpan + span.m_timeSpan));
+   }
+
+   inline time_span time_span::operator-(time_span span) const throw()
+   {
+      return(time_span(m_timeSpan - span.m_timeSpan));
+   }
+
+   inline time_span& time_span::operator+=(time_span span) throw()
+   {
+      m_timeSpan += span.m_timeSpan;
+      return *this;
+   }
+
+   inline time_span& time_span::operator-=(time_span span) throw()
+   {
+      m_timeSpan -= span.m_timeSpan;
+      return *this;
+   }
+
+   inline bool time_span::operator==(time_span span) const throw()
+   {
+      return(m_timeSpan == span.m_timeSpan);
+   }
+
+   inline bool time_span::operator!=(time_span span) const throw()
+   {
+      return(m_timeSpan != span.m_timeSpan);
+   }
+
+   inline bool time_span::operator<(time_span span) const throw()
+   {
+      return(m_timeSpan < span.m_timeSpan);
+   }
+
+   inline bool time_span::operator>(time_span span) const throw()
+   {
+      return(m_timeSpan > span.m_timeSpan);
+   }
+
+   inline bool time_span::operator<=(time_span span) const throw()
+   {
+      return(m_timeSpan <= span.m_timeSpan);
+   }
+
+   inline bool time_span::operator>=(time_span span) const throw()
+   {
+      return(m_timeSpan >= span.m_timeSpan);
+   }
+
+
 
 } // namespace datetime
 

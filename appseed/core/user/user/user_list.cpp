@@ -1475,7 +1475,7 @@ namespace user
       }
       else
       {
-
+         pitem->m_iSubItem = pcolumn->m_iSubItem;
          pitem->m_iColumnWidth = pcolumn->m_iWidth;
          pitem->m_bOk = true;
       }

@@ -242,11 +242,11 @@ namespace windows
       virtual void ValidateRect(LPCRECT lpRect);
       virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual bool ShowWindow(int32_t nCmdShow);
-      virtual void _001WindowMinimize();
-      virtual void _001WindowMaximize();
-      virtual void _001WindowFullScreen();
-      virtual void _001WindowRestore();
-      virtual bool IsWindowVisible();
+      virtual void _001WindowMinimize(bool bNoActivate) override;
+      virtual void _001WindowMaximize() override;
+      virtual void _001WindowFullScreen() override;
+      virtual void _001WindowRestore() override;
+      virtual bool IsWindowVisible() override;
       virtual void ShowOwnedPopups(bool bShow = TRUE);
 
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip,uint32_t flags);

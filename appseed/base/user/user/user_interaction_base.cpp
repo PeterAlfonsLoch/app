@@ -1945,7 +1945,7 @@ Restart:
    }
 
 
-   void interaction_base::_001WindowMinimize()
+   void interaction_base::_001WindowMinimize(bool bNoActivate)
    {
 
       ::exception::throw_interface_only(get_app());

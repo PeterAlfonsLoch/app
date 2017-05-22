@@ -64,7 +64,7 @@ namespace user
 
          }
 
-         void WorkSetClientInterface::WfiOnMinimize()
+         void WorkSetClientInterface::WfiOnMinimize(bool bNoActivate)
          {
 
          }
@@ -354,7 +354,7 @@ namespace user
          }
 
 
-         bool WorkSetClientInterface::WfiMinimize()
+         bool WorkSetClientInterface::WfiMinimize(bool bNoActivate)
          {
 
             if (m_workset.m_bMinimizeToTray)
@@ -371,7 +371,7 @@ namespace user
 
             m_workset.SetAppearance(AppearanceIconic);
 
-            WfiOnMinimize();
+            WfiOnMinimize(bNoActivate);
 
             WfiOnAfterMinimize();
 

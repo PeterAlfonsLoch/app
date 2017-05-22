@@ -18,6 +18,8 @@ namespace user
       rect64                              m_rectParentClientRequest;
       bool                                m_bShowFlags;
       int                                 m_iShowFlags;
+      bool                                m_bShowWindow;
+      int                                 m_iShowWindow;
       bool                                m_bZ;
       int_ptr                             m_iZ;
 
@@ -68,7 +70,7 @@ namespace user
       virtual bool create_window_ex(::user::interaction * pui, uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, LPVOID lpParam = NULL);
 
 
-      virtual void _001WindowMinimize();
+      virtual void _001WindowMinimize(bool bNoActivate);
       virtual void _001WindowMaximize();
       virtual void _001WindowFullScreen();
       virtual void _001WindowRestore();

@@ -264,7 +264,7 @@ namespace user
       virtual void _001UpdateWindow(bool bUpdateBuffer = true) override;
 
 
-      virtual void _001WindowMinimize() override;
+      virtual void _001WindowMinimize(bool bNoActivate) override;
       virtual void _001WindowMaximize() override;
       virtual void _001WindowFullScreen() override;
       virtual void _001WindowRestore() override;
@@ -719,7 +719,7 @@ namespace user
       virtual index best_monitor(LPRECT lprect,const RECT & rect=::null_rect(),bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
       virtual index best_wkspace(LPRECT lprect,const RECT & rect=::null_rect(),bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
       virtual index good_restore(LPRECT lprect,const RECT & rect=::null_rect(),bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
-      virtual index good_iconify(LPRECT lprect,const RECT & rect=::null_rect(),bool bSet = false,UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
+      virtual index good_iconify(LPRECT lprect,const RECT & rect=::null_rect(),bool bSet = false,UINT uiSwpFlags = SWP_NOACTIVATE | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
 
       virtual index good_move(LPRECT lprect,const RECT & rect=::null_rect(),UINT uiSwpFlags = SWP_SHOWWINDOW | SWP_FRAMECHANGED,int_ptr iZOrder = ZORDER_TOP);
 

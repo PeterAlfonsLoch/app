@@ -51,7 +51,7 @@ namespace user
             virtual bool WfiDock(EAppearance eappearance);
             virtual bool WfiClose();
             virtual bool WfiRestore(bool bForceNormal = false);
-            virtual bool WfiMinimize();
+            virtual bool WfiMinimize(bool bNoActivate = false);
             virtual bool WfiMaximize();
             virtual bool WfiFullScreen();
             virtual bool WfiUp();
@@ -70,7 +70,7 @@ namespace user
             virtual void WfiOnDown();
             virtual void WfiOnUp();
             virtual void WfiOnRestore();
-            virtual void WfiOnMinimize();
+            virtual void WfiOnMinimize(bool bNoActivate);
             virtual void WfiOnMaximize();
             virtual void WfiOnFullScreen();
             virtual void WfiOnExitFullScreen();

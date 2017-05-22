@@ -134,6 +134,8 @@ public:
 
    virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, sp(::create) pContext = NULL);
 
+   DECL_GEN_SIGNAL(_001OnActivate);
+   DECL_GEN_SIGNAL(_001OnActivateApp);
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);
    DECL_GEN_SIGNAL(_001OnTaskbarCreated);
@@ -245,11 +247,11 @@ public:
    virtual bool WfiOnMove(bool bTracking);
    virtual bool WfiOnSize(bool bTracking);
 
-   virtual void WfiOnClose();
-   virtual void WfiOnMaximize();
-   virtual void WfiOnMinimize();
-   virtual void WfiOnRestore();
-   virtual void WfiOnDock(::user::EAppearance eappearance);
+   virtual void WfiOnClose() override;
+   virtual void WfiOnMaximize() override;
+   virtual void WfiOnMinimize(bool bNoActivate) override;
+   virtual void WfiOnRestore() override;
+   virtual void WfiOnDock(::user::EAppearance eappearance) override;
 
    virtual bool DeferFullScreen(bool bFullScreen, bool bRestore);
 

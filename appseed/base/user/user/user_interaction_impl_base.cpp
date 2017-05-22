@@ -16,6 +16,10 @@ namespace user
       m_pui                = NULL;
       m_bIgnoreSizeEvent   = false;
       m_bIgnoreMoveEvent   = false;
+      m_bShowWindow        = false;
+      m_iShowWindow        = -1;
+      m_bShowFlags         = false;
+      m_iShowFlags         = 0;
 
    }
 
@@ -320,7 +324,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::_001WindowMinimize()
+   void interaction_impl_base::_001WindowMinimize(bool bNoActivate)
    {
 
       m_pui->set_appearance(AppearanceIconic);
@@ -329,7 +333,7 @@ namespace user
 
       m_pui->GetWindowRect(rectNormal);
 
-      m_pui->good_iconify(NULL,rectNormal,true);
+      m_pui->good_iconify(NULL,rectNormal,true, (bNoActivate ? SWP_NOACTIVATE : 0) | SWP_FRAMECHANGED);
 
    }
 
@@ -1650,6 +1654,24 @@ namespace user
    {
 
       m_pui->message_call(WM_SHOWWINDOW, nCmdShow != SW_HIDE ? 1 : 0);
+
+      if (nCmdShow != SW_HIDE)
+      {
+
+         m_bShowFlags = true;
+
+         m_iShowFlags &= ~SWP_HIDEWINDOW;
+         m_iShowFlags |= SWP_SHOWWINDOW;
+
+      }
+      else
+      {
+         m_bShowFlags = true;
+
+         m_iShowFlags &= ~SWP_SHOWWINDOW; 
+         m_iShowFlags |= SWP_HIDEWINDOW;
+
+      }
 
       RedrawWindow();
 

@@ -4728,10 +4728,10 @@ ExitModal:
 
 
 
-   void interaction::_001WindowMinimize()
+   void interaction::_001WindowMinimize(bool bNoActivate)
    {
 
-      m_pimpl->_001WindowMinimize();
+      m_pimpl->_001WindowMinimize(bNoActivate);
 
    }
 
@@ -6663,17 +6663,33 @@ restart:
 
          {
 
-            keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+            if (GetExStyle() & WS_EX_LAYERED)
+            {
 
-            keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+               m_pimpl->m_bShowWindow = true;
 
-            keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+               m_pimpl->m_iShowWindow = SW_RESTORE;
 
-            keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+               SetWindowPos(iZOrder, rectNew, uiSwpFlags);
 
-            ::ShowWindow(get_handle(),SW_RESTORE);
+            }
+            else
+            {
 
-            SetWindowPos(iZOrder,rectNew,uiSwpFlags);
+               keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate, true, false, true);
+
+               keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent, true, false, true);
+
+               keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent, true, false, true);
+
+               keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect, false, m_bEnableSaveWindowRect, true);
+
+               ::ShowWindow(get_handle(), SW_RESTORE);
+
+               SetWindowPos(iZOrder, rectNew, uiSwpFlags);
+
+            }
+
 
          }
 
@@ -6768,12 +6784,38 @@ restart:
             keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
 
             keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+            uiSwpFlags &= ~SWP_NOZORDER;
+            if (GetExStyle() & WS_EX_LAYERED)
+            {
+               
+               m_pimpl->m_bShowWindow = true;
 
-            ::ShowWindow(get_handle(),SW_MINIMIZE);
+               //if (uiSwpFlags & SWP_NOACTIVATE)
+               //{
+               //   uiSwpFlags &= ~SWP_FRAMECHANGED;
+               //   m_pimpl->m_iShowWindow = SW_SHOWMINNOACTIVE;
+
+               //}
+               //else
+               {
+                  uiSwpFlags &= ~SWP_FRAMECHANGED;
+                  uiSwpFlags &= ~SWP_NOACTIVATE;
+                  uiSwpFlags &= ~SWP_NOZORDER;
+                  m_pimpl->m_iShowWindow = SW_MINIMIZE;
+
+               }
+
+            }
+            else
+            {
+
+               ::ShowWindow(get_handle(), SW_MINIMIZE);
+
+            }
 
          }
 
-         SetWindowPos(iZOrder,rectNew,uiSwpFlags);
+         //SetWindowPos(iZOrder,rectNew,uiSwpFlags);
 
 
 #elif defined WINDOWSEX

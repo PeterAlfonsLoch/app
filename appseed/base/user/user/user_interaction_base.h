@@ -260,7 +260,7 @@ namespace user
       virtual void _001UpdateWindow(bool bUpdateBuffer = true);
 
 
-      virtual void _001WindowMinimize();
+      virtual void _001WindowMinimize(bool bNoActivate);
       virtual void _001WindowMaximize();
       virtual void _001WindowFullScreen();
       virtual void _001WindowRestore();

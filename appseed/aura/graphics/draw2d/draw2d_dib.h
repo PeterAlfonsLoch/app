@@ -339,6 +339,8 @@ namespace draw2d
 
       virtual int64_t scan_area();
 
+      virtual bool load_thumbnail(const char * pszPath);
+
    };
 
 

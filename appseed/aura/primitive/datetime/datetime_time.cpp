@@ -40,15 +40,6 @@ namespace datetime
       return TRUE;
    }
 
-   time::time() throw() :
-      m_time(0)
-   {
-   }
-
-   time::time( __time64_t time )  throw():
-      m_time( time )
-   {
-   }
 
    time::time(int32_t nYear, int32_t nMonth, int32_t nDay, int32_t nHour, int32_t nMin, int32_t nSec,
       int32_t nDST)
@@ -218,31 +209,6 @@ namespace datetime
       return *this;
    }
 
-   time_span time::operator-( time time ) const throw()
-   {
-      return( time_span( m_time-time.m_time ) );
-   }
-
-   ::datetime::time time::operator-( time_span span ) const throw()
-   {
-      return( time( m_time-span.GetTimeSpan() ) );
-   }
-
-   ::datetime::time time::operator+( time_span span ) const throw()
-   {
-      return( time( m_time+span.GetTimeSpan() ) );
-   }
-
-   ::datetime::time time::operator-(const duration & duration) const
-   {
-      return time(m_time - duration.GetTimeSpan());
-   }
-
-   ::datetime::time time::operator+(const duration & duration) const
-   {
-      return time(m_time + duration.GetTimeSpan());
-   }
-
 
    ::datetime::time time::operator-( date_span span ) const
    {
@@ -256,35 +222,6 @@ namespace datetime
       throw not_implemented(get_thread_app());
    }
 
-   bool time::operator==( time time ) const throw()
-   {
-      return( m_time == time.m_time );
-   }
-
-   bool time::operator!=( time time ) const throw()
-   {
-      return( m_time != time.m_time );
-   }
-
-   bool time::operator<( time time ) const throw()
-   {
-      return( m_time < time.m_time );
-   }
-
-   bool time::operator>( time time ) const throw()
-   {
-      return( m_time > time.m_time );
-   }
-
-   bool time::operator<=( time time ) const throw()
-   {
-      return( m_time <= time.m_time );
-   }
-
-   bool time::operator>=( time time ) const throw()
-   {
-      return( m_time >= time.m_time );
-   }
 
 
    struct tm* time::GetGmtTm(struct tm* ptm) const
