@@ -4138,6 +4138,16 @@ void var::skip_json(const char * & pszJson)
    skip_json(pszJson, pszJson + strlen(pszJson) - 1);
 }
 
+const char * var::parse_json(const string & strJson)
+{
+
+   const char * pszJson = strJson;
+
+   parse_json(pszJson, pszJson + strJson.get_length());
+
+   return pszJson;
+
+}
 
 void var::parse_json(const char * & pszJson, const char * pszEnd)
 {

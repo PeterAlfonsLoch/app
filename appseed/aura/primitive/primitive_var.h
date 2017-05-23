@@ -627,6 +627,7 @@ public:
    void consume_identifier(const char * & psz,const char * pszEnd);
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
+   const char * parse_json(const string & strJson);
    ::var::e_type find_json_child(const char * & pszJson, const var & var);
    ::var::e_type find_json_child(const char * & pszJson, const char * pszEnd, const var & var);
    ::var::e_type find_json_id(const char * & pszJson, const char * pszEnd, const var & var);
