@@ -510,13 +510,13 @@ namespace multimedia
 
          //single_lock sLock(m_pmutex,TRUE);
 
-         char sz[16];
+         char sz[256];
 
          ZERO(sz);
 
          if(memmem(b.pAudioData,pwbuffer->m_uiBufferSize,sz,sizeof(sz)))
          {
-            //output_debug_string("too much zeros in audio buffer\n");
+            output_debug_string("too much zeros in audio buffer\n");
          }
 
          static DWORD g_dwLastBuffer;
@@ -618,6 +618,10 @@ namespace multimedia
          m_bEOS = false;
 
          m_estate = state_playing;
+
+         m_pprebuffer->Reset();
+
+         m_pprebuffer->Start(position);
 
          for(index i = 0; i < wave_out_get_buffer()->GetBufferCount(); i++)
          {
