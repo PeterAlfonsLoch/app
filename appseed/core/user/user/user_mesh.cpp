@@ -5923,8 +5923,9 @@ namespace user
       m_iOrder          = -1;
       m_iSubItem        = -1;
       m_iListItem       = -1;
-      m_cr              = (COLORREF)-1;
-      m_crBack          = ARGB(255, 0, 0, 0);
+      m_crText              = (COLORREF)-1;
+      m_crTextBackground    = ARGB(255, 0, 0, 0);
+      m_crItemBackground = 0;
       m_iState          = -1;
       m_iImage          = -1;
       m_bOk             = false;
@@ -6011,22 +6012,22 @@ namespace user
          {
             if(m_bListItemHover)
             {
-               m_cr =m_pmesh->_001GetColor(::user::color_text_selected_highlight);
+               m_crText =m_pmesh->_001GetColor(::user::color_text_selected_highlight);
             }
             else
             {
-               m_cr =m_pmesh->_001GetColor(::user::color_text_selected);
+               m_crText =m_pmesh->_001GetColor(::user::color_text_selected);
             }
          }
          else
          {
             if(m_bListItemHover)
             {
-               m_cr =m_pmesh->_001GetColor(::user::color_text_highlight);
+               m_crText =m_pmesh->_001GetColor(::user::color_text_highlight);
             }
             else
             {
-               m_cr =m_pmesh->_001GetColor(::user::color_text);
+               m_crText =m_pmesh->_001GetColor(::user::color_text);
             }
          }
       }
@@ -6035,7 +6036,7 @@ namespace user
    void draw_mesh_item::set_text_color()
    {
       ::draw2d::brush_sp brushText(allocer());
-      brushText->create_solid(m_cr);
+      brushText->create_solid(m_crText);
       m_pgraphics->SelectObject(brushText);
    }
 
@@ -6090,7 +6091,7 @@ namespace user
          else
          {
             ::draw2d::brush_sp brushText(allocer());
-            brushText->create_solid(m_cr);
+            brushText->create_solid(m_crText);
             m_pgraphics->SelectObject(brushText);
             m_pgraphics->_DrawText(m_strText,m_rectText,m_iDrawTextFlags);
          }

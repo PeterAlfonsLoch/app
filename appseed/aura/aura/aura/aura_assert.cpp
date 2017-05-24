@@ -34,7 +34,15 @@ CLASS_DECL_AURA int __cpp_assert_failed_line(const char * lpszFileName, int iLin
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",lpszFileName,iLineNumber);
 
-   int iResult = simple_message_box(NULL,szMessage,szTitle,MB_CANCELTRYCONTINUE | MB_ICONERROR);
+#ifdef WINDOWSEX
+   
+   int iResult = ::MessageBoxW(NULL,wstring(szMessage),wstring(szTitle),MB_CANCELTRYCONTINUE | MB_ICONERROR);
+
+#else
+
+   int iResult = simple_message_box(NULL, szMessage, szTitle, MB_CANCELTRYCONTINUE | MB_ICONERROR);
+
+#endif
 
    if(iResult == IDCANCEL)
    {

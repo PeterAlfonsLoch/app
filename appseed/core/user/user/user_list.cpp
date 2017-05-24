@@ -553,8 +553,9 @@ namespace user
       if (pdrawitem->m_bListItemSelected)
          pdrawitem->m_iState |= ItemStateSelected;
 
-
-      pdrawitem->m_crBack = 0;
+      pdrawitem->m_crText = 0;
+      pdrawitem->m_crTextBackground = 0;
+      pdrawitem->m_crItemBackground = 0;
       pdrawitem->update_item_color();
       pdrawitem->set_text_color();
 
@@ -581,9 +582,9 @@ namespace user
             //System.visual().imaging().color_blend(pdrawitem->m_pgraphics, r, crTranslucid, 127);
          }
       }
-      else if (pdrawitem->m_crBack != 0)
+      else if (pdrawitem->m_crItemBackground != 0)
       {
-         pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, pdrawitem->m_crBack);
+         pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, pdrawitem->m_crItemBackground);
       }
 
 
@@ -6300,7 +6301,9 @@ namespace user
       m_iOrder = -1;
       m_iSubItem = -1;
       m_iListItem = -1;
-      m_cr = (COLORREF)-1;
+      m_crText = (COLORREF)-1;
+      m_crTextBackground = ARGB(255, 0, 0, 0);
+      m_crItemBackground = 0;
       m_iState = -1;
       m_iImage = -1;
       m_bOk = false;
@@ -6512,22 +6515,22 @@ namespace user
          {
             if (m_bListItemHover)
             {
-               m_cr = m_plist->_001GetColor(::user::color_text_selected_highlight);
+               m_crText = m_plist->_001GetColor(::user::color_text_selected_highlight);
             }
             else
             {
-               m_cr = m_plist->_001GetColor(::user::color_text_selected);
+               m_crText = m_plist->_001GetColor(::user::color_text_selected);
             }
          }
          else
          {
             if (m_bListItemHover)
             {
-               m_cr = m_plist->_001GetColor(::user::color_text_highlight);
+               m_crText = m_plist->_001GetColor(::user::color_text_highlight);
             }
             else
             {
-               m_cr = m_plist->_001GetColor(::user::color_text);
+               m_crText = m_plist->_001GetColor(::user::color_text);
             }
          }
       }
@@ -6536,7 +6539,7 @@ namespace user
    void draw_list_item::set_text_color()
    {
       ::draw2d::brush_sp brushText(allocer());
-      brushText->create_solid(m_cr);
+      brushText->create_solid(m_crText);
       m_pgraphics->SelectObject(brushText);
    }
 
@@ -6560,16 +6563,16 @@ namespace user
                   dib2,
                   m_pgraphics->m_spfont,
                   m_iDrawTextFlags,
-                  m_cr,
-                  m_crBack,
+                  m_crText,
+                  m_crTextBackground,
                   m_plist->m_iTextSpreadRadius, m_plist->m_iTextBlurRadius,
                   m_plist->m_iTextBlur,
-                  m_strText != m_plist->m_mapText[m_iItem] || m_crBack != m_plist->m_mapBackColor[m_iItem]))
+                  m_strText != m_plist->m_mapText[m_iItem] || m_crTextBackground != m_plist->m_mapBackColor[m_iItem]))
                {
 
                   m_plist->m_mapText[m_iItem] = m_strText;
 
-                  m_plist->m_mapBackColor[m_iItem] = m_crBack;
+                  m_plist->m_mapBackColor[m_iItem] = m_crTextBackground;
 
                }
 
@@ -6580,7 +6583,7 @@ namespace user
          {
             ::draw2d::brush_sp brushText(allocer());
 
-            brushText->create_solid(m_cr);
+            brushText->create_solid(m_crText);
             m_pgraphics->SelectObject(brushText);
             m_pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
             m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);
