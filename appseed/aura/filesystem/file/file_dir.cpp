@@ -72,24 +72,23 @@
    if(hmodule == NULL)
    {
 
-      wcscpy(lpszModuleFilePath,_wgetenv(L"PROGRAMFILES(X86)"));
+      PWSTR pwstr = NULL;
 
-      if(wcslen(lpszModuleFilePath) == 0)
-      {
+      HRESULT hr = SHGetKnownFolderPath(
+         FOLDERID_ProgramFilesX86,
+         KF_FLAG_DEFAULT,
+         NULL,
+         &pwstr);
 
-         SHGetSpecialFolderPathW(
-            NULL,
-            lpszModuleFilePath,
-            CSIDL_PROGRAM_FILES,
-            FALSE);
+      wcscpy(lpszModuleFilePath, pwstr);
 
-      }
+      ::CoTaskMemFree(pwstr);
 
-      if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
-            || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
-      {
-         lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
-      }
+      //if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
+      //      || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
+      //{
+      //   lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
+      //}
       wcscat(lpszModuleFilePath, L"\\ca2\\");
 #ifdef X86
       wcscat(lpszModuleFilePath,L"stage\\x86\\");
