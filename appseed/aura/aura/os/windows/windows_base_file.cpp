@@ -1236,3 +1236,17 @@ char get_drive_letter(const char * lpDevicePath)
    return '\0';
 
 }
+
+
+
+
+memory file_as_memory_dup(const char * path)
+{
+
+   memory mem;
+
+   file_get_memory_dup(mem, path);
+
+   return mem;
+
+}
