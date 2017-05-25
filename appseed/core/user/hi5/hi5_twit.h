@@ -102,7 +102,7 @@ namespace hi5
       /* OAuth data */
       oauth m_oauth;
 
-      twit(::aura::application * papp, simple_log * psimplelog, int iLogTarget);
+      twit(::aura::application * papp, simple_log * psimplelog = NULL, int iLogTarget = -1);
       virtual ~twit();
 
       /* Twitter OAuth authorization methods */
