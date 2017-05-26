@@ -399,6 +399,9 @@
     <Filter Include="Header Files\graphics\visual">
       <UniqueIdentifier>{569a4aea-a11c-4d4b-a924-9332f9438354}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\aura\os_alloc">
+      <UniqueIdentifier>{44b60fb5-aef1-428e-8b06-002121687ba8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -4812,6 +4815,18 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_tools.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\os_alloc\os_alloc_bounds_check.cpp">
+      <Filter>Source Files\aura\aura\os_alloc</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\os_alloc\os_alloc_malloc.cpp">
+      <Filter>Source Files\aura\aura\os_alloc</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\os_alloc\os_alloc_no_bounds_check.cpp">
+      <Filter>Source Files\aura\aura\os_alloc</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\os_alloc\os_alloc_WindowsHeapAlloc.cpp">
+      <Filter>Source Files\aura\aura\os_alloc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

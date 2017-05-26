@@ -623,6 +623,18 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aura\aura\os_alloc\os_alloc_bounds_check.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\aura\os_alloc\os_alloc_malloc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\aura\os_alloc\os_alloc_no_bounds_check.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\aura\os_alloc\os_alloc_WindowsHeapAlloc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="aura\aura\simple_log.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
