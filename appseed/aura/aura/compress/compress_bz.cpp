@@ -225,7 +225,7 @@ bool uncompress_bz::transfer(::file::ostream & ostreamUncompressed, ::file::istr
          // Inflate another chunk.
          status = BZ2_bzDecompress(&zstream);
 
-         ostreamUncompressed.write(memory.get_data(), memory.get_size()-zstream.avail_out);
+         ostreamUncompressed.write(memory.get_data(), memory.get_size() - zstream.avail_out);
 
          if (status == BZ_STREAM_END)
          {
@@ -243,6 +243,13 @@ bool uncompress_bz::transfer(::file::ostream & ostreamUncompressed, ::file::istr
          }
 
       } while (zstream.avail_out == 0);
+
+      if (uiRead == 0)
+      {
+
+         break;
+
+      }
 
       uiRead = istreamGzFileCompressed.read(memIn.get_data(), memIn.get_size());
 
