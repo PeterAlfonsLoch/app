@@ -189,7 +189,7 @@ namespace primitive
       void to_asc(string & str);
       void from_asc(const char * psz);
 
-      inline bool operator == (const memory_base & s);
+      bool operator == (const memory_base & s);
 
 
       memory_base & reverse();
