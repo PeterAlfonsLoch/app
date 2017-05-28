@@ -3762,8 +3762,8 @@ namespace aura
          if (!check_exclusive(bHandled))
          {
 
-            if (!bHandled && (is_debugger_attached() || System.directrix()->m_varTopicQuery.has_property("install")
-               || System.directrix()->m_varTopicQuery.has_property("uninstall")))
+            if (!bHandled && (is_debugger_attached() && !System.directrix()->m_varTopicQuery.has_property("install")
+              && !System.directrix()->m_varTopicQuery.has_property("uninstall")))
             {
 
                simple_message_box_timeout(NULL, "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).", seconds(5), MB_ICONASTERISK);
