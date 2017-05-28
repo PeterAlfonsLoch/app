@@ -198,6 +198,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir->pathfind(pszEnv, pszTopic, pszMode, m_pauraapp);
       }
 
+      
 
 
    } // namespace dir

@@ -125,6 +125,8 @@ namespace file
 
       virtual bool transfer(ostream & os, istream & is);
 
+      virtual bool touch(const ::file::path & path);
+
    };
 
 

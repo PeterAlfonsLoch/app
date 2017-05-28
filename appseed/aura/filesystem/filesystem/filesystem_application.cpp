@@ -537,6 +537,28 @@ namespace file
    }
 
 
+   bool application::touch(const ::file::path & path)
+   {
+
+      if (!exists(path))
+      {
+
+         char ch;
+
+         if (!put_contents(path, &ch, 0))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
 } // namespace file
 
 

@@ -17,6 +17,6 @@ public:
 
    virtual string get_executable_path() override;
 
-   virtual void start_in_context();
+   virtual void start_in_context(bool bAlreadyElevated);
 
 };
