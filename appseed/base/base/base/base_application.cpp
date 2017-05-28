@@ -276,10 +276,15 @@ namespace base
 
       }
 
-      if (m_puiptraFrame->remove(pwnd) > 0)
+      if (m_puiptraFrame != NULL)
       {
 
-         TRACE("::base::application::remove_frame ::user::interaction = %0x016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
+         if (m_puiptraFrame->remove(pwnd) > 0)
+         {
+
+            TRACE("::base::application::remove_frame ::user::interaction = %0x016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
+
+         }
 
       }
 
