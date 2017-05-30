@@ -286,7 +286,7 @@ namespace windows
       registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
 
-      keyKar.SetValue(pszKey, pszCommand);
+      keyKar.SetValue(pszKey, string(pszCommand));
 
 
       return true;
@@ -301,7 +301,7 @@ namespace windows
       registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-      keyKar.SetValue(pszKey, pszCommand);
+      keyKar.SetValue(pszKey, string(pszCommand));
 
 
       return false;
@@ -315,7 +315,7 @@ namespace windows
       registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
 
-      keyKar.SetValue(pszKey, pszCommand);
+      keyKar.SetValue(pszKey, string(pszCommand));
 
 
       return false;
@@ -329,7 +329,7 @@ namespace windows
       registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-      keyKar.SetValue(pszKey, pszCommand);
+      keyKar.SetValue(pszKey, string(pszCommand));
 
 
       return false;

@@ -1121,7 +1121,7 @@ CLASS_DECL_AURA void * memmem_dup(const void * src, strsize srclen, const void *
          return psrc;
 
       psrc++;
-      i--;
+      //i--;
 
    }
 

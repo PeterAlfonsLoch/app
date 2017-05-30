@@ -121,7 +121,7 @@ namespace primitive
       virtual void transfer_from_begin(::file::reader & reader, memory_size_t uiBufferSize = 1024 * 1024);
 
 
-      void allocate_add_up(memory_size_t dwAddUp);
+      void allocate_add_up(memory_offset_t iAddUp);
 
 
       inline LPBYTE           internal_get_data() const;
@@ -174,6 +174,9 @@ namespace primitive
       void assign(const void * pdata, memory_position_t iStart, memory_size_t iCount);
       void append(memory_size_t iCount, uchar uch);
       void assign(memory_size_t iCount, uchar uch);
+
+      void splice(const byte * pbMemory, memory_offset_t iCountSrc, memory_offset_t iStartDst = 0, memory_offset_t iCountDst = 0);
+      void splice(const memory_base & memory, memory_offset_t iStartDst = 0, memory_offset_t iCountDst = 0, memory_offset_t iStartSrc = 0, memory_offset_t iCountSrc = -1);
 
       void move_and_grow(memory_offset_t offset);
       void move(memory_offset_t offset, bool bGrow = false);
@@ -249,6 +252,28 @@ namespace primitive
    inline memory_base::operator const void *() const { return this->get_data(); }
    inline memory_base::operator void *() { return this->get_data(); }
 
+   inline void memory_base::allocate_add_up(memory_offset_t iAddUp)
+   {
+      
+      if (iAddUp != 0)
+      {
+
+         allocate(get_size() + iAddUp);
+
+      }
+
+   }
+
+   inline void memory_base::splice(const memory_base & memory, memory_offset_t iStartDst, memory_offset_t iCountDst, memory_offset_t iStartSrc, memory_offset_t iCountSrc)
+   {
+
+      splice(
+         &memory.get_data()[iStartSrc], 
+         MIN(memory.get_size(), iCountSrc < 0 ? memory.get_size() - iCountSrc + 1 : iCountSrc), 
+         iStartDst, 
+         iCountDst);
+
+   }
 
 } // namespace primitive
 

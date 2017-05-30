@@ -91,6 +91,25 @@ namespace windows
 
    bool registry::Key::QueryValue(
       const char * lpcszValueName,
+      DWORD & dwValue)
+   {
+      DWORD cbValue;
+      DWORD dwType;
+      if (ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, NULL, &dwType, NULL, &cbValue))
+         return false;
+      if (dwType != REG_DWORD)
+         return false;
+      cbValue = sizeof(dwValue);
+      if (ERROR_SUCCESS != ::RegQueryValueEx(m_hkey, lpcszValueName, NULL, &dwType, (LPBYTE)&dwValue, &cbValue))
+      {
+         return false;
+      }
+      return true;
+
+   }
+
+   bool registry::Key::QueryValue(
+      const char * lpcszValueName,
       string &str)
    {
       DWORD cbValue;
@@ -130,13 +149,44 @@ namespace windows
 
    bool registry::Key::SetValue(
       const char * lpcszValueName,
-      const char * lpcszValue)
+      const string & strValue)
    {
+      wstring wstr(strValue);
       return ERROR_SUCCESS ==
-         RegSetValueEx(m_hkey, lpcszValueName, 0, REG_SZ,
-               (LPBYTE)lpcszValue, (lstrlen(lpcszValue)+1)*sizeof(char));
+         RegSetValueExW(m_hkey, wstring(lpcszValueName), 0, REG_SZ,
+               (LPBYTE)wstr.c_str(), (wstr.get_length() + 1)*sizeof(WCHAR));
    }
 
+   bool registry::Key::SetValue(
+      const char * lpcszValueName,
+      const char * pszValue)
+   {
+      wstring wstr(pszValue);
+      return ERROR_SUCCESS ==
+         RegSetValueExW(m_hkey, wstring(lpcszValueName), 0, REG_SZ,
+         (LPBYTE)wstr.c_str(), (wstr.get_length() + 1) * sizeof(WCHAR));
+   }
+
+   bool registry::Key::SetValue(
+      const char * lpcszValueName,
+      const memory & memValue)
+   {
+
+      return ERROR_SUCCESS ==
+         RegSetValueExW(m_hkey, wstring(lpcszValueName), 0, REG_BINARY,
+         (LPBYTE)memValue.get_data(), memValue.get_size());
+   }
+
+
+   bool registry::Key::SetValue(
+      const char * lpcszValueName,
+      DWORD dwValue)
+   {
+      
+      return ERROR_SUCCESS ==
+         RegSetValueExW(m_hkey, wstring(lpcszValueName), 0, REG_DWORD,
+         (LPBYTE)&dwValue, sizeof(dwValue));
+   }
 
    bool registry::Key::DeleteValue(
       const char * lpcszValueName)

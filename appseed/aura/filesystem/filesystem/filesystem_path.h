@@ -9,7 +9,7 @@ namespace file
 
    class path;
 
-   typedef CLASS_DECL_AURA ::string_array < ::file::path,string > patha;
+   typedef CLASS_DECL_AURA::string_array < ::file::path, string > patha;
 
 
    enum e_path
@@ -30,28 +30,28 @@ namespace file
       int               m_iDir; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
       strsize           m_iName; // if negative, not set/calculated/retrieved where name starts
       strsize           m_iRelative; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
-      
+
       path_meta(e_path epath = path_none, int64_t iSize = -1, int64_t iDir = -1, int64_t iName = -1, strsize iRelative = -1)
       {
-         
-         m_epath     = epath;
-         m_iSize     = iSize;
-         m_iDir      = iDir;
-         m_iName     = iName;
+
+         m_epath = epath;
+         m_iSize = iSize;
+         m_iDir = iDir;
+         m_iName = iName;
          m_iRelative = iRelative;
-         
+
       }
-      
-      
+
+
    };
-   
+
 
    CLASS_DECL_AURA string normalize_path(string strPath, e_path epath = path_none);
 
    CLASS_DECL_AURA bool normalize_path_inline(string & strPath, e_path & epath);
-   
+
    inline char path_sep(e_path epath);
-   
+
    inline char path_osep(e_path epath);
 
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
@@ -67,36 +67,36 @@ namespace file
       path(e_context_switcher_null);
       path(e_path epath = path_file);
       path(const unichar * pwsz, strsize iCount, e_path epath = path_none, int iDir = -1, bool bNormalize = true, int64_t iSize = -1);
-      path(const string & str,e_path epath = path_none, int iDir = -1, bool bNormalize=true, int64_t iSize = - 1);
-      path(const id & id,e_path epath = path_none, int iDir = -1);
+      path(const string & str, e_path epath = path_none, int iDir = -1, bool bNormalize = true, int64_t iSize = -1);
+      path(const id & id, e_path epath = path_none, int iDir = -1);
       path(const var & var, e_path epath = path_none, int iDir = -1);
       path(const path & path);
       path(path && path);
-      path(const char * psz,e_path epath = path_none, int iDir = -1);
-      path(const unichar * psz,e_path epath = path_none, int iDir = -1);
-      path(const wstring & wstr,e_path epath = path_none, int iDir = -1);
+      path(const char * psz, e_path epath = path_none, int iDir = -1);
+      path(const unichar * psz, e_path epath = path_none, int iDir = -1);
+      path(const wstring & wstr, e_path epath = path_none, int iDir = -1);
       //path(const var & var,e_path epath = path_file);
-      path(const property & property,e_path epath = path_none, int iDir = -1);
+      path(const property & property, e_path epath = path_none, int iDir = -1);
 
       ~path() throw();
 
 
       void set_type(e_path epath);
-      
 
-      
+
+
       inline char sep() const
       {
-         
+
          return path_sep(m_epath);
-         
+
       }
 
       inline char osep() const
       {
-         
+
          return path_osep(m_epath);
-         
+
       }
 
       path & operator = (const ::file::path & path);
@@ -169,16 +169,16 @@ namespace file
          return operator != (string(psz));
 
       }
-//      bool operator == (const path & path) const;
+      //      bool operator == (const path & path) const;
 
-//      bool operator == (const string & str) const;
-//      bool operator == (const char * psz) const;
+      //      bool operator == (const string & str) const;
+      //      bool operator == (const char * psz) const;
       bool operator == (const var & var) const;
 
-//      bool operator != (const path & path) const;
+      //      bool operator != (const path & path) const;
 
-//      bool operator != (const string & str) const;
-//      bool operator != (const char * psz) const;
+      //      bool operator != (const string & str) const;
+      //      bool operator != (const char * psz) const;
       bool operator != (const var & var) const;
 
       path operator + (const path & path) const;
@@ -197,7 +197,7 @@ namespace file
       path operator / (const string & str) const;
       path operator / (const char * psz) const;
       path operator / (const property & property) const;
-      
+
       path & operator /= (const path & path);
       path & operator /= (const string & str);
       path & operator /= (const char * psz);
@@ -252,7 +252,7 @@ namespace file
 
       const char * name() const
       {
-         return &m_pszData[rfind(sep()) +1];
+         return &m_pszData[rfind(sep()) + 1];
       }
 
       string sname() const
@@ -264,7 +264,7 @@ namespace file
 
       index find_file_name() const;
 
-//      bool is_equal(const ::file::path & path2) const;
+      //      bool is_equal(const ::file::path & path2) const;
 
       string extension() const;
 
@@ -318,38 +318,38 @@ namespace file
 
    inline char path_sep(e_path epath)
    {
-      
+
 #ifdef WINDOWS
-      
-      if(epath == path_file)
+
+      if (epath == path_file)
       {
-         
+
          return '\\';
-         
+
       }
-      
+
 #endif
-      
+
       return '/';
-      
+
    }
-   
+
    inline char path_osep(e_path epath)
    {
-      
+
 #ifdef WINDOWS
-      
-      if(epath == path_file)
+
+      if (epath == path_file)
       {
-         
+
          return '/';
-         
+
       }
-      
+
 #endif
-      
+
       return '\\';
-      
+
    }
 
 } // namespace file

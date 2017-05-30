@@ -34,6 +34,7 @@ CLASS_DECL_AURA string get_command_line_param2(const char * pszCommandLine,const
 
 
 CLASS_DECL_AURA string time_binary_platform(string strPlatform);
+CLASS_DECL_AURA string process_platform_dir_name();
 CLASS_DECL_AURA string process_platform_dir_name2();
 CLASS_DECL_AURA string process_version_dir_name();
 

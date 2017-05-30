@@ -241,7 +241,20 @@ string time_binary_platform(string strPlatform)
 
 }
 
+CLASS_DECL_AURA string process_platform_dir_name()
+{
 
+#if defined(_M_IX86)
+
+   return "Win32";
+
+#else
+
+   return "x64";
+
+#endif
+
+}
 
 CLASS_DECL_AURA string process_platform_dir_name2()
 {

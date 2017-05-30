@@ -558,6 +558,7 @@ public:
 
    inline bool ends_ci(const string & strSuffixCandidate) const;
 
+   inline bool ensure_ends_ci(const string & strSuffix);
 
    bool begins_ci(const char * s) const;
 

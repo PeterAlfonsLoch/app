@@ -333,6 +333,21 @@ inline bool string::ends_ci(const string & strSuffixCandidate) const
 
 }
 
+inline bool string::ensure_ends_ci(const string & strSuffix)
+{
+
+   if (!::str::ends_ci(*this, strSuffix))
+   {
+
+      operator +=(strSuffix);
+
+      return false;
+
+   }
+
+   return true;
+
+}
 
 
 

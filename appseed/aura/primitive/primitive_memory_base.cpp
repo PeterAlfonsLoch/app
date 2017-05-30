@@ -596,12 +596,6 @@ namespace primitive
 
    }
 
-   void memory_base::allocate_add_up(memory_size_t dwAddUp)
-   {
-
-      allocate(get_size() + dwAddUp);
-
-   }
 
 
 
@@ -1213,6 +1207,64 @@ namespace primitive
       {
 
          get_data()[i] = uch;
+
+      }
+
+   }
+
+   
+   void memory_base::splice(const byte * pbMemory, memory_offset_t iCountSrc, memory_offset_t iStartDst, memory_offset_t iCountDst)
+   {
+
+      if (iCountSrc <= 0)
+      {
+
+         iCountSrc = 0;
+
+      }
+
+      if (iCountDst < 0)
+      {
+
+         iCountDst = get_size();
+
+      }
+
+      if(iCountSrc >= iCountDst)
+      {
+
+         //_____________dddddddddddddddd
+         //aaaaaaaaaaaaabbbcccccccccccccccccccccccc
+
+         memory_size_t iSize = get_size();
+
+         memory_size_t iMove = iSize - MIN(iSize, iStartDst + iCountDst);
+
+         allocate_add_up(iCountSrc - iCountDst);
+
+         ::memmove(&get_data()[iStartDst + iCountSrc], &get_data()[iStartDst + iCountDst], iMove);
+
+      }
+      else if (iCountSrc < iCountDst)
+      {
+         
+         //_____________ddd
+         //aaaaaaaaaaaaabbbbbbbbbbbbbbbbcccccccccccccccccccccccc
+
+         memory_size_t iSize = get_size();
+
+         memory_size_t iMove = iSize - MIN(iSize, iStartDst + iCountDst);
+
+         ::memmove(&get_data()[iStartDst + iCountSrc], &get_data()[iStartDst + iCountDst], iMove);
+
+         allocate_add_up(iCountSrc - iCountDst);
+
+      }
+
+      if (iCountSrc > 0)
+      {
+
+         memcpy(&get_data()[iStartDst], pbMemory, iCountSrc);
 
       }
 

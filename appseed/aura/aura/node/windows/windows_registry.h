@@ -26,12 +26,20 @@ namespace windows
 
          bool OpenKey(HKEY hkey, const char * lpcszSubKey, bool bCreate);
          void CloseKey();
+
+         bool QueryValue(const char * lpcszValueName, DWORD & dwValue);
          
-         bool QueryValue(const char * lpcszValueName, string &strVAlue);
+         bool QueryValue(const char * lpcszValueName, string &strValue);
 
          bool QueryValue(const char * lpcszValueName, memory & mem);
 
-         bool SetValue(const char * lpcszValueName, const char * lpcszValue);
+         bool SetValue(const char * lpcszValueName, DWORD dwValue);
+
+         bool SetValue(const char * lpcszValueName, const string & strValue);
+
+         bool SetValue(const char * lpcszValueName, const char * pszValue);
+
+         bool SetValue(const char * lpcszValueName, const memory & mem);
 
          bool DeleteValue(const char * lpcszValueName);
 
