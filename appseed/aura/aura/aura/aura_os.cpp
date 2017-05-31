@@ -89,7 +89,7 @@ namespace aura
 
    }
 
-   bool os::local_machine_set_run(const char * pszKey, const char * pszCommand)
+   bool os::local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
@@ -99,7 +99,7 @@ namespace aura
 
    }
 
-   bool os::local_machine_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os::local_machine_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
@@ -109,7 +109,7 @@ namespace aura
 
    }
 
-   bool os::current_user_set_run(const char * pszKey, const char * pszCommand)
+   bool os::current_user_set_run(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
@@ -119,7 +119,7 @@ namespace aura
 
    }
 
-   bool os::current_user_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os::current_user_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
@@ -489,13 +489,19 @@ namespace aura
 
 
 
-   bool os::register_user_auto_start(string strId, string strCommand)
+   bool os::register_user_auto_start(string strId, string strCommand, bool bRegister)
    {
 
       return false;
 
    }
 
+   bool os::is_user_auto_start(string strId)
+   {
+
+      return false;
+
+   }
 
    ::file::path os::get_app_path(const string & strApp)
    {

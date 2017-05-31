@@ -36,10 +36,10 @@ namespace aura
         virtual string connection_settings_get_auto_config_url();
 
 
-        virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand);
-        virtual bool local_machine_set_run_once(const char * pszKey, const char * pszCommand);
-        virtual bool current_user_set_run(const char * pszKey, const char * pszCommand);
-        virtual bool current_user_set_run_once(const char * pszKey, const char * pszCommand);
+        virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet);
+        virtual bool local_machine_set_run_once(const char * pszKey, const char * pszCommand, bool bSet);
+        virtual bool current_user_set_run(const char * pszKey, const char * pszCommand, bool bSet);
+        virtual bool current_user_set_run_once(const char * pszKey, const char * pszCommand, bool bSet);
 
         virtual bool defer_register_ca2_plugin_for_mozilla();
 
@@ -93,7 +93,9 @@ namespace aura
 
         virtual bool set_default_browser(::aura::application * papp);
 
-        virtual bool register_user_auto_start(string strId, string strCommand);
+        virtual bool register_user_auto_start(string strId, string strCommand, bool bRegister);
+
+        virtual bool is_user_auto_start(string strId);
 
         virtual ::file::path get_app_path(const string & strApp);
 

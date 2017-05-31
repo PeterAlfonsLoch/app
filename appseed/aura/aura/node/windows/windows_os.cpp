@@ -279,59 +279,95 @@ namespace windows
 
    }
 
-   bool os::local_machine_set_run(const char * pszKey, const char * pszCommand)
+   bool os::local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
 
       registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
 
-      keyKar.SetValue(pszKey, string(pszCommand));
+      if (bSet)
+      {
 
+         keyKar.SetValue(pszKey, string(pszCommand));
+
+      }
+      else
+      {
+
+         keyKar.DeleteValue(pszKey);
+
+      }
 
       return true;
 
    }
 
 
-   bool os::local_machine_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os::local_machine_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
 
       registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-      keyKar.SetValue(pszKey, string(pszCommand));
+      if (bSet)
+      {
 
+         keyKar.SetValue(pszKey, string(pszCommand));
 
+      }
+      else
+      {
+
+         keyKar.DeleteValue(pszKey);
+
+      }
       return false;
 
    }
 
-   bool os::current_user_set_run(const char * pszKey, const char * pszCommand)
+   bool os::current_user_set_run(const char * pszKey, const char * pszCommand, bool bSet)
    {
-
 
       registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
+      if (bSet)
+      {
 
-      keyKar.SetValue(pszKey, string(pszCommand));
+         keyKar.SetValue(pszKey, string(pszCommand));
 
+      }
+      else
+      {
+
+         keyKar.DeleteValue(pszKey);
+
+      }
 
       return false;
 
    }
 
-   bool os::current_user_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os::current_user_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
 
       registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
-      keyKar.SetValue(pszKey, string(pszCommand));
+      if (bSet)
+      {
 
+         keyKar.SetValue(pszKey, string(pszCommand));
 
+      }
+      else
+      {
+
+         keyKar.DeleteValue(pszKey);
+
+      }
       return false;
 
    }
@@ -1675,12 +1711,40 @@ namespace windows
    }
 
 
-   bool os::register_user_auto_start(string strId, string strCommand)
+   bool os::register_user_auto_start(string strId, string strCommand, bool bRegister)
    {
 
-      local_machine_set_run(strId, strCommand);
+      current_user_set_run(strId, strCommand, bRegister);
 
       return true;
+
+   }
+
+   bool os::is_user_auto_start(string strId)
+   {
+
+      registry::Key keyKar;
+      
+      if (keyKar.OpenKey(HKEY_CURRENT_USER, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false))
+      {
+
+         string strValue;
+
+         if (keyKar.QueryValue(strId, strValue))
+         {
+
+            if (strValue.has_char())
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+
+      return false;
 
    }
 

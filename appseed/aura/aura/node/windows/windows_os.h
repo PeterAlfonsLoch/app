@@ -33,10 +33,10 @@ namespace windows
       virtual string connection_settings_get_auto_config_url();
 
 
-      virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand);
-      virtual bool local_machine_set_run_once(const char * pszKey, const char * pszCommand);
-      virtual bool current_user_set_run(const char * pszKey, const char * pszCommand);
-      virtual bool current_user_set_run_once(const char * pszKey, const char * pszCommand);
+      virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet);
+      virtual bool local_machine_set_run_once(const char * pszKey, const char * pszCommand, bool bSet);
+      virtual bool current_user_set_run(const char * pszKey, const char * pszCommand, bool bSet);
+      virtual bool current_user_set_run_once(const char * pszKey, const char * pszCommand, bool bSet);
       virtual bool defer_register_ca2_plugin_for_mozilla();
 
       virtual bool file_extension_get_open_with_list_keys(stringa & straKey, const char * pszExtension);
@@ -81,7 +81,9 @@ namespace windows
 
       virtual bool get_default_browser(string & strId, ::file::path & path, string & strParam) override;
 
-      virtual bool register_user_auto_start(string strId, string strCommand) override;
+      virtual bool register_user_auto_start(string strId, string strCommand, bool bRegister) override;
+
+      virtual bool is_user_auto_start(string strId) override;
 
       virtual ::file::path get_app_path(const string & strApp) override;
 

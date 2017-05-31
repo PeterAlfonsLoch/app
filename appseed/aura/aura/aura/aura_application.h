@@ -574,6 +574,11 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
       virtual void draw2d_factory_exchange();
 
+      virtual ::file::path get_executable_path();
+      virtual string get_executable_extension();
+      virtual string get_executable_title();
+      virtual string get_executable_appid();
+
    };
 
 

@@ -6650,6 +6650,60 @@ namespace aura
    }
 
 
+   ::file::path application::get_executable_path()
+   {
+
+#ifdef WINDOWS
+
+      return ::dir::module() / (get_executable_title() + get_executable_extension());
+
+#else
+
+      #error "todo/ (to think just a bit now is suitable... other times, don't think, just do it, we already worried a lot in your life";
+
+#endif
+
+
+   }
+
+
+   string application::get_executable_extension()
+   {
+
+#ifdef WINDOWS
+
+      return ".exe";
+
+#else
+
+      return "";
+
+#endif
+
+   }
+
+
+   string application::get_executable_title()
+   {
+
+      string strTitle = get_executable_appid();
+
+      strTitle.replace("-", "_");
+
+      strTitle.replace("/", "_");
+
+      return strTitle;
+
+   }
+
+   
+   string application::get_executable_appid()
+   {
+
+      return m_strAppId;
+
+   }
+
 
    void application::draw2d_factory_exchange()
    {

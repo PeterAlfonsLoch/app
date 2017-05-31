@@ -909,6 +909,62 @@ run:
 
    }
 
+
+   bool application::BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent)
+   {
+
+      if (pevent->m_eevent == ::user::event_initialize_control)
+      {
+
+         if (pevent->m_puie->m_id == __id(system_startup_checkbox))
+         {
+
+            try
+            {
+               pevent->m_puie->_001SetCheck(
+                  System.os().is_user_auto_start(get_executable_appid()),
+                  ::action::source_initialize);
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+      else if (pevent->m_eevent == ::user::event_set_check)
+      {
+
+         if (pevent->m_puie->m_id == __id(system_startup_checkbox)
+            && pevent->m_actioncontext.is_user_source())
+         {
+
+            try
+            {
+
+               System.os().register_user_auto_start(
+                  get_executable_appid(),
+                  get_executable_path(),
+                  pevent->m_puie->_001GetCheck() == ::check::checked);
+
+               return true;
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
 } // namespace base
 
 

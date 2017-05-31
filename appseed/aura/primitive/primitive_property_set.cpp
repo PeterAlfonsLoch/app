@@ -886,7 +886,7 @@ void property_set::replace_gen(string & str)
             //error
             break;
          }
-         string strEval = gen_eval(str.Mid(iPos + 1, iEnd - iPos - 1));
+         string strEval = operator[](str.Mid(iPos + 2, iEnd - iPos - 2)).m_element2.get_string();
          str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
          iPos += strEval.get_length() - 1;
       }

@@ -312,7 +312,7 @@ namespace userstack
 
       strSentinelPath = System.dir().element() / "stage/x86/app.sentinel.exe";
 
-      System.os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"");
+      System.os().local_machine_set_run("ca2 app.sentinel", "\"" + strSentinelPath + "\"", true);
 
       return ::asphere::application::on_install();
    }

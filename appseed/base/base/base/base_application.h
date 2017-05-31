@@ -107,7 +107,10 @@ namespace base
       
       
       virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const;
-      
+  
+      virtual bool BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent) override;
+
+
 
    };
 

@@ -549,7 +549,7 @@ namespace core
 
       strSentinelPath = System.dir().element() / "stage/x86/app.sentinel.exe";
 
-      System.os().local_machine_set_run("core app.sentinel", "\"" + strSentinelPath + "\"");
+      System.os().local_machine_set_run("core app.sentinel", "\"" + strSentinelPath + "\"", true);
 
       System.os().defer_register_ca2_plugin_for_mozilla();
 

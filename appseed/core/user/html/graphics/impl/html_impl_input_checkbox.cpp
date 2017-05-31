@@ -92,14 +92,14 @@ namespace html
          m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
          m_pcheckbox->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");
          m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
-         if(pdata->m_pform != NULL && pdata->m_pform->m_pcallback != NULL)
+         if(pdata->m_pform != NULL)
          {
             ::user::control_event ev;
             ev.m_puie = m_pcheckbox;
             ev.m_actioncontext = ::action::source::add(::action::source_data, ::action::source_load);
             ev.m_eevent = ::user::event_initialize_control;
             ev.m_uiEvent = 0;
-            pdata->m_pform->m_pcallback->BaseOnControlEvent(pdata->m_pform, &ev);
+            pdata->m_pform->BaseOnControlEvent(&ev);
          }
       }
 

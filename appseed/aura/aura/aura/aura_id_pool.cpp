@@ -259,4 +259,6 @@ void id_pool::_reset()
    id_html_border_right_color = "border-right-color";
    id_html_border_bottom_color = "border-bottom-color";
 
+   id_system_startup_checkbox = "system_startup_checkbox";
+
 }

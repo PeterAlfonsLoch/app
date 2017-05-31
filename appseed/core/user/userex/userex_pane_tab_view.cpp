@@ -84,6 +84,44 @@ namespace userex
    }
 
 
+   void pane_tab_view::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::user::tab_view::install_message_handling(pdispatch);
+
+      IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &pane_tab_view::_001OnCreate);
+
+   }
+
+
+   void pane_tab_view::_001OnCreate(::signal_details * pobj)
+   {
+
+      if (pobj->previous())
+         return;
+
+
+      sp(simple_frame_window) pframe = GetParent();
+
+      if (pframe.is_set())
+      {
+
+         string strAppOptions = pframe->m_varFrame["app_options"]["resource"];
+
+         if (strAppOptions.has_char())
+         {
+
+            string strTitle = pframe->m_varFrame["app_options"]["title"];
+
+            add_tab(strTitle, "app_options");
+
+         }
+
+      }
+
+   }
+
+
    void pane_tab_view::on_show_view()
    {
       ::user::tab_view::on_show_view();
@@ -426,6 +464,12 @@ namespace userex
          }
 
       }
+      else if (pcreatordata->m_id == "app_options")
+      {
+
+         create_app_options(pcreatordata);
+
+      }
 
    }
 
@@ -494,6 +538,51 @@ namespace userex
       return pview->get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
 
    }
+
+
+   void pane_tab_view::on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint)
+   {
+
+      ::user::tab_view::on_update(pSender, lHint, pHint);
+
+   }
+
+
+
+   bool pane_tab_view::create_app_options(::user::view_creator_data * pcreatordata)
+   {
+
+      m_pdocAppOptions = Application.create_child_form(this, pcreatordata->m_pholder);
+
+      sp(html_document) pdoc = m_pdocAppOptions;
+
+      if (pdoc.is_set())
+      {
+
+         pdoc->get_html_data()->m_propertyset["app_options_title"] = 
+            get_pane_by_id(pcreatordata->m_id)->m_istrTitleEx;
+
+      }
+
+      string strAppOptions = "matter://options.html";
+
+      sp(simple_frame_window) pframe = GetParent();
+
+      if (pframe.is_set())
+      {
+
+         strAppOptions = pframe->m_varFrame["app_options"]["resource"];
+
+      }
+
+
+      m_pdocAppOptions->open_document(strAppOptions);
+
+
+      return true;
+
+   }
+
 
 } // namespace userex
 

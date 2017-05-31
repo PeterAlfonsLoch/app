@@ -52,6 +52,18 @@ namespace user
    void tab_view::on_update(::user::impact * pSender, LPARAM lHint, object* pHint)
    {
 
+      if (lHint == 0 && pHint == NULL)
+      {
+
+         if (get_tab_count() <= 1 && _001GetSel() < 0)
+         {
+
+            _001SetSel(0);
+
+         }
+
+      }
+
       if(m_pviewcreator != NULL)
       {
 

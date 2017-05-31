@@ -8,7 +8,8 @@ namespace userex
    class pane_view;
 
    class CLASS_DECL_CORE pane_tab_view :
-      virtual public ::user::tab_view
+      virtual public ::user::tab_view,
+      virtual public ::user::form_callback
    {
    public:
 
@@ -16,10 +17,15 @@ namespace userex
       sp(pane_view)                 m_ppaneview;
       ::object *                    m_pfilemanager;
       ::object *                    m_pfilemanagerTabbed;
+      sp(::user::document)          m_pdocAppOptions;
 
 
       pane_tab_view(::aura::application * papp);
       virtual ~pane_tab_view();
+     
+      virtual void install_message_handling(::message::dispatch * pdispatch) override;
+
+      DECL_GEN_SIGNAL(_001OnCreate);
 
 
       virtual ::user::interaction * get_view_uie();
@@ -51,6 +57,10 @@ namespace userex
       virtual void _001OnTabClose(int32_t iTab);
 
       virtual string get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive);
+
+      virtual bool create_app_options(::user::view_creator_data * pcreatordata);
+
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint) override;
 
    };
 

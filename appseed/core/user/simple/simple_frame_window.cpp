@@ -349,17 +349,17 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    SCAST_PTR(::message::create, pcreate, pobj);
 
-   if (pobj->previous())
-   {
-
-      return;
-
-   }
-
    if (m_pdocumenttemplate->m_strMatter.has_char())
    {
 
       m_varFrame = Application.file().as_json("matter://" + m_pdocumenttemplate->m_strMatter + "/frame.json");
+
+   }
+
+   if (pobj->previous())
+   {
+
+      return;
 
    }
 

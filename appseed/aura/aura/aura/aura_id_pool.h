@@ -260,6 +260,7 @@ public:
    id id_html_border_right_color;
    id id_html_border_bottom_color;
 
+   id id_system_startup_checkbox;
 
    id_pool()
    {
