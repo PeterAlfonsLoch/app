@@ -330,6 +330,7 @@ CLASS_DECL_AURA bool PrintModules(string & strImage, uint32_t processID, const c
 CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll);
 #endif
 
+
 CLASS_DECL_AURA string file_title_dup(const char * path);
 CLASS_DECL_AURA const char * file_name_dup(const char * path);
 CLASS_DECL_AURA string file_module_path_dup();
@@ -351,5 +352,12 @@ CLASS_DECL_AURA int_bool file_set_length(const char * pszName, size_t iSize);
 
 CLASS_DECL_AURA int_bool file_move_dup(const char * lpszNewName,const char * lpszOldName);
 CLASS_DECL_AURA int_bool file_delete_dup(const char * lpszFileName);
+
+
+
+
+
+CLASS_DECL_AURA bool file_save_stra(const char * pszName, const stringa & stra);
+CLASS_DECL_AURA bool file_load_stra(const char * pszName, stringa & stra, bool bAddEmpty = true);
 
 

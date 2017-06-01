@@ -3,7 +3,7 @@
 
 CLASS_DECL_AURA int32_t atoi_dup(const char * sz, const char ** pszEnd, int32_t iBase);
 CLASS_DECL_AURA int32_t atoi_dup(const char * sz, const char ** pszEnd);
-CLASS_DECL_AURA int32_t atoi_dup(const char * sz);
+CLASS_DECL_AURA int32_t atoi_dup(const char * sz, int32_t iOnNull = 0);
 
 CLASS_DECL_AURA uint32_t atoui_dup(const char * sz, const char ** pszEnd, int32_t iBase);
 CLASS_DECL_AURA uint32_t atoui_dup(const char * sz, const char ** pszEnd);

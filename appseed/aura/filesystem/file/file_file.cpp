@@ -456,8 +456,8 @@ namespace file
    {
       if(read(puch, 1) == 1)
       {
-         seek(-1, ::file::seek_current);
-         return true;
+seek(-1, ::file::seek_current);
+return true;
       }
       else
       {
@@ -492,7 +492,7 @@ namespace file
 
       char ch;
 
-      if(!peek(&ch))
+      if (!peek(&ch))
          return EOF;
 
       return ch;
@@ -504,7 +504,7 @@ namespace file
 
       char ch;
 
-      if(read(&ch, 1) <= 0)
+      if (read(&ch, 1) <= 0)
          return EOF;
 
       return ch;
@@ -514,29 +514,72 @@ namespace file
    bool file::read_string(string & str)
    {
 
-      str.Empty();
-
       int i = sbumpc();
 
-      if(i == EOF)
+      if (i == EOF)
          return false;
 
-      while(i != EOF)
+      str.Empty();
+
+      while (i != EOF)
       {
 
-         if((char) i == '\n' || (char) i == '\r')
+         if ((char)i == '\n' || (char)i == '\r')
             break;
 
-         str += (char) i;
+         str += (char)i;
 
          i = sbumpc();
       };
 
       int iNew = sbumpc();
 
-      if(iNew == i || ((char) iNew != '\n' && (char) iNew != '\r'))
+      if (iNew == i || ((char)iNew != '\n' && (char)iNew != '\r'))
       {
          seek(-1, seek_current);
+      }
+
+      return true;
+
+   }
+
+   bool file::read_string(::primitive::memory_base & mem)
+   {
+
+      m_efilestate -= filestate_read_line_truncated;
+
+      int i = sbumpc();
+
+      if (i == EOF)
+         return false;
+
+      strsize iPos = 0;
+
+      while (i != EOF)
+      {
+
+         if ((char)i == '\n' || (char)i == '\r')
+            break;
+
+         mem.set_char_at_grow(iPos, char(i));
+
+         i = sbumpc();
+
+         iPos++;
+
+      };
+
+      mem.set_char_at_grow(iPos, '\0');
+
+      mem.allocate(iPos + 1);
+
+      int iNew = sbumpc();
+
+      if (iNew == i || ((char)iNew != '\n' && (char)iNew != '\r'))
+      {
+
+         seek(-1, seek_current);
+
       }
 
       return true;

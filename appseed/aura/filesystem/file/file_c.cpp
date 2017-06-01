@@ -140,3 +140,22 @@ END_EXTERN_C
 
 
 
+
+
+CLASS_DECL_AURA bool file_save_stra(const char * pszName, const stringa & stra)
+{
+   
+   return file_put_contents_dup(pszName, stra.implode("\n"));
+
+}
+
+
+CLASS_DECL_AURA bool file_load_stra(const char * pszName, stringa & stra, bool bAddEmpty)
+{
+   
+   stra.add_lines(file_as_string_dup(pszName), bAddEmpty);
+
+   return true;
+
+}
+

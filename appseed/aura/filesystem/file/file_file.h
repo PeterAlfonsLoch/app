@@ -43,6 +43,13 @@ public:
 namespace file
 {
 
+   enum e_filestate
+   {
+
+      filestate_read_line_truncated = 1,
+
+   };
+
 
    class CLASS_DECL_AURA file :
       virtual public ::file::reader,
@@ -51,7 +58,8 @@ namespace file
    public:
 
 
-      ::file::path      m_strFileName;
+      ::file::path               m_strFileName;
+      cflag < e_filestate >      m_efilestate;
 
 
       file();
@@ -124,6 +132,7 @@ namespace file
       virtual int sgetc();
       virtual int sbumpc();
       virtual bool read_string(string & str);
+      virtual bool read_string(::primitive::memory_base & mem);
       virtual bool full_read_string(string & str);
 
 

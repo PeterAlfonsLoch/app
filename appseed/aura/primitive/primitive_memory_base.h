@@ -207,6 +207,8 @@ namespace primitive
       memory_size_t get_length() const;
       memory_size_t length() const;
 
+      inline void set_char_at_grow(strsize iChar, char ch);
+
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 
@@ -274,6 +276,22 @@ namespace primitive
          iCountDst);
 
    }
+
+
+   inline void memory_base::set_char_at_grow(strsize iChar, char ch)
+   {
+
+      if (iChar >= get_size())
+      {
+
+         allocate_add_up(1024);
+
+      }
+
+      *((char*)get_data()) = ch;
+
+   }
+
 
 } // namespace primitive
 

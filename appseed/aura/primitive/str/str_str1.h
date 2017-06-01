@@ -13,6 +13,7 @@ CLASS_DECL_AURA count strlen_dup(const char * cat);
 CLASS_DECL_AURA char * strdup_dup(const char * src);
 CLASS_DECL_AURA char * strndup_dup(const char * src, strsize iLen);
 CLASS_DECL_AURA char * strstr_dup(const char * src, const char * find);
+CLASS_DECL_AURA char * next_separator_token(char * src, char chFind);
 CLASS_DECL_AURA char * stristr_dup(const char * src, const char * find);
 CLASS_DECL_AURA char * strnstr_dup(const char * src, const char * find, strsize iLen);
 CLASS_DECL_AURA char * strnistr_dup(const char * src, const char * find, strsize iLen);
@@ -25,6 +26,7 @@ CLASS_DECL_AURA char * str_begins_inc_dup(const char * sz1, const char * prefix)
 CLASS_DECL_AURA int32_t str_begins_dup(const char * sz1, const char * prefix);
 CLASS_DECL_AURA int32_t str_ends_dup(const char * sz1, const char * suffix);
 CLASS_DECL_AURA int32_t str_begins_ci_dup(const char * sz1, const char * prefix);
+CLASS_DECL_AURA const char * strchr_dup(const char * sz, char ch);
 CLASS_DECL_AURA char * strrchr_dup(char * sz, char ch);
 CLASS_DECL_AURA const char * strcat_and_dup(const char * psz1, const char * psz2);
 CLASS_DECL_AURA const char * strcat_and_dup2(const char * psz1, const char * psz2); // free psz2
@@ -38,7 +40,7 @@ CLASS_DECL_AURA void itoa_dup(char * sz, int64_t i, int32_t iBase);
 CLASS_DECL_AURA void str_reverse(char * sz);
 CLASS_DECL_AURA void zero_pad(char * sz, count iPad);
 CLASS_DECL_AURA int32_t str_ends_ci_dup(const char * psz, const char * pszSuffix);
-CLASS_DECL_AURA char * strchr_dup(const char * sz, char ch);
+//CLASS_DECL_AURA char * strchr_dup(const char * sz, char ch);
 CLASS_DECL_AURA char * strpbrk_dup(char * sz, const char * szFind);
 
 CLASS_DECL_AURA char char_to_lower(int32_t ch);

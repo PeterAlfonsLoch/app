@@ -194,6 +194,41 @@ int32_t strncmp_dup(const char * sz1, const char * sz2, ::count iLen)
    return iCmp;
 }
 
+
+const char * strchr_dup(const char * sz, char ch)
+{
+
+   if (sz == NULL)
+   {
+
+      return NULL;
+
+   }
+
+   while (true)
+   {
+
+      if (*sz == ch)
+      {
+
+         return sz;
+
+      }
+
+      if (sz == '\0')
+      {
+
+         return NULL;
+
+      }
+
+      sz++;
+
+   }
+
+}
+
+
 char * strrchr_dup(char * szStart, char ch)
 {
    char * sz = szStart;
@@ -255,6 +290,14 @@ char * to_upper(char * pchParam)
 
 char * strstr_dup(const char * src, const char * find)
 {
+
+   if (src == NULL)
+   {
+      
+      return NULL;
+
+   }
+
    while(*src != '\0')
    {
       const char * srcParse = src;
@@ -272,6 +315,34 @@ char * strstr_dup(const char * src, const char * find)
    }
    return NULL;
 }
+
+
+CLASS_DECL_AURA char * next_separator_token(char * src, char ch)
+{
+
+   if (src == NULL)
+   {
+
+      return NULL;
+
+   }
+
+   char * pszNext = (char *) strchr_dup(src, ch);
+
+   if (pszNext == NULL || *pszNext == '\0')
+   {
+
+      return NULL;
+
+   }
+
+   *pszNext = '\0';
+
+   return pszNext + 1;
+
+}
+
+
 
 char * stristr_dup(const char * src, const char * find)
 {
@@ -809,20 +880,6 @@ void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * nu
 
 
 
-char * strchr_dup(const char * sz, char ch)
-{
-   if(sz == NULL)
-      return NULL;
-   while(true)
-   {
-      if(*sz == ch)
-         return (char *) sz;
-      if(*sz == '\0')
-         return NULL;
-      sz++;
-   }
-}
-
 
 int32_t isdigit_dup(int32_t ch)
 {
@@ -856,7 +913,7 @@ char * strpbrk_dup(char * sz, const char * szFind)
    char * pszRet = NULL;
    while(*szFind != '\0')
    {
-      char * psz = strchr_dup(sz, *szFind);
+      char * psz = (char*)strchr_dup(sz, *szFind);
       if(psz != NULL && (pszRet == NULL || psz < pszRet))
       {
          pszRet = psz;
