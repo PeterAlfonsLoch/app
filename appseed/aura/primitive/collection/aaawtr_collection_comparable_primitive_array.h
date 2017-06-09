@@ -8,6 +8,6 @@
 // "primitive" type data and it is proper for use with primitive data types.
 
 template < class TYPE >
-using comparable_primitive_array = comparable_raw_array < TYPE, const TYPE & >;
+using comparable_primitive_array = array < TYPE, const TYPE & >;
 
 

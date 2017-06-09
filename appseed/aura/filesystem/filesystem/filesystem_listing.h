@@ -61,7 +61,7 @@ namespace file
 
       path  & add_child(const ::file::path & path)
       {
-         return add(m_path / path);
+         return *add(m_path / path);
       }
 
 

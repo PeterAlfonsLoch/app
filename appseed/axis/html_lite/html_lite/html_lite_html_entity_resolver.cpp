@@ -235,7 +235,7 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
       }
 
       // is this a known entity reference?
-      if (m_CharEntityRefs.Lookup(strKey, chTemp))
+      if (m_CharEntityRefs.lookup(strKey, chTemp))
       {
          strChar = chTemp;
          return (int32_t) (lpszEnd - lpszEntity + 1);

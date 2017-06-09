@@ -752,7 +752,7 @@ namespace file
 
          single_lock sl(&m_mutex, TRUE);
 
-         pair * ppair = this->PLookup(strPath);
+         pair * ppair = this->find_first(strPath);
 
          if(ppair == NULL)
             return false;
@@ -781,7 +781,7 @@ namespace file
 
          single_lock sl(&m_mutex, TRUE);
 
-         pair * ppair = this->PLookup(strPath);
+         pair * ppair = this->find_first(strPath);
 
          if(ppair == NULL)
             return false;
@@ -1040,7 +1040,7 @@ namespace file
             straSep.add("\n");
             straSep.add("\r\n");
 
-            straLs.add_smallest_tokens(strLs,straSep,false);
+            straLs.add_shortest_tokens(strLs,straSep,false);
 
             for(index i = 0; i < straLs.get_count(); i++)
             {
@@ -1064,7 +1064,7 @@ namespace file
 
       }
 
-      ::file::path system::matter(::aura::application * papp,const ::file::patha & stra,bool bDir,const ::file::path & pszRoot,const ::file::path & pszApp)
+      ::file::path system::matter_iter(::aura::application * papp,const ::file::patha & stra,bool bDir,const ::file::path & pszRoot,const ::file::path & pszApp)
       {
          throw interface_only_exception(get_app());
 

@@ -206,7 +206,7 @@ namespace user
       
       string str;
 
-      if(!m_mapCode.Lookup((int) pkey->m_iCode,str))
+      if(!m_mapCode.lookup((int) pkey->m_iCode,str))
       {
 
          str = (char)(pkey->m_nChar & 0xff);
@@ -234,7 +234,7 @@ namespace user
 
       string str;
 
-      if(!m_mapCode.Lookup(iCode, str))
+      if(!m_mapCode.lookup(iCode, str))
       {
 
          str = (char) (iCode & 0xff);

@@ -24,7 +24,7 @@ namespace user
 
       ::user::interaction_base * pinterface;
 
-      if(m_map.Lookup(iWindow, pinterface))
+      if(m_map.lookup(iWindow, pinterface))
          return pinterface;
       else
          return NULL;

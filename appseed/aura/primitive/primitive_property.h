@@ -195,7 +195,7 @@ public:
    inline void get_string(char * psz) const;
    strsize get_length() const;
 
-   string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
+   string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1)) const;
 
 
    property & operator[](id idName);
@@ -439,6 +439,15 @@ public:
       return m_element2.operator string &();
 
    }
+
+
+   operator const string & () const
+   {
+
+      return m_element2.operator const string &();
+
+   }
+
 
    operator id()
    {

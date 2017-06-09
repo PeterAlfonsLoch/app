@@ -297,7 +297,7 @@ namespace file
 
    class listing;
    class path;
-   typedef CLASS_DECL_AURA ::string_array < ::file::path,string > patha;
+   typedef CLASS_DECL_AURA ::string_array < ::file::path > patha;
    class file;
    class istream;
    class ostream;
@@ -820,9 +820,9 @@ namespace file
 #include "aura/primitive/collection/collection_raw_array_decl.h"
 #include "aura/primitive/collection/collection_lemon_array_decl.h"
 #include "aura/primitive/collection/collection_smart_pointer_array.h"
-#include "aura/primitive/collection/collection_comparable_eq_array.h"
-#include "aura/primitive/collection/collection_comparable_array.h"
-#include "aura/primitive/collection/collection_comparable_raw_array.h"
+//#include "aura/primitive/collection/collection_comparable_eq_array.h"
+//#include "aura/primitive/collection/collection_comparable_array.h"
+//#include "aura/primitive/collection/collection_comparable_raw_array.h"
 
 
 #include "aura/primitive/collection/collection_ptr_array.h"
@@ -1833,6 +1833,8 @@ namespace user
 #include "aura/filesystem/filesystem.inl"
 
 #include "aura/net/net.inl"
+
+#include "aura/xml/xml.inl"
 
 
 

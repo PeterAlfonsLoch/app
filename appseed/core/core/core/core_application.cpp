@@ -2411,7 +2411,7 @@ namespace core
    property_set * application::existing_propset(object * pobject)
    {
    single_lock sl(&m_mapObjectSet, TRUE);
-   auto p = m_mapObjectSet.PLookup(pobject);
+   auto p = m_mapObjectSet.find_first(pobject);
    if(p == NULL)
    return NULL;
    return &p->m_value;
@@ -3636,7 +3636,7 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess, const char * pszComm
 
    if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &luid))
    {
-      debug_print("Lookup Privilege value Error: %u\n", GetLastError());
+      debug_print("lookup Privilege value Error: %u\n", GetLastError());
    }
    tp.PrivilegeCount = 1;
    tp.Privileges[0].Luid = luid;
@@ -3712,7 +3712,7 @@ bool enable_windows_token_privilege(HANDLE h, LPCSTR lpcszName)
 
       int iError = GetLastError();
 
-      debug_print("Lookup Privilege value Error: %u\n", iError);
+      debug_print("lookup Privilege value Error: %u\n", iError);
 
       return false;
 
@@ -3811,7 +3811,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess, const char * pszCommand, co
    {
       DWORD dwError = ::GetLastError();
       string str;
-      str.Format("Lookup Privilege value Error: %u\n", dwError);
+      str.Format("lookup Privilege value Error: %u\n", dwError);
       ::MessageBox(NULL, str, "Help Me", MB_OK);
       return FALSE;
    }

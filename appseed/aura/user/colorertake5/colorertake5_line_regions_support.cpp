@@ -14,9 +14,12 @@ namespace colorertake5
       special = NULL;
    }
 
+   
    LineRegionsSupport::~LineRegionsSupport()
    {
+   
       clear();
+
       while(schemeStack.get_size() > 1)
       {
 
@@ -27,6 +30,7 @@ namespace colorertake5
       }
 
    }
+
 
    void LineRegionsSupport::resize(index lineCount)
    {

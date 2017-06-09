@@ -1521,7 +1521,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
    single_lock slLibrary(&m_mutexLibrary,TRUE);
 
-   auto p = m_mapLib.PLookup(pszLibrary);
+   auto p = m_mapLib.find_first(pszLibrary);
 
    if(p != NULL)
    {

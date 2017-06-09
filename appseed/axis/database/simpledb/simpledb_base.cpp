@@ -52,7 +52,7 @@ namespace simpledb
       table * ptable = NULL;
       string strName(pszName);
       strName.make_lower();
-      if(!m_mapTable.Lookup(strName, ptable))
+      if(!m_mapTable.lookup(strName, ptable))
       {
          ptable = create_table(strName);
          m_mapTable.set_at(strName, ptable);

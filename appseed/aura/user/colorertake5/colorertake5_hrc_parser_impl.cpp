@@ -214,7 +214,11 @@ namespace colorertake5
       {
 
          if (errorHandler != NULL)
+         {
+          
             errorHandler->error(string("unnamed prototype "));
+
+         }
 
          return;
       }
@@ -434,7 +438,7 @@ namespace colorertake5
          };
       };
       string baseSchemeName = qualifyOwnName(type->name);
-      if(baseSchemeName.has_char() && schemeHash.PLookup(baseSchemeName) != NULL)
+      if(baseSchemeName.has_char() && schemeHash.contains_key(baseSchemeName))
       {
          type->baseScheme = schemeHash[baseSchemeName];
       }
@@ -453,14 +457,26 @@ namespace colorertake5
    {
       string schemeName = elem->attr("name");
       string qSchemeName = qualifyOwnName(schemeName);
-      if (qSchemeName.is_empty()){
+      if (qSchemeName.is_empty())
+      {
+         
          if (errorHandler != NULL) errorHandler->error(string("bad scheme name in type '")+parseType->getName()+"'");
-         return;
-      }
-      if (schemeHash.PLookup(qSchemeName) != NULL ||
-         disabledSchemes[qSchemeName] != 0){
-            if (errorHandler != NULL) errorHandler->error(string("duplicate scheme name '")+qSchemeName+"'");
+         {
+
             return;
+
+         }
+
+      }
+
+      if (schemeHash.contains_key(qSchemeName) || disabledSchemes[qSchemeName] != 0)
+      {
+         if (errorHandler != NULL) errorHandler->error(string("duplicate scheme name '")+qSchemeName+"'");
+         {
+
+            return;
+
+         }
       }
 
       scheme_impl *scheme = new scheme_impl(qSchemeName);
@@ -508,7 +524,7 @@ namespace colorertake5
             }
             else
             {
-               string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(schemeName);
+               string_map<scheme_impl *>::pair * ppair = schemeHash.find_first(schemeName);
                if(ppair == NULL)
                {
                   next->scheme = NULL;
@@ -797,21 +813,30 @@ namespace colorertake5
 
    void HRCParserImpl::updateLinks()
    {
-      while(structureChanged){
+      
+      while(structureChanged)
+      {
+
          structureChanged = false;
-         for(string_map<scheme_impl *>::pair * scheme = schemeHash.PGetFirstAssoc(); scheme != NULL; scheme = schemeHash.PGetNextAssoc(scheme))
+         
+         for(auto scheme = schemeHash.begin(); scheme != schemeHash.end(); scheme++)
          {
 
             if (!scheme->m_element2->fileType->loadDone) continue;
+
             file_type_impl *old_parseType = parseType;
+
             parseType = scheme->m_element2->fileType;
-            for (strsize sni = 0; sni < scheme->m_element2->nodes.get_size(); sni++){
+
+            for (strsize sni = 0; sni < scheme->m_element2->nodes.get_size(); sni++)
+            {
+
                SchemeNode *snode = scheme->m_element2->nodes.element_at(sni);
                if (snode->schemeName.has_char() && (snode->type == SNT_SCHEME || snode->type == SNT_INHERIT) && snode->scheme == NULL){
                   string schemeName = qualifyForeignName(snode->schemeName, QNT_SCHEME, true);
                   if (schemeName.has_char())
                   {
-                     string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(schemeName);
+                     string_map<scheme_impl *>::pair * ppair = schemeHash.find_first(schemeName);
                      if(ppair == NULL)
                      {
                         snode->scheme = NULL;
@@ -839,7 +864,7 @@ namespace colorertake5
                         string vsn = qualifyForeignName(vt->virtSchemeName, QNT_SCHEME, true);
                         if (vsn.has_char())
                         {
-                           string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(vsn);
+                           string_map<scheme_impl *>::pair * ppair = schemeHash.find_first(vsn);
                            if(ppair == NULL)
                            {
                               vt->virtScheme = NULL;
@@ -863,7 +888,7 @@ namespace colorertake5
                         string vsn = qualifyForeignName(vt->substSchemeName, QNT_SCHEME, true);
                         if (vsn.has_char())
                         {
-                           string_map<scheme_impl *>::pair * ppair = schemeHash.PLookup(vsn);
+                           string_map<scheme_impl *>::pair * ppair = schemeHash.find_first(vsn);
                            if(ppair == NULL)
                            {
                               vt->substScheme = NULL;
@@ -930,7 +955,7 @@ namespace colorertake5
          }
          return false;
       }
-      else if (qntype == QNT_SCHEME && schemeHash.PLookup(name) == NULL)
+      else if (qntype == QNT_SCHEME && !schemeHash.contains_key(name))
       {
          if (logErrors)
          {

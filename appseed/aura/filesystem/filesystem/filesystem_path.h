@@ -9,7 +9,7 @@ namespace file
 
    class path;
 
-   typedef CLASS_DECL_AURA::string_array < ::file::path, string > patha;
+   typedef CLASS_DECL_AURA::string_array < ::file::path > patha;
 
 
    enum e_path
@@ -197,6 +197,7 @@ namespace file
       path operator / (const string & str) const;
       path operator / (const char * psz) const;
       path operator / (const property & property) const;
+      patha operator / (const stringa & str) const;
 
       path & operator /= (const path & path);
       path & operator /= (const string & str);

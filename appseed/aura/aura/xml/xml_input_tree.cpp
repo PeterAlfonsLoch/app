@@ -80,6 +80,13 @@ namespace xml
       }
    }
 
+   
+   var input_tree::attr(const char * lpcszName)
+   {
+      
+      return m_pnode->attr(lpcszName);
+
+   }
 
 
    bool input_tree::get_attr(const char * lpcszName, string & strValue)

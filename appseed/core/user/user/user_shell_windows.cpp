@@ -636,7 +636,7 @@ namespace user
 
             synch_lock sl(m_pmutex);
 
-            if (m_imagemap.Lookup(imagekey, iImage))
+            if (m_imagemap.lookup(imagekey, iImage))
             {
 
                return iImage;
@@ -714,7 +714,7 @@ namespace user
 
                   synch_lock sl(m_pmutex);
 
-                  if (m_imagemap.Lookup(imagekeyTheme, iImage))
+                  if (m_imagemap.lookup(imagekeyTheme, iImage))
                   {
 
                      return iImage;
@@ -767,7 +767,7 @@ namespace user
 
                   synch_lock sl(m_pmutex);
 
-                  if (m_imagemap.Lookup(imagekeyIco, iImage))
+                  if (m_imagemap.lookup(imagekeyIco, iImage))
                   {
 
                      return iImage;
@@ -1056,7 +1056,7 @@ namespace user
 
             synch_lock sl(m_pmutex);
 
-            if (m_imagemap.Lookup(imagekey, iImage))
+            if (m_imagemap.lookup(imagekey, iImage))
             {
 
                return iImage;
@@ -2049,7 +2049,7 @@ namespace user
 
                synch_lock sl(m_pmutex);
 
-               if (m_imagemap.Lookup(imagekey, iImage))
+               if (m_imagemap.lookup(imagekey, iImage))
                {
 
                   return iImage;
@@ -2300,7 +2300,7 @@ namespace user
 
                synch_lock sl(m_pmutex);
 
-               if (m_imagemap.Lookup(imagekey, iImage))
+               if (m_imagemap.lookup(imagekey, iImage))
                {
 
                   return iImage;

@@ -101,7 +101,7 @@ namespace user
 
       synch_lock sl(m_pmutex);
 
-      auto pmap = m_map.PLookup(pitem->m_iItem);
+      auto pmap = m_map.find_first(pitem->m_iItem);
 
       if(pmap == NULL)
       {
@@ -110,7 +110,7 @@ namespace user
 
       }
 
-      auto passoc = pmap->m_element2.PLookup(pitem->m_iItem);
+      auto passoc = pmap->m_element2.find_first(pitem->m_iItem);
 
       if(passoc == NULL)
       {

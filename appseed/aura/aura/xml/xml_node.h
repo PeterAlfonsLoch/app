@@ -123,7 +123,7 @@ namespace xml
 
       // in own attr list
       ::xml::attr *           find_attr(const char * attrname );
-      var                     attr(const char * attrname);
+      var &                   attr(const char * attrname);
       virtual bool            get_attr(const char * attrname, string & strValue);
       virtual bool            get_attr(const char * lpcszName, int32_t & iValue);
       virtual bool            get_attr(const char * lpcszName, bool & bValue);

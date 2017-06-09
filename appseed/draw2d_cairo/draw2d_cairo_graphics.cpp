@@ -5286,10 +5286,10 @@ namespace draw2d_cairo
 
       string  strPath = get_font_path(pfont->m_strFontFamilyName);
 
-      if (g_pmapFontError->Lookup(strPath, iError))
+      if (g_pmapFontError->lookup(strPath, iError))
       {
 
-         g_pmapFontFace->Lookup(strPath, pfont->m_ft);
+         g_pmapFontFace->lookup(strPath, pfont->m_ft);
 
       }
       else
@@ -5324,7 +5324,7 @@ namespace draw2d_cairo
       else
       {
 
-         if (!g_pmapCairoFontFace->Lookup(strPath, pfont->m_pface))
+         if (!g_pmapCairoFontFace->lookup(strPath, pfont->m_pface))
          {
 
             pfont->m_pface = cairo_ft_font_face_create_for_ft_face(pfont->m_ft, 0);
@@ -6004,7 +6004,7 @@ namespace draw2d_cairo
 
       string strPath;
 
-      if (!g_pmapFontPath->Lookup(str, strPath))
+      if (!g_pmapFontPath->lookup(str, strPath))
       {
 
          stringa straPath;

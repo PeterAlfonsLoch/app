@@ -168,8 +168,8 @@ namespace file
       file_offset_t                       m_iOffset;
       file_offset_t                       m_iStartOffset;
 
-      ::comparable_array < Item * >       m_itemptraHit;
-      ::comparable_array < Item * >       m_itemptraRead;
+      ::array < Item * >       m_itemptraHit;
+      ::array < Item * >       m_itemptraRead;
 
 
       sp(::data::tree_item)               m_ptreeitem;

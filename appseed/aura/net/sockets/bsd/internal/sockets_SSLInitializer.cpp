@@ -333,12 +333,12 @@ extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, con
 
    mutex * pmutex = NULL;
 
-   if (::sockets::g_pmapMutex != NULL && !::sockets::g_pmapMutex->Lookup(n, pmutex))
+   if (::sockets::g_pmapMutex != NULL && !::sockets::g_pmapMutex->lookup(n, pmutex))
    {
 
       ::sockets::g_pmapMutex->operator [](n) = new mutex(NULL);
 
-      if (!::sockets::g_pmapMutex->Lookup(n, pmutex))
+      if (!::sockets::g_pmapMutex->lookup(n, pmutex))
       {
 
          return;

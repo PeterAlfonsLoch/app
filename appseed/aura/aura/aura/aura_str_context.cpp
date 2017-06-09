@@ -376,7 +376,7 @@ namespace aura
 
          _get(stra2, pcontext, id2);
 
-         stra.add(stra2);
+         stra.add_iter(stra2);
 
          i++;
 

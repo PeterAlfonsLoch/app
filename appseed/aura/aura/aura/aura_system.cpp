@@ -1750,7 +1750,7 @@ namespace aura
       //if(m_paurabergedgemap == NULL)
       //   return NULL;
 
-      if(!m_aurabergedgemap.Lookup(iEdge,paurasession))
+      if(!m_aurabergedgemap.lookup(iEdge,paurasession))
       {
 
          // todo (camilo) real multiple session native support
@@ -2707,7 +2707,7 @@ namespace aura
       for (index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
       {
 
-         index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, false);
+         index iIndex = openweather_find_city2(stra.islice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, false);
 
          if (iIndex >= 0)
          {
@@ -2721,7 +2721,7 @@ namespace aura
       for (index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
       {
 
-         index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, true);
+         index iIndex = openweather_find_city2(stra.islice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, true);
 
          if (iIndex >= 0)
          {
@@ -2773,13 +2773,13 @@ namespace aura
       if (bPrefix)
       {
 
-         iFind = m_straCityLo.find_first_begins(strQueryLo);
+         iFind = m_straCityLo.ifind_first_begins(strQueryLo);
 
       }
       else
       {
 
-         iFind = m_straCityLo.find_first(strQueryLo);
+         iFind = m_straCityLo.ifind_first(strQueryLo);
 
       }
 
@@ -2819,13 +2819,13 @@ namespace aura
       if (bPrefix)
       {
 
-         iFind = m_straCityLo.find_first_begins(strTry);
+         iFind = m_straCityLo.ifind_first_begins(strTry);
 
       }
       else
       {
 
-         iFind = m_straCityLo.find_first(strTry);
+         iFind = m_straCityLo.ifind_first(strTry);
 
       }
 
@@ -2892,13 +2892,13 @@ namespace aura
       if (bPrefix)
       {
 
-         iFind = m_straCityLo.find_first_begins(strTry);
+         iFind = m_straCityLo.ifind_first_begins(strTry);
 
       }
       else
       {
 
-         iFind = m_straCityLo.find_first(strTry);
+         iFind = m_straCityLo.ifind_first(strTry);
 
       }
 

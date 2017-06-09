@@ -315,7 +315,7 @@ namespace userex
 
       ::aura::library * plibrary = NULL;
 
-      if(pcreatordata->m_id.is_text() && System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id,plibrary) && plibrary != NULL)
+      if(pcreatordata->m_id.is_text() && System.m_idmapCreateViewLibrary.lookup(pcreatordata->m_id,plibrary) && plibrary != NULL)
       {
 
 

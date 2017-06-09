@@ -213,7 +213,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
       db_long_set_item longitem;
 
-      if(m_pcore->m_map.Lookup(lpKey,longitem) && longitem.m_dwTimeout > get_tick_count())
+      if(m_pcore->m_map.lookup(lpKey,longitem) && longitem.m_dwTimeout > get_tick_count())
       {
          *plValue = longitem.m_l;
          return true;

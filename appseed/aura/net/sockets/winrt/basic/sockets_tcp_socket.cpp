@@ -1166,7 +1166,7 @@ namespace sockets
   /*    if(m_spsslclientcontext.is_null())
       {
          ::string_map < sp(ssl_client_context) > & clientcontextmap = System.m_clientcontextmap;
-         if(clientcontextmap.PLookup(context) == NULL)
+         if(clientcontextmap.find_first(context) == NULL)
          {
             m_spsslclientcontext(new ssl_client_context(get_app(), pmethod));
             if(context.has_char())
@@ -1176,7 +1176,7 @@ namespace sockets
          }
          else
          {
-            m_spsslclientcontext = clientcontextmap.PLookup(context)->m_value;
+            m_spsslclientcontext = clientcontextmap.find_first(context)->m_value;
          }
       }
       if(m_spsslclientcontext.is_set())
@@ -1190,7 +1190,7 @@ namespace sockets
    {
       /* create our context*/
     /*  static ::string_map < SSL_CTX * > server_contexts;
-      if(server_contexts.PLookup(context) == NULL)
+      if(server_contexts.find_first(context) == NULL)
       {
          const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
          m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
@@ -1229,7 +1229,7 @@ namespace sockets
    {
       /* create our context*/
 /*      static ::string_map < SSL_CTX * > server_contexts;
-      if(server_contexts.PLookup(context) == NULL)
+      if(server_contexts.find_first(context) == NULL)
       {
          const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
          m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);

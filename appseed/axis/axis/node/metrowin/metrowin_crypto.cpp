@@ -290,10 +290,10 @@ namespace metrowin
 //         synch_lock sl(::metrowin::g_pmutexMap);
 //
 //         mutex * pmutex = NULL;
-//         if(!::metrowin::g_pmapMutex->Lookup(n,pmutex))
+//         if(!::metrowin::g_pmapMutex->lookup(n,pmutex))
 //         {
 //            ::metrowin::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
-//            if(!::metrowin::g_pmapMutex->Lookup(n,pmutex))
+//            if(!::metrowin::g_pmapMutex->lookup(n,pmutex))
 //            {
 //               return;
 //            }

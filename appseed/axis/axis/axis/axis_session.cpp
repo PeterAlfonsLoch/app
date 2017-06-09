@@ -1578,44 +1578,44 @@ namespace axis
       bool bPressed = false;
       if(ekey == ::user::key_shift)
       {
-         m_pmapKeyPressed->Lookup(::user::key_shift,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_shift,bPressed);
          if(bPressed)
             goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lshift,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_lshift,bPressed);
          if(bPressed)
             goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_rshift,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_rshift,bPressed);
          if(bPressed)
             goto ret;
       }
       else if(ekey == ::user::key_control)
       {
-         m_pmapKeyPressed->Lookup(::user::key_control,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_control,bPressed);
          if(bPressed)
             goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lcontrol,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_lcontrol,bPressed);
          if(bPressed)
             goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_rcontrol,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_rcontrol,bPressed);
          if(bPressed)
             goto ret;
       }
       else if(ekey == ::user::key_alt)
       {
-         m_pmapKeyPressed->Lookup(::user::key_alt,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_alt,bPressed);
          if(bPressed)
             goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_lalt,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_lalt,bPressed);
          if(bPressed)
             goto ret;
-         m_pmapKeyPressed->Lookup(::user::key_ralt,bPressed);
+         m_pmapKeyPressed->lookup(::user::key_ralt,bPressed);
          if(bPressed)
             goto ret;
       }
       else
       {
 
-         m_pmapKeyPressed->Lookup(ekey,bPressed);
+         m_pmapKeyPressed->lookup(ekey,bPressed);
 
       }
 

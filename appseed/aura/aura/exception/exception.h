@@ -214,8 +214,10 @@ CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName, int nLine);
 
 CLASS_DECL_AURA void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
-CLASS_DECL_AURA void assert_valid_object(const object* pOb,
-            const char * lpszFileName, int32_t nLine);
+
+template < typename OBJECT >
+CLASS_DECL_AURA void assert_valid_object(const OBJECT * pobject, const char * lpszFileName, int32_t nLine);
+
 CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 
 #define THIS_FILE          __FILE__
@@ -390,3 +392,35 @@ CLASS_DECL_AURA void __cdecl __clearerr_s(FILE *stream);
 
 
 #include "exception_parsing.h"
+
+
+
+template < typename OBJECT >
+void assert_valid_object(const OBJECT * pOb, const char * lpszFileName, int32_t nLine)
+{
+
+   if (pOb == NULL)
+   {
+      APPTRACE(::aura::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
+      if (__assert_failed_line(lpszFileName, nLine))
+         debug_break();
+      return;
+   }
+   if (!__is_valid_address(pOb, sizeof(object)))
+   {
+      APPTRACE(::aura::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+      if (__assert_failed_line(lpszFileName, nLine))
+         debug_break();
+      return;
+   }
+
+   if (!__is_valid_address(pOb, sizeof(OBJECT), FALSE))
+   {
+      APPTRACE(::aura::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+      if (__assert_failed_line(lpszFileName, nLine))
+         debug_break();
+      return;
+   }
+   pOb->assert_valid();
+}
+

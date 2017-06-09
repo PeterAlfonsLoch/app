@@ -130,7 +130,7 @@ namespace userstack
          
          ::aura::application * pappTab = NULL;
 
-         if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(Session.m_mapApplication.lookup("application:" + strId, pappTab))
          {
             Session.m_pappCurrent = pappTab;
             //Session.m_pappCurrent = pappTab;
@@ -205,7 +205,7 @@ namespace userstack
          
          ::aura::application * pappTab = NULL;
 
-         if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
+         if(!Session.m_mapApplication.lookup("application:" + strId, pappTab))
          {
 
             application_bias * pbiasCreate = new application_bias;

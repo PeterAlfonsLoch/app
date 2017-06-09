@@ -71,7 +71,7 @@ namespace html
       int32_t iFont = -1;
       if(pelemental->m_pimpl->m_bHover)
       {
-         if(!pelemental->m_pimpl->m_mapFont.Lookup("hover", iFont))
+         if(!pelemental->m_pimpl->m_mapFont.lookup("hover", iFont))
          {
             iFont = create_font(pelemental);
             pelemental->m_pimpl->m_mapFont.set_at("hover", iFont);
@@ -80,7 +80,7 @@ namespace html
       }
       else if(pelemental->m_pimpl->has_link())
       {
-         if(!pelemental->m_pimpl->m_mapFont.Lookup("link", iFont))
+         if(!pelemental->m_pimpl->m_mapFont.lookup("link", iFont))
          {
             iFont = create_font(pelemental);
             pelemental->m_pimpl->m_mapFont.set_at("link", iFont);
@@ -89,7 +89,7 @@ namespace html
       }
       else
       {
-         if(!pelemental->m_pimpl->m_mapFont.Lookup("", iFont))
+         if(!pelemental->m_pimpl->m_mapFont.lookup("", iFont))
          {
             iFont = create_font(pelemental);
             pelemental->m_pimpl->m_mapFont.set_at("", iFont);

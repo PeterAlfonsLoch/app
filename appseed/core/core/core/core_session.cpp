@@ -481,7 +481,7 @@ namespace core
    {
    ::aura::application * papp = NULL;
 
-   if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
+   if(m_mapApplication.lookup(string(pszType) + ":" + string(pszId), papp))
    return papp;
    else
    {
@@ -694,7 +694,7 @@ namespace core
 
       ::aura::application * papp = NULL;
 
-      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
+      if(m_pbasesession->m_mapApplication.lookup(string(pszType) + ":" + string(pszId),papp))
       {
          
          return papp;
@@ -815,7 +815,7 @@ namespace core
 
       ::aura::application * papp = NULL;
 
-      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
+      if(m_pbasesession->m_mapApplication.lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
 
          //sp(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
@@ -997,7 +997,7 @@ namespace core
       if(System.m_pbergedgemap == NULL)
          return NULL;
 
-      if(!System.m_pbergedgemap->Lookup(0,psession))
+      if(!System.m_pbergedgemap->lookup(0,psession))
       {
          return NULL;
       }

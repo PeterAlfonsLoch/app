@@ -133,7 +133,7 @@ namespace axis
 
       string str;
 
-      if(m_stringmap.Lookup(id, str))
+      if(m_stringmap.lookup(id, str))
       {
 
          return str;
@@ -228,16 +228,16 @@ namespace axis
          strTable = strId.Mid(0,iFind);
          strString = strId.Mid(iFind + 1);
       }
-      if(m_stringtableStd.Lookup(strTable,pmap))
+      if(m_stringtableStd.lookup(strTable,pmap))
       {
-         if(pmap->Lookup(strString,str))
+         if(pmap->lookup(strString,str))
          {
             return true;
          }
       }
-      else if(m_stringtable.Lookup(strTable,pmap))
+      else if(m_stringtable.lookup(strTable,pmap))
       {
-         if(pmap->Lookup(strString,str))
+         if(pmap->lookup(strString,str))
          {
             return true;
          }
@@ -382,7 +382,7 @@ namespace axis
 
    //bool application::app_map_lookup(const char * psz,void * & p)
    //{
-   //   return m_appmap.Lookup(psz,p) != FALSE;
+   //   return m_appmap.lookup(psz,p) != FALSE;
    //}
 
    //void application::app_map_set(const char * psz,void * p)

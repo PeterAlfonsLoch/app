@@ -21,7 +21,7 @@ namespace user
       string                     m_strName;
       string                     m_strPath;
       string                     m_countrycode;
-      comparable_array < HKL >   m_hkla;
+      array < HKL >   m_hkla;
       string                     m_keylayout;
 
 
@@ -40,7 +40,7 @@ namespace user
    };
 
    class CLASS_DECL_AXIS keyboard_layout_ida :
-      virtual public comparable_array < keyboard_layout_id >
+      virtual public array < keyboard_layout_id >
    {
    public:
    };

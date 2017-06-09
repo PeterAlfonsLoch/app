@@ -39,19 +39,14 @@ namespace sockets
 
    void link_out_socket::server_to_link_out(httpd_socket * psocket)
    {
+      
       socket_handler & h = dynamic_cast < socket_handler & > (psocket->Handler());
-      POSITION pos = h.m_sockets.get_start_position();
-      sp(base_socket) psocket2;
-      SOCKET key;
-      while(pos != NULL)
-      {
-         h.m_sockets.get_next_assoc(pos, key, psocket2);
-         if(psocket2 == psocket)
-         {
-            h.m_sockets.set_at(key, this);
-         }
-      }
-//      m_bSsl = psocket->GetSsl();
+      
+      auto pos = ::iter::find_first_value(h.m_sockets, psocket);
+
+      h.m_sockets.set_at(pos->m_element1, this);
+
+      //      m_bSsl = psocket->GetSsl();
       m_socket = psocket->m_socket;
 
       m_bConnecting        = psocket->m_bConnecting; ///< Flag indicating connection in progress

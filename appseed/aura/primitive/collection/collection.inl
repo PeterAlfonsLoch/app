@@ -194,58 +194,6 @@ void point2d_array_base < POINT2D >::rotate(double dAngle)
 
 }
 
-
-
-
-template < typename POINT2D >
-void point2d_array_base < POINT2D >::xml_import(::xml::input_tree & xmlif)
-{
-
-   this->remove_all();
-
-   var varCount;
-
-   xmlif.import_node("count",varCount);
-
-   for(index i = 0; i < varCount.int32(); i++)
-   {
-
-      var x;
-
-      xmlif.import_node("x" + str::from(i),x);
-
-      var y;
-
-      xmlif.import_node("y" + str::from(i),y);
-
-      add(POINT2D
-
-         (x.int32(),y.int32()));
-
-   }
-
-}
-
-template < typename POINT2D >
-void point2d_array_base < POINT2D >::xml_export(::xml::output_tree & xmlof)
-{
-
-   xmlof.export_node("count",this->get_size());
-
-   for(index i = 0; i < this->get_count(); i++)
-   {
-
-      xmlof.export_node("x" + str::from(i),this->element_at(i).x);
-
-      xmlof.export_node("y" + str::from(i),this->element_at(i).y);
-
-   }
-
-}
-
-
-
-
 template < typename POINT2D >
 void point2d_array_base < POINT2D >::get_bounding_rect(typename POINT2D::LPRECT lprect) const
 {

@@ -44,12 +44,13 @@ namespace sockets
    void link_in_socket::server_to_link_in(httpd_socket * psocket)
    {
       socket_handler & h = dynamic_cast < socket_handler & > (psocket->Handler());
-      POSITION pos = h.m_sockets.get_start_position();
       sp(::sockets::base_socket) psocket2;
       SOCKET key;
-      while(pos != NULL)
+      for(auto & pos : h.m_sockets)
       {
-         h.m_sockets.get_next_assoc(pos, key, psocket2);
+         key = pos.m_element1;
+         psocket2 = pos.m_element2;
+         
          if(psocket2 == psocket)
          {
             h.m_sockets.set_at(key, this);

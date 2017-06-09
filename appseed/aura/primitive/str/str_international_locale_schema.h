@@ -26,8 +26,8 @@ namespace str
          id                         m_idLocale;
          id                         m_idSchema;
 
-         comparable_array < id >    m_idaLocale;
-         comparable_array < id >    m_idaSchema;
+         array < id >    m_idaLocale;
+         array < id >    m_idaSchema;
 
 
          locale_schema(::aura::application * papp);

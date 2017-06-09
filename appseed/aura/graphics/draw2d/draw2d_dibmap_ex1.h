@@ -45,25 +45,40 @@ namespace draw2d
 
          ::draw2d::dib::descriptor keyFind;
          int64_t iAreaMax = 0;
-         assoc * passoc = PGetFirstAssoc();
-         while (passoc != NULL)
+         
+         decltype(begin()) find;
+
+         auto it = begin();
+
+         while (it != end())
          {
-            if (passoc->m_element2->get_ref_count() <= 1 && passoc->m_element2->area() > iAreaMax)
+
+            if (it->m_element2->get_ref_count() <= 1 && it->m_element2->area() > iAreaMax)
             {
-               iAreaMax = passoc->m_element2->area();
-               keyFind = passoc->m_element1;
+
+               iAreaMax = it->m_element2->area();
+
+               find = it;
+
             }
-            passoc = passoc->m_pnext;
+
+            it++;
+
          }
 
          if (iAreaMax > 0)
          {
-            remove_key(keyFind);
+
+            erase(find);
+
          }
          else
          {
-            remove_key(PGetFirstAssoc()->m_element1);
+
+            erase(begin());
+
          }
+
       }
 
 

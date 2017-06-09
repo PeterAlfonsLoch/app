@@ -260,7 +260,7 @@ namespace userstack
    {
       sp(::aura::application) papp = NULL;
 
-      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
+      if(m_mapApplication.lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
       else
       {
@@ -323,7 +323,7 @@ namespace userstack
 
       sp(::aura::application) papp = NULL;
 
-      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
+      if(m_mapApplication.lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
 
          sp(pane_view) ppaneview = m_ppaneview;

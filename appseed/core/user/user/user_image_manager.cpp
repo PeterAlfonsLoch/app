@@ -111,7 +111,7 @@ namespace user
       while(*pui != 0xffffffff)
       {
          tbb.idCommand = *pui;
-         if(m_rel.Lookup(*pui, user))
+         if(m_rel.lookup(*pui, user))
          {
             tbb.iBitmap = user;
          }

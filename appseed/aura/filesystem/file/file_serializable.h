@@ -113,16 +113,12 @@ namespace file
          
          ostream.write_arbitrary(m.get_count());
 
-         auto p = m.PGetFirstAssoc();
-
-         while(p != NULL)
+         for(auto & item : m)
          {
 
-            ostream << p->m_element1;
+            ostream << item.m_element1;
 
-            ostream << p->m_element2;
-
-            p = m.PGetNextAssoc(p);
+            ostream << item.m_element2;
 
          }
 
@@ -144,9 +140,9 @@ namespace file
 
          }
 
-         typename type_map::AXIS_KEY key;
+         typename type_map::BASE_KEY key;
 
-         typename type_map::AXIS_VALUE value;
+         typename type_map::BASE_VALUE value;
 
          for(index index = 0; index < count; index++)
          {

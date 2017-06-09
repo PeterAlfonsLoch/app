@@ -1049,7 +1049,7 @@ throw todo(get_app());
       int_ptr nString = -1;
       void * p;
       string wstrText(lpszText);
-      if (m_pStringMap != NULL && m_pStringMap->Lookup(wstrText, p))
+      if (m_pStringMap != NULL && m_pStringMap->lookup(wstrText, p))
          nString = (int_ptr)p;
 
       // add new string if not already in map
@@ -1070,7 +1070,7 @@ throw todo(get_app());
 
          // cache string away in string map
          m_pStringMap->set_at(wstrText, (void *)nString);
-         ASSERT(m_pStringMap->Lookup(wstrText, p));
+         ASSERT(m_pStringMap->lookup(wstrText, p));
       }
 
       // change the toolbar button description

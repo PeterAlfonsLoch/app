@@ -155,7 +155,7 @@ namespace lemon
    {
 
       template <>
-      inline void add(stringa & stra,const stringa & straSource) { stra.add(straSource); }
+      inline void add(stringa & stra,const stringa & straSource) { stra.add_iter(straSource); }
       template <>
       inline void add(::file::patha & patha,const stringa & stra) { forallref(stra) { patha.add(::file::path(item)); } }
       template <>

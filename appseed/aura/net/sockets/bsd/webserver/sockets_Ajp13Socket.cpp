@@ -134,7 +134,7 @@ namespace sockets
       bool      is_ssl        = get_boolean(buf, ptr);
 
       string method_str = ::str::from( method );
-      Session.sockets().m_pajpaxissocketinit->Method.Lookup(method, method_str);
+      Session.sockets().m_pajpaxissocketinit->Method.lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;
       m_request.attr("request_uri") = req_uri;
@@ -154,7 +154,7 @@ namespace sockets
          case 0xa0:
             {
                uint16_t x = (uint16_t)get_integer(buf, ptr);
-               if (!Session.sockets().m_pajpaxissocketinit->header.Lookup(x, key))
+               if (!Session.sockets().m_pajpaxissocketinit->header.lookup(x, key))
                {
                   TRACE("Unknown header key value: %x\n", x);
                   SetCloseAndDelete();
@@ -187,7 +187,7 @@ namespace sockets
             break;
          default:
             {
-               if(!Session.sockets().m_pajpaxissocketinit->Attribute.Lookup(code, key))
+               if(!Session.sockets().m_pajpaxissocketinit->Attribute.lookup(code, key))
                {
                   TRACE("Unknown attribute key: 0x%02x\n", buf[ptr]);
                   SetCloseAndDelete();
@@ -279,7 +279,7 @@ namespace sockets
             string strNameLower(property.name());
             strNameLower;
             int32_t iValue;
-            if(Session.sockets().m_pajpaxissocketinit->ResponseHeader.Lookup(strNameLower, iValue))
+            if(Session.sockets().m_pajpaxissocketinit->ResponseHeader.lookup(strNameLower, iValue))
             {
                put_integer(msg, ptr, (int16_t) iValue);
             }

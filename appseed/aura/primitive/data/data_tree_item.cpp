@@ -31,19 +31,6 @@ namespace data
 
    }
 
-   void tree_item::sort_children(index ( * lpfnCompare )(const sp(tree_item) & pitem, const sp(tree_item) & pitem2))
-   {
-
-      ::sort::array::quick_sort((array < sp(tree_item) > &)m_children, lpfnCompare);
-
-      for (auto c : m_children)
-      {
-
-//         c->update_pointers();
-
-      }
-
-   }
 
 
    void tree_item::SetParent(tree_item * pparent)

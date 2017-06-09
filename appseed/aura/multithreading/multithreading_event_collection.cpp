@@ -235,7 +235,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
    } while (winResult!=WAIT_TIMEOUT && winResult!= WAIT_FAILED && FoundExternal==false);
 
    //MBO: remove events to avoid double signalization
-   comparable_array < waitable_element >::iterator it;
+   array < waitable_element >::iterator it;
    for (it = m_waitableelementa.begin(); it != m_waitableelementa.end(); ++it)
       (*it).item->exit_wait();
 

@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_BASE oswindow_array :
-      public comparable_array < oswindow, oswindow >
+      public array < oswindow, oswindow >
    {
    public:
       void SortByZOrder();
@@ -155,9 +155,9 @@ namespace user
       //      static_function HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
       //      static_function void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
 
-      //static_function void SortByZOrder(comparable_array < ::window_sp, ::window_sp > & wndpa);
-      //static_function void SortByZOrder(comparable_array < oswindow, oswindow > & oswindowa);
-      //static_function void EnumChildren(oswindow oswindow, comparable_array < oswindow, oswindow > & oswindowa);
+      //static_function void SortByZOrder(array < ::window_sp, ::window_sp > & wndpa);
+      //static_function void SortByZOrder(array < oswindow, oswindow > & oswindowa);
+      //static_function void EnumChildren(oswindow oswindow, array < oswindow, oswindow > & oswindowa);
 
    };
 

@@ -394,8 +394,8 @@ namespace windows
 
          bool bTts = false;
 
-         //if((!m_tts.Lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
-         if (!m_tts.Lookup(strLang, bTts))
+         //if((!m_tts.lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
+         if (!m_tts.lookup(strLang, bTts))
          {
 
             if (initialize(strLang))

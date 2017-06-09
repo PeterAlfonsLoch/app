@@ -1,9 +1,329 @@
 #pragma once
 
 
-template < typename T > class numeric_array;
-typedef CLASS_DECL_AURA numeric_array < index > index_array;
-typedef CLASS_DECL_AURA numeric_array < count > count_array;
+#include "collection_iterator.h"
+
+#include "collection_iterable.h"
+
+
+template < typename TYPE >
+class array_iterator
+{
+public:
+
+   typedef TYPE BASE_TYPE;
+
+   TYPE *      m_p;
+
+   array_iterator()
+   {
+      m_p = NULL;
+   }
+
+   array_iterator(TYPE * p)
+   {
+      m_p = p;
+   }
+
+   array_iterator(const array_iterator & it)
+   {
+      operator = (it);
+   }
+
+   bool is_null() const
+   {
+
+      return m_p == NULL;
+
+   }
+
+   bool is_set() const
+   {
+
+      return !is_null();
+
+   }
+
+   array_iterator & operator = (const array_iterator & it)
+   {
+      m_p = it.m_p;
+      return *this;
+   }
+
+   bool operator == (const array_iterator & it)
+   {
+      return m_p == it.m_p;
+   }
+
+   array_iterator & operator ++()
+   {
+      m_p++;
+      return *this;
+   }
+
+   array_iterator & operator +=(index i)
+   {
+      m_p += i;
+      return *this;
+   }
+
+   array_iterator operator +(index i)
+   {
+      return m_p + i;
+   }
+
+
+   array_iterator & operator --()
+   {
+      m_p--;
+      return *this;
+   }
+
+   array_iterator & operator -=(index i)
+   {
+      m_p -= i;
+      return *this;
+   }
+
+   array_iterator operator -(index i)
+   {
+      return m_p - i;
+   }
+
+
+
+   array_iterator mid(const array_iterator & i) const
+   {
+      return m_p + ((i.m_p - m_p + 1) >> 1);
+   }
+
+   bool operator < (const array_iterator & i) const
+   {
+
+      return m_p < i.m_p;
+
+   }
+
+
+   bool operator != (const array_iterator & it)
+   {
+
+      return !operator==(it);
+
+   }
+
+
+   array_iterator operator ++(int)
+   {
+
+      array_iterator it = *this;
+      operator ++();
+      return it;
+
+   }
+
+
+   array_iterator operator --(int)
+   {
+
+      array_iterator it = *this;
+      operator --();
+      return it;
+
+   }
+
+
+   TYPE & operator * ()
+   {
+
+      return *(operator->());
+
+   }
+
+   TYPE & operator * () const
+   {
+
+      return *(operator->());
+
+   }
+
+
+   TYPE * operator -> ()
+   {
+      return m_p;
+   }
+
+   const TYPE * operator -> () const
+   {
+      return m_p;
+   }
+
+};
+
+
+template < typename TYPE >
+class const_array_iterator
+{
+public:
+
+   typedef const TYPE BASE_TYPE;
+
+   const TYPE *     m_p;
+
+   const_array_iterator()
+   {
+      m_p = NULL;
+   }
+
+   const_array_iterator(const TYPE * p)
+   {
+      m_p = p;
+   }
+
+   const_array_iterator(const array_iterator < TYPE > & it)
+   {
+      operator = (it);
+   }
+
+   const_array_iterator(const const_array_iterator & it)
+   {
+      operator = (it);
+   }
+
+
+   bool is_null() const
+   {
+
+      return m_p == NULL;
+
+   }
+
+   bool is_set() const
+   {
+
+      return !is_null();
+
+   }
+
+
+
+   const_array_iterator & operator = (const array_iterator < TYPE > & it)
+   {
+      m_p = it.m_p;
+      return *this;
+   }
+
+   const_array_iterator & operator = (const const_array_iterator & it)
+   {
+      m_p = it.m_p;
+      return *this;
+   }
+
+   bool operator == (const const_array_iterator & it)
+   {
+      return m_p == it.m_p;
+   }
+
+   const_array_iterator & operator ++()
+   {
+      m_p++;
+      return *this;
+   }
+
+   const_array_iterator & operator +=(index i)
+   {
+      m_p += i;
+      return *this;
+   }
+   const_array_iterator & operator +(index i)
+   {
+      return m_p + i;
+   }
+
+   const_array_iterator & operator --()
+   {
+      m_p--;
+      return *this;
+   }
+   const_array_iterator & operator -=(index i)
+   {
+      m_p -= i;
+      return *this;
+   }
+   const_array_iterator & operator -(index i)
+   {
+      return m_p - i;
+   }
+
+   const_array_iterator mid(const const_array_iterator & i) const
+   {
+      return m_p + ((i.m_p - m_p + 1) >> 1);
+   }
+
+   bool operator < (const const_array_iterator & i) const
+   {
+      return m_i < i.m_i;
+   }
+
+
+   bool operator != (const const_array_iterator & it)
+   {
+
+      return !operator==(it);
+
+   }
+
+
+   const_array_iterator operator ++(int)
+   {
+
+      const_array_iterator it = *this;
+      operator ++();
+      return it;
+
+   }
+
+
+   const_array_iterator operator --(int)
+   {
+
+      base_iterator it = *this;
+      operator --();
+      return it;
+
+   }
+
+
+   const TYPE & operator * ()
+   {
+
+      return *(operator->());
+
+   }
+
+   const TYPE & operator * () const
+   {
+
+      return *(operator->());
+
+   }
+
+
+   const TYPE * operator -> ()
+   {
+      return m_p;
+   }
+
+   const TYPE * operator -> () const
+   {
+      return m_p;
+   }
+
+};
+
+
+
+
 
 
 
@@ -591,24 +911,33 @@ namespace allocator
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
-template < class TYPE, class ALLOCATOR = allocator::nodef < TYPE > >
-class array_base:
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
+class array_data:
    virtual public ::object
 {
 public:
 
+
    typedef TYPE BASE_TYPE;
+   typedef array_iterator < TYPE > iterator;
+   typedef const_array_iterator < TYPE > const_iterator;
+   typedef TYPE BASE_TYPE;
+   typedef ARG_TYPE BASE_ARG_TYPE;
 
 
-   //bool           m_bRaw;     // if raw, does not call destructors or constructors
    TYPE *         m_pData;    // the actual array of data
    ::count        m_nSize;    // # of elements (upperBound - 1)
    ::count        m_nMaxSize; // MAX allocated
    ::count        m_nGrowBy;  // grow amount
 
-   array_base(int iTypeSize,bool bRaw);
-   array_base(::aura::application * papp,int iTypeSize,bool bRaw);
-   virtual ~array_base();
+
+   array_data(::aura::application * papp = NULL, ::count nGrowBy = 0);
+   array_data(const array_data & a);
+   array_data(::std::initializer_list < TYPE > l);
+   array_data(::count n);
+   array_data(::count n, ARG_TYPE t);
+   array_data(array_data && a);
+   virtual ~array_data();
 
    inline ::count get_size() const;
    inline ::count get_size_in_bytes() const;
@@ -621,10 +950,239 @@ public:
    inline bool empty(::count countMinimum = 1) const;
    inline bool has_elements(::count countMinimum = 1) const;
    inline index get_upper_bound(index i = -1) const;
+   inline index get_lower_bound(index i = -1) const;
    inline bool bounds(index i) const;
 
 
-   TYPE * element_at(index i) const { return &m_pData[i]; }
+   index index_of(TYPE & type)
+   {
+
+      return index_of(&type);
+
+   }
+
+   index index_of(TYPE * ptype)
+   {
+
+      return ptype - m_pData;
+
+   }
+
+
+   inline iterator lower_bound()
+   {
+      return iterator(&m_pData[get_lower_bound()]);
+   }
+
+   inline iterator begin()
+   {
+      return iterator(m_pData);
+   }
+
+   inline iterator end()
+   {
+      return iterator(&m_pData[get_size()]);
+   }
+
+   inline const_iterator lower_bound() const
+   {
+      return const_iterator(&m_pData[get_lower_bound()]);
+   }
+
+   inline iterator upper_bound()
+   {
+      return iterator(&m_pData[get_upper_bound()]);
+   }
+
+   inline const_iterator begin() const
+   {
+      return const_iterator(m_pData);
+   }
+
+   inline const_iterator end() const
+   {
+      return const_iterator(&m_pData[get_size()]);
+   }
+
+   inline const_iterator upper_bound() const
+   {
+      return const_iterator(&m_pData[get_upper_bound()]);
+   }
+
+   void iprepare_first_last(index & first, index & last) const
+   {
+
+      if (first < 0)
+      {
+
+         first = m_nSize <= 0 ? 0 : m_nSize + (first % m_nSize) + 1;
+
+      }
+
+      if (last < 0)
+      {
+
+         last = m_nSize <= 0 ? 0 : m_nSize + (last % m_nSize) + 1;
+
+      }
+
+   }
+
+   
+   void riprepare_first_last(index & first, index & last) const
+   {
+
+      if (first < 0)
+      {
+
+         first = m_nSize <= 0 ? 0 : m_nSize + (first % m_nSize);
+
+      }
+
+      if (last < 0)
+      {
+
+         last = m_nSize <= 0 ? 0 : m_nSize + (last % m_nSize);
+
+      }
+
+   }
+
+
+   void iprepare_first_count(index & first, ::count & count) const
+   {
+
+      if (first < 0)
+      {
+
+         first = m_nSize <= 0 ? 0 : m_nSize + (first % m_nSize) + 1;
+
+      }
+
+      if (count < 0)
+      {
+
+         count = m_nSize <= 0 ? 0 : (m_nSize + (count % m_nSize) + 1);
+
+      }
+      else
+      {
+
+         count += first;
+
+      }
+
+   }
+
+
+   void prepare_first_last(iterator & first, iterator & last) const
+   {
+
+      if (first.is_null())
+      {
+
+         first.m_p = m_pData;
+
+      }
+
+      if (last.is_null())
+      {
+
+         last.m_p = m_pData + m_nSize;
+
+      }
+
+   }
+
+   void prepare_first_last(const_iterator & first, const_iterator & last) const
+   {
+
+      if (first.is_null())
+      {
+
+         first.m_p = m_pData;
+
+      }
+
+      if (last.is_null())
+      {
+
+         last.m_p = m_pData + m_nSize;
+
+      }
+
+   }
+
+
+   void rprepare_first_last(iterator & first, iterator & last) const
+   {
+
+      if (first.is_null())
+      {
+
+         first.m_p = m_pData + m_nSize - 1;
+
+      }
+
+      if (last.is_null())
+      {
+
+         last.m_p = m_pData - 1;
+
+      }
+
+   }
+
+   void rprepare_first_last(const_iterator & first, const_iterator & last) const
+   {
+
+      if (first.is_null())
+      {
+
+         first.m_p = m_pData + m_nSize - 1;
+
+      }
+
+      if (first.is_null())
+      {
+
+         last.m_p = m_pData - 1;
+
+      }
+
+   }
+
+   bool valid_iter(iterator current, iterator end) const
+   {
+
+      return current.m_p < end.m_p;
+
+   }
+
+   bool valid_iter(const_iterator current, const_iterator end) const
+   {
+
+      return current.m_p < end.m_p;
+
+   }
+
+   bool rvalid_iter(iterator current, iterator end) const
+   {
+
+      return current.m_p > end.m_p;
+
+   }
+
+   bool rvalid_iter(const_iterator current, const_iterator end) const
+   {
+
+      return current.m_p > end.m_p;
+
+   }
+
+
+   TYPE & element_at(index i)  { return m_pData[i]; }
+   const TYPE & element_at(index i) const { return m_pData[i]; }
 
 
    ::count set_size(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
@@ -653,62 +1211,48 @@ public:
    void on_copy_element(index i,const TYPE * p) { ALLOCATOR::copy(&m_pData[i],p); }
 
 
-   index insert_at(index nIndex,const TYPE * newElement,::count nCount = 1);
-   index remove_at(index nIndex,::count nCount = 1);
-   index insert_at(index nStartIndex,array_base * pNewArray);
 
 
-   virtual ::count append(const array_base & src); // return old size
-   virtual void copy(const array_base & src);
+   index insert_at(index nIndex, const TYPE & newElement,::count nCount = 1);
+   index remove_at(index nIndex, ::count nCount = 1);
+
+   template < typename ITERABLE >
+   index insert_iter_at(index nStartIndex, const ITERABLE & iterable);
+
+
+   //virtual ::count append(const array_data & src); // return old size
+   //virtual void copy(const array_data & src);
 
    virtual void on_after_read();
 
    template < typename PRED >
-   ::count pred_each(PRED pred, index iStart = 0, ::count c = -1)
+   void pred_each(PRED pred, index first = 0, ::count count = -1)
    {
       
-      index iEnd = c < 0 ? get_count() + c : iStart + c - 1;
+      iprepare_first_count(first, count);
 
-      int cProcessed = 0;
-
-      for (index i = iStart; i <= iEnd; i++)
+      for (; i < count; first++)
       {
 
          pred(m_pData[i]);
 
-         cProcessed++;
-
       }
-
-      return cProcessed;
 
    }
 
    template < typename PRED >
-   index pred_find_first(PRED pred, index iStart = 0, index iEnd = -1)
+   index pred_find_first(PRED pred, index first = 0, index count = -1)
    {
 
-      if (iEnd < 0)
+      iprepare_first_count(first, count);
+
+      for(; i < count; first++)
       {
 
-         iEnd += get_count();
-
-      }
-
-      if (iEnd >= get_count())
-      {
-
-         iEnd = get_count() - 1;
-
-      }
-
-      for(index i = iStart; i <= iEnd; i++)
-      {
-
-         if(pred(m_pData[i]))
+         if(pred(m_pData[first]))
          {
 
-            return i;
+            return first;
 
          }
 
@@ -718,18 +1262,14 @@ public:
 
    }
 
+
    template < typename PRED >
-   index pred_find_last(PRED pred, index iLast = -1)
+   index pred_find_last(PRED pred, index first = -1, index last = 0)
    {
 
-      if (iLast < 0)
-      {
+      riprepare_first_last(first, last);
 
-         iLast += get_count();
-
-      }
-
-      for (index i = iLast; i >= 0; i--)
+      for (index i = last; i >= 0; i--)
       {
 
          if (pred(m_pData[i]))
@@ -746,35 +1286,35 @@ public:
    }
 
    template < typename PRED >
-   TYPE * pred_get_first(PRED pred)
+   TYPE * pred_get_first(PRED pred, index first = 0, index last = -1)
    {
-      for(int i = 0; i < get_count(); i++)
+
+      index i = pred_find_first(pred, first, count);
+
+      if (i < 0)
       {
 
-         if(pred(m_pData[i]))
-         {
-
-            return &element_at(i);
-
-         }
+         return NULL;
 
       }
 
-      return NULL;
+      return m_pData[i];
 
    }
 
 
    template < typename PRED >
-   ::count pred_get_count(PRED pred)
+   ::count pred_get_count(PRED pred, index first = 0, ::count count = -1)
    {
 
       ::count c = 0;
 
-      for(int i = 0; i < get_count(); i++)
+      iprepare_first_count(first, count);
+
+      for (; first < count; first++)
       {
 
-         if(pred(m_pData[i]))
+         if (pred(m_pData[first]))
          {
 
             c++;
@@ -789,56 +1329,60 @@ public:
 
 
    template < typename PRED >
-   void pred_remove(PRED pred)
+   ::count pred_remove(PRED pred, index first = 0, ::count count = -1)
    {
 
-      for(int i = 0; i < get_count();)
+      ::count c = 0;
+
+      iprepare_first_count(first, count);
+
+      for (; first < count; first++)
       {
 
-         if(!pred(m_pData[i]))
+         if(pred(m_pData[i]))
          {
-            i++;
-         }
-         else
-         {
+            
+            c++;
 
-            int iStart = i;
+            index start = first;
 
-            int iCount = 1;
+            ::count remove = 1;
 
-            i++;
+            first++;
 
-            for(; i < get_count();)
+            for(; i < count;)
             {
 
-               if(!pred(m_pData[i]))
+               if(!pred(m_pData[first]))
                {
 
                   break;
 
                }
 
-               iCount++;
+               remove++;
 
-               i++;
+               first++;
 
             }
 
-            remove_at(iStart,iCount);
+            remove_at(start,remove);
 
-            i = iStart;
+            first = start;
 
          }
 
       }
 
+      return c;
+
    }
 
    template < typename PRED >
-   bool pred_add_unique(TYPE t, PRED pred)
+   bool pred_add_unique(TYPE t, PRED pred, index first = 0, ::count count = -1)
    {
 
-      if(this->pred_find_first(pred) >= 0)
+      if(pred_contains(pred, first, count))
       {
 
          return false;
@@ -850,325 +1394,211 @@ public:
       return true;
 
    }
-   template < typename F >
-   void each(F f)
+
+
+   template < typename PRED >
+   bool each(PRED pred, index first = 0, ::count count = -1)
    {
 
-      for(index i = 0; i < get_count(); i++)
+      for_each(pred, first, count);
+
+   }
+
+   template < typename ITERABLE >
+   void slice(ITERABLE & iterable, index i, ::count count = -1);
+
+   template < typename ITERABLE >
+   void splice(const ITERABLE & iterable, index i, ::count count = -1);
+
+   template < typename ITERABLE, typename STRITERABLE >
+   void splice(const ITERABLE & iterable, index i, STRITERABLE & straRemoved, ::count count = -1);
+
+   template < typename TYPE >
+   iterator find_first_iter(const TYPE & t, iterator first = NULL, iterator last = NULL)
+   {
+
+      return ::iter::find_first(*this, t, first, last);
+
+   }
+
+   template < typename TYPE >
+   const_iterator find_first_iter(const TYPE & t, const_iterator first = NULL, const_iterator last = NULL)
+   {
+
+      return ::iter::find_first(*this, t, first, last);
+
+   }
+
+   template < typename TYPE >
+   index find_first(const TYPE & t, index first = 0, index count = -1) const
+   {
+
+      iprepare_first_count(first, count);
+
+      for (; first < count; first++)
       {
-         f(m_pData[i]);
+
+         if (m_pData[first] == t)
+         {
+
+            return first;
+
+         }
+
       }
+
+      return -1;
+
+   }
+
+   template < typename TYPE >
+   bool contains(const TYPE & t, index first = 0, index last = -1) const
+   {
+
+      return find_first(t, first, last) >= 0;
+
+   }
+
+   template < typename TYPE >
+   ::count remove(const TYPE & t, index first = 0, index count = -1)
+   {
+
+      ::count c = 0;
+
+      iprepare_first_count(first, count);
+
+      for (; first < count;first++)
+      {
+
+         if (m_pData[first] == t)
+         {
+
+            c++;
+
+            index start = first;
+
+            ::count remove = 1;
+
+            first++;
+
+            for (; first < count;)
+            {
+
+               if (!(m_pData[first] == t))
+               {
+
+                  break;
+
+               }
+
+               remove++;
+
+               first++;
+
+            }
+
+            remove_at(start, remove);
+
+            first = start;
+         }
+
+      }
+
+      return c;
+
+   }
+
+   template < typename TYPE >
+   index find_first_ci(const TYPE & t, index first = 0, index count = -1) const
+   {
+
+      iprepare_first_count(first, count);
+
+      for (; first < count; first++)
+      {
+
+         if (stricmp(m_pData[first], t) == 0)
+         {
+
+            return first;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+   template < typename TYPE >
+   bool contains_ci(const TYPE & t, index first = 0, index last = -1) const
+   {
+
+      return find_first_ci(t, first, last) >= 0;
 
    }
 
 
-};
-
-
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE > >
-class array :
-   public ::array_base < TYPE, ALLOCATOR >
-{
-public:
-
-   typedef TYPE BASE_TYPE;
-   typedef ARG_TYPE BASE_ARG_TYPE;
-   typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
-
-
-   class iterator
+   template < typename TYPE >
+   ::count remove_ci(const TYPE & t, index first = 0, index count = -1)
    {
-   public:
 
-      typedef TYPE BASE_TYPE;
-      typedef ARG_TYPE BASE_ARG_TYPE;
-      typedef array < TYPE,ARG_TYPE > BASE_ARRAY;
+      ::count c = 0;
 
-         index            m_i;
-         array *     m_parray;
+      iprepare_first_count(first, count);
 
-         iterator()
+      for (; first < count; first++)
+      {
+
+         if (stricmp(m_pData[first], t) == 0)
          {
-            m_i = 0;
-            m_parray = NULL;
-         }
 
-         iterator(index i,array * parray)
-         {
-            m_i = i;
-            m_parray = parray;
-         }
+            c++;
 
-         iterator(const iterator & it)
-         {
-            operator = (it);
-         }
+            index start = first;
 
+            ::count remove = 1;
 
-         iterator & operator = (const iterator & it)
-         {
-            if(this != &it)
+            first++;
+
+            for (; first < count;)
             {
-               m_i         = it.m_i;
-               m_parray    = it.m_parray;
+
+               if (stricmp(m_pData[first], t))
+               {
+
+                  break;
+
+               }
+
+               remove++;
+
+               first++;
+
             }
-            return *this;
+
+            remove_at(start, remove);
+
+            first = start;
          }
 
-         bool operator == (const iterator & it)
-         {
-            if(this == &it)
-               return true;
-            if(m_parray != it.m_parray)
-               return false;
-            if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
-               return true;
-            if(m_i <= 0 && it.m_i <= 0)
-               return true;
-            return m_i == it.m_i;
-         }
-
-         bool operator != (const iterator & it)
-         {
-            return !operator==(it);
-         }
-
-         iterator operator ++(int)
-         {
-            iterator it = *this;
-            operator ++();
-            return it;
-         }
-
-         iterator operator --(int)
-         {
-            iterator it = *this;
-            operator --();
-            return it;
-         }
-
-         iterator & operator ++()
-         {
-            m_i++;
-            if(m_i >= m_parray->get_size())
-               m_i = m_parray->get_size();
-            return *this;
-         }
-
-         iterator & operator +(index i)
-         {
-            m_i += i;
-            if(m_i >= m_parray->get_size())
-               m_i = m_parray->get_size();
-            return *this;
-         }
-
-         iterator & operator --()
-         {
-            m_i--;
-            if(m_i < 0)
-               m_i = 0;
-            return *this;
-         }
-
-         iterator mid(const iterator & i) const
-         {
-            return iterator((m_i + i.m_i + 1) / 2,m_parray);
-         }
-
-         iterator & operator -(::count c)
-         {
-            m_i-=c;
-            if(m_i < 0)
-               m_i = 0;
-            return *this;
-         }
-
-         bool operator < (const iterator & i) const
-         {
-
-            return m_i < i.m_i;
-
-         }
-
-         ::count get_count() const
-         {
-            return m_parray->get_count();
-         }
-
-
-      TYPE & operator * ()
-      {
-         return ((TYPE*) m_parray->m_pData)[m_i];
       }
 
-      const TYPE & operator * () const
-      {
-         return ((const TYPE*)m_parray->m_pData)[m_i];
-      }
+      return c;
 
-
-   };
-
-
-   class const_iterator
-   {
-   public:
-
-
-      typedef TYPE BASE_TYPE;
-      typedef ARG_TYPE BASE_ARG_TYPE;
-      typedef array < TYPE,ARG_TYPE > BASE_ARRAY;
-
-
-         index            m_i;
-         const array *     m_parray;
-
-         const_iterator()
-         {
-            m_i = 0;
-            m_parray = NULL;
-         }
-
-         const_iterator(index i,const array * parray)
-         {
-            m_i = i;
-            m_parray = parray;
-         }
-
-         const_iterator(const iterator & it)
-         {
-            operator = (it);
-         }
-
-         const_iterator(const const_iterator & it)
-         {
-            operator = (it);
-         }
-
-         const_iterator & operator = (const iterator & it)
-         {
-            m_i         = it.m_i;
-            m_parray    = it.m_parray;
-            return *this;
-         }
-
-         const_iterator & operator = (const const_iterator & it)
-         {
-            if(this != &it)
-            {
-               m_i         = it.m_i;
-               m_parray    = it.m_parray;
-            }
-            return *this;
-         }
-
-         bool operator == (const const_iterator & it)
-         {
-            if(this == &it)
-               return true;
-            if(m_parray != it.m_parray)
-               return false;
-            if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
-               return true;
-            if(m_i <= 0 && it.m_i <= 0)
-               return true;
-            return m_i == it.m_i;
-         }
-
-         bool operator != (const const_iterator & it)
-         {
-            return !operator==(it);
-         }
-
-         const_iterator operator ++(int)
-         {
-            const_iterator it = *this;
-            operator ++();
-            return it;
-         }
-
-         const_iterator operator --(int)
-         {
-            const_iterator it = *this;
-            operator --();
-            return it;
-         }
-
-         const_iterator & operator ++()
-         {
-            m_i++;
-            if(m_i >= m_parray->get_size())
-               m_i = m_parray->get_size();
-            return *this;
-         }
-
-         const_iterator & operator +(index i)
-         {
-            m_i += i;
-            if(m_i >= m_parray->get_size())
-               m_i = m_parray->get_size();
-            return *this;
-         }
-
-         const_iterator & operator --()
-         {
-            m_i--;
-            if(m_i < 0)
-               m_i = 0;
-            return *this;
-         }
-
-         const_iterator mid(const const_iterator & i) const
-         {
-            return const_iterator_base((m_i + i.m_i + 1) / 2,m_parray);
-         }
-
-         const_iterator & operator -(::count c)
-         {
-            m_i-=c;
-            if(m_i < 0)
-               m_i = 0;
-            return *this;
-         }
-
-         bool operator < (const const_iterator & i) const
-         {
-
-            return m_i < i.m_i;
-
-         }
-
-         ::count get_count() const
-         {
-            return m_parray->get_count();
-         }
-
-      const TYPE & operator * ()
-      {
-         return ((const TYPE*)m_parray->m_pData)[m_i];
-      }
-
-   };
+   }
 
 
 
 
-   array(::aura::application * papp = NULL, ::count nGrowBy = 0);
-   array(const array & a);
-   array(::std::initializer_list < TYPE > l);
-   array(::count n);
-   array(::count n, ARG_TYPE t);
-   array(array && a);
-   virtual ~array();
 
 
    inline const TYPE& get_at(index nIndex) const;
    inline TYPE& get_at(index nIndex);
    inline void set_at(index nIndex, ARG_TYPE newElement);
 
-   inline const TYPE & element_at(index nIndex) const;
-   inline TYPE & element_at(index nIndex);
+   //inline const TYPE & element_at(index nIndex) const;
+   //inline TYPE & element_at(index nIndex);
 
    inline TYPE & first(index n = 0);
    inline const TYPE & first(index n = 0) const;
@@ -1180,59 +1610,49 @@ public:
    inline TYPE* get_data();
 
 
-   inline index add(ARG_TYPE newElement);
-   inline index add(const array& src);
-   inline index append(const array& src);
-   inline void copy(const array& src);
+   inline iterator add(ARG_TYPE newElement);
+   inline iterator add(const array_data& src);
+   inline iterator append(const array_data& src);
+   inline void copy(const array_data& src);
 
    inline TYPE & add_new();
-   inline index add_new( ::count count);
+   inline index add_new(::count count);
 
+   index get_random_index() const;
 
-   inline TYPE pop(index index = -1);
-   inline index push(ARG_TYPE newElement,index i = 0);
+   TYPE & random_element();
+
+   const TYPE & random_element() const;
+
+   TYPE pop_random_element();
+
+   TYPE pop(index i = -1);
+   inline index push(ARG_TYPE newElement, index i = 0);
    inline void pop_back(index index = -1);
-   inline void push_back(ARG_TYPE newElement,index = 0);
+   inline void push_back(ARG_TYPE newElement, index = 0);
 
 
 
    inline iterator erase(iterator pos);
-   inline iterator erase(iterator first,iterator last);
-   inline iterator begin()
-   {
-      return iterator(0, this);
-   }
+   inline iterator erase(iterator first, iterator last);
 
-   inline iterator end()
-   {
-      return iterator(this->get_size(), this);
-   }
-
-   inline const_iterator begin() const
-   {
-      return const_iterator(0,this);
-   }
-
-   inline const_iterator end() const
-   {
-      return const_iterator(this->get_size(),this);
-   }
 
    // overloaded operator helpers
    inline const TYPE& operator[](index nIndex) const;
    inline TYPE& operator[](index nIndex);
 
    // Operations that move elements around
-   inline index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
+   //inline index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);
    //void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
    //void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
    //index insert_at(index nStartIndex, array* pNewArray);
-   inline void swap(index index1, index index2);
+   inline void iswap(index index1, index index2);
+   inline void swap(iterator index1, iterator index2);
 
-   inline array & operator = (const array & src);
-   inline array & operator = (array && a);
-   inline array & move (array && a);
+   inline array_data & operator = (const array_data & src);
+   inline array_data & operator = (array_data && a);
+   inline array_data & move(array_data && a);
 
 
    //inline index find_first(ARG_TYPE t, index (* lpfnCompare)(ARG_TYPE, ARG_TYPE), index start = 0, index last = -1) const;
@@ -1244,30 +1664,6 @@ public:
    //   return raw_find_first(dynamic_cast < TYPE * > (pt), first, last);
    //}
 
-   template < class ARRAY >
-   inline ::count slice(ARRAY & a, index iStart = 0, ::count nCount = -1)
-   {
-
-      ::count ca = 0;
-
-      index iEnd;
-
-      if(nCount < 0)
-         iEnd = this->get_upper_bound(nCount);
-      else
-         iEnd = iStart + nCount - 1;
-
-      for(index i = iStart; i <= iEnd; i++)
-      {
-
-         a.add(element_at(i));
-         ca++;
-
-      }
-
-      return ca;
-
-   }
 
    //void quick_sort(index (* fCompare)(TYPE *, TYPE *));
    //void quick_sort(index (* fCompare)(TYPE *, TYPE *), void (* fSwap)(TYPE *, TYPE *));
@@ -1279,12 +1675,12 @@ public:
    //::count sort_add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
    //index sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
 
-   operator TYPE *() {return this->m_pData;}
-   operator const TYPE *() const {return this->m_pData;}
+   operator TYPE *() { return this->m_pData; }
+   operator const TYPE *() const { return this->m_pData; }
    operator count() const { return this->get_count(); }
 
-   inline array & operator += (const array & a);
-   inline array operator + (const array & a) const;
+   inline array_data & operator += (const array_data & a);
+   inline array_data operator + (const array_data & a) const;
 
    void dump(dump_context &) const;
    void assert_valid() const;
@@ -1307,6 +1703,93 @@ public:
 };
 
 
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE > >
+class array :
+   public iterable < ::array_data < TYPE, ARG_TYPE, ALLOCATOR > >
+{
+public:
+
+
+   array(::aura::application * papp = NULL, ::count nGrowBy = 0);
+   array(const array & a);
+   array(::std::initializer_list < TYPE > l);
+   array(::count n);
+   array(::count n, ARG_TYPE t);
+   array(array && a);
+
+   array & operator = (const array & a);
+
+
+};
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR >::operator = (const array & a)
+{
+
+   if (this != &a)
+   {
+
+      ::iter::copy(*this, a);
+
+   }
+
+   return *this;
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::aura::application * papp, ::count nGrowBy) :
+   object(papp)
+{
+   
+   m_nGrowBy = nGrowBy;
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a) :
+   object(a)
+{
+
+   ::iter::copy(*this, a);
+
+}
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::std::initializer_list < TYPE > l)
+{
+
+   ::iter::add_iter(*this, l);
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::count n)
+{
+
+   allocate(n);
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::count n, ARG_TYPE t)
+{
+
+
+}
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(array && a) :
+   iterable < ::array_data < TYPE, ARG_TYPE, ALLOCATOR > >(::move(a))
+{
+
+
+}
 
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
@@ -1322,5 +1805,165 @@ public:
    virtual ~nodefctr_array() {}
 
 };
+
+
+
+
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline index array_data < TYPE, ARG_TYPE, ALLOCATOR >::get_random_index() const
+{
+   
+   if (this->get_size() <= 0)
+      return -1;
+
+   return (index)(rand() % get_size());
+
+}
+
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+TYPE & array_data < TYPE, ARG_TYPE, ALLOCATOR >::random_element()
+{
+   if (this->get_size() <= 0)
+      throw "invalid call";
+   return this->element_at(get_random_index());
+}
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+const TYPE & array_data < TYPE, ARG_TYPE, ALLOCATOR >::random_element() const
+{
+   if (this->get_size() <= 0)
+      throw "invalid call";
+   return this->element_at(get_random_index());
+}
+
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+TYPE array_data < TYPE, ARG_TYPE, ALLOCATOR > ::pop_random_element()
+{
+   
+   if (this->get_size() <= 0)
+      throw "invalid call";
+   
+   index i = get_random_index();
+   
+   TYPE type = this->element_at(i);
+   
+   this->remove_at(i);
+
+   return type;
+
+}
+
+
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+TYPE array_data < TYPE, ARG_TYPE, ALLOCATOR > ::pop(index i)
+{
+
+   i = get_upper_bound(i);
+
+   TYPE strRet = this->element_at(i);
+
+   this->remove_at(i);
+
+   return strRet;
+
+}
+
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename ITERABLE >
+void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::splice(const ITERABLE & iterable, index iOffset, ::count count)
+{
+
+   remove(iOffset, count);
+
+   insert_iter_at(iOffset, iterable);
+
+}
+
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename ITERABLE, typename ITERABLE2 >
+void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::splice(const ITERABLE & iterable, index iOffset, ITERABLE2 & iterableRemoved, ::count count)
+{
+
+   slice(iterableRemoved, iOffset, count);
+
+   remove(iOffset, count);
+
+   insert_at(iOffset, iterable);
+
+}
+
+
+
+
+template < typename TYPE >
+::file::ostream & operator << (::file::ostream & ostream, const array < TYPE > & a)
+{
+   ostream.write_arbitrary(a.m_nSize);
+   for (int32_t i = 0; i < a.get_size(); i++)
+   {
+      ostream << a.element_at(i);
+   }
+   return ostream;
+}
+
+
+template < typename TYPE >
+::file::istream & operator >> (::file::istream & istream, array < TYPE > & a)
+{
+
+   if (istream.fail())
+   {
+
+      return istream;
+
+   }
+
+   ::count iSize;
+
+   istream.read_arbitrary(iSize);
+
+   if (istream.fail())
+   {
+
+      return istream;
+
+   }
+
+   ::count cOldSize = a.get_size();
+
+   a.set_size(cOldSize + iSize);
+
+   ::count cNewSize = a.get_size();
+
+   for (int32_t i = cOldSize; i < cNewSize; i++)
+   {
+
+      istream >> a.element_at(i);
+
+      if (istream.fail())
+      {
+
+         return istream;
+
+      }
+
+   }
+
+   return istream;
+
+}
 
 

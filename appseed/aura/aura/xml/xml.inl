@@ -104,3 +104,77 @@ namespace xml
 
 
 
+
+
+
+template < typename TYPE >
+inline ::xml::input_tree & operator >> (::xml::input_tree & xmlif, array < TYPE > & array)
+{
+
+   var varCount;
+
+   xmlif.import_node("count", varCount);
+
+   TYPE type;
+
+   array.set_size(varCount.int64());
+
+   for (index i = 0; i < varCount.int32(); i++)
+   {
+
+      xmlif.import_streamable("point" + str::from(i), array[i]);
+
+   }
+
+   return xmlif;
+
+}
+
+
+template < typename TYPE >
+inline ::xml::output_tree & operator << (::xml::output_tree & xmlof, array < TYPE > & array)
+{
+
+   xmlof.export_node("count", array.get_size());
+
+   for (index i = 0; i < array.get_count(); i++)
+   {
+
+      xmlof.export_streamable("point" + str::from(i), array[i]);
+
+   }
+
+   return xmlof;
+
+}
+
+
+
+
+inline ::xml::input_tree & operator >> (::xml::input_tree & xmlif, POINT & pt)
+{
+
+   pt.x = xmlif.attr("x");
+
+   pt.y = xmlif.attr("y");
+
+   return xmlif;
+
+}
+
+
+template < typename TYPE >
+inline ::xml::output_tree & operator << (::xml::output_tree & xmlof, const POINT & pt)
+{
+
+   xmlof.set_attr("x", pt.x);
+
+   xmlof.set_attr("y", pt.x);
+
+   return xmlof;
+
+}
+
+
+
+

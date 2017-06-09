@@ -1574,6 +1574,7 @@ inline bool CLASS_DECL_AURA operator>(char ch                        , const str
 inline bool CLASS_DECL_AURA operator>(unichar ch                        , const string & str  )   {
    return str  < ch  ;
 }
+
 inline bool CLASS_DECL_AURA operator>(int32_t i                       , const string & str  )   {
    return str  < i   ;
 }

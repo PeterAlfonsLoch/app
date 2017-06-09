@@ -547,8 +547,8 @@ namespace draw2d
 
       wingdi_font_enum fonts(stra, csa, bRaster, bTrueType, bOther);
 
-      stra.quick_sort([&](index i1, index i2) {
-         csa.swap(i1, i2);
+      stra.swap_quick_sort_ci([&](auto & i1, auto & i2) {
+         csa.swap(stra.index_of(i1), stra.index_of(i2));
       });
 
    }

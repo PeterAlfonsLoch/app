@@ -177,7 +177,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
 int BaseMenuCentral::CommandToImage(id id)
 {
    int iImage;
-   if(m_mapCommandToImage.Lookup(id, iImage))
+   if(m_mapCommandToImage.lookup(id, iImage))
    {
       return iImage;
    }
@@ -190,7 +190,7 @@ int BaseMenuCentral::CommandToImage(id id)
 id BaseMenuCentral::ImageToCommand(int iImage)
 {
    id id;
-   if(m_mapImageToCommand.Lookup(iImage, id))
+   if(m_mapImageToCommand.lookup(iImage, id))
    {
       return id;
    }

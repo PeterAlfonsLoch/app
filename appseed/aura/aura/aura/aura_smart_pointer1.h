@@ -144,7 +144,7 @@ public:
    }
 #endif
 
-   void release();
+   int64_t release();
    inline T * detach();
 
 

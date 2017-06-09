@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      comparable_array < sp(::user::impact_system) >  m_templateptra;
+      array < sp(::user::impact_system) >  m_templateptra;
 
 
       static const char gen_ShellOpenFmt[];

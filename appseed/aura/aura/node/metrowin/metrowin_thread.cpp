@@ -64,8 +64,8 @@ namespace core
 //{
 //
 //
-////   comparable_array < HTHREAD > thread::s_haThread;
-//  // comparable_array < ::thread * > thread::s_threadptra;
+////   array < HTHREAD > thread::s_haThread;
+//  // array < ::thread * > thread::s_threadptra;
 //
 //
 ///*

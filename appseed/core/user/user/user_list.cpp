@@ -6358,7 +6358,7 @@ namespace user
       if (m_pcolumn->m_bIcon)
       {
          visual::icon * picon;
-         if (m_pcolumn->m_mapIcon.Lookup((int32_t)m_iImage, picon))
+         if (m_pcolumn->m_mapIcon.lookup((int32_t)m_iImage, picon))
          {
             m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             return m_pgraphics->DrawIcon(m_rectImage.top_left(), picon) != FALSE;

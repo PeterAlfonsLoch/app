@@ -77,7 +77,7 @@ namespace user
    ::user::document * form_callback::get_form_document(const string & strId)
    {
 
-      auto passoc = m_pmapform->PLookup(strId);
+      auto passoc = m_pmapform->find_first(strId);
 
       if(passoc == NULL)
          return NULL;

@@ -120,7 +120,7 @@ namespace sockets
          {
             single_lock lock(&Session.sockets().m_mutexResolvCache, true);
             string result;
-            if(Session.sockets().m_resolvcache[m_query].Lookup(m_data, result))
+            if(Session.sockets().m_resolvcache[m_query].lookup(m_data, result))
             {
                if (time(NULL) - Session.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {

@@ -509,3 +509,111 @@ string module_path_from_pid(uint32_t pid)
 //else
 //RaiseLastOSError;
 //end;
+
+
+
+CLASS_DECL_AURA bool are_dlls_in_use(uint32_t processid, const stringa & straDll)
+{
+
+   HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
+
+   MODULEENTRY32 me32;
+
+   bool bFound = false;
+
+   hModuleSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, processid);
+
+   if (hModuleSnap == INVALID_HANDLE_VALUE)
+   {
+
+      return false;
+
+   }
+
+   me32.dwSize = sizeof(MODULEENTRY32);
+
+   if (!Module32First(hModuleSnap, &me32))
+   {
+
+      ::CloseHandle(hModuleSnap);
+
+      return false;
+
+   }
+
+   stringa straDllSuffixes;
+
+   straDllSuffixes.prefix(straDll,  "\\");
+
+   do
+   {
+
+      if (straDllSuffixes.any_suffixes_ci(me32.szModule) || straDll.contains_ci(me32.szModule))
+      {
+
+         bFound = true;
+
+         break;
+
+      }
+
+   } while (Module32Next(hModuleSnap, &me32));
+
+   ::CloseHandle(hModuleSnap);
+
+   return bFound;
+
+}
+
+
+CLASS_DECL_AURA bool are_dlls_in_use(const stringa & straDll)
+{
+
+   HANDLE hProcessSnap;
+
+   PROCESSENTRY32 pe32;
+
+   hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+
+   if (hProcessSnap == INVALID_HANDLE_VALUE)
+   {
+
+      return false;
+
+   }
+
+   pe32.dwSize = sizeof(PROCESSENTRY32);
+
+   if (!Process32First(hProcessSnap, &pe32))
+   {
+
+      ::CloseHandle(hProcessSnap);
+
+      return false;
+
+   }
+
+   bool bUsing = false;
+
+   do
+   {
+
+      if (are_dlls_in_use(pe32.th32ProcessID, straDll))
+      {
+
+         bUsing = true;
+
+         break;
+
+      }
+
+   } while (Process32Next(hProcessSnap, &pe32));
+
+   ::CloseHandle(hProcessSnap);
+
+   return bUsing;
+
+}
+
+
+

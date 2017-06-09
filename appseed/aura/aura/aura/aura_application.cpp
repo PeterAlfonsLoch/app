@@ -609,10 +609,10 @@ namespace aura
 
       }
 
-      if (m_stringtableStd.Lookup(strTable, pmap))
+      if (m_stringtableStd.lookup(strTable, pmap))
       {
 
-         if (pmap->Lookup(strString, str))
+         if (pmap->lookup(strString, str))
          {
 
             return true;
@@ -620,10 +620,10 @@ namespace aura
          }
 
       }
-      else if (m_stringtable.Lookup(strTable, pmap))
+      else if (m_stringtable.lookup(strTable, pmap))
       {
 
-         if (pmap->Lookup(strString, str))
+         if (pmap->lookup(strString, str))
          {
 
             return true;
@@ -707,7 +707,7 @@ namespace aura
    bool application::app_map_lookup(const char * psz, ::aura::application * & p)
    {
 
-      return m_appmap.Lookup(psz, p) != FALSE;
+      return m_appmap.lookup(psz, p) != FALSE;
 
    }
 
@@ -782,8 +782,8 @@ namespace aura
       string                           m_strTopic;
       string                           m_strCounterTopic;
       oswindow                         m_hwnd;
-      comparable_array < oswindow >    m_hwndaTopic;
-      comparable_array < oswindow >    m_hwndaCounterTopic;
+      array < oswindow >    m_hwndaTopic;
+      array < oswindow >    m_hwndaCounterTopic;
 
    };
 

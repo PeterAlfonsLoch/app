@@ -301,7 +301,7 @@ LPVOID WINAPI tls_get_value(DWORD dwIndex)
 //
 //      if(allthreaddata->is_empty())
 //         return NULL;
-//      auto ppair = allthreaddata->PLookup((IDTHREAD)hthread);
+//      auto ppair = allthreaddata->find_first((IDTHREAD)hthread);
 //
 //      if(ppair == NULL)
 //         return NULL;
@@ -573,7 +573,7 @@ void * __thread_get_data(IDTHREAD hthread,uint32_t dwIndex)
 
       }
 
-      auto ppair = allthreaddata->PLookup((IDTHREAD)hthread);
+      auto ppair = allthreaddata->find_first((IDTHREAD)hthread);
 
       if(ppair == NULL)
          return NULL;

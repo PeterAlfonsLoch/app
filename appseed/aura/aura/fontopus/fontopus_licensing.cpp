@@ -12,24 +12,35 @@ namespace fontopus
    {
    }
 
+
    bool licensing::has(const char * pszId, bool bInteractive)
    {
+      
       class info info;
-      if(m_mapInfo.Lookup(pszId, info))
+
+      if(m_mapInfo.lookup(pszId, info))
       {
+
          return info.m_bLicensed;
+
       }
       else
       {
+
          return check(pszId, bInteractive);
+
       }
+
    }
+
 
    bool licensing::check(const char * pszId, bool bInteractive)
    {
 
       class info info;
-      m_mapInfo.Lookup(pszId, info);
+
+      m_mapInfo.lookup(pszId, info);
+
       info.m_strId = pszId;
 
       bool bLicensed = false;

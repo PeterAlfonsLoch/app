@@ -24,21 +24,33 @@ namespace lemon
 
    namespace map
    {
-      template <class MAP >
-      MAP & copy(MAP & m,const MAP & attribmap)
+      
+      template < class MAP, class MAP2 >
+      MAP & copy(MAP & m,const MAP2 & map2)
       {
-         if(&m != &attribmap)
+
+         if((void *) &m != (void *)&map2)
          {
+
             m.remove_all();
-            m.m_nBlockSize = attribmap.m_nBlockSize;
-            const typename MAP::pair * ppair = attribmap.PGetFirstAssoc();
-            while(ppair != NULL)
+
+            m.m_nBlockSize = map2.m_nBlockSize;
+
+            auto it = map2.begin();
+
+            while(it != map2.end())
             {
-               m.set_at(ppair->m_element1,ppair->m_element2);
-               ppair  = attribmap.PGetNextAssoc(ppair);
+
+               m.set_at(it->m_element1,it->m_element2);
+
+               it++;
+
             }
+
          }
+
          return m;
+
       }
 
    } // namespace map

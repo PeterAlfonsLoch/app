@@ -98,7 +98,7 @@ template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_a (T b) const
 {
    T a;
-   if(m_ba.Lookup(b, a))
+   if(m_ba.lookup(b, a))
       return a;
    return m_iEmptyA;
 }
@@ -108,7 +108,7 @@ template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_b (T a) const
 {
    T b;
-   if(m_ab.Lookup(a, b))
+   if(m_ab.lookup(a, b))
       return b;
    return m_iEmptyB;
 }
@@ -356,7 +356,7 @@ template < class T, class T_to_T >
 T biunique < T, T_to_T > ::add_unique(T b)
 {
    T a;
-   if(m_ba.Lookup(b, a))
+   if(m_ba.lookup(b, a))
       return a;
    a = get_max_a() + 1;
    set(a, b);
@@ -384,7 +384,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_a(T a) const
 {
    T b;
-   return m_ab.Lookup(a, b) != FALSE;
+   return m_ab.lookup(a, b) != FALSE;
 }
 
 
@@ -392,7 +392,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_b(T b) const
 {
    T a;
-   return m_ba.Lookup(b, a) != FALSE;
+   return m_ba.lookup(b, a) != FALSE;
 }
 
 template < class T, class T_to_T >
@@ -505,14 +505,18 @@ void biunique < T, T_to_T > ::read(::file::istream & istream)
       istream >> m_iEmptyB;
       if(m_bBiunivoca)
       {
+         
          T_to_T ab;
+         
          istream >> ab;
-         typename T_to_T::pair * ppair = ab.PGetFirstAssoc();
-         while(ppair != NULL)
+         
+         for(auto & item : ab)
          {
-            set(ppair->m_element1, ppair->m_element2);
-            ppair = ab.PGetNextAssoc(ppair);
+            
+            set(item.m_element1, item.m_element2);
+
          }
+
       }
       else
       {
@@ -536,31 +540,46 @@ void biunique < T, T_to_T > ::read(::file::istream & istream)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::calc_max_a()
 {
-   typename T_to_T::pair * ppair =
-      m_ab.PGetFirstAssoc();
+   
    T iMaxA = -1;
-   while(ppair != NULL)
+   
+   for(auto & item : m_ab)
    {
-      if(ppair->m_element1 > iMaxA)
-         iMaxA = ppair->m_element1;
-      ppair = m_ab.PGetNextAssoc(ppair);
+
+      if (item.m_element1 > iMaxA)
+      {
+
+         iMaxA = item.m_element1;
+
+      }
+
    }
+
    return iMaxA;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::calc_max_b()
 {
-   typename T_to_T::pair * ppair =
-      m_ba.PGetFirstAssoc();
+
    T iMaxB = -1;
-   while(ppair != NULL)
+
+   for (auto & item : m_ba)
    {
-      if(ppair->m_element1 > iMaxB)
-         iMaxB = ppair->m_element1;
-      ppair = m_ba.PGetNextAssoc(ppair);
+
+      if (item.m_element1 > iMaxB)
+      {
+
+         iMaxB = item.m_element1;
+
+      }
+
    }
+
    return iMaxB;
+
 }
 
 

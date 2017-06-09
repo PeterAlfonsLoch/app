@@ -153,7 +153,7 @@ namespace file_watcher
 	//--------
 	void os_file_watcher::remove_watch(id watchid)
 	{
-		WatchMap::pair * ppair = m_watchmap.PLookup(watchid);
+		WatchMap::pair * ppair = m_watchmap.find_first(watchid);
 
 		if(ppair == NULL)
 			return;

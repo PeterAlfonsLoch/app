@@ -609,7 +609,7 @@ int32_t GetWorkItemPriority(int32_t nPriority)
 //   synch_lock lock(g_pmutexPendingThreadsLock);
 //
 //   // Look up the requested thread.
-//   map < HTHREAD,HTHREAD,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().PLookup(hThread);
+//   map < HTHREAD,HTHREAD,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().find_first(hThread);
 //
 //   if(threadInfo == NULL)
 //   {
@@ -643,7 +643,7 @@ int_bool WINAPI SetThreadPriority(HTHREAD hThread,int32_t nCa2Priority)
    //synch_lock lock(g_pmutexPendingThreadsLock);
 
    //// Look up the requested thread.
-   //map < HTHREAD,HTHREAD,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().PLookup(hThread);
+   //map < HTHREAD,HTHREAD,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().find_first(hThread);
 
    //if(threadInfo == NULL)
    //{
@@ -678,7 +678,7 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
    //synch_lock lock(g_pmutexPendingThreadsLock);
 
    //// Look up the requested thread.
-   //map < HTHREAD,HTHREAD,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().PLookup(hthread);
+   //map < HTHREAD,HTHREAD,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().find_first(hthread);
 
    //if(threadInfo == NULL)
    //{
@@ -1064,7 +1064,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //
 //   synch_lock mlThreadId(g_pmutexThreadIdLock);
 //
-//   map < HTHREAD,HTHREAD,DWORD,DWORD >::pair * p = thread_id_map().PLookup(Thread);
+//   map < HTHREAD,HTHREAD,DWORD,DWORD >::pair * p = thread_id_map().find_first(Thread);
 //
 //   if(p == NULL)
 //      return -1;
@@ -1079,7 +1079,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //
 //   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
 //
-//   map < DWORD,DWORD,HTHREAD,HTHREAD >::pair * p = thread_id_handle_map().PLookup(dw);
+//   map < DWORD,DWORD,HTHREAD,HTHREAD >::pair * p = thread_id_handle_map().find_first(dw);
 //
 //   if(p == NULL)
 //      return NULL;

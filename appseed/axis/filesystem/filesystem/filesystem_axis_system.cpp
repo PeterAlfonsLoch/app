@@ -73,7 +73,7 @@ namespace file
       //      stringa straSeparator;
       //      straSeparator.add("/");
       //      straSeparator.add("\\");
-      //      straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
+      //      straParam.add_shortest_tokens(lpcsz, straSeparator, FALSE);
       //      if(straParam.get_count() > 0)
       //      {
       //         strsize iFind = straParam[0].find(':');
@@ -555,7 +555,7 @@ restart:
       //   stringa straSeparator;
       //   straSeparator.add("\\");
       //   straSeparator.add("/");
-      //   stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
+      //   stra.add_shortest_tokens(lpcszPath, straSeparator, FALSE);
       //}
 
       //class system::path & system::path()

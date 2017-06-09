@@ -59,6 +59,15 @@ namespace xml
       return export_node(lpcszName, m_varexchange);
    }
 
+
+   void output_tree::attr(const char * lpcszName, const var & varValue)
+   {
+
+      m_pnode->attr(lpcszName) = varValue;
+
+   }
+
+
    void output_tree::set_attr(const char * lpcszName, const char * lpcszValue)
    {
       m_pnode->set_attr(lpcszName, lpcszValue);

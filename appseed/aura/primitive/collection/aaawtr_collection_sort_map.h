@@ -361,16 +361,16 @@ public:
    bool is_empty() const;
    bool empty() const;
 
-   // Lookup
-   bool Lookup(ARG_KEY key, VALUE& rValue) const;
-   const node *PLookup(ARG_KEY key) const;
-   node *PLookup(ARG_KEY key);
+   // lookup
+   bool lookup(ARG_KEY key, VALUE& rValue) const;
+   const node *find_first(ARG_KEY key) const;
+   node *find_first(ARG_KEY key);
 
 
    VALUE * pget(ARG_KEY key);
 
    // Operations
-   // Lookup and add if not there
+   // lookup and add if not there
    VALUE & operator[](ARG_KEY key);
 
    // add a new (key, value) node
@@ -395,17 +395,17 @@ public:
    bool contains(const KEY & t) const;
 
    // iterating all (key, value) nodes
-   POSITION get_start_position() const;
+//   POSITION get_start_position() const;
 
-   const node *PGetFirstAssoc() const;
-   node *PGetFirstAssoc();
+   //const node *PGetFirstAssoc() const;
+   //node *PGetFirstAssoc();
 
-   void get_next_assoc(POSITION& rNextPosition, KEY& rKey, VALUE& rValue) const;
+   //void get_next_assoc(POSITION& rNextPosition, KEY& rKey, VALUE& rValue) const;
 
-   const node *PGetNextAssoc(const node * pnode) const;
-   node *PGetNextAssoc(const node * pnode);
-   const node *PGetPrevAssoc(const node * pnode) const;
-   node *PGetPrevAssoc(const node * pnode);
+   //const node *PGetNextAssoc(const node * pnode) const;
+   //node *PGetNextAssoc(const node * pnode);
+   //const node *PGetPrevAssoc(const node * pnode) const;
+   //node *PGetPrevAssoc(const node * pnode);
 
    VALUE get(ARG_KEY argkey, ARG_VALUE valueDefault);
 
@@ -544,31 +544,31 @@ inline void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::s
 }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-inline POSITION sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_start_position() const
-{
+//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
+//inline POSITION sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_start_position() const
+//{
+//
+//   return (m_pnode == 0) ? NULL : BEFORE_START_POSITION;
+//
+//}
+//
 
-   return (m_pnode == 0) ? NULL : BEFORE_START_POSITION;
-
-}
-
-
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::PGetFirstAssoc() const
-{
-
-   return min();
-
-}
+//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
+//const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::PGetFirstAssoc() const
+//{
+//
+//   return min();
+//
+//}
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::PGetFirstAssoc()
-{
-
-   return min();
-
-}
+//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
+//typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::PGetFirstAssoc()
+//{
+//
+//   return min();
+//
+//}
 
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
@@ -639,10 +639,10 @@ sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::~sort_map()
 
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::Lookup(ARG_KEY key, VALUE& rValue) const
+bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::lookup(ARG_KEY key, VALUE& rValue) const
 {
 
-   node * passoc = PLookup(key);
+   node * passoc = find_first(key);
 
    if (passoc == NULL)
       return false;
@@ -654,7 +654,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::Lookup(A
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::PLookup(ARG_KEY key) const
+const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node* sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::find_first(ARG_KEY key) const
 {
 
    index i;
@@ -668,7 +668,7 @@ const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >
 
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PLookup(ARG_KEY key)
+typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::find_first(ARG_KEY key)
 {
 
    return find_node(key);
@@ -680,7 +680,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 VALUE * sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::pget(ARG_KEY key)
 {
 
-   node * p = PLookup(key);
+   node * p = find_first(key);
 
    if(p == NULL)
       return NULL;
@@ -696,14 +696,14 @@ VALUE& sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::operat
 
    ASSERT_VALID(this);
 
-   node * pnode = PLookup(key);
+   node * pnode = find_first(key);
 
    if(pnode == NULL)
    {
 
       add_pair(key, VALUE());
 
-      pnode = PLookup(key);
+      pnode = find_first(key);
 
       ASSERT(pnode != NULL);
 
@@ -1135,7 +1135,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 ::count sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::count(const KEY & key) const
 {
 
-   return this->PLookup(key) != NULL ? 1 : 0;
+   return this->find_first(key) != NULL ? 1 : 0;
 
 }
 
@@ -1143,7 +1143,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::has(const KEY & key) const
 {
 
-   return this->PLookup(key) != NULL;
+   return this->find_first(key) != NULL;
 
 }
 
@@ -1151,7 +1151,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::contains(const KEY & key) const
 {
 
-   return this->PLookup(key) != NULL;
+   return this->find_first(key) != NULL;
 
 }
 
@@ -1183,35 +1183,35 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase(it
 }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_next_assoc(POSITION& rNextPosition, KEY& rKey, VALUE& rValue) const
-{
-
-   ASSERT_VALID(this);
-
-   ENSURE(this->m_ptra.get_count() > 0);  // never call on is_empty sort_map
-
-   index iRet = (index) rNextPosition;
-
-   if (iRet == (index) BEFORE_START_POSITION)
-   {
-      iRet = 1;
-   }
-
-   // find next association
-   index iNext = iRet + 1;
-   if(iNext > this->m_ptra.get_count())
-   {
-
-   }
-
-   rNextPosition  = (POSITION) iNext;
-
-   // fill in return data
-   rKey           = this->m_ptra[iRet - 1]->m_element1;
-   rValue         = this->m_ptra[iRet - 1]->m_element2;
-
-}
+//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
+//void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_next_assoc(POSITION& rNextPosition, KEY& rKey, VALUE& rValue) const
+//{
+//
+//   ASSERT_VALID(this);
+//
+//   ENSURE(this->m_ptra.get_count() > 0);  // never call on is_empty sort_map
+//
+//   index iRet = (index) rNextPosition;
+//
+//   if (iRet == (index) BEFORE_START_POSITION)
+//   {
+//      iRet = 1;
+//   }
+//
+//   // find next association
+//   index iNext = iRet + 1;
+//   if(iNext > this->m_ptra.get_count())
+//   {
+//
+//   }
+//
+//   rNextPosition  = (POSITION) iNext;
+//
+//   // fill in return data
+//   rKey           = this->m_ptra[iRet - 1]->m_element1;
+//   rValue         = this->m_ptra[iRet - 1]->m_element2;
+//
+//}
 
 template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
 const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
@@ -1336,51 +1336,51 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::prev(const typenam
 }
 
 
-template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
-const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
-sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetNextAssoc(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* pnode) const
-{
-
-   return next(pnode);
-
-}
-
-template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
-typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
-sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetNextAssoc(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* pnode)
-{
-
-
-   return next(pnode);
-
-}
-
-
-template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
-const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
-sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetPrevAssoc(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* pnode) const
-{
-
-   return prev(pnode);
-
-}
+//template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
+//const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
+//sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetNextAssoc(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* pnode) const
+//{
+//
+//   return next(pnode);
+//
+//}
+//
+//template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
+//typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
+//sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetNextAssoc(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* pnode)
+//{
+//
+//
+//   return next(pnode);
+//
+//}
 
 
-template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
-typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
-sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetPrevAssoc(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* pnode)
-{
-
-   return prev(pnode);
-
-}
+//template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
+//const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
+//sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetPrevAssoc(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* pnode) const
+//{
+//
+//   return prev(pnode);
+//
+//}
+//
+//
+//template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
+//typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
+//sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetPrevAssoc(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node* pnode)
+//{
+//
+//   return prev(pnode);
+//
+//}
 
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
 VALUE sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey > ::
    get(ARG_KEY argkey, ARG_VALUE valueDefault)
 {
-   node * pnode = PLookup(argkey);
+   node * pnode = find_first(argkey);
    if(pnode == NULL)
       return valueDefault;
    else
@@ -1622,17 +1622,17 @@ public:
       T * m_element2;
    };
 
-   bool Lookup(string key, T * & rValue) const
+   bool lookup(string key, T * & rValue) const
    {
-      return string_to_ptr::Lookup(key, rValue);
+      return string_to_ptr::lookup(key, rValue);
    }
-   const node *PLookup(string key) const
+   const node *find_first(string key) const
    {
-      return reinterpret_cast < const sort_string_to_pointer::node * > (string_to_ptr::PLookup(key));
+      return reinterpret_cast < const sort_string_to_pointer::node * > (string_to_ptr::find_first(key));
    }
-   node *PLookup(string key)
+   node *find_first(string key)
    {
-      return reinterpret_cast < sort_string_to_pointer::node * > (string_to_ptr::PLookup(key));
+      return reinterpret_cast < sort_string_to_pointer::node * > (string_to_ptr::find_first(key));
    }
 
 
@@ -1650,7 +1650,7 @@ public:
    }
 
    // Operations
-   // Lookup and add if not there
+   // lookup and add if not there
    T * & operator[](string key)
    {
       return (T * &) string_to_ptr::operator[](key);

@@ -70,12 +70,11 @@ public:
       inline void mark_dirty()
       {
 
-         typename sort_index_map::assoc * passoc = sort_index_map::PGetFirstAssoc();
-
-         while(passoc != NULL)
+         for(auto & item : *this)
          {
-            passoc->m_element2->m_bUpdated = false;
-            passoc = passoc->m_pnext;
+            
+            item.m_element2->m_bUpdated = false;
+            
          }
 
       }

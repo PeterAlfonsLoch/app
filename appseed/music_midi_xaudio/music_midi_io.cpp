@@ -914,7 +914,7 @@ void MessageIO::OnMessageReceived(MidiInPort ^sender, MidiMessageReceivedEventAr
    create_task(Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::High,
       ref new Windows::UI::Core::DispatchedHandler([this, sender, midiMessage]()
    {
-      String^ outputString = midiMessage->Timestamp.Duration + ", " + _messageTypeMap->Lookup(midiMessage->Type);
+      String^ outputString = midiMessage->Timestamp.Duration + ", " + _messageTypeMap->lookup(midiMessage->Type);
 
       switch (midiMessage->Type)
       {

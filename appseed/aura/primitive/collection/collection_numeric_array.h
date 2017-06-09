@@ -1,6 +1,9 @@
 #pragma once
 
 
+//#include "collection_numeric_iterable.h"
+
+
 template < typename ARG_TYPE >
 index numeric_compare(ARG_TYPE t1, ARG_TYPE t2)
 {
@@ -27,20 +30,24 @@ namespace str
 
 template < typename TYPE >
 class numeric_array :
-   public comparable_raw_array < TYPE >
+   public array < TYPE, const TYPE &, ::allocator::zero < TYPE > >
 {
 public:
 
+   typedef array < TYPE, const TYPE &, ::allocator::zero < TYPE > > Iterable;
+   typedef typename Iterable::iterator iterator;
+   typedef TYPE BASE_TYPE;
+   typedef const TYPE & BASE_ARG_TYPE;
+   typedef numeric_array Container;
 
    numeric_array() {}
 
-   numeric_array(std::initializer_list < TYPE >  l):
-      comparable_raw_array < TYPE >(l)
+   numeric_array(std::initializer_list < TYPE >  l)
    {
-
+      ::iter::copy_iter(*this, l);
    }
 
-   numeric_array(::aura::application * papp) : object(papp), comparable_raw_array < TYPE > (papp) {}
+   numeric_array(::aura::application * papp) : object(papp), array < TYPE > (papp) {}
 
    numeric_array(const TYPE * pa, ::count c) :
       numeric_array()
@@ -75,11 +82,8 @@ public:
    }
 
 
-   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(numeric_array, comparable_raw_array < TYPE >)
+   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(numeric_array, array < TYPE >)
 
-   typedef TYPE BASE_TYPE;
-   typedef const TYPE & BASE_ARG_TYPE;
-   typedef comparable_raw_array < TYPE > BASE_ARRAY;
 
 
    index find_first_maximum_value();
@@ -259,7 +263,7 @@ public:
 
    numeric_array & operator = (const numeric_array & a)
    {
-      BASE_ARRAY::operator = (a);
+      ::iter::copy_iter(*this, a);
       return *this;
    }
 
@@ -272,7 +276,7 @@ public:
 
    numeric_array & move (numeric_array && a)
    {
-      BASE_ARRAY::move(::move(a));
+      Iterable::move(::move(a));
       return *this;
    }
 
@@ -1941,7 +1945,9 @@ namespace lemon
             }
          }
 
-         ca += aParam.add(a);
+         aParam.add(a);
+
+         ca += a.get_count();
 
          return ca;
 

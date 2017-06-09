@@ -61,7 +61,7 @@ namespace user
 
 
             sp(appearance)                m_pappearance;
-            comparable_array < ::user::wndfrm::frame::e_button > m_ebuttonaHide;
+            array < ::user::wndfrm::frame::e_button > m_ebuttonaHide;
 
 
             WorkSet();

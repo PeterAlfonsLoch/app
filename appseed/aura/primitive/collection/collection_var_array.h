@@ -17,7 +17,7 @@ public:
    virtual ~var_array();
 
 
-   index add(var var);
+   iterator add(var var);
    ::count add(const var_array & vara);
    ::count add_unique(const var_array & vara);
 

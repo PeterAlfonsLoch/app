@@ -78,7 +78,7 @@ public :
 	WINBOOL IsEmpty() const;
 
 	std::map<FREE_IMAGE_FORMAT, PluginNode *> m_plugin_map;
-	comparable_array <FREE_IMAGE_FORMAT> m_formata;
+	array <FREE_IMAGE_FORMAT> m_formata;
 	int m_node_count;
 };
 

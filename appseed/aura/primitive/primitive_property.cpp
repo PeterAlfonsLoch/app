@@ -1440,7 +1440,7 @@ PropertySignalObject::PropertySignalObject(class signal * psignal)
 
 
 
-string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
+string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ ) const
 {
    //   ::file::plain_text_ostream ostring;
    //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
@@ -1487,7 +1487,7 @@ string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
 void prop_id_debug(::aura::application * papp)
 {
 
-   comparable_array < ::id > idaSchema;
+   array < ::id > idaSchema;
 
    property_set set(papp);
 

@@ -268,7 +268,7 @@ namespace sockets
 {
    /** List type containing file descriptors. */
    class CLASS_DECL_AXIS socket_id_list :
-      public ::comparable_list<SOCKET>
+      public ::list<SOCKET>
    {
    };
 

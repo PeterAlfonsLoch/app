@@ -753,7 +753,7 @@ namespace datetime
 
          }
 
-         if (m_cityTimeZone.Lookup((int_ptr)pcity->m_iId, timezone) && (now - timezone.m_time) < spanTimeout)
+         if (m_cityTimeZone.lookup((int_ptr)pcity->m_iId, timezone) && (now - timezone.m_time) < spanTimeout)
          {
 
             dZone = timezone.m_dZone;

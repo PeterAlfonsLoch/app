@@ -45,7 +45,7 @@ namespace user
    view_creator_data * view_creator::get(id id)
    {
       ::user::view_creator_data * pcreatordata;
-      if(m_viewmap.Lookup(id, pcreatordata))
+      if(m_viewmap.lookup(id, pcreatordata))
       {
          return pcreatordata;
       }

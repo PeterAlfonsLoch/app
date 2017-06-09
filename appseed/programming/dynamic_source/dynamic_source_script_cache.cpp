@@ -29,7 +29,7 @@ script * script_cache::get(const char * lpcszName)
 
    single_lock sl(&m_cs, TRUE);
 
-   strsp(script)::pair * ppair = m_map.PLookup(strName);
+   strsp(script)::pair * ppair = m_map.find_first(strName);
 
    if(ppair != NULL)
       return (script *) ppair->m_element2;
@@ -57,7 +57,7 @@ script * script_cache::register_script(const char * lpcszName, script * pscript)
 
    single_lock sl(&m_cs, TRUE);
 
-   strsp(script)::pair * ppair = m_map.PLookup(strName);
+   strsp(script)::pair * ppair = m_map.find_first(strName);
 
    if(ppair != NULL)
    {

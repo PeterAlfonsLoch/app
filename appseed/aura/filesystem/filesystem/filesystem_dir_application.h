@@ -32,7 +32,7 @@ namespace file
          virtual ::file::path locale_schema(const string & pszLocale = cnull,const string & pszStyle = cnull);
          virtual ::file::patha locale_schema_matter(const string & pszLocale = cnull,const string & pszStyle = cnull,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
          virtual ::file::path matter(const ::file::path & path,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
-         virtual ::file::path matter(const ::file::patha & stra,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
+         virtual ::file::path matter_iter(const ::file::patha & stra,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
 
          virtual void   matter_ls(const ::file::path & str, ::file::patha & stra);
          virtual ::file::path matter_file(const ::file::path & path,bool bDir = false);

@@ -64,7 +64,7 @@
 //
 int32_t g_add_smallest_tokens = 0;
 //
-//void stringa::add_smallest_tokens(const char * lpcsz,stringa & straSeparator,bool bAddEmpty,bool bWithSeparator)
+//void stringa::add_shortest_tokens(const char * lpcsz,stringa & straSeparator,bool bAddEmpty,bool bWithSeparator)
 //{
 //   ::str::tokenizer strTokenizer(lpcsz);
 //   string strToken;
@@ -1296,10 +1296,10 @@ int32_t g_add_smallest_tokens = 0;
 //}
 //
 //
-//comparable_array < id > stringa::get_comparable_ida() const
+//array < id > stringa::get_comparable_ida() const
 //{
 //
-//   comparable_array < id > ida;
+//   array < id > ida;
 //
 //   for(int32_t i = 0; i < get_count(); i++)
 //   {

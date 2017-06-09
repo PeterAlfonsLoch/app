@@ -554,7 +554,7 @@ void script_manager::clear_include_matches()
 bool script_manager::include_matches_file_exists(const string & strPath)
 {
    single_lock sl(&m_mutexIncludeMatches, TRUE);
-   string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.PLookup(strPath);
+   string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.find_first(strPath);
    if(ppair != NULL)
       return ppair->m_element2;
    else
@@ -577,7 +577,7 @@ void script_manager::set_include_matches_file_exists(const string & strPath, boo
 bool script_manager::include_matches_is_dir(const string & strPath)
 {
    single_lock sl(&m_mutexIncludeMatches, TRUE);
-   string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.PLookup(strPath);
+   string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.find_first(strPath);
    if(ppair != NULL)
       return ppair->m_element2;
    else
@@ -595,7 +595,7 @@ bool script_manager::include_has_script(const string & strPath)
       return false;
 
    single_lock sl(&m_mutexIncludeHasScript, TRUE);
-   string_map < bool >::pair * ppair = m_mapIncludeHasScript.PLookup(strPath);
+   string_map < bool >::pair * ppair = m_mapIncludeHasScript.find_first(strPath);
    if(ppair != NULL)
       return ppair->m_element2;
    else
@@ -660,7 +660,7 @@ void script_manager::clear_include_matches_folder_watch::handle_file_action(::fi
    {
 
       //bool b;
-      //if (m_pmanager->m_mapIncludeHasScript.Lookup(::file::path(dir) / filename, b))
+      //if (m_pmanager->m_mapIncludeHasScript.lookup(::file::path(dir) / filename, b))
       //{
       //   m_pmanager->m_mapIncludeHasScript.remove_key(::file::path(dir) / filename);
       //}
@@ -750,7 +750,7 @@ sp(::dynamic_source::session) script_manager::get_session(const char * pszId)
 
    single_lock sl(&m_mutexSession, TRUE);
 
-   strsp(::dynamic_source::session)::pair * ppair = m_mapSession.PLookup(pszId);
+   strsp(::dynamic_source::session)::pair * ppair = m_mapSession.find_first(pszId);
 
    if (ppair != NULL)
    {
@@ -923,7 +923,7 @@ bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_i
 
    single_lock sl(&m_mutexOutLink, TRUE);
 
-   ppair = m_mapOutLink.PLookup(pszServer);
+   ppair = m_mapOutLink.find_first(pszServer);
 
    ::sockets::link_out_socket * psocket = NULL;
 
@@ -971,7 +971,7 @@ bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_i
    single_lock sl2(&m_mutexInLink, TRUE);
 
    map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
-      m_mapInLink.PLookup(poutsocket);
+      m_mapInLink.find_first(poutsocket);
 
    {
 
@@ -1003,7 +1003,7 @@ bool script_manager::is_online(const char * pszServer)
 
    single_lock sl(&m_mutexTunnel, TRUE);
 
-   string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.PLookup(pszServer);
+   string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.find_first(pszServer);
 
    if(ppair == NULL)
       return false;
@@ -1054,7 +1054,7 @@ size script_manager::get_image_size(const ::file::path & strFile)
 
    ::size size;
 
-   if(m_mapImageSize.Lookup(strFile, size))
+   if(m_mapImageSize.lookup(strFile, size))
       return size;
 
    sl.unlock();
@@ -1267,7 +1267,7 @@ bool script_manager::should_build(const ::file::path & strScriptPath)
 
    bool bShouldBuild = false;
 
-   if(!m_mapShouldBuild.Lookup(strScriptPath, bShouldBuild))
+   if(!m_mapShouldBuild.lookup(strScriptPath, bShouldBuild))
       return false;
 
    return bShouldBuild;

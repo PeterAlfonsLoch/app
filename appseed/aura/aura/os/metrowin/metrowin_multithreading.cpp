@@ -271,7 +271,7 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 //   synch_lock lock(g_pmutexPendingThreadsLock);
 //
 //   // Look up the requested thread.
-//   auto threadInfo = pendingThreads().PLookup(hThread);
+//   auto threadInfo = pendingThreads().find_first(hThread);
 //
 //   if (threadInfo == NULL)
 //   {
@@ -306,7 +306,7 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 //   synch_lock lock(g_pmutexPendingThreadsLock);
 //
 //   // Look up the requested thread.
-//   auto threadInfo = pendingThreads().PLookup(hThread);
+//   auto threadInfo = pendingThreads().find_first(hThread);
 //
 //   if (threadInfo == NULL)
 //   {
@@ -550,7 +550,7 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 //   synch_lock lock(g_pmutexPendingThreadsLock);
 //
 //   // Look up the requested thread.
-//   auto threadInfo = pendingThreads().PLookup(hThread);
+//   auto threadInfo = pendingThreads().find_first(hThread);
 //
 //   if (threadInfo == NULL)
 //   {
@@ -819,7 +819,7 @@ void attach_thread_input_to_main_thread(int_bool bAttach)
 //
 //   synch_lock mlThreadId(g_pmutexThreadIdLock);
 //
-//   auto p = thread_id_map().PLookup(Thread);
+//   auto p = thread_id_map().find_first(Thread);
 //
 //   if(p == NULL)
 //      return NULL;
@@ -865,7 +865,7 @@ void _on_aura_thread_detach()
 //
 //   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
 //
-//   auto p = thread_id_handle_map().PLookup(dw);
+//   auto p = thread_id_handle_map().find_first(dw);
 //
 //   if(p == NULL)
 //      return NULL;

@@ -284,6 +284,13 @@ public:
 
    }
 
+   operator const string & () const
+   {
+
+      return get_string();
+
+   }
+
 //   operator ::file::path() const { return get_file_path(); }
 
    operator ::datetime::file_time() const;
@@ -340,7 +347,7 @@ public:
    var & operator = (const property & prop);
    var & operator = (const var & var);
    var & operator = (const int_array & ia);
-   var & operator = (const stringa & stra);
+   var & operator = (const array < string > & stra);
    var & operator = (const class memory & memory);
    var & operator = (const var_array & vara);
    var & operator = (const property_set & propset);

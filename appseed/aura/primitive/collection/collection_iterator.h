@@ -36,5 +36,118 @@ struct iterator_info < const TYPE * >
    typedef const TYPE &                            REFERENCE;
 };
 
+/*
+
+template < typename TYPE >
+class base_iterator
+{
+public:
+
+   typedef TYPE BASE_TYPE;
 
 
+   bool operator != (const base_iterator & it)
+   {
+
+      return !operator==(it);
+
+   }
+
+
+   base_iterator operator ++(int)
+   {
+
+      base_iterator it = *this;
+      operator ++();
+      return it;
+
+   }
+
+
+   base_iterator operator --(int)
+   {
+
+      base_iterator it = *this;
+      operator --();
+      return it;
+
+   }
+
+
+   TYPE & operator * ()
+   {
+
+   return *(operator->());
+
+   }
+
+   TYPE & operator * () const
+   {
+
+   return *(operator->());
+
+   }
+
+
+
+
+};
+
+
+template < typename TYPE >
+class const_base_iterator :
+   public base_iterator < TYPE >
+{
+public:
+
+
+   typedef const TYPE BASE_TYPE;
+
+
+   bool operator != (const base_iterator & it)
+   {
+
+   return !operator==(it);
+
+   }
+
+
+   base_iterator operator ++(int)
+   {
+
+   base_iterator it = *this;
+   operator ++();
+   return it;
+
+   }
+
+
+   base_iterator operator --(int)
+   {
+
+   base_iterator it = *this;
+   operator --();
+   return it;
+
+   }
+
+
+   const TYPE & operator * ()
+   {
+
+      return *(operator->());
+
+   }
+
+   const TYPE & operator * () const
+   {
+
+      return *(operator->());
+
+   }
+
+
+
+};
+
+*/

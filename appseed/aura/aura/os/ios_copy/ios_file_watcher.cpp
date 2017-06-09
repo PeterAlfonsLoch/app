@@ -387,7 +387,7 @@ namespace file_watcher
 
       synch_lock sl(m_pmutex);
 
-		watch_map::pair * ppair = m_watchmap.PLookup((id &)watchid);
+		watch_map::pair * ppair = m_watchmap.find_first((id &)watchid);
 
 		if(ppair == NULL)
 			return;
@@ -403,7 +403,7 @@ namespace file_watcher
    
 	string os_file_watcher::watch_path(id watchid)
 	{
-      return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
+      return m_watchmap.find_first(watchid)->m_element2->m_strDirName;
       
 	
 	}

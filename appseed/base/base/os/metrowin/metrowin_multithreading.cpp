@@ -67,7 +67,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //}
 //
 //// Thread local storage.
-//typedef comparable_array < void *, void *, array < void *, void *, ::constructor::zero < void * > > > ThreadLocalData;
+//typedef array < void *, void *, array < void *, void *, ::constructor::zero < void * > > > ThreadLocalData;
 //
 //
 //
@@ -228,7 +228,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //   synch_lock lock(g_pmutexPendingThreadsLock);
 //
 //   // Look up the requested thread.
-//   auto threadInfo = pendingThreads().PLookup(hThread);
+//   auto threadInfo = pendingThreads().find_first(hThread);
 //
 //   if (threadInfo == NULL)
 //   {
@@ -263,7 +263,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //   synch_lock lock(g_pmutexPendingThreadsLock);
 //
 //   // Look up the requested thread.
-//   auto threadInfo = pendingThreads().PLookup(hThread);
+//   auto threadInfo = pendingThreads().find_first(hThread);
 //
 //   if (threadInfo == NULL)
 //   {
@@ -503,7 +503,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //   synch_lock lock(g_pmutexPendingThreadsLock);
 //
 //   // Look up the requested thread.
-//   auto threadInfo = pendingThreads().PLookup(hThread);
+//   auto threadInfo = pendingThreads().find_first(hThread);
 //
 //   if (threadInfo == NULL)
 //   {
@@ -519,7 +519,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //
 //
 //mutex * os_thread::s_pmutex = NULL;
-//comparable_raw_array < os_thread * >::type * os_thread::s_pptra = NULL;
+//array < os_thread * >::type * os_thread::s_pptra = NULL;
 //__declspec(thread) os_thread * t_posthread = NULL;
 //
 //os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)
@@ -730,7 +730,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //
 //   synch_lock mlThreadId(g_pmutexThreadIdLock);
 //
-//   auto p = thread_id_map().PLookup(Thread);
+//   auto p = thread_id_map().find_first(Thread);
 //
 //   if(p == NULL)
 //      return NULL;
@@ -745,7 +745,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //
 //   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
 //
-//   auto p = thread_id_handle_map().PLookup(dw);
+//   auto p = thread_id_handle_map().find_first(dw);
 //
 //   if(p == NULL)
 //      return NULL;

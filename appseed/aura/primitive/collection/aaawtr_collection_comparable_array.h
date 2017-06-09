@@ -2,24 +2,24 @@
 
 
 
-template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_eq_array < TYPE,ARG_TYPE > >
-class comparable_array :
+template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = array < TYPE,ARG_TYPE > >
+class array :
    public ARRAY_TYPE
 {
 public:
 
 
    typedef ARRAY_TYPE BASE_ARRAY;
-   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_array, ARRAY_TYPE)
+   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(array, ARRAY_TYPE)
 
-   comparable_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
-   comparable_array() {}
-   comparable_array(::aura::application * papp) : object(papp), ARRAY_TYPE(papp) {}
-   comparable_array(const comparable_array & array)
+   array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
+   array() {}
+   array(::aura::application * papp) : object(papp), ARRAY_TYPE(papp) {}
+   array(const array & array)
    {
       operator = (array);
    }
-   comparable_array(comparable_array && array)
+   array(array && array)
    {
       move(::move(array));
    }
@@ -27,17 +27,17 @@ public:
    //void quick_sort(bool bAsc = true);
 
 
-   comparable_array & operator = (const comparable_array & array)
+   array & operator = (const array & array)
    {
       BASE_ARRAY::operator = (array);
       return *this;
    }
-   comparable_array & operator = (comparable_array && array)
+   array & operator = (array && array)
    {
       move(::move(array));
       return *this;
    }
-   comparable_array & move(comparable_array && array)
+   array & move(array && array)
    {
       BASE_ARRAY::move(::move(array));
       return *this;
@@ -49,16 +49,16 @@ public:
 
 
 //template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-//comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-//comparable_array()
+//array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//array()
 //{
 //
 //}
 //
 //
 //template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-//comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-//comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
+//array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//array(const array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
 //{
 //
 //   this->ARRAY_TYPE::operator = (a);
@@ -66,8 +66,8 @@ public:
 //}
 //
 //template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-//comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
-//comparable_array(comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
+//array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
+//array(array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
 //{
 //
 //   move(::move(a));
@@ -76,8 +76,8 @@ public:
 //
 //
 //template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-//comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-//operator = (const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
+//array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//operator = (const array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
 //{
 //
 //   this->ARRAY_TYPE::operator = (a);
@@ -86,8 +86,8 @@ public:
 //}
 //
 //template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-//comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
-//operator = (comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
+//array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
+//operator = (array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
 //{
 //
 //   return move(::move(a));
@@ -96,8 +96,8 @@ public:
 //
 //
 //template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-//comparable_array<  TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_array<  TYPE, ARG_TYPE, ARRAY_TYPE>::
-//move(comparable_array<  TYPE, ARG_TYPE, ARRAY_TYPE> && a)
+//array<  TYPE, ARG_TYPE, ARRAY_TYPE> & array<  TYPE, ARG_TYPE, ARRAY_TYPE>::
+//move(array<  TYPE, ARG_TYPE, ARRAY_TYPE> && a)
 //{
 //
 //	this->ARRAY_TYPE::move(::move(a));
@@ -107,7 +107,7 @@ public:
 //}
 //
 //
-template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_array < TYPE,ARG_TYPE > >
+template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = array < TYPE,ARG_TYPE > >
 class full_comparable_array:
    virtual public ARRAY_TYPE
 {

@@ -35,14 +35,21 @@ var_array::~var_array()
 
 }
 
-index var_array::add(var var)
+
+var_array::iterator var_array::add(var var)
 {
+
    if(var.get_type() != var::type_empty_argument)
    {
+
       return ::array < class var >::add(var);
+
    }
-   return -1;
+
+   return end();
+
 }
+
 
 ::count var_array::add(const var_array & vara)
 {

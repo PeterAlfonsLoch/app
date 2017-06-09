@@ -315,7 +315,7 @@ namespace file
 
       straSeparator.add("\\");
 
-      straParam.add_smallest_tokens(strPath,straSeparator,FALSE);
+      straParam.add_shortest_tokens(strPath,straSeparator,FALSE);
 
       if(strPath.begins_ci("/"))
       {
@@ -400,6 +400,23 @@ namespace file
       stdstring < simple_string >::operator = (normalize_path(strThis + str, m_epath));
 
       return *this;
+
+   }
+
+
+   patha path::operator / (const stringa & stra) const
+   {
+
+      ::file::patha patha;
+
+      for (auto str : stra)
+      {
+
+         patha.add(*this / str);
+
+      }
+
+      return patha;
 
    }
 

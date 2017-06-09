@@ -510,7 +510,7 @@ namespace file
          //
          //         single_lock sl(&m_mutex, TRUE);
          //
-         //         string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
+         //         string_map < is_dir >::pair * ppair = this->find_first(strLookup);
          //
          //         if(ppair == NULL)
          //            return false;
@@ -541,7 +541,7 @@ namespace file
          //
          //         single_lock sl(&m_mutex, TRUE);
          //
-         //         string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
+         //         string_map < is_dir >::pair * ppair = this->find_first(strLookup);
          //
          //         if(ppair == NULL)
          //            return false;
@@ -849,7 +849,7 @@ namespace file
                straSep.add("\n");
                straSep.add("\r\n");
                
-               straLs.add_smallest_tokens(strLs, straSep, false);
+               straLs.add_shortest_tokens(strLs, straSep, false);
                
                for (index i = 0; i < straLs.get_count(); i++)
                {
@@ -947,7 +947,7 @@ namespace file
                straSep.add("\n");
                straSep.add("\r\n");
 
-               straLs.add_smallest_tokens(strLs, straSep, false);
+               straLs.add_shortest_tokens(strLs, straSep, false);
 
                for (index i = 0; i < straLs.get_count(); i++)
                {
