@@ -17,15 +17,12 @@ inline ::SIZE typed_unit_size < ::SIZE >()
 
 template < typename POINT2D >
 class point2d_array_base:
-   public array < POINT2D >
+   public comparable_array < POINT2D >,
+   virtual public ::xml::exportable,
+   virtual public ::xml::importable
 {
 public:
-
-
-   typedef typename array < POINT2D >::iterator iterator;
-
-
-   inline point2d_array_base(): array < POINT2D >() {}
+   inline point2d_array_base(): comparable_array < POINT2D >() {}
    inline point2d_array_base(const point2d_array_base & pointset) { operator=(pointset); }
    virtual ~point2d_array_base() { }
 
@@ -45,10 +42,12 @@ public:
 
    bool polygon_contains(typename POINT2D::BASE pt);
 
-   inline iterator add(typename POINT2D::TYPE x,typename POINT2D::TYPE y) { return array < POINT2D >::add(POINT2D(x,y)); }
-   inline iterator add(typename POINT2D::BASE point) { return array < POINT2D >::add(POINT2D(point)); }
+   inline index add(typename POINT2D::TYPE x,typename POINT2D::TYPE y) { return comparable_array < POINT2D >::add(POINT2D(x,y)); }
+   inline index add(typename POINT2D::BASE point) { return comparable_array < POINT2D >::add(POINT2D(point)); }
    inline point2d_array_base & operator =(const point2d_array_base & pointset) { this->copy(pointset); return *this; }
 
+   virtual void xml_import(::xml::input_tree & xmlif);
+   virtual void xml_export(::xml::output_tree & xmlof);
 
 
    ::count add_unique_range(typename POINT2D::BASE ptBeg,typename POINT2D::BASE ptEnd,typename POINT2D::SIZE s = POINT2D::SIZE::unit_size());
@@ -60,7 +59,9 @@ public:
 
 
 class CLASS_DECL_AURA point_array :
-   public point2d_array_base < point >
+   public point2d_array_base < point >,
+   virtual public ::xml::exportable,
+   virtual public ::xml::importable
 {
 public:
    inline point_array() : point2d_array_base < point >() {}
@@ -84,7 +85,7 @@ public:
 
    //bool polygon_contains(point pt);
 
-   //__inline index add(int32_t x, int32_t y) {return array < point >::add(point(x, y)); }
+   //__inline index add(int32_t x, int32_t y) {return comparable_array < point >::add(point(x, y)); }
    //__inline index add(POINT point) {return add(point.x, point.y); }
    //__inline point_array & operator =(const point_array & pointset) { copy(pointset); return *this; }
 
@@ -128,11 +129,11 @@ public:
 
 
 class CLASS_DECL_AURA pointd_array :
-   //public array < pointd >
+   //public comparable_array < pointd >
    public point2d_array_base < pointd >
 {
 public:
-   //__inline pointd_array() : array < pointd >() {}
+   //__inline pointd_array() : comparable_array < pointd >() {}
    //__inline pointd_array(const pointd_array & pointset) { operator=(pointset); }
    virtual ~pointd_array();
 
@@ -146,7 +147,7 @@ public:
    //bool bounding_rect_contains_pt(pointd pt);
 
 
-   //__inline index add(double x, double y) {return array < pointd >::add(pointd(x, y)); }
+   //__inline index add(double x, double y) {return comparable_array < pointd >::add(pointd(x, y)); }
    //__inline index add(pointd point) {return add(point.x, point.y); }
    //__inline pointd_array & operator =(const pointd_array & pointset) { copy(pointset); return *this; }
    //void rotate(double dAngle);

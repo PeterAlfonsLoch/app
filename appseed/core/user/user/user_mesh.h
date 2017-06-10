@@ -104,7 +104,8 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh:
-      virtual public ::user::control
+      virtual public ::user::control,
+      public ::sort::compare_interface
    {
    public:
 
@@ -255,8 +256,7 @@ namespace user
          icon_layout();
          virtual ~icon_layout();
 
-         int_to_int        m_iaDisplayToStrict;
-         int_to_int        m_iaStrictToDisplay;
+         index_biunique    m_iaDisplayToStrict;
          //int32_t           m_iWidth;
 
          virtual void write(::file::ostream & ostream) const;
@@ -306,7 +306,7 @@ namespace user
       CSortInfo                        m_sortinfo;
 
       EFilterState                     m_efilterstate;
-      int_to_int *                     m_piaFilterIcon;
+      index_biunique *                 m_piaFilterIcon;
       index_array *                    m_piaFilterMesh;
 
       /// Are items selectable?

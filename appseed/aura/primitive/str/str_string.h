@@ -1574,7 +1574,6 @@ inline bool CLASS_DECL_AURA operator>(char ch                        , const str
 inline bool CLASS_DECL_AURA operator>(unichar ch                        , const string & str  )   {
    return str  < ch  ;
 }
-
 inline bool CLASS_DECL_AURA operator>(int32_t i                       , const string & str  )   {
    return str  < i   ;
 }
@@ -1877,14 +1876,3 @@ inline string & string::operator = (uchar* pszSrc)
    return operator =((const uchar *)pszSrc);
 
 }
-
-
-
-#ifdef __cplusplus
-inline ::count strlen_dup(const string & str)
-{
-   return str.length();
-}
-
-#endif
-

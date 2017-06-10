@@ -106,16 +106,18 @@ namespace sockets
 
       {
 
-         for(auto & p : m_sockets)
+         auto p = m_sockets.PGetFirstAssoc();
+
+         while (p != NULL)
          {
 
-            if (p.m_element2.is_set())
+            if (p->m_element2.is_set())
             {
 
                try
                {
 
-                  p.m_element2->close();
+                  p->m_element2->close();
 
                }
                catch (...)
@@ -126,11 +128,13 @@ namespace sockets
                if (m_slave)
                {
 
-                  p.m_element2.release();
+                  p->m_element2.release();
 
                }
 
             }
+
+            p = m_sockets.PGetNextAssoc(p);
 
          }
 
@@ -180,15 +184,15 @@ namespace sockets
          log(p, "add", -1, "Invalid socket", ::aura::log::level_warning);
          if (p->CloseAndDelete())
          {
-            m_delete.add(p);
+            m_delete.add_tail(p);
          }
          return;
       }
       sp(base_socket) plookup;
-      if (m_add.lookup(p->GetSocket(), plookup))
+      if (m_add.Lookup(p->GetSocket(), plookup))
       {
          log(p, "add", (int32_t)p->GetSocket(), "Attempt to add socket already in add queue", ::aura::log::level_info);
-         //m_delete.add(p);
+         //m_delete.add_tail(p);
          return;
       }
       m_add[p->GetSocket()] = p;
@@ -285,14 +289,14 @@ namespace sockets
 
       sp(base_socket) psocket = pbasesocket;
 
-      if (m_sockets.contains_value(psocket))
+      if (::contains_value(&m_sockets, psocket))
       {
 
          return true;
 
       }
 
-      if (m_add.contains_value(psocket))
+      if (::contains_value(&m_add, psocket))
       {
 
          return true;
@@ -317,12 +321,12 @@ namespace sockets
       if (m_fds_callonconnect.get_size())
       {
          socket_id_list tmp = m_fds_callonconnect;
-         auto it = tmp.begin();
-         for (; it != tmp.end(); )
+         POSITION pos = tmp.get_head_position();
+         for (; pos != NULL; )
          {
-            SOCKET socket = *it++;
+            SOCKET socket = tmp.get_next(pos);
             sp(base_socket) psocket;
-            if (!m_sockets.lookup(socket, psocket)) // not found
+            if (!m_sockets.Lookup(socket, psocket)) // not found
             {
                log(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
                AddList(psocket->GetSocket(), LIST_CALLONCONNECT, false);
@@ -402,9 +406,9 @@ namespace sockets
 
    start_processing_adding:
 
-      auto ppair = m_add.begin();
+      auto ppair = m_add.PGetFirstAssoc();
 
-      if (ppair != m_add.end())
+      if (ppair != NULL)
       {
 
          if (m_sockets.get_size() >= FD_SETSIZE)
@@ -422,7 +426,7 @@ namespace sockets
 
          sp(base_socket) plookup;
 
-         if (m_sockets.lookup(p->GetSocket(), plookup))
+         if (m_sockets.Lookup(p->GetSocket(), plookup))
          {
 
             log(p, "add", (int32_t)p->GetSocket(), "Attempt to add socket already in controlled queue", ::aura::log::level_fatal);
@@ -473,7 +477,7 @@ namespace sockets
          if (!(m_slave ^ p->IsDetach()))
          {
 
-            m_fds.add(s);
+            m_fds.add_tail(s);
 
          }
 
@@ -543,7 +547,6 @@ namespace sockets
             log(NULL, "select", m_iSelectErrno, wsa_str_error(m_iSelectErrno));
 
             int32_t iError = m_iSelectErrno;
-
 #ifdef LINUX
             TRACE("m_maxsock: %d\n", m_maxsock);
             TRACE("sockets::socket_handler select error : %s (%d)", strerror(Errno), Errno);
@@ -579,7 +582,7 @@ namespace sockets
                   t = true;
                }
                sp(base_socket) psocket;
-               if (t && m_sockets.lookup(i, psocket))
+               if (t && m_sockets.Lookup(i, psocket))
                {
                   TRACE("Bad fd in fd_set: %d\n", i);
                   TRACE("Deleting and removing socket: %d\n", i);
@@ -604,12 +607,12 @@ namespace sockets
 
             sp(base_socket) psocket;
 
-            for(auto & pos : m_sockets)
+            POSITION pos = m_sockets.get_start_position();
+
+            while (pos != NULL)
             {
 
-               s = pos.m_element1;
-
-               psocket = pos.m_element2;
+               m_sockets.get_next_assoc(pos, s, psocket);
 
                try
                {
@@ -688,14 +691,14 @@ namespace sockets
       }
       else
       {
-         auto it = m_fds.begin();
-         for (; it != m_fds.end() && n;)
+         POSITION pos = m_fds.get_head_position();
+         for (; pos != NULL && n;)
          {
-            SOCKET socket = *it++;
+            SOCKET socket = m_fds.get_next(pos);;
             if (FD_ISSET(socket, &rfds))
             {
                sp(base_socket) psocket;
-               if (m_sockets.lookup(socket, psocket)) // found
+               if (m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
                   if (psocket->IsSSLNegotiate())
@@ -716,7 +719,7 @@ namespace sockets
             if (FD_ISSET(socket, &wfds))
             {
                sp(base_socket) psocket;
-               if (m_sockets.lookup(socket, psocket)) // found
+               if (m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
                   if (psocket->IsSSLNegotiate())
@@ -737,7 +740,7 @@ namespace sockets
             if (FD_ISSET(socket, &efds))
             {
                sp(base_socket) psocket;
-               if (m_sockets.lookup(socket, psocket)) // found
+               if (m_sockets.Lookup(socket, psocket)) // found
                {
                   time_t tnow = time(NULL);
                   if (psocket->Timeout(tnow))
@@ -771,12 +774,12 @@ namespace sockets
       if (!m_slave && m_fds_detach.get_size())
       {
          // %! why not using tmp list here??!?
-         auto it = m_fds_detach.begin();
-         for (; it != NULL; )
+         POSITION pos = m_fds_detach.get_head_position();
+         for (; pos != NULL; )
          {
             sp(base_socket) p;;
-            SOCKET socket = *it++;
-            if (m_sockets.lookup(socket, p) && p != NULL)
+            SOCKET socket = m_fds_detach.get_next(pos);
+            if (m_sockets.Lookup(socket, p) && p != NULL)
             {
                if (p->IsDetach())
                {
@@ -802,7 +805,7 @@ namespace sockets
 
                   // Adding the file descriptor to m_fds_erase will now also remove the
                   // socket from the detach queue - tnx knightmad
-                  m_fds_erase.add(p->GetSocket());
+                  m_fds_erase.add_tail(p->GetSocket());
 
                   m_fds_detach.remove(socket);
                   m_fds.remove(socket);
@@ -820,14 +823,14 @@ namespace sockets
          {
             socket_id_list tmp = m_fds_timeout;
             //TRACE("Checking %d socket(s) for timeout\n", tmp.get_size());
-            auto pos = tmp.begin();
-            for (; pos != tmp.end();)
+            POSITION pos = tmp.get_head_position();
+            for (; pos != NULL;)
             {
                sp(base_socket) psocket;
-               SOCKET socket = *pos++;
-               if (!m_sockets.lookup(socket, psocket)) // not found
+               SOCKET socket = tmp.get_next(pos);
+               if (!m_sockets.Lookup(socket, psocket)) // not found
                {
-                  if (!m_add.lookup(socket, psocket))
+                  if (!m_add.Lookup(socket, psocket))
                   {
                      log(NULL, "GetSocket/handler/6", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
                      AddList(socket, LIST_TIMEOUT, false);
@@ -853,12 +856,12 @@ namespace sockets
       if (m_fds_retry.get_size())
       {
          socket_id_list tmp = m_fds_retry;
-         auto pos = tmp.begin();
-         for (; pos != tmp.end();)
+         POSITION pos = tmp.get_head_position();
+         for (; pos != NULL;)
          {
-            SOCKET socket = *pos;
+            SOCKET socket = tmp.get_next(pos);
             sp(base_socket) p;;
-            if (m_sockets.lookup(socket, p))
+            if (m_sockets.Lookup(socket, p))
             {
                log(NULL, "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
             }
@@ -884,7 +887,7 @@ namespace sockets
                         log(p, "RetryClientConnect", 0, "no address", ::aura::log::level_error);
                      }
                      add(p);
-                     m_fds_erase.add(nn);
+                     m_fds_erase.add_tail(nn);
                   }
                }
             }
@@ -895,14 +898,14 @@ namespace sockets
       {
          socket_id_list tmp = m_fds_close;
          //TRACE("m_fds_close.size() == %d\n", (int32_t)m_fds_close.get_size());
-         auto pos = tmp.begin();
-         while (pos != tmp.end())
+         POSITION pos = tmp.get_head_position();
+         while (pos != NULL)
          {
-            SOCKET socket = *pos++;
+            SOCKET socket = tmp.get_next(pos);
             sp(base_socket) p;;
-            if (!m_sockets.lookup(socket, p)) // not found
+            if (!m_sockets.Lookup(socket, p)) // not found
             {
-               if (!m_add.lookup(socket, p))
+               if (!m_add.Lookup(socket, p))
                {
                   log(NULL, "GetSocket/handler/8", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
                }
@@ -954,7 +957,7 @@ namespace sockets
                         }
                         tcp->ResetConnectionRetries();
                         add(p);
-                        m_fds_erase.add(socket);
+                        m_fds_erase.add_tail(socket);
                      }
                      else
                      {
@@ -999,7 +1002,7 @@ namespace sockets
                      }
                }
             }
-            m_fds_erase.add(socket);
+            m_fds_erase.add_tail(socket);
          }
       }
 
@@ -1007,7 +1010,7 @@ namespace sockets
       while (m_fds_erase.get_size())
       {
 
-         SOCKET socket = m_fds_erase.pop_first();
+         SOCKET socket = m_fds_erase.remove_head();
 
          m_fds_detach.remove(socket);
 
@@ -1017,7 +1020,7 @@ namespace sockets
 
          sp(base_socket) psocket;
 
-         if (m_sockets.lookup(socket, psocket))
+         if (m_sockets.Lookup(socket, psocket))
          {
 
             if (psocket.cast < pool_socket >() == NULL)
@@ -1051,14 +1054,14 @@ namespace sockets
       if (check_max_fd)
       {
 
-         m_maxsock = iter::maximum(m_fds, 0) + 1;
+         m_maxsock = m_fds.maximum(0) + 1;
 
       }
 
       // remove add's that fizzed
       while (m_delete.get_size() > 0)
       {
-         sp(socket) p = m_delete.pop_first();
+         sp(socket) p = m_delete.remove_head();
          p->OnDelete();
          if (p->DeleteByHandler()
             && !(m_slave ^ p->IsDetached())
@@ -1069,34 +1072,27 @@ namespace sockets
             do
             {
                again = false;
-               
-               for(auto & pos : m_trigger_src)
+               POSITION posSrc = m_trigger_src.get_start_position();
+               while (posSrc != NULL)
                {
-                  
                   SOCKET id = 0;
-
                   sp(base_socket) src;
-                  
-                  id = pos.m_element1;
-                  
-                  src = pos.m_element2;
-                  
+                  m_trigger_src.get_next_assoc(posSrc, id, src);
                   if (src == p)
                   {
-                     auto dst = m_trigger_dst.find(id);
-                     for(auto posDst : dst->m_element2)
+                     POSITION posDst = m_trigger_dst[id].get_start_position();
+                     while (posDst != NULL)
                      {
                         base_socket * dst = NULL;
                         bool b = false;
-                        dst = posDst.m_element1;
-                        b = posDst.m_element2;
+                        m_trigger_dst[id].get_next_assoc(posDst, dst, b);
                         if (Valid(dst))
                         {
                            dst->OnCancelled(id);
                         }
                      }
-                     m_trigger_src.remove_assoc(&pos);
-                     m_trigger_dst.erase(dst);
+                     m_trigger_src.remove_key(id);
+                     m_trigger_dst.remove_key(id);
                      again = true;
                      break;
                   }
@@ -1110,17 +1106,20 @@ namespace sockets
 
    bool socket_handler::Resolving(base_socket * p0)
    {
-      
-      return m_resolve_q.contains_key(p0);
-
+      return m_resolve_q.PLookup(p0) != NULL;
    }
 
 
    bool socket_handler::Valid(base_socket * p0)
    {
-      
-      return m_sockets.contains_value(p0);
-
+      socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
+      while (ppair != NULL)
+      {
+         if (p0 == ppair->m_element2)
+            return true;
+         ppair = m_sockets.PGetNextAssoc(ppair);
+      }
+      return false;
    }
 
 
@@ -1309,12 +1308,12 @@ namespace sockets
 
       synch_lock sl(&Session.sockets().m_mutexPool);
 
-      auto & pool = Session.sockets().m_pool;
+      socket_map::pair * ppair = Session.sockets().m_pool.PGetFirstAssoc();
 
-      for(auto & pair : pool)
+      while (ppair != NULL)
       {
 
-         sp(pool_socket) psocket = pair.m_element2;
+         sp(pool_socket) psocket = ppair->m_element2;
 
          if (psocket.is_set())
          {
@@ -1325,7 +1324,7 @@ namespace sockets
                psocket->GetClientRemoteAddress() == ad)
             {
 
-               Session.sockets().m_pool.remove_assoc(&pair);
+               Session.sockets().m_pool.remove_key(ppair->m_element1);
 
                psocket->SetRetain(); // avoid close in socket destructor
 
@@ -1334,6 +1333,8 @@ namespace sockets
             }
 
          }
+
+         ppair = Session.sockets().m_pool.PGetNextAssoc(ppair);
 
       }
 
@@ -1357,42 +1358,39 @@ namespace sockets
    void socket_handler::remove(base_socket * p)
    {
       bool b;
-      if (m_resolve_q.lookup(p, b))
+      if (m_resolve_q.Lookup(p, b))
          m_resolve_q.remove_key(p);
       if (p->ErasedByHandler())
       {
          return;
       }
-      for(auto & pair : m_sockets)
+      socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
+      while (ppair != NULL)
       {
-         if (pair.m_element2 == p)
+         if (ppair->m_element2 == p)
          {
             log(p, "remove", -1, "socket destructor called while still in use", ::aura::log::level_warning);
-            m_sockets.remove_assoc(&pair);
+            m_sockets.remove_key(ppair->m_element1);
             return;
          }
-         
+         ppair = m_sockets.PGetNextAssoc(ppair);
       }
-      for (auto & pair2 : m_add)
+      socket_map::pair * ppair2 = m_add.PGetFirstAssoc();
+      while (ppair2 != NULL)
       {
-         if (pair2.m_element2 == p)
+         if (ppair2->m_element2 == p)
          {
             log(p, "remove", -2, "socket destructor called while still in use", ::aura::log::level_warning);
-            m_add.remove_key(pair2.m_element1);
+            m_add.remove_key(ppair2->m_element1);
             return;
          }
-         
+         ppair2 = m_add.PGetNextAssoc(ppair2);
       }
-      
       if (m_delete.remove(p) > 0)
       {
-
          log(p, "remove", -3, "socket destructor called while still in use", ::aura::log::level_warning);
-
          return;
-
       }
-
    }
 
 
@@ -1410,23 +1408,19 @@ namespace sockets
 
    void socket_handler::CheckList(socket_id_list& ref, const string & listname)
    {
-      
-      auto pos = ref.begin();
-
-      while (pos != ref.end())
+      POSITION pos = ref.get_head_position();
+      while (pos != NULL)
       {
-
-         SOCKET s = *pos++;
-
-         if (m_sockets.contains_key(s))
+         SOCKET s = ref.get_next(pos);
+         if (m_sockets.PLookup(s) != NULL)
             continue;
-         if (m_add.contains_key(s))
+         if (m_add.PLookup(s) != NULL)
             continue;
          bool found = false;
-         auto pos = m_delete.begin();
-         while (pos != m_delete.end())
+         POSITION pos = m_delete.get_head_position();
+         while (pos != NULL)
          {
-            sp(socket) p = *pos++;
+            sp(socket) p = m_delete.get_next(pos);
             if (p->GetSocket() == s)
             {
                found = true;
@@ -1465,7 +1459,7 @@ namespace sockets
       }
       if (add)
       {
-         ref.add_unique(s);
+         ref.add_tail_unique(s);
          return;
       }
       // remove
@@ -1484,9 +1478,9 @@ namespace sockets
 
    bool socket_handler::Subscribe(int32_t id, base_socket * dst)
    {
-      if (m_trigger_src.contains_key(id))
+      if (m_trigger_src.PLookup(id) != NULL)
       {
-         if (m_trigger_dst[id].contains_key(dst))
+         if (m_trigger_dst[id].PLookup(dst) != NULL)
          {
             m_trigger_dst[id][dst] = true;
             return true;
@@ -1501,9 +1495,9 @@ namespace sockets
 
    bool socket_handler::Unsubscribe(int32_t id, base_socket * dst)
    {
-      if (m_trigger_src.contains_key(id))
+      if (m_trigger_src.PLookup(id) != NULL)
       {
-         if (m_trigger_dst[id].contains_key(dst))
+         if (m_trigger_dst[id].PLookup(dst) != NULL)
          {
             m_trigger_dst[id].remove_key(dst);
             return true;
@@ -1518,37 +1512,24 @@ namespace sockets
 
    void socket_handler::Trigger(int32_t id, socket::trigger_data& data, bool erase)
    {
-      
-      if (m_trigger_src.contains_key(id))
+      if (m_trigger_src.PLookup(id) != NULL)
       {
-         
          data.SetSource(m_trigger_src[id]);
-         
-         auto & map = m_trigger_dst[id];
-
-         for(auto & pair : map)
+         socket_bool::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
+         while (ppair != NULL);
          {
-
-            sp(socket) dst = pair.m_element1;
-
+            sp(socket) dst = ppair->m_element1;
             if (Valid(dst))
             {
-
                dst->OnTrigger(id, data);
-
             }
-            
+            ppair = m_trigger_dst[id].PGetNextAssoc(ppair);
          }
-
          if (erase)
          {
-
             m_trigger_src.remove_key(id);
-
             m_trigger_dst.remove_key(id);
-
          }
-
       }
       else
       {

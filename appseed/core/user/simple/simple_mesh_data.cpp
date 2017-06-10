@@ -28,12 +28,12 @@ void simple_mesh_data::_001GetItemText(::user::mesh_item * pitem)
 
    }
 
-   auto passoc = m_map.find_first(pitem->m_iItem);
+   auto passoc = m_map.PLookup(pitem->m_iItem);
 
    if(passoc != NULL)
    {
 
-      auto passoc2 = passoc->m_element2.find_first(pitem->m_iColumn);
+      auto passoc2 = passoc->m_element2.PLookup(pitem->m_iColumn);
 
       if(passoc2 != NULL)
       {

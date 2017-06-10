@@ -735,7 +735,7 @@ namespace aura
 
       ::aura::application * papp = NULL;
 
-      if(m_paurasession->m_mapApplication.lookup(string(pszType) + ":" + string(pszId),papp))
+      if(m_paurasession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
       {
 
          return papp;

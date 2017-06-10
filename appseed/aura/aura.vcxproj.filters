@@ -587,6 +587,24 @@
     <ClInclude Include="primitive\collection\collection_bitset.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\collection_comparable_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_comparable_eq_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_comparable_eq_list.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_comparable_list.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_comparable_primitive_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_comparable_raw_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
     <ClInclude Include="primitive\collection\collection_decl.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -606,6 +624,9 @@
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_iterator.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_key_sort_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_lemon_array.h">
@@ -683,6 +704,12 @@
     <ClInclude Include="primitive\collection\collection_sort.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\collection_sort_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_sort_map.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
     <ClInclude Include="primitive\collection\collection_spreadset.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -699,6 +726,9 @@
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_string_map.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\collection_string_sort_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_string_to_string_map.h">
@@ -2773,45 +2803,6 @@
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_tools.h">
       <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_iterable.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_eq_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_eq_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_primitive_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_raw_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_numeric_iterable.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_string_iterable.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_string_sort_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_sort_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_sort_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaawtr_collection_key_sort_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4907,9 +4898,6 @@
     </None>
     <None Include="aura\aura\aura_timer_event.cpp">
       <Filter>Source Files\aura\aura</Filter>
-    </None>
-    <None Include="aura\xml\xml.inl">
-      <Filter>Header Files\aura\xml</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

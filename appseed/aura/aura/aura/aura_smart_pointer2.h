@@ -37,11 +37,8 @@
    template < class T >
    inline smart_pointer < T > ::smart_pointer(T * p)
    {
-      
       m_p = p;
-      
-      m_p->add_ref();
-
+      ::add_ref(m_p);
    }
 
    template < class T >
@@ -167,12 +164,12 @@
          T * pOld = m_p;
          if(p != NULL)
          {
-            p->add_ref();
+            ::add_ref(p);
          }
          m_p = p;
          if(pOld != NULL)
          {
-            MACRO_RELEASE2(pOld);
+            ::release(pOld);
          }
       }
       return *this;
@@ -251,14 +248,10 @@
     // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
     // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
     template < class T >
-    int64_t smart_pointer <T>::release()
+    void smart_pointer <T>::release()
     {
 
-       ::count c;
-
-       MACRO_RELEASE(m_p, c);
-
-       return c;
+        ::release(m_p);
 
     }
 

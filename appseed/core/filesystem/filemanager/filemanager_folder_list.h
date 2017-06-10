@@ -33,7 +33,7 @@ namespace filemanager
 
 
       class FolderArray :
-         protected array < Folder >
+         protected array < Folder, Folder & >
       {
       public:
 

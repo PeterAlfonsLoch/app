@@ -286,7 +286,7 @@ namespace visual
 
       cursor * pcursor = NULL;
 
-      if (m_cursormap.lookup(ecursor, pcursor))
+      if (m_cursormap.Lookup(ecursor, pcursor))
       {
 
          return pcursor;

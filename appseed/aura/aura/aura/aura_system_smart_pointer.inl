@@ -10,12 +10,8 @@ void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
    
    class id idType = CaSys(spallocator).type_info < T >()->m_id;
 
-   if (m_p != NULL)
-   {
-
-      MACRO_RELEASE2(m_p);
-
-   }
+   if(m_p != NULL)
+      ::release(m_p);
 
    object * pca = CaSys(spallocator).alloc(spallocator->m_pauraapp,idType);
 
@@ -27,7 +23,7 @@ void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
       if(m_p != NULL)
       {
 
-         ::aura::add_ref(m_p);
+         ::add_ref(m_p);
 
       }
 

@@ -248,7 +248,7 @@ namespace filemanager
                0x00100000);
                if(hr == NOERROR)
                {
-               if(!m_iconmap.lookup(hicon, iImage))
+               if(!m_iconmap.Lookup(hicon, iImage))
                {
                iImage = pil->add(hicon);
                m_iconmap.set_at(hicon, iImage);
@@ -270,7 +270,7 @@ namespace filemanager
                IMAGE_ICON,
                16, 16,
                LR_CREATEDIBSECTION);
-               if(!m_iconmap.lookup(hicon, iImage))
+               if(!m_iconmap.Lookup(hicon, iImage))
                {
                iImage = pil->add(hicon);
                m_iconmap.set_at(hicon, iImage);

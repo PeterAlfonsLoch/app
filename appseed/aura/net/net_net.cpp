@@ -308,6 +308,7 @@ CLASS_DECL_AURA int_bool from_string(in_addr & addrParam, const string & string)
 
    c_in_addr & addr = (c_in_addr &) addrParam;
 
+
    stringa stra;
 
    stra.add_tokens(string, ".");

@@ -50,7 +50,7 @@ namespace aura
 
       inline str_schema * get_schema(const ::id & idSchema)
       {
-         strid_map < str_schema > ::pair * ppair = find_first(idSchema);
+         strid_map < str_schema > ::pair * ppair = PLookup(idSchema);
          if (ppair == NULL)
             return NULL;
          return &ppair->m_element2;
@@ -92,7 +92,7 @@ namespace aura
 
       inline str_locale * get_locale(const ::id & idLocale)
       {
-         strid_map < str_locale > ::pair * ppair = find_first(idLocale);
+         strid_map < str_locale > ::pair * ppair = PLookup(idLocale);
          if (ppair == NULL)
             return NULL;
          return &ppair->m_element2;

@@ -1,15 +1,12 @@
 #pragma once
 
 
-template < typename POINTER, class ARRAY_TYPE = array < POINTER,POINTER,::allocator::zero < POINTER > > >
+template < typename POINTER,class ARRAY_TYPE = comparable_array < POINTER,POINTER,comparable_eq_array < POINTER,POINTER,raw_array < POINTER,POINTER,::allocator::zero < POINTER > > > >  >
 class raw_ref_array:
    public ARRAY_TYPE
 {
 public:
 
-   
-   typedef typename ARRAY_TYPE Container;
-   typedef typename Container::iterator iterator;
 
 
    inline raw_ref_array() {}
@@ -22,8 +19,8 @@ public:
    inline raw_ref_array & operator = (raw_ref_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
 
 
-   iterator add(POINTER newElement)  { return ARRAY_TYPE::add(newElement); }
-   iterator add(const raw_ref_array & src) { return ARRAY_TYPE::add(src); }
+   index add(POINTER newElement)  { return ARRAY_TYPE::add(newElement); }
+   index add(const raw_ref_array & src) { return ARRAY_TYPE::add(src); }
 
 
    inline POINTER & element_at(index i) { return (POINTER &)ARRAY_TYPE::element_at(i); }

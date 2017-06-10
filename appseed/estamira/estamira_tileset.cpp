@@ -200,7 +200,7 @@ namespace estamira
 
       int i = -1;
 
-      if (!m_map.lookup(psz, i))
+      if (!m_map.Lookup(psz, i))
          return false;
 
       if (!m_il.draw(pgraphics, i, point(x, y), 0))

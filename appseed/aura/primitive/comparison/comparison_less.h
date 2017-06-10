@@ -4,8 +4,8 @@
 #include "aura/primitive/collection/collection_iterator.h"
 
 
-template < class TYPE >
-inline bool LessCompareElements(TYPE element1, TYPE element2)
+template < class TYPE, class ARG_TYPE >
+inline bool LessCompareElements(ARG_TYPE element1, ARG_TYPE element2)
 {
    return element1 < element2;
 }
@@ -14,15 +14,14 @@ inline bool LessCompareElements(TYPE element1, TYPE element2)
 namespace comparison
 {
 
-   
+   template < class TYPE, class ARG_TYPE = const TYPE & >
    class less
    {
    public:
 
-      template < typename TYPE >
-      static inline bool run(TYPE element1, TYPE element2)
+      inline bool operator() (ARG_TYPE element1, ARG_TYPE element2) const
       {
-         return ::LessCompareElements < TYPE > (element1, element2);
+         return ::LessCompareElements < TYPE, ARG_TYPE > (element1, element2);
       }
 
 
@@ -41,11 +40,18 @@ namespace comparison
 {
 
 
+
    template < >
-   inline bool less::run(const string & element1,const string & element2)
+   class less < string,const string & >
    {
-      return element1 < element2;
-   }
+   public:
+
+      inline bool operator()(const string & element1,const string & element2) const
+      {
+         return element1 < element2;
+      }
+
+   };
 
 
 

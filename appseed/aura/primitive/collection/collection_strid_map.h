@@ -17,17 +17,17 @@ public:
       T * second;
    };
 
-   bool lookup(string key, T * & rValue) const
+   bool Lookup(string key, T * & rValue) const
    {
-      return string_to_ptr::lookup(key, rValue);
+      return string_to_ptr::Lookup(key, rValue);
    }
-   const pair *find_first(string key) const
+   const pair *PLookup(string key) const
    {
-      return reinterpret_cast < const string_to_pointer::pair * > (string_to_ptr::find_first(key));
+      return reinterpret_cast < const string_to_pointer::pair * > (string_to_ptr::PLookup(key));
    }
-   pair *find_first(string key)
+   pair *PLookup(string key)
    {
-      return reinterpret_cast < string_to_pointer::pair * > (string_to_ptr::find_first(key));
+      return reinterpret_cast < string_to_pointer::pair * > (string_to_ptr::PLookup(key));
    }
 
 
@@ -45,7 +45,7 @@ public:
    }
 
    // Operations
-   // lookup and add if not there
+   // Lookup and add if not there
    T * & operator[](string key)
    {
       return (T * &) string_to_ptr::operator[](key);

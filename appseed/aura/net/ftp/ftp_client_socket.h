@@ -75,7 +75,7 @@ namespace ftp
       const string                          mc_strRemoteDirectorySeparator; ///< directory separator character which is used on the FTP server
 
       memory                     m_vBuffer;                  ///< buffer for sending and receiving
-      stringl                    m_qResponseBuffer;          ///< buffer for server-responses
+      string_list                m_qResponseBuffer;          ///< buffer for server-responses
       sp(representation)         m_apCurrentRepresentation;  ///< representation currently set
 
       //this class is now a tcp_socket and it is this control connection socket

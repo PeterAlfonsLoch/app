@@ -111,7 +111,7 @@ namespace file
 //      straSeparator.add("/");
 //      straSeparator.add("\\");
 //
-//      straParam.add_shortest_tokens(lpcsz, straSeparator, FALSE);
+//      straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
 //      if(straParam.get_count() > 0)
 //      {
 //         strsize iFind = straParam[0].find(':');
@@ -836,7 +836,7 @@ restart:
    //   stringa straSeparator;
    //   straSeparator.add("\\");
    //   straSeparator.add("/");
-   //   stra.add_shortest_tokens(lpcszPath, straSeparator, FALSE);
+   //   stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
    //}
 
    //class system::path & system::path()
@@ -2008,7 +2008,7 @@ restart:
                cres = spfile->open(App(papp).dir().matter(strPath), nOpenFlags);
 
             }
-            else if (&Session != NULL && Session.m_mapApplication.lookup(System.url().get_server("matter://" + strPath), pappLookup) && App(pappLookup).m_strAppName.has_char())
+            else if (&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), pappLookup) && App(pappLookup).m_strAppName.has_char())
             {
 
                spfile = App(pappLookup).file().get_file("matter://" + strPath, nOpenFlags, &cres);

@@ -386,27 +386,18 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace comparison
+template < >
+inline UINT HashKey<const ::draw2d::dib::descriptor &>(const ::draw2d::dib::descriptor  & key)
 {
-
-   template < >
-   inline UINT hash::run(const ::draw2d::dib::descriptor  & key)
+   UINT ui = (UINT) key.m_etype;
+   if(key.m_etype == ::draw2d::dib::type_plain_color)
    {
-      
-      UINT ui = (UINT)key.m_etype;
-
-      if (key.m_etype == ::draw2d::dib::type_plain_color)
-      {
-
-         ui |= key.m_cr;
-
-      }
-
-      return ui;
-
+      ui |= key.m_cr;
    }
-
+   return ui;
 }
+
+
 
 namespace draw2d
 {
@@ -425,48 +416,3 @@ namespace draw2d
 
 
 
-
-namespace comparisontest
-{
-
-   template < >
-   inline UINT hash::run(const ::draw2d::dib::descriptor  & key)
-   {
-
-      UINT ui = (UINT)key.m_etype;
-
-      if (key.m_etype == ::draw2d::dib::type_plain_color)
-      {
-
-         ui |= key.m_cr;
-
-      }
-
-      return ui;
-
-   }
-
-}
-
-
-namespace comparisonok
-{
-
-   template < >
-   inline UINT hash::run(const ::draw2d::dib::descriptor  & key)
-   {
-
-      UINT ui = (UINT)key.m_etype;
-
-      if (key.m_etype == ::draw2d::dib::type_plain_color)
-      {
-
-         ui |= key.m_cr;
-
-      }
-
-      return ui;
-
-   }
-
-}

@@ -149,15 +149,15 @@ public:
    };
 
 
-   uint32_t                                  m_dwLastStartTime;
-   bool                                      m_bServer;
-   file_size_table::get_fs_size              m_size;
-   bool                                      m_bRet;
-   critical_section                          m_cs;
-   array < file_size_table::get_fs_size >    m_sizea;
+   uint32_t                            m_dwLastStartTime;
+   bool                             m_bServer;
+   file_size_table::get_fs_size     m_size;
+   bool                             m_bRet;
+   critical_section                 m_cs;
+   array < file_size_table::get_fs_size, file_size_table::get_fs_size & > m_sizea;
 
-   size_map                                  m_map;
-   ::user::interaction *                     m_pui;
+   size_map                         m_map;
+   ::user::interaction *            m_pui;
 
    FileSystemSizeWnd(::aura::application * papp);
 

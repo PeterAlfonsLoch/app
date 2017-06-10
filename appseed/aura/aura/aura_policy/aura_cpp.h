@@ -1,4 +1,15 @@
-﻿#pragma once
+﻿/////////////////////////////////////////////////////////////////////////////////////////
+//
+//   All Pure and Aural ca2 and God and Gods and Goddssesses and devils's blessings
+//
+//   C++
+//
+//   C => in ca2 scope
+//
+//   Thank you God for C++!! Cheap and valuable!!
+//
+
+#pragma once
 
 #ifdef WINDOWS
 #pragma warning(disable: 4251)
@@ -286,7 +297,7 @@ namespace file
 
    class listing;
    class path;
-   typedef CLASS_DECL_AURA ::string_array < ::file::path > patha;
+   typedef CLASS_DECL_AURA ::string_array < ::file::path,string > patha;
    class file;
    class istream;
    class ostream;
@@ -365,6 +376,16 @@ namespace aura
    inline void adel(T * & p)
    {
 
+      //Thank you Fiora a Eterna!!
+
+      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+
+      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+      //   Details
+
+      // BRT 2015-02-18 19:08
+      // catch all (...) here in aura::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+
       try
       {
 
@@ -389,6 +410,20 @@ namespace aura
    template < typename T >
    inline void free(T * & p)
    {
+
+      //Thank you Mummi!!
+
+      //Nice late afternoon coffee of ever!!
+
+      //Thank you Fiora a Eterna!!
+
+      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
+
+      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+      //   Details
+
+      // BRT 2016-11-23 19:08
+      // catch all (...) here in aura::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 
       try
       {
@@ -417,107 +452,6 @@ namespace aura
 
 
 class image_list;
-
-#define ISNULL(p) (((int_ptr)p) < sizeof(decltype(*p)))
-
-
-#define MACRO_RELEASE(p, c) \
-\
-c = -1; \
-\
-if (!ISNULL(p)) \
-{ \
-\
-try \
-{ \
-\
-c = p->release(); \
-\
-} \
-catch (...) \
-{ \
-\
-c = -1; \
-\
-} \
-\
-} \
-p = NULL; \
-\
-
-#define MACRO_RELEASE2(p) \
-\
-if (!ISNULL(p)) \
-{ \
-\
-try \
-{ \
-\
-   p->release(); \
-\
-} \
-catch (...) \
-{ \
-\
-} \
-\
-} \
-p = NULL; \
-\
-
-
-namespace aura
-{
-
-   template < class c_derived >
-   inline int64_t ref_count(c_derived * pca)
-   {
-      if (pca == NULL)
-         return -1;
-      return pca->get_ref_count();
-   }
-
-
-
-
-   template < class OBJECT >
-   inline int64_t add_ref(OBJECT * p)
-   {
-
-      if (p == NULL)
-      {
-
-         return -1;
-
-      }
-
-      return p->add_ref();
-
-   }
-
-} // namespace aura
-
-template < class OBJECT >
-inline int64_t release(OBJECT * & p)
-{
-
-   ::count c = -1;
-
-   MACRO_RELEASE(p, c);
-
-   return c;
-
-}
-
-
-
-
-
-#define canew(x) dereference_no_delete(new x)
-
-
-
-
 
 
 
@@ -886,9 +820,9 @@ namespace file
 #include "aura/primitive/collection/collection_raw_array_decl.h"
 #include "aura/primitive/collection/collection_lemon_array_decl.h"
 #include "aura/primitive/collection/collection_smart_pointer_array.h"
-//#include "aura/primitive/collection/collection_comparable_eq_array.h"
-//#include "aura/primitive/collection/collection_comparable_array.h"
-//#include "aura/primitive/collection/collection_comparable_raw_array.h"
+#include "aura/primitive/collection/collection_comparable_eq_array.h"
+#include "aura/primitive/collection/collection_comparable_array.h"
+#include "aura/primitive/collection/collection_comparable_raw_array.h"
 
 
 #include "aura/primitive/collection/collection_ptr_array.h"
@@ -1899,8 +1833,6 @@ namespace user
 #include "aura/filesystem/filesystem.inl"
 
 #include "aura/net/net.inl"
-
-#include "aura/xml/xml.inl"
 
 
 

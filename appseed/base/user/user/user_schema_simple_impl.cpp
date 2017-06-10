@@ -34,7 +34,7 @@ namespace user
    bool schema_simple_impl::get_color(COLORREF & cr, e_color ecolor)
    {
 
-      return m_mapColor.lookup(ecolor,cr);
+      return m_mapColor.Lookup(ecolor,cr);
 
    }
 

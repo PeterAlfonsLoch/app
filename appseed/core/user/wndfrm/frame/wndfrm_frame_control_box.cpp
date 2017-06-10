@@ -617,7 +617,7 @@ namespace user
 
             sp(control_box_button) pbutton;
 
-            if (m_buttonmap.lookup(ebutton, pbutton))
+            if (m_buttonmap.Lookup(ebutton, pbutton))
             {
 
                string strCaption;
@@ -645,7 +645,7 @@ namespace user
 
             sp(control_box_button) pbutton;
 
-            if (!m_buttonmap.lookup(ebutton, pbutton))
+            if (!m_buttonmap.Lookup(ebutton, pbutton))
             {
 
                m_buttonmap.set_at(ebutton, m_pworkset->m_pframeschema->m_pinteraction->m_plibrary->create_object(get_app(), "control_box_button", NULL));
@@ -658,7 +658,7 @@ namespace user
 
             id id = get_control_box_button_id(ebutton);
 
-            if (m_buttonmap.lookup(ebutton, pbutton))
+            if (m_buttonmap.Lookup(ebutton, pbutton))
             {
 
                if (!pbutton->IsWindow() && !pbutton->create_window(null_rect(), this, id))
@@ -814,7 +814,7 @@ namespace user
                return false;
 
             }
-            else if (m_buttonmapPresent.lookup(ebutton, bPresent))
+            else if (m_buttonmapPresent.Lookup(ebutton, bPresent))
                return bPresent;
             else
             {
@@ -943,7 +943,7 @@ namespace user
          sp(control_box_button) control_box::get_button(e_button ebutton)
          {
             sp(control_box_button) pbutton = NULL;
-            m_buttonmap.lookup(ebutton, pbutton);
+            m_buttonmap.Lookup(ebutton, pbutton);
             return pbutton;
          }
 

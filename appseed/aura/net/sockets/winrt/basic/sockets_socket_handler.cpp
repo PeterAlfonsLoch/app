@@ -166,7 +166,7 @@ namespace sockets
          return;
       }
       sp(base_socket) plookup;
-      if (m_add.lookup(p -> GetSocket(), plookup))
+      if (m_add.Lookup(p -> GetSocket(), plookup))
       {
          log(p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue", ::aura::log::level_fatal);
          m_delete.add_tail(p);
@@ -343,7 +343,7 @@ namespace sockets
 
    bool socket_handler::Resolving(base_socket * p0)
    {
-      return m_resolve_q.find_first(p0) != NULL;
+      return m_resolve_q.PLookup(p0) != NULL;
    }
 
 
@@ -575,7 +575,7 @@ namespace sockets
    void socket_handler::remove(base_socket * p)
    {
       bool b;
-      if(m_resolve_q.lookup(p, b))
+      if(m_resolve_q.Lookup(p, b))
          m_resolve_q.remove_key(p);
       if(p -> ErasedByHandler())
       {
@@ -629,9 +629,9 @@ namespace sockets
       while(pos != NULL)
       {
          SOCKET s = ref.get_next(pos);
-         if(m_sockets.find_first(s) != NULL)
+         if(m_sockets.PLookup(s) != NULL)
             continue;
-         if(m_add.find_first(s) != NULL)
+         if(m_add.PLookup(s) != NULL)
             continue;
          bool found = false;
          POSITION pos = m_delete.get_head_position();
@@ -695,9 +695,9 @@ namespace sockets
 
    bool socket_handler::Subscribe(int id, base_socket *dst)
    {
-      if(m_trigger_src.find_first(id) != NULL)
+      if(m_trigger_src.PLookup(id) != NULL)
       {
-         if(m_trigger_dst[id].find_first(dst) != NULL)
+         if(m_trigger_dst[id].PLookup(dst) != NULL)
          {
             m_trigger_dst[id][dst] = true;
             return true;
@@ -712,9 +712,9 @@ namespace sockets
 
    bool socket_handler::Unsubscribe(int id, base_socket *dst)
    {
-      if (m_trigger_src.find_first(id) != NULL)
+      if (m_trigger_src.PLookup(id) != NULL)
       {
-         if(m_trigger_dst[id].find_first(dst) != NULL)
+         if(m_trigger_dst[id].PLookup(dst) != NULL)
          {
             m_trigger_dst[id].remove_key(dst);
             return true;
@@ -729,7 +729,7 @@ namespace sockets
 
    void socket_handler::Trigger(int id, socket::trigger_data& data, bool erase)
    {
-      if(m_trigger_src.find_first(id) != NULL)
+      if(m_trigger_src.PLookup(id) != NULL)
       {
          data.SetSource( m_trigger_src[id]);
          socket_bool::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();

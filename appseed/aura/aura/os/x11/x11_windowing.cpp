@@ -109,7 +109,7 @@ int_bool MessageBoxW(oswindow interaction_impl, const unichar * pwsz, const unic
 
    stringa stra;
 
-   stra.add_shortest_tokens(string(pwsz), straSep);
+   stra.add_smallest_tokens(string(pwsz), straSep);
 
    return display_lines(stra, string(pwszTitle));
 

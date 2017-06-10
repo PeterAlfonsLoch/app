@@ -501,7 +501,7 @@ namespace fontopus
       else
       {
 
-         if(m_mapFontopusServer.lookup(strHost,strFontopusServer) && strFontopusServer.has_char())
+         if(m_mapFontopusServer.Lookup(strHost,strFontopusServer) && strFontopusServer.has_char())
          {
             return strFontopusServer;
          }

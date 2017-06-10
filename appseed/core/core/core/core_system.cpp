@@ -563,7 +563,7 @@ OutputDebugString("gtk_main exited");
 
       }
 
-      if(!m_pbergedgemap->lookup(iEdge,pbergedge))
+      if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
       {
 
          return NULL;
@@ -594,7 +594,7 @@ OutputDebugString("gtk_main exited");
 
       }
 
-      if(!m_pbergedgemap->lookup(iEdge,pbergedge))
+      if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
       {
 
          ::aura::application * papp = create_application("application", "session", true, pbiasCreation);
@@ -777,7 +777,7 @@ OutputDebugString("gtk_main exited");
 
       ::core::session * pbergedge = NULL;
 
-      while(m_pbergedgemap->lookup(iNewEdge,pbergedge))
+      while(m_pbergedgemap->Lookup(iNewEdge,pbergedge))
       {
 
          iNewEdge++;

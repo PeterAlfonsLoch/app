@@ -9,7 +9,7 @@ namespace file
 
    class path;
 
-   typedef CLASS_DECL_AURA::string_array < ::file::path > patha;
+   typedef CLASS_DECL_AURA::string_array < ::file::path, string > patha;
 
 
    enum e_path
@@ -197,7 +197,6 @@ namespace file
       path operator / (const string & str) const;
       path operator / (const char * psz) const;
       path operator / (const property & property) const;
-      patha operator / (const stringa & str) const;
 
       path & operator /= (const path & path);
       path & operator /= (const string & str);
@@ -367,51 +366,10 @@ inline const char * FormatArgument(const ::file::path & value) noexcept
    return value.c_str();
 }
 
-
-namespace comparison
+template<>
+inline UINT HashKey<const ::file::path &>(const ::file::path &  key)
 {
 
-   template < >
-   inline UINT hash::run(const ::file::path &  key)
-   {
+   return HashKey<const string & >(key);
 
-      return run < const string & >(key);
-
-   }
-
-
-} // namespace comparison
-
-
-namespace comparisontest
-{
-
-   template < >
-   inline UINT hash::run(const ::file::path &  key)
-   {
-
-      return run < const string & >(key);
-
-   }
-
-
-} // namespace comparison
-
-
-
-namespace comparisonok
-{
-
-   template < >
-   inline UINT hash::run(const ::file::path &  key)
-   {
-
-      return run < const string & >(key);
-
-   }
-
-
-} // namespace comparison
-
-
-
+}

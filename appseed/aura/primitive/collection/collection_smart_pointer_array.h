@@ -305,7 +305,7 @@ public:
    }
 
    
-   iterator add(const array < smart_pointer < T > > & a)
+   ::index add(const array < smart_pointer < T > > & a)
    {
 
       return array < smart_pointer < T > >::add(a);

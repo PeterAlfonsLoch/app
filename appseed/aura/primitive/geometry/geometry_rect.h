@@ -763,18 +763,13 @@ inline void rectd::assign_normal(const RECTD * lpcrect,e_orientation eorientatio
 }
 
 
-namespace comparison
+
+template<> inline UINT HashKey<rect> (rect key)
 {
+   return key.left | key.top | key.bottom | key.right;
+}
 
-   template < >
-   inline UINT hash::run(const rect & key)
-   {
 
-      return (key.left << 8) | (key.top << 24) | (key.bottom << 16) | key.right;
-
-   }
-
-} // namespace comparison
 
 
 

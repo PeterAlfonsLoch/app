@@ -1408,7 +1408,7 @@ namespace ftp
 
       single_lock sl(m_pmutex);
 
-      m_qResponseBuffer.add(strLine);
+      m_qResponseBuffer.add_tail(strLine);
 
    }
 
@@ -1511,7 +1511,7 @@ namespace ftp
 
             single_lock sl(m_pmutex);
 
-            strResponse = m_qResponseBuffer.pop_first();
+            strResponse = m_qResponseBuffer.remove_head();
 
          }
 

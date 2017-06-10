@@ -55,12 +55,16 @@ namespace sockets
    EventHandler::~EventHandler()
    {
 
-      for(auto & pevent : m_events)
+      POSITION pos = m_events.get_head_position();
+
+      while(pos != NULL)
       {
 
-         pevent->GetFrom() -> SetHandlerInvalid();
+         Event * pe = m_events.get_next(pos);
 
-         ::aura::del(pevent);
+         pe -> GetFrom() -> SetHandlerInvalid();
+
+         delete pe;
 
       }
 
@@ -75,12 +79,10 @@ namespace sockets
       if (!m_events.get_size())
          return false;
 
-      auto it = m_events.begin();
-
-      if(it != m_events.end())
+      POSITION pos = m_events.get_head_position();
+      if(pos != NULL)
       {
-         Event * pe = *it;
-
+         Event * pe = m_events.get_next(pos);
          EventTime now;
          mytime_t diff = pe->get_time() - now;
          if (diff < 1)
@@ -97,23 +99,13 @@ namespace sockets
 
    void EventHandler::CheckEvents()
    {
-      
       EventTime now;
-      
-      auto it = m_events.begin();
-
-      while(it != m_events.end())
+      POSITION pos = m_events.get_head_position();
+      while(pos != NULL)
       {
-
-         Event * pe = *it++;
-
-         if (!(pe->get_time() < now))
-         {
-
+         Event * pe = m_events.get_next(pos);
+         if(!(pe->get_time() < now))
             break;
-
-         }
-
          socket * s = dynamic_cast<socket *>(pe->GetFrom());
          /*
          s == NULL    This is another object implementing 'IEventOwner' and not a socket.
@@ -124,75 +116,58 @@ namespace sockets
          {
             pe ->GetFrom()->OnEvent(pe->GetID());
          }
-         //for (pos = m_events.get_head_position(); pos != NULL; )
-         //{
-         //   Event * pe2 = m_events.get_next(pos);
-         //   if(pe2 == pe)
-         //      break;
-         //}
-        
-         m_events.erase(it);
-         
-         ::aura::del(pe);
-         
+         for (pos = m_events.get_head_position(); pos != NULL; )
+         {
+            Event * pe2 = m_events.get_next(pos);
+            if(pe2 == pe)
+               break;
+         }
+         delete pe;
+         if(pos != NULL)
+            m_events.remove_at(pos);
+         pos = m_events.get_head_position();
       }
-
    }
 
 
    long EventHandler::AddEvent(IEventOwner *from,long sec,long usec)
    {
-      
       Event * peNew = new Event(from, sec, usec);
-      
-      auto it = m_events.pred_find_first([&](auto * pitem)
+      POSITION pos = m_events.get_head_position();
+      while(pos != NULL)
       {
-         
-         return !(*pitem < *peNew);
-
-      });
-
-      m_events.insert_before(it, peNew);
-
+         Event * pe = m_events.get_next(pos);
+         if(!(*pe < *peNew))
+            break;
+      }
+      m_events.insert_before(pos, peNew);
       if (m_socket)
       {
-
          m_socket->write("\n");
-
       }
-
       return peNew->GetID();
-
    }
 
 
    void EventHandler::ClearEvents(IEventOwner *from)
    {
-      
       bool repeat;
-      
-      for(auto it = m_events.begin(); it != m_events.end(); )
+      do
       {
-         
-         Event * pe = *it;
-
-         if(pe->GetFrom() == from)
+         repeat = false;
+         POSITION pos = m_events.get_head_position();
+         for(; pos != NULL;)
          {
-
-            m_events.erase(it);
-            
-            ::aura::del(pe);
-
+            Event * pe = m_events.get_next(pos);
+            if(pe->GetFrom() == from)
+            {
+               delete pe;
+               repeat = true;
+               break;
+            }
          }
-         else
-         {
-
-            it++;
-
-         }
-         
-      } 
-
+         m_events.remove_all();
+      } while (repeat);
    }
 
 
@@ -222,14 +197,17 @@ namespace sockets
 
    void EventHandler::RemoveEvent(IEventOwner *from, long eid)
    {
-      
-      m_events.pred_remove_first([&](auto pevent)
+      POSITION pos = m_events.get_head_position();
+      for(; pos != NULL; )
       {
-
-         return from == pevent->GetFrom() && eid == pevent->GetID();
-
-      });
-
+         Event * pe = m_events.get_next(pos);
+         if(from == pe->GetFrom() && eid == pe->GetID())
+         {
+            delete pe;
+            m_events.remove_at(pos);
+            break;
+         }
+      }
    }
 
 

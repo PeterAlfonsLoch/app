@@ -11,7 +11,9 @@ namespace visual
    public:
 
       
-      ::draw2d::font::enum_item_array     m_itema;
+      stringa              m_stra;
+      stringa              m_straPath;
+      ::draw2d::font::csa  m_csa;
 
 
       font_enumeration(::aura::application * papp);

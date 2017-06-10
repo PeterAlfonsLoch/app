@@ -11,7 +11,7 @@ class flags :
 {
 public:
 
-   int_ptr_array m_ia;
+   sort_int_ptr_array m_ia;
 
 
    flags();

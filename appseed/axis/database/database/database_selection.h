@@ -9,7 +9,7 @@ namespace database
    public:
 
 
-      array < selection_item > m_itema;
+      array < selection_item,selection_item & > m_itema;
 
 
       selection();

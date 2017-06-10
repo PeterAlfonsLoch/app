@@ -150,7 +150,7 @@ namespace fs
    //   stringa straSeparator;
    //   straSeparator.add("/");
    //   straSeparator.add("\\");
-   //   straParam.add_shortest_tokens(lpcsz, straSeparator, TRUE);
+   //   straParam.add_smallest_tokens(lpcsz, straSeparator, TRUE);
    //   for(int32_t i = 0; i < straParam.get_size(); )
    //   {
    //      if(straParam[i].is_empty())

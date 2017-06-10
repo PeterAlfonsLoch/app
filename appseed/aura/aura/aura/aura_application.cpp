@@ -609,10 +609,10 @@ namespace aura
 
       }
 
-      if (m_stringtableStd.lookup(strTable, pmap))
+      if (m_stringtableStd.Lookup(strTable, pmap))
       {
 
-         if (pmap->lookup(strString, str))
+         if (pmap->Lookup(strString, str))
          {
 
             return true;
@@ -620,10 +620,10 @@ namespace aura
          }
 
       }
-      else if (m_stringtable.lookup(strTable, pmap))
+      else if (m_stringtable.Lookup(strTable, pmap))
       {
 
-         if (pmap->lookup(strString, str))
+         if (pmap->Lookup(strString, str))
          {
 
             return true;
@@ -707,7 +707,7 @@ namespace aura
    bool application::app_map_lookup(const char * psz, ::aura::application * & p)
    {
 
-      return m_appmap.lookup(psz, p) != FALSE;
+      return m_appmap.Lookup(psz, p) != FALSE;
 
    }
 
@@ -782,8 +782,8 @@ namespace aura
       string                           m_strTopic;
       string                           m_strCounterTopic;
       oswindow                         m_hwnd;
-      array < oswindow >    m_hwndaTopic;
-      array < oswindow >    m_hwndaCounterTopic;
+      comparable_array < oswindow >    m_hwndaTopic;
+      comparable_array < oswindow >    m_hwndaCounterTopic;
 
    };
 
@@ -5827,13 +5827,13 @@ namespace aura
 
       stra.remove_ci("_std");
 
-      straLocale.add_unique_iter(Application.directrix()->m_varTopicQuery["locale"].stra());
+      straLocale.add_unique(Application.directrix()->m_varTopicQuery["locale"].stra());
 
       stra = Application.directrix()->m_varTopicQuery["schema"].stra();
 
       stra.remove_ci("_std");
 
-      straSchema.add_unique_iter(Application.directrix()->m_varTopicQuery["schema"].stra());
+      straSchema.add_unique(Application.directrix()->m_varTopicQuery["schema"].stra());
 
 
       localeschema.m_idLocale = straLocale[0];

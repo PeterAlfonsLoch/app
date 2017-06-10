@@ -280,7 +280,7 @@ namespace fontopus
          if (stra.get_size() >= 2)
          {
             m_login.m_dib.load_from_matter(stra[0]);
-            m_login.m_strCred = stra.implode("|", stra.begin() + 1);
+            m_login.m_strCred = stra.implode("|", 1);
          }
          else
          {

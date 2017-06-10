@@ -3413,12 +3413,12 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\collection\collection_base_enum.h" />
     <ClInclude Include="primitive\collection\collection_bitset.h" />
     <ClInclude Include="primitive\collection\collection_bit_array.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_array.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_eq_array.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_eq_list.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_list.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_primitive_array.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_comparable_raw_array.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_array.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_eq_array.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_eq_list.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_list.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_primitive_array.h" />
+    <ClInclude Include="primitive\collection\collection_comparable_raw_array.h" />
     <ClInclude Include="primitive\collection\collection_decl.h" />
     <ClInclude Include="primitive\collection\collection_deque.h" />
     <ClInclude Include="primitive\collection\collection_elements.h" />
@@ -3426,9 +3426,8 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\collection\collection_file_path_map.h" />
     <ClInclude Include="primitive\collection\collection_id_array.h" />
     <ClInclude Include="primitive\collection\collection_int_map.h" />
-    <ClInclude Include="primitive\collection\collection_iterable.h" />
     <ClInclude Include="primitive\collection\collection_iterator.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_key_sort_array.h" />
+    <ClInclude Include="primitive\collection\collection_key_sort_array.h" />
     <ClInclude Include="primitive\collection\collection_lemon_array.h" />
     <ClInclude Include="primitive\collection\collection_lemon_array_decl.h" />
     <ClInclude Include="primitive\collection\collection_list.h" />
@@ -3438,7 +3437,6 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\collection\collection_map_to_smart_pointer.h" />
     <ClInclude Include="primitive\collection\collection_numeric_array.h" />
     <ClInclude Include="primitive\collection\collection_numeric_array_range.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_numeric_iterable.h" />
     <ClInclude Include="primitive\collection\collection_object_list.h" />
     <ClInclude Include="primitive\collection\collection_packset.h" />
     <ClInclude Include="primitive\collection\collection_pair.h" />
@@ -3458,18 +3456,17 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\collection\collection_simple_typed_pointer_array.h" />
     <ClInclude Include="primitive\collection\collection_smart_pointer_array.h" />
     <ClInclude Include="primitive\collection\collection_sort.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_sort_array.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_sort_map.h" />
+    <ClInclude Include="primitive\collection\collection_sort_array.h" />
+    <ClInclude Include="primitive\collection\collection_sort_map.h" />
     <ClInclude Include="primitive\collection\collection_spreadset.h" />
     <ClInclude Include="primitive\collection\collection_stack.h" />
     <ClInclude Include="primitive\collection\collection_strid_map.h" />
     <ClInclude Include="primitive\collection\collection_stringa.h" />
     <ClInclude Include="primitive\collection\collection_stringl.h" />
     <ClInclude Include="primitive\collection\collection_string_array.h" />
-    <ClInclude Include="primitive\collection\collection_string_iterable.h" />
     <ClInclude Include="primitive\collection\collection_string_list.h" />
     <ClInclude Include="primitive\collection\collection_string_map.h" />
-    <ClInclude Include="primitive\collection\aaawtr_collection_string_sort_array.h" />
+    <ClInclude Include="primitive\collection\collection_string_sort_array.h" />
     <ClInclude Include="primitive\collection\collection_string_to_string_map.h" />
     <ClInclude Include="primitive\collection\collection_template.h" />
     <ClInclude Include="primitive\collection\collection_typed_pointer_array.h" />
@@ -4239,7 +4236,6 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </None>
     <None Include="aura\os\windows\windows.inl" />
-    <None Include="aura\xml\xml.inl" />
     <None Include="filesystem\filesystem.inl" />
     <None Include="net\net.inl" />
     <None Include="primitive\collection\collection_array_base.inl">

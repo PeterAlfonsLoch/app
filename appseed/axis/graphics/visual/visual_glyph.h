@@ -12,7 +12,7 @@ namespace visual
 
       UINT   m_ui;
 
-      array < point_array > m_pointsets;
+      array <point_array, point_array &> m_pointsets;
 
 #ifdef WINDOWSEX
 

@@ -489,7 +489,7 @@ inline var property_set::lookup(id idName, var varDefault) const
 inline property * property_set::find(id idName) const
 {
 
-   return (property *) (const property *) find_first(idName);
+   return (property *) PLookup(idName);
 
 }
 

@@ -820,7 +820,7 @@ namespace user
    id control_cmd_ui::GetControlCommand(id id)
    {
       class id idCommand;
-      if(m_mapControlCommand.lookup(id, idCommand))
+      if(m_mapControlCommand.Lookup(id, idCommand))
       {
          return id;
       }

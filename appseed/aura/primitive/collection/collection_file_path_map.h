@@ -2,7 +2,7 @@
 
 
 template < class VALUE,class ARG_VALUE = const VALUE & >
-using file_path_map = map < ::file::path,const ::file::path &,VALUE,ARG_VALUE > ;
+using file_path_map =map < ::file::path,const ::file::path &,VALUE,ARG_VALUE > ;
 
 using file_path_to_intptr = string_map < int_ptr,int_ptr > ;
 

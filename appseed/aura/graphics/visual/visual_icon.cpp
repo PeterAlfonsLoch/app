@@ -154,7 +154,6 @@ namespace visual
 
    }
 
-
    bool icon::load_matter(string strMatter)
    {
 
@@ -170,7 +169,6 @@ namespace visual
       return true;
 
    }
-
 
    bool icon::load_app_tray_icon(string strApp)
    {

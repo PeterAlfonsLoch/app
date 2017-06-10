@@ -71,7 +71,7 @@ property * property_set::find_var_ci(const var & var) const
    for(const_iterator it = begin(); it != end(); it++)
    {
       if(it->get_value().compare_ci(var) == 0)
-         return (property *) it.m_passoc;
+         return it.m_ppair;
    }
    return NULL;
 }
@@ -87,7 +87,7 @@ property * property_set::find_var(const var & var) const
    for(const_iterator it = begin(); it != end(); it++)
    {
       if(it->get_value() == var)
-         return (property *) it.m_passoc;
+         return it.m_ppair;
    }
    return NULL;
 }
@@ -322,7 +322,7 @@ bool property_set::remove_first_value(const char * lpcsz)
 
 ::count property_set::unset(id idName)
 {
-   property_map::pair * ppair = find_first(idName);
+   property_map::pair * ppair = PLookup(idName);
    if(ppair == NULL)
       return 0;
    remove_key(ppair->m_element1);
@@ -844,21 +844,14 @@ void property_set::parse_http_headers(const char * pszHeaders)
    return unset(idName);
 }
 
-
 ::count property_set::remove_by_name(stringa & stra)
 {
-
    ::count count = 0;
-
    for(int32_t i = 0; i < stra.get_count(); i++)
    {
-
-      count += remove_key(stra[i]);
-
+      count += remove(stra[i]);
    }
-
    return count;
-
 }
 
 
@@ -1127,7 +1120,7 @@ property_set & property_set::merge(const property_set & set)
       for(const_iterator it = set.begin(); it != set.end(); it++)
       {
 
-         const property * pproperty = it.m_passoc;
+         const property * pproperty = it.m_ppair;
 
          id idName = pproperty->name();
 

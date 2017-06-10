@@ -61,13 +61,13 @@ CacheFile::close() {
 
 	while (!m_page_cache_disk.empty()) {
 		Block *block = *m_page_cache_disk.begin();
-		m_page_cache_disk.remove_first();
+		m_page_cache_disk.pop_front();
 		delete [] block->data;
 		delete block;
 	}
 	while (!m_page_cache_mem.empty()) {
 		Block *block = *m_page_cache_mem.begin();
-		m_page_cache_mem.remove_first();
+		m_page_cache_mem.pop_front();
 		delete [] block->data;
 		delete block;
 	}
@@ -89,7 +89,7 @@ CacheFile::cleanupMemCache() {
 		if (m_page_cache_mem.size() > CACHE_SIZE) {
 			// flush the least used block to file
 
-			Block *old_block = m_page_cache_mem.last();
+			Block *old_block = m_page_cache_mem.back();
 			fseek(m_file, old_block->nr * BLOCK_SIZE, SEEK_SET);
 			fwrite(old_block->data, BLOCK_SIZE, 1, m_file);
 
@@ -114,7 +114,7 @@ CacheFile::allocateBlock() {
 
 	if (!m_free_pages.empty()) {
 		block->nr = *m_free_pages.begin();
-		m_free_pages.remove_first();
+		m_free_pages.pop_front();
 	} else {
 		block->nr = m_page_count++;
 	}
@@ -181,7 +181,7 @@ CacheFile::deleteBlock(int nr) {
 		// remove block from cache
 
 		if (it != m_page_map.end())
-			m_page_map.erase(it);
+			m_page_map.erase(nr);
 
 		// add block to free page list
 

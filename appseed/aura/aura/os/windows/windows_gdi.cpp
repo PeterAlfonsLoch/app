@@ -153,7 +153,8 @@ namespace draw2d
    public:
 
       HDC                     m_hdc;
-      font::enum_item_array & m_itema;
+      stringa &               m_stra;
+      ::draw2d::font::csa &   m_csa;
       bool                    m_bRaster;
       bool                    m_bTrueType;
       bool                    m_bOther;
@@ -162,8 +163,9 @@ namespace draw2d
 
 
 
-      wingdi_font_enum(font::enum_item_array & itema, bool bRaster, bool bTrueType, bool bOther) :
-         m_itema(itema),
+      wingdi_font_enum(stringa & stra, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther) :
+         m_stra(stra),
+         m_csa(csa),
          m_bRaster(bRaster),
          m_bTrueType(bTrueType),
          m_bOther(bOther)
@@ -235,11 +237,11 @@ namespace draw2d
 
          ::draw2d::font::e_cs ecsFound;
 
-         for (index i = 0; i < m_itema.get_size(); i++)
+         for (index i = 0; i < m_stra.get_size(); i++)
          {
 
-            if (m_itema[i].m_ecs == ::draw2d::font::cs_ansi
-               || m_itema[i].m_ecs == ::draw2d::font::cs_default)
+            if (m_csa[i] == ::draw2d::font::cs_ansi
+               || m_csa[i] == ::draw2d::font::cs_default)
 
             {
 
@@ -249,7 +251,7 @@ namespace draw2d
 
                s.cy = 0;
 
-               ecsFound = m_itema[i].m_ecs;
+               ecsFound = m_csa[i];
 
                iMultiScript = 0;
 
@@ -267,7 +269,7 @@ namespace draw2d
                   if (wstrSample.get_length() > 0)
                   {
 
-                     string strFont = m_itema[i].m_strFontFamilyName;
+                     string strFont = m_stra[i];
 
                      hfont = wingdi_CreatePointFont(180, strFont, m_hdc, &lf);
 
@@ -316,21 +318,22 @@ namespace draw2d
                if (iMultiScript == 1)
                {
 
-                  m_itema[i].m_ecs = ecsFound;
+                  m_csa[i] = ecsFound;
 
                }
                else if (iMultiScript > 1)
                {
 
-                  string str = m_itema[i].m_strFontFamilyName;
+                  string str = m_stra[i];
 
                restart_k:;
 
-                  for (index k = i + 1; k < m_itema.get_size(); k++)
+                  for (index k = i + 1; k < m_stra.get_size(); k++)
                   {
-                     if (m_itema[k].m_strFontFamilyName == str)
+                     if (m_stra[k] == str)
                      {
-                        m_itema.remove_at(k);
+                        m_stra.remove_at(k);
+                        m_csa.remove_at(k);
                         goto restart_k;
                      }
                   }
@@ -461,45 +464,37 @@ namespace draw2d
 
             string strTopic(penum->m_wstrTopicFaceName);
 
-            auto iFindTopic = penum->m_itema.begin();
+            index iFindTopic = -1;
 
-            while ((iFindTopic = penum->m_itema.pred_find_first(
-                  [&strTopic](auto item)
-                  {
-               return stricmp(item.m_strFontFamilyName, strTopic) == 0;
-                  }, iFindTopic)) != penum->m_itema.end())
+            while ((iFindTopic = penum->m_stra.find_first_ci(strTopic, iFindTopic + 1)) >= 0)
             {
 
-               if (iFindTopic->m_ecs == ecs)
+               if (penum->m_csa[iFindTopic] == ecs)
                {
 
-                  penum->m_itema.erase(iFindTopic);
+                  penum->m_stra.remove_at(iFindTopic);
+                  penum->m_csa.remove_at(iFindTopic);
 
                   break;
 
                }
-
-               iFindTopic++;
 
             }
 
 
          }
 
-         auto iFind = penum->m_itema.pred_find_first(
-            [&str](auto item)
-         {
-            return stricmp(item.m_strFontFamilyName, str) == 0;
-         });
+         index iFind = penum->m_stra.find_first_ci(str);
 
 
-         if (iFind != penum->m_itema.end())
+         if (iFind >= 0)
          {
 
-            if (iFind->m_ecs == ::draw2d::font::cs_ansi || iFind->m_ecs == ::draw2d::font::cs_default)
+            if (penum->m_csa[iFind] == ::draw2d::font::cs_ansi
+               || penum->m_csa[iFind] == ::draw2d::font::cs_default)
             {
 
-               iFind->m_ecs = ecs;
+               penum->m_csa[iFind] = ecs;
 
                if (ecs != ::draw2d::font::cs_ansi && ecs != ::draw2d::font::cs_default)
                {
@@ -513,14 +508,10 @@ namespace draw2d
             {
 
 
-               while ((iFind = penum->m_itema.pred_find_first(
-                  [&str](auto item)
-               {
-                  return stricmp(item.m_strFontFamilyName, str) == 0;
-               }, iFind + 1)) != penum->m_itema.end())
+               while ((iFind = penum->m_stra.find_first_ci(str, iFind + 1)) >= 0)
                {
 
-                  if (iFind->m_ecs == ecs)
+                  if (penum->m_csa[iFind] == ecs)
                   {
 
                      break;
@@ -538,7 +529,8 @@ namespace draw2d
          if (iFind < 0)
          {
 
-            penum->m_itema.add(::draw2d::font::enum_item(lplf->lfFaceName, ecs));
+            penum->m_stra.add(lplf->lfFaceName);
+            penum->m_csa.add(ecs);
 
          }
 
@@ -550,14 +542,13 @@ namespace draw2d
    }
 
 
-   CLASS_DECL_AURA void wingdi_enum_fonts(font::enum_item_array & itema, bool bRaster, bool bTrueType, bool bOther)
+   CLASS_DECL_AURA void wingdi_enum_fonts(stringa & stra, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther)
    {
 
-      wingdi_font_enum fonts(itema, bRaster, bTrueType, bOther);
+      wingdi_font_enum fonts(stra, csa, bRaster, bTrueType, bOther);
 
-      itema.pred_quick_sort([](auto & i1, auto & i2)
-      {
-         return i1.m_strFontFamilyName.CompareNoCase(i2.m_strFontFamilyName) < 0;
+      stra.quick_sort([&](index i1, index i2) {
+         csa.swap(i1, i2);
       });
 
    }

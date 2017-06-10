@@ -319,12 +319,12 @@ bool db_str_set::load(const string & strKey, string & strValue)
 
       sl.lock();
 
-      auto it = pcore->m_map.find_first(strKey);
+      auto ppair = pcore->m_map.PLookup(strKey);
 
-      if (it != pcore->m_map.end() && it->m_element2.m_dwTimeout > get_tick_count())
+      if (ppair != NULL && ppair->m_element2.m_dwTimeout > get_tick_count())
       {
 
-         strValue = it->m_element2.m_str;
+         strValue = ppair->m_element2.m_str;
 
          return true;
 
@@ -537,7 +537,7 @@ bool db_str_set::save(const string & strKey, const string & strValue)
 
          synch_lock sl(m_pmutex);
 
-         pcore->m_map.find_first(strKey);
+         pcore->m_map.PLookup(strKey);
 
       }
 

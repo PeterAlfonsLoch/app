@@ -1219,7 +1219,7 @@ FreeImage_SetMetadata(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, 
 			if(i != tagmap->end()) {
 				FITAG *old_tag = (*i).m_element2;
 				FreeImage_DeleteTag(old_tag);
-				tagmap->remove_key(key);
+				tagmap->erase(key);
 			}
 		}
 	}

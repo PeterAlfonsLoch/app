@@ -51,7 +51,7 @@ namespace file
    void set::add_filter(stringa & stra)
    {
 
-      m_straFilter.add_iter(stra);
+      m_straFilter.add(stra);
 
    }
 
@@ -127,7 +127,7 @@ namespace file
 
       }
 
-      m_straFile.add_iter(m_straFileAddUp);
+      m_straFile.add(m_straFileAddUp);
 
    }
 

@@ -319,10 +319,10 @@ template < typename N > class numeric_array;
 
 typedef CLASS_DECL_AURA numeric_array < uint32_t > uint_array;
 
-template < typename Type >
-class string_array;
+template < typename Type,typename RawType = Type >
 
-typedef CLASS_DECL_AURA string_array < string > stringa;
+class string_array;
+typedef string_array < string > stringa;
 
 
 #ifndef METROWIN

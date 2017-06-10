@@ -716,7 +716,7 @@ namespace install
 
                m_straLinesNativeLaunch.remove_all();
 
-               m_straLinesNativeLaunch.add_shortest_tokens(m_phost->m_pbasecomposer->m_strPluginData,straSeparator,false);
+               m_straLinesNativeLaunch.add_smallest_tokens(m_phost->m_pbasecomposer->m_strPluginData,straSeparator,false);
 
             }
 

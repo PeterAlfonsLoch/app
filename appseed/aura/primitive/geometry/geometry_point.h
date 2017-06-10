@@ -473,20 +473,13 @@ inline double pointd::set_orthogonal_dimension(e_orientation eorientation,double
 }
 
 
-namespace comparison
+
+template<> inline UINT HashKey<point> (point key)
 {
-
-
-   template < >
-   inline UINT hash::run(point key)
-   {
-
-      return key.x | (key.y << 16);
-
-   }
-
-
+   return key.x | key.y;
 }
+
+
 
 struct CLASS_DECL_AURA POINT3D
 {

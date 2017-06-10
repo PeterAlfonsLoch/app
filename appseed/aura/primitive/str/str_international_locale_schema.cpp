@@ -558,7 +558,7 @@ step2:
       {
 
 
-         ::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_pmapRTL->find_first(id);
+         ::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_pmapRTL->PLookup(id);
 
          if(ppair != NULL)
             return ppair->m_element2;
@@ -622,8 +622,8 @@ restart:
          }
 
 
-         array < id > idaLocaleAdd1;
-         array < id > idaSchemaAdd1;
+         comparable_array < id > idaLocaleAdd1;
+         comparable_array < id > idaSchemaAdd1;
 
 
          if(bRTLLayout)

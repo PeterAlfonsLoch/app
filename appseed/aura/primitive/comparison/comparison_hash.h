@@ -1,349 +1,106 @@
 #pragma once
 
 
-namespace comparison
+
+
+
+
+template < class ARG_KEY >
+inline UINT HashKey(ARG_KEY key)
 {
+   // default identity hash - works for most primitive values
+   return (uint32_t)(((uint_ptr)key)>>4);
+}
 
-   class hash
-   {
-   public:
+inline uint64_t harmannieves_camwhite_hash(const char * key, uint64_t nHash = 0)
+{
+   while (*key)
+      nHash = (nHash << 5) + nHash + *key++;
+   return nHash;
+}
 
-      template < typename TYPE >
-      static UINT run(TYPE t)
-      {
 
-         // default identity hash - works for most primitive values
+template<>
+inline UINT HashKey<const char *> (const char * key)
+{
+   return (UINT) harmannieves_camwhite_hash(key);
+}
 
-         return (uint32_t)(((uint_ptr)t) >> 4);
-
-      }
-
-   };
-
-   inline uint64_t string_hash(const char * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-   }
-
-   inline uint64_t string_hash(const wchar_t * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-      }
 
 
 #if !defined(WINDOWS)
 
-   inline uint64_t string_hash(const unichar * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-   }
-
-#endif
-
-
-   template < >
-   inline UINT hash::run < const char * > (const char * key)
-   {
-
-      return (UINT)string_hash(key);
-
-   }
-
-
-
-   template < >
-   inline UINT hash::run < const wchar_t * >(const wchar_t * key)
-   {
-
-      return (UINT)string_hash(key);
-
-   }
-
-   template < >
-   inline UINT hash::run < const string & >(const string &  key)
-   {
-         
-      return (UINT)string_hash(key.m_pszData);
-
-   }
-
-
-
-   template < >
-   inline UINT hash::run < const wstring & >(const wstring & key)
-   {
-
-#if defined(LINUX) || defined(__APPLE__) || defined(VSNORD)
-      return run<unichar * >(key.c_str());
-#else
-      return run<const wchar_t * >(key.c_str());
-#endif
-
-   }
-
-
-
-
-
-} // namespace comparison
-
-
-
-
-
-
-namespace comparisontest
+template<>
+inline UINT HashKey<const unichar *> (const unichar * key)
 {
-
-   class hash
-   {
-   public:
-
-      template < typename TYPE >
-      static UINT run(TYPE t)
-      {
-
-         // default identity hash - works for most primitive values
-
-         return (uint32_t)(((uint_ptr)t) >> 4);
-
-      }
-
-   };
-
-
-   inline uint64_t string_hash(const char * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-   }
-
-   inline uint64_t string_hash(const wchar_t * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-   }
-
-
-#if !defined(WINDOWS)
-
-   inline uint64_t string_hash(const unichar * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-   }
+//   ENSURE_ARG(__is_valid_string(key));
+   UINT nHash = 0;
+   while (*key)
+      nHash = (nHash<<5) + nHash + *key++;
+   return nHash;
+}
 
 #endif
 
-
-   template < >
-   inline UINT hash::run < const char * >(const char * key)
-   {
-
-      return (UINT)string_hash(key);
-
-   }
+template<>
+inline UINT HashKey<const wchar_t *>(const wchar_t * key);
 
 
 
-   template < >
-   inline UINT hash::run < const wchar_t * >(const wchar_t * key)
-   {
-
-      return (UINT)string_hash(key);
-
-   }
-
-   template < >
-   inline UINT hash::run < const string & >(const string &  key)
-   {
-
-      return (UINT)string_hash(key.m_pszData);
-
-   }
-
-
-
-   template < >
-   inline UINT hash::run < const wstring & >(const wstring & key)
-   {
-
+template<>
+inline UINT HashKey<const wstring &>(const wstring & key)
+{
 #if defined(LINUX) || defined(__APPLE__) || defined(VSNORD)
-      return run<unichar * >(key.c_str());
+   return HashKey(key.c_str());
 #else
-      return run<const wchar_t * >(key.c_str());
+   return HashKey<const wchar_t * >(key.c_str());
 #endif
-
-   }
-
-
-
 
 }
 
 
 
 
-namespace comparisonok
+
+
+
+
+template<>
+inline UINT HashKey<const string &>(const string &  key)
 {
-
-   class hash
-   {
-   public:
-
-      template < typename TYPE >
-      static UINT run(TYPE t)
-      {
-
-         // default identity hash - works for most primitive values
-
-         return (uint32_t)(((uint_ptr)t) >> 4);
-
-      }
-
-   };
-
-
-   inline uint64_t string_hash(const char * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-   }
-
-   inline uint64_t string_hash(const wchar_t * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-   }
-
-
-#if !defined(WINDOWS)
-
-   inline uint64_t string_hash(const unichar * key, uint64_t nHash = 0)
-   {
-
-      while (*key)
-      {
-
-         nHash = (nHash << 5) + nHash + *key++;
-
-      }
-
-      return nHash;
-
-   }
-
-#endif
-
-
-   template < >
-   inline UINT hash::run < const char * >(const char * key)
-   {
-
-      return (UINT)string_hash(key);
-
-   }
-
-
-
-   template < >
-   inline UINT hash::run < const wchar_t * >(const wchar_t * key)
-   {
-
-      return (UINT)string_hash(key);
-
-   }
-
-   template < >
-   inline UINT hash::run < const string & >(const string &  key)
-   {
-
-      return (UINT)string_hash(key.m_pszData);
-
-   }
-
-
-
-   template < >
-   inline UINT hash::run < const wstring & >(const wstring & key)
-   {
-
-#if defined(LINUX) || defined(__APPLE__) || defined(VSNORD)
-      return run<unichar * >(key.c_str());
-#else
-      return run<const wchar_t * >(key.c_str());
-#endif
-
-   }
-
-
-
-
+   return (UINT) harmannieves_camwhite_hash(key.m_pszData);
 }
+
+
+
+
+//template < >
+//inline UINT HashKey(const string & key)
+//{
+//   uint64_t * puiKey = (uint64_t *)(const char *)key;
+//   strsize counter = key.get_length();
+//   uint64_t nHash = 0;
+//   while(::compare::ge(counter,sizeof(*puiKey)))
+//   {
+//      nHash = (nHash << 5) + nHash + *puiKey++;
+//      counter -= sizeof(*puiKey);
+//   }
+//   const char * pszKey = (const char *)puiKey;
+//   while(counter-- >= 0) nHash = (nHash << 5) + nHash + *pszKey++;
+//   return (UINT)(nHash & 0xffffffff);
+//}
+
+
+
+
+
+
+
+//
+//template <  >
+//inline UINT HashKey(const ::file::path & path)
+//{
+//
+//   return HashKey<const string &> ((const string &) path);
+//}
+//

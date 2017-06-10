@@ -195,9 +195,9 @@ class CLASS_DECL_AURA base_factory :
 public:
 
 
-   id_map < sp(factory_item_base) >    m_mapItem;
-   id_map < sp(factory_allocator) >    m_mapAllocator;
-   bool                                m_bSimpleFactoryRequest;
+   idsp(factory_item_base)       m_mapItem;
+   idsp(factory_allocator)       m_mapAllocator;
+   bool                          m_bSimpleFactoryRequest;
 //   spa(type)                     m_typeinfoptraSimpleFactoryRequest;
 
 

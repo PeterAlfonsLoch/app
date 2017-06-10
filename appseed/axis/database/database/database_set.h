@@ -20,7 +20,7 @@ namespace database
 
      base *db;      // info about db connection
      dsStates ds_state;           // current state
-     fields fields_object, edit_object;
+     CFields fields_object, edit_object;
          
 
      bool            active;         // Is Query Opened?
@@ -210,8 +210,8 @@ namespace database
      bool get_autocommit() { return autocommit; }
 
    /* ----------------- for debug -------------------- */
-     fields & get_fields_object() {return fields_object;};
-     fields & get_edit_object() {return edit_object;};
+     CFields & get_fields_object() {return fields_object;};
+     CFields & get_edit_object() {return edit_object;};
 
     private:
      void set_ds_state(dsStates new_state) {ds_state = new_state;};   

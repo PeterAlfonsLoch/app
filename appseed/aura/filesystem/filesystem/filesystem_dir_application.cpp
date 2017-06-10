@@ -80,9 +80,9 @@ namespace file
 
       }
 
-      ::file::path application::matter_iter(const ::file::patha & stra,bool bDir,const ::file::path & pszRoot,const ::file::path & pszApp)
+      ::file::path application::matter(const ::file::patha & stra,bool bDir,const ::file::path & pszRoot,const ::file::path & pszApp)
       {
-         return m_pauraapp->m_paurasystem->m_spdir->matter_iter(get_app(), stra, bDir, pszRoot, pszApp);
+         return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), stra, bDir, pszRoot, pszApp);
       }
 
       ::file::path application::usersystemappdata(const string & lpcszPrefix)

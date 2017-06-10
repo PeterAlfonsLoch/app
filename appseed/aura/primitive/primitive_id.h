@@ -625,29 +625,32 @@ inline int_ptr id::compare_ci(const char * psz) const
 
 
 
-namespace comparison
+
+template < >
+inline bool EqualElements< id >(id element1, id element2)
+{
+   return element1 == element2;
+}
+
+
+
+template < >
+inline UINT HashKey< const id & >(const id & key)
 {
 
-   template < >
-   inline bool equals::run(id element1, id element2)
-   {
-      return element1 == element2;
-   }
-
-   template < >
-   inline UINT hash::run < const id & >(const id & key)
+   if (key.m_etype == id::type_text)
    {
 
-      if (key.m_etype == id::type_text)
-      {
-
-         return run < const char * >(key.m_psz);
-
-      }
-
-      return ((((UINT)(uint_ptr)key.m_iType) << 24) & 0xffffffffu) | ((((UINT)(uint_ptr)key.m_iBody) >> 8) & 0xffffffffu);
+      return HashKey(key.m_psz);
 
    }
 
-   
+   return ((((UINT)(uint_ptr)key.m_iType) << 24) & 0xffffffffu) | ((((UINT)(uint_ptr)key.m_iBody) >> 8) & 0xffffffffu);
+
+}
+
+template < >
+inline UINT HashKey< id>(id key)
+{
+   return HashKey<const id & > ((const id &)key);
 }

@@ -64,36 +64,7 @@ namespace draw2d
          cs_count
       };
 
-      struct enum_item
-      {
-
-         string      m_strFile;
-         string      m_strFontFamilyName;
-         e_cs        m_ecs;
-
-         enum_item() { m_ecs = cs_none;  }
-         enum_item(string strFontFamilyName, e_cs ecs): 
-            m_strFontFamilyName(strFontFamilyName),
-            m_ecs(ecs)
-         {}
-         enum_item(string strFile, string strFontFamilyName, e_cs ecs) :
-            m_strFile(strFile),
-            m_strFontFamilyName(strFontFamilyName),
-            m_ecs(ecs)
-         {}
-
-         bool operator == (const enum_item & i) const
-         {
-
-            return m_strFile == i.m_strFile
-               && m_strFontFamilyName == i.m_strFontFamilyName
-               && m_ecs == i.m_ecs;
-
-         }
-
-      };
-
-      using enum_item_array = array < enum_item >;
+      using csa = numeric_array < e_cs >;
 
       string      m_strFontFamilyName;
       double      m_dFontSize;
@@ -165,9 +136,7 @@ namespace draw2d
 
 #ifdef WINDOWS
 
-      
-
-   CLASS_DECL_AURA void wingdi_enum_fonts(::draw2d::font::enum_item_array & itema, bool bRaster, bool bTrueType, bool bOther);
+   CLASS_DECL_AURA void wingdi_enum_fonts(stringa & stra, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
 //   CLASS_DECL_AURA void wingdi_enum_cs(string str, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
    CLASS_DECL_AURA font::e_cs wingdi_get_cs(int iCs);
 

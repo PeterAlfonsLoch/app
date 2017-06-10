@@ -70,7 +70,7 @@ namespace aura
 
       synch_lock sl(&m_mutex);
 
-      MAP::pair * ppair = m_map.find_first(nIDEvent);
+      MAP::pair * ppair = m_map.PLookup(nIDEvent);
 
       if (ppair == NULL)
       {
@@ -148,14 +148,16 @@ namespace aura
    void timer_array::delete_all_timers()
    {
 
+      MAP::pair * ppair = NULL;
+
    restart:
 
-      auto it = m_map.begin();
+      ppair = m_map.PGetFirstAssoc();
 
-      if(it != m_map.end())
+      if(ppair != NULL)
       {
 
-         delete_timer(it->m_element1);
+         delete_timer(ppair->m_element1);
 
          goto restart;
 

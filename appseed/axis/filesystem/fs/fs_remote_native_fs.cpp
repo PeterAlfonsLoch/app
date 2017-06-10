@@ -72,7 +72,7 @@ namespace fs
    ::file::listing & remote_native::root_ones(::file::listing & listing)
    {
 
-      ::file::path & path = *listing.add("fs://");
+      ::file::path & path = listing[listing.add("fs://")];
 
       path.m_iDir = 1;
 
@@ -209,7 +209,7 @@ namespace fs
 
       uint32_t dwTimeout;
 
-      if(m_mapfileTimeout.lookup(path,dwTimeout))
+      if(m_mapfileTimeout.Lookup(path,dwTimeout))
       {
          if(::get_tick_count() > dwTimeout)
          {
@@ -223,7 +223,7 @@ namespace fs
          }
       }
 
-      if(m_mapdirTimeout.lookup(path,dwTimeout))
+      if(m_mapdirTimeout.Lookup(path,dwTimeout))
       {
          if(::get_tick_count() > dwTimeout)
          {
@@ -237,7 +237,7 @@ namespace fs
          }
       }
 
-      if(m_mapfileTimeout.lookup(path, dwTimeout))
+      if(m_mapfileTimeout.Lookup(path, dwTimeout))
       {
          if(::get_tick_count() > dwTimeout)
          {

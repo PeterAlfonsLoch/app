@@ -529,7 +529,7 @@ namespace datetime
          }
          if(stra.get_count() >= 2)
          {
-            str = stra.implode_ex(", ", " and ");
+            str = stra.implode(", ",0,stra.get_count() - 1) + " and " + stra.last();
          }
          else if(stra.get_count() == 1)
          {

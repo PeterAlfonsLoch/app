@@ -175,14 +175,14 @@ namespace http
 
       single_lock sl(m_pmutexPac, true);
 
-      auto it = m_mapPac.find_first(pszUrl);
+      auto ppair = m_mapPac.PLookup(pszUrl);
 
-      if(it == m_mapPac.end() || (::get_tick_count() - it->m_element2->m_dwLastChecked) > (84 * 1000))
+      if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
       {
-         if(it != m_mapPac.end())
+         if(ppair != NULL)
          {
 //            delete ppair->m_element2;
-            m_mapPac.erase(it);
+            m_mapPac.remove_key(pszUrl);
          }
 
          class pac * ppac = canew(class pac(get_app()));
@@ -210,16 +210,16 @@ namespace http
          registerJavascriptFunctions(ppac->m_pjs);
          ppac->m_pjs->execute(ppac->m_strAutoConfigScript);
 
-         it = m_mapPac.find_first(pszUrl);
+         ppair = m_mapPac.PLookup(pszUrl);
 
-         if(it == m_mapPac.end())
+         if(ppair == NULL)
             return NULL;
       }
 
-      if(it->m_element2->m_strAutoConfigScript.is_empty())
+      if(ppair->m_element2->m_strAutoConfigScript.is_empty())
          return NULL;
 
-      return it->m_element2;
+      return ppair->m_element2;
 
    }
 
@@ -236,16 +236,14 @@ namespace http
 
       single_lock sl(m_pmutexProxy, true);
 
-      auto it = m_mapProxy.find_first(pszUrl);
+      auto ppair = m_mapProxy.PLookup(pszUrl);
 
-      if(it == m_mapProxy.end() || (::get_tick_count() - it->m_element2->m_dwLastChecked) > (84 * 1000))
+      if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
       {
-
-         if(it != m_mapProxy.end())
+         if(ppair != NULL)
          {
-
-            m_mapProxy.erase(it);
-
+//            delete ppair->m_element2;
+            m_mapPac.remove_key(pszUrl);
          }
 
          class ::http::system::proxy * pproxy = canew(class ::http::system::proxy(get_app()));
@@ -262,7 +260,7 @@ namespace http
 
       }
 
-      return it->m_element2;
+      return ppair->m_element2;
 
    }
 

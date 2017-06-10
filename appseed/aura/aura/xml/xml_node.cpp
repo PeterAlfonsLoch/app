@@ -71,9 +71,9 @@ namespace xml
       return m_attra;
    }
 
-   var & node::attr(const char * lpcszName)
+   var node::attr(const char * lpcszName)
    {
-      return m_attra[lpcszName].m_element2;
+      return m_attra[lpcszName];
    }
 
    bool node::get_attr(const char * lpcszName, string & strValue)

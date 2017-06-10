@@ -13,4 +13,4 @@
 //
 
 
-using id_array = ::array < id >;
+using id_array = ::comparable_array < id >;

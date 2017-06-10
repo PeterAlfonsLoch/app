@@ -1,6 +1,9 @@
 #pragma once
 
 
+struct __POSITION {};
+typedef __POSITION* POSITION;
+#define BEFORE_START_POSITION ((POSITION)-1L)
 
 
 

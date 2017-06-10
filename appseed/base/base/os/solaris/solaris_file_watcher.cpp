@@ -161,7 +161,7 @@ namespace file_watcher
 	{
       synch_lock sl(m_pmutex);
 
-		WatchMap::pair * ppair = m_watchmap.find_first(watchid);
+		WatchMap::pair * ppair = m_watchmap.PLookup(watchid);
 
 		if(ppair == NULL)
 			return;

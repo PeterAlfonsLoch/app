@@ -44,25 +44,14 @@ public:
       p->attach_observer(m_pt2This);
       return true;
    }
-   
    bool detach_observer(T * p)
    {
-      
       if (!this->contains(p))
-      {
-
          return false;
-
-      }
-      
       this->remove(p);
-      
       p->detach_observer(m_pt2This);
-      
       return true;
-
    }
-
 };
 
 

@@ -2,12 +2,11 @@
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array_data < TYPE, ARG_TYPE, ALLOCATOR >::array_data(::aura::application * papp, ::count nGrowBy):
-   object(papp)
+template < class TYPE, class ALLOCATOR >
+array_base < TYPE, ALLOCATOR >::array_base(int iTypeSize,bool bRaw)
 {
 
-   m_nGrowBy = nGrowBy;
+   m_nGrowBy = 0;
    m_pData = NULL;
    m_nSize = 0;
    m_nMaxSize = 0;
@@ -15,16 +14,37 @@ array_data < TYPE, ARG_TYPE, ALLOCATOR >::array_data(::aura::application * papp,
 }
 
 
+template < class TYPE,class ALLOCATOR >
+array_base < TYPE, ALLOCATOR >::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
+   object(papp)
+{
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_data < TYPE, ARG_TYPE, ALLOCATOR >::resize(::count nNewSize,::count nGrowBy)
+   m_nGrowBy = 0;
+   m_pData = NULL;
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+}
+
+
+template < class TYPE,class ALLOCATOR >
+array_base < TYPE, ALLOCATOR >::~array_base ()
+{
+
+   destroy();
+
+}
+
+
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::resize(::count nNewSize,::count nGrowBy)
 {
    return allocate(nNewSize,nGrowBy);
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_data < TYPE, ARG_TYPE, ALLOCATOR >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
 {
    if(nGrowBy < 0)
    {
@@ -37,8 +57,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-index array_data < TYPE, ARG_TYPE, ALLOCATOR >::remove_at(index nIndex,::count nCount)
+template < class TYPE,class ALLOCATOR >
+index array_base < TYPE, ALLOCATOR >::remove_at(index nIndex,::count nCount)
 {
 
    //ASSERT_VALID(this);
@@ -65,8 +85,8 @@ index array_data < TYPE, ARG_TYPE, ALLOCATOR >::remove_at(index nIndex,::count n
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::free_extra()
 {
    ASSERT_VALID(this);
 
@@ -125,8 +145,8 @@ void array_data < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::destroy()
 {
 
    ASSERT_VALID(this);
@@ -147,39 +167,32 @@ void array_data < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex, const TYPE & newElement,::count nCount)
+template < class TYPE,class ALLOCATOR >
+index array_base < TYPE, ALLOCATOR >::insert_at(index nIndex,const TYPE * newElement,::count nCount /*=1*/)
 {
 
    ASSERT_VALID(this);
 
-   ASSERT(nIndex >= 0);
+   ASSERT(nIndex >= 0);    // will expand to meet need
 
    if(nCount <= 0)
       return -1;
 
-   if (nIndex < 0)
-   {
-
+   if(nIndex < 0)
       throw invalid_argument_exception(get_app());
-
-   }
 
    if(nIndex >= m_nSize)
    {
-      
-      set_size(nIndex + nCount);
-
+      // adding after the end of the array
+      set_size(nIndex + nCount,-1);   // grow so nIndex is valid
    }
    else
    {
-      
       // inserting in the middle of the array
-
       ::count nOldSize = m_nSize;
-      
-      set_size(m_nSize + nCount);
-
+      set_size(m_nSize + nCount,-1);  // grow it to new size
+      // destroy intial data before copying over it
+      // shift old data up to fill gap
       ::aura::memmove_s(m_pData + nIndex + nCount,(nOldSize - nIndex) * sizeof(TYPE),m_pData + nIndex,(nOldSize - nIndex) * sizeof(TYPE));
 
       ALLOCATOR::construct(&m_pData[nIndex],nCount);
@@ -187,7 +200,6 @@ index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex, const TY
    }
 
    // insert new value in the gap
-
    ASSERT(nIndex + nCount <= m_nSize);
 
    index nIndexParam = nIndex;
@@ -195,7 +207,7 @@ index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex, const TY
    while(nCount--)
    {
 
-      ALLOCATOR::copy(&m_pData[nIndex++], &newElement);
+      ALLOCATOR::copy(&m_pData[nIndex++], newElement);
 
    }
 
@@ -204,75 +216,8 @@ index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex, const TY
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-template < typename ITERABLE2 >
-index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_iter_at(index nIndex, const ITERABLE2 & iterable2, typename ITERABLE2::const_iterator first = NULL, typename ITERABLE2::const_iterator last = NULL)
-{
-
-   iterable2.prepare_first_last(first, last);
-
-   ::count nCount = last - first;
-
-   ASSERT_VALID(this);
-
-   ASSERT(nIndex >= 0);
-
-   if (nCount <= 0)
-   {
-
-      return -1;
-
-   }
-
-   if (nIndex < 0)
-   {
-
-      throw invalid_argument_exception(get_app());
-
-   }
-
-   if (nIndex >= m_nSize)
-   {
-
-      set_size(nIndex + nCount);
-
-   }
-   else
-   {
-
-      // inserting in the middle of the array
-
-      ::count nOldSize = m_nSize;
-
-      set_size(m_nSize + nCount);
-
-      ::aura::memmove_s(m_pData + nIndex + nCount, (nOldSize - nIndex) * sizeof(TYPE), m_pData + nIndex, (nOldSize - nIndex) * sizeof(TYPE));
-
-      ALLOCATOR::construct(&m_pData[nIndex], nCount);
-
-   }
-
-   // insert new value in the gap
-
-   ASSERT(nIndex + nCount <= m_nSize);
-
-   index nIndexParam = nIndex;
-
-   for(;iterable2.valid_iter(first, last); first++)
-   {
-
-      m_pData[nIndex++] = *first;
-
-   }
-
-   return nIndexParam;
-
-}
-
-
-
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-typename array_data < TYPE, ARG_TYPE, ALLOCATOR >::iterator array_data < TYPE, ARG_TYPE, ALLOCATOR >::append(const array_data < TYPE, ARG_TYPE, ALLOCATOR > & src)
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::append(const array_base < TYPE, ALLOCATOR > & src)
 {
 
    ASSERT_VALID(this);
@@ -285,13 +230,13 @@ typename array_data < TYPE, ARG_TYPE, ALLOCATOR >::iterator array_data < TYPE, A
 
    ALLOCATOR::copy(&m_pData[nOldSize],src.m_pData,nSrcSize);
 
-   return m_pData+ m_nSize-1;
+   return nOldSize;
 
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_data < TYPE, ARG_TYPE, ALLOCATOR > & src)
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::copy(const array_base < TYPE, ALLOCATOR > & src)
 {
 
    ASSERT_VALID(this);
@@ -311,8 +256,8 @@ void array_data < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_data < TYPE, ARG
 // the index raw_array by sorting it and returning
 // only the indexes that could be removed
 // without indexes duplicates
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & ia)
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & ia)
 {
 
    // sort
@@ -356,8 +301,8 @@ void array_data < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & i
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR >::remove_indexes(const index_array & ia)
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::remove_indexes(const index_array & ia)
 {
 
 
@@ -372,8 +317,8 @@ void array_data < TYPE, ARG_TYPE, ALLOCATOR >::remove_indexes(const index_array 
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR >::remove_descending_indexes(const index_array & ia)
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::remove_descending_indexes(const index_array & ia)
 {
 
    for(index i = 0; i < ia.get_count(); i++)
@@ -387,10 +332,31 @@ void array_data < TYPE, ARG_TYPE, ALLOCATOR >::remove_descending_indexes(const i
 
 
 
+template < class TYPE,class ALLOCATOR >
+index array_base < TYPE, ALLOCATOR >::insert_at(index nStartIndex,array_base < TYPE, ALLOCATOR > * pNewArray)
+{
+   ASSERT_VALID(this);
+   ASSERT(pNewArray != NULL);
+   ASSERT_VALID(pNewArray);
+   ASSERT(nStartIndex >= 0);
+
+   if(pNewArray == NULL || nStartIndex < 0)
+      throw invalid_argument_exception(get_app());
+
+   if(pNewArray->get_size() > 0)
+   {
+      insert_at(nStartIndex,pNewArray->element_at(0),pNewArray->get_size());
+      for(index i = 1; i < pNewArray->get_size(); i++)
+         insert_at(nStartIndex + i,pNewArray->element_at(i));
+   }
+
+   return nStartIndex;
+
+}
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_data < TYPE, ARG_TYPE, ALLOCATOR >::set_raw_size(::count nNewSize,::count nGrowBy)
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::set_raw_size(::count nNewSize,::count nGrowBy)
 {
    ::count countOld = get_count();
    ASSERT_VALID(this);
@@ -530,8 +496,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_data < TYPE, ARG_TYPE, ALLOCATOR >::allocate(::count nNewSize,::count nGrowBy)
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::allocate(::count nNewSize,::count nGrowBy)
 {
 
    ::count countOld = get_count();
@@ -572,7 +538,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(nNewSize < SIZE_T_MAX / sizeof(TYPE))
+      if(::compare::gt(nNewSize, SIZE_T_MAX / sizeof(TYPE)))
          throw memory_exception(get_app());
       ASSERT(::compare::lt(nNewSize, SIZE_T_MAX / sizeof(TYPE)));    // no overflow
 #endif
@@ -721,8 +687,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR >::on_after_read()
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::on_after_read()
 {
 
 

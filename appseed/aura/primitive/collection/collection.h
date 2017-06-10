@@ -7,19 +7,7 @@
 
 
 
-
-static inline void ConstructElement(string * pNewData)
-{
-   ((string *)pNewData)->construct();
-}
-
-static inline void DestructElement(string * pOldData)
-{
-   pOldData->~string();
-}
-
-
-#include "collection_iterator.h"
+//#include "collection_iterator.h"
 
 #include "collection_pair.h"
 
@@ -51,8 +39,6 @@ public:
 
          iIndex--;
 
-         it++;
-
       }
 
       if(iIndex == 0)
@@ -69,7 +55,6 @@ public:
       }
 
    }
-
 };
 
 
@@ -89,7 +74,7 @@ public:
    ITERATOR begin() const { return m_begin; }
    ITERATOR end() const { return m_end; }
 
-   typename ITERATOR::TYPE & element_at(::index iIndex)
+   typename ITERATOR::TYPE& element_at(::index iIndex)
    {
       
       ITERATOR it = begin();
@@ -98,8 +83,6 @@ public:
       {
 
          iIndex--;
-
-         it++;
 
       }
 
@@ -123,8 +106,8 @@ public:
 
 //#include "collection_comparable_eq_array.h"
 //#include "collection_comparable_array.h"
-//#include "collection_comparable_raw_array.h"
-//#include "collection_comparable_primitive_array.h"
+#include "collection_comparable_raw_array.h"
+#include "collection_comparable_primitive_array.h"
 
 #include "collection_ptr_array.h"
 
@@ -135,8 +118,8 @@ public:
 #include "collection_logic_array.h"
 
 #include "collection_list.h"
-//#include "collection_comparable_eq_list.h"
-//#include "collection_comparable_list.h"
+#include "collection_comparable_eq_list.h"
+#include "collection_comparable_list.h"
 
 
 #include "collection_typed_ptr_array.h"
@@ -153,10 +136,10 @@ public:
 #include "collection_strid_map.h"
 #include "collection_map_to_smart_pointer.h"
 #include "collection_fifo_map.h"
-//#include "collection_sort_map.h"
+#include "collection_sort_map.h"
 
 
-//#include "collection_sort_array.h"
+#include "collection_sort_array.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -294,16 +277,14 @@ typedef CLASS_DECL_AURA spa(index_array) index_2darray;
 
 #include "collection_priority_queue.h"
 
-
 class CLASS_DECL_AURA time_array :
-   public array < ::datetime::time >
+   public array < ::datetime::time, ::datetime::time & >
 {
-
 };
 
 
 #include "collection_stringl.h"
-//#include "collection_string_sort_array.h"
+#include "collection_string_sort_array.h"
 //#include "collection_stringa.h"
 
 #include "collection_lemon_array.h"

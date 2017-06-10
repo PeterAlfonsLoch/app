@@ -38,7 +38,7 @@ private:
 
    //};
 
-   array < waitable_element > m_waitableelementa;
+   comparable_array < waitable_element > m_waitableelementa;
 
    /// number of callback events
    size_t callback_cnt;

@@ -2969,7 +2969,7 @@ CLASS_DECL_AURA bool is_thread_on(IDTHREAD id)
 
    synch_lock sl(g_pmutexThreadOn);
 
-   return g_pmapThreadOn->contains_key(id);
+   return g_pmapThreadOn->PLookup(id) != NULL;
 
 }
 

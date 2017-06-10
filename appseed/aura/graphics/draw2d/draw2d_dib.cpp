@@ -2060,7 +2060,7 @@ namespace draw2d
       }
 
 #ifdef WINDOWS
-      ::sort::swap(R, B);
+      ::sort::swap(&R, &B);
 #endif
 
       for (int32_t i = 0; i < size; i++)
@@ -6671,8 +6671,8 @@ COLORREF o = ARGB(255, uchR, uchG, uchB);
 
       if (end < start)
       {
-         ::sort::swap(start, end);
-         ::sort::swap(clr1, clr2);
+         ::sort::swap(&start, &end);
+         ::sort::swap(&clr1, &clr2);
       }
 
       end = MIN(end, m_size.cy - 1);
@@ -6725,8 +6725,8 @@ COLORREF o = ARGB(255, uchR, uchG, uchB);
 
       if (end < start)
       {
-         ::sort::swap(start, end);
-         ::sort::swap(clr1, clr2);
+         ::sort::swap(&start, &end);
+         ::sort::swap(&clr1, &clr2);
       }
 
       end = MIN(end, m_size.cx - 1);

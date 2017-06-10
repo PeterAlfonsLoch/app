@@ -146,13 +146,8 @@ namespace data
 
       tree_item * first_child();
 
-      template < typename PRED >
-      void sort_children(PRED pred)
-      {
 
-         ::sort::pred_quick_sort(m_children, pred);
-
-      }
+      void sort_children(index ( * lpfnCompare )(const sp(tree_item) &, const sp(tree_item) &));
 
       tree_item * get_item(ETreeNavigation enavigation, index * piLevelOffset = NULL);
       tree_item * get_item(ERelative erelative);

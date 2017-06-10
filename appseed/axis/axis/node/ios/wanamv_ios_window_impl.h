@@ -8,7 +8,7 @@
 #pragma once
 
 
-typedef array < oswindow_data * > oswindow_dataptra;
+typedef comparable_array < oswindow_data * > oswindow_dataptra;
 
 
 

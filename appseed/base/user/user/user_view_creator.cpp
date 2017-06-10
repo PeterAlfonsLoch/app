@@ -45,7 +45,7 @@ namespace user
    view_creator_data * view_creator::get(id id)
    {
       ::user::view_creator_data * pcreatordata;
-      if(m_viewmap.lookup(id, pcreatordata))
+      if(m_viewmap.Lookup(id, pcreatordata))
       {
          return pcreatordata;
       }
@@ -423,21 +423,20 @@ namespace user
 
    void view_creator::hide_all_except(const id_array & ida)
    {
-      
-      for(auto & item : m_viewmap)
+      view_map::pair * ppair = m_viewmap.PGetFirstAssoc();
+      while(ppair != NULL)
       {
-         
-         if(!ida.contains(item.m_element1))
+         if(!ida.contains(ppair->m_element1))
          {
             try
             {
-               if(item.m_element2->m_pholder != NULL)
+               if(ppair->m_element2->m_pholder != NULL)
                {
-                  item.m_element2->m_pholder->ShowWindow(SW_HIDE);
+                  ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
                }
-               else if(item.m_element2->m_pwnd != NULL)
+               else if(ppair->m_element2->m_pwnd != NULL)
                {
-                  item.m_element2->m_pwnd->ShowWindow(SW_HIDE);
+                  ppair->m_element2->m_pwnd->ShowWindow(SW_HIDE);
                }
             }
             catch(...)
@@ -446,6 +445,8 @@ namespace user
             }
 
          }
+
+         ppair = m_viewmap.PGetNextAssoc(ppair);
 
       }
 
@@ -482,14 +483,16 @@ namespace user
    void view_creator::on_update(::user::document * pdocument, ::user::impact * pSender, LPARAM lHint, object* pHint)
    {
 
-      auto pos = m_viewmap.begin();
+      POSITION pos = m_viewmap.get_start_position();
 
       ::user::view_creator_data * pcreatordata;
 
       id id;
 
-      while(pos != m_viewmap.end())
+      while(pos != NULL)
       {
+
+         m_viewmap.get_next_assoc(pos, id, pcreatordata);
 
          if(pcreatordata->m_pdoc != NULL && pcreatordata->m_pdoc != pdocument && (pSender == NULL || pSender->get_document() != pcreatordata->m_pdoc))
          {
@@ -497,8 +500,6 @@ namespace user
             pcreatordata->m_pdoc->update_all_views(pSender, lHint, pHint);
 
          }
-
-         pos++;
 
       }
 

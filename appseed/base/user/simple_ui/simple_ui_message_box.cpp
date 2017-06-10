@@ -76,7 +76,7 @@ namespace simple_ui
 
       stra.add("\r\n");
 
-      m_stra.add_shortest_tokens(m_strMessage,stra);
+      m_stra.add_smallest_tokens(m_strMessage,stra);
 
       ::user::interaction * puiParent = Session.oprop("plugin_parent").cast < ::user::interaction >();
 

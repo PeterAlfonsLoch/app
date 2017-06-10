@@ -222,7 +222,7 @@ namespace sockets
 
       single_lock sl(&m_mutexCache, true);
       dns_cache_item item;
-      if(m_mapCache.lookup(str, item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (5 * 60 * 1000))))
+      if(m_mapCache.Lookup(str, item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (5 * 60 * 1000))))
       {
          if (item.r)
          {
@@ -344,7 +344,7 @@ namespace sockets
       }
 
 //      uint32_t dwTimeProfile2 = get_tick_count();
-//      TRACE("DNS lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+//      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
   //       (uint32_t)((byte*)&pitem->m_ipaddr)[0],
     //     (uint32_t)((byte*)&pitem->m_ipaddr)[1],
       //   (uint32_t)((byte*)&pitem->m_ipaddr)[2],
@@ -810,7 +810,7 @@ namespace sockets
       
       strIpString = *(sockaddr *)sa;
 
-      if(m_mapReverseCache.lookup(strIpString,item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (11 * ((84 + 77) * 1000)))))
+      if(m_mapReverseCache.Lookup(strIpString,item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (11 * ((84 + 77) * 1000)))))
       {
          hostname = item.m_strReverse;
          return item.r;

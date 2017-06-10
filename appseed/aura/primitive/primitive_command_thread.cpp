@@ -85,7 +85,7 @@ void command_thread::consolidate(::create * pcreatecontext)
          }
          else
          {
-            m_varTopicFile.stra().add_iter(pcreatecontext->m_spCommandLine->m_varFile.stra());
+            m_varTopicFile.stra().add(pcreatecontext->m_spCommandLine->m_varFile.stra());
          }
       }
    }
@@ -100,7 +100,7 @@ void command_thread::consolidate(::command_thread * pthread)
 
    if(!pthread->m_varTopicFile.is_empty())
    {
-      m_varTopicFile.stra().add_unique_iter(pthread->m_varTopicFile.stra());
+      m_varTopicFile.stra().add_unique(pthread->m_varTopicFile.stra());
    }
    m_varTopicQuery.propset().merge(pthread->m_varTopicQuery.propset());
 

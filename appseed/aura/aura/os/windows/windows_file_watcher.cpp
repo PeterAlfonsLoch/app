@@ -212,20 +212,12 @@ namespace file_watcher
    //--------
    os_file_watcher::~os_file_watcher()
    {
-      
-      auto it = m_watchmap.begin();
-
-      while(it != m_watchmap.end())
+      watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
+      for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
       {
-
-         DestroyWatch(it->m_element2);
-
-         it++;
-
+         DestroyWatch(ppair->m_element2);
       }
-
       m_watchmap.clear();
-
    }
 
 
@@ -269,21 +261,19 @@ namespace file_watcher
 
       synch_lock sl(m_pmutex);
 
-      auto it = m_watchmap.begin();
+      watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
 
-      while(it != m_watchmap.end())
+      for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
       {
 
-         if(stricmp(directory, it->m_element2->m_strDirName) == 0)
+         if(stricmp(directory,ppair->m_element2->m_strDirName) == 0)
          {
 
-            remove_watch(it->m_element1);
+            remove_watch(ppair->m_element1);
 
             return;
 
          }
-
-         it++;
 
       }
 
@@ -295,7 +285,7 @@ namespace file_watcher
 
       synch_lock sl(m_pmutex);
 
-      watch_map::pair * ppair = m_watchmap.find_first(id);
+      watch_map::pair * ppair = m_watchmap.PLookup(id);
 
       if(ppair == NULL)
          return;
@@ -314,7 +304,7 @@ namespace file_watcher
 
       synch_lock sl(m_pmutex);
 
-      return m_watchmap.find_first(watchid)->m_element2->m_strDirName;
+      return m_watchmap.PLookup(watchid)->m_element2->m_strDirName;
 
    }
 

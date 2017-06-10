@@ -6,7 +6,7 @@ namespace visual
 
 
    class glyph_set : 
-      public array < glyph >
+      public array<glyph , glyph &>
    {
    public:
 

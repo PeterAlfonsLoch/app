@@ -763,19 +763,20 @@ namespace sockets
       size_t sz = m_transfer_limit ? GetOutputLength() : 0;
       do
       {
-         auto pos = m_obuf.begin();
-         if(pos == m_obuf.end())
+         POSITION pos = m_obuf.get_head_position();
+         if(pos == NULL)
             return;
-         OUTPUT & output = *pos;
+         OUTPUT * p = &m_obuf.get_at(pos);
          repeat = false;
-         int32_t n = (int32_t)try_write(output.Buf(),output.Len());
+         int32_t n = (int32_t)try_write(p -> Buf(),p -> Len());
          if(n > 0)
          {
-            size_t left = output.remove(n);
+            size_t left = p -> remove(n);
             m_output_length -= n;
             if(!left)
             {
-               m_obuf.erase(pos);
+               delete p;
+               m_obuf.remove_at(pos);
                if(!m_obuf.get_size())
                {
                   m_obuf_top = NULL;
@@ -786,10 +787,6 @@ namespace sockets
                   repeat = true;
                }
             }
-         }
-         else
-         {
-            pos++;
          }
       } while(repeat);
 
@@ -950,7 +947,7 @@ namespace sockets
          else
          {
 
-            m_obuf.add(OUTPUT());
+            m_obuf.add_tail(OUTPUT());
 
          }
 

@@ -511,7 +511,7 @@ namespace aura
       str.FormatV(pszFormat, args);
       va_end(args);
       stringa stra;
-      stra.add_shortest_tokens(str, plog->m_straSeparator, FALSE);
+      stra.add_smallest_tokens(str, plog->m_straSeparator, FALSE);
       /*for(int32_t i = 0; i < stra.get_size(); i++)
       {
          if(stra[i].get_length() > 200)

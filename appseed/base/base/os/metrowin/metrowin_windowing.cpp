@@ -14,7 +14,7 @@ namespace user
 
 
 class oswindow_dataptra :
-   public array < oswindow_data * >
+   public comparable_raw_array < oswindow_data * >
 {
 public:
 

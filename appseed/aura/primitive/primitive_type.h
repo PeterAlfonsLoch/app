@@ -57,18 +57,13 @@ CLASS_DECL_AURA bool operator == (const std_type_info & info1, const sp(type) in
 CLASS_DECL_AURA bool operator != (const std_type_info & info1, const sp(type) info2);
 
 
-namespace comparison
+template<>
+inline UINT HashKey(sp(type) key)
 {
- 
-   template<>
-   inline UINT hash::run(const sp(type) & key)
-   {
-      
-      return run(key->name());
-
-   }
-
+   // default identity hash - works for most primitive values
+   return HashKey(key->name());
 }
+
 
 CLASS_DECL_AURA string demangle(const char* name);
 

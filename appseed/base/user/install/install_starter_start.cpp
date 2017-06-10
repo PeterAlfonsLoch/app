@@ -54,9 +54,7 @@ namespace install
 
       ::set_thread(m_pplugin);
 
-      string strId;
-
-      get_command_line_param(strId, m_strCommandLine, "app");
+      string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start").trimmed();
 
       string strType;
 
@@ -89,7 +87,14 @@ namespace install
       while (true)
       {
 
-         strBuildNumber = "latest";
+         if ((i % 5) == 0 || strBuildNumber.is_empty())
+         {
+
+            //strBuildNumber = System.install().get_latest_build_number(strVersion);
+
+            strBuildNumber = "latest";
+
+         }
 
          if (System.install().is_installing_ca2())
          {

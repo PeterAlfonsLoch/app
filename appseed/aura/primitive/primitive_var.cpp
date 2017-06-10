@@ -654,7 +654,7 @@ class var & var::operator = (const class memory & memoryParam)
 }
 
 
-class var & var::operator = (const array < string > & straParam)
+class var & var::operator = (const stringa & straParam)
 {
    stra() = straParam;
    return *this;
@@ -2303,11 +2303,11 @@ bool var::array_contains(const char * psz, index find, ::count count) const
    switch(m_etype)
    {
    case type_inta:
-      return inta().icontains(atoi(psz), find, count);
+      return inta().contains(atoi(psz), find, count);
    case type_stra:
-      return stra().icontains(psz, find, count);
+      return stra().contains(psz, find, count);
    case type_vara:
-      return vara().icontains(psz, find, count);
+      return vara().contains(psz, find, count);
    case type_propset:
       return propset().contains_value(psz, find, count);
    default:
@@ -2332,11 +2332,11 @@ bool var::array_contains_ci(const char * psz, index find, index last) const
    case type_bool:
       return false;
    case type_inta:
-      return inta().icontains(atoi(psz), find, last);
+      return inta().contains(atoi(psz), find, last);
    case type_stra:
-      return stra().icontains_ci(psz, find, last);
+      return stra().contains_ci(psz, find, last);
    case type_vara:
-      return vara().icontains_ci(psz, find, last);
+      return vara().contains_ci(psz, find, last);
    case type_propset:
       return propset().contains_value_ci(psz, find, last);
    default:
@@ -2447,28 +2447,19 @@ var operator - (const class var & var1, const class var & var2)
    }
    else if(var1.m_etype == var::type_stra)
    {
-      
       if(var2.m_etype == var::type_stra)
       {
-         
-         var.stra() = var1.stra().diff(var2.stra());
-
+         var = var1.stra() - var2.stra();
       }
       else if(var2.is_array())
       {
-         
-         var.stra() = var1.stra().diff(const_cast < class var & > (var2).stra());
-
+         var = var1.stra() - const_cast < class var & > (var2).stra();
       }
       else
       {
-         
          var = var1;
-         
-         var.stra().remove_ci(var2.get_string());
-
+         var.stra().remove(var2.get_string());
       }
-
    }
    else if(var1.m_etype == var::type_vara)
    {
@@ -2583,7 +2574,7 @@ var operator + (const class var & var1, const class var & var2)
       {
          if(var2.m_etype == var::type_stra)
          {
-            var.stra() = var1.stra().sum(var2.stra());
+            var = var1.stra() + var2.stra();
          }
          else
          {

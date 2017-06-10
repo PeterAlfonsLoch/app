@@ -5,7 +5,7 @@ namespace sort
 {
 
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortAsc(list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
+   void QuickSortAsc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
    {
       ::raw_array < POSITION > stackLowerBound;
       ::raw_array < POSITION > stackUpperBound;
@@ -74,7 +74,7 @@ namespace sort
    }
 
    template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortDesc(list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
+   void QuickSortDesc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
    {
       ::raw_array < POSITION > stackLowerBound;
       ::raw_array < POSITION > stackUpperBound;
@@ -221,7 +221,7 @@ namespace sort
 
 
 //template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-//void array<  TYPE,  ARG_TYPE,  ARRAY_TYPE >::quick_sort(bool bAsc)
+//void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE >::quick_sort(bool bAsc)
 //{
 //   if(bAsc)
 //   {
@@ -240,7 +240,7 @@ namespace sort
 
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-void list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
 quick_sort(bool bAsc)
 {
    if(bAsc)

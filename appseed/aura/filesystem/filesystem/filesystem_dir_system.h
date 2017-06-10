@@ -108,8 +108,8 @@ namespace file
          virtual ::file::path locale_schema(::aura::application * papp,const string & strLocale = cnull,const string & strStyle = cnull);
          virtual ::file::patha locale_schema_matter(::aura::application * papp,const string & strLocale = cnull,const string & strStyle = cnull,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
          virtual ::file::patha locale_schema_matter(const string & strLocator, const string & strLocale = cnull, const string & strStyle = cnull);
+         virtual ::file::path matter(::aura::application * papp,const ::file::patha & stra,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
          virtual ::file::path matter(::aura::application * papp,const ::file::path & path,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
-         virtual ::file::path matter_iter(::aura::application * papp, const ::file::patha & stra, bool bDir = false, const ::file::path & pszRoot = cnull, const ::file::path & pszApp = cnull);
 
          virtual ::file::path appmatter(string strApp, ::file::path pathRel);
 

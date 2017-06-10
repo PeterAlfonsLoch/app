@@ -775,7 +775,7 @@ namespace filemanager
    {
       IShellFolder * psf;
 
-      if(m_mapFolder.lookup(efolder, psf))
+      if(m_mapFolder.Lookup(efolder, psf))
       {
          return psf;
       }

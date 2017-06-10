@@ -4,501 +4,210 @@
 namespace sort
 {
 
-
-   template < typename ITERABLE >
-   void quick_sort(ITERABLE & iterable, bool bAscending);
-
-   template < typename ITERABLE >
-   void quick_sort(ITERABLE & iterable);
-
-   template < typename ITERABLE >
-   void quick_sort_descending(ITERABLE & iterable);
-
-   template < typename ITERABLE >
-   void quick_sort_ci(ITERABLE & iterable, bool bAscending);
-
-   template < typename ITERABLE >
-   void quick_sort_ci(ITERABLE & iterable);
-
-   template < typename ITERABLE >
-   void quick_sort_ci_descending(ITERABLE & iterable);
-
-
-
-
-
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort(ITERABLE & iterable, SWAP swap, bool bAscending);
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort(ITERABLE & iterable, SWAP swap);
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_descending(ITERABLE & iterable, SWAP swap);
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap, bool bAscending);
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap);
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci_descending(ITERABLE & iterable, SWAP swap);
-
-
-
-
-
-
-
-   template < typename ITERABLE, typename PRED >
-   void pred_quick_sort(ITERABLE & iterable, PRED pred, bool bAscending);
-
-   template < typename ITERABLE, typename PRED >
-   void pred_quick_sort(ITERABLE & iterable, PRED pred);
-
-   template < typename ITERABLE, typename PRED >
-   void pred_quick_sort_descending(ITERABLE & iterable, PRED pred);
-
-
-
-
-
-   template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap, bool bAscending);
-
-   template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap);
-
-   template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort_descending(ITERABLE & iterable, PRED pred, SWAP swap);
-
-
-
-
-
-
-   template < typename ITERABLE, typename INDEX_ARRAY >
-   void get_quick_sort(const ITERABLE & iterable, INDEX_ARRAY & ia);
-
-   template < typename ITERABLE, typename INDEX_ARRAY  >
-   void get_quick_sort_ci(const ITERABLE & iterable, INDEX_ARRAY & ia);
-
-
-
-
-   template < typename TYPE, typename TYPE2 >
-   void swap(TYPE & a, TYPE2 & b);
-
-   template < typename TYPE, typename TYPE2 >
-   void sort(TYPE & t1, TYPE2 & t2);
-
-   template < typename TYPE, typename TYPE2, typename SWAP = ::sort::swap < TYPE, TYPE2 > >
-   void sort(TYPE & t1, TYPE2 & t2, SWAP swap);
-
-   template < typename TYPE, typename TYPE2 >
-   void sort_non_negative(TYPE & t1, TYPE2 & t2);
-
-   template < typename TYPE, typename TYPE2>
-   index numeric_compare(const TYPE & a, const TYPE2 & b);
-
-   template < typename TYPE, typename TYPE2>
-   index less_than_compare(const TYPE & a, const TYPE2 & b);
-
-
-
-
-   template < typename TYPE, typename TYPE2 >
-   index less_than_compare(const TYPE & a, const TYPE2 & b) // uses only the less than implementation
+   template <class T> void sort( T & t1, T & t2)
    {
-      
-      if(a < b)
-         return -1;
-      else if(b < a)
+      if(t1 > t2)
+      {
+         T t = t2;
+         t2 = t1;
+         t1 = t;
+      }
+   }
+
+   template <class T> void sort_non_negative(T & t1, T & t2)
+   {
+      if (t1 < ::numeric_info<T>::null())
+      {
+         return;
+      }
+      if (t2 < ::numeric_info<T>::null())
+      {
+         return;
+      }
+      if (t1 > t2)
+      {
+         T t = t2;
+         t2 = t1;
+         t1 = t;
+      }
+   }
+
+   template <class TYPE>
+   static index NumericCompare(const TYPE * ptA, const TYPE * ptB);
+
+//    static index DWordCompare(const index dwA, const index dwB);
+
+//   static void BubbleSort(LPINT lpInt, index size);
+
+//   static void quick_sort(
+  //    array<uint32_t, uint32_t> & a,
+    //  index (*fCompare)(const index, const index),
+      //void (*swap)(void * lpVoidSwapArg, index iA, index iB),
+      //void * lpVoidSwapArg);
+
+   template <class A> static index  CompareTkPosition(const A a1, const A a2);
+
+   template <class TYPE>
+   index NumericCompare(const TYPE * pta, const TYPE * ptb)
+   {
+      if(*pta > *ptb)
          return 1;
+      else if(*pta < *ptb)
+         return -1;
       else
          return 0;
-
-   }
-
-   template < typename TYPE, typename TYPE2 >
-   void swap(TYPE & a, TYPE2 & b)
-   {
-      auto t = a;
-      a = b;
-      b = t;
    }
 
 
-   template < typename TYPE, typename TYPE2 >
-   void swap2(TYPE & a, TYPE2 & b)
+   template <class A> static index  CompareTkPosition(const A a1, const A a2)
    {
-      swap(b, a);
-   }
-
-   template < typename TYPE, typename TYPE2 >
-   void sort(TYPE & t1, TYPE2 & t2)
-   {
-
-      ::sort::sort(t1, t2, ::sort::swap < TYPE, TYPE2 >);
-
-   }
-
-
-   template < typename TYPE, typename TYPE2, typename SWAP >
-   void sort(TYPE & t1, TYPE2 & t2, SWAP swap)
-   {
-      
-      if (t2 < t1)
-      {
-
-         swap(t1, t2);
-
-      }
-
-   }
-
-   template < typename TYPE, typename TYPE2, typename SWAP = ::sort::swap < TYPE1, TYPE2 > >
-   void sort_non_negative(TYPE & t1, TYPE2 & t2)
-   {
-      if (::compare::lt(t1, ::numeric_info<TYPE>::null()))
-      {
-         return;
-      }
-      if (::compare::lt(t2, ::numeric_info<TYPE2>::null()))
-      {
-         return;
-      }
-      sort(t1, t2, SWAP);
-   }
-
-
-   //template < typename TYPE, typename TYPE2>
-   //void swap(TYPE & a, TYPE2 & b)
-   //{
-   //   
-   //   auto acopy = a;
-   //   
-   //   a = b;
-   //   
-   //   b= acopy;
-
-   //}
-
-   template < typename TYPE, typename TYPE2>
-   index difference(const TYPE & a, const TYPE2 & b)
-   {
-      
-      return a - b;
-
-   }
-
-
-
-   template < typename ITERABLE >
-   void quick_sort(ITERABLE & iterable, bool bAscending)
-   {
-
-      if (bAscending)
-      {
-
-         quick_sort(iterable);
-
-      }
+      if(a1.m_tkPosition > a2.m_tkPosition)
+         return 1;
+      else if(a1.m_tkPosition > a2.m_tkPosition)
+         return -1;
       else
+         return 0;
+   }
+
+   template <class TYPE, class ARG_TYPE>
+   void SwapArray(
+      array<TYPE, ARG_TYPE> & a,
+      index   iA,
+      index iB)
+   {
+      TYPE t;
+      t = a.get_at(iA);
+      a.set_at(iA, a.get_at(iB));
+      a.set_at(iB, t);
+   };
+   /*template <class TYPE, class ARG_TYPE>
+   void quick_sort(
+   array<TYPE, ARG_TYPE> & array,
+   index (* fCompare)(const TYPE *, const TYPE *),
+   void (* fSwap)(TYPE *, TYPE *));*/
+
+   /*template <class TYPE, class ARG_TYPE>
+   void swap(
+   CarrayInterface<TYPE, ARG_TYPE> * parray,
+   index   iA,
+   index iB)
+   {
+   TYPE t;
+   t = parray->element_at(iA);
+   parray->set_at(iA, parray->element_at(iB));
+   parray->set_at(iB, t);
+   };*/
+
+   template <class TYPE>
+   void  swap(
+      TYPE * pA,
+      TYPE * pB)
+   {
+      TYPE ACopy = *pA;
+      *pA = *pB;
+      *pB= ACopy;
+   };
+
+   template <class TYPE>
+   index CompareAscending(
+      TYPE * pA,
+      TYPE * pB)
+   {
+      return *pA - *pB;
+   };
+
+   template < class TYPE, class ARG_TYPE, class FIRST>
+   void quick_sort(array < TYPE, ARG_TYPE > & a)
+   {
+      TYPE t;
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+      //   uint32_t t;
+
+      if(a.get_size() >= 2)
       {
-
-         quick_sort_descending(iterable);
-
-      }
-
-   }
-
-   template < typename ITERABLE >
-   void quick_sort(ITERABLE & iterable)
-   {
-
-      pred_quick_sort(iterable, [](auto & a, auto & b) { return a < b;  });
-
-   }
-
-   template < typename ITERABLE >
-   void quick_sort_descending(ITERABLE & iterable)
-   {
-
-      pred_quick_sort_descending(iterable, [](auto & a, auto & b) { return a < b;  });
-
-   }
-
-   template < typename ITERABLE >
-   void quick_sort_ci(ITERABLE & iterable, bool bAscending)
-   {
-
-      if (bAscending)
-      {
-
-         quick_sort_ci(iterable);
-
-      }
-      else
-      {
-
-         quick_sort_ci_descending(iterable);
-
-      }
-
-   }
-
-   template < typename ITERABLE >
-   void quick_sort_ci(ITERABLE & iterable)
-   {
-
-      pred_quick_sort(iterable, [](auto & a, auto & b) { return stricmp(a, b) < 0;  });
-
-   }
-
-   template < typename ITERABLE >
-   void quick_sort_ci_descending(ITERABLE & iterable)
-   {
-
-      pred_quick_sort_descending(iterable, [](auto & a, auto & b) { return stricmp(a, b) < 0;  });
-
-   }
-
-
-
-
-
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort(ITERABLE & iterable, SWAP swap, bool bAscending)
-   {
-
-      if (bAscending)
-      {
-
-         swap_quick_sort(iterable, swap);
-
-      }
-      else
-      {
-
-         swap_quick_sort_descending(iterable, swap);
-
-      }
-
-   }
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort(ITERABLE & iterable, SWAP swap)
-   {
-
-      pred_swap_quick_sort(iterable, [](auto & a, auto &b) {return a < b; }, swap);
-
-   }
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_descending(ITERABLE & iterable, SWAP swap)
-   {
-
-      pred_swap_quick_sort(iterable, [](auto & a, auto &b) {return b < a; }, swap);
-
-   }
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap, bool bAscending)
-   {
-
-      if (bAscending)
-      {
-
-         swap_quick_sort_ci(iterable, swap);
-
-      }
-      else
-      {
-
-         swap_quick_sort_ci_descending(iterable, swap);
-
-      }
-
-   }
-
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap)
-   {
-
-      pred_swap_quick_sort(iterable, [](auto & a, auto &b) {return stricmp(a, b) < 0; }, swap);
-
-   }
-
-   template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci_descending(ITERABLE & iterable, SWAP swap)
-   {
-
-      pred_swap_quick_sort(iterable, [](auto & a, auto &b) {return stricmp(b, a) < 0; }, swap);
-
-   }
-
-
-
-
-
-
-
-   template < typename ITERABLE, typename PRED >
-   void pred_quick_sort(ITERABLE & iterable, PRED pred, bool bAscending)
-   {
-
-      if (bAscending)
-      {
-
-         pred_quick_sort(iterable, pred);
-
-      }
-      else
-      {
-
-         pred_quick_sort_descending(iterable, pred);
-
-      }
-
-   }
-
-   template < typename ITERABLE, typename PRED >
-   void pred_quick_sort(ITERABLE & iterable, PRED pred)
-   {
-
-      pred_swap_quick_sort(iterable, pred, [](auto & it1, auto & it2) {});
-
-   }
-
-   template < typename ITERABLE, typename PRED >
-   void pred_quick_sort_descending(ITERABLE & iterable, PRED pred)
-   {
-
-      pred_swap_quick_sort_descending(iterable, pred, [](auto & it1, auto & it2) {});
-
-   }
-
-
-
-
-
-   template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap, bool bAscending)
-   {
-
-
-      if (bAscending)
-      {
-
-         pred_swap_quick_sort(iterable, pred, swap);
-
-      }
-      else
-      {
-
-         pred_swap_quick_sort_descending(iterable, pred, swap);
-
-      }
-
-   }
-
-   template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort_descending(ITERABLE & iterable, PRED pred, SWAP swap)
-   {
-
-      pred_swap_quick_sort(iterable, [&pred](auto & a, auto & b) { return pred(b, a); }, swap);
-
-   }
-
-
-   template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap)
-   {
-
-      ::array < typename ITERABLE::iterator > stackLowerBound;
-      ::array < typename ITERABLE::iterator > stackUpperBound;
-      typename ITERABLE::iterator iLowerBound;
-      typename ITERABLE::iterator iUpperBound;
-      typename ITERABLE::iterator iLPos, iUPos, iMPos;
-
-      if (iterable.get_size() >= 2)
-      {
-         stackLowerBound.push(iterable.begin());
-         stackUpperBound.push(iterable.upper_bound());
-         while (true)
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_size() - 1);
+         while(true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while (true)
+            while(true)
             {
-               while (true)
+               while(true)
                {
-                  if (iMPos == iUPos)
-                     goto mid_loop_break;
-                  if (pred(*iUPos, *iMPos))
+                  if(iMPos == iUPos)
+                     break;
+                  if(FIRST::Compare(&a.element_at(iMPos), &a.element_at(iUPos)))
+                     iUPos--;
+                  else
                   {
-                     iterable.swap(iMPos, iUPos);
-                     swap(iMPos, iUPos);
+                     t = a.element_at(iMPos);
+                     a.element_at(iMPos) = a.element_at(iUPos);
+                     a.element_at(iUPos) = t;
                      break;
                   }
-                  iUPos--;
                }
+               if(iMPos == iUPos)
+                  break;
                iMPos = iUPos;
-               while (true)
+               while(true)
                {
-                  if (iMPos == iLPos)
-                     goto mid_loop_break;
-                  if (pred(*iMPos, *iLPos))
+                  if(iMPos == iLPos)
+                     break;
+                  if(FIRST::Compare(&a.element_at(iLPos), &a.element_at(iMPos)))
+                     iLPos++;
+                  else
                   {
-                     iterable.swap(iLPos, iMPos);
-                     swap(iMPos, iUPos);
+                     t = a.element_at(iMPos);
+                     a.element_at(iMPos) = a.element_at(iLPos);
+                     a.element_at(iLPos) = t;
                      break;
                   }
-                  iLPos++;
                }
+               if(iMPos == iLPos)
+                  break;
                iMPos = iLPos;
             }
-         mid_loop_break:
-            if (iterable.valid_iter(iLowerBound, iMPos - 1))
+            if(iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if (iterable.valid_iter(iMPos + 1, iUpperBound))
+            if(iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if (stackLowerBound.get_size() == 0)
+            if(stackLowerBound.get_size() == 0)
                break;
          }
       }
-   }
+
+   };
 
 
-   template < typename ITERABLE, typename INDEX_ARRAY >
-   void get_quick_sort(const ITERABLE & iterable, INDEX_ARRAY & ia)
+   template <class TYPE, class ARG_TYPE, typename SWAP>
+   void quick_sort(
+      array<TYPE, ARG_TYPE> & a,
+      SWAP swap)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
-      typename ITERABLE::iterator iLowerBound;
-      typename ITERABLE::iterator iUpperBound;
-      typename ITERABLE::iterator iLPos, iUPos, iMPos;
-      TYPE t;
-      ia.remove_all();
-      ::lemon::array::append_sequence(ia, (typename ITERABLE::iterator)0, (typename ITERABLE::iterator)get_upper_bound());
-      if (iterable.get_size() >= 2)
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      if (a.get_size() >= 2)
       {
          stackLowerBound.push(0);
-         stackUpperBound.push(iterable.get_size() - 1);
+         stackUpperBound.push(a.get_size() - 1);
          while (true)
          {
             iLowerBound = stackLowerBound.pop();
@@ -511,34 +220,36 @@ namespace sort
                while (true)
                {
                   if (iMPos == iUPos)
-                     goto mid_loop_break;
-                  if (iterable.element_at(ia[iUPos]) <  iterable.element_at(ia[iMPos]))
+                     break;
+                  if (a.get_at(iMPos) <= a.get_at(iUPos))
+                     iUPos--;
+                  else
                   {
-                     typename ITERABLE::iterator i = ia[iMPos];
-                     ia[iMPos] = ia[iUPos];
-                     ia[iUPos] = i;
+                     a.swap(iMPos, iUPos);
+                     swap(iUPos, iMPos);
                      break;
                   }
-                  iUPos--;
                }
+               if (iMPos == iUPos)
+                  break;
                iMPos = iUPos;
                while (true)
                {
                   if (iMPos == iLPos)
-                     goto mid_loop_break;
-
-                  if (iterable.element_at(ia[iMPos]) <  iterable.element_at(ia[iLPos]))
+                     break;
+                  if (a.get_at(iLPos) <= a.get_at(iMPos))
+                     iLPos++;
+                  else
                   {
-                     typename ITERABLE::iterator i = ia[iLPos];
-                     ia[iLPos] = ia[iMPos];
-                     ia[iMPos] = i;
+                     a.swap(iMPos, iLPos);
+                     swap(iLPos, iMPos);
                      break;
                   }
-                  iLPos++;
                }
+               if (iMPos == iLPos)
+                  break;
                iMPos = iLPos;
             }
-            mid_loop_break:
             if (iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
@@ -557,72 +268,77 @@ namespace sort
    }
 
 
-   template < typename ITERABLE, typename INDEX_ARRAY >
-   void get_quick_sort_ci(const ITERABLE & iterable, INDEX_ARRAY & ia)
+
+   template <class TYPE, class ARG_TYPE>
+   void quick_sort(
+      array<TYPE, ARG_TYPE> & a,
+      index fCompare(const ARG_TYPE, const ARG_TYPE),
+      void swap(void * lpVoidSwapArg, index iA, index iB),
+      void * lpVoidSwapArg)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
-      typename ITERABLE::iterator iLowerBound;
-      typename ITERABLE::iterator iUpperBound;
-      typename ITERABLE::iterator iLPos, iUPos, iMPos;
-      TYPE t;
-      ia.remove_all();
-      ::lemon::array::append_sequence(ia, (typename ITERABLE::iterator)0, (typename ITERABLE::iterator)get_upper_bound());
-      if (iterable.get_size() >= 2)
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      if(a.get_size() >= 2)
       {
          stackLowerBound.push(0);
-         stackUpperBound.push(iterable.get_size() - 1);
-         while (true)
+         stackUpperBound.push(a.get_size() - 1);
+         while(true)
          {
             iLowerBound = stackLowerBound.pop();
             iUpperBound = stackUpperBound.pop();
             iLPos = iLowerBound;
             iMPos = iLowerBound;
             iUPos = iUpperBound;
-            while (true)
+            while(true)
             {
-               while (true)
+               while(true)
                {
-                  if (iMPos == iUPos)
-                     goto mid_loop_break;
-                  if (iterable.element_at(ia[iUPos]).CompareNoCase(iterable.element_at(ia[iMPos])) < 0)
+                  if(iMPos == iUPos)
+                     break;
+                  if(fCompare(a.get_at(iMPos), a.get_at(iUPos)) <= 0)
+                     iUPos--;
+                  else
                   {
-                     typename ITERABLE::iterator i = ia[iMPos];
-                     ia[iMPos] = ia[iUPos];
-                     ia[iUPos] = i;
+                     a.swap(iMPos, iUPos);
+                     swap(lpVoidSwapArg, iUPos, iMPos);
                      break;
                   }
-                  iUPos--;
                }
+               if(iMPos == iUPos)
+                  break;
                iMPos = iUPos;
-               while (true)
+               while(true)
                {
-                  if (iMPos == iLPos)
-                     goto mid_loop_break;
-
-                  if (iterable.element_at(ia[iMPos]).CompareNoCase(iterable.element_at(ia[iLPos])) < 0)
+                  if(iMPos == iLPos)
+                     break;
+                  if(fCompare(a.get_at(iLPos), a.get_at(iMPos)) <= 0)
+                     iLPos++;
+                  else
                   {
-                     typename ITERABLE::iterator i = ia[iLPos];
-                     ia[iLPos] = ia[iMPos];
-                     ia[iMPos] = i;
+                     a.swap(iMPos, iLPos);
+                     swap(lpVoidSwapArg, iLPos, iMPos);
                      break;
                   }
-                  iLPos++;
                }
+               if(iMPos == iLPos)
+                  break;
                iMPos = iLPos;
             }
-        mid_loop_break:
-            if (iLowerBound < iMPos - 1)
+            if(iLowerBound < iMPos - 1)
             {
                stackLowerBound.push(iLowerBound);
                stackUpperBound.push(iMPos - 1);
             }
-            if (iMPos + 1 < iUpperBound)
+            if(iMPos + 1 < iUpperBound)
             {
                stackLowerBound.push(iMPos + 1);
                stackUpperBound.push(iUpperBound);
             }
-            if (stackLowerBound.get_size() == 0)
+            if(stackLowerBound.get_size() == 0)
                break;
          }
       }
@@ -630,8 +346,8 @@ namespace sort
    }
 
 
-   template < typename iterator, typename PRED >
-   void quick_sort(const iterator & a, const iterator & b, PRED pred)
+   template < class iterator,class COMPARE = ::comparison::less < typename iterator::BASE_TYPE, typename iterator::BASE_ARG_TYPE > >
+   void quick_sort(const iterator & a, const iterator & b)
    {
       typename iterator::BASE_TYPE t;
       raw_array < iterator > stackLowerBound;
@@ -658,7 +374,7 @@ namespace sort
                {
                   if(iMPos == iUPos)
                      break;
-                  if(pred(*iMPos,*iUPos))
+                  if(COMPARE().operator()(*iMPos,*iUPos))
                      --iUPos;
                   else
                   {
@@ -675,7 +391,7 @@ namespace sort
                {
                   if(iMPos == iLPos)
                      break;
-                  if(pred(*iLPos,*iMPos))
+                  if(COMPARE().operator()(*iLPos,*iMPos))
                      ++iLPos;
                   else
                   {
@@ -707,11 +423,538 @@ namespace sort
    };
 
 
+   typedef void (*ARG_SWAP_FUNCTION)(void * lpVoidSwapArg, index,  index);
+   typedef int32_t (*ARG_COMPARE_FUNCTION)(void * lpVoidCompareArg,  index,  index);
+
+
+   void CLASS_DECL_AURA quick_sort(
+      index iSize,
+      array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
+      array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,
+      void_ptra & comparearga,
+      void_ptra & swaparga);
 
 
 
-   template < typename ITERABLE >
-   bool sort_find_index(ITERABLE & a, typename ITERABLE::BASE_ARG_TYPE t, index & iIndex, index iStart, index iEnd)
+   //template <class TYPE, class ARG_TYPE>
+   //void quick_sort(
+   //   array<TYPE, ARG_TYPE> & a,
+   //   int32_t (* fCompare)(const ARG_TYPE, const ARG_TYPE))
+   //{
+   //   index_array stackLowerBound;
+   //   index_array stackUpperBound;
+   //   index iLowerBound;
+   //   index iUpperBound;
+   //   index iLPos, iUPos, iMPos;
+   //   TYPE t;
+
+   //   if(a.get_size() >= 2)
+   //   {
+   //      stackLowerBound.push(0);
+   //      stackUpperBound.push(a.get_size() - 1);
+   //      while(true)
+   //      {
+   //         iLowerBound = stackLowerBound.pop();
+   //         iUpperBound = stackUpperBound.pop();
+   //         iLPos = iLowerBound;
+   //         iMPos = iLowerBound;
+   //         iUPos = iUpperBound;
+   //         while(true)
+   //         {
+   //            while(true)
+   //            {
+   //               if(iMPos == iUPos)
+   //                  break;
+   //               if(fCompare(a.element_at(iMPos), a.element_at(iUPos)) <= 0)
+   //                  iUPos--;
+   //               else
+   //               {
+   //                  //    t = a.get_at(iMPos);
+   //                  //  a.set_at(iMPos, a.get_at(iUPos));
+   //                  //a.set_at(iUPos, t);
+   //                  a.swap(iMPos, iUPos);
+   //                  break;
+   //               }
+   //            }
+   //            if(iMPos == iUPos)
+   //               break;
+   //            iMPos = iUPos;
+   //            while(true)
+   //            {
+   //               if(iMPos == iLPos)
+   //                  break;
+   //               if(fCompare(a.element_at(iLPos), a.element_at(iMPos)) <= 0)
+   //                  iLPos++;
+   //               else
+   //               {
+   //                  //                        t = a.get_at(iMPos);
+   //                  //                      a.set_at(iMPos, a.get_at(iLPos));
+   //                  //                    a.set_at(iLPos, t);
+   //                  a.swap(iLPos, iMPos);
+   //                  break;
+   //               }
+   //            }
+   //            if(iMPos == iLPos)
+   //               break;
+   //            iMPos = iLPos;
+   //         }
+   //         if(iLowerBound < iMPos - 1)
+   //         {
+   //            stackLowerBound.push(iLowerBound);
+   //            stackUpperBound.push(iMPos - 1);
+   //         }
+   //         if(iMPos + 1 < iUpperBound)
+   //         {
+   //            stackLowerBound.push(iMPos + 1);
+   //            stackUpperBound.push(iUpperBound);
+   //         }
+   //         if(stackLowerBound.get_size() == 0)
+   //            break;
+   //      }
+   //   }
+   //}
+
+   template <class TYPE, class ARG_TYPE = const TYPE &>
+   void quick_sort(
+      array<TYPE, ARG_TYPE> & a,
+      index (* fCompare)(ARG_TYPE, ARG_TYPE))
+   {
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      if(a.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_size() - 1);
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(fCompare(a.element_at(iMPos), a.element_at(iUPos)) <= 0)
+                     iUPos--;
+                  else
+                  {
+                     //    t = a.get_at(iMPos);
+                     //  a.set_at(iMPos, a.get_at(iUPos));
+                     //a.set_at(iUPos, t);
+                     a.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(fCompare(a.element_at(iLPos), a.element_at(iMPos)) <= 0)
+                     iLPos++;
+                  else
+                  {
+                     //                        t = a.get_at(iMPos);
+                     //                      a.set_at(iMPos, a.get_at(iLPos));
+                     //                    a.set_at(iLPos, t);
+                     a.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+   void QuickSortAsc(comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+   {
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      if(a.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_upper_bound());
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(a.element_at(iMPos) <= a.element_at(iUPos))
+                     iUPos--;
+                  else
+                  {
+                     a.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(a.element_at(iLPos) <= a.element_at(iMPos))
+                     iLPos++;
+                  else
+                  {
+                     a.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+   void QuickSortDesc(comparable_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+   {
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      if(a.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_upper_bound());
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(a.element_at(iUPos) <= a.element_at(iMPos))
+                     iUPos--;
+                  else
+                  {
+                     a.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(a.element_at(iMPos) <= a.element_at(iLPos))
+                     iLPos++;
+                  else
+                  {
+                     a.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+
+   template <class TYPE >
+   void QuickSortAsc(numeric_array < TYPE > & a)
+   {
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      if(a.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_upper_bound());
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(a.element_at(iMPos) <= a.element_at(iUPos))
+                     iUPos--;
+                  else
+                  {
+                     a.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(a.element_at(iLPos) <= a.element_at(iMPos))
+                     iLPos++;
+                  else
+                  {
+                     a.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+   template <class TYPE >
+   void QuickSortDesc(numeric_array < TYPE > & a)
+   {
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      if(a.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_upper_bound());
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(a.element_at(iUPos) < a.element_at(iMPos))
+                     iUPos--;
+                  else
+                  {
+                     a.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(a.element_at(iMPos) < a.element_at(iLPos))
+                     iLPos++;
+                  else
+                  {
+                     a.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+   template <class KEY, class TYPE, class ARG_TYPE>
+   void QuickSortByKey(
+      array<TYPE, ARG_TYPE> & a,
+      KEY (TYPE::* fKey)())
+   {
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+      TYPE t;
+
+      if(a.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_size() - 1);
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if((a.element_at(iMPos).*fKey)() < (a.element_at(iUPos).*fKey)())
+                     iUPos--;
+                  else
+                  {
+                     //    t = a.get_at(iMPos);
+                     //  a.set_at(iMPos, a.get_at(iUPos));
+                     //a.set_at(iUPos, t);
+                     a.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if((a.element_at(iLPos).*fKey)() < (a.element_at(iMPos).*fKey)())
+                     iLPos++;
+                  else
+                  {
+                     //                        t = a.get_at(iMPos);
+                     //                      a.set_at(iMPos, a.get_at(iLPos));
+                     //                    a.set_at(iLPos, t);
+                     a.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+   template<class ARG_TYPE>
+   inline index SortCompare(ARG_TYPE t1, ARG_TYPE t2)
+   {
+      return t1 - t2;
+   }
+
+
+   template <class TYPE, class ARG_TYPE>
+   bool SortFind(array < TYPE, ARG_TYPE > & a, ARG_TYPE t, index & iIndex, index iStart, index iEnd)
    {
       if(a.get_size() == 0)
       {
@@ -753,139 +996,843 @@ namespace sort
 
    }
 
-   template < typename ITERABLE >
-   bool sort_find_index(ITERABLE & a, typename ITERABLE::BASE_ARG_TYPE t, index & iIndex)
+   template < class TYPE, class ARG_TYPE >
+   bool SortFind(array < TYPE, ARG_TYPE > & a, ARG_TYPE t, index & iIndex)
    {
-      return sort_find_index(a, t, iIndex, 0, a.get_count() - 1);
+      return SortFind(a, t, iIndex, 0, a.get_size() - 1);
+   }
+
+   template < class TYPE, class ARG_TYPE >
+   void BubbleSortByLPGetSize(array < TYPE, ARG_TYPE > & a, bool bAsc = true);
+
+   template < class TYPE, class ARG_TYPE >
+   void BubbleSortByGetSize(array < TYPE, ARG_TYPE > & a, bool bAsc = true);
+
+   template < class TYPE >
+   void BubbleSortByPtrAtGetSize(
+      spa(TYPE) & a,
+      bool bAsc = true);
+
+   template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR >
+   void quick_sort(
+      array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > & a,
+      index (* lpfnCompare)(ARG_TYPE, ARG_TYPE));
+
+
+
+   template < class TYPE, class ARG_TYPE >
+   void BubbleSortByLPGetSize(
+      array < TYPE, ARG_TYPE > & a,
+      bool bAsc)
+   {
+      TYPE * t;
+      if(bAsc)
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+               if(a.element_at(i)->get_size() > a.element_at(j)->get_size())
+               {
+                  t = a.element_at(i);
+                  set_at(i, a.element_at(j));
+                  set_at(j, t);
+               }
+
+            }
+      }
+      else
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+               if(a.element_at(i)->get_size() < a.element_at(j)->get_size())
+               {
+                  t = a.element_at(i);
+                  set_at(i, a.element_at(j));
+                  set_at(j, t);
+               }
+
+            }
+      }
+
+      return;
+   }
+
+   template < class TYPE, class ARG_TYPE >
+   void BubbleSortByGetSize(
+      array < TYPE, ARG_TYPE > & a,
+      bool bAsc)
+   {
+      TYPE t;
+      if(bAsc)
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+               if(a.element_at(i).get_size() > a.element_at(j).get_size())
+               {
+                  t = a.element_at(i);
+                  set_at(i, a.element_at(j));
+                  set_at(j, t);
+               }
+
+            }
+      }
+      else
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+               if(a.element_at(i).get_size() < a.element_at(j).get_size())
+               {
+                  t = a.element_at(i);
+                  set_at(i, a.element_at(j));
+                  set_at(j, t);
+               }
+
+            }
+      }
+
+      return;
+   }
+
+   template < class ARRAY >
+   void BubbleSortByGetSize(
+      ARRAY & a,
+      bool bAsc)
+   {
+      typename ARRAY::BASE_TYPE t;
+      if(bAsc)
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+            if(a.element_at(i).get_size() > a.element_at(j).get_size())
+            {
+               a.swap(i,j);
+            }
+            }
+      }
+      else
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+            if(a.element_at(i).get_size() < a.element_at(j).get_size())
+            {
+               a.swap(i,j);
+            }
+
+            }
+      }
+
+      return;
    }
 
 
-   //template < class ITERABLE >
-   //inline bool sort_find(ITERABLE & a, typename ARRAY::BASE_ARG_TYPE arg,index & iIndex,index iStart,index iEnd)
-   //{
-   //   if(a.get_size() == 0)
-   //   {
-   //      return false;
-   //   }
-   //   index iLowerBound = iStart;
-   //   index iMaxBound = iEnd;
-   //   index iUpperBound = iMaxBound;
-   //   memory_offset_t iCompare;
-   //   // do binary search
-   //   iIndex = (iUpperBound + iLowerBound) / 2;
-   //   while(iUpperBound - iLowerBound >= 8)
-   //   {
-   //      iCompare = CompareElements(a.element_at(iIndex),arg);
-   //      if(iCompare == 0)
-   //      {
-   //         return true;
-   //      }
-   //      else if(iCompare > 0)
-   //      {
-   //         iUpperBound = iIndex - 1;
-   //         if(iUpperBound < 0)
-   //         {
-   //            iIndex = 0;
-   //            break;
-   //         }
-   //      }
-   //      else
-   //      {
-   //         iLowerBound = iIndex + 1;
-   //         if(iLowerBound > iMaxBound)
-   //         {
-   //            iIndex = iMaxBound + 1;
-   //            break;
-   //         }
-   //      }
-   //      iIndex = (iUpperBound + iLowerBound) / 2;
-   //   }
-   //   // do sequential search
-   //   while(iIndex < a.get_count())
-   //   {
-   //      iCompare = CompareElements(a.element_at(iIndex),arg);
-   //      if(iCompare == 0)
-   //         return true;
-   //      else if(iCompare < 0)
-   //         iIndex++;
-   //      else
-   //         break;
-   //   }
-   //   if(iIndex >= a.get_count())
-   //      return false;
-   //   while(iIndex >= 0)
-   //   {
-   //      iCompare = CompareElements(a.element_at(iIndex),arg);
-   //      if(iCompare == 0)
-   //         return true;
-   //      else if(iCompare > 0)
-   //         iIndex--;
-   //      else
-   //         break;
-   //   }
-   //   iIndex++;
-   //   return false;
+   template < class TYPE >
+   void BubbleSortByPtrAtGetSize(
+      spa(TYPE) & a,
+      bool bAsc)
+   {
+      TYPE t;
+      if(bAsc)
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+               if(a.element_at(i)->get_size() > a.element_at(j)->get_size())
+               {
+                  a.swap(i, j);
+               }
+            }
+      }
+      else
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+               if(a.element_at(i)->get_size() < a.element_at(j)->get_size())
+               {
+                  a.swap(i, j);
+               }
 
-   //}
+            }
+      }
+
+      return;
+   }
 
 
+   namespace array
+   {
+
+      template < typename ARRAY_TYPE, typename PRED >
+      void pred_quick_sort(
+         ARRAY_TYPE  & a,
+         PRED & pred)
+      {
+         index_array stackLowerBound;
+         index_array stackUpperBound;
+         index iLowerBound;
+         index iUpperBound;
+         index iLPos, iUPos, iMPos;
+         //   TYPE t;
+
+         if (a.get_size() >= 2)
+         {
+            stackLowerBound.push(0);
+            stackUpperBound.push(a.get_size() - 1);
+            while (true)
+            {
+               iLowerBound = stackLowerBound.pop();
+               iUpperBound = stackUpperBound.pop();
+               iLPos = iLowerBound;
+               iMPos = iLowerBound;
+               iUPos = iUpperBound;
+               while (true)
+               {
+                  while (true)
+                  {
+                     if (iMPos == iUPos)
+                        break;
+                     if (pred((typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iMPos), (typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iUPos)))
+                        iUPos--;
+                     else
+                     {
+                        a.swap(iMPos, iUPos);
+                        break;
+                     }
+                  }
+                  if (iMPos == iUPos)
+                     break;
+                  iMPos = iUPos;
+                  while (true)
+                  {
+                     if (iMPos == iLPos)
+                        break;
+                     if (pred((typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iLPos), (typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iMPos)))
+                        iLPos++;
+                     else
+                     {
+                        a.swap(iLPos, iMPos);
+                        break;
+                     }
+                  }
+                  if (iMPos == iLPos)
+                     break;
+                  iMPos = iLPos;
+               }
+               if (iLowerBound < iMPos - 1)
+               {
+                  stackLowerBound.push(iLowerBound);
+                  stackUpperBound.push(iMPos - 1);
+               }
+               if (iMPos + 1 < iUpperBound)
+               {
+                  stackLowerBound.push(iMPos + 1);
+                  stackUpperBound.push(iUpperBound);
+               }
+               if (stackLowerBound.get_size() == 0)
+                  break;
+            }
+         }
+      }
+
+      template < typename ARRAY_TYPE >
+      void quick_sort(
+         ARRAY_TYPE  & a,
+         index(* lpfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE))
+      {
+         index_array stackLowerBound;
+         index_array stackUpperBound;
+         index iLowerBound;
+         index iUpperBound;
+         index iLPos,iUPos,iMPos;
+         //   TYPE t;
+
+         if(a.get_size() >= 2)
+         {
+            stackLowerBound.push(0);
+            stackUpperBound.push(a.get_size() - 1);
+            while(true)
+            {
+               iLowerBound = stackLowerBound.pop();
+               iUpperBound = stackUpperBound.pop();
+               iLPos = iLowerBound;
+               iMPos = iLowerBound;
+               iUPos = iUpperBound;
+               while(true)
+               {
+                  while(true)
+                  {
+                     if(iMPos == iUPos)
+                        break;
+                     if(lpfnCompare((typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iMPos),(typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iUPos)) <= 0)
+                        iUPos--;
+                     else
+                     {
+                        a.swap(iMPos,iUPos);
+                        break;
+                     }
+                  }
+                  if(iMPos == iUPos)
+                     break;
+                  iMPos = iUPos;
+                  while(true)
+                  {
+                     if(iMPos == iLPos)
+                        break;
+                     if(lpfnCompare((typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iLPos),(typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iMPos)) <= 0)
+                        iLPos++;
+                     else
+                     {
+                        a.swap(iLPos,iMPos);
+                        break;
+                     }
+                  }
+                  if(iMPos == iLPos)
+                     break;
+                  iMPos = iLPos;
+               }
+               if(iLowerBound < iMPos - 1)
+               {
+                  stackLowerBound.push(iLowerBound);
+                  stackUpperBound.push(iMPos - 1);
+               }
+               if(iMPos + 1 < iUpperBound)
+               {
+                  stackLowerBound.push(iMPos + 1);
+                  stackUpperBound.push(iUpperBound);
+               }
+               if(stackLowerBound.get_size() == 0)
+                  break;
+            }
+         }
+      }
+
+      template < typename ARRAY_TYPE >
+      void quick_sort(ARRAY_TYPE  & a,index(* lpfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE),index_array & ia)
+      {
+
+         // minimum check
+         if(ia.get_size() != a.get_size())
+            throw invalid_argument_exception(::get_thread_app());
+
+         index_array stackLowerBound;
+         index_array stackUpperBound;
+         index iLowerBound;
+         index iUpperBound;
+         index iLPos, iUPos, iMPos;
+         //   uint32_t t;
+
+         if(a.get_size() >= 2)
+         {
+            stackLowerBound.push(0);
+            stackUpperBound.push(a.get_size() - 1);
+            while(true)
+            {
+               iLowerBound = stackLowerBound.pop();
+               iUpperBound = stackUpperBound.pop();
+               iLPos = iLowerBound;
+               iMPos = iLowerBound;
+               iUPos = iUpperBound;
+               while(true)
+               {
+                  while(true)
+                  {
+                     if(iMPos == iUPos)
+                        break;
+                     if(lpfnCompare(a.element_at(ia[iMPos]),a.element_at(ia[iUPos])) <= 0)
+                        iUPos--;
+                     else
+                     {
+                        ia.swap(iMPos, iUPos);
+                        break;
+                     }
+                  }
+                  if(iMPos == iUPos)
+                     break;
+                  iMPos = iUPos;
+                  while(true)
+                  {
+                     if(iMPos == iLPos)
+                        break;
+                     if(lpfnCompare(a.element_at(ia[iLPos]),a.element_at(ia[iMPos])) <= 0)
+                        iLPos++;
+                     else
+                     {
+                        ia.swap(iLPos, iMPos);
+                        break;
+                     }
+                  }
+                  if(iMPos == iLPos)
+                     break;
+                  iMPos = iLPos;
+               }
+               if(iLowerBound < iMPos - 1)
+               {
+                  stackLowerBound.push(iLowerBound);
+                  stackUpperBound.push(iMPos - 1);
+               }
+               if(iMPos + 1 < iUpperBound)
+               {
+                  stackLowerBound.push(iMPos + 1);
+                  stackUpperBound.push(iUpperBound);
+               }
+               if(stackLowerBound.get_size() == 0)
+                  break;
+            }
+         }
+
+      }
+
+
+   } // namespace array
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   class compare_interface
+   {
+   public:
+      typedef index (compare_interface::*_FUNCTION_Compare)(index, index);
+   };
+
+   // Sort "array" according to "fCompare" function
+   // of "pCompare" interface
+
+
+   template < class NUMERIC_ARRAY >
+   void quick_sort(
+                  NUMERIC_ARRAY & ar,
+                  compare_interface * pinterface,
+                  compare_interface::_FUNCTION_Compare fCompare)
+   {
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      ///compare_interface * pinterface = (compare_interface *) pCompare;
+
+      if(ar.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(ar.get_size() - 1);
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if((pinterface->*fCompare)(ar[iMPos], ar[iUPos]) < 0)
+                     iUPos--;
+                  else
+                  {
+                     ar.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if((pinterface->*fCompare)(ar[iLPos], ar[iMPos]) < 0)
+                     iLPos++;
+                  else
+                  {
+                     ar.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+
+   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+   void QuickSortAsc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
+   {
+      ::raw_array < POSITION > stackLowerBound;
+      ::raw_array < POSITION > stackUpperBound;
+      POSITION iLowerBound;
+      POSITION iUpperBound;
+      POSITION iLPos, iUPos, iMPos;
+
+      if(list.get_size() >= 2)
+      {
+         stackLowerBound.push(list.get_head_position());
+         stackUpperBound.push(list.get_tail_position());
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(list.get_at(iMPos) < list.get_at(iUPos))
+                     list.get_previous(iUPos);
+                  else
+                  {
+                     list.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(list.get_at(iLPos) < list.get_at(iMPos))
+                     list.get_next(iLPos);
+                  else
+                  {
+                     list.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(list.position_index(iLowerBound) < list.position_index(iMPos) - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(list.position_index(iMPos) + 1 < list.position_index(iUpperBound))
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+   void QuickSortDesc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
+   {
+      ::raw_array < POSITION > stackLowerBound;
+      ::raw_array < POSITION > stackUpperBound;
+      POSITION iLowerBound;
+      POSITION iUpperBound;
+      POSITION iLPos, iUPos, iMPos;
+
+      if(list.get_size() >= 2)
+      {
+         stackLowerBound.push(list.get_head_position());
+         stackUpperBound.push(list.get_tail_position());
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(list.get_at(iUPos) < list.get_at(iMPos))
+                     list.get_previous(iUPos);
+                  else
+                  {
+                     list.swap(iMPos, iUPos);
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(list.get_at(iMPos) < list.get_at(iLPos))
+                     list.get_next(iLPos);
+                  else
+                  {
+                     list.swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(list.position_index(iLowerBound) < list.position_index(iMPos) - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(list.position_index(iMPos) + 1 < list.position_index(iUpperBound))
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+   }
+
+   template < class ARRAY >
+   inline bool sort_find(ARRAY & a, typename ARRAY::BASE_ARG_TYPE arg,index & iIndex,index iStart,index iEnd)
+   {
+      if(a.get_size() == 0)
+      {
+         return false;
+      }
+      index iLowerBound = iStart;
+      index iMaxBound = iEnd;
+      index iUpperBound = iMaxBound;
+      memory_offset_t iCompare;
+      // do binary search
+      iIndex = (iUpperBound + iLowerBound) / 2;
+      while(iUpperBound - iLowerBound >= 8)
+      {
+         iCompare = CompareElements(a.element_at(iIndex),arg);
+         if(iCompare == 0)
+         {
+            return true;
+         }
+         else if(iCompare > 0)
+         {
+            iUpperBound = iIndex - 1;
+            if(iUpperBound < 0)
+            {
+               iIndex = 0;
+               break;
+            }
+         }
+         else
+         {
+            iLowerBound = iIndex + 1;
+            if(iLowerBound > iMaxBound)
+            {
+               iIndex = iMaxBound + 1;
+               break;
+            }
+         }
+         iIndex = (iUpperBound + iLowerBound) / 2;
+      }
+      // do sequential search
+      while(iIndex < a.get_count())
+      {
+         iCompare = CompareElements(a.element_at(iIndex),arg);
+         if(iCompare == 0)
+            return true;
+         else if(iCompare < 0)
+            iIndex++;
+         else
+            break;
+      }
+      if(iIndex >= a.get_count())
+         return false;
+      while(iIndex >= 0)
+      {
+         iCompare = CompareElements(a.element_at(iIndex),arg);
+         if(iCompare == 0)
+            return true;
+         else if(iCompare > 0)
+            iIndex--;
+         else
+            break;
+      }
+      iIndex++;
+      return false;
+
+   }
+
+   template < class ARRAY >
+   void quick_sort(ARRAY & a, bool bAsc)
+   {
+      if(bAsc)
+      {
+         sort::QuickSortAsc(a);
+      }
+      else
+      {
+         sort::QuickSortDesc(a);
+      }
+   }
 
 } // namespace sort
 
 
 
 
+//#include "collection_sort_array.h"
+#include "collection_key_sort_array.h"
 
-template < typename ITERABLE >
-void isort(ITERABLE & iterable, bool bAscending)
+
+//template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE >::quick_sort(bool bAsc)
+//{
+//   if(bAsc)
+//   {
+//      sort::QuickSortAsc(*this);
+//   }
+//   else
+//   {
+//      sort::QuickSortDesc(*this);
+//   }
+//}
+
+
+
+
+
+
+
+template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+quick_sort(bool bAsc)
 {
-
-   return ::sort::quick_sort(iterable, bAscending);
-
+   if(bAsc)
+   {
+      sort::QuickSortAsc(*this);
+   }
+   else
+   {
+      sort::QuickSortDesc(*this);
+   }
 }
 
-template < typename ITERABLE >
-void isort(ITERABLE & iterable)
+template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
+void key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
+SetKeyProperty(KEY (TYPE::* lpfnKeyProperty)())
 {
-
-   return ::sort::quick_sort(iterable);
-
+   m_lpfnKeyProperty= lpfnKeyProperty;
+   sort::QuickSortByKey < KEY, TYPE, ARG_TYPE >(
+      m_array,
+      m_lpfnKeyProperty);
 }
 
 
-template < typename ITERABLE >
-void isort_descending(ITERABLE & iterable)
+namespace lemon
 {
 
-   return ::sort::quick_sort_descending(iterable);
 
-}
+   template < class TYPE >
+   void quick_sort(::numeric_array < TYPE > & a, bool bAsc)
+   {
 
+      if(bAsc)
+      {
 
-template < typename ITERABLE >
-void isort_ci(ITERABLE & iterable, bool bAscending)
-{
+         sort::QuickSortAsc(a);
 
-   return ::sort::quick_sort_ci(iterable, bAscending);
+      }
+      else
+      {
 
-}
+         sort::QuickSortDesc(a);
 
+      }
 
-template < typename ITERABLE >
-void isort_ci(ITERABLE & iterable)
-{
-
-   return ::sort::quick_sort_ci(iterable);
-
-}
+   }
 
 
-template < typename ITERABLE >
-void isort_ci_descending(ITERABLE & iterable)
-{
+} // namespace lemon
 
-   return ::sort::quick_sort_ci_descending(iterable);
 
-}
 
 

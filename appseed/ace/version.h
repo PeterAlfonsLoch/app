@@ -16,8 +16,8 @@
 BEGIN_EXTERN_C
 
 
-int _ca_is_basis();
-int _ca_is_stage();
+CLASS_DECL_ACE int _ca_is_basis();
+CLASS_DECL_ACE int _ca_is_stage();
 
 
 
@@ -53,7 +53,7 @@ typedef struct {
 #endif
 
 
-WINBOOL get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation);
+CLASS_DECL_ACE WINBOOL get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation);
 
 
 

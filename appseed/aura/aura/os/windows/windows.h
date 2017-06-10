@@ -54,6 +54,11 @@ CLASS_DECL_AURA int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue
 
 
 
+
+
+
+
+
 CLASS_DECL_AURA HFONT wingdi_CreatePointFont(int nPointSize, const char * lpszFaceName, HDC hdc, LOGFONTW* lpLogFont = NULL);
 
 CLASS_DECL_AURA HFONT wingdi_CreatePointFontIndirect(LOGFONTW* lpLogFont, HDC hdc);

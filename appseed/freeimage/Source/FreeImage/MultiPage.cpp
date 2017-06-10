@@ -174,19 +174,19 @@ FreeImage_FindBlock(FIMULTIBITMAP *bitmap, int position) {
 
 					if (item != block->m_start) {
 						BlockContinueus *block_a = new BlockContinueus(block->m_start, item - 1);
-						header->m_blocks.insert_at(i, (BlockTypeS *)block_a);
+						header->m_blocks.insert(i, (BlockTypeS *)block_a);
 					}
 
 					// middle part
 
 					BlockContinueus *block_b = new BlockContinueus(item, item);
-					BlockListIterator block_target = header->m_blocks.insert_at(i, (BlockTypeS *)block_b);
+					BlockListIterator block_target = header->m_blocks.insert(i, (BlockTypeS *)block_b);
 
 					// right part
 
 					if (item != block->m_end) {
 						BlockContinueus *block_c = new BlockContinueus(item + 1, block->m_end);
-						header->m_blocks.insert_at(i, (BlockTypeS *)block_c);
+						header->m_blocks.insert(i, (BlockTypeS *)block_c);
 					}
 
 					// remove the old block that was just splitted
@@ -565,7 +565,7 @@ FreeImage_CloseMultiBitmap(FIMULTIBITMAP *bitmap, int flags) {
 			while (!header->locked_pages.empty()) {
 				FreeImage_Unload(header->locked_pages.begin()->m_element1);
 
-				header->locked_pages.erase(header->locked_pages.begin());
+				header->locked_pages.erase(header->locked_pages.begin()->m_element1);
 			}
 
 			// get rid of the IO structure
@@ -683,7 +683,7 @@ FreeImage_InsertPage(FIMULTIBITMAP *bitmap, int page, FIBITMAP *data) {
 	if (page > 0) {
 		BlockListIterator block_source = FreeImage_FindBlock(bitmap, page);
 
-		header->m_blocks.insert_at(block_source, (BlockTypeS *)block);
+		header->m_blocks.insert(block_source, (BlockTypeS *)block);
 	} else {
 		header->m_blocks.push_front((BlockTypeS *)block);
 	}
@@ -835,7 +835,7 @@ FreeImage_UnlockPage(FIMULTIBITMAP *bitmap, FIBITMAP *page, WINBOOL changed) {
 
 			FreeImage_Unload(page);
 
-			header->locked_pages.remove_key(page);
+			header->locked_pages.erase(page);
 		}
 	}
 }
@@ -850,7 +850,7 @@ FreeImage_MovePage(FIMULTIBITMAP *bitmap, int target, int source) {
 				BlockListIterator block_source = FreeImage_FindBlock(bitmap, target);
 				BlockListIterator block_target = FreeImage_FindBlock(bitmap, source);
 
-				header->m_blocks.insert_at(block_target, *block_source);
+				header->m_blocks.insert(block_target, *block_source);
 				header->m_blocks.erase(block_source);
 
 				header->changed = TRUE;

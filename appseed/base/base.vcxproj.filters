@@ -625,7 +625,13 @@
     <ClCompile Include="user\user\user_control_event.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_copydesk.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\user\user_document.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_elemental.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_form_callback.cpp">
@@ -664,6 +670,15 @@
     <ClCompile Include="user\user\user_interaction_impl_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_job.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\user\user_menu_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -683,6 +698,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_plain_text_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_print_job.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_schema.cpp">
