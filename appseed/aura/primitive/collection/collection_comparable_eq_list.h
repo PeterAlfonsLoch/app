@@ -42,6 +42,19 @@ public:
 
    comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > operator -(const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l) const;
 
+   //// helper functions (note: O(n) speed)
+   //iterator find(ARG_TYPE searchValue, iterator startAfter = NULL);
+   //// defaults to starting at the HEAD, return NULL if not found
+   //void remove(ARG_TYPE elem);
+
+
+   //const_iterator find(ARG_TYPE searchValue, const_iterator startAfter = NULL) const
+   //{
+
+   //   return ((comparable_list *) this)->find(searchValue, startAfter);
+
+   //}
+
 };
 
 
@@ -168,7 +181,7 @@ intersect(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & a)
    {
       if(!a.contains(this->get_next(pos)))
       {
-         this->remove_at(pos);
+         this->erase(pos);
       }
    }
 }
@@ -251,7 +264,7 @@ remove_first(const TYPE & t)
    POSITION find = this->find_first(t);
    if(find != NULL)
    {
-      this->remove_at(find);
+      this->erase(find);
       return true;
    }
    return false;
@@ -266,7 +279,7 @@ remove_first(const TYPE & t, POSITION & find, POSITION last)
    {
       POSITION posRemove = find;
       this->get_next(find);
-      this->remove_at(posRemove);
+      this->erase(posRemove);
       return true;
    }
    return false;
@@ -290,7 +303,7 @@ remove_last(const TYPE & t)
    POSITION find = find_last(t);
    if(find != NULL)
    {
-      this->remove_at(find);
+      this->erase(find);
       return true;
    }
    return false;
@@ -305,7 +318,7 @@ remove_last(const TYPE & t, POSITION & find, POSITION last)
    {
       POSITION posRemove = find;
       this->get_previous(find);
-      this->remove_at(posRemove);
+      this->erase(posRemove);
       return true;
    }
    return false;

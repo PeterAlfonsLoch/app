@@ -1608,10 +1608,10 @@ namespace std
    //     ::sort::sort < T >(t1,t2);
    //}
 
-   template < class iterator,class COMPARE = ::comparison::less < typename iterator::BASE_TYPE,typename iterator::BASE_ARG_TYPE > >
-   void sort(const iterator & a, const iterator & b)
+   template < class iterator >
+   void sort(iterator & a, iterator & b)
    {
-      ::sort::quick_sort < iterator,COMPARE >(a,b);
+      ::sort::quick_sort_iter(a, b);
    }
 
    template < typename T >

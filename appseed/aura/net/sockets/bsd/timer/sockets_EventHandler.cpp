@@ -124,7 +124,7 @@ namespace sockets
          }
          delete pe;
          if(pos != NULL)
-            m_events.remove_at(pos);
+            m_events.erase(pos);
          pos = m_events.get_head_position();
       }
    }
@@ -204,7 +204,7 @@ namespace sockets
          if(from == pe->GetFrom() && eid == pe->GetID())
          {
             delete pe;
-            m_events.remove_at(pos);
+            m_events.erase(pos);
             break;
          }
       }

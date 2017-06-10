@@ -44,7 +44,7 @@ template<class TYPE, class ARG_TYPE>
    }
 
 
-      template<class TYPE, class ARG_TYPE>
+   template<class TYPE, class ARG_TYPE>
    POSITION list<TYPE, ARG_TYPE>::insert_before(POSITION position, ARG_TYPE newElement)
    {
       ASSERT_VALID(this);

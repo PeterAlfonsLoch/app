@@ -1511,7 +1511,7 @@ namespace ftp
 
             single_lock sl(m_pmutex);
 
-            strResponse = m_qResponseBuffer.remove_head();
+            strResponse = m_qResponseBuffer.pop_head();
 
          }
 

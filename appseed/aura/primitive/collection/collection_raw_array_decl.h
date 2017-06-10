@@ -8,7 +8,7 @@
 
 template<class TYPE,class ARG_TYPE = const TYPE &,class ALLOCATOR = ::allocator::nodef < TYPE > >
 class raw_array :
-   public array_base < TYPE, ALLOCATOR >
+   public array_base < TYPE, ARG_TYPE, ALLOCATOR >
 {
 public:
 
@@ -17,280 +17,280 @@ public:
    typedef raw_array < TYPE,ARG_TYPE > BASE_ARRAY;
 
 
-   class iterator
-   {
-   public:
+   //class iterator
+   //{
+   //public:
 
-      typedef TYPE BASE_TYPE;
-      typedef ARG_TYPE BASE_ARG_TYPE;
-      typedef raw_array < TYPE,ARG_TYPE > BASE_ARRAY;
+   //   typedef TYPE BASE_TYPE;
+   //   typedef ARG_TYPE BASE_ARG_TYPE;
+   //   typedef raw_array < TYPE,ARG_TYPE > BASE_ARRAY;
 
-      index            m_i;
-      raw_array *     m_parray;
+   //   index            m_i;
+   //   raw_array *     m_parray;
 
-      iterator()
-      {
-         m_i = 0;
-         m_parray = NULL;
-      }
+   //   iterator()
+   //   {
+   //      m_i = 0;
+   //      m_parray = NULL;
+   //   }
 
-      iterator(index i,raw_array * parray)
-      {
-         m_i = i;
-         m_parray = parray;
-      }
+   //   iterator(index i,raw_array * parray)
+   //   {
+   //      m_i = i;
+   //      m_parray = parray;
+   //   }
 
-      iterator(const iterator & it)
-      {
-         operator = (it);
-      }
-
-
-      iterator & operator = (const iterator & it)
-      {
-         if(this != &it)
-         {
-            m_i         = it.m_i;
-            m_parray    = it.m_parray;
-         }
-         return *this;
-      }
-
-      bool operator == (const iterator & it)
-      {
-         if(this == &it)
-            return true;
-         if(m_parray != it.m_parray)
-            return false;
-         if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
-            return true;
-         if(m_i <= 0 && it.m_i <= 0)
-            return true;
-         return m_i == it.m_i;
-      }
-
-      bool operator != (const iterator & it)
-      {
-         return !operator==(it);
-      }
-
-      iterator operator ++(int)
-      {
-         iterator it = *this;
-         operator ++();
-         return it;
-      }
-
-      iterator operator --(int)
-      {
-         iterator it = *this;
-         operator --();
-         return it;
-      }
-
-      iterator & operator ++()
-      {
-         m_i++;
-         if(m_i >= m_parray->get_size())
-            m_i = m_parray->get_size();
-         return *this;
-      }
-
-      iterator & operator +(index i)
-      {
-         m_i += i;
-         if(m_i >= m_parray->get_size())
-            m_i = m_parray->get_size();
-         return *this;
-      }
-
-      iterator & operator --()
-      {
-         m_i--;
-         if(m_i < 0)
-            m_i = 0;
-         return *this;
-      }
-
-      iterator mid(const iterator & i) const
-      {
-         return iterator((m_i + i.m_i + 1) / 2,m_parray);
-      }
-
-      iterator & operator -(::count c)
-      {
-         m_i-=c;
-         if(m_i < 0)
-            m_i = 0;
-         return *this;
-      }
-
-      bool operator < (const iterator & i) const
-      {
-
-         return m_i < i.m_i;
-
-      }
-
-      ::count get_count() const
-      {
-         return m_parray->get_count();
-      }
+   //   iterator(const iterator & it)
+   //   {
+   //      operator = (it);
+   //   }
 
 
-      TYPE & operator * ()
-      {
-         return ((TYPE*)m_parray->m_pData)[m_i];
-      }
+   //   iterator & operator = (const iterator & it)
+   //   {
+   //      if(this != &it)
+   //      {
+   //         m_i         = it.m_i;
+   //         m_parray    = it.m_parray;
+   //      }
+   //      return *this;
+   //   }
 
-      const TYPE & operator * () const
-      {
-         return ((const TYPE*)m_parray->m_pData)[m_i];
-      }
+   //   bool operator == (const iterator & it)
+   //   {
+   //      if(this == &it)
+   //         return true;
+   //      if(m_parray != it.m_parray)
+   //         return false;
+   //      if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
+   //         return true;
+   //      if(m_i <= 0 && it.m_i <= 0)
+   //         return true;
+   //      return m_i == it.m_i;
+   //   }
+
+   //   bool operator != (const iterator & it)
+   //   {
+   //      return !operator==(it);
+   //   }
+
+   //   iterator operator ++(int)
+   //   {
+   //      iterator it = *this;
+   //      operator ++();
+   //      return it;
+   //   }
+
+   //   iterator operator --(int)
+   //   {
+   //      iterator it = *this;
+   //      operator --();
+   //      return it;
+   //   }
+
+   //   iterator & operator ++()
+   //   {
+   //      m_i++;
+   //      if(m_i >= m_parray->get_size())
+   //         m_i = m_parray->get_size();
+   //      return *this;
+   //   }
+
+   //   iterator & operator +(index i)
+   //   {
+   //      m_i += i;
+   //      if(m_i >= m_parray->get_size())
+   //         m_i = m_parray->get_size();
+   //      return *this;
+   //   }
+
+   //   iterator & operator --()
+   //   {
+   //      m_i--;
+   //      if(m_i < 0)
+   //         m_i = 0;
+   //      return *this;
+   //   }
+
+   //   iterator mid(const iterator & i) const
+   //   {
+   //      return iterator((m_i + i.m_i + 1) / 2,m_parray);
+   //   }
+
+   //   iterator & operator -(::count c)
+   //   {
+   //      m_i-=c;
+   //      if(m_i < 0)
+   //         m_i = 0;
+   //      return *this;
+   //   }
+
+   //   bool operator < (const iterator & i) const
+   //   {
+
+   //      return m_i < i.m_i;
+
+   //   }
+
+   //   ::count get_count() const
+   //   {
+   //      return m_parray->get_count();
+   //   }
 
 
-   };
+   //   TYPE & operator * ()
+   //   {
+   //      return ((TYPE*)m_parray->m_pData)[m_i];
+   //   }
+
+   //   const TYPE & operator * () const
+   //   {
+   //      return ((const TYPE*)m_parray->m_pData)[m_i];
+   //   }
 
 
-   class const_iterator
-   {
-   public:
+   //};
 
 
-      typedef TYPE BASE_TYPE;
-      typedef ARG_TYPE BASE_ARG_TYPE;
-      typedef raw_array < TYPE,ARG_TYPE > BASE_ARRAY;
+   //class const_iterator
+   //{
+   //public:
 
 
-      index            m_i;
-      const raw_array *     m_parray;
+   //   typedef TYPE BASE_TYPE;
+   //   typedef ARG_TYPE BASE_ARG_TYPE;
+   //   typedef raw_array < TYPE,ARG_TYPE > BASE_ARRAY;
 
-      const_iterator()
-      {
-         m_i = 0;
-         m_parray = NULL;
-      }
 
-      const_iterator(index i,const raw_array * parray)
-      {
-         m_i = i;
-         m_parray = parray;
-      }
+   //   index            m_i;
+   //   const raw_array *     m_parray;
 
-      const_iterator(const iterator & it)
-      {
-         operator = (it);
-      }
+   //   const_iterator()
+   //   {
+   //      m_i = 0;
+   //      m_parray = NULL;
+   //   }
 
-      const_iterator(const const_iterator & it)
-      {
-         operator = (it);
-      }
+   //   const_iterator(index i,const raw_array * parray)
+   //   {
+   //      m_i = i;
+   //      m_parray = parray;
+   //   }
 
-      const_iterator & operator = (const iterator & it)
-      {
-         m_i         = it.m_i;
-         m_parray    = it.m_parray;
-         return *this;
-      }
+   //   const_iterator(const iterator & it)
+   //   {
+   //      operator = (it);
+   //   }
 
-      const_iterator & operator = (const const_iterator & it)
-      {
-         if(this != &it)
-         {
-            m_i         = it.m_i;
-            m_parray    = it.m_parray;
-         }
-         return *this;
-      }
+   //   const_iterator(const const_iterator & it)
+   //   {
+   //      operator = (it);
+   //   }
 
-      bool operator == (const const_iterator & it)
-      {
-         if(this == &it)
-            return true;
-         if(m_parray != it.m_parray)
-            return false;
-         if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
-            return true;
-         if(m_i <= 0 && it.m_i <= 0)
-            return true;
-         return m_i == it.m_i;
-      }
+   //   const_iterator & operator = (const iterator & it)
+   //   {
+   //      m_i         = it.m_i;
+   //      m_parray    = it.m_parray;
+   //      return *this;
+   //   }
 
-      bool operator != (const const_iterator & it)
-      {
-         return !operator==(it);
-      }
+   //   const_iterator & operator = (const const_iterator & it)
+   //   {
+   //      if(this != &it)
+   //      {
+   //         m_i         = it.m_i;
+   //         m_parray    = it.m_parray;
+   //      }
+   //      return *this;
+   //   }
 
-      const_iterator operator ++(int)
-      {
-         const_iterator it = *this;
-         operator ++();
-         return it;
-      }
+   //   bool operator == (const const_iterator & it)
+   //   {
+   //      if(this == &it)
+   //         return true;
+   //      if(m_parray != it.m_parray)
+   //         return false;
+   //      if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
+   //         return true;
+   //      if(m_i <= 0 && it.m_i <= 0)
+   //         return true;
+   //      return m_i == it.m_i;
+   //   }
 
-      const_iterator operator --(int)
-      {
-         const_iterator it = *this;
-         operator --();
-         return it;
-      }
+   //   bool operator != (const const_iterator & it)
+   //   {
+   //      return !operator==(it);
+   //   }
 
-      const_iterator & operator ++()
-      {
-         m_i++;
-         if(m_i >= m_parray->get_size())
-            m_i = m_parray->get_size();
-         return *this;
-      }
+   //   const_iterator operator ++(int)
+   //   {
+   //      const_iterator it = *this;
+   //      operator ++();
+   //      return it;
+   //   }
 
-      const_iterator & operator +(index i)
-      {
-         m_i += i;
-         if(m_i >= m_parray->get_size())
-            m_i = m_parray->get_size();
-         return *this;
-      }
+   //   const_iterator operator --(int)
+   //   {
+   //      const_iterator it = *this;
+   //      operator --();
+   //      return it;
+   //   }
 
-      const_iterator & operator --()
-      {
-         m_i--;
-         if(m_i < 0)
-            m_i = 0;
-         return *this;
-      }
+   //   const_iterator & operator ++()
+   //   {
+   //      m_i++;
+   //      if(m_i >= m_parray->get_size())
+   //         m_i = m_parray->get_size();
+   //      return *this;
+   //   }
 
-      const_iterator mid(const const_iterator & i) const
-      {
-         return const_iterator_base((m_i + i.m_i + 1) / 2,m_parray);
-      }
+   //   const_iterator & operator +(index i)
+   //   {
+   //      m_i += i;
+   //      if(m_i >= m_parray->get_size())
+   //         m_i = m_parray->get_size();
+   //      return *this;
+   //   }
 
-      const_iterator & operator -(::count c)
-      {
-         m_i-=c;
-         if(m_i < 0)
-            m_i = 0;
-         return *this;
-      }
+   //   const_iterator & operator --()
+   //   {
+   //      m_i--;
+   //      if(m_i < 0)
+   //         m_i = 0;
+   //      return *this;
+   //   }
 
-      bool operator < (const const_iterator & i) const
-      {
+   //   const_iterator mid(const const_iterator & i) const
+   //   {
+   //      return const_iterator_base((m_i + i.m_i + 1) / 2,m_parray);
+   //   }
 
-         return m_i < i.m_i;
+   //   const_iterator & operator -(::count c)
+   //   {
+   //      m_i-=c;
+   //      if(m_i < 0)
+   //         m_i = 0;
+   //      return *this;
+   //   }
 
-      }
+   //   bool operator < (const const_iterator & i) const
+   //   {
 
-      ::count get_count() const
-      {
-         return m_parray->get_count();
-      }
+   //      return m_i < i.m_i;
 
-      const TYPE & operator * ()
-      {
-         return ((const TYPE*)m_parray->m_pData)[m_i];
-      }
+   //   }
 
-   };
+   //   ::count get_count() const
+   //   {
+   //      return m_parray->get_count();
+   //   }
+
+   //   const TYPE & operator * ()
+   //   {
+   //      return ((const TYPE*)m_parray->m_pData)[m_i];
+   //   }
+
+   //};
 
 
    raw_array(::aura::application * papp = NULL, ::count nGrowBy = 32);

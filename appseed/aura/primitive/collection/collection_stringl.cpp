@@ -1,8 +1,7 @@
 //#include "framework.h"
 
 
-stringl::stringl(int_ptr nBlockSize) :
-   string_list(nBlockSize)
+stringl::stringl()
 {
 }
 
@@ -30,7 +29,7 @@ void stringl::implode(string & str, const char * lpcszSeparator, index start, ::
    
    index i = start;
 
-   POSITION pos = find_index(i);
+   auto pos = index_iterator(i);
 
    for(; i <= last; i++)
    {
@@ -40,9 +39,9 @@ void stringl::implode(string & str, const char * lpcszSeparator, index start, ::
          str += strSeparator;
       }
       
-      str += get_at(pos);
+      str += *pos;
 
-      get_next(pos);
+      pos++;
 
    }
 
@@ -76,7 +75,7 @@ void stringl::reverse_implode(string & str, const char * lpcszSeparator, index s
 
    index i = last;
 
-   POSITION pos = reverse_find_index(i);
+   auto pos = reverse_index_iterator(i);
 
    for(index i = last; i >= start; i--)
    {
@@ -86,9 +85,9 @@ void stringl::reverse_implode(string & str, const char * lpcszSeparator, index s
          str += strSeparator;
       }
 
-      str += get_at(pos);
+      str += *pos;
 
-      get_previous(pos);
+      pos--;
 
    }
 
@@ -132,9 +131,9 @@ void stringl::add_tail_tokens(const char * lpcsz, const char * lpcszSeparator, b
 
 void stringl::write(::file::ostream & ostream) const
 {
-   ostream << m_nCount;
+   ostream << m_count;
    POSITION pos = get_head_position();
-   for(int32_t i = 0; i < m_nCount; i++)
+   for(int32_t i = 0; i < m_count; i++)
    {
       ostream << get_next(pos);
    }

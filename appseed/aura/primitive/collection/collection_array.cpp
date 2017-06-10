@@ -60,3 +60,24 @@ namespace lemon
 
 } // namespace lemon
 
+
+#ifdef DEBUG
+
+void _debug_quick_sort_iter()
+{
+
+
+   int_array ia;
+
+   ia.add(3);
+   ia.add(2);
+   ia.add(1);
+
+   ::sort::quick_sort_iter(ia.begin(), ia.end());
+
+
+}
+
+
+
+#endif

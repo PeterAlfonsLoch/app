@@ -2,8 +2,8 @@
 
 
 
-template < class TYPE, class ALLOCATOR >
-array_base < TYPE, ALLOCATOR >::array_base(int iTypeSize,bool bRaw)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array_base < TYPE, ARG_TYPE, ALLOCATOR >::array_base()
 {
 
    m_nGrowBy = 0;
@@ -14,8 +14,8 @@ array_base < TYPE, ALLOCATOR >::array_base(int iTypeSize,bool bRaw)
 }
 
 
-template < class TYPE,class ALLOCATOR >
-array_base < TYPE, ALLOCATOR >::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array_base < TYPE, ARG_TYPE, ALLOCATOR >::array_base(::aura::application * papp):
    object(papp)
 {
 
@@ -27,8 +27,8 @@ array_base < TYPE, ALLOCATOR >::array_base(::aura::application * papp, int iType
 }
 
 
-template < class TYPE,class ALLOCATOR >
-array_base < TYPE, ALLOCATOR >::~array_base ()
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array_base < TYPE, ARG_TYPE, ALLOCATOR >::~array_base ()
 {
 
    destroy();
@@ -36,15 +36,15 @@ array_base < TYPE, ALLOCATOR >::~array_base ()
 }
 
 
-template < class TYPE,class ALLOCATOR >
-::count array_base < TYPE, ALLOCATOR >::resize(::count nNewSize,::count nGrowBy)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::resize(::count nNewSize,::count nGrowBy)
 {
    return allocate(nNewSize,nGrowBy);
 }
 
 
-template < class TYPE,class ALLOCATOR >
-::count array_base < TYPE, ALLOCATOR >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
 {
    if(nGrowBy < 0)
    {
@@ -57,8 +57,8 @@ template < class TYPE,class ALLOCATOR >
 }
 
 
-template < class TYPE,class ALLOCATOR >
-index array_base < TYPE, ALLOCATOR >::remove_at(index nIndex,::count nCount)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+index array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_at(index nIndex,::count nCount)
 {
 
    //ASSERT_VALID(this);
@@ -85,8 +85,8 @@ index array_base < TYPE, ALLOCATOR >::remove_at(index nIndex,::count nCount)
 }
 
 
-template < class TYPE,class ALLOCATOR >
-void array_base < TYPE, ALLOCATOR >::free_extra()
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
 {
    ASSERT_VALID(this);
 
@@ -145,8 +145,8 @@ void array_base < TYPE, ALLOCATOR >::free_extra()
 
 
 
-template < class TYPE,class ALLOCATOR >
-void array_base < TYPE, ALLOCATOR >::destroy()
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
 {
 
    ASSERT_VALID(this);
@@ -167,8 +167,8 @@ void array_base < TYPE, ALLOCATOR >::destroy()
 }
 
 
-template < class TYPE,class ALLOCATOR >
-index array_base < TYPE, ALLOCATOR >::insert_at(index nIndex,const TYPE * newElement,::count nCount /*=1*/)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex,const TYPE * newElement,::count nCount /*=1*/)
 {
 
    ASSERT_VALID(this);
@@ -216,8 +216,8 @@ index array_base < TYPE, ALLOCATOR >::insert_at(index nIndex,const TYPE * newEle
 }
 
 
-template < class TYPE,class ALLOCATOR >
-::count array_base < TYPE, ALLOCATOR >::append(const array_base < TYPE, ALLOCATOR > & src)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::append(const array_base < TYPE, ARG_TYPE, ALLOCATOR > & src)
 {
 
    ASSERT_VALID(this);
@@ -235,8 +235,8 @@ template < class TYPE,class ALLOCATOR >
 }
 
 
-template < class TYPE,class ALLOCATOR >
-void array_base < TYPE, ALLOCATOR >::copy(const array_base < TYPE, ALLOCATOR > & src)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_base < TYPE, ARG_TYPE, ALLOCATOR > & src)
 {
 
    ASSERT_VALID(this);
@@ -256,8 +256,8 @@ void array_base < TYPE, ALLOCATOR >::copy(const array_base < TYPE, ALLOCATOR > &
 // the index raw_array by sorting it and returning
 // only the indexes that could be removed
 // without indexes duplicates
-template < class TYPE,class ALLOCATOR >
-void array_base < TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & ia)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & ia)
 {
 
    // sort
@@ -301,8 +301,8 @@ void array_base < TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & ia)
 }
 
 
-template < class TYPE,class ALLOCATOR >
-void array_base < TYPE, ALLOCATOR >::remove_indexes(const index_array & ia)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_indexes(const index_array & ia)
 {
 
 
@@ -317,8 +317,8 @@ void array_base < TYPE, ALLOCATOR >::remove_indexes(const index_array & ia)
 }
 
 
-template < class TYPE,class ALLOCATOR >
-void array_base < TYPE, ALLOCATOR >::remove_descending_indexes(const index_array & ia)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_descending_indexes(const index_array & ia)
 {
 
    for(index i = 0; i < ia.get_count(); i++)
@@ -332,8 +332,8 @@ void array_base < TYPE, ALLOCATOR >::remove_descending_indexes(const index_array
 
 
 
-template < class TYPE,class ALLOCATOR >
-index array_base < TYPE, ALLOCATOR >::insert_at(index nStartIndex,array_base < TYPE, ALLOCATOR > * pNewArray)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nStartIndex,array_base < TYPE, ARG_TYPE, ALLOCATOR > * pNewArray)
 {
    ASSERT_VALID(this);
    ASSERT(pNewArray != NULL);
@@ -355,8 +355,8 @@ index array_base < TYPE, ALLOCATOR >::insert_at(index nStartIndex,array_base < T
 }
 
 
-template < class TYPE,class ALLOCATOR >
-::count array_base < TYPE, ALLOCATOR >::set_raw_size(::count nNewSize,::count nGrowBy)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::set_raw_size(::count nNewSize,::count nGrowBy)
 {
    ::count countOld = get_count();
    ASSERT_VALID(this);
@@ -496,8 +496,8 @@ template < class TYPE,class ALLOCATOR >
 }
 
 
-template < class TYPE,class ALLOCATOR >
-::count array_base < TYPE, ALLOCATOR >::allocate(::count nNewSize,::count nGrowBy)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::allocate(::count nNewSize,::count nGrowBy)
 {
 
    ::count countOld = get_count();
@@ -687,8 +687,8 @@ template < class TYPE,class ALLOCATOR >
 
 
 
-template < class TYPE,class ALLOCATOR >
-void array_base < TYPE, ALLOCATOR >::on_after_read()
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::on_after_read()
 {
 
 

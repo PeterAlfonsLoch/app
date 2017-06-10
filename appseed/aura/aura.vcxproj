@@ -3427,7 +3427,6 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\collection\collection_id_array.h" />
     <ClInclude Include="primitive\collection\collection_int_map.h" />
     <ClInclude Include="primitive\collection\collection_iterator.h" />
-    <ClInclude Include="primitive\collection\collection_key_sort_array.h" />
     <ClInclude Include="primitive\collection\collection_lemon_array.h" />
     <ClInclude Include="primitive\collection\collection_lemon_array_decl.h" />
     <ClInclude Include="primitive\collection\collection_list.h" />

@@ -7,113 +7,113 @@
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
 
-template < class TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ALLOCATOR > ::get_size() const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::get_size() const
 {
    return m_nSize;
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ALLOCATOR > ::get_size_in_bytes() const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::get_size_in_bytes() const
 {
    return m_nSize * sizeof(TYPE);
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ALLOCATOR > ::get_count() const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::get_count() const
 {
    return this->get_size();
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ALLOCATOR > ::get_byte_count() const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::get_byte_count() const
 {
    return this->get_size_in_bytes();
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ALLOCATOR > ::size() const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::size() const
 {
    return this->get_size();
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ALLOCATOR > ::count() const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::count() const
 {
    return this->get_count();
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline bool array_base < TYPE, ALLOCATOR > ::is_empty(::count countMinimum) const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR > ::is_empty(::count countMinimum) const
 {
    return m_nSize < countMinimum;
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline bool array_base < TYPE, ALLOCATOR > ::empty(::count countMinimum) const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR > ::empty(::count countMinimum) const
 {
    return is_empty(countMinimum);
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline bool array_base < TYPE, ALLOCATOR > ::has_elements(::count countMinimum) const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR > ::has_elements(::count countMinimum) const
 {
    return m_nSize >= countMinimum;
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline index array_base < TYPE, ALLOCATOR > ::get_upper_bound(index index) const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline index array_base < TYPE, ARG_TYPE, ALLOCATOR > ::get_upper_bound(index index) const
 {
    return m_nSize + index;
 }
 
-template < class TYPE, class ALLOCATOR >
-inline bool array_base < TYPE, ALLOCATOR > ::bounds(index index) const
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR > ::bounds(index index) const
 {
    return index >= 0 && index < m_nSize;
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ALLOCATOR > ::remove_all()
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::remove_all()
 {
    return allocate(0, -1);
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ALLOCATOR > ::set_size(index nNewSize, ::count nGrowBy) // does not call default constructors on new items/elements
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::set_size(index nNewSize, ::count nGrowBy) // does not call default constructors on new items/elements
 {
    return allocate(nNewSize, nGrowBy);
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline void array_base < TYPE, ALLOCATOR > ::clear()
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::clear()
 {
    remove_all();
 }
 
 
-template < class TYPE, class ALLOCATOR >
-inline void array_base < TYPE, ALLOCATOR > ::remove_last()
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::remove_last()
 {
    ASSERT(m_nSize > 0);
    remove_at(get_upper_bound());
 }
 
 
-template < class TYPE,class ALLOCATOR >
-inline void array_base < TYPE,ALLOCATOR > ::zero(index iStart,::count c)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::zero(index iStart,::count c)
 {
    if(c < 0)
    {
@@ -257,12 +257,30 @@ inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::operator[](index nIndex)
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::swap(index index1, index index2)
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::swap(index index1, index index2)
 {
-   TYPE t = get_data()[index1];
-   get_data()[index1] = get_data()[index2];
-   get_data()[index2] = t;
+   TYPE t = m_pData[index1];
+   m_pData[index1] = m_pData[index2];
+   m_pData[index2] = t;
 }
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::swap(iterator it1, iterator it2)
+{
+   TYPE t = m_pData[it1.m_i];
+   m_pData[it1.m_i] = m_pData[it2.m_i];
+   m_pData[it2.m_i] = t;
+}
+
+
+//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::swap(const_iterator it1, const_iterator it2)
+//{
+//   TYPE t = get_data()[it1.m_i];
+//   get_data()[it1.m_i] = get_data()[it2.m_i];
+//   get_data()[it2.m_i] = t;
+//}
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR > ::operator = (const array & src)
@@ -281,7 +299,7 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::aura::application * papp, ::count nGrowBy) :
 object(papp),
-array_base < TYPE, ALLOCATOR >(papp,sizeof(TYPE),false)
+array_base < TYPE, ARG_TYPE, ALLOCATOR >(papp)
 {
 //   this->m_nGrowBy = MAX(0, nGrowBy);
 //   this->m_pData = NULL;
@@ -292,7 +310,7 @@ array_base < TYPE, ALLOCATOR >(papp,sizeof(TYPE),false)
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a) :
 object(a),
-array_base < TYPE, ALLOCATOR >(a.get_app(), sizeof(TYPE), false)
+array_base < TYPE, ARG_TYPE, ALLOCATOR >(a.get_app())
 {
    
    operator = (a);
@@ -301,8 +319,7 @@ array_base < TYPE, ALLOCATOR >(a.get_app(), sizeof(TYPE), false)
 
 
 template < class TYPE,class ARG_TYPE,class ALLOCATOR >
-inline array < TYPE,ARG_TYPE,ALLOCATOR > ::array(::std::initializer_list < TYPE >  l) :
-array_base < TYPE,ALLOCATOR >(NULL,sizeof(TYPE),false)
+inline array < TYPE,ARG_TYPE,ALLOCATOR > ::array(::std::initializer_list < TYPE >  l) 
 {
    forallref(l)
    {
@@ -314,8 +331,7 @@ array_base < TYPE,ALLOCATOR >(NULL,sizeof(TYPE),false)
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array < TYPE, ARG_TYPE, ALLOCATOR > :: array(::count n) :
-array_base < TYPE, ALLOCATOR >(sizeof(TYPE),false)
+array < TYPE, ARG_TYPE, ALLOCATOR > :: array(::count n) 
 {
 //   m_nGrowBy = 32;
 //   m_pData = NULL;
@@ -324,8 +340,7 @@ array_base < TYPE, ALLOCATOR >(sizeof(TYPE),false)
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::count n, ARG_TYPE t) :
-   array_base < TYPE, ALLOCATOR >(sizeof(TYPE), false)
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::count n, ARG_TYPE t) 
 {
    while (n > 0)
    {
@@ -482,7 +497,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 index array < TYPE, ARG_TYPE, ALLOCATOR > ::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
 
-   return array_base < TYPE, ALLOCATOR > ::insert_at(nIndex,&newElement,nCount);
+   return array_base < TYPE, ARG_TYPE, ALLOCATOR > ::insert_at(nIndex,&newElement,nCount);
 
 }
 
@@ -575,8 +590,7 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at_grow(index nIndex
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR >::array(array && a) :
-object(a.get_app()),
-array_base < TYPE, ALLOCATOR >(a.get_app(), sizeof(TYPE), false)
+object(a.get_app())
 {
 
 	this->m_nGrowBy = a.m_nGrowBy;

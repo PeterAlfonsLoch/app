@@ -1535,143 +1535,109 @@ namespace sort
    }
 
 
-   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortAsc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
+   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename PRED>
+   void pred_quick_sort(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
    {
-      ::raw_array < POSITION > stackLowerBound;
-      ::raw_array < POSITION > stackUpperBound;
-      POSITION iLowerBound;
-      POSITION iUpperBound;
-      POSITION iLPos, iUPos, iMPos;
 
-      if(list.get_size() >= 2)
+      if (list.get_size() < 2)
       {
-         stackLowerBound.push(list.get_head_position());
-         stackUpperBound.push(list.get_tail_position());
+
+         return;
+
+      }
+
+      typedef comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE >::node node;
+
+      ::raw_array < node * > stackLowerBound;
+      ::raw_array < node * > stackUpperBound;
+
+      node * iLowerBound;
+      node * iUpperBound;
+      node * iLPos, * iUPos, * iMPos;
+
+      stackLowerBound.push(list.m_phead);
+      stackUpperBound.push(list.m_ptail);
+      while(true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
          while(true)
          {
-            iLowerBound = stackLowerBound.pop();
-            iUpperBound = stackUpperBound.pop();
-            iLPos = iLowerBound;
-            iMPos = iLowerBound;
-            iUPos = iUpperBound;
             while(true)
             {
-               while(true)
-               {
-                  if(iMPos == iUPos)
-                     break;
-                  if(list.get_at(iMPos) < list.get_at(iUPos))
-                     list.get_previous(iUPos);
-                  else
-                  {
-                     list.swap(iMPos, iUPos);
-                     break;
-                  }
-               }
                if(iMPos == iUPos)
-                  break;
-               iMPos = iUPos;
-               while(true)
+                  goto break_mid_loop;
+               if(pred(iUPos->m_value, iMPos->m_value))
                {
-                  if(iMPos == iLPos)
-                     break;
-                  if(list.get_at(iLPos) < list.get_at(iMPos))
-                     list.get_next(iLPos);
-                  else
-                  {
-                     list.swap(iLPos, iMPos);
-                     break;
-                  }
-               }
-               if(iMPos == iLPos)
+                  list.swap((POSITION) iMPos, (POSITION)iUPos);
                   break;
-               iMPos = iLPos;
+               }
+               iUPos = iUPos->m_pprev;
             }
-            if(list.position_index(iLowerBound) < list.position_index(iMPos) - 1)
+            iMPos = iUPos;
+            while(true)
             {
-               stackLowerBound.push(iLowerBound);
-               stackUpperBound.push(iMPos - 1);
+               if(iMPos == iLPos)
+                  goto break_mid_loop;
+               if (pred(iMPos->m_value, iLPos->m_value))
+               {
+                  list.swap((POSITION)iLPos, (POSITION)iMPos);
+                  break;
+               }
+               iLPos = iLPos->m_pnext;
             }
-            if(list.position_index(iMPos) + 1 < list.position_index(iUpperBound))
-            {
-               stackLowerBound.push(iMPos + 1);
-               stackUpperBound.push(iUpperBound);
-            }
-            if(stackLowerBound.get_size() == 0)
-               break;
+            iMPos = iLPos;
          }
-      }
-   }
-
-   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortDesc(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list)
-   {
-      ::raw_array < POSITION > stackLowerBound;
-      ::raw_array < POSITION > stackUpperBound;
-      POSITION iLowerBound;
-      POSITION iUpperBound;
-      POSITION iLPos, iUPos, iMPos;
-
-      if(list.get_size() >= 2)
-      {
-         stackLowerBound.push(list.get_head_position());
-         stackUpperBound.push(list.get_tail_position());
-         while(true)
+         break_mid_loop:
+         if(iLowerBound != iMPos->m_pprev)
          {
-            iLowerBound = stackLowerBound.pop();
-            iUpperBound = stackUpperBound.pop();
-            iLPos = iLowerBound;
-            iMPos = iLowerBound;
-            iUPos = iUpperBound;
-            while(true)
-            {
-               while(true)
-               {
-                  if(iMPos == iUPos)
-                     break;
-                  if(list.get_at(iUPos) < list.get_at(iMPos))
-                     list.get_previous(iUPos);
-                  else
-                  {
-                     list.swap(iMPos, iUPos);
-                     break;
-                  }
-               }
-               if(iMPos == iUPos)
-                  break;
-               iMPos = iUPos;
-               while(true)
-               {
-                  if(iMPos == iLPos)
-                     break;
-                  if(list.get_at(iMPos) < list.get_at(iLPos))
-                     list.get_next(iLPos);
-                  else
-                  {
-                     list.swap(iLPos, iMPos);
-                     break;
-                  }
-               }
-               if(iMPos == iLPos)
-                  break;
-               iMPos = iLPos;
-            }
-            if(list.position_index(iLowerBound) < list.position_index(iMPos) - 1)
-            {
-               stackLowerBound.push(iLowerBound);
-               stackUpperBound.push(iMPos - 1);
-            }
-            if(list.position_index(iMPos) + 1 < list.position_index(iUpperBound))
-            {
-               stackLowerBound.push(iMPos + 1);
-               stackUpperBound.push(iUpperBound);
-            }
-            if(stackLowerBound.get_size() == 0)
-               break;
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos->m_pprev);
          }
+         if(iMPos->m_pnext != iUpperBound)
+         {
+            stackLowerBound.push(iMPos->m_pnext);
+            stackUpperBound.push(iUpperBound);
+         }
+         if(stackLowerBound.get_size() == 0)
+            break;
       }
+
    }
+
+   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename PRED>
+   void pred_quick_sort_descending(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
+   {
+
+      pred_quick_sort(list, [](auto & a, autor & b) { return pred(b, a); })
+
+   }
+
+   template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+   void quick_sort(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, bool bAscendent = true)
+   {
+
+      if (bAscendent)
+      {
+         
+         pred_quick_sort(list, [](auto & a, auto & b) { return a < b; });
+
+      }
+      else
+      {
+
+         pred_quick_sort(list, [](auto & a, auto & b) { return b < a; });
+
+      }
+
+
+
+   }
+
+
 
    template < class ARRAY >
    inline bool sort_find(ARRAY & a, typename ARRAY::BASE_ARG_TYPE arg,index & iIndex,index iStart,index iEnd)
@@ -1754,13 +1720,105 @@ namespace sort
       }
    }
 
+
+   template < typename ITERATOR>
+   void quick_sort_iter(ITERATOR first, ITERATOR last)
+   {
+
+      auto & iterable = first.iterable();
+
+      ASSERT(&iterable == &last.iterable());
+
+      if (&iterable != &last.iterable())
+      {
+
+         return;
+
+      }
+
+      if (iterable.get_size() < 2)
+      {
+
+         return;
+
+      }
+
+      ::array < ITERATOR > stackLowerBound;
+      ::array < ITERATOR > stackUpperBound;
+      ITERATOR iLowerBound;
+      ITERATOR iUpperBound;
+      ITERATOR iLPos, iUPos, iMPos;
+
+      stackLowerBound.push(first);
+      stackUpperBound.push(last);
+
+      while (true)
+      {
+
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
+
+         while (true)
+         {
+            while (true)
+            {
+               if (iMPos == iUPos)
+                  goto break_mid_loop;
+               if (*iMPos < *iUPos)
+               {
+                  iterable.swap(iMPos, iUPos);
+                  break;
+               }
+               iUPos--;
+
+            }
+            if (iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while (true)
+            {
+               if (iMPos == iLPos)
+                  goto break_mid_loop;
+               if (*iLPos < *iMPos)
+               {
+                  iterable.swap(iMPos, iLPos);
+                  break;
+               }
+               iLPos++;
+            }
+            if (iMPos == iLPos)
+               break;
+            iMPos = iLPos;
+         }
+      break_mid_loop:
+         if (iterable.valid_iter(iLowerBound, iMPos - 1))
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if (iterable.valid_iter(iMPos + 1, iUpperBound))
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if (stackLowerBound.get_size() == 0)
+            break;
+      }
+
+   }
+
+
 } // namespace sort
 
 
 
 
 //#include "collection_sort_array.h"
-#include "collection_key_sort_array.h"
+// #include "collection_key_sort_array.h"
 
 
 //template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
@@ -1784,55 +1842,21 @@ namespace sort
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 void comparable_list<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-quick_sort(bool bAsc)
+quick_sort(bool bAscendent)
 {
-   if(bAsc)
-   {
-      sort::QuickSortAsc(*this);
-   }
-   else
-   {
-      sort::QuickSortDesc(*this);
-   }
+
+   sort::quick_sort(*this, bAscendent);
+
 }
 
-template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
-void key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
-SetKeyProperty(KEY (TYPE::* lpfnKeyProperty)())
-{
-   m_lpfnKeyProperty= lpfnKeyProperty;
-   sort::QuickSortByKey < KEY, TYPE, ARG_TYPE >(
-      m_array,
-      m_lpfnKeyProperty);
-}
-
-
-namespace lemon
-{
-
-
-   template < class TYPE >
-   void quick_sort(::numeric_array < TYPE > & a, bool bAsc)
-   {
-
-      if(bAsc)
-      {
-
-         sort::QuickSortAsc(a);
-
-      }
-      else
-      {
-
-         sort::QuickSortDesc(a);
-
-      }
-
-   }
-
-
-} // namespace lemon
-
-
-
-
+//template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
+//void key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
+//SetKeyProperty(KEY (TYPE::* lpfnKeyProperty)())
+//{
+//   m_lpfnKeyProperty= lpfnKeyProperty;
+//   sort::QuickSortByKey < KEY, TYPE, ARG_TYPE >(
+//      m_array,
+//      m_lpfnKeyProperty);
+//}
+//
+//

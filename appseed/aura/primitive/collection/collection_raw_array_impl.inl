@@ -264,13 +264,12 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALL
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::aura::application * papp, ::count nGrowBy) :
 object(papp),
-array_base < TYPE, ALLOCATOR > (papp, sizeof(TYPE), true)
+array_base < TYPE, ARG_TYPE, ALLOCATOR > (papp)
 {
 }
 
 template<class TYPE,class ARG_TYPE,class ALLOCATOR >
-inline raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(::std::initializer_list < TYPE >  l) :
-array_base < TYPE,ALLOCATOR >(NULL,sizeof(TYPE),true)
+inline raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(::std::initializer_list < TYPE >  l) 
 {
    forallref(l)
    {
@@ -282,16 +281,14 @@ array_base < TYPE,ALLOCATOR >(NULL,sizeof(TYPE),true)
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a) :
-object(a.get_app()),
-array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),true)
+object(a.get_app())
 {
-   ::array_base < TYPE, ALLOCATOR >::operator = (a);
+   ::array_base < TYPE, ARG_TYPE, ALLOCATOR >::operator = (a);
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a):
-object(a.get_app()),
-array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),true)
+object(a.get_app())
 {
 
    this->m_nGrowBy = a.m_nGrowBy;
@@ -308,23 +305,20 @@ array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),true)
 
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >:: raw_array(::count n) :
-array_base < TYPE, ALLOCATOR > (sizeof(TYPE),true)
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >:: raw_array(::count n)
 {
    this->allocate(n);
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(ARG_TYPE t, ::count n) :
-array_base < TYPE, ALLOCATOR > (sizeof(TYPE),true)
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(ARG_TYPE t, ::count n)
 {
    insert_at(0, t, n);
 }
 
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(TYPE * ptypea, ::count n) :
-array_base < TYPE, ALLOCATOR > (sizeof(TYPE),true)
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(TYPE * ptypea, ::count n)
 {
    this->allocate(n);
    for(int i = 0; i < n; i++)
@@ -561,7 +555,7 @@ inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::element_at_grow(index nIn
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
-   return array_base < TYPE, ALLOCATOR >::insert_at(nIndex,&newElement,nCount);
+   return array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(nIndex,&newElement,nCount);
 }
 
 

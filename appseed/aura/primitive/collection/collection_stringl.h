@@ -7,7 +7,7 @@ class CLASS_DECL_AURA stringl :
 {
 public:
 
-   stringl(int_ptr nBlockSize = 10);
+   stringl();
    virtual ~stringl();
 
 

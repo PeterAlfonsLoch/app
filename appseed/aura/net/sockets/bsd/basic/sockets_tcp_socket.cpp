@@ -776,7 +776,7 @@ namespace sockets
             if(!left)
             {
                delete p;
-               m_obuf.remove_at(pos);
+               m_obuf.erase(pos);
                if(!m_obuf.get_size())
                {
                   m_obuf_top = NULL;

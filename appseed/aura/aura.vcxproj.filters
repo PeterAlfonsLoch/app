@@ -626,9 +626,6 @@
     <ClInclude Include="primitive\collection\collection_iterator.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\collection_key_sort_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\collection_lemon_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>

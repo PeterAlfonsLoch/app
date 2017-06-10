@@ -1010,7 +1010,7 @@ namespace sockets
       while (m_fds_erase.get_size())
       {
 
-         SOCKET socket = m_fds_erase.remove_head();
+         SOCKET socket = m_fds_erase.pop_head();
 
          m_fds_detach.remove(socket);
 
@@ -1061,7 +1061,7 @@ namespace sockets
       // remove add's that fizzed
       while (m_delete.get_size() > 0)
       {
-         sp(socket) p = m_delete.remove_head();
+         sp(socket) p = m_delete.pop_head();
          p->OnDelete();
          if (p->DeleteByHandler()
             && !(m_slave ^ p->IsDetached())

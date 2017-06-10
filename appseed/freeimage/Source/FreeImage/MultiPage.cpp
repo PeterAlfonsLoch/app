@@ -73,8 +73,8 @@ struct BlockReference : public BlockTypeS {
 
 // ----------------------------------------------------------
 
-typedef std::list<BlockTypeS *> BlockList;
-typedef std::list<BlockTypeS *>::iterator BlockListIterator;
+typedef comparable_list<BlockTypeS *> BlockList;
+typedef comparable_list<BlockTypeS *>::iterator BlockListIterator;
 
 // ----------------------------------------------------------
 
