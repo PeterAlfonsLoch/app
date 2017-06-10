@@ -37,8 +37,11 @@
    template < class T >
    inline smart_pointer < T > ::smart_pointer(T * p)
    {
+      
       m_p = p;
-      ::add_ref(m_p);
+      
+      m_p->add_ref();
+
    }
 
    template < class T >
@@ -164,12 +167,12 @@
          T * pOld = m_p;
          if(p != NULL)
          {
-            ::add_ref(p);
+            p->add_ref();
          }
          m_p = p;
          if(pOld != NULL)
          {
-            ::release(pOld);
+            MACRO_RELEASE2(pOld);
          }
       }
       return *this;
@@ -251,7 +254,11 @@
     int64_t smart_pointer <T>::release()
     {
 
-        return ::release(m_p);
+       ::count c;
+
+       MACRO_RELEASE(m_p, c);
+
+       return c;
 
     }
 

@@ -199,27 +199,38 @@ namespace file
 
    ::file::file_sp application::friendly_get_file(var varFile, UINT nOpenFlags, cres * pfesp)
    {
+
       if(pfesp != NULL)
       {
-         ::release(pfesp->m_p);
+
+         MACRO_RELEASE2(pfesp->m_p);
+
       }
 
       try
       {
+
          return get_file(varFile, nOpenFlags, pfesp);
+
       }
       catch(...)
       {
-         return NULL;
+         
       }
+
+      return NULL;
+
    }
+
 
    ::file::file_sp application::get_file(var varFile, UINT nOpenFlags, cres * pfesp)
    {
 
       if(pfesp != NULL)
       {
-         ::release(pfesp->m_p);
+         
+         MACRO_RELEASE2(pfesp->m_p);
+
       }
 
       ::cres cres;

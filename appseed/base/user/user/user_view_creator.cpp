@@ -423,20 +423,21 @@ namespace user
 
    void view_creator::hide_all_except(const id_array & ida)
    {
-      view_map::pair * ppair = m_viewmap.PGetFirstAssoc();
-      while(ppair != NULL)
+      
+      for(auto & item : m_viewmap)
       {
-         if(!ida.contains(ppair->m_element1))
+         
+         if(!ida.contains(item.m_element1))
          {
             try
             {
-               if(ppair->m_element2->m_pholder != NULL)
+               if(item.m_element2->m_pholder != NULL)
                {
-                  ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
+                  item.m_element2->m_pholder->ShowWindow(SW_HIDE);
                }
-               else if(ppair->m_element2->m_pwnd != NULL)
+               else if(item.m_element2->m_pwnd != NULL)
                {
-                  ppair->m_element2->m_pwnd->ShowWindow(SW_HIDE);
+                  item.m_element2->m_pwnd->ShowWindow(SW_HIDE);
                }
             }
             catch(...)
@@ -445,8 +446,6 @@ namespace user
             }
 
          }
-
-         ppair = m_viewmap.PGetNextAssoc(ppair);
 
       }
 
@@ -483,16 +482,14 @@ namespace user
    void view_creator::on_update(::user::document * pdocument, ::user::impact * pSender, LPARAM lHint, object* pHint)
    {
 
-      POSITION pos = m_viewmap.get_start_position();
+      auto pos = m_viewmap.begin();
 
       ::user::view_creator_data * pcreatordata;
 
       id id;
 
-      while(pos != NULL)
+      while(pos != m_viewmap.end())
       {
-
-         m_viewmap.get_next_assoc(pos, id, pcreatordata);
 
          if(pcreatordata->m_pdoc != NULL && pcreatordata->m_pdoc != pdocument && (pSender == NULL || pSender->get_document() != pcreatordata->m_pdoc))
          {
@@ -500,6 +497,8 @@ namespace user
             pcreatordata->m_pdoc->update_all_views(pSender, lHint, pHint);
 
          }
+
+         pos++;
 
       }
 

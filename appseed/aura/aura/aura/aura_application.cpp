@@ -5827,13 +5827,13 @@ namespace aura
 
       stra.remove_ci("_std");
 
-      straLocale.add_unique(Application.directrix()->m_varTopicQuery["locale"].stra());
+      straLocale.add_unique_iter(Application.directrix()->m_varTopicQuery["locale"].stra());
 
       stra = Application.directrix()->m_varTopicQuery["schema"].stra();
 
       stra.remove_ci("_std");
 
-      straSchema.add_unique(Application.directrix()->m_varTopicQuery["schema"].stra());
+      straSchema.add_unique_iter(Application.directrix()->m_varTopicQuery["schema"].stra());
 
 
       localeschema.m_idLocale = straLocale[0];

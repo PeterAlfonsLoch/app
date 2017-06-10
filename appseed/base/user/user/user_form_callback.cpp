@@ -14,14 +14,14 @@ namespace user
    form_callback::~form_callback()
    {
 
-      strsp(::user::form_window)::pair * ppair = m_pmapform->PGetFirstAssoc();
+      auto it = m_pmapform->begin();
 
-      while(ppair != NULL)
+      while(it != m_pmapform->end())
       {
 
-         ppair->m_element2->DestroyWindow();
+         it->m_element2->DestroyWindow();
 
-         ppair = m_pmapform->PGetNextAssoc(ppair);
+         it++;
 
       }
 
@@ -77,12 +77,12 @@ namespace user
    ::user::document * form_callback::get_form_document(const string & strId)
    {
 
-      auto passoc = m_pmapform->find_first(strId);
+      auto it = m_pmapform->find_first(strId);
 
-      if(passoc == NULL)
+      if(it == m_pmapform->end())
          return NULL;
 
-      sp(::user::impact) pview = passoc->m_element2;
+      sp(::user::impact) pview = it->m_element2;
 
       if(pview.is_null())
          return NULL;

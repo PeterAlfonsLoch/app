@@ -20,7 +20,7 @@ namespace fs
    }
 
 
-   strsp(::fs::data) & set::fsmap()
+   string_map < sp(::fs::data) > & set::fsmap()
    {
 
       return m_fsdatamap;
@@ -55,9 +55,9 @@ namespace fs
 
          sl.lock();
 
-         listing.add(straFsPath);
+         listing.add_iter(straFsPath);
 
-         listing.m_straTitle.add(straFsPath.m_straTitle);
+         listing.m_straTitle.add_iter(straFsPath.m_straTitle);
 
          for(int32_t j = 0; j < straFsPath.get_size(); j++)
          {
@@ -78,7 +78,7 @@ namespace fs
 
       single_lock sl(m_pmutex, true);
 
-      POSITION pos = m_fsdatamap.get_start_position();
+      auto it = m_fsdatamap.begin();
 
       string strRoot;
 
@@ -86,22 +86,22 @@ namespace fs
 
          sp(::fs::data) pdata;
 
-         while (pos != NULL)
+         while (it != m_fsdatamap.end())
          {
 
-            m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
-
-            if (pdata.is_set())
+            if (it->m_element2.is_set())
             {
 
-               if (::str::begins_ci(psz, strRoot))
+               if (::str::begins_ci(psz, it->m_element1))
                {
 
-                  return pdata;
+                  return it->m_element2;
 
                }
 
             }
+
+            it++;
 
          }
 
@@ -111,22 +111,22 @@ namespace fs
 
          sp(::fs::data) pdata;
 
-         while (pos != NULL)
+         while (it != m_fsdatamap.end())
          {
 
-            m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
-
-            if (pdata.is_set())
+            if (it->m_element2.is_set())
             {
 
-               if (pdata->is_dir(psz))
+               if (it->m_element2->is_dir(psz))
                {
 
-                  return pdata;
+                  return it->m_element2;
 
                }
 
             }
+
+            it++;
 
          }
 

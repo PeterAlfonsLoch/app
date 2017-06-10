@@ -367,10 +367,51 @@ inline const char * FormatArgument(const ::file::path & value) noexcept
    return value.c_str();
 }
 
-template<>
-inline UINT HashKey<const ::file::path &>(const ::file::path &  key)
+
+namespace comparison
 {
 
-   return HashKey<const string & >(key);
+   template < >
+   inline UINT hash::run(const ::file::path &  key)
+   {
 
-}
+      return run < const string & >(key);
+
+   }
+
+
+} // namespace comparison
+
+
+namespace comparisontest
+{
+
+   template < >
+   inline UINT hash::run(const ::file::path &  key)
+   {
+
+      return run < const string & >(key);
+
+   }
+
+
+} // namespace comparison
+
+
+
+namespace comparisonok
+{
+
+   template < >
+   inline UINT hash::run(const ::file::path &  key)
+   {
+
+      return run < const string & >(key);
+
+   }
+
+
+} // namespace comparison
+
+
+

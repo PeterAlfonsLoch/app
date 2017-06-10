@@ -76,7 +76,7 @@ public:
 
    //iterator add(const TYPE & newElement);
 
-   void push_back(const TYPE & newElement);
+   //void push_back(const TYPE & newElement);
 
    //iterator add_iter(const Iterable & src);
 
@@ -196,8 +196,12 @@ public:
 //   return this->m_nSize + count; 
 //
 //}
+template < typename TYPE >
+string_array< TYPE>::string_array(const Iterable & array)
+{
+   ::iter::copy_iter(*this, array);
 
-
+}
 template < typename TYPE >
 string_array < TYPE >::~string_array()
 {

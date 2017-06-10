@@ -3,11 +3,6 @@
 
 
 
-template < class root_derived >
-inline int64_t add_ref(root_derived * pca);
-
-template < class root_derived >
-inline int64_t release(root_derived * & pca);
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -41,7 +36,7 @@ public:
    smart_pointer(T2 * p)
    {
       m_p = dynamic_cast < T * > (p);
-      if(m_p != NULL) ::add_ref(p);
+      if(m_p != NULL) ::aura::add_ref(p);
    }
    smart_pointer(T * p);
 
@@ -49,7 +44,7 @@ public:
    smart_pointer(const T2 * p)
    {
       m_p = dynamic_cast < T * > ((T2 *) p);
-      if(m_p != NULL) ::add_ref(p);
+      if(m_p != NULL) ::aura::add_ref(p);
    }
 
    template < class T2 >

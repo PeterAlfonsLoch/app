@@ -110,12 +110,12 @@ inline void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::clear()
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::remove_last()
-{
-   ASSERT(m_nSize > 0);
-   remove_at(get_upper_bound());
-}
+//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::remove_last()
+//{
+//   ASSERT(m_nSize > 0);
+//   remove_at(get_upper_bound());
+//}
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
@@ -316,16 +316,16 @@ array_data < TYPE, ARG_TYPE, ALLOCATOR > ::array_data(const array_data & a)
 }
 
 
-template < class TYPE,class ARG_TYPE,class ALLOCATOR >
-inline array_data < TYPE,ARG_TYPE,ALLOCATOR > ::array_data(::std::initializer_list < TYPE >  l)
-{
-   forallref(l)
-   {
-      add((ARG_TYPE) item);
-   }
-}
-
-
+//template < class TYPE,class ARG_TYPE,class ALLOCATOR >
+//inline array_data < TYPE,ARG_TYPE,ALLOCATOR > ::array_data(::std::initializer_list < TYPE >  l)
+//{
+//   forallref(l)
+//   {
+//      add((ARG_TYPE) item);
+//   }
+//}
+//
+//
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
@@ -436,7 +436,17 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline typename array_data < TYPE, ARG_TYPE, ALLOCATOR > ::iterator array_data < TYPE, ARG_TYPE, ALLOCATOR > ::erase(iterator first, iterator last)
 {
    
-   remove_at(first.m_p - m_pData, last.m_p - first.m_p);
+   erase_count(first, last.m_p - first.m_p);
+
+   return first.m_p;
+
+}
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline typename array_data < TYPE, ARG_TYPE, ALLOCATOR > ::iterator array_data < TYPE, ARG_TYPE, ALLOCATOR > ::erase_count(iterator first, ::count c)
+{
+
+   remove_at(first.m_p - m_pData, c);
 
    return first.m_p;
 

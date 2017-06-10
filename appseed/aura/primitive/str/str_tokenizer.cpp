@@ -25,6 +25,13 @@ namespace str
 
    }
 
+   tokenizer::tokenizer(const char * pszSrc) :
+      string(pszSrc)
+   {
+
+      reset();
+
+   }
    tokenizer::tokenizer(const string & strSrc) :
       string(strSrc)
    {
@@ -32,7 +39,21 @@ namespace str
       reset();
 
    }
+   tokenizer::tokenizer(const var & var) :
+      string(var)
+   {
 
+      reset();
+
+   }   
+   
+   tokenizer::tokenizer(const property & property) :
+      string(property)
+   {
+
+      reset();
+
+   }
 
 
    bool tokenizer::next_token(string &strToken, const char * lpSeparator, bool bWithSeparator)

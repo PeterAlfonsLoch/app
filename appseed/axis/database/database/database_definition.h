@@ -1,6 +1,4 @@
-#ifndef CA2_APP_BASE_DATABASE_DEFINITION_H
-#define CA2_APP_BASE_DATABASE_DEFINITION_H
-
+#pragma once
 
 #include "database_stringhelper.h"
 
@@ -126,12 +124,12 @@ namespace database
    };
 
    class CLASS_DECL_AXIS query_data :
-      public array < record, record & >
+      public array < record >
    {
    };
 
-   typedef array <field, field &> CFields;
-   typedef array < field_properties, field_properties & > record_properties;
+   typedef array < field> fields;
+   typedef array < field_properties > record_properties;
 
    class CLASS_DECL_AXIS result_set :
       virtual public object,
@@ -178,11 +176,6 @@ namespace database
 
 
 } // namespace database
-
-
-
-#endif // CA2_APP_BASE_DATABASE_DEFINITION_H
-
 
 
 

@@ -3,7 +3,7 @@
 
 
 
-template < class TYPE,class ARG_TYPE = const TYPE &,class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE >,class COMPARE = ::comparison::less < TYPE, ARG_TYPE > >
+template < class TYPE,class ARG_TYPE = const TYPE &,class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE >,class COMPARE = ::comparison::less >
 class set:
    virtual protected BASE_ARRAY_TYPE
 {
@@ -118,33 +118,33 @@ public:
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
 typename BASE_ARRAY_TYPE::const_iterator set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::cend() const
 {
-   return typename BASE_ARRAY_TYPE::const_iterator(get_count(), this);
+   return BASE_ARRAY_TYPE::end();
 }
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
 typename BASE_ARRAY_TYPE::iterator set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::end()
 {
-   return typename BASE_ARRAY_TYPE::iterator(get_count(), this);
+   return BASE_ARRAY_TYPE::end();
 }
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
 typename BASE_ARRAY_TYPE::const_iterator set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::end() const
 {
-   return typename BASE_ARRAY_TYPE::const_iterator(get_count(), this);
+   return BASE_ARRAY_TYPE::end();
 }
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
 typename BASE_ARRAY_TYPE::const_iterator set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::cbegin() const
 {
-   return typename BASE_ARRAY_TYPE::const_iterator(0, this);
+   return BASE_ARRAY_TYPE::begin();
 }
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
 typename BASE_ARRAY_TYPE::iterator set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::begin()
 {
-   return typename BASE_ARRAY_TYPE::iterator(0, this);
+   return BASE_ARRAY_TYPE::begin();
 }
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
 typename BASE_ARRAY_TYPE::const_iterator set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::begin() const
 {
-   return typename BASE_ARRAY_TYPE::const_iterator(0, this);
+   return BASE_ARRAY_TYPE::begin();
 }
 
 
@@ -156,18 +156,18 @@ add(ARG_TYPE t)
    typename BASE_ARRAY_TYPE::iterator m;
 
    if(search(m,t))
-      return m.m_i;
+      return m.m_p-m_pData;
 
-   this->insert_at(m.m_i,t);
+   this->insert_at(m.m_p-m_pData,t);
 
-   return m.m_i;
+   return m.m_p-m_pData;
 
 }
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
 typename BASE_ARRAY_TYPE::iterator set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >:: insert(ARG_TYPE t)
 {
-   return typename BASE_ARRAY_TYPE::iterator(add(t), this);
+   return m_pData + add(t);
 }
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
@@ -186,7 +186,7 @@ bool set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
 
       m = l.mid(u);
 
-      if(COMPARE::compare(t,*m))
+      if(COMPARE::run< ARG_TYPE>(t,*m))
       {
 
          if(m == cbegin())
@@ -197,7 +197,7 @@ bool set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
          --u;
 
       }
-      else if(COMPARE::compare(*m, t))
+      else if(COMPARE::run< ARG_TYPE>(*m, t))
       {
          if(m == cend())
             break;
@@ -209,7 +209,7 @@ bool set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >::
       }
       else
       {
-         return m;
+         return true;
       }
 
    }
@@ -235,7 +235,7 @@ search(typename BASE_ARRAY_TYPE::iterator & m, ARG_TYPE t)
 
       m = l.mid(u);
 
-      if(COMPARE().operator()(t,*m))
+      if(COMPARE::run< ARG_TYPE>(t,*m))
       {
 
          if(m == begin())
@@ -246,7 +246,7 @@ search(typename BASE_ARRAY_TYPE::iterator & m, ARG_TYPE t)
          --u;
 
       }
-      else if(COMPARE().operator()(*m,t))
+      else if(COMPARE::run< ARG_TYPE>(*m,t))
       {
          if(m == end())
             break;

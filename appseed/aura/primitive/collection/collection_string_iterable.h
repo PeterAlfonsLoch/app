@@ -45,6 +45,36 @@ public:
 
    iterator add(const Type & newElement);
 
+   bool remove_empty()
+   {
+
+      return ::iter::remove_empty(*this);
+
+   }
+
+   Container & trim_right()
+   {
+
+      return ::iter::trim_right(*this);
+
+   }
+
+   Container & trim_left()
+   {
+
+      return ::iter::trim_left(*this);
+
+   }
+
+
+   Container & trim()
+   {
+
+      return ::iter::trim(*this);
+
+   }
+
+
 };
 
 
@@ -172,26 +202,26 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const var & var)
    {
       for (int32_t i = 0; i < var.vara().get_count(); i++)
       {
-         ::lemon::array::add(*this, var.vara()[i].get_string());
+         add((Type) var.vara()[i].get_string());
       }
    }
    else if (var.get_type() == var::type_inta)
    {
       for (int32_t i = 0; i < var.inta().get_count(); i++)
       {
-         ::lemon::array::add(*this, ::str::from(var.inta()[i]));
+         add((Type) ::str::from(var.inta()[i]));
       }
    }
    else if (var.get_type() == var::type_propset)
    {
       for (auto assoc : var.propset())
       {
-         ::lemon::array::add(*this, assoc.get_value().get_string());
+         add((Type) assoc.get_value().get_string());
       }
    }
    else
    {
-      ::lemon::array::add(*this, var.get_string());
+      add((Type) var.get_string());
    }
 
    return upper_bound();

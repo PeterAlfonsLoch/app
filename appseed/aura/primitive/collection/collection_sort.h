@@ -6,22 +6,22 @@ namespace sort
 
 
    template < typename ITERABLE >
-   void quick_sort(ITERABLE & iterable, bool bAsc);
+   void quick_sort(ITERABLE & iterable, bool bAscending);
 
    template < typename ITERABLE >
    void quick_sort(ITERABLE & iterable);
 
    template < typename ITERABLE >
-   void quick_sort_desc(ITERABLE & iterable);
+   void quick_sort_descending(ITERABLE & iterable);
 
    template < typename ITERABLE >
-   void quick_sort_ci(ITERABLE & iterable, bool bAsc);
+   void quick_sort_ci(ITERABLE & iterable, bool bAscending);
 
    template < typename ITERABLE >
    void quick_sort_ci(ITERABLE & iterable);
 
    template < typename ITERABLE >
-   void quick_sort_ci_desc(ITERABLE & iterable);
+   void quick_sort_ci_descending(ITERABLE & iterable);
 
 
 
@@ -29,22 +29,22 @@ namespace sort
 
 
    template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort(ITERABLE & iterable, SWAP swap, bool bAsc);
+   void swap_quick_sort(ITERABLE & iterable, SWAP swap, bool bAscending);
 
    template < typename ITERABLE, typename SWAP >
    void swap_quick_sort(ITERABLE & iterable, SWAP swap);
 
    template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_desc(ITERABLE & iterable, SWAP swap);
+   void swap_quick_sort_descending(ITERABLE & iterable, SWAP swap);
 
    template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap, bool bAsc);
+   void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap, bool bAscending);
 
    template < typename ITERABLE, typename SWAP >
    void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap);
 
    template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci_desc(ITERABLE & iterable, SWAP swap);
+   void swap_quick_sort_ci_descending(ITERABLE & iterable, SWAP swap);
 
 
 
@@ -53,26 +53,26 @@ namespace sort
 
 
    template < typename ITERABLE, typename PRED >
-   void pred_quick_sort(ITERABLE & iterable, PRED pred, bool bAsc);
+   void pred_quick_sort(ITERABLE & iterable, PRED pred, bool bAscending);
 
    template < typename ITERABLE, typename PRED >
    void pred_quick_sort(ITERABLE & iterable, PRED pred);
 
    template < typename ITERABLE, typename PRED >
-   void pred_quick_sort_desc(ITERABLE & iterable, PRED pred);
+   void pred_quick_sort_descending(ITERABLE & iterable, PRED pred);
 
 
 
 
 
    template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap, bool bAsc);
+   void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap, bool bAscending);
 
    template < typename ITERABLE, typename PRED, typename SWAP >
    void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap);
 
    template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort_desc(ITERABLE & iterable, PRED pred, SWAP swap);
+   void pred_swap_quick_sort_descending(ITERABLE & iterable, PRED pred, SWAP swap);
 
 
 
@@ -85,17 +85,17 @@ namespace sort
    template < typename ITERABLE, typename INDEX_ARRAY  >
    void get_quick_sort_ci(const ITERABLE & iterable, INDEX_ARRAY & ia);
 
-   template <class T>
-   void sort(T & t1, T & t2);
 
-   template <class T>
-   void sort_non_negative(T & t1, T & t2);
 
-   template <class T>
-   void sort(T & t1, T & t2);
 
    template < typename TYPE, typename TYPE2 >
    void swap(TYPE & a, TYPE2 & b);
+
+   template < typename TYPE, typename TYPE2 >
+   void sort(TYPE & t1, TYPE2 & t2);
+
+   template < typename TYPE, typename TYPE2, typename SWAP = ::sort::swap < TYPE, TYPE2 > >
+   void sort(TYPE & t1, TYPE2 & t2, SWAP swap);
 
    template < typename TYPE, typename TYPE2 >
    void sort_non_negative(TYPE & t1, TYPE2 & t2);
@@ -123,39 +123,71 @@ namespace sort
    }
 
    template < typename TYPE, typename TYPE2 >
-   void sort_non_negative(TYPE & t1, TYPE2 & t2)
-   {
-      if (t1 < ::numeric_info<T>::null())
-      {
-         return;
-      }
-      if (t2 < ::numeric_info<T>::null())
-      {
-         return;
-      }
-      if (t1 > t2)
-      {
-         T t = t2;
-         t2 = t1;
-         t1 = t;
-      }
-   }
-
-
-   template < typename TYPE, typename TYPE2>
    void swap(TYPE & a, TYPE2 & b)
    {
-      
-      auto acopy = a;
-      
+      auto t = a;
       a = b;
-      
-      b= acopy;
+      b = t;
+   }
+
+
+   template < typename TYPE, typename TYPE2 >
+   void swap2(TYPE & a, TYPE2 & b)
+   {
+      swap(b, a);
+   }
+
+   template < typename TYPE, typename TYPE2 >
+   void sort(TYPE & t1, TYPE2 & t2)
+   {
+
+      ::sort::sort(t1, t2, ::sort::swap < TYPE, TYPE2 >);
 
    }
 
+
+   template < typename TYPE, typename TYPE2, typename SWAP >
+   void sort(TYPE & t1, TYPE2 & t2, SWAP swap)
+   {
+      
+      if (t2 < t1)
+      {
+
+         swap(t1, t2);
+
+      }
+
+   }
+
+   template < typename TYPE, typename TYPE2, typename SWAP = ::sort::swap < TYPE1, TYPE2 > >
+   void sort_non_negative(TYPE & t1, TYPE2 & t2)
+   {
+      if (::compare::lt(t1, ::numeric_info<TYPE>::null()))
+      {
+         return;
+      }
+      if (::compare::lt(t2, ::numeric_info<TYPE2>::null()))
+      {
+         return;
+      }
+      sort(t1, t2, SWAP);
+   }
+
+
+   //template < typename TYPE, typename TYPE2>
+   //void swap(TYPE & a, TYPE2 & b)
+   //{
+   //   
+   //   auto acopy = a;
+   //   
+   //   a = b;
+   //   
+   //   b= acopy;
+
+   //}
+
    template < typename TYPE, typename TYPE2>
-   index numeric_compare(const TYPE & a, const TYPE2 & b)
+   index difference(const TYPE & a, const TYPE2 & b)
    {
       
       return a - b;
@@ -165,10 +197,10 @@ namespace sort
 
 
    template < typename ITERABLE >
-   void quick_sort(ITERABLE & iterable, bool bAsc)
+   void quick_sort(ITERABLE & iterable, bool bAscending)
    {
 
-      if (bAsc)
+      if (bAscending)
       {
 
          quick_sort(iterable);
@@ -177,7 +209,7 @@ namespace sort
       else
       {
 
-         quick_sort_desc(iterable);
+         quick_sort_descending(iterable);
 
       }
 
@@ -192,18 +224,18 @@ namespace sort
    }
 
    template < typename ITERABLE >
-   void quick_sort_desc(ITERABLE & iterable)
+   void quick_sort_descending(ITERABLE & iterable)
    {
 
-      pred_quick_sort_desc(iterable, [](auto & a, auto & b) { return a < b;  });
+      pred_quick_sort_descending(iterable, [](auto & a, auto & b) { return a < b;  });
 
    }
 
    template < typename ITERABLE >
-   void quick_sort_ci(ITERABLE & iterable, bool bAsc)
+   void quick_sort_ci(ITERABLE & iterable, bool bAscending)
    {
 
-      if (bAsc)
+      if (bAscending)
       {
 
          quick_sort_ci(iterable);
@@ -212,7 +244,7 @@ namespace sort
       else
       {
 
-         quick_sort_ci_desc(iterable);
+         quick_sort_ci_descending(iterable);
 
       }
 
@@ -227,10 +259,10 @@ namespace sort
    }
 
    template < typename ITERABLE >
-   void quick_sort_ci_desc(ITERABLE & iterable)
+   void quick_sort_ci_descending(ITERABLE & iterable)
    {
 
-      pred_quick_sort_desc(iterable, [](auto & a, auto & b) { return stricmp(a, b) < 0;  });
+      pred_quick_sort_descending(iterable, [](auto & a, auto & b) { return stricmp(a, b) < 0;  });
 
    }
 
@@ -240,10 +272,10 @@ namespace sort
 
 
    template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort(ITERABLE & iterable, SWAP swap, bool bAsc)
+   void swap_quick_sort(ITERABLE & iterable, SWAP swap, bool bAscending)
    {
 
-      if (bAsc)
+      if (bAscending)
       {
 
          swap_quick_sort(iterable, swap);
@@ -252,7 +284,7 @@ namespace sort
       else
       {
 
-         swap_quick_sort_desc(iterable, swap);
+         swap_quick_sort_descending(iterable, swap);
 
       }
 
@@ -267,7 +299,7 @@ namespace sort
    }
 
    template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_desc(ITERABLE & iterable, SWAP swap)
+   void swap_quick_sort_descending(ITERABLE & iterable, SWAP swap)
    {
 
       pred_swap_quick_sort(iterable, [](auto & a, auto &b) {return b < a; }, swap);
@@ -275,10 +307,10 @@ namespace sort
    }
 
    template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap, bool bAsc)
+   void swap_quick_sort_ci(ITERABLE & iterable, SWAP swap, bool bAscending)
    {
 
-      if (bAsc)
+      if (bAscending)
       {
 
          swap_quick_sort_ci(iterable, swap);
@@ -287,7 +319,7 @@ namespace sort
       else
       {
 
-         swap_quick_sort_ci_desc(iterable, swap);
+         swap_quick_sort_ci_descending(iterable, swap);
 
       }
 
@@ -303,7 +335,7 @@ namespace sort
    }
 
    template < typename ITERABLE, typename SWAP >
-   void swap_quick_sort_ci_desc(ITERABLE & iterable, SWAP swap)
+   void swap_quick_sort_ci_descending(ITERABLE & iterable, SWAP swap)
    {
 
       pred_swap_quick_sort(iterable, [](auto & a, auto &b) {return stricmp(b, a) < 0; }, swap);
@@ -317,10 +349,10 @@ namespace sort
 
 
    template < typename ITERABLE, typename PRED >
-   void pred_quick_sort(ITERABLE & iterable, PRED pred, bool bAsc)
+   void pred_quick_sort(ITERABLE & iterable, PRED pred, bool bAscending)
    {
 
-      if (bAsc)
+      if (bAscending)
       {
 
          pred_quick_sort(iterable, pred);
@@ -329,7 +361,7 @@ namespace sort
       else
       {
 
-         pred_quick_sort_desc(iterable, pred);
+         pred_quick_sort_descending(iterable, pred);
 
       }
 
@@ -344,10 +376,10 @@ namespace sort
    }
 
    template < typename ITERABLE, typename PRED >
-   void pred_quick_sort_desc(ITERABLE & iterable, PRED pred)
+   void pred_quick_sort_descending(ITERABLE & iterable, PRED pred)
    {
 
-      pred_swap_quick_sort_desc(iterable, pred, [](auto & it1, auto & it2) {});
+      pred_swap_quick_sort_descending(iterable, pred, [](auto & it1, auto & it2) {});
 
    }
 
@@ -356,11 +388,11 @@ namespace sort
 
 
    template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap, bool bAsc)
+   void pred_swap_quick_sort(ITERABLE & iterable, PRED pred, SWAP swap, bool bAscending)
    {
 
 
-      if (bAsc)
+      if (bAscending)
       {
 
          pred_swap_quick_sort(iterable, pred, swap);
@@ -369,17 +401,17 @@ namespace sort
       else
       {
 
-         pred_swap_quick_sort_desc(iterable, pred, swap);
+         pred_swap_quick_sort_descending(iterable, pred, swap);
 
       }
 
    }
 
    template < typename ITERABLE, typename PRED, typename SWAP >
-   void pred_quick_sort_desc(ITERABLE & iterable, PRED pred, SWAP swap)
+   void pred_swap_quick_sort_descending(ITERABLE & iterable, PRED pred, SWAP swap)
    {
 
-      pred_swap_quick_sort_desc(iterable, [](auto & a, auto & b) { return pred(b, a); }, swap);
+      pred_swap_quick_sort(iterable, [&pred](auto & a, auto & b) { return pred(b, a); }, swap);
 
    }
 
@@ -799,5 +831,61 @@ namespace sort
 
 
 } // namespace sort
+
+
+
+
+
+template < typename ITERABLE >
+void isort(ITERABLE & iterable, bool bAscending)
+{
+
+   return ::sort::quick_sort(iterable, bAscending);
+
+}
+
+template < typename ITERABLE >
+void isort(ITERABLE & iterable)
+{
+
+   return ::sort::quick_sort(iterable);
+
+}
+
+
+template < typename ITERABLE >
+void isort_descending(ITERABLE & iterable)
+{
+
+   return ::sort::quick_sort_descending(iterable);
+
+}
+
+
+template < typename ITERABLE >
+void isort_ci(ITERABLE & iterable, bool bAscending)
+{
+
+   return ::sort::quick_sort_ci(iterable, bAscending);
+
+}
+
+
+template < typename ITERABLE >
+void isort_ci(ITERABLE & iterable)
+{
+
+   return ::sort::quick_sort_ci(iterable);
+
+}
+
+
+template < typename ITERABLE >
+void isort_ci_descending(ITERABLE & iterable)
+{
+
+   return ::sort::quick_sort_ci_descending(iterable);
+
+}
 
 

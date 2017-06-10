@@ -306,7 +306,7 @@ namespace user
 {
 
    class CLASS_DECL_BASE map_form_window :
-      virtual public strsp(::user::form_window)
+      virtual public string_map < sp(::user::form_window) >
    {
    public:
 

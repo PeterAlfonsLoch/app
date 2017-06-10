@@ -319,12 +319,12 @@ bool db_str_set::load(const string & strKey, string & strValue)
 
       sl.lock();
 
-      auto ppair = pcore->m_map.find_first(strKey);
+      auto it = pcore->m_map.find_first(strKey);
 
-      if (ppair != NULL && ppair->m_element2.m_dwTimeout > get_tick_count())
+      if (it != pcore->m_map.end() && it->m_element2.m_dwTimeout > get_tick_count())
       {
 
-         strValue = ppair->m_element2.m_str;
+         strValue = it->m_element2.m_str;
 
          return true;
 

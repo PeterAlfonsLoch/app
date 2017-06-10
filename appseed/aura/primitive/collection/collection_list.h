@@ -364,10 +364,10 @@ public:
 
 };
 
-template<class TYPE, class ARG_TYPE = const TYPE & >
+template<class TYPE, class ARG_TYPE = const TYPE &, typename EQUALS = ::comparison::equals >
 class list;
 
-template<class TYPE, class ARG_TYPE = const TYPE & >
+template<class TYPE, class ARG_TYPE = const TYPE &, typename EQUALS = ::comparison::equals >
 class list_data :
    virtual public ::object
 {
@@ -389,11 +389,11 @@ public:
    ::count                       m_nCount;
 
    inline list_data();
-   inline list_data(const class list_data < TYPE, ARG_TYPE >  & l);
-   inline list_data(const class list < TYPE, ARG_TYPE > & l);
+   inline list_data(const class list_data < TYPE, ARG_TYPE, EQUALS >  & l);
+   inline list_data(const class list < TYPE, ARG_TYPE, EQUALS > & l);
 
-   inline static void from(list_data < TYPE, ARG_TYPE >  & l, node * p);
-   inline static list_data < TYPE, ARG_TYPE >  from(node * p);
+   inline static void from(list_data < TYPE, ARG_TYPE, EQUALS >  & l, node * p);
+   inline static list_data < TYPE, ARG_TYPE, EQUALS >  from(node * p);
 
    iterator lower_bound();
    iterator begin();
@@ -419,8 +419,8 @@ public:
    TYPE & last();
    const TYPE & last() const;
 
-   TYPE remove_first();
-   TYPE remove_last();
+   //TYPE remove_first();
+   //TYPE remove_last();
 
    iterator insert_first(ARG_TYPE newElement);
    iterator add(ARG_TYPE newElement);
@@ -650,10 +650,49 @@ public:
 
    }
 
+   void remove_first();
+   //{
+
+   //   ::iter::remove_first(*this);
+
+   //}
+
+
+   void remove_last();
+   //{
+
+   //   ::iter::remove_last(*this);
+
+   //}
+
+
+   TYPE pop_first()
+   {
+
+      TYPE t = first();
+
+      remove_first();
+
+      return t;
+
+   }
+
+
+   TYPE pop_last()
+   {
+
+      TYPE t = last();
+
+      remove_last();
+
+      return t;
+
+   }
+
 };
 
-template<class TYPE, class ARG_TYPE>
-inline list_data < TYPE, ARG_TYPE >::list_data()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline list_data < TYPE, ARG_TYPE, EQUALS >::list_data()
 {
 
    this->m_nCount = 0;
@@ -662,8 +701,8 @@ inline list_data < TYPE, ARG_TYPE >::list_data()
 
 }
 
-template<class TYPE, class ARG_TYPE>
-inline list_data < TYPE, ARG_TYPE >::list_data(const class list_data < TYPE, ARG_TYPE >  & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline list_data < TYPE, ARG_TYPE, EQUALS >::list_data(const class list_data < TYPE, ARG_TYPE, EQUALS >  & l)
 {
 
    this->m_nCount = l.m_nCount;
@@ -673,8 +712,8 @@ inline list_data < TYPE, ARG_TYPE >::list_data(const class list_data < TYPE, ARG
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline list_data < TYPE, ARG_TYPE >::list_data(const class list < TYPE, ARG_TYPE > & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline list_data < TYPE, ARG_TYPE, EQUALS >::list_data(const class list < TYPE, ARG_TYPE, EQUALS > & l)
 {
 
    this->m_nCount = l.m_nCount;
@@ -683,8 +722,8 @@ inline list_data < TYPE, ARG_TYPE >::list_data(const class list < TYPE, ARG_TYPE
 
 }
 
-template<class TYPE, class ARG_TYPE>
-inline void list_data < TYPE, ARG_TYPE >::from(list_data < TYPE, ARG_TYPE >  & l, node * pnode)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline void list_data < TYPE, ARG_TYPE, EQUALS >::from(list_data < TYPE, ARG_TYPE, EQUALS >  & l, node * pnode)
 {
 
    l.m_ptail = NULL;
@@ -718,25 +757,25 @@ inline void list_data < TYPE, ARG_TYPE >::from(list_data < TYPE, ARG_TYPE >  & l
 
 }
 
-template<class TYPE, class ARG_TYPE>
-inline list_data < TYPE, ARG_TYPE > list_data < TYPE, ARG_TYPE >::from(node * p)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline list_data < TYPE, ARG_TYPE, EQUALS > list_data < TYPE, ARG_TYPE, EQUALS >::from(node * p)
 {
 
-   list_data < TYPE, ARG_TYPE >  l;
+   list_data < TYPE, ARG_TYPE, EQUALS >  l;
    from(l, p);
    return l;
 
 }
 
-template < class TYPE, class ARG_TYPE >
+template < class TYPE, class ARG_TYPE, typename EQUALS >
 class list :
-   public iterable < list_data < TYPE, ARG_TYPE > >
+   public iterable < list_data < TYPE, ARG_TYPE, EQUALS > >
 {
 public:
 
 
-   typedef list_data < TYPE, ARG_TYPE > listdata;
-   typedef iterable < list_data < TYPE, ARG_TYPE > > Container;
+   typedef list_data < TYPE, ARG_TYPE, EQUALS > listdata;
+   typedef iterable < list_data < TYPE, ARG_TYPE, EQUALS > > Container;
    typedef typename listdata::node node;
    typedef typename Container::iterator iterator;
    typedef typename Container::const_iterator const_iterator;
@@ -745,7 +784,7 @@ public:
 
    list();
    list(const class list & l);
-   list(const class list_data < TYPE, ARG_TYPE > & l);
+   list(const class list_data < TYPE, ARG_TYPE, EQUALS > & l);
 #ifdef MOVE_SEMANTICS
    list(class list && l);
 #endif
@@ -753,9 +792,9 @@ public:
 
 
    // add another list of elements before head or after tail
-   void copy_head(const list_data < TYPE, ARG_TYPE > & l);
-   void append(const list_data < TYPE, ARG_TYPE > & l);
-   void copy(const list_data < TYPE, ARG_TYPE > & l);
+   void copy_head(const list_data < TYPE, ARG_TYPE, EQUALS > & l);
+   void append(const list_data < TYPE, ARG_TYPE, EQUALS > & l);
+   void copy(const list_data < TYPE, ARG_TYPE, EQUALS > & l);
 
    // remove all elements
    void remove_all();
@@ -778,27 +817,62 @@ public:
    //iterator pred_find_first(PRED pred);
 
 
-   list_data < TYPE, ARG_TYPE > detach(const_iterator first, const_iterator last);
-   list_data < TYPE, ARG_TYPE > slice(const_iterator first, const_iterator last);
+   list_data < TYPE, ARG_TYPE, EQUALS > detach(const_iterator first, const_iterator last);
+   list_data < TYPE, ARG_TYPE, EQUALS > slice(const_iterator first, const_iterator last);
 
    iterator insert_at(iterator position, ARG_TYPE newElement);
-   iterator insert_at(iterator position, list_data < TYPE, ARG_TYPE > & l);
+   iterator insert_at(iterator position, list_data < TYPE, ARG_TYPE, EQUALS > & l);
 
 
    iterator insert_before(iterator position, ARG_TYPE newElement);
    iterator insert_after(iterator position, ARG_TYPE newElement);
-   iterator insert_before(iterator position, list_data < TYPE, ARG_TYPE > & l);
-   iterator insert_after(iterator position, list_data < TYPE, ARG_TYPE > & l);
+   iterator insert_before(iterator position, list_data < TYPE, ARG_TYPE, EQUALS > & l);
+   iterator insert_after(iterator position, list_data < TYPE, ARG_TYPE, EQUALS > & l);
+
+   template < typename ITERABLE2 >
+   iterator insert_iter_at(iterator position, const ITERABLE2 & iterable2, typename ITERABLE2::const_iterator first, typename ITERABLE2::const_iterator last);
 
 
    template < typename ITERABLE2 >
    void slice(ITERABLE2 & iterable, iterator index, ::count ca = -1);
 
-   template < typename ITERABLE2 >
-   void splice(const ITERABLE2 & iterable, iterator index, ::count ca = -1);
+   //template < typename ITERABLE2 >
+   //void splice(const ITERABLE2 & iterable, iterator index, ::count ca = -1);
 
-   template < typename ITERABLE2, typename ITERABLE3 >
-   void splice(const ITERABLE2 & iterable, iterator index, ITERABLE3 & straRemoved, ::count ca = -1);
+   //template < typename ITERABLE2, typename ITERABLE3 >
+   //void splice(const ITERABLE2 & iterable, iterator index, ITERABLE3 & straRemoved, ::count ca = -1);
+
+   template < typename ITERABLE2 >
+   void splice(iterator i, ITERABLE2 & iterable2)
+   {
+
+      insert_iter_at(i, iterable2);
+
+      iterable2.remove_all();
+
+   }
+
+   template < typename ITERABLE2 >
+   void splice(iterator i, ITERABLE2 & iterable2, typename ITERABLE2::iterator first)
+   {
+
+      insert_before(i, *first);
+
+      iterable2.erase(first);
+
+   }
+
+   template < typename ITERABLE2 >
+   void splice(iterator i, ITERABLE2 & iterable2, typename ITERABLE2::iterator first, typename ITERABLE2::iterator last)
+   {
+
+
+      insert_iter_at(i, iterable2, first, last);
+
+      iterable2.erase(first, last);
+
+
+   }
 
    void swap(iterator position1, iterator position2);
 
@@ -810,31 +884,31 @@ public:
    index position_index(iterator pos) const;
    // get the 'nIndex' of the position (may return -1)
 
-   list < TYPE, ARG_TYPE > & operator = (const class list & l);
+   list < TYPE, ARG_TYPE, EQUALS > & operator = (const class list & l);
 #ifdef MOVE_SEMANTICS
-   list < TYPE, ARG_TYPE > & operator = (class list && l);
+   list < TYPE, ARG_TYPE, EQUALS > & operator = (class list && l);
 #endif
 
    void dump(dump_context &) const;
    void assert_valid() const;
 };
 
-template<class TYPE, class ARG_TYPE>
-list<TYPE, ARG_TYPE>::list()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list< TYPE, ARG_TYPE, EQUALS >::list()
 {
 
 }
 
-template<class TYPE, class ARG_TYPE>
-list<TYPE, ARG_TYPE>::list(const class list & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list< TYPE, ARG_TYPE, EQUALS >::list(const class list & l)
 {
 
    copy(l);
 
 }
 
-template<class TYPE, class ARG_TYPE>
-list<TYPE, ARG_TYPE>::list(const class list_data < TYPE, ARG_TYPE > & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list< TYPE, ARG_TYPE, EQUALS >::list(const class list_data < TYPE, ARG_TYPE, EQUALS > & l)
 {
 
    this->m_nCount = l.m_nCount;
@@ -846,8 +920,8 @@ list<TYPE, ARG_TYPE>::list(const class list_data < TYPE, ARG_TYPE > & l)
 
 #ifdef MOVE_SEMANTICS
 
-template<class TYPE, class ARG_TYPE>
-list<TYPE, ARG_TYPE>::list(class list && l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list< TYPE, ARG_TYPE, EQUALS >::list(class list && l)
 {
 
    this->m_nCount = l.m_nCount;
@@ -861,54 +935,54 @@ list<TYPE, ARG_TYPE>::list(class list && l)
 
 #endif
 
-template<class TYPE, class ARG_TYPE>
-inline ::count list_data<TYPE, ARG_TYPE>::get_count() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline ::count list_data< TYPE, ARG_TYPE, EQUALS >::get_count() const
 {
    return this->m_nCount;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline ::count list_data<TYPE, ARG_TYPE>::get_size() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline ::count list_data< TYPE, ARG_TYPE, EQUALS >::get_size() const
 {
    return this->m_nCount;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline ::count list_data<TYPE, ARG_TYPE>::size() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline ::count list_data< TYPE, ARG_TYPE, EQUALS >::size() const
 {
    return this->m_nCount;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline bool list_data<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline bool list_data< TYPE, ARG_TYPE, EQUALS >::is_empty(::count countMinimum) const
 {
    return this->m_nCount < countMinimum;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline bool list_data<TYPE, ARG_TYPE>::empty(::count countMinimum) const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline bool list_data< TYPE, ARG_TYPE, EQUALS >::empty(::count countMinimum) const
 {
    return this->m_nCount < countMinimum;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline bool list_data<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline bool list_data< TYPE, ARG_TYPE, EQUALS >::has_elements(::count countMinimum) const
 {
    return this->m_nCount >= countMinimum;
 }
 
 
 
-template<class TYPE, class ARG_TYPE>
-inline typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::lower_bound()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline typename list_data< TYPE, ARG_TYPE, EQUALS >::iterator list_data< TYPE, ARG_TYPE, EQUALS >::lower_bound()
 {
 
    return NULL;
 
 }
 
-template<class TYPE, class ARG_TYPE>
-inline typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::begin()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline typename list_data< TYPE, ARG_TYPE, EQUALS >::iterator list_data< TYPE, ARG_TYPE, EQUALS >::begin()
 {
 
    return this->m_phead;
@@ -916,8 +990,8 @@ inline typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::b
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::end()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline typename list_data< TYPE, ARG_TYPE, EQUALS >::iterator list_data< TYPE, ARG_TYPE, EQUALS >::end()
 {
 
    return NULL;
@@ -925,8 +999,8 @@ inline typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::e
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::upper_bound()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline typename list_data< TYPE, ARG_TYPE, EQUALS >::iterator list_data< TYPE, ARG_TYPE, EQUALS >::upper_bound()
 {
 
    return this->m_ptail;
@@ -934,8 +1008,8 @@ inline typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::u
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline typename list_data<TYPE, ARG_TYPE>::const_iterator list_data<TYPE, ARG_TYPE>::lower_bound() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline typename list_data< TYPE, ARG_TYPE, EQUALS >::const_iterator list_data< TYPE, ARG_TYPE, EQUALS >::lower_bound() const
 {
 
    return NULL;
@@ -943,8 +1017,8 @@ inline typename list_data<TYPE, ARG_TYPE>::const_iterator list_data<TYPE, ARG_TY
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline typename list_data<TYPE, ARG_TYPE>::const_iterator list_data<TYPE, ARG_TYPE>::begin() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline typename list_data< TYPE, ARG_TYPE, EQUALS >::const_iterator list_data< TYPE, ARG_TYPE, EQUALS >::begin() const
 {
 
    return this->m_phead;
@@ -952,8 +1026,8 @@ inline typename list_data<TYPE, ARG_TYPE>::const_iterator list_data<TYPE, ARG_TY
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline typename list_data<TYPE, ARG_TYPE>::const_iterator list_data<TYPE, ARG_TYPE>::end() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline typename list_data< TYPE, ARG_TYPE, EQUALS >::const_iterator list_data< TYPE, ARG_TYPE, EQUALS >::end() const
 {
 
    return NULL;
@@ -961,8 +1035,8 @@ inline typename list_data<TYPE, ARG_TYPE>::const_iterator list_data<TYPE, ARG_TY
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline typename list_data<TYPE, ARG_TYPE>::const_iterator list_data<TYPE, ARG_TYPE>::upper_bound() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline typename list_data< TYPE, ARG_TYPE, EQUALS >::const_iterator list_data< TYPE, ARG_TYPE, EQUALS >::upper_bound() const
 {
 
    return this->m_ptail;
@@ -972,40 +1046,40 @@ inline typename list_data<TYPE, ARG_TYPE>::const_iterator list_data<TYPE, ARG_TY
 
 
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE & list_data < TYPE, ARG_TYPE >::first()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline TYPE & list_data < TYPE, ARG_TYPE, EQUALS >::first()
 {
    return *begin();
 }
 
-template<class TYPE, class ARG_TYPE>
-inline const TYPE & list_data < TYPE, ARG_TYPE >::first() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline const TYPE & list_data < TYPE, ARG_TYPE, EQUALS >::first() const
 {
    return *begin();
 }
 
-//template<class TYPE, class ARG_TYPE>
-//inline void list < TYPE, ARG_TYPE >::pop_first()
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
+//inline void list < TYPE, ARG_TYPE, EQUALS >::pop_first()
 //{
 //   return remove_at(begin());
 //}
 //
-template<class TYPE, class ARG_TYPE>
-inline TYPE & list_data < TYPE, ARG_TYPE >::last()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline TYPE & list_data < TYPE, ARG_TYPE, EQUALS >::last()
 {
    return *upper_bound();
 }
 
-template<class TYPE, class ARG_TYPE>
-inline const TYPE & list_data < TYPE, ARG_TYPE >::last() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+inline const TYPE & list_data < TYPE, ARG_TYPE, EQUALS >::last() const
 {
    return *upper_bound();
 }
 
 
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_all()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::remove_all()
 {
 
    ASSERT_VALID(this);
@@ -1041,24 +1115,24 @@ void list<TYPE, ARG_TYPE>::remove_all()
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::clear()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::clear()
 {
 
    remove_all();
 
 }
 
-template<class TYPE, class ARG_TYPE>
-list<TYPE, ARG_TYPE>::~list()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list< TYPE, ARG_TYPE, EQUALS >::~list()
 {
    remove_all();
    ASSERT(this->m_nCount == 0);
 }
 
 
-template<class TYPE, class ARG_TYPE>
-void list_data<TYPE, ARG_TYPE>::push_front(ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::push_front(ARG_TYPE newElement)
 {
 
    insert_first(newElement);
@@ -1066,8 +1140,8 @@ void list_data<TYPE, ARG_TYPE>::push_front(ARG_TYPE newElement)
 }
 
 
-template<class TYPE, class ARG_TYPE>
-void list_data<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::push_back(ARG_TYPE newElement)
 {
 
    add(newElement);
@@ -1075,8 +1149,8 @@ void list_data<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement)
 }
 
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::copy_head(const list_data < TYPE, ARG_TYPE >  & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::copy_head(const list_data < TYPE, ARG_TYPE, EQUALS >  & l)
 {
 
    ASSERT_VALID(this);
@@ -1091,8 +1165,8 @@ void list<TYPE, ARG_TYPE>::copy_head(const list_data < TYPE, ARG_TYPE >  & l)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::append(const list_data < TYPE, ARG_TYPE >  & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::append(const list_data < TYPE, ARG_TYPE, EQUALS >  & l)
 {
 
    ASSERT_VALID(this);
@@ -1107,8 +1181,8 @@ void list<TYPE, ARG_TYPE>::append(const list_data < TYPE, ARG_TYPE >  & l)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::copy(const list_data < TYPE, ARG_TYPE >  & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::copy(const list_data < TYPE, ARG_TYPE, EQUALS >  & l)
 {
 
    ASSERT_VALID(this);
@@ -1128,15 +1202,15 @@ void list<TYPE, ARG_TYPE>::copy(const list_data < TYPE, ARG_TYPE >  & l)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-TYPE list_data<TYPE, ARG_TYPE>::remove_first()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::remove_first()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_phead != NULL);  // don't call on is_empty list !!!
    ASSERT(__is_valid_address(this->m_phead, sizeof(node)));
 
    node* pOldNode = this->m_phead;
-   TYPE returnValue = pOldNode->m_value;
+   //TYPE returnValue = pOldNode->m_value;
 
    this->m_phead = pOldNode->m_pnext;
    if (this->m_phead != NULL)
@@ -1147,18 +1221,18 @@ TYPE list_data<TYPE, ARG_TYPE>::remove_first()
 
    this->m_nCount--;
 
-   return returnValue;
+   //return returnValue;
 }
 
-template<class TYPE, class ARG_TYPE>
-TYPE list_data<TYPE, ARG_TYPE>::remove_last()
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::remove_last()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_ptail != NULL);  // don't call on is_empty list !!!
    ASSERT(__is_valid_address(this->m_ptail, sizeof(node)));
 
    node* pOldNode = this->m_ptail;
-   TYPE returnValue = pOldNode->m_value;
+   //TYPE returnValue = pOldNode->m_value;
 
    this->m_ptail = pOldNode->m_pprev;
    if (this->m_ptail != NULL)
@@ -1167,12 +1241,12 @@ TYPE list_data<TYPE, ARG_TYPE>::remove_last()
       this->m_phead = NULL;
    this->m_nCount--;
    delete pOldNode;
-   return returnValue;
+   //return returnValue;
 }
 
 
-template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_at(iterator position, ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list < TYPE, ARG_TYPE, EQUALS >::iterator list < TYPE, ARG_TYPE, EQUALS > ::insert_at(iterator position, ARG_TYPE newElement)
 {
 
    return insert_before(position, newElement);
@@ -1180,8 +1254,8 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_at(i
 }
 
 
-template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_at(iterator position, list_data < TYPE, ARG_TYPE > & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list < TYPE, ARG_TYPE, EQUALS >::iterator list < TYPE, ARG_TYPE, EQUALS > ::insert_at(iterator position, list_data < TYPE, ARG_TYPE, EQUALS > & l)
 {
 
    return insert_before(position, l);
@@ -1189,8 +1263,8 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_at(i
 }
 
 
-template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator position, list_data < TYPE, ARG_TYPE > & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list < TYPE, ARG_TYPE, EQUALS >::iterator list < TYPE, ARG_TYPE, EQUALS > ::insert_before(iterator position, list_data < TYPE, ARG_TYPE, EQUALS > & l)
 {
 
    if (l.m_nCount <= 0)
@@ -1251,8 +1325,35 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 }
 
 
-template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator position, list_data < TYPE, ARG_TYPE > & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+template < typename ITERABLE2 >
+typename list < TYPE, ARG_TYPE, EQUALS >::iterator list < TYPE, ARG_TYPE, EQUALS >::insert_iter_at(iterator position, const ITERABLE2 & iterable2, typename ITERABLE2::const_iterator first, typename ITERABLE2::const_iterator last)
+{
+
+   iterable2.prepare_first_last(first, last);
+
+   if (iterable2.valid_iter(first, last))
+   {
+
+      position = insert_before(position, first);
+
+      first++;
+
+
+   }
+
+   for (; iterable2.valid_iter(first, last); first++)
+   {
+
+      position = insert_after(position, first);
+
+   }
+
+}
+
+
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list < TYPE, ARG_TYPE, EQUALS >::iterator list < TYPE, ARG_TYPE, EQUALS > ::insert_after(iterator position, list_data < TYPE, ARG_TYPE, EQUALS > & l)
 {
 
    if (l.m_nCount <= 0)
@@ -1309,8 +1410,8 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 }
 
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::swap(iterator position1, iterator position2)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::swap(iterator position1, iterator position2)
 {
 
    ASSERT_VALID(this);
@@ -1481,8 +1582,8 @@ void list<TYPE, ARG_TYPE>::swap(iterator position1, iterator position2)
 
 }
 
-//template<class TYPE, class ARG_TYPE>
-//void list_data<TYPE, ARG_TYPE>::erase(ARG_TYPE elem)
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
+//void list_data< TYPE, ARG_TYPE, EQUALS >::erase(ARG_TYPE elem)
 //{
 //
 //   this->remove(elem);
@@ -1490,8 +1591,8 @@ void list<TYPE, ARG_TYPE>::swap(iterator position1, iterator position2)
 //}
 
 
-template<class TYPE, class ARG_TYPE>
-void list_data<TYPE, ARG_TYPE>::remove_at(index i)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::remove_at(index i)
 {
 
    auto it = index_iterator(i);
@@ -1500,8 +1601,8 @@ void list_data<TYPE, ARG_TYPE>::remove_at(index i)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void list_data<TYPE, ARG_TYPE>::remove_at(index i, ::count c)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::remove_at(index i, ::count c)
 {
 
    auto it = index_iterator(i);
@@ -1510,8 +1611,8 @@ void list_data<TYPE, ARG_TYPE>::remove_at(index i, ::count c)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void list_data<TYPE, ARG_TYPE>::erase(iterator & it)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::erase(iterator & it)
 {
 
 
@@ -1529,8 +1630,8 @@ void list_data<TYPE, ARG_TYPE>::erase(iterator & it)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void list_data<TYPE, ARG_TYPE>::erase(iterator & it, iterator last)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::erase(iterator & it, iterator last)
 {
 
    while (it != last && it != end())
@@ -1543,8 +1644,8 @@ void list_data<TYPE, ARG_TYPE>::erase(iterator & it, iterator last)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void list_data<TYPE, ARG_TYPE>::erase_count(iterator & it, count count)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list_data< TYPE, ARG_TYPE, EQUALS >::erase_count(iterator & it, count count)
 {
 
    while (count > 0 && it != end())
@@ -1560,8 +1661,8 @@ void list_data<TYPE, ARG_TYPE>::erase_count(iterator & it, count count)
 
 
 
-//template<class TYPE, class ARG_TYPE>
-//void list<TYPE, ARG_TYPE>::remove(ARG_TYPE elem)
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
+//void list< TYPE, ARG_TYPE, EQUALS >::remove(ARG_TYPE elem)
 //{
 //   
 //   remove(find(elem));
@@ -1569,18 +1670,18 @@ void list_data<TYPE, ARG_TYPE>::erase_count(iterator & it, count count)
 //}
 
 
-//template<class TYPE, class ARG_TYPE>
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
 //template < typename PRED >
-//bool list<TYPE, ARG_TYPE>::pred_remove_first(PRED pred)
+//bool list< TYPE, ARG_TYPE, EQUALS >::pred_remove_first(PRED pred)
 //{
 //
 //   return remove(pred_find_first(pred));
 //
 //}
 //
-//template<class TYPE, class ARG_TYPE>
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
 //template < typename PRED >
-//typename list<TYPE, ARG_TYPE>::const_iterator list<TYPE, ARG_TYPE>::pred_find_first(PRED pred) const
+//typename list< TYPE, ARG_TYPE, EQUALS >::const_iterator list< TYPE, ARG_TYPE, EQUALS >::pred_find_first(PRED pred) const
 //{
 //
 //   auto it = this->begin()
@@ -1601,9 +1702,9 @@ void list_data<TYPE, ARG_TYPE>::erase_count(iterator & it, count count)
 //
 //}
 //
-//template<class TYPE, class ARG_TYPE>
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
 //template < typename PRED >
-//typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::pred_find_first(PRED pred)
+//typename list< TYPE, ARG_TYPE, EQUALS >::iterator list< TYPE, ARG_TYPE, EQUALS >::pred_find_first(PRED pred)
 //{
 //
 //   auto it = this->begin();
@@ -1624,8 +1725,8 @@ void list_data<TYPE, ARG_TYPE>::erase_count(iterator & it, count count)
 //
 //}
 
-//template<class TYPE, class ARG_TYPE>
-//void list<TYPE, ARG_TYPE>::remove(iterator & it)
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
+//void list< TYPE, ARG_TYPE, EQUALS >::remove(iterator & it)
 //{
 //   
 //   this->remove_at(it);
@@ -1634,8 +1735,8 @@ void list_data<TYPE, ARG_TYPE>::erase_count(iterator & it, count count)
 
 
 
-template < class TYPE, class ARG_TYPE >
-typename list_data < TYPE, ARG_TYPE >::node * list_data<TYPE, ARG_TYPE>::detach(iterator it)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list_data < TYPE, ARG_TYPE, EQUALS >::node * list_data< TYPE, ARG_TYPE, EQUALS >::detach(iterator it)
 {
 
    node * pnode = it.m_pnode;
@@ -1677,16 +1778,16 @@ typename list_data < TYPE, ARG_TYPE >::node * list_data<TYPE, ARG_TYPE>::detach(
 
 }
 
-template < class TYPE, class ARG_TYPE >
-list_data < TYPE, ARG_TYPE > list<TYPE, ARG_TYPE>::slice(const_iterator first, const_iterator last)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list_data < TYPE, ARG_TYPE, EQUALS > list< TYPE, ARG_TYPE, EQUALS >::slice(const_iterator first, const_iterator last)
 {
 
    return detach(first, last);
 
 }
 
-template < class TYPE, class ARG_TYPE >
-list_data < TYPE, ARG_TYPE > list<TYPE, ARG_TYPE>::detach(const_iterator first, const_iterator last)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list_data < TYPE, ARG_TYPE, EQUALS > list< TYPE, ARG_TYPE, EQUALS >::detach(const_iterator first, const_iterator last)
 {
 
    ASSERT_VALID(this);
@@ -1768,36 +1869,36 @@ list_data < TYPE, ARG_TYPE > list<TYPE, ARG_TYPE>::detach(const_iterator first, 
 }
 
 
-template < class TYPE, class ARG_TYPE >
-template < typename ITERABLE >
-void list<TYPE, ARG_TYPE> ::splice(const ITERABLE & iterable, iterator iOffset, ::count count)
-{
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
+//template < typename ITERABLE >
+//void list< TYPE, ARG_TYPE, EQUALS > ::splice(const ITERABLE & iterable, iterator iOffset, ::count count)
+//{
+//
+//   remove(iOffset, count);
+//
+//   insert_iter_at(iOffset, iterable);
+//
+//}
+//
+//
+//
+//template<class TYPE, class ARG_TYPE, typename EQUALS >
+//template < typename ITERABLE2, typename ITERABLE3 >
+//void list< TYPE, ARG_TYPE, EQUALS > ::splice(const ITERABLE2 & iterable, iterator iOffset, ITERABLE3 & iterableRemoved, ::count count)
+//{
+//
+//   slice(iterableRemoved, iOffset, count);
+//
+//   remove(iOffset, count);
+//
+//   insert_at(iOffset, iterable);
+//
+//}
+//
+//
 
-   remove(iOffset, count);
-
-   insert_iter_at(iOffset, iterable);
-
-}
-
-
-
-template < class TYPE, class ARG_TYPE >
-template < typename ITERABLE2, typename ITERABLE3 >
-void list<TYPE, ARG_TYPE> ::splice(const ITERABLE2 & iterable, iterator iOffset, ITERABLE3 & iterableRemoved, ::count count)
-{
-
-   slice(iterableRemoved, iOffset, count);
-
-   remove(iOffset, count);
-
-   insert_at(iOffset, iterable);
-
-}
-
-
-
-template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::find_index(index nIndex) const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list< TYPE, ARG_TYPE, EQUALS >::iterator list< TYPE, ARG_TYPE, EQUALS >::find_index(index nIndex) const
 {
 
    ASSERT_VALID(this);
@@ -1815,8 +1916,8 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::find_index(index n
 }
 
 
-template<class TYPE, class ARG_TYPE>
-index list<TYPE, ARG_TYPE>::position_index(iterator pos) const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+index list< TYPE, ARG_TYPE, EQUALS >::position_index(iterator pos) const
 {
 
    ASSERT_VALID(this);
@@ -1846,8 +1947,8 @@ index list<TYPE, ARG_TYPE>::position_index(iterator pos) const
 }
 
 
-template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::find(ARG_TYPE searchValue, iterator startAfter) const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list< TYPE, ARG_TYPE, EQUALS >::iterator list< TYPE, ARG_TYPE, EQUALS >::find(ARG_TYPE searchValue, iterator startAfter) const
 {
 
    ASSERT_VALID(this);
@@ -1872,7 +1973,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::find(ARG_TYPE sear
    for (; pnode != NULL; pnode = pnode->m_pnext)
    {
 
-      if (EqualElements(pnode->m_value, searchValue))
+      if (EQUALS::run<ARG_TYPE>(pnode->m_value, searchValue))
       {
 
          return (iterator)pnode;
@@ -1887,8 +1988,8 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::find(ARG_TYPE sear
 
 /*
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
@@ -1922,8 +2023,8 @@ void list<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 }*/
 
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::dump(dump_context & dumpcontext) const
 {
 
    object::dump(dumpcontext);
@@ -1955,8 +2056,8 @@ void list<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 }
 
 
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::assert_valid() const
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+void list< TYPE, ARG_TYPE, EQUALS >::assert_valid() const
 {
    object::assert_valid();
 
@@ -1974,9 +2075,9 @@ void list<TYPE, ARG_TYPE>::assert_valid() const
    }
 }
 
-template<class TYPE, class ARG_TYPE>
-list < TYPE, ARG_TYPE > &
-list<TYPE, ARG_TYPE>::operator = (const class list & l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list < TYPE, ARG_TYPE, EQUALS > &
+list< TYPE, ARG_TYPE, EQUALS >::operator = (const class list & l)
 {
 
    if (&l != this)
@@ -1993,9 +2094,9 @@ list<TYPE, ARG_TYPE>::operator = (const class list & l)
 
 #ifdef MOVE_SEMANTICS
 
-template<class TYPE, class ARG_TYPE>
-list < TYPE, ARG_TYPE > &
-list<TYPE, ARG_TYPE>::operator = (class list && l)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+list < TYPE, ARG_TYPE, EQUALS > &
+list< TYPE, ARG_TYPE, EQUALS >::operator = (class list && l)
 {
 
    if (&l != this)

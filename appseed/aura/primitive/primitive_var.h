@@ -284,7 +284,7 @@ public:
 
    }
 
-   operator const string & () const
+   operator string  () const
    {
 
       return get_string();

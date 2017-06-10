@@ -38,13 +38,11 @@ namespace visual
       };
 
 
-      stringa                                   m_straNameEnum;
-      stringa                                   m_straFontEnum;
+      ::draw2d::font::enum_item_array           m_itema;
 
       string                                    m_strText;
       string                                    m_strTextLayout;
 
-      ::draw2d::font::csa                       m_csa;
       ptr_array < item >                        m_itemptra;
       rect                                      m_rectClient;
       rect                                      m_rectMargin;

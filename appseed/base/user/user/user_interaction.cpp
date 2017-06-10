@@ -1181,7 +1181,7 @@ namespace user
 
          synch_lock sl(m_pmutex);
 
-         m_uiptraChild.slice(uiptra);
+         uiptra.splice(uiptra.begin(), m_uiptraChild);
 
       }
 

@@ -68,10 +68,6 @@
 //} ;
 
 
-#define mapsp(TYPE, ARG_TYPE, TYPE2) map < TYPE, ARG_TYPE, sp(TYPE2) >
-#define strsp(TYPE) string_map < sp(TYPE) >
-#define isp(TYPE) int_map < sp(TYPE) >
-#define idsp(TYPE) mapsp(id, id, TYPE)
 
 
 

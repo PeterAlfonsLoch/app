@@ -444,7 +444,7 @@ public:
    operator const string & () const
    {
 
-      return m_element2.operator const string &();
+      return m_element2.operator string ();
 
    }
 

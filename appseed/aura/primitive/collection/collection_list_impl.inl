@@ -1,8 +1,8 @@
 #pragma once
 
 
-template<class TYPE, class ARG_TYPE>
-typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::insert_first(ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list_data< TYPE, ARG_TYPE, EQUALS >::iterator list_data< TYPE, ARG_TYPE, EQUALS >::insert_first(ARG_TYPE newElement)
 {
 
    ASSERT_VALID(this);
@@ -23,8 +23,8 @@ typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::insert_f
 }
 
 
-template<class TYPE, class ARG_TYPE>
-typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list_data< TYPE, ARG_TYPE, EQUALS >::iterator list_data< TYPE, ARG_TYPE, EQUALS >::add(ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
 
@@ -54,8 +54,8 @@ typename list_data<TYPE, ARG_TYPE>::iterator list_data<TYPE, ARG_TYPE>::add(ARG_
 }
 
 
-template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(iterator position, ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list< TYPE, ARG_TYPE, EQUALS >::iterator list< TYPE, ARG_TYPE, EQUALS >::insert_before(iterator position, ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
 
@@ -88,8 +88,11 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(iter
 }
 
 
-template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(iterator position, ARG_TYPE newElement)
+
+
+
+template<class TYPE, class ARG_TYPE, typename EQUALS >
+typename list< TYPE, ARG_TYPE, EQUALS >::iterator list< TYPE, ARG_TYPE, EQUALS >::insert_after(iterator position, ARG_TYPE newElement)
 {
    
    ASSERT_VALID(this);

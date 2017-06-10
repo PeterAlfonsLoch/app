@@ -537,13 +537,49 @@ inline double sized::set_orthogonal_dimension(e_orientation eorientation,double 
    }
 }
 
-
-
-template<> inline UINT HashKey<size> (size key)
+namespace comparison
 {
-   return key.cx | key.cy;
-}
+ 
+   
+   template < >
+   inline UINT hash::run(::size key)
+   {
 
+      return key.cx | (key.cy << 16);
+
+   }
+
+
+} // namespace comparison
+
+namespace comparisontest
+{
+
+
+   template < >
+   inline UINT hash::run(::size key)
+   {
+
+      return key.cx | (key.cy << 16);
+
+   }
+
+
+} // namespace comparison
+namespace comparisonok
+{
+
+
+   template < >
+   inline UINT hash::run(::size key)
+   {
+
+      return key.cx | (key.cy << 16);
+
+   }
+
+
+} // namespace comparison
 
 
 

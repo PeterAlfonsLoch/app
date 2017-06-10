@@ -33,28 +33,28 @@ typedef MEMORY_SIZE * PFN_MEMORY_SIZE;
 
 
 
-CLASS_DECL_ACE void *  ace_memory_alloc(size_t s);
-CLASS_DECL_ACE void *  ace_memory_realloc(void * p, size_t s);
-CLASS_DECL_ACE void    ace_memory_free(void * p);
-CLASS_DECL_ACE size_t  ace_memory_size(void * p);
+void *  ace_memory_alloc(size_t s);
+void *  ace_memory_realloc(void * p, size_t s);
+void    ace_memory_free(void * p);
+size_t  ace_memory_size(void * p);
 
 
 
-CLASS_DECL_ACE void  ace_set_alloc(PFN_MEMORY_ALLOC palloc, PFN_MEMORY_REALLOC prealloc, PFN_MEMORY_FREE pfree, PFN_MEMORY_SIZE psize);
+void  ace_set_alloc(PFN_MEMORY_ALLOC palloc, PFN_MEMORY_REALLOC prealloc, PFN_MEMORY_FREE pfree, PFN_MEMORY_SIZE psize);
 
 
 
-   CLASS_DECL_EXPORT void android_set_cache_dir(const char * pszDir);
-   
-   CLASS_DECL_EXPORT const char * android_get_cache_dir();
-   
-   CLASS_DECL_EXPORT void ios_set_home(const char * pszDir);
-   
-   CLASS_DECL_EXPORT const char * ios_get_home();
-   
-   CLASS_DECL_EXPORT void ios_set_temp(const char * pszDir);
-   
-   CLASS_DECL_EXPORT const char * ios_get_temp();
+void android_set_cache_dir(const char * pszDir);
+
+const char * android_get_cache_dir();
+
+void ios_set_home(const char * pszDir);
+
+const char * ios_get_home();
+
+void ios_set_temp(const char * pszDir);
+
+const char * ios_get_temp();
    
 
 

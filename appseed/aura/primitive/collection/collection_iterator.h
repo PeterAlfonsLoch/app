@@ -36,6 +36,55 @@ struct iterator_info < const TYPE * >
    typedef const TYPE &                            REFERENCE;
 };
 
+
+template < typename ITERATOR >
+class iterator_range_base
+{
+public:
+
+
+   ITERATOR       m_begin;
+   ITERATOR       m_end;
+
+
+   iterator_range_base()
+   {
+   }
+
+   iterator_range_base(ITERATOR begin, ITERATOR end)
+   {
+
+      m_begin = begin;
+      m_end = end;
+
+   }
+
+   ITERATOR begin()
+   {
+
+      return m_begin;
+
+   }
+
+
+   ITERATOR end()
+   {
+
+      return m_end;
+
+   }
+
+};
+
+
+template < typename ITERATOR >
+iterator_range_base < ITERATOR > iterator_range(ITERATOR begin, ITERATOR end)
+{
+
+   return class iterator_range_base < ITERATOR > (begin, end);
+
+}
+
 /*
 
 template < typename TYPE >

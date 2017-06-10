@@ -72,7 +72,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 ::file::listing & ftpfs::root_ones(::file::listing & listing)
 {
 
-   ::file::path & path = listing[listing.add("ftp://")];
+   ::file::path & path = *listing.add("ftp://");
    
    UNUSED(path);
 
@@ -102,7 +102,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
          pathUrl = strUrl;
 
-         ::file::path & path = listing.add(pathUrl);
+         ::file::path & path = *listing.add(pathUrl);
 
          path.m_iDir = 1;
 
@@ -219,7 +219,7 @@ retry:
       if (pchild->m_strAttributes.find_ci("d") < 0)
          continue;
 
-      ::file::path & path = dir.add(::file::path(listing.m_path / pchild->m_strName, ::file::path_url));
+      ::file::path & path = *dir.add(::file::path(listing.m_path / pchild->m_strName, ::file::path_url));
 
       path.m_iDir = 1;
 
@@ -231,7 +231,7 @@ retry:
       if (pchild->m_strAttributes.find_ci("d") >= 0)
          continue;
 
-      ::file::path & path = dir.add(::file::path(listing.m_path / pchild->m_strName, ::file::path_url));
+      ::file::path & path = *dir.add(::file::path(listing.m_path / pchild->m_strName, ::file::path_url));
 
       path.m_iSize = pchild->m_filesize;
 

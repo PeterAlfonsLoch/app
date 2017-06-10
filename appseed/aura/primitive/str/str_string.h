@@ -1877,3 +1877,14 @@ inline string & string::operator = (uchar* pszSrc)
    return operator =((const uchar *)pszSrc);
 
 }
+
+
+
+#ifdef __cplusplus
+inline ::count strlen_dup(const string & str)
+{
+   return str.length();
+}
+
+#endif
+

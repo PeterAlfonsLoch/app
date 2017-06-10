@@ -12,7 +12,10 @@ namespace str
 
       strsize      m_nCurrentIndex;
 
+      tokenizer(const char * pszSrc);
       tokenizer(const string & strSrc);
+      tokenizer(const var & var);
+      tokenizer(const property & property);
       tokenizer(const char * lpch, int32_t nLength );
       tokenizer();
       ~tokenizer();

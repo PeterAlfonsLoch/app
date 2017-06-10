@@ -47,7 +47,7 @@ public:
       ::iter::copy_iter(*this, l);
    }
 
-   numeric_array(::aura::application * papp) : object(papp), array < TYPE > (papp) {}
+   numeric_array(::aura::application * papp) : object(papp) {}
 
    numeric_array(const TYPE * pa, ::count c) :
       numeric_array()

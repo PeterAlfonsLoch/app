@@ -90,17 +90,21 @@ public:
       return m_p - i;
    }
 
-
-
-   array_iterator mid(const array_iterator & i) const
+   index operator -(array_iterator it)
    {
-      return m_p + ((i.m_p - m_p + 1) >> 1);
+      return m_p - it.m_p;
    }
 
-   bool operator < (const array_iterator & i) const
+
+   array_iterator mid(const array_iterator & it) const
+   {
+      return m_p + ((it.m_p - m_p + 1) >> 1);
+   }
+
+   bool operator < (const array_iterator & it) const
    {
 
-      return m_p < i.m_p;
+      return m_p < it.m_p;
 
    }
 
@@ -250,10 +254,23 @@ public:
       m_p -= i;
       return *this;
    }
-   const_array_iterator & operator -(index i)
+   
+   const_array_iterator operator -(index i)
    {
       return m_p - i;
    }
+
+   index operator -(array_iterator < TYPE > it)
+   {
+      return m_p - it.m_p;
+   }
+
+
+   index operator -(const_array_iterator it)
+   {
+      return m_p - it.m_p;
+   }
+
 
    const_array_iterator mid(const const_array_iterator & i) const
    {
@@ -933,8 +950,8 @@ public:
 
    array_data(::aura::application * papp = NULL, ::count nGrowBy = 0);
    array_data(const array_data & a);
-   array_data(::std::initializer_list < TYPE > l);
-   array_data(::count n);
+//   array_data(::std::initializer_list < TYPE > l);
+//   array_data(::count n);
    array_data(::count n, ARG_TYPE t);
    array_data(array_data && a);
    virtual ~array_data();
@@ -954,14 +971,14 @@ public:
    inline bool bounds(index i) const;
 
 
-   index index_of(TYPE & type)
+   index index_of(const TYPE & type) const
    {
 
       return index_of(&type);
 
    }
 
-   index index_of(TYPE * ptype)
+   index index_of(const TYPE * ptype) const
    {
 
       return ptype - m_pData;
@@ -1200,7 +1217,7 @@ public:
    void remove_descending_indexes(const index_array & ia);
 
 
-   inline void remove_last();
+   //inline void remove_last();
    inline ::count remove_all();
    inline void clear();
 
@@ -1216,8 +1233,8 @@ public:
    index insert_at(index nIndex, const TYPE & newElement,::count nCount = 1);
    index remove_at(index nIndex, ::count nCount = 1);
 
-   template < typename ITERABLE >
-   index insert_iter_at(index nStartIndex, const ITERABLE & iterable);
+   template < typename ITERABLE2 >
+   index insert_iter_at(index nStartIndex, const ITERABLE2 & iterable, typename ITERABLE2::const_iterator first = NULL, typename ITERABLE2::const_iterator last = NULL);
 
 
    //virtual ::count append(const array_data & src); // return old size
@@ -1231,10 +1248,10 @@ public:
       
       iprepare_first_count(first, count);
 
-      for (; i < count; first++)
+      for (; first < count; first++)
       {
 
-         pred(m_pData[i]);
+         pred(m_pData[first]);
 
       }
 
@@ -1407,11 +1424,35 @@ public:
    template < typename ITERABLE >
    void slice(ITERABLE & iterable, index i, ::count count = -1);
 
-   template < typename ITERABLE >
-   void splice(const ITERABLE & iterable, index i, ::count count = -1);
+   template < typename ITERABLE2 >
+   void splice(iterator i, ITERABLE2 & iterable2)
+   {
 
-   template < typename ITERABLE, typename STRITERABLE >
-   void splice(const ITERABLE & iterable, index i, STRITERABLE & straRemoved, ::count count = -1);
+      insert_iter_at(i.m_p - m_pData, iterable2);
+
+      iterable2.remove_all();
+
+   }
+
+   template < typename ITERABLE2 >
+   void splice(iterator i, ITERABLE2 & iterable2, typename ITERABLE2::iterator first)
+   {
+
+      insert_at(i.m_p - m_pData, *first);
+
+      iterable2.erase(first);
+
+   }
+
+   template < typename ITERABLE2 >
+   void splice(iterator i, ITERABLE2 & iterable2, typename ITERABLE2::iterator first, typename ITERABLE2::iterator last)
+   {
+
+      insert_iter_at(i.m_p - m_pData, iterable2, first, last);
+
+      iterable.erase(first, last);
+
+   }
 
    template < typename TYPE >
    iterator find_first_iter(const TYPE & t, iterator first = NULL, iterator last = NULL)
@@ -1635,6 +1676,7 @@ public:
 
    inline iterator erase(iterator pos);
    inline iterator erase(iterator first, iterator last);
+   inline iterator erase_count(iterator first, ::count c);
 
 
    // overloaded operator helpers
@@ -1699,7 +1741,69 @@ public:
 
    }
 
+   index iterator_index(iterator it)
+   {
+      return index_of(it.m_p);
+   }
 
+   index iterator_index(const_iterator it) const
+   {
+      return index_of(it.m_p);
+   }
+
+
+   void provision(iterator first, iterator last)
+   {
+
+      iprovision(iterator_index(first), iterator_index(last) - iterator_index(first) + 1);
+
+   }
+
+   void iprovision(index first, ::count count)
+   {
+
+      set_size(get_size() + count, MAX(m_nGrowBy, count));
+
+   }
+
+   void remove_first()
+   {
+
+      remove_at(0);
+
+   }
+
+
+   void remove_last()
+   {
+
+      remove_at(get_upper_bound());
+
+   }
+
+
+   TYPE pop_first()
+   {
+
+      TYPE t = first();
+
+      remove_first();
+
+      return t;
+
+   }
+
+
+   TYPE pop_last()
+   {
+
+      TYPE t = last();
+
+      remove_last();
+
+      return t;
+
+   }
 };
 
 
@@ -1879,31 +1983,31 @@ TYPE array_data < TYPE, ARG_TYPE, ALLOCATOR > ::pop(index i)
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-template < typename ITERABLE >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::splice(const ITERABLE & iterable, index iOffset, ::count count)
-{
+//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+//template < typename ITERABLE >
+//void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::isplice(const ITERABLE & iterable, index iOffset, ::count count)
+//{
+//
+//   remove(iOffset, count);
+//
+//   insert_iter_at(iOffset, iterable);
+//
+//}
 
-   remove(iOffset, count);
-
-   insert_iter_at(iOffset, iterable);
-
-}
 
 
-
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-template < typename ITERABLE, typename ITERABLE2 >
-void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::splice(const ITERABLE & iterable, index iOffset, ITERABLE2 & iterableRemoved, ::count count)
-{
-
-   slice(iterableRemoved, iOffset, count);
-
-   remove(iOffset, count);
-
-   insert_at(iOffset, iterable);
-
-}
+//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+//template < typename ITERABLE, typename ITERABLE2 >
+//void array_data < TYPE, ARG_TYPE, ALLOCATOR > ::splice(const ITERABLE & iterable, index iOffset, ITERABLE2 & iterableRemoved, ::count count)
+//{
+//
+//   slice(iterableRemoved, iOffset, count);
+//
+//   remove(iOffset, count);
+//
+//   insert_at(iOffset, iterable);
+//
+//}
 
 
 

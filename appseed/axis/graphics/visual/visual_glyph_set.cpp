@@ -162,9 +162,9 @@ namespace visual
 
    int_ptr glyph_set::add(class glyph &glyph)
    {
-      int_ptr i = array < class glyph , class glyph & >::add(glyph);
+      auto i = array < class glyph  >::add(glyph);
       quick_sort();
-      return i;
+      return i.m_p - begin().m_p;
    }
 
 } // namespace visual

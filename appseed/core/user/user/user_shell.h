@@ -140,12 +140,20 @@ namespace user
 } // namespace user
 
 
-template < >
-inline UINT HashKey<const ::user::shell::image_key &>(const ::user::shell::image_key & key)
+namespace comparison
 {
-   // default identity hash - works for most primitive values
-   return (UINT)harmannieves_camwhite_hash(key.m_pszPath,
-      harmannieves_camwhite_hash(key.m_pszShellThemePrefix,
-         harmannieves_camwhite_hash(key.m_pszExtension,
-            key.m_iIcon | (((int)key.m_eicon) << 8) | (((int)key.m_eattribute) << 16))));
-}
+   
+   template < >
+   inline UINT hash::run(const ::user::shell::image_key & key)
+   {
+      // default identity hash - works for most primitive values
+      return (UINT)string_hash(key.m_pszPath,
+         string_hash(key.m_pszShellThemePrefix,
+            string_hash(key.m_pszExtension,
+               key.m_iIcon | (((int)key.m_eicon) << 8) | (((int)key.m_eattribute) << 16))));
+   }
+
+
+} // namespace comparison
+
+

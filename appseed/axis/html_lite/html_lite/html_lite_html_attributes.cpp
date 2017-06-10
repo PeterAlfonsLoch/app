@@ -267,7 +267,7 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const char * lpszName, const 
          }
       }
 
-      VERIFY(m_parrAttrib->add(pItem) >= 0);
+      VERIFY(m_parrAttrib->add(pItem) != m_parrAttrib->end());
    }
    return (pItem);
 }

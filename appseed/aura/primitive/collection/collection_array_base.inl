@@ -206,10 +206,12 @@ index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex, const TY
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 template < typename ITERABLE2 >
-index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_iter_at(index nIndex, const ITERABLE2 & iterable2)
+index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_iter_at(index nIndex, const ITERABLE2 & iterable2, typename ITERABLE2::const_iterator first = NULL, typename ITERABLE2::const_iterator last = NULL)
 {
 
-   ::count nCount = iterable2.get_count();
+   iterable2.prepare_first_last(first, last);
+
+   ::count nCount = last - first;
 
    ASSERT_VALID(this);
 
@@ -256,10 +258,10 @@ index array_data < TYPE, ARG_TYPE, ALLOCATOR >::insert_iter_at(index nIndex, con
 
    index nIndexParam = nIndex;
 
-   for(auto & item : iterable2)
+   for(;iterable2.valid_iter(first, last); first++)
    {
 
-      m_pData[nIndex++] = item;
+      m_pData[nIndex++] = *first;
 
    }
 
@@ -570,7 +572,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(::compare::gt(nNewSize, SIZE_T_MAX / sizeof(TYPE)))
+      if(nNewSize < SIZE_T_MAX / sizeof(TYPE))
          throw memory_exception(get_app());
       ASSERT(::compare::lt(nNewSize, SIZE_T_MAX / sizeof(TYPE)));    // no overflow
 #endif

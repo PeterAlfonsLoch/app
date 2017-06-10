@@ -12,14 +12,14 @@ namespace fs
 
 
       spa(data)                     m_spafsdata;
-      strsp(data)                   m_fsdatamap;
+      string_map < sp(data) >       m_fsdatamap;
 
 
       set(::aura::application * papp);
       virtual ~set();
 
 
-      strsp(data) &                 fsmap();
+      string_map < sp(data) > &     fsmap();
       spa(data) &                   fsa();
 
 

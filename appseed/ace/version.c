@@ -76,7 +76,7 @@ WINBOOL get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation)
 
 
 
-CLASS_DECL_ACE int _ca_is_basis()
+int _ca_is_basis()
 {
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 	return TRUE;
@@ -85,7 +85,7 @@ CLASS_DECL_ACE int _ca_is_basis()
 #endif
 }
 
-CLASS_DECL_ACE int _ca_is_stage()
+int _ca_is_stage()
 {
 #if CA2_PLATFORM_VERSION == CA2_STAGE
 	return TRUE;
