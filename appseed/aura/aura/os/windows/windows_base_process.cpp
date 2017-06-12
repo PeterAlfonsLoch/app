@@ -509,3 +509,93 @@ string module_path_from_pid(uint32_t pid)
 //else
 //RaiseLastOSError;
 //end;
+
+
+
+
+CLASS_DECL_AURA bool is_shared_library_busy(uint32_t processid, const stringa & stra)
+{
+
+   stringa straSuffix(stra);
+
+   straSuffix.surround("\\");
+
+   return ::windows::pred_process_module(processid, [&](auto & me32)
+   {
+
+      return !straSuffix.suffixes_ci(me32.szModule) && !stra.contains_ci(me32.szModule);
+
+   });
+
+}
+
+
+bool is_shared_library_busy(const stringa & stra)
+{
+
+   return ::windows::pred_process([&](auto pid)
+   {
+
+      return !is_shared_library_busy(pid, stra);
+
+   });
+
+}
+
+
+CLASS_DECL_AURA bool launch_application(::aura::application * papp, const string & strAppId, const string & strParams, int iBitCount)
+{
+
+   ::file::path path;
+
+   if (iBitCount == 64)
+   {
+
+      path = ::dir::program_files_x86() / "ca2/a_spa/x64/a_spa.exe";
+
+   }
+   else if (iBitCount == 32)
+   {
+
+      path = ::dir::program_files_x86() / "ca2/a_spa/x86/a_spa.exe";
+
+   }
+   else
+   {
+
+#if OSBIT == 32
+
+      path = ::dir::program_files_x86() / "ca2/a_spa/x86/a_spa.exe";
+
+#else
+
+      path = ::dir::program_files_x86() / "ca2/a_spa/x64/a_spa.exe";
+
+#endif
+
+   }
+
+   string strApp(strAppId);
+
+   string strExtra;
+
+   if (strParams.has_char())
+   {
+
+      strExtra = " " + strParams;
+
+   }
+
+
+   ::fork(papp, [=]
+   {
+
+      unsigned int uiPid;
+
+      ::call_async(path, ": app=" + strApp + strExtra, path.folder(), SW_SHOWNORMAL, false, &uiPid);
+
+   });
+
+   return true;
+
+}

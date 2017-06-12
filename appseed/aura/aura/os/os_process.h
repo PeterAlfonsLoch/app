@@ -58,4 +58,8 @@ CLASS_DECL_AURA int_array app_get_pid(const char * pszModuleName);
 #endif
 
 
+CLASS_DECL_AURA bool is_shared_library_busy(uint32_t processid, const stringa & stra);
+CLASS_DECL_AURA bool is_shared_library_busy(const stringa & stra);
 
+
+CLASS_DECL_AURA bool launch_application(::aura::application * papp, const string & strAppId, const string & strParams, int iBitCount);
