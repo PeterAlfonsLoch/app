@@ -139,6 +139,9 @@ public:
    void make_lower();
    void make_upper();
 
+
+
+
    operator ::count() const {
       return get_count();
    }
@@ -311,6 +314,62 @@ public:
    void c_add(wchar_t ** ppsz, ::count iCount);
    void c_add(wchar_t ** ppsz);
 
+   string_array & intersect(const string_array & a)
+   {
+
+      for (index i = 0; i < get_size(); )
+      {
+
+         if (!a.contains(element_at(i)))
+         {
+
+            remove_at(i);
+
+         }
+         else
+         {
+
+            i++;
+
+         }
+
+      }
+
+      return *this;
+
+   }
+
+   string_array & intersect_ci(const string_array & a)
+   {
+
+      for (index i = 0; i < get_size(); )
+      {
+
+         if (!a.contains_ci(element_at(i)))
+         {
+
+            remove_at(i);
+
+         }
+         else
+         {
+
+            i++;
+
+         }
+
+      }
+
+      return *this;
+
+   }
+
+   string_array & operator &=(const string_array & a)
+   {
+
+      return intersect(a);
+
+   }
 
 
 };

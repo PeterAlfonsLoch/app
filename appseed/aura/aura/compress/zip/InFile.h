@@ -66,7 +66,7 @@ namespace zip
       virtual bool zip_open(const char *,UINT);
       virtual bool zip_open(File * pzfile,const char * lpcszFileName);
 
-      virtual bool unzip_open(::file::file_sp pfile);
+      virtual bool unzip_open2(::file::file_sp pfile, int iBufferLevel = 2);
       virtual bool unzip_open(const char *,UINT);
       virtual bool unzip_open(File * pzfile,const char * lpcszFileName);
 

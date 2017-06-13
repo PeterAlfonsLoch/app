@@ -58,10 +58,23 @@ namespace zip
       return unzip_open(spfile);
    }
 
-   bool File::unzip_open(::file::file_sp pfile)
+   bool File::unzip_open(::file::file_sp pfile, int iBufferLevel)
    {
-      m_pbuffile1 = new ::file::buffered_file(get_app(), pfile, 1024 * 256);
-      m_pbuffile2 = new ::file::buffered_file(get_app(), m_pbuffile1, 1024 * 256);
+      if (iBufferLevel >= 2)
+      {
+         m_pbuffile1 = new ::file::buffered_file(get_app(), pfile, 1024 * 32);
+         m_pbuffile2 = new ::file::buffered_file(get_app(), m_pbuffile1, 1024 * 32);
+      }
+      else if (iBufferLevel == 1)
+      {
+         m_pbuffile1 = NULL;
+         m_pbuffile2 = new ::file::buffered_file(get_app(), pfile, 1024 * 32);
+      }
+      else 
+      {
+         // good option if pfile is memory file?
+         m_pbuffile2 = pfile;
+      }
       m_pbuffile2->seek_to_begin();
       m_pfile = m_pbuffile2;
       m_filefuncdef.opaque = (voidpf) this;
@@ -140,10 +153,7 @@ voidpf c_zip_file_open_file_func (voidpf opaque, const char* filename, int32_t m
 }
 uint_ptr  c_zip_file_read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
 {
-   UNREFERENCED_PARAMETER(stream);
-   ::zip::File * pzipfile = (::zip::File *) opaque;
-   ::file::file_sp  pfile = pzipfile->m_pfile;
-   return (uint_ptr) pfile->read(buf, size);
+   return (uint_ptr)((::zip::File *) opaque)->m_pfile.m_p->read(buf,size);
 }
 uint_ptr  c_zip_file_write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
 {

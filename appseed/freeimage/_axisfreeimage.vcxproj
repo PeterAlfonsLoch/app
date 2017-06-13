@@ -309,7 +309,7 @@
       <CompileAs>Default</CompileAs>
       <ExceptionHandling>Async</ExceptionHandling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -325,8 +325,6 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>

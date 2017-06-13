@@ -2283,6 +2283,8 @@ namespace draw2d
       }
    }
 
+
+#define byte_clip2(i) (i)
    void dib::mult_alpha()
    {
       map();
@@ -2296,50 +2298,77 @@ namespace draw2d
 
       while (size >= 8)
       {
-         dst[0] = byte_clip(((int32_t)dst[0] * (int32_t)dst[3]) / 255);
-         dst[1] = byte_clip(((int32_t)dst[1] * (int32_t)dst[3]) / 255);
-         dst[2] = byte_clip(((int32_t)dst[2] * (int32_t)dst[3]) / 255);
+         dst[0] = byte_clip2(((int32_t)dst[0] * (int32_t)dst[3]) / 255);
+         dst[1] = byte_clip2(((int32_t)dst[1] * (int32_t)dst[3]) / 255);
+         dst[2] = byte_clip2(((int32_t)dst[2] * (int32_t)dst[3]) / 255);
 
-         dst[4 + 0] = byte_clip(((int32_t)dst[4 + 0] * (int32_t)dst[4 + 3]) / 255);
-         dst[4 + 1] = byte_clip(((int32_t)dst[4 + 1] * (int32_t)dst[4 + 3]) / 255);
-         dst[4 + 2] = byte_clip(((int32_t)dst[4 + 2] * (int32_t)dst[4 + 3]) / 255);
+         dst[4 + 0] = byte_clip2(((int32_t)dst[4 + 0] * (int32_t)dst[4 + 3]) / 255);
+         dst[4 + 1] = byte_clip2(((int32_t)dst[4 + 1] * (int32_t)dst[4 + 3]) / 255);
+         dst[4 + 2] = byte_clip2(((int32_t)dst[4 + 2] * (int32_t)dst[4 + 3]) / 255);
 
-         dst[8 + 0] = byte_clip(((int32_t)dst[8 + 0] * (int32_t)dst[8 + 3]) / 255);
-         dst[8 + 1] = byte_clip(((int32_t)dst[8 + 1] * (int32_t)dst[8 + 3]) / 255);
-         dst[8 + 2] = byte_clip(((int32_t)dst[8 + 2] * (int32_t)dst[8 + 3]) / 255);
+         dst[8 + 0] = byte_clip2(((int32_t)dst[8 + 0] * (int32_t)dst[8 + 3]) / 255);
+         dst[8 + 1] = byte_clip2(((int32_t)dst[8 + 1] * (int32_t)dst[8 + 3]) / 255);
+         dst[8 + 2] = byte_clip2(((int32_t)dst[8 + 2] * (int32_t)dst[8 + 3]) / 255);
 
-         dst[12 + 0] = byte_clip(((int32_t)dst[12 + 0] * (int32_t)dst[12 + 3]) / 255);
-         dst[12 + 1] = byte_clip(((int32_t)dst[12 + 1] * (int32_t)dst[12 + 3]) / 255);
-         dst[12 + 2] = byte_clip(((int32_t)dst[12 + 2] * (int32_t)dst[12 + 3]) / 255);
+         dst[12 + 0] = byte_clip2(((int32_t)dst[12 + 0] * (int32_t)dst[12 + 3]) / 255);
+         dst[12 + 1] = byte_clip2(((int32_t)dst[12 + 1] * (int32_t)dst[12 + 3]) / 255);
+         dst[12 + 2] = byte_clip2(((int32_t)dst[12 + 2] * (int32_t)dst[12 + 3]) / 255);
 
-         dst[16 + 0] = byte_clip(((int32_t)dst[16 + 0] * (int32_t)dst[16 + 3]) / 255);
-         dst[16 + 1] = byte_clip(((int32_t)dst[16 + 1] * (int32_t)dst[16 + 3]) / 255);
-         dst[16 + 2] = byte_clip(((int32_t)dst[16 + 2] * (int32_t)dst[16 + 3]) / 255);
+         dst[16 + 0] = byte_clip2(((int32_t)dst[16 + 0] * (int32_t)dst[16 + 3]) / 255);
+         dst[16 + 1] = byte_clip2(((int32_t)dst[16 + 1] * (int32_t)dst[16 + 3]) / 255);
+         dst[16 + 2] = byte_clip2(((int32_t)dst[16 + 2] * (int32_t)dst[16 + 3]) / 255);
 
-         dst[20 + 0] = byte_clip(((int32_t)dst[20 + 0] * (int32_t)dst[20 + 3]) / 255);
-         dst[20 + 1] = byte_clip(((int32_t)dst[20 + 1] * (int32_t)dst[20 + 3]) / 255);
-         dst[20 + 2] = byte_clip(((int32_t)dst[20 + 2] * (int32_t)dst[20 + 3]) / 255);
+         dst[20 + 0] = byte_clip2(((int32_t)dst[20 + 0] * (int32_t)dst[20 + 3]) / 255);
+         dst[20 + 1] = byte_clip2(((int32_t)dst[20 + 1] * (int32_t)dst[20 + 3]) / 255);
+         dst[20 + 2] = byte_clip2(((int32_t)dst[20 + 2] * (int32_t)dst[20 + 3]) / 255);
 
-         dst[24 + 0] = byte_clip(((int32_t)dst[24 + 0] * (int32_t)dst[24 + 3]) / 255);
-         dst[24 + 1] = byte_clip(((int32_t)dst[24 + 1] * (int32_t)dst[24 + 3]) / 255);
-         dst[24 + 2] = byte_clip(((int32_t)dst[24 + 2] * (int32_t)dst[24 + 3]) / 255);
+         dst[24 + 0] = byte_clip2(((int32_t)dst[24 + 0] * (int32_t)dst[24 + 3]) / 255);
+         dst[24 + 1] = byte_clip2(((int32_t)dst[24 + 1] * (int32_t)dst[24 + 3]) / 255);
+         dst[24 + 2] = byte_clip2(((int32_t)dst[24 + 2] * (int32_t)dst[24 + 3]) / 255);
 
-         dst[28 + 0] = byte_clip(((int32_t)dst[28 + 0] * (int32_t)dst[28 + 3]) / 255);
-         dst[28 + 1] = byte_clip(((int32_t)dst[28 + 1] * (int32_t)dst[28 + 3]) / 255);
-         dst[28 + 2] = byte_clip(((int32_t)dst[28 + 2] * (int32_t)dst[28 + 3]) / 255);
+         dst[28 + 0] = byte_clip2(((int32_t)dst[28 + 0] * (int32_t)dst[28 + 3]) / 255);
+         dst[28 + 1] = byte_clip2(((int32_t)dst[28 + 1] * (int32_t)dst[28 + 3]) / 255);
+         dst[28 + 2] = byte_clip2(((int32_t)dst[28 + 2] * (int32_t)dst[28 + 3]) / 255);
 
          dst += 4 * 8;
          size -= 8;
       }
       while (size--)
       {
-         dst[0] = byte_clip(((int32_t)dst[0] * (int32_t)dst[3]) / 255);
-         dst[1] = byte_clip(((int32_t)dst[1] * (int32_t)dst[3]) / 255);
-         dst[2] = byte_clip(((int32_t)dst[2] * (int32_t)dst[3]) / 255);
+         dst[0] = byte_clip2(((int32_t)dst[0] * (int32_t)dst[3]) / 255);
+         dst[1] = byte_clip2(((int32_t)dst[1] * (int32_t)dst[3]) / 255);
+         dst[2] = byte_clip2(((int32_t)dst[2] * (int32_t)dst[3]) / 255);
          dst += 4;
       }
    }
 
+
+   void dib::mult_alpha_fast()
+   {
+      map();
+
+      BYTE *dst = (BYTE*)get_data();
+      int64_t size = scan_area();
+
+
+      //  >> 2 instead of >> 2 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
+
+
+      while (size--)
+      {
+         if (dst[3] == 0)
+         {
+            *((COLORREF*)dst) = 0;
+         }
+         else if (dst[3] != 255)
+         {
+            dst[0] = byte_clip2(((int32_t)dst[0] * (int32_t)dst[3]) >> 8);
+            dst[1] = byte_clip2(((int32_t)dst[1] * (int32_t)dst[3]) >> 8);
+            dst[2] = byte_clip2(((int32_t)dst[2] * (int32_t)dst[3]) >> 8);
+         }
+         dst += 4;
+      }
+   }
 
 
    void dib::mult_alpha(point ptDst, ::size size)

@@ -29,7 +29,7 @@ namespace zip
       void write_to_file(::file::file_sp  pfile, const unichar * lpcsz);
 
       bool unzip_open(const char * lpcwsz);
-      bool unzip_open(::file::file_sp pfile);
+      bool unzip_open(::file::file_sp pfile, int iBufferLevel = 2);
 
       bool zip_open(const char * lpcwsz);
       bool zip_open(::file::file_sp pfile);

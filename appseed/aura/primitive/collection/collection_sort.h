@@ -1387,6 +1387,73 @@ namespace sort
 
       }
 
+      template < typename ARRAY_TYPE, typename PRED >
+      void pred_quick_sort(ARRAY_TYPE  & a, PRED pred)
+      {
+
+         index_array stackLowerBound;
+         index_array stackUpperBound;
+         index iLowerBound;
+         index iUpperBound;
+         index iLPos, iUPos, iMPos;
+         //   uint32_t t;
+
+         if (a.get_size() >= 2)
+         {
+            stackLowerBound.push(0);
+            stackUpperBound.push(a.get_size() - 1);
+            while (true)
+            {
+               iLowerBound = stackLowerBound.pop();
+               iUpperBound = stackUpperBound.pop();
+               iLPos = iLowerBound;
+               iMPos = iLowerBound;
+               iUPos = iUpperBound;
+               while (true)
+               {
+                  while (true)
+                  {
+                     if (iMPos == iUPos)
+                        goto break_mid_loop;
+                     if (pred(a.element_at(iUPos), a.element_at(iMPos)))
+                     {
+                        a.swap(iMPos, iUPos);
+                        break;
+                     }
+                     iUPos--;
+                  }
+                  iMPos = iUPos;
+                  while (true)
+                  {
+                     if (iMPos == iLPos)
+                        goto break_mid_loop;
+                     if (pred(a.element_at(iMPos), a.element_at(iLPos)))
+                     {
+                        a.swap(iLPos, iMPos);
+                        break;
+                     }
+                     iLPos++;
+                  }
+                  iMPos = iLPos;
+               }
+               break_mid_loop:
+               if (iLowerBound < iMPos - 1)
+               {
+                  stackLowerBound.push(iLowerBound);
+                  stackUpperBound.push(iMPos - 1);
+               }
+               if (iMPos + 1 < iUpperBound)
+               {
+                  stackLowerBound.push(iMPos + 1);
+                  stackUpperBound.push(iUpperBound);
+               }
+               if (stackLowerBound.get_size() == 0)
+                  break;
+            }
+         }
+
+      }
+
 
    } // namespace array
 

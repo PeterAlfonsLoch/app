@@ -326,8 +326,8 @@
       <PreprocessorDefinitions>_ACID_LIBRARY;CUBE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/$(PlatformName)/include/;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base3/openssl;$(SolutionDir)../../../app/base/openssl/crypto2;$(SolutionDir)../../../app/base/openssl/ssl2;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>MinSpace</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
@@ -338,10 +338,8 @@
       <OpenMPSupport>false</OpenMPSupport>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalOptions>
       </AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -353,11 +351,13 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <UseFullPaths>true</UseFullPaths>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

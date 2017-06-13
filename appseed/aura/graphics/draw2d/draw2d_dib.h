@@ -163,6 +163,7 @@ namespace draw2d
       virtual void mult_alpha(::draw2d::dib * pdibWork, bool bPreserveAlpha = true);
 
       virtual void mult_alpha();
+      virtual void mult_alpha_fast();
       virtual void div_alpha();
 
       virtual void mult_alpha(point pt, ::size sz);

@@ -99,7 +99,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::unzip_open(::file::file_sp  pfile)
+   bool InFile::unzip_open2(::file::file_sp  pfile, int iBufferLevel)
    {
 
       m_filea.remove_all();
@@ -108,7 +108,7 @@ namespace zip
       m_straPrefix.remove_all();
 
       m_filea.add(new File(get_app()));
-      if(!m_filea.last_sp()->unzip_open(pfile))
+      if(!m_filea.last_sp()->unzip_open(pfile, iBufferLevel))
          return false;
 
       return TRUE;

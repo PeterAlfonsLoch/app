@@ -79,13 +79,7 @@ public:
    memory_size_t read_inline(void *lpBuf, memory_size_t nCount)
    {
 
-      if (nCount <= 0 || m_spmemory.is_null())
-         return 0;
-      
-      if(m_dwPosition >= m_spmemory->get_size())
-         return 0;
-
-      memory_offset_t iDiff = m_spmemory->get_size() - m_dwPosition;
+      memory_offset_t iDiff = m_spmemory.m_p->m_cbStorage - m_dwPosition;
 
       if (iDiff <= 0)
          return 0;
@@ -93,7 +87,36 @@ public:
       if (nCount > iDiff)
          nCount = iDiff;
 
-      memcpy(lpBuf, &((LPBYTE)get_data())[m_dwPosition], (size_t)nCount);
+      if (nCount == 1)
+      {
+         
+         *((byte*)lpBuf) = m_spmemory.m_p->m_pbStorage[m_dwPosition];
+
+      }
+      else if (nCount == 2)
+      {
+
+         *((uint16_t *)lpBuf) = *((uint16_t *)&m_spmemory.m_p->m_pbStorage[m_dwPosition]);
+
+      }
+      else if (nCount == 4)
+      {
+
+         *((uint32_t*)lpBuf) = *((uint32_t*)&m_spmemory.m_p->m_pbStorage[m_dwPosition]);
+
+      }
+      else if (nCount == 8)
+      {
+
+         *((uint64_t *)lpBuf) = *((uint64_t *)&m_spmemory.m_p->m_pbStorage[m_dwPosition]);
+
+      }
+      else
+      {
+
+         memcpy(lpBuf, &m_spmemory.m_p->m_pbStorage[m_dwPosition], (size_t)nCount);
+
+      }
 
       m_dwPosition += nCount;
 
