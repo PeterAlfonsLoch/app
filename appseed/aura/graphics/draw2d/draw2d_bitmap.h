@@ -75,5 +75,6 @@ namespace draw2d
 #ifdef WINDOWSEX
 
 CLASS_DECL_AURA HBITMAP CreateHBITMAP(COLORREF * pdata,int stride,int cx,int cy);
+CLASS_DECL_AURA HBITMAP CreateHBITMAP2(COLORREF * & pdata, int & stride, int cx, int cy);
 
 #endif

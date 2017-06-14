@@ -826,30 +826,18 @@ HCURSOR CreateAlphaCursor(::draw2d::dib * pdib, int xHotSpot, int yHotSpot)
 CLASS_DECL_AURA HBITMAP CreateHBITMAP(COLORREF * pdata, int stride, int cx, int cy)
 {
 
-   HBITMAP hbmp = NULL;
-
-   BITMAPINFO bminfo;
-
-   ZeroMemory(&bminfo, sizeof(bminfo));
-   bminfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-   bminfo.bmiHeader.biWidth = cx;
-   bminfo.bmiHeader.biHeight = -((LONG)cy);
-   bminfo.bmiHeader.biPlanes = 1;
-   bminfo.bmiHeader.biBitCount = 32;
-   bminfo.bmiHeader.biCompression = BI_RGB;
-
    COLORREF * pvImageBits = NULL;
 
-   HDC hdcScreen = GetDC(NULL);
+   int bmStride = cx * sizeof(COLORREF);
 
-   hbmp = CreateDIBSection(hdcScreen, &bminfo, DIB_RGB_COLORS, (void **)&pvImageBits, NULL, 0);
-
-   ReleaseDC(NULL, hdcScreen);
+   HBITMAP hbmp = CreateHBITMAP2(pvImageBits, bmStride, cx, cy);
 
    if (hbmp == NULL)
-      goto Return;
+   {
 
-   int bmStride = cx * sizeof(COLORREF);
+      return NULL;
+
+   }
 
    if (stride == bmStride)
    {
@@ -873,12 +861,45 @@ CLASS_DECL_AURA HBITMAP CreateHBITMAP(COLORREF * pdata, int stride, int cx, int 
 
    }
 
-Return:
-
    return hbmp;
 
 }
 
+CLASS_DECL_AURA HBITMAP CreateHBITMAP2(COLORREF * & pdata, int & stride, int cx, int cy)
+{
+
+   HBITMAP hbmp = NULL;
+
+   BITMAPINFO bminfo;
+
+   ZeroMemory(&bminfo, sizeof(bminfo));
+   bminfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+   bminfo.bmiHeader.biWidth = cx;
+   bminfo.bmiHeader.biHeight = -((LONG)cy);
+   bminfo.bmiHeader.biPlanes = 1;
+   bminfo.bmiHeader.biBitCount = 32;
+   bminfo.bmiHeader.biCompression = BI_RGB;
+
+   COLORREF * pvImageBits = NULL;
+
+   HDC hdcScreen = GetDC(NULL);
+
+   hbmp = CreateDIBSection(hdcScreen, &bminfo, DIB_RGB_COLORS, (void **)&pdata, NULL, 0);
+
+   ReleaseDC(NULL, hdcScreen);
+
+   if (hbmp == NULL)
+   {
+    
+      return NULL;
+
+   }
+
+   stride = cx * sizeof(COLORREF);
+
+   return hbmp;
+
+}
 
 
 
