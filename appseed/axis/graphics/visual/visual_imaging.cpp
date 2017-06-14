@@ -326,7 +326,7 @@ FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
 
       memcpy(
              &((byte *)pdst)[iStrideDst * (pdib->m_size.cy - i - 1)],
-             &((byte *)psrc)[FreeImage_GetInfo(fi)->bmiHeader.biWidth * sizeof(COLORREF) * i],
+             &((byte *)psrc)[iStrideSrc * i],
              iStrideDst);
 
    }
