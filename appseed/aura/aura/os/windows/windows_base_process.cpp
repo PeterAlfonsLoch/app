@@ -530,7 +530,7 @@ CLASS_DECL_AURA bool is_shared_library_busy(uint32_t processid, const stringa & 
 }
 
 
-bool is_shared_library_busy(const stringa & stra)
+CLASS_DECL_AURA bool is_shared_library_busy(const stringa & stra)
 {
 
    return ::windows::pred_process([&](auto pid)
@@ -599,3 +599,124 @@ CLASS_DECL_AURA bool launch_application(::aura::application * papp, const string
    return true;
 
 }
+
+
+
+
+
+CLASS_DECL_AURA bool process_contains_module(string & strImage, DWORD processID, const char * pszLibrary)
+{
+
+   HANDLE hProcess;
+
+   DWORD cbNeeded;
+
+   uint32_t ui;
+
+   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID);
+
+   if (NULL == hProcess)
+      return false;
+
+   const int32_t iMaxModuleCount = 1024;
+
+   array < HMODULE > hmods;
+
+   hmods.set_size(iMaxModuleCount);
+
+   const int32_t iImageSize = MAX_PATH * 8;
+
+   memory mem;
+   
+   mem.allocate(iImageSize);
+
+   GetModuleFileNameExW(hProcess, NULL, (WCHAR *) mem.get_data(), mem.get_size() / sizeof(WCHAR));
+
+   strImage = (const wchar_t *) mem.get_data();
+
+   wstring wstrLibrary(pszLibrary);
+
+   bool bFound = false;
+
+   if (EnumProcessModules(hProcess, hmods.get_data(), hmods.get_size_in_bytes(), &cbNeeded))
+   {
+
+      for (ui = 0; ui < (cbNeeded / sizeof(HMODULE)); ui++)
+      {
+
+         // Get the full path to the module's file.
+
+         if (GetModuleFileNameExW(hProcess, hmods[ui], (WCHAR *) mem.get_data(), mem.get_size() / sizeof(WCHAR)))
+         {
+
+            if (!wcsicmp_dup((const wchar_t *) mem.get_data(), wstrLibrary))
+            {
+
+               bFound = true;
+
+               break;
+
+            }
+
+         }
+
+      }
+
+   }
+
+   CloseHandle(hProcess);
+
+   return bFound;
+
+}
+
+
+CLASS_DECL_AURA void shared_library_process(dword_array & dwa, stringa & straProcesses, const char * pszLibrary)
+{
+
+   // Get the list of process identifiers.
+
+   dword_array aProcesses;
+
+   aProcesses.set_size(8192);
+
+   DWORD cbNeeded, cProcesses;
+
+   uint32_t ui;
+
+   if (!EnumProcesses(aProcesses.get_data(), aProcesses.get_size_in_bytes(), &cbNeeded))
+   {
+
+      return;
+
+   }
+
+   // Calculate how many process identifiers were returned.
+
+   cProcesses = cbNeeded / sizeof(DWORD);
+
+   // Print the name of the modules for each process.
+
+   string strImage;
+
+   for (ui = 0; ui < cProcesses; ui++)
+   {
+
+      if (process_contains_module(strImage, aProcesses[ui], pszLibrary))
+      {
+
+         straProcesses.add(strImage); // there may processes with different pids but same image
+
+         dwa.add(aProcesses[ui]);
+
+      }
+
+   }
+
+}
+
+
+
+
+
+

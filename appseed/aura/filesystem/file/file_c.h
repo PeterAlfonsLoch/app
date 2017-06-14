@@ -325,10 +325,6 @@ class string_array;
 typedef string_array < string > stringa;
 
 
-#ifndef METROWIN
-CLASS_DECL_AURA bool PrintModules(string & strImage, uint32_t processID, const char * pszDll );
-CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll);
-#endif
 
 
 CLASS_DECL_AURA string file_title_dup(const char * path);

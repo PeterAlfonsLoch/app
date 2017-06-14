@@ -57,6 +57,12 @@ CLASS_DECL_AURA int_array app_get_pid(const char * pszModuleName);
 
 #endif
 
+#ifndef METROWIN
+CLASS_DECL_AURA bool process_contains_module(string & strImage, DWORD processID, const char * pszLibrary);
+CLASS_DECL_AURA void shared_library_process(dword_array & dwa, stringa & straProcesses, const char * pszLibrary);
+#endif
+
+
 
 CLASS_DECL_AURA bool is_shared_library_busy(uint32_t processid, const stringa & stra);
 CLASS_DECL_AURA bool is_shared_library_busy(const stringa & stra);

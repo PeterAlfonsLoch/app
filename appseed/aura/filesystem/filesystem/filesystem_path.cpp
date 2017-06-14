@@ -403,6 +403,21 @@ namespace file
 
    }
 
+   patha path::operator / (const stringa & stra) const
+   {
+
+      patha patha;
+
+      for (auto str : stra)
+      {
+
+         patha.add(*this / str);
+
+      }
+
+      return patha;
+
+   }
 
    path path::operator / (const path & path) const
    {

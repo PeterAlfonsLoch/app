@@ -197,6 +197,7 @@ namespace file
       path operator / (const string & str) const;
       path operator / (const char * psz) const;
       path operator / (const property & property) const;
+      patha operator / (const stringa & path) const;
 
       path & operator /= (const path & path);
       path & operator /= (const string & str);

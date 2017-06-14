@@ -1149,22 +1149,6 @@ public:
 
    }
 
-   template < typename PRED >
-   bool pred_add_unique(TYPE t, PRED pred)
-   {
-
-      if(this->pred_find_first(pred) >= 0)
-      {
-
-         return false;
-
-      }
-
-      this->add(t);
-
-      return true;
-
-   }
    template < typename F >
    void each(F f)
    {
@@ -1189,6 +1173,7 @@ public:
       return first.m_i > last.m_i;
 
    }
+
 
 };
 
@@ -1336,6 +1321,40 @@ public:
 
    }
 
+
+   template < typename PRED >
+   bool pred_add_unique(TYPE t, PRED pred)
+   {
+
+      if (this->pred_find_first(pred) >= 0)
+      {
+
+         return false;
+
+      }
+
+      this->add(t);
+
+      return true;
+
+   }
+
+   template < typename ITERABLE >
+   array_base & copy_iter(const ITERABLE & iterable)
+   {
+
+      set_size(0, MAX(iterable.get_count(), 17));
+
+      for (auto & item : iterable)
+      {
+
+         add(item);
+
+      }
+
+      return *this;
+
+   }
 
 };
 
