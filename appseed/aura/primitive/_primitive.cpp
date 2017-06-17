@@ -87,7 +87,7 @@
 #include "collection/collection_stringl.cpp"
 #include "collection/collection_string_array.cpp"
 #include "collection/collection_string_list.cpp"
-#include "collection/collection_string_sort_array.cpp"
+//#include "collection/collection_string_sort_array.cpp"
 #include "collection/collection_string_to_string_map.cpp"
 #include "collection/collection_var_array.cpp"
  //             22 arquivo(s)        125.800 bytes

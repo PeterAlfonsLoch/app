@@ -56,12 +56,12 @@ namespace user
 
    bool keyboard_layout_id::operator <= (const keyboard_layout_id & on_layout) const
    {
-      int32_t iCompare = m_strName.CompareNoCase(on_layout.m_strName);
+      int32_t iCompare = m_strName.compare_ci(on_layout.m_strName);
       if(iCompare <= 0)
          return true;
       else if(iCompare == 0)
       {
-         iCompare = m_strPath.CompareNoCase(on_layout.m_strPath);
+         iCompare = m_strPath.compare_ci(on_layout.m_strPath);
          return iCompare <= 0;
       }
       else
@@ -71,12 +71,12 @@ namespace user
 
    bool keyboard_layout_id::operator < (const keyboard_layout_id & on_layout) const
    {
-      int32_t iCompare = m_strName.CompareNoCase(on_layout.m_strName);
+      int32_t iCompare = m_strName.compare_ci(on_layout.m_strName);
       if(iCompare < 0)
          return true;
       else if(iCompare == 0)
       {
-         iCompare = m_strPath.CompareNoCase(on_layout.m_strPath);
+         iCompare = m_strPath.compare_ci(on_layout.m_strPath);
          return iCompare < 0;
       }
       else
@@ -85,10 +85,10 @@ namespace user
 
    bool keyboard_layout_id::operator == (const keyboard_layout_id & on_layout) const
    {
-      int32_t iCompare = m_strName.CompareNoCase(on_layout.m_strName);
+      int32_t iCompare = m_strName.compare_ci(on_layout.m_strName);
       if(iCompare != 0)
          return false;
-      iCompare = m_strPath.CompareNoCase(on_layout.m_strPath);
+      iCompare = m_strPath.compare_ci(on_layout.m_strPath);
       if(iCompare != 0)
          return false;
       return true;
@@ -105,7 +105,7 @@ namespace user
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
          sp(::xml::node) pchild = pnode->child_at(i);
-         if(pchild->get_name().CompareNoCase("item") == 0)
+         if(pchild->get_name().compare_ci("item") == 0)
          {
             string str = pchild->attr("char");
             if(str.has_char())
@@ -113,7 +113,7 @@ namespace user
                set[str] = pchild->attr("value");
             }
          }
-         else if(pchild->get_name().CompareNoCase("escape") == 0)
+         else if(pchild->get_name().compare_ci("escape") == 0)
          {
             process_escape(pchild, set[pnode->attr("value")].propset());
          }
@@ -136,7 +136,7 @@ namespace user
       for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
       {
          sp(::xml::node) pnode = doc.get_root()->child_at(i);
-         if(pnode->get_name().CompareNoCase("item") == 0)
+         if(pnode->get_name().compare_ci("item") == 0)
          {
             string strCode = pnode->attr("code");
             string strValue = pnode->attr("value");
@@ -187,7 +187,7 @@ namespace user
                }
             }
          }
-         else if(pnode->get_name().CompareNoCase("escape") == 0)
+         else if(pnode->get_name().compare_ci("escape") == 0)
          {
 
             process_escape(pnode, m_setEscape[pnode->attr("value")].propset());

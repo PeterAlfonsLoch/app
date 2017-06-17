@@ -50,31 +50,31 @@ void command_line::ParseParamFlag(const string & strParam)
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if(strParam.CompareNoCase("pt") == 0)
+   if(strParam.compare_ci("pt") == 0)
    {
 
       m_ecommand = command_file_print_to;
 
    }
-   else if(strParam.CompareNoCase("p") == 0)
+   else if(strParam.compare_ci("p") == 0)
    {
 
       m_ecommand = command_file_print;
 
    }
-   else if(strParam.CompareNoCase("Unregister") == 0 || strParam.CompareNoCase("Unregserver") == 0)
+   else if(strParam.compare_ci("Unregister") == 0 || strParam.compare_ci("Unregserver") == 0)
    {
 
       m_ecommand = command_app_unregister;
 
    }
-   else if(strParam.CompareNoCase("dde") == 0)
+   else if(strParam.compare_ci("dde") == 0)
    {
 
       m_ecommand = command_file_dde;
 
    }
-   else if(strParam.CompareNoCase("Embedding") == 0)
+   else if(strParam.compare_ci("Embedding") == 0)
    {
 
       m_bRunEmbedded = TRUE;
@@ -82,7 +82,7 @@ void command_line::ParseParamFlag(const string & strParam)
       m_bShowSplash = FALSE;
 
    }
-   else if(strParam.CompareNoCase("Automation") == 0)
+   else if(strParam.compare_ci("Automation") == 0)
    {
 
       m_bRunAutomated = TRUE;

@@ -255,7 +255,7 @@ inline id & id::operator = (const id & id)
 
 inline bool id::operator == (const string & str) const
 {
-   return m_etype == type_text && (m_psz == NULL ? false : str.Compare(m_psz) == 0);
+   return m_etype == type_text && (m_psz == NULL ? false : str.compare(m_psz) == 0);
 }
 inline bool id::operator != (const string & str) const
 {
@@ -263,7 +263,7 @@ inline bool id::operator != (const string & str) const
 }
 inline bool id::operator < (const string & str) const
 {
-   return (m_etype < type_text) || (m_psz == NULL ? true : str.Compare(m_psz) > 0);
+   return (m_etype < type_text) || (m_psz == NULL ? true : str.compare(m_psz) > 0);
 }
 inline bool id::operator <= (const string & str) const
 {
@@ -271,7 +271,7 @@ inline bool id::operator <= (const string & str) const
 }
 inline bool id::operator > (const string & str) const
 {
-   return (m_etype > type_text) || (m_psz == NULL ? false : str.Compare(m_psz) < 0);
+   return (m_etype > type_text) || (m_psz == NULL ? false : str.compare(m_psz) < 0);
 }
 inline bool id::operator >= (const string & str) const
 {
@@ -281,7 +281,7 @@ inline bool id::operator >= (const string & str) const
 
 //inline bool id::operator == (const string_interface & str) const
 //{
-//   return m_etype == type_text && (m_psz == NULL ? false : string(str).Compare(m_psz) == 0);
+//   return m_etype == type_text && (m_psz == NULL ? false : string(str).compare(m_psz) == 0);
 //}
 //inline bool id::operator != (const string_interface & str) const
 //{
@@ -289,7 +289,7 @@ inline bool id::operator >= (const string & str) const
 //}
 //inline bool id::operator < (const string_interface & str) const
 //{
-//   return (m_etype < type_text) || (m_psz == NULL ? true : string(str).Compare(m_psz) > 0);
+//   return (m_etype < type_text) || (m_psz == NULL ? true : string(str).compare(m_psz) > 0);
 //}
 //inline bool id::operator <= (const string_interface & str) const
 //{
@@ -297,7 +297,7 @@ inline bool id::operator >= (const string & str) const
 //}
 //inline bool id::operator > (const string_interface & str) const
 //{
-//   return (m_etype > type_text) || (m_psz == NULL ? false : string(str).Compare(m_psz) < 0);
+//   return (m_etype > type_text) || (m_psz == NULL ? false : string(str).compare(m_psz) < 0);
 //}
 //inline bool id::operator >= (const string_interface & str) const
 //{

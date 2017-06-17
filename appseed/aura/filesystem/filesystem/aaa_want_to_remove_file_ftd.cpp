@@ -83,7 +83,7 @@
 //         strMd5New.clear();
 //         string strFormat;
 //         strMd5New = ::to_string(ctx);
-//         if(strMd5.CompareNoCase(strMd5New) != 0)
+//         if(strMd5.compare_ci(strMd5New) != 0)
 //            return FALSE;
 //      }
 //   }

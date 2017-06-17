@@ -295,9 +295,9 @@ namespace colorertake5
 
          int32_t cr;
          if (node->kwList->matchCase)
-            cr = node->kwList->kwList[pos].keyword.Compare(string(&((const char*)str)[gx], kwlen));
+            cr = node->kwList->kwList[pos].keyword.compare(string(&((const char*)str)[gx], kwlen));
          else
-            cr = node->kwList->kwList[pos].keyword.CompareNoCase(string(&((const char*)str)[gx], kwlen));
+            cr = node->kwList->kwList[pos].keyword.compare_ci(string(&((const char*)str)[gx], kwlen));
 
          if (cr == 0 && right-left == 1){
             bool badbound = false;

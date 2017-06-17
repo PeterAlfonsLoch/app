@@ -43,8 +43,12 @@ public:
 
 };
 
-
-
+////////////////////////////////////////////////////////
+//
+//   *naked* pointer raw array
+//   by *naked*, it means just raw referencing pointers
+//   no implicit neither automatic destruction/deallocation/allocation or construction
+//
 template < class TYPE,class ARRAY_TYPE = raw_ref_array < TYPE * > >
 class ref_array:
    public ARRAY_TYPE
@@ -101,7 +105,13 @@ class CLASS_DECL_AURA const_char_ptra:
 typedef raw_ref_array < void * > void_ptra;
 
 
-
+////////////////////////////////////////////////////////
+//
+//   array of managed pointers
+//   the most that can be done clearly in array 
+//   regarding implicit and automatic destruction,
+//   deallocation, allocation and construction.
+//
 template < class TYPE, class ARRAY_TYPE = ref_array < TYPE > >
 class ptr_array :
    public ARRAY_TYPE

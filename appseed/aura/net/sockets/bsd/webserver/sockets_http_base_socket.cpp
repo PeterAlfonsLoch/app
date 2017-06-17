@@ -164,7 +164,7 @@ namespace sockets
       //TRACE("connection: %s\n", m_request.header("connection").get_string());
       //TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
    /*   if(::str::ends(m_request.attr("http_version").get_string(), "/1.1")
-         && m_request.header("connection").get_string().CompareNoCase("close") != 0)
+         && m_request.header("connection").get_string().compare_ci("close") != 0)
       {
          m_b_keepalive = true;
       TRACE(" ***    keepalive: true\n");

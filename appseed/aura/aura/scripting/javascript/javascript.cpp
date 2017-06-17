@@ -1688,7 +1688,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
       // new -> create a new object
       l->match(LEX_R_NEW);
       const string &className = l->tkStr;
-      if(className.CompareNoCase("array") == 0)
+      if(className.compare_ci("array") == 0)
       {
          l->match(LEX_ID);
          int32_t idx = 0;

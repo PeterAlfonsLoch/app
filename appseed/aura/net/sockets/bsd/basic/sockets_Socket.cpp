@@ -119,7 +119,7 @@ namespace sockets
 
       protno = 6;
 
-      if (strProtocol.CompareNoCase("tcp") == 0)
+      if (strProtocol.compare_ci("tcp") == 0)
       {
 
          protno = 6;

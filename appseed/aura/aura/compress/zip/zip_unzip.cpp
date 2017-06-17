@@ -273,7 +273,7 @@ local int32_t strcmpcasenosensitive_internal (const char * fileName1, const char
 #endif
 
 /*
-   Compare two filename (fileName1,fileName2).
+   compare two filename (fileName1,fileName2).
    If iCaseSenisivity = 1, comparision is case sensitivity (like strcmp)
    If iCaseSenisivity = 2, comparision is not case sensitivity (like _strcmpi
                                                                 or strcasecmp)

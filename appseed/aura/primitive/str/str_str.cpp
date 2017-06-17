@@ -321,7 +321,7 @@ namespace str
 
       strsize iLen = strPrefix.get_length();
 
-      if(str.Left(iLen).CompareNoCase(lpcszPrefix) == 0)
+      if(str.Left(iLen).compare_ci(lpcszPrefix) == 0)
       {
          str = str.Mid(iLen);
          return true;
@@ -333,7 +333,7 @@ namespace str
 
    bool begins_eat_ci(string & str, const char * lpcszPrefix, const char * pszSeparator)
    {
-      if(str.CompareNoCase(lpcszPrefix) == 0)
+      if(str.compare_ci(lpcszPrefix) == 0)
       {
          str.Empty();
          return true;
@@ -463,7 +463,7 @@ namespace str
 
       strsize iLen = strSuffix.get_length();
 
-      if(str.Right(iLen).CompareNoCase(lpcszSuffix) == 0)
+      if(str.Right(iLen).compare_ci(lpcszSuffix) == 0)
       {
 
          str = str.Left(str.get_length() - iLen);
@@ -3250,7 +3250,7 @@ end:
       string str(psz);
       strsize iLen = strlen(psz);
       strsize iLenSuffix = strlen(pszSuffix);
-      if(str.Right(iLenSuffix).CompareNoCase(pszSuffix) == 0)
+      if(str.Right(iLenSuffix).compare_ci(pszSuffix) == 0)
       {
          return str.Mid(0, iLen - iLenSuffix);
       }
@@ -3904,49 +3904,49 @@ end:
 
       }
 
-      if (str.CompareNoCase("yes") == 0)
+      if (str.compare_ci("yes") == 0)
       {
 
          return true;
 
       }
 
-      if (str.CompareNoCase("true") == 0)
+      if (str.compare_ci("true") == 0)
       {
 
          return true;
 
       }
 
-      if (str.CompareNoCase("on") == 0)
+      if (str.compare_ci("on") == 0)
       {
 
          return true;
 
       }
 
-      if (str.CompareNoCase("enable") == 0)
+      if (str.compare_ci("enable") == 0)
       {
 
          return true;
 
       }
 
-      if (str.CompareNoCase("enabled") == 0)
+      if (str.compare_ci("enabled") == 0)
       {
 
          return true;
 
       }
 
-      if (str.CompareNoCase("check") == 0)
+      if (str.compare_ci("check") == 0)
       {
 
          return true;
 
       }
 
-      if (str.CompareNoCase("checked") == 0)
+      if (str.compare_ci("checked") == 0)
       {
 
          return true;

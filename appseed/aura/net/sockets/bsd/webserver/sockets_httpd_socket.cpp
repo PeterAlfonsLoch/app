@@ -76,7 +76,7 @@ namespace sockets
    {
    //   Base64 bb;
 
-   /*   if (request().headers()["if-modified-since"].get_string().CompareNoCase(m_start) == 0)
+   /*   if (request().headers()["if-modified-since"].get_string().compare_ci(m_start) == 0)
       {
          m_response.attr("http_status_code") = 304;
          m_response.attr("http_status") = "Not Modified";
@@ -316,7 +316,7 @@ namespace sockets
       if(outheader(__id(content_type)).get_string().has_char())
       {
       }
-      else if(strContentType.has_char() && strContentType.CompareNoCase("unknown") != 0)
+      else if(strContentType.has_char() && strContentType.compare_ci("unknown") != 0)
       {
          outheader(__id(content_type)) = strContentType;
       }

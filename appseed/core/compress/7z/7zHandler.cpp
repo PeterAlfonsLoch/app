@@ -464,7 +464,7 @@ HRes handler::SetProperties(const unichar **names, const PROPVARIANT *values, In
     int32_t index = ParseStringToUInt32(name, number);
     if (index == 0)
     {
-      if(name.Left(2).CompareNoCase(L"MT") == 0)
+      if(name.Left(2).compare_ci(L"MT") == 0)
       {
         RINOK(ParseMtProp(name.Mid(2), value, numProcessors, _numThreads));
         continue;

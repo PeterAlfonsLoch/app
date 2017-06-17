@@ -664,7 +664,7 @@ namespace fontopus
 
             //string strHash = System.crypto().sha1("\"authorization granted(71d0e601ae5e787ea898774115b2aa2a)\":" + m_puser->get_session_secret());
 
-            //if(strDecrypt.CompareNoCase(strHash) != 0)
+            //if(strDecrypt.compare_ci(strHash) != 0)
             //{
 
             //   if(iRetryLogin > 3)

@@ -67,7 +67,7 @@ namespace userex // ca8 + cube
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
          {
-            if(m_layoutida[i].m_strPath.CompareNoCase(Session.keyboard().on_layout().m_strPath) == 0)
+            if(m_layoutida[i].m_strPath.compare_ci(Session.keyboard().on_layout().m_strPath) == 0)
             {
                iFind = i;
                break;

@@ -216,7 +216,7 @@ uint64_t file_length_dup(const char * path)
 //         strMd5New.clear();
 //         string strFormat;
 //         strMd5New = ctx.to_string();
-//         if(strMd5.CompareNoCase(strMd5New) != 0)
+//         if(strMd5.compare_ci(strMd5New) != 0)
 //            return FALSE;
 //      }
 //   }
@@ -263,7 +263,7 @@ int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 //   const int32_t iBufSize = MAX_PATH * 8;
 //   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
 //   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
-//   int iCmp = pwsz1.CompareNoCase(pwsz2);
+//   int iCmp = pwsz1.compare_ci(pwsz2);
 ///*   unichar * pwszFile1;
 //   unichar * pwszFile2;
 //   unichar * pwszPath1 = new unichar[iBufSize];
@@ -2385,7 +2385,7 @@ return false;
 //         strMd5New.clear();
 //         string strFormat;
 //         strMd5New = ctx.to_string();
-//         if(strMd5.CompareNoCase(strMd5New) != 0)
+//         if(strMd5.compare_ci(strMd5New) != 0)
 //            return false;
 //      }
 //   }
@@ -2496,7 +2496,7 @@ return false;
 int_bool file_is_equal_path(const char * psz1,const char * psz2)
 {
 
-   return normalize_path(psz1).CompareNoCase(normalize_path(psz2)) == 0;
+   return normalize_path(psz1).compare_ci(normalize_path(psz2)) == 0;
 
 }
 

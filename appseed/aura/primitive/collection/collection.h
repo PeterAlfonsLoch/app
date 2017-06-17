@@ -284,7 +284,7 @@ class CLASS_DECL_AURA time_array :
 
 
 #include "collection_stringl.h"
-#include "collection_string_sort_array.h"
+//#include "collection_string_sort_array.h"
 //#include "collection_stringa.h"
 
 #include "collection_lemon_array.h"

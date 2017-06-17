@@ -120,7 +120,7 @@ namespace user
          string strExtension = lpszPathName.ext();
          if (strExtension.has_char())
          {
-            if (strExtension.CompareNoCase(strFilterExt) == 0)
+            if (strExtension.compare_ci(strFilterExt) == 0)
             {
                return yesAttemptNative; // extension matches, looks like ours
             }

@@ -15,7 +15,7 @@ namespace html
          m_iFont = -1;
          m_strType = strType;
          m_strUnit = strUnit;
-         if(strType.CompareNoCase("calculator") == 0)
+         if(strType.compare_ci("calculator") == 0)
          {
             m_pedit = canew(::calculator::plain_edit_view(pdata->get_app()));
             m_pedit.cast <::calculator::plain_edit_view>()->m_strFormat = strUnit;

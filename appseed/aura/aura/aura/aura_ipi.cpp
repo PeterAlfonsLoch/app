@@ -589,7 +589,7 @@ namespace aura
                if (strPath.has_char())
                {
 
-                  if (strPath.CompareNoCase(a[0]) == 0)
+                  if (strPath.compare_ci(a[0]) == 0)
                   {
 
                      iaPid.add(atoi_dup(a[1]));

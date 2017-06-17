@@ -114,7 +114,7 @@ bool command_thread::is_thread()
 var & command_thread::property(const char * pszKey)
 {
    string strKey(pszKey);
-   if(strKey.CompareNoCase("file") == 0)
+   if(strKey.compare_ci("file") == 0)
    {
       if(m_varTopicFile.is_empty())
       {
@@ -134,7 +134,7 @@ var & command_thread::property(const char * pszKey)
 bool command_thread::has_property(const char * pszKey)
 {
    string strKey(pszKey);
-   if(strKey.CompareNoCase("file") == 0)
+   if(strKey.compare_ci("file") == 0)
    {
       if(m_varTopicFile.is_empty())
       {

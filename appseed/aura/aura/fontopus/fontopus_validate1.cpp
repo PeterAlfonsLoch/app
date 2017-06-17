@@ -440,7 +440,7 @@ namespace fontopus
 
             string strHash = System.crypto().sha1("\"license granted(093a95faf9e0b59bd4fb2dc60da16260)\"::" + ApplicationUser.get_session_secret());
 
-            if((strHash.CompareNoCase(strDecrypt) == 0))
+            if((strHash.compare_ci(strDecrypt) == 0))
             {
 
                return true;
@@ -654,7 +654,7 @@ namespace fontopus
 
             string strHash = System.crypto().sha1("\"authorization granted(71d0e601ae5e787ea898774115b2aa2a)\":" + m_puser->get_session_secret());
 
-            if(strDecrypt.CompareNoCase(strHash) != 0)
+            if(strDecrypt.compare_ci(strHash) != 0)
             {
 
                if(iRetryLogin > 3)

@@ -75,7 +75,7 @@ int MessageBoxW(oswindow window, const unichar * pszMessageParam, const unichar 
    CFStringRef button2_ref = NULL;
    CFStringRef button3_ref = NULL;
    
-   if(strButton1.has_char() || strButton1.CompareNoCase("ok") != 0)
+   if(strButton1.has_char() || strButton1.compare_ci("ok") != 0)
       button1_ref = CFStringCreateWithCString(NULL, strButton1, strButton1.length());
    if(strButton2.has_char())
       button2_ref = CFStringCreateWithCString(NULL, strButton2, strButton2.length());

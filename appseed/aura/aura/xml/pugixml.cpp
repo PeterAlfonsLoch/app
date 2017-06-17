@@ -186,7 +186,7 @@ PUGI__NS_BEGIN
 	#endif
 	}
 
-	// Compare two strings
+	// compare two strings
 	PUGI__FN bool strequal(const char_t* src, const char_t* dst)
 	{
 		assert(src && dst);
@@ -198,7 +198,7 @@ PUGI__NS_BEGIN
 	#endif
 	}
 
-	// Compare lhs with [rhs_begin, rhs_end)
+	// compare lhs with [rhs_begin, rhs_end)
 	PUGI__FN bool strequalrange(const char_t* lhs, const char_t* rhs, size_t count)
 	{
 		for (size_t i = 0; i < count; ++i)

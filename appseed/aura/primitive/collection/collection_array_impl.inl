@@ -166,18 +166,18 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::set_at(index nIndex, ARG_TYPE 
    get_data()[nIndex] = newElement;
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex) const
+inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex) const
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
       throw index_out_of_bounds(this->get_app());
-   return get_data()[nIndex];
+   return m_pData[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex)
+inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex)
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
       throw index_out_of_bounds(this->get_app());
-   return get_data()[nIndex];
+   return m_pData[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::first(index nIndex) const
@@ -240,18 +240,18 @@ inline index array < TYPE, ARG_TYPE, ALLOCATOR > ::add(const array & src)
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::operator[](index nIndex) const
+inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR > ::operator[](index nIndex) const
 {
 
-   return get_data()[nIndex];
+   return m_pData[nIndex];
 
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::operator[](index nIndex)
+inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR > ::operator[](index nIndex)
 {
 
-   return get_data()[nIndex];
+   return m_pData[nIndex];
 
 }
 
@@ -492,15 +492,6 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  array < TYPE, ARG_TYPE, ALLOCATOR > 
    aNew += a;
    return a;
 }
-
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-index array < TYPE, ARG_TYPE, ALLOCATOR > ::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
-{
-
-   return array_base < TYPE, ARG_TYPE, ALLOCATOR > ::insert_at(nIndex,&newElement,nCount);
-
-}
-
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >

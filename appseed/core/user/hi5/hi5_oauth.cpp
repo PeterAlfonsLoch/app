@@ -1152,24 +1152,34 @@ void CSHA1::GetHash(UINT_8 *puDest)
          /* Sort key-value pairs based on key name */
          if( strSeparator == "&" )
          {
-            keyValueList.quick_sort();
+
+            keyValueList.sort();
 
             for(int32_t i = 0; i < keyValueList.get_count(); i++)
             {
+
                index iFind = keyValueList[i].find("=");
+
                if(iFind >= 0)
                {
+
                   str = urlencode(keyValueList[i].Left(iFind)) + "=" + urlencode(keyValueList[i].Mid(iFind+ 1));
+
                   keyValueList[i] = str;
+
                }
 
             }
+
          }
 
          /* Now, form a string */
          rawParams =  keyValueList.implode(pszSeparator);
+
       }
+
       return ( rawParams.get_length() > 0 ) ? true : false;
+
    }
 
    /*++
@@ -1185,46 +1195,73 @@ void CSHA1::GetHash(UINT_8 *puDest)
    *--*/
    bool oauth::extractOAuthTokenKeySecret(const string & requestTokenResponse )
    {
+      
       if( requestTokenResponse.get_length() > 0 )
       {
+
          index nPos = -1;
+
          string strDummy( "" );
 
          /* Get oauth_token key */
          nPos = requestTokenResponse.find(OAUTHLIB_TOKEN_KEY);
+
          if(nPos >=0)
          {
+
             nPos = nPos + OAUTHLIB_TOKEN_KEY.get_length() + strlen( "=" );
+
             strDummy = requestTokenResponse.Mid( nPos );
+
             nPos = strDummy.find( "&" );
+
             if( nPos >= 0)
             {
+
                m_oAuthTokenKey = strDummy.Mid( 0, nPos );
+
             }
+
          }
 
          /* Get oauth_token_secret */
+
          nPos = requestTokenResponse.find(OAUTHLIB_TOKENSECRET_KEY );
+
          if( nPos >= 0 )
          {
+
             nPos = nPos + OAUTHLIB_TOKENSECRET_KEY.get_length() + strlen( "=" );
+
             strDummy = requestTokenResponse.Mid( nPos );
+
             nPos = strDummy.find( "&" );
+
             if( nPos >= 0 )
             {
+
                m_oAuthTokenSecret = strDummy.Mid( 0, nPos );
+
             }
+
          }
 
          /* Get screen_name */
          nPos = requestTokenResponse.find(OAUTHLIB_SCREENNAME_KEY );
+
          if( nPos >= 0 )
          {
+
             nPos = nPos + OAUTHLIB_SCREENNAME_KEY.get_length() + strlen( "=" );
+
             strDummy = requestTokenResponse.Mid( nPos );
+
             m_oAuthScreenName = strDummy;
+
          }
+
       }
+
       return true;
 
    }

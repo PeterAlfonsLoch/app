@@ -487,8 +487,8 @@ bool db_long_set::find(const char * lpKey)
    {
    AddOLEDBException(m_spCommand, IID_IRowsetChange);
    }
-   if(strSection.CompareNoCase(m_Section) == 0 &&
-   strKey.CompareNoCase(m_Key) == 0)
+   if(strSection.compare_ci(m_Section) == 0 &&
+   strKey.compare_ci(m_Key) == 0)
    {
    return TRUE;
    }
@@ -531,8 +531,8 @@ bool db_long_set::find(const char * lpKey)
    {
    AddOLEDBException(m_spCommand, IID_IRowsetChange);
    }
-   if(strSection.CompareNoCase(m_Section) == 0 &&
-   strKey.CompareNoCase(m_Key) == 0)
+   if(strSection.compare_ci(m_Section) == 0 &&
+   strKey.compare_ci(m_Key) == 0)
    {
    return TRUE;
    }

@@ -4,7 +4,7 @@ str_sort_array::str_sort_array()
 {
    // Array is is_empty. Be optimistic. Assume that is sorted.
    m_bSorted = true;
-   m_pfnCompare = Compare;
+   m_pfnCompare = compare;
 }
 
 str_sort_array::~str_sort_array()

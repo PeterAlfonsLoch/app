@@ -514,7 +514,7 @@ namespace plugin
 
          string strExtension     = ::file::path(System.url().get_script(strPluginUrl)).extension();
 
-         if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
+         if(strExtension.is_empty() || strExtension.compare_ci("ca2") == 0)
          {
             // remark alarm
             // STRESS : http_get_dup

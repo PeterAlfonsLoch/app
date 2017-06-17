@@ -14,7 +14,7 @@ template <  >
 inline int_ptr CompareElements<string>(string element1,string  element2)
 {
 
-   return element1.Compare(element2);
+   return element1.compare(element2);
 
 }
 

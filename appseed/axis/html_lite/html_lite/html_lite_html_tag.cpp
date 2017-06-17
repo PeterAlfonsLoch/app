@@ -222,7 +222,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
 
 LUpdateAndExit:
    m_strTagName = strTagName;
-   if(strTagName.CompareNoCase("BR") == 0)
+   if(strTagName.compare_ci("BR") == 0)
    {
       bIsClosingTag = true;
       bIsOpeningTag = true;

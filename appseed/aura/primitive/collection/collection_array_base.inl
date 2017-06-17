@@ -168,7 +168,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex,const TYPE * newElement,::count nCount /*=1*/)
+index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex,const TYPE & newElement,::count nCount /*=1*/)
 {
 
    ASSERT_VALID(this);
@@ -207,7 +207,7 @@ index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex,const TYP
    while(nCount--)
    {
 
-      ALLOCATOR::copy(&m_pData[nIndex++], newElement);
+      ALLOCATOR::copy(&m_pData[nIndex++], &newElement);
 
    }
 
@@ -333,24 +333,56 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_descending_indexes(const i
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nStartIndex,array_base < TYPE, ARG_TYPE, ALLOCATOR > * pNewArray)
+index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex,array_base < TYPE, ARG_TYPE, ALLOCATOR > * pNewArray)
 {
+   
    ASSERT_VALID(this);
    ASSERT(pNewArray != NULL);
    ASSERT_VALID(pNewArray);
-   ASSERT(nStartIndex >= 0);
+   ASSERT(nIndex >= 0);    // will expand to meet need
 
-   if(pNewArray == NULL || nStartIndex < 0)
+   ::count nCount = pNewArray->get_size();
+
+   if (nCount <= 0)
+      return -1;
+
+   if (nIndex < 0)
       throw invalid_argument_exception(get_app());
 
-   if(pNewArray->get_size() > 0)
+   if (nIndex >= m_nSize)
    {
-      insert_at(nStartIndex,pNewArray->element_at(0),pNewArray->get_size());
-      for(index i = 1; i < pNewArray->get_size(); i++)
-         insert_at(nStartIndex + i,pNewArray->element_at(i));
+      // adding after the end of the array
+      set_size(nIndex + nCount, -1);   // grow so nIndex is valid
+   }
+   else
+   {
+      // inserting in the middle of the array
+      ::count nOldSize = m_nSize;
+      set_size(m_nSize + nCount, -1);  // grow it to new size
+                                       // destroy intial data before copying over it
+                                       // shift old data up to fill gap
+      ::aura::memmove_s(m_pData + nIndex + nCount, (nOldSize - nIndex) * sizeof(TYPE), m_pData + nIndex, (nOldSize - nIndex) * sizeof(TYPE));
+
+      ALLOCATOR::construct(&m_pData[nIndex], nCount);
+
    }
 
-   return nStartIndex;
+   // insert new value in the gap
+   ASSERT(nIndex + nCount <= m_nSize);
+
+   index nIndexParam = nIndex;
+
+   index i = 0;
+
+   while (nCount--)
+   {
+
+      ALLOCATOR::copy(&m_pData[nIndex++], &pNewArray->element_at(i));
+
+   }
+
+   return nIndexParam;
+
 
 }
 

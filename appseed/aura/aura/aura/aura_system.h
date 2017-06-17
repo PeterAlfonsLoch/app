@@ -107,11 +107,9 @@ namespace aura
 
       bool (system::*                              m_pfnVerb)();
 
-      bool                                         m_bAdvancedGUI;
-
       ::html::html *                               m_phtml; // only defined and set in html library/component
-      ::url::department *                         m_purldepartment;
-      ::axis::compress_department *                           m_pcompress;
+      ::url::department *                          m_purldepartment;
+      ::axis::compress_department *                m_pcompress;
 
       ::file::system_sp                            m_spfile;
       ::file::dir::system_sp                       m_spdir;

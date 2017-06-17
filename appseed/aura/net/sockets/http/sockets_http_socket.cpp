@@ -378,7 +378,7 @@ namespace sockets
          stringa & straValue = property.stra();
          if(!http_filter_response_header(strKey, straValue))
             continue;
-         if(strKey.CompareNoCase("host") == 0)
+         if(strKey.compare_ci("host") == 0)
             continue;
          for (int j = 0; j < straValue.get_count(); j++)
          {
@@ -477,7 +477,7 @@ namespace sockets
          else
          {
             string strKey = property.name();
-            if (strKey.CompareNoCase("host") == 0)
+            if (strKey.compare_ci("host") == 0)
                continue;
             strValue.trim();
             if (strValue.is_empty())
@@ -585,7 +585,7 @@ namespace sockets
    {
 
       //http_socket::OnHeader(key, value);
-      /*if(key.CompareNoCase("user-agent") == 0)
+      /*if(key.compare_ci("user-agent") == 0)
       {
          TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/

@@ -43,32 +43,32 @@ string consume_param(const char * pszCommandLine, const char ** pszEndPtr)
 
 
 
-string get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam)
-{
-
-   string strValue;
-
-   get_command_line_param(strValue, pszCommandLine,pszParam);
-
-   if(strValue == pszIfParamValue)
-   {
-
-      string strReplace;
-         
-      if(get_command_line_param(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_char())
-      {
-
-         strValue = strReplace;
-
-      }
-
-   }
-
-   ::str::_008Trim(strValue);
-
-   return strValue;
-
-}
+//string get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam)
+//{
+//
+//   string strValue;
+//
+//   get_command_line_param(strValue, pszCommandLine,pszParam);
+//
+//   if(strValue == pszIfParamValue)
+//   {
+//
+//      string strReplace;
+//         
+//      if(get_command_line_param(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_char())
+//      {
+//
+//         strValue = strReplace;
+//
+//      }
+//
+//   }
+//
+//   ::str::_008Trim(strValue);
+//
+//   return strValue;
+//
+//}
 
 //string get_command_line_param(const char * pszCommandLine, const char * pszParam)
 //{
@@ -124,7 +124,24 @@ string get_command_line_param(const char * pszCommandLine, const char * pszParam
 //}
 
 
-string get_command_line_param2(const char * psz,const char * pszParam)
+bool get_command_line_param(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault)
+{
+
+   if (!get_command_line_param(strValue, pszCommandLine, pszParam))
+   {
+
+      strValue = pszDefault;
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+string get_command_line_param(const char * psz,const char * pszParam)
 {
 
    string str;

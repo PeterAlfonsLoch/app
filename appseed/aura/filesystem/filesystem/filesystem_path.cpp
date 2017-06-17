@@ -163,7 +163,7 @@ namespace file
 //
 //#ifdef WINDOWS
 //
-//      if (((const string &)*this).CompareNoCase((const string &)path) == 0) // undoubtely eaqual...
+//      if (((const string &)*this).compare_ci((const string &)path) == 0) // undoubtely eaqual...
 //         return true;
 //
 //#else

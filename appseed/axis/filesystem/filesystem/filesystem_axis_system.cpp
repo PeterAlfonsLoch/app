@@ -1267,7 +1267,7 @@ restart:
          normalize(str1);
          ::file::path str2(psz2);
          normalize(str2);
-         return str1.CompareNoCase(str2);
+         return str1.compare_ci(str2);
       }
 
 

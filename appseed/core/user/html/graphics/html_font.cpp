@@ -27,7 +27,7 @@ namespace html
 
       m_strWeight.trim();
 
-      if(m_strWeight.CompareNoCase("bold") == 0)
+      if(m_strWeight.compare_ci("bold") == 0)
       {
          iWeight = 800;
       }
@@ -60,13 +60,13 @@ namespace html
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          stra[i].trim();
-         if(stra[i].CompareNoCase("fixed-width") == 0)
+         if(stra[i].compare_ci("fixed-width") == 0)
          {
          }
-         else if(stra[i].CompareNoCase("sans-serif") == 0)
+         else if(stra[i].compare_ci("sans-serif") == 0)
          {
          }
-         else if(stra[i].CompareNoCase("serif") == 0)
+         else if(stra[i].compare_ci("serif") == 0)
          {
          }
       }
@@ -95,10 +95,10 @@ namespace html
 
    bool font::operator == (const font & font)
    {
-      return !m_strFamily.CompareNoCase(font.m_strFamily)
-          && !m_strSize.CompareNoCase(font.m_strSize)
-          && !m_strWeight.CompareNoCase(font.m_strWeight)
-          && !m_strTextDecoration.CompareNoCase(font.m_strTextDecoration);
+      return !m_strFamily.compare_ci(font.m_strFamily)
+          && !m_strSize.compare_ci(font.m_strSize)
+          && !m_strWeight.compare_ci(font.m_strWeight)
+          && !m_strTextDecoration.compare_ci(font.m_strTextDecoration);
    }
 
 } // namespace html

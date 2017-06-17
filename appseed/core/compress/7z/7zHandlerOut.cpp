@@ -80,7 +80,7 @@ namespace n7z
    static const uint32_t kAlgorithmForHeaders = kLzmaAlgorithmX5;
 
    static inline bool IsCopyMethod(const string &methodName)
-   { return (methodName.CompareNoCase(kCopyMethod) == 0); }
+   { return (methodName.compare_ci(kCopyMethod) == 0); }
 
    HRes handler::GetFileTimeType(uint32_t *type)
    {

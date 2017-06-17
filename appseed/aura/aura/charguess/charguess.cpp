@@ -103,23 +103,23 @@ uint32_t charguess::get_code_page(const string & str)
    {
       return 0;
    }
-   else if(!str.CompareNoCase("Shift_JIS"))
+   else if(!str.compare_ci("Shift_JIS"))
    {
       return 932;
    }
-   else if(!str.CompareNoCase("Big5"))
+   else if(!str.compare_ci("Big5"))
    {
       return 950;
    }
-   else if(!str.CompareNoCase("gb18030"))
+   else if(!str.compare_ci("gb18030"))
    {
       return 936;
    }
-   else if(!str.CompareNoCase("windows-1252"))
+   else if(!str.compare_ci("windows-1252"))
    {
       return 1252;
    }
-   else if(!str.CompareNoCase("UTF-8"))
+   else if(!str.compare_ci("UTF-8"))
    {
       return CP_UTF8;
    }

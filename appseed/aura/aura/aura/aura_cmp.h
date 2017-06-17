@@ -428,14 +428,14 @@ inline int icmp(const TYPE1 & t1,const TYPE2 & t2)
 template < >
 inline int cmp(const string & str1, const string & str2)
 {
-   return str1.Compare(str2);
+   return str1.compare(str2);
 }
 
 
 template < >
 inline int icmp(const string & str1,const string & str2)
 {
-   return str1.CompareNoCase(str2);
+   return str1.compare_ci(str2);
 }
 
 template<size_t TUPLE_SIZE> struct cmp_tuple

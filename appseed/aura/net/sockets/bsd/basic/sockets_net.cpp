@@ -1002,11 +1002,11 @@ namespace sockets
       if(::str::is_simple_natural(str))
          return ::str::to_int(str);
 
-      if(str.CompareNoCase("http"))
+      if(str.compare_ci("http"))
       {
          return 80;
       }
-      else if(str.CompareNoCase("https"))
+      else if(str.compare_ci("https"))
       {
          return 443;
       }

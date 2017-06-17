@@ -76,9 +76,6 @@ namespace aura
 
       g_pszCooperativeLevel = "aura";
 
-
-      m_bAdvancedGUI = true;
-
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
       m_bMatterFromHttpCache = true;
@@ -88,7 +85,6 @@ namespace aura
       m_bMatterFromHttpCache = false;
 
 #endif
-
 
       set_app(this);
       
@@ -2753,13 +2749,13 @@ namespace aura
 
       defer_check_openweather_city_list();
 
-      if (strQ1.CompareNoCase("Cologne") == 0 && strQ2.CompareNoCase("DE") == 0)
+      if (strQ1.compare_ci("Cologne") == 0 && strQ2.compare_ci("DE") == 0)
       {
 
          strQ1 = "Koeln";
 
       }
-      else if (strQ1.CompareNoCase("Washington DC") == 0)
+      else if (strQ1.compare_ci("Washington DC") == 0)
       {
 
          strQ1 = "Washington, D. C.";

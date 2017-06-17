@@ -1624,7 +1624,7 @@ throw todo(get_app());
             }
             if(pchild->attr("enable_if_has_command_handler").get_string().has_char())
             {
-               item->m_bEnableIfHasCommandHandler = pchild->attr("enable_if_has_command_handler").get_string().CompareNoCase("true") == 0;
+               item->m_bEnableIfHasCommandHandler = pchild->attr("enable_if_has_command_handler").get_string().compare_ci("true") == 0;
             }
             item->m_fsStyle &= ~TBBS_SEPARATOR;
             m_itema.add(item);

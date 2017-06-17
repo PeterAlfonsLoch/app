@@ -309,7 +309,7 @@ namespace http
          return false;
       }
 
-      if(var.CompareNoCase("DIRECT") == 0)
+      if(var.compare_ci("DIRECT") == 0)
       {
          pproxy->m_bDirect = true;
       }

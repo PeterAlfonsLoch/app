@@ -5029,12 +5029,10 @@ namespace draw2d
    }
 
 
-   void graphics::enum_fonts(stringa & straFile, stringa & stra, font::csa & csa)
+   void graphics::enum_fonts(::draw2d::font::enum_item_array & itema)
    {
 
-      UNREFERENCED_PARAMETER(straFile);
-      UNREFERENCED_PARAMETER(stra);
-      UNREFERENCED_PARAMETER(csa);
+      UNREFERENCED_PARAMETER(itema);
 
       throw not_implemented(get_app());
 

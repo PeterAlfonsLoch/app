@@ -423,7 +423,7 @@ namespace user
 
       if (!(pSBP->nFlags & SBPF_UPDATE) &&
          ((lpszNewText == NULL && pSBP->strText.is_empty()) ||
-          (lpszNewText != NULL && pSBP->strText.Compare(lpszNewText) == 0)))
+          (lpszNewText != NULL && pSBP->strText.compare(lpszNewText) == 0)))
       {
          // nothing to change
          return TRUE;

@@ -199,20 +199,20 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
 
       // because some character entity references are
       // case-sensitive, we must fix them manually
-      if (!strKey.CompareNoCase("eth") ||
-         !strKey.CompareNoCase("thorn"))
+      if (!strKey.compare_ci("eth") ||
+         !strKey.compare_ci("thorn"))
       {
          if (::isupper(strKey[0]))
             strKey.make_upper();
          else
             strKey.make_lower();
       }
-      else if (!strKey.CompareNoCase("Oslash"))
+      else if (!strKey.compare_ci("Oslash"))
       {
          strKey.make_lower();
          strKey.set_at(0, 'O');
       }
-      else if (!strKey.CompareNoCase("AElig"))
+      else if (!strKey.compare_ci("AElig"))
       {
          strKey.make_lower();
          strKey.set_at(0, 'A');
@@ -222,13 +222,13 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
       {
          string   strT = strKey.Mid(1);
          strKey.make_lower();
-         if (strT.CompareNoCase("grave") == 0 ||
-            strT.CompareNoCase("acute") == 0 ||
-            strT.CompareNoCase("circ")  == 0 ||
-            strT.CompareNoCase("uml")   == 0 ||
-            strT.CompareNoCase("tilde") == 0 ||
-            strT.CompareNoCase("cedil") == 0 ||
-            strT.CompareNoCase("ring")  == 0)
+         if (strT.compare_ci("grave") == 0 ||
+            strT.compare_ci("acute") == 0 ||
+            strT.compare_ci("circ")  == 0 ||
+            strT.compare_ci("uml")   == 0 ||
+            strT.compare_ci("tilde") == 0 ||
+            strT.compare_ci("cedil") == 0 ||
+            strT.compare_ci("ring")  == 0)
          {
             strKey.set_at(0, strT[0]);
          }

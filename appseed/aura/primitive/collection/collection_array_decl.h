@@ -934,7 +934,8 @@ public:
    inline bool bounds(index i) const;
 
 
-   TYPE * element_at(index i) const { return &m_pData[i]; }
+   inline const TYPE & element_at(index nIndex) const;
+   inline TYPE & element_at(index nIndex);
 
 
    ::count set_size(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
@@ -957,6 +958,9 @@ public:
    void remove_descending_indexes(const index_array & ia);
 
 
+   inline void prepare_first_last(index & first, index & last) const;
+
+
    inline void remove_last();
    inline ::count remove_all();
    inline void clear();
@@ -968,7 +972,11 @@ public:
    void on_copy_element(index i,const TYPE * p) { ALLOCATOR::copy(&m_pData[i],p); }
 
 
-   index insert_at(index nIndex,const TYPE * newElement,::count nCount = 1);
+   // overloaded operator helpers
+   inline const TYPE& operator[](index nIndex) const;
+   inline TYPE& operator[](index nIndex);
+
+   index insert_at(index nIndex,const TYPE & newElement,::count nCount = 1);
    index remove_at(index nIndex,::count nCount = 1);
    index insert_at(index nStartIndex,array_base * pNewArray);
 
@@ -1160,6 +1168,16 @@ public:
 
    }
 
+
+   template < typename PRED >
+   void pred_sort(PRED pred)
+   {
+
+      ::sort::array::pred_sort(*this, pred);
+
+   }
+
+
    inline bool valid_iter(iterator first, iterator last)
    {
 
@@ -1205,9 +1223,6 @@ public:
    inline TYPE& get_at(index nIndex);
    inline void set_at(index nIndex, ARG_TYPE newElement);
 
-   inline const TYPE & element_at(index nIndex) const;
-   inline TYPE & element_at(index nIndex);
-
    inline TYPE & first(index n = 0);
    inline const TYPE & first(index n = 0) const;
 
@@ -1237,12 +1252,9 @@ public:
    inline iterator erase(iterator pos);
    inline iterator erase(iterator first,iterator last);
 
-   // overloaded operator helpers
-   inline const TYPE& operator[](index nIndex) const;
-   inline TYPE& operator[](index nIndex);
 
    // Operations that move elements around
-   inline index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
+   //inline index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);
    //void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
    //void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
@@ -1360,7 +1372,6 @@ public:
 
 
 
-
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class nodefctr_array :
    public array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > >
@@ -1376,3 +1387,22 @@ public:
 };
 
 
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::prepare_first_last(index & first, index & last) const
+{
+
+   if (first < 0)
+   {
+
+      first += this->get_count();
+
+   }
+
+   if (last < 0)
+   {
+
+      last += this->get_count();
+
+   }
+
+}

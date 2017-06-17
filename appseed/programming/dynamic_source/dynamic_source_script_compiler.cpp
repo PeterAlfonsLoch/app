@@ -1109,7 +1109,7 @@ void script_compiler::cppize1(ds_script * pscript)
          break;
       iLastEnd += 2;
       int32_t iShift = 0;
-      if(strSource.Mid(iPos, 5).CompareNoCase("<?php") == 0)
+      if(strSource.Mid(iPos, 5).compare_ci("<?php") == 0)
          iShift = 3;
       strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true, straId);
       iStart = iLastEnd;
@@ -2025,7 +2025,7 @@ void script_compiler::cppize1(const ::file::path & lpcszSource,const ::file::pat
          break;
       iLastEnd += 2;
       int32_t iShift = 0;
-      if(strSource.Mid(iPos, 5).CompareNoCase("<?php") == 0)
+      if(strSource.Mid(iPos, 5).compare_ci("<?php") == 0)
          iShift = 3;
       bCode = true;
       strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), false, straId);
@@ -2843,7 +2843,7 @@ bool script_compiler::defer_run_persistent(const char *psz)
    }
    else if(::str::begins_eat_ci(str,m_pmanager->m_strNetseedDsCa2Path/ "core\\persistent")
            && ::str::ends_eat_ci(str, ".ds")
-           && str.CompareNoCase("netnode_persistent_ui_str") != 0)
+           && str.compare_ci("netnode_persistent_ui_str") != 0)
    {
       run_persistent();
       return true;

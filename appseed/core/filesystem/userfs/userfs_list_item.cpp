@@ -56,7 +56,7 @@ namespace userfs
       {
          if(IsFolder())
          {
-            return m_strName.CompareNoCase(item.m_strName);
+            return m_strName.compare_ci(item.m_strName);
          }
          else
          {
@@ -71,7 +71,7 @@ namespace userfs
          }
          else
          {
-            return m_strName.CompareNoCase(item.m_strName);
+            return m_strName.compare_ci(item.m_strName);
          }
       }
    }

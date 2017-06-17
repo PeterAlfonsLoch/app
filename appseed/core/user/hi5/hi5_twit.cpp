@@ -494,7 +494,7 @@ namespace hi5
 
       post["media_type"] = strMimeType;
 
-      if (!strMimeType.begins_ci("image/") || strMimeType.CompareNoCase("image/gif") == 0)
+      if (!strMimeType.begins_ci("image/") || strMimeType.compare_ci("image/gif") == 0)
       {
 
          post["media_category"] = strCategory;

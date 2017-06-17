@@ -1414,14 +1414,14 @@ namespace user
       //      if(m_bCaseSensitiveMatch)
       //      {
 
-      //         if(str.Compare(strItem) == 0)
+      //         if(str.compare(strItem) == 0)
       //            return i;
 
       //      }
       //      else
       //      {
 
-      //         if(str.CompareNoCase(strItem) == 0)
+      //         if(str.compare_ci(strItem) == 0)
       //            return i;
 
       //      }

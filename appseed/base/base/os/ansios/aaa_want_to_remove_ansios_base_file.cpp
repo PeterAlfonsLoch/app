@@ -243,7 +243,7 @@ int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
          strMd5New.clear();
          string strFormat;
          strMd5New = ctx.to_string();
-         if(strMd5.CompareNoCase(strMd5New) != 0)
+         if(strMd5.compare_ci(strMd5New) != 0)
             return false;
       }
    }

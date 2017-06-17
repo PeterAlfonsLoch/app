@@ -127,7 +127,7 @@ namespace filehandler
          while(pitem != NULL)
          {
             if(dynamic_cast < item * > (pitem->m_pitem.m_p)->m_etopictype == item::topic_type_extension
-            && dynamic_cast < item * > (pitem->m_pitem.m_p)->m_strTopic.CompareNoCase(pszExtension) == 0)
+            && dynamic_cast < item * > (pitem->m_pitem.m_p)->m_strTopic.compare_ci(pszExtension) == 0)
                return pitem;
             pitem = pitem->get_next_or_parent();
          }
@@ -155,7 +155,7 @@ namespace filehandler
       while(pitem != NULL)
       {
          if(dynamic_cast < item * > (pitem->m_pitem.m_p)->m_etopictype == item::topic_type_mime_type
-         && dynamic_cast < item * > (pitem->m_pitem.m_p)->m_strTopic.CompareNoCase(pszMimeType) == 0)
+         && dynamic_cast < item * > (pitem->m_pitem.m_p)->m_strTopic.compare_ci(pszMimeType) == 0)
             return pitem;
          pitem = pitem->get_next_or_parent();
       }

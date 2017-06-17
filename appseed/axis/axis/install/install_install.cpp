@@ -183,7 +183,7 @@ namespace install
       for (index i = 0; i < straMd5.get_count(); i++)
       {
 
-         if (System.file().md5(patha[i]).CompareNoCase(straMd5[i]) != 0)
+         if (System.file().md5(patha[i]).compare_ci(straMd5[i]) != 0)
             return false;
 
       }
@@ -565,6 +565,7 @@ namespace install
       return file_as_string_dup(dir::element() / "appdata" / get_platform() / "ca2_build.txt");
    }
 
+
    void install::update_ca2_installed(bool bUnloadIfNotInstalled)
    {
 
@@ -578,13 +579,16 @@ namespace install
       }
 
 
-      string strStage(dir::stage(process_platform_dir_name2()));
+      string strStage(dir::stage(process_platform_dir_name()));
 
 #ifdef WINDOWSEX
-      ::SetDllDirectoryA(strStage);
+
+      ::SetDllDirectoryW(wstring(strStage));
+
 #endif
 
       m_bCa2Installed = true;
+
       if (m_bCa2Installed)
       {
          // this function (update_ca2_installed) calculates is_ca2_installed and
@@ -598,8 +602,11 @@ namespace install
          //m_bCa2Installed = libraryOs.open(dir::path(strStage, "os"));
          //if (m_bCa2Installed)
          //{
-         ::aura::library libraryCa2(get_app());
-         m_bCa2Installed = libraryCa2.open(dir::stage(process_platform_dir_name2()) / "core");
+         
+         ::aura::library libraryAura(get_app());
+
+         m_bCa2Installed = libraryAura.open(dir::stage(process_platform_dir_name()) / "aura");
+
          if (m_bCa2Installed)
          {
 
@@ -612,36 +619,30 @@ namespace install
             // is m_strCa2 in win_dir initialized correctly now that there is a ca2 module?
             // (reversed enginereed frustation and anger into flowers garden...)
 
-            //System.dir().update_module_path();
-
             System.dir().initialize();
-
-            if (!bUnloadIfNotInstalled)
-            {
-
-               return;
-
-            }
 
          }
 
-         //}
       }
 
    }
 
 
-
    bool install::is_ca2_installed()
    {
+
       return m_bCa2Installed;
+
    }
 
 
    void install::update_ca2_updated()
    {
+
       m_bCa2Updated = !strcmp_dup(get_starter_version(), get_ca2_version());
+
    }
+
 
    // ca files in store updated only in store but may not be yet transferred to the stage
    bool install::is_ca2_updated()
@@ -851,7 +852,7 @@ namespace install
          Application.file().put_contents(strBuildPath, strBuild);
 
       }
-      else if (strBuild.CompareNoCase("latest") == 0 && m_strmapLatestBuildNumber[m_strVersion].has_char() && isdigit_dup(m_strmapLatestBuildNumber[m_strVersion][0]))
+      else if (strBuild.compare_ci("latest") == 0 && m_strmapLatestBuildNumber[m_strVersion].has_char() && isdigit_dup(m_strmapLatestBuildNumber[m_strVersion][0]))
       {
 
          Application.file().put_contents(strBuildPath, m_strmapLatestBuildNumber[m_strVersion]);
@@ -1240,7 +1241,7 @@ namespace install
 //                  sl.unlock();
 //               }
 //
-//               if (!file_exists_dup(strDownload) || System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) != 0)
+//               if (!file_exists_dup(strDownload) || System.file().md5(strDownload).compare_ci(straMd5[iFile]) != 0)
 //               {
 //
 //                  trace().rich_trace("***Downloading installer");
@@ -1293,7 +1294,7 @@ namespace install
 //
 //                        System.compress().unbz(get_app(), strDownload, strDownload + ".bz");
 //
-//                        if (file_exists_dup(strDownload) && System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) == 0)
+//                        if (file_exists_dup(strDownload) && System.file().md5(strDownload).compare_ci(straMd5[iFile]) == 0)
 //                        {
 //
 //                           bFileNice = true;

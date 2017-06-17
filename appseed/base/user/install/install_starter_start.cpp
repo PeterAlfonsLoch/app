@@ -35,9 +35,12 @@ namespace install
 
       keep < bool > keepStarterStart(pbHostStarterStartFoo,true,false,true);
 
-      
       if (m_bStarting)
+      {
+
          return -1;
+
+      }
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -54,7 +57,23 @@ namespace install
 
       ::set_thread(m_pplugin);
 
-      string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start").trimmed();
+      string strId = get_command_line_param(m_strCommandLine, "app");
+
+      strId.trim();
+
+      if (strId.is_empty())
+      {
+
+         return -1;
+
+      }
+
+      if (strId == "session")
+      {
+
+         strId = "session_start";
+
+      }
 
       string strType;
 
@@ -62,19 +81,13 @@ namespace install
 
       string strSchema;
 
-      get_command_line_param(strType, m_strCommandLine, "app_type");
+      get_command_line_param(strType, m_strCommandLine, "app_type", "application");
 
-      get_command_line_param(strLocale, m_strCommandLine, "locale");
+      get_command_line_param(strLocale, m_strCommandLine, "locale", "_std");
 
-      get_command_line_param(strSchema, m_strCommandLine, "schema");
+      get_command_line_param(strSchema, m_strCommandLine, "schema", "_std");
 
-      get_command_line_param(strVersion,m_strCommandLine,"version");
-
-      if (strId.is_empty())
-         return -1;
-
-      if (strType.is_empty())
-         strType = "application";
+      get_command_line_param(strVersion, m_strCommandLine, "version");
 
       keep_true keepStarting(m_bStarting);
 
@@ -82,24 +95,17 @@ namespace install
 
       string strBuildNumber;
 
+      strBuildNumber = "latest";
+
       System.install().set_admin(false);
 
       while (true)
       {
 
-         if ((i % 5) == 0 || strBuildNumber.is_empty())
-         {
-
-            //strBuildNumber = System.install().get_latest_build_number(strVersion);
-
-            strBuildNumber = "latest";
-
-         }
-
          if (System.install().is_installing_ca2())
          {
             
-            Sleep((5000) * 2);
+            Sleep(500);
 
             continue;
 

@@ -259,22 +259,22 @@ namespace rar
 
             string ext = name.Mid(dotPos + 1);
 
-            if (ext.CompareNoCase("rar") == 0)
+            if (ext.compare_ci("rar") == 0)
             {
                _afterPart = name.Mid(dotPos);
                basePart = name.Left(dotPos);
             }
-            else if (ext.CompareNoCase("exe") == 0)
+            else if (ext.compare_ci("exe") == 0)
             {
                _afterPart = ".rar";
                basePart = name.Left(dotPos);
             }
             else if (!_newStyle)
             {
-               if (ext.CompareNoCase("000") == 0 ||
-                  ext.CompareNoCase("001") == 0 ||
-                  ext.CompareNoCase("r00") == 0 ||
-                  ext.CompareNoCase("r01") == 0)
+               if (ext.compare_ci("000") == 0 ||
+                  ext.compare_ci("001") == 0 ||
+                  ext.compare_ci("r00") == 0 ||
+                  ext.compare_ci("r01") == 0)
                {
                   _afterPart.Empty();
                   _first = false;

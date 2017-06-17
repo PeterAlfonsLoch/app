@@ -59,7 +59,7 @@
 // =====================================================================
 
 /**
-Compare characters of two strings without regard to case.
+compare characters of two strings without regard to case.
 @param s1 Null-terminated string to compare.
 @param s2 Null-terminated string to compare.
 @param len Number of characters to compare

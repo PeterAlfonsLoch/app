@@ -555,7 +555,9 @@ inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::element_at_grow(index nIn
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
-   return array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(nIndex,&newElement,nCount);
+   
+   return array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(nIndex, newElement,nCount);
+
 }
 
 

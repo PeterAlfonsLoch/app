@@ -118,7 +118,7 @@ namespace simpledb
    /*
    bool socket::http_filter_response_header(id key, string & strValue)
    {
-      if(strKey.CompareNoCase("Location") == 0)
+      if(strKey.compare_ci("Location") == 0)
       {
          url_domain domain;
          domain.create(System.url().get_server(strValue));
@@ -194,7 +194,7 @@ namespace simpledb
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);
-      if(strContentType.has_char() && strContentType.CompareNoCase("unknown") != 0)
+      if(strContentType.has_char() && strContentType.compare_ci("unknown") != 0)
       {
          outheader(__id(content_type)) = strContentType;
       }

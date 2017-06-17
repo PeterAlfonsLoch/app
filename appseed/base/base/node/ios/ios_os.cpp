@@ -145,7 +145,7 @@ namespace ios
       get_all_processes(dwa);
       for(int32_t i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).CompareNoCase(pszName) == 0)
+         if(get_process_path(dwa[i]).compare_ci(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -161,7 +161,7 @@ namespace ios
       for(int32_t i = 0; i < dwa.get_count(); i++)
       {
          if(System.file().title_(get_process_path(dwa[i]))
-            .CompareNoCase(pszName) == 0)
+            .compare_ci(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -578,7 +578,7 @@ namespace ios
 
       /*
        if(papp->m_strAppName.is_empty()
-       || papp->m_strAppName.CompareNoCase("bergedge") == 0
+       || papp->m_strAppName.compare_ci("bergedge") == 0
        || !papp->is_serviceable())
        return false;
 
@@ -630,7 +630,7 @@ namespace ios
 
       /*
        if(papp->m_strAppName.is_empty()
-       || papp->m_strAppName.CompareNoCase("bergedge") == 0
+       || papp->m_strAppName.compare_ci("bergedge") == 0
        || !papp->is_serviceable())
        return false;
 
@@ -671,7 +671,7 @@ namespace ios
 
       /*
        if(papp->m_strAppName.is_empty()
-       || papp->m_strAppName.CompareNoCase("bergedge") == 0
+       || papp->m_strAppName.compare_ci("bergedge") == 0
        || !papp->is_serviceable())
        return false;
 
@@ -712,7 +712,7 @@ namespace ios
 
       /*
        if(papp->m_strAppName.is_empty()
-       || papp->m_strAppName.CompareNoCase("bergedge") == 0
+       || papp->m_strAppName.compare_ci("bergedge") == 0
        || !papp->is_serviceable())
        return false;
 

@@ -260,7 +260,7 @@ namespace user
 
          sp(::xml::node) pnode = doc.get_root()->child_at(i);
 
-         if(pnode->get_name().CompareNoCase("item") == 0)
+         if(pnode->get_name().compare_ci("item") == 0)
          {
 
             string strCode    = pnode->attr("code");

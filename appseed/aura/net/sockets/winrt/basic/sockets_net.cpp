@@ -710,11 +710,11 @@ namespace sockets
 
       string str(psz);
 
-      if(str.CompareNoCase("http"))
+      if(str.compare_ci("http"))
       {
          return 80;
       }
-      else if(str.CompareNoCase("https"))
+      else if(str.compare_ci("https"))
       {
          return 443;
       }

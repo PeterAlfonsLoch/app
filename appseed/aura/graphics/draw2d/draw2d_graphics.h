@@ -713,7 +713,7 @@ namespace draw2d
       virtual void debug();
 
 
-      virtual void enum_fonts(stringa & straFile, stringa & stra, font::csa & csa);
+      virtual void enum_fonts(::draw2d::font::enum_item_array & itema);
 
 
       virtual float nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy);

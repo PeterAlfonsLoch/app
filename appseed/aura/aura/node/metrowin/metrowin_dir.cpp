@@ -186,11 +186,11 @@ namespace metrowin
    bool dir::is(const ::file::path & lpcszPath,::aura::application *  papp)
    {
 
-      if(lpcszPath.CompareNoCase("winmetro-Pictures:") == 0)
+      if(lpcszPath.compare_ci("winmetro-Pictures:") == 0)
          return true;
-      if (lpcszPath.CompareNoCase("winmetro-Music:") == 0)
+      if (lpcszPath.compare_ci("winmetro-Music:") == 0)
          return true;
-      if (lpcszPath.CompareNoCase("winmetro-Videos:") == 0)
+      if (lpcszPath.compare_ci("winmetro-Videos:") == 0)
          return true;
 
       bool bIsDir;

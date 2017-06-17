@@ -97,7 +97,7 @@ namespace libcompress
       for (i = 0; i < g_NumCodecs; i++)
       {
          const codec_info &codec = *g_Codecs[i];
-         if (name.CompareNoCase(codec.Name) == 0)
+         if (name.compare_ci(codec.Name) == 0)
          {
             methodId = codec.Id;
             numInStreams = codec.NumInStreams;
@@ -110,7 +110,7 @@ namespace libcompress
          for (i = 0; i < (uint32_t)externalCodecs->Size(); i++)
          {
             const codec_info_ex &codec = (*externalCodecs)[i];
-            if (codec.Name.CompareNoCase(name) == 0)
+            if (codec.Name.compare_ci(name) == 0)
             {
                methodId = codec.Id;
                numInStreams = codec.NumInStreams;

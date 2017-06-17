@@ -157,17 +157,12 @@ namespace visual
 
          synch_lock slEnum(penum->m_pmutex);
 
-         if (penum->m_straPath == m_straFontEnum && penum->m_stra == m_straNameEnum && penum->m_csa == m_csa)
+         if (penum->m_itema == m_itema)
             return;
 
-         m_straFontEnum = penum->m_straPath;
-
-         m_straNameEnum = penum->m_stra;
-
-         m_csa = penum->m_csa;
+         m_itema = penum->m_itema;
 
       }
-
 
       {
 
@@ -180,14 +175,14 @@ namespace visual
       int nextx;
 
       index i = 0;
-      index iCount = m_straFontEnum.get_count();
+      index iCount = m_itema.get_count();
       index iScan = 1;
       index iOrder = 0;
 
       m_itemptra.set_size(iCount);
 
       OutputDebugString("Middle");
-      ::fork_count(get_app(), m_straFontEnum.get_count(), [&](index iOrder, index i, index iCount, index iScan)
+      ::fork_count(get_app(), m_itema.get_count(), [&](index iOrder, index i, index iCount, index iScan)
       {
 
          ::draw2d::graphics_sp g(allocer());
@@ -219,9 +214,9 @@ namespace visual
 
             //         pitem->m_dibSel.alloc(allocer());
 
-            pitem->m_strFont = m_straFontEnum[i];
+            pitem->m_strFont = m_itema[i].m_strFile;
 
-            pitem->m_strName = m_straNameEnum[i];
+            pitem->m_strName = m_itema[i].m_strName;
 
             string str = pitem->m_strFont;
 
@@ -234,7 +229,7 @@ namespace visual
 
                pbox->m_dib.alloc(allocer());
 
-               if (str.CompareNoCase("GOUDY STOUT") == 0)
+               if (str.compare_ci("GOUDY STOUT") == 0)
                {
 
                   output_debug_string("test");
@@ -245,7 +240,7 @@ namespace visual
 
                pgraphics->SelectFont(pbox->m_font);
 
-               pbox->m_font->m_ecs = m_csa[i];
+               pbox->m_font->m_ecs = m_itema[i].m_ecs;
 
                if (j == 0)
                {
@@ -511,7 +506,7 @@ namespace visual
          index font_list_data::find_name(string str)
          {
 
-            return m_itemptra.pred_find_first([&](item *pitem) {return pitem->m_strName.CompareNoCase(str) == 0;  });
+            return m_itemptra.pred_find_first([&](item *pitem) {return pitem->m_strName.compare_ci(str) == 0;  });
 
          }
 

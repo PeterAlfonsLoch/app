@@ -1078,7 +1078,7 @@ int_bool file_ftd_dup(const char * pszDir,const char * pszFile)
          strMd5New.clear();
          string strFormat;
          strMd5New = ctx.to_string();
-         if(strMd5.CompareNoCase(strMd5New) != 0)
+         if(strMd5.compare_ci(strMd5New) != 0)
             return false;
       }
    }
@@ -1189,7 +1189,7 @@ int_bool file_copy_dup(const char * pszNew,const char * pszSrc,int_bool bOverwri
 int_bool file_is_equal_path(const char * psz1,const char * psz2)
 {
 
-   return normalize_path(psz1).CompareNoCase(normalize_path(psz2)) == 0;
+   return normalize_path(psz1).compare_ci(normalize_path(psz2)) == 0;
 
 }
 

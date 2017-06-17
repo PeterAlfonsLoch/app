@@ -123,7 +123,7 @@ namespace visual
 
       }
 
-      if (varFile.get_file_path().extension().CompareNoCase("svg") == 0
+      if (varFile.get_file_path().extension().compare_ci("svg") == 0
          || varFile.get_file_path().find_ci(".svg?") > 0)
       {
 
@@ -142,7 +142,7 @@ namespace visual
 
       }
 
-      if (varFile.get_file_path().extension().CompareNoCase("gif") == 0
+      if (varFile.get_file_path().extension().compare_ci("gif") == 0
          || varFile.get_file_path().find_ci(".gif?") > 0)
       {
 

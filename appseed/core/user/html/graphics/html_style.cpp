@@ -747,7 +747,7 @@ namespace html
       }
       str = m_propertyset[idName];
       string strEm = str;
-      if(string(idName).CompareNoCase("font-size") == 0)
+      if(string(idName).compare_ci("font-size") == 0)
       {
          if(::str::find_awwci("em", str) > 0)
          {

@@ -283,8 +283,8 @@ namespace datetime
             string strWord = str.Mid(19);
             strWord.trim_left();
             strWord = ::str::get_word(strWord," ");
-            if(strWord.CompareNoCase("UTC") == 0
-                  || strWord.CompareNoCase("GMT") == 0
+            if(strWord.compare_ci("UTC") == 0
+                  || strWord.compare_ci("GMT") == 0
                   || bUTC)
             {
                struct tm atm;

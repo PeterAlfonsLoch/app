@@ -484,7 +484,7 @@ void object::add_line(const char * pszCommandLine,application_bias * pbiasCreate
    else if(createcontext->m_spCommandLine->m_varQuery["build_number"].is_empty())
    {
 
-      if(createcontext->m_spCommandLine->m_strApp.CompareNoCase("app-core/netnodelite") == 0)
+      if(createcontext->m_spCommandLine->m_strApp.compare_ci("app-core/netnodelite") == 0)
       {
 
          createcontext->m_spCommandLine->m_varQuery["build_number"] = "static";

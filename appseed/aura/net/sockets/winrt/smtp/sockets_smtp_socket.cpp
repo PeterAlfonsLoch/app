@@ -38,7 +38,7 @@ namespace sockets
       {
          if(code == "250")
          {
-            if(pa.getword().CompareNoCase("auth") == 0)
+            if(pa.getword().compare_ci("auth") == 0)
             {
                stringa stra;
                stra.explode(" ", pa.getrest());

@@ -67,7 +67,7 @@ namespace filemanager
          keep < bool > keepRestoring(&m_bRestoring, true, false, true);
 
          if (pathFilemanagerProject.is_empty() || Application.dir().is(pathFilemanagerProject) 
-            || pathFilemanagerProject.extension().CompareNoCase("filemanager") != 0)
+            || pathFilemanagerProject.extension().compare_ci("filemanager") != 0)
          {
 
             m_pathFilemanagerProject = ::dir::local() / "localconfig/user.filemanager";

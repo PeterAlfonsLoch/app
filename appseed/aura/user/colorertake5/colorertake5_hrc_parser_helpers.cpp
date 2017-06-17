@@ -65,11 +65,11 @@ KeywordList::~KeywordList(){
 
 int32_t kwCompare(const void *e1, const void *e2)
 {
-  return ((KeywordInfo*)e1)->keyword.Compare(((KeywordInfo*)e2)->keyword);
+  return ((KeywordInfo*)e1)->keyword.compare(((KeywordInfo*)e2)->keyword);
 };
 int32_t kwCompareI(const void *e1, const void *e2)
    {
-  return ((KeywordInfo*)e1)->keyword.CompareNoCase(((KeywordInfo*)e2)->keyword);
+  return ((KeywordInfo*)e1)->keyword.compare_ci(((KeywordInfo*)e2)->keyword);
 };
 void KeywordList::sortList(){
   if (num < 2) return;

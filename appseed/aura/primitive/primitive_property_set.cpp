@@ -1016,7 +1016,7 @@ property * property_set::find_value_ci(const char * psz) const
    for(const_iterator it = begin(); it != end(); it++)
    {
       
-      if(it->get_string().CompareNoCase(psz) == 0)
+      if(it->get_string().compare_ci(psz) == 0)
       {
        
          return (property *) &it->m_element2;

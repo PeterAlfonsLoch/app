@@ -151,7 +151,7 @@ public:
       for (i = 0; i < sizeof(_szUnits)/sizeof(_szUnits[0]); i++)
       {
          if (m_strValue.Right(::strlen(_szUnits[i])). \
-            CompareNoCase(_szUnits[i]) == 0)
+            compare_ci(_szUnits[i]) == 0)
          {
             rUnit = (LengthUnitsEnum)i;
             break;
@@ -172,9 +172,9 @@ public:
     */
    operator bool() const
    {
-      if (!m_strValue.CompareNoCase("true"))
+      if (!m_strValue.compare_ci("true"))
          return (true);
-      if (!m_strValue.CompareNoCase("false"))
+      if (!m_strValue.compare_ci("false"))
          return (false);
       return (((int16_t)*this ? true : false));
    }
@@ -341,7 +341,7 @@ public:
             continue;
 
          // perform a CASE-INSENSITIVE search
-         if (pItem->m_strName.CompareNoCase(lpszAttributeName) == 0)
+         if (pItem->m_strName.compare_ci(lpszAttributeName) == 0)
             return (iElem);
       }
       return (-1);

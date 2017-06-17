@@ -34,6 +34,13 @@ public:
    //void remove_all();
    //void clear();
 
+   
+   void sort();
+   void sort_ci();
+   void collate_sort();
+   void collate_sort_ci();
+
+
    Type safe_at(index nIndex, Type tDefault = "") const;
    Type safe_at(index nIndex, Type tDefault = "");
 
@@ -97,17 +104,12 @@ public:
    void insert_at(index nIndex,const Type & newElement,::count nCount);
    void insert_at(index nStartIndex, const string_array & NewArray);
 
-   void quick_sort(
-      void swap(void * lpVoidSwapArg, const index, const index) = NULL,
-      void * lpvoidSwapArg = NULL,
-      bool bNoCase = false);
-
    template < typename SWAP >
-   void quick_sort(
+   void swap_sort(
       SWAP swap);
 
    template < typename SWAP >
-   void quick_sort_ci(
+   void swap_sort_ci(
       SWAP swap);
 
    void get_quick_sort_ci(index_array & ia);
@@ -377,8 +379,7 @@ public:
 
 template < class Type, class RawType >
 template < typename SWAP >
-void string_array < Type, RawType >::quick_sort(
-   SWAP swap)
+void string_array < Type, RawType >::swap_sort(SWAP swap)
 {
 
    index_array stackLowerBound;
@@ -405,7 +406,7 @@ void string_array < Type, RawType >::quick_sort(
             {
                if (iMPos == iUPos)
                   break;
-               if (this->element_at(iMPos).Compare(this->element_at(iUPos)) <= 0)
+               if (this->element_at(iMPos).compare(this->element_at(iUPos)) <= 0)
                   iUPos--;
                else
                {
@@ -424,7 +425,7 @@ void string_array < Type, RawType >::quick_sort(
                if (iMPos == iLPos)
                   break;
 
-               if (this->element_at(iLPos).Compare(this->element_at(iMPos)) <= 0)
+               if (this->element_at(iLPos).compare(this->element_at(iMPos)) <= 0)
                   iLPos++;
                else
                {
@@ -459,8 +460,7 @@ void string_array < Type, RawType >::quick_sort(
 
 template < class Type, class RawType >
 template < typename SWAP >
-void string_array < Type, RawType >::quick_sort_ci(
-   SWAP swap)
+void string_array < Type, RawType >::swap_sort_ci(SWAP swap)
 {
    index_array stackLowerBound;
    index_array stackUpperBound;
@@ -486,7 +486,7 @@ void string_array < Type, RawType >::quick_sort_ci(
             {
                if (iMPos == iUPos)
                   break;
-               if (this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0)
+               if (this->element_at(iMPos).compare_ci(this->element_at(iUPos)) <= 0)
                   iUPos--;
                else
                {
@@ -505,7 +505,7 @@ void string_array < Type, RawType >::quick_sort_ci(
                if (iMPos == iLPos)
                   break;
 
-               if (this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0)
+               if (this->element_at(iLPos).compare_ci(this->element_at(iMPos)) <= 0)
                   iLPos++;
                else
                {
@@ -1012,94 +1012,6 @@ void string_array < Type, RawType >::assert_valid() const
 
 
 
-template < typename Type, typename RawType >
-void string_array < Type, RawType >::quick_sort(
-   void swap(void * lpVoidSwapArg,const index,const index),
-   void * lpvoidSwapArg,
-   bool bNoCase)
-{
-   index_array stackLowerBound;
-   index_array stackUpperBound;
-   index iLowerBound;
-   index iUpperBound;
-   index iLPos,iUPos,iMPos;
-   Type t;
-
-   if(this->get_size() >= 2)
-   {
-      stackLowerBound.push(0);
-      stackUpperBound.push(this->get_size() - 1);
-      while(true)
-      {
-         iLowerBound = stackLowerBound.pop();
-         iUpperBound = stackUpperBound.pop();
-         iLPos = iLowerBound;
-         iMPos = iLowerBound;
-         iUPos = iUpperBound;
-         while(true)
-         {
-            while(true)
-            {
-               if(iMPos == iUPos)
-                  break;
-               if((bNoCase && this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0) ||
-                  (!bNoCase && this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0))
-                  iUPos--;
-               else
-               {
-                  t = get_at(iMPos);
-                  set_at(iMPos,get_at(iUPos));
-                  set_at(iUPos,t);
-                  if(swap != NULL)
-                  {
-                     swap(lpvoidSwapArg,iUPos,iMPos);
-                  }
-                  break;
-               }
-            }
-            if(iMPos == iUPos)
-               break;
-            iMPos = iUPos;
-            while(true)
-            {
-               if(iMPos == iLPos)
-                  break;
-
-               if((bNoCase && this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0) ||
-                  (!bNoCase && this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0))
-                  iLPos++;
-               else
-               {
-                  t = get_at(iLPos);
-                  set_at(iLPos,get_at(iMPos));
-                  set_at(iMPos,t);
-                  if(swap != NULL)
-                  {
-                     swap(lpvoidSwapArg,iLPos,iMPos);
-                  }
-                  break;
-               }
-            }
-            if(iMPos == iLPos)
-               break;
-            iMPos = iLPos;
-         }
-         if(iLowerBound < iMPos - 1)
-         {
-            stackLowerBound.push(iLowerBound);
-            stackUpperBound.push(iMPos - 1);
-         }
-         if(iMPos + 1 < iUpperBound)
-         {
-            stackLowerBound.push(iMPos + 1);
-            stackUpperBound.push(iUpperBound);
-         }
-         if(stackLowerBound.get_size() == 0)
-            break;
-      }
-   }
-
-}
 
 
 template < typename Type, typename RawType >
@@ -1130,7 +1042,7 @@ void string_array < Type, RawType >::get_quick_sort_ci(index_array & ia)
             {
                if(iMPos == iUPos)
                   break;
-               if(this->element_at(ia[iMPos]).CompareNoCase(this->element_at(ia[iUPos])) <= 0)
+               if(this->element_at(ia[iMPos]).compare_ci(this->element_at(ia[iUPos])) <= 0)
                   iUPos--;
                else
                {
@@ -1148,7 +1060,7 @@ void string_array < Type, RawType >::get_quick_sort_ci(index_array & ia)
                if(iMPos == iLPos)
                   break;
 
-               if(this->element_at(ia[iLPos]).CompareNoCase(this->element_at(ia[iMPos])) <= 0)
+               if(this->element_at(ia[iLPos]).compare_ci(this->element_at(ia[iMPos])) <= 0)
                   iLPos++;
                else
                {
@@ -1855,7 +1767,7 @@ for(i = dwa.get_size(); --i >= 0 ;)
 {
 remove_at(dwa.get_at(i));
 }
-Sort(string_array < Type, RawType > ::Compare);
+Sort(string_array < Type, RawType > ::compare);
 
 }*/
 
@@ -1927,7 +1839,7 @@ index string_array < Type, RawType > ::find_first_ci(const char * lpcsz,index fi
       last += this->get_count();
    for(; find <= last; find++)
    {
-      if(this->element_at(find).CompareNoCase(lpcsz) == 0)
+      if(this->element_at(find).compare_ci(lpcsz) == 0)
          return find;
    }
    return -1;
@@ -1935,18 +1847,25 @@ index string_array < Type, RawType > ::find_first_ci(const char * lpcsz,index fi
 
 
 template < class Type, class RawType >
-index string_array < Type, RawType > ::find_first(const char * lpcsz,index find,index last) const
+index string_array < Type, RawType > ::find_first(const char * lpcsz, index find, index last) const
 {
-   if(find < 0)
-      find += this->get_count();
-   if(last < 0)
-      last += this->get_count();
+   
+   this->prepare_first_last(find, last);
+
    for(; find <= last; find++)
    {
-      if(this->element_at(find).Compare(lpcsz) == 0)
+      
+      if (this->element_at(find).compare(lpcsz) == 0)
+      {
+
          return find;
+
+      }
+
    }
+
    return -1;
+
 }
 
 template < class Type, class RawType >
@@ -1973,7 +1892,7 @@ index string_array < Type, RawType > ::reverse_find_ci(const char * lpcsz,index 
       last += this->get_count();
    for(; find >= last; find--)
    {
-      if(this->element_at(find).CompareNoCase(lpcsz) == 0)
+      if(this->element_at(find).compare_ci(lpcsz) == 0)
          return find;
    }
    return -1;
@@ -1989,7 +1908,7 @@ index string_array < Type, RawType > ::reverse_find(const char * lpcsz,index fin
       last += this->get_count();
    for(; find >= last; find--)
    {
-      if(this->element_at(find).Compare(lpcsz) == 0)
+      if(this->element_at(find).compare(lpcsz) == 0)
          return find;
    }
    return -1;
@@ -2369,7 +2288,7 @@ for(int32_t i = 0; i < this->get_size(); i++)
 Type & strLeft = this->element_at(i).Left(iLen);
 if(strLeft.get_length() == iLen)
 {
-if(CompareNoCase(strLeft, str) == 0)
+if(compare_ci(strLeft, str) == 0)
 {
 iCount++;
 }
@@ -2412,7 +2331,7 @@ for(int32_t i = 0; i < stra.get_size(); i++)
 Type & strMid = stra[i].Left(iLength);
 if(strMid.get_length() >= iLen)
 {
-if(CompareNoCase(strMid.Left(iLen), str) == 0)
+if(compare_ci(strMid.Left(iLen), str) == 0)
 {
 if(FindFirstNoSortNoCase(strMid) < 0)
 {
@@ -2429,7 +2348,7 @@ int32_t string_array < Type, RawType > ::FindFirstNoSortNoCase(const char * lpcs
 {
 for(int32_t i = 0; i < this->get_size(); i++)
 {
-if(CompareNoCase(lpcsz, this->element_at(i)) == 0)
+if(compare_ci(lpcsz, this->element_at(i)) == 0)
 {
 return i;
 }
@@ -3303,7 +3222,7 @@ template < class Type, class RawType >
    for(index i = 0; i < get_count(); i++)
    {
 
-      if(element_at(i).CompareNoCase(str) == 0)
+      if(element_at(i).compare_ci(str) == 0)
          c--;
 
    }
@@ -3565,6 +3484,45 @@ void string_array < Type, RawType > ::c_add(wchar_t ** ppszParam)
    }
 
    free((void *)ppsz);
+
+}
+
+
+
+
+
+template < class Type, class RawType >
+void string_array < Type, RawType > ::sort()
+{
+   
+   pred_sort([](Type & a, Type & b) { return a.compare(b) < 0; });
+
+}
+
+
+template < class Type, class RawType >
+void string_array < Type, RawType > ::sort_ci()
+{
+
+   pred_sort([](Type & a, Type & b) { return a.compare_ci(b) < 0; });
+
+}
+
+
+template < class Type, class RawType >
+void string_array < Type, RawType > ::collate_sort()
+{
+
+   pred_sort([](Type & a, Type & b) { return a.collate(b) < 0; });
+
+}
+
+
+template < class Type, class RawType >
+void string_array < Type, RawType > ::collate_sort_ci()
+{
+
+   pred_sort([](Type & a, Type & b) { return a.collate_ci(b) < 0; });
 
 }
 

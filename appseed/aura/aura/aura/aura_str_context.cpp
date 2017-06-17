@@ -817,7 +817,7 @@ namespace aura
          {
 
             str = (*pcontext->m_pschema)[id];
-            if(!str.CompareNoCase(psz))
+            if(!str.compare_ci(psz))
                return true;
 
          }
@@ -825,7 +825,7 @@ namespace aura
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
-            if(!str.CompareNoCase(psz))
+            if(!str.compare_ci(psz))
                return true;
          }
 
@@ -833,7 +833,7 @@ namespace aura
          {
 
             str = (*pcontext->m_schemaptra[i])[id];
-            if(!str.CompareNoCase(psz))
+            if(!str.compare_ci(psz))
                return true;
 
          }
@@ -844,20 +844,20 @@ namespace aura
       {
 
          str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
-         if(!str.CompareNoCase(psz))
+         if(!str.compare_ci(psz))
             return true;
 
       }
 
       str = (*m_pschemaEn)[id]; // lang=en style=en
-      if(!str.CompareNoCase(psz))
+      if(!str.compare_ci(psz))
          return true;
 
       if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
       {
 
          str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
-         if(!str.CompareNoCase(psz))
+         if(!str.compare_ci(psz))
             return true;
 
       }

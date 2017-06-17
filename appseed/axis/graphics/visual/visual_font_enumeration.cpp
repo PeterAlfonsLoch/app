@@ -31,7 +31,7 @@ namespace visual
 
       g->CreateCompatibleDC(NULL);
 
-      g->enum_fonts(m_straPath, m_stra, m_csa);
+      g->enum_fonts(m_itema);
 
    }
 

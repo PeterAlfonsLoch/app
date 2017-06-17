@@ -84,7 +84,7 @@ namespace libcompress
 //   static const uint32_t kAlgorithmForHeaders = kLzmaAlgoX5;
 
    static bool AreEqual(const string &methodName, const char *s)
-   { return (methodName.CompareNoCase(s) == 0); }
+   { return (methodName.compare_ci(s) == 0); }
 
    bool COneMethodInfo::IsLzma() const
    {
@@ -171,7 +171,7 @@ namespace libcompress
    static int32_t FindPropIdExact(const string &name)
    {
       for (int32_t i = 0; i < sizeof(g_NameToPropID) / sizeof(g_NameToPropID[0]); i++)
-         if (name.CompareNoCase(g_NameToPropID[i].Name) == 0)
+         if (name.compare_ci(g_NameToPropID[i].Name) == 0)
             return i;
       return -1;
    }
@@ -181,7 +181,7 @@ namespace libcompress
       for (int32_t i = 0; i < sizeof(g_NameToPropID) / sizeof(g_NameToPropID[0]); i++)
       {
          string t = g_NameToPropID[i].Name;
-         if (t.CompareNoCase(name.Left(t.get_length())) == 0)
+         if (t.compare_ci(name.Left(t.get_length())) == 0)
             return i;
       }
       return -1;
@@ -555,7 +555,7 @@ namespace libcompress
       string realName = name.Mid(index);
       if (index == 0)
       {
-         if(name.Left(2).CompareNoCase("MT") == 0)
+         if(name.Left(2).compare_ci("MT") == 0)
          {
 #ifndef _7ZIP_ST
             throw "should implement below";
@@ -564,10 +564,10 @@ namespace libcompress
             return S_OK;
          }
          throw "should implement below";
-         /*if (name.CompareNoCase("RSFX") == 0)  return SetBoolProperty(_removeSfxBlock, value);
-         if (name.CompareNoCase("F") == 0) return SetBoolProperty(_autoFilter, value);
-         if (name.CompareNoCase("HC") == 0) return SetBoolProperty(_compressHeaders, value);
-         if (name.CompareNoCase("HCF") == 0)
+         /*if (name.compare_ci("RSFX") == 0)  return SetBoolProperty(_removeSfxBlock, value);
+         if (name.compare_ci("F") == 0) return SetBoolProperty(_autoFilter, value);
+         if (name.compare_ci("HC") == 0) return SetBoolProperty(_compressHeaders, value);
+         if (name.compare_ci("HCF") == 0)
          {
             bool compressHeadersFull = true;
             RINOK(SetBoolProperty(compressHeadersFull, value));
@@ -575,16 +575,16 @@ namespace libcompress
                return E_INVALIDARG;
             return S_OK;
          }
-         if (name.CompareNoCase("HE") == 0)
+         if (name.compare_ci("HE") == 0)
          {
             RINOK(SetBoolProperty(_encryptHeaders, value));
             _encryptHeadersSpecified = true;
             return S_OK;
          }
-         if (name.CompareNoCase("TC") == 0) return SetBoolProperty(WriteCTime, value);
-         if (name.CompareNoCase("TA") == 0) return SetBoolProperty(WriteATime, value);
-         if (name.CompareNoCase("TM") == 0) return SetBoolProperty(WriteMTime, value);
-         if (name.CompareNoCase("V") == 0) return SetBoolProperty(_volumeMode, value);
+         if (name.compare_ci("TC") == 0) return SetBoolProperty(WriteCTime, value);
+         if (name.compare_ci("TA") == 0) return SetBoolProperty(WriteATime, value);
+         if (name.compare_ci("TM") == 0) return SetBoolProperty(WriteMTime, value);
+         if (name.compare_ci("V") == 0) return SetBoolProperty(_volumeMode, value);
          number = 0;*/
       }
       if (number > 10000)

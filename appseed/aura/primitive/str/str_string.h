@@ -366,30 +366,20 @@ public:
    string & assign (InputIterator first, InputIterator last);
 
 
-
-   // Comparison
-   int32_t Compare(const char * psz ) const;
-   int32_t CompareNoCase(const char * psz) const RELEASENOTHROW;
-
-
-
-   int32_t Collate(const char * psz ) const RELEASENOTHROW;
-   int32_t CollateNoCase(const char * psz ) const RELEASENOTHROW;
-
    int32_t compare(const char * psz ) const;
-   int32_t compare_no_case(const char * psz ) const throw();
+   int32_t compare_ci(const char * psz ) const throw();
    int32_t collate(const char * psz ) const throw();
-   int32_t collate_no_case(const char * psz ) const throw();
+   int32_t collate_ci(const char * psz ) const throw();
 
    int32_t compare(strsize iStart, strsize iCount, const char * psz ) const;
-   int32_t compare_no_case(strsize iStart, strsize iCount, const char * psz ) const;
+   int32_t compare_ci(strsize iStart, strsize iCount, const char * psz ) const;
    int32_t collate(strsize iStart, strsize iCount, const char * psz ) const;
-   int32_t collate_no_case(strsize iStart, strsize iCount, const char * psz ) const;
+   int32_t collate_ci(strsize iStart, strsize iCount, const char * psz ) const;
 
    int32_t compare(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
-   int32_t compare_no_case(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
+   int32_t compare_ci(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
    int32_t collate(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
-   int32_t collate_no_case(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
+   int32_t collate_ci(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
 
    bool contains(char ch, strsize start = 0, strsize count = -1);
    bool contains(unichar wch, strsize start = 0, strsize count = -1);
@@ -1236,22 +1226,23 @@ inline int32_t __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,co
 }
 
 
-
-
-inline int32_t string::Compare(const char * psz ) const
+inline int32_t string::compare(const char * psz ) const
 {
-   //ENSURE( __is_valid_string( psz ) );
+   
    return( string_trait::StringCompare( GetString(), psz ) );
+
 }
 
-inline int32_t string::CompareNoCase(const char * psz ) const RELEASENOTHROW
+
+inline int32_t string::compare_ci(const char * psz ) const RELEASENOTHROW
 {
-   //ASSERT( __is_valid_string( psz ) );
+   
    return( string_trait::StringCompareIgnore( GetString(), psz ) );
+
 }
 
 
-inline   string CLASS_DECL_AURA operator+(const string & str1,const string & str2 )
+inline string CLASS_DECL_AURA operator+(const string & str1,const string & str2 )
 {
    string strResult( str1.GetManager() );
 
@@ -1364,7 +1355,7 @@ inline   string CLASS_DECL_AURA operator+ (int64_t i1, const string & str2)
 inline bool string::operator==(const string & str) const
 {
 
-   return get_length() == str.get_length() && Compare(str.m_pszData) == 0;
+   return get_length() == str.get_length() && compare(str.m_pszData) == 0;
 
 }
 
@@ -1415,7 +1406,7 @@ inline bool string::operator==(int32_t i) const
 inline bool string::operator<(const string & str) const
 {
 
-   return Compare(str) < 0;
+   return compare(str) < 0;
 
 }
 
@@ -1469,7 +1460,7 @@ inline bool string::operator<(int32_t i) const
 inline bool string::operator>(const string & str) const
 {
 
-   return Compare(str) > 0 ;
+   return compare(str) > 0 ;
 
 }
 

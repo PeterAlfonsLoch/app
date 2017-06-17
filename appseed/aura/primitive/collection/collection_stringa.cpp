@@ -265,7 +265,7 @@ int32_t g_add_smallest_tokens = 0;
 //{
 //remove_at(dwa.get_at(i));
 //}
-//Sort(stringa::Compare);
+//Sort(stringa::compare);
 //
 //}*/
 //
@@ -315,7 +315,7 @@ int32_t g_add_smallest_tokens = 0;
 //      last += this->get_count();
 //   for(; find <= last; find++)
 //   {
-//      if(this->element_at(find).CompareNoCase(lpcsz) == 0)
+//      if(this->element_at(find).compare_ci(lpcsz) == 0)
 //         return find;
 //   }
 //   return -1;
@@ -329,7 +329,7 @@ int32_t g_add_smallest_tokens = 0;
 //      last += this->get_count();
 //   for(; find <= last; find++)
 //   {
-//      if(this->element_at(find).Compare(lpcsz) == 0)
+//      if(this->element_at(find).compare(lpcsz) == 0)
 //         return find;
 //   }
 //   return -1;
@@ -344,7 +344,7 @@ int32_t g_add_smallest_tokens = 0;
 //      last += this->get_count();
 //   for(; find >= last; find--)
 //   {
-//      if(this->element_at(find).CompareNoCase(lpcsz) == 0)
+//      if(this->element_at(find).compare_ci(lpcsz) == 0)
 //         return find;
 //   }
 //   return -1;
@@ -358,7 +358,7 @@ int32_t g_add_smallest_tokens = 0;
 //      last += this->get_count();
 //   for(; find >= last; find--)
 //   {
-//      if(this->element_at(find).Compare(lpcsz) == 0)
+//      if(this->element_at(find).compare(lpcsz) == 0)
 //         return find;
 //   }
 //   return -1;
@@ -677,7 +677,7 @@ int32_t g_add_smallest_tokens = 0;
 //string & strLeft = this->element_at(i).Left(iLen);
 //if(strLeft.get_length() == iLen)
 //{
-//if(CompareNoCase(strLeft, str) == 0)
+//if(compare_ci(strLeft, str) == 0)
 //{
 //iCount++;
 //}
@@ -720,7 +720,7 @@ int32_t g_add_smallest_tokens = 0;
 //string & strMid = stra[i].Left(iLength);
 //if(strMid.get_length() >= iLen)
 //{
-//if(CompareNoCase(strMid.Left(iLen), str) == 0)
+//if(compare_ci(strMid.Left(iLen), str) == 0)
 //{
 //if(FindFirstNoSortNoCase(strMid) < 0)
 //{
@@ -737,7 +737,7 @@ int32_t g_add_smallest_tokens = 0;
 //{
 //for(int32_t i = 0; i < this->get_size(); i++)
 //{
-//if(CompareNoCase(lpcsz, this->element_at(i)) == 0)
+//if(compare_ci(lpcsz, this->element_at(i)) == 0)
 //{
 //return i;
 //}
@@ -1436,7 +1436,7 @@ int32_t g_add_smallest_tokens = 0;
 //   for(index i = 0; i < get_count(); i++)
 //   {
 //
-//      if(element_at(i).CompareNoCase(str) == 0)
+//      if(element_at(i).compare_ci(str) == 0)
 //         c--;
 //
 //   }

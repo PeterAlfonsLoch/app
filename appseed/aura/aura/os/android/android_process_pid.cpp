@@ -38,7 +38,7 @@ int32_t get_process_pid(const char * procNameParam)
                pos = cmdLine.reverse_find('/');
                if (pos >= 0)
                   cmdLine = cmdLine.substr(pos + 1);
-               // Compare against requested process name
+               // compare against requested process name
                if (procName == cmdLine)
                pid = id;
             }

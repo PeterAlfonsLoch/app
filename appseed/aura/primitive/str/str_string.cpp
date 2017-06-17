@@ -1204,46 +1204,46 @@ string & string::assign(uint64_t n,uint64_t ca)
 // Comparison
 
 
-int32_t string::Collate(const char * psz) const RELEASENOTHROW
+int32_t string::collate(const char * psz) const RELEASENOTHROW
 {
-   ASSERT(__is_valid_string(psz));
+   //ASSERT(__is_valid_string(psz));
    return(string_trait::StringCollate(GetString(),psz));
 }
 
-int32_t string::CollateNoCase(const char * psz) const RELEASENOTHROW
+int32_t string::collate_ci(const char * psz) const RELEASENOTHROW
 {
-   ASSERT(__is_valid_string(psz));
+   //ASSERT(__is_valid_string(psz));
    return(string_trait::StringCollateIgnore(GetString(),psz));
 }
 
-int32_t string::compare(const char * psz) const
-{
-   return Compare(psz);
-}
+//int32_t string::compare(const char * psz) const
+//{
+//   return compare(psz);
+//}
+//
+//int32_t string::compare_no_case(const char * psz) const throw()
+//{
+//   return compare_ci(psz);
+//}
 
-int32_t string::compare_no_case(const char * psz) const throw()
-{
-   return CompareNoCase(psz);
-}
-
-int32_t string::collate(const char * psz) const throw()
-{
-   return Collate(psz);
-}
-
-int32_t string::collate_no_case(const char * psz) const throw()
-{
-   return CollateNoCase(psz);
-}
+//int32_t string::collate(const char * psz) const throw()
+//{
+//   return Collate(psz);
+//}
+//
+//int32_t string::collate_no_case(const char * psz) const throw()
+//{
+//   return CollateNoCase(psz);
+//}
 
 int32_t string::compare(strsize iStart,strsize nCount,const char * psz) const
 {
    return substr(iStart,nCount).compare(psz);
 }
 
-int32_t string::compare_no_case(strsize iStart,strsize nCount,const char * psz) const
+int32_t string::compare_ci(strsize iStart,strsize nCount,const char * psz) const
 {
-   return substr(iStart,nCount).compare_no_case(psz);
+   return substr(iStart,nCount).compare_ci(psz);
 }
 
 int32_t string::collate(strsize iStart,strsize nCount,const char * psz) const
@@ -1251,9 +1251,9 @@ int32_t string::collate(strsize iStart,strsize nCount,const char * psz) const
    return substr(iStart,nCount).collate(psz);
 }
 
-int32_t string::collate_no_case(strsize iStart,strsize nCount,const char * psz) const
+int32_t string::collate_ci(strsize iStart,strsize nCount,const char * psz) const
 {
-   return substr(iStart,nCount).compare_no_case(psz);
+   return substr(iStart,nCount).compare_ci(psz);
 }
 
 int32_t string::compare(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
@@ -1261,9 +1261,9 @@ int32_t string::compare(strsize iStart,strsize nCount,const char * psz,strsize s
    return substr(iStart,nCount).compare(string(psz).substr(start2,count2));
 }
 
-int32_t string::compare_no_case(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
+int32_t string::compare_ci(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
 {
-   return substr(iStart,nCount).compare_no_case(string(psz).substr(start2,count2));
+   return substr(iStart,nCount).compare_ci(string(psz).substr(start2,count2));
 }
 
 int32_t string::collate(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
@@ -1271,9 +1271,9 @@ int32_t string::collate(strsize iStart,strsize nCount,const char * psz,strsize s
    return substr(iStart,nCount).collate(string(psz).substr(start2,count2));
 }
 
-int32_t string::collate_no_case(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
+int32_t string::collate_ci(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
 {
-   return substr(iStart,nCount).collate_no_case(string(psz).substr(start2,count2));
+   return substr(iStart,nCount).collate_ci(string(psz).substr(start2,count2));
 }
 
 

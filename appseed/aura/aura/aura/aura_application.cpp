@@ -5912,7 +5912,7 @@ namespace aura
 
       string strId(pszId);
 
-      if (strId.CompareNoCase("session") == 0)
+      if (strId.compare_ci("session") == 0)
       {
 
          papp = create_platform(m_pauraapp->m_paurasession);

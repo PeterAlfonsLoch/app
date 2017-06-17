@@ -400,7 +400,7 @@ int_array module_path_get_pid(const char * pszModulePath, bool bModuleNameIsProp
 
       if (bModuleNameIsPropertyFormatted)
       {
-         if (entry.th32ProcessID != 0 && strPath.CompareNoCase(pathModule) == 0)
+         if (entry.th32ProcessID != 0 && strPath.compare_ci(pathModule) == 0)
          {
 
             iaPid.add(entry.th32ProcessID);

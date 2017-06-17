@@ -64,7 +64,58 @@ namespace draw2d
          cs_count
       };
 
-      using csa = numeric_array < e_cs >;
+      class CLASS_DECL_AURA enum_item
+      {
+      public:
+
+         string      m_strFile;
+         string      m_strName;
+         e_cs        m_ecs;
+
+
+         enum_item() : m_ecs(cs_none) {}
+         enum_item(string strName, e_cs ecs) : m_strName(strName), m_ecs(ecs) {}
+         enum_item(string strFile, string strName, e_cs ecs) : m_strFile(strFile), m_strName(strName), m_ecs(ecs) {}
+
+         bool operator < (const enum_item & item) const
+         {
+
+            int iCompare = m_strName.compare(item.m_strName);
+
+            if (iCompare < 0)
+               return true;
+
+            if (iCompare > 0)
+               return false;
+
+            iCompare = ((int) m_ecs) - ((int) item.m_ecs);
+
+            if (iCompare < 0)
+               return true;
+
+            if (iCompare > 0)
+               return false;
+
+            return m_strFile.compare(item.m_strFile);
+
+         }
+
+         bool operator == (const enum_item & item) const
+         {
+
+            return m_strFile == item.m_strFile
+               && m_strName == item.m_strName
+               && m_ecs == item.m_ecs;
+
+         }
+
+         bool operator != (const enum_item & item) const { return !this->operator==(item);  }
+
+      };
+
+
+      using enum_item_array = comparable_array < enum_item >;
+
 
       string      m_strFontFamilyName;
       double      m_dFontSize;
@@ -136,8 +187,7 @@ namespace draw2d
 
 #ifdef WINDOWS
 
-   CLASS_DECL_AURA void wingdi_enum_fonts(stringa & stra, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
-//   CLASS_DECL_AURA void wingdi_enum_cs(string str, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
+   CLASS_DECL_AURA void wingdi_enum_fonts(::draw2d::font::enum_item_array & itema, bool bRaster, bool bTrueType, bool bOther);
    CLASS_DECL_AURA font::e_cs wingdi_get_cs(int iCs);
 
 #endif

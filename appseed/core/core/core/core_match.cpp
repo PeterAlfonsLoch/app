@@ -30,7 +30,7 @@ namespace core
 
       bool ci_string::matches(const var & var) const
       {
-         return var.get_string().CompareNoCase(m_str) == 0;
+         return var.get_string().compare_ci(m_str) == 0;
       }
 
       prefix::prefix(const char * psz) :

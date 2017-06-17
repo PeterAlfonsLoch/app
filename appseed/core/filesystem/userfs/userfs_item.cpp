@@ -24,7 +24,7 @@ namespace userfs
       
       if(pitem1->m_ptree == pitem2->m_ptree)
       {
-         return pitem1->m_pitem.cast < item >()->m_strName.CompareNoCase(pitem2->m_pitem.cast < item >()->m_strName);
+         return pitem1->m_pitem.cast < item >()->m_strName.compare_ci(pitem2->m_pitem.cast < item >()->m_strName);
       }
       else
       {

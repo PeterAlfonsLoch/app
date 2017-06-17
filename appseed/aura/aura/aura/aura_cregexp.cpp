@@ -782,7 +782,7 @@ const string pattern = global_pattern;
         if (ignoreCase)
         {
            string strAnalyze = pattern.Mid(toParse, wlen);
-            if(strAnalyze.CompareNoCase(*re->un.ui))
+            if(strAnalyze.compare_ci(*re->un.ui))
                return false;
           toParse += wlen;
         }else{

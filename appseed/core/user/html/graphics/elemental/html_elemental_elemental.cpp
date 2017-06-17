@@ -890,7 +890,7 @@ namespace html
             
          }
          
-         if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
+         if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
             
             sp(style_sheet) pstylesheet(canew(style_sheet(m_pauraapp)));
@@ -941,7 +941,7 @@ namespace html
             pdata->m_stylesheeta.add(pstylesheet);
          }
          else if (m_idTagName == __id(html_link)
-            && m_pparent->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
+            && m_pparent->get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
             sp(style_sheet) pstylesheet(canew(style_sheet(m_pauraapp)));
             pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));

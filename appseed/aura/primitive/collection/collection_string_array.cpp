@@ -405,8 +405,8 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
 //            {
 //               if(iMPos == iUPos)
 //                  break;
-//               if((bNoCase && this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0) ||
-//                  (!bNoCase && this->element_at(iMPos).CompareNoCase(this->element_at(iUPos)) <= 0))
+//               if((bNoCase && this->element_at(iMPos).compare_ci(this->element_at(iUPos)) <= 0) ||
+//                  (!bNoCase && this->element_at(iMPos).compare_ci(this->element_at(iUPos)) <= 0))
 //                  iUPos--;
 //               else
 //               {
@@ -428,8 +428,8 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
 //               if(iMPos == iLPos)
 //                  break;
 //
-//               if((bNoCase && this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0) ||
-//                  (!bNoCase && this->element_at(iLPos).CompareNoCase(this->element_at(iMPos)) <= 0))
+//               if((bNoCase && this->element_at(iLPos).compare_ci(this->element_at(iMPos)) <= 0) ||
+//                  (!bNoCase && this->element_at(iLPos).compare_ci(this->element_at(iMPos)) <= 0))
 //                  iLPos++;
 //               else
 //               {
@@ -491,7 +491,7 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
 //            {
 //               if(iMPos == iUPos)
 //                  break;
-//               if(this->element_at(ia[iMPos]).CompareNoCase(this->element_at(ia[iUPos])) <= 0)
+//               if(this->element_at(ia[iMPos]).compare_ci(this->element_at(ia[iUPos])) <= 0)
 //                  iUPos--;
 //               else
 //               {
@@ -509,7 +509,7 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
 //               if(iMPos == iLPos)
 //                  break;
 //
-//               if(this->element_at(ia[iLPos]).CompareNoCase(this->element_at(ia[iMPos])) <= 0)
+//               if(this->element_at(ia[iLPos]).compare_ci(this->element_at(ia[iMPos])) <= 0)
 //                  iLPos++;
 //               else
 //               {

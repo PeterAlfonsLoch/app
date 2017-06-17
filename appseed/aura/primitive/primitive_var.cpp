@@ -775,7 +775,7 @@ bool var::is_true(bool bDefault) const
    case type_empty:
       return bDefault;
    case type_string:
-      return !m_str.is_empty() && !(m_str.CompareNoCase("false") == 0 || m_str.CompareNoCase("0") == 0);
+      return !m_str.is_empty() && !(m_str.compare_ci("false") == 0 || m_str.compare_ci("0") == 0);
    case type_int32:
       return m_i32 != 0;
    case type_uint32:
@@ -1108,7 +1108,7 @@ int32_t var::compare_ci(const class var & var) const
    }
    else
    {
-      return get_string().CompareNoCase(var.get_string());
+      return get_string().compare_ci(var.get_string());
    }
    return -2;
 }
@@ -1178,7 +1178,7 @@ int32_t var::compare(const class var & var) const
    }
    else
    {
-      return get_string().Compare(var.get_string());
+      return get_string().compare(var.get_string());
    }
    return -2;
 }
@@ -2344,7 +2344,7 @@ bool var::array_contains_ci(const char * psz, index find, index last) const
          index upperbound = MIN(array_get_upper_bound(), last);
          for(index i = find; i <= upperbound; i++)
          {
-            if(at(i).get_string().CompareNoCase(psz) == 0)
+            if(at(i).get_string().compare_ci(psz) == 0)
             {
                return true;
             }
@@ -3661,13 +3661,13 @@ var::operator bool() const
    else if(m_etype == type_string)
    {
 
-      return m_str.CompareNoCase("true") == 0;
+      return m_str.compare_ci("true") == 0;
 
    }
    else if (m_etype == type_pstring)
    {
 
-      return m_pstr != NULL && m_pstr->CompareNoCase("true") == 0;
+      return m_pstr != NULL && m_pstr->compare_ci("true") == 0;
 
    }
    else if (m_etype == type_id)
@@ -3827,7 +3827,7 @@ bool var::has_property(const char * pszName) const
       }
       else if(cast < property >() != NULL)
       {
-         return cast < property >()->name().CompareNoCase(pszName) == 0;
+         return cast < property >()->name().compare_ci(pszName) == 0;
       }
       else
       {
@@ -3861,15 +3861,15 @@ void var::consume_identifier(const char * & psz, const char * pszEnd)
    while (isalpha_dup(*pszParse) && pszParse <= pszEnd)
       pszParse++;
    string str(pszStart, pszParse - pszStart);
-   if (str.CompareNoCase("false") == 0)
+   if (str.compare_ci("false") == 0)
    {
       operator = (false);
    }
-   else if (str.CompareNoCase("true") == 0)
+   else if (str.compare_ci("true") == 0)
    {
       operator = (true);
    }
-   else if (str.CompareNoCase("NULL") == 0)
+   else if (str.compare_ci("NULL") == 0)
    {
       set_type(var::type_null);
    }
@@ -4222,7 +4222,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
 
          property::parse_json_id(id, pszJson, pszEnd);
 
-         if (varChild.get_string().CompareNoCase(id) == 0)
+         if (varChild.get_string().compare_ci(id) == 0)
          {
 
             ::str::consume_spaces(pszJson, 0, pszEnd);

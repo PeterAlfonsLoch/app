@@ -38,7 +38,7 @@ property::property()
 //   {
 //      for(int32_t i = iStart; i < iCount; i++)
 //      {
-//         if(string(pair_set_interface_get_key(i)).CompareNoCase(pszKey) == 0)
+//         if(string(pair_set_interface_get_key(i)).compare_ci(pszKey) == 0)
 //         {
 //            return i;
 //         }
@@ -103,7 +103,7 @@ property::property()
 //   {
 //      for(int32_t i = iStart; i < iCount; i++)
 //      {
-//         if(string(str_str_interface_get_key(i)).CompareNoCase(pszKey) == 0)
+//         if(string(str_str_interface_get_key(i)).compare_ci(pszKey) == 0)
 //         {
 //            return i;
 //         }
@@ -527,7 +527,7 @@ int32_t property::compare_value_ci(const char * psz) const
 
 int32_t property::str_compare(const property & prop) const
 {
-   return get_string().Compare(prop.get_string());
+   return get_string().compare(prop.get_string());
 }
 
 bool property::strict_equal(const property & prop) const

@@ -112,7 +112,7 @@ index var_array::find_first_ci(const char * psz, index find, index last) const
       last += this->get_count();
    for(; find < this->get_count(); find++)
    {
-      if(this->element_at(find).get_string().CompareNoCase(psz) == 0)
+      if(this->element_at(find).get_string().compare_ci(psz) == 0)
          return find;
    }
    return -1;

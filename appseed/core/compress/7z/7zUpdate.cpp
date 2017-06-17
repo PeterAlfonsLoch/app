@@ -69,7 +69,7 @@ namespace n7z
    {
       string str1(s1);
       string str2(s2);
-      return str1.CompareNoCase(str2);
+      return str1.compare_ci(str2);
    }
 
 
@@ -376,8 +376,8 @@ namespace n7z
       if (sortByType)
       {
          RINOZ_COMP(a1.ExtensionIndex, a2.ExtensionIndex);
-         RINOZ(System.file().extension(u1.Name).CompareNoCase(System.file().extension(u2.Name)));
-         RINOZ(System.file().name_(u1.Name).CompareNoCase(System.file().name_(u2.Name)));
+         RINOZ(System.file().extension(u1.Name).compare_ci(System.file().extension(u2.Name)));
+         RINOZ(System.file().name_(u1.Name).compare_ci(System.file().name_(u2.Name)));
          if (!u1.MTimeDefined && u2.MTimeDefined) return 1;
          if (u1.MTimeDefined && !u2.MTimeDefined) return -1;
          if (u1.MTimeDefined && u2.MTimeDefined) RINOZ_COMP(u1.MTime, u2.MTime);
@@ -405,7 +405,7 @@ namespace n7z
    static bool IsExeExt(const string &ext)
    {
       for (int32_t i = 0; i < sizeof(g_ExeExts) / sizeof(g_ExeExts[0]); i++)
-         if (ext.CompareNoCase(g_ExeExts[i]) == 0)
+         if (ext.compare_ci(g_ExeExts[i]) == 0)
             return true;
       return false;
    }
@@ -1129,7 +1129,7 @@ namespace n7z
                   if (numSubFiles == 0)
                      prevExtension = ext;
                   else
-                     if (ext.CompareNoCase(prevExtension) != 0)
+                     if (ext.compare_ci(prevExtension) != 0)
                         break;
                }
             }

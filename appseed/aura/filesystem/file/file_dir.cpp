@@ -1002,7 +1002,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
    try
    {
 
-      if(string(psz).CompareNoCase("winmetro-Pictures://") == 0)
+      if(string(psz).compare_ci("winmetro-Pictures://") == 0)
       {
 
          strPrefix = "winmetro-Pictures://";
@@ -1021,7 +1021,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
          }
 
       }
-      else if (string(psz).CompareNoCase("winmetro-Music://") == 0)
+      else if (string(psz).compare_ci("winmetro-Music://") == 0)
       {
 
          strPrefix = "winmetro-Music://";
@@ -1040,7 +1040,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
          }
 
       }
-      else if (string(psz).CompareNoCase("winmetro-Videos://") == 0)
+      else if (string(psz).compare_ci("winmetro-Videos://") == 0)
       {
 
          strPrefix = "winmetro-Videos://";
