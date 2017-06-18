@@ -520,13 +520,21 @@ namespace sockets
    void websocket_client::OnHeaderComplete()
    {
 
-      if (outattr(__id(http_status_code)) == 101 && outattr(__id(http_status)) == "Switching Protocols")
+      int iHttpStatusCode = outattr(__id(http_status_code));
+
+      string strStatus = outattr(__id(http_status));
+
+      if (iHttpStatusCode == 101 &&  strStatus == "Switching Protocols")
       {
 
-         if (outheader("upgrade").compare_value_ci("websocket") == 0)
+         string strUpgrade = outheader("upgrade");
+
+         if (strUpgrade.compare_ci("websocket") == 0)
          {
 
-            if (outheader("connection").compare_value_ci("Upgrade") == 0)
+            string strConnection = outheader("connection");
+
+            if (strConnection.compare_ci("Upgrade") == 0)
             {
 
                m_dwLastPing = get_tick_count();

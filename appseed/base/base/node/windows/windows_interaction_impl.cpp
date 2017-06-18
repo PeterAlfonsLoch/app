@@ -1506,44 +1506,49 @@ namespace windows
       else
       {
 #ifdef DEBUG
-         switch (pbase->m_uiMessage)
+
+         if (0)
          {
-         case WM_CREATE:
-            TRACE("WM_CREATE wparam=%08x lparam=%08x",pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_WINDOWPOSCHANGING:
-            TRACE("WM_WINDOWPOSCHANGING wparam=%08x lparam=%08x",pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_WINDOWPOSCHANGED:
-            TRACE("WM_WINDOWPOSCHANGED wparam=%08x lparam=%08x",pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_ACTIVATE:
-            TRACE("WM_ACTIVATE wparam=%08x lparam=%08x",pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_ACTIVATEAPP:
-            TRACE("WM_ACTIVATEAPP wparam=%08x lparam=%08x",pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_MOUSEACTIVATE:
-            TRACE("WM_MOUSEACTIVATE wparam=%08x lparam=%08x",pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_NCACTIVATE:
-            TRACE("WM_NCACTIVATE wparam=%08x lparam=%08x",pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_SETFOCUS:
-            TRACE("WM_SETFOCUS wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_KILLFOCUS:
-            TRACE("WM_KILLFOCUS wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_MOVE:
-            TRACE("WM_MOVE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
-            break;
-         case WM_SIZE:
-            TRACE("WM_SIZE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
-            break;
-         default:
-            TRACE("MESSAGE %08x wparam=%08x lparam=%08x", pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
-            break;
+            switch (pbase->m_uiMessage)
+            {
+            case WM_CREATE:
+               TRACE("WM_CREATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_WINDOWPOSCHANGING:
+               TRACE("WM_WINDOWPOSCHANGING wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_WINDOWPOSCHANGED:
+               TRACE("WM_WINDOWPOSCHANGED wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_ACTIVATE:
+               TRACE("WM_ACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_ACTIVATEAPP:
+               TRACE("WM_ACTIVATEAPP wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_MOUSEACTIVATE:
+               TRACE("WM_MOUSEACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_NCACTIVATE:
+               TRACE("WM_NCACTIVATE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_SETFOCUS:
+               TRACE("WM_SETFOCUS wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_KILLFOCUS:
+               TRACE("WM_KILLFOCUS wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_MOVE:
+               TRACE("WM_MOVE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            case WM_SIZE:
+               TRACE("WM_SIZE wparam=%08x lparam=%08x", pbase->m_wparam, pbase->m_lparam);
+               break;
+            default:
+               TRACE("MESSAGE %08x wparam=%08x lparam=%08x", pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
+               break;
+            }
+
          }
          
 #endif
