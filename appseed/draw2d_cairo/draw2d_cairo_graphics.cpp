@@ -5843,7 +5843,7 @@ namespace draw2d_cairo
 #endif // WINDOWS
 
 
-   void graphics::enum_fonts(stringa & straFile, stringa & stra, font::csa & csa)
+   void graphics::enum_fonts(::draw2d::font::enum_item_array & itema)
    {
 
 #if defined(LINUX)
@@ -5950,34 +5950,14 @@ namespace draw2d_cairo
 
 #elif defined(WINDOWS)
 
-      ::draw2d::wingdi_enum_fonts(stra, csa, false, true, false);
-
-      straFile = stra;
-
-      /*
-            HDC hdc = ::CreateCompatibleDC(NULL);
-
-            font_fam_callback c;
-
-            LOGFONTW lf;
-
-            ZERO(lf);
-
-            lf.lfCharSet = DEFAULT_CHARSET;
-
-            EnumFontFamiliesExW(hdc, &lf, (FONTENUMPROCW)&EnumFamCallBackW, (LPARAM)&c, 0);
-
-            ::DeleteDC(hdc);
-
-            straFile       = c.m_stra;
-
-            stra           = c.m_stra;
-
-            csa            = c.m_csa;*/
+      ::draw2d::wingdi_enum_fonts(itema, false, true, false);
 
 #else
+
       throw not_implemented(get_app());
+
 #endif
+
    }
 
    string graphics::get_font_path(string str)

@@ -237,7 +237,7 @@ file_position_t memory_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
       dwNew = (memory_position_t)lOff;
       break;
    case ::file::seek_end:
-      dwNew = (memory_position_t)(get_length() - lOff);
+      dwNew = (memory_position_t)(get_length() + lOff);
       break;
    case ::file::seek_current:
       if (lOff < 0)
