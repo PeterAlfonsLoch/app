@@ -981,6 +981,12 @@ public:
    index insert_at(index nStartIndex,array_base * pNewArray);
 
 
+   inline TYPE pop(index index = -1);
+   inline index push(ARG_TYPE newElement, index i = 0);
+   inline void pop_back(index index = -1);
+   inline void push_back(ARG_TYPE newElement, index = 0);
+
+
    virtual ::count append(const array_base & src); // return old size
    virtual void copy(const array_base & src);
 
@@ -1242,10 +1248,6 @@ public:
    inline index add_new( ::count count);
 
 
-   inline TYPE pop(index index = -1);
-   inline index push(ARG_TYPE newElement,index i = 0);
-   inline void pop_back(index index = -1);
-   inline void push_back(ARG_TYPE newElement,index = 0);
 
 
 

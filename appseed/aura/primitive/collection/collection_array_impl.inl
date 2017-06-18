@@ -509,7 +509,7 @@ inline index array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new(::count count)
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE array < TYPE, ARG_TYPE, ALLOCATOR >::pop(index n)
+inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::pop(index n)
 {
 
    index i = this->get_upper_bound(n);
@@ -523,7 +523,7 @@ inline TYPE array < TYPE, ARG_TYPE, ALLOCATOR >::pop(index n)
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void array < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(index n)
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(index n)
 {
 
    remove_at(this->get_upper_bound(n));
@@ -531,13 +531,13 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(index n)
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline index array < TYPE, ARG_TYPE, ALLOCATOR >::push(ARG_TYPE newElement,index n)
+inline index array_base < TYPE, ARG_TYPE, ALLOCATOR >::push(ARG_TYPE newElement,index n)
 {
    return insert_at(this->get_upper_bound(n),newElement);
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void array < TYPE, ARG_TYPE, ALLOCATOR >::push_back(ARG_TYPE newElement,index n)
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR >::push_back(ARG_TYPE newElement,index n)
 {
    insert_at(this->get_upper_bound(n),newElement);
 }
