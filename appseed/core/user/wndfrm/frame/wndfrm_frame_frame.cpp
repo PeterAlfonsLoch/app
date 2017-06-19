@@ -981,6 +981,16 @@ namespace user
 
             rect rect(rectWindow);
 
+            if (m_pworkset->GetWndDraw()->frame_is_transparent())
+            {
+
+               *lprect = rect;
+
+               return;
+
+            }
+
+
             ::rect * prectMargin = get_margin_rect();
 
             int iTopDeflate;
@@ -988,14 +998,6 @@ namespace user
             int iLeftDeflate;
 
             if(get_appearance()->GetAppearance() == ::user::AppearanceFullScreen)
-            {
-
-               iTopDeflate = 0;
-
-               iLeftDeflate = 0;
-
-            }
-            else if (m_pworkset->GetWndDraw()->frame_is_transparent())
             {
 
                iTopDeflate = 0;
@@ -1019,6 +1021,7 @@ namespace user
                iLeftDeflate = prectMargin->left;
 
             }
+
 
             int iRightDeflate;
             

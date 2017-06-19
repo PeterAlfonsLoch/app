@@ -12,7 +12,7 @@ int __node_is_debugger_attached()
 
 
 // Twitter Automator and Denis Lakic and UpWork contribution
-// enzymes: Liveedu.tv, Twitch.tv and Beam.pro streamers and viewers
+// enzymes: Liveedu.tv, Twitch.tv and Mixer.com streamers and viewers
 // Mummi and bilbo!!
 // create call to :
 CLASS_DECL_AURA void windows_install_crash_dump_reporting(::aura::application * papp)

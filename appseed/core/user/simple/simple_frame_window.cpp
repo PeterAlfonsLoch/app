@@ -933,9 +933,11 @@ bool simple_frame_window::WfiToggleTransparentFrame()
 
    data_set("transparent_frame",m_bTransparentFrame);
 
-   on_layout();
+   //on_layout();
 
-   _001UpdateWindow();
+   //_001UpdateWindow();
+
+   set_need_layout();
 
    return true;
 
