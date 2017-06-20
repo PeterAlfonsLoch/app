@@ -378,7 +378,7 @@ namespace zip
 
       InFile infile(papp);
 
-      if(!infile.unzip_open2(pfile))
+      if(!infile.unzip_open(pfile))
       {
          return false;
       }

@@ -392,6 +392,9 @@ namespace user
 #include "core/user/user/user_form.h"
 #include "core/user/user/user_form_mesh.h"
 
+
+#include "core/user/user/user_font_list.h"
+
 #include "math/calculator/calculator_plain_edit_view.h"
 
 namespace core

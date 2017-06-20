@@ -1,13 +1,5 @@
-#include "framework.h"
-
-
-#include "user.h"
-
-
-
-
-
 //Pasta de Z:\nordroid\app\appseed\core\user\user
+
 
 #include "user.cpp"
 #include "user_button.cpp"
@@ -20,6 +12,7 @@
 #include "user_document_manager.cpp"
 #include "user_edit_plain_text_view.cpp"
 #include "user_elastic_slider.cpp"
+#include "user_font_list.cpp"
 #include "user_form.cpp"
 //#include "user_form_callback.cpp"
 #include "user_form_view.cpp"
@@ -36,8 +29,8 @@
 #include "user_list_cache.cpp"
 #include "user_mesh_cache.cpp"
 #include "user_mesh_cache_interface.cpp"
-#include "../simple/simple_mesh_data.cpp"
-#include "../simple/simple_list_data.cpp"
+//#include "simple/simple_mesh_data.cpp"
+//#include "simple/simple_list_data.cpp"
 #include "user_list_data.cpp"
 #include "user_mesh_data.cpp"
 #include "user_list_header.cpp"
@@ -75,5 +68,10 @@
 #include "user_xfplayer_view_line.cpp"
 #include "user_xfplayer_view_lines.cpp"
 #include "user_xfplayer_view_line_selection.cpp"
-//             58 arquivo(s)        808.857 bytes
+//              58 arquivo(s)        808.857 bytes
 
+//#include "app/appseed/core/netuser/netuser_network_configuration.cpp"
+
+
+
+#include "user_margin.cpp"

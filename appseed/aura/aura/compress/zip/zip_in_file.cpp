@@ -99,7 +99,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::unzip_open2(::file::file_sp  pfile, int iBufferLevel)
+   bool InFile::unzip_open(::file::file * pfile, int iBufferLevel)
    {
 
       m_filea.remove_all();
