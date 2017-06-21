@@ -4,7 +4,7 @@
 namespace aura
 {
 
-   class CLASS_DECL_AURA simple_app:
+   class CLASS_DECL_AURA app:
       virtual public ::aura::system
    {
    public:
@@ -16,8 +16,8 @@ namespace aura
       MESSAGE                       m_msg;
 
 
-      simple_app();
-      virtual ~simple_app();
+      app();
+      virtual ~app();
 
       virtual int32_t main();
 

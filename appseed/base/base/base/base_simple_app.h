@@ -4,7 +4,7 @@
 namespace base
 {
 
-   class CLASS_DECL_BASE simple_app:
+   class CLASS_DECL_BASE app:
       virtual public ::base::system
    {
    public:
@@ -16,8 +16,8 @@ namespace base
       MESSAGE                       m_msg;
 
 
-      simple_app();
-      virtual ~simple_app();
+      app();
+      virtual ~app();
 
       virtual int32_t main();
 

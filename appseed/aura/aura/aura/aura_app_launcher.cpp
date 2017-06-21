@@ -82,7 +82,7 @@ namespace aura
 
 #else
 
-      return path::a_spa(m_strPlatform);
+      return path::app_app(m_strPlatform);
 
 #endif
       #endif

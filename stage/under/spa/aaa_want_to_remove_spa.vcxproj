@@ -148,7 +148,7 @@ $(SolutionDir)../../thirdparty/binary/bzip2 -c $(TargetPath) &gt; "$(SolutionDir
     <ClCompile Include="spa_command_start.cpp" />
     <ClCompile Include="spa_main.cpp" />
     <ClCompile Include="spa_small_bell.cpp" />
-    <ClCompile Include="spa_spa.cpp" />
+    <ClCompile Include="spapp_app.cpp" />
     <ClCompile Include="spa_trace.cpp" />
     <ClCompile Include="spa_wingdi.cpp" />
   </ItemGroup>

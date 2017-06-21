@@ -1212,8 +1212,8 @@ saveRLE(FIBITMAP* dib, FreeImageIO* io, fi_handle handle) {
 	// In the end we gain no bytes from compression, but also must insert a byte at every 3th pixel
 
 	// add extra space for anti-commpressed lines
-	size_t extra_space = (size_t)ceil(width / 3.0);
-	BYTE* const line_begin = (BYTE*)malloc(width * pixel_size + extra_space);
+	size_t extrapp_appce = (size_t)ceil(width / 3.0);
+	BYTE* const line_begin = (BYTE*)malloc(width * pixel_size + extrapp_appce);
 	BYTE* line = line_begin;
 
 	BYTE *current = (BYTE*)malloc(pixel_size);

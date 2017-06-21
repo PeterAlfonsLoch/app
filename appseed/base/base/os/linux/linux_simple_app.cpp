@@ -8,7 +8,7 @@ namespace base
 {
 
 
-   simple_app::simple_app():
+   app::app():
       ::aura::system(this, NULL),
       ::axis::system(this),
       ::base::system(this)
@@ -16,13 +16,13 @@ namespace base
 
    }
 
-   simple_app::~simple_app()
+   app::~app()
    {
 
    }
 
 
-   int32_t simple_app::main()
+   int32_t app::main()
    {
 
 //      __argc = _init_args();
@@ -67,7 +67,7 @@ namespace base
    }
 
 
-   void simple_app::body()
+   void app::body()
    {
 
       try
@@ -182,7 +182,7 @@ namespace base
    }
 
 
-   bool simple_app::intro()
+   bool app::intro()
    {
 
       return true;
@@ -190,7 +190,7 @@ namespace base
    }
 
 
-   int32_t simple_app::refrain()
+   int32_t app::refrain()
    {
 
       while(true)
@@ -208,7 +208,7 @@ namespace base
    }
 
 
-   bool simple_app::end()
+   bool app::end()
    {
 
       try
@@ -229,7 +229,7 @@ namespace base
    }
 
 
-   int32_t simple_app::simple_app_pre_run()
+   int32_t app::simple_app_pre_run()
    {
 
       return 0;

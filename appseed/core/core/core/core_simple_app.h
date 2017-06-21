@@ -4,14 +4,14 @@
 namespace core
 {
 
-   class CLASS_DECL_CORE simple_app:
-      virtual public ::base::simple_app
+   class CLASS_DECL_CORE app:
+      virtual public ::base::app
    {
    public:
 
 
-      simple_app();
-      virtual ~simple_app();
+      app();
+      virtual ~app();
 
 
       template < class APP >

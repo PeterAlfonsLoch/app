@@ -5,7 +5,7 @@ namespace base
 {
 
 
-   simple_app::simple_app():
+   app::app():
       ::aura::system(this, NULL),
       ::axis::system(this),
       ::base::system(this)
@@ -15,13 +15,13 @@ namespace base
 
    }
 
-   simple_app::~simple_app()
+   app::~app()
    {
 
    }
 
 
-   int simple_app::main()
+   int app::main()
    {
 
       //Sleep(15 * 1000);
@@ -85,7 +85,7 @@ namespace base
    }
 
 
-   void simple_app::body()
+   void app::body()
    {
 
 
@@ -141,12 +141,12 @@ namespace base
 
    }
 
-   bool simple_app::intro()
+   bool app::intro()
    {
       return true;
    }
 
-   int simple_app::refrain()
+   int app::refrain()
    {
 
 #ifdef WINDOWSEX
@@ -161,13 +161,13 @@ namespace base
       return 0;
    }
 
-   bool simple_app::end()
+   bool app::end()
    {
       return true;
    }
 
 
-   int simple_app::simple_app_pre_run()
+   int app::simple_app_pre_run()
    {
 
       return 0;

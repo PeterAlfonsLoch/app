@@ -6,19 +6,19 @@ namespace aura
 {
 
 
-   simple_app::simple_app():
+   app::app():
       ::aura::system(this, NULL)
    {
 
    }
 
-   simple_app::~simple_app()
+   app::~app()
    {
 
    }
 
 
-   int32_t simple_app::main()
+   int32_t app::main()
    {
 
 //      __argc = _init_args();
@@ -57,7 +57,7 @@ namespace aura
    }
 
 
-   void simple_app::body()
+   void app::body()
    {
 
       try
@@ -170,12 +170,12 @@ namespace aura
 
    }
 
-   bool simple_app::intro()
+   bool app::intro()
    {
       return true;
    }
 
-   int32_t simple_app::refrain()
+   int32_t app::refrain()
    {
 
       while(true)
@@ -189,7 +189,7 @@ namespace aura
    }
 
 
-   bool simple_app::end()
+   bool app::end()
    {
 
       try
@@ -210,7 +210,7 @@ namespace aura
    }
 
 
-   int32_t simple_app::simple_app_pre_run()
+   int32_t app::simple_app_pre_run()
    {
       return 0;
    }

@@ -4,7 +4,7 @@
 namespace axis
 {
 
-   class CLASS_DECL_AXIS simple_app:
+   class CLASS_DECL_AXIS app:
       virtual public ::axis::system
    {
    public:
@@ -16,8 +16,8 @@ namespace axis
       MESSAGE                       m_msg;
 
 
-      simple_app();
-      virtual ~simple_app();
+      app();
+      virtual ~app();
 
       virtual int32_t main();
 

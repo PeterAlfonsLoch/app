@@ -575,7 +575,7 @@ return true;
 
       int iNew = sbumpc();
 
-      if (iNew == i || ((char)iNew != '\n' && (char)iNew != '\r'))
+      if ((iNew == i || ((char)iNew != '\n' && (char)iNew != '\r')) && iNew != EOF)
       {
 
          seek(-1, seek_current);

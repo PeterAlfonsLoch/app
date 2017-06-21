@@ -205,6 +205,13 @@ const char * strchr_dup(const char * sz, char ch)
 
    }
 
+   if (*sz == '\0')
+   {
+
+      return NULL;
+
+   }
+
    while (true)
    {
 

@@ -35,7 +35,7 @@
     <ClCompile Include="spa_bz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="spa_spa.cpp">
+    <ClCompile Include="spapp_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\ca2\compress\bsdiff\blocksort.c">

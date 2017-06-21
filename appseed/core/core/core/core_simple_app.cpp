@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   simple_app::simple_app() :
+   app::app() :
       ::aura::system(this, NULL),
       ::axis::system(this),
       ::base::system(this)
@@ -13,7 +13,7 @@ namespace core
 
    }
 
-   simple_app::~simple_app()
+   app::~app()
    {
 
    }

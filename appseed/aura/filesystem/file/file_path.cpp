@@ -34,26 +34,26 @@ namespace path
    }
 
 
-   ::file::path a_spa(string strPlatform)
+   ::file::path app_app(string strPlatform)
    {
 
 #ifdef WINDOWS
 
-      return ::dir::a_spa(strPlatform) / "a_spa.exe";
+      return ::dir::app_app(strPlatform) / "app_app.exe";
 
 #else
 
-      return ::dir::a_spa(strPlatform) / "a_spa";
+      return ::dir::app_app(strPlatform) / "app_app";
 
 #endif
 
    }
 
 
-   ::file::path a_spaadmin(string strPlatform)
+   ::file::path app_appadmin(string strPlatform)
    {
 
-      return ::dir::a_spa(strPlatform) / "a_spaadmin.exe";
+      return ::dir::app_app(strPlatform) / "app_appadmin.exe";
 
    }
 
@@ -61,7 +61,7 @@ namespace path
    ::file::path vcredist(string strPlatform)
    {
 
-      return ::dir::a_spa(strPlatform) / "vcredist.exe";
+      return ::dir::app_app(strPlatform) / "vcredist.exe";
 
    }
 

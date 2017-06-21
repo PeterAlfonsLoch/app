@@ -1038,20 +1038,31 @@ retry:
 
          if(iStatusCode == 0)
          {
+
 #if defined(BSD_STYLE_SOCKETS)
+
             if(psession->m_ssl_ctx != NULL && psession->m_iSslCtxRetry == 1 && iTry < 8)
             {
+
                goto retry;
+
             }
+
 #endif
+
          }
          else if(iStatusCode != 200)
          {
-            psession = NULL;
+            
             if(iTry < 8)
             {
+
+               psession = NULL;
+
                goto retry;
+
             }
+
          }
 
          e_status estatus = status_ok;

@@ -4133,7 +4133,7 @@ namespace axis
 
 #else
 
-         return ::call_sync(::path::a_spa(process_platform_dir_name2()),pszCommandLine,::dir::a_spa(process_platform_dir_name2()),SW_SHOWNORMAL,840,84,NULL,0);
+         return ::call_sync(::path::app_app(process_platform_dir_name2()),pszCommandLine,::dir::app_app(process_platform_dir_name2()),SW_SHOWNORMAL,840,84,NULL,0);
 
 #endif
 

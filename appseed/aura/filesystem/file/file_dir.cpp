@@ -1547,10 +1547,10 @@ retry:
 
 
 
-::file::path dir::a_spa(string strPlatform)
+::file::path dir::app_app(string strPlatform)
 {
 
-   return program_files_x86() / "ca2/a_spa" / strPlatform;
+   return program_files_x86() / "ca2/app_app" / strPlatform;
 
 }
 
