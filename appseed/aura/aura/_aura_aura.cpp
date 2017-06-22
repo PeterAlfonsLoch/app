@@ -8,6 +8,11 @@
 #include <unistd.h>
 #endif
 
+
+#include "install/install_launcher.cpp"
+#include "install/install_module_list.cpp"
+
+
 #ifndef ANDROID
 #include "aura/_aura_aura_aura.cpp"
 #endif

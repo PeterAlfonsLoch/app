@@ -110,28 +110,42 @@ public:
 
 #endif
 
-class CLASS_DECL_AURA spaadmin_mutex :
-#ifdef WINDOWSEX
-   public null_dacl_security_attributes,
-#endif
-   public mutex
+
+namespace app_app
 {
-public:
-
-   spaadmin_mutex(string strPlatform, string strSuffix = "");
-
-};
 
 
-class CLASS_DECL_AURA spa_mutex:
+
+   class CLASS_DECL_AURA mutex :
 #ifdef WINDOWSEX
-   public null_dacl_security_attributes,
+      public null_dacl_security_attributes,
 #endif
-   public mutex
-{
-public:
+      public ::mutex
+   {
+   public:
 
-   spa_mutex(string strPlatform, string strSuffix = "");
+      mutex(string strPlatform, string strSuffix = "");
 
-};
+   };
+
+
+   class CLASS_DECL_AURA admin_mutex :
+#ifdef WINDOWSEX
+      public null_dacl_security_attributes,
+#endif
+      public ::mutex
+   {
+   public:
+
+      admin_mutex(string strPlatform, string strSuffix = "");
+
+   };
+
+
+
+
+} // namespace app_app
+
+
+
 

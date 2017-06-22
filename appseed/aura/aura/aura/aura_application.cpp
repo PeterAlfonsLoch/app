@@ -6807,6 +6807,47 @@ namespace aura
    }
 
 
+   bool application::http_download(const char * pszUrl, const char * pszFile)
+   {
+
+      string strUrl = pszUrl;
+
+      property_set set;
+
+      set["raw_http"] = true;
+
+      set["disable_common_name_cert_check"] = true;
+
+      return http().download(strUrl, pszFile, set);
+
+   }
+
+
+   string application::http_get(const char * pszUrl)
+   {
+
+      property_set set;
+
+      set["get_response"] = "";
+
+      set["raw_http"] = true;
+
+      set["disable_common_name_cert_check"] = true;
+
+      if (!http().get(pszUrl, set))
+      {
+
+         return "";
+
+      }
+
+      string strResponse = set["get_response"].get_string();
+
+      return strResponse;
+
+   }
+
+
 } // namespace aura
 
 

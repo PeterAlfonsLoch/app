@@ -18,18 +18,18 @@ namespace path
 
    }
 
-   ::file::path app_install(string strPlatform)
+   ::file::path app_app_install(string strPlatform)
    {
 
-      return ::dir::app_install(strPlatform) / "app.install.exe";
+      return ::dir::app_install(strPlatform) / "app_app_install.exe";
 
    }
 
 
-   ::file::path app_plugin_container(string strPlatform)
+   ::file::path app_app_nest(string strPlatform)
    {
 
-      return ::dir::stage(strPlatform) / "app.plugin.container.exe";
+      return ::dir::stage(strPlatform) / "app_app_nest.exe";
 
    }
 
@@ -50,10 +50,10 @@ namespace path
    }
 
 
-   ::file::path app_appadmin(string strPlatform)
+   ::file::path app_app_admin(string strPlatform)
    {
 
-      return ::dir::app_app(strPlatform) / "app_appadmin.exe";
+      return ::dir::app_app(strPlatform) / "app_app_admin.exe";
 
    }
 

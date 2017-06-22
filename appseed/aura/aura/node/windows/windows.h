@@ -189,13 +189,15 @@ namespace aura
 {
 
 
-   template < class APP >
-   static int32_t app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
+   template < class APP, typename INIT >
+   static int32_t app_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow, INIT init = [](auto papp) {})
    {
 
       APP  * papp = new APP;
 
       __node_init_main_data(papp,hInstance,hPrevInstance,lpCmdLine,nCmdShow);
+
+      init(papp);
 
       int32_t iRet;
 

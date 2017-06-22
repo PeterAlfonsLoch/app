@@ -421,7 +421,7 @@ namespace net
 
       ::aura::application * pappThread = ::get_thread_app();
 
-      auto * psession = &Sess(pappThread);
+      auto * psession = pappThread->m_paurasession;
 
       auto * psockets = &psession->sockets();
 

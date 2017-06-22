@@ -1580,28 +1580,37 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 #endif
 
 
-spaadmin_mutex::spaadmin_mutex(string strPlatform, string strSuffix) :
+
+namespace app_app
+{
+
+   mutex::mutex(string strPlatform, string strSuffix) :
 #ifdef WINDOWSEX
-mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + strPlatform + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix,&m_securityattributes)
-, sync_object("Global\\::ca2::fontopus::ccvotagus::" + strPlatform + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      ::mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::app_app::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &m_securityattributes)
+      , sync_object("Global\\::ca2::fontopus::ccvotagus::app_app::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #else
-mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + strPlatform + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
-, sync_object("Global\\::ca2::fontopus::ccvotagus::" + strPlatform + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      , sync_object("Global\\::ca2::fontopus::ccvotagus::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #endif
 
-{
-}
+   {
+   }
 
 
-
-spa_mutex::spa_mutex(string strPlatform, string strSuffix) :
+   admin_mutex::admin_mutex(string strPlatform, string strSuffix) :
 #ifdef WINDOWSEX
-   mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::spa::" + strPlatform + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix, &m_securityattributes)
-   , sync_object("Global\\::ca2::fontopus::ccvotagus::spa::" + strPlatform + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      ::mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &m_securityattributes)
+      , sync_object("Global\\::ca2::fontopus::ccvotagus::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #else
-   mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::spa::" + strPlatform + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
-   , sync_object("Global\\::ca2::fontopus::ccvotagus::spa::" + strPlatform + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      , sync_object("Global\\::ca2::fontopus::ccvotagus::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #endif
 
-{
-}
+   {
+
+   }
+
+
+} // namespace app_app
+
+

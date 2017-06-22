@@ -402,6 +402,12 @@
     <Filter Include="Source Files\aura\aura\os_alloc">
       <UniqueIdentifier>{44b60fb5-aef1-428e-8b06-002121687ba8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\install">
+      <UniqueIdentifier>{68917a66-0973-43e5-901b-8538847e6f7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\install">
+      <UniqueIdentifier>{cef81474-8eed-4b61-b187-84f47f894aeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2798,6 +2804,15 @@
     <ClInclude Include="multithreading\multithreading_tools.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
+    <ClInclude Include="aura\install\install_launcher.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_module_list.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4818,6 +4833,15 @@
     </ClCompile>
     <ClCompile Include="aura\aura\os_alloc\os_alloc_WindowsHeapAlloc.cpp">
       <Filter>Source Files\aura\aura\os_alloc</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_module_list.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_launcher.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\_install.cpp">
+      <Filter>Source Files\aura\install</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

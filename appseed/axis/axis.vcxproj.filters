@@ -422,9 +422,6 @@
     <ClInclude Include="axis\message\message_user.h">
       <Filter>Header Files\axis\message</Filter>
     </ClInclude>
-    <ClInclude Include="app_install_launcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_enum.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -909,12 +906,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="app_install_launcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="app_install_plugin_library_list.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>

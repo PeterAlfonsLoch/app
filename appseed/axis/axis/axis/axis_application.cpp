@@ -4109,7 +4109,7 @@ namespace axis
 
       {
 
-         spa_mutex mutex(process_platform_dir_name2());
+         ::app_app::mutex mutex(process_platform_dir_name2());
 
          if (mutex.already_exists())
          {

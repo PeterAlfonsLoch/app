@@ -1546,6 +1546,9 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "app/appseed/aura/aura/node/node.h"
 
 
+#include "aura/aura/install/install.h"
+
+
 namespace math
 {
 

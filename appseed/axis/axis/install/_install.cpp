@@ -73,4 +73,3 @@ extern int omp_get_thread_num();
      //          0 pasta(s)   19.202.347.008 bytes dispon¡veis
 
 
-#include "axis/app_install_plugin_library_list.cpp"

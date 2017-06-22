@@ -579,6 +579,10 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual string get_executable_title();
       virtual string get_executable_appid();
 
+      virtual bool http_download(const char * pszUrl, const char * pszFile);
+      virtual string http_get(const char * pszUrl);
+
+
    };
 
 

@@ -9,10 +9,11 @@ namespace install
    class interaction_impl;
    class install;
 
+
 } // namespace install
 
 
-CLASS_DECL_AXIS stringa install_get_plugin_base_library_list(const string & strPlatform, const string & strVersion);
+
 
 
 #define SPA_FILE_FLAG_VOID_COPY 1
