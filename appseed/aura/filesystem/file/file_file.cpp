@@ -571,8 +571,6 @@ return true;
 
       mem.set_char_at_grow(iPos, '\0');
 
-      mem.allocate(iPos + 1);
-
       int iNew = sbumpc();
 
       if ((iNew == i || ((char)iNew != '\n' && (char)iNew != '\r')) && iNew != EOF)

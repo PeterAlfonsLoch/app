@@ -284,11 +284,11 @@ namespace primitive
       if (iChar >= get_size())
       {
 
-         allocate_add_up(1024);
+         allocate(iChar + 1);
 
       }
 
-      *((char*)get_data()) = ch;
+      ((char*)get_data())[iChar] = ch;
 
    }
 
