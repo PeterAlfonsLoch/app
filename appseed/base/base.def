@@ -3,7 +3,7 @@ LIBRARY  "base"
 
 EXPORTS
 new_hotplugin
-
+defer_base_init
 
 
 

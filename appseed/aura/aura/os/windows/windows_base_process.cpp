@@ -355,6 +355,34 @@ namespace process
    }
 
 
+   string app_id_to_app_name(string strId)
+   {
+
+      string strName;
+
+      for (index i = 0; i < strId.length(); i++)
+      {
+
+         if (strId[i] == L'-' || strId[i] == L'/' || strId[i] == L'\\')
+         {
+
+            strName += L"_";
+
+         }
+         else
+         {
+
+            strName += strId[i];
+
+         }
+
+      }
+
+      return strName;
+
+   }
+
+
 } // namespace process
 
 

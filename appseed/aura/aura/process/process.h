@@ -7,6 +7,8 @@ namespace process
 
    CLASS_DECL_AURA bool set_priority(int32_t priority);
 
+   CLASS_DECL_AURA string app_id_to_app_name(string strId);
+
    
 } // namespace process
 

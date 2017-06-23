@@ -330,7 +330,7 @@ namespace aura
          //pApp->SetCurrentHandles();
          m_pauraapp->SetCurrentHandles();
 
-         string strAppId = read_resource_as_string_dup(NULL, 1984, "APPID");
+         string strAppId = read_resource_as_string_dup(NULL, 2000, "APPID");
 
          if (strAppId.has_char())
          {

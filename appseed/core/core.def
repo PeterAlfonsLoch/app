@@ -5,7 +5,7 @@ LIBRARY  "core"
 
 EXPORTS
 get_new_library
-
+defer_core_init
 
 
 
