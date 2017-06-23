@@ -161,13 +161,16 @@ namespace message
       for(; i < this->get_size(); i++)
       {
          Signal * psignal = this->element_at(i);
-         if(uiMessage == psignal->m_uiMessage
-            && uiCode == psignal->m_uiCode
-            && uiId >= psignal->m_uiIdStart
-            && uiId <= psignal->m_uiIdEnd)
+         if (psignal != NULL)
          {
-            i++;
-            return psignal;
+            if (uiMessage == psignal->m_uiMessage
+               && uiCode == psignal->m_uiCode
+               && uiId >= psignal->m_uiIdStart
+               && uiId <= psignal->m_uiIdEnd)
+            {
+               i++;
+               return psignal;
+            }
          }
       }
 
