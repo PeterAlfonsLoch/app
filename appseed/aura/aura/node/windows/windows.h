@@ -185,46 +185,9 @@ CLASS_DECL_AURA void __set_resource_handle(HINSTANCE hInstResource);
 CLASS_DECL_AURA HINSTANCE __get_resource_handle();
 CLASS_DECL_AURA HINSTANCE __find_string_resource_handle(UINT nID);
 
-namespace aura
-{
 
 
-   template < class APP, typename INIT >
-   static int32_t app_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow, INIT init = [](auto papp) {})
-   {
-
-      APP  * papp = new APP;
-
-      __node_init_main_data(papp,hInstance,hPrevInstance,lpCmdLine,nCmdShow);
-
-      init(papp);
-
-      int32_t iRet;
-
-      iRet = papp->main();
-
-      try
-      {
-
-         delete papp;
-
-         papp = NULL;
-
-      }
-      catch(...)
-      {
-      }
-
-      return iRet;
-
-   }
-
-
-} // namespace aura
-
-
-
-
+CLASS_DECL_AURA int32_t app_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow);
 
 
 

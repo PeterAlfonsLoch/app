@@ -65,35 +65,41 @@ namespace windows
       {
          lResult = RegQueryValueEx(hkey,lpszSubKey,NULL,&dwType,(LPBYTE)str.GetBufferSetLength(dwSize),&dwSize);
          str.ReleaseBuffer(dwSize);
+         
          return lResult;
+
       }
       else
       {
+         
          return ERROR_NOT_SUPPORTED;
+
       }
+
    }
 
+   
    HICON ExtractIcon(HINSTANCE hInst,const char * lpszExeFileName,UINT nIconIndex)
    {
+      
       return ::ExtractIconW(hInst,::str::international::utf8_to_unicode(lpszExeFileName),nIconIndex);
+
    }
 
-   bool  DeleteFile(const char * lpFileName)
+
+   bool DeleteFile(const char * lpFileName)
    {
+      
       return ::DeleteFileW(::str::international::utf8_to_unicode(lpFileName)) != FALSE;
+
    }
 
-   /*   int32_t GetMenuString(HMENU hmenu, UINT uIDItem, string & str, UINT flags)
-   {
-   wstring str;
-   int32_t iLen = _GetMenuString(hmenu, uIDItem, wstr, flags);
-   ::str::international::unicode_to_utf8(str, str);
-   return iLen;
-   }*/
 
    CLASS_DECL_AURA void TimeToFileTime(::aura::application * papp,const ::datetime::time& time,LPFILETIME pFileTime)
    {
+
       SYSTEMTIME sysTime;
+
       sysTime.wYear           = (WORD)time.GetYear();
       sysTime.wMonth          = (WORD)time.GetMonth();
       sysTime.wDay            = (WORD)time.GetDay();
@@ -113,10 +119,36 @@ namespace windows
    }
 
 
+
 } // namespace windows
 
 
 
+
+CLASS_DECL_AURA int32_t app_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow)
+{
+
+   __node_init_main_data(psystem, hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+
+   int32_t iRet;
+
+   iRet = psystem->main();
+
+   try
+   {
+
+      delete psystem;
+
+      psystem = NULL;
+
+   }
+   catch (...)
+   {
+   }
+
+   return iRet;
+
+}
 
 
 
