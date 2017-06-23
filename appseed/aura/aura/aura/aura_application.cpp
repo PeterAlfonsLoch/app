@@ -6196,8 +6196,8 @@ namespace aura
 
             string strBuildNumber = "latest";
 
-            if (strcmp(g_pszCooperativeLevel, "core") != 0)
-               strPath += "." + string(g_pszCooperativeLevel);
+            //if (strcmp(g_pszCooperativeLevel, "core") != 0)
+              // strPath += "." + string(g_pszCooperativeLevel);
 
 #ifdef WINDOWS
 
