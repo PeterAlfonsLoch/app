@@ -311,7 +311,7 @@ namespace install
                   // reopening channel as needed. Repetdely trying to open channel using default m_iStart = 11, make
                   // is_lock_file_locked evaluation be ignored, which is unnaccording.
 
-                  string strChannel = "\\core\\app.plugin.container-";
+                  string strChannel = "\\core\\app_app_nest-";
 
                   strChannel += str;
 
@@ -654,7 +654,7 @@ namespace install
             m_phost->m_bInstalling = true;
 
             // shouldn't do advanced operations using ca
-            // starter_start will only kick a default app.install.exe if one isn't already running, cleaning file lock if any
+            // starter_start will only kick a default app_app_install.exe if one isn't already running, cleaning file lock if any
 
          }
 

@@ -788,7 +788,7 @@ namespace hotplugin
 
          uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
-         ::file::path strName = Application.dir().userappdata()/"time"/"core\\app.plugin.container-" + m_strBitmapChannel;
+         ::file::path strName = Application.dir().userappdata()/"time"/"core\\app_app_nest-" + m_strBitmapChannel;
 
          if(!m_memBitmap.open(strName,true,true,bCreate,size))
          {
@@ -805,17 +805,17 @@ namespace hotplugin
          }
 
 
-         //m_pcolorref = my_open_map(dir::path(dir::userappdata("time"),string("core\\app.plugin.container-") + m_strBitmapChannel,&m_hfileBitmap, size);
+         //m_pcolorref = my_open_map(dir::path(dir::userappdata("time"),string("core\\app_app_nest-") + m_strBitmapChannel,&m_hfileBitmap, size);
 
 //#ifdef METROWIN
 //         CREATEFILE2_EXTENDED_PARAMETERS ps;
 //         zero(&ps, sizeof(ps));
 //         ps.dwSize = sizeof(ps);
 //         ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-//         wstring wstr(dir::path(dir::userappdata("time"), string("core\\app.plugin.container-") + m_strBitmapChannel));
+//         wstring wstr(dir::path(dir::userappdata("time"), string("core\\app_app_nest-") + m_strBitmapChannel));
 //         m_hfileBitmap = CreateFile2(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, iOpen, &ps);
 //#elif defined(WINDOWS)
-//         wstring wstr(dir::path(dir::userappdata("time"), string("core\\app.plugin.container-") + m_strBitmapChannel));
+//         wstring wstr(dir::path(dir::userappdata("time"), string("core\\app_app_nest-") + m_strBitmapChannel));
 //         m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
 //#else
 //         m_hfileBitmap = ::open(), iOpen, S_IRUSR | S_IWUSR);
@@ -926,7 +926,7 @@ namespace hotplugin
 //            throw "resource exception";
 //         }
 
-         m_pmutexBitmap = new mutex(get_thread_app(), false, string("Global\\app.plugin.container-") + hex::lower_from((int_ptr)this));
+         m_pmutexBitmap = new mutex(get_thread_app(), false, string("Global\\app_app_nest-") + hex::lower_from((int_ptr)this));
 
       }
 

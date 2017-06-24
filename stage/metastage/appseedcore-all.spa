@@ -1,7 +1,6 @@
 stage\basis\app.exe
-stage\basis\app.install.exe
-stage\basis\app.plugin.container.exe
-stage\basis\app.sentinel.exe
+stage\basis\app_app_install.exe
+stage\basis\app_app_nest.exe
 stage\basis\app_common.dll
 stage\basis\ace.dll
 stage\basis\aqua.dll

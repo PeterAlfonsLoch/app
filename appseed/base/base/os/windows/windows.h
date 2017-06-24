@@ -34,11 +34,6 @@ namespace base
    static_function int32_t app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
-      if(!defer_base_init())
-      {
-         return -1;
-      }
-
       APP  * papp = new APP;
 
       __node_init_main_data(papp,hInstance,hPrevInstance,lpCmdLine,nCmdShow);
