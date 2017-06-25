@@ -426,7 +426,7 @@ namespace install
          if(!property.get_string().has_char()
             &&
             (property.name() == "app"
-            || property.name() == "build_number"
+            || property.name() == "build"
             || property.name() == "app_type"
             || property.name() == "locale"
             || property.name() == "schema"
@@ -792,7 +792,7 @@ namespace install
          if(lpnodeVersion == NULL)
             goto run_install;
 
-         string strBuild = System.install().get_latest_build_number(NULL);
+         string strBuild = System.get_latest_build_number(NULL);
 
          ::xml::node * lpnodeInstalled = node.GetChildByAttr("installed", "build", strBuild);
 

@@ -139,7 +139,7 @@ namespace aura
       
       string                                       m_strIosHome;
       string                                       m_strIosTemp;
-      string_to_string                             m_mapCachedLatestBuildNumber;
+      string_to_string                             m_mapCachedLatestBuild;
 
       sp(::install::install)                       m_spinstall;
 

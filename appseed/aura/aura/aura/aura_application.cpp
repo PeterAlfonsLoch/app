@@ -332,15 +332,6 @@ namespace aura
    void application::throw_not_installed()
    {
 
-      //string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
-
-      //if (strBuildNumber.is_empty())
-      //{
-
-      //   strBuildNumber = "installed";
-
-      //}
-
       throw not_installed(get_app(), m_strAppId, "application");
 
    }
@@ -3264,15 +3255,75 @@ namespace aura
    }
 
 
-   bool application::system_add_app_install(const char * pszId)
+   bool application::system_add_app_install(const char * pszId, const char * pszBuild)
    {
 
-      ::exception::throw_not_implemented(get_app());
+      synch_lock sl(System.m_spmutexSystemAppData);
+
+      string strId(pszId);
+      string strSystemLocale = System.m_strLocale;
+      string strSystemSchema = System.m_strSchema;
+      stringa straLocale = command()->m_varTopicQuery["locale"].stra();
+      stringa straSchema = command()->m_varTopicQuery["schema"].stra();
+
+      string strBuild(pszBuild);
+
+      System.install().remove_spa_start(m_strInstallType, strId);
+      System.install().add_app_install(strId, m_strInstallType, strBuild, strSystemLocale, m_strSchema);
+      System.install().add_app_install(strId, m_strInstallType, strBuild, strSystemLocale, strSystemSchema);
+      System.install().add_app_install(strId, m_strInstallType, strBuild, m_strLocale, m_strSchema);
+
+      for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+      {
+
+         System.install().add_app_install(strId, m_strInstallType, strBuild, straLocale[iLocale], m_strSchema);
+
+      }
+
+      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      {
+
+         System.install().add_app_install(strId, m_strInstallType, strBuild, m_strLocale, straSchema[iSchema]);
+
+      }
+
+      for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+      {
+
+         for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+         {
+
+            System.install().add_app_install(strId, m_strInstallType, strBuild, straLocale[iLocale], straSchema[iSchema]);
+
+         }
+
+      }
+
+      System.install().add_app_install(strId, m_strInstallType, strBuild, strSystemLocale, "");
+      System.install().add_app_install(strId, m_strInstallType, strBuild, m_strLocale, "");
+
+      for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+      {
+
+         System.install().add_app_install(strId, m_strInstallType, strBuild, straLocale[iLocale], "");
+
+      }
+
+      System.install().add_app_install(strId, m_strInstallType, strBuild, "", m_strSchema);
+      System.install().add_app_install(strId, m_strInstallType, strBuild, "", strSystemSchema);
+
+      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      {
+
+         System.install().add_app_install(strId, m_strInstallType, strBuild, "", straSchema[iSchema]);
+
+      }
+
+      System.install().add_app_install(strId, m_strInstallType, strBuild, "", "");
 
       return true;
 
    }
-
 
    bool application::os_native_bergedge_start()
    {
@@ -6232,7 +6283,7 @@ namespace aura
             pathModule = path;
 
             //#if defined(APPLEOS)
-            //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
+            //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build=" + strBuild + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
             //#else
             strParam = " : install app=" + notinstalled.m_strAppId + " configuration=" + notinstalled.m_strConfiguration+ " platform="+ notinstalled.m_strPlatform +"locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
             //#endif
@@ -6315,8 +6366,10 @@ namespace aura
             //
             //               }
             //else
+            
             int iRet = IDNO;
-            output_debug_string("\n not_installed Params " + strParam + "\n");
+
+            output_debug_string("\n not_installed parameters: " + strParam + "\n");
 
             {
 

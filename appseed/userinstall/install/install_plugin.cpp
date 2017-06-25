@@ -424,7 +424,7 @@ namespace install
          if(!property.get_string().has_char()
             &&
             (property.name() == "app"
-            || property.name() == "build_number"
+            || property.name() == "build"
             || property.name() == "app_type"
             || property.name() == "locale"
             || property.name() == "schema"

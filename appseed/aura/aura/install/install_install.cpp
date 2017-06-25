@@ -14,15 +14,8 @@ namespace install
       m_psockethandler = NULL;
 
       m_bAdmin = false;
-      m_hmutexBoot = NULL;
 
       m_bCa2Installed = false;
-      m_bSpaInstalled = false;
-      m_bSpaUpdated = false;
-
-      m_iProgressAppInstallStart = 0;
-      m_iProgressAppInstallStep = 0;
-      m_iProgressAppInstallEnd = 0;
 
    }
 
@@ -224,7 +217,7 @@ namespace install
 
       installer_launcher launcher(get_app(), System.get_system_configuration());
 
-      if (!txchannel.open(::aura::ipc::app_install(m_strPlatform), bLaunch ? &launcher : NULL))
+      if (!txchannel.open(::aura::ipc::app_install(System.get_system_platform()), bLaunch ? &launcher : NULL))
          return false;
 
       txchannel.send(psz, INFINITE);
@@ -312,38 +305,6 @@ namespace install
    }
 
 
-   string install::get_platform()
-   {
-
-      return m_strPlatform;
-
-   }
-
-
-   void install::set_platform(const string & strPlatform)
-   {
-
-      m_strPlatform = strPlatform;
-
-   }
-
-
-   bool install::is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
-   {
-
-      return System.is_application_installed(pszAppId, pszAppType, pszPlatform, pszConfiguration, pszLocale, pszSchema);
-
-   }
-
-
-   string install::get_latest_build_number(const char * pszConfiguration)
-   {
-
-      return System.get_latest_build_number(pszConfiguration);
-
-   }
-
-
    int32_t install::start_app(const char * id)
    {
 
@@ -371,12 +332,6 @@ namespace install
       return 0;
 
    }
-
-
-
-
-
-
 
 
    bool install::is_installing_ca2()
@@ -529,49 +484,6 @@ namespace install
 
 
 
-   void install::update_ca2_build()
-   {
-
-      property_set set(get_app());
-
-      if (System.get_system_configuration() == "basis")
-      {
-
-         m_strCa2Build = Application.http().get("http://basis-server.ca2.cc/api/spaignition/ca2_get_build?authnone", set);
-
-      }
-      else
-      {
-
-         m_strCa2Build = Application.http().get("http://stage-server.ca2.cc/api/spaignition/ca2_get_build?authnone", set);
-
-      }
-
-   }
-
-
-   const char * install::ca2_get_build()
-   {
-      update_ca2_build();
-      return m_strCa2Build;
-   }
-
-
-   //void install::set_ca2_updated(const char * pszBuild)
-   //{
-   //   Application.dir().mk(System.dir().element() / "appdata" / get_platform());
-   //   Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "ca2_build.txt", pszBuild);
-   //}
-
-
-   //void install::set_updated(const char * pszBuild)
-   //{
-   //   Application.dir().mk(System.dir().element() / "appdata" / get_platform());
-   //   Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "build.txt", pszBuild);
-   //}
-
-
-
    void install::add_spa_start(const char * pszType, const char * pszId)
    {
 
@@ -655,61 +567,24 @@ namespace install
    }
 
 
-   void install::add_app_install(const char * pszAppId, const char * pszAppType, const char * pszLocale, const char * pszSchema)
+   void install::add_app_install(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszLocale, const char * pszSchema)
    {
 
       synch_lock sl(m_pmutex);
 
       ::file::path path;
 
-      path = System.get_application_installation_meta_dir(pszAppId, pszAppType, System.get_system_platform(), System.get_system_configuration(), pszLocale, pszSchema);
+      path = System.get_application_installation_meta_dir(pszAppId, pszAppType, pszBuild, System.get_system_platform(), System.get_system_configuration(), pszLocale, pszSchema);
 
       path /= "installed.txt";
 
       ::output_debug_string(path);
+
       ::output_debug_string("\n");
 
       Application.file().put_contents(path, "");
 
-      //string strBuildPath;
-
-      //strBuildPath = System.dir().commonappdata() / "spa_build_" + get_platform() + ".txt";
-
-      //string strNewBuildNumber;
-
-      //if (Application.file().exists(strBuildPath))
-      //{
-
-      //   strNewBuildNumber = Application.file().as_string(strBuildPath);
-
-      //}
-
-      //string strBuild(pszBuild);
-
-      //if (strBuild.has_char() && isdigit_dup(strBuild[0]))
-      //{
-
-      //   Application.file().put_contents(strBuildPath, strBuild);
-
-      //}
-      //else if (strBuild.compare_ci("latest") == 0 && System.m_mapCachedLatestBuildNumber[System.get_system_configuration()].has_char() && isdigit_dup(System.m_mapCachedLatestBuildNumber[System.get_system_configuration()][0]))
-      //{
-
-      //   Application.file().put_contents(strBuildPath, System.m_mapCachedLatestBuildNumber[System.get_system_configuration()]);
-
-      //}
-
-
-
    }
-
-
-   //bool install::is(const char * pszConfiguration, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
-   //{
-
-   //   return System.install_is(pszConfiguration, pszBuild, pszType, pszId, pszLocale, pszSchema);
-
-   //}
 
 
    int32_t install::start(const char * pszCommand)
@@ -728,126 +603,6 @@ namespace install
    }
 
 
-   void install::on_set_scalar(e_scalar escalar, int64_t iValue, int iFlags)
-   {
-
-      if (escalar == scalar_app_install_progress)
-      {
-
-         m_iProgressAppInstallStep = iValue;
-
-      }
-      else if (escalar == scalar_app_install_progress_min)
-      {
-
-         m_iProgressAppInstallStart = iValue;
-
-      }
-      else if (escalar == scalar_app_install_progress_max)
-      {
-
-         m_iProgressAppInstallEnd = iValue;
-
-      }
-      else
-      {
-
-         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
-
-      }
-
-   }
-
-
-   void install::get_scalar_minimum(e_scalar escalar, int64_t & i)
-   {
-
-      if (escalar == scalar_app_install_progress)
-      {
-
-         i = m_iProgressAppInstallStart;
-
-      }
-      else if (escalar == scalar_app_install_progress_min)
-      {
-
-         i = 0;
-
-      }
-      else if (escalar == scalar_app_install_progress_max)
-      {
-
-         i = 0;
-
-      }
-      else
-      {
-
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
-
-      }
-
-   }
-
-   void install::get_scalar(e_scalar escalar, int64_t & i)
-   {
-
-      if (escalar == scalar_app_install_progress)
-      {
-
-         i = m_iProgressAppInstallStep;
-
-      }
-      else if (escalar == scalar_app_install_progress_min)
-      {
-
-         i = m_iProgressAppInstallStart;
-
-      }
-      else if (escalar == scalar_app_install_progress_max)
-      {
-
-         i = m_iProgressAppInstallEnd;
-
-      }
-      else
-      {
-
-         ::int_scalar_source::get_scalar(escalar, i);
-
-      }
-
-   }
-
-   void install::get_scalar_maximum(e_scalar escalar, int64_t & i)
-   {
-
-      if (escalar == scalar_app_install_progress)
-      {
-
-         i = m_iProgressAppInstallEnd;
-
-      }
-      else if (escalar == scalar_app_install_progress_min)
-      {
-
-         i = 0x7fffffff;
-
-      }
-      else if (escalar == scalar_app_install_progress_max)
-      {
-
-         i = 0x7fffffff;
-
-      }
-      else
-      {
-
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
-
-      }
-
-   }
 
 
    string install::app_install_get_extern_executable_path(stringa * pstraMd5, int_array * piaLen, string_to_string * pmapMd5, string_to_intptr * pmapLen)
@@ -895,7 +650,7 @@ namespace install
       else
       {
 
-         strPath = ::path::app_app_install(System.install().get_platform());
+         strPath = ::path::app_app_install(System.get_system_platform());
 
       }
 
@@ -1054,7 +809,7 @@ namespace install
       strUrl += "&build=";
       strUrl += strFormatBuild;
       strUrl += "&platform=";
-      strUrl += get_platform();
+      strUrl += System.get_system_platform();
 
 
       property_set set(get_app());

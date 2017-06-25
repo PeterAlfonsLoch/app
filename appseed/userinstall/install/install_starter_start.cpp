@@ -80,19 +80,17 @@ namespace install
 
       int32_t i = 0;
 
-      string strBuildNumber;
+      string strBuild;
 
       System.install().set_admin(false);
 
       while (true)
       {
 
-         if ((i % 5) == 0 || strBuildNumber.is_empty())
+         if ((i % 5) == 0 || strBuild.is_empty())
          {
 
-            //strBuildNumber = System.install().get_latest_build_number(strVersion);
-
-            strBuildNumber = "latest";
+            strBuild = "latest";
 
          }
 
@@ -107,32 +105,26 @@ namespace install
 
          System.install().update_ca2_installed(true);
 
-         if (System.install().is_ca2_installed() && System.install().is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema))
+         if (System.install().is_ca2_installed() && System.install().is_installed(strVersion, strBuild, strType, strId, strLocale, strSchema))
          {
 
             break;
 
-            //update_ca2_updated();
-            //if(is_ca2_updated())
-            // break;
-
          }
 
-         System.install().synch_install(m_strCommandLine, strBuildNumber);
+         System.install().synch_install(m_strCommandLine, strBuild);
 
          prepare_small_bell(true);
 
-         
-
       }
 
-      //set_installing_ca2(false);
-
-      //if(is_ca2_installed() && is_installed("application", m_strId) && is_ca2_updated())
-      if (System.install().is_ca2_installed() && System.install().is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema) && m_pplugin != NULL)
+      if (System.install().is_ca2_installed() && System.install().is_installed(strVersion, strBuild, strType, strId, strLocale, strSchema) && m_pplugin != NULL)
       {
+
          defer_play_small_bell();
+
          m_pplugin->set_ca2_installation_ready();
+
       }
 
       // sentinel is not ready neither spa entire concept of passive installation is ready yet.

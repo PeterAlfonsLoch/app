@@ -475,37 +475,43 @@ void object::add_line(const char * pszCommandLine,application_bias * pbiasCreate
 
    }
 
-   if(get_app()->command_central()->m_varTopicQuery["build_number"].has_char())
+   if(get_app()->command_central()->m_varTopicQuery["build"].has_char())
    {
 
-      createcontext->m_spCommandLine->m_varQuery["build_number"] = get_app()->command_central()->m_varTopicQuery["build_number"];
+      createcontext->m_spCommandLine->m_varQuery["build"] = get_app()->command_central()->m_varTopicQuery["build"];
 
    }
-   else if(createcontext->m_spCommandLine->m_varQuery["build_number"].is_empty())
+   else if(createcontext->m_spCommandLine->m_varQuery["build"].is_empty())
    {
 
       if(createcontext->m_spCommandLine->m_strApp.compare_ci("app-core/netnodelite") == 0)
       {
 
-         createcontext->m_spCommandLine->m_varQuery["build_number"] = "static";
+         createcontext->m_spCommandLine->m_varQuery["build"] = "static";
 
       }
       else
       {
 
-         createcontext->m_spCommandLine->m_varQuery["build_number"] = "installed";
+         createcontext->m_spCommandLine->m_varQuery["build"] = "installed";
 
       }
 
    }
 
    commandcentral->consolidate(createcontext);
+
    if (commandcentral != System.command())
    {
+
       System.command()->consolidate(createcontext);
+
    }
+
    create(createcontext);
+
 }
+
 
 void object::add_line_uri(const char * pszCommandLine,application_bias * pbiasCreate)
 {

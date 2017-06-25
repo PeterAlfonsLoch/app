@@ -1,17 +1,3 @@
-//#include "framework.h"
-
-not_installed::not_installed(::aura::application * papp, const char * pszAppId, const char * pszAppType) :
-   not_installed(
-      papp, 
-      pszAppId,
-      pszAppType,
-      Sys(papp).get_system_configuration(),
-      Sys(papp).get_system_platform(), 
-      Sess(papp).m_strLocale,
-      Sess(papp).m_strSchema)
-{
-
-}
 
 
 not_installed::not_installed(::aura::application * papp, const char * pszAppId, const char * pszAppType, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :

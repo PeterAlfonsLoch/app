@@ -93,9 +93,9 @@ namespace install
 
       int32_t i = 0;
 
-      string strBuildNumber;
+      string strBuild;
 
-      strBuildNumber = "latest";
+      strBuild = "latest";
 
       System.install().set_admin(false);
 
@@ -113,9 +113,10 @@ namespace install
 
          System.install().update_ca2_installed(true);
 
-         if (System.install().is_ca2_installed() && System.install().is_application_installed(
+         if (System.install().is_ca2_installed() && System.is_application_installed(
             strAppId, 
             strAppType, 
+            System.get_latest_build_number(System.get_system_platform()),
             System.get_system_platform(), 
             strConfiguration,
             strLocale,
@@ -138,9 +139,10 @@ namespace install
 
       }
 
-      if (System.install().is_ca2_installed() && System.install().is_application_installed(
+      if (System.install().is_ca2_installed() && System.is_application_installed(
          strAppId,
          strAppType,
+         System.get_latest_build_number(System.get_system_platform()),
          System.get_system_platform(),
          strConfiguration, 
          strLocale,

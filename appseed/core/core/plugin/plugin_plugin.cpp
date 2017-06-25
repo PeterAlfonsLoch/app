@@ -639,7 +639,7 @@ namespace plugin
             property_set set(get_app());
             set.parse_url_query(str2);
 
-            string strBuildNumber =  set["build_number"];
+            string strBuild =  set["build"];
 
             string strLocale = set["locale"];
 
@@ -649,10 +649,10 @@ namespace plugin
 
             string strRuri = set["ruri"];
 
-            if(strBuildNumber.is_empty())
+            if(strBuild.is_empty())
             {
 
-               strBuildNumber = "latest";
+               strBuild = "latest";
 
             }
 
@@ -660,7 +660,7 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               /*if(!System.install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               /*if(!System.install().is(NULL, strBuild, "application", "app/core/fontopus", strLocale, strSchema))
                {
 /*                  System.install().start(": app=session session_start=app/core/fontopus app_type=application install");
 #ifdef WINDOWS
@@ -700,7 +700,7 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               /*if(!System.install().is(NULL, strBuildNumber, "application", "app/core/fontopus", strLocale, strSchema))
+               /*if(!System.install().is(NULL, strBuild, "application", "app/core/fontopus", strLocale, strSchema))
                {
                   /*
                   System.install().start(": app=session session_start=app/core/fontopus app_type=application install");
@@ -778,7 +778,7 @@ namespace plugin
 
                      strSchema.trim();
 
-                     if(strAppId.has_char() && !System.is_application_installed(strAppId, strAppType, strBuildNumber, strPlatform, strConfiguration, strLocale, strSchema))
+                     if(strAppId.has_char() && !System.is_application_installed(strAppId, strAppType, strBuild, strPlatform, strConfiguration, strLocale, strSchema))
                      {
 
                         string strCommandLine;
@@ -792,7 +792,7 @@ namespace plugin
 
                            strCommandLine += property.name();
 
-                           if(property.name() == "build_number")
+                           if(property.name() == "build")
                            {
 
                               string strBuild;
@@ -808,12 +808,12 @@ namespace plugin
 
                                  string strConfig = strConfiguration.trimmed().is_empty() ? "stage" : strConfiguration;
 
-                                 strBuild = System.install().get_latest_build_number(strConfiguration).trimmed();
+                                 strBuild = System.get_latest_build_number(strConfiguration).trimmed();
 
                                  if(strBuild.is_empty())
                                  {
 
-                                    strBuild = System.install().get_latest_build_number(strConfig);
+                                    strBuild = System.get_latest_build_number(strConfig);
 
                                     if(strBuild.is_empty())
                                     {
@@ -902,7 +902,7 @@ namespace plugin
 
                            if(!property.get_string().has_char()
                               &&
-                              (property.name() == "build_number"
+                              (property.name() == "build"
                               || property.name() == "app_type"
                               || property.name() == "locale"
                               || property.name() == "schema"

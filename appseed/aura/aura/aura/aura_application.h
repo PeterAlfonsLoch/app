@@ -331,7 +331,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual bool on_uninstall();
 
 
-      virtual bool system_add_app_install(const char * pszId);
+      virtual bool system_add_app_install(const char * pszId, const char * pszBuild);
 
 
 

@@ -119,7 +119,6 @@ namespace axis
 
       virtual int32_t run() override;
 
-      //virtual bool pre_run() override;
       virtual int32_t main() override;
       virtual int32_t on_run() override;
       virtual int32_t application_pre_run() override;
@@ -132,7 +131,6 @@ namespace axis
       virtual bool on_uninstall() override;
 
 
-      virtual bool system_add_app_install(const char * pszId) override;
 
 
 

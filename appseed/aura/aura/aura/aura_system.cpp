@@ -1817,14 +1817,14 @@ namespace aura
 
       }
 
-      if (m_mapCachedLatestBuildNumber[strConfiguration].length() > 0)
+      if (m_mapCachedLatestBuild[strConfiguration].length() > 0)
       {
 
-         return m_mapCachedLatestBuildNumber[strConfiguration];
+         return m_mapCachedLatestBuild[strConfiguration];
 
       }
 
-      string strBuildNumber;
+      string strBuild;
 
       string strSpaIgnitionBaseUrl;
 
@@ -1854,11 +1854,11 @@ namespace aura
 
       iRetry++;
 
-      strBuildNumber = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration);
+      strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration);
 
-      ::str::_008Trim(strBuildNumber);
+      ::str::_008Trim(strBuild);
 
-      if (strBuildNumber.length() != 19)
+      if (strBuild.length() != 19)
       {
 
          Sleep(100 * iRetry);
@@ -1867,9 +1867,9 @@ namespace aura
 
       }
 
-      m_mapCachedLatestBuildNumber[strConfiguration] = strBuildNumber;
+      m_mapCachedLatestBuild[strConfiguration] = strBuild;
 
-      return strBuildNumber;
+      return strBuild;
 
    }
 

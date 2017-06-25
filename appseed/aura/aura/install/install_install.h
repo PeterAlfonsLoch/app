@@ -6,8 +6,7 @@ namespace install
 
 
    class CLASS_DECL_AURA install :
-      virtual public ::aura::department,
-      virtual public int_scalar_source
+      virtual public ::aura::department
    {
    public:
 
@@ -16,24 +15,9 @@ namespace install
 
       string                              m_strId;
 
-      HANDLE                              m_hmutexBoot;
-      UINT                                m_nCa2StarterStartThreadID;
       bool                                m_bCa2Installed;
-      bool                                m_bSpaInstalled;
-      bool                                m_bSpaUpdated;
-      string                              m_strCa2Build ;
-      oswindow                            m_oswindowMessage;
 
       class trace                         m_trace;
-
-      int_progress                        m_progressApp;
-
-      int64_t                             m_iProgressAppInstallStart;
-      int64_t                             m_iProgressAppInstallStep;
-      int64_t                             m_iProgressAppInstallEnd;
-
-      string                              m_strPlatform;
-      string                              m_strConfiguration;
 
       ::sockets::socket_handler *         m_psockethandler;
       spa(::sockets::http_session)        m_httpsessionptra;
@@ -56,10 +40,6 @@ namespace install
       virtual void set_admin(bool bSet);
       virtual string get_id();
       virtual void set_id(const char * psz);
-      virtual string get_platform();
-      virtual void set_platform(const string & strPlatform);
-
-      virtual string get_latest_build_number(const char * pszConfiguration);
 
       int32_t spalib_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int32_t nCmdShow);
 
@@ -67,8 +47,6 @@ namespace install
 
       int32_t start_app(const char * id);
 
-      virtual void update_ca2_build();
-      virtual const char * ca2_get_build();
       virtual void update_ca2_installed(bool bUnloadIfNotInstalled = true);
       virtual bool is_ca2_installed();
 
@@ -83,14 +61,8 @@ namespace install
       virtual void add_spa_start(const char * pszType, const char * pszId);
       virtual void remove_spa_start(const char * pszType, const char * pszId);
       virtual void add_app_install(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszLocale, const char * pszSchema);
-      virtual bool is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
       virtual int32_t start(const char * pszCommandLine);
       virtual int32_t synch(const char * pszCommandLine);
-
-      virtual void on_set_scalar(e_scalar escalar,int64_t iValue,int iFlags);
-      virtual void get_scalar_minimum(e_scalar escalar, int64_t & i);
-      virtual void get_scalar(e_scalar escalar, int64_t & i);
-      virtual void get_scalar_maximum(e_scalar escalar, int64_t & i);
 
 
    };

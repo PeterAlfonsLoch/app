@@ -28,12 +28,12 @@ namespace user
 
          string strId(pszUinteractionLibrary);
 
-         string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
+         string strBuild = System.command()->m_varTopicQuery["build"];
 
-         if(strBuildNumber.is_empty())
+         if(strBuild.is_empty())
          {
 
-            strBuildNumber = "installed";
+            strBuild = "installed";
 
          }
 

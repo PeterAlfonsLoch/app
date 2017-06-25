@@ -693,35 +693,9 @@ namespace axis
 
             System.install().trace().initialize();
 
-            System.install().m_progressApp.m_scalar = int_scalar(&System.install(), scalar_app_install_progress);
-
-            System.install().::int_scalar_source::m_plistener = &System.install().m_progressApp;
-
-            System.install().m_progressApp.m_plistener = &System.install().trace();
-
-            System.install().m_progressApp.m_dProgressStart = 0.84;
-
-            System.install().m_progressApp.m_dProgressEnd = 0.998;
-
-            System.install().m_iProgressAppInstallStart = 0;
-
-            if (directrix()->m_varTopicQuery["session_start"] == "session")
-            {
-
-               System.install().m_iProgressAppInstallEnd = 2 * 5;
-
-            }
-            else
-            {
-
-               System.install().m_iProgressAppInstallEnd = 3 * 5;
-
-            }
-
          }
 
       }
-
 
    }
 
@@ -1488,34 +1462,44 @@ namespace axis
 
          if (!on_install())
          {
+            
             ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
+            
             System.m_iReturnCode = -1;
+            
             return false;
-         }
-
-         string strId = m_strAppId;
-
-         xxdebug_box("on_install1", strId, 0);
-
-         if (strId.is_empty())
-            strId = m_strAppName;
-
-         if (strId.has_char() && command()->m_varTopicQuery.has_property("app") && strId == command()->m_varTopicQuery["app"])
-         {
-
-            system_add_app_install(strId);
 
          }
-         else if (strId.has_char() && command()->m_varTopicQuery.has_property("session_start") && strId == command()->m_varTopicQuery["session_start"])
+
+         string strBuild; 
+
+         string strAppId = m_strAppId;
+
+         xxdebug_box("on_install1", strAppId, 0);
+
+         if (strAppId.is_empty())
          {
 
-            system_add_app_install(strId);
+            strAppId = m_strAppName;
+
+         }
+
+         if (strAppId.has_char() && command()->m_varTopicQuery.has_property("app") && strAppId == command()->m_varTopicQuery["app"])
+         {
+
+            system_add_app_install(strAppId, strBuild);
+
+         }
+         else if (strAppId.has_char() && command()->m_varTopicQuery.has_property("session_start") && strAppId == command()->m_varTopicQuery["session_start"])
+         {
+
+            system_add_app_install(strAppId, strBuild);
 
          }
          else if (m_strInstallToken.has_char())
          {
 
-            system_add_app_install(m_strInstallToken);
+            system_add_app_install(m_strInstallToken, strBuild);
 
          }
 
@@ -1531,7 +1515,6 @@ namespace axis
          }
 
          System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
-
 
       }
 
@@ -1616,73 +1599,7 @@ namespace axis
    }
 
 
-   bool application::system_add_app_install(const char * pszId)
-   {
 
-      synch_lock sl(System.m_spmutexSystemAppData);
-
-      string strId(pszId);
-      string strSystemLocale = System.m_strLocale;
-      string strSystemSchema = System.m_strSchema;
-      stringa straLocale = command()->m_varTopicQuery["locale"].stra();
-      stringa straSchema = command()->m_varTopicQuery["schema"].stra();
-
-      System.install().remove_spa_start(m_strInstallType, strId);
-      System.install().add_app_install(strId, m_strInstallType, strSystemLocale, m_strSchema);
-      System.install().add_app_install(strId, m_strInstallType, strSystemLocale, strSystemSchema);
-      System.install().add_app_install(strId, m_strInstallType, m_strLocale, m_strSchema);
-
-      for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         System.install().add_app_install(strId, m_strInstallType, straLocale[iLocale], m_strSchema);
-
-      }
-
-      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         System.install().add_app_install(strId, m_strInstallType, m_strLocale, straSchema[iSchema]);
-
-      }
-
-      for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-         {
-
-            System.install().add_app_install(strId, m_strInstallType, straLocale[iLocale], straSchema[iSchema]);
-
-         }
-
-      }
-
-      System.install().add_app_install(strId, m_strInstallType, strSystemLocale, "");
-      System.install().add_app_install(strId, m_strInstallType, m_strLocale, "");
-
-      for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         System.install().add_app_install(strId, m_strInstallType, straLocale[iLocale], "");
-
-      }
-
-      System.install().add_app_install(strId , m_strInstallType, "", m_strSchema);
-      System.install().add_app_install(strId , m_strInstallType, "", strSystemSchema);
-
-      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         System.install().add_app_install(strId, m_strInstallType, "", straSchema[iSchema]);
-
-      }
-
-      System.install().add_app_install(strId, m_strInstallType, "", "");
-
-      return true;
-
-   }
 
 
 
