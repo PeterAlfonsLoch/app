@@ -164,44 +164,6 @@ namespace plugin
 
       mlSystem.unlock();
 
-//      if(m_psystem == NULL)
-  //    {
-
-    //     m_psystem = m_phost->get_system();
-
-      //      set_app(m_phost->get_system());
-//         m_bAppStarted = false;
-//
-//         m_psystem = new ::plugin::system((::core::system *) m_phost->get_system());
-//
-//         System.m_pplugin = this;
-//
-//#ifdef WINDOWS
-//
-//         System.m_hinstance = ::GetModuleHandle("core.dll");
-//
-//#endif
-//
-//         if(!System.InitApplication())
-//            return 0;
-//
-//         if(!System.process_initialize())
-//            return 0;
-//
-//         System.set_history(new history(m_psystem, this));
-//
-//         System.m_prunstartinstaller = new run_start_installer(m_psystem, this);
-//
-//         System.m_bInitializeProDevianMode = false;
-//
-//         string strId;
-//         strId.Format("npca2::%08x", (uint_ptr) m_psystem);
-//
-//         System.command()->m_varTopicQuery["local_mutex_id"] = strId;
-//
-//         set_app(m_psystem);
-
-//      }
 
       m_puiHost = create_host_interaction();
       m_puiHost->m_pplugin = this;
@@ -663,12 +625,17 @@ namespace plugin
                lpszEnd = (char *) ::str::utf8_inc(lpszEnd);
             }
 
-            string strId = str2;
-            strsize iFind = strId.find("?");
+            string strAppId = str2;
+            
+            strsize iFind = strAppId.find("?");
+
             if(iFind >= 0)
             {
-               strId = strId.Left(iFind);
+
+               strAppId = strAppId.Left(iFind);
+
             }
+
             property_set set(get_app());
             set.parse_url_query(str2);
 
@@ -794,21 +761,29 @@ namespace plugin
                   if(str2.has_char())
                   {
 
-                     string strType = set["app_type"];
+                     string strAppType = set["app_type"];
 
-                     if(strType.is_empty())
-                        strType = "application";
+                     if (strAppType.is_empty())
+                     {
+
+                        strAppType = "application";
+
+                     }
+
+                     string strPlatform = System.get_system_platform();
+
+                     string strConfiguration = System.get_system_configuration();
 
                      strLocale.trim();
 
                      strSchema.trim();
 
-                     if(strId.has_char() && !System.install().is(strVersion, strBuildNumber, strType, strId, strLocale, strSchema))
+                     if(strAppId.has_char() && !System.is_application_installed(strAppId, strAppType, strBuildNumber, strPlatform, strConfiguration, strLocale, strSchema))
                      {
 
                         string strCommandLine;
 
-                        strCommandLine = ": app=session session_start=" + strId;
+                        strCommandLine = ": app=session session_start=" + strAppId;
 
                         for(auto property : set)
                         {
@@ -831,14 +806,14 @@ namespace plugin
                               else
                               {
 
-                                 string strVer = strVersion.trimmed().is_empty() ? "stage" : strVersion;
+                                 string strConfig = strConfiguration.trimmed().is_empty() ? "stage" : strConfiguration;
 
-                                 strBuild = System.install().m_strmapLatestBuildNumber[strVer].trimmed();
+                                 strBuild = System.install().get_latest_build_number(strConfiguration).trimmed();
 
                                  if(strBuild.is_empty())
                                  {
 
-                                    strBuild = System.install().get_latest_build_number(strVer);
+                                    strBuild = System.install().get_latest_build_number(strConfig);
 
                                     if(strBuild.is_empty())
                                     {
@@ -872,14 +847,16 @@ namespace plugin
 
                         }
 
-                        if(set["app_type"].is_empty())
-                           strCommandLine += " app_type=" + strType;
+                        if (set["app_type"].is_empty())
+                        {
+
+                           strCommandLine += " app_type=" + strAppType;
+
+                        }
 
                         strCommandLine += " install";
 
-                        //m_phost->starter_start(strCommandLine, get_app(), this);
-
-                        System.install().asynch_install(strCommandLine, strBuildNumber, true);
+                        System.install().asynch_install(strCommandLine);
 
 #ifdef WINDOWSEX
                         ExitProcess(0);
