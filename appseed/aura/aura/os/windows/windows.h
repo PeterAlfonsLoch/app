@@ -71,3 +71,6 @@ CLASS_DECL_AURA HFONT wingdi_CreatePointFontIndirect(LOGFONTW* lpLogFont, HDC hd
 #define LOG_MEMBER_PREFIX __FUNCTION__
 
 #endif
+
+
+

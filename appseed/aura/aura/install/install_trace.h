@@ -6,7 +6,7 @@ namespace install
 {
 
 
-   class CLASS_DECL_AXIS trace :
+   class CLASS_DECL_AURA trace :
       virtual public object,
       virtual public progress_listener
    {

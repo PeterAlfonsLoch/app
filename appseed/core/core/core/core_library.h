@@ -21,7 +21,7 @@ namespace core
       virtual void get_extension_app(stringa & straApp,const char * pszExtension);
 
 
-      //virtual sp(::aura::application) get_new_app(const char * pszAppId);
+      //virtual sp(::aura::application) get_new_application(const char * pszAppId);
 
 
    };

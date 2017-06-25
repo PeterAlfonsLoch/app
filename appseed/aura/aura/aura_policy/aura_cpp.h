@@ -1275,6 +1275,8 @@ CLASS_DECL_AURA string get_exe_path();
 
 #include "aura/aura/aura/aura_system.h"
 
+#include "aura/aura/install/install.h"
+
 #include "aura/aura/aura/aura_system_str.h"
 
 #include "aura/os/os_process.h"

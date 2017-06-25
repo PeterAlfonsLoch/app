@@ -4,13 +4,12 @@
 namespace install
 {
 
-   installer_launcher::installer_launcher(::aura::application * papp, const char * pszVersion, const char * pszBuild) :
+
+   installer_launcher::installer_launcher(::aura::application * papp, const char * pszConfiguration) :
       ::object(papp)
    {
 
-      m_strVersion = pszVersion;
-
-      m_strBuild = pszBuild;
+      m_strConfiguration = pszConfiguration;
 
    }
 
@@ -18,16 +17,20 @@ namespace install
    bool installer_launcher::ensure_executable()
    {
 
-      m_strPath = System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild);
+      m_strPath = System.install().app_install_get_extern_executable_path(m_strConfiguration);
 
       return true;
 
    }
 
+
    string installer_launcher::get_executable_path()
    {
+
       ensure_executable();
+
       return m_strPath;
+
    }
 
 

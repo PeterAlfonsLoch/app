@@ -406,7 +406,7 @@ void * library::get_os_data()
    }
 
 
-   sp(::aura::application) library::get_new_app(const char * pszAppId)
+   sp(::aura::application) library::get_new_application(const char * pszAppId)
    {
 
       try
@@ -420,7 +420,7 @@ void * library::get_os_data()
             if(strAppName.is_empty())
                return NULL;
 
-            sp(::aura::application) papp = get_ca2_library()->get_new_app(strAppName);
+            sp(::aura::application) papp = get_ca2_library()->get_new_application(strAppName);
 
             if(papp == NULL)
                return NULL;

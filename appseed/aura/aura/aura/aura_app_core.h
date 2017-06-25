@@ -24,11 +24,17 @@ public:
 
 typedef int32_t(* PFN_APP_CORE_MAIN)(HINSTANCE hInstance,HINSTANCE hPrevInstance,const char * lpCmdLine,int32_t nCmdShow,app_core & appcore);
 
+extern "C" CLASS_DECL_AURA int32_t app_common_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow, app_core & appcore);
+
 #else // WINDOWS
 
 typedef int32_t(* PFN_APP_CORE_MAIN)(const char * lpCmdLine,int32_t nCmdShow,app_core & appcore);
 
 #endif
+
+
+
+
 
 
 

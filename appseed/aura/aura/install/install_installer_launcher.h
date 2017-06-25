@@ -5,22 +5,24 @@ namespace install
 {
 
 
-   class CLASS_DECL_AXIS installer_launcher :
+   class CLASS_DECL_AURA installer_launcher :
       virtual public ::launcher,
       virtual public ::object
    {
    public:
 
+
       string   m_strPath;
-      string   m_strVersion;
-      string   m_strBuild;
+      string   m_strConfiguration;
 
 
-      installer_launcher(::aura::application * papp, const char * pszVersion, const char * pszBuild);
+      installer_launcher(::aura::application * papp, const char * pszConfiguration);
+
 
       virtual bool ensure_executable();
 
       virtual string get_executable_path();
+
 
    };
 

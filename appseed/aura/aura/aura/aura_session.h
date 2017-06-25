@@ -107,7 +107,7 @@ namespace aura
       virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::create * pcc);
 
-      sp(::aura::application) get_new_app(::aura::application * pappNewApplicationParent,const char * pszType,const char * pszAppId);
+      sp(::aura::application) get_new_application(::aura::application * pappParent, const char * pszAppId, const char * pszAppType);
 
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 

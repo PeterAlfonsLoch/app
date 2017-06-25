@@ -1100,9 +1100,9 @@ namespace windows
 
          m_strCa2AppData = m_strAppData / "ca2" / "app" / strRelative;
 
-         m_strCa2AppData /= System.install_get_platform();
+         m_strCa2AppData /= System.get_system_platform();
 
-         m_strCa2AppData /= System.install_get_version();
+         m_strCa2AppData /= System.get_system_configuration();
 
       }
 

@@ -195,7 +195,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
@@ -269,7 +269,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
@@ -349,7 +349,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
@@ -431,7 +431,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -504,7 +504,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
@@ -582,7 +582,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;pcre.lib;version.lib;Secur32.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
@@ -852,6 +852,62 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\fontopus\_fontopus.cpp" />
+    <ClCompile Include="aura\install\install.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_boot.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_bz.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_focus.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_install.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_installer_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_installer_square.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="aura\install\install_launcher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -867,6 +923,46 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_small_bell.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_trace.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\windows\install_windows_boot.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\windows\install_windows_service.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\install\windows\install_windows_win.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\install\_install.cpp" />
     <ClCompile Include="aura\os\windows\windows_application.cpp">
@@ -2151,8 +2247,16 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="aura\fontopus\fontopus_validate.h" />
     <ClInclude Include="aura\fontopus\fontopus_validate1.h" />
     <ClInclude Include="aura\install\install.h" />
+    <ClInclude Include="aura\install\install_cube_run.h" />
+    <ClInclude Include="aura\install\install_focus.h" />
+    <ClInclude Include="aura\install\install_install.h" />
+    <ClInclude Include="aura\install\install_installer_launcher.h" />
+    <ClInclude Include="aura\install\install_installer_square.h" />
     <ClInclude Include="aura\install\install_launcher.h" />
     <ClInclude Include="aura\install\install_module_list.h" />
+    <ClInclude Include="aura\install\install_resource.h" />
+    <ClInclude Include="aura\install\install_small_bell.h" />
+    <ClInclude Include="aura\install\install_trace.h" />
     <ClInclude Include="aura\message\message.h" />
     <ClInclude Include="aura\message\message_base.h" />
     <ClInclude Include="aura\message\message_cross_windows.h" />

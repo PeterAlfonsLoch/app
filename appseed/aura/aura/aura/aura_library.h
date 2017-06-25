@@ -61,7 +61,7 @@ namespace aura
 
 
       // impl
-      virtual sp(::aura::application) get_new_app(const char * pszId);
+      virtual sp(::aura::application) get_new_application(const char * pszAppId);
       virtual void get_app_list(stringa & stra);
 
 
@@ -94,7 +94,7 @@ namespace aura
       single_application_library(::aura::application * papp,const char * pszRoot): object(papp),::aura::library(papp,0, pszRoot) {}
 
       // impl
-      virtual sp(::aura::application) get_new_app(const char * pszAppId);
+      virtual sp(::aura::application) get_new_application(const char * pszAppId);
 
 
    };

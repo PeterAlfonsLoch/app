@@ -96,83 +96,8 @@ m_visual(this),
 
    }
 
-   string system::install_get_platform()
-   {
-
-      return install().get_platform();
-
-   }
-
-   void system::install_set_platform(const char * pszPlatform)
-   {
-
-      install().set_platform(pszPlatform);
-
-   }
-
-   string system::install_get_version()
-   {
-
-      return install().m_strVersion;
-
-   }
-
-   void system::install_set_version(const char * pszVersion)
-   {
-
-      install().m_strVersion = pszVersion;
-
-   }
 
 
-   string system::install_get_latest_build_number(const char * pszVersion)
-   {
-
-      return install().get_latest_build_number(pszVersion);
-
-   }
-
-
-   int32_t system::install_start(const char * pszCommandLine, const char * pszBuild)
-   {
-
-      return install().start(pszCommandLine, pszBuild);
-
-   }
-
-
-   int32_t system::install_progress_app_add_up(int32_t iAddUp)
-   {
-
-      UNREFERENCED_PARAMETER(iAddUp);
-
-      return (int32_t)(install().m_progressApp()++);
-
-   }
-
-   //::install::canvas * system::install_create_canvas()
-   //{
-
-
-   //   return NULL;
-
-
-   //}
-
-
-   //void system::install_canvas_on_paint(::draw2d::graphics * pgraphics, const RECT & rect)
-   //{
-
-
-   //}
-
-
-   //int system::install_canvas_increment_mode()
-   //{
-
-   //   return 0;
-
-   //}
 
 
    bool system::process_initialize()

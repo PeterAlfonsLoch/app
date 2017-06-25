@@ -1628,21 +1628,21 @@ namespace axis
       stringa straSchema = command()->m_varTopicQuery["schema"].stra();
 
       System.install().remove_spa_start(m_strInstallType, strId);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, strSystemSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
+      System.install().add_app_install(strId, m_strInstallType, strSystemLocale, m_strSchema);
+      System.install().add_app_install(strId, m_strInstallType, strSystemLocale, strSystemSchema);
+      System.install().add_app_install(strId, m_strInstallType, m_strLocale, m_strSchema);
 
       for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       {
 
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, straLocale[iLocale], m_strSchema);
+         System.install().add_app_install(strId, m_strInstallType, straLocale[iLocale], m_strSchema);
 
       }
 
       for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, straSchema[iSchema]);
+         System.install().add_app_install(strId, m_strInstallType, m_strLocale, straSchema[iSchema]);
 
       }
 
@@ -1652,35 +1652,33 @@ namespace axis
          for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
          {
 
-            System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, straLocale[iLocale], straSchema[iSchema]);
+            System.install().add_app_install(strId, m_strInstallType, straLocale[iLocale], straSchema[iSchema]);
 
          }
 
       }
 
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, strSystemLocale, "");
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, "");
+      System.install().add_app_install(strId, m_strInstallType, strSystemLocale, "");
+      System.install().add_app_install(strId, m_strInstallType, m_strLocale, "");
 
       for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       {
 
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, straLocale[iLocale], "");
+         System.install().add_app_install(strId, m_strInstallType, straLocale[iLocale], "");
 
       }
 
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", m_strSchema);
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", strSystemSchema);
+      System.install().add_app_install(strId , m_strInstallType, "", m_strSchema);
+      System.install().add_app_install(strId , m_strInstallType, "", strSystemSchema);
 
       for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
-         System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", straSchema[iSchema]);
+         System.install().add_app_install(strId, m_strInstallType, "", straSchema[iSchema]);
 
       }
 
-
-      System.install().add_app_install(System.command()->m_varTopicQuery["build_number"], m_strInstallType, strId, "", "");
-
+      System.install().add_app_install(strId, m_strInstallType, "", "");
 
       return true;
 

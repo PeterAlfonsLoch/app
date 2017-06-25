@@ -408,6 +408,9 @@
     <Filter Include="Source Files\aura\install">
       <UniqueIdentifier>{cef81474-8eed-4b61-b187-84f47f894aeb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\install\windows">
+      <UniqueIdentifier>{e6e4f6ba-5849-408a-b6ed-c56ed1cb9eab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2813,6 +2816,30 @@
     <ClInclude Include="aura\install\install_module_list.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
+    <ClInclude Include="aura\install\install_cube_run.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_focus.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_install.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_installer_launcher.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_installer_square.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_resource.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_small_bell.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_trace.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4842,6 +4869,42 @@
     </ClCompile>
     <ClCompile Include="aura\install\_install.cpp">
       <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_boot.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_bz.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_focus.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_install.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_installer_launcher.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_installer_square.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_small_bell.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_trace.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\windows\install_windows_boot.cpp">
+      <Filter>Source Files\aura\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\windows\install_windows_service.cpp">
+      <Filter>Source Files\aura\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\windows\install_windows_win.cpp">
+      <Filter>Source Files\aura\install\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

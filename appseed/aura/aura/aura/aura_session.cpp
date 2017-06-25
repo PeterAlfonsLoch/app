@@ -660,7 +660,7 @@ namespace aura
          }
          else if(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() > 1)
          {
-            start_application("application","app/core/bergedge",pcreatecontext);
+            start_application("application","app-core/desk",pcreatecontext);
             return;
          }
 
@@ -803,42 +803,10 @@ namespace aura
    }
 
 
-   sp(::aura::application) session::get_new_app(::aura::application * pappNewApplicationParent,const char * pszType,const char * pszAppId)
+   sp(::aura::application) session::get_new_application(::aura::application * pappParent, const char * pszAppId, const char * pszAppType)
    {
 
-
-      string strId(pszAppId);
-
-      string strApplicationId;
-
-      if(strId == "app/core/bergedge")
-      {
-
-         strApplicationId = "bergedge";
-
-      }
-      else if(strId == "app/core/system")
-      {
-
-         strApplicationId = "system";
-
-      }
-      else
-      {
-
-         strApplicationId = strId;
-
-      }
-
-
-      string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
-
-      if(strBuildNumber.is_empty())
-      {
-
-         strBuildNumber = "installed";
-
-      }
+      string strAppId(pszAppId);
 
 #ifdef CUBE
 
@@ -855,38 +823,38 @@ namespace aura
       if(((!System.directrix()->m_varTopicQuery.has_property("install")
            && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
           ) //         || (papp->is_serviceable() && !papp->is_user_service() && strUserName != "NetworkService"))
-         && strId.has_char()
-         && !System.install_is(System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema))
+         && strAppId.has_char()
+         && !System.is_application_installed(strAppId, pszAppType))
       {
 
-          throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
+          throw not_installed(get_app(), strAppId, pszAppType);
 
       }
 
 #endif
 
 
-      ::aura::library * & plibrary = m_mapLibrary[pappNewApplicationParent][pszAppId];
+      ::aura::library * & plibrary = m_mapLibrary[pappParent][pszAppId];
 
       if (plibrary == NULL)
       {
          
-         plibrary = new ::aura::library(pappNewApplicationParent, 0, NULL);
+         plibrary = new ::aura::library(pappParent, 0, NULL);
 
-         string strLibrary = pszAppId;
+         string strLibrary = strAppId;
 
          strLibrary.replace("/", "_");
 
          strLibrary.replace("-", "_");
 
-         ::output_debug_string("\n\n::aura::session::get_new_app assembled library path " + strLibrary + "\n\n");
+         ::output_debug_string("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
          if (!plibrary->open(strLibrary, false))
          {
 
 #ifndef METROWIN
 
-            ::MessageBox(NULL, "Application \"" + strApplicationId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
+            ::MessageBox(NULL, "Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 
 #endif
 
@@ -894,30 +862,30 @@ namespace aura
 
          }
 
-         ::output_debug_string("\n\n::aura::session::get_new_app Found library : " + strLibrary + "\n\n");
+         ::output_debug_string("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
 
          if (!plibrary->is_opened())
          {
 
-            ::output_debug_string("\n\n::aura::session::get_new_app Failed to load library : " + strLibrary + "\n\n");
+            ::output_debug_string("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
 
             return NULL;
 
          }
 
-         ::output_debug_string("\n\n::aura::session::get_new_app Opened library : " + strLibrary + "\n\n");
+         ::output_debug_string("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
          if (!plibrary->open_ca2_library())
          {
 
-            ::output_debug_string("\n\n::aura::session::get_new_app open_ca2_library failed(2) : " + strLibrary + "\n\n");
+            ::output_debug_string("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
 
             return NULL;
 
          }
 
          ::output_debug_string("\n\n\n|(5)----");
-         ::output_debug_string("| app : " + strApplicationId + "\n");
+         ::output_debug_string("| app : " + strAppId + "\n");
          ::output_debug_string("|\n");
          ::output_debug_string("|\n");
          ::output_debug_string("|----");
@@ -927,10 +895,10 @@ namespace aura
       ::aura::library & library = *plibrary;
 
 
-      sp(::aura::application) papp = library.get_new_app(pszAppId);
+      sp(::aura::application) papp = library.get_new_application(strAppId);
 
       ::output_debug_string("\n\n\n|(4)----");
-      ::output_debug_string("| app : " + strApplicationId + "(papp=0x"+::hex::upper_from((uint_ptr)papp.m_p)+")\n");
+      ::output_debug_string("| app : " + strAppId + "(papp=0x"+::hex::upper_from((uint_ptr)papp.m_p)+")\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|----");
@@ -949,7 +917,7 @@ namespace aura
 #endif // WINDOWSEX
 
       ::output_debug_string("\n\n\n|(3)----");
-      ::output_debug_string("| app : " + strApplicationId + "\n");
+      ::output_debug_string("| app : " + strAppId + "\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|----");
@@ -957,7 +925,7 @@ namespace aura
 
 
       ::output_debug_string("\n\n\n|(2)----");
-      ::output_debug_string("| app : " + strApplicationId + "\n");
+      ::output_debug_string("| app : " + strAppId + "\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|----");
@@ -978,7 +946,7 @@ namespace aura
          return NULL;
 
       ::output_debug_string("\n\n\n|(1)----");
-      ::output_debug_string("| app : " + strApplicationId + "\n");
+      ::output_debug_string("| app : " + strAppId + "\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|----");

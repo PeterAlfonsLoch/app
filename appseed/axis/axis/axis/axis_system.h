@@ -18,12 +18,6 @@ namespace axis
 
       ::visual::visual                             m_visual;
 
-      sp(::install::install)                       m_spinstall;
-
-
-
-      inline class ::visual::visual                & visual() { return m_visual; }
-
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
 
@@ -62,16 +56,17 @@ namespace axis
 
 
       ::net::email_department               & email();
+      inline class ::visual::visual                & visual() { return m_visual; }
 
-      ::install::install                           & install() { return *m_spinstall; }
 
-      virtual string install_get_platform() override;
-      virtual void install_set_platform(const char * pszPlatform) override;
-      virtual string install_get_version() override;
-      virtual void install_set_version(const char * pszVersion) override;
-      virtual string install_get_latest_build_number(const char * pszVersion) override;
-      virtual int32_t install_start(const char * pszCommandLine, const char * pszBuild) override;
-      virtual int32_t install_progress_app_add_up(int iAddUp = 1) override;
+
+      //virtual string install_get_platform() override;
+      //virtual void install_set_platform(const char * pszPlatform) override;
+      //virtual string install_get_version() override;
+      //virtual void install_set_version(const char * pszVersion) override;
+      //virtual string install_get_latest_build_number(const char * pszVersion) override;
+      //virtual int32_t install_start(const char * pszCommandLine, const char * pszBuild) override;
+      //virtual int32_t install_progress_app_add_up(int iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
       //virtual void install_canvas_on_paint(::draw2d::graphics * pgraphics, const RECT & rect);

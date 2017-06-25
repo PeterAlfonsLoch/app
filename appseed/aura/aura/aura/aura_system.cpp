@@ -283,7 +283,7 @@ namespace aura
 //
 //      static DWORD dwStart = get_tick_count();
 //
-//      if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+//      if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (1000 * 1000))
 //      {
 //
 //         ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) +
@@ -293,7 +293,7 @@ namespace aura
 //
 //      }
 //
-//      if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+//      if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (1000 * 1000))
 //      {
 //
 //         ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) +
@@ -1248,7 +1248,7 @@ namespace aura
    void system::appa_load_string_table()
    {
 
-      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
+      retry_single_lock rsl(m_pmutex,millis(100),millis(100));
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
       //    {
@@ -1261,7 +1261,7 @@ namespace aura
    void system::appa_set_locale(const char * pszLocale,::action::context actioncontext)
    {
 
-      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
+      retry_single_lock rsl(m_pmutex,millis(100),millis(100));
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
 //     {
@@ -1274,7 +1274,7 @@ namespace aura
    void system::appa_set_schema(const char * pszStyle,::action::context actioncontext)
    {
 
-      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
+      retry_single_lock rsl(m_pmutex,millis(100),millis(100));
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
       //    {
@@ -1773,11 +1773,24 @@ namespace aura
    }
 
 
-   string system::install_get_platform()
+   string system::get_system_configuration()
    {
 
-      if(m_strInstallPlatform.is_empty())
-      {
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         return "basis";
+
+#else
+
+         return "stage";
+
+#endif
+
+   }
+
+
+   string system::get_system_platform()
+   {
 
 #ifdef X86
 
@@ -1789,73 +1802,110 @@ namespace aura
 
 #endif
 
-      }
-
-      return m_strInstallPlatform;
-
    }
 
 
-   void system::install_set_platform(const char * pszPlatform)
+   string system::get_latest_build_number(const char * pszConfiguration)
    {
 
-      m_strInstallPlatform = pszPlatform;
+      string strConfiguration(pszConfiguration);
 
-   }
-
-
-   string system::install_get_version()
-   {
-
-      if(m_strInstallVersion.is_empty())
+      if (strConfiguration.is_empty())
       {
-#if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         return "basis";
-
-#else
-
-         return "stage";
-
-#endif
+         strConfiguration = get_system_configuration();
 
       }
 
-      return m_strInstallVersion;
+      if (m_mapCachedLatestBuildNumber[strConfiguration].length() > 0)
+      {
+
+         return m_mapCachedLatestBuildNumber[strConfiguration];
+
+      }
+
+      string strBuildNumber;
+
+      string strSpaIgnitionBaseUrl;
+
+      if (strConfiguration == "basis")
+      {
+
+         strSpaIgnitionBaseUrl = "https://server.ca2.cc/api/spaignition";
+
+      }
+      else
+      {
+
+         strSpaIgnitionBaseUrl = "https://server.ca2.cc/api/spaignition";
+
+      }
+
+      int iRetry = 0;
+
+   RetryBuildNumber:
+
+      if (iRetry > 10)
+      {
+
+         return "";
+
+      }
+
+      iRetry++;
+
+      strBuildNumber = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration);
+
+      ::str::_008Trim(strBuildNumber);
+
+      if (strBuildNumber.length() != 19)
+      {
+
+         Sleep(100 * iRetry);
+
+         goto RetryBuildNumber;
+
+      }
+
+      m_mapCachedLatestBuildNumber[strConfiguration] = strBuildNumber;
+
+      return strBuildNumber;
 
    }
 
 
-   void system::install_set_version(const char * pszVersion)
+   int32_t system::start_installation(const char * pszCommand)
    {
 
-      m_strInstallVersion = pszVersion;
+      return install().start(pszCommand);
 
    }
 
 
-   string system::install_get_latest_build_number(const char * pszVersion)
-   {
+   //int32_t system::install_start(const char * pszCommandLine, const char * pszBuild)
+   //{
 
-      return "offline";
+   //   return install().start(pszCommandLine, pszBuild);
 
-   }
-
-
-   int32_t system::install_start(const char * pszCommandLine,const char * pszBuild)
-   {
-
-      return -1;
-
-   }
+   //}
 
 
-   int32_t system::install_progress_app_add_up(int32_t iAddUp)
-   {
+   //int32_t system::install_progress_app_add_up(int32_t iAddUp)
+   //{
 
-      return -1;
+   //   UNREFERENCED_PARAMETER(iAddUp);
 
-   }
+   //   return (int32_t)(install().m_progressApp()++);
+
+   //}
+
+
+   //int32_t system::install_progress_app_add_up(int32_t iAddUp)
+   //{
+
+   //   return -1;
+
+   //}
 
    void system::on_start_find_applications_from_cache()
    {
@@ -1880,108 +1930,73 @@ namespace aura
    }
 
 
-
-   ::file::path system::install_meta_dir(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema)
+   ::file::path system::get_application_installation_meta_dir(const char * pszAppId, const char * pszAppType, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
    {
 
       synch_lock sl(m_pmutex);
 
-      string strType(pszType);
+      string strAppId(pszAppId);
 
-      if(strType.is_empty())
+      string strAppType(pszAppType);
+
+      if(strAppType.is_empty())
       {
 
-         strType = "application";
+         strAppType = "application";
 
       }
 
-      string strPlatform;
+      string strPlatform(pszPlatform);
 
-#if defined(_M_IX86)
-
-      strPlatform = "x86";
-
-#else
-
-      strPlatform = "x64";
-
-#endif
-
-      if(pszVersion == NULL || *pszVersion == '\0')
+      if (strPlatform.is_empty())
       {
 
-         if(install_get_version() == "basis")
-         {
-
-            pszVersion = "basis";
-
-         }
-         else
-         {
-
-            pszVersion = "stage";
-
-         }
+         strPlatform = get_system_platform();
 
       }
 
-      string strBuildNumber(pszBuild);
+      string strConfiguration(pszConfiguration);
 
-      if(strBuildNumber == "latest")
+      if(strConfiguration.is_empty())
       {
 
-         strBuildNumber = install_get_latest_build_number(pszVersion);
-
-      }
-      else if(strBuildNumber == "installed" || strBuildNumber == "static")
-      {
-
-         string strBuildPath;
-
-         strBuildPath = System.dir().commonappdata() / "spa_build_" + strPlatform + ".txt";
-
-         if(Application.file().exists(strBuildPath))
-         {
-
-            string strNewBuildNumber = Application.file().as_string(strBuildPath);
-
-            if(strNewBuildNumber.is_empty())
-            {
-
-               strBuildNumber = "installed";
-            }
-            else
-            {
-
-               strBuildNumber = strNewBuildNumber;
-
-            }
-
-         }
-         else
-         {
-
-            strBuildNumber = "installed";
-
-         }
+         strConfiguration = get_system_configuration();
 
       }
 
-      return System.dir().commonappdata() / strType / pszVersion / strBuildNumber / strPlatform / pszId / pszLocale / pszSchema;
+      string strLocale(pszLocale);
+
+      if (strLocale.is_empty())
+      {
+
+         strLocale = Session.m_strLocale;
+
+      }
+
+      string strSchema(pszSchema);
+
+      if (strSchema.is_empty())
+      {
+
+         strSchema = Session.m_strSchema;
+
+      }
+
+      return System.dir().commonappdata() / strPlatform / strConfiguration / strAppId / strAppType /strLocale / strSchema;
 
    }
 
 
-   bool system::install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema)
+   bool system::is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
    {
 
       synch_lock sl(m_pmutex);
 
-      ::file::path strPath;
+      ::file::path path;
 
-      strPath = install_meta_dir(pszVersion, pszBuild, pszType, pszId, pszLocale, pszSchema) / "installed.txt";
+      path = get_application_installation_meta_dir(pszAppId, pszAppType, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      if(!Application.file().exists(strPath))
+      if(!Application.file().exists(path))
          return false;
 
       return true;
@@ -2250,13 +2265,6 @@ namespace aura
 
       set._008ParseCommandFork(pdata->m_vssCommandLine,varFile,strApp);
 
-      if(set.has_property("version"))
-      {
-
-         install_set_version(set["version"]);
-
-      }
-
       string strAppId(strApp);
 
       if (set.has_property("app"))
@@ -2393,7 +2401,7 @@ namespace aura
 
       }
 
-      int i = 284;
+      int i = 100;
 
       MESSAGE msg;
       while(i > 0 && ptra.get_size() > 0)
@@ -2433,7 +2441,7 @@ namespace aura
 
          }
 
-         Sleep(84);
+         Sleep(100);
 
          i--;
 
@@ -2458,7 +2466,7 @@ namespace aura
          papp->command()->command(::primitive::command_france_exit);
       }
 
-      i = 284;
+      i = 100;
 
       while(i > 0 && ptra.get_size() > 0)
       {
@@ -2488,7 +2496,7 @@ namespace aura
 
          }
 
-         Sleep(84);
+         Sleep(100);
 
          i--;
 
@@ -2972,7 +2980,7 @@ namespace aura
    }
 
 
-   
+
 
 } // namespace aura
 

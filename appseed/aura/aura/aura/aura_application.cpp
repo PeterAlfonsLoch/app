@@ -332,16 +332,17 @@ namespace aura
    void application::throw_not_installed()
    {
 
-      string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
+      //string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
 
-      if (strBuildNumber.is_empty())
-      {
+      //if (strBuildNumber.is_empty())
+      //{
 
-         strBuildNumber = "installed";
+      //   strBuildNumber = "installed";
 
-      }
+      //}
 
-      throw not_installed(get_app(), System.install_get_version(), strBuildNumber, "application", m_strAppName, Session.m_strLocale, Session.m_strSchema);
+      throw not_installed(get_app(), m_strAppId, "application");
+
    }
 
 
@@ -5903,16 +5904,16 @@ namespace aura
    }
 
 
-   sp(::aura::application) application::instantiate_application(const char * pszType, const char * pszId, application_bias * pbias)
+   sp(::aura::application) application::instantiate_application(const char * pszAppId, const char * pszAppType, application_bias * pbias)
    {
 
       thisstart;
 
       sp(::aura::application) papp;
 
-      string strId(pszId);
+      string strAppId(pszAppId);
 
-      if (strId.compare_ci("session") == 0)
+      if (strAppId.compare_ci("session") == 0)
       {
 
          papp = create_platform(m_pauraapp->m_paurasession);
@@ -5925,28 +5926,7 @@ namespace aura
       else
       {
 
-         string strNewId;
-
-         if (strId == "bergedge")
-         {
-
-            strNewId = "app/core/bergedge";
-
-         }
-         else if (strId == "cube")
-         {
-
-            strNewId = "app/core/cube";
-
-         }
-         else
-         {
-
-            strNewId = strId;
-
-         }
-
-         papp = Session.get_new_app(pbias == NULL ? this : pbias->get_app(), pszType, strNewId);
+         papp = Session.get_new_application(pbias == NULL ? this : pbias->get_app(), strAppId, pszAppType);
 
          if (papp == NULL)
             return NULL;
@@ -5960,10 +5940,10 @@ namespace aura
          if (papp != NULL)
          {
 
-            if (strId == "bergedge" || strId == "cube")
+            if (strAppId == "bergedge" || strAppId == "cube")
             {
 
-               papp->m_strAppId = strId;
+               papp->m_strAppId = strAppId;
 
             }
 
@@ -6002,22 +5982,25 @@ namespace aura
 
       }
 
-      if ((papp == NULL || papp->m_strAppId != strId)
+      if ((papp == NULL || papp->m_strAppId != strAppId)
          &&
          (!Application.command()->m_varTopicQuery.has_property("install")
             && !Application.command()->m_varTopicQuery.has_property("uninstall")))
       {
 
-         TRACE("Failed to instantiate %s, going to try installation through ca2_cube_install", strId);
+         TRACE("Failed to instantiate %s, going to try installation through ca2_cube_install", strAppId);
 
-         string strCommandLine;
+         string strCommand;
 
-         strCommandLine = " : app=" + strId;
-         strCommandLine += " locale=" + string(Session.str_context()->m_plocaleschema->m_idLocale);
-         strCommandLine += " style=" + string(Session.str_context()->m_plocaleschema->m_idSchema);
-         strCommandLine += " install";
+         strCommand = "app=" + strAppId;
+         
+         strCommand += " locale=" + Session.m_strLocale;
+         
+         strCommand += " style=" + Session.m_strSchema;
 
-         System.install_start(strCommandLine, Application.command()->m_varTopicQuery["build_number"]);
+         strCommand += " install";
+
+         System.start_installation(strCommand);
 
          throw installing_exception(get_app());
 
@@ -6182,7 +6165,7 @@ namespace aura
          try
          {
 
-            string strModuleFilePath;
+            ::file::path pathModule;
 
             DWORD dwExitCode = 0;
 
@@ -6190,18 +6173,13 @@ namespace aura
 
             string strParam;
 
-            string strPath = notinstalled.m_strId;
+            ::file::path path;
 
-            strPath = System.dir().ca2module() / "app";
-
-            string strBuildNumber = "latest";
-
-            //if (strcmp(g_pszCooperativeLevel, "core") != 0)
-              // strPath += "." + string(g_pszCooperativeLevel);
+            path = System.dir().ca2module() / "app";
 
 #ifdef WINDOWS
 
-            strPath += ".exe";
+            path += ".exe";
 
 #elif defined(APPLEOS)
 
@@ -6251,12 +6229,12 @@ namespace aura
 
 #endif
 
-            strModuleFilePath = strPath;
+            pathModule = path;
 
             //#if defined(APPLEOS)
             //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
             //#else
-            strParam = " : app=" + notinstalled.m_strId + " install build_number=" + notinstalled.m_strBuild + " version=" + notinstalled.m_strVersion + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
+            strParam = " : install app=" + notinstalled.m_strAppId + " configuration=" + notinstalled.m_strConfiguration+ " platform="+ notinstalled.m_strPlatform +"locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
             //#endif
 
             //               if(App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
@@ -6345,13 +6323,10 @@ namespace aura
                if (!(bool)System.oprop("not_installed_message_already_shown"))
                {
                   if ((App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
-                     || (IDYES == (iRet = ::simple_message_box(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_YESNO))))
+                     || (IDYES == (iRet = ::simple_message_box(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strAppId + "\n\ttype = " + notinstalled.m_strAppType + "\n\tconfiguration = " + notinstalled.m_strConfiguration + "\n\tplatform = " + notinstalled.m_strPlatform + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_YESNO))))
                   {
 
-
-
-
-                     ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 8.0);
+                     ::duration durationWait = minutes(1);
 
                      //#ifdef MACOS
 
@@ -6363,11 +6338,11 @@ namespace aura
 
 #ifdef LINUX
 
-                     dwExitCode = System.process().synch(strPath + strParam, SW_HIDE, durationWait, &bTimedOut);
+                     dwExitCode = System.process().synch(string(strPath) + strParam, SW_HIDE, durationWait, &bTimedOut);
 
 #else
 
-                     dwExitCode = System.process().elevated_synch(strPath + strParam, SW_HIDE, durationWait, &bTimedOut);
+                     dwExitCode = System.process().elevated_synch(string(path) + strParam, SW_HIDE, durationWait, &bTimedOut);
 
 #endif
 
@@ -6388,7 +6363,7 @@ namespace aura
             else if (bTimedOut)
             {
 
-               ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" + strPath + strParam + "\"\nif it has not been terminated yet.", "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
+               ::simple_message_box(NULL, " - " + notinstalled.m_strAppId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" + string(path) + strParam + "\"\nif it has not been terminated yet.", "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
 
                notinstalled.m_bContinue = false;
 
@@ -6396,7 +6371,7 @@ namespace aura
             else if (dwExitCode == 0)
             {
 
-               ::simple_message_box(NULL, "Successfully run : " + strPath + strParam, "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
+               ::simple_message_box(NULL, "Successfully run : " + string(path) + strParam, "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
 
                notinstalled.m_bContinue = false;
 
@@ -6404,7 +6379,7 @@ namespace aura
             else
             {
 
-               ::simple_message_box(NULL, strPath + strParam + "\n\nFailed return code : " + ::str::from((uint32_t)dwExitCode), "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
+               ::simple_message_box(NULL, string(path) + strParam + "\n\nFailed return code : " + ::str::from((uint32_t)dwExitCode), "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
 
                notinstalled.m_bContinue = false;
 
@@ -6441,7 +6416,7 @@ namespace aura
 
          }
 
-         hotplugin_host_starter_start_sync(": app=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema + " version=" + notinstalled.m_strVersion + strAddUp, get_app(), NULL);
+         hotplugin_host_starter_start_sync(": app=" + notinstalled.m_strAppId + " app_type=" + notinstalled.m_strAppType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema + " configuration=" + notinstalled.m_strConfiguration + " platform=" + notinstalled.m_strPlatform + strAddUp, get_app(), NULL);
 
       }
 

@@ -139,6 +139,11 @@ namespace aura
       
       string                                       m_strIosHome;
       string                                       m_strIosTemp;
+      string_to_string                             m_mapCachedLatestBuildNumber;
+
+      sp(::install::install)                       m_spinstall;
+
+
 
 
 
@@ -389,6 +394,7 @@ namespace aura
 
       virtual void * & ftlibrary();
 
+      ::install::install                           & install() { return *m_spinstall; }
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache(bool bSave = true);
@@ -408,15 +414,16 @@ namespace aura
       virtual void on_request(sp(::create) pcreate) override;
 
 
-      virtual string install_get_version();
-      virtual void install_set_version(const char * pszVersion);
-      virtual ::file::path install_meta_dir(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema);
-      virtual string install_get_platform();
-      virtual void install_set_platform(const char * pszPlatform);
-      virtual bool install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema);
-      virtual string install_get_latest_build_number(const char * pszVersion);
-      virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild);
-      virtual int32_t install_progress_app_add_up(int iAddUp);
+      virtual string get_system_platform();
+      virtual string get_system_configuration();
+      //virtual void install_set_version(const char * pszVersion);
+      virtual ::file::path get_application_installation_meta_dir(const char * pszAppId, const char * pszAppType, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
+      //virtual string install_get_platform();
+      //virtual void install_set_platform(const char * pszPlatform);
+      virtual bool is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
+      virtual string get_latest_build_number(const char * pszConfiguration);
+      virtual int32_t start_installation(const char * pszCommand);
+      //virtual int32_t install_progress_app_add_up(int iAddUp);
 
       virtual void on_start_find_applications_from_cache();
       virtual void on_end_find_applications_from_cache(::file::byte_istream & is);

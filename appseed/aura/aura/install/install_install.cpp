@@ -1,19 +1,3 @@
-//#include "framework.h"
-
-//#if defined(LINUX) || defined(WINDOWS)
-////#include <omp.h>
-//#else
-//int omp_get_thread_num()
-//{
-//   return 0;
-//}
-//#endif
-//
-//#if defined(LINUX)
-//
-////#include <unistd.h>
-//
-//#endif
 
 namespace install
 {
@@ -22,51 +6,26 @@ namespace install
    install::install(::aura::application * papp) :
       ::object(papp),
       ::aura::department(papp),
-      //m_mutex(papp, false, "Global\\spa_boot_install"),
-      m_mutex(papp),
       m_trace(papp)
    {
+
+      defer_create_mutex();
 
       m_psockethandler = NULL;
 
       m_bAdmin = false;
-      m_dwLatestBuildNumberLastFetch = 0;
       m_hmutexBoot = NULL;
 
       m_bCa2Installed = false;
-      m_bCa2Updated = false;
       m_bSpaInstalled = false;
       m_bSpaUpdated = false;
-      m_bUpdated = false;
-      //m_strCa2Build = NULL;
-
 
       m_iProgressAppInstallStart = 0;
       m_iProgressAppInstallStep = 0;
       m_iProgressAppInstallEnd = 0;
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-      m_strVersion = "basis";
-
-#else
-
-      m_strVersion = "stage";
-
-#endif
-
-#ifdef X86
-
-      m_strPlatform = "x86";
-
-#else
-
-      m_strPlatform = "x64";
-
-#endif
-
-
    }
+
 
    install::~install()
    {
@@ -82,7 +41,7 @@ namespace install
 
       string strUrl;
 
-      strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5?authnone&version=" + m_strVersion + "&stage=";
+      strUrl = "http://" + System.get_system_configuration() + "-server.ca2.cc/api/spaignition/md5?authnone&version=" + System.get_system_configuration() + "&stage=";
       //strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5?authnone&version=" + m_strVersion + "&stage=";
       strUrl += pszTemplate;
       strUrl += "&build=";
@@ -128,7 +87,7 @@ namespace install
 
          string strUrl;
 
-         strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5a_and_lena?authnone&version=" + m_strVersion + "&stage=";
+         strUrl = "http://" + System.get_system_configuration() + "-server.ca2.cc/api/spaignition/md5a_and_lena?authnone&version=" + System.get_system_configuration() + "&stage=";
          strUrl += straTemplate.implode(",");
          strUrl += "&build=";
          strUrl += strFormatBuild;
@@ -210,7 +169,7 @@ namespace install
    }
 
 
-   int32_t install::synch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground)
+   int32_t install::synch_install(const char * pszCommand)
    {
 
       wait_until_mutex_does_not_exist("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
@@ -221,42 +180,39 @@ namespace install
 
       strCommand += "starter_start:";
 
-      strCommand += pszCommandLine;
+      strCommand += pszCommand;
 
-      if (bBackground)
-      {
-
-         strCommand += " background";
-
-      }
-
-      app_install_call_sync(strCommand, pszBuild);
+      app_install_call_sync(strCommand);
 
       return 0;
 
    }
 
 
-   void install::app_install_call_sync(const char * szParameters, const char * pszBuild)
+   void install::app_install_call_sync(const char * pszCommand)
    {
+      
       bool bLaunch;
 
-      if (stricmp_dup(szParameters, "exit") == 0
-         || stricmp_dup(szParameters, "quit") == 0)
+      if (stricmp_dup(pszCommand, "exit") == 0 || stricmp_dup(pszCommand, "quit") == 0)
       {
+         
          bLaunch = false;
+
       }
       else
       {
+
          bLaunch = true;
+
       }
 
-      app_install_send_short_message(szParameters, bLaunch, pszBuild);
+      app_install_send_short_message(pszCommand, bLaunch);
 
    }
 
 
-   CLASS_DECL_AXIS bool install::app_install_send_short_message(const char * psz, bool bLaunch, const char * pszBuild)
+   bool install::app_install_send_short_message(const char * psz, bool bLaunch)
    {
 
 #ifdef METROWIN
@@ -267,7 +223,7 @@ namespace install
 
       ::aura::ipc::tx txchannel(get_app());
 
-      installer_launcher launcher(get_app(), m_strVersion, pszBuild);
+      installer_launcher launcher(get_app(), System.get_system_configuration());
 
       if (!txchannel.open(::aura::ipc::app_install(m_strPlatform), bLaunch ? &launcher : NULL))
          return false;
@@ -281,7 +237,7 @@ namespace install
    }
 
 
-   void install::app_install_send_response(const char * param, const char * pszBuild)
+   void install::app_install_send_response(const char * param)
    {
 
 #ifdef METROWIN
@@ -292,7 +248,7 @@ namespace install
 
       ::aura::ipc::tx txchannel(get_app());
 
-      installer_launcher launcher(get_app(), m_strVersion, pszBuild);
+      installer_launcher launcher(get_app(), System.get_system_configuration());
 
       if (!txchannel.open("core/spaboot_install_callback"))
          return;
@@ -305,7 +261,7 @@ namespace install
 
 
 
-   int32_t install::asynch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground)
+   int32_t install::asynch_install(const char * pszCommandLine)
    {
 
       wait_until_mutex_does_not_exist("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
@@ -318,12 +274,7 @@ namespace install
 
       strCommand += pszCommandLine;
 
-      if (bBackground)
-      {
-         strCommand += " background";
-      }
-
-      app_install_call_sync(strCommand, pszBuild);
+      app_install_call_sync(strCommand);
 
       return 0;
 
@@ -332,22 +283,33 @@ namespace install
 
    bool install::is_admin()
    {
+      
       return m_bAdmin;
+
    }
+
 
    void install::set_admin(bool bSet)
    {
+
       m_bAdmin = bSet;
+
    }
+
 
    string install::get_id()
    {
+
       return m_strId;
+
    }
+
 
    void install::set_id(const char * psz)
    {
+
       m_strId = psz;
+
    }
 
 
@@ -367,87 +329,21 @@ namespace install
    }
 
 
-   bool install::is_installed(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
+   bool install::is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
    {
 
-      return is(pszVersion, pszBuild, pszType, pszId, pszLocale, pszSchema);
+      return System.is_application_installed(pszAppId, pszAppType, pszPlatform, pszConfiguration, pszLocale, pszSchema);
 
    }
 
-   string install::get_latest_build_number(const char * pszVersion)
+
+   string install::get_latest_build_number(const char * pszConfiguration)
    {
 
-      string strLatestBuildNumber = m_strmapLatestBuildNumber[pszVersion];
-
-      if (!strLatestBuildNumber.is_empty() && (get_tick_count() - m_dwLatestBuildNumberLastFetch) < ((5000) * 3))
-         return strLatestBuildNumber;
-
-      strLatestBuildNumber = fetch_latest_build_number(pszVersion);
-
-      m_strmapLatestBuildNumber.set_at(pszVersion, strLatestBuildNumber);
-
-      m_dwLatestBuildNumberLastFetch = get_tick_count();
-
-      return strLatestBuildNumber;
+      return System.get_latest_build_number(pszConfiguration);
 
    }
 
-   string install::fetch_latest_build_number(const char * pszVersion)
-   {
-
-      string strBuildNumber;
-
-      string strSpaIgnitionBaseUrl;
-
-      string strVersion(pszVersion);
-
-      if (file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt").has_char())
-      {
-
-         strSpaIgnitionBaseUrl = "https://" + file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
-
-      }
-      else
-      {
-
-         strSpaIgnitionBaseUrl = "http://api.ca2.cc/spaignition";
-
-
-      }
-
-      int32_t iRetry = 0;
-
-   RetryBuildNumber:
-
-      if (iRetry > 3)
-      {
-
-         return "";
-
-      }
-
-      iRetry++;
-
-      property_set set(get_app());
-
-      set["raw_http"] = true;
-
-      strBuildNumber = Application.http().get(strSpaIgnitionBaseUrl + "/query?node=build&version=" + strVersion, set);
-
-      strBuildNumber.trim();
-
-      if (strBuildNumber.length() != 19)
-      {
-
-         Sleep(184 * iRetry);
-
-         goto RetryBuildNumber;
-
-      }
-
-      return strBuildNumber;
-
-   }
 
    int32_t install::start_app(const char * id)
    {
@@ -548,24 +444,6 @@ namespace install
 
 
 
-   uint32_t _ca2_starter_start(void * pvoid);
-
-   const char * install::get_starter_version()
-   {
-      return ca2_get_build();
-   }
-
-   const char * install::get_version()
-   {
-      return file_as_string_dup(dir::element() / "appdata" / get_platform() / "build.txt");
-   }
-
-   const char * install::get_ca2_version()
-   {
-      return file_as_string_dup(dir::element() / "appdata" / get_platform() / "ca2_build.txt");
-   }
-
-
    void install::update_ca2_installed(bool bUnloadIfNotInstalled)
    {
 
@@ -636,45 +514,6 @@ namespace install
    }
 
 
-   void install::update_ca2_updated()
-   {
-
-      m_bCa2Updated = !strcmp_dup(get_starter_version(), get_ca2_version());
-
-   }
-
-
-   // ca files in store updated only in store but may not be yet transferred to the stage
-   bool install::is_ca2_updated()
-   {
-      return m_bCa2Updated;
-   }
-
-   // ca files in store updated and transferred to the stage
-   void install::update_updated()
-   {
-      m_bUpdated = !strcmp_dup(get_starter_version(), get_version());
-   }
-
-
-   bool install::is_updated()
-   {
-      return m_bUpdated;
-   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #ifdef WINDOWS
 
@@ -696,7 +535,7 @@ namespace install
 
       property_set set(get_app());
 
-      if (m_strVersion == "basis")
+      if (System.get_system_configuration() == "basis")
       {
 
          m_strCa2Build = Application.http().get("http://basis-server.ca2.cc/api/spaignition/ca2_get_build?authnone", set);
@@ -719,18 +558,18 @@ namespace install
    }
 
 
-   void install::set_ca2_updated(const char * pszBuild)
-   {
-      Application.dir().mk(System.dir().element() / "appdata" / get_platform());
-      Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "ca2_build.txt", pszBuild);
-   }
+   //void install::set_ca2_updated(const char * pszBuild)
+   //{
+   //   Application.dir().mk(System.dir().element() / "appdata" / get_platform());
+   //   Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "ca2_build.txt", pszBuild);
+   //}
 
 
-   void install::set_updated(const char * pszBuild)
-   {
-      Application.dir().mk(System.dir().element() / "appdata" / get_platform());
-      Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "build.txt", pszBuild);
-   }
+   //void install::set_updated(const char * pszBuild)
+   //{
+   //   Application.dir().mk(System.dir().element() / "appdata" / get_platform());
+   //   Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "build.txt", pszBuild);
+   //}
 
 
 
@@ -817,83 +656,75 @@ namespace install
    }
 
 
-   void install::add_app_install(const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
+   void install::add_app_install(const char * pszAppId, const char * pszAppType, const char * pszLocale, const char * pszSchema)
    {
 
-      synch_lock sl(&m_mutex);
+      synch_lock sl(m_pmutex);
 
       ::file::path path;
 
-      path = System.install_meta_dir(m_strVersion, pszBuild, pszType, pszId, pszLocale, pszSchema) / "installed.txt";
+      path = System.get_application_installation_meta_dir(pszAppId, pszAppType, System.get_system_platform(), System.get_system_configuration(), pszLocale, pszSchema);
+
+      path /= "installed.txt";
 
       ::output_debug_string(path);
       ::output_debug_string("\n");
 
       Application.file().put_contents(path, "");
 
-      string strBuildPath;
+      //string strBuildPath;
 
-      strBuildPath = System.dir().commonappdata() / "spa_build_" + get_platform() + ".txt";
+      //strBuildPath = System.dir().commonappdata() / "spa_build_" + get_platform() + ".txt";
 
-      string strNewBuildNumber;
+      //string strNewBuildNumber;
 
-      if (Application.file().exists(strBuildPath))
-      {
+      //if (Application.file().exists(strBuildPath))
+      //{
 
-         strNewBuildNumber = Application.file().as_string(strBuildPath);
+      //   strNewBuildNumber = Application.file().as_string(strBuildPath);
 
-      }
+      //}
 
-      string strBuild(pszBuild);
+      //string strBuild(pszBuild);
 
-      if (strBuild.has_char() && isdigit_dup(strBuild[0]))
-      {
+      //if (strBuild.has_char() && isdigit_dup(strBuild[0]))
+      //{
 
-         Application.file().put_contents(strBuildPath, strBuild);
+      //   Application.file().put_contents(strBuildPath, strBuild);
 
-      }
-      else if (strBuild.compare_ci("latest") == 0 && m_strmapLatestBuildNumber[m_strVersion].has_char() && isdigit_dup(m_strmapLatestBuildNumber[m_strVersion][0]))
-      {
+      //}
+      //else if (strBuild.compare_ci("latest") == 0 && System.m_mapCachedLatestBuildNumber[System.get_system_configuration()].has_char() && isdigit_dup(System.m_mapCachedLatestBuildNumber[System.get_system_configuration()][0]))
+      //{
 
-         Application.file().put_contents(strBuildPath, m_strmapLatestBuildNumber[m_strVersion]);
+      //   Application.file().put_contents(strBuildPath, System.m_mapCachedLatestBuildNumber[System.get_system_configuration()]);
 
-      }
+      //}
 
 
 
    }
 
 
-   bool install::is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
+   //bool install::is(const char * pszConfiguration, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
+   //{
+
+   //   return System.install_is(pszConfiguration, pszBuild, pszType, pszId, pszLocale, pszSchema);
+
+   //}
+
+
+   int32_t install::start(const char * pszCommand)
    {
 
-      return System.install_is(pszVersion, pszBuild, pszType, pszId, pszLocale, pszSchema);
+      return System.install().asynch_install(pszCommand);
 
    }
 
 
-
-
-
-
-
-
-
-
-
-
-   int32_t install::start(const char * pszCommandLine, const char * pszBuild)
+   int32_t install::synch(const char * pszCommandLine)
    {
 
-      return System.install().asynch_install(pszCommandLine, pszBuild);
-
-   }
-
-
-   int32_t install::synch(const char * pszCommandLine, const char * pszBuild)
-   {
-
-      return System.install().synch_install(pszCommandLine, pszBuild);
+      return System.install().synch_install(pszCommandLine);
 
    }
 
@@ -1020,16 +851,8 @@ namespace install
    }
 
 
-   string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, stringa * pstraMd5, int_array * piaLen, string_to_string * pmapMd5, string_to_intptr * pmapLen)
+   string install::app_install_get_extern_executable_path(stringa * pstraMd5, int_array * piaLen, string_to_string * pmapMd5, string_to_intptr * pmapLen)
    {
-
-      string strVersion(pszVersion);
-
-      string strBuild(pszBuild);
-
-      string strFormatBuild;
-
-      strFormatBuild = ::str::replace(" ", "_", strBuild);
 
       bool bPrivileged = false;
 
@@ -1090,7 +913,7 @@ namespace install
 
          ::file::patha straFile;
 
-         ::lemon::array::copy(straFile, ::install::get_app_app_install_module_list(m_strPlatform, pszVersion));
+         ::lemon::array::copy(straFile, ::install::get_app_app_install_module_list(m_strPlatform, pszConfiguration));
 
          if (!::dir::is(strPath.folder()))
          {
@@ -1197,24 +1020,16 @@ namespace install
    }
 
 
-   string install::app_install_get_intern_executable_path(const char * pszVersion, const char * pszBuild)
+   string install::app_install_get_intern_executable_path()
    {
 
-      string strVersion(pszVersion);
-
-      string strBuild(pszBuild);
-
-      string strFormatBuild;
-
-      strFormatBuild = ::str::replace(" ", "_", strBuild);
-
-      ::file::path strPath;
+      ::file::path path;
 
 #ifdef WINDOWSEX
 
       xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-      strPath = ::dir::stage(process_platform_dir_name2()) / "app_app_install.exe";
+      path = ::dir::stage(process_platform_dir_name2()) / "app_app_install.exe";
 
 #else
 
@@ -1222,21 +1037,21 @@ namespace install
 
 #endif
 
-      return strPath;
+      return path;
 
    }
 
 
-   bool install::reference_is_file_ok(const ::file::path & path1, const char * pszTemplate, const char * pszVersion, const char * pszFormatBuild)
+   bool install::reference_is_file_ok(const ::file::path & path1, const char * pszTemplate, const char * pszConfiguration, const char * pszFormatBuild)
    {
 
-      string strVersion(pszVersion);
+      string strConfiguration(pszConfiguration);
 
       string strFormatBuild(pszFormatBuild);
 
       string strUrl;
 
-      strUrl = "http://" + strVersion + ".spaignition.api.server.ca2.cc/md5?version=" + strVersion + "&stage=";
+      strUrl = "http://" + strConfiguration + ".spaignition.api.server.ca2.cc/md5?version=" + strConfiguration + "&stage=";
       strUrl += pszTemplate;
       strUrl += "&build=";
       strUrl += strFormatBuild;

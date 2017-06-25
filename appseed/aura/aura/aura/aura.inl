@@ -285,7 +285,7 @@ namespace aura
 
    // impl
    template < class APP >
-   sp(::aura::application) single_application_library < APP > ::get_new_app(const char * pszAppId)
+   sp(::aura::application) single_application_library < APP > ::get_new_application(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))

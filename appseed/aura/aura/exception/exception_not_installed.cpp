@@ -1,23 +1,38 @@
 //#include "framework.h"
 
+not_installed::not_installed(::aura::application * papp, const char * pszAppId, const char * pszAppType) :
+   not_installed(
+      papp, 
+      pszAppId,
+      pszAppType,
+      Sys(papp).get_system_configuration(),
+      Sys(papp).get_system_platform(), 
+      Sess(papp).m_strLocale,
+      Sess(papp).m_strSchema)
+{
 
-not_installed::not_installed(::aura::application * papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
+}
+
+
+not_installed::not_installed(::aura::application * papp, const char * pszAppId, const char * pszAppType, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :
    object(papp),
    ::call_stack(papp),
    ::exception::base(papp)
 {
-      string str;
-   m_strVersion         = pszVersion;
-   str += "version=" + m_strVersion + ";";
-   m_strBuild           = pszBuild;
-   str += "build=" + m_strBuild + ";";
-   m_strType            = pszType;
-   str += "type=" + m_strType + ";";
-   m_strId              = pszId;
-   str += "idn=" + m_strId + ";";
+
+   m_strAppId           = pszAppId;
+   m_strAppType         = pszAppType;
+   m_strConfiguration   = pszConfiguration;
+   m_strPlatform        = pszPlatform;
    m_strLocale          = pszLocale;
-   str += "locale=" + m_strLocale + ";";
    m_strSchema          = pszSchema;
+
+   string str;
+   str += "appid=" + m_strAppId + ";";
+   str += "apptype=" + m_strAppType + ";";
+   str += "configuration=" + m_strConfiguration + ";";
+   str += "platform=" + m_strPlatform + ";";
+   str += "locale=" + m_strLocale + ";";
    str += "schema=" + m_strSchema + ";";
 
    debug_print(":not_installed(\"%s\")",str.c_str());
@@ -32,10 +47,10 @@ not_installed::not_installed(const not_installed & e) :
 
    debug_print(":not_installed(copy)");
 
-   m_strVersion         = e.m_strVersion;
-   m_strBuild           = e.m_strBuild;
-   m_strType            = e.m_strType;
-   m_strId              = e.m_strId;
+   m_strAppId           = e.m_strAppId;
+   m_strAppType         = e.m_strAppType;
+   m_strConfiguration   = e.m_strConfiguration;
+   m_strPlatform        = e.m_strPlatform;
    m_strLocale          = e.m_strLocale;
    m_strSchema          = e.m_strSchema;
 
