@@ -222,6 +222,9 @@
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{c5e5061a-cabf-4933-9679-38d0c8fe3fc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\install">
+      <UniqueIdentifier>{eabbe898-418e-47f4-8a9d-4938e26c7dc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">

@@ -1930,7 +1930,7 @@ namespace aura
    }
 
 
-   ::file::path system::get_application_installation_meta_dir(const char * pszAppId, const char * pszAppType, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+   ::file::path system::get_application_installation_meta_dir(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
    {
 
       synch_lock sl(m_pmutex);
@@ -1964,6 +1964,15 @@ namespace aura
 
       }
 
+      string strBuild(pszBuild);
+
+      if (strBuild.is_empty())
+      {
+
+         strBuild = get_latest_build_number(strConfiguration);
+
+      }
+
       string strLocale(pszLocale);
 
       if (strLocale.is_empty())
@@ -1982,19 +1991,19 @@ namespace aura
 
       }
 
-      return System.dir().commonappdata() / strPlatform / strConfiguration / strAppId / strAppType /strLocale / strSchema;
+      return System.dir().commonappdata() / strBuild / strPlatform / strConfiguration / strAppId / strAppType /strLocale / strSchema;
 
    }
 
 
-   bool system::is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+   bool system::is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
    {
 
       synch_lock sl(m_pmutex);
 
       ::file::path path;
 
-      path = get_application_installation_meta_dir(pszAppId, pszAppType, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+      path = get_application_installation_meta_dir(pszAppId, pszAppType, pszBuild, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
       if(!Application.file().exists(path))
          return false;

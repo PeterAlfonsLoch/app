@@ -44,50 +44,50 @@ namespace install
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      string strVersion = "basis";
+      string strConfiguration = "basis";
 
 #else
 
-      string strVersion = "stage";
+      string strConfiguration = "stage";
 
 #endif
 
       if(file_exists_dup(::dir::system() / "config\\plugin\\version.txt"))
-         strVersion = file_as_string_dup(::dir::system() / "config\\plugin\\version.txt");
+         strConfiguration = file_as_string_dup(::dir::system() / "config\\plugin\\version.txt");
 
       ::set_thread(m_pplugin);
 
-      string strId = get_command_line_param(m_strCommandLine, "app");
+      string strAppId = get_command_line_param(m_strCommandLine, "app");
 
-      strId.trim();
+      strAppId.trim();
 
-      if (strId.is_empty())
+      if (strAppId.is_empty())
       {
 
          return -1;
 
       }
 
-      if (strId == "session")
+      if (strAppId == "session")
       {
 
-         strId = "session_start";
+         strAppId = "session_start";
 
       }
 
-      string strType;
+      string strAppType;
 
       string strLocale;
 
       string strSchema;
 
-      get_command_line_param(strType, m_strCommandLine, "app_type", "application");
+      get_command_line_param(strAppType, m_strCommandLine, "app_type", "application");
 
       get_command_line_param(strLocale, m_strCommandLine, "locale", "_std");
 
       get_command_line_param(strSchema, m_strCommandLine, "schema", "_std");
 
-      get_command_line_param(strVersion, m_strCommandLine, "version");
+      get_command_line_param(strConfiguration, m_strCommandLine, "version");
 
       keep_true keepStarting(m_bStarting);
 
@@ -113,7 +113,13 @@ namespace install
 
          System.install().update_ca2_installed(true);
 
-         if (System.install().is_ca2_installed() && System.install().is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema))
+         if (System.install().is_ca2_installed() && System.install().is_application_installed(
+            strAppId, 
+            strAppType, 
+            System.get_system_platform(), 
+            strConfiguration,
+            strLocale,
+            strSchema))
          {
 
             break;
@@ -124,7 +130,7 @@ namespace install
 
          }
 
-         System.install().synch_install(m_strCommandLine, strBuildNumber);
+         System.install().synch_install(m_strCommandLine);
 
          prepare_small_bell(true);
 
@@ -132,13 +138,19 @@ namespace install
 
       }
 
-      //set_installing_ca2(false);
-
-      //if(is_ca2_installed() && is_installed("application", m_strId) && is_ca2_updated())
-      if (System.install().is_ca2_installed() && System.install().is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema) && m_pplugin != NULL)
+      if (System.install().is_ca2_installed() && System.install().is_application_installed(
+         strAppId,
+         strAppType,
+         System.get_system_platform(),
+         strConfiguration, 
+         strLocale,
+         strSchema) && m_pplugin != NULL)
       {
+         
          defer_play_small_bell();
+         
          m_pplugin->set_ca2_installation_ready();
+
       }
 
       // sentinel is not ready neither spa entire concept of passive installation is ready yet.

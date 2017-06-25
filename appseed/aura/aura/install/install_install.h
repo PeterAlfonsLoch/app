@@ -46,7 +46,7 @@ namespace install
       inline class trace & trace() { return m_trace; }
 
       virtual bool is_file_ok(const ::file::path & path1,const char * pszTemplate,const char * pszFormatBuild);
-      virtual bool is_file_ok(const ::file::patha & patha,const ::file::patha & straTemplate,stringa & straMd5,int_array & iaLen, const string & strFormatBuild,int iRetry = 1);
+      virtual bool is_file_ok(const ::file::patha & patha,const ::file::patha & straTemplate,stringa & straMd5,int_array & iaLen, int iRetry = 1);
       virtual bool reference_is_file_ok(const ::file::path & path1,const char * pszTemplate,const char * pszConfiguration,const char * pszFormatBuild);
 
       virtual int32_t synch_install(const char * pszCommand);

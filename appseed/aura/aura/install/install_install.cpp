@@ -55,7 +55,8 @@ namespace install
 
    }
 
-   bool install::is_file_ok(const ::file::patha & patha, const ::file::patha & straTemplate, stringa & straMd5, int_array & iaLen, const string & strFormatBuild, int iMd5Retry)
+
+   bool install::is_file_ok(const ::file::patha & patha, const ::file::patha & straTemplate, stringa & straMd5, int_array & iaLen, int iMd5Retry)
    {
 
       bool bOk = true;
@@ -89,8 +90,6 @@ namespace install
 
          strUrl = "http://" + System.get_system_configuration() + "-server.ca2.cc/api/spaignition/md5a_and_lena?authnone&version=" + System.get_system_configuration() + "&stage=";
          strUrl += straTemplate.implode(",");
-         strUrl += "&build=";
-         strUrl += strFormatBuild;
 
          property_set set(get_app());
 
@@ -913,7 +912,7 @@ namespace install
 
          ::file::patha straFile;
 
-         ::lemon::array::copy(straFile, ::install::get_app_app_install_module_list(m_strPlatform, pszConfiguration));
+         ::lemon::array::copy(straFile, ::install::get_app_app_install_module_list());
 
          if (!::dir::is(strPath.folder()))
          {
@@ -957,9 +956,8 @@ namespace install
 
       md5retry:
 
-         if (!System.install().is_file_ok(straDownload, straFile, straMd5, iaLen, strFormatBuild, iMd5Retry))
+         if (!System.install().is_file_ok(straDownload, straFile, straMd5, iaLen, iMd5Retry))
          {
-
 
             if (straMd5.get_count() != straFile.get_count())
             {

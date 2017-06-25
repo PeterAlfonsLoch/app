@@ -416,14 +416,11 @@ namespace aura
 
       virtual string get_system_platform();
       virtual string get_system_configuration();
-      //virtual void install_set_version(const char * pszVersion);
-      virtual ::file::path get_application_installation_meta_dir(const char * pszAppId, const char * pszAppType, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
-      //virtual string install_get_platform();
-      //virtual void install_set_platform(const char * pszPlatform);
-      virtual bool is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
+      virtual ::file::path get_application_installation_meta_dir(const char * pszAppId, const char * pszAppType, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
+      virtual bool is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
       virtual string get_latest_build_number(const char * pszConfiguration);
       virtual int32_t start_installation(const char * pszCommand);
-      //virtual int32_t install_progress_app_add_up(int iAddUp);
+
 
       virtual void on_start_find_applications_from_cache();
       virtual void on_end_find_applications_from_cache(::file::byte_istream & is);

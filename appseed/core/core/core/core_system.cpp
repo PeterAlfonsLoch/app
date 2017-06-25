@@ -876,12 +876,12 @@ OutputDebugString("gtk_main exited");
 
       command()->add_fork_uri(pszUri,pbiasCreate);
 
-      if(command()->m_varTopicQuery.has_property("version"))
-      {
+      //if(command()->m_varTopicQuery.has_property("version"))
+      //{
 
-         install().m_strVersion = command()->m_varTopicQuery["version"];
+      //   install().m_strVersion = command()->m_varTopicQuery["version"];
 
-      }
+      //}
 
       if(command()->m_varTopicQuery["locale"].array_get_count() > 0)
       {

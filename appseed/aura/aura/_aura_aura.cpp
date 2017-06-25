@@ -9,8 +9,7 @@
 #endif
 
 
-#include "install/install_launcher.cpp"
-#include "install/install_module_list.cpp"
+#include "install/_install.cpp"
 
 
 #ifndef ANDROID

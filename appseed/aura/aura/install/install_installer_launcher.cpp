@@ -17,7 +17,7 @@ namespace install
    bool installer_launcher::ensure_executable()
    {
 
-      m_strPath = System.install().app_install_get_extern_executable_path(m_strConfiguration);
+      m_strPath = System.install().app_install_get_extern_executable_path();
 
       return true;
 
