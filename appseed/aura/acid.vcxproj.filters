@@ -222,9 +222,6 @@
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{c5e5061a-cabf-4933-9679-38d0c8fe3fc7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura\install">
-      <UniqueIdentifier>{eabbe898-418e-47f4-8a9d-4938e26c7dc2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -458,9 +455,6 @@
     <ClInclude Include="primitive\collection\collection_iterator.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\collection_key_sort_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\collection_lemon_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -558,9 +552,6 @@
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_string_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\collection_string_sort_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\collection_string_to_string_map.h">

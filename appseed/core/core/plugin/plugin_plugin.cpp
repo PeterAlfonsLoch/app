@@ -895,7 +895,7 @@ namespace plugin
 
                         string strCommandLine;
 
-                        strCommandLine = " : app=" + strId;
+                        strCommandLine = " : app=" + strAppId;
 
                         for(auto property : set)
                         {
@@ -927,8 +927,12 @@ namespace plugin
 
                         }
 
-                        if(set["app_type"].is_empty())
-                           strCommandLine += " app_type=" + strType;
+                        if (set["app_type"].is_empty())
+                        {
+
+                           strCommandLine += " app_type=" + strAppType;
+
+                        }
 
 
                         strPath += strCommandLine;

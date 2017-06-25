@@ -1974,7 +1974,6 @@
     <ClInclude Include="primitive\collection\collection_id_array.h" />
     <ClInclude Include="primitive\collection\collection_int_map.h" />
     <ClInclude Include="primitive\collection\collection_iterator.h" />
-    <ClInclude Include="primitive\collection\collection_key_sort_array.h" />
     <ClInclude Include="primitive\collection\collection_lemon_array.h" />
     <ClInclude Include="primitive\collection\collection_lemon_array_decl.h" />
     <ClInclude Include="primitive\collection\collection_list.h" />
@@ -2011,7 +2010,6 @@
     <ClInclude Include="primitive\collection\collection_string_array.h" />
     <ClInclude Include="primitive\collection\collection_string_list.h" />
     <ClInclude Include="primitive\collection\collection_string_map.h" />
-    <ClInclude Include="primitive\collection\collection_string_sort_array.h" />
     <ClInclude Include="primitive\collection\collection_string_to_string_map.h" />
     <ClInclude Include="primitive\collection\collection_template.h" />
     <ClInclude Include="primitive\collection\collection_typed_pointer_array.h" />
