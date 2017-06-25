@@ -583,7 +583,11 @@ namespace aura
       if (!bOk)
       {
 
+#ifdef DEBUG
+
          simple_message_box("Unable to find draw2d plugin. Quitting...", MB_OK);
+
+#endif
 
          return false;
 
