@@ -82,8 +82,8 @@ namespace install
 
       virtual void add_spa_start(const char * pszType, const char * pszId);
       virtual void remove_spa_start(const char * pszType, const char * pszId);
-      virtual void add_app_install(const char * pszAppId, const char * pszAppType, const char * pszLocale, const char * pszSchema);
-      virtual bool is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+      virtual void add_app_install(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszLocale, const char * pszSchema);
+      virtual bool is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
       virtual int32_t start(const char * pszCommandLine);
       virtual int32_t synch(const char * pszCommandLine);
 
