@@ -1930,6 +1930,54 @@ namespace aura
    }
 
 
+   ::file::path system::get_application_installation_folder(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      string strAppId(pszAppId);
+
+      string strAppType(pszAppType);
+
+      if (strAppType.is_empty())
+      {
+
+         strAppType = "application";
+
+      }
+
+      string strPlatform(pszPlatform);
+
+      if (strPlatform.is_empty())
+      {
+
+         strPlatform = get_system_platform();
+
+      }
+
+      string strConfiguration(pszConfiguration);
+
+      if (strConfiguration.is_empty())
+      {
+
+         strConfiguration = get_system_configuration();
+
+      }
+
+      string strBuild(pszBuild);
+
+      if (strBuild.is_empty())
+      {
+
+         strBuild = get_latest_build_number(strConfiguration);
+
+      }
+
+      return System.dir().commonappdata() / strBuild / strPlatform / strConfiguration / strAppId / strAppType;
+
+   }
+
+
    ::file::path system::get_application_installation_meta_dir(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
    {
 

@@ -574,7 +574,7 @@ namespace install
 
       ::file::path path;
 
-      path = System.get_application_installation_meta_dir(pszAppId, pszAppType, pszBuild, System.get_system_platform(), System.get_system_configuration(), pszLocale, pszSchema);
+      path = System.get_commondataapp_folder_locale_schema(pszAppId, pszAppType, pszBuild, System.get_system_platform(), System.get_system_configuration(), pszLocale, pszSchema);
 
       path /= "installed.txt";
 
