@@ -34,8 +34,8 @@ namespace install
 
       string strUrl;
 
-      strUrl = "http://" + System.get_system_configuration() + "-server.ca2.cc/api/spaignition/md5?authnone&version=" + System.get_system_configuration() + "&stage=";
-      //strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5?authnone&version=" + m_strVersion + "&stage=";
+      strUrl = "http://" + System.get_system_configuration() + "-server.ca2.cc/api/spaignition/md5?authnone&configuration=" + System.get_system_configuration() + "&stage=";
+      //strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5?authnone&configuration=" + m_strVersion + "&stage=";
       strUrl += pszTemplate;
       strUrl += "&build=";
       strUrl += strFormatBuild;
@@ -81,7 +81,7 @@ namespace install
 
          string strUrl;
 
-         strUrl = "http://" + System.get_system_configuration() + "-server.ca2.cc/api/spaignition/md5a_and_lena?authnone&version=" + System.get_system_configuration() + "&stage=";
+         strUrl = "http://" + System.get_system_configuration() + "-server.ca2.cc/api/spaignition/md5a_and_lena?authnone&configuration=" + System.get_system_configuration() + "&stage=";
          strUrl += straTemplate.implode(",");
 
          property_set set(get_app());

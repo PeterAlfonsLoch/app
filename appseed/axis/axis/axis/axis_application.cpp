@@ -2347,11 +2347,11 @@ namespace axis
       ::file::path strUrl(::file::path_url);
       if(_ca_is_basis())
       {
-         strUrl = "http://basis-server.ca2.cc/api/spaignition/download?authnone&version=basis&stage=";
+         strUrl = "http://basis-server.ca2.cc/api/spaignition/download?authnone&configuration=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&version=stage&stage=";
+         strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
       strUrl += System.url().url_encode(strRelative);
