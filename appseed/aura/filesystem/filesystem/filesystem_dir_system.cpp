@@ -1473,6 +1473,82 @@ namespace file
          return true;
 
       }
+      
+      
+      ::file::path system::commonappdata(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration)
+      {
+
+         synch_lock sl(m_pmutex);
+
+         string strAppId(pszAppId);
+
+         string strAppType(pszAppType);
+
+         if (strAppType.is_empty())
+         {
+
+            strAppType = "application";
+
+         }
+
+         string strPlatform(pszPlatform);
+
+         if (strPlatform.is_empty())
+         {
+
+            strPlatform = System.get_system_platform();
+
+         }
+
+         string strConfiguration(pszConfiguration);
+
+         if (strConfiguration.is_empty())
+         {
+
+            strConfiguration = System.get_system_configuration();
+
+         }
+
+         string strBuild(pszBuild);
+
+         if (strBuild.is_empty())
+         {
+
+            strBuild = System.get_latest_build_number(strConfiguration);
+
+         }
+
+         return commonappdata() / strBuild / strPlatform / strConfiguration / strAppId / strAppType;
+
+      }
+
+
+      ::file::path system::commonappdata_locale_schema(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+      {
+
+         synch_lock sl(m_pmutex);
+
+         string strLocale(pszLocale);
+
+         if (strLocale.is_empty())
+         {
+
+            strLocale = Session.m_strLocale;
+
+         }
+
+         string strSchema(pszSchema);
+
+         if (strSchema.is_empty())
+         {
+
+            strSchema = Session.m_strSchema;
+
+         }
+
+         return commonappdata(pszAppId, pszAppType, pszBuild, pszPlatform, pszConfiguration) / strLocale / strSchema;
+
+      }
 
 
       ::file::path system::trash_that_is_not_trash(const ::file::path & psz)

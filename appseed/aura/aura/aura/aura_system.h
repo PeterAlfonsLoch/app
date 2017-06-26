@@ -414,12 +414,10 @@ namespace aura
       virtual void on_request(sp(::create) pcreate) override;
 
 
-      virtual string system_platform();
-      virtual string system_configuration();
-      virtual ::file::path commonappdata_folder(const char * pszAppId, const char * pszAppType, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL);
-      virtual ::file::path commonappdata_locale_schema_folder(const char * pszAppId, const char * pszAppType, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
+      virtual string get_system_platform();
+      virtual string get_system_configuration();
       virtual bool is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
-      virtual string latest_build_number(const char * pszConfiguration);
+      virtual string get_latest_build_number(const char * pszConfiguration);
       virtual int32_t start_installation(const char * pszCommand);
 
 

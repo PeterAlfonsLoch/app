@@ -128,7 +128,8 @@ namespace file
          virtual ::file::path base_appmatter_locator(const ::file::path & strBase,const string & strLibraryName,const string & strAppName);
          virtual ::file::path base_appmatter_locator(const ::file::path & strBase,const string & strAppName);
 
-
+         virtual ::file::path commonappdata(const char * pszAppId, const char * pszAppType, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL);
+         virtual ::file::path commonappdata_locale_schema(const char * pszAppId, const char * pszAppType, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
 
          virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
 
