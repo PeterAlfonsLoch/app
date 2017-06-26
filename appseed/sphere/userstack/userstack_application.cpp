@@ -256,35 +256,62 @@ namespace userstack
    }
 
 
-   sp(::aura::application) application::application_get(const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::aura::application) application::application_get(const char * pszAppId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
-      sp(::aura::application) papp = NULL;
 
-      if(m_mapApplication.Lookup(string(pszId), papp))
-         return papp;
-      else
+      sp(::aura::application) papp;
+
+      string strAppId(pszAppId);
+
+      if (m_mapApplication.Lookup(strAppId, papp))
       {
-         if(!bCreate)
-            return NULL;
-         papp = NULL;
-         try
-         {
-            papp = create_application(pszId, bSynch, pbiasCreate);
-         }
-         catch(...)
-         {
-            papp = NULL;
-         }
-         if(papp == NULL)
-            return NULL;
-         if(&App(papp) == NULL)
-         {
-            return NULL;
-         }
-         m_mapApplication.set_at(string(pszId), papp);
-         Session.m_mapApplication.set_at(string(pszId), papp);
+
          return papp;
+
       }
+
+      if (!bCreate)
+      {
+
+         return NULL;
+
+      }
+       
+      papp = NULL;
+
+      try
+      {
+
+         papp = create_application(strAppId, bSynch, pbiasCreate);
+
+      }
+      catch(...)
+      {
+
+         papp = NULL;
+
+      }
+
+      if (papp == NULL)
+      {
+
+         return NULL;
+
+      }
+       
+      if(&App(papp) == NULL)
+      {
+      
+         return NULL;
+
+      }
+      
+      m_mapApplication.set_at(strAppId, papp);
+
+      Session.m_mapApplication.set_at(strAppId, papp);
+      
+      return papp;
+
    }
 
    sp(::aura::application) application::get_current_application()
