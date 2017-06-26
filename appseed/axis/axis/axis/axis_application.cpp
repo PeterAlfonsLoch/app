@@ -1514,7 +1514,7 @@ namespace axis
 
          }
 
-         System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
+         System.install().remove_spa_start(m_strAppId);
 
       }
 
@@ -1652,7 +1652,7 @@ namespace axis
 
          sp(::create) spcreatecontext(allocer());
 
-         papp = Session.start_application("application",pszAppId,spcreatecontext);
+         papp = Session.start_application(pszAppId,spcreatecontext);
 
       }
 

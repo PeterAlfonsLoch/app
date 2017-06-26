@@ -382,7 +382,7 @@ namespace core
 
       }
 
-      ::aura::application * papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
+      ::aura::application * papp = application_get(strId, true, true, pcreatecontext->m_spApplicationBias);
 
       if (papp == NULL)
       {
@@ -689,12 +689,12 @@ namespace core
 
    }*/
 
-   ::aura::application * session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   ::aura::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
 
       ::aura::application * papp = NULL;
 
-      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
+      if(m_pbasesession->m_mapApplication.Lookup(string(pszAppId),papp))
       {
          
          return papp;
@@ -711,7 +711,7 @@ namespace core
          try
          {
 
-            papp = create_application(pszType, pszId, bSynch, pbiasCreate);
+            papp = create_application(pszAppId, bSynch, pbiasCreate);
 
          }
          catch(::exit_exception & e)
@@ -723,8 +723,12 @@ namespace core
          catch(::exception::exception & e)
          {
 
-            if(!App(this).on_run_exception(e))
+            if (!App(this).on_run_exception(e))
+            {
+
                throw exit_exception(get_app());
+
+            }
 
          }
          catch(...)
@@ -734,8 +738,12 @@ namespace core
 
          }
 
-         if(papp == NULL)
+         if (papp == NULL)
+         {
+
             return NULL;
+
+         }
 
          if(&App(papp) == NULL)
          {
@@ -746,7 +754,7 @@ namespace core
 
          }
          
-         m_pbasesession->m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
+         m_pbasesession->m_mapApplication.set_at(string(pszAppId), papp);
 
          return papp;
 
@@ -810,12 +818,12 @@ namespace core
 
 
 
-   void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
+   void session::set_app_title(const char * pszAppId, const char * pszTitle)
    {
 
       ::aura::application * papp = NULL;
 
-      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
+      if(m_pbasesession->m_mapApplication.Lookup(string(pszAppId), papp) && papp != NULL)
       {
 
          //sp(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();

@@ -597,7 +597,7 @@ OutputDebugString("gtk_main exited");
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
       {
 
-         ::aura::application * papp = create_application("application", "session", true, pbiasCreation);
+         ::aura::application * papp = create_application("session", true, pbiasCreation);
 
          if (papp == NULL)
          {

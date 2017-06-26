@@ -91,9 +91,6 @@ namespace core
 
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
-      //virtual application * get_app() const;
-
-
       virtual ::user::document * userex_open_document_file(sp(::create) pcreate);
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
@@ -119,8 +116,6 @@ namespace core
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
 
       virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcontext);
-
-      //virtual ::user::place_holder_ptra get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcontext);
 
       virtual bool place(::user::main_frame * pmainframe, sp(::create) pcontext);
 
@@ -167,19 +162,15 @@ namespace core
 
       void on_request(sp(::create) pcreatecontext);
 
-      //sp(::aura::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
-
-
       sp(::aura::application) get_current_application();
 
       virtual bool on_install();
 
-      virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
+      virtual void set_app_title(const char * pszAppId, const char * pszTitle);
 
       virtual sp(::core::session) get_session();
 
       virtual bool finalize();
-
 
       virtual bool open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::create * pcc);
@@ -189,10 +180,6 @@ namespace core
       virtual bool is_mouse_button_pressed(::user::e_mouse emouse);
 
       virtual bool is_remote_session();
-
-      //using ::core::application::start_application;
-      //sp(::aura::application) start_application(const char * pszType, const char * pszAppId, sp(::create) pcreatecontext);
-
 
       virtual ::visual::cursor * get_cursor();
       virtual ::visual::cursor * get_default_cursor();
@@ -204,16 +191,11 @@ namespace core
       virtual void register_bergedge_application(::aura::application * papp);
       virtual void unregister_bergedge_application(::aura::application * papp);
 
-      virtual ::aura::application * application_get(const char * pszType,const char * pszId,bool bCreate = true,bool bSynch = true,application_bias * pbiasCreate = NULL);
-      //virtual sp(::aura::application) get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszId);
-//      virtual void open_by_file_extension(const char * pszPathName);
+      virtual ::aura::application * application_get(const char * pszAppId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
 
       virtual ::core::session *             query_bergedge();
 
-
       virtual void on_user_login(::fontopus::user * puser);
-
-      //virtual int32_t exit_application();
 
 
    };

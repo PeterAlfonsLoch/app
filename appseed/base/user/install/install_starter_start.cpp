@@ -115,7 +115,6 @@ namespace install
 
          if (System.install().is_ca2_installed() && System.is_application_installed(
             strAppId, 
-            strAppType, 
             System.get_latest_build_number(System.get_system_platform()),
             System.get_system_platform(), 
             strConfiguration,
@@ -141,7 +140,6 @@ namespace install
 
       if (System.install().is_ca2_installed() && System.is_application_installed(
          strAppId,
-         strAppType,
          System.get_latest_build_number(System.get_system_platform()),
          System.get_system_platform(),
          strConfiguration, 

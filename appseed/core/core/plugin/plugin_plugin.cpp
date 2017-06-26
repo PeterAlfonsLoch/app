@@ -761,15 +761,6 @@ namespace plugin
                   if(str2.has_char())
                   {
 
-                     string strAppType = set["app_type"];
-
-                     if (strAppType.is_empty())
-                     {
-
-                        strAppType = "application";
-
-                     }
-
                      string strPlatform = System.get_system_platform();
 
                      string strConfiguration = System.get_system_configuration();
@@ -778,7 +769,7 @@ namespace plugin
 
                      strSchema.trim();
 
-                     if(strAppId.has_char() && !System.is_application_installed(strAppId, strAppType, strBuild, strPlatform, strConfiguration, strLocale, strSchema))
+                     if(strAppId.has_char() && !System.is_application_installed(strAppId, strBuild, strPlatform, strConfiguration, strLocale, strSchema))
                      {
 
                         string strCommandLine;
@@ -844,13 +835,6 @@ namespace plugin
                            strCommandLine += property.get_string();
 
                            strCommandLine += "\"";
-
-                        }
-
-                        if (set["app_type"].is_empty())
-                        {
-
-                           strCommandLine += " app_type=" + strAppType;
 
                         }
 
@@ -924,13 +908,6 @@ namespace plugin
                            strCommandLine += "=";
 
                            strCommandLine += property.get_string();
-
-                        }
-
-                        if (set["app_type"].is_empty())
-                        {
-
-                           strCommandLine += " app_type=" + strAppType;
 
                         }
 

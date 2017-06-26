@@ -73,8 +73,6 @@ namespace core
 
       m_pdocmanager = NULL;
 
-      m_strInstallType = "application";
-
       m_psignal->connect(this, &application::on_application_signal);
 
       m_eexclusiveinstance = ExclusiveInstanceNone;
@@ -3097,7 +3095,7 @@ namespace core
    void application::set_title(const char * pszTitle)
    {
 
-      Session.set_app_title(m_strInstallType, m_strAppName, pszTitle);
+      Session.set_app_title(m_strAppName, pszTitle);
 
    }
 
