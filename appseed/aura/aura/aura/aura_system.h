@@ -416,7 +416,7 @@ namespace aura
 
       virtual string get_system_platform();
       virtual string get_system_configuration();
-      virtual bool is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
+      virtual bool is_application_installed(const char * pszAppId, const char * pszBuild = NULL, const char * pszPlatform = NULL, const char * pszConfiguration = NULL, const char * pszLocale = NULL, const char * pszSchema = NULL);
       virtual string get_latest_build_number(const char * pszConfiguration);
       virtual int32_t start_installation(const char * pszCommand);
 

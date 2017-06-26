@@ -107,14 +107,14 @@ namespace aura
       virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::create * pcc);
 
-      sp(::aura::application) get_new_application(::aura::application * pappParent, const char * pszAppId, const char * pszAppType);
+      sp(::aura::application) get_new_application(::aura::application * pappParent, const char * pszAppId);
 
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 
 
 
       using ::aura::application::start_application;
-      virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext);
+      virtual sp(::aura::application) start_application(const char * pszAppId, sp(::create) pcreatecontext);
 
       
       virtual COLORREF get_default_color(uint64_t ui);
@@ -167,7 +167,7 @@ namespace aura
 
       virtual void on_request(sp(::create) pcreatecontext);
 
-      ::aura::application * application_get(const char * pszType,const char * pszId,bool bCreate,bool bSynch,application_bias * pbiasCreate);
+      ::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, application_bias * pbiasCreate);
 
       virtual oswindow get_capture();
 

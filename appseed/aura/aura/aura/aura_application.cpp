@@ -3268,22 +3268,22 @@ namespace aura
 
       string strBuild(pszBuild);
 
-      System.install().remove_spa_start(m_strInstallType, strId);
-      System.install().add_app_install(strId, m_strInstallType, strBuild, strSystemLocale, m_strSchema);
-      System.install().add_app_install(strId, m_strInstallType, strBuild, strSystemLocale, strSystemSchema);
-      System.install().add_app_install(strId, m_strInstallType, strBuild, m_strLocale, m_strSchema);
+      System.install().remove_spa_start(strId);
+      System.install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
+      System.install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
+      System.install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
 
       for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       {
 
-         System.install().add_app_install(strId, m_strInstallType, strBuild, straLocale[iLocale], m_strSchema);
+         System.install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
 
       }
 
       for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
-         System.install().add_app_install(strId, m_strInstallType, strBuild, m_strLocale, straSchema[iSchema]);
+         System.install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
 
       }
 
@@ -3293,33 +3293,33 @@ namespace aura
          for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
          {
 
-            System.install().add_app_install(strId, m_strInstallType, strBuild, straLocale[iLocale], straSchema[iSchema]);
+            System.install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
 
          }
 
       }
 
-      System.install().add_app_install(strId, m_strInstallType, strBuild, strSystemLocale, "");
-      System.install().add_app_install(strId, m_strInstallType, strBuild, m_strLocale, "");
+      System.install().add_app_install(strId, strBuild, strSystemLocale, "");
+      System.install().add_app_install(strId, strBuild, m_strLocale, "");
 
       for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       {
 
-         System.install().add_app_install(strId, m_strInstallType, strBuild, straLocale[iLocale], "");
+         System.install().add_app_install(strId, strBuild, straLocale[iLocale], "");
 
       }
 
-      System.install().add_app_install(strId, m_strInstallType, strBuild, "", m_strSchema);
-      System.install().add_app_install(strId, m_strInstallType, strBuild, "", strSystemSchema);
+      System.install().add_app_install(strId, strBuild, "", m_strSchema);
+      System.install().add_app_install(strId, strBuild, "", strSystemSchema);
 
       for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
-         System.install().add_app_install(strId, m_strInstallType, strBuild, "", straSchema[iSchema]);
+         System.install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
 
       }
 
-      System.install().add_app_install(strId, m_strInstallType, strBuild, "", "");
+      System.install().add_app_install(strId, strBuild, "", "");
 
       return true;
 
@@ -3571,7 +3571,7 @@ namespace aura
 
          sp(::create) spcreatecontext(allocer());
 
-         papp = Session.start_application("application", pszAppId, spcreatecontext);
+         papp = Session.start_application(pszAppId, spcreatecontext);
 
       }
 
@@ -5955,7 +5955,7 @@ namespace aura
    }
 
 
-   sp(::aura::application) application::instantiate_application(const char * pszAppId, const char * pszAppType, application_bias * pbias)
+   sp(::aura::application) application::instantiate_application(const char * pszAppId, application_bias * pbias)
    {
 
       thisstart;
@@ -5977,7 +5977,7 @@ namespace aura
       else
       {
 
-         papp = Session.get_new_application(pbias == NULL ? this : pbias->get_app(), strAppId, pszAppType);
+         papp = Session.get_new_application(pbias == NULL ? this : pbias->get_app(), strAppId);
 
          if (papp == NULL)
             return NULL;
@@ -6064,22 +6064,22 @@ namespace aura
    }
 
 
-   sp(::aura::application) application::create_application(const char * pszType, const char * pszId, bool bSynch, application_bias * pbias)
+   sp(::aura::application) application::create_application(const char * pszAppId, bool bSynch, application_bias * pbias)
    {
 
-      sp(::aura::application) pbaseapp = instantiate_application(pszType, pszId, pbias);
+      sp(::aura::application) pbaseapp = instantiate_application(pszAppId, pbias);
 
       if (pbaseapp == NULL)
+      {
+
          return NULL;
+
+      }
 
       ::aura::application * papp = pbaseapp;
 
       if (!papp->start_application(bSynch, pbias))
       {
-
-         /*
-         MessageBox(NULL, "application::start_application failed at create_application(\""+string(pszType)+"\",\""+string(pszId)+"\")", "aura::application::create_application", MB_ICONEXCLAMATION | MB_OK);
-         */
 
          return NULL;
 
@@ -6375,8 +6375,9 @@ namespace aura
 
                if (!(bool)System.oprop("not_installed_message_already_shown"))
                {
+
                   if ((App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
-                     || (IDYES == (iRet = ::simple_message_box(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strAppId + "\n\ttype = " + notinstalled.m_strAppType + "\n\tconfiguration = " + notinstalled.m_strConfiguration + "\n\tplatform = " + notinstalled.m_strPlatform + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_YESNO))))
+                     || (IDYES == (iRet = ::simple_message_box(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strAppId + "\n\tconfiguration = " + notinstalled.m_strConfiguration + "\n\tplatform = " + notinstalled.m_strPlatform + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_YESNO))))
                   {
 
                      ::duration durationWait = minutes(1);
@@ -6469,7 +6470,7 @@ namespace aura
 
          }
 
-         hotplugin_host_starter_start_sync(": app=" + notinstalled.m_strAppId + " app_type=" + notinstalled.m_strAppType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema + " configuration=" + notinstalled.m_strConfiguration + " platform=" + notinstalled.m_strPlatform + strAddUp, get_app(), NULL);
+         hotplugin_host_starter_start_sync(": app=" + notinstalled.m_strAppId + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema + " configuration=" + notinstalled.m_strConfiguration + " platform=" + notinstalled.m_strPlatform + strAddUp, get_app(), NULL);
 
       }
 

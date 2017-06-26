@@ -1475,21 +1475,12 @@ namespace file
       }
       
       
-      ::file::path system::commonappdata(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration)
+      ::file::path system::commonappdata(const char * pszAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration)
       {
 
          synch_lock sl(m_pmutex);
 
          string strAppId(pszAppId);
-
-         string strAppType(pszAppType);
-
-         if (strAppType.is_empty())
-         {
-
-            strAppType = "application";
-
-         }
 
          string strPlatform(pszPlatform);
 
@@ -1518,12 +1509,12 @@ namespace file
 
          }
 
-         return commonappdata() / strBuild / strPlatform / strConfiguration / strAppId / strAppType;
+         return commonappdata() / strBuild / strPlatform / strConfiguration / strAppId;
 
       }
 
 
-      ::file::path system::commonappdata_locale_schema(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+      ::file::path system::commonappdata_locale_schema(const char * pszAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
       {
 
          synch_lock sl(m_pmutex);
@@ -1546,7 +1537,7 @@ namespace file
 
          }
 
-         return commonappdata(pszAppId, pszAppType, pszBuild, pszPlatform, pszConfiguration) / strLocale / strSchema;
+         return commonappdata(pszAppId, pszBuild, pszPlatform, pszConfiguration) / strLocale / strSchema;
 
       }
 

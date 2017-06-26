@@ -484,7 +484,7 @@ namespace install
 
 
 
-   void install::add_spa_start(const char * pszType, const char * pszId)
+   void install::add_spa_start(const char * pszId)
    {
 
       ::file::path strPath;
@@ -503,9 +503,6 @@ namespace install
 
       stringa straName;
       stringa straValue;
-
-      straName.add("type");
-      straValue.add(pszType);
 
       straName.add("id");
       straValue.add(pszId);
@@ -517,8 +514,6 @@ namespace install
 
          lpnode = doc.get_root()->add_child("start");
 
-         lpnode->add_attr("type", pszType);
-
          lpnode->add_attr("id", pszId);
 
          Application.file().put_contents(strPath, doc.get_xml());
@@ -527,7 +522,7 @@ namespace install
 
    }
 
-   void install::remove_spa_start(const char * pszType, const char * pszId)
+   void install::remove_spa_start(const char * pszId)
    {
 
       ::file::path strPath;
@@ -546,9 +541,6 @@ namespace install
 
       stringa straName;
       stringa straValue;
-
-      straName.add("type");
-      straValue.add(pszType);
 
       straName.add("id");
       straValue.add(pszId);
@@ -567,14 +559,14 @@ namespace install
    }
 
 
-   void install::add_app_install(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszLocale, const char * pszSchema)
+   void install::add_app_install(const char * pszAppId, const char * pszBuild, const char * pszLocale, const char * pszSchema)
    {
 
       synch_lock sl(m_pmutex);
 
       ::file::path path;
 
-      path = System.dir().commonappdata_locale_schema(pszAppId, pszAppType, pszBuild, System.get_system_platform(), System.get_system_configuration(), pszLocale, pszSchema);
+      path = System.dir().commonappdata_locale_schema(pszAppId, pszBuild, System.get_system_platform(), System.get_system_configuration(), pszLocale, pszSchema);
 
       path /= "installed.txt";
 

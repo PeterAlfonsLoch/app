@@ -1932,14 +1932,14 @@ namespace aura
 
 
 
-   bool system::is_application_installed(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+   bool system::is_application_installed(const char * pszAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
    {
 
       synch_lock sl(m_pmutex);
 
       ::file::path path;
 
-      path = dir().commonappdata_locale_schema(pszAppId, pszAppType, pszBuild, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+      path = dir().commonappdata_locale_schema(pszAppId, pszBuild, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
       if(!Application.file().exists(path))
          return false;

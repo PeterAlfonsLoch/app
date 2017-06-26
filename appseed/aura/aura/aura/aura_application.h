@@ -102,7 +102,6 @@ namespace aura
       // this is an argument to ShowWindow().
       manual_reset_event *                            m_peventReady;
       string                                          m_strInstallToken;
-      string                                          m_strInstallType;
       mutex                                           m_mutexMatterLocator;
 
 
@@ -527,10 +526,10 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
 
 
-      virtual sp(::aura::application) instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);
-      virtual sp(::aura::application) create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias);
+      virtual sp(::aura::application) instantiate_application(const char * pszAppId, application_bias * pbias);
+      virtual sp(::aura::application) create_application(const char * pszAppId, bool bSynch, application_bias * pbias);
       virtual sp(::aura::application) create_platform(::aura::session * psession);
-      virtual bool start_application(bool bSynch,application_bias * pbias);
+      virtual bool start_application(bool bSynch, application_bias * pbias);
 
       virtual bool is_application() override;
 

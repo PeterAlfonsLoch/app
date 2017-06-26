@@ -66,14 +66,19 @@ namespace aura
    }
 
 
-   sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext)
+   sp(::aura::application) session::start_application(const char * pszAppId, sp(::create) pcreatecontext)
    {
 
       string strApp(pszAppId);
 
-      sp(::aura::application) papp = application_get(pszType,strApp,true,true,pcreatecontext->m_spCommandLine->m_pbiasCreate);
-      if(papp == NULL)
+      sp(::aura::application) papp = application_get(strApp,true,true,pcreatecontext->m_spCommandLine->m_pbiasCreate);
+
+      if (papp == NULL)
+      {
+
          return NULL;
+
+      }
 
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
@@ -90,8 +95,6 @@ namespace aura
       if(strApp != "session")
       {
 
-
-
          UINT uiMessage = WM_APP + 2043;
 
          papp->post_object(uiMessage,2,pcreatecontext);
@@ -106,14 +109,20 @@ namespace aura
 
          if(!get_run_thread())
          {
+
             try
             {
+
                papp.release();
+
             }
             catch(...)
             {
+
             }
+
             return NULL;
+
          }
 
       }
@@ -123,10 +132,6 @@ namespace aura
       return papp;
 
    }
-
-
-
-
 
 
    COLORREF session::get_default_color(uint64_t ui)
@@ -430,16 +435,22 @@ namespace aura
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1)
       {
-         start_application("application",pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0],pcreatecontext);
+
+         start_application(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0],pcreatecontext);
+
          return;
+
       }
 
       string strApp = pcreatecontext->m_spCommandLine->m_strApp;
 
       if(strApp == "app/sphere/userstack")
       {
-         start_application("application","app/sphere/userstack",pcreatecontext);
+
+         start_application("app/sphere/userstack",pcreatecontext);
+
          return;
+
       }
 
       //      if(m_pbergedgeInterface != NULL)
@@ -450,7 +461,6 @@ namespace aura
 
 
          string strApp;
-         string strType;
 
          if((pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
             || pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
@@ -498,18 +508,15 @@ namespace aura
                if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
                {
                   strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
-                  strApp = pcreatecontext->m_spCommandLine->m_varQuery["app_type"];
                }
                else
                {
                   strApp = "bergedge";
-                  strType = "application";
                }
             }
             else
             {
                strApp = pcreatecontext->m_spCommandLine->m_strApp;
-               strType = pcreatecontext->m_spCommandLine->m_strAppType;
             }
 
 
@@ -517,7 +524,6 @@ namespace aura
             {
 
                pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().insert_at(0,strApp);
-               pcreatecontext->m_spCommandLine->m_varQuery["app_type"].stra().insert_at(0,strType);
 
             }
 
@@ -525,10 +531,6 @@ namespace aura
             {
 
                strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];
-               if(i < pcreatecontext->m_spCommandLine->m_varQuery["app_type"].stra().get_count())
-                  strType = pcreatecontext->m_spCommandLine->m_varQuery["app_type"].stra()[i];
-               else
-                  strType.Empty();
 
 
                //simple_message_box(NULL, "create", strApp, MB_ICONEXCLAMATION);
@@ -547,10 +549,7 @@ namespace aura
 
                }
 
-               if(strType.is_empty())
-                  strType = "application";
-
-               ::aura::application * papp = (application_get(strType,strApp,true,true,pcreatecontext->m_spCommandLine->m_pbiasCreate));
+               ::aura::application * papp = (application_get(strApp,true,true,pcreatecontext->m_spCommandLine->m_pbiasCreate));
                if (papp == NULL)
                {
 
@@ -605,12 +604,6 @@ namespace aura
 
       m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
 
-
-      string strType;
-
-
-
-
       if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
          && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !(bool)command()->m_varTopicQuery.has_property("client_only"))
          && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
@@ -635,19 +628,10 @@ namespace aura
          else if(m_bShowPlatform)
          {
             strApp = "bergedge";
-            strType = "application";
-            //            create_bergedge(pcreatecontext);
-            //          ::exception::throw_not_implemented(get_app());
-            /*if(get_document() != NULL && get_document()->get_typed_view < ::platform::user::impact >() != NULL)
-            {
-            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::platform::user::impact >()->GetParentFrame());
-            if(pframe != NULL)
-            {
-            pframe->ShowWindow(SW_SHOW);
-            pframe->InitialFramePosition();
-            }
-            }*/
+
+
             bCreate = true;
+
          }
 
       }
@@ -660,8 +644,11 @@ namespace aura
          }
          else if(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() > 1)
          {
-            start_application("application","app-core/desk",pcreatecontext);
+            
+            start_application("app-core/desk",pcreatecontext);
+
             return;
+
          }
 
          for(int32_t i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
@@ -676,18 +663,15 @@ namespace aura
                   if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
                   {
                      strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
-                     strType = pcreatecontext->m_spCommandLine->m_varQuery["app_type"];
                   }
                   else
                   {
                      strApp = "session";
-                     strType = "application";
                   }
                }
                else
                {
                   strApp = pcreatecontext->m_spCommandLine->m_strApp;
-                  strType = pcreatecontext->m_spCommandLine->m_strAppType;
                }
             }
 
@@ -702,12 +686,7 @@ namespace aura
                return;
             }
 
-            if(strType.is_empty())
-            {
-               strType = "application";
-            }
-
-            start_application(strType,strApp,pcreatecontext);
+            start_application(strApp,pcreatecontext);
 
          }
 
@@ -730,12 +709,13 @@ namespace aura
 
    }
 
-   ::aura::application * session::application_get(const char * pszType,const char * pszId,bool bCreate,bool bSynch,application_bias * pbiasCreate)
+
+   ::aura::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
 
       ::aura::application * papp = NULL;
 
-      if(m_paurasession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
+      if(m_paurasession->m_mapApplication.Lookup(string(pszAppId), papp))
       {
 
          return papp;
@@ -744,15 +724,19 @@ namespace aura
       else
       {
 
-         if(!bCreate)
+         if (!bCreate)
+         {
+
             return NULL;
+
+         }
 
          papp = NULL;
 
          try
          {
 
-            papp = create_application(pszType,pszId,bSynch,pbiasCreate);
+            papp = create_application(pszAppId, bSynch, pbiasCreate);
 
          }
          catch(::exit_exception & e)
@@ -768,10 +752,13 @@ namespace aura
             // Thank you Mummi (em S�o Paulo, cuidando do Lucinho e ajudando um monte a Car� 2015-02-03) !! Thank you God!!
             if(!Sys(this).on_run_exception(e))
             {
+               
                if(!App(this).on_run_exception(e))
                {
                   throw exit_exception(get_app());
+
                }
+
             }
 
          }
@@ -782,8 +769,12 @@ namespace aura
 
          }
 
-         if(papp == NULL)
+         if (papp == NULL)
+         {
+
             return NULL;
+
+         }
 
          if(&App(papp) == NULL)
          {
@@ -794,7 +785,7 @@ namespace aura
 
          }
 
-         m_paurasession->m_mapApplication.set_at(string(pszType) + ":" + string(pszId),papp);
+         m_paurasession->m_mapApplication.set_at(string(pszAppId), papp);
 
          return papp;
 
@@ -803,7 +794,7 @@ namespace aura
    }
 
 
-   sp(::aura::application) session::get_new_application(::aura::application * pappParent, const char * pszAppId, const char * pszAppType)
+   sp(::aura::application) session::get_new_application(::aura::application * pappParent, const char * pszAppId)
    {
 
       string strAppId(pszAppId);
@@ -824,10 +815,10 @@ namespace aura
            && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
           ) //         || (papp->is_serviceable() && !papp->is_user_service() && strUserName != "NetworkService"))
          && strAppId.has_char()
-         && !System.is_application_installed(strAppId, pszAppType))
+         && !System.is_application_installed(strAppId))
       {
 
-          throw not_installed(get_app(), strAppId, pszAppType);
+          throw not_installed(get_app(), strAppId);
 
       }
 

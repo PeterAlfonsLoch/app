@@ -58,11 +58,11 @@ namespace install
       virtual bool app_install_send_short_message(const char * psz, bool bLaunch);
       virtual void app_install_send_response(const char * param);
 
-      virtual void add_spa_start(const char * pszType, const char * pszId);
-      virtual void remove_spa_start(const char * pszType, const char * pszId);
-      virtual void add_app_install(const char * pszAppId, const char * pszAppType, const char * pszBuild, const char * pszLocale, const char * pszSchema);
-      virtual int32_t start(const char * pszCommandLine);
-      virtual int32_t synch(const char * pszCommandLine);
+      virtual void add_spa_start(const char * pszAppId);
+      virtual void remove_spa_start(const char * pszAppId);
+      virtual void add_app_install(const char * pszAppId, const char * pszBuild, const char * pszLocale, const char * pszSchema);
+      virtual int32_t start(const char * pszCommand);
+      virtual int32_t synch(const char * pszCommand);
 
 
    };

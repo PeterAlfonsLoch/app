@@ -1,13 +1,12 @@
 
 
-not_installed::not_installed(::aura::application * papp, const char * pszAppId, const char * pszAppType, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :
+not_installed::not_installed(::aura::application * papp, const char * pszAppId, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :
    object(papp),
    ::call_stack(papp),
    ::exception::base(papp)
 {
 
    m_strAppId           = pszAppId;
-   m_strAppType         = pszAppType;
    m_strConfiguration   = pszConfiguration;
    m_strPlatform        = pszPlatform;
    m_strLocale          = pszLocale;
@@ -15,7 +14,6 @@ not_installed::not_installed(::aura::application * papp, const char * pszAppId, 
 
    string str;
    str += "appid=" + m_strAppId + ";";
-   str += "apptype=" + m_strAppType + ";";
    str += "configuration=" + m_strConfiguration + ";";
    str += "platform=" + m_strPlatform + ";";
    str += "locale=" + m_strLocale + ";";
@@ -34,7 +32,6 @@ not_installed::not_installed(const not_installed & e) :
    debug_print(":not_installed(copy)");
 
    m_strAppId           = e.m_strAppId;
-   m_strAppType         = e.m_strAppType;
    m_strConfiguration   = e.m_strConfiguration;
    m_strPlatform        = e.m_strPlatform;
    m_strLocale          = e.m_strLocale;

@@ -256,11 +256,11 @@ namespace userstack
    }
 
 
-   sp(::aura::application) application::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::aura::application) application::application_get(const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
       sp(::aura::application) papp = NULL;
 
-      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
+      if(m_mapApplication.Lookup(string(pszId), papp))
          return papp;
       else
       {
@@ -269,7 +269,7 @@ namespace userstack
          papp = NULL;
          try
          {
-            papp = create_application(pszType, pszId, bSynch, pbiasCreate);
+            papp = create_application(pszId, bSynch, pbiasCreate);
          }
          catch(...)
          {
@@ -281,8 +281,8 @@ namespace userstack
          {
             return NULL;
          }
-         m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
-         Session.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
+         m_mapApplication.set_at(string(pszId), papp);
+         Session.m_mapApplication.set_at(string(pszId), papp);
          return papp;
       }
    }
