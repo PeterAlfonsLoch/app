@@ -912,6 +912,13 @@ CLASS_DECL_AURA extern "C" int32_t app_common_main(HINSTANCE hinstance, HINSTANC
 
    string strAppId = read_resource_as_string_dup(NULL, 2000, "APPID");
 
+   if (strAppId.is_empty())
+   {
+
+      get_command_line_param(strAppId, string(::GetCommandLineW()), "app");
+
+   }
+
    if (strAppId.has_char())
    {
 

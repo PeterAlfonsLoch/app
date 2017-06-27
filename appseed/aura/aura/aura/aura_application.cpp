@@ -6294,7 +6294,7 @@ namespace aura
             //#if defined(APPLEOS)
             //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build=" + strBuild + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
             //#else
-            strParam = " : install app=" + notinstalled.m_strAppId + " configuration=" + notinstalled.m_strConfiguration+ " platform="+ notinstalled.m_strPlatform + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
+            strParam = " : install app=" + notinstalled.m_strAppId + " platform="+ notinstalled.m_strPlatform + " configuration=" + notinstalled.m_strConfiguration + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
             //#endif
 
             //               if(App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())

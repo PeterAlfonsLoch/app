@@ -755,6 +755,7 @@ namespace aura
                
                if(!App(this).on_run_exception(e))
                {
+
                   throw exit_exception(get_app());
 
                }
