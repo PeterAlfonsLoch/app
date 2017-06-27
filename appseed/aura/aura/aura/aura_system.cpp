@@ -219,6 +219,18 @@ namespace aura
       m_dwAfterApplicationFirstRequest = 0;
 
 
+      factory().creatable_small < ::visual::icon >();
+      m_mapLibrary["draw2d"] = canew(::aura::library(this));
+      m_purldepartment = new url::department(this);
+
+      m_pcompress = new ::axis::compress_department(this);
+
+      m_pcompress->set_app(this);
+
+      ::draw2d::dib::static_initialize();
+      m_spinstall = canew(::install::install(this));
+
+
    }
 
 

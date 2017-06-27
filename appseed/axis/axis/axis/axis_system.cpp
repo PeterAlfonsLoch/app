@@ -21,8 +21,8 @@ m_visual(this),
       m_emaildepartment(this)
    {
 
-      factory().creatable_small < ::visual::icon >();
-      m_mapLibrary["draw2d"] = canew(::aura::library(this));
+      m_paxissystem = this;
+
 
       g_pszCooperativeLevel = "axis";
 
@@ -30,18 +30,10 @@ m_visual(this),
 
       m_puserstr                 = NULL;
 
-      m_purldepartment = new url::department(this);
-
-      m_paxissystem = this;
-
-      ::draw2d::dib::static_initialize();
-      m_spinstall = canew(::install::install(this));
 
       __node_axis_factory_exchange(this);
 
-      m_pcompress = new ::axis::compress_department(this);
 
-      m_pcompress->set_app(this);
 
       factory().creatable_small < ::file::axis::application >(System.type_info < ::file::application >());
       factory().creatable_small < ::file::dir::axis::application >(System.type_info < ::file::dir::application >());
