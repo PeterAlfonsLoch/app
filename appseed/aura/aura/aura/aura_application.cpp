@@ -3258,6 +3258,15 @@ namespace aura
    bool application::system_add_app_install(const char * pszId, const char * pszBuild)
    {
 
+      string strBuild(pszBuild);
+
+      if (strBuild.is_empty())
+      {
+
+         return false;
+
+      }
+
       synch_lock sl(System.m_spmutexSystemAppData);
 
       string strId(pszId);
@@ -3266,7 +3275,7 @@ namespace aura
       stringa straLocale = command()->m_varTopicQuery["locale"].stra();
       stringa straSchema = command()->m_varTopicQuery["schema"].stra();
 
-      string strBuild(pszBuild);
+
 
       System.install().remove_spa_start(strId);
       System.install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
@@ -6285,7 +6294,7 @@ namespace aura
             //#if defined(APPLEOS)
             //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build=" + strBuild + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
             //#else
-            strParam = " : install app=" + notinstalled.m_strAppId + " configuration=" + notinstalled.m_strConfiguration+ " platform="+ notinstalled.m_strPlatform +"locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
+            strParam = " : install app=" + notinstalled.m_strAppId + " configuration=" + notinstalled.m_strConfiguration+ " platform="+ notinstalled.m_strPlatform + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
             //#endif
 
             //               if(App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())

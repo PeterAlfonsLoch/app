@@ -7,10 +7,10 @@ not_installed::not_installed(::aura::application * papp, const char * pszAppId, 
 {
 
    m_strAppId           = pszAppId;
-   m_strConfiguration   = pszConfiguration;
-   m_strPlatform        = pszPlatform;
-   m_strLocale          = pszLocale;
-   m_strSchema          = pszSchema;
+   m_strConfiguration   = pszConfiguration == NULL ? System.get_system_configuration() : pszConfiguration;
+   m_strPlatform        = pszPlatform == NULL ? System.get_system_platform() : pszPlatform;
+   m_strLocale          = pszLocale == NULL ? Session.m_strLocale : pszLocale;
+   m_strSchema          = pszSchema == NULL ? Session.m_strSchema : pszSchema;
 
    string str;
    str += "appid=" + m_strAppId + ";";

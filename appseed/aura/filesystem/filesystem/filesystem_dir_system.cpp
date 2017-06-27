@@ -1502,13 +1502,6 @@ namespace file
 
          string strBuild(pszBuild);
 
-         if (strBuild.is_empty())
-         {
-
-            strBuild = System.get_latest_build_number(strConfiguration);
-
-         }
-
          return commonappdata() / strBuild / strPlatform / strConfiguration / strAppId;
 
       }

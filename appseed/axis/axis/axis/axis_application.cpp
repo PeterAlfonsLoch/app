@@ -1487,19 +1487,40 @@ namespace axis
          if (strAppId.has_char() && command()->m_varTopicQuery.has_property("app") && strAppId == command()->m_varTopicQuery["app"])
          {
 
-            system_add_app_install(strAppId, strBuild);
+            system_add_app_install(strAppId, "installed");
+
+            if (strBuild.has_char())
+            {
+
+               system_add_app_install(strAppId, strBuild);
+
+            }
 
          }
          else if (strAppId.has_char() && command()->m_varTopicQuery.has_property("session_start") && strAppId == command()->m_varTopicQuery["session_start"])
          {
 
-            system_add_app_install(strAppId, strBuild);
+            system_add_app_install(strAppId, "installed");
+
+            if (strBuild.has_char())
+            {
+
+               system_add_app_install(strAppId, strBuild);
+
+            }
 
          }
          else if (m_strInstallToken.has_char())
          {
 
-            system_add_app_install(m_strInstallToken, strBuild);
+            system_add_app_install(m_strInstallToken, "installed");
+
+            if (strBuild.has_char())
+            {
+
+               system_add_app_install(m_strInstallToken, strBuild);
+
+            }
 
          }
 

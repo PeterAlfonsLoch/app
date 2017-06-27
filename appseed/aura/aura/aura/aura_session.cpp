@@ -815,7 +815,7 @@ namespace aura
            && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
           ) //         || (papp->is_serviceable() && !papp->is_user_service() && strUserName != "NetworkService"))
          && strAppId.has_char()
-         && !System.is_application_installed(strAppId))
+         && !System.is_application_installed(strAppId, "installed"))
       {
 
           throw not_installed(get_app(), strAppId);
