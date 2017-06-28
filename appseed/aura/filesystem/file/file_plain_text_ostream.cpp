@@ -203,6 +203,13 @@ namespace file
    
    void plain_text_ostream:: write (const char * psz)
    {
+
+      if (psz == NULL)
+      {
+
+         return;
+
+      }
       
       m_spfile->write(psz, strlen(psz));
       

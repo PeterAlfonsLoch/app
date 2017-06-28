@@ -19,42 +19,14 @@ namespace file
          virtual ~system();
 
 
-         virtual cres copy(const path & pszNew,const path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp);
-         virtual cres move(const path & pszNew,const path & psz,::aura::application * papp);
-         virtual cres del(const path & psz,::aura::application * papp);
-         virtual path copy(const path & psz,::aura::application * papp);
-         virtual path paste(const path & pszLocation,const path & path,::aura::application * papp);
 
-         virtual void trash_that_is_not_trash(const path & psz,::aura::application * papp);
-         virtual void trash_that_is_not_trash(const patha & stra,::aura::application * papp);
-
-         //virtual string title_(const char * path);
-         //virtual string name_(const char * path);
-         //virtual string extension(const char * path);
-
-
-
-         virtual ::cres replace(const path & pszContext,const string & pszFind,const string & pszReplace,::aura::application * papp);
-
-         virtual bool exists(const path & path,::aura::application * papp);
+         using ::file::system::exists;
 
          virtual bool exists(const path & path,var * pvarQuery,::aura::application * papp);
 
          virtual var length(const path & path,::aura::application * papp);
 
          virtual var length(const path & path,var * pvarQuery,::aura::application * papp);
-
-         //void  get_ascendants_path(const path & lpcsz,patha & stra);
-         //void  get_ascendants_name(const path & lpcsz,patha & stra);
-
-
-         path time(::aura::application * papp,const path & pszBasePath,int32_t iDepth,const string & strPrefix = cnull,const string & pszSuffix = cnull);
-         path time_square(::aura::application * papp, const string & pszPrefix = cnull, const string & pszSuffix = cnull);
-         path time_log(::aura::application * papp,const string & pszId);
-
-         
-         virtual file_sp time_square_file(::aura::application * papp,const string & pszPrefix = cnull,const string & pszSuffix = cnull);
-         virtual file_sp get(const path & name,::aura::application * papp);
 
 
          template < class T >
@@ -68,68 +40,6 @@ namespace file
          }
 
 
-
-         int32_t filterex_time_square(const char * pszPrefix,patha & stra);
-         bool mk_time(const path & lpcszCandidate);
-
-         string as_string(var varFile,::aura::application * papp);
-         string as_string(var varFile,var & varQuery,::aura::application * papp);
-         void as_memory(var varFile,primitive::memory_base & mem,::aura::application * papp);
-         void lines(stringa & stra,var varFile,::aura::application * papp);
-
-         bool put_contents(var varFile,const void * pvoidContents,::count count,::aura::application * papp);
-         bool put_contents(var varFile,const char * lpcszContents,::aura::application * papp);
-         bool put_contents(var varFile,reader & reader,::aura::application * papp);
-         bool put_contents(var varFile,memory & mem,::aura::application * papp);
-         bool put_contents_utf8(var varFile,const char * lpcszContents,::aura::application * papp);
-
-         
-         bool is_read_only(const path & psz);
-
-
-         path sys_temp(const path & pszName,const string & pszExtension,::aura::application * papp);
-         path sys_temp_unique(const path & pszName);
-
-
-         path replace_extension(const path & pszFile,const string & pszExtension);
-         void set_extension(path & str,const string & pszExtension);
-
-
-         virtual void normalize(path & str);
-         virtual int32_t cmp(const path & psz1,const path & psz2);
-
-
-
-         virtual string md5(const path & psz);
-         virtual string nessie(const path & psz);
-
-         virtual string nessie(file_sp  pfile);
-
-         //      path & path36();
-
-
-
-         virtual bool is_valid_fileset(const char * pszFile,::aura::application * papp);
-
-
-
-         virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const string & pszSource, ::user::primitive * puiMessageParentOptional = NULL);
-
-         //virtual bool get_last_write_time(FILETIME * pfiletime,const string & strFilename);
-         using ::file::system::dtf;
-         virtual void dtf(const path & pszFile,patha & stra,::aura::application * papp);
-         virtual void ftd(const path & pszDir,const ::file::path & pszFile,::aura::application * papp);
-
-
-         // 'n' (natural) terminated ascii number, example: 245765487n
-         // pmd5ctx = openssl/md5.h's MD5_CTX
-         virtual void write_n_number(file *  pfile,void * pmd5ctx,int64_t iNumber);
-         virtual void read_n_number(file *  pfile,void * pmd5ctx,int64_t & iNumber);
-
-         virtual void write_gen_string(file *  pfile,void * pmd5ctx,string & str);
-         virtual void read_gen_string(file *  pfile,void * pmd5ctx,string & str);
-
-         
          virtual ::file::file_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
 
 

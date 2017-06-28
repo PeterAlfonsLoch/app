@@ -114,16 +114,7 @@ namespace fs
 
          string strMd5Here;
 
-         {
-            MD5_CTX ctx;
-
-            MD5_Init(&ctx);
-
-            MD5_Update(&ctx, m_varFile["xml"].cast < ::memory_file >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::memory_file >()->get_primitive_memory()->get_size());
-
-            to_string(strMd5Here, ctx);
-
-         }
+         strMd5Here = System.file().md5(m_varFile["xml"].cast < ::memory_file >());
 
          string strMd5There = set["md5"];
 

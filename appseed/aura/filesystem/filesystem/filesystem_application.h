@@ -127,6 +127,11 @@ namespace file
 
       virtual bool touch(const ::file::path & path);
 
+
+      virtual string md5(var varFile);
+      virtual string nessie(var varFile);
+
+
    };
 
 

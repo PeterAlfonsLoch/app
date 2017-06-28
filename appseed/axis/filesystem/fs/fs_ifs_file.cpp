@@ -3,19 +3,6 @@
 
 
 
-#include "openssl/md5.h"
-
-template < > 
-CLASS_DECL_AXIS void to_string(string & str, const MD5_CTX & ctx)
-{
-   
-   unsigned char digest[MD5_DIGEST_LENGTH];
-   
-   MD5_Final(digest,(MD5_CTX *) &ctx);
-   
-   str = ::hex::lower_from(digest,MD5_DIGEST_LENGTH);
-   
-}
 
 ifs_file::ifs_file(::aura::application * papp, var varFile) :
    ::object(papp),
@@ -121,17 +108,7 @@ void ifs_file::set_file_data()
 
       string strMd5Here;
 
-      {
-
-         MD5_CTX ctx;
-
-         MD5_Init(&ctx);
-
-         MD5_Update(&ctx, m_varFile["xml"].cast < ::memory_file >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::memory_file >()->get_primitive_memory()->get_size());
-
-         to_string(strMd5Here, ctx);
-
-      }
+      strMd5Here = System.file().md5(m_varFile["xml"].cast < ::memory_file >());
 
       string strMd5There = set["md5"];
 

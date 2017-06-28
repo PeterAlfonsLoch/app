@@ -44,7 +44,7 @@ namespace install
 
       set["raw_http"] = true;
 
-      return file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), Application.http().get(strUrl, set));
+      return file_exists_dup(path1) && !stricmp_dup(Application.file().md5(path1), Application.http().get(strUrl, set));
 
    }
 
@@ -134,7 +134,7 @@ namespace install
       for (index i = 0; i < straMd5.get_count(); i++)
       {
 
-         if (System.file().md5(patha[i]).compare_ci(straMd5[i]) != 0)
+         if (Application.file().md5(patha[i]).compare_ci(straMd5[i]) != 0)
             return false;
 
       }
@@ -739,7 +739,7 @@ namespace install
 
                      ::file::path strFile = strAuraDir / straFile[iFile];
 
-                     if (!file_exists_dup(straDownload[iFile]) && file_exists_dup(strFile) && System.file().md5(strFile) == straMd5[iFile])
+                     if (!file_exists_dup(straDownload[iFile]) && file_exists_dup(strFile) && Application.file().md5(strFile) == straMd5[iFile])
                      {
 
                         ::file_copy_dup(straDownload[iFile], strFile, false);
@@ -808,7 +808,7 @@ namespace install
 
       set["raw_http"] = true;
 
-      bool bOk = file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), Application.http().get(strUrl, set));
+      bool bOk = file_exists_dup(path1) && !stricmp_dup(Application.file().md5(path1), Application.http().get(strUrl, set));
 
       return bOk;
 

@@ -2840,6 +2840,9 @@
     <ClInclude Include="aura\install\install_trace.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
+    <ClInclude Include="aura\crypto\crypto_openssl.h">
+      <Filter>Header Files\aura\crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4905,6 +4908,9 @@
     </ClCompile>
     <ClCompile Include="aura\install\windows\install_windows_win.cpp">
       <Filter>Source Files\aura\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\crypto\crypto_openssl.cpp">
+      <Filter>Source Files\aura\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

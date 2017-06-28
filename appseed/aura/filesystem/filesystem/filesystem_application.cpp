@@ -119,7 +119,6 @@ namespace file
 
    }
 
-
    ::file::path application::time_log(const string & pszId)
    {
       return m_pauraapp->m_paurasystem->m_spfile->time_log(m_pauraapp, pszId);
@@ -558,6 +557,15 @@ namespace file
 
    }
 
+   string application::md5(var varFile)
+   {
+      return m_pauraapp->m_paurasystem->m_spfile->md5(varFile, m_pauraapp);
+   }
+
+   string application::nessie(var varFile)
+   {
+      return m_pauraapp->m_paurasystem->m_spfile->nessie(varFile, m_pauraapp);
+   }
 
 } // namespace file
 

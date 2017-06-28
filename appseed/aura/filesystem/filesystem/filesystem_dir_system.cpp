@@ -885,12 +885,10 @@ namespace file
       }
 
 
-      ::file::path system::time_square(::aura::application * papp, const string & strPrefix, const string & strSuffix)
+      ::file::path system::time_square(::aura::application * papp)
       {
 
          UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(strPrefix);
-         UNREFERENCED_PARAMETER(strSuffix);
 
          return time() / "time";
 

@@ -21,7 +21,7 @@ namespace file
       virtual cres copy(const path & pszNew,const path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp);
       virtual cres move(const path & pszNew,const path & psz,::aura::application * papp);
       virtual cres del(const path & psz,::aura::application * papp);
-      virtual path copy(const path & psz,::aura::application * papp);
+      virtual path duplicate(const path & psz,::aura::application * papp);
       virtual path paste(const path & pszLocation,const path & path,::aura::application * papp);
       virtual cres rename(const path & pszNew,const path & psz,::aura::application * papp);
 
@@ -68,7 +68,7 @@ namespace file
 
 
       virtual int32_t filterex_time_square(const char * pszPrefix,patha & stra);
-      virtual bool mk_time(const char * lpcszCandidate);
+      virtual bool mk_time(const ::file::path & pathCandidate);
 
       virtual var as_json(var varFile, ::aura::application * papp);
       virtual string as_string(var varFile,::aura::application * papp);
@@ -99,13 +99,11 @@ namespace file
       virtual int32_t cmp(const path & psz1,const path & psz2);
 
 
+      virtual string md5(file * pfile);
+      virtual string md5(var varFile, ::aura::application * papp);
 
-      virtual string md5(const path & psz);
-      virtual string nessie(const path & psz);
-
-      virtual string nessie(file_sp  pfile);
-
-      virtual bool is_valid_fileset(const path & pszFile,::aura::application * papp);
+      virtual string nessie(file *  pfile);
+      virtual string nessie(var varFile, ::aura::application * papp);
 
       virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const string & strSource, ::user::primitive * puiMessageParentOptional = NULL);
 
@@ -118,6 +116,14 @@ namespace file
       virtual void dtf(const path & pszFile,patha & stra,::aura::application * papp);
 
       virtual void ftd(const path & pszDir,const path & pszFile,::aura::application * papp);
+
+      // 'n' (natural) terminated ascii number, example: 245765487n
+      // pmd5ctx = openssl/md5.h's MD5_CTX
+      virtual void write_n_number(file *  pfile, void * pmd5ctx, int64_t iNumber);
+      virtual void read_n_number(file *  pfile, void * pmd5ctx, int64_t & iNumber);
+
+      virtual void write_gen_string(file *  pfile, void * pmd5ctx, string & str);
+      virtual void read_gen_string(file *  pfile, void * pmd5ctx, string & str);
 
       virtual bool initialize();
 

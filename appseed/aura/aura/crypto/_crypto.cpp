@@ -17,3 +17,10 @@
 //
 //               5 arquivo(s)         50.055 bytes
 //               2 pasta(s)   33.191.997.440 bytes dispon¡veis
+
+
+
+#include "crypto_openssl.cpp"
+
+
+

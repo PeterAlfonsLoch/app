@@ -102,7 +102,7 @@ namespace file
 
          virtual ::file::path module();
          virtual ::file::path ca2module();
-         virtual ::file::path time_square(::aura::application * papp,const string & strPrefix = cnull,const string & = cnull);
+         virtual ::file::path time_square(::aura::application * papp);
          virtual ::file::path time_log(const string & strId);
 
          virtual ::file::path locale_schema(::aura::application * papp,const string & strLocale = cnull,const string & strStyle = cnull);

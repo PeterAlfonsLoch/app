@@ -903,7 +903,7 @@ namespace filemanager
                   strFileList += straSub[j] + "\n";
                   strFileCheck += straSub[j] + ",";
                   strFileCheck += Application.file().length(straSub[j]).get_string() + ",";
-                  strFileCheck += System.file().md5(straSub[j]) +"\n";
+                  strFileCheck += Application.file().md5(straSub[j]) +"\n";
                }
             }
          }
@@ -912,7 +912,7 @@ namespace filemanager
             strFileList += itema[i]->m_filepath + "\n";
             strFileCheck += itema[i]->m_filepath + ",";
             strFileCheck += Application.file().length(itema[i]->m_filepath).get_string() + ",";
-            strFileCheck += System.file().md5(itema[i]->m_filepath) +"\n";
+            strFileCheck += Application.file().md5(itema[i]->m_filepath) +"\n";
          }
       }
 
@@ -974,7 +974,7 @@ namespace filemanager
                   strFileList += straSub[j] + "\n";
                   strFileCheck += straSub[j] + ",";
                   strFileCheck += Application.file().length(straSub[j]).get_string() + ",";
-                  strFileCheck += System.file().md5(straSub[j]) +"\n";
+                  strFileCheck += Application.file().md5(straSub[j]) +"\n";
                }
             }
          }
@@ -988,7 +988,7 @@ namespace filemanager
             strFileList += pdata->m_itema.get_item(i).m_filepath + "\n";
             strFileCheck += pdata->m_itema.get_item(i).m_filepath + ",";
             strFileCheck += Application.file().length(pdata->m_itema.get_item(i).m_filepath).get_string() + ",";
-            strFileCheck += System.file().md5(pdata->m_itema.get_item(i).m_filepath) +"\n";
+            strFileCheck += Application.file().md5(pdata->m_itema.get_item(i).m_filepath) +"\n";
          }
          }
       }
