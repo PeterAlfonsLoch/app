@@ -15,7 +15,6 @@ namespace windows
       ::file::path            m_strTimeFolder;
       ::file::path            m_strNetSeedFolder;
 
-      ::file::path            m_strCa2;
       ::file::path            m_strCommonAppData;
       ::file::path            m_strAppData;
       ::file::path            m_strPrograms;
