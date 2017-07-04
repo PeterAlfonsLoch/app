@@ -24,7 +24,7 @@ namespace filehandler
       virtual int32_t exit_application() override;
 
 
-      virtual void on_request(sp(::create) pcreatecontext);
+      virtual void on_request(::create * pcreatecontext);
 
 
    };

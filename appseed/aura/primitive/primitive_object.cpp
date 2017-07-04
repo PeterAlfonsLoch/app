@@ -434,7 +434,7 @@ bool sync_object::is_locked() const
 
 
 
-void object::create(sp(::create) pcreatecontext)
+void object::create(::create * pcreatecontext)
 {
    if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only"))
    {
@@ -450,50 +450,63 @@ void object::add_line(const char * pszCommandLine,application_bias * pbiasCreate
    sp(::create) createcontext(canew(::create(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
 
-   createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
-
-   if (createcontext->m_spCommandLine->m_strApp.find_ci("app._.exe") >= 0)
-      return;
-
-   if(get_app()->command_central()->m_varTopicQuery.has_property("appid"))
+   if (Application.m_strAppId == "acid")
    {
 
-      if(createcontext->m_spCommandLine->m_varQuery["app"].is_empty())
-      {
+      createcontext->m_spCommandLine->m_strApp = "acid";
 
-         createcontext->m_spCommandLine->m_varQuery["app"] = get_app()->command_central()->m_varTopicQuery["appid"];
-
-      }
-      else
-      {
-
-         createcontext->m_spCommandLine->m_varQuery["app"].stra().insert_at(0,get_app()->command_central()->m_varTopicQuery["appid"].get_string());
-
-      }
-
-      createcontext->m_spCommandLine->m_strApp = createcontext->m_spCommandLine->m_varQuery["app"];
+      createcontext->m_spCommandLine->m_varQuery["app"] = "acid";
 
    }
-
-   if(get_app()->command_central()->m_varTopicQuery["build"].has_char())
+   else
    {
 
-      createcontext->m_spCommandLine->m_varQuery["build"] = get_app()->command_central()->m_varTopicQuery["build"];
+      createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
 
-   }
-   else if(createcontext->m_spCommandLine->m_varQuery["build"].is_empty())
-   {
+      if (createcontext->m_spCommandLine->m_strApp.find_ci("app._.exe") >= 0)
+         return;
 
-      if(createcontext->m_spCommandLine->m_strApp.compare_ci("app-core/netnodelite") == 0)
+      if (get_app()->command_central()->m_varTopicQuery.has_property("appid"))
       {
 
-         createcontext->m_spCommandLine->m_varQuery["build"] = "static";
+         if (createcontext->m_spCommandLine->m_varQuery["app"].is_empty())
+         {
+
+            createcontext->m_spCommandLine->m_varQuery["app"] = get_app()->command_central()->m_varTopicQuery["appid"];
+
+         }
+         else
+         {
+
+            createcontext->m_spCommandLine->m_varQuery["app"].stra().insert_at(0, get_app()->command_central()->m_varTopicQuery["appid"].get_string());
+
+         }
+
+         createcontext->m_spCommandLine->m_strApp = createcontext->m_spCommandLine->m_varQuery["app"];
 
       }
-      else
+
+      if (get_app()->command_central()->m_varTopicQuery["build"].has_char())
       {
 
-         createcontext->m_spCommandLine->m_varQuery["build"] = "installed";
+         createcontext->m_spCommandLine->m_varQuery["build"] = get_app()->command_central()->m_varTopicQuery["build"];
+
+      }
+      else if (createcontext->m_spCommandLine->m_varQuery["build"].is_empty())
+      {
+
+         if (createcontext->m_spCommandLine->m_strApp.compare_ci("app-core/netnodelite") == 0)
+         {
+
+            createcontext->m_spCommandLine->m_varQuery["build"] = "static";
+
+         }
+         else
+         {
+
+            createcontext->m_spCommandLine->m_varQuery["build"] = "installed";
+
+         }
 
       }
 
@@ -600,12 +613,12 @@ void object::request_command(sp(command_line) pcommandline)
 
 }
 
-void object::request_create(sp(::create) pcreatecontext)
+void object::request_create(::create * pcreatecontext)
 {
    on_request(pcreatecontext);
 }
 
-void object::on_request(sp(::create) pcreatecontext)
+void object::on_request(::create * pcreatecontext)
 {
 
    UNREFERENCED_PARAMETER(pcreatecontext);

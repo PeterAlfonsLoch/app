@@ -1,17 +1,6 @@
 #pragma once
 
 
-
-#include "install_launcher.h"
-
-
-
-#include "install_module_list.h"
-
-
-#pragma once
-
-
 namespace install
 {
 
@@ -38,7 +27,6 @@ namespace install
 #include "install_trace.h"
 
 
-#include "install_cube_run.h"
 #include "install_small_bell.h"
 
 
@@ -46,3 +34,15 @@ namespace install
 
 
 #include "install_install.h"
+
+
+#include "install_installer.h"
+
+
+#include "install_launcher.h"
+
+
+
+#include "install_module_list.h"
+
+

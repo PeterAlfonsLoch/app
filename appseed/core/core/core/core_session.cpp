@@ -294,7 +294,7 @@ namespace core
    }
 
 
-   void session::on_request(sp(::create) pcreatecontext)
+   void session::on_request(::create * pcreatecontext)
    {
 
       ::base::session::on_request(pcreatecontext);
@@ -445,7 +445,7 @@ namespace core
    //   }
    //
 
-   void session::request_create(sp(::create) pcreatecontext)
+   void session::request_create(::create * pcreatecontext)
    {
 
       ::base::session::request_create(pcreatecontext);

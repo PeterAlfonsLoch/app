@@ -179,9 +179,9 @@ namespace aura
       virtual void load_string_table();
       //   virtual string load_string(id id);
       // virtual bool load_string(string & str, id id);
-virtual bool load_cached_string(string & str,id id,bool bLoadStringTable);
-virtual      bool load_cached_string_by_id(string & str,id id,bool bLoadStringTable);
-virtual      void load_string_table(const string & pszApp,const string & pszId);
+      virtual bool load_cached_string(string & str,id id,bool bLoadStringTable);
+      virtual bool load_cached_string_by_id(string & str,id id,bool bLoadStringTable);
+      virtual void load_string_table(const string & pszApp,const string & pszId);
 
       virtual int32_t hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL);
 
@@ -391,7 +391,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual bool stop_service();
 
 
-      virtual void on_service_request(sp(::create) pcreatecontext);
+      virtual void on_service_request(::create * pcreatecontext);
 
       virtual sp(application) assert_running(const char * pszAppId);
 
@@ -439,7 +439,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       bool safe_is_running();
 
 
-      virtual void on_request(sp(::create) pcreatecontext) override;
+      virtual void on_request(::create * pcreatecontext) override;
 
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory

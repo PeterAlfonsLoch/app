@@ -110,7 +110,7 @@ namespace core
 
 
       // semantics defined by application
-      virtual void request_create(sp(::create) pcreatecontext);
+      virtual void request_create(::create * pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
@@ -160,7 +160,7 @@ namespace core
 
       virtual service_base * allocate_new_service();
 
-      void on_request(sp(::create) pcreatecontext);
+      void on_request(::create * pcreatecontext);
 
       sp(::aura::application) get_current_application();
 

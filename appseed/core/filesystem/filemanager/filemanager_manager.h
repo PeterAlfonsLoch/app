@@ -115,7 +115,7 @@ namespace filemanager
 
       string calc_data_key(::database::id & id);
 
-      virtual void on_create(sp(::create) pcreatecontext);
+      virtual void on_create(::create * pcreatecontext);
 
 
       sp(operation_document) get_operation_doc(bool bSwitch);

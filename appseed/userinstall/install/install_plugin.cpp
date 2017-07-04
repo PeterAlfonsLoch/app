@@ -652,7 +652,7 @@ namespace install
             m_phost->m_bInstalling = true;
 
             // shouldn't do advanced operations using ca
-            // starter_start will only kick a default app_app_install.exe if one isn't already running, cleaning file lock if any
+            // starter_start will only kick a default app_app_admin.exe if one isn't already running, cleaning file lock if any
 
          }
 

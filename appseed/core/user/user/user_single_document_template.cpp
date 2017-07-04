@@ -55,7 +55,7 @@ namespace user
    // single_document_template commands
 
    // if lpszPathName == NULL => create new file of this type
-   void single_document_template::request_create(sp(::create) pcreatecontext)
+   void single_document_template::request_create(::create * pcreatecontext)
    {
 
       pcreatecontext->m_spCommandLine->m_varQuery["document"].m_sp.release();

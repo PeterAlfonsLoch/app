@@ -155,7 +155,7 @@ namespace userstack
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void application::on_request(sp(::create) pcreatecontext)
+   void application::on_request(::create * pcreatecontext)
    {
 
       ::asphere::application::on_request(pcreatecontext);
@@ -192,7 +192,7 @@ namespace userstack
    }
 
 
-/*   void application::request(sp(::create) pcreatecontext)
+/*   void application::request(::create * pcreatecontext)
    {
 
       if(m_pappCurrent != NULL && m_pappCurrent != this

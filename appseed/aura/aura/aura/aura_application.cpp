@@ -1,12 +1,15 @@
 #include "framework.h"
 
+
 extern "C"
 {
+
    typedef void FN_ca2_factory_exchange(::aura::application * papp);
 
    typedef FN_ca2_factory_exchange * PFN_ca2_factory_exchange;
 
 }
+
 
 #ifdef WINDOWSEX
 
@@ -342,7 +345,6 @@ namespace aura
    {
 
       pcreate->set_app(this);
-
 
       try
       {
@@ -3464,7 +3466,7 @@ namespace aura
    //}
 
 
-   void application::on_request(sp(::create) pcreatecontext)
+   void application::on_request(::create * pcreatecontext)
    {
 
       ::object::on_request(pcreatecontext);
@@ -3686,7 +3688,7 @@ namespace aura
    }
 
 
-   void application::on_service_request(sp(::create) pcreatecontext)
+   void application::on_service_request(::create * pcreatecontext)
    {
 
       if (!is_serviceable())
@@ -6838,8 +6840,6 @@ namespace aura
          pfn_ca2_factory_exchange(this);
 
 #endif
-
-
 
 
    }

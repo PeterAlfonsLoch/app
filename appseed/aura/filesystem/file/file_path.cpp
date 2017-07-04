@@ -18,10 +18,10 @@ namespace path
 
    }
 
-   ::file::path app_app_install(string strPlatform)
+   ::file::path app_app_admin(string strPlatform)
    {
 
-      return ::dir::app_install(strPlatform) / "app_app_install.exe";
+      return ::dir::stage(strPlatform) / "app_app_admin.exe";
 
    }
 
@@ -39,29 +39,23 @@ namespace path
 
 #ifdef WINDOWS
 
-      return ::dir::app_app(strPlatform) / "app_app.exe";
+      return ::dir::stage(strPlatform) / "app_app.exe";
 
 #else
 
-      return ::dir::app_app(strPlatform) / "app_app";
+      return ::dir::stage(strPlatform) / "app_app";
 
 #endif
 
    }
 
 
-   ::file::path app_app_admin(string strPlatform)
-   {
-
-      return ::dir::app_app(strPlatform) / "app_app_admin.exe";
-
-   }
 
 
    ::file::path vcredist(string strPlatform)
    {
 
-      return ::dir::app_app(strPlatform) / "vcredist.exe";
+      return ::dir::stage(strPlatform) / "vcredist.exe";
 
    }
 

@@ -4,7 +4,7 @@
 enum e_message
 {
 
-   message_system = WM_APP + 1984,
+   message_system = WM_APP + 2000,
    message_desk,
    message_display_change,
    MessageBaseWndGetProperty,

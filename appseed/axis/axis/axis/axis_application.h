@@ -164,7 +164,7 @@ namespace axis
 
 
 
-      virtual void on_request(sp(::create) pcreatecontext) override;
+      virtual void on_request(::create * pcreatecontext) override;
 
 
 
@@ -230,7 +230,7 @@ namespace axis
 
       virtual ::visual::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      virtual void on_service_request(sp(::create) pcreatecontext) override;
+      virtual void on_service_request(::create * pcreatecontext) override;
 
       virtual string get_mutex_name_gen() override;
 

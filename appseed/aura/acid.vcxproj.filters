@@ -222,6 +222,15 @@
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{c5e5061a-cabf-4933-9679-38d0c8fe3fc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\os\cross">
+      <UniqueIdentifier>{bc031bfe-e45b-4872-8e57-30db3f4ee8ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\cross\ansios">
+      <UniqueIdentifier>{dbb82dfc-a90b-4d96-873b-d247b49abc15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\install">
+      <UniqueIdentifier>{07d4757e-ceea-4aa0-ae27-975db5d90702}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2310,6 +2319,12 @@
     </ClCompile>
     <ClCompile Include="multithreading\service\service_plain_service.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\ansios\ansios_file_raw.cpp">
+      <Filter>Source Files\aura\os\cross\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\_install.cpp">
+      <Filter>Source Files\aura\install</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

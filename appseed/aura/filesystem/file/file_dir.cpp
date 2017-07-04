@@ -1547,12 +1547,6 @@ retry:
 
 
 
-::file::path dir::app_app(string strPlatform)
-{
-
-   return program_files_x86() / "ca2/app_app" / strPlatform;
-
-}
 
 ::file::path dir::stage(string strPlatform)
 {
@@ -1561,13 +1555,6 @@ retry:
 
 }
 
-
-::file::path dir::app_install(string strPlatform)
-{
-
-   return program_files_x86() / "ca2/install/stage" / strPlatform;
-
-}
 
 
 #if LINUX

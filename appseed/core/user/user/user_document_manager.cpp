@@ -690,7 +690,7 @@ namespace user
 
 
 
-   void document_manager::request(sp(::create) pcreatecontext)
+   void document_manager::request(::create * pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())

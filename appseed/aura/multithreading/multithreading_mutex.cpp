@@ -1581,13 +1581,13 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 
 
 
-namespace app_app
+namespace install
 {
 
    mutex::mutex(string strPlatform, string strSuffix) :
 #ifdef WINDOWSEX
-      ::mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::app_app::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &m_securityattributes)
-      , sync_object("Global\\::ca2::fontopus::ccvotagus::app_app::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      ::mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &m_securityattributes)
+      , sync_object("Global\\::ca2::fontopus::ccvotagus::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #else
       mutex(NULL, false, "Global\\::ca2::fontopus::ccvotagus::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
       , sync_object("Global\\::ca2::fontopus::ccvotagus::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
@@ -1611,6 +1611,6 @@ namespace app_app
    }
 
 
-} // namespace app_app
+} // namespace install
 
 

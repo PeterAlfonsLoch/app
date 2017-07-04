@@ -395,7 +395,7 @@ namespace core
       virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-      //virtual void request_create(sp(::create) pcreatecontext);
+      //virtual void request_create(::create * pcreatecontext);
 
       //      virtual void on_exclusive_instance_local_conflict();
 
@@ -466,7 +466,7 @@ namespace core
       //virtual void _001OnFileNew();
 
 
-      //virtual void on_request(sp(::create) pcreatecontext);
+      //virtual void on_request(::create * pcreatecontext);
 
       //sp(::aura::application) get_system();
 

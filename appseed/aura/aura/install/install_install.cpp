@@ -1,4 +1,5 @@
 
+
 namespace install
 {
 
@@ -26,6 +27,7 @@ namespace install
       ::aura::del(m_psockethandler);
 
    }
+
 
    bool install::is_file_ok(const ::file::path & path1, const char * pszTemplate, const char * pszFormatBuild)
    {
@@ -374,7 +376,7 @@ namespace install
       try
       {
 
-         if (get_process_pid("app_app_install") < 0)
+         if (get_process_pid("app_app_admin") < 0)
          {
 
             return false;
@@ -608,7 +610,7 @@ namespace install
 
       xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-      HINSTANCE hinstanceAppInstall = (HINSTANCE) ::GetModuleHandleA("app_app_install.exe");
+      HINSTANCE hinstanceAppInstall = (HINSTANCE) ::GetModuleHandleA("app_app_admin.exe");
 
       bPrivileged = hinstanceAppInstall != NULL && hinstanceAppInstall == ::GetModuleHandleA(NULL);
 
@@ -634,7 +636,7 @@ namespace install
 
          file[0] = '\0';
 
-         strcat_dup(psz, "app_app_install.exe");
+         strcat_dup(psz, "app_app_admin.exe");
 
          strPath.ReleaseBuffer();
 
@@ -642,7 +644,7 @@ namespace install
       else
       {
 
-         strPath = ::path::app_app_install(System.get_system_platform());
+         strPath = ::path::app_app_admin(System.get_system_platform());
 
       }
 
@@ -720,7 +722,7 @@ namespace install
 
 #ifdef WINDOWSEX
 
-            // first try to copy from current path (may be there is a version of app_app_install at the same folder).
+            // first try to copy from current path (may be there is a version of app_app_admin at the same folder).
 
             HMODULE hmodule = ::GetModuleHandle("aura.dll");
 
@@ -774,7 +776,7 @@ namespace install
 
       xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-      path = ::dir::stage(process_platform_dir_name2()) / "app_app_install.exe";
+      path = ::dir::stage(process_platform_dir_name2()) / "app_app_admin.exe";
 
 #else
 

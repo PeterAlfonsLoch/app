@@ -202,7 +202,7 @@ namespace sphere
    }
 
 
-   void application::on_request(sp(::create) pcreatecontext)
+   void application::on_request(::create * pcreatecontext)
    {
       string strId = m_strId;
       char chFirst = '\0';

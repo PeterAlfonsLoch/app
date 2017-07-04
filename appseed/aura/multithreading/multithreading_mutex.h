@@ -111,7 +111,7 @@ public:
 #endif
 
 
-namespace app_app
+namespace install
 {
 
 
@@ -144,7 +144,7 @@ namespace app_app
 
 
 
-} // namespace app_app
+} // namespace install
 
 
 

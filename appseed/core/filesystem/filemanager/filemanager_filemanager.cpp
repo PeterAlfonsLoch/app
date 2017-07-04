@@ -257,7 +257,7 @@ namespace filemanager
    }
 
 
-   void filemanager::on_request(sp(::create) pcreatecontext)
+   void filemanager::on_request(::create * pcreatecontext)
    {
       filemanager::callback::on_request(pcreatecontext);
    }

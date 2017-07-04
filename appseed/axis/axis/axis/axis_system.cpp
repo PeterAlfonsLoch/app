@@ -548,7 +548,7 @@ m_visual(this),
    }
 
 
-   void system::on_request(sp(::create) pcreate)
+   void system::on_request(::create * pcreatecontext)
    {
 
       ::aura::system::on_request(pcreate);
@@ -897,7 +897,7 @@ namespace axis
    {
    }
 
-   //void system::on_request(sp(::create) pcreate)
+   //void system::on_request(::create * pcreatecontext)
    //{
 
    //   ::axis::system::on_request(pcreate);

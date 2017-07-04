@@ -46,9 +46,7 @@ namespace dir
    CLASS_DECL_AURA ::file::path user();
    CLASS_DECL_AURA ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
    CLASS_DECL_AURA ::file::path program_files_x86();
-   CLASS_DECL_AURA ::file::path app_app(string strPlatform);
    CLASS_DECL_AURA ::file::path stage(string strPlatform);
-   CLASS_DECL_AURA ::file::path app_install(string strPlatform = "");
    CLASS_DECL_AURA ::file::path sys_temp();
 
 } // namespace dir

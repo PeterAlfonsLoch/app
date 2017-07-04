@@ -1811,6 +1811,8 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 
 #include "aura/graphics/graphics.h"
 
+#include "aura/install/install2.h"
+
 
 namespace user
 {

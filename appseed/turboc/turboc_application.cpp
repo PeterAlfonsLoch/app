@@ -140,7 +140,7 @@ namespace turboc
       return ::core::application::exit_application();
    }
 
-   void application::on_request(sp(::create) pcreatecontext)
+   void application::on_request(::create * pcreatecontext)
    {
 
       /*

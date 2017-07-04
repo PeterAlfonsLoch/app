@@ -910,12 +910,33 @@ CLASS_DECL_AURA extern "C" int32_t app_common_main(HINSTANCE hinstance, HINSTANC
 
    UNREFERENCED_PARAMETER(lpCmdLine);
 
-   string strAppId = read_resource_as_string_dup(NULL, 2000, "APPID");
+   string strAppId;
 
+   if (::GetProcAddress(hinstance, "get_acid_app") != NULL)
+   {
+
+      strAppId = "acid";
+
+   }
+   
    if (strAppId.is_empty())
    {
 
-      get_command_line_param(strAppId, string(::GetCommandLineW()), "app");
+      strAppId = read_resource_as_string_dup(NULL, 1, "APPID");
+
+      if (strAppId.is_empty())
+      {
+
+         get_command_line_param(strAppId, string(::GetCommandLineW()), "app");
+
+         if (strAppId.is_empty())
+         {
+
+            strAppId = "acid";
+
+         }
+
+      }
 
    }
 
@@ -970,6 +991,13 @@ CLASS_DECL_AURA extern "C" int32_t app_common_main(HINSTANCE hinstance, HINSTANC
    // what could influence time before main?
    // cold start (never previously called program and its Dlls...)?
    psystem->m_dwMainStartTime = appcore.m_dwStartTime;
+
+   if (strAppId == "acid")
+   {
+
+      psystem->m_strAppId = "acid";
+
+   }
 
    ASSERT(hPrevInstance == NULL);
 

@@ -10,7 +10,7 @@ namespace install
 
       stringa straFile;
 
-      straFile.add("app_app_install.exe");
+      straFile.add("app_app_admin.exe");
 
       return straFile;
 
@@ -22,7 +22,7 @@ namespace install
 
    //   stringa straFile;
 
-   //   straFile.add("app_app_install.exe");
+   //   straFile.add("app_app_admin.exe");
    //   straFile.add("ace.dll");
    //   straFile.add("aqua.dll");
    //   straFile.add("aura.dll");

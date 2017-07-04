@@ -103,6 +103,8 @@ namespace aura
 
    typedef class library * (* PFN_GET_NEW_LIBRARY)(::aura::application * papp);
 
+   typedef class application * (*PFN_GET_NEW_APP)(::aura::application * papp);
+
 
 } // namespace aura
 

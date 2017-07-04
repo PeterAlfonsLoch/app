@@ -1,7 +1,6 @@
 #include "framework.h"
 
 
-
 namespace aura
 {
 
@@ -426,7 +425,7 @@ namespace aura
 
 
 
-   void session::on_request(sp(::create) pcreatecontext)
+   void session::on_request(::create * pcreatecontext)
    {
 
       TRACE("::aura::session::on_request(sp(::create)) " + demangle(typeid(*this).name()));
@@ -581,7 +580,7 @@ namespace aura
 
                   //pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
 
-                  papp->m_pauraapp->command()->command(pcreatecontext);
+                  papp->command()->command(pcreatecontext);
 
                   m_pappCurrent = papp;
 
@@ -807,9 +806,7 @@ namespace aura
 #elif !defined(METROWIN)
 
 
-#endif
-
-#if !defined(METROWIN) && !defined(VSNORD) && !defined(APPLE_IOS)
+#elif !defined(METROWIN) && !defined(VSNORD) && !defined(APPLE_IOS)
 
 
       if(((!System.directrix()->m_varTopicQuery.has_property("install")
@@ -825,114 +822,144 @@ namespace aura
 
 #endif
 
+      sp(::aura::application) papp;
 
-      ::aura::library * & plibrary = m_mapLibrary[pappParent][pszAppId];
-
-      if (plibrary == NULL)
+      if(strAppId == "acid")
       {
-         
-         plibrary = new ::aura::library(pappParent, 0, NULL);
 
-         string strLibrary = strAppId;
+         PFN_GET_NEW_APP lpfnNewApp = (PFN_GET_NEW_APP) ::GetProcAddress(System.m_hinstance, "get_acid_app");
 
-         strLibrary.replace("/", "_");
-
-         strLibrary.replace("-", "_");
-
-         ::output_debug_string("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
-
-         if (!plibrary->open(strLibrary, false))
+         if (lpfnNewApp == NULL)
          {
+
+            return NULL;
+
+         }
+         
+         papp = lpfnNewApp(pappParent);
+
+         if (papp.is_null())
+         {
+
+            return NULL;
+
+         }
+
+         papp->m_strLibraryName = "acid";
+
+      }
+      else
+      {
+
+         ::aura::library * & plibrary = m_mapLibrary[pappParent][pszAppId];
+
+         if (plibrary == NULL)
+         {
+
+            plibrary = new ::aura::library(pappParent, 0, NULL);
+
+            string strLibrary = strAppId;
+
+            strLibrary.replace("/", "_");
+
+            strLibrary.replace("-", "_");
+
+            ::output_debug_string("\n\n::aura::session::get_new_application assembled library path " + strLibrary + "\n\n");
+
+            if (!plibrary->open(strLibrary, false))
+            {
 
 #ifndef METROWIN
 
-            ::MessageBox(NULL, "Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
+               ::MessageBox(NULL, "Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 
 #endif
 
-            return NULL;
+               return NULL;
+
+            }
+
+            ::output_debug_string("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
+
+            if (!plibrary->is_opened())
+            {
+
+               ::output_debug_string("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+
+               return NULL;
+
+            }
+
+            ::output_debug_string("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
+
+            if (!plibrary->open_ca2_library())
+            {
+
+               ::output_debug_string("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
+
+               return NULL;
+
+            }
+
+            ::output_debug_string("\n\n\n|(5)----");
+            ::output_debug_string("| app : " + strAppId + "\n");
+            ::output_debug_string("|\n");
+            ::output_debug_string("|\n");
+            ::output_debug_string("|----");
 
          }
 
-         ::output_debug_string("\n\n::aura::session::get_new_application Found library : " + strLibrary + "\n\n");
+         ::aura::library & library = *plibrary;
 
-         if (!plibrary->is_opened())
-         {
 
-            ::output_debug_string("\n\n::aura::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+         papp = library.get_new_application(strAppId);
 
-            return NULL;
+         ::output_debug_string("\n\n\n|(4)----");
+         ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uint_ptr)papp.m_p) + ")\n");
+         ::output_debug_string("|\n");
+         ::output_debug_string("|\n");
+         ::output_debug_string("|----");
 
-         }
 
-         ::output_debug_string("\n\n::aura::session::get_new_application Opened library : " + strLibrary + "\n\n");
+#ifdef WINDOWSEX
 
-         if (!plibrary->open_ca2_library())
-         {
+         WCHAR wsz[1024];
 
-            ::output_debug_string("\n\n::aura::session::get_new_application open_ca2_library failed(2) : " + strLibrary + "\n\n");
+         DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
 
-            return NULL;
+         GetUserNameW(wsz, &dwSize);
 
-         }
+         string strUserName = wsz;
 
-         ::output_debug_string("\n\n\n|(5)----");
+#endif // WINDOWSEX
+
+         ::output_debug_string("\n\n\n|(3)----");
          ::output_debug_string("| app : " + strAppId + "\n");
          ::output_debug_string("|\n");
          ::output_debug_string("|\n");
          ::output_debug_string("|----");
 
-      }
-
-      ::aura::library & library = *plibrary;
 
 
-      sp(::aura::application) papp = library.get_new_application(strAppId);
-
-      ::output_debug_string("\n\n\n|(4)----");
-      ::output_debug_string("| app : " + strAppId + "(papp=0x"+::hex::upper_from((uint_ptr)papp.m_p)+")\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
-
-
-#ifdef WINDOWSEX
-
-      WCHAR wsz[1024];
-
-      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-
-      GetUserNameW(wsz,&dwSize);
-
-      string strUserName = wsz;
-
-#endif // WINDOWSEX
-
-      ::output_debug_string("\n\n\n|(3)----");
-      ::output_debug_string("| app : " + strAppId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
-
-
-
-      ::output_debug_string("\n\n\n|(2)----");
-      ::output_debug_string("| app : " + strAppId + "\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|\n");
-      ::output_debug_string("|----");
+         ::output_debug_string("\n\n\n|(2)----");
+         ::output_debug_string("| app : " + strAppId + "\n");
+         ::output_debug_string("|\n");
+         ::output_debug_string("|\n");
+         ::output_debug_string("|----");
 
 #if !defined(VSNORD)
 
-      if(!papp->is_serviceable() || papp->is_user_service())
-      {
+         if (!papp->is_serviceable() || papp->is_user_service())
+         {
 
-         System.m_spmutexUserAppData = canew(mutex(m_paurasystem,false,"Local\\ca2.UserAppData"));
-         System.m_spmutexSystemAppData = canew(mutex(m_paurasystem,false,"Local\\ca2.SystemAppData"));
+            System.m_spmutexUserAppData = canew(mutex(m_paurasystem, false, "Local\\ca2.UserAppData"));
+            System.m_spmutexSystemAppData = canew(mutex(m_paurasystem, false, "Local\\ca2.SystemAppData"));
 
-      }
+         }
 
 #endif
+
+      }
 
       if(papp == NULL)
          return NULL;
@@ -976,7 +1003,7 @@ namespace aura
 
 
 
-   void session::request_create(sp(::create) pcreatecontext)
+   void session::request_create(::create * pcreatecontext)
    {
 
             //      if(m_pbergedgeInterface != NULL)

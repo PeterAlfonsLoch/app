@@ -579,13 +579,13 @@ CLASS_DECL_AURA bool launch_application(::aura::application * papp, const string
    if (iBitCount == 64)
    {
 
-      path = ::dir::program_files_x86() / "ca2/app_app/x64/app_app.exe";
+      path = ::dir::program_files_x86() / "ca2/install/x64/install.exe";
 
    }
    else if (iBitCount == 32)
    {
 
-      path = ::dir::program_files_x86() / "ca2/app_app/x86/app_app.exe";
+      path = ::dir::program_files_x86() / "ca2/install/x86/install.exe";
 
    }
    else
@@ -593,11 +593,11 @@ CLASS_DECL_AURA bool launch_application(::aura::application * papp, const string
 
 #if OSBIT == 32
 
-      path = ::dir::program_files_x86() / "ca2/app_app/x86/app_app.exe";
+      path = ::dir::program_files_x86() / "ca2/install/x86/install.exe";
 
 #else
 
-      path = ::dir::program_files_x86() / "ca2/app_app/x64/app_app.exe";
+      path = ::dir::program_files_x86() / "ca2/install/x64/install.exe";
 
 #endif
 

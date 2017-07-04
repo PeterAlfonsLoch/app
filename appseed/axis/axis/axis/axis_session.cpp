@@ -692,89 +692,12 @@ namespace axis
    }
 
 
-   void session::on_request(sp(::create) pcreate)
+   void session::on_request(::create * pcreatecontext)
    {
 
-      ::aura::session::on_request(pcreate);
+      ::aura::session::on_request(pcreatecontext);
 
    }
-
-} // namespace axis
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//#include "framework.h" // from "axis/user/user.h"
-
-
-namespace axis
-{
-
-
-   //session::session(::aura::application * papp):
-   //   ::object(papp),
-   //   ::thread(papp),
-   //   ::aura::session(papp),
-   //   axis::session(papp)
-   //{
-
-   //   m_pbasesession                = this;
-
-
-
-   //}
-
-
-   //void session::construct(::aura::application * papp,int iPhase)
-   //{
-
-   //   ::axis::session::construct(papp,iPhase);
-   //}
-
-   //session::~session_parent
-   //{
-
-
-   //}
-
-
-   //   bool session::is_session()
-   //{
-
-   //   return true;
-
-   //}
-
 
 
    COLORREF session::get_default_color(uint64_t ui)
@@ -1687,7 +1610,7 @@ namespace axis
 
    //}
 
-   //void session::on_request(sp(::create) pcreate)
+   //void session::on_request(::create * pcreatecontext)
    //{
 
    //   ::axis::session::on_request(pcreate);

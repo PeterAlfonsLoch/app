@@ -30,17 +30,17 @@ class command_line;
 //   virtual void request_file(var & varFile);
 //   virtual void request_file_query(var & varFile, var & varQuery);
 //   virtual void request_command(sp(command_line) pcommandline);
-//   virtual void request_create(sp(::create) pcreatecontext);
+//   virtual void request_create(::create * pcreatecontext);
 //
 //   // another name for request
-//   virtual void create(sp(::create) pcreatecontext);
+//   virtual void create(::create * pcreatecontext);
 //
 //
 //   // main loosely coupled semantics :
 //   // varFile   : empty, one file path, many file paths, one file object, one or more file objects, or Url, of cached, downloaded, dowloading or queuing files to be opened
 //   // varQuery  : more ellaborated requests for the requested object - syntax and semantic defined by requested object - ::object implementator
 //   // virtual void on_request(sp(command_line) pcommandline);
-//   virtual void on_request(sp(::create) pcreatecontext);
+//   virtual void on_request(::create * pcreatecontext);
 //
 //   //mutex          *  m_pmutex;
 //

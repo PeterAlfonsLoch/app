@@ -835,6 +835,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\fontopus\_fontopus.cpp" />
+    <ClCompile Include="aura\install\_install.cpp" />
+    <ClCompile Include="aura\os\cross\ansios\ansios_file_raw.cpp" />
     <ClCompile Include="aura\os\os_debug.cpp" />
     <ClCompile Include="aura\os\windows\windows_process.cpp" />
     <ClCompile Include="aura\scripting\javascript\javascript.cpp" />

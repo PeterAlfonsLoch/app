@@ -103,7 +103,7 @@ namespace aura
       //virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext);
 
 
-      virtual void request_create(sp(::create) pcreatecontext);
+      virtual void request_create(::create * pcreatecontext);
       virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::create * pcc);
 
@@ -165,7 +165,7 @@ namespace aura
 
 
 
-      virtual void on_request(sp(::create) pcreatecontext);
+      virtual void on_request(::create * pcreatecontext);
 
       ::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, application_bias * pbiasCreate);
 

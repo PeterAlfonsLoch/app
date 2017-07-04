@@ -1961,10 +1961,10 @@ namespace aura
    }
 
 
-   void system::on_request(sp(::create) pcreate)
+   void system::on_request(::create * pcreatecontext)
    {
 
-      ::aura::session * psession = get_session(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
+      ::aura::session * psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
       if(psession == NULL)
       {
@@ -1987,7 +1987,7 @@ namespace aura
       ::output_debug_string("::aura::system::on_request session = " + demangle(typeid(*psession).name()) + "("+::str::from((int_ptr) psession)+")\n\n");
 
 
-      psession->request_create(pcreate);
+      psession->request_create(pcreatecontext);
 
 
    }

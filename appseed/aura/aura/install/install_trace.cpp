@@ -6,9 +6,10 @@ namespace install
 
 
    trace::trace(::aura::application * papp) :
-      ::object(papp),
-      m_mutex(papp)
+      ::object(papp)
    {
+
+      defer_create_mutex();
 
       m_hfile           = INVALID_HANDLE_VALUE;
       m_iLastStatus     = 0;
@@ -90,7 +91,7 @@ namespace install
       }
       string str;
       {
-         synch_lock lockTrace(&m_mutex);
+         synch_lock lockTrace(m_pmutex);
          m_stra.add(psz);
          str = m_stra.last();
       }
@@ -103,7 +104,7 @@ namespace install
    {
       string str;
       {
-         synch_lock lockTrace(&m_mutex);
+         synch_lock lockTrace(m_pmutex);
          if (m_stra.is_empty())
             m_stra.add(psz);
          else

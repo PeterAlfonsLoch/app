@@ -2807,16 +2807,19 @@
     <ClInclude Include="multithreading\multithreading_tools.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="aura\install\install_launcher.h">
-      <Filter>Header Files\aura\install</Filter>
+    <ClInclude Include="aura\crypto\crypto_openssl.h">
+      <Filter>Header Files\aura\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\ansios\ansios_file_raw.h">
+      <Filter>Header Files\aura\os\cross\ansios</Filter>
     </ClInclude>
     <ClInclude Include="aura\install\install.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
-    <ClInclude Include="aura\install\install_module_list.h">
+    <ClInclude Include="aura\install\install_application.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
-    <ClInclude Include="aura\install\install_cube_run.h">
+    <ClInclude Include="aura\install\install_bootstrap.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
     <ClInclude Include="aura\install\install_focus.h">
@@ -2825,10 +2828,22 @@
     <ClInclude Include="aura\install\install_install.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
+    <ClInclude Include="aura\install\install_install_item.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_installer.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
     <ClInclude Include="aura\install\install_installer_launcher.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
     <ClInclude Include="aura\install\install_installer_square.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_launcher.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_module_list.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
     <ClInclude Include="aura\install\install_resource.h">
@@ -2837,11 +2852,26 @@
     <ClInclude Include="aura\install\install_small_bell.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
+    <ClInclude Include="aura\install\install_socket.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_socket_handler.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_socket_thread.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install_tool.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
     <ClInclude Include="aura\install\install_trace.h">
       <Filter>Header Files\aura\install</Filter>
     </ClInclude>
-    <ClInclude Include="aura\crypto\crypto_openssl.h">
-      <Filter>Header Files\aura\crypto</Filter>
+    <ClInclude Include="aura\install\install_window.h">
+      <Filter>Header Files\aura\install</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\install\install2.h">
+      <Filter>Header Files\aura\install</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4876,12 +4906,6 @@
     <ClCompile Include="aura\install\install.cpp">
       <Filter>Source Files\aura\install</Filter>
     </ClCompile>
-    <ClCompile Include="aura\install\install_boot.cpp">
-      <Filter>Source Files\aura\install</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\install\install_bz.cpp">
-      <Filter>Source Files\aura\install</Filter>
-    </ClCompile>
     <ClCompile Include="aura\install\install_focus.cpp">
       <Filter>Source Files\aura\install</Filter>
     </ClCompile>
@@ -4911,6 +4935,39 @@
     </ClCompile>
     <ClCompile Include="aura\crypto\crypto_openssl.cpp">
       <Filter>Source Files\aura\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_install_item.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_installer.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_tool.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\ansios\ansios_file_raw.cpp">
+      <Filter>Source Files\aura\os\cross\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_application.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_bootstrap.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_socket.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_socket_handler.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_socket_thread.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_trace_file.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_window.cpp">
+      <Filter>Source Files\aura\install</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4982,6 +5039,9 @@
     </None>
     <None Include="aura\aura\aura_timer_event.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </None>
+    <None Include="aura\os\windows\windows_app.inl">
+      <Filter>Header Files\aura\os\windows</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

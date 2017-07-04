@@ -5,7 +5,7 @@ namespace aura
 {
 
    class CLASS_DECL_AURA app:
-      virtual public ::aura::system
+      virtual public ::aura::application
    {
    public:
 

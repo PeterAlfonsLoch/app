@@ -446,7 +446,7 @@ namespace fontopus
 
 
 
-   void fontopus::on_request(sp(::create) pcreatecontext)
+   void fontopus::on_request(::create * pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine.is_set()

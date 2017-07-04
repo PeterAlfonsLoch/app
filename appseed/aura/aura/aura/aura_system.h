@@ -411,7 +411,7 @@ namespace aura
       virtual ::aura::session *             get_session(index iEdge,application_bias * pbiasCreation = NULL);
 
 
-      virtual void on_request(sp(::create) pcreate) override;
+      virtual void on_request(::create * pcreatecontext) override;
 
 
       virtual string get_system_platform();

@@ -1641,7 +1641,7 @@ namespace axis
 
 
 
-   void application::on_request(sp(::create) pcreatecontext)
+   void application::on_request(::create * pcreatecontext)
    {
 
       ::object::on_request(pcreatecontext);
@@ -1778,7 +1778,7 @@ namespace axis
    //}
 
 
-   //void application::on_service_request(sp(::create) pcreatecontext)
+   //void application::on_service_request(::create * pcreatecontext)
    //{
 
    //   if(!is_serviceable())
@@ -2430,7 +2430,7 @@ namespace axis
          catch(...)
          {
 
-            // spa app_app_install.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
+            // spa app_app_admin.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
 
             return false;
 
@@ -3674,7 +3674,7 @@ namespace axis
    //}
 
 
-   //void application::on_request(sp(::create) pcreatecontext)
+   //void application::on_request(::create * pcreatecontext)
    //{
 
    //   ::object::on_request(pcreatecontext);
@@ -3736,7 +3736,7 @@ namespace axis
 
 
 
-   void application::on_service_request(sp(::create) pcreatecontext)
+   void application::on_service_request(::create * pcreatecontext)
    {
 
       if(!is_serviceable())
@@ -4045,7 +4045,7 @@ namespace axis
 
       {
 
-         ::app_app::mutex mutex(process_platform_dir_name2());
+         ::install::mutex mutex(process_platform_dir_name2());
 
          if (mutex.already_exists())
          {
@@ -4069,7 +4069,7 @@ namespace axis
 
 #else
 
-         return ::call_sync(::path::app_app(process_platform_dir_name2()),pszCommandLine,::dir::app_app(process_platform_dir_name2()),SW_SHOWNORMAL,840,84,NULL,0);
+         return ::call_sync(::path::app_app(process_platform_dir_name2()),pszCommandLine,::path::app_app(process_platform_dir_name2()),SW_SHOWNORMAL,840,84,NULL,0);
 
 #endif
 

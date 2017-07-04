@@ -420,7 +420,7 @@ namespace core
 
 
 
-   void application::on_request(sp(::create) pcreatecontext)
+   void application::on_request(::create * pcreatecontext)
    {
 
       ::base::application::on_request(pcreatecontext);

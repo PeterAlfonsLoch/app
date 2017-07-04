@@ -22,7 +22,7 @@ namespace install
    bool launcher::ensure_executable()
    {
 
-      m_strPath = path::app_app_install(m_strPlatform);
+      m_strPath = path::app_app_admin(m_strPlatform);
 
       return true;
 
