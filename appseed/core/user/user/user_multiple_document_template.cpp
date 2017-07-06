@@ -70,14 +70,14 @@ namespace user
    }
 
 
-   void multiple_document_template::request_create(::create * pcreatecontext)
+   void multiple_document_template::request_create(::create * pcreate)
    {
 
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(object)) NULL;
-      bool bMakeVisible = pcreatecontext->m_bMakeVisible;
-      //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
-      //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
-      ::user::document * pdocument = create_new_document(pcreatecontext);
+      pcreate->m_spCommandLine->m_varQuery["document"] = (sp(object)) NULL;
+      bool bMakeVisible = pcreate->m_bMakeVisible;
+      //   sp(::user::interaction) pwndParent = pcreate->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
+      //   sp(::user::impact) pviewAlloc = pcreate->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
+      ::user::document * pdocument = create_new_document(pcreate);
       if (pdocument == NULL)
       {
          TRACE(::aura::trace::category_AppMsg, 0, "impact_system::create_new_document returned NULL.\n");
@@ -88,12 +88,12 @@ namespace user
 
       bool bAutoDelete = pdocument->m_bAutoDelete;
       pdocument->m_bAutoDelete = FALSE;   // don't destroy if something goes wrong
-      sp(::user::frame_window) pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
+      sp(::user::frame_window) pFrame = create_new_frame(pdocument, NULL, pcreate);
       pdocument->m_bAutoDelete = bAutoDelete;
       if (pFrame == NULL)
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         string strId = typeid(*pcreatecontext->m_puiAlloc).name();
+         string strId = typeid(*pcreate->m_puiAlloc).name();
          if (strId.find_ci("userex::message_box") < 0)
          {
             System.simple_message_box(NULL, "Failed to create ::user::document");
@@ -103,7 +103,7 @@ namespace user
       }
       ASSERT_VALID(pFrame);
 
-      if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
+      if(pcreate->m_spCommandLine->m_varFile.is_empty())
       {
          // create a new ::user::document - with default ::user::document name
          set_default_title(pdocument);
@@ -126,7 +126,7 @@ namespace user
       else
       {
          // open an existing ::user::document
-         if(!on_open_document(pdocument, pcreatecontext->m_spCommandLine->m_varFile))
+         if(!on_open_document(pdocument, pcreate->m_spCommandLine->m_varFile))
          {
             // failed to open or just failed to queue to open
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
@@ -136,10 +136,10 @@ namespace user
             pFrame->DestroyWindow();
             return;
          }
-         //pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
+         //pdocument->set_path_name(pcreate->m_spCommandLine->m_varFile);
       }
 
-      if(!pcreatecontext->m_bHold)
+      if(!pcreate->m_bHold)
       {
          pFrame->oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
       }
@@ -150,7 +150,7 @@ namespace user
       uh.m_ehint = ::user::view_update_hint::hint_open_document;
       pdocument->update_all_views(NULL, 0, &uh);
 
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
+      pcreate->m_spCommandLine->m_varQuery["document"] = pdocument;
 
    }
 

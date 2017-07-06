@@ -37,7 +37,7 @@ namespace sphere
 
       virtual int32_t run();
 
-      virtual void on_request(::create * pcreatecontext);
+      virtual void on_request(::create * pcreate);
 
       ::user::document * _001OpenDocumentFile(var varFile);
 

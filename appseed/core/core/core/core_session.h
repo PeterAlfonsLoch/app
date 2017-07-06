@@ -91,7 +91,7 @@ namespace core
 
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
-      virtual ::user::document * userex_open_document_file(sp(::create) pcreate);
+      virtual ::user::document * userex_on_request(::create * pcreate);
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
@@ -101,7 +101,7 @@ namespace core
 
       void initialize_bergedge_application_interface();
 
-      //virtual bool create_bergedge(sp(::create) pcreatecontext);
+      //virtual bool create_bergedge(::create * pcreate);
 
       virtual void on_app_request_bergedge_callback(::aura::application * papp);
 
@@ -110,14 +110,14 @@ namespace core
 
 
       // semantics defined by application
-      virtual void request_create(::create * pcreatecontext);
+      virtual void request_create(::create * pcreate);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, ::create * pcreate);
 
-      virtual bool place(::user::main_frame * pmainframe, sp(::create) pcontext);
+      virtual bool place(::user::main_frame * pmainframe, ::create * pcreate);
 
       virtual void request_topic_file(var & varQuery);
 
@@ -160,7 +160,7 @@ namespace core
 
       virtual service_base * allocate_new_service();
 
-      void on_request(::create * pcreatecontext);
+      void on_request(::create * pcreate);
 
       sp(::aura::application) get_current_application();
 

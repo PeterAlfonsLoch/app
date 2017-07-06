@@ -2934,7 +2934,7 @@ namespace user
    }
 
 
-   bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rectParam,::user::interaction * pParentWnd,id id,sp(::create) pContext)
+   bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rectParam,::user::interaction * pParentWnd,id id, ::create * pcreate)
    {
 
       if(IsWindow())
@@ -2997,7 +2997,7 @@ namespace user
 
          pimplNew = (Application.alloc(System.type_info < interaction_impl >()));
 
-         if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
+         if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pcreate))
          {
 
             m_pimpl.release();
@@ -3012,7 +3012,7 @@ namespace user
 
          pimplNew = canew(::user::interaction_child(get_app()));
 
-         if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
+         if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id, pcreate))
          {
 
             pimplNew.release();

@@ -155,12 +155,12 @@ namespace userstack
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void application::on_request(::create * pcreatecontext)
+   void application::on_request(::create * pcreate)
    {
 
-      ::asphere::application::on_request(pcreatecontext);
+      ::asphere::application::on_request(pcreate);
 
-      m_ptemplate_pane->open_document_file(pcreatecontext);
+      m_ptemplate_pane->open_document_file(pcreate);
 
    }
 
@@ -192,19 +192,19 @@ namespace userstack
    }
 
 
-/*   void application::request(::create * pcreatecontext)
+/*   void application::request(::create * pcreate)
    {
 
       if(m_pappCurrent != NULL && m_pappCurrent != this
-         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
-         ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+         && (pcreate->m_spCommandLine->m_strApp.is_empty()
+         ||App(m_pappCurrent).m_strAppName == pcreate->m_spCommandLine->m_strApp))
       {
          if(get_document() != NULL && get_document()->get_typed_view < pane_view >() != NULL)
          {
             get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
-         App(m_pappCurrent).request(pcreatecontext);
-         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
+         App(m_pappCurrent).request(pcreate);
+         if(pcreate->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
          {
             goto alt1;
          }
@@ -213,11 +213,11 @@ namespace userstack
       else
       {
          alt1:
-         if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+         if(pcreate->m_spCommandLine->m_varFile.get_type() == var::type_string)
          {
-            if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+            if(::str::ends_ci(pcreate->m_spCommandLine->m_varFile, ".ca2"))
             {
-               string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+               string strCommand = Application.file().as_string(pcreate->m_spCommandLine->m_varFile);
                if(::str::begins_eat(strCommand, "ca2prompt\r")
                || ::str::begins_eat(strCommand, "ca2prompt\n"))
                {
@@ -228,21 +228,21 @@ namespace userstack
             }
             else
             {
-               on_request(pcreatecontext);
+               on_request(pcreate);
             }
          }
-         else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
+         else if(pcreate->m_spCommandLine->m_strApp.has_char() &&
             get_document() != NULL && get_document()->get_typed_view < pane_view >() != NULL
-            && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
+            && (!pcreate->m_spApplicationBias.is_set() || pcreate->m_spApplicationBias->m_puiParent == NULL))
          {
             //simple_message_box(NULL, "request3", "request3", MB_ICONEXCLAMATION);
-            get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-            App(m_pappCurrent).request(pcreatecontext);
+            get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + pcreate->m_spCommandLine->m_strApp);
+            App(m_pappCurrent).request(pcreate);
          }
          else
          {
             //simple_message_box(NULL, "request4", "request4", MB_ICONEXCLAMATION);
-            on_request(pcreatecontext);
+            on_request(pcreate);
          }
       }
    }*/

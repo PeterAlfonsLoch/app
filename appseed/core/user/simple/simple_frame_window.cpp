@@ -775,12 +775,13 @@ void simple_frame_window::_001OnSize(signal_details * pobj)
 }
 
 
-
-bool simple_frame_window::on_create_client(::user::create_struct * lpcs, sp(::create) pContext)
+bool simple_frame_window::on_create_client(::user::create_struct * lpcs, ::create * pcreate)
 {
-   // trans   HICON hicon = GetIcon(false);
-   return ::user::frame_window::on_create_client(lpcs, pContext);
+
+   return ::user::frame_window::on_create_client(lpcs, pcreate);
+
 }
+
 
 bool simple_frame_window::pre_create_window(::user::create_struct& cs)
 {
@@ -1463,7 +1464,7 @@ void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, sp(::create) pContext)
+bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, ::create * pcreate)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);
@@ -1481,7 +1482,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
    const char * lpszTitle = m_strTitle;
 
    if (pParentWnd == NULL)
-      pParentWnd = Application.get_request_parent_ui(this, pContext);
+      pParentWnd = Application.get_request_parent_ui(this, pcreate);
 
    dwDefaultStyle &= ~WS_VISIBLE;
 
@@ -1504,10 +1505,11 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
    m_bLayoutEnable = false;
 
-   if (!create_window_ex(0L, NULL, lpszTitle, dwDefaultStyle, rectFrame, pParentWnd, /*nIDResource*/ 0, pContext))
+   if (!create_window_ex(0L, NULL, lpszTitle, dwDefaultStyle, rectFrame, pParentWnd, /*nIDResource*/ 0, pcreate))
    {
 
-      return FALSE;   // will self destruct on failure normally
+      return false;   // will self destruct on failure normally
+
    }
 
 
@@ -1518,10 +1520,11 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
    // load accelerator resource
    //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
-   if (pContext == NULL)   // send initial update
+   if (pcreate == NULL)   // send initial update
       SendMessageToDescendants(WM_INITIALUPDATE, 0, (LPARAM)0, TRUE, TRUE);
 
    return TRUE;
+
 }
 
 
@@ -2294,9 +2297,10 @@ bool simple_frame_window::WfiIsSizing()
 
 
 
-bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create) pContext)
+bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle, ::create * pcreate)
 {
-   return ::user::frame_window::create_window(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
+
+   return ::user::frame_window::create_window(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pcreate);
 
 }
 

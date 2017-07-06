@@ -74,6 +74,7 @@ CLASS_DECL_AURA HFONT wingdi_CreatePointFontIndirect(LOGFONTW* lpLogFont, HDC hd
 
 
 CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow);
+CLASS_DECL_AURA int node_main(int argc, char *argv[]);
 
 
 

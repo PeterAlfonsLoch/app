@@ -52,7 +52,7 @@ namespace user
       virtual ::user::impact_system * get_template(index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);
       void UnregisterShellFileTypes();
-      virtual void request(::create * pcreatecontext); // open named file
+      virtual void request(::create * pcreate); // open named file
       virtual bool save_all_modified(); // save before exit
       virtual void close_all_documents(bool bEndApp); // close documents before exiting
       virtual ::count get_open_document_count();

@@ -652,7 +652,7 @@ namespace user
       if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
          return; // open cancelled
 
-      Session.userex_open_document_file(createcontext);
+      Session.request_create(createcontext);
       // if returns NULL, the ::fontopus::user has already been alerted
    }
 
@@ -690,10 +690,10 @@ namespace user
 
 
 
-   void document_manager::request(::create * pcreatecontext)
+   void document_manager::request(::create * pcreate)
    {
 
-      if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
+      if(pcreate->m_spCommandLine->m_varFile.is_empty())
       {
          throw invalid_argument_exception(get_app());
       }
@@ -733,7 +733,7 @@ namespace user
 
          ::user::impact_system::Confidence match;
          ASSERT(pOpenDocument == NULL);
-         match = ptemplate->MatchDocType(pcreatecontext->m_spCommandLine->m_varFile, pOpenDocument);
+         match = ptemplate->MatchDocType(pcreate->m_spCommandLine->m_varFile, pOpenDocument);
          if (match > bestMatch)
          {
             bestMatch = match;
@@ -768,7 +768,7 @@ namespace user
          else
             TRACE(::aura::trace::category_AppMsg, 0, "Error: Can not find a ::user::impact for document to activate.\n");
 
-         pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
+         pcreate->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
       }
 
       if (pBestTemplate == NULL)
@@ -778,7 +778,7 @@ namespace user
          return;
       }
 
-      pBestTemplate->request_create(pcreatecontext);
+      pBestTemplate->request_create(pcreate);
    }
 
    ::count document_manager::get_open_document_count()

@@ -33,7 +33,7 @@ namespace primitive
       virtual var run();
 
 
-      virtual void on_request(::create * pcreatecontext);
+      virtual void on_request(::create * pcreate);
 
 
       virtual string get_description();

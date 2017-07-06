@@ -78,7 +78,7 @@ namespace userstack
 
       virtual service_base * allocate_new_service();
 
-      void on_request(::create * pcreatecontext);
+      void on_request(::create * pcreate);
 
       sp(::aura::application) application_get(const char * pszAppId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
 

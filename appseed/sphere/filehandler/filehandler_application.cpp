@@ -78,17 +78,17 @@ namespace filehandler
 
    }
 
-   void application::on_request(::create * pcreatecontext)
+   void application::on_request(::create * pcreate)
    {
 
       if(m_ppaneview == NULL)
       {
-         m_ptemplateMenu->open_document_file(pcreatecontext);
+         m_ptemplateMenu->open_document_file(pcreate);
       }
 
-      if(m_ppaneview != NULL && pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+      if(m_ppaneview != NULL && pcreate->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
-         m_ppaneview->set_cur_tab_by_id("default_file_handler://" + pcreatecontext->m_spCommandLine->m_varFile.get_string());
+         m_ppaneview->set_cur_tab_by_id("default_file_handler://" + pcreate->m_spCommandLine->m_varFile.get_string());
       }
 
    }

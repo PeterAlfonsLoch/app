@@ -49,34 +49,34 @@ namespace filemanager
       manager_template(::aura::application * papp);
       virtual ~manager_template();
 
-      void load_filemanager_project(const ::file::path & pathFileManagerProject, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+      void load_filemanager_project(const ::file::path & pathFileManagerProject, ::create * pcreate = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
 
       void save_filemanager_project();
 
       sp(manager) find_manager(var varFile);
 
-      sp(manager) restore_manager(var varFile, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+      sp(manager) restore_manager(var varFile, ::create * pcreate = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
 
-      sp(manager) open_manager(var varFile, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+      sp(manager) open_manager(var varFile, ::create * pcreate = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
       
-      sp(manager) add_manager(const ::file::path & pathFolder, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+      sp(manager) add_manager(const ::file::path & pathFolder, ::create * pcreate = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
 
       bool remove_manager(var varFile);
 
       bool remove_manager(manager * pmanager);
 
 
-      sp(manager) open_main(::id id = -1, sp(::create) pcreatecontext = NULL,::fs::data * pdata = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
-      sp(manager) open(::id id = -1, sp(::create) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+      sp(manager) open_main(::id id = -1, ::create * pcreate = NULL,::fs::data * pdata = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
+      sp(manager) open(::id id = -1, ::create * pcreate = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL, callback * pcallback = NULL);
       sp(manager) open_child(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL, callback * pcallback = NULL);
       sp(manager) open_child_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
       sp(manager) open_folder_selection_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
 
 
-      sp(manager) create_new_document(callback * pinterface,sp(::create) pcreatecontext);
+      sp(manager) create_new_document(callback * pinterface, ::create * pcreate);
 
 
-      sp(::filemanager::data) create_file_manager_data(sp(::create) pcreatecontext = NULL);
+      sp(::filemanager::data) create_file_manager_data(::create * pcreate = NULL);
 
       virtual void Initialize(int32_t iTemplate, const char * pszMatter);
 

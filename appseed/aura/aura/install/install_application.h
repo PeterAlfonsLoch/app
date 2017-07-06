@@ -86,7 +86,7 @@ namespace install
 
       virtual int32_t exit_application();
 
-      virtual void on_request(::create * pcreatecontext);
+      virtual void on_request(::create * pcreate);
 
 
       void add_command_line(string str);

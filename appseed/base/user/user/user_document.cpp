@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   void document::on_create(::create * pcreatecontext)
+   void document::on_create(::create * pcreate)
    {
 
       //::user::document::on_alloc(papp);
@@ -1148,13 +1148,13 @@ namespace user
    }
 
 
-   void document::on_request(::create * pcreatecontext)
+   void document::on_request(::create * pcreate)
    {
 
-      if(!on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
+      if(!on_open_document(pcreate->m_spCommandLine->m_varFile))
          return;
 
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = this;
+      pcreate->m_spCommandLine->m_varQuery["document"] = this;
 
    }
 

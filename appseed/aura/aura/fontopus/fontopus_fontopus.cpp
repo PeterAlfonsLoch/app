@@ -425,9 +425,9 @@ namespace fontopus
       //   && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
       //{
 
-      //   sp(::create) spcreatecontext(allocer());
+      //   sp(::create) spcreate(allocer());
 
-      //   ::aura::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+      //   ::aura::application * papp = Session.start_application("application", "app-core/deepfish", spcreate);
 
       //   if(papp == NULL)
       //   {
@@ -446,17 +446,17 @@ namespace fontopus
 
 
 
-   void fontopus::on_request(::create * pcreatecontext)
+   void fontopus::on_request(::create * pcreate)
    {
 
-      if(pcreatecontext->m_spCommandLine.is_set()
-         && pcreatecontext->m_spCommandLine->m_varFile == "ca2login")
+      if(pcreate->m_spCommandLine.is_set()
+         && pcreate->m_spCommandLine->m_varFile == "ca2login")
       {
          //Sleep(15 * 1000);
          property_set setLogin(get_app());
-         if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())
+         if(pcreate->m_spCommandLine->m_varQuery["ruri"].is_set())
          {
-            setLogin["ruri"] = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
+            setLogin["ruri"] = pcreate->m_spCommandLine->m_varQuery["ruri"];
          }
          ::fontopus::user * puser = NULL;
          while(true)
@@ -464,9 +464,9 @@ namespace fontopus
             if((puser = login(setLogin)) != NULL)
                break;
          }
-         if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())
+         if(pcreate->m_spCommandLine->m_varQuery["ruri"].is_set())
          {
-            string strUri = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
+            string strUri = pcreate->m_spCommandLine->m_varQuery["ruri"];
             System.url().string_set(strUri, "sessid", puser->m_strFontopusServerSessId);
             System.open_link(strUri, "", "");
          }

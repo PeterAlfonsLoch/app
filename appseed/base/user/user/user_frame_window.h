@@ -212,17 +212,13 @@ namespace user
 
 
       bool LoadAccelTable(const char * lpszResourceName);
-      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,const RECT & rect = ::null_rect(),
-         sp(::user::interaction) pParentWnd = NULL,        // != NULL for popups
-         const char * lpszMenuName = NULL,
-         uint32_t dwExStyle = 0,
-         sp(::create) pContext = NULL);
+      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect = ::null_rect(), ::user::interaction * puiParent = NULL, const char * lpszMenuName = NULL, uint32_t dwExStyle = 0, ::create * pcreate = NULL);
 
       // dynamic creation - load frame and associated resources
       virtual bool LoadFrame(const char * pszMatter,
          uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
-         sp(::user::interaction) pParentWnd = NULL,
-         sp(::create) pContext = NULL);
+         ::user::interaction * pParentWnd = NULL,
+         ::create * pcreate = NULL);
 
       virtual bool ShowWindow(int32_t nCmdShow);
 
@@ -272,7 +268,7 @@ namespace user
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
       virtual bool NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder);
-      virtual bool on_create_client(::user::create_struct * lpcs, sp(::create) pContext);
+      virtual bool on_create_client(::user::create_struct * lpcs, ::create * pcreate);
       void OnContextHelp();   // for Shift+F1 help
       void OnUpdateControlBarMenu(cmd_ui* pCmdUI);
       bool OnBarCheck(UINT nID);
@@ -298,7 +294,7 @@ namespace user
       virtual bool pre_create_window(::user::create_struct& cs);
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual void PostNcDestroy();   // default to delete this.
-      int32_t OnCreateHelper(::user::create_struct * lpcs, sp(::create) pContext);
+      int32_t OnCreateHelper(::user::create_struct * lpcs, ::create * pcreate);
       void BringToTop(int32_t nCmdShow);
       // bring interaction_impl to top for SW_ commands which affect z-order
 

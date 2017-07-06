@@ -17,6 +17,12 @@ WSADATA g_wsadata;
 int g_iWsaStartup;
 
 
+
+::aura::system * app_common_prelude(int & iError, ::windows::main_init_data * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = NULL, HINSTANCE hinstancePrev = NULL, const char * pszCmdLine = NULL, int nShowCmd = SW_SHOW);
+int app_common_term(int iError, ::aura::system * psystem, app_core & appcore);
+
+
+
 CLASS_DECL_AURA int32_t __cdecl _memory_type(const void * p);
 
 Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
@@ -903,14 +909,78 @@ CLASS_DECL_AURA int32_t __win_main(sp(::aura::system) psystem, ::windows::main_i
 typedef bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
-CLASS_DECL_AURA extern "C" int32_t app_common_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow, app_core & appcore)
+CLASS_DECL_AURA int32_t app_common_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow, app_core & appcore)
 {
-
-   //MessageBox(NULL, lpCmdLine, "msg", 0);
 
    UNREFERENCED_PARAMETER(lpCmdLine);
 
+   ASSERT(hPrevInstance == NULL);
+
+   int iError = 0;
+
+   ::windows::main_init_data * pmaininitdata = NULL;
+
+   ::aura::system * psystem = app_common_prelude(iError, pmaininitdata, appcore, hinstance, hPrevInstance,  lpCmdLine, nCmdShow);
+
+   if (psystem == NULL)
+   {
+
+      return iError;
+
+   }
+
+   iError = __win_main(psystem, pmaininitdata);
+
+   return app_common_term(iError, psystem, appcore);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+CLASS_DECL_AURA int32_t app_common_main(int argc, char *argv[], app_core & appcore)
+{
+
+   int iError = 0;
+
+   ::windows::main_init_data * pmaininitdata = NULL;
+
+   ::aura::system * psystem = app_common_prelude(iError, pmaininitdata, appcore);
+
+   if (psystem == NULL)
+   {
+
+      return iError;
+
+   }
+
+   iError = __win_main(psystem, pmaininitdata);
+
+   return app_common_term(iError, psystem, appcore);
+
+}
+
+
+
+
+::aura::system * app_common_prelude(int & iError, ::windows::main_init_data * & pmaininitdata, app_core & appcore, HINSTANCE hinstance, HINSTANCE hinstancePrev, const char * pszCmdLine, int nCmdShow)
+{
+
    string strAppId;
+
+   if (hinstance == NULL)
+   {
+
+      hinstance = ::GetModuleHandle(NULL);
+
+   }
 
    if (::GetProcAddress(hinstance, "get_acid_app") != NULL)
    {
@@ -918,7 +988,7 @@ CLASS_DECL_AURA extern "C" int32_t app_common_main(HINSTANCE hinstance, HINSTANC
       strAppId = "acid";
 
    }
-   
+
    if (strAppId.is_empty())
    {
 
@@ -977,14 +1047,15 @@ CLASS_DECL_AURA extern "C" int32_t app_common_main(HINSTANCE hinstance, HINSTANC
          if (!defer_init())
          {
 
-            return -3;
+            iError = -3;
+
+            return NULL;
 
          }
 
       }
 
    }
-
 
    ::aura::system * psystem = g_pfn_create_system();
 
@@ -999,18 +1070,33 @@ CLASS_DECL_AURA extern "C" int32_t app_common_main(HINSTANCE hinstance, HINSTANC
 
    }
 
-   ASSERT(hPrevInstance == NULL);
-
-   ::windows::main_init_data * pmaininitdata = new ::windows::main_init_data;
-
+    pmaininitdata = new ::windows::main_init_data;
 
    pmaininitdata->m_hInstance = hinstance;
-   pmaininitdata->m_hPrevInstance = hPrevInstance;
-   pmaininitdata->m_vssCommandLine = lpCmdLine;
+   pmaininitdata->m_hPrevInstance = hinstancePrev;
    pmaininitdata->m_nCmdShow = nCmdShow;
 
+   if(pszCmdLine == NULL)
+   {
 
-   int32_t nReturnCode = __win_main(psystem, pmaininitdata);
+      pmaininitdata->m_vssCommandLine = ::path::module() + " : app=" + psystem->m_strAppId;
+
+   }
+   else
+   {
+
+      pmaininitdata->m_vssCommandLine = pszCmdLine;
+
+   }
+
+   return psystem;
+
+}
+
+
+
+int app_common_term(int iError, ::aura::system * psystem, app_core & appcore)
+{
 
    appcore.m_dwAfterApplicationFirstRequest = psystem->m_dwAfterApplicationFirstRequest;
 
@@ -1028,10 +1114,9 @@ CLASS_DECL_AURA extern "C" int32_t app_common_main(HINSTANCE hinstance, HINSTANC
    psystem = NULL;
 
 
-   return nReturnCode;
+   return iError;
 
 }
-
 
 
 

@@ -65,12 +65,12 @@ namespace aura
    }
 
 
-   sp(::aura::application) session::start_application(const char * pszAppId, sp(::create) pcreatecontext)
+   sp(::aura::application) session::start_application(const char * pszAppId, ::create * pcreate)
    {
 
       string strApp(pszAppId);
 
-      sp(::aura::application) papp = application_get(strApp,true,true,pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::aura::application) papp = application_get(strApp,true,true,pcreate->m_spCommandLine->m_pbiasCreate);
 
       if (papp == NULL)
       {
@@ -79,8 +79,8 @@ namespace aura
 
       }
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-         || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+      if(pcreate->m_spCommandLine->m_varQuery.has_property("install")
+         || pcreate->m_spCommandLine->m_varQuery.has_property("uninstall"))
       {
 
          Session.appptra().remove(papp);
@@ -89,19 +89,19 @@ namespace aura
 
       }
 
-      pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
+      pcreate->m_spCommandLine->m_eventReady.ResetEvent();
 
       if(strApp != "session")
       {
 
          UINT uiMessage = WM_APP + 2043;
 
-         papp->post_object(uiMessage,2,pcreatecontext);
+         papp->post_object(uiMessage,2,pcreate);
 
          while(get_run_thread())
          {
 
-            if(pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(84)).signaled())
+            if(pcreate->m_spCommandLine->m_eventReady.wait(millis(84)).signaled())
                break;
 
          }
@@ -425,28 +425,28 @@ namespace aura
 
 
 
-   void session::on_request(::create * pcreatecontext)
+   void session::on_request(::create * pcreate)
    {
 
       TRACE("::aura::session::on_request(sp(::create)) " + demangle(typeid(*this).name()));
 
       ::output_debug_string("::aura::session::on_request(sp(::create)) " + THIS_FRIENDLY_NAME());
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1)
+      if(pcreate->m_spCommandLine->m_varQuery["app"].array_get_count() > 1)
       {
 
-         start_application(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0],pcreatecontext);
+         start_application(pcreate->m_spCommandLine->m_varQuery["app"].stra()[0],pcreate);
 
          return;
 
       }
 
-      string strApp = pcreatecontext->m_spCommandLine->m_strApp;
+      string strApp = pcreate->m_spCommandLine->m_strApp;
 
       if(strApp == "app/sphere/userstack")
       {
 
-         start_application("app/sphere/userstack",pcreatecontext);
+         start_application("app/sphere/userstack",pcreate);
 
          return;
 
@@ -456,35 +456,35 @@ namespace aura
       {
 
 
-         m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
+         m_varCurrentViewFile = pcreate->m_spCommandLine->m_varFile;
 
 
          string strApp;
 
-         if((pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
-            || pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
-            && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !(bool)command()->m_varTopicQuery.has_property("client_only"))
-            && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
+         if((pcreate->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
+            || pcreate->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
+            && (!(bool)pcreate->m_spCommandLine->m_varQuery.has_property("client_only") && !(bool)command()->m_varTopicQuery.has_property("client_only"))
+            && (!pcreate->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
          {
             m_bShowPlatform = true;
          }
 
          bool bCreate = true;
-         if(pcreatecontext->m_spCommandLine->m_strApp.is_empty())
+         if(pcreate->m_spCommandLine->m_strApp.is_empty())
          {
-            if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
+            if(!pcreate->m_spCommandLine->m_varFile.is_empty())
             {
-               if(!open_by_file_extension(pcreatecontext))
+               if(!open_by_file_extension(pcreate))
                {
                   if(m_pappCurrent != NULL)
                   {
-                     App(m_pappCurrent).request_command(pcreatecontext->m_spCommandLine);
+                     App(m_pappCurrent).request_command(pcreate->m_spCommandLine);
                   }
                }
             }
             else if(m_bShowPlatform)
             {
-               //create_bergedge(pcreatecontext);
+               //create_bergedge(pcreate);
                //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
                //{
                //   sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
@@ -495,18 +495,18 @@ namespace aura
                //   }
                //}
             }
-            if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() <= 0)
+            if(pcreate->m_spCommandLine->m_varQuery["app"].array_get_count() <= 0)
             {
                bCreate = false;
             }
          }
          if(bCreate)
          {
-            if(pcreatecontext->m_spCommandLine->m_strApp == "bergedge")
+            if(pcreate->m_spCommandLine->m_strApp == "bergedge")
             {
-               if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
+               if(pcreate->m_spCommandLine->m_varQuery.has_property("session_start"))
                {
-                  strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
+                  strApp = pcreate->m_spCommandLine->m_varQuery["session_start"];
                }
                else
                {
@@ -515,21 +515,21 @@ namespace aura
             }
             else
             {
-               strApp = pcreatecontext->m_spCommandLine->m_strApp;
+               strApp = pcreate->m_spCommandLine->m_strApp;
             }
 
 
-            if(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().find_first_ci(strApp) < 0)
+            if(pcreate->m_spCommandLine->m_varQuery["app"].stra().find_first_ci(strApp) < 0)
             {
 
-               pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().insert_at(0,strApp);
+               pcreate->m_spCommandLine->m_varQuery["app"].stra().insert_at(0,strApp);
 
             }
 
-            for(int32_t i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
+            for(int32_t i = 0; i < pcreate->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
             {
 
-               strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];
+               strApp = pcreate->m_spCommandLine->m_varQuery["app"].stra()[i];
 
 
                //simple_message_box(NULL, "create", strApp, MB_ICONEXCLAMATION);
@@ -548,7 +548,7 @@ namespace aura
 
                }
 
-               ::aura::application * papp = (application_get(strApp,true,true,pcreatecontext->m_spCommandLine->m_pbiasCreate));
+               ::aura::application * papp = (application_get(strApp,true,true,pcreate->m_spCommandLine->m_pbiasCreate));
                if (papp == NULL)
                {
 
@@ -566,27 +566,27 @@ namespace aura
 
                //simple_message_box(NULL, "appok", strApp, MB_ICONEXCLAMATION);
 
-               //if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-               //   || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+               //if(pcreate->m_spCommandLine->m_varQuery.has_property("install")
+               //   || pcreate->m_spCommandLine->m_varQuery.has_property("uninstall"))
                //{
                //   continue;
                //}
 
-               pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
+               pcreate->m_spCommandLine->m_eventReady.ResetEvent();
 
                if(strApp != "bergedge")
                {
 
 
-                  //pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
+                  //pcreate->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
 
-                  papp->command()->command(pcreatecontext);
-
-                  m_pappCurrent = papp;
+                  papp->command()->command(pcreate);
 
                   m_pappCurrent = papp;
 
-                  //pcreatecontext->m_spCommandLine->m_eventReady.wait();
+                  m_pappCurrent = papp;
+
+                  //pcreate->m_spCommandLine->m_eventReady.wait();
 
 
                }
@@ -601,25 +601,25 @@ namespace aura
 
       }
 
-      m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
+      m_varCurrentViewFile = pcreate->m_spCommandLine->m_varFile;
 
-      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
-         && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !(bool)command()->m_varTopicQuery.has_property("client_only"))
-         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
+      if((pcreate->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
+         && (!(bool)pcreate->m_spCommandLine->m_varQuery.has_property("client_only") && !(bool)command()->m_varTopicQuery.has_property("client_only"))
+         && (!pcreate->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
       {
          m_bShowPlatform = true;
       }
 
       bool bCreate = true;
-      if(pcreatecontext->m_spCommandLine->m_strApp.is_empty())
+      if(pcreate->m_spCommandLine->m_strApp.is_empty())
       {
-         if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
+         if(!pcreate->m_spCommandLine->m_varFile.is_empty())
          {
-            if(!open_by_file_extension(pcreatecontext))
+            if(!open_by_file_extension(pcreate))
             {
                if(m_pappCurrent != NULL)
                {
-                  App(m_pappCurrent).request_command(pcreatecontext->m_spCommandLine);
+                  App(m_pappCurrent).request_command(pcreate->m_spCommandLine);
                }
             }
             bCreate = false;
@@ -637,31 +637,31 @@ namespace aura
       if(bCreate)
       {
 
-         if(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() <= 0)
+         if(pcreate->m_spCommandLine->m_varQuery["app"].stra().get_count() <= 0)
          {
-            pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().add(strApp);
+            pcreate->m_spCommandLine->m_varQuery["app"].stra().add(strApp);
          }
-         else if(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() > 1)
+         else if(pcreate->m_spCommandLine->m_varQuery["app"].stra().get_count() > 1)
          {
             
-            start_application("app-core/desk",pcreatecontext);
+            start_application("app-core/desk",pcreate);
 
             return;
 
          }
 
-         for(int32_t i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
+         for(int32_t i = 0; i < pcreate->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
          {
 
-            string strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];
+            string strApp = pcreate->m_spCommandLine->m_varQuery["app"].stra()[i];
 
             if(strApp.is_empty() || strApp == "session")
             {
-               if(pcreatecontext->m_spCommandLine->m_strApp == "session")
+               if(pcreate->m_spCommandLine->m_strApp == "session")
                {
-                  if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
+                  if(pcreate->m_spCommandLine->m_varQuery.has_property("session_start"))
                   {
-                     strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
+                     strApp = pcreate->m_spCommandLine->m_varQuery["session_start"];
                   }
                   else
                   {
@@ -670,14 +670,14 @@ namespace aura
                }
                else
                {
-                  strApp = pcreatecontext->m_spCommandLine->m_strApp;
+                  strApp = pcreate->m_spCommandLine->m_strApp;
                }
             }
 
             if(strApp.is_empty() || strApp == "session")
             {
-               if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-                  || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+               if(pcreate->m_spCommandLine->m_varQuery.has_property("install")
+                  || pcreate->m_spCommandLine->m_varQuery.has_property("uninstall"))
                {
                   //System.planesessionptra().remove(this);
                   return;
@@ -685,7 +685,7 @@ namespace aura
                return;
             }
 
-            start_application(strApp,pcreatecontext);
+            start_application(strApp,pcreate);
 
          }
 
@@ -1003,22 +1003,22 @@ namespace aura
 
 
 
-   void session::request_create(::create * pcreatecontext)
+   void session::request_create(::create * pcreate)
    {
 
             //      if(m_pbergedgeInterface != NULL)
             {
 
                if(m_pappCurrent != NULL && m_pappCurrent != this
-                  && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
-                  ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+                  && (pcreate->m_spCommandLine->m_strApp.is_empty()
+                  ||App(m_pappCurrent).m_strAppName == pcreate->m_spCommandLine->m_strApp))
                {
                   //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
                   //{
                   //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
                   //}
-                  App(m_pappCurrent).request_create(pcreatecontext);
-                  //if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
+                  App(m_pappCurrent).request_create(pcreate);
+                  //if(pcreate->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
                   {
         //             goto alt1;
                   }
@@ -1027,11 +1027,11 @@ namespace aura
                else
                {
       //alt1:
-                  if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+                  if(pcreate->m_spCommandLine->m_varFile.get_type() == var::type_string)
                   {
-                     if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
+                     if(::str::ends_ci(pcreate->m_spCommandLine->m_varFile, ".core"))
                      {
-                        string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+                        string strCommand = Application.file().as_string(pcreate->m_spCommandLine->m_varFile);
                         if(::str::begins_eat(strCommand, "ca2prompt\r")
                            || ::str::begins_eat(strCommand, "ca2prompt\n"))
                         {
@@ -1040,42 +1040,42 @@ namespace aura
                         }
                         return;
                      }
-                     //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char()
+                     //else if(pcreate->m_spCommandLine->m_strApp.has_char()
                      //   && get_document() != NULL
                      //   && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
                      //{
-                     //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-                     //   App(m_pappCurrent).request_create(pcreatecontext);
+                     //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreate->m_spCommandLine->m_strApp);
+                     //   App(m_pappCurrent).request_create(pcreate);
                      //}
                      else
                      {
-                        on_request(pcreatecontext);
+                        on_request(pcreate);
                         return;
                      }
                   }
-                  //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
+                  //else if(pcreate->m_spCommandLine->m_strApp.has_char() &&
                   //   get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
-                  //   && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
+                  //   && (!pcreate->m_spApplicationBias.is_set() || pcreate->m_spApplicationBias->m_puiParent == NULL))
                   //{
                   //   //simple_message_box(NULL, "request3", "request3", MB_ICONEXCLAMATION);
-                  //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-                  //   App(m_pappCurrent).request_create(pcreatecontext);
+                  //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreate->m_spCommandLine->m_strApp);
+                  //   App(m_pappCurrent).request_create(pcreate);
                   //}
                   //else
                   {
                      //simple_message_box(NULL, "request4", "request4", MB_ICONEXCLAMATION);
-                     on_request(pcreatecontext);
+                     on_request(pcreate);
                   }
                }
                return;
 
             }
 
-            if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+            if(pcreate->m_spCommandLine->m_varFile.get_type() == var::type_string)
             {
-               if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
+               if(::str::ends_ci(pcreate->m_spCommandLine->m_varFile, ".core"))
                {
-                  string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+                  string strCommand = Application.file().as_string(pcreate->m_spCommandLine->m_varFile);
                   if(::str::begins_eat(strCommand, "ca2prompt\r")
                      || ::str::begins_eat(strCommand, "ca2prompt\n"))
                   {
@@ -1087,12 +1087,12 @@ namespace aura
                }
                else
                {
-                  on_request(pcreatecontext);
+                  on_request(pcreate);
                }
             }
             else if(m_pappCurrent != NULL && m_pappCurrent != this
-               && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
-               ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+               && (pcreate->m_spCommandLine->m_strApp.is_empty()
+               ||App(m_pappCurrent).m_strAppName == pcreate->m_spCommandLine->m_strApp))
             {
 
 
@@ -1100,11 +1100,11 @@ namespace aura
                {
                get_document()->get_typed_view < ::platform::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
                }*/
-               App(m_pappCurrent).request_create(pcreatecontext);
+               App(m_pappCurrent).request_create(pcreate);
             }
             else
             {
-               on_request(pcreatecontext);
+               on_request(pcreate);
             }
 
    }

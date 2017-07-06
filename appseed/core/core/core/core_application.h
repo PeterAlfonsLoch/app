@@ -167,7 +167,7 @@ namespace core
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual void on_request(sp(::create) pline);
+      virtual void on_request(::create * pcreate);
 
       // overrides for implementation
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
@@ -343,7 +343,7 @@ namespace core
 
 
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction,sp(::create) pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, ::create * pcreate);
 
 
 
@@ -395,7 +395,7 @@ namespace core
       virtual oswindow get_ca2_app_wnd(const char * psz);
 
 
-      //virtual void request_create(::create * pcreatecontext);
+      //virtual void request_create(::create * pcreate);
 
       //      virtual void on_exclusive_instance_local_conflict();
 
@@ -466,7 +466,7 @@ namespace core
       //virtual void _001OnFileNew();
 
 
-      //virtual void on_request(::create * pcreatecontext);
+      //virtual void on_request(::create * pcreate);
 
       //sp(::aura::application) get_system();
 

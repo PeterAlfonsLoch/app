@@ -30,24 +30,24 @@ namespace filemanager
    }
 
 
-   sp(::filemanager::data) manager_template::create_file_manager_data(sp(::create) pcreatecontext)
+   sp(::filemanager::data) manager_template::create_file_manager_data(::create * pcreate)
    {
 
       sp(::filemanager::data) pfilemanagerdata(canew(data(get_app())));
 
       callback * pcallback = NULL;
 
-      if (pcreatecontext.is_set())
+      if (pcreate != NULL)
       {
 
-         pcallback = pcreatecontext->oprop("filemanager::callback").cast < callback > ();
+         pcallback = pcreate->oprop("filemanager::callback").cast < callback > ();
 
       }
 
       pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Session.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
-      pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
+      pfilemanagerdata->m_bTransparentBackground = pcreate == NULL ? true : pcreate->m_bTransparentBackground;
       string strId;
       strId.Format("filemanager(%d)", pfilemanagerdata->m_iDocument);
       pfilemanagerdata->m_strDISection = m_strDISection + "." + strId;
@@ -59,7 +59,7 @@ namespace filemanager
    }
 
 
-   void manager_template::load_filemanager_project(const ::file::path & pathFilemanagerProject, sp(::create) pcreatecontext, ::fs::data * pdata, data * pfilemanagerdata, callback * pcallback)
+   void manager_template::load_filemanager_project(const ::file::path & pathFilemanagerProject, ::create * pcreate, ::fs::data * pdata, data * pfilemanagerdata, callback * pcallback)
    {
 
       {
@@ -113,7 +113,7 @@ namespace filemanager
          for (auto str : stra)
          {
 
-            restore_manager(str, pcreatecontext, pdata, pfilemanagerdata, pcallback);
+            restore_manager(str, pcreate, pdata, pfilemanagerdata, pcallback);
 
          }
 
@@ -219,29 +219,29 @@ namespace filemanager
    }
 
 
-   sp(manager) manager_template::open_manager(var varFile, sp(::create) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
+   sp(manager) manager_template::open_manager(var varFile, ::create * pcreate, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
    {
 
       sp(manager) pdoc;
 
-      if (pcreatecontext == NULL)
+      if (pcreate == NULL)
       {
 
-         pcreatecontext = canew(::create(Application.creation(), varFile, true));
+         pcreate = canew(::create(Application.creation(), varFile, true));
 
       }
 
-      pcreatecontext->oprop("filemanager::template") = this;
+      pcreate->oprop("filemanager::template") = this;
 
-      pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
+      pcreate->oprop("filemanager::data") = pfilemanagerdata;
 
-      pcreatecontext->oprop("filemanager::callback") = pcallback;
+      pcreate->oprop("filemanager::callback") = pcallback;
 
-      pcreatecontext->m_spCommandLine->m_varFile = varFile;
+      pcreate->m_spCommandLine->m_varFile = varFile;
 
       m_pdoctemplateMain->m_bQueueDocumentOpening = false;
 
-      pdoc = m_pdoctemplateMain->open_document_file(pcreatecontext);
+      pdoc = m_pdoctemplateMain->open_document_file(pcreate);
 
       if (pdoc.is_null())
       {
@@ -250,7 +250,7 @@ namespace filemanager
 
       }
 
-      pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible, false);
+      pdoc->Initialize(pcreate == NULL ? true : pcreate->m_bMakeVisible, false);
 
       tab_view * ptabview = pdoc->get_typed_view < tab_view >();
 
@@ -270,24 +270,24 @@ namespace filemanager
    }
 
 
-   sp(manager) manager_template::restore_manager(var varFile, sp(::create) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
+   sp(manager) manager_template::restore_manager(var varFile, ::create * pcreate, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
    {
 
       sp(manager) pdoc;
       
-      pdoc = open_manager(varFile, pcreatecontext, pdata, pfilemanagerdata, pcallback);
+      pdoc = open_manager(varFile, pcreate, pdata, pfilemanagerdata, pcallback);
 
       return pdoc;
 
    }
 
 
-   sp(manager) manager_template::add_manager(const ::file::path & pathFolder, sp(::create) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
+   sp(manager) manager_template::add_manager(const ::file::path & pathFolder, ::create * pcreate, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
    {
 
       sp(manager) pdoc;
       
-      pdoc = open_manager(pathFolder, pcreatecontext, pdata, pfilemanagerdata, pcallback);
+      pdoc = open_manager(pathFolder, pcreate, pdata, pfilemanagerdata, pcallback);
 
       if (pdoc == NULL)
       {
@@ -331,22 +331,22 @@ namespace filemanager
    }
 
 
-   sp(manager) manager_template::open_main(::id id, sp(::create) pcreatecontext,::fs::data * pdata,::filemanager::data * pfilemanagerdata,callback * pcallback)
+   sp(manager) manager_template::open_main(::id id, ::create * pcreate,::fs::data * pdata,::filemanager::data * pfilemanagerdata,callback * pcallback)
    {
 
       ::file::path pathFolder;
 
-      if (pcreatecontext == NULL)
+      if (pcreate == NULL)
       {
 
-         pcreatecontext = canew(::create(Application.creation()));
+         pcreate = canew(::create(Application.creation()));
 
       }
 
-      if (pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
+      if (pcreate->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
       {
 
-         pathFolder = pcreatecontext->m_spCommandLine->m_varFile;
+         pathFolder = pcreate->m_spCommandLine->m_varFile;
 
          if (Application.dir().is(pathFolder))
          {
@@ -370,13 +370,13 @@ namespace filemanager
       if (id.int64() < -1 || id.int64() == m_pdoctemplateMain->get_document_count())
       {
 
-         pcreatecontext->oprop("filemanager::template") = this;
+         pcreate->oprop("filemanager::template") = this;
 
-         pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
+         pcreate->oprop("filemanager::data") = pfilemanagerdata;
 
-         pcreatecontext->oprop("filemanager::callback") = pcallback;
+         pcreate->oprop("filemanager::callback") = pcallback;
 
-         pdoc = m_pdoctemplateMain->open_document_file(pcreatecontext);
+         pdoc = m_pdoctemplateMain->open_document_file(pcreate);
 
          if (pdoc != NULL)
          {
@@ -390,7 +390,7 @@ namespace filemanager
 
             }
 
-            pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible, bInitialBrowsePath);
+            pdoc->Initialize(pcreate == NULL ? true : pcreate->m_bMakeVisible, bInitialBrowsePath);
 
          }
 
@@ -437,22 +437,22 @@ namespace filemanager
    }
 
 
-   sp(manager) manager_template::open(id id, sp(::create) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
+   sp(manager) manager_template::open(id id, ::create * pcreate, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata, callback * pcallback)
    {
 
       ::file::path pathFolder;
 
-      if (pcreatecontext == NULL)
+      if (pcreate == NULL)
       {
 
-         pcreatecontext = canew(::create(Application.creation()));
+         pcreate = canew(::create(Application.creation()));
 
       }
 
-      if (pcreatecontext->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
+      if (pcreate->m_spCommandLine->m_ecommand == ::command_line::command_file_open)
       {
 
-         pathFolder = pcreatecontext->m_spCommandLine->m_varFile;
+         pathFolder = pcreate->m_spCommandLine->m_varFile;
 
          if (Application.dir().is(pathFolder))
          {
@@ -476,13 +476,13 @@ namespace filemanager
       if (id.int64() < -1 || id.int64() == m_pdoctemplate->get_document_count())
       {
 
-         pcreatecontext->oprop("filemanager::template") = this;
+         pcreate->oprop("filemanager::template") = this;
 
-         pcreatecontext->oprop("filemanager::data") = pfilemanagerdata;
+         pcreate->oprop("filemanager::data") = pfilemanagerdata;
 
-         pcreatecontext->oprop("filemanager::callback") = pcallback;
+         pcreate->oprop("filemanager::callback") = pcallback;
 
-         pdoc = m_pdoctemplate->open_document_file(pcreatecontext);
+         pdoc = m_pdoctemplate->open_document_file(pcreate);
 
          if (pdoc != NULL)
          {
@@ -496,7 +496,7 @@ namespace filemanager
 
             }
 
-            pdoc->Initialize(pcreatecontext == NULL ? true : pcreatecontext->m_bMakeVisible, bInitialBrowsePath);
+            pdoc->Initialize(pcreate == NULL ? true : pcreate->m_bMakeVisible, bInitialBrowsePath);
 
          }
 
@@ -524,10 +524,10 @@ namespace filemanager
 
    }
 
-   sp(manager) manager_template::create_new_document(callback * pcallback, sp(::create) pcreatecontext)
+   sp(manager) manager_template::create_new_document(callback * pcallback, ::create * pcreate)
    {
 
-      sp(manager) pdoc = (m_pdoctemplate->create_new_document(pcreatecontext));
+      sp(manager) pdoc = (m_pdoctemplate->create_new_document(pcreate));
 
       if (pdoc != NULL)
       {

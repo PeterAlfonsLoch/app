@@ -585,14 +585,14 @@ namespace windows
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pui, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, sp(::create) pContext)
+   bool interaction_impl::create_window(::user::interaction * pui, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, ::create * pcreate)
    {
 
       // can't use for desktop or pop-up windows (use create_window_ex instead)
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      return create_window_ex(pui, 0, lpszClassName, lpszWindowName, dwStyle | WS_CHILD, rect, pParentWnd, id, (LPVOID)pContext);
+      return create_window_ex(pui, 0, lpszClassName, lpszWindowName, dwStyle | WS_CHILD, rect, pParentWnd, id, (LPVOID)pcreate);
 
    }
 

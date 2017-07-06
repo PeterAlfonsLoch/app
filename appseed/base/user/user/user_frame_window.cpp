@@ -683,71 +683,40 @@ namespace user
 
    }
 
-   bool frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create) pContext)
+
+   bool frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect, ::user::interaction * puiParent,const char * lpszMenuName,uint32_t dwExStyle, ::create * pcreate)
    {
 
       UNREFERENCED_PARAMETER(lpszMenuName);
 
       m_strTitle = lpszWindowName;    // save title for later
 
-      if (!::user::interaction::create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id(), pContext))
+      if (!::user::interaction::create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, puiParent, id(), pcreate))
       {
 
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
 
-         return FALSE;
+         return false;
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
-   /*
-   sp(::user::interaction) frame_window::CreateView(sp(::create) pContext, UINT nID)
-   {
-   // trans   ASSERT(get_handle() != NULL);
-   ASSERT(IsWindow());
-   ENSURE_ARG(pContext != NULL);
-   ENSURE_ARG(pContext->m_typeinfoNewView != NULL);
 
-   // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-   sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
-   if (pview == NULL)
-   {
-   TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::impact type %hs failed.\n",
-   pContext->m_typeinfoNewView.name());
-   return NULL;
-   }
-   ASSERT_KINDOF(::user::interaction, pview);
-
-   // views are always created with a border!
-   if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-   rect(0,0,0,0), this, nID, pContext))
-   {
-   TRACE(::aura::trace::category_AppMsg, 0, "Warning: could not create ::user::impact for frame.\n");
-   return NULL;        // can't continue without a ::user::impact
-   }
-
-   if (pview->GetExStyle() & WS_EX_CLIENTEDGE)
-   {
-   // remove the 3d style from the frame, since the ::user::impact is
-   //  providing it.
-   // make sure to recalc the non-client area
-   ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
-   }
-   return pview;
-   }
-   */
-
-   bool frame_window::on_create_client(::user::create_struct *, sp(::create) pContext)
+   bool frame_window::on_create_client(::user::create_struct *, ::create * pcreate)
    {
 
-      if (pContext != NULL && (pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL))
+      if (pcreate != NULL && (pcreate->m_user->m_typeinfoNewView || pcreate->m_user->m_puiNew != NULL))
       {
 
-         if (::user::impact::s_create_view(pContext, null_rect(), this, "pane_first") == NULL)
+         if (::user::impact::s_create_view(pcreate, null_rect(), this, "pane_first") == NULL)
+         {
+
             return false;
+
+         }
 
       }
 
@@ -774,14 +743,18 @@ namespace user
 
    }
 
-   int32_t frame_window::OnCreateHelper(::user::create_struct * lpcs, sp(::create) pContext)
+   
+   int32_t frame_window::OnCreateHelper(::user::create_struct * lpcs, ::create * pcreate)
    {
 
       // create special children first
-      if (!on_create_client(lpcs, pContext))
+      if (!on_create_client(lpcs, pcreate))
       {
+
          TRACE(::aura::trace::category_AppMsg, 0, "Failed to create client pane/::user::impact for frame.\n");
+
          return -1;
+
       }
 
       // post message for initial message string
@@ -791,6 +764,7 @@ namespace user
       //   on_layout();
 
       return 0;   // create ok
+
    }
 
    
@@ -812,14 +786,16 @@ namespace user
    }
    
 
-   bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
-      sp(::user::interaction) pParentWnd, sp(::create) pContext)
+   bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, ::user::interaction * puiParent, ::create * pcreate)
    {
+
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(dwDefaultStyle);
-      UNREFERENCED_PARAMETER(pParentWnd);
-      UNREFERENCED_PARAMETER(pContext);
-      return FALSE;
+      UNREFERENCED_PARAMETER(puiParent);
+      UNREFERENCED_PARAMETER(pcreate);
+
+      return false;
+
       // only do this once
       //   ASSERT_VALID_IDR(nIDResource);
       //   ASSERT(m_nIDHelp == 0 || m_nIDHelp == nIDResource);
@@ -854,6 +830,7 @@ namespace user
 
       return TRUE;*/
    }
+
 
    void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
    {

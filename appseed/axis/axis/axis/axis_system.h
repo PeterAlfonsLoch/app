@@ -104,7 +104,7 @@ namespace axis
 
       virtual ::aura::session * on_create_session() override;
 
-      virtual void on_request(::create * pcreatecontext) override;
+      virtual void on_request(::create * pcreate) override;
 
 
 
@@ -180,7 +180,7 @@ namespace axis
       virtual void hist_hist(const char * psz);
 
 
-      //virtual void on_request(::create * pcreatecontext);
+      //virtual void on_request(::create * pcreate);
 
 
       //virtual uint32_t crc32(uint32_t dwPrevious, const char * psz);

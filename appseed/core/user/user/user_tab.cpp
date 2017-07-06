@@ -2538,13 +2538,13 @@ else
    }
 
 
-   bool tab::set_cur_tab_by_id(id id, sp(::create) pcreatecontext)
+   bool tab::set_cur_tab_by_id(id id, ::create * pcreate)
    {
 
       try
       {
 
-         m_spcreatecontext = pcreatecontext;
+         m_spcreate = pcreate;
 
          ::index iTab = id_tab(id);
 
@@ -2584,7 +2584,7 @@ else
 
       }
 
-      m_spcreatecontext = (sp(::create)) NULL;
+      m_spcreate = (sp(::create)) NULL;
 
       RedrawWindow();
 

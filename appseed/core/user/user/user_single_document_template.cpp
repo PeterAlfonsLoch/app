@@ -55,14 +55,14 @@ namespace user
    // single_document_template commands
 
    // if lpszPathName == NULL => create new file of this type
-   void single_document_template::request_create(::create * pcreatecontext)
+   void single_document_template::request_create(::create * pcreate)
    {
 
-      pcreatecontext->m_spCommandLine->m_varQuery["document"].m_sp.release();
+      pcreate->m_spCommandLine->m_varQuery["document"].m_sp.release();
 
-      bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
-      //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
-      //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
+      bool bMakeVisible = pcreate->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
+      //   sp(::user::interaction) pwndParent = pcreate->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
+      //   sp(::user::impact) pviewAlloc = pcreate->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
 
       sp(::user::document) pdocument;
       sp(::user::frame_window) pFrame;
@@ -92,7 +92,7 @@ namespace user
       else
       {
          // create a new ::user::document
-         pdocument = create_new_document(pcreatecontext);
+         pdocument = create_new_document(pcreate);
          ASSERT(pFrame == NULL);     // will be created below
          bCreated = TRUE;
       }
@@ -113,7 +113,7 @@ namespace user
          bool bAutoDelete = pdocument->m_bAutoDelete;
          pdocument->m_bAutoDelete = FALSE;
          // don't destroy if something goes wrong
-         pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
+         pFrame = create_new_frame(pdocument, NULL, pcreate);
          pdocument->m_bAutoDelete = bAutoDelete;
 
          if (pFrame == NULL)
@@ -127,8 +127,8 @@ namespace user
 
       }
 
-      if (pcreatecontext->m_spCommandLine->m_varFile.is_empty()
-         || pcreatecontext->m_spCommandLine->m_varFile.is_numeric())
+      if (pcreate->m_spCommandLine->m_varFile.is_empty()
+         || pcreate->m_spCommandLine->m_varFile.is_numeric())
       {
          // create a new ::user::document
          set_default_title(pdocument);
@@ -154,7 +154,7 @@ namespace user
          bWasModified = pdocument->is_modified();
          pdocument->set_modified_flag(FALSE);  // not dirty for open
 
-         if (!on_open_document(pdocument, pcreatecontext->m_spCommandLine->m_varFile))
+         if (!on_open_document(pdocument, pcreate->m_spCommandLine->m_varFile))
          {
             // user has been alerted to what failed in on_open_document
             TRACE(::aura::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
@@ -181,13 +181,13 @@ namespace user
             }
             return;        // open failed
          }
-         pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
+         pdocument->set_path_name(pcreate->m_spCommandLine->m_varFile);
          pdocument->update_title();
       }
 
 //      thread* pThread = ::get_thread();
 
-if(!pcreatecontext->m_bHold)
+if(!pcreate->m_bHold)
       {
          pFrame->oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
       }
@@ -203,7 +203,7 @@ if(bCreated)
       uh.m_ehint = ::user::view_update_hint::hint_open_document;
       pdocument->update_all_views(NULL, 0, &uh);
 
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
+      pcreate->m_spCommandLine->m_varQuery["document"] = pdocument;
 
    }
 

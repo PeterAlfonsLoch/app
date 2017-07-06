@@ -590,28 +590,28 @@ namespace core
    }
 
 
-   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
+   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, ::create * pcreate)
    {
 
 
       sp(::user::interaction) puiParent = NULL;
 
-      if (pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >() != NULL)
-         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >();
+      if (pcreate->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >() != NULL)
+         puiParent = pcreate->m_spCommandLine->m_varQuery["uicontainer"].cast < ::user::interaction >();
 
-      if (puiParent == NULL && pcreatecontext->m_puiParent != NULL)
+      if (puiParent == NULL && pcreate->m_puiParent != NULL)
       {
-         puiParent = pcreatecontext->m_puiParent;
+         puiParent = pcreate->m_puiParent;
       }
 
-      if (puiParent == NULL && pcreatecontext->m_spCommandLine->m_pbiasCreate != NULL)
+      if (puiParent == NULL && pcreate->m_spCommandLine->m_pbiasCreate != NULL)
       {
-         puiParent = pcreatecontext->m_spCommandLine->m_pbiasCreate->m_puiParent;
+         puiParent = pcreate->m_spCommandLine->m_pbiasCreate->m_puiParent;
       }
 
-      if (puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
+      if (puiParent == NULL && pcreate->m_spApplicationBias.is_set())
       {
-         puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
+         puiParent = pcreate->m_spApplicationBias->m_puiParent;
       }
 
 
@@ -629,9 +629,9 @@ namespace core
 
       }*/
 
-      if (pcreatecontext->m_bClientOnly ||
+      if (pcreate->m_bClientOnly ||
          Application.directrix()->m_varTopicQuery.has_property("client_only") ||
-         pcreatecontext->m_bOuterPopupAlertLike)
+         pcreate->m_bOuterPopupAlertLike)
       {
          return puiParent;
       }
@@ -642,7 +642,7 @@ namespace core
       //if(bCreateBergedge)
       //{
 
-      //   if(!create_bergedge(pcreatecontext))
+      //   if(!create_bergedge(pcreate))
       //   {
       //      return NULL;
 

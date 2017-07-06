@@ -131,7 +131,7 @@ namespace user
       return yesAttemptForeign;
    }
 
-   ::user::document * impact_system::create_new_document(sp(::create) pcreatecontext)
+   ::user::document * impact_system::create_new_document(::create * pcreate)
    {
       // default implementation constructs one from sp(type)
       if (!m_typeinfoDocument)
@@ -141,7 +141,7 @@ namespace user
          return NULL;
       }
       
-      ::aura::application * papp = pcreatecontext->get_app() != NULL ? pcreatecontext->get_app() : get_app();
+      ::aura::application * papp = pcreate->get_app() != NULL ? pcreate->get_app() : get_app();
 
       sp(::user::document) pdocument = App(papp).alloc(m_typeinfoDocument);
       if (pdocument == NULL)
@@ -150,7 +150,7 @@ namespace user
                m_typeinfoDocument->name());
          return NULL;
       }
-      pdocument->on_create(pcreatecontext);
+      pdocument->on_create(pcreate);
       ASSERT_KINDOF(::user::document, pdocument);
       add_document(pdocument);
       return pdocument;
@@ -159,18 +159,18 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Default frame creation
 
-   sp(::user::frame_window) impact_system::create_new_frame(::user::document * pdocument, sp(::user::frame_window) pOther, sp(::create) pcreatecontext)
+   sp(::user::frame_window) impact_system::create_new_frame(::user::document * pdocument, sp(::user::frame_window) pOther, ::create * pcreate)
    {
 
       // create a frame wired to the specified ::user::document
 
       ASSERT(m_strMatter.get_length() > 0); // must have a resource ID to load from
-      stacker < ::aura::create_context > context(pcreatecontext->m_user);
+      stacker < ::aura::create_context > context(pcreate->m_user);
       context->m_pCurrentFrame = pOther;
       context->m_pCurrentDoc = pdocument;
-      if (pcreatecontext->m_puiAlloc != NULL)
+      if (pcreate->m_puiAlloc != NULL)
       {
-         context->m_puiNew = pcreatecontext->m_puiAlloc;
+         context->m_puiNew = pcreate->m_puiAlloc;
       }
       else
       {
@@ -184,7 +184,7 @@ namespace user
          ASSERT(FALSE);
          return NULL;
       }
-      ::aura::application * papp = pcreatecontext->get_app() != NULL ? pcreatecontext->get_app() : get_app();
+      ::aura::application * papp = pcreate->get_app() != NULL ? pcreate->get_app() : get_app();
       sp(::user::frame_window) pFrame = App(papp).alloc(m_typeinfoFrame);
       if (pFrame == NULL)
       {
@@ -204,7 +204,7 @@ namespace user
       // create new from resource
       if (!pFrame->LoadFrame(m_strMatter,
                              WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,   // default frame styles
-                             pcreatecontext->m_puiParent, pcreatecontext))
+                             dynamic_cast < ::user::interaction * > (pcreate->m_puiParent), pcreate))
       {
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: impact_system couldn't create a frame.\n");
          // frame will be deleted in PostNcDestroy cleanup

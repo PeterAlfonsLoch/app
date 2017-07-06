@@ -23,7 +23,7 @@ namespace programming
       DECL_GEN_SIGNAL(on_application_signal);
 
 
-      void on_request(::create * pcreatecontext);
+      void on_request(::create * pcreate);
 
    };
 

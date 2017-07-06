@@ -14,19 +14,19 @@ namespace user
    }
 
 
-   ::user::document * server::open_document_file(sp(::create) pcreatecontext)
+   void server::on_request(::create * pcreate)
    {
 
       sp(::create) cc(canew(::create(Application.creation(), var(var::type_empty), true, NULL)));
 
-      if (pcreatecontext == NULL)
+      if (pcreate == NULL)
       {
-         pcreatecontext = cc;
+         pcreate = cc;
       }
 
-      request_create(pcreatecontext);
+      request_create(pcreate);
 
-      return pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document >();
+//      return pcreate->m_spCommandLine->m_varQuery["document"].cast < ::user::document >();
 
    }
 

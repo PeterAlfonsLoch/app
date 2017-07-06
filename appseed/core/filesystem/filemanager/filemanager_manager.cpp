@@ -1236,17 +1236,17 @@ namespace filemanager
 
 
 
-   void manager::on_create(::create * pcreatecontext)
+   void manager::on_create(::create * pcreate)
    {
 
-      ::user::document::on_create(pcreatecontext);
+      ::user::document::on_create(pcreate);
 
-      m_spfilemanagerdata = pcreatecontext->oprop("filemanager::data").cast < ::filemanager::data >();
+      m_spfilemanagerdata = pcreate->oprop("filemanager::data").cast < ::filemanager::data >();
 
       if (m_spfilemanagerdata.is_null())
       {
 
-         sp(manager_template) ptemplate = pcreatecontext->oprop("filemanager::template").cast < manager_template >();
+         sp(manager_template) ptemplate = pcreate->oprop("filemanager::template").cast < manager_template >();
 
          if (ptemplate.is_null())
          {
@@ -1257,7 +1257,7 @@ namespace filemanager
          else
          {
 
-            m_spfilemanagerdata = ptemplate->create_file_manager_data(pcreatecontext);
+            m_spfilemanagerdata = ptemplate->create_file_manager_data(pcreate);
 
          }
 

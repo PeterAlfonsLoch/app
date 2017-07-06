@@ -66,7 +66,7 @@ CLASS_DECL_AURA int32_t __win_main(sp(::aura::system) psystem, ::windows::main_i
 }
 
 
-CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow)
+int app_core::start()
 {
 
    if (!defer_aura_init())
@@ -78,12 +78,9 @@ CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTS
 
    }
 
-
-   app_core appcore;
-
-   appcore.m_dwStartTime = ::get_first_tick();
-   appcore.m_dwAfterApplicationFirstRequest = appcore.m_dwStartTime;
-
+   m_dwStartTime = ::get_first_tick();
+   
+   m_dwAfterApplicationFirstRequest = m_dwStartTime;
 
    if (file_exists_dup("C:\\ca2\\config\\system\\wait_on_beg.txt"))
    {
@@ -94,10 +91,20 @@ CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTS
 
    if (file_exists_dup("C:\\ca2\\config\\system\\beg_debug_box.txt"))
    {
+
       debug_box("zzzAPPzzz app", "zzzAPPzzz app", MB_ICONINFORMATION);
+
    }
 
-   int iRet = app_common_main(hinstance, hPrevInstance, (char *)(const char *)  ::str::international::unicode_to_utf8(::GetCommandLineW()), nCmdShow, appcore);
+   return 0;
+
+}
+
+
+int app_core::end()
+{
+
+   int iRet = 0;
 
    if (!defer_aura_term())
    {
@@ -122,11 +129,11 @@ CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTS
 
    sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
-   sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First Application Request Completion %d", (uint32_t)appcore.m_dwAfterApplicationFirstRequest - appcore.m_dwStartTime);
+   sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First Application Request Completion %d", (uint32_t)m_dwAfterApplicationFirstRequest - m_dwStartTime);
    ::OutputDebugStringA(szTimeMessage);
    printf(szTimeMessage);
 
-   int iMillisecondsTotal = dwEnd - appcore.m_dwStartTime;
+   int iMillisecondsTotal = dwEnd - m_dwStartTime;
 
    sprintf(szTimeMessage, "\n|  Total Elapsed Time %d ms", (uint32_t)iMillisecondsTotal);
    ::OutputDebugStringA(szTimeMessage);
@@ -219,7 +226,7 @@ CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTS
       sprintf(szUTCTime, "%04d-%02d-%02d %02d:%02d:%02d UTC", g->tm_year + 1900, g->tm_mon, g->tm_mday, g->tm_hour, g->tm_min, g->tm_sec);
       //   sprintf(szLocalTime,"%04d-%02d-%02d %02d:%02d:%02d local : ",l->tm_year + 1900,l->tm_mon,l->tm_mday,l->tm_hour,l->tm_min,l->tm_sec);
       char szTimeMessage1[2048];
-      sprintf(szTimeMessage1, " Just After First Application Request Completion %d", (uint32_t)appcore.m_dwAfterApplicationFirstRequest - appcore.m_dwStartTime);
+      sprintf(szTimeMessage1, " Just After First Application Request Completion %d", (uint32_t)m_dwAfterApplicationFirstRequest - m_dwStartTime);
       if (file_length_raw("C:\\ca2\\config\\system\\show_elapsed.txt") > 0)
       {
          file_add_contents_raw("C:\\ca2\\config\\system\\show_elapsed.txt", "\n");
@@ -229,7 +236,7 @@ CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTS
       //file_add_contents_raw("C:\\ca2\\config\\system\\show_elapsed.txt",szLocalTime);
       file_add_contents_raw("C:\\ca2\\config\\system\\show_elapsed.txt", "\n");
       char szTimeMessage2[2048];
-      sprintf(szTimeMessage2, " Total Elapsed Time %d", (uint32_t)dwEnd - appcore.m_dwStartTime);
+      sprintf(szTimeMessage2, " Total Elapsed Time %d", (uint32_t)dwEnd - m_dwStartTime);
       file_add_contents_raw("C:\\ca2\\config\\system\\show_elapsed.txt", szUTCTime);
       file_add_contents_raw("C:\\ca2\\config\\system\\show_elapsed.txt", szTimeMessage2);
 
@@ -237,7 +244,52 @@ CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTS
 #ifdef __MCRTDBG
    _CrtDumpMemoryLeaks();
 #endif
+
    return iRet;
+
+}
+
+
+CLASS_DECL_AURA int node_main(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int32_t nCmdShow)
+{
+
+   app_core appcore;
+
+   int iError = appcore.start();
+
+   if (iError != 0)
+   {
+
+      return iError;
+
+   }
+
+   iError = app_common_main(hinstance, hPrevInstance, (char *)(const char *)  ::str::international::unicode_to_utf8(::GetCommandLineW()), nCmdShow, appcore);
+
+   return appcore.end();
+
+}
+
+
+CLASS_DECL_AURA int node_main(int argc, char * argv[])
+{
+
+   app_core appcore;
+
+   int iError = 0;
+
+   iError = appcore.start();
+
+   if (iError != NOERROR)
+   {
+
+      return iError;
+
+   }
+
+   iError = app_common_main(argc, argv, appcore);
+
+   return appcore.end();
 
 }
 

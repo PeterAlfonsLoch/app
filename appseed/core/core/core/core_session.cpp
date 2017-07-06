@@ -294,10 +294,10 @@ namespace core
    }
 
 
-   void session::on_request(::create * pcreatecontext)
+   void session::on_request(::create * pcreate)
    {
 
-      ::base::session::on_request(pcreatecontext);
+      ::base::session::on_request(pcreate);
 
    }
 
@@ -321,12 +321,12 @@ namespace core
    }
 
 
-   bool session::open_by_file_extension(::create * pcreatecontext)
+   bool session::open_by_file_extension(::create * pcreate)
    {
 
       string strId;
 
-      string strOriginalPathName(pcreatecontext->m_spCommandLine->m_varFile);
+      string strOriginalPathName(pcreate->m_spCommandLine->m_varFile);
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -355,7 +355,7 @@ namespace core
 
          ::str::begins_eat(str, "/");
 
-         pcreatecontext->m_spCommandLine->m_varFile = str;
+         pcreate->m_spCommandLine->m_varFile = str;
 
       }
       else
@@ -382,7 +382,7 @@ namespace core
 
       }
 
-      ::aura::application * papp = application_get(strId, true, true, pcreatecontext->m_spApplicationBias);
+      ::aura::application * papp = application_get(strId, true, true, pcreate->m_spApplicationBias);
 
       if (papp == NULL)
       {
@@ -391,7 +391,7 @@ namespace core
 
       }
 
-      papp->m_pcoreapp->::object::create(pcreatecontext);
+      papp->m_pcoreapp->::object::create(pcreate);
 
       return true;
 
@@ -445,10 +445,10 @@ namespace core
    //   }
    //
 
-   void session::request_create(::create * pcreatecontext)
+   void session::request_create(::create * pcreate)
    {
 
-      ::base::session::request_create(pcreatecontext);
+      ::base::session::request_create(pcreate);
 
    }
 
@@ -774,10 +774,10 @@ namespace core
    }
 
 
-   //::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcreatecontext)
+   //::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, ::create * pcreate)
    //{
 
-   //   UNREFERENCED_PARAMETER(pcreatecontext);
+   //   UNREFERENCED_PARAMETER(pcreate);
 
    //   ::user::place_holder_ptra holderptra;
 
@@ -805,10 +805,10 @@ namespace core
 
    //}
 
-   bool session::place(::user::main_frame * pmainframe, sp(::create) pcreatecontext)
+   bool session::place(::user::main_frame * pmainframe, ::create * pcreate)
    {
 
-      //get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
+      //get_place_holder(pmainframe, pcreate).hold(pmainframe);
 
       return true;
 

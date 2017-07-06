@@ -37,7 +37,7 @@ public:
 
    //virtual var run();
 
-   virtual void request_create(sp(::create) pcreate);
+   virtual void request_create(::create * pcreate);
 
    virtual void command(::primitive::command * pcommand);
 
@@ -55,7 +55,7 @@ public:
 
    virtual bool is_thread();
 
-   virtual void consolidate(::create * pcreatecontext);
+   virtual void consolidate(::create * pcreate);
    virtual void consolidate(::command_thread * pthread);
 
    virtual var & property(const char * pszKey);

@@ -262,7 +262,7 @@ namespace user
       return true;
    }
 
-   bool interaction_impl::create_window(::user::interaction * pui, const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext)
+   bool interaction_impl::create_window(::user::interaction * pui, const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id, ::create * pcreate)
    {
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
@@ -270,11 +270,13 @@ namespace user
       UNREFERENCED_PARAMETER(rect);
       UNREFERENCED_PARAMETER(pParentWnd);
       UNREFERENCED_PARAMETER(id);
-      UNREFERENCED_PARAMETER(pContext);
+      UNREFERENCED_PARAMETER(pcreate);
       ::exception::throw_interface_only(get_app());
 
       return false;
+
    }
+
 
    void interaction_impl::prio_install_message_handling(::message::dispatch * pinterface)
    {

@@ -43,11 +43,11 @@ namespace programming
    }
 
 
-   void application::on_request(::create * pcreatecontext)
+   void application::on_request(::create * pcreate)
    {
 
 
-      if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("introj"))
+      if (pcreate->m_spCommandLine->m_varQuery.has_property("introj"))
       {
 
          ::introjection::compiler *  pcompiler = canew(::introjection::compiler(this));

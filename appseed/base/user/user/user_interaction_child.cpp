@@ -119,7 +119,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(::user::interaction * pui, const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction *  pparent,id id,sp(::create) pContext)
+   bool interaction_child::create_window(::user::interaction * pui, const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction *  pparent,id id, ::create * pcreate)
    {
 
       if(m_bCreate)
@@ -162,7 +162,7 @@ namespace user
       cs.hwndParent  = pparent->get_handle();
       cs.hInstance   = System.m_hinstance;
       cs.hMenu = NULL;
-      cs.lpCreateParams = (LPVOID)pContext;
+      cs.lpCreateParams = (LPVOID)pcreate;
 
       m_pui->pre_create_window(cs);
 

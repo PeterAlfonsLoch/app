@@ -66,7 +66,7 @@ namespace user
 //      virtual void _001UpdateBuffer();
       virtual bool create_message_queue(::user::interaction * pui, const char * pszName);
       virtual bool create_window(::user::interaction * pui, const RECT & rect, ::user::interaction *pparent, id id);
-      virtual bool create_window(::user::interaction * pui, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, sp(::create) pContext = NULL);
+      virtual bool create_window(::user::interaction * pui, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, ::create * pcreate = NULL);
       virtual bool create_window_ex(::user::interaction * pui, uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, LPVOID lpParam = NULL);
 
 

@@ -71,17 +71,9 @@ namespace user
       virtual void _002InstallMessageHandling(::message::dispatch * pinterface);
 
 
-      virtual bool create_window(::user::interaction * pui, const RECT & rect, ::user::interaction *pparent,id id) override;
-      virtual bool create_window(::user::interaction * pui, const char * lpszClassName,
-         const char * lpszWindowName,uint32_t dwStyle,
-         const RECT & rect,
-         ::user::interaction * pParentWnd,id id,
-         sp(::create) pContext = NULL) override;
-      virtual bool create_window_ex(::user::interaction * pui, uint32_t dwExStyle,const char * lpszClassName,
-         const char * lpszWindowName,uint32_t dwStyle,
-         const RECT & rect,
-         ::user::interaction * pParentWnd,id id,
-         LPVOID lpParam = NULL) override;
+      virtual bool create_window(::user::interaction * pui, const RECT & rect, ::user::interaction * pparent, id id) override;
+      virtual bool create_window(::user::interaction * pui, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, ::create * pContext = NULL) override;
+      virtual bool create_window_ex(::user::interaction * pui, uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * puiParent, id id, LPVOID lpParam = NULL) override;
 
 
       virtual bool ShowWindow(int32_t nCmdShow) override;

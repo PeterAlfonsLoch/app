@@ -140,7 +140,7 @@ namespace turboc
       return ::core::application::exit_application();
    }
 
-   void application::on_request(::create * pcreatecontext)
+   void application::on_request(::create * pcreate)
    {
 
       /*
@@ -164,23 +164,23 @@ namespace turboc
 
       */
 
-      //pcreatecontext->m_bMakeVisible = false;
+      //pcreate->m_bMakeVisible = false;
 
       if(m_ptemplateHelloMultiverseMain->get_document_count() == 0)
       {
 
-         m_ptemplateHelloMultiverseMain->open_document_file(pcreatecontext);
+         m_ptemplateHelloMultiverseMain->open_document_file(pcreate);
 
       }
 
-      if(pcreatecontext->m_spCommandLine->m_varFile.has_char())
+      if(pcreate->m_spCommandLine->m_varFile.has_char())
       {
 
-         m_ptemplateHelloMultiverseView->open_document_file(pcreatecontext);
+         m_ptemplateHelloMultiverseView->open_document_file(pcreate);
 
       }
 
-      //pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < document >()->get_typed_view < pane_view >()->GetParentFrame()->WfiRestore(true);
+      //pcreate->m_spCommandLine->m_varQuery["document"].cast < document >()->get_typed_view < pane_view >()->GetParentFrame()->WfiRestore(true);
 
    }
 

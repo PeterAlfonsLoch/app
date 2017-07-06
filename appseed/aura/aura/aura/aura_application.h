@@ -391,7 +391,7 @@ namespace aura
       virtual bool stop_service();
 
 
-      virtual void on_service_request(::create * pcreatecontext);
+      virtual void on_service_request(::create * pcreate);
 
       virtual sp(application) assert_running(const char * pszAppId);
 
@@ -439,7 +439,7 @@ namespace aura
       bool safe_is_running();
 
 
-      virtual void on_request(::create * pcreatecontext) override;
+      virtual void on_request(::create * pcreate) override;
 
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory

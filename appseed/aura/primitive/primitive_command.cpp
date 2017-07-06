@@ -35,10 +35,10 @@ namespace primitive
    }
 
 
-   void command::on_request(::create * pcreatecontext)
+   void command::on_request(::create * pcreate)
    {
 
-      UNREFERENCED_PARAMETER(pcreatecontext);
+      UNREFERENCED_PARAMETER(pcreate);
 
    }
 

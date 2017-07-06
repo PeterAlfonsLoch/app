@@ -1509,7 +1509,7 @@ namespace core
 
    }
    
-   ::user::document * session::userex_open_document_file(sp(::create) pcreate)
+   ::user::document * session::userex_on_request(::create * pcreate)
    {
 
       return userex()->open_document_file(pcreate);

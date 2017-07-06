@@ -434,14 +434,14 @@ bool sync_object::is_locked() const
 
 
 
-void object::create(::create * pcreatecontext)
+void object::create(::create * pcreate)
 {
-   if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only"))
+   if(pcreate->m_spCommandLine->m_varQuery.has_property("client_only"))
    {
-      pcreatecontext->m_bClientOnly = true;
+      pcreate->m_bClientOnly = true;
    }
 
-   request_create(pcreatecontext);
+   request_create(pcreate);
 }
 
 void object::add_line(const char * pszCommandLine,application_bias * pbiasCreate)
@@ -613,15 +613,15 @@ void object::request_command(sp(command_line) pcommandline)
 
 }
 
-void object::request_create(::create * pcreatecontext)
+void object::request_create(::create * pcreate)
 {
-   on_request(pcreatecontext);
+   on_request(pcreate);
 }
 
-void object::on_request(::create * pcreatecontext)
+void object::on_request(::create * pcreate)
 {
 
-   UNREFERENCED_PARAMETER(pcreatecontext);
+   UNREFERENCED_PARAMETER(pcreate);
 
 }
 

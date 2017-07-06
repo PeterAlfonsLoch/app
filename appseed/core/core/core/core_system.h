@@ -116,7 +116,7 @@ namespace core
       virtual ::core::session *  get_platform(index iEdge,application_bias * pbiasCreation = NULL);
 
 
-      virtual void on_request(::create * pcreatecontext);
+      virtual void on_request(::create * pcreate);
 
       //      virtual sp(::command_thread) command_thread();
 

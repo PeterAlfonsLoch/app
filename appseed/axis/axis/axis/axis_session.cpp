@@ -692,10 +692,10 @@ namespace axis
    }
 
 
-   void session::on_request(::create * pcreatecontext)
+   void session::on_request(::create * pcreate)
    {
 
-      ::aura::session::on_request(pcreatecontext);
+      ::aura::session::on_request(pcreate);
 
    }
 
@@ -1610,7 +1610,7 @@ namespace axis
 
    //}
 
-   //void session::on_request(::create * pcreatecontext)
+   //void session::on_request(::create * pcreate)
    //{
 
    //   ::axis::session::on_request(pcreate);

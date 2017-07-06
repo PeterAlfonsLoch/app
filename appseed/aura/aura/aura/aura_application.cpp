@@ -420,7 +420,7 @@ namespace aura
       catch (...)
       {
       }
-      //sp(::core::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::session >();
+      //sp(::core::session) pbergedge = pcreate->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::session >();
       // todobergedge
       /*if(pbergedge != NULL)
       {
@@ -3466,12 +3466,12 @@ namespace aura
    //}
 
 
-   void application::on_request(::create * pcreatecontext)
+   void application::on_request(::create * pcreate)
    {
 
-      ::object::on_request(pcreatecontext);
+      ::object::on_request(pcreate);
 
-      command()->consolidate(pcreatecontext);
+      command()->consolidate(pcreate);
 
    }
 
@@ -3580,9 +3580,9 @@ namespace aura
       if (papp.is_null())
       {
 
-         sp(::create) spcreatecontext(allocer());
+         sp(::create) spcreate(allocer());
 
-         papp = Session.start_application(pszAppId, spcreatecontext);
+         papp = Session.start_application(pszAppId, spcreate);
 
       }
 
@@ -3688,25 +3688,25 @@ namespace aura
    }
 
 
-   void application::on_service_request(::create * pcreatecontext)
+   void application::on_service_request(::create * pcreate)
    {
 
       if (!is_serviceable())
          return;
 
-      if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("create_service"))
+      if (pcreate->m_spCommandLine->m_varQuery.has_property("create_service"))
       {
          create_service();
       }
-      else if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("start_service"))
+      else if (pcreate->m_spCommandLine->m_varQuery.has_property("start_service"))
       {
          start_service();
       }
-      else if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("stop_service"))
+      else if (pcreate->m_spCommandLine->m_varQuery.has_property("stop_service"))
       {
          stop_service();
       }
-      else if (pcreatecontext->m_spCommandLine->m_varQuery.has_property("remove_service"))
+      else if (pcreate->m_spCommandLine->m_varQuery.has_property("remove_service"))
       {
          remove_service();
       }

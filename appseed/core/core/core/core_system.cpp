@@ -694,7 +694,7 @@ OutputDebugString("gtk_main exited");
    }
 
 
-   void system::on_request(::create * pcreatecontext)
+   void system::on_request(::create * pcreate)
    {
 
       ::core::session * pplatform = get_platform(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);

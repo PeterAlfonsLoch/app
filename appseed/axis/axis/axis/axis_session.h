@@ -110,7 +110,7 @@ namespace axis
       //virtual void  get_cursor_pos(LPPOINT lppoint);
 
 
-      virtual void on_request(::create * pcreatecontext);
+      virtual void on_request(::create * pcreate);
       
 
       //virtual string matter_as_string(const char * pszMatter,const char * pszMatter2);
@@ -210,7 +210,7 @@ namespace axis
 
       //virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 
-      //virtual void on_request(::create * pcreatecontext);
+      //virtual void on_request(::create * pcreate);
 
 
       virtual void on_user_login(::fontopus::user * puser);

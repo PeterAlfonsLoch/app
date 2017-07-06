@@ -4443,6 +4443,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     </None>
     <None Include="aura\os\windows\windows.inl" />
     <None Include="aura\os\windows\windows_app.inl" />
+    <None Include="aura\os\windows\windows_app_console.inl" />
     <None Include="filesystem\filesystem.inl" />
     <None Include="net\net.inl" />
     <None Include="primitive\collection\collection_array_base.inl">

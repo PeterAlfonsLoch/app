@@ -420,10 +420,10 @@ namespace core
 
 
 
-   void application::on_request(::create * pcreatecontext)
+   void application::on_request(::create * pcreate)
    {
 
-      ::base::application::on_request(pcreatecontext);
+      ::base::application::on_request(pcreate);
 
    }
 
@@ -2470,26 +2470,26 @@ namespace core
 
 
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, ::create * pcreate)
    {
 
       sp(::user::interaction) puiParent = NULL;
 
       if (puiParent == NULL)
       {
-         puiParent = pcreatecontext->m_puiParent;
+         puiParent = pcreate->m_puiParent;
       }
 
-      if (puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
+      if (puiParent == NULL && pcreate->m_spApplicationBias.is_set())
       {
-         puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
+         puiParent = pcreate->m_spApplicationBias->m_puiParent;
       }
 
-      //if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL && !pcreatecontext->m_bClientOnly
+      //if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL && !pcreate->m_bClientOnly
       if (puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL
-            && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pcoresession != this)
+            && !pcreate->m_bOuterPopupAlertLike && m_pbasesession->m_pcoresession != this)
       {
-         puiParent = Session.get_request_parent_ui(pinteraction, pcreatecontext);
+         puiParent = Session.get_request_parent_ui(pinteraction, pcreate);
       }
 
       return puiParent;
@@ -3260,9 +3260,9 @@ namespace core
    if(bCreate)
    {
 
-   sp(::create) spcreatecontext(allocer());
+   sp(::create) spcreate(allocer());
 
-   papp = Session.start_application("application", pszAppId, spcreatecontext);
+   papp = Session.start_application("application", pszAppId, spcreate);
 
    }
 

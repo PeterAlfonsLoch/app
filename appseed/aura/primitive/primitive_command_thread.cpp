@@ -18,7 +18,7 @@ command_thread::~command_thread()
 }
 
 
-void command_thread::request_create(sp(::create) pcreate)
+void command_thread::request_create(::create * pcreate)
 {
 
    command(pcreate);
@@ -72,24 +72,24 @@ void command_thread::on_command(::primitive::command * pcommand)
 }
 
 
-void command_thread::consolidate(::create * pcreatecontext)
+void command_thread::consolidate(::create * pcreate)
 {
-   m_spcommandline = pcreatecontext->m_spCommandLine;
-   if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
+   m_spcommandline = pcreate->m_spCommandLine;
+   if(!pcreate->m_spCommandLine->m_varFile.is_empty())
    {
-      if(m_varTopicFile != pcreatecontext->m_spCommandLine->m_varFile)
+      if(m_varTopicFile != pcreate->m_spCommandLine->m_varFile)
       {
          if(m_varTopicFile.is_empty())
          {
-            m_varTopicFile = pcreatecontext->m_spCommandLine->m_varFile;
+            m_varTopicFile = pcreate->m_spCommandLine->m_varFile;
          }
          else
          {
-            m_varTopicFile.stra().add(pcreatecontext->m_spCommandLine->m_varFile.stra());
+            m_varTopicFile.stra().add(pcreate->m_spCommandLine->m_varFile.stra());
          }
       }
    }
-   m_varTopicQuery.propset().merge(pcreatecontext->m_spCommandLine->m_varQuery.propset());
+   m_varTopicQuery.propset().merge(pcreate->m_spCommandLine->m_varQuery.propset());
 }
 
 void command_thread::consolidate(::command_thread * pthread)

@@ -202,7 +202,7 @@ namespace sphere
    }
 
 
-   void application::on_request(::create * pcreatecontext)
+   void application::on_request(::create * pcreate)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -214,17 +214,17 @@ namespace sphere
       {
          if(strId == "default_file_handler")
          {
-            return ::filehandler::application::on_request(pcreatecontext);
+            return ::filehandler::application::on_request(pcreate);
          }
       }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
          {
-            return ::userstack::application::on_request(pcreatecontext);
+            return ::userstack::application::on_request(pcreate);
          }
       }
-      return ::asphere::application::on_request(pcreatecontext);
+      return ::asphere::application::on_request(pcreate);
 
 
    }

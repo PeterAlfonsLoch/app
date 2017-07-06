@@ -5043,6 +5043,9 @@
     <None Include="aura\os\windows\windows_app.inl">
       <Filter>Header Files\aura\os\windows</Filter>
     </None>
+    <None Include="aura\os\windows\windows_app_console.inl">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="aura\compress\zip\algorithm.txt">

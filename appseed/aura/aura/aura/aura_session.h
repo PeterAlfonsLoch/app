@@ -100,10 +100,10 @@ namespace aura
 
       virtual ::visual::cursor * get_default_cursor();
 
-      //virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext);
+      //virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId, ::create * pcreate);
 
 
-      virtual void request_create(::create * pcreatecontext);
+      virtual void request_create(::create * pcreate);
       virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::create * pcc);
 
@@ -114,7 +114,7 @@ namespace aura
 
 
       using ::aura::application::start_application;
-      virtual sp(::aura::application) start_application(const char * pszAppId, sp(::create) pcreatecontext);
+      virtual sp(::aura::application) start_application(const char * pszAppId, ::create * pcreate);
 
       
       virtual COLORREF get_default_color(uint64_t ui);
@@ -165,7 +165,7 @@ namespace aura
 
 
 
-      virtual void on_request(::create * pcreatecontext);
+      virtual void on_request(::create * pcreate);
 
       ::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, application_bias * pbiasCreate);
 
