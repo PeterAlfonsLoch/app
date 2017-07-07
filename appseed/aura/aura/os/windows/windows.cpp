@@ -1063,14 +1063,9 @@ CLASS_DECL_AURA int32_t app_common_main(int argc, char *argv[], app_core & appco
    // cold start (never previously called program and its Dlls...)?
    psystem->m_dwMainStartTime = appcore.m_dwStartTime;
 
-   if (strAppId == "acid")
-   {
+   psystem->m_strAppId = strAppId;
 
-      psystem->m_strAppId = "acid";
-
-   }
-
-    pmaininitdata = new ::windows::main_init_data;
+   pmaininitdata = new ::windows::main_init_data;
 
    pmaininitdata->m_hInstance = hinstance;
    pmaininitdata->m_hPrevInstance = hinstancePrev;
