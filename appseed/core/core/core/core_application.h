@@ -167,7 +167,7 @@ namespace core
 
       // open named file, trying to match a regsitered
       // document template to it.
-      virtual void on_request(::create * pcreate);
+      virtual void on_request(::create * pcreate) override;
 
       // overrides for implementation
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
