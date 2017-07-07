@@ -65,6 +65,7 @@ namespace http
       //::sockets::socket_handler *            m_phandler;
 
 
+
       system(::aura::application * papp);
       virtual ~system();
 

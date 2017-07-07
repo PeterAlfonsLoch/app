@@ -26,6 +26,13 @@ namespace http
    void form::parse_body(file::file *infil, const char * pszContentType, size_t content_length)
    {
 
+      if (content_length > Application.http().m_setHttp["max_http_post"].int64())
+      {
+
+         return;
+
+      }
+
       ::file::plain_text_istream is(infil);
 
       UNREFERENCED_PARAMETER(content_length);

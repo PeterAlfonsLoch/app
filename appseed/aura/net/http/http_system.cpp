@@ -21,6 +21,11 @@ namespace http
       m_pmutexDownload = NULL;
 
 
+
+
+
+
+
    }
 
 

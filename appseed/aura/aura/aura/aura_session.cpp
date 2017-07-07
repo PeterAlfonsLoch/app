@@ -580,6 +580,8 @@ namespace aura
 
                   //pcreate->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
 
+                  papp->on_start_application();
+
                   papp->command()->command(pcreate);
 
                   m_pappCurrent = papp;

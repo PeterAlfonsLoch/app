@@ -6109,6 +6109,20 @@ namespace aura
    }
 
 
+   bool application::on_start_application()
+   {
+
+      string strAppId = m_strAppId;
+
+      string strJson = Application.file().as_string(::dir::system() / "config" / strAppId / +"http.json");
+
+      Application.http().m_setHttp.parse_json(strJson);
+
+      return true;
+
+   }
+
+
    bool application::start_application(bool bSynch, application_bias * pbias)
    {
       /*      try

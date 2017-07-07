@@ -13,6 +13,9 @@ namespace http
    public:
 
 
+      ::property_set       m_setHttp;
+
+
       application();
       virtual ~application();
 

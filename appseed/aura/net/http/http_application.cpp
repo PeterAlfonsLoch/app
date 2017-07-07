@@ -8,6 +8,7 @@ namespace http
 
    application::application()
    {
+      m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
 
    }
 
