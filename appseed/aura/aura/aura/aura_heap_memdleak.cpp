@@ -11,7 +11,7 @@
 #pragma comment(lib, "winmm.lib")
 
 
-#define MEMDLEAK_DEFAULT 0
+#define MEMDLEAK_DEFAULT 1
 
 int g_iGlobalMemdleakEnabled;
 
@@ -220,20 +220,40 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
    synch_lock lock(g_pmutgen);
-
    if (s_pmemdleakList == pblock)
    {
       s_pmemdleakList = s_pmemdleakList->m_pnext;
-      s_pmemdleakList->m_pprevious = NULL;
+      if (s_pmemdleakList != NULL)
+      {
+         s_pmemdleakList->m_pprevious = NULL;
+
+      }
    }
    else
    {
-      pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      if (pblock->m_pprevious != NULL)
+      {
+         pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      }
       if (pblock->m_pnext != NULL)
       {
          pblock->m_pnext->m_pprevious = pblock->m_pprevious;
       }
    }
+
+   //if (s_pmemdleakList == pblock)
+   //{
+   //   s_pmemdleakList = s_pmemdleakList->m_pnext;
+   //   s_pmemdleakList->m_pprevious = NULL;
+   //}
+   //else
+   //{
+   //   pblock->m_pprevious->m_pnext = pblock->m_pnext;
+   //   if (pblock->m_pnext != NULL)
+   //   {
+   //      pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+   //   }
+   //}
 
    //if (pblock->m_pszFileName)
      // ::system_heap_free((void *)pblock->m_pszFileName);
@@ -244,12 +264,45 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
    pblock = (memdleak_block *) ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
 
+   //pblock->m_iBlockUse = nBlockUse;
+   //if (g_pexceptionengine == NULL)
+   //{
+   //   pblock->m_iStack = 0;
+   //   pblock->m_pszFileName = NULL;
+
+   //}
+   //else
+   //{
+   //   //string strCallStack;
+   //   //::exception::engine().stack_trace(1);
+   //   pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
+   //   ::exception::engine().backtrace(pblock->m_puiStack, pblock->m_iStack);
+   //   pblock->m_pszFileName = NULL;
+   //}
+
+   //::lemon::set_maximum(pblock->m_uiLine);
+
+   //pblock->m_size = nAllocSize;
+
+   //pblock->m_pprevious = NULL;
+
+   //pblock->m_pnext = s_pmemdleakList;
+
+   //if (s_pmemdleakList != NULL)
+   //{
+
+   //   s_pmemdleakList->m_pprevious = pblock;
+
+   //}
+
+   //s_pmemdleakList = pblock;
    pblock->m_iBlockUse = nBlockUse;
+
    if (g_pexceptionengine == NULL)
    {
+      //      pblock->m_puiStack = NULL;
       pblock->m_iStack = 0;
       pblock->m_pszFileName = NULL;
-
    }
    else
    {
@@ -258,11 +311,14 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
       pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
       ::exception::engine().backtrace(pblock->m_puiStack, pblock->m_iStack);
       pblock->m_pszFileName = NULL;
+      //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
    }
 
    ::lemon::set_maximum(pblock->m_uiLine);
 
    pblock->m_size = nAllocSize;
+
+//   synch_lock lock(g_pmutgen);
 
    pblock->m_pprevious = NULL;
 
@@ -276,6 +332,13 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    }
 
    s_pmemdleakList = pblock;
+
+   t_plastblock = pblock;
+
+   lock.unlock();
+
+//   p = &pblock[1];
+
    lock.unlock();
 
 

@@ -153,12 +153,6 @@
     <Filter Include="Header Files\html_lite\html">
       <UniqueIdentifier>{90d87260-7262-40b1-87bf-aa8e5835e0bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\install">
-      <UniqueIdentifier>{a3561228-be3b-4b41-b6d5-dde92637f825}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\install">
-      <UniqueIdentifier>{6db3a276-b776-46f3-b908-2d142a59586d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{a0c83851-cf47-4335-a020-02535adcc2d2}</UniqueIdentifier>
     </Filter>
@@ -530,33 +524,6 @@
     <ClInclude Include="axis\axis\axis_system.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
-    <ClInclude Include="axis\install\install.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_cube_run.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_focus.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_install.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_installer_launcher.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_installer_square.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_resource.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_small_bell.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_trace.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\windows\windows_window_gdi.h">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClInclude>
@@ -918,36 +885,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_ftp_file.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\_install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_boot.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_bz.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_focus.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_installer_launcher.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_installer_square.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_small_bell.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_trace.cpp">
-      <Filter>Source Files\axis\install</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\axis\os\windows</Filter>

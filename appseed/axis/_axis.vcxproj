@@ -605,72 +605,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\install\install.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_boot.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_bz.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_focus.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_install.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_installer_launcher.cpp" />
-    <ClCompile Include="axis\install\install_installer_square.cpp" />
-    <ClCompile Include="axis\install\install_small_bell.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_trace.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\install\_install.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="axis\message\message.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -903,15 +837,6 @@
     <ClInclude Include="axis\geoip\geoip_internal.h" />
     <ClInclude Include="axis\geoip\geoip_update.h" />
     <ClInclude Include="axis\geoip\global.h" />
-    <ClInclude Include="axis\install\install.h" />
-    <ClInclude Include="axis\install\install_cube_run.h" />
-    <ClInclude Include="axis\install\install_focus.h" />
-    <ClInclude Include="axis\install\install_install.h" />
-    <ClInclude Include="axis\install\install_installer_launcher.h" />
-    <ClInclude Include="axis\install\install_installer_square.h" />
-    <ClInclude Include="axis\install\install_resource.h" />
-    <ClInclude Include="axis\install\install_small_bell.h" />
-    <ClInclude Include="axis\install\install_trace.h" />
     <ClInclude Include="axis\message\message_user.h" />
     <ClInclude Include="axis\node\ansios\ansios.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

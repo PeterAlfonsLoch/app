@@ -189,6 +189,11 @@
       if(&t != this)
       {
 
+         if (m_p != NULL)
+         {
+            ::release(m_p);
+         }
+
          m_p      = t.m_p;
          t.m_p    = NULL;
 

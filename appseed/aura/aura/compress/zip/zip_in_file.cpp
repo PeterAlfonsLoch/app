@@ -107,7 +107,7 @@ namespace zip
       m_straPath.remove_all();
       m_straPrefix.remove_all();
 
-      m_filea.add(new File(get_app()));
+      m_filea.add(canew(File(get_app())));
       if(!m_filea.last_sp()->unzip_open(pfile, iBufferLevel))
          return false;
 

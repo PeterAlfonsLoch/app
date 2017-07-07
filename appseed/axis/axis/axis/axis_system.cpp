@@ -535,7 +535,7 @@ m_visual(this),
    ::aura::session * system::on_create_session()
    {
 
-      return new ::axis::session(this);
+      return canew(::axis::session(this));
 
    }
 

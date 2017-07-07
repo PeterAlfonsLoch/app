@@ -620,7 +620,7 @@ namespace exception
 
          }
 
-         System.eengine().reset();
+         ::exception::engine().reset();
 
          bRetry = true;
 
