@@ -2358,6 +2358,13 @@ namespace user
    bool interaction::_001IsPointInside(point64 pt)
    {
 
+      if (m_pimpl.is_null())
+      {
+
+         return false;
+
+      }
+
       if (m_pimpl != get_wnd())
       {
        
