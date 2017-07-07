@@ -997,24 +997,7 @@ namespace user
       
       pobj->previous();
       
-    //  UNREFERENCED_PARAMETER(pobj);
-      // reset menu to default before final shutdown
-      /* trans   if (m_hMenuDefault != NULL && ::GetMenu(get_handle()) != m_hMenuDefault)
-      {
-      ::SetMenu(get_handle(), m_hMenuDefault);
-      ASSERT(::GetMenu(get_handle()) == m_hMenuDefault);
-      } */
 
-      // Automatically quit when the main interaction_impl is destroyed.
-      /* trans application* pApp = &System;
-      if (pApp != NULL && pApp->m_puiMain == this && pApp->m_eHelpType == afxWinHelp)
-      {
-      // closing the main application interaction_impl
-      ::WinHelp(get_handle(), NULL, HELP_QUIT, 0L);
-
-      // will call PostQuitMessage in user::frame_window::OnNcDestroy
-      }*/
-      //   user::frame_window::OnDestroy();
    }
 
 

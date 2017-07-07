@@ -2065,10 +2065,7 @@ int32_t thread::main()
    // else -- check for thread with message loop
    else
    {
-      // will stop after PostQuitMessage called
       ASSERT_VALID(this);
-      // let upper framework attach translator
-      //         translator::attach();
    run:
       try
       {

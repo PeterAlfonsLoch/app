@@ -61,6 +61,18 @@ CLASS_DECL_AURA int32_t __win_main(sp(::aura::system) psystem, ::windows::main_i
 
    int32_t nReturnCode = psystem->main();
 
+   try
+   {
+
+      psystem->exit_thread();
+
+   }
+   catch (...)
+   {
+
+
+   }
+
    return nReturnCode;
 
 }

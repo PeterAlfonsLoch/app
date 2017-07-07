@@ -167,6 +167,8 @@ namespace aura
       {
       }
 
+      System.post_quit();
+
    }
 
    bool app::intro()

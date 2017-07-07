@@ -209,56 +209,6 @@ namespace os
 
    }
 */
-
-/*
-   LRESULT simple_ui::window_procedure(oswindow hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-   {
-
-      switch (message)
-      {
-      case WM_DESTROY:
-         PostQuitMessage(0);
-         break;
-      case WM_LBUTTONDOWN:
-         on_lbutton_down(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_LBUTTONUP:
-         on_lbutton_up(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_MOUSEMOVE:
-         on_mouse_move(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-         break;
-      case WM_KEYDOWN:
-         if (!on_windows_key_down(wParam, lParam))
-            goto default_window_procedure;
-         break;
-      case WM_KEYUP:
-         if (!on_windows_key_up(wParam, lParam))
-            goto default_window_procedure;
-         break;
-      case WM_TIMER:
-         on_windows_gdi_draw_framebuffer();
-         goto default_window_procedure;
-      case WM_MOVE:
-         if (!on_windows_move(LOWORD(lParam), HIWORD(lParam)))
-            goto default_window_procedure;
-         break;
-      case WM_SIZE:
-         if (!on_windows_size(LOWORD(lParam), HIWORD(lParam)))
-            goto default_window_procedure;
-         break;
-      default:
-         goto default_window_procedure;
-      }
-
-      return 0;
-
-   default_window_procedure:
-
-      return DefWindowProc(hWnd, message, wParam, lParam);
-
-   }
-*/
    void simple_ui::GetWindowRect(RECT * prect)
    {
       ::GetWindowRect(m_window, prect);
