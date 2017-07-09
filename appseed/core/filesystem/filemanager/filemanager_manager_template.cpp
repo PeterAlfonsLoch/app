@@ -241,7 +241,9 @@ namespace filemanager
 
       m_pdoctemplateMain->m_bQueueDocumentOpening = false;
 
-      pdoc = m_pdoctemplateMain->open_document_file(pcreate);
+      m_pdoctemplateMain->request_create(pcreate);
+
+      pdoc = ::user::get_document(pcreate);
 
       if (pdoc.is_null())
       {
@@ -376,7 +378,9 @@ namespace filemanager
 
          pcreate->oprop("filemanager::callback") = pcallback;
 
-         pdoc = m_pdoctemplateMain->open_document_file(pcreate);
+         m_pdoctemplateMain->request_create(pcreate);
+
+         pdoc = ::user::get_document(pcreate);
 
          if (pdoc != NULL)
          {
@@ -482,7 +486,9 @@ namespace filemanager
 
          pcreate->oprop("filemanager::callback") = pcallback;
 
-         pdoc = m_pdoctemplate->open_document_file(pcreate);
+         m_pdoctemplate->request_create(pcreate);
+
+         pdoc = ::user::get_document(pcreate);
 
          if (pdoc != NULL)
          {
@@ -624,7 +630,9 @@ namespace filemanager
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
 
 
-      sp(manager) pdoc = (m_pdoctemplateChildList->open_document_file(createcontext));
+      m_pdoctemplateChildList->request_create(createcontext);
+
+      sp(manager) pdoc = ::user::get_document(createcontext);
 
       if(pdoc == NULL)
       {
@@ -633,10 +641,8 @@ namespace filemanager
 
       }
 
-      if(pdoc == NULL)
-         return NULL;
-
       pdoc->get_filemanager_data()->m_pmanager = pdoc;
+
       pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
 
       if(pdoc->get_filemanager_data()->m_strDISection.is_empty())
@@ -683,7 +689,9 @@ namespace filemanager
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
 
-      sp(manager) pdoc = (m_pdoctemplateFolderSelectionList->open_document_file(createcontext));
+      m_pdoctemplateFolderSelectionList->request_create(createcontext);
+
+      sp(manager) pdoc = ::user::get_document(createcontext);
 
       if(pdoc == NULL)
          return NULL;

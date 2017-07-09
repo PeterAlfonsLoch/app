@@ -152,15 +152,18 @@ namespace userstack
 
    void application::install_app(const char * psz)
    {
+
       UNREFERENCED_PARAMETER(psz);
+
    }
+
 
    void application::on_request(::create * pcreate)
    {
 
       ::asphere::application::on_request(pcreate);
 
-      m_ptemplate_pane->open_document_file(pcreate);
+      m_ptemplate_pane->request_create(pcreate);
 
    }
 

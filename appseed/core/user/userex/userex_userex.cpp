@@ -1515,7 +1515,7 @@ namespace core
 
          createcontext->m_spCommandLine->m_varFile = path;
 
-         puser->open_document_file(createcontext);
+         puser->request_create(createcontext);
 
       }
 
@@ -1524,7 +1524,9 @@ namespace core
    ::user::document * session::userex_on_request(::create * pcreate)
    {
 
-      return userex()->open_document_file(pcreate);
+      userex()->request_create(pcreate);
+
+      return ::user::get_document(pcreate);
 
    }
 

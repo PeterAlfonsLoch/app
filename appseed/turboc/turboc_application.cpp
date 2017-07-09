@@ -169,14 +169,14 @@ namespace turboc
       if(m_ptemplateHelloMultiverseMain->get_document_count() == 0)
       {
 
-         m_ptemplateHelloMultiverseMain->open_document_file(pcreate);
+         m_ptemplateHelloMultiverseMain->request_create(pcreate);
 
       }
 
       if(pcreate->m_spCommandLine->m_varFile.has_char())
       {
 
-         m_ptemplateHelloMultiverseView->open_document_file(pcreate);
+         m_ptemplateHelloMultiverseView->request_create(pcreate);
 
       }
 

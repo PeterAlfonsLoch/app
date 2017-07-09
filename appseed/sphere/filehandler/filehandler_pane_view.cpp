@@ -167,7 +167,7 @@ namespace filehandler
             /*               sp(::create) createcontext(get_app());
             createcontext->m_bMakeVisible = true;
             createcontext->m_puiParent = this;
-            rtprxsp(::document) pdoc = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->open_document_file(createcontext));
+            rtprxsp(::document) pdoc = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->request_create(createcontext));
             if(pdoc != NULL)
             {
             sp(::user::impact) pview = pdoc->get_view();

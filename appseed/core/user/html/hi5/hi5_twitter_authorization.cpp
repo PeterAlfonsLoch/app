@@ -62,7 +62,9 @@ namespace hi5
          createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").cast < ::user::interaction > ();
          createcontext->m_bOuterPopupAlertLike = true;
 
-         m_pdoc = (m_ptemplatePane->open_document_file(createcontext));
+         m_ptemplatePane->request_create(createcontext);
+
+         m_pdoc = ::user::get_document(createcontext);
 
          if(m_pdoc == NULL)
             return;

@@ -408,6 +408,12 @@ namespace user
          return ARGB(128, 0, 0, 128);
 
       }
+      else if(ecolor == color_split_layout_background)
+      {
+
+         return ARGB(128, 255, 255, 255);
+
+      }
 
       throw invalid_argument_exception(::get_thread_app());
 

@@ -83,7 +83,9 @@ namespace filehandler
 
       if(m_ppaneview == NULL)
       {
-         m_ptemplateMenu->open_document_file(pcreate);
+         
+         m_ptemplateMenu->request_create(pcreate);
+
       }
 
       if(m_ppaneview != NULL && pcreate->m_spCommandLine->m_varFile.get_type() == var::type_string)

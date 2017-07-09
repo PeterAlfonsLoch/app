@@ -144,7 +144,11 @@ namespace filemanager
          sp(::create) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(::user::document) pdoc = Session.filemanager().m_ptemplateForm->open_document_file(createcontext);
+         
+         Session.filemanager().m_ptemplateForm->request_create(createcontext);
+
+         sp(::user::document) pdoc = ::user::get_document(createcontext);
+
          if (pdoc == NULL)
             return;
          form * pformview = pdoc->get_typed_view < form >();
@@ -185,7 +189,10 @@ namespace filemanager
 
          createcontext->m_puiParent = this;
 
-         sp(operation_document) pdoc = (Session.filemanager().m_ptemplateOperation->open_document_file(createcontext));
+         Session.filemanager().m_ptemplateOperation->request_create(createcontext);
+
+         sp(operation_document) pdoc = ::user::get_document(createcontext);
+
 
          if (pdoc == NULL)
          {
@@ -241,7 +248,9 @@ namespace filemanager
 
          Session.filemanager().std().m_pdoctemplateChild->m_bQueueDocumentOpening = false;
 
-         sp(manager) pmanager = (Session.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
+         Session.filemanager().std().m_pdoctemplateChild->request_create(createcontext);
+
+         sp(manager) pmanager = ::user::get_document(createcontext);
 
          sp(simple_frame_window) pwndTopLevel = NULL;
 

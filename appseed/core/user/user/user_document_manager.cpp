@@ -936,14 +936,23 @@ namespace core
    }
 
 
-
    ::user::document * application::open_document_file(const char * lpszFileName)
    {
+      
       ASSERT(Application.m_pdocmanager != NULL);
+      
       sp(::create) cc(allocer());
+      
       cc->m_spCommandLine->m_varFile = lpszFileName;
-      return (Application.document_manager().open_document_file(cc));
+      
+      Application.document_manager().request_create(cc);
+
+      return ::user::get_document(cc);
+
    }
 
 
 } // namespace core
+
+
+

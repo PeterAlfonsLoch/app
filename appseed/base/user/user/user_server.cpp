@@ -9,7 +9,7 @@ namespace user
    ::user::document * server::open_new_document()
    {
 
-      return open_document_file(sp(::create)());
+      return open_document_file(var::type_null);
 
    }
 

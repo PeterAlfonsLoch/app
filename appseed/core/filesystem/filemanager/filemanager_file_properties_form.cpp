@@ -31,7 +31,11 @@ namespace filemanager
       sp(::create) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
-      sp(::user::document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
+      
+      m_ptemplatePane->request_create(createcontext);
+
+      sp(::user::document) pdoc = ::user::get_document(createcontext);
+
       sp(::userex::pane_tab_view) pview = pdoc->get_typed_view < ::userex::pane_tab_view > ();
       pview->set_view_creator(this);
       m_ptabview = pview;
