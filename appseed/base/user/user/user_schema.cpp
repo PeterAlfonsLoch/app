@@ -414,6 +414,24 @@ namespace user
          return ARGB(128, 255, 255, 255);
 
       }
+      else if (ecolor == color_list_background)
+      {
+
+         return ARGB(128, 255, 255, 255);
+
+      }
+      else if (ecolor == color_toolbar_background)
+      {
+
+         return ARGB(128, 255, 255, 255);
+
+      }
+      else if (ecolor == color_list_header_separator)
+      {
+
+         return ARGB(128, 0, 0, 0);
+
+      }
 
       throw invalid_argument_exception(::get_thread_app());
 
