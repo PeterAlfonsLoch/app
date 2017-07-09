@@ -708,7 +708,9 @@ namespace userex
 
       }
 
-      sp(::user::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
+      m_ptemplateForm->request_create(createcontext);
+
+      sp(::user::document) pdoc = ::user::get_document(createcontext);
 
       if (pdoc.is_null())
       {
@@ -789,7 +791,9 @@ namespace userex
 
       }
 
-      sp(::user::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
+      m_ptemplateForm->request_create(createcontext);
+
+      sp(::user::document) pdoc = ::user::get_document(createcontext);
 
       if (pdoc.is_null())
       {
@@ -873,7 +877,9 @@ namespace userex
 
       }
 
-      sp(::user::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
+      m_ptemplateChildForm->request_create(createcontext);
+
+      sp(::user::document) pdoc = ::user::get_document(createcontext);
 
       if (pdoc.is_null())
       {
@@ -947,7 +953,9 @@ namespace userex
 
       }
 
-      sp(::user::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
+      m_ptemplateChildForm->request_create(createcontext);
+
+      sp(::user::document) pdoc = ::user::get_document(createcontext);
 
       if (pdoc.is_null())
       {
@@ -1031,7 +1039,9 @@ namespace userex
 
       }
 
-      sp(::user::document) pdoc = psystem->open_document_file(createcontext);
+      psystem->request_create(createcontext);
+
+      sp(::user::document) pdoc = ::user::get_document(createcontext);
 
       if (pdoc.is_null())
       {
@@ -1056,7 +1066,9 @@ namespace userex
 
       createcontext->m_bHold           = false;
 
-      sp(::user::document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
+      m_ptemplatePlaceHolder->request_create(createcontext);
+
+      sp(::user::document) pdoc = ::user::get_document(createcontext);
 
       sp(::user::place_holder) pholder = pdoc->get_typed_view < ::user::place_holder  >();
 

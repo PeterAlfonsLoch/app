@@ -132,7 +132,7 @@ public:
 
    virtual sp(::user::wndfrm::frame::frame) create_frame_schema();
 
-   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, ::create * pcreate = NULL);
+   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * pParentWnd = NULL, ::create * pcreate = NULL) override;
 
    DECL_GEN_SIGNAL(_001OnActivate);
    DECL_GEN_SIGNAL(_001OnActivateApp);

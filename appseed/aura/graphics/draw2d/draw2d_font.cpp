@@ -7,6 +7,12 @@ namespace draw2d
 {
 
 
+   font::enum_item::enum_item() : m_ecs(cs_none) {}
+   font::enum_item::enum_item(string strName, e_cs ecs) : m_strFile(strName), m_strName(strName), m_ecs(ecs) {}
+   font::enum_item::enum_item(string strFile, string strName, e_cs ecs) : m_strFile(strFile), m_strName(strName), m_ecs(ecs) {}
+
+
+
    font::font()
    {
 

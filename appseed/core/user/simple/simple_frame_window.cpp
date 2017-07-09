@@ -1464,7 +1464,7 @@ void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, ::create * pcreate)
+bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, ::user::interaction * pParentWnd, ::create * pcreate)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);

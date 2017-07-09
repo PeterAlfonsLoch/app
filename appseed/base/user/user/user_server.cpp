@@ -36,8 +36,9 @@ namespace user
 
       sp(::create) cc(canew(::create(Application.creation(), varFile, bMakeVisible, puiParent)));
 
+      request_create(cc);
 
-      return open_document_file(cc);
+      return ::user::get_document(cc);
 
    }
 

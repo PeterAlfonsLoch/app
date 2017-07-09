@@ -303,6 +303,8 @@ namespace user
    };
 
 
+   CLASS_DECL_BASE ::user::document * get_document(::create * pcreate);
+
 } // namespace user
 
 

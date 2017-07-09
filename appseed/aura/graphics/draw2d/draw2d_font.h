@@ -73,9 +73,9 @@ namespace draw2d
          e_cs        m_ecs;
 
 
-         enum_item() : m_ecs(cs_none) {}
-         enum_item(string strName, e_cs ecs) : m_strName(strName), m_ecs(ecs) {}
-         enum_item(string strFile, string strName, e_cs ecs) : m_strFile(strFile), m_strName(strName), m_ecs(ecs) {}
+         enum_item();
+         enum_item(string strName, e_cs ecs);
+         enum_item(string strFile, string strName, e_cs ecs);
 
          bool operator < (const enum_item & item) const
          {

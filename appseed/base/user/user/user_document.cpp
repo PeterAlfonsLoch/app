@@ -1234,6 +1234,30 @@ namespace user
    }
 
 
+   ::user::document * get_document(::create * pcreate)
+   {
+
+      if (pcreate == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      if (pcreate->m_spCommandLine.is_null())
+      {
+
+         return NULL;
+
+      }
+
+
+      return pcreate->m_spCommandLine->m_varQuery["document"].cast < ::user::document >();
+
+
+   }
+
+
 } // namespace aura
 
 

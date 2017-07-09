@@ -572,7 +572,9 @@ namespace filemanager
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
 
-      sp(manager) pdoc = (m_pdoctemplateChild->open_document_file(createcontext));
+      m_pdoctemplateChild->request_create(createcontext);
+
+      sp(manager) pdoc = ::user::get_document(createcontext);
 
       if(pdoc == NULL)
          return NULL;
