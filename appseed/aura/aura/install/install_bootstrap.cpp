@@ -88,8 +88,6 @@ namespace install
 
       }
 
-      Application.defer_show_debug_box();
-
       Application.trace("--\r\n");
       Application.trace(":::::Installing install, app_app_admin, app_core_user_service and installer\r\n");
       Application.trace("***Installing ca2 Store Installer Application\r\n");
@@ -155,11 +153,11 @@ namespace install
 
       }
 
-      Application.trace("***Preparing bootstrap.install\r\n");
+      //Application.trace("***Preparing bootstrap.install\r\n");
 
-      Application.trace("Starting bootstrap.install\r\n");
+      //Application.trace("Starting bootstrap.install\r\n");
 
-      start_app_install_in_context(strPlatform, true);
+      //start_app_install_in_context(strPlatform, true);
 
       //if (strPlatform == "x86")
       //{

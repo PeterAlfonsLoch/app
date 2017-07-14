@@ -2326,6 +2326,63 @@
     <ClCompile Include="aura\install\_install.cpp">
       <Filter>Source Files\aura\install</Filter>
     </ClCompile>
+    <ClCompile Include="aura\install\install_window.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_trace_file.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_trace.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_tool.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_socket_thread.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_socket_handler.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_socket.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_small_bell.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_module_list.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_launcher.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_installer_square.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_installer_launcher.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_installer.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_install_item.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_install.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_focus.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_bootstrap.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install_application.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\install\install.cpp">
+      <Filter>Source Files\aura\install</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">

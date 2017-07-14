@@ -5,8 +5,7 @@ namespace install
 {
 
 
-   application::application(::aura::application * papp, bool bAdmin) :
-      ::object(papp),
+   application::application() :
       m_rxchannel(this)
    {
 
@@ -14,7 +13,7 @@ namespace install
       
       m_pwindow = NULL;
 
-      m_bAdmin = bAdmin;
+      m_bAdmin = false;
 
       m_dProgress = -1.0;
       
@@ -24,26 +23,13 @@ namespace install
 
       m_pthreadSsl = NULL;
 
-      m_pinstaller = new class ::install::installer(this);
-
-      ////////////////////////////////////////////////////////////
-      // configuration encryption system : with C:\\" hardware :-)
-      // short login               short password  access configuration
-      // |                         |               |
-      // -----------------------   --       --------
-      //                       |    |       |
-      if (file_exists_dup("C:\\ca2\\config\\system\\beg_debug_box.txt"))
-      {
-
-         debug_box("install_app", "install_app", 0);
-
-      }
-
       m_hinstance = ::GetModuleHandleA(NULL);
+
       m_hmutexSpabootInstall = NULL;
+
       m_emessage = message_none;
+
       m_bInstallerInstalling = false;
-      System.m_bMatterFromHttpCache = true;
 
       construct(NULL);
 
@@ -99,9 +85,9 @@ namespace install
 
       strMutex = "Global\\::ca2::fontopus::ca2_spaboot_install_" + process_platform_dir_name2() + "::7807e510-5579-11dd-ae16-0800200c7784";
 
-      m_hmutexSpabootInstall = ::CreateMutex(NULL, FALSE, strMutex);
+      m_spmutexAppInstall = canew(::mutex(this, false, strMutex));
 
-      if (::GetLastError() == ERROR_ALREADY_EXISTS)
+      if (m_spmutexAppInstall->already_exists())
       {
 
          m_iReturnCode = -202;
@@ -135,64 +121,13 @@ namespace install
    bool application::start_instance()
    {
 
+      defer_show_debug_box();
+
+      System.m_bMatterFromHttpCache = true;
+
+      m_pinstaller = new class ::install::installer(this);
+
       System.oprop("do_not_initialize_user_presence") = true;
-
-      xxdebug_box("install_app", "install_app", MB_OK);
-
-      if (__argc == 1)
-      {
-
-         ::file::path pathCa2 = (::dir::module() - 3);
-
-         string str = file_as_string_dup(pathCa2 / "spa.appinstall");
-
-         if (str.has_char())
-         {
-
-            return m_pinstaller->install(str);
-
-         }
-
-      }
-      //else if (__argc >= 2)
-      //{
-
-      //   ::file::path path;
-
-      //   path = __argv[1];
-
-      //   if (path.extension().compare_ci("appinstall") == 0)
-      //   {
-
-      //      string str = file_as_string_dup(path);
-
-      //      if (str.has_char())
-      //      {
-
-      //         return m_pinstaller->install(str);
-
-      //      }
-
-      //   }
-
-      //   string strCommandLine;
-
-      //   strCommandLine = ::str::international::unicode_to_utf8(::GetCommandLineW());
-
-      //   const char * pszCommand = strCommandLine;
-
-      //   string strFile = ::str::consume_command_line_argument(pszCommand);
-
-      //   string strCommand(pszCommand);
-
-      //   if (strCommand.has_char())
-      //   {
-
-      //      return m_pinstaller->install(strCommand);
-
-      //   }
-
-      //}
 
       return true;
 
@@ -205,7 +140,7 @@ namespace install
       ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
       // this is currently hard-coded:
-      System.dir().m_pathCa2Module = dir::program_files_x86() / "ca2/time/Win32/basis";
+      System.dir().m_pathCa2Module = dir::program_files_x86() / "ca2/time" / process_platform_dir_name() / System.get_system_configuration();
 
       System.dir().m_strCa2 = dir::program_files_x86() / "ca2";
 
@@ -276,10 +211,25 @@ namespace install
 
          ev64.wait();
 
-         if (!initialize_app_install())
+         ::file::path pathOfficialAdmin = System.dir().m_pathCa2Module / "app_app_admin.exe";
+
+         ::file::path pathThis = ::path::module();
+
+         if (pathThis.compare_ci(pathOfficialAdmin) == 0)
          {
 
-            System.post_quit();
+            if (!initialize_app_install())
+            {
+
+               System.post_quit();
+
+            }
+
+         }
+         else
+         {
+
+            start_program_files_app_app_admin(process_platform_dir_name());
 
          }
 
@@ -433,8 +383,6 @@ namespace install
          return -34;
 
       }
-
-      defer_show_debug_box();
 
       string str(::GetCommandLineW());
 

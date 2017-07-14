@@ -4969,6 +4969,9 @@
     <ClCompile Include="aura\install\install_window.cpp">
       <Filter>Source Files\aura\install</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\file\file_path.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">

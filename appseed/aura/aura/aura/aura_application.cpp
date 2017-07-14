@@ -6116,7 +6116,21 @@ namespace aura
 
       string strJson = Application.file().as_string(::dir::system() / "config" / strAppId / +"http.json");
 
-      Application.http().m_setHttp.parse_json(strJson);
+      if (strJson.has_char())
+      {
+
+         try
+         {
+
+            Application.http().m_setHttp.parse_json(strJson);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
 
       return true;
 

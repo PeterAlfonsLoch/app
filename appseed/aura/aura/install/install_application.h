@@ -76,9 +76,10 @@ namespace install
       ::aura::ipc::rx                  m_rxchannel;
 
       bool                             m_bInstallerInstalling;
+      sp(mutex)                        m_spmutexAppInstall;
 
 
-      application(::aura::application * papp, bool bAdmin = false);
+      application();
       virtual ~application();
 
 
