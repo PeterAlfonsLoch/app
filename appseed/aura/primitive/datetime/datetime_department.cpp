@@ -1293,107 +1293,108 @@ namespace datetime
    {
       str.make_lower();
       strCountryCode.make_lower();
+      double dTimeZoneOffset = 0.0;
       //Московское время (UTC+3)
       if (str == "msk")
       {
 
-         return 3.0;
+         dTimeZoneOffset = 3.0;
 
       }
       else if (str == "brt")
       {
 
-         return -3.0;
+         dTimeZoneOffset = -3.0;
 
       }
       else if (str == "cet")
       {
 
-         return 1.0;
+         dTimeZoneOffset = 1.0;
 
       }
       else if (str == "cest")
       {
 
-         return 2.0;
+         dTimeZoneOffset = 2.0;
 
       }
       else if (str == "eet")
       {
 
-         return 2.0;
+         dTimeZoneOffset = 2.0;
 
       }
       else if (str == "eest")
       {
 
-         return 3.0;
+         dTimeZoneOffset = 3.0;
 
       }
       else if (str == "pdt")
       {
 
-         return -7.0;
+         dTimeZoneOffset = -7.0;
 
       }
       else if (str == "est")
       {
 
-         return -5.0;
+         dTimeZoneOffset = -5.0;
 
       }
       else if (str == "edt")
       {
 
-         return -4.0;
+         dTimeZoneOffset = -4.0;
 
       }
       else if (str == "mst")
       {
 
-         return -7.0;
+         dTimeZoneOffset = -7.0;
 
       }
       else if (str == "mdt")
       {
 
-         return -6.0;
+         dTimeZoneOffset = -6.0;
 
       }
       else if (str == "jst")
       {
 
-         return 9.0;
+         dTimeZoneOffset = 9.0;
 
       }
       else if (str == "west")
       {
 
-         return 1.0;
+         dTimeZoneOffset = 1.0;
 
       }
       else if (str == "art")
       {
 
-         return -3.0;
+         dTimeZoneOffset = -3.0;
 
       }
       else if (str == "clst")
       {
 
-         return -3.0;
+         dTimeZoneOffset = -3.0;
 
       }
       else if (str == "bst")
       {
 
-         return 1.0;
+         dTimeZoneOffset = 1.0;
 
       }
       else if (str == "cdt")
       {
 
-         return -5.0;
+         dTimeZoneOffset = -5.0;
 
       }
       else if (str == "cst")
@@ -1401,100 +1402,111 @@ namespace datetime
 
          if (strCountryCode == "cn")
          {
-            return 8.0;
+            
+            dTimeZoneOffset = 8.0;
+
          }
          else
          {
-            return -6.0;
+            
+            dTimeZoneOffset = -6.0;
+
          }
 
       }
       else if (str == "amt")
       {
 
-         return 4.0;
+         dTimeZoneOffset = 4.0;
 
       }
       else if (str == "aest")
       {
 
-         return 10.0;
+         dTimeZoneOffset = 10.0;
 
       }
       else if (str == "nzst")
       {
 
-         return 12.0;
+         dTimeZoneOffset = 12.0;
 
       }
       else if (str == "kst")
       {
 
-         return 9.0;
+         dTimeZoneOffset = 9.0;
 
       }
       else if (str == "pht")
       {
 
-         return 8.0;
+         dTimeZoneOffset = 8.0;
 
       }
       else if (str == "myt")
       {
 
-         return 8.0;
+         dTimeZoneOffset = 8.0;
 
       }
       else if (str == "hkt")
       {
 
-         return 8.0;
+         dTimeZoneOffset = 8.0;
 
       }
       else if (str == "ict")
       {
 
-         return 7.0;
+         dTimeZoneOffset = 7.0;
 
       }
       else if (str == "utc")
       {
 
-         return 0.0;
+         dTimeZoneOffset = 0.0;
 
       }
       else if (str == "alphatime")
       {
 
-         return -2.0;
+         dTimeZoneOffset = -2.0;
 
       }
       else if (str == "ist")
       {
 
-         return 5.5;
+         dTimeZoneOffset = 5.5;
 
       }
       else if (str == "adt")
       {
 
-         return -3.0;
+         dTimeZoneOffset = -3.0;
 
       }
       else if (str == "brst")
       {
 
-         return -2.0;
+         dTimeZoneOffset = -2.0;
 
       }
-      else
+      else if (!::math::convert_to_double(dTimeZoneOffset, str))
       {
 
          TRACE("ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str, strCountryCode);
 
-         return 0.0;
+      }
+      else if (!::math::convert_to_double(dTimeZoneOffset, strCountryCode))
+      {
+
+         TRACE("ERROR !! Missing timezone offset information for \"%s\" - \"%s\"", str, strCountryCode);
 
       }
+
+      return dTimeZoneOffset;
+
 
    }
 

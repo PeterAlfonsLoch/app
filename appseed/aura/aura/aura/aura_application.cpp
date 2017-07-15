@@ -1244,38 +1244,39 @@ namespace aura
             }
             else
             {
-               strParam.trim_left();
+               strParam = "";
+               //strParam.trim_left();
 
-               strsize iFind = strParam.find("%1");
+               //strsize iFind = strParam.find("%1");
 
-               if (iFind == 0 || iFind == 1)
-               {
+               ////if (iFind == 0 || iFind == 1)
+               //{
 
-                  if (strParam.get_length() <= 4)
-                  {
+               //   if (strParam.get_length() <= 4)
+               //   {
 
-                     strParam = "";
+               //      strParam = "";
 
-                  }
-                  else
-                  {
+               //   }
+               //   else
+               //   {
 
-                     if (iFind == 0)
-                     {
+               //      if (iFind == 0)
+               //      {
 
-                        strParam = strParam.Mid(2);
+               //         strParam = strParam.Mid(2);
 
-                     }
-                     else
-                     {
+               //      }
+               //      else
+               //      {
 
-                        strParam = strParam.Mid(4);
+               //         strParam = strParam.Mid(4);
 
-                     }
+               //      }
 
-                  }
-               }
-               else if(iFind >=2 )
+               //   }
+               //}
+               /*else if(iFind >=2 )
                {
 
                   if (strParam[iFind-1] == '\"' && strParam[iFind + 2] == '\"')
@@ -1299,7 +1300,7 @@ namespace aura
 
 
 
-               }
+               }*/
 
             }
 

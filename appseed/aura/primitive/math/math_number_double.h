@@ -19,6 +19,9 @@ namespace math
 
    };
 
+   
+   CLASS_DECL_AURA bool convert_to_double(double & d, string str);
+
 
 } // namespace math
 
