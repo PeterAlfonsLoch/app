@@ -552,7 +552,18 @@ namespace user
       ::draw2d::font_sp spfont;
 
       if (!get_font(spfont, efont, pui))
-         return false;
+      {
+
+         spfont.alloc(allocer());
+
+         if (!spfont->create_point_font(FONT_SANS, 12.0))
+         {
+
+            return false;
+
+         }
+
+      }
 
       if (spfont.is_null())
          return false;

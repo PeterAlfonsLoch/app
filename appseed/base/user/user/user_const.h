@@ -22,6 +22,7 @@ namespace user
       event_key_down,
       event_after_change_text,
       event_after_change_cur_sel,
+      event_after_change_cur_hover,
       event_timebar_change,
       event_menu_hover,
       event_context_menu_close,

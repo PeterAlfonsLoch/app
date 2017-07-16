@@ -45,6 +45,8 @@ namespace user
       string      get_cur_sel_face_name();
       int         get_cur_sel();
 
+      string      get_cur_hover_face_name();
+      int         get_cur_hover();
 
       DECL_GEN_SIGNAL(_001OnCreate);
 

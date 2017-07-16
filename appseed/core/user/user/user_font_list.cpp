@@ -130,8 +130,21 @@ namespace user
 
       ScreenToClient(&pt);
 
-      m_pfontlistdata->m_iHover = hit_test(pt);
+      int iHover = hit_test(pt);
 
+      if (m_pfontlistdata->m_iHover != iHover)
+      {
+
+         m_pfontlistdata->m_iHover = iHover;
+
+         ::user::control_event ev;
+         ev.m_puie = this;
+         ev.m_eevent = ::user::event_after_change_cur_hover;
+         ev.m_actioncontext = ::action::source_user;
+
+         BaseOnControlEvent(&ev);
+
+      }
 
    }
 
@@ -218,6 +231,22 @@ namespace user
 
    }
 
+   string font_list::get_cur_hover_face_name()
+   {
+
+      int iHover = get_cur_hover();
+
+      if (iHover < 0)
+      {
+
+         return "";
+
+      }
+
+      return m_pfontlistdata->m_itemptra[iHover]->m_strFont;
+
+   }
+
 
    int font_list::get_cur_sel()
    {
@@ -240,6 +269,26 @@ namespace user
 
    }
 
+   int font_list::get_cur_hover()
+   {
+
+      if (m_pfontlistdata->m_iHover < 0)
+      {
+
+         return -1;
+
+      }
+
+      if (m_pfontlistdata->m_iHover >= m_pfontlistdata->m_itemptra.get_count())
+      {
+
+         return -1;
+
+      }
+
+      return m_pfontlistdata->m_iHover;
+
+   }
 
    int font_list::hit_test(point pt)
    {
