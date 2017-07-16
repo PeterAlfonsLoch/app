@@ -79,8 +79,9 @@ namespace http
                }
                if (!strcmp(slask, m_strBoundary))
                {
+                  bool bRead;
                   // get headers until is_empty line
-                  while(infil->read_string(slask))
+                  while((bRead = infil->read_string(slask)))
                   {
                      slask.trim();
                      if(slask.is_empty())
@@ -141,6 +142,12 @@ namespace http
                            }
                         }
                      }
+                  }
+                  if (!bRead)
+                  {
+
+                     break;
+
                   }
                   // read content, save...?
                   if (current_filename.is_empty()) // not a file
