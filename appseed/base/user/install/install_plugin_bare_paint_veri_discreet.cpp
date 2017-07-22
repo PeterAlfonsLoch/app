@@ -125,7 +125,7 @@ namespace hotplugin
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_clear_type_grid_fit);
 
-      pgraphics->TextOut(rectBar.left, rectBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
+      pgraphics->text_out(rectBar.left, rectBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
 
    }
 

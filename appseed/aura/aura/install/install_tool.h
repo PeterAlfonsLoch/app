@@ -44,9 +44,12 @@ namespace install
 
       virtual bool get_admin();
 
-
+#ifdef WINDOWS
+      
       virtual void run_vcredist(string strPlatform);
-
+      
+#endif
+      
 
    };
 

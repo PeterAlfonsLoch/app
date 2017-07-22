@@ -51,7 +51,7 @@ public:
    index remove(ARG_TYPE t, index find, index last = -1, ::count countMin = 0, ::count countMax = -1);
    typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator it);
    typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last);
-   index erase(ARG_TYPE t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   //index remove(ARG_TYPE t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
    ::count remove(const comparable_eq_array & a);
 
 
@@ -405,12 +405,12 @@ remove(ARG_TYPE t)
 
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-erase(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
-{
-   return remove(t, find, last, countMin, countMax);
-}
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+//::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+//erase(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
+//{
+//   return remove(t, find, last, countMin, countMax);
+//}
 
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >

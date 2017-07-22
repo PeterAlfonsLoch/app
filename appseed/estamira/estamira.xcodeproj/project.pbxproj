@@ -28,6 +28,11 @@
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
 		9A8CCAE617EA060200F87A02 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8CCAE317EA060200F87A02 /* libbase.dylib */; };
+		9AD4320F1F219B9400E3E8D4 /* estamira_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4320B1F219B9400E3E8D4 /* estamira_application.cpp */; };
+		9AD432101F219B9400E3E8D4 /* estamira_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4320C1F219B9400E3E8D4 /* estamira_application.h */; };
+		9AD432111F219B9400E3E8D4 /* estamira_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4320D1F219B9400E3E8D4 /* estamira_main_frame.cpp */; };
+		9AD432121F219B9400E3E8D4 /* estamira_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4320E1F219B9400E3E8D4 /* estamira_main_frame.h */; };
+		9AD432141F219BC200E3E8D4 /* libmultimedia.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD432131F219BC200E3E8D4 /* libmultimedia.dylib */; };
 		9AF2A8971D5C015700E6D5ED /* estamira_character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A342C311D5B6DFB00D00D4A /* estamira_character.cpp */; };
 		9AF2A8981D5C015700E6D5ED /* estamira_game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A342C331D5B6DFB00D00D4A /* estamira_game.cpp */; };
 		9AF2A8991D5C015700E6D5ED /* estamira_tileset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A342C3A1D5B6DFB00D00D4A /* estamira_tileset.cpp */; };
@@ -121,6 +126,11 @@
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A8CCAE317EA060200F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
+		9AD4320B1F219B9400E3E8D4 /* estamira_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = estamira_application.cpp; sourceTree = "<group>"; };
+		9AD4320C1F219B9400E3E8D4 /* estamira_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = estamira_application.h; sourceTree = "<group>"; };
+		9AD4320D1F219B9400E3E8D4 /* estamira_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = estamira_main_frame.cpp; sourceTree = "<group>"; };
+		9AD4320E1F219B9400E3E8D4 /* estamira_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = estamira_main_frame.h; sourceTree = "<group>"; };
+		9AD432131F219BC200E3E8D4 /* libmultimedia.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmultimedia.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libmultimedia.dylib; sourceTree = "<group>"; };
 		9AF2A89F1D5C016900E6D5ED /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core_games-ios-fvkesstseiuvxaailshqhsemyyrk/Build/Products/Debug-iphonesimulator/libios_aura.dylib"; sourceTree = "<group>"; };
 		9AF2A8A01D5C016900E6D5ED /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core_games-ios-fvkesstseiuvxaailshqhsemyyrk/Build/Products/Debug-iphonesimulator/libios_axis.dylib"; sourceTree = "<group>"; };
 		9AF2A8A11D5C016900E6D5ED /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core_games-ios-fvkesstseiuvxaailshqhsemyyrk/Build/Products/Debug-iphonesimulator/libios_base.dylib"; sourceTree = "<group>"; };
@@ -154,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD432141F219BC200E3E8D4 /* libmultimedia.dylib in Frameworks */,
 				9A342C4E1D5B6E3900D00D4A /* libaxis.dylib in Frameworks */,
 				9A342C4C1D5B6E3300D00D4A /* libaura.dylib in Frameworks */,
 				9A8CCAE617EA060200F87A02 /* libbase.dylib in Frameworks */,
@@ -167,6 +178,7 @@
 		07B65765190F3CA2002DAADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AD432131F219BC200E3E8D4 /* libmultimedia.dylib */,
 				9AF2A89F1D5C016900E6D5ED /* libios_aura.dylib */,
 				9AF2A8A01D5C016900E6D5ED /* libios_axis.dylib */,
 				9AF2A8A11D5C016900E6D5ED /* libios_base.dylib */,
@@ -241,6 +253,10 @@
 		9ACABEAC17BD04FF004C3F85 /* estamira */ = {
 			isa = PBXGroup;
 			children = (
+				9AD4320B1F219B9400E3E8D4 /* estamira_application.cpp */,
+				9AD4320C1F219B9400E3E8D4 /* estamira_application.h */,
+				9AD4320D1F219B9400E3E8D4 /* estamira_main_frame.cpp */,
+				9AD4320E1F219B9400E3E8D4 /* estamira_main_frame.h */,
 				9A342C2D1D5B6DFB00D00D4A /* estamira */,
 				9A342C311D5B6DFB00D00D4A /* estamira_character.cpp */,
 				9A342C321D5B6DFB00D00D4A /* estamira_character.h */,
@@ -264,9 +280,11 @@
 			files = (
 				9A342C471D5B6DFB00D00D4A /* estamira_tileset.h in Headers */,
 				9A342C441D5B6DFB00D00D4A /* estamira_game.h in Headers */,
+				9AD432121F219B9400E3E8D4 /* estamira_main_frame.h in Headers */,
 				9A342C421D5B6DFB00D00D4A /* estamira_character.h in Headers */,
 				9A342C401D5B6DFB00D00D4A /* estamira.h in Headers */,
 				9A57509F16AAB9A1000CC4EF /* framework.h in Headers */,
+				9AD432101F219B9400E3E8D4 /* estamira_application.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +444,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD4320F1F219B9400E3E8D4 /* estamira_application.cpp in Sources */,
 				9A342C461D5B6DFB00D00D4A /* estamira_tileset.cpp in Sources */,
+				9AD432111F219B9400E3E8D4 /* estamira_main_frame.cpp in Sources */,
 				9A342C481D5B6DFB00D00D4A /* estamira.cpp in Sources */,
 				9A342C411D5B6DFB00D00D4A /* estamira_character.cpp in Sources */,
 				9A342C431D5B6DFB00D00D4A /* estamira_game.cpp in Sources */,
@@ -597,7 +617,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
@@ -656,7 +676,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;

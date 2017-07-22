@@ -137,9 +137,9 @@ namespace visual
 
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 
-      pgraphics->TextOut(rect.left, rect.top, psz);
+      pgraphics->text_out(rect.left, rect.top, psz);
       pgraphics->BeginPath();
-      pgraphics->TextOut(rect.left, rect.top, psz);
+      pgraphics->text_out(rect.left, rect.top, psz);
       pgraphics->EndPath();
       pgraphics->StrokePath();
 
@@ -197,10 +197,10 @@ namespace visual
       ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop, str, iLen);
 #endif
 
-      //pgraphics->TextOut(rect.left, rect.top, str);
+      //pgraphics->text_out(rect.left, rect.top, str);
 //      pgraphics->BeginPath();
 //      ::TextOutW((HDC)pgraphics->get_os_data(), rect.left, rect.top, lpcsz, iLen);
-      //pgraphics->TextOut(rect.left, rect.top, str);
+      //pgraphics->text_out(rect.left, rect.top, str);
 //      pgraphics->EndPath();
 //      pgraphics->StrokePath();
 
@@ -229,7 +229,7 @@ namespace visual
       UNREFERENCED_PARAMETER(iCharsPositions);
       UNREFERENCED_PARAMETER(lpiCharsPositions);
 
-      pgraphics->TextOut(lpcrect.left, lpcrect.top, psz);
+      pgraphics->text_out(lpcrect.left, lpcrect.top, psz);
       return;
 
       string str;
@@ -241,9 +241,9 @@ namespace visual
    void api::EmbossedTextOut(::draw2d::graphics * pgraphics, const RECT & rect, double dHeight, double dRateX, const char * psz)
    {
 
-      pgraphics->TextOut(rect.left, rect.top, psz);
+      pgraphics->text_out(rect.left, rect.top, psz);
       pgraphics->BeginPath();
-      pgraphics->TextOut(rect.left, rect.top, psz);
+      pgraphics->text_out(rect.left, rect.top, psz);
       pgraphics->EndPath();
       pgraphics->StrokePath();
 

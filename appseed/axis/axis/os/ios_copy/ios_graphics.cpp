@@ -38,7 +38,7 @@ device_context::device_context()
 
 
 
-CGColorRef mac_create_color(COLORREF cr)
+CGColorRef cg_create_color(COLORREF cr)
 {
    
    // Create a color and add it as an attribute to the string.
@@ -56,7 +56,7 @@ CGColorRef mac_create_color(COLORREF cr)
 }
 
 
-WINBOOL mac_release_color(CGColorRef colorref)
+WINBOOL cg_release_color(CGColorRef colorref)
 {
    CGColorRelease(colorref);
     return TRUE;
@@ -96,8 +96,8 @@ HDC GetDC(oswindow hwnd)
     /* ... Quartz Drawing Commands ... */
     
     
-    hdc->m_cgcolorrefText = mac_create_color(0);
-    hdc->m_cgcolorrefBk = mac_create_color(RGB(255, 255, 255));
+    hdc->m_cgcolorrefText = cg_create_color(0);
+    hdc->m_cgcolorrefBk = cg_create_color(RGB(255, 255, 255));
     
     return hdc;
     
@@ -278,8 +278,8 @@ WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psiz
 WINBOOL SetTextColor(HDC hdc, COLORREF crText)
 {
    
-   mac_release_color(hdc->m_cgcolorrefText);
-   hdc->m_cgcolorrefText = mac_create_color(crText);
+   cg_release_color(hdc->m_cgcolorrefText);
+   hdc->m_cgcolorrefText = cg_create_color(crText);
    return TRUE;
 }
 
@@ -480,14 +480,14 @@ bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
 
 void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)
 {
-   CGColorRef color = mac_create_color(clr);
+   CGColorRef color = cg_create_color(clr);
    CGRect rect;
    rect.origin.x = lpRect->left;
    rect.origin.y = lpRect->top;
    rect.size.width = lpRect->right - lpRect->left;
    rect.size.height = lpRect->bottom - lpRect->top;
    CGContextFillRect(hdc->m_cgcontext, rect);
-   mac_release_color(color);
+   cg_release_color(color);
 }
 
 HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam);

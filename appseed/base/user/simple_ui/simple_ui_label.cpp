@@ -74,7 +74,7 @@ namespace simple_ui
 
       GetWindowText(strText);
 
-      pgraphics->TextOut(rectClient.left, (int32_t)(rectClient.top + fMargin), strText);
+      pgraphics->text_out(rectClient.left, (int32_t)(rectClient.top + fMargin), strText);
 
    }
 

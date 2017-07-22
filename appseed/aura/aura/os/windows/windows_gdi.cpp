@@ -496,7 +496,7 @@ namespace draw2d
                if (ecs != ::draw2d::font::cs_ansi && ecs != ::draw2d::font::cs_default)
                {
 
-                  output_debug_string("test");
+                  output_debug_string("test02");
 
                }
 
@@ -739,7 +739,7 @@ CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib)
    //PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
    //SetTextColor(hMemDC,RGB(0,0,0));
    //SetBkMode(hMemDC,TRANSPARENT);
-   //TextOut(hMemDC,0,9,"rgba",4);
+   //text_out(hMemDC,0,9,"rgba",4);
    //SelectObject(hMemDC,hOldBitmap);
    //DeleteDC(hMemDC);
 

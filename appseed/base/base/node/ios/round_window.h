@@ -29,7 +29,7 @@ bool m_bDirty;
    void * m_proundwindow;
 #endif
    
-   
+  
    virtual void round_window_draw(CGContextRef cgc) = 0;
    virtual void round_window_mouse_down(double x, double y) = 0;
    virtual void round_window_mouse_up(double x, double y) = 0;

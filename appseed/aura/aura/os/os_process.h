@@ -70,3 +70,8 @@ CLASS_DECL_AURA bool is_shared_library_busy(const stringa & stra);
 
 
 CLASS_DECL_AURA bool launch_application(::aura::application * papp, const string & strAppId, const string & strParams, int iBitCount);
+
+
+
+
+int32_t shell_execute_sync(const char * pszFile, const char * pszParams);

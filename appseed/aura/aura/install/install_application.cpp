@@ -22,8 +22,11 @@ namespace install
       m_dProgress2 = -1.0;
 
       m_pthreadSsl = NULL;
+#ifdef WINDOWS
 
       m_hinstance = ::GetModuleHandleA(NULL);
+      
+#endif
 
       m_hmutexSpabootInstall = NULL;
 
@@ -137,7 +140,10 @@ namespace install
    void application::on_request(::create * pcreate)
    {
 
+#ifdef WINDOWS
       ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+      
+#endif
 
       // this is currently hard-coded:
       System.dir().m_pathCa2Module = dir::program_files_x86() / "ca2/time" / process_platform_dir_name() / System.get_system_configuration();
@@ -165,7 +171,10 @@ namespace install
             try
             {
 
+#ifdef WINDOWS
                ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+               
+#endif
 
                m_bootstrap["admin:x86"] = new bootstrap(this);
 
@@ -189,6 +198,7 @@ namespace install
             try
             {
 
+#ifdef WINDOWS
                ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
                m_bootstrap["admin:x64"] = new bootstrap(this);
@@ -197,6 +207,7 @@ namespace install
 
                m_bootstrap["admin:x64"]->admin_main("x64");
 
+#endif
             }
             catch (...)
             {
@@ -316,6 +327,8 @@ namespace install
          m_pwindow = new window(this);
 
       }
+      
+#ifdef WINDOWS
 
       if (!::IsWindow(m_pwindow->m_hwnd))
       {
@@ -335,6 +348,8 @@ namespace install
          return false;
 
       }
+      
+#endif
 
       return true;
 
@@ -350,6 +365,8 @@ namespace install
          return true;
 
       }
+      
+#ifdef WINDOWS
 
       if (!::IsWindow(m_pwindow->m_hwnd))
       {
@@ -364,6 +381,8 @@ namespace install
          return false;
 
       }
+      
+#endif
 
       return true;
 
@@ -441,8 +460,12 @@ namespace install
 
       m_bootstrap[strPlatform]->m_pthreadInstall = ::fork(this, [=]()
       {
-
+         
+#ifdef WINDOWS
+         
          ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+         
+#endif
 
          m_bootstrap[strPlatform]->m_strPlatform = strPlatform;
 
@@ -682,6 +705,8 @@ namespace install
             // if dll loads consider good state
 
             string strDll = dir::stage(process_platform_dir_name()) / strName + ".dll";
+            
+#ifdef WINDOWS
 
             HMODULE hmodule = ::LoadLibraryW(wstring(strDll));
 
@@ -693,10 +718,14 @@ namespace install
                ::FreeLibrary(hmodule);
 
             }
+            
+#endif
 
             return bOk;
 
          }
+         
+#ifdef WINDOWS
 
          SHELLEXECUTEINFOW sei = {};
 
@@ -712,6 +741,8 @@ namespace install
             return TRUE;
 
          }
+         
+#endif
 
       }
 
@@ -759,6 +790,8 @@ namespace install
             if (!bLaunch)
             {
 
+               
+#ifdef WINDOWS
                // if dll loads consider good state
 
                HMODULE hmodule = ::LoadLibraryW(wstring(strDll));
@@ -771,10 +804,13 @@ namespace install
                   ::FreeLibrary(hmodule);
 
                }
+#endif
 
                return bOk;
 
             }
+            
+#ifdef WINDOWS
 
             wstring wstrParams(": app=" + strId );
 
@@ -794,6 +830,8 @@ namespace install
                return TRUE;
 
             }
+            
+#endif
 
          }
 
@@ -844,6 +882,8 @@ namespace install
          m_pthreadSsl->m_iSsl = 1;
 
          m_pthreadSsl->m_strIp = "127.0.0.1";
+         
+#ifdef WINDOWS
 
          m_pthreadSsl->m_strCat = "cat://" + read_resource_as_string_dup(NULL, ID_ONE, "CAT");
 
@@ -891,6 +931,8 @@ namespace install
             }
 #endif
          }
+         
+#endif
 
          m_pthreadSsl->begin();
 
@@ -973,6 +1015,8 @@ namespace install
 
    bool application::register_spa_file_type()
    {
+      
+#ifdef WINDOWS
 
       HKEY hkey;
 
@@ -1043,6 +1087,8 @@ namespace install
          Sleep(84);
 
       }
+      
+#endif
 
       return true;
 
@@ -1052,6 +1098,8 @@ namespace install
 
    void application::start_program_files_app_app_admin(string strPlatform)
    {
+      
+#ifdef WINDOWS
 
       SHELLEXECUTEINFOW sei = {};
 
@@ -1074,6 +1122,8 @@ namespace install
       sei.lpFile = wstr.c_str();
       ::ShellExecuteExW(&sei);
       DWORD dwGetLastError = GetLastError();
+      
+#endif
 
    }
 

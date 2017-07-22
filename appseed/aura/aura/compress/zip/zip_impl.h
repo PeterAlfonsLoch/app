@@ -56,7 +56,7 @@ extern "C" {
 
 
 #ifndef _ZLIBIOAPI_H
-#include "ioapi.h"
+#include "zip_ioapi.h"
 #endif
 
 

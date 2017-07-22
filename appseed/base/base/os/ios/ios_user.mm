@@ -117,29 +117,6 @@ WINBOOL set_nswindow_frame(oswindow hwnd,oswindow hwndAfter, LPCRECT lpcrect, in
 }
 
 
-WINBOOL move_nswindow(oswindow hwnd, int x, int y)
-{
-   
-   //   RECT rect;
-   
-   //   get_nswindow_rect(hwnd, &rect);
-   
-   CGRect rect = [[UIScreen mainScreen] bounds];
-   
-   CGPoint point;
-   
-   point.x = x;
-
-   point.y = rect.size.height - y;
-   
-   //   printf("\nmove nswindow (%f, %f)", point.x, point.y);
-   
-//   [hwnd->window() setFrameTopLeftPoint : point];
-   
-   return 1;
-   
-}
-
 
 WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
 {
@@ -299,14 +276,6 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect);
 //}
 
 
-
-
-void ns_redraw_window(oswindow w)
-{
-   
-//   [w->window() display];
-   
-}
 
 
 WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)

@@ -411,6 +411,20 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    return TRUE;
 }
 
+WINBOOL SetWindowRect(oswindow hwnd, LPRECT lprect)
+{
+   
+   if(hwnd == NULL)
+      return FALSE;
+   
+hwnd->m_x = lprect->left;
+hwnd->m_y = lprect->top;
+hwnd->m_cx = lprect->right - lprect->left ;
+hwnd->m_cy = lprect->bottom - lprect->top;
+   
+   return TRUE;
+   
+}
 
 
 

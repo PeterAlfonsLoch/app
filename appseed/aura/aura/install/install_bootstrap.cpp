@@ -1,14 +1,18 @@
 #include "framework.h"
-#include "aura/aura/node/windows/windows_registry.h"
-#include <stdio.h>
+#ifdef WINDOWS
 #include <shellapi.h>
 #include <shlobj.h>
+#include "aura/aura/node/windows/windows_registry.h"
+#endif
+#include <stdio.h>
 
+
+#ifdef WINDOWS
 
 
 typedef BOOL(WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
 
-bool getWindowsBit(bool & isWindows64bit)
+bool get_os_bit(bool & isWindows64bit)
 {
 #if _WIN64
 
@@ -48,6 +52,19 @@ bool getWindowsBit(bool & isWindows64bit)
 
 #endif
 }
+
+#else
+
+bool get_os_bit(bool & b64)
+{
+   
+   b64 = true;
+   
+   return true;
+   
+}
+
+#endif
 
 namespace install
 {
@@ -894,8 +911,11 @@ namespace install
 
       straFile.add("app_app_admin");
       straFile.add("install");
+#ifdef WINDOWS
       straFile.add("vcredist");
-
+#endif
+      
+      
       status.m_lTotal = straFile.size();
       status.m_lProcessing = status.m_lTotal;
       status.m_lOk = 0;
@@ -956,6 +976,7 @@ namespace install
 
          string strApplication = dir::stage(strPlatform) / "app_core_user_service.exe";
 
+#ifdef WINDOWS
          SHELLEXECUTEINFOW sei = {};
 
          wstring wstrFile(strApplication);
@@ -974,8 +995,14 @@ namespace install
             return FALSE;
 
          }
+#else
+   
+         throw todo(get_app());
+         
+#endif
 
       }
+      
 
       if (!do_app_app("app-core/user_service"))
       {
@@ -992,6 +1019,7 @@ namespace install
 
    }
 
+#ifdef WINDOWS
    
    bool bootstrap::is_vcredist_installed(string strPlatform)
    {
@@ -1000,7 +1028,7 @@ namespace install
 
       bool bInstalled = false;
 
-      getWindowsBit(b64);
+      get_os_bit(b64);
 
       string strKey;
 
@@ -1027,6 +1055,7 @@ namespace install
          }
 
       }
+      
       
       ::windows::registry::Key key(HKEY_LOCAL_MACHINE, strKey, false);
 
@@ -1175,6 +1204,8 @@ namespace install
       return "";
 
    }
+   
+#endif
 
 
    int bootstrap::check_app_app_bin(string strPlatform)
@@ -1270,7 +1301,7 @@ namespace install
 
          string str = ::path::app_app(strPlatform);
 
-         if (!::CopyFileW(u16(strTempSpa.c_str()).c_str(), u16(str), FALSE))
+         if (!Application.file().copy(str, strTempSpa, false))
          {
 
             return 0;
@@ -1323,7 +1354,7 @@ namespace install
 
          }
 
-         if (!::CopyFileW(u16(strTempSpa).c_str(), u16(str), FALSE))
+         if (!Application.file().copy(str, strTempSpa, false))
          {
 
             return 0;
@@ -1336,6 +1367,9 @@ namespace install
             return 0;
 
          }
+         
+         
+#ifdef WINDOWS
 
 
          SHELLEXECUTEINFOW sei = {};
@@ -1418,6 +1452,8 @@ namespace install
             ::CloseHandle(sei.hProcess);
 
          }
+
+#endif
 
       }
 

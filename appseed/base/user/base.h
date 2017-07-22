@@ -173,66 +173,66 @@ namespace user
 
 
 
-#if defined(__cplusplus) || defined(__cplusplus_winrt)
-
-
-namespace user
-{
-
-   class CLASS_DECL_BASE create_struct :
-#ifdef WINDOWSEX
-      public CREATESTRUCTW
-#else
-      public CREATESTRUCTA
-#endif
-   {
-   public:
-
-
-      create_struct & operator = (const RECT & rect)
-      {
-
-         x = rect.left;
-         y = rect.top;
-         cx = rect.right - rect.left;
-         cy = rect.bottom - rect.top;
-
-         return *this;
-
-      }
-
-
-      create_struct & operator = (LPCRECT lpcrect)
-      {
-
-         if (lpcrect == NULL)
-         {
-
-            x = 0;
-            y = 0;
-            cx = 0;
-            cy = 0;
-
-         }
-         else
-         {
-
-            operator = (*lpcrect);
-
-         }
-
-         return *this;
-
-      }
-
-
-   };
-
-
-} // namespace user
-
-
-#endif
+//#if defined(__cplusplus) || defined(__cplusplus_winrt)
+//
+//
+//namespace user
+//{
+//
+//   class CLASS_DECL_BASE create_struct :
+//#ifdef WINDOWSEX
+//      public CREATESTRUCTW
+//#else
+//      public CREATESTRUCTA
+//#endif
+//   {
+//   public:
+//
+//
+//      create_struct & operator = (const RECT & rect)
+//      {
+//
+//         x = rect.left;
+//         y = rect.top;
+//         cx = rect.right - rect.left;
+//         cy = rect.bottom - rect.top;
+//
+//         return *this;
+//
+//      }
+//
+//
+//      create_struct & operator = (LPCRECT lpcrect)
+//      {
+//
+//         if (lpcrect == NULL)
+//         {
+//
+//            x = 0;
+//            y = 0;
+//            cx = 0;
+//            cy = 0;
+//
+//         }
+//         else
+//         {
+//
+//            operator = (*lpcrect);
+//
+//         }
+//
+//         return *this;
+//
+//      }
+//
+//
+//   };
+//
+//
+//} // namespace user
+//
+//
+//#endif
 
 
 
@@ -265,7 +265,7 @@ using user_interaction = ::user::interaction;
 //#include "user/user/user_mouse_focus.h"
 //#include "base/user/user/user_elemental.h"
 //#include "user/user/user_check_interface.h"
-#include "axis/graphics/visual/visual_const.h"
+//#include "axis/graphics/visual/visual_const.h"
 #include "base/user/user/user_schema_simple_impl.h"
 #include "base/user/user/user_schema_layered_frame.h"
 //#include "user/user/user_text_interface.h"

@@ -38,6 +38,16 @@ namespace aura
       {
 
          m_strRoot = pszRoot;
+         
+         if(m_strRoot.find('/') > 0)
+         {
+         
+            m_strRoot = m_strRoot.substr(0, m_strRoot.find('/'));
+            
+            m_strCa2Name = pszRoot;
+            
+            
+         }
 
       }
 
@@ -458,31 +468,35 @@ void * library::get_os_data()
       {
 
          string strAppId = m_strCa2Name;
-
-         string strPrefix = get_root();
-
-#if defined(LINUX) || defined(APPLEOS)
-
-         ::str::begins_eat(strAppId,"lib");
-
-#elif defined(METROWIN)
-
-         //         strPrefix = "m_" + strPrefix;
-
-#endif
-
-         strPrefix.replace("-","_");
-
-         strPrefix += "_";
-
-         ::str::begins_eat_ci(strAppId,strPrefix);
-
-         //if(::str::begins_eat_ci(strAppId,strPrefix))
-         {
-
-            stra.add(strAppId);
-
-         }
+         
+         stra.add(strAppId);
+         
+//         
+//
+//         string strPrefix = get_root();
+//
+//#if defined(LINUX) || defined(APPLEOS)
+//
+//         ::str::begins_eat(strAppId,"lib");
+//
+//#elif defined(METROWIN)
+//
+//         //         strPrefix = "m_" + strPrefix;
+//
+//#endif
+//
+//         strPrefix.replace("-","_");
+//
+//         strPrefix += "_";
+//
+//         ::str::begins_eat_ci(strAppId,strPrefix);
+//
+//         //if(::str::begins_eat_ci(strAppId,strPrefix))
+//         {
+//
+//            stra.add(strAppId);
+//
+//         }
 
       }
 

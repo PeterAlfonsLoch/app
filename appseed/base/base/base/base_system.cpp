@@ -1084,6 +1084,10 @@ error:;
       if (!::axis::system::process_initialize())
          return false;
 
+      
+      System.factory().cloneable_large < window_buffer         >   (System.type_info < window_graphics               > ());
+      
+
 
       m_spos.alloc(allocer());
 

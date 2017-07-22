@@ -374,11 +374,13 @@ namespace install
 
    }
 
-
+#ifdef WINDOWS
 
    void tool::run_vcredist(string strPlatform)
    {
 
+#ifdef WINDOWS
+      
       SHELLEXECUTEINFOW sei = {};
 
       string str = ::path::vcredist(strPlatform);
@@ -430,10 +432,12 @@ namespace install
       }
 
       ::CloseHandle(sei.hProcess);
+      
+#endif
 
    }
 
-
+#endif
 
 
 

@@ -473,7 +473,7 @@ size preview_dc::ScaleWindowExt(int32_t xNum, int32_t xDenom, int32_t yNum, int3
 /////////////////////////////////////////////////////////////////////////////
 // Text Functions
 
-// private helpers for TextOut functions
+// private helpers for text_out functions
 
 __STATIC int32_t CLASS_DECL_DRAW2D_XLIB _AfxComputeNextTab(int32_t x, UINT nTabStops, LPINT lpnTabStops, int32_t nTabOrigin, int32_t nTabWidth)
 {
@@ -634,7 +634,7 @@ size preview_dc::ComputeDeltas(int32_t& x, const char * lpszString, UINT &nCount
    return sizeExtent;
 }
 
-int_bool preview_dc::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
+int_bool preview_dc::text_out(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
 {
    return ExtTextOut(x, y, 0, NULL, lpszString, nCount, NULL);
 }
@@ -789,8 +789,8 @@ int_bool preview_dc::GrayString(::draw2d::brush*,
             int_bool (CALLBACK *)(HDC, LPARAM, int32_t),
                LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t, int32_t)
 {
-   TRACE(::core::trace::category_AppMsg, 0, "TextOut() substituted for GrayString() in Print Preview.\n");
-   return TextOut(x, y, (const char *)lpData, nCount);
+   TRACE(::core::trace::category_AppMsg, 0, "text_out() substituted for GrayString() in Print Preview.\n");
+   return text_out(x, y, (const char *)lpData, nCount);
 }
 
 int32_t preview_dc::Escape(int32_t nEscape, int32_t nCount, const char * lpszInData, void * lpOutData)

@@ -61,9 +61,15 @@ namespace install
       virtual bool check_app_app_installation(string strPlatform);
 
       virtual int check_user_service(string strPlatform, bool bLaunch, DWORD & dwGoodToCheckAgain);
+      
+#ifdef WINDOWS
+      
       virtual int check_vcredist(string strPlatform);
       virtual int download_vcredist(string strPlatform);
       virtual string download_tmp_vcredist(string strPlatform);
+      
+#endif
+      
       virtual int check_app_app_bin(string strPlatform);
       virtual int download_app_app_bin(string strPlatform);
       virtual string download_tmp_app_app_bin(string strPlatform);
@@ -72,8 +78,9 @@ namespace install
       virtual string download_tmp_app_app_admin_bin(string strPlatform);
 
       virtual bool is_downloading_admin();
-
+#ifdef WINDOWS
       virtual bool is_vcredist_installed(string strPlatform);
+#endif
 
    };
 

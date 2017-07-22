@@ -28,11 +28,12 @@ namespace file
 
          virtual var length(const path & path,var * pvarQuery,::aura::application * papp);
 
-
+         using ::file::system::time_square;
+         
          template < class T >
          string time_square(::aura::application * papp,T * p,bool (T::*lpfnOutput)(ostream &,const path &),const path & lpszSource)
          {
-            string strTime = time_square(papp);
+            string strTime = this->time_square(papp);
             if(strTime.has_char())
                if(!output(strTime,p,lpfnOutput,lpszSource))
                   return "";

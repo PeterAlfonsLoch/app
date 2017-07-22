@@ -3,6 +3,7 @@
 #include "base/user/core_user.h"
 #include "base/user/user/user.h"
 #include "base/user/user/user_user.h"
+#include "base/user/all.h"
 
 
 
@@ -2915,6 +2916,8 @@ namespace macos
                   
                }
                
+               _001UpdateBuffer();
+               
                DWORD dwSpan = ::get_tick_count() - dwStart;
 
                if (dwSpan < 20)
@@ -3354,7 +3357,7 @@ namespace macos
       //            pgraphics, rectUpdate.left, rectUpdate.top,
       //            SRCCOPY);
       //
-      //         graphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);
+      //         graphics->text_out(0, 0, "Te Amo Carlinhos!!", 11);
       //      }
       //      catch(...)
       //      {

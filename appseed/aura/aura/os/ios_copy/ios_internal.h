@@ -278,8 +278,8 @@ public:
 
 
 
-CGColorRef mac_create_color(COLORREF crText);
-WINBOOL mac_release_color(CGColorRef colorref);
+CGColorRef cg_create_color(COLORREF crText);
+WINBOOL cg_release_color(CGColorRef colorref);
 
 
 

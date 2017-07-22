@@ -2,16 +2,16 @@
 //  macos_ns_exception.cpp
 //  aura
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 18/10/13.
+//  Created by Camilo Sasuke Tsumanuma on 21/07/17.
 //
 //
 
-#include "framework.h"
+#include "apple_ns_exception.h"
 
 
 ns_exception::ns_exception()
 {
-
+   
    m_iCode = 0;
    
 }
@@ -19,5 +19,5 @@ ns_exception::ns_exception()
 
 ns_exception::~ns_exception()
 {
-
+   
 }

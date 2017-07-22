@@ -4,6 +4,7 @@
 #include <wincodec.h>
 #endif
 
+#include "freeimage/Source/FreeImage.h"
 
 ////#include "ft2build.h"
 
@@ -104,9 +105,11 @@ namespace visual
 
 #else
 
-      todo(----;
+      todo(get_app());
+      
+      return false;
 
-#endif;
+#endif
 
 
    }

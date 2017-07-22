@@ -82,3 +82,65 @@ string get_display_error(uint32_t NTStatusMessage)
 
 
 
+
+
+
+int32_t shell_execute_sync(const char * pszFile, const char * pszParams)
+{
+   
+   wstring wstrFile = pszFile;
+   
+   wstring wstrParams = pszParams;
+   
+   SHELLEXECUTEINFOW sei = {};
+   
+   {
+      
+      sei.cbSize = sizeof(SHELLEXECUTEINFOW);
+      sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
+      sei.lpVerb = L"RunAs";
+      sei.lpFile = wstrFile.c_str();
+      sei.lpParameters = wstrParams.c_str();
+      ::ShellExecuteExW(&sei);
+      
+   }
+   
+   DWORD dwGetLastError = GetLastError();
+   
+   DWORD dwExitCode = 0;
+   
+   for (int i = 0; i < 10 * 1000; i++)
+   {
+      
+      if (::GetExitCodeProcess(sei.hProcess, &dwExitCode))
+      {
+         
+         if (dwExitCode != STILL_ACTIVE)
+         {
+            
+            break;
+            
+         }
+         
+      }
+      else
+      {
+         
+         Sleep(100);
+         
+         break;
+         
+      }
+      
+      Sleep(100);
+      
+   }
+   
+   ::CloseHandle(sei.hProcess);
+   
+   
+   
+}
+
+
+

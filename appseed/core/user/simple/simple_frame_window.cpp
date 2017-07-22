@@ -704,7 +704,7 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
    if(!pshow->m_bShow)
    {
 
-      output_debug_string("test");
+      output_debug_string("test07");
 
    }
 

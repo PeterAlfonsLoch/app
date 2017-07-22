@@ -1,23 +1,23 @@
 #include "framework.h"
 
-
-
-DWORD GetLastError()
-{
-    
-    return get_thread_int("dwLastError");
-    
-}
-
-
-DWORD SetLastError(DWORD dwLastError)
-{
-    
-    set_thread_int("dwLastError", (int) dwLastError);
-    
-    return dwLastError;
-    
-}
+//
+//
+//DWORD GetLastError()
+//{
+//    
+//    return get_thread_int("dwLastError");
+//    
+//}
+//
+//
+//DWORD SetLastError(DWORD dwLastError)
+//{
+//    
+//    set_thread_int("dwLastError", (int) dwLastError);
+//    
+//    return dwLastError;
+//    
+//}
 
 
 void Sleep(DWORD dwMillis)

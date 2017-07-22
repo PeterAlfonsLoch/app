@@ -2,7 +2,7 @@
 //  os.h
 //  aura
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 08/07/15.
+//  Created by Camilo Sasuke Tsumanuma on 08/07/15.
 //
 //
 

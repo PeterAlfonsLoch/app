@@ -266,12 +266,12 @@ namespace str
 
 extern "C"
 {
-   LONG __cdecl _InterlockedIncrement( LONG volatile * pn );
-   LONG __cdecl _InterlockedDecrement( LONG volatile * pn );
+   LONG __cdecl _gen_InterlockedIncrement( LONG volatile * pn );
+   LONG __cdecl _gen_InterlockedDecrement( LONG volatile * pn );
 };
 
-#pragma intrinsic( _InterlockedIncrement )
-#pragma intrinsic( _InterlockedDecrement )
+#pragma intrinsic( _gen_InterlockedIncrement )
+#pragma intrinsic( _gen_InterlockedDecrement )
 
 
       struct string_data;
@@ -304,8 +304,8 @@ extern "C"
 #else
    #ifdef _M_IX86
       #ifndef _M_CEE
-         #define _gen_InterlockedIncrement _InterlockedIncrement
-         #define _gen_InterlockedDecrement _InterlockedDecrement
+         #define _gen_InterlockedIncrement _gen_InterlockedIncrement
+         #define _gen_InterlockedDecrement _gen_InterlockedDecrement
       #else
          #define _gen_InterlockedIncrement InterlockedIncrement
          #define _gen_InterlockedDecrement InterlockedDecrement

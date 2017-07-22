@@ -106,7 +106,7 @@ namespace filemanager
       {
          baData.remove_last();
       }
-      if(!data_set(::aura::system::idEmpty, straData))
+      if(!data_save(::aura::system::idEmpty, straData))
          return false;
       try
       {
@@ -147,7 +147,7 @@ namespace filemanager
       {
          baData.remove_last();
       }
-      if(!data_set(::aura::system::idEmpty, straData))
+      if(!data_save(::aura::system::idEmpty, straData))
          return false;
       try
       {

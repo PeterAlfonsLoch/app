@@ -5,8 +5,7 @@ namespace aura
 {
 
 
-   app::app():
-      ::aura::system(this, NULL)
+   app::app()
    {
 
    }

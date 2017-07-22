@@ -11,7 +11,6 @@ typedef CLASS_DECL_AURA numeric_array < count > count_array;
 #include <initializer_list>
 #endif
 
-
 namespace constructor
 {
 
@@ -1176,12 +1175,7 @@ public:
 
 
    template < typename PRED >
-   void pred_sort(PRED pred)
-   {
-
-      ::sort::array::pred_sort(*this, pred);
-
-   }
+   void pred_sort(PRED pred);
 
 
    inline bool valid_iter(iterator first, iterator last)
@@ -1211,6 +1205,7 @@ public:
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
    typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
+   typedef typename array_base < TYPE, ARG_TYPE, ALLOCATOR >::iterator iterator;
 
 
 
@@ -1292,7 +1287,7 @@ public:
       for(index i = iStart; i <= iEnd; i++)
       {
 
-         a.add(element_at(i));
+         a.add(this->element_at(i));
          ca++;
 
       }
@@ -1354,10 +1349,10 @@ public:
    }
 
    template < typename ITERABLE >
-   array_base & copy_iter(const ITERABLE & iterable)
+   array_base< TYPE, ARG_TYPE ,  ALLOCATOR > & copy_iter(const ITERABLE & iterable)
    {
-
-      set_size(0, MAX(iterable.get_count(), 17));
+      
+      this->set_size(0, MAX(iterable.get_count(), 17));
 
       for (auto & item : iterable)
       {

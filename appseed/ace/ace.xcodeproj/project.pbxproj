@@ -10,7 +10,7 @@
 		07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65774190F3CA2002DAADE /* XCTest.framework */; };
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
-		07B6577B190F3CA2002DAADE /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_ace.dylib */; };
+		07B6577B190F3CA2002DAADE /* libios_ace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_ace.a */; };
 		07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B6577F190F3CA2002DAADE /* InfoPlist.strings */; };
 		9A26A05E1D7EDDD7001F47A8 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A05D1D7EDDD7001F47A8 /* version.c */; };
 		9A26A0941D7EDFA5001F47A8 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A05D1D7EDDD7001F47A8 /* version.c */; };
@@ -47,7 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07B65764190F3CA2002DAADE /* libios_ace.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_ace.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B65764190F3CA2002DAADE /* libios_ace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_ace.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65766190F3CA2002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B65773190F3CA2002DAADE /* ace_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ace_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65774190F3CA2002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -78,7 +78,7 @@
 			files = (
 				07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */,
 				07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */,
-				07B6577B190F3CA2002DAADE /* libios_ace.dylib in Frameworks */,
+				07B6577B190F3CA2002DAADE /* libios_ace.a in Frameworks */,
 				07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				9A574B9816AAB906000CC4EF /* libace.dylib */,
-				07B65764190F3CA2002DAADE /* libios_ace.dylib */,
+				07B65764190F3CA2002DAADE /* libios_ace.a */,
 				07B65773190F3CA2002DAADE /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -186,7 +186,7 @@
 			);
 			name = ios_ace;
 			productName = math_ios;
-			productReference = 07B65764190F3CA2002DAADE /* libios_ace.dylib */;
+			productReference = 07B65764190F3CA2002DAADE /* libios_ace.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B65772190F3CA2002DAADE /* ace_iosTests */ = {
@@ -322,6 +322,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -330,6 +332,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -462,6 +466,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

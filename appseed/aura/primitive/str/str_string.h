@@ -1234,7 +1234,7 @@ inline int32_t string::compare(const char * psz ) const
 }
 
 
-inline int32_t string::compare_ci(const char * psz ) const RELEASENOTHROW
+inline int32_t string::compare_ci(const char * psz ) const throw()
 {
    
    return( string_trait::StringCompareIgnore( GetString(), psz ) );

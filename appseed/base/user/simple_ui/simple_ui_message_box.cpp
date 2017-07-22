@@ -262,7 +262,7 @@ namespace simple_ui
       //for(int i = 0; i < m_stra.get_size(); i++)
       //{
 
-      //   pgraphics->TextOut(10,y,m_stra[i]);
+      //   pgraphics->text_out(10,y,m_stra[i]);
 
       //   y+= iHeight;
 

@@ -1,6 +1,8 @@
 #include "framework.h"
 #include <stdio.h>
+#ifdef WINDOWS
 #include <Shlobj.h>
+#endif
 
 
 namespace install
@@ -56,10 +58,11 @@ namespace install
 
    }
 
-
    int installer::install(string strCommand)
    {
 
+#ifdef WINDOWS
+      
       System.install().trace().ensure_trace_file();
 
       if (!m_machineevent.initialize())
@@ -752,6 +755,8 @@ namespace install
          }
 
       }
+      
+#endif
 
       return 0;
 
@@ -1418,6 +1423,7 @@ namespace install
       }
 
       return bOk;
+      
 
    }
 
@@ -2180,17 +2186,18 @@ namespace install
 
       throw "todo";
 
-#else
+#elif defined(WINDOWS)
 
       ::aura::ipc::tx txchannel(get_thread_app());
 
       if (!txchannel.open("core/spaboot_install_callback"))
          return;
 
-#endif
-
       ::PostMessage(txchannel.m_oswindow, WM_USER + 100, a, b);
 
+#endif
+
+      
    }
 
 
@@ -2910,6 +2917,7 @@ namespace install
    bool installer::reboot()
    {
 
+#ifdef WINDOWS
       HANDLE hToken;
 
       TOKEN_PRIVILEGES tkp;
@@ -2931,7 +2939,15 @@ namespace install
 
       tkp.Privileges[0].Attributes = 0;
 
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES)NULL, 0);
+      
+AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES)NULL, 0);
+      
+      #else
+      
+      throw todo(get_app());
+      
+#endif
+      
 
       return true;
 
@@ -2958,6 +2974,8 @@ namespace install
          return false;
 
       }
+      
+#ifdef WINDOWS
 
       SHELLEXECUTEINFOW sei = {};
 
@@ -2979,6 +2997,13 @@ namespace install
          return false;
 
       }
+      
+      
+#else
+      
+      throw todo(get_app());
+      
+#endif
 
       return true;
 
@@ -3020,58 +3045,12 @@ namespace install
 
    int32_t installer::app_install_synch(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch)
    {
-
-      SHELLEXECUTEINFOW sei = {};
-
-      wstring wstrFile = u16(dir::stage(process_platform_dir_name()) / "app");
-
-      wstring wstrParams = u16(string(pszCommandLine) + " install");
-
-      {
-
-         sei.cbSize = sizeof(SHELLEXECUTEINFOW);
-         sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
-         sei.lpVerb = L"RunAs";
-         sei.lpFile = wstrFile.c_str();
-         sei.lpParameters = wstrParams.c_str();
-         ::ShellExecuteExW(&sei);
-
-      }
-
-      DWORD dwGetLastError = GetLastError();
-
-      DWORD dwExitCode = 0;
-
-      for (int i = 0; i < 10 * 1000; i++)
-      {
-
-         if (::GetExitCodeProcess(sei.hProcess, &dwExitCode))
-         {
-
-            if (dwExitCode != STILL_ACTIVE)
-            {
-
-               break;
-
-            }
-
-         }
-         else
-         {
-
-            Sleep(100);
-
-            break;
-
-         }
-
-         Sleep(100);
-
-      }
-
-      ::CloseHandle(sei.hProcess);
-
-      return 0;
+      
+      string strFile = dir::stage(process_platform_dir_name()) / "app";
+      
+      string strParams = string(pszCommandLine) + " install";
+    
+      return shell_execute_sync(strFile, strParams);
 
    }
 
@@ -3178,6 +3157,8 @@ namespace install
 
 
 } // namespace app_app_admin
+
+
 
 
 

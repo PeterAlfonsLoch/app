@@ -71,19 +71,19 @@ namespace hotplugin
 
       //on_paint_progress(pgraphics, m_rect);
 
-      pgraphics->TextOut(lprect.left + 84, lprect.top + 84, strStatus);
+      pgraphics->text_out(lprect.left + 84, lprect.top + 84, strStatus);
 
       f->create_pixel_font(FONT_SANS_FX, 84, true);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->TextOut(lprect.left + 84, (int32_t)(lprect.top + 133 + 49 * 0.2), strProgress);
+      pgraphics->text_out(lprect.left + 84, (int32_t)(lprect.top + 133 + 49 * 0.2), strProgress);
 
       f->create_pixel_font(FONT_SANS_FX, 23);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->TextOut(lprect.left + 84, (int32_t)(lprect.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
+      pgraphics->text_out(lprect.left + 84, (int32_t)(lprect.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
 
    }
 

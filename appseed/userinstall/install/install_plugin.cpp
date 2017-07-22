@@ -1062,12 +1062,12 @@ namespace install
 
       /*string strx = itoa_dup(lprect->left);
       string stry = itoa_dup(lprect->top);
-      TextOut(hdcWindow, lprect->left + 10, lprect->top + 10, strx, strx.get_length());
-      TextOut(hdcWindow, lprect->left + 110, lprect->top + 10, stry, stry.get_length());
+      text_out(hdcWindow, lprect->left + 10, lprect->top + 10, strx, strx.get_length());
+      text_out(hdcWindow, lprect->left + 110, lprect->top + 10, stry, stry.get_length());
       string strx2 = itoa_dup(m_rect.left);
       string stry2 = itoa_dup(m_rect.top);
-      TextOut(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
-      TextOut(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
+      text_out(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
+      text_out(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
       */
          //hdc,       lprect->left, lprect->top, SRCCOPY);
       //::BitBlt(hdcWindow, m_rect.left, m_rect.top, cx, cy, hdc, 0, 0, SRCCOPY);

@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-//#include "freeimage/Source/FreeImage.h"
+#include "freeimage/Source/FreeImage.h"
 //#include "visual_FreeImageFileProc.h"
 
 /*uint32_t ___ReadProc    (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
@@ -91,6 +91,12 @@ long __TellProc (fi_handle handle)
 {
    return SetFilePointer(handle, 0, NULL, SEEK_CUR);
 }*/
+
+//#ifndef WINDOWS
+//
+//#define DLL_CALLCONV
+//
+//#endif
 
 
 uint32_t DLL_CALLCONV  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)

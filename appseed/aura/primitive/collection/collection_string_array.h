@@ -325,7 +325,7 @@ public:
          if (!a.contains(element_at(i)))
          {
 
-            remove_at(i);
+            this->remove_at(i);
 
          }
          else
@@ -350,7 +350,7 @@ public:
          if (!a.contains_ci(element_at(i)))
          {
 
-            remove_at(i);
+            this->remove_at(i);
 
          }
          else
@@ -3495,7 +3495,7 @@ template < class Type, class RawType >
 void string_array < Type, RawType > ::sort()
 {
    
-   pred_sort([](Type & a, Type & b) { return a.compare(b) < 0; });
+   this->pred_sort([](Type & a, Type & b) { return a.compare(b) < 0; });
 
 }
 

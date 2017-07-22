@@ -799,7 +799,7 @@ namespace datetime
 
             str = v["abbreviation"].get_string().lowered();
 
-            dZone = v["gmtoffset"].get_double() / 3600.0;
+            dZone = v["gmtOffset"].get_double() / 3600.0;
 
          }
          catch (...)

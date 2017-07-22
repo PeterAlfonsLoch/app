@@ -5,51 +5,6 @@
 #include "aura/compress/compress_gz.h"
 
 
-#ifdef MACOS
-
-bool macos_get_file_image(::draw2d::dib * pdib, const char * psz);
-#elif defined(LINUX)
-
-const char * basecore_get_file_icon_path(const char * pszPath, int iSize);
-string linux_get_file_icon_path(string strPath, int iSize)
-{
-
-   const char* psz = basecore_get_file_icon_path(strPath, iSize);
-
-   if (psz == NULL)
-   {
-      return "";
-   }
-
-   string str = psz;
-
-   free((void*)psz);
-
-   return str;
-
-}
-
-const char * basecore_get_file_content_type(const char * pszFile);
-string linux_get_file_content_type(string strPath)
-{
-
-   const char* psz = basecore_get_file_content_type(strPath);
-
-   if (psz == NULL)
-   {
-      return "";
-   }
-
-   string str = psz;
-
-   free((void*)psz);
-
-   return str;
-
-}
-#endif
-
-
 namespace user
 {
 
@@ -277,8 +232,3 @@ namespace user
 
 
 
-#ifdef WINDOWSEX
-
-#include "user_shell_windows.cpp"
-
-#endif

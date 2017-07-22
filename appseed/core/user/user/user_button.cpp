@@ -148,7 +148,7 @@ namespace user
 
             select_font(pgraphics, font_button, this);
 
-            pgraphics->TextOut(m_rectText.left,m_rectText.top,strText);
+            pgraphics->text_out(m_rectText.left,m_rectText.top,strText);
 
          }
          else

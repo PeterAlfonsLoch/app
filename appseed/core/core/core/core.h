@@ -739,7 +739,7 @@ namespace core
 //#include "core_resource.h"
 
 
-
+#include "app/appseed/core/core/os/os.h"
 
 
 // former core start - former before concatenation of core + core + core + core

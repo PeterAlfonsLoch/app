@@ -21,11 +21,8 @@
 		07108BD01B4C97D500A28F80 /* DeprecationMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */; };
 		07108BD21B4C97D500A28F80 /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
 		07108BD31B4C97D500A28F80 /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
-		07703C381B6FDFBD009026EA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFD1B6E631B0088E158 /* libios_aura.dylib */; };
 		9A2117441D832FA8000C4336 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2117431D832FA8000C4336 /* libace.dylib */; };
-		9A2117471D832FB7000C4336 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2117461D832FB7000C4336 /* libios_ace.dylib */; };
 		9A331C341D4BC5C000255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C331D4BC5C000255105 /* libz.tbd */; };
-		9A331C361D4BC5C600255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C351D4BC5C600255105 /* libz.tbd */; };
 		9A4B9C7A1E1490A6000D0E92 /* _Plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4B9C321E1490A6000D0E92 /* _Plugin.h */; };
 		9A4B9C7B1E1490A6000D0E92 /* J2KHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4B9C331E1490A6000D0E92 /* J2KHelper.h */; };
 		9A4B9C7C1E1490A6000D0E92 /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4B9C341E1490A6000D0E92 /* PSDParser.h */; };
@@ -236,7 +233,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07108BD71B4C97D500A28F80 /* libios_axisfreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07108BD71B4C97D500A28F80 /* libios_axisfreeimage.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreeimage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A2117431D832FA8000C4336 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../ace/build/Debug/libace.dylib; sourceTree = "<group>"; };
 		9A2117461D832FB7000C4336 /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/ios-basic-apgdmhfgxzjpfmdhucodqlzuwxoe/Build/Products/Debug-iphonesimulator/libios_ace.dylib"; sourceTree = "<group>"; };
 		9A331C331D4BC5C000255105 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -344,9 +341,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2117471D832FB7000C4336 /* libios_ace.dylib in Frameworks */,
-				9A331C361D4BC5C600255105 /* libz.tbd in Frameworks */,
-				07703C381B6FDFBD009026EA /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEB48E19C5084900866C9E /* libaxisfreeimage.dylib */,
-				07108BD71B4C97D500A28F80 /* libios_axisfreeimage.dylib */,
+				07108BD71B4C97D500A28F80 /* libios_axisfreeimage.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -611,7 +605,7 @@
 			);
 			name = ios_axisfreeimage;
 			productName = FreeImage;
-			productReference = 07108BD71B4C97D500A28F80 /* libios_axisfreeimage.dylib */;
+			productReference = 07108BD71B4C97D500A28F80 /* libios_axisfreeimage.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* axisfreeimage */ = {
@@ -669,7 +663,7 @@
 		071B2AFD1B6E631B0088E158 /* libios_aura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_aura.dylib;
+			path = libios_aura.a;
 			remoteRef = 071B2AFC1B6E631B0088E158 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -873,6 +867,8 @@
 		07108BD51B4C97D500A28F80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -880,6 +876,8 @@
 		07108BD61B4C97D500A28F80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -888,7 +886,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -940,6 +938,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -949,7 +948,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;

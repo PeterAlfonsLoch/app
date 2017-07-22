@@ -186,3 +186,34 @@ int get_current_process_affinity_order()
    
    return numCPU;
 }
+
+
+
+
+
+
+int32_t shell_execute_sync(const char * pszFile, const char * pszParams)
+{
+   
+   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder() , 0, false, NULL);
+   
+}
+
+
+
+
+CLASS_DECL_AURA bool is_shared_library_busy(uint32_t processid, const stringa & stra)
+{
+   
+   return false;
+   
+}
+
+
+CLASS_DECL_AURA bool is_shared_library_busy(const stringa & stra)
+{
+   
+   return false;
+   
+}
+

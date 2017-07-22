@@ -91,7 +91,22 @@ namespace base
       ::aura::del(m_puiptraFrame);
    }
 
+   
+   bool application::process_initialize()
+   {
 
+      if(::axis::application::process_initialize())
+      {
+         
+         return true;
+         
+      }
+      
+      
+      return true;
+      
+      
+   }
 
 
    void application::process_message_filter(int32_t code,signal_details * pobj)

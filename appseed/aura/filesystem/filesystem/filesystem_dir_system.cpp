@@ -620,7 +620,7 @@ namespace file
 
             }
 
-            bHasSubFolder = m_pziputil->HasSubFolder(papp, lpcszPath);
+            bHasSubFolder = m_pziputil->has_sub_folder(papp, lpcszPath);
 
             m_isdirmap.set(lpcszPath, bHasSubFolder, ::GetLastError());
 
@@ -698,7 +698,7 @@ namespace file
             uint32_t dwLastError;
             if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                return bHasSubFolder;
-            bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
+            bHasSubFolder = m_pziputil->has_sub_folder(papp, strPath);
             m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
          }
@@ -724,7 +724,7 @@ namespace file
             uint32_t dwLastError;
             if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                return bHasSubFolder;
-            bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
+            bHasSubFolder = m_pziputil->has_sub_folder(papp, strPath);
             m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
          }

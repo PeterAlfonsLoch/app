@@ -6,7 +6,6 @@ namespace estamira
 
 
    class CLASS_DECL_ESTAMIRA application :
-      virtual public ::hellomultiverse::application,
       virtual public ::multimedia::application
    {
    public:

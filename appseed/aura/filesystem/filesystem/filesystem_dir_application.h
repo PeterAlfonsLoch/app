@@ -5,7 +5,7 @@ namespace zip
 {
 
 
-   class Util;
+   class util;
 
 
 }

@@ -21,5 +21,11 @@
 bool ns_open_file(const char * psz);
 void ns_set_this_default_browser();
 
+int32_t raw_main_command_line(const char * pszCommandLine, int argc, char *argv[]);
+
+int32_t aura_main_command_line(const char * pszParams, int argc, char *argv[]);
+
+
+
 
 

@@ -1657,7 +1657,7 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
    // double blend
    //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
-   bool graphics::TextOut(int32_t x, int32_t y, const string & str)
+   bool graphics::text_out(int32_t x, int32_t y, const string & str)
    {
 
       if(m_pdibAlphaBlend != NULL)
@@ -1676,7 +1676,7 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
                dib0->get_graphics()->SetTextColor(ARGB(255, 255, 255, 255));
                dib0->get_graphics()->SelectObject(&get_current_font());
                dib0->get_graphics()->SetBkMode(TRANSPARENT);
-               dib0->get_graphics()->TextOut(0, 0, str);
+               dib0->get_graphics()->text_out(0, 0, str);
                dib0->ToAlpha(0);*/
   /*             ::draw2d::dib_sp dib1(get_app());
                dib1->create(rectText.size());
@@ -1684,7 +1684,7 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
 //               dib1->get_graphics()->set_color(m_crColor);
                dib1->get_graphics()->SelectObject(&get_current_font());
                dib1->get_graphics()->SetBkMode(TRANSPARENT);
-               dib1->get_graphics()->TextOut(0, 0, str);
+               dib1->get_graphics()->text_out(0, 0, str);
                //dib1->channel_from(visual::rgba::channel_alpha, dib0);
                ::draw2d::dib_sp dib2(get_app());
                dib2->create(rectText.size());
@@ -1716,11 +1716,11 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
 
       //ASSERT(get_handle1() != NULL);
       //wstring wstr = ::str::international::utf8_to_unicode(str);
-      return TextOut(x, y, str, (int32_t) str.get_length());
+      return text_out(x, y, str, (int32_t) str.get_length());
 
    } // call virtual
 
-   bool graphics::TextOut(double x, double y, const string & str)
+   bool graphics::text_out(double x, double y, const string & str)
    {
       if(m_pdibAlphaBlend != NULL)
       {
@@ -1736,13 +1736,13 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
                ::draw2d::brush_sp brush(allocer(),ARGB(255, 255, 255, 255));
                dib0->get_graphics()->SelectObject(get_current_font());
                dib0->get_graphics()->SelectObject(brush);
-               dib0->get_graphics()->TextOut(0, 0, str);
+               dib0->get_graphics()->text_out(0, 0, str);
                dib0->ToAlpha(0);
                ::draw2d::dib_sp dib1(allocer());
                dib1->create(rectText.size());
                brush->create_solid(m_spbrush->m_cr);
                dib1->get_graphics()->SelectObject(get_current_font());
-               dib1->get_graphics()->TextOut(0, 0, str);
+               dib1->get_graphics()->text_out(0, 0, str);
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
                ::draw2d::dib_sp dib2(allocer());
                dib2->create(rectText.size());
@@ -1771,7 +1771,7 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
 
       //ASSERT(get_handle1() != NULL);
       //wstring wstr = ::str::international::utf8_to_unicode(str);
-      return TextOut(x, y, str, (int32_t) str.get_length());
+      return text_out(x, y, str, (int32_t) str.get_length());
 
    } // call virtual
 
@@ -4939,7 +4939,7 @@ return 1;
    }
 
 
-   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
+   bool graphics::text_out(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
    {
 
       synch_lock ml(&xlib_mutex());
@@ -5010,10 +5010,10 @@ return 1;
    }
 
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, int32_t nCount)
+   bool graphics::text_out(double x, double y, const char * lpszString, int32_t nCount)
    {
 
-      return TextOut(int32_t(x), int32_t(y), lpszString, nCount);
+      return text_out(int32_t(x), int32_t(y), lpszString, nCount);
 
    }
 

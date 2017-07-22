@@ -29,10 +29,13 @@ namespace userfs
       virtual ~list_item_array();
 
 
-      void list_item_array::add_item(list_item & item)
+      void add_item(list_item & item)
       {
+         
          m_itema.add(canew(list_item(item, this->get_size())));
+         
       }
+      
       ::count get_count();
       ::count get_size();
       index get_upper_bound(::count i = -1);

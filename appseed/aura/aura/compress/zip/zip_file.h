@@ -1,29 +1,31 @@
 #pragma once
 
-#include "ioapi.h"
-#include "unzip.h"
 
+#include "zip_ioapi.h"
+#include "zip_unzip.h"
 
 
 namespace zip
 {
 
 
-   class CLASS_DECL_AURA File :
+   class CLASS_DECL_AURA file :
       virtual public ::object
    {
    public:
-      ::file::file_sp              m_pfile;
-      ::file::file_sp              m_pbuffile1;
-      ::file::file_sp              m_pbuffile2;
+      
+      
+      ::file::file_sp            m_pfile;
+      ::file::file_sp            m_pbuffile1;
+      ::file::file_sp            m_pbuffile2;
       unzFile                    m_pfUnzip;
       zipFile                    m_pfZip;
       zlib_filefunc_def_s        m_filefuncdef;
       bool                       m_bOwnFile;
 
-      File(::aura::application * papp);
-      virtual ~File();
-
+      
+      file(::aura::application * papp);
+      virtual ~file();
 
 
       void write_to_file(::file::file_sp  pfile, const unichar * lpcsz);
@@ -34,7 +36,9 @@ namespace zip
       bool zip_open(const char * lpcwsz);
       bool zip_open(::file::file_sp pfile);
 
+      
    };
+   
 
 } // namespace zip
 
@@ -50,3 +54,6 @@ int32_t        c_zip_file_close_file_func       (voidpf opaque, voidpf stream);
 int32_t        c_zip_file_testerror_file_func   (voidpf opaque, voidpf stream);
 
 END_EXTERN_C
+
+
+

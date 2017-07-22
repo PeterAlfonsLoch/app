@@ -757,7 +757,7 @@ namespace html
                   brushText->create_solid(cr);
                   pgraphics->SelectObject(brushText);
                   //pgraphics->SetBkColor(crBkSel);
-                  pgraphics->TextOut(left,y,strExtent1);
+                  pgraphics->text_out(left,y,strExtent1);
                   ::size size1 = pgraphics->GetTextExtent(strExtent1);
 
                   brushBackground->create_solid(crBkSel);
@@ -769,14 +769,14 @@ namespace html
                   //pgraphics->set_text_color(crSel);
                   brushText->create_solid(crSel);
                   pgraphics->SelectObject(brushText);
-                  pgraphics->TextOut(left + size1.cx,y,strExtent2);
+                  pgraphics->text_out(left + size1.cx,y,strExtent2);
 
                   //            pgraphics->set_text_color(cr);
                   brushText->create_solid(cr);
                   pgraphics->SelectObject(brushText);
                   //pgraphics->SetBkColor(RGB(120, 240, 180));
                   //          pgraphics->SetBkMode(TRANSPARENT);
-                  pgraphics->TextOut(left + size1.cx + size2.cx,y,strExtent3);
+                  pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
 
                   maxcy = MAX(size1.cy,size2.cy);
                   maxcy = MAX(maxcy,size3.cy);
@@ -794,7 +794,7 @@ namespace html
                }
                else
                {
-                  pgraphics->TextOut(left,top,strLine);
+                  pgraphics->text_out(left,top,strLine);
                   //pgraphics->FillSolidRect(left,top,50,50,ARGB(255,0,255,0));
                }
 

@@ -8,164 +8,11 @@ typedef __POSITION* POSITION;
 
 
 
-//#include "_flags.h"
-
-
-// the two functions below are deprecated.  Use a constructor/destructor instead.
-//#pragma deprecated( DestructElements )
-//#pragma deprecated( ConstructElements )
-
 template<class TYPE>
 inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount);
-/*
-template<class TYPE>
-void SerializeElements(CArchive& ar, TYPE* pElements, ::count nCount)
-{
-   ENSURE(nCount == 0 || pElements != NULL);
-   ASSERT(nCount == 0 ||
-      __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE)));
-
-   // default is bit-wise read/write
-   if (ar.IsStoring())
-   {
-     TYPE* pData;
-     uint_ptr nElementsLeft;
-
-     nElementsLeft = nCount;
-     pData = pElements;
-     while( nElementsLeft > 0 )
-     {
-       UINT nElementsToWrite;
-
-       nElementsToWrite = UINT(__min(nElementsLeft, INT_MAX/sizeof(TYPE)));
-       ar.write(pData, nElementsToWrite*sizeof(TYPE));
-       nElementsLeft -= nElementsToWrite;
-       pData += nElementsToWrite;
-     }
-   }
-   else
-   {
-     TYPE* pData;
-     uint_ptr nElementsLeft;
-
-     nElementsLeft = nCount;
-     pData = pElements;
-     while( nElementsLeft > 0 )
-     {
-       UINT nElementsToRead;
-
-       nElementsToRead = UINT(__min(nElementsLeft, INT_MAX/sizeof(TYPE)));
-       ar.EnsureRead(pData, nElementsToRead*sizeof(TYPE));
-       nElementsLeft -= nElementsToRead;
-       pData += nElementsToRead;
-     }
-   }
-}
-
-template<class TYPE>
-void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements, 
-   ::count nCount)
-{
-   ENSURE(nCount == 0 || pElements != NULL);
-   ASSERT((nCount == 0) || 
-      (__is_valid_address(pElements, nCount*sizeof(TYPE))));
-
-   if (nCount == 0 || pElements == NULL)
-   {
-      return;
-   }
-
-   if (ar.IsStoring())
-   {
-      for (; nCount--; ++pElements)
-         ar << *pElements;
-   }
-   else
-   {
-      for (; nCount--; ++pElements)
-         ar >> *pElements;
-   }
-}
-*/
 
 template<class TYPE>
 inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount);
-
-
-// the two functions below are deprecated.  Use a constructor/destructor instead.
-//#pragma deprecated( DestructElements )
-//#pragma deprecated( ConstructElements )
-
-/*
-template<class TYPE>
-void SerializeElements(CArchive& ar, TYPE* pElements, ::count nCount)
-{
-   ENSURE(nCount == 0 || pElements != NULL);
-   ASSERT(nCount == 0 ||
-      __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE)));
-
-   // default is bit-wise read/write
-   if (ar.IsStoring())
-   {
-     TYPE* pData;
-     uint_ptr nElementsLeft;
-
-     nElementsLeft = nCount;
-     pData = pElements;
-     while( nElementsLeft > 0 )
-     {
-       UINT nElementsToWrite;
-
-       nElementsToWrite = UINT(__min(nElementsLeft, INT_MAX/sizeof(TYPE)));
-       ar.write(pData, nElementsToWrite*sizeof(TYPE));
-       nElementsLeft -= nElementsToWrite;
-       pData += nElementsToWrite;
-     }
-   }
-   else
-   {
-     TYPE* pData;
-     uint_ptr nElementsLeft;
-
-     nElementsLeft = nCount;
-     pData = pElements;
-     while( nElementsLeft > 0 )
-     {
-       UINT nElementsToRead;
-
-       nElementsToRead = UINT(__min(nElementsLeft, INT_MAX/sizeof(TYPE)));
-       ar.EnsureRead(pData, nElementsToRead*sizeof(TYPE));
-       nElementsLeft -= nElementsToRead;
-       pData += nElementsToRead;
-     }
-   }
-}
-
-template<class TYPE>
-void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements, 
-   ::count nCount)
-{
-   ENSURE(nCount == 0 || pElements != NULL);
-   ASSERT((nCount == 0) || 
-      (__is_valid_address(pElements, nCount*sizeof(TYPE))));
-
-   if (nCount == 0 || pElements == NULL)
-   {
-      return;
-   }
-
-   if (ar.IsStoring())
-   {
-      for (; nCount--; ++pElements)
-         ar << *pElements;
-   }
-   else
-   {
-      for (; nCount--; ++pElements)
-         ar >> *pElements;
-   }
-}
-*/
 
 
 
@@ -187,23 +34,6 @@ bool CompareElements(const TYPE* pElement1, const ARG_TYPE pElement2)
 
 #define _TYPELIB_INDEX_LENGTH 10
 #define _QUOTES_SPACE 2
-
-
-/*
-extern "C" const GUID LIBID_Lib;
-extern "C" const CLSID CLSID_Registrar;
-extern "C" const IID IID_IRegistrar;
-extern "C" const IID IID_IAxWinHostWindow;
-extern "C" const IID IID_IAxWinAmbientDispatch;
-extern "C" const IID IID_IInternalConnection;
-extern "C" const IID IID_IDocHostUIHandlerDispatch;
-extern "C" const IID IID_IAxWinHostWindowLic;
-extern "C" const IID IID_IAxWinAmbientDispatchEx;
-*/
-
-#ifndef _delayimp_h
-//extern "C" IMAGE_DOS_HEADER __ImageBase;
-#endif
 
 
 

@@ -1548,18 +1548,18 @@ namespace draw2d_direct2d
    //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
    
-   bool graphics::TextOut(int x, int y, const string & str)
+   bool graphics::text_out(int x, int y, const string & str)
    { 
 
-      return TextOut((double)x, (double)y, str);
+      return text_out((double)x, (double)y, str);
       
    }
 
 
-   bool graphics::TextOut(double x, double y, const string & str)
+   bool graphics::text_out(double x, double y, const string & str)
    { 
 
-      return TextOut((int) x, (int) y, str, (int) str.get_length()); 
+      return text_out((int) x, (int) y, str, (int) str.get_length()); 
 
    }
 
@@ -4650,10 +4650,10 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::TextOut(int x, int y, const char * lpszString, strsize nCount)
+   bool graphics::text_out(int x, int y, const char * lpszString, strsize nCount)
    {
 
-      return ::draw2d::graphics::TextOut((double)x, (double)y, lpszString, nCount);
+      return ::draw2d::graphics::text_out((double)x, (double)y, lpszString, nCount);
 
    }
 
@@ -4661,7 +4661,7 @@ namespace draw2d_direct2d
    bool graphics::TextOutRaw(double x, double y, const char * lpszString, strsize nCount)
    {
 
-      //if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
+      //if (::draw2d::graphics::text_out(x, y, lpszString, nCount))
       //   return true;
 
       try
@@ -4722,14 +4722,14 @@ namespace draw2d_direct2d
 
       if(FAILED(hr))
       {
-         trace_hr("TextOut, SetTextAlignment",hr);
+         trace_hr("text_out, SetTextAlignment",hr);
       }
 
       hr = get_os_font(m_spfont)->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
       if(FAILED(hr))
       {
-         trace_hr("TextOut, SetTextAlignment",hr);
+         trace_hr("text_out, SetTextAlignment",hr);
       }
 
       DWRITE_TRIMMING trim;
@@ -4742,7 +4742,7 @@ namespace draw2d_direct2d
 
       if (FAILED(hr))
       {
-         trace_hr("TextOut, SetTextAlignment", hr);
+         trace_hr("text_out, SetTextAlignment", hr);
       }
 
       hr = get_os_font(m_spfont)->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);

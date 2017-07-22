@@ -236,7 +236,7 @@ namespace simple_ui
 
          brushText->create_solid(cr);
          pgraphics->SelectObject(brushText);
-         pgraphics->TextOut(left,y,strExtent1);
+         pgraphics->text_out(left,y,strExtent1);
 
          sized size1(0.0,0.0);
          pgraphics->GetTextExtent(size1,strLine,(int32_t)strLine.length(),(int32_t)iStart);
@@ -251,12 +251,12 @@ namespace simple_ui
             pgraphics->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,(int32_t)size2.cx,(int32_t)size2.cy,ARGB(255,120,240,180));
             brushText->create_solid(crSel);
             pgraphics->SelectObject(brushText);
-            pgraphics->TextOut(left + size1.cx,y,strExtent2);
+            pgraphics->text_out(left + size1.cx,y,strExtent2);
          }
 
          brushText->create_solid(cr);
          pgraphics->SelectObject(brushText);
-         pgraphics->TextOut(left + size1.cx + size2.cx,y,strExtent3);
+         pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
 
          //maxcy = MAX(size1.cy, size2.cy);
          //maxcy = MAX(maxcy, size3.cy);

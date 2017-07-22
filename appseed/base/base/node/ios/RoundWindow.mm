@@ -60,6 +60,15 @@
    
    [self setRootViewController:m_controller];
    
+   
+   CGRect rect;
+   
+   rect.origin.x = 0;
+   rect.origin.y = 0;
+   rect.size = contentRect.size;
+   
+   m_pwindow->round_window_resized(rect);
+   
 	return self;
    
    
@@ -321,7 +330,8 @@
 - (void)windowDidResize:(NSNotification *)notification
 {
    
-   //NSLog(@"test");
+   NSLog(@"test");
+
    
    try
    {

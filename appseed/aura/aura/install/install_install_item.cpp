@@ -39,7 +39,7 @@ namespace install
       catch (...)
       {
 
-         InterlockedDecrement(&pitem->m_pstatus->m_lProcessing);
+         _gen_InterlockedDecrement(&pitem->m_pstatus->m_lProcessing);
 
       }
 
@@ -80,14 +80,14 @@ namespace install
          {
 
             OutputDebugString("op_spa spaadmin Success\r\n");
-            InterlockedIncrement(&m_pstatus->m_lOk);
+            _gen_InterlockedIncrement(&m_pstatus->m_lOk);
 
          }
          else
          {
 
             OutputDebugString("op_spa spaadmin Failed\r\n");
-            InterlockedIncrement(&m_pstatus->m_lBad);
+            _gen_InterlockedIncrement(&m_pstatus->m_lBad);
 
          }
 
@@ -99,17 +99,18 @@ namespace install
          {
 
             OutputDebugString("op_spa install Success\r\n");
-            InterlockedIncrement(&m_pstatus->m_lOk);
+            _gen_InterlockedIncrement(&m_pstatus->m_lOk);
 
          }
          else
          {
             OutputDebugString("op_spa install Failed\r\n");
-            InterlockedIncrement(&m_pstatus->m_lBad);
+            _gen_InterlockedIncrement(&m_pstatus->m_lBad);
 
          }
 
       }
+#ifdef WINDOWS
       else if (m_strFile == "vcredist")
       {
 
@@ -128,7 +129,7 @@ namespace install
          }
 
       }
-
+#endif
 
 
 
@@ -217,7 +218,7 @@ namespace install
 
       }
 
-      InterlockedDecrement(&m_pstatus->m_lProcessing);
+      _gen_InterlockedDecrement(&m_pstatus->m_lProcessing);
 
       progress();
 

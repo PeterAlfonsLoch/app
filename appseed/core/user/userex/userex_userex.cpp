@@ -2,6 +2,12 @@
 
 #ifdef WINDOWSEX
 #include "core/user/user/user_shell_windows.h"
+#elif defined(MACOS)
+#include "core/user/user/user_shell_macos.h"
+#elif defined(APPLE_IOS)
+#include "core/user/user/user_shell_ios.h"
+#elif defined(LINUX)
+#include "core/user/user/user_shell_linux.h"
 #endif
 
 #include "base/database/simpledb/simpledb.h"
@@ -39,6 +45,14 @@ namespace userex
 
          m_pshell = canew(::user::shell::windows(get_app()));
 
+#elif defined(MACOS)
+         
+         m_pshell = canew(::user::shell::macos(get_app()));
+         
+#elif defined(APPLE_IOS)
+         
+         m_pshell = canew(::user::shell::ios(get_app()));
+         
 #else
 
          #error "Implement for your platform."

@@ -84,7 +84,7 @@ namespace simpledb
 
          baRecursive.add(bRecursive);
 
-         data_set(::aura::system::idEmpty, pathaFolder);
+         data_save(::aura::system::idEmpty, pathaFolder);
 
          data_save("recursive", baRecursive);
 
@@ -108,7 +108,7 @@ namespace simpledb
 
       stringa stra;
 
-      data_set(::aura::system::idEmpty, stra);
+      data_save(::aura::system::idEmpty, stra);
 
    }
 

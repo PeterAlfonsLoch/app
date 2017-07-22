@@ -1127,7 +1127,7 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::file * pfile)
 
          const string &str = pArray->get_at(nIndex);
 
-         TextOut(hDC,0,yPos,str,(int32_t)str.get_length());
+         text_out(hDC,0,yPos,str,(int32_t)str.get_length());
 
          yPos +=
             tm.tmHeight +
@@ -7355,12 +7355,12 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::file * pfile)
       {
          brushText->create_solid(cr);
          pgraphics->SelectObject(brushText);
-         pgraphics->TextOut(left,top,str);
+         pgraphics->text_out(left,top,str);
          return;
       }
       brushText->create_solid(ARGB((BYTE)(255 * dBlend),argb_get_r_value(cr),argb_get_g_value(cr),argb_get_b_value(cr)));
       pgraphics->SelectObject(brushText);
-      pgraphics->TextOut(left,top,str);
+      pgraphics->text_out(left,top,str);
    }
 
    bool imaging::load_from_file(::visual::dib_sp::array * pdiba, var varFile, bool bCache)

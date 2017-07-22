@@ -15,7 +15,7 @@ public:
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
    typedef raw_array < TYPE,ARG_TYPE > BASE_ARRAY;
-
+   typedef typename array_base < TYPE,ARG_TYPE, ALLOCATOR >::iterator iterator;
 
    //class iterator
    //{

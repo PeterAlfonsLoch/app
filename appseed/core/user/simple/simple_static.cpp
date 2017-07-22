@@ -58,7 +58,7 @@ void simple_static::_001OnDraw(::draw2d::graphics * pgraphics)
 
       GetWindowText(str);
 
-      pgraphics->TextOut(0, 0, str);
+      pgraphics->text_out(0, 0, str);
 
    }
 

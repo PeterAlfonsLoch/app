@@ -248,7 +248,7 @@ namespace axis
 
       thisstart;
 
-      zip::InFile infile(papp);
+      zip::in_file infile(papp);
 
       if (!infile.zip_open(pszZip, 0))
       {
@@ -297,7 +297,7 @@ namespace axis
    bool compress_department::unzip(::aura::application * papp, const ::file::path & pathUncompressed, const ::file::path & pathZipFileCompressed)
    {
 
-      if (!zip::Util().extract(papp, pathZipFileCompressed, pathUncompressed))
+      if (!zip::util().extract(papp, pathZipFileCompressed, pathUncompressed))
       {
 
          return false;

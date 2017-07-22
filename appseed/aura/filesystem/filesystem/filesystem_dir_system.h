@@ -16,7 +16,7 @@ namespace file
       public:
 
 
-         zip::Util *       m_pziputil;
+         ::zip::util *       m_pziputil;
 
 
 

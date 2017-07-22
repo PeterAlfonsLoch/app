@@ -471,15 +471,15 @@ public:
    sp(T) pred_remove_first(PRED pred, index iStart = 0)
    {
       
-      for (index i = iStart; i < get_count(); i++)
+      for (index i = iStart; i < this->get_count(); i++)
       {
 
-         if (pred(m_pData[i]))
+         if (pred(this->m_pData[i]))
          {
             
-            sp(TYPE) sp = m_pData[i];
+            sp(T) sp = this->m_pData[i];
 
-            remove_at(i);
+            this->remove_at(i);
 
             return sp;
 
@@ -500,14 +500,14 @@ public:
       if (iEnd < 0)
       {
 
-         iEnd += get_count();
+         iEnd += this->get_count();
 
       }
 
-      if (iEnd >= get_count())
+      if (iEnd >= this->get_count())
       {
 
-         iEnd = get_count() - 1;
+         iEnd = this->get_count() - 1;
 
       }
 
@@ -515,17 +515,17 @@ public:
       for (index i = iStart; i <= iEnd;)
       {
 
-         if (pred(m_pData[i]))
+         if (pred(this->m_pData[i]))
          {
 
             if (sp.is_null())
             {
 
-               sp = m_pData[i];
+               sp = this->m_pData[i];
 
             }
 
-            remove_at(i);
+            this->remove_at(i);
 
          }
          else

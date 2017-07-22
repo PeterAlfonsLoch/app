@@ -44,6 +44,15 @@
 #include "user_notify_icon_listener.cpp"
 //#include "user_orto_button.cpp"
 #include "user_shell.cpp"
+#ifdef WINDOWSEX
+#include "user_shell_windows.cpp"
+#elif defined(LINUX)
+#include "user_shell_linux.cpp"
+#elif defined(APPLE_IOS)
+#include "user_shell_ios.cpp"
+#elif defined(MACOS)
+#include "user_shell_macos.cpp"
+#endif
 #include "user_single_document_template.cpp"
 #include "user_slider.cpp"
 #include "user_split_bar.cpp"

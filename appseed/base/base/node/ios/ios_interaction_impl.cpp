@@ -4,6 +4,7 @@
 #include "base/user/core_user.h"
 #include "base/user/user/user_user.h"
 
+WINBOOL SetWindowRect(oswindow hwnd, LPRECT lprect);
 
 WINBOOL PeekMessage(
                     LPMESSAGE lpMsg,
@@ -462,7 +463,7 @@ namespace ios
                                         const char * lpszWindowName, DWORD dwStyle,
                                         const RECT& rect,
                                         ::user::interaction *  pParentWnd, id id,
-                                        sp(::create) pContext)
+                                        ::create * pContext)
    {
       // can't use for desktop or pop-up windows (use CreateEx instead)
       ASSERT(pParentWnd != NULL);
@@ -2822,9 +2823,17 @@ namespace ios
       else
       {
          
+         if(m_pthreadDraw != NULL)
+         {
+            
+            TRACE("good : opt out 2!");
+            
+         }
+         else{
          m_pthreadDraw = ::fork(get_app(), [&]()
                                 {
                                    
+                                   try {
                                    DWORD dwStart;
                                    
                                    while(::get_thread_run())
@@ -2846,6 +2855,8 @@ namespace ios
                                       
                                    }
                                       
+                                      _001UpdateBuffer();
+                                      
                                       DWORD dwSpan = ::get_tick_count() - dwStart;
                                    
                                    if (dwSpan < 20)
@@ -2856,9 +2867,18 @@ namespace ios
                                    }
                                    
                                 }
+                                   } catch (...) {
+                                      
+                                      output_debug_string("exception");
+                                      
+                                   }
+
+                                   
+                                   output_debug_string("test");
                                 
                                 });
-         
+       
+         }
       }
 
    }
@@ -3311,7 +3331,7 @@ namespace ios
       //            pgraphics, rectUpdate.left, rectUpdate.top,
       //            SRCCOPY);
       //
-      //         graphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);
+      //         graphics->text_out(0, 0, "Te Amo Carlinhos!!", 11);
       //      }
       //      catch(...)
       //      {
@@ -5723,6 +5743,8 @@ namespace ios
 
    void interaction_impl::round_window_draw(CGContextRef cgc)
    {
+      
+      {
       single_lock sl(m_pui->m_pmutex, true);
       
       //m_uiLastUpdateBeg = get_nanos();
@@ -5734,11 +5756,10 @@ namespace ios
          
       }
       
-      sl.unlock();
+      }
+      
       
       _001UpdateWindow();
-      
-      sl.lock();
       
       cslock slDisplay(cs_display());
       
@@ -6012,6 +6033,7 @@ namespace ios
    void interaction_impl::round_window_resized(CGRect rect)
    {
       
+      
       ::size sz;
       
       point64 pt(rect.origin.x, rect.origin.y);
@@ -6036,6 +6058,14 @@ namespace ios
          sz = m_rectParentClientRequest.size();
          
       }
+
+      ::rect r;
+      
+      copy(r, m_rectParentClientRequest);
+      
+      SetWindowRect(m_oswindow, r);
+      
+
       
       m_pui->send_message(WM_SIZE, 0, sz.lparam());
       

@@ -562,7 +562,8 @@ class list :
 {
 public:
 
-
+   typedef typename list_data < TYPE, ARG_TYPE >::node node;
+   typedef typename list_data < TYPE, ARG_TYPE >::iterator iterator;
 
    list();
    list(const class list & l);
@@ -617,7 +618,7 @@ public:
    TYPE & back();
    const TYPE & back() const;
 
-   void pop_front();
+   TYPE pop_front();
 
    TYPE& get_next(POSITION& rPosition); // return *position++
    const TYPE& get_next(POSITION& rPosition) const; // return *position++
@@ -633,9 +634,9 @@ public:
    void erase(iterator & it);
 
 
-   typename node * detach(node * pnode);
-   typename node * detach(POSITION position);
-   typename node * detach(iterator it);
+   node * detach(node * pnode);
+   node * detach(POSITION position);
+   node * detach(iterator it);
 
    ::count detach(iterator first, iterator last);
 
@@ -799,31 +800,34 @@ inline const TYPE& list<TYPE, ARG_TYPE>::get_previous(POSITION& rPosition) const
 template<class TYPE, class ARG_TYPE>
 inline TYPE & list < TYPE, ARG_TYPE >::front()
 {
-   return get_at(get_head_position());
+   return get_at(this->get_head_position());
 }
 
 template<class TYPE, class ARG_TYPE>
 inline const TYPE & list < TYPE, ARG_TYPE >::front() const
 {
-   return get_at(get_head_position());
+   return get_at(this->get_head_position());
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void list < TYPE, ARG_TYPE >::pop_front()
+inline TYPE list < TYPE, ARG_TYPE >::pop_front()
 {
-   return erase(begin());
+   auto it = this->begin();
+   TYPE t = *it;
+   this->erase(it);
+   return t;
 }
 
 template<class TYPE, class ARG_TYPE>
 inline TYPE & list < TYPE, ARG_TYPE >::back()
 {
-   return get_at(get_tail_position());
+   return this->get_at(this->get_tail_position());
 }
 
 template<class TYPE, class ARG_TYPE>
 inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 {
-   return get_at(get_tail_position());
+   return get_at(this->get_tail_position());
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -1116,7 +1120,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, typename node * pnode)
+typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, node * pnode)
 {
 
    ASSERT(this == i.m_plist);
@@ -1686,7 +1690,7 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::remove_at(index i)
 {
 
-   this->erase(index_iterator(i));
+   this->erase(this->index_iterator(i));
 
 }
 
@@ -2034,7 +2038,7 @@ void list<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    dumpcontext << "with " << this->m_count << " elements";
    if (dumpcontext.GetDepth() > 0)
    {
-      POSITION pos = get_head_position();
+      POSITION pos = this->get_head_position();
       while (pos != NULL)
       {
          TYPE temp[1];

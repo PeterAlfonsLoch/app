@@ -56,7 +56,7 @@ device_context::device_context()
 
 
 
-CGColorRef mac_create_color(COLORREF cr)
+CGColorRef cg_create_color(COLORREF cr)
 {
    
    // Create a color and add it as an attribute to the string.
@@ -74,7 +74,7 @@ CGColorRef mac_create_color(COLORREF cr)
 }
 
 
-WINBOOL mac_release_color(CGColorRef colorref)
+WINBOOL cg_release_color(CGColorRef colorref)
 {
    CGColorRelease(colorref);
     return TRUE;
@@ -267,8 +267,8 @@ WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psiz
 WINBOOL SetTextColor(HDC hdc, COLORREF crText)
 {
    
-   mac_release_color(hdc->m_cgcolorrefText);
-   hdc->m_cgcolorrefText = mac_create_color(crText);
+   cg_release_color(hdc->m_cgcolorrefText);
+   hdc->m_cgcolorrefText = cg_create_color(crText);
    return TRUE;
 }
 
@@ -469,14 +469,14 @@ bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
 
 void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)
 {
-   CGColorRef color = mac_create_color(clr);
+   CGColorRef color = cg_create_color(clr);
    CGRect rect;
    rect.origin.x = lpRect->left;
    rect.origin.y = lpRect->top;
    rect.size.width = lpRect->right - lpRect->left;
    rect.size.height = lpRect->bottom - lpRect->top;
    CGContextFillRect(hdc->m_cgcontext, rect);
-   mac_release_color(color);
+   cg_release_color(color);
 }
 
 HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam);
@@ -542,6 +542,136 @@ HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
    
 #endif
    
+}
+
+
+
+
+
+
+bool macos_get_file_image(::draw2d::dib * pdib, const char * psz);
+
+CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
+bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
+
+
+bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+
+
+
+
+bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage)
+{
+   
+   CGContextRef cgctx = CreateARGBBitmapContext(inImage, cx, cy);
+   
+   if (cgctx == NULL)
+   {
+      
+      return false;
+      
+   }
+   
+   CGRect rect = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+   
+   CGContextDrawImage(cgctx, rect, inImage);
+   
+   void *data = CGBitmapContextGetData (cgctx);
+   
+   byte * pdest = (byte * ) pcr;
+   
+   if (data != NULL)
+   {
+      
+      for(int y = cy - 1; y >= 0; y--)
+      {
+         
+         byte * pline = (byte *) &((unsigned int*)data)[y * cx];
+         
+         memcpy(pdest, pline, cx* 4);
+         
+         pdest += iScan;
+         
+      }
+      
+   }
+   
+   CGContextRelease(cgctx);
+   
+   return data != NULL;
+   
+}
+
+
+CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
+{
+   
+   CGContextRef    context = NULL;
+   
+   CGColorSpaceRef colorSpace;
+   
+   void *          bitmapData;
+   
+   int             bitmapByteCount;
+   
+   int             bitmapBytesPerRow;
+   
+   bitmapBytesPerRow   = (cx * 4);
+   
+   bitmapByteCount     = (bitmapBytesPerRow * cy);
+   
+   colorSpace = CGColorSpaceCreateDeviceRGB();
+   
+   if (colorSpace == NULL)
+   {
+      
+      output_debug_string("CreateARGBBitmapContext: Error allocating color space\n");
+      
+      return NULL;
+      
+   }
+   
+   //   bitmapData = malloc( bitmapByteCount );
+   //
+   //   if (bitmapData == NULL)
+   //   {
+   //
+   //      output_debug_string("CreateARGBBitmapContext: Memory not allocated!");
+   //
+   //      CGColorSpaceRelease( colorSpace );
+   //
+   //      return NULL;
+   //
+   //   }
+   //
+   //   memset(bitmapData, 0, bitmapByteCount);
+   
+   // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
+   // per component. Regardless of what the source image format is
+   // (CMYK, Grayscale, and so on) it will be converted over to the format
+   // specified here by CGBitmapContextCreate.
+   context =
+   CGBitmapContextCreate (
+                          NULL,
+                          cx,
+                          cy,
+                          8,
+                          bitmapBytesPerRow,
+                          colorSpace,
+                          kCGImageAlphaPremultipliedLast);
+   
+   //   if (context == NULL)
+   //   {
+   //
+   //      free (bitmapData);
+   //
+   //      output_debug_string("CreateARGBBitmapContext: Context not created!");
+   //
+   //   }
+   
+   CGColorSpaceRelease( colorSpace );
+   
+   return context;
 }
 
 

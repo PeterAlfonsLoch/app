@@ -1,5 +1,5 @@
 //#include"framework.h"
-//#include"InFile.h"
+//#include"in_file.h"
 namespace str
 {
    
@@ -42,17 +42,17 @@ namespace zip
 {
 
 
-   Util::Util()
+   util::util()
    {
    }
 
-   Util::~Util()
+   util::~util()
    {
 
    }
 
 
-   bool Util::ls(::aura::application * papp, ::file::listing & listing)
+   bool util::ls(::aura::application * papp, ::file::listing & listing)
    {
       
       string strZip;
@@ -89,7 +89,7 @@ namespace zip
 
       }
 
-      InFile infile(papp);
+      in_file infile(papp);
 
       if(!infile.unzip_open(strZip, 0))
       {
@@ -177,44 +177,7 @@ namespace zip
    }
 
 
-   //bool Util::ls(::aura::application * papp, const char * lpcsz, ::file::patha & patha, ::file::patha * ppathaName)
-   //{
-
-   //   ::file::patha patha;
-   //   ::file::patha straTitle;
-   //   bool_array baIsDir;
-   //   if(!ls(papp,lpcsz,false,&patha,&straTitle,NULL,&baIsDir))
-   //      return false;
-
-   //   string strPath;
-
-   //   for(int32_t i = 0; i < patha.get_size(); i++)
-   //   {
-   //      if(baIsDir[i])
-   //      {
-   //         strPath = patha[i];
-   //         if(strPath.has_char() && ppatha->add_unique(strPath) >= 0 && ppathaName != NULL)
-   //         {
-   //            ppathaName->add(straTitle[i]);
-   //         }
-   //      }
-   //      else
-   //      {
-   //         strPath = Sys(papp).dir().name(patha[i]);
-   //         if(strPath.has_char() && ppatha->add_unique(strPath) >= 0 && ppathaName != NULL)
-   //         {
-   //            ppathaName->add(Sys(papp).dir().name(straTitle[i]));
-   //         }
-   //      }
-
-   //   }
-   //   return true;
-
-   //}
-
-
-
-   bool Util::HasSubFolder(::aura::application * papp, const char * lpszFileName)
+   bool util::has_sub_folder(::aura::application * papp, const char * lpszFileName)
    {
       string strZip;
       if(::str::ends_ci(lpszFileName, ".zip"))
@@ -229,7 +192,7 @@ namespace zip
       else
          return false;
 
-      InFile infile(papp);
+      in_file infile(papp);
 
       strZip.replace("\\", "/");
       if(!::str::ends_ci(strZip, "/"))
@@ -263,11 +226,11 @@ namespace zip
       stringa wstraPrefix;
       string str;
       int32_t i;
-      smart_pointer_array < InFile, InFile & > izfilea;
+      smart_pointer_array < in_file, in_file & > izfilea;
    //   smart_pointer_array < buffered_file, buffered_file & > bzfilea;
       for(i = 1; i < wstraPath.get_size(); i++)
       {
-         izfilea.add(new InFile(get_app()));
+         izfilea.add(new in_file(get_app()));
          str =  wstraPath[i];
          izfilea.last().open(&filea.last(), str);
      //    bzfilea.add(new buffered_file(&izfilea.last(), 1024 * 1024, 1024 * 1024));
@@ -337,15 +300,15 @@ namespace zip
       return false;
    }
 
-   bool Util::exists(::aura::application * papp, const char * pszPath)
+   bool util::exists(::aura::application * papp, const char * pszPath)
    {
       return extract(papp, pszPath, NULL);
    }
 
-   bool Util::extract(::aura::application * papp, const char * lpszFileName, const char * lpszExtractFileName)
+   bool util::extract(::aura::application * papp, const char * lpszFileName, const char * lpszExtractFileName)
    {
 
-      InFile infile(papp);
+      in_file infile(papp);
 
       if(!infile.unzip_open(lpszFileName, 0))
       {
@@ -368,7 +331,7 @@ namespace zip
 
    }
 
-   bool Util::extract_all(::aura::application * papp,const char * pszDir,var varFile, stringa * pstraFilter, bool_array * pbaBeginsFilterEat)
+   bool util::extract_all(::aura::application * papp,const char * pszDir,var varFile, stringa * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
       ::file::file_sp pfile(App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_read));
@@ -376,7 +339,7 @@ namespace zip
       if(pfile.is_null())
          return false;
 
-      InFile infile(papp);
+      in_file infile(papp);
 
       if(!infile.unzip_open(pfile))
       {
@@ -438,15 +401,17 @@ namespace zip
 
    }
 
-   bool Util::IsUnzipable(::aura::application * papp, const char * lpszFileName)
+   
+   bool util::is_unzippable(::aura::application * papp, const char * lpszFileName)
    {
+      
       string str(lpszFileName);
       if(str.get_length() < 4)
          return false;
       if(str.Right(4) != ".zip")
          return false;
 
-      File file(papp);
+      ::zip::file file(papp);
 
       return file.unzip_open(lpszFileName);
    }

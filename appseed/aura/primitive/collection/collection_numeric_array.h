@@ -277,23 +277,7 @@ public:
    }
 
 
-   void quick_sort(bool bAsc)
-   {
-
-      if (bAsc)
-      {
-
-         sort::QuickSortAsc(*this);
-
-      }
-      else
-      {
-
-         sort::QuickSortDesc(*this);
-
-      }
-
-   }
+   void sort(bool bAsc = true);
 
 };
 

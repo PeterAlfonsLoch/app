@@ -507,8 +507,6 @@ CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const 
 
 
 
-#ifdef WINDOWSEX
-
 //CLASS_DECL_AURA bool read_resource_as_file_dup(const char * pszFile,HINSTANCE hinst,UINT nID,LPCTSTR lpcszType);
 
 
@@ -517,8 +515,25 @@ string get_temp_file_name_dup(const char * pszName,const char * pszExtension)
 {
    char lpPathBuffer[MAX_PATH * 16];
    // Get the temp path.
+#ifdef WINDOWS
    DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer),     // length of the buffer
       lpPathBuffer); // buffer for path
+#else
+
+   DWORD dwRetVal = strlen(lpPathBuffer);
+   
+   if(dwRetVal > sizeof(lpPathBuffer))
+   {
+      
+      return "";
+      
+   }
+   
+   strcpy(lpPathBuffer, "/tmp/");
+   
+#endif
+   
+   
    if(dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
    {
       debug_print("GetTempPath failed (%d)\n",GetLastError());
@@ -546,8 +561,19 @@ string get_temp_file_name_dup(const char * pszName,const char * pszExtension)
       str += pszExtension;
       if(file_exists_dup(str.c_str()))
       {
+         
+#ifdef WINDOWS
+      
          if(::DeleteFileA(str.c_str()))
             return str;
+         
+#else
+
+         if(::file_delete_dup(str.c_str()))
+            return str;
+
+#endif
+         
       }
       else
       {
@@ -556,6 +582,8 @@ string get_temp_file_name_dup(const char * pszName,const char * pszExtension)
    }
    return "";
 }
+
+
 
 
 bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,memory_size_t * puiWritten)
@@ -576,7 +604,7 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 
       dwWrite = (DWORD)MIN(nCount - uiWrittenTotal,0xffffffffu);
 
-      if(!::WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),&((byte *)lpBuf)[pos],dwWrite,&dw,NULL))
+      if(!::WriteFile(hFile,&((byte *)lpBuf)[pos],dwWrite,&dw,NULL))
       {
 
          uiWrittenTotal += dw;
@@ -614,7 +642,7 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 
    DWORD dw= 0;
 
-   BOOL bOk = ::WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),lpBuf,nCount,&dw,NULL);
+   BOOL bOk = ::WriteFile(hFile,lpBuf,nCount,&dw,NULL);
 
    if(puiWritten != NULL)
    {
@@ -629,7 +657,6 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 
 }
 
-#endif
 
 
 CLASS_DECL_AURA bool file_append_wait_dup(const string & strFile, const char * psz, strsize s, DWORD dwTimeout)

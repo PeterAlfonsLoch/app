@@ -97,7 +97,7 @@ namespace file
 
          strsize iFind = ::str::find_file_extension("zip:", strPath);
 
-         zip::Util ziputil;
+         ::zip::util ziputil;
 
          if (iFind >= 0)
          {
@@ -538,7 +538,7 @@ restart:
 
             ::memory_file memfile(papp, &storage);
             
-            zip::InFile infile(papp);
+            zip::in_file infile(papp);
 
             if (!infile.unzip_open(strFilePath, 0))
             {
@@ -2345,7 +2345,7 @@ restart:
          if (::str::find_file_extension("zip:", strPath) >= 0)
          {
 
-            zip::InFile * pinfile = new zip::InFile(papp);
+            sp(zip::in_file) pinfile = canew(zip::in_file(papp));
 
             if (pinfile != NULL)
             {
@@ -2353,9 +2353,7 @@ restart:
                if (!pinfile->unzip_open(strPath, 0))
                {
 
-                  delete pinfile;
-
-                  pinfile = NULL;
+                  pinfile.release();
 
                }
 

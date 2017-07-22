@@ -37,7 +37,7 @@ namespace base
 
 
 
-
+      virtual bool process_initialize() override;
 
 
 

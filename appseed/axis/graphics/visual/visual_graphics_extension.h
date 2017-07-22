@@ -17,7 +17,7 @@ namespace visual
       void GetTextExtent(::draw2d::graphics * pgraphics, const char * lpcwsz, size & size);
       void GetTextExtent(::draw2d::graphics * pgraphics, const char * lpcwsz, strsize iCount, size & size);
 
-      bool TextOut(::draw2d::graphics * pgraphics, int32_t x, int32_t y, const char * lpcwsz, strsize iCount,size & s);
+      bool text_out(::draw2d::graphics * pgraphics, int32_t x, int32_t y, const char * lpcwsz, strsize iCount,size & s);
       
       void FillSolidRect(HDC hdc, const RECT64 * lpRect, COLORREF clr);
       void FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr);

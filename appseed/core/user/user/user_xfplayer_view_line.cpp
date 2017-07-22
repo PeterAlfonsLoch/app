@@ -1468,7 +1468,7 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pgraphics, ::draw2d:
    if (bSaveProcessing)
    {
       pgraphics->BeginPath();
-      pgraphics->TextOut(iLeft, iTop, string(lpcsz, iLen));
+      pgraphics->text_out(iLeft, iTop, string(lpcsz, iLen));
       pgraphics->EndPath();
 
       //      LOGBRUSH lb;
@@ -1494,7 +1494,7 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pgraphics, ::draw2d:
 
       pgraphics->SelectObject(brushText);
 
-      pgraphics->TextOut(iLeft, iTop, string(lpcsz, iLen));
+      pgraphics->text_out(iLeft, iTop, string(lpcsz, iLen));
    }
    else
    {
@@ -1634,20 +1634,20 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pgraphics, const char * 
 
       pdcCache->select_font(m_fontPrefix);
       ::size size = pdcCache->GetTextExtent(m_strPrefix);
-      m_dcextension.TextOut(pdcCache, (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 4.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 4.0)) / 2) + m_rect.height() - size.cy, m_strPrefix, m_strPrefix.get_length(), s);
+      m_dcextension.text_out(pdcCache, (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 4.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 4.0)) / 2) + m_rect.height() - size.cy, m_strPrefix, m_strPrefix.get_length(), s);
       pdcCache->select_font(m_font);
 
       int x = (int32_t) (s.cx + (s.cx / m_strPrefix.get_length()) + (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2));
 
       int y = (int32_t) (1 * (int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2));
       
-      m_dcextension.TextOut(pdcCache, x, y, m_strRoot, m_strRoot.get_length(), s);
+      m_dcextension.text_out(pdcCache, x, y, m_strRoot, m_strRoot.get_length(), s);
 
    }
    else
    {
 
-      m_dcextension.TextOut(pdcCache, (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen, s);
+      m_dcextension.text_out(pdcCache, (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen, s);
 
    }
 

@@ -208,7 +208,7 @@ namespace turboc
 
          m_dib->get_graphics()->set_font(m_font);
 
-         m_dib->get_graphics()->TextOut((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+         m_dib->get_graphics()->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
          if(m_dMinRadius > 3.0)
          {
@@ -273,7 +273,7 @@ namespace turboc
 
       pgraphics->SelectObject(brushText);
 
-      pgraphics->TextOut((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+      pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       byte a,R,g,b;
 

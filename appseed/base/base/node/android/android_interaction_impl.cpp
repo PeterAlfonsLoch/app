@@ -2663,7 +2663,7 @@ void interaction_impl::_001OnPrint(::signal_details * pobj)
    //            pgraphics, rectUpdate.left, rectUpdate.top,
    //            SRCCOPY);
    //
-   //         graphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);
+   //         graphics->text_out(0, 0, "Te Amo Carlinhos!!", 11);
    //      }
    //      catch(...)
    //      {

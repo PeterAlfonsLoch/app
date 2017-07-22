@@ -422,7 +422,7 @@ namespace user
                {
                   pgraphics->SelectObject(brushTextCr);
                }
-               pgraphics->TextOut(left + x1, y, strExtent2);
+               pgraphics->text_out(left + x1, y, strExtent2);
 
             }
          }
@@ -511,8 +511,8 @@ namespace user
             {
                pgraphics->SelectObject(brushTextCr);
             }
-            pgraphics->TextOut(left, y, strLineGraphics.Left(i1));
-            pgraphics->TextOut(left+x2, y, strLineGraphics.Mid(i2));
+            pgraphics->text_out(left, y, strLineGraphics.Left(i1));
+            pgraphics->text_out(left+x2, y, strLineGraphics.Mid(i2));
             if (bOverride)
             {
             }
@@ -520,7 +520,7 @@ namespace user
             {
                pgraphics->SelectObject(brushTextSel);
             }
-            pgraphics->TextOut(left+x1, y, strLineGraphics.Mid(i1, i2 - i1));
+            pgraphics->text_out(left+x1, y, strLineGraphics.Mid(i1, i2 - i1));
 
             if (0 <= iErrorBeg && iErrorBeg <= strExtent1.length())
             {
@@ -2723,7 +2723,7 @@ namespace user
                if (pmouse->m_pt.x < rectWindow.left - 30)
                {
 
-                  output_debug_string("test");
+                  output_debug_string("test06");
 
                }
 

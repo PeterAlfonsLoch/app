@@ -117,8 +117,6 @@ namespace user
    bool interaction::defer_check_layout()
    {
 
-      synch_lock sl(m_pmutex);
-
       if (!check_need_layout() || !m_bLayoutEnable)
       {
 
@@ -196,8 +194,6 @@ namespace user
    bool interaction::defer_check_translation()
    {
 
-      synch_lock sl(m_pmutex);
-
       if (!check_need_translation() || !m_bLayoutEnable)
       {
 
@@ -249,8 +245,6 @@ namespace user
    bool interaction::defer_check_show_flags()
    {
 
-      synch_lock sl(m_pmutex);
-
       if (!check_show_flags() || !m_bLayoutEnable)
       {
 
@@ -299,8 +293,6 @@ namespace user
 
    bool interaction::defer_check_zorder()
    {
-
-      synch_lock sl(m_pmutex);
 
       if (!check_need_zorder() || !m_bLayoutEnable)
       {

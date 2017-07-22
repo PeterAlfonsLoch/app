@@ -1511,23 +1511,23 @@ namespace draw2d
    }
 
 
-   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount)
+   bool graphics::text_out(int32_t x, int32_t y, const char * lpszString, strsize nCount)
    {
 
-      return TextOut((double)x, (double)y, lpszString, nCount);
+      return text_out((double)x, (double)y, lpszString, nCount);
 
    }
 
 
-   bool graphics::TextOut(int32_t x, int32_t y, const string & str)
+   bool graphics::text_out(int32_t x, int32_t y, const string & str)
    {
 
-      return TextOut((double) x, (double) y, str);
+      return text_out((double) x, (double) y, str);
 
    }
 
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
+   bool graphics::text_out(double x, double y, const char * lpszString, strsize nCount)
    {
 
       if (TextOutAlphaBlend(x, y, lpszString, nCount))
@@ -1582,7 +1582,7 @@ namespace draw2d
 
             dib1->get_graphics()->SelectObject(get_current_brush());
 
-            dib1->get_graphics()->TextOut(0, 0, lpszString, nCount);
+            dib1->get_graphics()->text_out(0, 0, lpszString, nCount);
 
             dib1->blend(null_point(), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectText.size());
 
@@ -1603,10 +1603,10 @@ namespace draw2d
    }
 
 
-   bool graphics::TextOut(double x, double y, const string & str)
+   bool graphics::text_out(double x, double y, const string & str)
    {
 
-      return TextOut(x, y, str, (int32_t) str.get_length());
+      return text_out(x, y, str, (int32_t) str.get_length());
 
    }
 
@@ -3178,7 +3178,7 @@ namespace draw2d
 
          str.replace("\n", "");
 
-         TextOut(lpRect.left + dx,lpRect.top + dy,str);
+         text_out(lpRect.left + dx,lpRect.top + dy,str);
 
       }
       else
@@ -3197,7 +3197,7 @@ namespace draw2d
 
             size s1 = GetTextExtent(str);
 
-            TextOut(lpRect.left + dx,lpRect.top + dy + offsety,str);
+            text_out(lpRect.left + dx,lpRect.top + dy + offsety,str);
 
             offsety += s1.cy;
 
@@ -4182,7 +4182,7 @@ namespace draw2d
 
          ::draw2d::font * pfontOld;
 
-         pgraphics->TextOut(rect.left, rect.top, str, (int32_t)MIN(iUnderline, str.get_length()));
+         pgraphics->text_out(rect.left, rect.top, str, (int32_t)MIN(iUnderline, str.get_length()));
          /*::TextOutU(
          (HDC)pgraphics->get_os_data(),
          rect.left,
@@ -4206,7 +4206,7 @@ namespace draw2d
             rect.top,
             &wch,
             1);*/
-            pgraphics->TextOut(rect.left + sz.cx, (double) rect.top, &wch, 1);
+            pgraphics->text_out(rect.left + sz.cx, (double) rect.top, &wch, 1);
             pgraphics->SelectObject(&fPrevious);
             if (iUnderline + 1 <= str.get_length())
             {
@@ -4217,7 +4217,7 @@ namespace draw2d
                iUnderline + 1,
                &sz);*/
                strsize iCount = str.get_length() - iUnderline - 1;
-               pgraphics->TextOut(rect.left + sz.cx, (double)rect.top, str.Right(iCount), (int32_t)iCount);
+               pgraphics->text_out(rect.left + sz.cx, (double)rect.top, str.Right(iCount), (int32_t)iCount);
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
                rect.left + sz.cx,
@@ -4225,12 +4225,17 @@ namespace draw2d
                str.Right(iCount),
                iCount);*/
             }
+            
             pgraphics->SelectObject(pfontOld);
+            
          }
+         
       }
       else
       {
-         pgraphics->TextOut(rect.left, rect.top, str);
+         
+         pgraphics->text_out(rect.left, rect.top, str);
+         
       }
 
       if (!bLastLine && str2.get_length() > 0)

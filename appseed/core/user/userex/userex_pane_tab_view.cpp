@@ -560,7 +560,7 @@ namespace userex
       {
 
          pdoc->get_html_data()->m_propertyset["app_options_title"] = 
-            get_pane_by_id(pcreatordata->m_id)->m_istrTitleEx;
+            get_pane_by_id(pcreatordata->m_id)->m_istrTitleEx.to_string();
 
       }
 

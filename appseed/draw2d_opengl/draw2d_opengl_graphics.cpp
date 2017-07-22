@@ -1683,18 +1683,18 @@ return true;
    // double blend
    //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
-   bool graphics::TextOut(int32_t x, int32_t y, const string & str)
+   bool graphics::text_out(int32_t x, int32_t y, const string & str)
    {
 
-      return TextOut((double) x, (double) y, str, (int32_t) str.get_length());
+      return text_out((double) x, (double) y, str, (int32_t) str.get_length());
 
    }
 
 
-   bool graphics::TextOut(double x, double y, const string & str)
+   bool graphics::text_out(double x, double y, const string & str)
    {
 
-      return TextOut(x, y, str, (int32_t) str.get_length());
+      return text_out(x, y, str, (int32_t) str.get_length());
 
    }
 
@@ -1872,7 +1872,7 @@ return true;
 
       //::plusplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->gl2d_font()->GetStyle()));
 
-      //wstring wstr(L"123AWZwmc123AWZwmcpQçg");
+      //wstring wstr(L"123AWZwmc123AWZwmcpQï¿½g");
       //plusplus::RectF rect(0.f, 0.f, 1024.f * 1024.f, 1024.f * 1024.f);
       //plusplus::RectF rect2;
       //plusplus::PointF origin(0, 0);
@@ -4635,21 +4635,21 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount)
+   bool graphics::text_out(int32_t x, int32_t y, const char * lpszString, strsize nCount)
    {
 
-      return TextOut((double)x, (double)y, lpszString, nCount);
+      return text_out((double)x, (double)y, lpszString, nCount);
 
    }
 
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
+   bool graphics::text_out(double x, double y, const char * lpszString, strsize nCount)
    {
 
       if(m_spfont.is_null())
          return false;
 
-      if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
+      if (::draw2d::graphics::text_out(x, y, lpszString, nCount))
          return true;
 
       set(m_spfont);

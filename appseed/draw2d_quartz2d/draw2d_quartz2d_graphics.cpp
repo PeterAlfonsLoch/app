@@ -307,13 +307,13 @@ namespace draw2d_quartz2d
 //
    }
 
-   int32_t graphics::ExcludeUpdateRgn(::user::interaction * pWnd)
-   {
-      //    ASSERT(get_handle1() != NULL);
-      //      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pWnd)->get_handle());
-      throw not_implemented(get_app());
-      return 0;
-   }
+//   int32_t graphics::ExcludeUpdateRgn(::user::interaction * pWnd)
+//   {
+//      //    ASSERT(get_handle1() != NULL);
+//      //      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pWnd)->get_handle());
+//      throw not_implemented(get_app());
+//      return 0;
+//   }
 
    int32_t graphics::GetDeviceCaps(int32_t nIndex) const
    {
@@ -1891,7 +1891,7 @@ namespace draw2d_quartz2d
    // double blend
    //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
-   bool graphics::TextOut(int32_t x, int32_t y, const string & str)
+   bool graphics::text_out(int32_t x, int32_t y, const string & str)
    {
 
       if (m_pdibAlphaBlend != NULL)
@@ -1911,7 +1911,7 @@ namespace draw2d_quartz2d
             dib1->Fill(0, 0, 0, 0);
             dib1->get_graphics()->SelectObject(get_current_font());
             dib1->get_graphics()->SelectObject(get_current_brush());
-            dib1->get_graphics()->TextOut(0, 0, str);
+            dib1->get_graphics()->text_out(0, 0, str);
             
             
             // The following commented out code does not work well when there is clipping
@@ -1969,11 +1969,12 @@ namespace draw2d_quartz2d
 
       //ASSERT(get_handle1() != NULL);
       //wstring wstr = ::str::international::utf8_to_unicode(str);
-      return TextOut(x, y, str, (int32_t) str.get_length());
+      return text_out(x, y, str, (int32_t) str.get_length());
 
    } // call virtual
+   
 
-   bool graphics::TextOut(double x, double y, const string & str)
+   bool graphics::text_out(double x, double y, const string & str)
    {
       if(m_pdibAlphaBlend != NULL)
       {
@@ -1989,14 +1990,14 @@ namespace draw2d_quartz2d
                dib0->get_graphics()->set_text_color(RGB(255, 255, 255));
                dib0->get_graphics()->SelectObject(get_current_font());
 //               dib0->get_graphics()->SetBkMode(TRANSPARENT);
-               dib0->get_graphics()->TextOut(0, 0, str);
+               dib0->get_graphics()->text_out(0, 0, str);
                dib0->ToAlpha(0);
                ::draw2d::dib_sp dib1(allocer());
                dib1->create(rectText.size());
                dib1->get_graphics()->set_text_color(m_spbrush->m_cr);
                dib1->get_graphics()->SelectObject(get_current_font());
 //               dib1->get_graphics()->SetBkMode(TRANSPARENT);
-               dib1->get_graphics()->TextOut(0, 0, str);
+               dib1->get_graphics()->text_out(0, 0, str);
                dib1->channel_from(visual::rgba::channel_alpha, dib0);
                ::draw2d::dib_sp dib2(allocer());
                dib2->create(rectText.size());
@@ -2025,9 +2026,10 @@ namespace draw2d_quartz2d
 
       //ASSERT(get_handle1() != NULL);
       //wstring wstr = ::str::international::utf8_to_unicode(str);
-      return TextOut(x, y, str, (int32_t) str.get_length());
+      return text_out(x, y, str, (int32_t) str.get_length());
 
    } // call virtual
+   
 
    bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
    {
@@ -5292,12 +5294,13 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount)
+   bool graphics::text_out(int32_t x, int32_t y, const char * lpszString, strsize nCount)
    {
 
-      return ::draw2d::graphics::TextOut(double(x), double(y), lpszString, nCount);
+      return ::draw2d::graphics::text_out(double(x), double(y), lpszString, nCount);
 
    }
+   
 
    bool graphics::TextOutRaw(double x, double y, const char * lpszString, strsize nCount)
    {
@@ -6014,7 +6017,7 @@ namespace draw2d_quartz2d
 //         
 //         str.replace("\n", "");
 //         
-//         //TextOut(lpRect.left + dx,lpRect.top + dy,str);
+//         //text_out(lpRect.left + dx,lpRect.top + dy,str);
 //         
 //         internal_show_text(lpRect.left + dx,lpRect.top + dy, str, (int)str.get_length(), kCGTextStroke, true, NULL, NULL, NULL, NULL, ppen, NULL, stringpath.m_spfont);
 //
@@ -6107,7 +6110,7 @@ namespace draw2d_quartz2d
       //
       //         str.replace("\n", "");
       //
-      //         //TextOut(lpRect.left + dx,lpRect.top + dy,str);
+      //         //text_out(lpRect.left + dx,lpRect.top + dy,str);
       //
       //         internal_show_text(lpRect.left + dx,lpRect.top + dy, str, (int)str.get_length(), kCGTextStroke, true, NULL, NULL, NULL, NULL, ppen, NULL, stringpath.m_spfont);
       //
@@ -6172,7 +6175,7 @@ namespace draw2d_quartz2d
 
 
    
-   void graphics::enum_fonts(stringa & straFile, stringa & stra, ::draw2d::font::csa & csa)
+   void graphics::enum_fonts(::draw2d::font::enum_item_array & itema)
    {
       
       char ** p;
@@ -6185,9 +6188,14 @@ namespace draw2d_quartz2d
          for(unsigned long ui = 0; ui < c; ui++)
          {
             
-            stra.add(p[ui]);
-            straFile.add(p[ui]);
-            csa.add(::draw2d::font::cs_default);
+            ::draw2d::font::enum_item item;
+            
+            item.m_ecs = ::draw2d::font::cs_default;
+            item.m_strFile = p[ui];
+            item.m_strName = p[ui];
+
+            itema.add(item);
+            
             free(p[ui]);
             
          }

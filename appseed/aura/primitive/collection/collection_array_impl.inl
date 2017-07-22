@@ -192,14 +192,14 @@ inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::first(index nIndex)
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::last(index index) const
 {
-   return element_at(this->get_upper_bound(index));
+   return this->element_at(this->get_upper_bound(index));
 }
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::last(index index)
 {
-   return element_at(this->get_upper_bound(index));
+   return this->element_at(this->get_upper_bound(index));
 }
 
 
@@ -438,7 +438,7 @@ inline typename array < TYPE, ARG_TYPE, ALLOCATOR > ::iterator array < TYPE, ARG
    }
    else
    {
-      return end();
+      return this->end();
    }
 }
 
@@ -455,12 +455,12 @@ inline typename  array < TYPE, ARG_TYPE, ALLOCATOR > ::iterator array < TYPE, AR
       }
       else
       {
-         return end();
+         return this->end();
       }
    }
    else
    {
-      return end();
+      return this->end();
    }
 }
 

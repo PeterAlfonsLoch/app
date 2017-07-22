@@ -149,7 +149,7 @@ namespace user
                pgraphics->DrawRectangle(rectItem);
             }
             m_pcombo->_001GetListText(i, strItem);
-            pgraphics->TextOut(rectItem.left, rectItem.top, strItem);
+            pgraphics->text_out(rectItem.left, rectItem.top, strItem);
          }
       }
 
@@ -171,7 +171,7 @@ namespace user
          br->create_solid(ARGB(255, 255, 255, 240));
          m_pcombo->_001GetListText(m_pcombo->m_iSel, strItem);
          pgraphics->SelectObject(br);
-         pgraphics->TextOut(rectItem.left, rectItem.top, strItem);
+         pgraphics->text_out(rectItem.left, rectItem.top, strItem);
       }
 
 

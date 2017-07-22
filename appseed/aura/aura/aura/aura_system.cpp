@@ -442,6 +442,7 @@ namespace aura
 
    bool system::process_initialize()
    {
+      
 
       //m_peengine = new ::exception::engine(this);
 
@@ -588,23 +589,9 @@ namespace aura
       catch (...)
       {
 
-         bOk = false;
+         output_debug_string("Unable to find ANY *DRAW2D* plugin. Quitting...");
 
       }
-
-      if (!bOk)
-      {
-
-#ifdef DEBUG
-
-         simple_message_box("Unable to find draw2d plugin. Quitting...", MB_OK);
-
-#endif
-
-         return false;
-
-      }
-
 
 
       return true;
@@ -651,7 +638,9 @@ namespace aura
 
       if(!m_paurasession->begin_synch(&m_iReturnCode))
       {
+         
          return false;
+         
       }
 
       dappy(string(typeid(*this).name()) + " : ::aura::session OK " + ::str::from(m_iReturnCode));
@@ -894,10 +883,10 @@ namespace aura
       //   m_peengine = NULL;
 
       //}
-
 #ifdef MACOS
       ns_app_terminate();
 #endif
+
       return iRet;
 
    }

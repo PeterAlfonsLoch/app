@@ -96,7 +96,7 @@ namespace ios
                                  const char * lpszWindowName, DWORD dwStyle,
                                  const RECT& rect,
                                  ::user::interaction *   pParentWnd, id id,
-                                 sp(::create) pContext = NULL) override;
+                                 ::create * pContext = NULL) override;
       
       // advanced creation (allows access to extended styles)
       virtual bool create_window_ex(::user::interaction * pui,DWORD dwExStyle = 0, const char * lpszClassName=0,

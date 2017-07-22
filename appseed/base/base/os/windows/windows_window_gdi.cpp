@@ -342,6 +342,7 @@ void window_gdi::ipc_copy(int cx, int cy)
             *p++ = cy;
             *p++ = m_iScan;
 
+
             ::draw2d::copy_colorref(cx, cy, (COLORREF *)p, sizeof(COLORREF) * cx, m_pcolorref, m_iScan);
 
          }

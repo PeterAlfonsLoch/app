@@ -69,17 +69,17 @@ namespace sort
          return 0;
    }
 
-   template <class TYPE, class ARG_TYPE>
-   void SwapArray(
-      array<TYPE, ARG_TYPE> & a,
-      index   iA,
-      index iB)
-   {
-      TYPE t;
-      t = a.get_at(iA);
-      a.set_at(iA, a.get_at(iB));
-      a.set_at(iB, t);
-   };
+//   template <class TYPE, class ARG_TYPE>
+//   void SwapArray(
+//      array<TYPE, ARG_TYPE> & a,
+//      index   iA,
+//      index iB)
+//   {
+//      TYPE t;
+//      t = a.get_at(iA);
+//      a.set_at(iA, a.get_at(iB));
+//      a.set_at(iB, t);
+//   };
    /*template <class TYPE, class ARG_TYPE>
    void quick_sort(
    array<TYPE, ARG_TYPE> & array,
@@ -1597,7 +1597,7 @@ namespace sort
 
       }
 
-      typedef comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE >::node node;
+      typedef typename comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE >::node node;
 
       ::raw_array < node * > stackLowerBound;
       ::raw_array < node * > stackUpperBound;
@@ -1663,7 +1663,7 @@ namespace sort
    void pred_quick_sort_descending(comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE > & list, PRED pred)
    {
 
-      pred_quick_sort(list, [](auto & a, autor & b) { return pred(b, a); })
+      pred_quick_sort(list, [&](auto & a, auto & b) { return pred(b, a); });
 
    }
 
@@ -1911,3 +1911,36 @@ quick_sort(bool bAscendent)
 //}
 //
 //
+
+
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename PRED >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::pred_sort(PRED pred)
+{
+   
+   ::sort::array::pred_sort(*this, pred);
+   
+}
+
+
+
+template < typename TYPE >
+void numeric_array < TYPE >::sort(bool bAsc)
+{
+   
+   if (bAsc)
+   {
+      
+      sort::QuickSortAsc(*this);
+      
+   }
+   else
+   {
+      
+      sort::QuickSortDesc(*this);
+      
+   }
+   
+}

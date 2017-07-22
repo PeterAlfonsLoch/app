@@ -2649,7 +2649,7 @@ namespace draw2d_xlib
             pgraphics, rectUpdate.left, rectUpdate.top,
             SRCCOPY);
 
-         m_spgraphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);
+         m_spgraphics->text_out(0, 0, "Te Amo Carlinhos!!", 11);
       }
       catch(...)
       {

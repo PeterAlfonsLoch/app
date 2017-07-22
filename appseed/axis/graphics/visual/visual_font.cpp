@@ -78,9 +78,9 @@ namespace visual
    /*   SetDC(pgraphics);
       SelectFont();
 
-      pgraphics->TextOut(x, y, str);
+      pgraphics->text_out(x, y, str);
       pgraphics->BeginPath();
-      pgraphics->TextOut(x, y, str);
+      pgraphics->text_out(x, y, str);
       pgraphics->EndPath();
       pgraphics->StrokePath();
 
@@ -142,9 +142,9 @@ namespace visual
 
       int32_t iOldMapMode = pgraphics->GetMapMode();
       pgraphics->SetMapMode(MM_TEXT);
-      pgraphics->TextOut(x, y, str);
+      pgraphics->text_out(x, y, str);
       pgraphics->BeginPath();
-      pgraphics->TextOut(x, y, str);
+      pgraphics->text_out(x, y, str);
       pgraphics->EndPath();
       pgraphics->StrokePath();
 
@@ -177,7 +177,7 @@ namespace visual
 
 #endif
 
-      pgraphics->TextOut(x, y, str);
+      pgraphics->text_out(x, y, str);
 
       pgraphics->SetMapMode(iOldMapMode);
 
@@ -468,10 +468,10 @@ bool CLASS_DECL_AXIS TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpStri
 
    if(lpString == NULL)
    {
-      return ::TextOut(hdc, x, y, NULL, 0) != FALSE;
+      return ::text_out(hdc, x, y, NULL, 0) != FALSE;
    }
 
-   return ::TextOut(hdc, x, y, wstr, (int32_t) wstr.get_length()) != FALSE;
+   return ::text_out(hdc, x, y, wstr, (int32_t) wstr.get_length()) != FALSE;
 */
 
 #endif

@@ -171,13 +171,14 @@ CLASS_DECL_AURA int_bool is_windows_nt_lesser_than_2000()
 }
 
 
-
+#ifndef APPLE_IOS
 DWORD GetCurrentProcessId()
 {
 
     return getpid();
 
 }
+#endif
 
 
 

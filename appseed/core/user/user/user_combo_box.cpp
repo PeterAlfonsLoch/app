@@ -113,7 +113,7 @@ namespace user
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
-      pgraphics->TextOut(rectText.left, rectText.top, strText);
+      pgraphics->text_out(rectText.left, rectText.top, strText);
 
    }
 

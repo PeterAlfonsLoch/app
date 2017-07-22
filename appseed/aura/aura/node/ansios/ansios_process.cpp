@@ -354,7 +354,7 @@ namespace ansios
 
          string strFolder = path.folder();
 
-         if(::str::ends_eat_ci(strFolder, (::file::path(str).name() + ".app")/"Contents"/ "MacOS"))
+         if(::str::ends_eat_ci(strFolder, path.folder()/"Contents"/ "MacOS"))
          {
 
             strFallback = strFolder;

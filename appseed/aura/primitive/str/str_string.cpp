@@ -1204,13 +1204,13 @@ string & string::assign(uint64_t n,uint64_t ca)
 // Comparison
 
 
-int32_t string::collate(const char * psz) const RELEASENOTHROW
+int32_t string::collate(const char * psz) const throw()
 {
    //ASSERT(__is_valid_string(psz));
    return(string_trait::StringCollate(GetString(),psz));
 }
 
-int32_t string::collate_ci(const char * psz) const RELEASENOTHROW
+int32_t string::collate_ci(const char * psz) const throw()
 {
    //ASSERT(__is_valid_string(psz));
    return(string_trait::StringCollateIgnore(GetString(),psz));

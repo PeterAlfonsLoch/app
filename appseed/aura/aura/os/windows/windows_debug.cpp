@@ -36,7 +36,7 @@ CLASS_DECL_AURA void windows_install_crash_dump_reporting(::aura::application * 
 
    }
 
-   output_debug_string("test");
+   output_debug_string("test01");
 
 }
 

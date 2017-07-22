@@ -2,7 +2,7 @@
 //  RoundWindowApp.h
 //  axis
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 27/09/14.
+//  Created by Camilo Sasuke Tsumanuma on 27/09/14.
 //
 //
 

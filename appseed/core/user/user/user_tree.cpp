@@ -1146,7 +1146,7 @@ namespace user
 
 
       size size;
-      size = g->GetTextExtent(unitext("¡g"));
+      size = g->GetTextExtent(unitext("√Åg"));
 
       int iItemHeight = 1;
 

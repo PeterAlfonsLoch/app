@@ -353,7 +353,7 @@ namespace windows
       //PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
       //SetTextColor(hMemDC,RGB(0,0,0));
       //SetBkMode(hMemDC,TRANSPARENT);
-      //TextOut(hMemDC,0,9,"rgba",4);
+      //text_out(hMemDC,0,9,"rgba",4);
       //SelectObject(hMemDC,hOldBitmap);
       //DeleteDC(hMemDC);
 

@@ -351,9 +351,12 @@ CLASS_DECL_AURA int_bool file_delete_dup(const char * lpszFileName);
 
 
 
-
+#ifdef __cplusplus
 
 CLASS_DECL_AURA bool file_save_stra(const char * pszName, const stringa & stra);
 CLASS_DECL_AURA bool file_load_stra(const char * pszName, stringa & stra, bool bAddEmpty = true);
+
+
+#endif
 
 

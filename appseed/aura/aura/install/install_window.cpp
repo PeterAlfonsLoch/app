@@ -51,14 +51,18 @@ namespace install
    window::~window()
    {
       
-      HWND hwnd = m_hwnd;
+      oswindow hwnd = m_hwnd;
 
       if (hwnd != NULL)
       {
 
+#ifdef WINDOWS
+         
          ::ShowWindow(hwnd, SW_HIDE);
 
          ::DestroyWindow(hwnd);
+         
+#endif
 
       }
 
@@ -68,7 +72,8 @@ namespace install
    bool window::initialize(int cx, int cy)
    {
 
-
+#ifdef WINDOWS
+      
       BITMAPINFO info = {};
       info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
       info.bmiHeader.biWidth = cx;
@@ -119,6 +124,8 @@ namespace install
       m_brushBar->create_solid(ARGB(180, 80, 180, 80));
       m_brushBarBk->create_solid(ARGB(50, 200, 200, 200));
       m_brushBk->create_solid(ARGB(210, 20, 20, 20));
+      
+#endif
 
       return true;
 
@@ -218,7 +225,7 @@ namespace install
                      if (!bProgress && strLine.length() > 0)
                      {
                         bProgress = true;
-                        long long int i = _atoi64(strLine.c_str());
+                        long long int i = atoi64_dup(strLine.c_str());
                         dProgress = (double)i / 10000000.0;
                         //char sz[128];
                         //sprintf(sz,"%0.1f%%",dProgress);
@@ -332,7 +339,7 @@ namespace install
                      if (!bProgress && strLine.length() > 0)
                      {
                         bProgress = true;
-                        long long int i = _atoi64(strLine.c_str());
+                        long long int i = atoi64_dup(strLine.c_str());
                         dProgress = (double)i / 10000000.0;
                         //char sz[128];
                         //sprintf(sz,"%0.1f%%",dProgress);
@@ -405,19 +412,19 @@ namespace install
          {
             pgraphics->SelectFont(m_fontHeader);
             pgraphics->SelectObject(m_brushText);
-            pgraphics->TextOut(10.0, 10+cyText * 3 + 4, strHeader);
+            pgraphics->text_out(10.0, 10+cyText * 3 + 4, strHeader);
          }
          if (strBold.length() > 0)
          {
             pgraphics->SelectFont(m_fontBold);
             pgraphics->SelectObject(m_brushText);
-            pgraphics->TextOut(10.0, 10 + cyText * 5, strBold);
+            pgraphics->text_out(10.0, 10 + cyText * 5, strBold);
          }
          if (strNormal.length() > 0)
          {
             pgraphics->SelectFont(m_font);
             pgraphics->SelectObject(m_brushText);
-            pgraphics->TextOut(10.0, 10 + cyText * 6, strNormal);
+            pgraphics->text_out(10.0, 10 + cyText * 6, strNormal);
          }
          //if(strProgress.length() > 0)
          //{
@@ -440,7 +447,7 @@ namespace install
          else
          {
             double dPeriod = 2000.0;
-            dProgress = fmod((double)GetTickCount(), dPeriod) / dPeriod;
+            dProgress = fmod((double)get_tick_count(), dPeriod) / dPeriod;
             double iBarWidth = (lpcrect->right - 11.0 - 11.0) / 4;
             double i = ((lpcrect->right - 11.0 - 11.0) * dProgress) + 11.0;
             double iRight = i + iBarWidth;
@@ -464,7 +471,7 @@ namespace install
 
          pgraphics->SelectObject(m_brushText);
 
-         pgraphics->TextOut(10.0, 10.0, "Thank you");
+         pgraphics->text_out(10.0, 10.0, "Thank you");
 
       }
 
@@ -478,6 +485,8 @@ namespace install
 
    bool window::update_layered_window()
    {
+      
+#ifdef WINDOWS
 
       RECT rect;
 
@@ -503,7 +512,7 @@ namespace install
 
       RECT rectWindow;
 
-      HWND hwnd = m_hwnd;
+      oswindow hwnd = m_hwnd;
 
       ::GetWindowRect(hwnd, &rectWindow);
 
@@ -528,6 +537,8 @@ namespace install
       UpdateLayeredWindow(hwnd, hdcWindow, &pt, &sz, m_hdc, &ptSrc, 0, &blendPixelFunction, ULW_ALPHA);
 
       ::ReleaseDC(hwnd, hdcWindow);
+      
+#endif
 
       return true;
 
@@ -537,6 +548,8 @@ namespace install
    LRESULT window::message_handler(UINT message, WPARAM wParam, LPARAM lParam)
    {
 
+#ifdef WINDOWS
+      
       switch (message)
       {
 
@@ -619,12 +632,16 @@ namespace install
 
       return 0;
 
+   
+#endif
+   
    }
 
 
    void window::drag()
    {
 
+#ifdef WINDOWS
       POINT ptCursor;
 
       ::GetCursorPos(&ptCursor);
@@ -635,6 +652,7 @@ namespace install
          0,
          0,
          SWP_NOSIZE | SWP_SHOWWINDOW);
+#endif
 
    }
 
@@ -661,8 +679,12 @@ namespace install
 
    bool window::show()
    {
+      
+#ifdef WINDOWS
 
       ShowWindow(m_hwnd, SW_SHOW);
+      
+#endif
 
       return true;
 
@@ -671,8 +693,13 @@ namespace install
 
    bool window::hide()
    {
+      
+#ifdef WINDOWS
 
       ShowWindow(m_hwnd, SW_HIDE);
+      
+      
+#endif
 
       return true;
 
@@ -681,6 +708,9 @@ namespace install
 
    bool window::create()
    {
+      
+      
+#ifdef WINDOWS
 
       m_wstrWindowTitle = L"";
 
@@ -742,11 +772,14 @@ namespace install
       SetWindowPos(m_hwnd, NULL, x, y, m_cx, m_cy, SWP_NOCOPYBITS);
 
       UpdateWindow(m_hwnd);
+      
+#endif
 
       return 1;
 
    }
 
+#ifdef WINDOWS
 
    LRESULT CALLBACK window::window_procedure(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
    {
@@ -762,9 +795,13 @@ namespace install
 
    }
 
+   
+#endif
 
    ATOM window::register_class()
    {
+      
+#ifdef WINDOWS
 
       HINSTANCE hinstance = System.m_hinstance;
 
@@ -785,6 +822,10 @@ namespace install
       wcex.hIconSm = LoadIcon(hinstance, MAKEINTRESOURCE(ID_ONE));
 
       return RegisterClassExW(&wcex);
+      
+#endif
+      
+      return TRUE;
 
    }
 

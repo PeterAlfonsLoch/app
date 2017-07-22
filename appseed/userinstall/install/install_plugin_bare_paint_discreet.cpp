@@ -323,7 +323,7 @@ namespace hotplugin
       wstrStatus = wstrStatus + wstrProgress;
 
 
-      pgraphics->TextOut(lprect.left + cx / iRate - 1 + 18, lprect.top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
+      pgraphics->text_out(lprect.left + cx / iRate - 1 + 18, lprect.top + (cy - iBarHeight) / 2 - 1 + 1, string(wstrStatus));
 
    }
 

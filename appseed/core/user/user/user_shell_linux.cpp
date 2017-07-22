@@ -1,6 +1,45 @@
 #include "framework.h"
-#include "user_shell_windows.h"
+#include "user_shell_linux.h"
 
+
+
+const char * basecore_get_file_icon_path(const char * pszPath, int iSize);
+string linux_get_file_icon_path(string strPath, int iSize)
+{
+
+   const char* psz = basecore_get_file_icon_path(strPath, iSize);
+
+   if (psz == NULL)
+   {
+      return "";
+   }
+
+   string str = psz;
+
+   free((void*)psz);
+
+   return str;
+
+}
+
+const char * basecore_get_file_content_type(const char * pszFile);
+string linux_get_file_content_type(string strPath)
+{
+
+   const char* psz = basecore_get_file_content_type(strPath);
+
+   if (psz == NULL)
+   {
+      return "";
+   }
+
+   string str = psz;
+
+   free((void*)psz);
+
+   return str;
+
+}
 
 namespace user
 {

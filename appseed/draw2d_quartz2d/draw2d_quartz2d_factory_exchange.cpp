@@ -5,7 +5,7 @@ namespace draw2d_quartz2d
 {
 
    
-   factory_exchange::factory_exchange(sp(::aura::application) papp) :
+   factory_exchange::factory_exchange(::aura::application * papp) :
       ::object(papp)
    {
       
@@ -18,7 +18,6 @@ namespace draw2d_quartz2d
       System.factory().cloneable_large < region                >   (System.type_info < ::draw2d::region              > ());
       System.factory().cloneable_large < font                  >   (System.type_info < ::draw2d::font                > ());
       System.factory().creatable < path                        >   (System.type_info < ::draw2d::path                > (), 1);
-      System.factory().cloneable_large < window_buffer         >   (System.type_info < window_graphics               > ());
       
 //      ::draw2d_quartz2d::dib::s_initialize();
       
@@ -36,3 +35,11 @@ extern "C" void ca2_factory_exchange(::aura::application * papp)
 {
    draw2d_quartz2d::factory_exchange factoryexchange(papp);
 }
+
+
+extern "C" void draw2d_factory_exchange(::aura::application * papp)
+{
+   draw2d_quartz2d::factory_exchange factoryexchange(papp);
+}
+
+

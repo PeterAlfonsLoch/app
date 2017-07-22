@@ -1,28 +1,20 @@
 #pragma once
 
 
-namespace file
-{
-
-
-   class file;
-
-
-} // namespace file
-
-
 namespace zip
 {
 
 
-   class File;
+   class file;
+   
 
-   class CLASS_DECL_AURA InFile:
+   class CLASS_DECL_AURA in_file:
       public ::file::binary_file,
       virtual public ::file::listing_provider
    {
    public:
 
+      
       enum e_mode
       {
 
@@ -43,32 +35,29 @@ namespace zip
       };
 
 
-      unz_file_info m_fi;
-      string m_strFileName;
-      uint64_t m_iPosition;
-      stringa m_straPath;
-      spa(File) m_filea;
-      spa(InFile) m_izfilea;
-      stringa m_straPrefix;
-      e_mode m_emode;
-      string m_strZipFile;
+      unz_file_info        m_fi;
+      string               m_strFileName;
+      uint64_t             m_iPosition;
+      stringa              m_straPath;
+      spa(::zip::file)     m_filea;
+      spa(::zip::in_file)  m_infilea;
+      stringa              m_straPrefix;
+      e_mode               m_emode;
+      string               m_strZipFile;
 
 
-      InFile(::aura::application * papp);
-      virtual ~InFile();
+      in_file(::aura::application * papp);
+      virtual ~in_file();
 
-
-
-      //      operator HFILE() const;
 
       virtual file_position_t get_position() const;
 
       virtual bool zip_open(const char *,UINT);
-      virtual bool zip_open(File * pzfile,const char * lpcszFileName);
+      virtual bool zip_open(::zip::file * pzfile,const char * lpcszFileName);
 
       virtual bool unzip_open(::file::file * pfile, int iBufferLevel = 2);
+      virtual bool unzip_open(::zip::file * pzfile,const char * lpcszFileName);
       virtual bool unzip_open(const char *,UINT);
-      virtual bool unzip_open(File * pzfile,const char * lpcszFileName);
 
       virtual bool locate(const char * pszFileName);
 
@@ -78,8 +67,8 @@ namespace zip
 
       virtual ::file::file_sp Duplicate() const;
 
-      File * get_zip_file();
-      const File * get_zip_file() const;
+      ::zip::file * get_zip_file();
+      const ::zip::file * get_zip_file() const;
 
       virtual file_position_t seek(file_offset_t lOff,::file::e_seek nFrom);
       virtual void set_length(file_size_t dwNewLen);
@@ -114,6 +103,7 @@ namespace zip
 
       using ::file::binary_file::open;
 
+      
    };
 
 

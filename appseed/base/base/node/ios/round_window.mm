@@ -9,6 +9,23 @@
 #import "AppDelegate.h"
 
 
+#import "aura/aura/os/apple/DDInvocationGrabber.h"
+#import "aura/aura/os/apple/NSObject+DDExtensions.h"
+
+
+#ifdef AURA_LANGUAGE
+
+#error "AURA_LANGUAGE?!?!?!!!???"
+
+#endif
+
+
+#ifndef __MM
+
+#error "MM?!?!?!!!???"
+
+#endif
+
 round_window * ios_start_window(struct plane_system * psystem, CGRect rect);
 void ios_initialize_window(round_window * pwindow, UIWindow * window);
 
@@ -35,8 +52,6 @@ UIWindow * new_round_window(round_window * pwindow, CGRect rect)
 
 
 
-
-
 void round_window::round_window_show()
 {
    
@@ -44,8 +59,10 @@ void round_window::round_window_show()
    
 }
 
+
 void round_window::round_window_redraw()
 {
+   
    [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone :TRUE] display ];
    
 }

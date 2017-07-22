@@ -1,6 +1,6 @@
-﻿// thank you white heads (Rus, Slovk, Polsk... etc... ) Thank you Carlos Gustavo Cecyn Lundgren!!
+﻿// thank you white heads (Rus, Slovk, Polsk... etc... ) Thank you CCamilo Sasuke Tsumanuma!
 // Livecoding.tv Rheghal, szulak, eprykak..
-// Somewhere Carlos Gustavo Cecyn Lundgren
+// Somewhere Camilo Sasuke Tsumanuma
 // My Mummi
 // 2015-08-11 16:00:00
 

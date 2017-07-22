@@ -57,7 +57,7 @@ namespace install
       string str;
       str = "|||";
       char sz[20];
-      str += ::_itoa(i, sz, 10);
+      str += ::itoa_dup(i);
       str += "\r\n";
       print(str);
 

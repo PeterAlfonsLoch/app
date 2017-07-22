@@ -121,23 +121,23 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 
 
 
-void * new_ns_pool()
-{
-   
-   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-   
-   return pool;
-   
-}
-
-
-void release_pool(void * pool)
-{
-
-   NSAutoreleasePool * ppool =    (NSAutoreleasePool *)pool;
-   [ppool release];
-   
-}
+//void * new_ns_pool()
+//{
+//   
+//   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+//   
+//   return pool;
+//   
+//}
+//
+//
+//void release_pool(void * pool)
+//{
+//
+//   NSAutoreleasePool * ppool =    (NSAutoreleasePool *)pool;
+//   [ppool release];
+//   
+//}
 
 
 
@@ -179,7 +179,7 @@ int ui_open_url(const char * pszUrl)
    if(url == NULL)
    {
       
-      [strUrl release];
+      //[strUrl release];
       
       return 0;
       

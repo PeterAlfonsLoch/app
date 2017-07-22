@@ -473,7 +473,7 @@
  /////////////////////////////////////////////////////////////////////////////
  // Text Functions
  
- // private helpers for TextOut functions
+ // private helpers for text_out functions
  
  __STATIC int32_t CLASS_DECL_DRAW2D_QUARTZ2D _AfxComputeNextTab(int32_t x, UINT nTabStops, LPINT lpnTabStops, int32_t nTabOrigin, int32_t nTabWidth)
  {
@@ -634,7 +634,7 @@
  return sizeExtent;
  }
  
- WINBOOL preview_dc::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
+ WINBOOL preview_dc::text_out(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
  {
  return ExtTextOut(x, y, 0, NULL, lpszString, nCount, NULL);
  }
@@ -789,8 +789,8 @@
  WINBOOL (CALLBACK *)(HDC, LPARAM, int32_t),
  LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t, int32_t)
  {
- TRACE(::ca2::trace::category_AppMsg, 0, "TextOut() substituted for GrayString() in Print Preview.\n");
- return TextOut(x, y, (const char *)lpData, nCount);
+ TRACE(::ca2::trace::category_AppMsg, 0, "text_out() substituted for GrayString() in Print Preview.\n");
+ return text_out(x, y, (const char *)lpData, nCount);
  }
  
  int32_t preview_dc::Escape(int32_t nEscape, int32_t nCount, const char * lpszInData, void * lpOutData)

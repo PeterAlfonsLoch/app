@@ -2,7 +2,7 @@
 //  base_new.cpp
 //  aura
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 4/11/14.
+//  Created by Camilo Sasuke Tsumanuma on 4/11/14.
 //  Curitiba, 11 de abril de 2014 05:04 0x -> AM except 11 e 12
 //  by Camilo : Carlos, eu te amo!!
 //

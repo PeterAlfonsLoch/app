@@ -229,31 +229,51 @@ file_position_t memory_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
    //ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
-   memory_position_t dwNew = (memory_position_t)-1;
+   memory_position_t dwNew = (memory_position_t)m_dwPosition;
 
    switch (nFrom)
    {
    case ::file::seek_begin:
+      if(lOff < 0)
+      {
+         
+         dwNew = 0;
+         
+      }
+         else
+         {
       dwNew = (memory_position_t)lOff;
+            
+         }
       break;
    case ::file::seek_end:
-      dwNew = (memory_position_t)(get_length() + lOff);
+         if(lOff < -(memory_offset_t)get_length())
+         {
+            
+            dwNew = 0;
+            
+         }
+         else
+         {
+            dwNew = (memory_position_t)(get_length() + lOff);
+         }
       break;
    case ::file::seek_current:
-      if (lOff < 0)
-      {
-         dwNew = (memory_position_t)(m_dwPosition + lOff);
-         if (dwNew > m_dwPosition)
+         if(lOff < -(memory_offset_t)m_dwPosition)
+         {
+            
             dwNew = 0;
-      }
-      else
-      {
-         dwNew = (memory_position_t)(m_dwPosition + lOff);
-      }
-
+            
+         }
+         else
+         {
+            
+            dwNew = (memory_position_t)(m_dwPosition + lOff);
+            
+         }
       break;
    default:
-      return ::numeric_info< memory_position_t >::allset();
+      return m_dwPosition;
    }
 
    m_dwPosition = dwNew;

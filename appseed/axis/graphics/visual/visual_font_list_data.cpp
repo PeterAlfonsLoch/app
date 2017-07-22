@@ -56,7 +56,7 @@ namespace visual
 
       m_dib->get_graphics()->set_text_color(pdata->m_dwaFg[iBox]);
 
-      m_dib->get_graphics()->TextOut(pdata->m_rectMargin.left, pdata->m_rectMargin.top, strText);
+      m_dib->get_graphics()->text_out(pdata->m_rectMargin.left, pdata->m_rectMargin.top, strText);
 
       m_bOk = true;
 
@@ -232,7 +232,7 @@ namespace visual
                if (str.compare_ci("GOUDY STOUT") == 0)
                {
 
-                  output_debug_string("test");
+                  output_debug_string("test05");
 
                }
 
@@ -423,7 +423,7 @@ namespace visual
                   h = 0;
                }
 
-               //pgraphics->TextOut(x + m_rectMargin.left,y + m_rectMargin.top,strText);
+               //pgraphics->text_out(x + m_rectMargin.left,y + m_rectMargin.top,strText);
 
                r.left = x;
                r.top = y;

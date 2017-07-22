@@ -137,7 +137,12 @@ namespace filemanager
    void tab_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
-      if (pcreatordata->m_id == "add_location"
+      
+      if(pcreatordata->m_id.is_null())
+      {
+         return;
+      }
+      else if (pcreatordata->m_id == "add_location"
          || pcreatordata->m_id == "replace_name"
          || pcreatordata->m_id == "new_folder")
       {

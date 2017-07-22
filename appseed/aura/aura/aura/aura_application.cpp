@@ -2576,26 +2576,26 @@ namespace aura
 
    exit_application:
 
-      //try
-      //{
+      try
+      {
 
-      //   m_iReturnCode = exit();
+         m_iReturnCode = exit_application();
 
-      //}
-      //catch(::exit_exception &)
-      //{
+      }
+      catch(::exit_exception &)
+      {
 
-      //   ::aura::post_quit_thread(&System);
+         ::multithreading::post_quit(&System);
 
-      //   m_iReturnCode = -1;
+         m_iReturnCode = -1;
 
-      //}
-      //catch(...)
-      //{
+      }
+      catch(...)
+      {
 
-      //   m_iReturnCode = -1;
+         m_iReturnCode = -1;
 
-      //}
+      }
 
       return m_iReturnCode;
 
@@ -6312,11 +6312,11 @@ namespace aura
 //            //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 //            //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
 
-            strPath = get_exe_path();
+            path = get_exe_path();
 
-            ::output_debug_string("\n\n xyzxyzx OK OK K " + strPath + "\n\n");
+            ::output_debug_string("\n\n xyzxyzx OK OK K " + path + "\n\n");
 
-            strPath = "\"" + strPath + "\"";
+            path = "\"" + path + "\"";
 
 #endif
 
@@ -6722,15 +6722,7 @@ namespace aura
    ::file::path application::get_executable_path()
    {
 
-#ifdef WINDOWS
-
       return ::dir::module() / (get_executable_title() + get_executable_extension());
-
-#else
-
-      #error "todo/ (to think just a bit now is suitable... other times, don't think, just do it, we already worried a lot in your life";
-
-#endif
 
 
    }
@@ -6776,7 +6768,7 @@ namespace aura
 
    void application::draw2d_factory_exchange()
    {
-
+      
 #if defined(METROWIN) || defined(CUBE)
 
       ::draw2d_factory_exchange(this);
@@ -6859,7 +6851,7 @@ namespace aura
                goto finalize;
 
          }
-
+      
          throw "Could not draw2d_factory_exchange.";
 
       finalize:

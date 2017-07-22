@@ -31,7 +31,7 @@ namespace file
       strsize           m_iName; // if negative, not set/calculated/retrieved where name starts
       strsize           m_iRelative; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
 
-      path_meta(e_path epath = path_none, int64_t iSize = -1, int64_t iDir = -1, int64_t iName = -1, strsize iRelative = -1)
+      path_meta(e_path epath = path_none, int64_t iSize = -1, int32_t iDir = -1, int64_t iName = -1, strsize iRelative = -1)
       {
 
          m_epath = epath;
@@ -104,7 +104,7 @@ namespace file
       path & operator = (const string & str);
 
 
-      bool path::is_equal(const path & path) const
+      bool is_equal(const path & path) const
       {
 
 #ifdef WINDOWS
@@ -124,14 +124,14 @@ namespace file
       }
 
 
-      bool path::operator == (const path & path) const
+      bool operator == (const path & path) const
       {
 
          return is_equal(path);
 
       }
 
-      bool path::operator == (const string & str) const
+      bool operator == (const string & str) const
       {
 
          return operator == (path(str));
@@ -139,7 +139,7 @@ namespace file
       }
 
 
-      bool path::operator == (const char * psz) const
+      bool operator == (const char * psz) const
       {
 
          return operator == (string(psz));
@@ -147,7 +147,7 @@ namespace file
       }
 
 
-      bool path::operator != (const path & path) const
+      bool operator != (const path & path) const
       {
 
          return !is_equal(path);
@@ -155,7 +155,7 @@ namespace file
       }
 
 
-      bool path::operator != (const string & str) const
+      bool operator != (const string & str) const
       {
 
          return operator != (path(str));
@@ -163,7 +163,7 @@ namespace file
       }
 
 
-      bool path::operator != (const char * psz) const
+      bool operator != (const char * psz) const
       {
 
          return operator != (string(psz));

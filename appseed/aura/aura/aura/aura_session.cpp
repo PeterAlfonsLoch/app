@@ -1,6 +1,12 @@
 #include "framework.h"
 
 
+::aura::PFN_GET_NEW_LIBRARY g_pfnNewLibrary = NULL;
+
+
+::aura::PFN_GET_NEW_APP g_pfnNewApp = NULL;
+
+
 namespace aura
 {
 
@@ -825,9 +831,27 @@ namespace aura
 #endif
 
       sp(::aura::application) papp;
-
-      if(strAppId == "acid")
+      
+      if(g_pfnNewApp != NULL)
       {
+         
+         papp = g_pfnNewApp(pappParent);
+         
+         if (papp.is_null())
+         {
+            
+            return NULL;
+            
+         }
+         
+         papp->m_strLibraryName = strAppId;
+         
+    
+      }
+      else if(strAppId == "acid")
+      {
+         
+#ifdef WINDOWS
 
          PFN_GET_NEW_APP lpfnNewApp = (PFN_GET_NEW_APP) ::GetProcAddress(System.m_hinstance, "get_acid_app");
 
@@ -848,6 +872,8 @@ namespace aura
          }
 
          papp->m_strLibraryName = "acid";
+         
+#endif
 
       }
       else
@@ -857,6 +883,15 @@ namespace aura
 
          if (plibrary == NULL)
          {
+            
+            if(g_pfnNewLibrary != NULL)
+            {
+               
+               plibrary = g_pfnNewLibrary(pappParent);
+               
+            }
+            else
+            {
 
             plibrary = new ::aura::library(pappParent, 0, NULL);
 
@@ -908,6 +943,8 @@ namespace aura
             ::output_debug_string("|\n");
             ::output_debug_string("|\n");
             ::output_debug_string("|----");
+               
+            }
 
          }
 

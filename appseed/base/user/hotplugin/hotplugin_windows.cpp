@@ -151,7 +151,7 @@ namespace hotplugin
 
    ////HFONT hfontOld = (HFONT) ::SelectObject(hdc,hStockFont);
 
-   ////::TextOut(hdc,rectBar.left - 1,rectBar.bottom + 2,str,str.get_length());
+   ////::text_out(hdc,rectBar.left - 1,rectBar.bottom + 2,str,str.get_length());
 
    ////rectBar.left++;
    ////rectBar.top++;

@@ -2,7 +2,7 @@
 //  c_os_crypt.cpp
 //  c
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 11/10/12.
+//  Created by Camilo Sasuke Tsumanuma on 11/10/12.
 //
 //
 #include "framework.h"

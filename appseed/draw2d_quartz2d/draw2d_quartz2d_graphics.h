@@ -234,7 +234,7 @@ namespace draw2d_quartz2d
       int32_t SelectClipRgn(::draw2d::region* pRgn);
       int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       int32_t ExcludeClipRect(const RECT & lpRect);
-      int32_t ExcludeUpdateRgn(::user::interaction * pWnd);
+      //int32_t ExcludeUpdateRgn(::user::interaction * pWnd);
       int32_t IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       int32_t IntersectClipRect(const RECT & lpRect);
       int32_t OffsetClipRgn(int32_t x, int32_t y);
@@ -366,10 +366,10 @@ namespace draw2d_quartz2d
       
       // Text Functions
       virtual bool internal_show_text(double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = NULL, CGFloat * pdescent = NULL, CGFloat * pleading = NULL, CGFloat * pwidth = NULL, ::draw2d::pen * ppen=NULL, ::draw2d::brush * pbrush = NULL, ::draw2d::font * pfont = NULL);
-      virtual bool TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount);
-      virtual bool TextOut(int32_t x, int32_t y, const string & str);
+      virtual bool text_out(int32_t x, int32_t y, const char * lpszString, strsize nCount) override;
+      virtual bool text_out(int32_t x, int32_t y, const string & str) override;
       virtual bool TextOutRaw(double x, double y, const char * lpszString, strsize nCount);
-      virtual bool TextOut(double x, double y, const string & str);
+      virtual bool text_out(double x, double y, const string & str) override;
       virtual bool ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect,
                               const char * lpszString, UINT nCount, LPINT lpDxWidths);
       bool ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect,
@@ -578,7 +578,7 @@ namespace draw2d_quartz2d
       void internal_set_fill_color(COLORREF cr);
       
       
-      virtual void enum_fonts(stringa & straFile, stringa & stra, ::draw2d::font::csa & csa) override;
+      virtual void enum_fonts(::draw2d::font::enum_item_array & itema) override;
       
    };
    

@@ -2,7 +2,7 @@
 //  MessageBoxA_W.m
 //  aura
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 09/07/15.
+//  Created by Camilo Sasuke Tsumanuma on 09/07/15.
 //
 //
 
@@ -137,7 +137,7 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
 }];
 
 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-dispatch_release(semaphore);
+//dispatch_release(semaphore);
    
    switch(uType)
    {

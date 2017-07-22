@@ -1696,17 +1696,17 @@ namespace draw2d_cairo
    // double blend
    //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
-   bool graphics::TextOut(int32_t x, int32_t y, const string & str)
+   bool graphics::text_out(int32_t x, int32_t y, const string & str)
    {
 
-      return ::draw2d::graphics::TextOut(double(x), double(y), str);
+      return ::draw2d::graphics::text_out(double(x), double(y), str);
 
    }
 
-   bool graphics::TextOut(double x, double y, const string & str)
+   bool graphics::text_out(double x, double y, const string & str)
    {
 
-      return TextOut((int) x, (int) y, str, (int32_t)str.get_length());
+      return text_out((int) x, (int) y, str, (int32_t)str.get_length());
 
    }
 
@@ -4829,10 +4829,10 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount)
+   bool graphics::text_out(int32_t x, int32_t y, const char * lpszString, strsize nCount)
    {
 
-      return TextOut(x, y, string(lpszString, nCount));
+      return text_out(x, y, string(lpszString, nCount));
 
    }
 
@@ -4882,7 +4882,7 @@ namespace draw2d_cairo
          dib0->Fill(0, 0, 0, 0);
          dib0->get_graphics()->SelectObject(get_current_brush());
          dib0->get_graphics()->SelectObject(get_current_font());
-         dib0->get_graphics()->TextOut(x - m_spregion.cast < region >()->m_rectBoundingBoxInternal.left,
+         dib0->get_graphics()->text_out(x - m_spregion.cast < region >()->m_rectBoundingBoxInternal.left,
             y - m_spregion.cast < region >()->m_rectBoundingBoxInternal.top,
             str);
 
@@ -4953,7 +4953,7 @@ namespace draw2d_cairo
 
          const char * pszStatus = cairo_status_to_string(status);
 
-         TRACE("cairo error : graphics::TextOut %d %s", status, pszStatus);
+         TRACE("cairo error : graphics::text_out %d %s", status, pszStatus);
 
       }
 

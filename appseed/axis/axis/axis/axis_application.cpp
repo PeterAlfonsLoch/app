@@ -2415,7 +2415,7 @@ namespace axis
       if(set["get_memory"].cast < memory >() != NULL && set["get_memory"].cast < memory >()->get_size() > 0)
       {
 
-         zip::Util util;
+         zip::util util;
 
          string strDir = strFile;
 

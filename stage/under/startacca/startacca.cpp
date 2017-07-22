@@ -244,8 +244,8 @@ void Draw(HDC hdc, cylinder & cyl);
 void Paint(HDC hdc)
 {
    str str;
-   str = "Carlos Gustavo Cecyn Lundgren";
-   ::TextOut(hdc, 10, 10, str, str.get_length());
+   str = "Camilo Sasuke Tsumanuma";
+   ::text_out(hdc, 10, 10, str, str.get_length());
 
    cylinder cyl;
    cyl.m_dx = 10.0;

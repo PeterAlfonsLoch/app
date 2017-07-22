@@ -117,7 +117,7 @@ namespace filemanager
             if(filepatha.add_unique(filepath) >= 0)
             {
 
-               get_filemanager_manager()->data_set(get_filemanager_template()->m_dataidStatic, filepatha);
+               get_filemanager_manager()->data_save(get_filemanager_template()->m_dataidStatic, filepatha);
 
                add_item(get_filemanager_item().m_filepath, get_filemanager_item().m_filepath.name());
 
@@ -1285,7 +1285,7 @@ namespace filemanager
       }*/
       if(m_eview == view_icon)
       {
-         data_set(     data_get_current_sort_id() + "."+data_get_current_list_layout_id() + ".straStrictOrder",          m_pathaStrictOrder);
+         data_save(     data_get_current_sort_id() + "."+data_get_current_list_layout_id() + ".straStrictOrder",          m_pathaStrictOrder);
          m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
          data_set_DisplayToStrict();
       }

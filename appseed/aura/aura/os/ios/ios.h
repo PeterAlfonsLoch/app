@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ios_ns_exception.h"
+#include "aura/aura/os/apple/apple.h"
 
 
 #include "ios_multithreading.h"

@@ -331,7 +331,7 @@ namespace console
       for( i = 0; i < m_strCommand.length(); i++)
       {
 
-         pgraphics->TextOut(iLeftMargin +m_sizeChar.cx *i,0,m_strCommand.Mid(i,1));
+         pgraphics->text_out(iLeftMargin +m_sizeChar.cx *i,0,m_strCommand.Mid(i,1));
 
       }
 

@@ -9,12 +9,12 @@
 //#include "fiasco_finder.h"
 
 
-#include "zip/unzip.h"
+#include "zip/zip_unzip.h"
 #ifndef NOUNCRYPT
 #define INCLUDECRYPTINGCODE_IFCRYPTALLOWED
-#include "zip/crypt.h"
+#include "zip/zip_crypt.h"
 #endif
-#include "zip/zipImpl.h"
+#include "zip/zip_impl.h"
 
 
 

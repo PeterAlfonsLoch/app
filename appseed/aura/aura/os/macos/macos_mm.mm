@@ -2,7 +2,7 @@
 //  macos_mm.m
 //  aura
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 3/8/16.
+//  Created by Camilo Sasuke Tsumanuma on 3/8/16.
 //
 //
 

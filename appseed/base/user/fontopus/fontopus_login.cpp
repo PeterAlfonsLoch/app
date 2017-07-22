@@ -325,7 +325,7 @@ namespace fontopus
          pgraphics->SelectObject(f);
 
          pgraphics->set_text_color(crBorderOut);
-         pgraphics->TextOut((int)(49 * rx), (int)(49 * ry), m_strCred);
+         pgraphics->text_out((int)(49 * rx), (int)(49 * ry), m_strCred);
       }
 
       else if (m_picon95)
